@@ -37,7 +37,7 @@ public class CatchParameterNameTest extends AbstractGoogleModuleTestSupport {
     public void testCatchParameterName() throws Exception {
         final String msgKey = "name.invalidPattern";
         final Configuration checkConfig = getModuleConfig("CatchParameterName");
-        final String format = checkConfig.getAttribute("format");
+        final String format = checkConfig.getProperty("format");
         final Map<String, String> messages = checkConfig.getMessages();
 
         final String[] expected = {

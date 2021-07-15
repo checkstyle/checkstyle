@@ -74,7 +74,7 @@ public class InterfaceTypeParameterNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(InterfaceTypeParameterNameCheck.class);
-        checkConfig.addAttribute("format", "^foo$");
+        checkConfig.addProperty("format", "^foo$");
 
         final String pattern = "^foo$";
 

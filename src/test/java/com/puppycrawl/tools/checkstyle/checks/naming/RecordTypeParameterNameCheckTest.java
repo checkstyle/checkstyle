@@ -66,7 +66,7 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(RecordTypeParameterNameCheck.class);
-        checkConfig.addAttribute("format", "^foo$");
+        checkConfig.addProperty("format", "^foo$");
 
         final String pattern = "^foo$";
 

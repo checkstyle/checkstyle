@@ -73,7 +73,7 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AnonInnerLengthCheck.class);
-        moduleConfig.addAttribute("max", String.valueOf(maxLen));
+        moduleConfig.addProperty("max", String.valueOf(maxLen));
 
         final String[] expectedViolation = {
             "7:35: " + getCheckMessage(AnonInnerLengthCheck.class,

@@ -33,7 +33,10 @@ public interface Configuration extends Serializable {
      * The set of attribute names.
      *
      * @return The set of attribute names, never null.
+     * @deprecated This shall be removed in future releases. Please use
+     *      {@code getPropertyNames()} instead.
      */
+    @Deprecated
     String[] getAttributeNames();
 
     /**
@@ -42,8 +45,27 @@ public interface Configuration extends Serializable {
      * @param name the attribute name
      * @return the value that is associated with name
      * @throws CheckstyleException if name is not a valid attribute name
+     * @deprecated This shall be removed in future releases. Please use
+     *      {@code getProperty(String name)} instead.
      */
+    @Deprecated
     String getAttribute(String name) throws CheckstyleException;
+
+    /**
+     * The set of property names.
+     *
+     * @return The set of property names, never null.
+     */
+    String[] getPropertyNames();
+
+    /**
+     * The property value for an property name.
+     *
+     * @param name the property name
+     * @return the value that is associated with name
+     * @throws CheckstyleException if name is not a valid property name
+     */
+    String getProperty(String name) throws CheckstyleException;
 
     /**
      * The set of child configurations.

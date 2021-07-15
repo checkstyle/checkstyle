@@ -60,7 +60,7 @@ public class JavadocPackageCheckTest
     @Test
     public void testMissingWithAllowLegacy() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocPackageCheck.class);
-        checkConfig.addAttribute("allowLegacy", "true");
+        checkConfig.addProperty("allowLegacy", "true");
         final String[] expected = {
             "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
@@ -112,7 +112,7 @@ public class JavadocPackageCheckTest
     @Test
     public void testHtmlAllowed() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocPackageCheck.class);
-        checkConfig.addAttribute("allowLegacy", "true");
+        checkConfig.addProperty("allowLegacy", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(createChecker(checkConfig),
             getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored2.java"),

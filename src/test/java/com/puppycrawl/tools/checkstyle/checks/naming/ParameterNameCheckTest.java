@@ -50,7 +50,7 @@ public class ParameterNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ParameterNameCheck.class);
-        checkConfig.addAttribute("format", "^NO_WAY_MATEY$");
+        checkConfig.addProperty("format", "^NO_WAY_MATEY$");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputParameterNameCatchOnly.java"), expected);
     }
@@ -60,7 +60,7 @@ public class ParameterNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ParameterNameCheck.class);
-        checkConfig.addAttribute("format", "^a[A-Z][a-zA-Z0-9]*$");
+        checkConfig.addProperty("format", "^a[A-Z][a-zA-Z0-9]*$");
 
         final String pattern = "^a[A-Z][a-zA-Z0-9]*$";
 
@@ -96,8 +96,8 @@ public class ParameterNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ParameterNameCheck.class);
-        checkConfig.addAttribute("format", "^h$");
-        checkConfig.addAttribute("ignoreOverridden", "true");
+        checkConfig.addProperty("format", "^h$");
+        checkConfig.addProperty("ignoreOverridden", "true");
 
         final String pattern = "^h$";
 
@@ -118,8 +118,8 @@ public class ParameterNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ParameterNameCheck.class);
-        checkConfig.addAttribute("format", "^h$");
-        checkConfig.addAttribute("ignoreOverridden", "false");
+        checkConfig.addProperty("format", "^h$");
+        checkConfig.addProperty("ignoreOverridden", "false");
 
         final String pattern = "^h$";
 
@@ -141,8 +141,8 @@ public class ParameterNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ParameterNameCheck.class);
-        checkConfig.addAttribute("format", "^h$");
-        checkConfig.addAttribute("accessModifiers", AccessModifierOption.PUBLIC.toString());
+        checkConfig.addProperty("format", "^h$");
+        checkConfig.addProperty("accessModifiers", AccessModifierOption.PUBLIC.toString());
 
         final String pattern = "^h$";
 
@@ -161,8 +161,8 @@ public class ParameterNameCheckTest
     public void testIsOverriddenNoNullPointerException()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ParameterNameCheck.class);
-        checkConfig.addAttribute("format", "^[a-z][a-zA-Z0-9]*$");
-        checkConfig.addAttribute("ignoreOverridden", "true");
+        checkConfig.addProperty("format", "^[a-z][a-zA-Z0-9]*$");
+        checkConfig.addProperty("ignoreOverridden", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputParameterNameOverrideAnnotationNoNPE.java"), expected);
     }

@@ -72,7 +72,7 @@ public class AvoidStaticImportCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AvoidStaticImportCheck.class);
-        checkConfig.addAttribute("excludes", "java.io.File.*,sun.net.ftpclient.FtpClient.*");
+        checkConfig.addProperty("excludes", "java.io.File.*,sun.net.ftpclient.FtpClient.*");
         // allow the "java.io.File.*" AND "sun.net.ftpclient.FtpClient.*" star imports
         final String[] expected = {
             "25:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
@@ -93,7 +93,7 @@ public class AvoidStaticImportCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AvoidStaticImportCheck.class);
-        checkConfig.addAttribute("excludes", "java.io.File.listRoots,java.lang.Math.E");
+        checkConfig.addProperty("excludes", "java.io.File.listRoots,java.lang.Math.E");
         // allow the java.io.File.listRoots and java.lang.Math.E member imports
         final String[] expected = {
             "25:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
@@ -117,7 +117,7 @@ public class AvoidStaticImportCheckTest
             createModuleConfig(AvoidStaticImportCheck.class);
 
         // should NOT mask anything
-        checkConfig.addAttribute(
+        checkConfig.addProperty(
             "excludes",
             "java.io.File.listRoots.listRoots, javax.swing.WindowConstants, javax.swing.*,"
             + "sun.net.ftpclient.FtpClient.*FtpClient, sun.net.ftpclient.FtpClientjunk,"
@@ -147,7 +147,7 @@ public class AvoidStaticImportCheckTest
 
         // should mask com.puppycrawl.tools.checkstyle.imports.avoidstaticimport.
         // InputAvoidStaticImportNestedClass.InnerClass.one
-        checkConfig.addAttribute(
+        checkConfig.addProperty(
             "excludes",
             "com.puppycrawl.tools.checkstyle.checks.imports."
                 + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.*");

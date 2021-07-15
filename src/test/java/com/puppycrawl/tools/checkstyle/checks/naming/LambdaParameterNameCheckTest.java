@@ -62,7 +62,7 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(LambdaParameterNameCheck.class);
 
-        checkConfig.addAttribute("format", "^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$");
+        checkConfig.addProperty("format", "^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$");
 
         final String pattern = "^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$";
 

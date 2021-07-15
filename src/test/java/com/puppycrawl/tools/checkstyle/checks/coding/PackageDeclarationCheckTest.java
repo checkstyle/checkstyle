@@ -106,7 +106,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileIgnoreDiffDirectoryMismatch() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
-        checkConfig.addAttribute("matchDirectoryStructure", "false");
+        checkConfig.addProperty("matchDirectoryStructure", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getNonCompilablePath("InputPackageDeclarationDiffDirectory.java"),
@@ -116,7 +116,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileIgnoreDirectoryMismatchAtParent() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
-        checkConfig.addAttribute("matchDirectoryStructure", "false");
+        checkConfig.addProperty("matchDirectoryStructure", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig,
@@ -127,7 +127,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileIgnoreDirectoryMismatchAtSubpackage() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
-        checkConfig.addAttribute("matchDirectoryStructure", "false");
+        checkConfig.addProperty("matchDirectoryStructure", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig,

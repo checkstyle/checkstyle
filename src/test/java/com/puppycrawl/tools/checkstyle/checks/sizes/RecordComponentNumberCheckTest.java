@@ -112,7 +112,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     public void testRecordComponentNumberMax1() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(RecordComponentNumberCheck.class);
-        checkConfig.addAttribute("max", "1");
+        checkConfig.addProperty("max", "1");
 
         final int max = 1;
 
@@ -141,7 +141,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     public void testRecordComponentNumberMax20() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(RecordComponentNumberCheck.class);
-        checkConfig.addAttribute("max", "20");
+        checkConfig.addProperty("max", "20");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig,
@@ -152,7 +152,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     public void testRecordComponentNumberPrivateModifier() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(RecordComponentNumberCheck.class);
-        checkConfig.addAttribute("accessModifiers", "private");
+        checkConfig.addProperty("accessModifiers", "private");
 
         final int max = 8;
 

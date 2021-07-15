@@ -50,7 +50,7 @@ public class PackageNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(PackageNameCheck.class);
-        checkConfig.addAttribute("format", "[A-Z]+");
+        checkConfig.addProperty("format", "[A-Z]+");
 
         final String pattern = "[A-Z]+";
 

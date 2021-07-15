@@ -43,7 +43,7 @@ public class NoWhitespaceAfterCheckTest
     @Test
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
-        checkConfig.addAttribute("allowLineBreaks", "false");
+        checkConfig.addProperty("allowLineBreaks", "false");
         final String[] expected = {
             "1:13: " + getCheckMessage(MSG_KEY, "."),
             "2:11: " + getCheckMessage(MSG_KEY, "."),
@@ -69,7 +69,7 @@ public class NoWhitespaceAfterCheckTest
     @Test
     public void testDotAllowLineBreaks() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
-        checkConfig.addAttribute("tokens", "DOT");
+        checkConfig.addProperty("tokens", "DOT");
         final String[] expected = {
             "1:13: " + getCheckMessage(MSG_KEY, "."),
             "125:23: " + getCheckMessage(MSG_KEY, "."),
@@ -81,7 +81,7 @@ public class NoWhitespaceAfterCheckTest
     @Test
     public void testTypecast() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
-        checkConfig.addAttribute("tokens", "TYPECAST");
+        checkConfig.addProperty("tokens", "TYPECAST");
         final String[] expected = {
             "83:20: " + getCheckMessage(MSG_KEY, ")"),
             "85:13: " + getCheckMessage(MSG_KEY, ")"),
@@ -93,8 +93,8 @@ public class NoWhitespaceAfterCheckTest
     @Test
     public void testArrayDeclarations() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
-        checkConfig.addAttribute("tokens", "ARRAY_DECLARATOR");
-        checkConfig.addAttribute("tokens", "INDEX_OP");
+        checkConfig.addProperty("tokens", "ARRAY_DECLARATOR");
+        checkConfig.addProperty("tokens", "INDEX_OP");
         final String[] expected = {
             "10:12: " + getCheckMessage(MSG_KEY, "Object"),
             "12:23: " + getCheckMessage(MSG_KEY, "someStuff3"),
@@ -124,8 +124,8 @@ public class NoWhitespaceAfterCheckTest
     @Test
     public void testArrayDeclarations2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
-        checkConfig.addAttribute("tokens", "ARRAY_DECLARATOR");
-        checkConfig.addAttribute("tokens", "INDEX_OP");
+        checkConfig.addProperty("tokens", "ARRAY_DECLARATOR");
+        checkConfig.addProperty("tokens", "INDEX_OP");
         final String[] expected = {
             "16:31: " + getCheckMessage(MSG_KEY, "]"),
             "21:41: " + getCheckMessage(MSG_KEY, "create"),
@@ -176,15 +176,15 @@ public class NoWhitespaceAfterCheckTest
     @Test
     public void testArrayDeclarations3() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
-        checkConfig.addAttribute("tokens", "ARRAY_DECLARATOR");
-        checkConfig.addAttribute("tokens", "INDEX_OP");
+        checkConfig.addProperty("tokens", "ARRAY_DECLARATOR");
+        checkConfig.addProperty("tokens", "INDEX_OP");
         verify(checkConfig, getPath("InputNoWhitespaceAfterArrayDeclarations3.java"));
     }
 
     @Test
     public void testSynchronized() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
-        checkConfig.addAttribute("tokens", "LITERAL_SYNCHRONIZED");
+        checkConfig.addProperty("tokens", "LITERAL_SYNCHRONIZED");
         final String[] expected = {
             "18:9: " + getCheckMessage(MSG_KEY, "synchronized"),
         };
@@ -210,7 +210,7 @@ public class NoWhitespaceAfterCheckTest
     @Test
     public void testMethodReferenceAfter() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
-        checkConfig.addAttribute("tokens", "METHOD_REF");
+        checkConfig.addProperty("tokens", "METHOD_REF");
         final String[] expected = {
             "21:35: " + getCheckMessage(MSG_KEY, "::"),
             "22:64: " + getCheckMessage(MSG_KEY, "::"),
@@ -221,7 +221,7 @@ public class NoWhitespaceAfterCheckTest
     @Test
     public void testArrayDeclarator() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
-        checkConfig.addAttribute("tokens", "ARRAY_DECLARATOR");
+        checkConfig.addProperty("tokens", "ARRAY_DECLARATOR");
         final String[] expected = {
             "15:32: " + getCheckMessage(MSG_KEY, "Entry"),
         };
@@ -252,10 +252,10 @@ public class NoWhitespaceAfterCheckTest
     @Test
     public void testAllTokens() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
-        checkConfig.addAttribute("tokens", "ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, "
+        checkConfig.addProperty("tokens", "ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, "
                 + "BNOT, LNOT, DOT, TYPECAST, ARRAY_DECLARATOR, INDEX_OP, LITERAL_SYNCHRONIZED, "
                 + "METHOD_REF");
-        checkConfig.addAttribute("allowLineBreaks", "false");
+        checkConfig.addProperty("allowLineBreaks", "false");
         final String[] expected = {
             "1:13: " + getCheckMessage(MSG_KEY, "."),
             "2:11: " + getCheckMessage(MSG_KEY, "."),
@@ -286,7 +286,7 @@ public class NoWhitespaceAfterCheckTest
     @Test
     public void testArrayDeclarationsAndAnnotations() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
-        checkConfig.addAttribute("tokens", "ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, "
+        checkConfig.addProperty("tokens", "ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, "
                 + "BNOT, LNOT, DOT, TYPECAST, ARRAY_DECLARATOR, INDEX_OP, LITERAL_SYNCHRONIZED, "
                 + "METHOD_REF");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -297,10 +297,10 @@ public class NoWhitespaceAfterCheckTest
     @Test
     public void testArrayNewTypeStructure() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
-        checkConfig.addAttribute("tokens", "ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, "
+        checkConfig.addProperty("tokens", "ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, "
                 + "BNOT, LNOT, DOT, TYPECAST, ARRAY_DECLARATOR, INDEX_OP, LITERAL_SYNCHRONIZED, "
                 + "METHOD_REF");
-        checkConfig.addAttribute("allowLineBreaks", "false");
+        checkConfig.addProperty("allowLineBreaks", "false");
 
         final String[] expected = {
             "50:17: " + getCheckMessage(MSG_KEY, "ci"),

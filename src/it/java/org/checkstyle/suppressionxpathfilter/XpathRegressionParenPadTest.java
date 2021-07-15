@@ -68,7 +68,7 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ParenPadCheck.class);
-        moduleConfig.addAttribute("option", PadOption.SPACE.toString());
+        moduleConfig.addProperty("option", PadOption.SPACE.toString());
 
         final String[] expectedViolation = {
             "5:12: " + getCheckMessage(ParenPadCheck.class,
@@ -113,7 +113,7 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ParenPadCheck.class);
-        moduleConfig.addAttribute("option", PadOption.SPACE.toString());
+        moduleConfig.addProperty("option", PadOption.SPACE.toString());
 
         final String[] expectedViolation = {
             "5:19: " + getCheckMessage(ParenPadCheck.class,

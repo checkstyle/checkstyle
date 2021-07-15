@@ -203,7 +203,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingOverrideCheck.class);
-        moduleConfig.addAttribute("javaFiveCompatibility", "true");
+        moduleConfig.addProperty("javaFiveCompatibility", "true");
 
         final String[] expectedViolation = {
             "7:5: " + getCheckMessage(MissingOverrideCheck.class,
@@ -232,7 +232,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingOverrideCheck.class);
-        moduleConfig.addAttribute("javaFiveCompatibility", "true");
+        moduleConfig.addProperty("javaFiveCompatibility", "true");
 
         final String[] expectedViolation = {
             "7:5: " + getCheckMessage(MissingOverrideCheck.class,

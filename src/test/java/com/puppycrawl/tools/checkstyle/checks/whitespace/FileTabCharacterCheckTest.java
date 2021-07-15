@@ -41,7 +41,7 @@ public class FileTabCharacterCheckTest
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(FileTabCharacterCheck.class);
-        checkConfig.addAttribute("eachLine", "false");
+        checkConfig.addProperty("eachLine", "false");
         final String[] expected = {
             "22:25: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
         };
@@ -53,7 +53,7 @@ public class FileTabCharacterCheckTest
     public void testVerbose() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(FileTabCharacterCheck.class);
-        checkConfig.addAttribute("eachLine", "true");
+        checkConfig.addProperty("eachLine", "true");
         final String[] expected = {
             "22:25: " + getCheckMessage(MSG_CONTAINS_TAB),
             "148:35: " + getCheckMessage(MSG_CONTAINS_TAB),
@@ -72,7 +72,7 @@ public class FileTabCharacterCheckTest
     public void testBadFile() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(FileTabCharacterCheck.class);
-        checkConfig.addAttribute("eachLine", "false");
+        checkConfig.addProperty("eachLine", "false");
         final String path = getPath("Claira");
         final String exceptionMessage = " (No such file or directory)";
         final Violation violation = new Violation(1,

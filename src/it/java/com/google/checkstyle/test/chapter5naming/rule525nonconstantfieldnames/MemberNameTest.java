@@ -38,7 +38,7 @@ public class MemberNameTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testMemberName() throws Exception {
         final Configuration checkConfig = getModuleConfig("MemberName");
-        final String format = checkConfig.getAttribute("format");
+        final String format = checkConfig.getProperty("format");
         final Map<String, String> messages = checkConfig.getMessages();
         final String[] expected = {
             "5:16: " + getCheckMessage(messages, MSG_KEY, "mPublic", format),
@@ -65,7 +65,7 @@ public class MemberNameTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testSimple() throws Exception {
         final Configuration checkConfig = getModuleConfig("MemberName");
-        final String format = checkConfig.getAttribute("format");
+        final String format = checkConfig.getProperty("format");
         final Map<String, String> messages = checkConfig.getMessages();
         final String[] expected = {
             "12:17: " + getCheckMessage(messages, MSG_KEY, "bad$Static", format),

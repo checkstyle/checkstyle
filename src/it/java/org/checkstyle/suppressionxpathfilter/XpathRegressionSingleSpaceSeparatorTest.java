@@ -67,7 +67,7 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(SingleSpaceSeparatorCheck.class);
-        moduleConfig.addAttribute("validateComments", "true");
+        moduleConfig.addProperty("validateComments", "true");
 
         final String[] expectedViolation = {
             "4:17: " + getCheckMessage(SingleSpaceSeparatorCheck.class,

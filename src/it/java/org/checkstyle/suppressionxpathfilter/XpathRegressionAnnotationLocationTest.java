@@ -130,7 +130,7 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AnnotationLocationCheck.class);
-        moduleConfig.addAttribute("tokens", "METHOD_DEF");
+        moduleConfig.addProperty("tokens", "METHOD_DEF");
 
         final String[] expectedViolation = {
             "4:6: " + getCheckMessage(AnnotationLocationCheck.class,
@@ -163,7 +163,7 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AnnotationLocationCheck.class);
-        moduleConfig.addAttribute("tokens", "VARIABLE_DEF");
+        moduleConfig.addProperty("tokens", "VARIABLE_DEF");
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(AnnotationLocationCheck.class,
@@ -196,7 +196,7 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AnnotationLocationCheck.class);
-        moduleConfig.addAttribute("tokens", "CTOR_DEF");
+        moduleConfig.addProperty("tokens", "CTOR_DEF");
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(AnnotationLocationCheck.class,

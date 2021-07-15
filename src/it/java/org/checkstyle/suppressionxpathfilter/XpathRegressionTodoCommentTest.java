@@ -45,7 +45,7 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(TodoCommentCheck.class);
-        moduleConfig.addAttribute("format", "FIXME:");
+        moduleConfig.addProperty("format", "FIXME:");
 
         final String[] expectedViolation = {
             "4:7: " + getCheckMessage(TodoCommentCheck.class, MSG_KEY, "FIXME:"),
@@ -67,7 +67,7 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(TodoCommentCheck.class);
-        moduleConfig.addAttribute("format", "FIXME:");
+        moduleConfig.addProperty("format", "FIXME:");
 
         final String[] expectedViolation = {
             "4:7: " + getCheckMessage(TodoCommentCheck.class, MSG_KEY, "FIXME:"),

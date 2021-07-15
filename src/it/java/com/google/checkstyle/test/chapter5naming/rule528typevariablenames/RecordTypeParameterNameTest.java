@@ -38,7 +38,7 @@ public class RecordTypeParameterNameTest extends AbstractGoogleModuleTestSupport
     @Test
     public void testRecordDefault() throws Exception {
         final Configuration configuration = getModuleConfig("RecordTypeParameterName");
-        final String format = configuration.getAttribute("format");
+        final String format = configuration.getProperty("format");
         final Map<String, String> messages = configuration.getMessages();
 
         final String[] expected = {

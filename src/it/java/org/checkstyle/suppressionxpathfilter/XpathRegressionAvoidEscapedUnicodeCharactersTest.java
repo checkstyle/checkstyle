@@ -73,7 +73,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
-        moduleConfig.addAttribute("allowEscapesForControlCharacters", "true");
+        moduleConfig.addProperty("allowEscapesForControlCharacters", "true");
 
         final String[] expectedViolation = {
             "4:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
@@ -103,7 +103,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
-        moduleConfig.addAttribute("allowByTailComment", "true");
+        moduleConfig.addProperty("allowByTailComment", "true");
 
         final String[] expectedViolation = {
             "4:45: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
@@ -133,7 +133,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
-        moduleConfig.addAttribute("allowIfAllCharactersEscaped", "true");
+        moduleConfig.addProperty("allowIfAllCharactersEscaped", "true");
 
         final String[] expectedViolation = {
             "4:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
@@ -163,7 +163,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
-        moduleConfig.addAttribute("allowNonPrintableEscapes", "true");
+        moduleConfig.addProperty("allowNonPrintableEscapes", "true");
 
         final String[] expectedViolation = {
             "4:34: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),

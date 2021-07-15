@@ -72,7 +72,7 @@ public class ParenPadCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ParenPadCheck.class);
-        checkConfig.addAttribute("option", PadOption.SPACE.toString());
+        checkConfig.addProperty("option", PadOption.SPACE.toString());
         final String[] expected = {
             "29:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "29:23: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
@@ -135,7 +135,7 @@ public class ParenPadCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ParenPadCheck.class);
-        checkConfig.addAttribute("option", PadOption.SPACE.toString());
+        checkConfig.addProperty("option", PadOption.SPACE.toString());
         final String[] expected = {
             "11:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "11:35: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
@@ -154,7 +154,7 @@ public class ParenPadCheckTest
     public void test1322879() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ParenPadCheck.class);
-        checkConfig.addAttribute("option", PadOption.SPACE.toString());
+        checkConfig.addProperty("option", PadOption.SPACE.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputParenPadWithSpace.java"),
                expected);
@@ -164,7 +164,7 @@ public class ParenPadCheckTest
     public void testNospaceWithComplexInput() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ParenPadCheck.class);
-        checkConfig.addAttribute("option", PadOption.NOSPACE.toString());
+        checkConfig.addProperty("option", PadOption.NOSPACE.toString());
         final String[] expected = {
             "44:26: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "44:28: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
@@ -295,7 +295,7 @@ public class ParenPadCheckTest
     public void testConfigureTokens() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(ParenPadCheck.class);
-        checkConfig.addAttribute("tokens", "METHOD_CALL");
+        checkConfig.addProperty("tokens", "METHOD_CALL");
         final String[] expected = {
             "90:39: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
             "113:22: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
@@ -330,7 +330,7 @@ public class ParenPadCheckTest
     @Test
     public void testInvalidOption() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ParenPadCheck.class);
-        checkConfig.addAttribute("option", "invalid_option");
+        checkConfig.addProperty("option", "invalid_option");
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -370,7 +370,7 @@ public class ParenPadCheckTest
     @Test
     public void testLambdaAssignmentWithSpace() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ParenPadCheck.class);
-        checkConfig.addAttribute("option", PadOption.SPACE.toString());
+        checkConfig.addProperty("option", PadOption.SPACE.toString());
         final String[] expected = {
             "9:41: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "9:43: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
@@ -389,7 +389,7 @@ public class ParenPadCheckTest
     @Test
     public void testLambdaCheckDisabled() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ParenPadCheck.class);
-        checkConfig.addAttribute("tokens", "EXPR, METHOD_CALL, METHOD_DEF");
+        checkConfig.addProperty("tokens", "EXPR, METHOD_CALL, METHOD_DEF");
         final String[] expected = {
             "19:61: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "19:63: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
@@ -402,8 +402,8 @@ public class ParenPadCheckTest
     @Test
     public void testLambdaCheckDisabledWithSpace() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ParenPadCheck.class);
-        checkConfig.addAttribute("option", PadOption.SPACE.toString());
-        checkConfig.addAttribute("tokens", "EXPR, METHOD_CALL, METHOD_DEF");
+        checkConfig.addProperty("option", PadOption.SPACE.toString());
+        checkConfig.addProperty("tokens", "EXPR, METHOD_CALL, METHOD_DEF");
         final String[] expected = {
             "22:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "22:33: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
@@ -414,7 +414,7 @@ public class ParenPadCheckTest
     @Test
     public void testLambdaCheckOnly() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ParenPadCheck.class);
-        checkConfig.addAttribute("tokens", "LAMBDA");
+        checkConfig.addProperty("tokens", "LAMBDA");
         final String[] expected = {
             "9:41: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "9:45: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
@@ -431,8 +431,8 @@ public class ParenPadCheckTest
     @Test
     public void testLambdaCheckOnlyWithSpace() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ParenPadCheck.class);
-        checkConfig.addAttribute("option", PadOption.SPACE.toString());
-        checkConfig.addAttribute("tokens", "LAMBDA");
+        checkConfig.addProperty("option", PadOption.SPACE.toString());
+        checkConfig.addProperty("tokens", "LAMBDA");
         final String[] expected = {
             "9:41: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "9:43: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
@@ -449,7 +449,7 @@ public class ParenPadCheckTest
     @Test
     public void testLambdaCheckOnlyWithSpace1() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ParenPadCheck.class);
-        checkConfig.addAttribute("option", PadOption.SPACE.toString());
+        checkConfig.addProperty("option", PadOption.SPACE.toString());
         final String[] expected = {
             "5:2: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
         };
@@ -500,7 +500,7 @@ public class ParenPadCheckTest
     @Test
     public void testParenPadCheckRecordsWithSpace() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ParenPadCheck.class);
-        checkConfig.addAttribute("option", PadOption.SPACE.toString());
+        checkConfig.addProperty("option", PadOption.SPACE.toString());
 
         final String[] expected = {
             "22:19: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),

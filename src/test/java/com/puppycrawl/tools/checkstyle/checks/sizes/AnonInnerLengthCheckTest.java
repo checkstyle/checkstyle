@@ -70,7 +70,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     public void testNonDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AnonInnerLengthCheck.class);
-        checkConfig.addAttribute("max", "6");
+        checkConfig.addProperty("max", "6");
         final String[] expected = {
             "50:35: " + getCheckMessage(MSG_KEY, 21, 6),
             "75:35: " + getCheckMessage(MSG_KEY, 20, 6),

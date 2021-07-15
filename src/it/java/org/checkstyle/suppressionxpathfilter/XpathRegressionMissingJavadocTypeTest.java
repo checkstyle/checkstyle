@@ -71,7 +71,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingJavadocTypeCheck.class);
-        moduleConfig.addAttribute("scope", "private");
+        moduleConfig.addProperty("scope", "private");
 
         final String[] expectedViolation = {
             "7:5: " + getCheckMessage(MissingJavadocTypeCheck.class,
@@ -99,8 +99,8 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingJavadocTypeCheck.class);
-        moduleConfig.addAttribute("scope", "private");
-        moduleConfig.addAttribute("excludeScope", "package");
+        moduleConfig.addProperty("scope", "private");
+        moduleConfig.addProperty("excludeScope", "package");
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(MissingJavadocTypeCheck.class,
@@ -128,7 +128,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingJavadocTypeCheck.class);
-        moduleConfig.addAttribute("skipAnnotations", "TestAnnotation");
+        moduleConfig.addProperty("skipAnnotations", "TestAnnotation");
 
         final String[] expectedViolation = {
             "5:5: " + getCheckMessage(MissingJavadocTypeCheck.class,
@@ -164,7 +164,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingJavadocTypeCheck.class);
-        moduleConfig.addAttribute("tokens", "INTERFACE_DEF");
+        moduleConfig.addProperty("tokens", "INTERFACE_DEF");
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(MissingJavadocTypeCheck.class,

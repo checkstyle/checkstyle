@@ -68,7 +68,7 @@ public class XpathRegressionLeftCurlyTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(LeftCurlyCheck.class);
-        moduleConfig.addAttribute("option", LeftCurlyOption.NL.toString());
+        moduleConfig.addProperty("option", LeftCurlyOption.NL.toString());
 
         final String[] expectedViolation = {
             "3:53: " + getCheckMessage(LeftCurlyCheck.class,

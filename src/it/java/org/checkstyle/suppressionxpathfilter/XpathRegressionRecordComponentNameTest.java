@@ -68,7 +68,7 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RecordComponentNameCheck.class);
-        moduleConfig.addAttribute("format", "^_[a-z][a-zA-Z0-9]*$");
+        moduleConfig.addProperty("format", "^_[a-z][a-zA-Z0-9]*$");
 
         final String[] expectedViolation = {
             "9:32: " + getCheckMessage(RecordComponentNameCheck.class,

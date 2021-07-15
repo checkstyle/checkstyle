@@ -66,7 +66,7 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NeedBracesCheck.class);
-        moduleConfig.addAttribute("allowSingleLineStatement", "true");
+        moduleConfig.addProperty("allowSingleLineStatement", "true");
 
         final String[] expectedViolation = {
             "16:9: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "if"),
@@ -88,8 +88,8 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NeedBracesCheck.class);
-        moduleConfig.addAttribute("tokens", "LAMBDA");
-        moduleConfig.addAttribute("allowSingleLineStatement", "true");
+        moduleConfig.addProperty("tokens", "LAMBDA");
+        moduleConfig.addProperty("allowSingleLineStatement", "true");
 
         final String[] expectedViolation = {
             "4:29: " + getCheckMessage(NeedBracesCheck.class, MSG_KEY_NEED_BRACES, "->"),

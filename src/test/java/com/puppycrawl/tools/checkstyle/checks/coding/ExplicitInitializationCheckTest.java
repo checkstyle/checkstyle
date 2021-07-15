@@ -78,7 +78,7 @@ public class ExplicitInitializationCheckTest extends AbstractModuleTestSupport {
     public void testOnlyObjectReferences() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ExplicitInitializationCheck.class);
-        checkConfig.addAttribute("onlyObjectReferences", "true");
+        checkConfig.addProperty("onlyObjectReferences", "true");
         final String[] expected = {
             "12:20: " + getCheckMessage(MSG_KEY, "bar", "null"),
             "21:22: " + getCheckMessage(MSG_KEY, "str1", "null"),

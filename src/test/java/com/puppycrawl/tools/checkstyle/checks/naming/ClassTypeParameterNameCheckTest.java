@@ -66,7 +66,7 @@ public class ClassTypeParameterNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ClassTypeParameterNameCheck.class);
-        checkConfig.addAttribute("format", "^foo$");
+        checkConfig.addProperty("format", "^foo$");
 
         final String pattern = "^foo$";
 

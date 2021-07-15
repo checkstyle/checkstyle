@@ -49,7 +49,7 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocTypeCheck.class);
 
-        moduleConfig.addAttribute("authorFormat", "\\S");
+        moduleConfig.addProperty("authorFormat", "\\S");
 
         final String[] expectedViolation = {
             "6:1: " + getCheckMessage(JavadocTypeCheck.class,
@@ -75,7 +75,7 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocTypeCheck.class);
 
-        moduleConfig.addAttribute("authorFormat", "foo");
+        moduleConfig.addProperty("authorFormat", "foo");
 
         final String[] expectedViolation = {
             "7:1: " + getCheckMessage(JavadocTypeCheck.class,

@@ -50,7 +50,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCorrect() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
-        checkConfig.addAttribute("forbiddenSummaryFragments",
+        checkConfig.addProperty("forbiddenSummaryFragments",
                 "^@return the *|^This method returns *|^A [{]@code [a-zA-Z0-9]+[}]( is a )");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -68,7 +68,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIncorrect() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
-        checkConfig.addAttribute("forbiddenSummaryFragments",
+        checkConfig.addProperty("forbiddenSummaryFragments",
                 "^@return the *|^This method returns |^A [{]@code [a-zA-Z0-9]+[}]( is a )");
         final String[] expected = {
             "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
@@ -93,7 +93,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testInlineForbidden() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
-        checkConfig.addAttribute("forbiddenSummaryFragments",
+        checkConfig.addProperty("forbiddenSummaryFragments",
                 "@return the *|This method returns");
         final String[] expected = {
             "24: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
@@ -114,7 +114,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPeriod() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
-        checkConfig.addAttribute("period", "_");
+        checkConfig.addProperty("period", "_");
         final String[] expected = {
             "5: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "10: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
@@ -127,7 +127,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNoPeriod() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
-        checkConfig.addAttribute("period", "");
+        checkConfig.addProperty("period", "");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputSummaryJavadocNoPeriod.java"), expected);
@@ -183,7 +183,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPeriodAtEnd() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
-        checkConfig.addAttribute("period", ".");
+        checkConfig.addProperty("period", ".");
         final String[] expected = {
             "10: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "17: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),

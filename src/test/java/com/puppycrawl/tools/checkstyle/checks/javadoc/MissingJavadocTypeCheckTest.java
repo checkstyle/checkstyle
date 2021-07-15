@@ -64,7 +64,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testTags() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MissingJavadocTypeCheck.class);
-        checkConfig.addAttribute("scope", "PRIVATE");
+        checkConfig.addProperty("scope", "PRIVATE");
         final String[] expected = {
             "4:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "298:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -77,7 +77,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testInner() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MissingJavadocTypeCheck.class);
-        checkConfig.addAttribute("scope", "PRIVATE");
+        checkConfig.addProperty("scope", "PRIVATE");
         final String[] expected = {
             "9:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -90,7 +90,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testStrict() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MissingJavadocTypeCheck.class);
-        checkConfig.addAttribute("scope", "PRIVATE");
+        checkConfig.addProperty("scope", "PRIVATE");
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "11:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -104,7 +104,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testProtected() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MissingJavadocTypeCheck.class);
-        checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
+        checkConfig.addProperty("scope", Scope.PROTECTED.getName());
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
@@ -115,7 +115,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testPublic() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MissingJavadocTypeCheck.class);
-        checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
+        checkConfig.addProperty("scope", Scope.PUBLIC.getName());
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "40:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -129,7 +129,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testProtest() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MissingJavadocTypeCheck.class);
-        checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
+        checkConfig.addProperty("scope", Scope.PROTECTED.getName());
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "31:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -145,7 +145,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testPkg() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MissingJavadocTypeCheck.class);
-        checkConfig.addAttribute(
+        checkConfig.addProperty(
             "scope",
             Scope.PACKAGE.getName());
         final String[] expected = {
@@ -160,7 +160,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testEclipse() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MissingJavadocTypeCheck.class);
-        checkConfig.addAttribute(
+        checkConfig.addProperty(
             "scope",
             Scope.PUBLIC.getName());
         final String[] expected = {
@@ -173,7 +173,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testScopes() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MissingJavadocTypeCheck.class);
-        checkConfig.addAttribute("scope", "PRIVATE");
+        checkConfig.addProperty("scope", "PRIVATE");
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "21:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -195,8 +195,8 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testLimitViolationsBySpecifyingTokens() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MissingJavadocTypeCheck.class);
-        checkConfig.addAttribute("scope", "PRIVATE");
-        checkConfig.addAttribute("tokens", "INTERFACE_DEF");
+        checkConfig.addProperty("scope", "PRIVATE");
+        checkConfig.addProperty("tokens", "INTERFACE_DEF");
         final String[] expected = {
             "5:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
@@ -209,7 +209,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testScopes2() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MissingJavadocTypeCheck.class);
-        checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
+        checkConfig.addProperty("scope", Scope.PROTECTED.getName());
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "21:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -223,8 +223,8 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testExcludeScope() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MissingJavadocTypeCheck.class);
-        checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
-        checkConfig.addAttribute("excludeScope", Scope.PROTECTED.getName());
+        checkConfig.addProperty("scope", Scope.PRIVATE.getName());
+        checkConfig.addProperty("excludeScope", Scope.PROTECTED.getName());
         final String[] expected = {
             "33:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "45:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -254,7 +254,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testSkipAnnotationsDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MissingJavadocTypeCheck.class);
-        checkConfig.addAttribute("scope", "PRIVATE");
+        checkConfig.addProperty("scope", "PRIVATE");
 
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -270,8 +270,8 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testSkipAnnotationsWithFullyQualifiedName() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MissingJavadocTypeCheck.class);
-        checkConfig.addAttribute("scope", "PRIVATE");
-        checkConfig.addAttribute(
+        checkConfig.addProperty("scope", "PRIVATE");
+        checkConfig.addProperty(
             "skipAnnotations",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype.ThisIsOk2");
 
@@ -289,7 +289,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testSkipAnnotationsAllowed() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MissingJavadocTypeCheck.class);
-        checkConfig.addAttribute("skipAnnotations", "Generated3, ThisIsOk3");
+        checkConfig.addProperty("skipAnnotations", "Generated3, ThisIsOk3");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
@@ -301,8 +301,8 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testSkipAnnotationsNotAllowed() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MissingJavadocTypeCheck.class);
-        checkConfig.addAttribute("scope", "PRIVATE");
-        checkConfig.addAttribute("skipAnnotations", "Override");
+        checkConfig.addProperty("scope", "PRIVATE");
+        checkConfig.addProperty("skipAnnotations", "Override");
 
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -318,8 +318,8 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testMissingJavadocTypeCheckRecords() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MissingJavadocTypeCheck.class);
-        checkConfig.addAttribute("scope", "PRIVATE");
-        checkConfig.addAttribute("skipAnnotations", "NonNull1");
+        checkConfig.addProperty("scope", "PRIVATE");
+        checkConfig.addProperty("skipAnnotations", "NonNull1");
 
         final String[] expected = {
             "11:1: " + getCheckMessage(MSG_JAVADOC_MISSING),

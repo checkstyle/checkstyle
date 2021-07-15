@@ -66,7 +66,7 @@ public class XpathRegressionNoWhitespaceBeforeTest extends AbstractXpathTestSupp
 
         final DefaultConfiguration moduleConfig =
             createModuleConfig(NoWhitespaceBeforeCheck.class);
-        moduleConfig.addAttribute("tokens", "DOT");
+        moduleConfig.addProperty("tokens", "DOT");
 
         final String[] expectedViolation = {
             "4:17: " + getCheckMessage(NoWhitespaceBeforeCheck.class,
@@ -91,7 +91,7 @@ public class XpathRegressionNoWhitespaceBeforeTest extends AbstractXpathTestSupp
 
         final DefaultConfiguration moduleConfig =
             createModuleConfig(NoWhitespaceBeforeCheck.class);
-        moduleConfig.addAttribute("allowLineBreaks", "false");
+        moduleConfig.addProperty("allowLineBreaks", "false");
 
         final String[] expectedViolation = {
             "6:13: " + getCheckMessage(NoWhitespaceBeforeCheck.class,

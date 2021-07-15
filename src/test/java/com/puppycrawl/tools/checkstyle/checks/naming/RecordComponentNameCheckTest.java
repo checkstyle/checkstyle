@@ -67,7 +67,7 @@ public class RecordComponentNameCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(RecordComponentNameCheck.class);
-        checkConfig.addAttribute("format", "^[a-z0-9]+$");
+        checkConfig.addProperty("format", "^[a-z0-9]+$");
 
         final String pattern = "^[a-z0-9]+$";
 

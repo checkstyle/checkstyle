@@ -78,7 +78,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCustomFormatFromJavadoc() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(CatchParameterNameCheck.class);
-        checkConfig.addAttribute("format", "^[a-z][a-zA-Z0-9]+$");
+        checkConfig.addProperty("format", "^[a-z][a-zA-Z0-9]+$");
 
         final String[] expected = {
             "13:28: " + getCheckMessage(MSG_INVALID_PATTERN, "e", "^[a-z][a-zA-Z0-9]+$"),
@@ -91,7 +91,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCustomFormatWithNoAnchors() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(CatchParameterNameCheck.class);
-        checkConfig.addAttribute("format", "[a-z]");
+        checkConfig.addProperty("format", "[a-z]");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 

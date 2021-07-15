@@ -179,7 +179,7 @@ public class SuppressWithNearbyCommentFilterTest
     public void testCheckC() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addAttribute("checkC", "false");
+        filterConfig.addProperty("checkC", "false");
         final String[] suppressed = {
             "14:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -195,7 +195,7 @@ public class SuppressWithNearbyCommentFilterTest
     public void testCheckCpp() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addAttribute("checkCPP", "false");
+        filterConfig.addProperty("checkCPP", "false");
         final String[] suppressed = {
             "15:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -220,10 +220,10 @@ public class SuppressWithNearbyCommentFilterTest
     public void testUsingVariableMessage() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addAttribute("commentFormat", "ALLOW CATCH (\\w+) BECAUSE");
-        filterConfig.addAttribute("checkFormat", "IllegalCatchCheck");
-        filterConfig.addAttribute("messageFormat", "$1");
-        filterConfig.addAttribute("influenceFormat", "-1");
+        filterConfig.addProperty("commentFormat", "ALLOW CATCH (\\w+) BECAUSE");
+        filterConfig.addProperty("checkFormat", "IllegalCatchCheck");
+        filterConfig.addProperty("messageFormat", "$1");
+        filterConfig.addProperty("influenceFormat", "-1");
         final String[] suppressed = {
             "66:23: "
                 + getCheckMessage(IllegalCatchCheck.class,
@@ -239,10 +239,10 @@ public class SuppressWithNearbyCommentFilterTest
     public void testUsingNonMatchingVariableMessage() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addAttribute("commentFormat", "ALLOW CATCH (\\w+) BECAUSE");
-        filterConfig.addAttribute("checkFormat", "IllegalCatchCheck");
-        filterConfig.addAttribute("messageFormat", "NonMatchingMessage");
-        filterConfig.addAttribute("influenceFormat", "-1");
+        filterConfig.addProperty("commentFormat", "ALLOW CATCH (\\w+) BECAUSE");
+        filterConfig.addProperty("checkFormat", "IllegalCatchCheck");
+        filterConfig.addProperty("messageFormat", "NonMatchingMessage");
+        filterConfig.addProperty("influenceFormat", "-1");
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifySuppressed(filterConfig, suppressed);
     }
@@ -251,9 +251,9 @@ public class SuppressWithNearbyCommentFilterTest
     public void testUsingVariableCheckOnNextLine() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addAttribute("commentFormat", "ALLOW (\\w+) ON NEXT LINE");
-        filterConfig.addAttribute("checkFormat", "$1");
-        filterConfig.addAttribute("influenceFormat", "1");
+        filterConfig.addProperty("commentFormat", "ALLOW (\\w+) ON NEXT LINE");
+        filterConfig.addProperty("checkFormat", "$1");
+        filterConfig.addProperty("influenceFormat", "1");
         final String[] suppressed = {
             "24:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -266,9 +266,9 @@ public class SuppressWithNearbyCommentFilterTest
     public void testUsingVariableCheckOnPreviousLine() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addAttribute("commentFormat", "ALLOW (\\w+) ON PREVIOUS LINE");
-        filterConfig.addAttribute("checkFormat", "$1");
-        filterConfig.addAttribute("influenceFormat", "-1");
+        filterConfig.addProperty("commentFormat", "ALLOW (\\w+) ON PREVIOUS LINE");
+        filterConfig.addProperty("checkFormat", "$1");
+        filterConfig.addProperty("influenceFormat", "-1");
         final String[] suppressed = {
             "28:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -281,9 +281,9 @@ public class SuppressWithNearbyCommentFilterTest
     public void testVariableCheckOnVariableNumberOfLines() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addAttribute("commentFormat", "ALLOW (\\w+) UNTIL THIS LINE([+-]\\d+)");
-        filterConfig.addAttribute("checkFormat", "$1");
-        filterConfig.addAttribute("influenceFormat", "$2");
+        filterConfig.addProperty("commentFormat", "ALLOW (\\w+) UNTIL THIS LINE([+-]\\d+)");
+        filterConfig.addProperty("checkFormat", "$1");
+        filterConfig.addProperty("influenceFormat", "$2");
         final String[] suppressed = {
             "35:30: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -324,11 +324,11 @@ public class SuppressWithNearbyCommentFilterTest
             String[] expectedViolations, String... suppressedViolations) throws Exception {
         final DefaultConfiguration memberNameCheckConfig =
                 createModuleConfig(MemberNameCheck.class);
-        memberNameCheckConfig.addAttribute("id", "ignore");
+        memberNameCheckConfig.addProperty("id", "ignore");
 
         final DefaultConfiguration constantNameCheckConfig =
             createModuleConfig(ConstantNameCheck.class);
-        constantNameCheckConfig.addAttribute("id", null);
+        constantNameCheckConfig.addProperty("id", null);
 
         final DefaultConfiguration treewalkerConfig = createModuleConfig(TreeWalker.class);
         treewalkerConfig.addChild(memberNameCheckConfig);
@@ -356,7 +356,7 @@ public class SuppressWithNearbyCommentFilterTest
     public void testInvalidInfluenceFormat() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addAttribute("influenceFormat", "a");
+        filterConfig.addProperty("influenceFormat", "a");
 
         try {
             final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
@@ -375,7 +375,7 @@ public class SuppressWithNearbyCommentFilterTest
     public void testInfluenceFormat() throws Exception {
         final DefaultConfiguration filterConfig =
                 createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addAttribute("influenceFormat", "+1");
+        filterConfig.addProperty("influenceFormat", "+1");
 
         final String[] suppressed = {
             "14:17: "
@@ -410,7 +410,7 @@ public class SuppressWithNearbyCommentFilterTest
     public void testInvalidCheckFormat() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addAttribute("checkFormat", "a[l");
+        filterConfig.addProperty("checkFormat", "a[l");
 
         try {
             final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
@@ -471,9 +471,9 @@ public class SuppressWithNearbyCommentFilterTest
     public void testUsingTagMessageRegexp() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addAttribute("commentFormat", "SUPPRESS CHECKSTYLE (\\w+)");
-        filterConfig.addAttribute("checkFormat", "IllegalCatchCheck");
-        filterConfig.addAttribute("messageFormat", "^$1 ololo*$");
+        filterConfig.addProperty("commentFormat", "SUPPRESS CHECKSTYLE (\\w+)");
+        filterConfig.addProperty("checkFormat", "IllegalCatchCheck");
+        filterConfig.addProperty("messageFormat", "^$1 ololo*$");
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifySuppressed(filterConfig, suppressed);
     }
@@ -482,9 +482,9 @@ public class SuppressWithNearbyCommentFilterTest
     public void testSuppressByCheck() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addAttribute("commentFormat", "@cs-: (\\w+) \\(\\w+\\)");
-        filterConfig.addAttribute("checkFormat", "MemberNameCheck");
-        filterConfig.addAttribute("influenceFormat", "0");
+        filterConfig.addProperty("commentFormat", "@cs-: (\\w+) \\(\\w+\\)");
+        filterConfig.addProperty("checkFormat", "MemberNameCheck");
+        filterConfig.addProperty("influenceFormat", "0");
         final String[] suppressedViolationMessages = {
             "5:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -523,9 +523,9 @@ public class SuppressWithNearbyCommentFilterTest
     public void testSuppressById() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addAttribute("commentFormat", "@cs-: (\\w+) \\(\\w+\\)");
-        filterConfig.addAttribute("idFormat", "$1");
-        filterConfig.addAttribute("influenceFormat", "0");
+        filterConfig.addProperty("commentFormat", "@cs-: (\\w+) \\(\\w+\\)");
+        filterConfig.addProperty("idFormat", "$1");
+        filterConfig.addProperty("influenceFormat", "0");
         final String[] suppressedViolationMessages = {
             "5:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -564,10 +564,10 @@ public class SuppressWithNearbyCommentFilterTest
     public void testSuppressByCheckAndId() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addAttribute("commentFormat", "@cs-: (\\w+) \\(\\w+\\)");
-        filterConfig.addAttribute("checkFormat", "MemberNameCheck");
-        filterConfig.addAttribute("idFormat", "$1");
-        filterConfig.addAttribute("influenceFormat", "0");
+        filterConfig.addProperty("commentFormat", "@cs-: (\\w+) \\(\\w+\\)");
+        filterConfig.addProperty("checkFormat", "MemberNameCheck");
+        filterConfig.addProperty("idFormat", "$1");
+        filterConfig.addProperty("influenceFormat", "0");
         final String[] suppressedViolationMessages = {
             "5:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -606,10 +606,10 @@ public class SuppressWithNearbyCommentFilterTest
     public void testSuppressByCheckAndNonMatchingId() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addAttribute("commentFormat", "@cs-: (\\w+) \\(\\w+\\)");
-        filterConfig.addAttribute("checkFormat", "MemberNameCheck");
-        filterConfig.addAttribute("idFormat", "emberNa");
-        filterConfig.addAttribute("influenceFormat", "0");
+        filterConfig.addProperty("commentFormat", "@cs-: (\\w+) \\(\\w+\\)");
+        filterConfig.addProperty("checkFormat", "MemberNameCheck");
+        filterConfig.addProperty("idFormat", "emberNa");
+        filterConfig.addProperty("influenceFormat", "0");
         final String[] suppressedViolationMessages = CommonUtil.EMPTY_STRING_ARRAY;
         final String[] expectedViolationMessages = {
             "5:17: "
@@ -644,10 +644,10 @@ public class SuppressWithNearbyCommentFilterTest
     public void tesSuppressByIdAndMessage() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addAttribute("commentFormat", "@cs-: (\\w+) \\(allow (\\w+)\\)");
-        filterConfig.addAttribute("idFormat", "$1");
-        filterConfig.addAttribute("messageFormat", "$2");
-        filterConfig.addAttribute("influenceFormat", "0");
+        filterConfig.addProperty("commentFormat", "@cs-: (\\w+) \\(allow (\\w+)\\)");
+        filterConfig.addProperty("idFormat", "$1");
+        filterConfig.addProperty("messageFormat", "$2");
+        filterConfig.addProperty("influenceFormat", "0");
         final String[] suppressedViolationMessages = {
             "15:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -686,10 +686,10 @@ public class SuppressWithNearbyCommentFilterTest
     public void tesSuppressByCheckAndMessage() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addAttribute("commentFormat", "@cs-: (\\w+) \\(allow (\\w+)\\)");
-        filterConfig.addAttribute("checkFormat", "MemberNameCheck");
-        filterConfig.addAttribute("messageFormat", "$2");
-        filterConfig.addAttribute("influenceFormat", "0");
+        filterConfig.addProperty("commentFormat", "@cs-: (\\w+) \\(allow (\\w+)\\)");
+        filterConfig.addProperty("checkFormat", "MemberNameCheck");
+        filterConfig.addProperty("messageFormat", "$2");
+        filterConfig.addProperty("influenceFormat", "0");
         final String[] suppressedViolationMessages = {
             "15:17: "
                 + getCheckMessage(AbstractNameCheck.class,

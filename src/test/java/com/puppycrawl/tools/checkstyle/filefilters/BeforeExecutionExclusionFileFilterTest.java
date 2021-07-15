@@ -70,7 +70,7 @@ public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSu
     public void testRejectBadFile() throws Exception {
         final DefaultConfiguration filterConfig =
                 createModuleConfig(BeforeExecutionExclusionFileFilter.class);
-        filterConfig.addAttribute("fileNamePattern", "IncorrectClass\\.java");
+        filterConfig.addProperty("fileNamePattern", "IncorrectClass\\.java");
 
         final DefaultConfiguration checkConfig = createModuleConfig(FinalLocalVariableCheck.class);
         final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);

@@ -43,10 +43,10 @@ public class XpathRegressionVariableDeclarationUsageDistanceTest extends Abstrac
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
-        moduleConfig.addAttribute("allowedDistance", "1");
-        moduleConfig.addAttribute("ignoreVariablePattern", "");
-        moduleConfig.addAttribute("validateBetweenScopes", "true");
-        moduleConfig.addAttribute("ignoreFinal", "false");
+        moduleConfig.addProperty("allowedDistance", "1");
+        moduleConfig.addProperty("ignoreVariablePattern", "");
+        moduleConfig.addProperty("validateBetweenScopes", "true");
+        moduleConfig.addProperty("ignoreFinal", "false");
 
         final String[] expectedViolation = {
             "26:9: " + getCheckMessage(VariableDeclarationUsageDistanceCheck.class,
@@ -84,10 +84,10 @@ public class XpathRegressionVariableDeclarationUsageDistanceTest extends Abstrac
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
 
-        moduleConfig.addAttribute("allowedDistance", "1");
-        moduleConfig.addAttribute("ignoreVariablePattern", "");
-        moduleConfig.addAttribute("validateBetweenScopes", "true");
-        moduleConfig.addAttribute("ignoreFinal", "false");
+        moduleConfig.addProperty("allowedDistance", "1");
+        moduleConfig.addProperty("ignoreVariablePattern", "");
+        moduleConfig.addProperty("validateBetweenScopes", "true");
+        moduleConfig.addProperty("ignoreFinal", "false");
 
         final String[] expectedViolation = {
             "25:9: " + getCheckMessage(VariableDeclarationUsageDistanceCheck.class,

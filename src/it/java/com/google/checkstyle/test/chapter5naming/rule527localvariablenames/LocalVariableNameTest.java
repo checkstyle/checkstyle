@@ -38,7 +38,7 @@ public class LocalVariableNameTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testLocalVariableName() throws Exception {
         final Configuration checkConfig = getModuleConfig("LocalVariableName");
-        final String format = checkConfig.getAttribute("format");
+        final String format = checkConfig.getProperty("format");
         final Map<String, String> messages = checkConfig.getMessages();
         final String[] expected = {
             "27:13: " + getCheckMessage(messages, MSG_KEY, "aA", format),
@@ -62,7 +62,7 @@ public class LocalVariableNameTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testOneChar() throws Exception {
         final Configuration checkConfig = getModuleConfig("LocalVariableName");
-        final String format = checkConfig.getAttribute("format");
+        final String format = checkConfig.getProperty("format");
         final Map<String, String> messages = checkConfig.getMessages();
         final String[] expected = {
             "21:17: " + getCheckMessage(messages, MSG_KEY, "I_ndex", format),

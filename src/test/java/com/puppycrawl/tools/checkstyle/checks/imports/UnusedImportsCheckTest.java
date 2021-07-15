@@ -68,7 +68,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithoutProcessJavadoc() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
-        checkConfig.addAttribute("processJavadoc", "false");
+        checkConfig.addProperty("processJavadoc", "false");
         final String[] expected = {
             "8:16: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks."

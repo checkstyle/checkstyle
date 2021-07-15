@@ -69,7 +69,7 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(FallThroughCheck.class);
-        moduleConfig.addAttribute("checkLastCaseGroup", "true");
+        moduleConfig.addProperty("checkLastCaseGroup", "true");
 
         final String[] expectedViolation = {
             "10:17: " + getCheckMessage(FallThroughCheck.class,

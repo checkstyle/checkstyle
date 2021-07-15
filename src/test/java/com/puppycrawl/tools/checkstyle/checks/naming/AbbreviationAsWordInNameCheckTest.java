@@ -58,10 +58,10 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     public void testTypeNamesForThreePermittedCapitalLetters() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AbbreviationAsWordInNameCheck.class);
-        checkConfig.addAttribute("allowedAbbreviationLength", "3");
-        checkConfig.addAttribute("allowedAbbreviations", "III");
-        checkConfig.addAttribute("tokens", "CLASS_DEF");
-        checkConfig.addAttribute("ignoreOverriddenMethods", "true");
+        checkConfig.addProperty("allowedAbbreviationLength", "3");
+        checkConfig.addProperty("allowedAbbreviations", "III");
+        checkConfig.addProperty("tokens", "CLASS_DEF");
+        checkConfig.addProperty("ignoreOverriddenMethods", "true");
         final int expectedCapitalCount = 4;
 
         final String[] expected = {
@@ -78,10 +78,10 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     public void testTypeNamesForFourPermittedCapitalLetters() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AbbreviationAsWordInNameCheck.class);
-        checkConfig.addAttribute("allowedAbbreviationLength", "4");
-        checkConfig.addAttribute("allowedAbbreviations", "CLASS,FACTORY");
-        checkConfig.addAttribute("tokens", "CLASS_DEF");
-        checkConfig.addAttribute("ignoreOverriddenMethods", "true");
+        checkConfig.addProperty("allowedAbbreviationLength", "4");
+        checkConfig.addProperty("allowedAbbreviations", "CLASS,FACTORY");
+        checkConfig.addProperty("tokens", "CLASS_DEF");
+        checkConfig.addProperty("ignoreOverriddenMethods", "true");
         final int expectedCapitalCount = 5;
 
         final String[] expected = {
@@ -95,10 +95,10 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     public void testTypeNamesForFivePermittedCapitalLetters() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AbbreviationAsWordInNameCheck.class);
-        checkConfig.addAttribute("allowedAbbreviationLength", "5");
-        checkConfig.addAttribute("allowedAbbreviations", "CLASS");
-        checkConfig.addAttribute("tokens", "CLASS_DEF");
-        checkConfig.addAttribute("ignoreOverriddenMethods", "true");
+        checkConfig.addProperty("allowedAbbreviationLength", "5");
+        checkConfig.addProperty("allowedAbbreviations", "CLASS");
+        checkConfig.addProperty("tokens", "CLASS_DEF");
+        checkConfig.addProperty("ignoreOverriddenMethods", "true");
         final int expectedCapitalCount = 6;
         final String[] expected = {
             "32:11: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
@@ -112,13 +112,13 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     public void testTypeAndVariablesAndMethodNames() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AbbreviationAsWordInNameCheck.class);
-        checkConfig.addAttribute("allowedAbbreviationLength", "5");
-        checkConfig.addAttribute("allowedAbbreviations", "CLASS");
-        checkConfig.addAttribute("tokens", "CLASS_DEF"
+        checkConfig.addProperty("allowedAbbreviationLength", "5");
+        checkConfig.addProperty("allowedAbbreviations", "CLASS");
+        checkConfig.addProperty("tokens", "CLASS_DEF"
             + ",VARIABLE_DEF"
             + ",METHOD_DEF,ENUM_DEF,ENUM_CONSTANT_DEF"
             + ",PARAMETER_DEF,INTERFACE_DEF,ANNOTATION_DEF");
-        checkConfig.addAttribute("ignoreOverriddenMethods", "true");
+        checkConfig.addProperty("ignoreOverriddenMethods", "true");
         final int expectedCapitalCount = 6;
 
         final String[] expected = {
@@ -136,16 +136,16 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     public void testTypeAndVariablesAndMethodNamesWithNoIgnores() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AbbreviationAsWordInNameCheck.class);
-        checkConfig.addAttribute("allowedAbbreviationLength", "5");
-        checkConfig.addAttribute("allowedAbbreviations", "NUMBER,MARAZMATIC,VARIABLE");
-        checkConfig.addAttribute("ignoreStatic", "false");
-        checkConfig.addAttribute("ignoreFinal", "false");
-        checkConfig.addAttribute("ignoreStaticFinal", "false");
-        checkConfig.addAttribute("tokens", "CLASS_DEF"
+        checkConfig.addProperty("allowedAbbreviationLength", "5");
+        checkConfig.addProperty("allowedAbbreviations", "NUMBER,MARAZMATIC,VARIABLE");
+        checkConfig.addProperty("ignoreStatic", "false");
+        checkConfig.addProperty("ignoreFinal", "false");
+        checkConfig.addProperty("ignoreStaticFinal", "false");
+        checkConfig.addProperty("tokens", "CLASS_DEF"
             + ",VARIABLE_DEF"
             + ",METHOD_DEF,ENUM_DEF,ENUM_CONSTANT_DEF"
             + ",PARAMETER_DEF,INTERFACE_DEF,ANNOTATION_DEF");
-        checkConfig.addAttribute("ignoreOverriddenMethods", "true");
+        checkConfig.addProperty("ignoreOverriddenMethods", "true");
         final int expectedCapitalCount = 6;
 
         final String[] expected = {
@@ -168,16 +168,16 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     public void testTypeAndVariablesAndMethodNamesWithIgnores() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AbbreviationAsWordInNameCheck.class);
-        checkConfig.addAttribute("allowedAbbreviationLength", "5");
-        checkConfig.addAttribute("allowedAbbreviations", "NUMBER,MARAZMATIC,VARIABLE");
-        checkConfig.addAttribute("ignoreStatic", "true");
-        checkConfig.addAttribute("ignoreFinal", "true");
-        checkConfig.addAttribute("ignoreStaticFinal", "true");
-        checkConfig.addAttribute("tokens", "CLASS_DEF"
+        checkConfig.addProperty("allowedAbbreviationLength", "5");
+        checkConfig.addProperty("allowedAbbreviations", "NUMBER,MARAZMATIC,VARIABLE");
+        checkConfig.addProperty("ignoreStatic", "true");
+        checkConfig.addProperty("ignoreFinal", "true");
+        checkConfig.addProperty("ignoreStaticFinal", "true");
+        checkConfig.addProperty("tokens", "CLASS_DEF"
             + ",VARIABLE_DEF"
             + ",METHOD_DEF,ENUM_DEF,ENUM_CONSTANT_DEF"
             + ",PARAMETER_DEF,INTERFACE_DEF,ANNOTATION_DEF");
-        checkConfig.addAttribute("ignoreOverriddenMethods", "true");
+        checkConfig.addProperty("ignoreOverriddenMethods", "true");
         final int expectedCapitalCount = 6;
 
         final String[] expected = {
@@ -196,16 +196,16 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     public void testTypeAndVariablesAndMethodNamesWithIgnoresFinal() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AbbreviationAsWordInNameCheck.class);
-        checkConfig.addAttribute("allowedAbbreviationLength", "4");
-        checkConfig.addAttribute("allowedAbbreviations", "MARAZMATIC,VARIABLE");
-        checkConfig.addAttribute("ignoreStatic", "false");
-        checkConfig.addAttribute("ignoreFinal", "true");
-        checkConfig.addAttribute("ignoreStaticFinal", "true");
-        checkConfig.addAttribute("tokens", "CLASS_DEF"
+        checkConfig.addProperty("allowedAbbreviationLength", "4");
+        checkConfig.addProperty("allowedAbbreviations", "MARAZMATIC,VARIABLE");
+        checkConfig.addProperty("ignoreStatic", "false");
+        checkConfig.addProperty("ignoreFinal", "true");
+        checkConfig.addProperty("ignoreStaticFinal", "true");
+        checkConfig.addProperty("tokens", "CLASS_DEF"
             + ",VARIABLE_DEF"
             + ",METHOD_DEF,ENUM_DEF,ENUM_CONSTANT_DEF"
             + ",PARAMETER_DEF,INTERFACE_DEF,ANNOTATION_DEF");
-        checkConfig.addAttribute("ignoreOverriddenMethods", "true");
+        checkConfig.addProperty("ignoreOverriddenMethods", "true");
         final int expectedCapitalCount = 5;
 
         final String[] expected = {
@@ -227,16 +227,16 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     public void testTypeAndVariablesAndMethodNamesWithIgnoresStatic() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AbbreviationAsWordInNameCheck.class);
-        checkConfig.addAttribute("allowedAbbreviationLength", "4");
-        checkConfig.addAttribute("allowedAbbreviations", "MARAZMATIC,VARIABLE");
-        checkConfig.addAttribute("ignoreStatic", "true");
-        checkConfig.addAttribute("ignoreFinal", "false");
-        checkConfig.addAttribute("ignoreStaticFinal", "true");
-        checkConfig.addAttribute("tokens", "CLASS_DEF"
+        checkConfig.addProperty("allowedAbbreviationLength", "4");
+        checkConfig.addProperty("allowedAbbreviations", "MARAZMATIC,VARIABLE");
+        checkConfig.addProperty("ignoreStatic", "true");
+        checkConfig.addProperty("ignoreFinal", "false");
+        checkConfig.addProperty("ignoreStaticFinal", "true");
+        checkConfig.addProperty("tokens", "CLASS_DEF"
             + ",VARIABLE_DEF"
             + ",METHOD_DEF,ENUM_DEF,ENUM_CONSTANT_DEF"
             + ",PARAMETER_DEF,INTERFACE_DEF,ANNOTATION_DEF");
-        checkConfig.addAttribute("ignoreOverriddenMethods", "true");
+        checkConfig.addProperty("ignoreOverriddenMethods", "true");
         final int expectedCapitalCount = 5;
 
         final String[] expected = {
@@ -258,16 +258,16 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     public void testTypeAndVariablesAndMethodNamesWithIgnoresStaticFinal() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AbbreviationAsWordInNameCheck.class);
-        checkConfig.addAttribute("allowedAbbreviationLength", "4");
-        checkConfig.addAttribute("allowedAbbreviations", "MARAZMATIC,VARIABLE");
-        checkConfig.addAttribute("ignoreStatic", "false");
-        checkConfig.addAttribute("ignoreFinal", "false");
-        checkConfig.addAttribute("ignoreStaticFinal", "true");
-        checkConfig.addAttribute("tokens", "CLASS_DEF"
+        checkConfig.addProperty("allowedAbbreviationLength", "4");
+        checkConfig.addProperty("allowedAbbreviations", "MARAZMATIC,VARIABLE");
+        checkConfig.addProperty("ignoreStatic", "false");
+        checkConfig.addProperty("ignoreFinal", "false");
+        checkConfig.addProperty("ignoreStaticFinal", "true");
+        checkConfig.addProperty("tokens", "CLASS_DEF"
             + ",VARIABLE_DEF"
             + ",METHOD_DEF,ENUM_DEF,ENUM_CONSTANT_DEF"
             + ",PARAMETER_DEF,INTERFACE_DEF,ANNOTATION_DEF");
-        checkConfig.addAttribute("ignoreOverriddenMethods", "true");
+        checkConfig.addProperty("ignoreOverriddenMethods", "true");
         final int expectedCapitalCount = 5;
 
         final String[] expected = {
@@ -291,16 +291,16 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     public void testTypeAndVariablesAndMethodNamesWithIgnoresNonStaticFinal() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AbbreviationAsWordInNameCheck.class);
-        checkConfig.addAttribute("allowedAbbreviationLength", "4");
-        checkConfig.addAttribute("allowedAbbreviations", "MARAZMATIC,VARIABLE");
-        checkConfig.addAttribute("ignoreStatic", "true");
-        checkConfig.addAttribute("ignoreFinal", "true");
-        checkConfig.addAttribute("ignoreStaticFinal", "false");
-        checkConfig.addAttribute("tokens", "CLASS_DEF"
+        checkConfig.addProperty("allowedAbbreviationLength", "4");
+        checkConfig.addProperty("allowedAbbreviations", "MARAZMATIC,VARIABLE");
+        checkConfig.addProperty("ignoreStatic", "true");
+        checkConfig.addProperty("ignoreFinal", "true");
+        checkConfig.addProperty("ignoreStaticFinal", "false");
+        checkConfig.addProperty("tokens", "CLASS_DEF"
             + ",VARIABLE_DEF"
             + ",METHOD_DEF,ENUM_DEF,ENUM_CONSTANT_DEF"
             + ",PARAMETER_DEF,INTERFACE_DEF,ANNOTATION_DEF");
-        checkConfig.addAttribute("ignoreOverriddenMethods", "true");
+        checkConfig.addProperty("ignoreOverriddenMethods", "true");
         final int expectedCapitalCount = 5;
 
         final String[] expected = {
@@ -342,16 +342,16 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AbbreviationAsWordInNameCheck.class);
-        checkConfig.addAttribute("allowedAbbreviationLength", "4");
-        checkConfig.addAttribute("allowedAbbreviations", "MARAZMATIC,VARIABLE");
-        checkConfig.addAttribute("ignoreStatic", "false");
-        checkConfig.addAttribute("ignoreFinal", "true");
-        checkConfig.addAttribute("ignoreStaticFinal", "false");
-        checkConfig.addAttribute("tokens", "CLASS_DEF"
+        checkConfig.addProperty("allowedAbbreviationLength", "4");
+        checkConfig.addProperty("allowedAbbreviations", "MARAZMATIC,VARIABLE");
+        checkConfig.addProperty("ignoreStatic", "false");
+        checkConfig.addProperty("ignoreFinal", "true");
+        checkConfig.addProperty("ignoreStaticFinal", "false");
+        checkConfig.addProperty("tokens", "CLASS_DEF"
             + ",VARIABLE_DEF"
             + ",METHOD_DEF,ENUM_DEF,ENUM_CONSTANT_DEF"
             + ",PARAMETER_DEF,INTERFACE_DEF,ANNOTATION_DEF");
-        checkConfig.addAttribute("ignoreOverriddenMethods", "true");
+        checkConfig.addProperty("ignoreOverriddenMethods", "true");
         final int expectedCapitalCount = 5;
 
         final String[] expected = {
@@ -385,16 +385,16 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AbbreviationAsWordInNameCheck.class);
-        checkConfig.addAttribute("allowedAbbreviationLength", "4");
-        checkConfig.addAttribute("allowedAbbreviations", "MARAZMATIC,VARIABLE");
-        checkConfig.addAttribute("ignoreStatic", "true");
-        checkConfig.addAttribute("ignoreFinal", "false");
-        checkConfig.addAttribute("ignoreStaticFinal", "false");
-        checkConfig.addAttribute("tokens", "CLASS_DEF"
+        checkConfig.addProperty("allowedAbbreviationLength", "4");
+        checkConfig.addProperty("allowedAbbreviations", "MARAZMATIC,VARIABLE");
+        checkConfig.addProperty("ignoreStatic", "true");
+        checkConfig.addProperty("ignoreFinal", "false");
+        checkConfig.addProperty("ignoreStaticFinal", "false");
+        checkConfig.addProperty("tokens", "CLASS_DEF"
             + ",VARIABLE_DEF"
             + ",METHOD_DEF,ENUM_DEF,ENUM_CONSTANT_DEF"
             + ",PARAMETER_DEF,INTERFACE_DEF,ANNOTATION_DEF");
-        checkConfig.addAttribute("ignoreOverriddenMethods", "true");
+        checkConfig.addProperty("ignoreOverriddenMethods", "true");
         final int expectedCapitalCount = 5;
 
         final String[] expected = {
@@ -428,10 +428,10 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AbbreviationAsWordInNameCheck.class);
-        checkConfig.addAttribute("allowedAbbreviationLength", "3");
-        checkConfig.addAttribute("allowedAbbreviations", "");
-        checkConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF");
-        checkConfig.addAttribute("ignoreOverriddenMethods", "true");
+        checkConfig.addProperty("allowedAbbreviationLength", "3");
+        checkConfig.addProperty("allowedAbbreviations", "");
+        checkConfig.addProperty("tokens", "CLASS_DEF, METHOD_DEF");
+        checkConfig.addProperty("ignoreOverriddenMethods", "true");
         final int expectedCapitalCount = 4;
 
         final String[] expected = {
@@ -447,7 +447,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AbbreviationAsWordInNameCheck.class);
-        checkConfig.addAttribute("ignoreOverriddenMethods", "false");
+        checkConfig.addProperty("ignoreOverriddenMethods", "false");
         final int expectedCapitalCount = 4;
 
         final String[] expected = {
@@ -465,14 +465,14 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     public void testTypeNamesForZeroPermittedCapitalLetter() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(AbbreviationAsWordInNameCheck.class);
-        checkConfig.addAttribute("allowedAbbreviationLength",
+        checkConfig.addProperty("allowedAbbreviationLength",
                 "0");
-        checkConfig.addAttribute("allowedAbbreviations", "");
-        checkConfig.addAttribute("ignoreStatic", "false");
-        checkConfig.addAttribute("ignoreFinal", "false");
-        checkConfig.addAttribute("ignoreStaticFinal", "false");
-        checkConfig.addAttribute("ignoreOverriddenMethods", "false");
-        checkConfig.addAttribute("tokens", "CLASS_DEF,INTERFACE_DEF,ENUM_DEF,"
+        checkConfig.addProperty("allowedAbbreviations", "");
+        checkConfig.addProperty("ignoreStatic", "false");
+        checkConfig.addProperty("ignoreFinal", "false");
+        checkConfig.addProperty("ignoreStaticFinal", "false");
+        checkConfig.addProperty("ignoreOverriddenMethods", "false");
+        checkConfig.addProperty("tokens", "CLASS_DEF,INTERFACE_DEF,ENUM_DEF,"
             + "ANNOTATION_DEF,ANNOTATION_FIELD_DEF,ENUM_CONSTANT_DEF,"
             + "PARAMETER_DEF,VARIABLE_DEF,METHOD_DEF");
         final int expectedCapitalCount = 1;
@@ -514,9 +514,9 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     public void testNullPointerException() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AbbreviationAsWordInNameCheck.class);
-        checkConfig.addAttribute("allowedAbbreviationLength", "2");
-        checkConfig.addAttribute("ignoreFinal", "false");
-        checkConfig.addAttribute("allowedAbbreviations", null);
+        checkConfig.addProperty("allowedAbbreviationLength", "2");
+        checkConfig.addProperty("ignoreFinal", "false");
+        checkConfig.addProperty("allowedAbbreviations", null);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -551,8 +551,8 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(AbbreviationAsWordInNameCheck.class);
-        checkConfig.addAttribute("allowedAbbreviations", "XML");
-        checkConfig.addAttribute("allowedAbbreviationLength", "1");
+        checkConfig.addProperty("allowedAbbreviations", "XML");
+        checkConfig.addProperty("allowedAbbreviationLength", "1");
 
         final int expectedCapitalCount = 2;
 

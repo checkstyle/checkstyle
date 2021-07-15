@@ -50,7 +50,7 @@ public class StaticVariableNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(StaticVariableNameCheck.class);
-        checkConfig.addAttribute("format", "^s[A-Z][a-zA-Z0-9]*$");
+        checkConfig.addProperty("format", "^s[A-Z][a-zA-Z0-9]*$");
 
         final String pattern = "^s[A-Z][a-zA-Z0-9]*$";
 
@@ -65,10 +65,10 @@ public class StaticVariableNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(StaticVariableNameCheck.class);
-        checkConfig.addAttribute("format", "^s[A-Z][a-zA-Z0-9]*$");
+        checkConfig.addProperty("format", "^s[A-Z][a-zA-Z0-9]*$");
 
         // allow method names and class names to equal
-        checkConfig.addAttribute("applyToPrivate", "false");
+        checkConfig.addProperty("applyToPrivate", "false");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputStaticVariableName1.java"), expected);

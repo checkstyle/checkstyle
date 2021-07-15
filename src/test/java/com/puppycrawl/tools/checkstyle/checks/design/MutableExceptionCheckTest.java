@@ -89,8 +89,8 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFormat() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MutableExceptionCheck.class);
-        checkConfig.addAttribute("format", "^.*Failure$");
-        checkConfig.addAttribute("extendedClassNameFormat", "^.*ThreadDeath$");
+        checkConfig.addProperty("format", "^.*Failure$");
+        checkConfig.addProperty("extendedClassNameFormat", "^.*ThreadDeath$");
         final String[] expected = {
             "34:13: " + getCheckMessage(MSG_KEY, "errorCode"),
         };

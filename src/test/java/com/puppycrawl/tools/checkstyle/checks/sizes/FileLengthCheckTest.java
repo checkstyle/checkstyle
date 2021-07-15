@@ -42,7 +42,7 @@ public class FileLengthCheckTest
     public void testAlarm() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(FileLengthCheck.class);
-        checkConfig.addAttribute("max", "20");
+        checkConfig.addProperty("max", "20");
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY, 225, 20),
         };
@@ -54,7 +54,7 @@ public class FileLengthCheckTest
     public void testFileLengthEqualToMaxLength() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(FileLengthCheck.class);
-        checkConfig.addAttribute("max", "225");
+        checkConfig.addProperty("max", "225");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                 getPath("InputFileLength.java"), expected);
@@ -64,7 +64,7 @@ public class FileLengthCheckTest
     public void testOk() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(FileLengthCheck.class);
-        checkConfig.addAttribute("max", "1000");
+        checkConfig.addProperty("max", "1000");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                 getPath("InputFileLength.java"), expected);
@@ -75,7 +75,7 @@ public class FileLengthCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(FileLengthCheck.class);
         try {
-            checkConfig.addAttribute("max", "abc");
+            checkConfig.addProperty("max", "abc");
             createChecker(checkConfig);
             fail("Should indicate illegal args");
         }
@@ -91,7 +91,7 @@ public class FileLengthCheckTest
     public void testNoAlarmByExtension() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(FileLengthCheck.class);
-        checkConfig.addAttribute("fileExtensions", "txt");
+        checkConfig.addProperty("fileExtensions", "txt");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig,

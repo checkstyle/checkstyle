@@ -65,7 +65,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testOne() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getPath("InputImportControlOne.xml"));
+        checkConfig.addProperty("file", getPath("InputImportControlOne.xml"));
         final String[] expected = {"5:1: " + getCheckMessage(MSG_DISALLOWED, "java.io.File")};
 
         verify(checkConfig, getPath("InputImportControl.java"), expected);
@@ -74,7 +74,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTwo() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getPath("InputImportControlTwo.xml"));
+        checkConfig.addProperty("file", getPath("InputImportControlTwo.xml"));
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
             "4:1: " + getCheckMessage(MSG_DISALLOWED, "javax.swing.border.*"),
@@ -87,7 +87,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWrong() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getPath("InputImportControlWrong.xml"));
+        checkConfig.addProperty("file", getPath("InputImportControlWrong.xml"));
         final String[] expected = {"1:1: " + getCheckMessage(MSG_UNKNOWN_PKG)};
         verify(checkConfig, getPath("InputImportControl.java"), expected);
     }
@@ -102,7 +102,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testEmpty() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", "   ");
+        checkConfig.addProperty("file", "   ");
         final String[] expected = {"1:1: " + getCheckMessage(MSG_MISSING_FILE)};
         verify(checkConfig, getPath("InputImportControl.java"), expected);
     }
@@ -110,7 +110,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNull() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", null);
+        checkConfig.addProperty("file", null);
         final String[] expected = {"1:1: " + getCheckMessage(MSG_MISSING_FILE)};
         verify(checkConfig, getPath("InputImportControl.java"), expected);
     }
@@ -118,7 +118,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnknown() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", "unknown-file");
+        checkConfig.addProperty("file", "unknown-file");
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
             verify(checkConfig, getPath("InputImportControl.java"), expected);
@@ -136,7 +136,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testBroken() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getPath("InputImportControlBroken.xml"));
+        checkConfig.addProperty("file", getPath("InputImportControlBroken.xml"));
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
             verify(checkConfig, getPath("InputImportControl.java"), expected);
@@ -154,7 +154,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testOneRegExp() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getPath("InputImportControlOneRegExp.xml"));
+        checkConfig.addProperty("file", getPath("InputImportControlOneRegExp.xml"));
         final String[] expected = {"5:1: " + getCheckMessage(MSG_DISALLOWED, "java.io.File")};
 
         verify(checkConfig, getPath("InputImportControl.java"), expected);
@@ -163,7 +163,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTwoRegExp() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getPath("InputImportControlTwoRegExp.xml"));
+        checkConfig.addProperty("file", getPath("InputImportControlTwoRegExp.xml"));
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
             "4:1: " + getCheckMessage(MSG_DISALLOWED, "javax.swing.border.*"),
@@ -176,7 +176,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNotRegExpNoMatch() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getPath("InputImportControlNotRegExpNoMatch.xml"));
+        checkConfig.addProperty("file", getPath("InputImportControlNotRegExpNoMatch.xml"));
 
         verify(checkConfig, getPath("InputImportControl.java"), CommonUtil.EMPTY_STRING_ARRAY);
     }
@@ -184,7 +184,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testBlacklist() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getPath("InputImportControlBlacklist.xml"));
+        checkConfig.addProperty("file", getPath("InputImportControlBlacklist.xml"));
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_DISALLOWED, "java.util.stream.Stream"),
             "4:1: " + getCheckMessage(MSG_DISALLOWED, "java.util.Date"),
@@ -198,7 +198,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testStrategyOnMismatchOne() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getPath("InputImportControlStrategyOnMismatchOne.xml"));
+        checkConfig.addProperty("file", getPath("InputImportControlStrategyOnMismatchOne.xml"));
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
             "4:1: " + getCheckMessage(MSG_DISALLOWED, "javax.swing.border.*"),
@@ -211,7 +211,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testStrategyOnMismatchTwo() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getPath("InputImportControlStrategyOnMismatchTwo.xml"));
+        checkConfig.addProperty("file", getPath("InputImportControlStrategyOnMismatchTwo.xml"));
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
             "6:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Button.ABORT"),
@@ -223,7 +223,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testStrategyOnMismatchThree() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getPath("InputImportControlStrategyOnMismatchThree.xml"));
+        checkConfig.addProperty("file", getPath("InputImportControlStrategyOnMismatchThree.xml"));
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
         };
@@ -234,7 +234,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testStrategyOnMismatchFour() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getPath("InputImportControlStrategyOnMismatchFour.xml"));
+        checkConfig.addProperty("file", getPath("InputImportControlStrategyOnMismatchFour.xml"));
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
             "4:1: " + getCheckMessage(MSG_DISALLOWED, "javax.swing.border.*"),
@@ -261,7 +261,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     // all import-control_pkg-re* files should be equivalent so use one test for all
     private void testRegExpInPackage(String file) throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getPath(file));
+        checkConfig.addProperty("file", getPath(file));
         final String[] expected = {"5:1: " + getCheckMessage(MSG_DISALLOWED, "java.io.File")};
 
         verify(checkConfig, getPath("InputImportControl.java"), expected);
@@ -284,7 +284,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testResource() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getResourcePath("InputImportControlOne.xml"));
+        checkConfig.addProperty("file", getResourcePath("InputImportControlOne.xml"));
         final String[] expected = {"5:1: " + getCheckMessage(MSG_DISALLOWED, "java.io.File")};
 
         verify(checkConfig, getPath("InputImportControl.java"), expected);
@@ -293,7 +293,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testResourceUnableToLoad() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getResourcePath("import-control_unknown.xml"));
+        checkConfig.addProperty("file", getResourcePath("import-control_unknown.xml"));
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -312,7 +312,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUrlInFileProperty() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getUriString("InputImportControlOne.xml"));
+        checkConfig.addProperty("file", getUriString("InputImportControlOne.xml"));
         final String[] expected = {"5:1: " + getCheckMessage(MSG_DISALLOWED, "java.io.File")};
 
         verify(checkConfig, getPath("InputImportControl.java"), expected);
@@ -321,7 +321,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUrlInFilePropertyUnableToLoad() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", "https://UnableToLoadThisURL");
+        checkConfig.addProperty("file", "https://UnableToLoadThisURL");
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -340,14 +340,14 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCacheWhenFileExternalResourceContentDoesNotChange() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getPath("InputImportControlOneRegExp.xml"));
+        checkConfig.addProperty("file", getPath("InputImportControlOneRegExp.xml"));
 
         final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
         treeWalkerConfig.addChild(checkConfig);
 
         final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
         final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
-        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final String filePath = File.createTempFile("empty", ".java", temporaryFolder).getPath();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -365,8 +365,8 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPathRegexMatches() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getResourcePath("InputImportControlOne.xml"));
-        checkConfig.addAttribute("path", "^.*[\\\\/]src[\\\\/]test[\\\\/].*$");
+        checkConfig.addProperty("file", getResourcePath("InputImportControlOne.xml"));
+        checkConfig.addProperty("path", "^.*[\\\\/]src[\\\\/]test[\\\\/].*$");
         final String[] expected = {"5:1: " + getCheckMessage(MSG_DISALLOWED, "java.io.File")};
 
         verify(checkConfig, getPath("InputImportControl.java"), expected);
@@ -375,8 +375,8 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPathRegexMatchesPartially() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getResourcePath("InputImportControlOne.xml"));
-        checkConfig.addAttribute("path", "[\\\\/]InputImportControl\\.java");
+        checkConfig.addProperty("file", getResourcePath("InputImportControlOne.xml"));
+        checkConfig.addProperty("path", "[\\\\/]InputImportControl\\.java");
         final String[] expected = {"5:1: " + getCheckMessage(MSG_DISALLOWED, "java.io.File")};
 
         verify(checkConfig, getPath("InputImportControl.java"), expected);
@@ -385,8 +385,8 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPathRegexDoesntMatch() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getResourcePath("InputImportControlOne.xml"));
-        checkConfig.addAttribute("path", "^.*[\\\\/]src[\\\\/]main[\\\\/].*$");
+        checkConfig.addProperty("file", getResourcePath("InputImportControlOne.xml"));
+        checkConfig.addProperty("path", "^.*[\\\\/]src[\\\\/]main[\\\\/].*$");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputImportControl.java"), expected);
@@ -395,8 +395,8 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPathRegexDoesntMatchPartially() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getResourcePath("InputImportControlOne.xml"));
-        checkConfig.addAttribute("path", "[\\\\/]NoMatch\\.java");
+        checkConfig.addProperty("file", getResourcePath("InputImportControlOne.xml"));
+        checkConfig.addProperty("path", "[\\\\/]NoMatch\\.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputImportControl.java"), expected);
@@ -405,7 +405,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDisallowClassOfAllowPackage() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file",
+        checkConfig.addProperty("file",
                 getPath("InputImportControlDisallowClassOfAllowPackage.xml"));
         final String[] expected = {
             "4:1: " + getCheckMessage(MSG_DISALLOWED, "java.util.Date"),
@@ -418,7 +418,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileName() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file", getResourcePath("InputImportControlFileName.xml"));
+        checkConfig.addProperty("file", getResourcePath("InputImportControlFileName.xml"));
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
         };
@@ -429,10 +429,10 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFileNameNoExtension() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
-        checkConfig.addAttribute("file",
+        checkConfig.addProperty("file",
                 getResourcePath("InputImportControlFileNameNoExtension.xml"));
         final DefaultConfiguration treewalkerConfig = createModuleConfig(TreeWalker.class);
-        treewalkerConfig.addAttribute("fileExtensions", "");
+        treewalkerConfig.addProperty("fileExtensions", "");
         treewalkerConfig.addChild(checkConfig);
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),

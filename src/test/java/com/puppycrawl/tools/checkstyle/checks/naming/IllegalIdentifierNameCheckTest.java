@@ -99,7 +99,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
     public void testIllegalIdentifierNameOpenTransitive() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(IllegalIdentifierNameCheck.class);
-        checkConfig.addAttribute("format",
+        checkConfig.addProperty("format",
             "(?i)^(?!(record|yield|var|permits|sealed|open|transitive)$).+$");
 
         final String format = "(?i)^(?!(record|yield|var|permits|sealed|open|transitive)$).+$";

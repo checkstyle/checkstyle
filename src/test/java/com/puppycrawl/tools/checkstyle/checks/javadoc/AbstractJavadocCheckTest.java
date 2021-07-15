@@ -278,7 +278,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(TokenIsNotInAcceptablesJavadocCheck.class);
-        checkConfig.addAttribute("javadocTokens", "RETURN_LITERAL");
+        checkConfig.addProperty("javadocTokens", "RETURN_LITERAL");
 
         final String path = getPath("InputAbstractJavadocTokensFail.java");
         try {
@@ -300,7 +300,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(TokenIsNotInAcceptablesJavadocCheck.class);
-        checkConfig.addAttribute("javadocTokens", "DEPRECATED_LITERAL");
+        checkConfig.addProperty("javadocTokens", "DEPRECATED_LITERAL");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAbstractJavadocTokensPass.java"), expected);
@@ -389,7 +389,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testNonTightHtmlTagIntolerantCheck() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(NonTightHtmlTagIntolerantCheck.class);
-        checkConfig.addAttribute("violateExecutionOnNonTightHtml", "true");
+        checkConfig.addProperty("violateExecutionOnNonTightHtml", "true");
         final String[] expected = {
             "11: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "18: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
@@ -419,8 +419,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(NonTightHtmlTagIntolerantCheck.class);
-        checkConfig.addAttribute("violateExecutionOnNonTightHtml", "true");
-        checkConfig.addAttribute("reportVisitJavadocToken", "true");
+        checkConfig.addProperty("violateExecutionOnNonTightHtml", "true");
+        checkConfig.addProperty("reportVisitJavadocToken", "true");
         final String[] expected = {
             "12: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "19: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
@@ -447,8 +447,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(NonTightHtmlTagTolerantCheck.class);
-        checkConfig.addAttribute("violateExecutionOnNonTightHtml", "true");
-        checkConfig.addAttribute("reportVisitJavadocToken", "true");
+        checkConfig.addProperty("violateExecutionOnNonTightHtml", "true");
+        checkConfig.addProperty("reportVisitJavadocToken", "true");
         final String[] expected = {
             "10:4: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "11:4: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),

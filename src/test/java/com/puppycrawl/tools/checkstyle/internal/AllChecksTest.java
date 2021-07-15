@@ -283,7 +283,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
             if (module.equals(ImportControlCheck.class)) {
                 // ImportControlCheck must have the import control configuration file to avoid
                 // violation.
-                moduleConfig.addAttribute("file", getPath(
+                moduleConfig.addProperty("file", getPath(
                         "InputAllChecksImportControl.xml"));
             }
             final Checker checker = createChecker(moduleConfig);
@@ -444,7 +444,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 }
 
                 try {
-                    configTokens.addAll(Arrays.asList(checkConfig.getAttribute("tokens").trim()
+                    configTokens.addAll(Arrays.asList(checkConfig.getProperty("tokens").trim()
                             .split(",\\s*")));
                 }
                 catch (CheckstyleException ex) {

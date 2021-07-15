@@ -53,7 +53,7 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIllegalClassNames() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalCatchCheck.class);
-        checkConfig.addAttribute("illegalClassNames",
+        checkConfig.addProperty("illegalClassNames",
                                  "java.lang.Error, java.lang.Exception, java.lang.Throwable");
 
         final String[] expected = {
@@ -69,11 +69,11 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIllegalClassNamesBad() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalCatchCheck.class);
-        checkConfig.addAttribute("illegalClassNames",
+        checkConfig.addProperty("illegalClassNames",
                                  "java.lang.Error, java.lang.Exception, NullPointerException");
 
         // check that incorrect names don't break the Check
-        checkConfig.addAttribute("illegalClassNames",
+        checkConfig.addProperty("illegalClassNames",
                 "java.lang.IOException.");
 
         final String[] expected = {

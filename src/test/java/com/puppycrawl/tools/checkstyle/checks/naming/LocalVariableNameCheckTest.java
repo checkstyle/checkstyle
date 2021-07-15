@@ -77,8 +77,8 @@ public class LocalVariableNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(LocalVariableNameCheck.class);
-        checkConfig.addAttribute("format", "^[a-z]{2,}[a-zA-Z0-9]*$");
-        checkConfig.addAttribute("allowOneCharVarInForLoop", "true");
+        checkConfig.addProperty("format", "^[a-z]{2,}[a-zA-Z0-9]*$");
+        checkConfig.addProperty("allowOneCharVarInForLoop", "true");
 
         final String pattern = "^[a-z]{2,}[a-zA-Z0-9]*$";
 

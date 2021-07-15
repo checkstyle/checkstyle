@@ -51,9 +51,9 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testMatching() throws Exception {
         final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
-        config.addAttribute("files", "InputSuppressionSingleFilter");
-        config.addAttribute("checks", "RegexpSingleline");
-        config.addAttribute("lines", "4");
+        config.addProperty("files", "InputSuppressionSingleFilter");
+        config.addProperty("checks", "RegexpSingleline");
+        config.addProperty("lines", "4");
 
         verifySuppressed(config, getPath("InputSuppressionSingleFilter.java"), null,
                 CommonUtil.EMPTY_STRING_ARRAY);
@@ -62,7 +62,7 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testNonMatchingLineNumber() throws Exception {
         final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
-        config.addAttribute("lines", "100");
+        config.addProperty("lines", "100");
 
         verifySuppressed(config, getPath("InputSuppressionSingleFilter.java"), null, VIOLATION);
     }
@@ -70,7 +70,7 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testNonMatchingColumnNumber() throws Exception {
         final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
-        config.addAttribute("columns", "100");
+        config.addProperty("columns", "100");
 
         verifySuppressed(config, getPath("InputSuppressionSingleFilter.java"), null, VIOLATION);
     }
@@ -78,7 +78,7 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testNonMatchingFileRegexp() throws Exception {
         final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
-        config.addAttribute("files", "BAD");
+        config.addProperty("files", "BAD");
 
         verifySuppressed(config, getPath("InputSuppressionSingleFilter.java"), null, VIOLATION);
     }
@@ -86,7 +86,7 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testNonMatchingModuleId() throws Exception {
         final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
-        config.addAttribute("id", "BAD");
+        config.addProperty("id", "BAD");
 
         verifySuppressed(config, getPath("InputSuppressionSingleFilter.java"), null, VIOLATION);
     }
@@ -94,7 +94,7 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testMatchingModuleId() throws Exception {
         final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
-        config.addAttribute("id", "id");
+        config.addProperty("id", "id");
 
         verifySuppressed(config, getPath("InputSuppressionSingleFilter.java"), "id",
                 CommonUtil.EMPTY_STRING_ARRAY);
@@ -103,7 +103,7 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testNonMatchingChecks() throws Exception {
         final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
-        config.addAttribute("checks", "BAD");
+        config.addProperty("checks", "BAD");
 
         verifySuppressed(config, getPath("InputSuppressionSingleFilter.java"), null, VIOLATION);
     }
@@ -111,7 +111,7 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testNotMatchingMessage() throws Exception {
         final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
-        config.addAttribute("message", "BAD");
+        config.addProperty("message", "BAD");
 
         verifySuppressed(config, getPath("InputSuppressionSingleFilter.java"), null,
                 VIOLATION);
@@ -120,7 +120,7 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testMatchMessage() throws Exception {
         final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
-        config.addAttribute("message", "TODO");
+        config.addProperty("message", "TODO");
 
         verifySuppressed(config, getPath("InputSuppressionSingleFilter.java"), null,
                 CommonUtil.EMPTY_STRING_ARRAY);
@@ -129,12 +129,12 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
     private void verifySuppressed(DefaultConfiguration config, String fileName, String id,
             String... expectedViolations) throws Exception {
         final DefaultConfiguration regexpConfig = createModuleConfig(RegexpSinglelineCheck.class);
-        regexpConfig.addAttribute("format", FORMAT);
-        regexpConfig.addAttribute("minimum", "0");
-        regexpConfig.addAttribute("maximum", "0");
+        regexpConfig.addProperty("format", FORMAT);
+        regexpConfig.addProperty("minimum", "0");
+        regexpConfig.addProperty("maximum", "0");
 
         if (id != null) {
-            regexpConfig.addAttribute("id", id);
+            regexpConfig.addProperty("id", id);
         }
 
         final DefaultConfiguration checkerConfig = createRootConfig(regexpConfig);

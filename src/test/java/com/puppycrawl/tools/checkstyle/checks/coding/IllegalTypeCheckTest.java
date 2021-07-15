@@ -43,7 +43,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testValidateAbstractClassNamesSetToTrue() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("validateAbstractClassNames", "true");
+        checkConfig.addProperty("validateAbstractClassNames", "true");
         final String[] expected = {
             "14:38: " + getCheckMessage(MSG_KEY, "AbstractClass"),
             "31:5: " + getCheckMessage(MSG_KEY, "AbstractClass"),
@@ -57,7 +57,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testValidateAbstractClassNamesSetToFalse() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("validateAbstractClassNames", "false");
+        checkConfig.addProperty("validateAbstractClassNames", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputIllegalTypeTestAbstractClassNamesFalse.java"), expected);
@@ -79,7 +79,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultsEmptyStringMemberModifiers() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("memberModifiers", "");
+        checkConfig.addProperty("memberModifiers", "");
 
         final String[] expected = {
             "21:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
@@ -94,8 +94,8 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnoreMethodNames() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("ignoredMethodNames", "table2");
-        checkConfig.addAttribute("validateAbstractClassNames", "true");
+        checkConfig.addProperty("ignoredMethodNames", "table2");
+        checkConfig.addProperty("validateAbstractClassNames", "true");
         final String[] expected = {
             "11:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
             "14:13: " + getCheckMessage(MSG_KEY,
@@ -113,7 +113,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFormat() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("illegalAbstractClassNameFormat", "^$");
+        checkConfig.addProperty("illegalAbstractClassNameFormat", "^$");
 
         final String[] expected = {
             "21:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
@@ -128,8 +128,8 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testLegalAbstractClassNames() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("validateAbstractClassNames", "true");
-        checkConfig.addAttribute("legalAbstractClassNames", "AbstractClass");
+        checkConfig.addProperty("validateAbstractClassNames", "true");
+        checkConfig.addProperty("legalAbstractClassNames", "AbstractClass");
 
         final String[] expected = {
             "14:13: " + getCheckMessage(MSG_KEY,
@@ -147,7 +147,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSameFileNameFalsePositive() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("illegalClassNames",
+        checkConfig.addProperty("illegalClassNames",
                 "java.util.GregorianCalendar, SubCal, java.util.List");
 
         final String[] expected = {
@@ -161,7 +161,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSameFileNameGeneral() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("illegalClassNames",
+        checkConfig.addProperty("illegalClassNames",
             "List, InputIllegalTypeGregCal, java.io.File, ArrayList, Boolean");
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregCal"),
@@ -179,7 +179,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testArrayTypes() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("illegalClassNames", "Boolean[], Boolean[][]");
+        checkConfig.addProperty("illegalClassNames", "Boolean[], Boolean[][]");
         final String[] expected = {
             "9:12: " + getCheckMessage(MSG_KEY, "Boolean[]"),
             "11:12: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
@@ -194,7 +194,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPlainAndArrayTypes() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("illegalClassNames", "Boolean, Boolean[][]");
+        checkConfig.addProperty("illegalClassNames", "Boolean, Boolean[][]");
         final String[] expected = {
             "9:12: " + getCheckMessage(MSG_KEY, "Boolean"),
             "13:12: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
@@ -208,9 +208,9 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGenerics() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("illegalClassNames",
+        checkConfig.addProperty("illegalClassNames",
                 "Boolean, Foo, Serializable");
-        checkConfig.addAttribute("memberModifiers", "LITERAL_PUBLIC, FINAL");
+        checkConfig.addProperty("memberModifiers", "LITERAL_PUBLIC, FINAL");
         final String[] expected = {
             "18:16: " + getCheckMessage(MSG_KEY, "Boolean"),
             "19:31: " + getCheckMessage(MSG_KEY, "Boolean"),
@@ -236,9 +236,9 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testExtendsImplements() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("illegalClassNames",
+        checkConfig.addProperty("illegalClassNames",
                 "Boolean, Foo, Hashtable, Serializable");
-        checkConfig.addAttribute("memberModifiers", "LITERAL_PUBLIC");
+        checkConfig.addProperty("memberModifiers", "LITERAL_PUBLIC");
         final String[] expected = {
             "14:17: " + getCheckMessage(MSG_KEY, "Hashtable"),
             "15:14: " + getCheckMessage(MSG_KEY, "Boolean"),
@@ -256,7 +256,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testStarImports() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("illegalClassNames", "List");
+        checkConfig.addProperty("illegalClassNames", "List");
 
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY, "List"),
@@ -268,8 +268,8 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testStaticImports() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("illegalClassNames", "SomeStaticClass");
-        checkConfig.addAttribute("ignoredMethodNames", "foo1");
+        checkConfig.addProperty("illegalClassNames", "SomeStaticClass");
+        checkConfig.addProperty("ignoredMethodNames", "foo1");
 
         final String[] expected = {
             "18:6: " + getCheckMessage(MSG_KEY, "SomeStaticClass"),
@@ -282,8 +282,8 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMemberModifiers() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("validateAbstractClassNames", "true");
-        checkConfig.addAttribute("memberModifiers", "LITERAL_PRIVATE, LITERAL_PROTECTED,"
+        checkConfig.addProperty("validateAbstractClassNames", "true");
+        checkConfig.addProperty("memberModifiers", "LITERAL_PRIVATE, LITERAL_PROTECTED,"
                 + " LITERAL_STATIC");
         final String[] expected = {
             "10:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
@@ -301,7 +301,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPackageClassName() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("illegalClassNames", "com.PackageClass");
+        checkConfig.addProperty("illegalClassNames", "com.PackageClass");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getNonCompilablePath("InputIllegalTypePackageClassName.java"),
@@ -312,7 +312,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     public void testClearDataBetweenFiles() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
         final String violationFile = getPath("InputIllegalTypeTestClearDataBetweenFiles.java");
-        checkConfig.addAttribute("illegalClassNames", "java.util.TreeSet");
+        checkConfig.addProperty("illegalClassNames", "java.util.TreeSet");
         final String[] expected = {
             "21:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "22:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
@@ -343,7 +343,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIllegalTypeRecordsAndCompactCtors() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("illegalClassNames", "HashMap, HashSet, LinkedHashMap,"
+        checkConfig.addProperty("illegalClassNames", "HashMap, HashSet, LinkedHashMap,"
             + " LinkedHashSet, TreeMap, TreeSet, java.util.HashMap, java.util.HashSet,"
             + " java.util.LinkedHashMap, java.util.LinkedHashSet, java.util.TreeMap,"
             + " java.util.TreeSet, Cloneable");
@@ -366,7 +366,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIllegalTypeNewArrayStructure() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("illegalClassNames", "HashMap");
+        checkConfig.addProperty("illegalClassNames", "HashMap");
 
         final String[] expected = {
             "15:13: " + getCheckMessage(MSG_KEY, "HashMap"),

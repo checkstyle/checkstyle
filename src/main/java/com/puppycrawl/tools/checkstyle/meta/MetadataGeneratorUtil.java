@@ -58,7 +58,7 @@ public final class MetadataGeneratorUtil {
         final DefaultConfiguration defaultConfiguration = new DefaultConfiguration("configuration");
         final DefaultConfiguration treeWalkerConfig =
                 new DefaultConfiguration(TreeWalker.class.getName());
-        defaultConfiguration.addAttribute("charset", StandardCharsets.UTF_8.name());
+        defaultConfiguration.addProperty("charset", StandardCharsets.UTF_8.name());
         defaultConfiguration.addChild(treeWalkerConfig);
         treeWalkerConfig.addChild(scraperCheckConfig);
         checker.configure(defaultConfiguration);

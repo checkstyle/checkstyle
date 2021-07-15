@@ -101,7 +101,7 @@ public class FinalLocalVariableCheckTest
     public void testParameter() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(FinalLocalVariableCheck.class);
-        checkConfig.addAttribute("tokens", "PARAMETER_DEF");
+        checkConfig.addProperty("tokens", "PARAMETER_DEF");
 
         final String[] expected = {
             "45:28: " + getCheckMessage(MSG_KEY, "aArg"),
@@ -115,7 +115,7 @@ public class FinalLocalVariableCheckTest
     public void testNativeMethods() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(FinalLocalVariableCheck.class);
-        checkConfig.addAttribute("tokens", "PARAMETER_DEF");
+        checkConfig.addProperty("tokens", "PARAMETER_DEF");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFinalLocalVariableNativeMethods.java"), expected);
@@ -125,7 +125,7 @@ public class FinalLocalVariableCheckTest
     public void testFalsePositive() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(FinalLocalVariableCheck.class);
-        checkConfig.addAttribute("tokens", "VARIABLE_DEF, PARAMETER_DEF");
+        checkConfig.addProperty("tokens", "VARIABLE_DEF, PARAMETER_DEF");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFinalLocalVariableFalsePositive.java"), expected);
@@ -135,8 +135,8 @@ public class FinalLocalVariableCheckTest
     public void testEnhancedForLoopVariableTrue() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(FinalLocalVariableCheck.class);
-        checkConfig.addAttribute("tokens", "VARIABLE_DEF, PARAMETER_DEF");
-        checkConfig.addAttribute("validateEnhancedForLoopVariable", "true");
+        checkConfig.addProperty("tokens", "VARIABLE_DEF, PARAMETER_DEF");
+        checkConfig.addProperty("validateEnhancedForLoopVariable", "true");
         final String[] expected = {
             "8:20: " + getCheckMessage(MSG_KEY, "a"),
             "15:13: " + getCheckMessage(MSG_KEY, "x"),
@@ -154,7 +154,7 @@ public class FinalLocalVariableCheckTest
     public void testEnhancedForLoopVariableFalse() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(FinalLocalVariableCheck.class);
-        checkConfig.addAttribute("tokens", "VARIABLE_DEF, PARAMETER_DEF");
+        checkConfig.addProperty("tokens", "VARIABLE_DEF, PARAMETER_DEF");
         final String[] expected = {
             "15:13: " + getCheckMessage(MSG_KEY, "x"),
             "21:66: " + getCheckMessage(MSG_KEY, "snippets"),
@@ -170,7 +170,7 @@ public class FinalLocalVariableCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(FinalLocalVariableCheck.class);
-        checkConfig.addAttribute("tokens", "PARAMETER_DEF,VARIABLE_DEF");
+        checkConfig.addProperty("tokens", "PARAMETER_DEF,VARIABLE_DEF");
         final String[] expected = {
             "32:16: " + getCheckMessage(MSG_KEY, "result"),
         };
@@ -183,7 +183,7 @@ public class FinalLocalVariableCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(FinalLocalVariableCheck.class);
-        checkConfig.addAttribute("tokens", "PARAMETER_DEF,VARIABLE_DEF");
+        checkConfig.addProperty("tokens", "PARAMETER_DEF,VARIABLE_DEF");
 
         final String[] expected = {
             "4:28: " + getCheckMessage(MSG_KEY, "text"),
@@ -254,7 +254,7 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testMultiTypeCatch() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(FinalLocalVariableCheck.class);
-        checkConfig.addAttribute("tokens", "PARAMETER_DEF,VARIABLE_DEF");
+        checkConfig.addProperty("tokens", "PARAMETER_DEF,VARIABLE_DEF");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFinalLocalVariableMultiCatch.java"),
                 expected);
@@ -288,7 +288,7 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testReceiverParameter() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(FinalLocalVariableCheck.class);
-        checkConfig.addAttribute("tokens", "PARAMETER_DEF,VARIABLE_DEF");
+        checkConfig.addProperty("tokens", "PARAMETER_DEF,VARIABLE_DEF");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFinalLocalVariableReceiverParameter.java"), expected);
     }

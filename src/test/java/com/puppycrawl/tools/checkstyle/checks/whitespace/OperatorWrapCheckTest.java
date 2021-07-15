@@ -57,7 +57,7 @@ public class OperatorWrapCheckTest
     public void testOpWrapEol()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
-        checkConfig.addAttribute("option", WrapOption.EOL.toString());
+        checkConfig.addProperty("option", WrapOption.EOL.toString());
         final String[] expected = {
             "20:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "-"),
             "24:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&&"),
@@ -70,7 +70,7 @@ public class OperatorWrapCheckTest
     public void testNonDefOpsDefault()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
-        checkConfig.addAttribute("tokens", "METHOD_REF");
+        checkConfig.addProperty("tokens", "METHOD_REF");
         final String[] expected = {
             "33:33: " + getCheckMessage(MSG_LINE_NEW, "::"),
         };
@@ -81,8 +81,8 @@ public class OperatorWrapCheckTest
     public void testNonDefOpsWrapEol()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
-        checkConfig.addAttribute("tokens", "METHOD_REF");
-        checkConfig.addAttribute("option", WrapOption.EOL.toString());
+        checkConfig.addProperty("tokens", "METHOD_REF");
+        checkConfig.addProperty("option", WrapOption.EOL.toString());
         final String[] expected = {
             "31:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "::"),
             "36:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "::"),
@@ -94,8 +94,8 @@ public class OperatorWrapCheckTest
     public void testAssignEol()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
-        checkConfig.addAttribute("tokens", "ASSIGN");
-        checkConfig.addAttribute("option", WrapOption.EOL.toString());
+        checkConfig.addProperty("tokens", "ASSIGN");
+        checkConfig.addProperty("option", WrapOption.EOL.toString());
         final String[] expected = {
             "42:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
         };
@@ -105,13 +105,13 @@ public class OperatorWrapCheckTest
     @Test
     public void testEol() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
-        checkConfig.addAttribute("tokens", "ASSIGN");
-        checkConfig.addAttribute("tokens", "COLON");
-        checkConfig.addAttribute("tokens", "LAND");
-        checkConfig.addAttribute("tokens", "LOR");
-        checkConfig.addAttribute("tokens", "STAR");
-        checkConfig.addAttribute("tokens", "QUESTION");
-        checkConfig.addAttribute("option", WrapOption.EOL.toString());
+        checkConfig.addProperty("tokens", "ASSIGN");
+        checkConfig.addProperty("tokens", "COLON");
+        checkConfig.addProperty("tokens", "LAND");
+        checkConfig.addProperty("tokens", "LOR");
+        checkConfig.addProperty("tokens", "STAR");
+        checkConfig.addProperty("tokens", "QUESTION");
+        checkConfig.addProperty("option", WrapOption.EOL.toString());
         final String[] expected = {
             "17:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
             "18:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "*"),
@@ -129,13 +129,13 @@ public class OperatorWrapCheckTest
     @Test
     public void testNl() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
-        checkConfig.addAttribute("tokens", "ASSIGN");
-        checkConfig.addAttribute("tokens", "COLON");
-        checkConfig.addAttribute("tokens", "LAND");
-        checkConfig.addAttribute("tokens", "LOR");
-        checkConfig.addAttribute("tokens", "STAR");
-        checkConfig.addAttribute("tokens", "QUESTION");
-        checkConfig.addAttribute("option", WrapOption.NL.toString());
+        checkConfig.addProperty("tokens", "ASSIGN");
+        checkConfig.addProperty("tokens", "COLON");
+        checkConfig.addProperty("tokens", "LAND");
+        checkConfig.addProperty("tokens", "LOR");
+        checkConfig.addProperty("tokens", "STAR");
+        checkConfig.addProperty("tokens", "QUESTION");
+        checkConfig.addProperty("option", WrapOption.NL.toString());
         final String[] expected = {
             "16:16: " + getCheckMessage(MSG_LINE_NEW, "="),
             "17:19: " + getCheckMessage(MSG_LINE_NEW, "*"),
@@ -152,7 +152,7 @@ public class OperatorWrapCheckTest
     @Test
     public void testInvalidOption() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
-        checkConfig.addAttribute("option", "invalid_option");
+        checkConfig.addProperty("option", "invalid_option");
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;

@@ -75,14 +75,14 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IndentationCheck.class);
-        moduleConfig.addAttribute("arrayInitIndent", "4");
-        moduleConfig.addAttribute("basicOffset", "10");
-        moduleConfig.addAttribute("braceAdjustment", "0");
-        moduleConfig.addAttribute("caseIndent", "4");
-        moduleConfig.addAttribute("forceStrictCondition", "false");
-        moduleConfig.addAttribute("lineWrappingIndentation", "4");
-        moduleConfig.addAttribute("tabWidth", "4");
-        moduleConfig.addAttribute("throwsIndent", "4");
+        moduleConfig.addProperty("arrayInitIndent", "4");
+        moduleConfig.addProperty("basicOffset", "10");
+        moduleConfig.addProperty("braceAdjustment", "0");
+        moduleConfig.addProperty("caseIndent", "4");
+        moduleConfig.addProperty("forceStrictCondition", "false");
+        moduleConfig.addProperty("lineWrappingIndentation", "4");
+        moduleConfig.addProperty("tabWidth", "4");
+        moduleConfig.addProperty("throwsIndent", "4");
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(IndentationCheck.class,
@@ -114,14 +114,14 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IndentationCheck.class);
-        moduleConfig.addAttribute("arrayInitIndent", "4");
-        moduleConfig.addAttribute("basicOffset", "4");
-        moduleConfig.addAttribute("braceAdjustment", "0");
-        moduleConfig.addAttribute("caseIndent", "4");
-        moduleConfig.addAttribute("forceStrictCondition", "false");
-        moduleConfig.addAttribute("lineWrappingIndentation", "4");
-        moduleConfig.addAttribute("tabWidth", "4");
-        moduleConfig.addAttribute("throwsIndent", "4");
+        moduleConfig.addProperty("arrayInitIndent", "4");
+        moduleConfig.addProperty("basicOffset", "4");
+        moduleConfig.addProperty("braceAdjustment", "0");
+        moduleConfig.addProperty("caseIndent", "4");
+        moduleConfig.addProperty("forceStrictCondition", "false");
+        moduleConfig.addProperty("lineWrappingIndentation", "4");
+        moduleConfig.addProperty("tabWidth", "4");
+        moduleConfig.addProperty("throwsIndent", "4");
 
         final String[] expectedViolation = {
             "7:9: " + getCheckMessage(IndentationCheck.class,
@@ -149,14 +149,14 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IndentationCheck.class);
-        moduleConfig.addAttribute("arrayInitIndent", "4");
-        moduleConfig.addAttribute("basicOffset", "4");
-        moduleConfig.addAttribute("braceAdjustment", "0");
-        moduleConfig.addAttribute("caseIndent", "4");
-        moduleConfig.addAttribute("forceStrictCondition", "false");
-        moduleConfig.addAttribute("lineWrappingIndentation", "4");
-        moduleConfig.addAttribute("tabWidth", "4");
-        moduleConfig.addAttribute("throwsIndent", "4");
+        moduleConfig.addProperty("arrayInitIndent", "4");
+        moduleConfig.addProperty("basicOffset", "4");
+        moduleConfig.addProperty("braceAdjustment", "0");
+        moduleConfig.addProperty("caseIndent", "4");
+        moduleConfig.addProperty("forceStrictCondition", "false");
+        moduleConfig.addProperty("lineWrappingIndentation", "4");
+        moduleConfig.addProperty("tabWidth", "4");
+        moduleConfig.addProperty("throwsIndent", "4");
 
         final String[] expectedViolation = {
             "6:9: " + getCheckMessage(IndentationCheck.class,
@@ -180,14 +180,14 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IndentationCheck.class);
-        moduleConfig.addAttribute("arrayInitIndent", "4");
-        moduleConfig.addAttribute("basicOffset", "4");
-        moduleConfig.addAttribute("braceAdjustment", "0");
-        moduleConfig.addAttribute("caseIndent", "4");
-        moduleConfig.addAttribute("forceStrictCondition", "false");
-        moduleConfig.addAttribute("lineWrappingIndentation", "4");
-        moduleConfig.addAttribute("tabWidth", "4");
-        moduleConfig.addAttribute("throwsIndent", "4");
+        moduleConfig.addProperty("arrayInitIndent", "4");
+        moduleConfig.addProperty("basicOffset", "4");
+        moduleConfig.addProperty("braceAdjustment", "0");
+        moduleConfig.addProperty("caseIndent", "4");
+        moduleConfig.addProperty("forceStrictCondition", "false");
+        moduleConfig.addProperty("lineWrappingIndentation", "4");
+        moduleConfig.addProperty("tabWidth", "4");
+        moduleConfig.addProperty("throwsIndent", "4");
 
         final String[] expectedViolation = {
             "14:15: " + getCheckMessage(IndentationCheck.class,
@@ -212,14 +212,14 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IndentationCheck.class);
 
-        moduleConfig.addAttribute("arrayInitIndent", "4");
-        moduleConfig.addAttribute("basicOffset", "4");
-        moduleConfig.addAttribute("braceAdjustment", "0");
-        moduleConfig.addAttribute("caseIndent", "4");
-        moduleConfig.addAttribute("forceStrictCondition", "false");
-        moduleConfig.addAttribute("lineWrappingIndentation", "4");
-        moduleConfig.addAttribute("tabWidth", "4");
-        moduleConfig.addAttribute("throwsIndent", "4");
+        moduleConfig.addProperty("arrayInitIndent", "4");
+        moduleConfig.addProperty("basicOffset", "4");
+        moduleConfig.addProperty("braceAdjustment", "0");
+        moduleConfig.addProperty("caseIndent", "4");
+        moduleConfig.addProperty("forceStrictCondition", "false");
+        moduleConfig.addProperty("lineWrappingIndentation", "4");
+        moduleConfig.addProperty("tabWidth", "4");
+        moduleConfig.addProperty("throwsIndent", "4");
 
         final String[] expectedViolation = {
             "8:9: " + getCheckMessage(IndentationCheck.class,
@@ -244,14 +244,14 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IndentationCheck.class);
 
-        moduleConfig.addAttribute("arrayInitIndent", "4");
-        moduleConfig.addAttribute("basicOffset", "4");
-        moduleConfig.addAttribute("braceAdjustment", "0");
-        moduleConfig.addAttribute("caseIndent", "4");
-        moduleConfig.addAttribute("forceStrictCondition", "false");
-        moduleConfig.addAttribute("lineWrappingIndentation", "4");
-        moduleConfig.addAttribute("tabWidth", "4");
-        moduleConfig.addAttribute("throwsIndent", "4");
+        moduleConfig.addProperty("arrayInitIndent", "4");
+        moduleConfig.addProperty("basicOffset", "4");
+        moduleConfig.addProperty("braceAdjustment", "0");
+        moduleConfig.addProperty("caseIndent", "4");
+        moduleConfig.addProperty("forceStrictCondition", "false");
+        moduleConfig.addProperty("lineWrappingIndentation", "4");
+        moduleConfig.addProperty("tabWidth", "4");
+        moduleConfig.addProperty("throwsIndent", "4");
 
         final String[] expectedViolation = {
             "12:9: " + getCheckMessage(IndentationCheck.class,

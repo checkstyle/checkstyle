@@ -40,7 +40,7 @@ public class TypeNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("format", "^inputHe");
+        checkConfig.addProperty("format", "^inputHe");
         final String[] expected = {
             "13:14: " + getCheckMessage(MSG_INVALID_PATTERN,
                         "InputTypeName", "^inputHe"),
@@ -71,7 +71,7 @@ public class TypeNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("tokens", "CLASS_DEF");
+        checkConfig.addProperty("tokens", "CLASS_DEF");
         final String[] expected = {
             "3:7: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderClass", DEFAULT_PATTERN),
@@ -84,7 +84,7 @@ public class TypeNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("tokens", "INTERFACE_DEF");
+        checkConfig.addProperty("tokens", "INTERFACE_DEF");
         final String[] expected = {
             "5:22: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderInterface", DEFAULT_PATTERN),
@@ -97,7 +97,7 @@ public class TypeNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("tokens", "ENUM_DEF");
+        checkConfig.addProperty("tokens", "ENUM_DEF");
         final String[] expected = {
             "7:17: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderEnum", DEFAULT_PATTERN),
@@ -110,7 +110,7 @@ public class TypeNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(TypeNameCheck.class);
-        checkConfig.addAttribute("tokens", "ANNOTATION_DEF");
+        checkConfig.addProperty("tokens", "ANNOTATION_DEF");
         final String[] expected = {
             "9:23: " + getCheckMessage(MSG_INVALID_PATTERN,
                 "inputHeaderAnnotation", DEFAULT_PATTERN),

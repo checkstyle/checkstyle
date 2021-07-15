@@ -55,7 +55,7 @@ public class IllegalTokenCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(IllegalTokenCheck.class);
-        checkConfig.addAttribute("tokens", "LITERAL_SWITCH,POST_INC,POST_DEC");
+        checkConfig.addProperty("tokens", "LITERAL_SWITCH,POST_INC,POST_DEC");
         final String[] expected = {
             "11:9: " + getCheckMessage(MSG_KEY, "switch"),
             "14:18: " + getCheckMessage(MSG_KEY, "--"),
@@ -68,7 +68,7 @@ public class IllegalTokenCheckTest
     public void testNative() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(IllegalTokenCheck.class);
-        checkConfig.addAttribute("tokens", "LITERAL_NATIVE");
+        checkConfig.addProperty("tokens", "LITERAL_NATIVE");
         final String[] expected = {
             "20:12: " + getCheckMessage(MSG_KEY, "native"),
         };
@@ -80,7 +80,7 @@ public class IllegalTokenCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(IllegalTokenCheck.class);
-        checkConfig.addAttribute("tokens", "COMMENT_CONTENT");
+        checkConfig.addProperty("tokens", "COMMENT_CONTENT");
 
         final String path = getPath("InputIllegalTokens.java");
         final String lineSeparator =
@@ -106,7 +106,7 @@ public class IllegalTokenCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(IllegalTokenCheck.class);
-        checkConfig.addAttribute("tokens", "BLOCK_COMMENT_BEGIN");
+        checkConfig.addProperty("tokens", "BLOCK_COMMENT_BEGIN");
 
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_KEY, "/*"),
@@ -119,7 +119,7 @@ public class IllegalTokenCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(IllegalTokenCheck.class);
-        checkConfig.addAttribute("tokens", "BLOCK_COMMENT_END");
+        checkConfig.addProperty("tokens", "BLOCK_COMMENT_END");
 
         final String[] expected = {
             "5:2: " + getCheckMessage(MSG_KEY, "*/"),
@@ -132,7 +132,7 @@ public class IllegalTokenCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(IllegalTokenCheck.class);
-        checkConfig.addAttribute("tokens", "SINGLE_LINE_COMMENT");
+        checkConfig.addProperty("tokens", "SINGLE_LINE_COMMENT");
 
         final String[] expected = {
             "31:27: " + getCheckMessage(MSG_KEY, "//"),

@@ -73,7 +73,7 @@ public class PatternVariableNameCheckTest
     public void testPatternVariableNameNoSingleChar() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(PatternVariableNameCheck.class);
-        checkConfig.addAttribute("format", "^[a-z][a-zA-Z0-9]+$");
+        checkConfig.addProperty("format", "^[a-z][a-zA-Z0-9]+$");
 
         final String pattern = "^[a-z][a-zA-Z0-9]+$";
 

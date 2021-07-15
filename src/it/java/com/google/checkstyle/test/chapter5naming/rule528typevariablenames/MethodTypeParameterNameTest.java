@@ -40,7 +40,7 @@ public class MethodTypeParameterNameTest extends AbstractGoogleModuleTestSupport
 
     @BeforeAll
     public static void setConfigurationBuilder() throws CheckstyleException {
-        format = getModuleConfig("ClassTypeParameterName").getAttribute("format");
+        format = getModuleConfig("ClassTypeParameterName").getProperty("format");
     }
 
     @Test

@@ -68,7 +68,7 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
 
         final DefaultConfiguration moduleConfig =
             createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
-        moduleConfig.addAttribute("allowWhenNoBraceAfterSemicolon", "false");
+        moduleConfig.addProperty("allowWhenNoBraceAfterSemicolon", "false");
 
         final String[] expectedViolation = {
             "8:44: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
