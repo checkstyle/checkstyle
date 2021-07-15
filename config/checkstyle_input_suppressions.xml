@@ -1046,17 +1046,6 @@
 
 
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationDefault.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationFirstLine.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationInterface.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationTrailingSpace.java"/>
 
 
   <suppress id="ConfigCommentOnTopInputs"
@@ -2697,17 +2686,6 @@
 
 
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationDefault.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationFirstLine.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationInterface.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationTrailingSpace.java"/>
 
 
   <suppress id="StyleValidationCommentInInputs"
