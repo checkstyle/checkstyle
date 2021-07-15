@@ -1,7 +1,12 @@
+/*
+JavadocContentLocation
+location = FIRST_LINE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoccontentlocation;
 
-/** config: location="FIRST_LINE"
- */
 public interface InputJavadocContentLocationFirstLine {
 
     /**
@@ -23,13 +28,13 @@ public interface InputJavadocContentLocationFirstLine {
      *
      *
      */
-    void blankLinesOnly(); // violation
+    void blankLinesOnly();
 
     /**
 
 
      */
-    void missingAsterisks(); // violation
+    void missingAsterisks();
 
     /**  **** Extra asterisks. //OK
      */
