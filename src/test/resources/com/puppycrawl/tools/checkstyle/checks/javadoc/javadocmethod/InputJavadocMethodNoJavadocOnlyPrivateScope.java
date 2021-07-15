@@ -1,10 +1,17 @@
+/*
+JavadocMethod
+allowedAnnotations = (default)Override
+validateThrows = (default)false
+accessModifiers = public, package, private
+allowMissingParamTags = (default)false
+allowMissingReturnTag = (default)false
+tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-/**
- * Config:
- * scope = Scope.PRIVATE.getName();
- * excludeScope = Scope.PROTECTED.getName();
- */
 public class InputJavadocMethodNoJavadocOnlyPrivateScope //comment test
 {
     public int i1;

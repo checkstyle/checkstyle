@@ -1,9 +1,17 @@
+/*
+JavadocMethod
+allowedAnnotations = Override,ThisIsOk, \t\n\t ThisIsOkToo
+validateThrows = (default)false
+accessModifiers = (default)public, protected, package, private
+allowMissingParamTags = (default)false
+allowMissingReturnTag = (default)false
+tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-/**
- * Config:
- * allowedAnnotations = Override,ThisIsOk, \t\n\t ThisIsOkToo
- */
 public class InputJavadocMethodAllowedAnnotations implements SomeInterface {
 
     @ThisIsOk
