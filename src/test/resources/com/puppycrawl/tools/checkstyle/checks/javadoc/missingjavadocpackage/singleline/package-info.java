@@ -1,2 +1,8 @@
+/*
+MissingJavadocPackage
+
+
+*/
+
 /** javadoc */
-package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.singleline;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.singleline; // ok
