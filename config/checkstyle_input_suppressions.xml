@@ -1049,17 +1049,6 @@
 
 
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationDescription.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationGuavaFalsePositive.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentation.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationOffset3.java"/>
 
 
   <suppress id="ConfigCommentOnTopInputs"
@@ -2668,17 +2657,6 @@
 
 
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationDescription.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationGuavaFalsePositive.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentation.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationOffset3.java"/>
 
 
   <suppress id="StyleValidationCommentInInputs"

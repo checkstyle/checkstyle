@@ -1,3 +1,11 @@
+/*
+JavadocTagContinuationIndentation
+violateExecutionOnNonTightHtml = (default)false
+offset = (default)4
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationindentation;
 
 import java.io.Serializable;
@@ -44,7 +52,7 @@ class InputJavadocTagContinuationIndentation implements Serializable
      * @return Some text.
      * @serialData Some javadoc.
      * @see Some text.
-     *    Some javadoc. // warn
+     *    Some javadoc. // violation
      * @throws Exception Some text.
      */
     String method(String aString) throws Exception
@@ -106,10 +114,10 @@ class InputJavadocTagContinuationIndentation implements Serializable
      * Some text.
      * @param aString Some text.
      * @return Some text.
-     *    Some javadoc. // warn
+     *    Some javadoc. // violation
      * @serialData Some javadoc.
      * @param aInt Some text.
-     *    Some javadoc. // warn
+     *    Some javadoc. // violation
      * @throws Exception Some text.
      * @param aBoolean Some text.
      * @see Some text.
@@ -200,10 +208,10 @@ class InputJavadocTagContinuationIndentation implements Serializable
          * @param aString Some text.
          * @return Some text.
          * @param aInt Some text.
-         *    Some javadoc. // warn
+         *    Some javadoc. // violation
          * @throws Exception Some text.
          * @param aBoolean Some text.
-         *    Some javadoc. // warn
+         *    Some javadoc. // violation
          * @see Some text.
          */
         String method6(String aString, int aInt, boolean aBoolean) throws Exception
@@ -218,9 +226,9 @@ class InputJavadocTagContinuationIndentation implements Serializable
          * Some text.
          * @throws Exception Some text.
          * @param aString Some text.
-         *   Some javadoc. // warn
+         *   Some javadoc. // violation
          * @serialData Some javadoc.
-         *    Some javadoc. // warn
+         *    Some javadoc. // violation
          * @see Some text.
          * @return Some text.
          */
@@ -280,14 +288,14 @@ class InputJavadocTagContinuationIndentation implements Serializable
 
         /**
          * Some text.
-         *       Some javadoc. // warn
+         *       Some javadoc. // violation
          * @param aString Some text.
-         *    Some javadoc. // warn
+         *    Some javadoc. // violation
          * @return Some text.
          * @param aInt Some text.
-         *    Some javadoc. // warn
+         *    Some javadoc. // violation
          * @throws Exception Some text.
-         *    Some javadoc. // warn
+         *    Some javadoc. // violation
          * @param aBoolean Some text.
          * @see Some text.
          */
@@ -307,7 +315,7 @@ class InputJavadocTagContinuationIndentation implements Serializable
  *     Some javadoc.
  *     Some javadoc.
  * @see Some javadoc.
- *    Some javadoc. // warn
+ *    Some javadoc. // violation
  * @author max
  */
 enum Foo1 {}
@@ -319,19 +327,19 @@ enum Foo1 {}
  * @since Some javadoc.
  *     Some javadoc.
  * @serialData Some javadoc.
- *   Line below is empty on purpose. // warn
+ *   Line below is empty on purpose. // violation
  * @see Some Text.
  * L.
  *
  * @author max
  * @customTag {@link com.puppycrawl.tools.checkstyle.AllChecksPresentOnAvailableChecksPageTest
- *   some description} // no warning, as this is just inline tag description
+ *   some description} // ok, as this is just inline tag description
  */
 interface FooIn1 {}
 
 /**
  * <p>Testing javadoc with spanning tag {@linkplain #DEFAULT default mapping
- * factory}.</p> // no warning
+ * factory}.</p> // ok
  */
 interface FooIn2 {}
 class ShortNextLine {
