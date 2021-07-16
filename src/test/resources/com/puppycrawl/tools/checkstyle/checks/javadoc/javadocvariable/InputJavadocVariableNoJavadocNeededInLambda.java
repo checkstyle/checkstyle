@@ -1,11 +1,17 @@
+/*
+JavadocVariable
+scope = (default)private
+excludeScope = (default)null
+ignoreNamePattern = (default)null
+tokens = (default)ENUM_CONSTANT_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
 import java.util.function.Function;
-/* Config:
- * scope = private
- * excludeScope = null
- * ignoreNamePattern = null
- */
+
 public class InputJavadocVariableNoJavadocNeededInLambda {
     private static final Function<String, String> FUNCTION1 = (String it) -> { // violation
         String stuff = it;

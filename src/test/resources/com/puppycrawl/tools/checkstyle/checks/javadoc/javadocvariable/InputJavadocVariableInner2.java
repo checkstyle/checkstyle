@@ -1,11 +1,16 @@
+/*
+JavadocVariable
+scope = public
+excludeScope = (default)null
+ignoreNamePattern = (default)null
+tokens = (default)ENUM_CONSTANT_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
 /**
- * Config:
- * scope = public
- * excludeScope = null
- *
- *
  * Tests having inner types
  * @author Oliver Burn
  */
