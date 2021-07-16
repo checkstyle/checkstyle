@@ -143,6 +143,7 @@
       <file name="MatchXpathCheck">
         <allow pkg="net.sf.saxon"/>
         <allow pkg="com.puppycrawl.tools.checkstyle.xpath"/>
+        <allow class="com.puppycrawl.tools.checkstyle.JavaParser" />
       </file>
     </subpackage>
   </subpackage>

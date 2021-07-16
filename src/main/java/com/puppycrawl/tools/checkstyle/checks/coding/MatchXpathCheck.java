@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -266,7 +267,12 @@ public class MatchXpathCheck extends AbstractCheck {
     @Override
     public void beginTree(DetailAST rootAST) {
         if (xpathExpression != null) {
-            final List<DetailAST> matchingNodes = findMatchingNodesByXpathQuery(rootAST);
+            DetailAST astWithComments = rootAST;
+            // This check is being done so we do not add comments when it is not being checked
+            if (query.contains("COMMENT")) {
+                astWithComments = JavaParser.appendHiddenCommentNodes(rootAST);
+            }
+            final List<DetailAST> matchingNodes = findMatchingNodesByXpathQuery(astWithComments);
             matchingNodes.forEach(node -> log(node, MSG_KEY));
         }
     }

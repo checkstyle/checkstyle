@@ -92,6 +92,31 @@ public class MatchXpathCheckTest
     }
 
     @Test
+    public void testCheckWithSingleLineComments() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(MatchXpathCheck.class);
+        checkConfig.addAttribute("query", "//SINGLE_LINE_COMMENT");
+        final String[] expected = {
+            "11:9: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+            "12:18: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+        };
+        verify(checkConfig, getPath("InputMatchXpathSingleLineComments.java"), expected);
+    }
+
+    @Test
+    public void testCheckWithBlockComments() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(MatchXpathCheck.class);
+        checkConfig.addAttribute("query", "//BLOCK_COMMENT_BEGIN");
+        final String[] expected = {
+            "1:1: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+            "11:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+            "14:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+        };
+        verify(checkConfig, getPath("InputMatchXpathBlockComments.java"), expected);
+    }
+
+    @Test
     public void testCheckWithDoubleBraceInitialization()
             throws Exception {
         final DefaultConfiguration checkConfig =
