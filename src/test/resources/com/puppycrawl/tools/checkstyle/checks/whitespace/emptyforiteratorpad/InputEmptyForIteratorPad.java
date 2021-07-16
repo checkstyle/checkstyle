@@ -1,7 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for FOR_ITERATION.
-// Created: 2003
-////////////////////////////////////////////////////////////////////////////////
+/*
+EmptyForIteratorPad
+option = (default)nospace
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptyforiteratorpad;
 
 class InputEmptyForIteratorPad
@@ -24,7 +27,7 @@ class InputEmptyForIteratorPad
             i++;
         }
 
-        for (int i = 0; i < 1; ) {
+        for (int i = 0; i < 1; ) { // violation
             i++;
         }
 
@@ -40,7 +43,7 @@ class InputEmptyForIteratorPad
         for ( int i = 0; i < 1; i++ ) {
         }
 
-        for ( int i = 0; i < 1; ) {
+        for ( int i = 0; i < 1; ) { // violation
             i++;
         }
 
@@ -52,7 +55,7 @@ class InputEmptyForIteratorPad
         }
 
         for (
-        ;; ) {
+        ;; ) { // violation
         }
     }
 }

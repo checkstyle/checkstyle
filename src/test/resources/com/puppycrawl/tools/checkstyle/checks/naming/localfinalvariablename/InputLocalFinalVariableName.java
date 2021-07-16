@@ -1,8 +1,11 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: Feb-2001
-// Ignore violation
-////////////////////////////////////////////////////////////////////////////////
+/*
+LocalFinalVariableName
+format = (default)^[a-z][a-zA-Z0-9]*$
+tokens = (default)VARIABLE_DEF, PARAMETER_DEF, RESOURCE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.naming.localfinalvariablename;
 import java.io.*;
 /**
@@ -120,7 +123,7 @@ final class InputLocalFinalVariableName
 
         // final decls
         final int cde = 0;
-        final int CDE = 0;
+        final int CDE = 0; // violation
 
         // decl in for loop init statement
         for (int k = 0; k < 1; k++)

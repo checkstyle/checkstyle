@@ -1,7 +1,11 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+LocalFinalVariableName
+format = (default)^[a-z][a-zA-Z0-9]*$
+tokens = (default)VARIABLE_DEF, PARAMETER_DEF, RESOURCE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.naming.localfinalvariablename;
 
 /**
@@ -14,7 +18,7 @@ class InputLocalFinalVariableNameInnerClass
     class InnerInner2
     {
         // Ignore
-        public int fData;
+        public int fData; // ok
     }
 
     // Ignore - 2 vilations

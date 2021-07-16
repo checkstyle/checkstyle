@@ -64,11 +64,11 @@ public class MethodTypeParameterNameCheckTest
         final String pattern = "^[A-Z]$";
 
         final String[] expected = {
-            "7:13: " + getCheckMessage(MSG_INVALID_PATTERN, "TT", pattern),
-            "9:6: " + getCheckMessage(MSG_INVALID_PATTERN, "e_e", pattern),
-            "19:6: " + getCheckMessage(MSG_INVALID_PATTERN, "Tfo$o2T", pattern),
-            "23:6: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
-            "28:10: " + getCheckMessage(MSG_INVALID_PATTERN, "_fo", pattern),
+            "14:13: " + getCheckMessage(MSG_INVALID_PATTERN, "TT", pattern),
+            "16:6: " + getCheckMessage(MSG_INVALID_PATTERN, "e_e", pattern),
+            "26:6: " + getCheckMessage(MSG_INVALID_PATTERN, "Tfo$o2T", pattern),
+            "30:6: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
+            "35:10: " + getCheckMessage(MSG_INVALID_PATTERN, "_fo", pattern),
         };
         verify(checkConfig, getPath("InputMethodTypeParameterName.java"), expected);
     }
@@ -83,15 +83,14 @@ public class MethodTypeParameterNameCheckTest
         final String pattern = "^foo$";
 
         final String[] expected = {
-            "7:13: " + getCheckMessage(MSG_INVALID_PATTERN, "TT", pattern),
-            "9:6: " + getCheckMessage(MSG_INVALID_PATTERN, "e_e", pattern),
-            "19:6: " + getCheckMessage(MSG_INVALID_PATTERN, "Tfo$o2T", pattern),
-            "28:10: " + getCheckMessage(MSG_INVALID_PATTERN, "_fo", pattern),
-            "35:6: " + getCheckMessage(MSG_INVALID_PATTERN, "E", pattern),
-            "37:14: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
-            // "40:14: Name 'EE' must match pattern '^foo$'.",
+            "14:13: " + getCheckMessage(MSG_INVALID_PATTERN, "TT", pattern),
+            "16:6: " + getCheckMessage(MSG_INVALID_PATTERN, "e_e", pattern),
+            "26:6: " + getCheckMessage(MSG_INVALID_PATTERN, "Tfo$o2T", pattern),
+            "35:10: " + getCheckMessage(MSG_INVALID_PATTERN, "_fo", pattern),
+            "42:6: " + getCheckMessage(MSG_INVALID_PATTERN, "E", pattern),
+            "44:14: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
         };
-        verify(checkConfig, getPath("InputMethodTypeParameterName.java"), expected);
+        verify(checkConfig, getPath("InputMethodTypeParameterName1.java"), expected);
     }
 
 }

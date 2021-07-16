@@ -55,10 +55,10 @@ public class LocalVariableNameCheckTest
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "119:13: " + getCheckMessage(MSG_INVALID_PATTERN, "ABC", pattern),
-            "130:18: " + getCheckMessage(MSG_INVALID_PATTERN, "I", pattern),
-            "132:20: " + getCheckMessage(MSG_INVALID_PATTERN, "InnerBlockVariable", pattern),
-            "207:21: " + getCheckMessage(MSG_INVALID_PATTERN, "O", pattern),
+            "122:13: " + getCheckMessage(MSG_INVALID_PATTERN, "ABC", pattern),
+            "133:18: " + getCheckMessage(MSG_INVALID_PATTERN, "I", pattern),
+            "135:20: " + getCheckMessage(MSG_INVALID_PATTERN, "InnerBlockVariable", pattern),
+            "210:21: " + getCheckMessage(MSG_INVALID_PATTERN, "O", pattern),
         };
         verify(checkConfig, getPath("InputLocalVariableName.java"), expected);
     }
@@ -83,12 +83,12 @@ public class LocalVariableNameCheckTest
         final String pattern = "^[a-z]{2,}[a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "16:29: " + getCheckMessage(MSG_INVALID_PATTERN, "j", pattern),
-            "19:17: " + getCheckMessage(MSG_INVALID_PATTERN, "A", pattern),
-            "21:21: " + getCheckMessage(MSG_INVALID_PATTERN, "i", pattern),
-            "27:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Index", pattern),
-            "44:32: " + getCheckMessage(MSG_INVALID_PATTERN, "a", pattern),
-            "47:32: " + getCheckMessage(MSG_INVALID_PATTERN, "B", pattern),
+            "19:29: " + getCheckMessage(MSG_INVALID_PATTERN, "j", pattern),
+            "22:17: " + getCheckMessage(MSG_INVALID_PATTERN, "A", pattern),
+            "24:21: " + getCheckMessage(MSG_INVALID_PATTERN, "i", pattern),
+            "30:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Index", pattern),
+            "47:32: " + getCheckMessage(MSG_INVALID_PATTERN, "a", pattern),
+            "50:32: " + getCheckMessage(MSG_INVALID_PATTERN, "B", pattern),
         };
         verify(checkConfig, getPath("InputLocalVariableNameOneCharInitVarName.java"), expected);
     }

@@ -1,12 +1,19 @@
+/*
+MethodTypeParameterName
+format = (default)^[A-Z]$
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.naming.methodtypeparametername;
 
 import java.io.Serializable;
 
 public class InputMethodTypeParameterName <t>
 {
-    public <TT> void foo() { }
+    public <TT> void foo() { } // violation
 
-    <e_e> void foo(int i) {
+    <e_e> void foo(int i) { // violation
     }
 }
 
@@ -16,16 +23,16 @@ class Other <foo extends Serializable & Cloneable> {
         return null;//comment
     }
 
-    <Tfo$o2T extends foo> /*comment*/Tfo$o2T getTwo(Tfo$o2T a) {
+    <Tfo$o2T extends foo> /*comment*/Tfo$o2T getTwo(Tfo$o2T a) { // violation
         return null;
     }
 
-    <foo extends Runnable> foo getShadow() {
+    <foo extends Runnable> foo getShadow() { // violation
         return null;
     }
 
     static class Junk <foo> {
-        <_fo extends foo> void getMoreFoo() {
+        <_fo extends foo> void getMoreFoo() { // violation
         }
     }
 }

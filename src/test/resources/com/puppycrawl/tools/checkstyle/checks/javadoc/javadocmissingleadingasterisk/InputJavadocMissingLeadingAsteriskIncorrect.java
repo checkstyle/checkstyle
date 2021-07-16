@@ -1,8 +1,12 @@
+/*
+JavadocMissingLeadingAsterisk
+violateExecutionOnNonTightHtml = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmissingleadingasterisk;
 
-/**
- * Config: default
- */
 public class InputJavadocMissingLeadingAsteriskIncorrect {
 
   /**

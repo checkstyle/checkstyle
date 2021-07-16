@@ -1,9 +1,11 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: Feb-2001
-// Ignore violation
-////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.naming.packagename;
+/*
+PackageName
+format = (default)^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.naming.packagename; // ok
 import java.io.*;
 /**
  * Contains simple mistakes:

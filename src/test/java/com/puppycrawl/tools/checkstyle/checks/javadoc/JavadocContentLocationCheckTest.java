@@ -57,8 +57,8 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocContentLocationCheck.class);
         final String[] expected = {
-            "14:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
-            "18:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
+            "17:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
+            "21:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
         };
         verify(checkConfig, getPath("InputJavadocContentLocationDefault.java"), expected);
     }
@@ -69,8 +69,8 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(JavadocContentLocationCheck.class);
         checkConfig.addAttribute("location", "FIRST_LINE");
         final String[] expected = {
-            "7:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
-            "16:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
+            "12:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
+            "21:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
         };
         verify(checkConfig, getPath("InputJavadocContentLocationFirstLine.java"), expected);
     }
@@ -81,7 +81,7 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(JavadocContentLocationCheck.class);
         checkConfig.addAttribute("location", "SECOND_LINE");
         final String[] expected = {
-            "1:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
+            "8:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
         };
         verify(checkConfig, getPath("package-info.java"), expected);
     }
@@ -92,7 +92,7 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(JavadocContentLocationCheck.class);
         checkConfig.addAttribute("location", "FIRST_LINE");
         final String[] expected = {
-            "3:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
+            "10:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
         };
         verify(checkConfig, getPath("InputJavadocContentLocationInterface.java"), expected);
     }

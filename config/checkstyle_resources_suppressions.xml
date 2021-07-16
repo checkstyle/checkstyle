@@ -104,6 +104,8 @@
   <suppress checks="FileTabCharacter"
     files="[\\/]InputFileTabCharacterSimple\.java"/>
   <suppress checks="FileTabCharacter"
+    files="[\\/]InputFileTabCharacterSimple1\.java"/>
+  <suppress checks="FileTabCharacter"
     files="[\\/]InputIndentationUseTabs\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputCheckerTabCharacter\.txt"/>
@@ -121,6 +123,8 @@
     files="[\\/]InputXpathFileGeneratorAstFilter\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputNoLineWrapBad\.java"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputNoLineWrapBad2\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputAstTreeStringPrinterFullOfBlockComments\.java"/>
   <suppress checks="FileTabCharacter"

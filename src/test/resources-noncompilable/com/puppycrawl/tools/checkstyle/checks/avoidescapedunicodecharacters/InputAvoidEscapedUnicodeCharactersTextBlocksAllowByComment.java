@@ -1,13 +1,16 @@
+/*
+AvoidEscapedUnicodeCharacters
+allowEscapesForControlCharacters = (default)false
+allowByTailComment = true
+allowIfAllCharactersEscaped = (default)false
+allowNonPrintableEscapes = (default)false
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.avoidescapedunicodecharacters;
 
-/* Config:
- *
- * allowEscapesForControlCharacters = false
- * allowByTailComment = true
- * allowIfAllCharactersEscaped = false
- * allowNonPrintableEscapes = false
- */
 public class InputAvoidEscapedUnicodeCharactersTextBlocksAllowByComment {
 /** Note that "violation" comments cannot be on the same line for this config */
     public void multiplyString1() {
