@@ -61,30 +61,30 @@ public class NonEmptyAtclauseDescriptionCheckTest
                 createModuleConfig(NonEmptyAtclauseDescriptionCheck.class);
         final String[] expected = {
             // this is a case with description that is sequences of spaces
-            "26: " + getCheckMessage(MSG_KEY),
-            // this is a case with description that is sequences of spaces
-            "27: " + getCheckMessage(MSG_KEY),
-            // this is a case with description that is sequences of spaces
-            "28: " + getCheckMessage(MSG_KEY),
+            "36: " + getCheckMessage(MSG_KEY),
             // this is a case with description that is sequences of spaces
             "37: " + getCheckMessage(MSG_KEY),
             // this is a case with description that is sequences of spaces
             "38: " + getCheckMessage(MSG_KEY),
             // this is a case with description that is sequences of spaces
-            "39: " + getCheckMessage(MSG_KEY),
-            "75: " + getCheckMessage(MSG_KEY),
-            "76: " + getCheckMessage(MSG_KEY),
-            "77: " + getCheckMessage(MSG_KEY),
-            "78: " + getCheckMessage(MSG_KEY),
-            "79: " + getCheckMessage(MSG_KEY),
-            "80: " + getCheckMessage(MSG_KEY),
+            "47: " + getCheckMessage(MSG_KEY),
+            // this is a case with description that is sequences of spaces
+            "48: " + getCheckMessage(MSG_KEY),
+            // this is a case with description that is sequences of spaces
+            "49: " + getCheckMessage(MSG_KEY),
+            "85: " + getCheckMessage(MSG_KEY),
+            "86: " + getCheckMessage(MSG_KEY),
+            "87: " + getCheckMessage(MSG_KEY),
+            "88: " + getCheckMessage(MSG_KEY),
             "89: " + getCheckMessage(MSG_KEY),
             "90: " + getCheckMessage(MSG_KEY),
-            "91: " + getCheckMessage(MSG_KEY),
-            "92: " + getCheckMessage(MSG_KEY),
-            "93: " + getCheckMessage(MSG_KEY),
-            "120: " + getCheckMessage(MSG_KEY),
-            "129: " + getCheckMessage(MSG_KEY),
+            "99: " + getCheckMessage(MSG_KEY),
+            "100: " + getCheckMessage(MSG_KEY),
+            "101: " + getCheckMessage(MSG_KEY),
+            "102: " + getCheckMessage(MSG_KEY),
+            "103: " + getCheckMessage(MSG_KEY),
+            "130: " + getCheckMessage(MSG_KEY),
+            "139: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputNonEmptyAtclauseDescription.java"), expected);
     }
