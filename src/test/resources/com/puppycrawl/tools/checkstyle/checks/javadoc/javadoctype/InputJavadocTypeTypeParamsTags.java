@@ -1,9 +1,18 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
+/*
+JavadocType
+scope = (default)private
+excludeScope = (default)null
+authorFormat = (default)null
+versionFormat = (default)null
+allowMissingParamTags = true
+allowUnknownTags = (default)false
+allowedAnnotations = (default)Generated
+tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
-/* Config:
- *
- * allowMissingParamTags = true
- */
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
 /**
  * Some explanation.
