@@ -264,6 +264,11 @@ public class MatchXpathCheck extends AbstractCheck {
     }
 
     @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public void beginTree(DetailAST rootAST) {
         if (xpathExpression != null) {
             final List<DetailAST> matchingNodes = findMatchingNodesByXpathQuery(rootAST);
