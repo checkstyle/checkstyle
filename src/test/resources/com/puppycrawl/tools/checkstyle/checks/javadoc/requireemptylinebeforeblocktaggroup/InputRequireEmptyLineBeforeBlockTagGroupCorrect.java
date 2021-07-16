@@ -1,7 +1,13 @@
+/*
+RequireEmptyLineBeforeBlockTagGroup
+violateExecutionOnNonTightHtml = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.requireemptylinebeforeblocktaggroup;
 
 /**
- * Config: default
  * Some Javadoc.
  *
  * @since 8.36 // ok
