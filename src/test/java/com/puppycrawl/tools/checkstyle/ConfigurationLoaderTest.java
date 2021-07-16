@@ -310,11 +310,11 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                 childrenLength,
             config.getChildren().length, "children.length.");
 
-        final String[] attNames = config.getAttributeNames();
+        final String[] attNames = config.getPropertyNames();
         assertEquals(atts.size(), attNames.length, "attributes.length");
 
         for (String attName : attNames) {
-            final String attribute = config.getAttribute(attName);
+            final String attribute = config.getProperty(attName);
             assertEquals(atts.getProperty(attName), attribute, "attribute[" + attName + "]");
         }
     }

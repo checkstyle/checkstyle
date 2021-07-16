@@ -57,7 +57,7 @@ public class PackageNameTest extends AbstractGoogleModuleTestSupport {
         final String packagePath =
                 "com.google.checkstyle.test.chapter5naming.rule521packageNamesCamelCase";
         final Configuration checkConfig = getModuleConfig("PackageName");
-        final String format = checkConfig.getAttribute("format");
+        final String format = checkConfig.getProperty("format");
         final String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
 
         final String[] expected = {
@@ -74,7 +74,7 @@ public class PackageNameTest extends AbstractGoogleModuleTestSupport {
     public void testBadPackageName2() throws Exception {
         final String packagePath = "com.google.checkstyle.test.chapter5naming.rule521_packagenames";
         final Configuration checkConfig = getModuleConfig("PackageName");
-        final String format = checkConfig.getAttribute("format");
+        final String format = checkConfig.getProperty("format");
         final String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
 
         final String[] expected = {
@@ -91,7 +91,7 @@ public class PackageNameTest extends AbstractGoogleModuleTestSupport {
     public void testBadPackageName3() throws Exception {
         final String packagePath = "com.google.checkstyle.test.chapter5naming.rule521$packagenames";
         final Configuration checkConfig = getModuleConfig("PackageName");
-        final String format = checkConfig.getAttribute("format");
+        final String format = checkConfig.getProperty("format");
         final String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
 
         final String[] expected = {

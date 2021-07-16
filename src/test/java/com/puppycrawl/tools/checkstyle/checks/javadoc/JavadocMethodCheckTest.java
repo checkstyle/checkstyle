@@ -67,7 +67,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void extendAnnotationTest() throws Exception {
         final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
-        config.addAttribute("allowedAnnotations", "MyAnnotation, Override");
+        config.addProperty("allowedAnnotations", "MyAnnotation, Override");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(config, getPath("InputJavadocMethodExtendAnnotation.java"), expected);
     }
@@ -75,7 +75,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void allowedAnnotationsTest() throws Exception {
         final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
-        config.addAttribute("allowedAnnotations", "Override,ThisIsOk, \t\n\t ThisIsOkToo");
+        config.addProperty("allowedAnnotations", "Override,ThisIsOk, \t\n\t ThisIsOkToo");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(config, getPath("InputJavadocMethodAllowedAnnotations.java"), expected);
     }
@@ -83,7 +83,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testThrowsDetection() throws Exception {
         final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
-        config.addAttribute("validateThrows", "true");
+        config.addProperty("validateThrows", "true");
         final String[] expected = {
             "24:19: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
                     "UnsupportedOperationException"),
@@ -120,7 +120,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testExtraThrows() throws Exception {
         final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
-        config.addAttribute("validateThrows", "true");
+        config.addProperty("validateThrows", "true");
         final String[] expected = {
             "53:56: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalStateException"),
             "68:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
@@ -135,7 +135,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnoreThrows() throws Exception {
         final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
-        config.addAttribute("validateThrows", "true");
+        config.addProperty("validateThrows", "true");
         final String[] expected = {
             "39:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
             "41:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalStateException"),
@@ -149,7 +149,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTags() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("validateThrows", "true");
+        checkConfig.addProperty("validateThrows", "true");
         final String[] expected = {
             "30:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "unused"),
             "36: " + getCheckMessage(MSG_RETURN_EXPECTED),
@@ -193,7 +193,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNoJavadoc() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("accessModifiers", "");
+        checkConfig.addProperty("accessModifiers", "");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJavadocMethodPublicOnly1.java"), expected);
     }
@@ -202,7 +202,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRelaxedJavadoc() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("accessModifiers", "public, protected");
+        checkConfig.addProperty("accessModifiers", "public, protected");
         final String[] expected = {
             "87:41: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
             "92:37: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
@@ -213,7 +213,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testScopeInnerInterfacesPublic() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("accessModifiers", "public");
+        checkConfig.addProperty("accessModifiers", "public");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJavadocMethodScopeInnerInterfaces.java"), expected);
     }
@@ -221,7 +221,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testScopeAnonInnerPrivate() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("accessModifiers", "public, protected, package, private");
+        checkConfig.addProperty("accessModifiers", "public, protected, package, private");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJavadocMethodScopeAnonInner.java"), expected);
     }
@@ -241,7 +241,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testScopes2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("accessModifiers", "public, protected");
+        checkConfig.addProperty("accessModifiers", "public, protected");
         final String[] expected = {
             "27: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
             "29: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
@@ -252,7 +252,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testExcludeScope() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("accessModifiers", "private, package, public");
+        checkConfig.addProperty("accessModifiers", "private, package, public");
         final String[] expected = {
             "27: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
             "31: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
@@ -264,8 +264,8 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAllowMissingJavadocTags() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("allowMissingParamTags", "true");
-        checkConfig.addAttribute("allowMissingReturnTag", "true");
+        checkConfig.addProperty("allowMissingParamTags", "true");
+        checkConfig.addProperty("allowMissingReturnTag", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJavadocMethodMissingJavadocNoMissingTags.java"),
                 expected);
@@ -274,7 +274,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSurroundingAccessModifier() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("accessModifiers", "private");
+        checkConfig.addProperty("accessModifiers", "private");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJavadocMethodSurroundingAccessModifier.java"), expected);
     }
@@ -351,7 +351,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGenerics() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("validateThrows", "true");
+        checkConfig.addProperty("validateThrows", "true");
         final String[] expected = {
             "29:34: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "RE"),
             "45:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<NPE>"),
@@ -385,7 +385,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAllowToSkipOverridden() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("allowedAnnotations", "MyAnnotation");
+        checkConfig.addProperty("allowedAnnotations", "MyAnnotation");
         final String[] expected = {
             "19:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "BAD"),
             "29:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "BAD"),
@@ -420,8 +420,8 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadocMethodRecordsAndCompactCtors() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("validateThrows", "true");
-        checkConfig.addAttribute("tokens", "METHOD_DEF , CTOR_DEF , ANNOTATION_FIELD_DEF,"
+        checkConfig.addProperty("validateThrows", "true");
+        checkConfig.addProperty("tokens", "METHOD_DEF , CTOR_DEF , ANNOTATION_FIELD_DEF,"
             + " COMPACT_CTOR_DEF, RECORD_DEF, CLASS_DEF");
 
         final String[] expected = {

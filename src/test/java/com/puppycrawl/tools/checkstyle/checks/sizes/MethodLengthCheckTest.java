@@ -61,7 +61,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MethodLengthCheck.class);
-        checkConfig.addAttribute("max", "19");
+        checkConfig.addProperty("max", "19");
         final String[] expected = {
             "76:5: " + getCheckMessage(MSG_KEY, 20, 19, "longMethod"),
         };
@@ -72,8 +72,8 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
     public void testCountEmptyIsFalse() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MethodLengthCheck.class);
-        checkConfig.addAttribute("max", "19");
-        checkConfig.addAttribute("countEmpty", "false");
+        checkConfig.addProperty("max", "19");
+        checkConfig.addProperty("countEmpty", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodLengthCountEmptyIsFalse.java"), expected);
     }
@@ -82,8 +82,8 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
     public void testWithComments() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MethodLengthCheck.class);
-        checkConfig.addAttribute("max", "7");
-        checkConfig.addAttribute("countEmpty", "false");
+        checkConfig.addProperty("max", "7");
+        checkConfig.addProperty("countEmpty", "false");
         final String[] expected = {
             "34:5: " + getCheckMessage(MSG_KEY, 8, 7, "visit"),
         };
@@ -102,8 +102,8 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
     public void testRecordsAndCompactCtors() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MethodLengthCheck.class);
-        checkConfig.addAttribute("max", "2");
-        checkConfig.addAttribute("tokens",
+        checkConfig.addProperty("max", "2");
+        checkConfig.addProperty("tokens",
                 "METHOD_DEF, CTOR_DEF, COMPACT_CTOR_DEF");
 
         final int max = 2;

@@ -102,7 +102,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAllowNewlineParagraph() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocParagraphCheck.class);
-        checkConfig.addAttribute("allowNewlineParagraph", "false");
+        checkConfig.addProperty("allowNewlineParagraph", "false");
         final String[] expected = {
             "13: " + getCheckMessage(MSG_LINE_BEFORE),
             "14: " + getCheckMessage(MSG_LINE_BEFORE),
