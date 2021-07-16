@@ -1,6 +1,13 @@
+/*
+JavadocTagContinuationIndentation
+violateExecutionOnNonTightHtml = (default)false
+offset = (default)4
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationindentation;
 
-/** Config: default */
 public class InputJavadocTagContinuationIndentationDescription {
     /**
      * General Description here.
