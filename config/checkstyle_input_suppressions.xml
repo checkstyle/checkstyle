@@ -1061,20 +1061,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationOffset3.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadocvariable[\\/]InputJavadocVariableInner.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadocvariable[\\/]InputJavadocVariableNoJavadoc.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadocvariable[\\/]InputJavadocVariableNoJavadocNeededInLambda.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadocvariable[\\/]InputJavadocVariablePublicOnly.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadocvariable[\\/]InputJavadocVariableTags.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]missingjavadoctype[\\/]InputMissingJavadocTypeInner.java"/>
@@ -2696,20 +2682,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationOffset3.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadocvariable[\\/]InputJavadocVariableInner.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadocvariable[\\/]InputJavadocVariableNoJavadoc.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadocvariable[\\/]InputJavadocVariableNoJavadocNeededInLambda.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadocvariable[\\/]InputJavadocVariablePublicOnly.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadocvariable[\\/]InputJavadocVariableTags.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="javadoc[\\/]missingjavadocmethod[\\/]InputMissingJavadocMethod_01.java"/>
