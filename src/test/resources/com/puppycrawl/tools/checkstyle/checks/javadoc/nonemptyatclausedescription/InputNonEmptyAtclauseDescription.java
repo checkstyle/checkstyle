@@ -1,4 +1,14 @@
+/*
+NonEmptyAtclauseDescription
+violateExecutionOnNonTightHtml = (default)false
+javadocTokens = (default)PARAM_LITERAL, RETURN_LITERAL, THROWS_LITERAL, \
+                EXCEPTION_LITERAL, DEPRECATED_LITERAL
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.nonemptyatclausedescription;
+
 class InputNonEmptyAtclauseDescription
 {
         /**
@@ -13,7 +23,7 @@ class InputNonEmptyAtclauseDescription
 
         /**
          * Some javadoc.
-         * @param a Some javadoc.
+         * @param a Some javadoc. // ok
          * @deprecated Some javadoc.
          */
         public InputNonEmptyAtclauseDescription(String a)
@@ -78,7 +88,7 @@ class InputNonEmptyAtclauseDescription
          * @deprecated
          * @throws Exception
          * @deprecated
-         */
+         */ // violation above
         public int foo3(String a, int b, double c) throws Exception
         {
                 return 1;
