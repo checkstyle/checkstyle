@@ -61,20 +61,20 @@ public class JavadocTagContinuationIndentationCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocTagContinuationIndentationCheck.class);
         final String[] expected = {
-            "47: " + getCheckMessage(MSG_KEY, 4),
-            "109: " + getCheckMessage(MSG_KEY, 4),
-            "112: " + getCheckMessage(MSG_KEY, 4),
-            "203: " + getCheckMessage(MSG_KEY, 4),
-            "206: " + getCheckMessage(MSG_KEY, 4),
-            "221: " + getCheckMessage(MSG_KEY, 4),
-            "223: " + getCheckMessage(MSG_KEY, 4),
-            "285: " + getCheckMessage(MSG_KEY, 4),
-            "288: " + getCheckMessage(MSG_KEY, 4),
-            "290: " + getCheckMessage(MSG_KEY, 4),
-            "310: " + getCheckMessage(MSG_KEY, 4),
-            "322: " + getCheckMessage(MSG_KEY, 4),
-            "324: " + getCheckMessage(MSG_KEY, 4),
-            "342: " + getCheckMessage(MSG_KEY, 4),
+            "55: " + getCheckMessage(MSG_KEY, 4),
+            "117: " + getCheckMessage(MSG_KEY, 4),
+            "120: " + getCheckMessage(MSG_KEY, 4),
+            "211: " + getCheckMessage(MSG_KEY, 4),
+            "214: " + getCheckMessage(MSG_KEY, 4),
+            "229: " + getCheckMessage(MSG_KEY, 4),
+            "231: " + getCheckMessage(MSG_KEY, 4),
+            "293: " + getCheckMessage(MSG_KEY, 4),
+            "296: " + getCheckMessage(MSG_KEY, 4),
+            "298: " + getCheckMessage(MSG_KEY, 4),
+            "318: " + getCheckMessage(MSG_KEY, 4),
+            "330: " + getCheckMessage(MSG_KEY, 4),
+            "332: " + getCheckMessage(MSG_KEY, 4),
+            "350: " + getCheckMessage(MSG_KEY, 4),
         };
         verify(checkConfig, getPath("InputJavadocTagContinuationIndentation.java"),
                 expected);
@@ -86,8 +86,8 @@ public class JavadocTagContinuationIndentationCheckTest
                 createModuleConfig(JavadocTagContinuationIndentationCheck.class);
         checkConfig.addAttribute("offset", "3");
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_KEY, 3),
-            "19: " + getCheckMessage(MSG_KEY, 3),
+            "15: " + getCheckMessage(MSG_KEY, 3),
+            "27: " + getCheckMessage(MSG_KEY, 3),
         };
         verify(checkConfig, getPath("InputJavadocTagContinuationIndentationOffset3.java"),
                 expected);
@@ -98,12 +98,12 @@ public class JavadocTagContinuationIndentationCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocTagContinuationIndentationCheck.class);
         final String[] expected = {
-            "9: " + getCheckMessage(MSG_KEY, 4),
-            "10: " + getCheckMessage(MSG_KEY, 4),
-            "11: " + getCheckMessage(MSG_KEY, 4),
-            "40: " + getCheckMessage(MSG_KEY, 4),
-            "42: " + getCheckMessage(MSG_KEY, 4),
-            "43: " + getCheckMessage(MSG_KEY, 4),
+            "16: " + getCheckMessage(MSG_KEY, 4),
+            "17: " + getCheckMessage(MSG_KEY, 4),
+            "18: " + getCheckMessage(MSG_KEY, 4),
+            "47: " + getCheckMessage(MSG_KEY, 4),
+            "49: " + getCheckMessage(MSG_KEY, 4),
+            "50: " + getCheckMessage(MSG_KEY, 4),
         };
         verify(checkConfig, getPath("InputJavadocTagContinuationIndentationDescription.java"),
                 expected);
@@ -115,17 +115,17 @@ public class JavadocTagContinuationIndentationCheckTest
                 createModuleConfig(JavadocTagContinuationIndentationCheck.class);
         checkConfig.addAttribute("offset", "4");
         final String[] expected = {
-            "17: " + getCheckMessage(MSG_KEY, 4),
-            "28: " + getCheckMessage(MSG_KEY, 4),
-            "38: " + getCheckMessage(MSG_KEY, 4),
-            "58: " + getCheckMessage(MSG_KEY, 4),
-            "60: " + getCheckMessage(MSG_KEY, 4),
-            "70: " + getCheckMessage(MSG_KEY, 4),
-            "71: " + getCheckMessage(MSG_KEY, 4),
-            "72: " + getCheckMessage(MSG_KEY, 4),
-            "82: " + getCheckMessage(MSG_KEY, 4),
-            "83: " + getCheckMessage(MSG_KEY, 4),
-            "84: " + getCheckMessage(MSG_KEY, 4),
+            "21: " + getCheckMessage(MSG_KEY, 4),
+            "32: " + getCheckMessage(MSG_KEY, 4),
+            "42: " + getCheckMessage(MSG_KEY, 4),
+            "62: " + getCheckMessage(MSG_KEY, 4),
+            "64: " + getCheckMessage(MSG_KEY, 4),
+            "74: " + getCheckMessage(MSG_KEY, 4),
+            "75: " + getCheckMessage(MSG_KEY, 4),
+            "76: " + getCheckMessage(MSG_KEY, 4),
+            "86: " + getCheckMessage(MSG_KEY, 4),
+            "87: " + getCheckMessage(MSG_KEY, 4),
+            "88: " + getCheckMessage(MSG_KEY, 4),
         };
         verify(checkConfig, getPath("InputJavadocTagContinuationIndentationBlockTag.java"),
                 expected);
