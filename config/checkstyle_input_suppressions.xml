@@ -1088,8 +1088,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]missingjavadoctype[\\/]InputMissingJavadocTypeUnusedParamInJavadocForClass.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]nonemptyatclausedescription[\\/]InputNonEmptyAtclauseDescription.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="javadocpropertiesgenerator[\\/]InputJavadocPropertiesGeneratorCorrect.java"/>
@@ -2780,8 +2778,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="javadoc[\\/]missingjavadoctype[\\/]InputMissingJavadocTypeUnusedParamInJavadocForClass.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]nonemptyatclausedescription[\\/]InputNonEmptyAtclauseDescription.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="javadocpropertiesgenerator[\\/]InputJavadocPropertiesGeneratorCorrect.java"/>
