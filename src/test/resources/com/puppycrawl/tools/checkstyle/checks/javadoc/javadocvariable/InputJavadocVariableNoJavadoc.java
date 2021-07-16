@@ -1,9 +1,15 @@
+/*
+JavadocVariable
+scope = (default)private
+excludeScope = (default)null
+ignoreNamePattern = (default)null
+tokens = (default)ENUM_CONSTANT_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
-/* Config:
- * scope = private
- * excludeScope = null
- */
 public class InputJavadocVariableNoJavadoc //comment test
 {
     public int i1; // violation
