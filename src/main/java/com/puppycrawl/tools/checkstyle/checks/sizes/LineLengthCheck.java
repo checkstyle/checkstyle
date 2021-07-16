@@ -45,10 +45,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * property {@code tabWidth} which applies to all Checks, including {@code LineLength};
  * or can set property {@code tabWidth} for {@code LineLength} alone.
  * </li>
- * <li>
- * Package and import statements (lines matching pattern {@code ^(package|import) .*})
- * are not verified by this check.
- * </li>
  * </ul>
  * <ul>
  * <li>
@@ -65,6 +61,16 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Property {@code max} - Specify the maximum line length allowed.
  * Type is {@code int}.
  * Default value is {@code 80}.
+ * </li>
+ * <li>
+ * Property {@code validateImport} - Validate checking of import statements.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code validatePackage} - Validate checking of package statements.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
  * </li>
  * </ul>
  * <p>
@@ -105,6 +111,40 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * To configure the check to validate the use of check on import statements.
+ * </p>
+ * <pre>
+ * &lt;module name="LineLength"&gt;
+ *   &lt;property name="validateImport" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * import static com.puppycrawl.tools.checkstyle.grammar.InputFullOfSinglelineComments; // Violation
+ * import static com.puppycrawl.tools.checkstyle.grammar
+ *           .comments.InputFullOfSinglelineComments.main; // ok
+ * import java.io.File; // ok
+ * </pre>
+ * <p>
+ * To configure the check to validate the use of check on package statements.
+ * </p>
+ * <pre>
+ * &lt;module name="LineLength"&gt;
+ *   &lt;property name="validatePackage" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * package org.hibernate.test.annotations.collectionElement.embeddable.withCustomDef; // Violation
+ * package com.puppycrawl.tools.checkstyle.checks
+ *             .sizes.linelength; // ok
+ * package com.puppycrawl.tools.checkstyle.checks.sizes; // ok
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
  * <p>
@@ -130,14 +170,23 @@ public class LineLengthCheck extends AbstractFileSetCheck {
     /** Default maximum number of columns in a line. */
     private static final int DEFAULT_MAX_COLUMNS = 80;
 
-    /** Patterns matching package, import, and import static statements. */
-    private static final Pattern IGNORE_PATTERN = Pattern.compile("^(package|import) .*");
+    /** Pattern matching import and import static statements. */
+    private static final Pattern IMPORT_PATTERN = Pattern.compile("^import .*");
+
+    /** Pattern matching package statements. */
+    private static final Pattern PACKAGE_PATTERN = Pattern.compile("^package .*");
 
     /** Specify the maximum line length allowed. */
     private int max = DEFAULT_MAX_COLUMNS;
 
     /** Specify pattern for lines to ignore. */
     private Pattern ignorePattern = Pattern.compile("^$");
+
+    /** Validate checking of import statements. */
+    private boolean validateImport;
+
+    /** Validate checking of package statements. */
+    private boolean validatePackage;
 
     @Override
     protected void processFiltered(File file, FileText fileText) {
@@ -146,9 +195,17 @@ public class LineLengthCheck extends AbstractFileSetCheck {
             final int realLength = CommonUtil.lengthExpandedTabs(
                 line, line.codePointCount(0, line.length()), getTabWidth());
 
-            if (realLength > max && !IGNORE_PATTERN.matcher(line).find()
-                && !ignorePattern.matcher(line).find()) {
-                log(i + 1, MSG_KEY, max, realLength);
+            if (realLength > max && !ignorePattern.matcher(line).find()) {
+
+                final boolean matchPackage = PACKAGE_PATTERN.matcher(line).find();
+                final boolean matchImport = IMPORT_PATTERN.matcher(line).find();
+                final boolean validateForPackage = validatePackage && matchPackage;
+                final boolean validateForImport = validateImport && matchImport;
+
+                if (validateForImport || validateForPackage
+                        || !matchImport && !matchPackage) {
+                    log(i + 1, MSG_KEY, max, realLength);
+                }
             }
         }
     }
@@ -169,6 +226,24 @@ public class LineLengthCheck extends AbstractFileSetCheck {
      */
     public final void setIgnorePattern(Pattern pattern) {
         ignorePattern = pattern;
+    }
+
+    /**
+     * Setter to validate checking of package statements.
+     *
+     * @param validate {@code true} to validate package statements.
+     */
+    public void setValidatePackage(boolean validate) {
+        validatePackage = validate;
+    }
+
+    /**
+     * Setter to validate checking of import statements.
+     *
+     * @param validate {@code true} to validate import statements.
+     */
+    public void setValidateImport(boolean validate) {
+        validateImport = validate;
     }
 
 }
