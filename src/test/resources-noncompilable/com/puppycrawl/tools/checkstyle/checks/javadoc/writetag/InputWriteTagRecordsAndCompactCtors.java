@@ -1,13 +1,15 @@
+/*
+WriteTag
+tag = @incomplete
+tagFormat = \S
+tagSeverity = (default)info
+tokens = INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, COMPACT_CTOR_DEF
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
-
-/* Config:
- *
- * tag = @incomplete
- * tagFormat = \S
- * tagSeverity = info
- * tokens = {INTERFACE_DEF , CLASS_DEF , ENUM_DEF , ANNOTATION_DEF, RECORD_DEF, COMPACT_CTOR_DEF}
- */
 
 public class InputWriteTagRecordsAndCompactCtors {
     /**
