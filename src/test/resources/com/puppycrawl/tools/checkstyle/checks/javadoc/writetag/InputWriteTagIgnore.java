@@ -1,11 +1,16 @@
+/*
+WriteTag
+tag = @tag2
+tagFormat = \S
+tagSeverity = ignore
+tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 /**
- * Config:
- * tag = &#64;todo2
- * tagFormat = \\S
- * severity = ignore
- *
  * Testing tag writing
  * @author Daniel Grenner
  * @incomplete This class needs more code...
