@@ -1,11 +1,14 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
+/*
+WriteTag
+tag = @author
+tagFormat = \S
+tagSeverity = ignore
+tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
-/**
- * Config:
- * tag = &#64;author
- * tagFormat = \\S
- * severity = ignore
- */
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 /**
  * Testing tag writing
