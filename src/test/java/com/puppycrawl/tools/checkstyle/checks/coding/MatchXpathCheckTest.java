@@ -92,6 +92,47 @@ public class MatchXpathCheckTest
     }
 
     @Test
+    public void testCheckWithSingleLineCommentsStartsWithSpace() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(MatchXpathCheck.class);
+        checkConfig.addAttribute("query", "//SINGLE_LINE_COMMENT"
+                + "[./COMMENT_CONTENT[not(starts-with(@text, ' '))]]");
+        final String[] expected = {
+            "13:25: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+            "14:27: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+        };
+        verify(checkConfig, getPath("InputMatchXpathSingleLineComments.java"), expected);
+    }
+
+    @Test
+    public void testCheckWithBlockComments() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(MatchXpathCheck.class);
+        checkConfig.addAttribute("query", "//BLOCK_COMMENT_BEGIN"
+                + "[./COMMENT_CONTENT[contains(@text, '{') "
+                + "and not(starts-with(@text, '\\nMatchXpath'))]]");
+        final String[] expected = {
+            "11:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+            "13:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+        };
+        verify(checkConfig, getPath("InputMatchXpathBlockComments.java"), expected);
+    }
+
+    @Test
+    public void testCheckWithMultilineComments() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(MatchXpathCheck.class);
+        checkConfig.addAttribute("query", "//BLOCK_COMMENT_BEGIN"
+                + "[./COMMENT_CONTENT[contains(@text, '\\n    Forbidden comment\\n') "
+                + "and not(starts-with(@text, '\\nMatchXpath'))]]");
+        final String[] expected = {
+            "13:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+            "19:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
+        };
+        verify(checkConfig, getPath("InputMatchXpathMultilineComments.java"), expected);
+    }
+
+    @Test
     public void testCheckWithDoubleBraceInitialization()
             throws Exception {
         final DefaultConfiguration checkConfig =
