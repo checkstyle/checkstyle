@@ -1,10 +1,14 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
+/*
+WriteTag
+tag = @incomplete
+tagFormat = \S
+tagSeverity = (default)info
+tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
-/**
- * Config:
- * tag = &#64;incomplete
- * tagFormat = \\S
- */
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 /**
  * Testing tag writing
