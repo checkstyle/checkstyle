@@ -1,18 +1,15 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2004
-////////////////////////////////////////////////////////////////////////////////
+/*
+WriteTag
+tag = @incomplete
+tagFormat = .*
+tagSeverity = error
+tokens = ANNOTATION_DEF, ENUM_DEF, ANNOTATION_FIELD_DEF, ENUM_CONSTANT_DEF
+
+
+*/
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
-/**
- * Config:
- * tag = incomplete
- * tagFormat = .*
- * severity = ignore
- * tagSeverity = error
- * tokens = ANNOTATION_DEF, ENUM_DEF, ANNOTATION_FIELD_DEF, ENUM_CONSTANT_DEF
- */
 class InputWriteTagEnumsAndAnnotations {
     /**
      * @incomplete This enum needs more code... // violation
