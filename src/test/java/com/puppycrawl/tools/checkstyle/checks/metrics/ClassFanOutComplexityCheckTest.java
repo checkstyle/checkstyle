@@ -332,6 +332,16 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 getPath("InputClassFanOutComplexityRemoveIncorrectTypeParameter.java"), expected);
     }
 
+    @Test
+    public void testClassFanOutComplexityRemoveMultiCatchBitwiseOr() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(ClassFanOutComplexityCheck.class);
+        checkConfig.addProperty("max", "4");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+                getPath("InputClassFanOutComplexityRemoveMultiCatchBitwiseOr.java"), expected);
+    }
+
     /**
      * We cannot reproduce situation when visitToken is called and leaveToken is not.
      * So, we have to use reflection to be sure that even in such situation
