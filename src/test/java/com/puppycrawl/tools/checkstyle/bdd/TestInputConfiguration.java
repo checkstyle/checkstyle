@@ -76,7 +76,7 @@ public final class TestInputConfiguration {
 
     public DefaultConfiguration createConfiguration() {
         final DefaultConfiguration parsedConfig = new DefaultConfiguration(checkName);
-        nonDefaultProperties.forEach(parsedConfig::addAttribute);
+        nonDefaultProperties.forEach(parsedConfig::addProperty);
         return parsedConfig;
     }
 

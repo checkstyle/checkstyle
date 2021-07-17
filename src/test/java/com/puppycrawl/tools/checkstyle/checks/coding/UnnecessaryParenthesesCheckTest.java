@@ -116,7 +116,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     public void testLambdas() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(UnnecessaryParenthesesCheck.class);
-        checkConfig.addAttribute("tokens", "LAMBDA");
+        checkConfig.addProperty("tokens", "LAMBDA");
         final String[] expected = {
             "17:35: " + getCheckMessage(MSG_LAMBDA),
             "18:35: " + getCheckMessage(MSG_LAMBDA),

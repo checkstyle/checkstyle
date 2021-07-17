@@ -69,9 +69,9 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
     public void testIgnoredTags() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(SingleLineJavadocCheck.class);
-        checkConfig.addAttribute("ignoredTags", "@inheritDoc, @throws,  "
+        checkConfig.addProperty("ignoredTags", "@inheritDoc, @throws,  "
             + "@ignoredCustomTag");
-        checkConfig.addAttribute("ignoreInlineTags", "false");
+        checkConfig.addProperty("ignoreInlineTags", "false");
 
         final String[] expected = {
             "14: " + getCheckMessage(MSG_KEY),

@@ -52,7 +52,7 @@ public class InterfaceIsTypeCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(InterfaceIsTypeCheck.class);
-        checkConfig.addAttribute("allowMarkerInterfaces", "false");
+        checkConfig.addProperty("allowMarkerInterfaces", "false");
         final String[] expected = {
             "23:5: " + getCheckMessage(MSG_KEY),
             "28:5: " + getCheckMessage(MSG_KEY),

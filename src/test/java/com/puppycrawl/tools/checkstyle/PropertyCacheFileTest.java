@@ -244,13 +244,13 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     public void testChangeInConfig() throws Exception {
         final DefaultConfiguration config = new DefaultConfiguration("myConfig");
-        config.addAttribute("attr", "value");
+        config.addProperty("attr", "value");
 
         final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
         final PropertyCacheFile cache = new PropertyCacheFile(config, cacheFile.getPath());
         cache.load();
 
-        final String expectedInitialConfigHash = "91753B970AFDF9F5F3DFA0D258064841949D3C6B";
+        final String expectedInitialConfigHash = "D5BB1747FC11B2BB839C80A6C28E3E7684AF9940";
         final String actualInitialConfigHash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
         assertEquals(expectedInitialConfigHash, actualInitialConfigHash, "Invalid config hash");
 
@@ -263,13 +263,13 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         assertEquals(1, details.size(), "Invalid details size");
 
         // change in config
-        config.addAttribute("newAttr", "newValue");
+        config.addProperty("newAttr", "newValue");
 
         final PropertyCacheFile cacheAfterChangeInConfig =
             new PropertyCacheFile(config, cacheFile.getPath());
         cacheAfterChangeInConfig.load();
 
-        final String expectedConfigHashAfterChange = "4CF5EC78955B81D76153ACC2CA6D60CB77FDCB2A";
+        final String expectedConfigHashAfterChange = "714876AE38C069EC52BF86889F061B3776E526D3";
         final String actualConfigHashAfterChange =
             cacheAfterChangeInConfig.get(PropertyCacheFile.CONFIG_HASH_KEY);
         assertEquals(expectedConfigHashAfterChange, actualConfigHashAfterChange,
