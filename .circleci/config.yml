@@ -59,30 +59,6 @@ jobs:
             - project
             - contribution
 
-  pitest1:
-    machine: true
-    parallelism: 4
-    steps:
-      - attach_workspace:
-          at: /home/circleci/
-      - run:
-          command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-coding"  >> commands.txt
-              echo "./.ci/pitest.sh pitest-common"  >> commands.txt
-              echo "./.ci/pitest.sh pitest-imports" >> commands.txt
-              echo "./.ci/pitest.sh pitest-ant"     >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
-
   pitest2:
     machine: true
     parallelism: 4
@@ -98,78 +74,6 @@ jobs:
               echo "./.ci/pitest.sh pitest-javadoc"     >> commands.txt
               echo "./.ci/pitest.sh pitest-indentation" >> commands.txt
               echo "./.ci/pitest.sh pitest-xpath"       >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
-
-  pitest3:
-    machine: true
-    parallelism: 4
-    steps:
-      - attach_workspace:
-          at: /home/circleci/
-      - run:
-          command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-misc"    >> commands.txt
-              echo "./.ci/pitest.sh pitest-design"  >> commands.txt
-              echo "./.ci/pitest.sh pitest-api"     >> commands.txt
-              echo "./.ci/pitest.sh pitest-utils"   >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
-
-  pitest4:
-    machine: true
-    parallelism: 4
-    steps:
-      - attach_workspace:
-          at: /home/circleci/
-      - run:
-          command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-whitespace" >> commands.txt
-              echo "./.ci/pitest.sh pitest-filters"    >> commands.txt
-              echo "./.ci/pitest.sh pitest-header"     >> commands.txt
-              echo "./.ci/pitest.sh pitest-annotation" >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
-
-  pitest5:
-    machine: true
-    parallelism: 4
-    steps:
-      - attach_workspace:
-          at: /home/circleci/
-      - run:
-          command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-packagenamesloader" >> commands.txt
-              echo "./.ci/pitest.sh pitest-tree-walker"        >> commands.txt
-              echo "./.ci/pitest.sh pitest-naming"             >> commands.txt
-              echo "./.ci/pitest.sh pitest-metrics"            >> commands.txt
               CMD="$(circleci tests split commands.txt)"
               echo "Command: $CMD"
               eval $CMD
@@ -251,19 +155,7 @@ workflows:
   pitest-testing:
     jobs:
       - build-caches
-      - pitest1:
-          requires:
-            - build-caches
       - pitest2:
-          requires:
-            - build-caches
-      - pitest3:
-          requires:
-            - build-caches
-      - pitest4:
-          requires:
-            - build-caches
-      - pitest5:
           requires:
             - build-caches
       - pitest6:
