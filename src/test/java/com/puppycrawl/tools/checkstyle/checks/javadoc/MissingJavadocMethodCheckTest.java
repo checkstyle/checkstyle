@@ -167,6 +167,19 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInterfaceMemberScopeIsPublic() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(
+                MissingJavadocMethodCheck.class);
+        checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
+        final String[] expected = {
+            "20:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "28:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verify(checkConfig, getPath("InputMissingJavadocMethodInterfaceMemberScopeIsPublic.java"),
+                expected);
+    }
+
+    @Test
     public void testScopeAnonInnerPrivate() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(
                 MissingJavadocMethodCheck.class);

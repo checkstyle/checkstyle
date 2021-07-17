@@ -176,6 +176,21 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInterfaceMemberScopeIsPublic() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(MethodCountCheck.class);
+        checkConfig.addAttribute("maxPublic", "1");
+        checkConfig.addAttribute("tokens", "ENUM_DEF, CLASS_DEF");
+
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_PUBLIC_METHODS, 2, 1),
+            "25:5: " + getCheckMessage(MSG_PUBLIC_METHODS, 2, 1),
+        };
+
+        verify(checkConfig, getPath("InputMethodCountInterfaceMemberScopeIsPublic.java"),
+                expected);
+    }
+
+    @Test
     public void testMethodCountRecords() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MethodCountCheck.class);
         checkConfig.addAttribute("maxTotal", "2");
