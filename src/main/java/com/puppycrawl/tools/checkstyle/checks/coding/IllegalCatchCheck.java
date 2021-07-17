@@ -20,8 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -191,39 +189,14 @@ public final class IllegalCatchCheck extends AbstractCheck {
             detailAST.findFirstToken(TokenTypes.PARAMETER_DEF);
         final DetailAST excTypeParent =
                 parameterDef.findFirstToken(TokenTypes.TYPE);
-        final List<DetailAST> excTypes = getAllExceptionTypes(excTypeParent);
 
-        for (DetailAST excType : excTypes) {
-            final FullIdent ident = FullIdent.createFullIdent(excType);
-
+        DetailAST currentNode = excTypeParent.getFirstChild();
+        while (currentNode != null) {
+            final FullIdent ident = FullIdent.createFullIdent(currentNode);
             if (illegalClassNames.contains(ident.getText())) {
                 log(detailAST, MSG_KEY, ident.getText());
             }
-        }
-    }
-
-    /**
-     * Finds all exception types in current catch.
-     * We need it till we can have few different exception types into one catch.
-     *
-     * @param parentToken - parent node for types (TYPE or BOR)
-     * @return list, that contains all exception types in current catch
-     */
-    private static List<DetailAST> getAllExceptionTypes(DetailAST parentToken) {
-        DetailAST currentNode = parentToken.getFirstChild();
-        final List<DetailAST> exceptionTypes = new LinkedList<>();
-        if (currentNode.getType() == TokenTypes.BOR) {
-            exceptionTypes.addAll(getAllExceptionTypes(currentNode));
             currentNode = currentNode.getNextSibling();
-            exceptionTypes.add(currentNode);
         }
-        else {
-            do {
-                exceptionTypes.add(currentNode);
-                currentNode = currentNode.getNextSibling();
-            } while (currentNode != null);
-        }
-        return exceptionTypes;
     }
-
 }
