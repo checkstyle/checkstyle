@@ -1969,8 +1969,8 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * class App{
-     * int num
+     * class App {
+     *   int num
      * }
      * </pre>
      * <p>parses as:</p>
