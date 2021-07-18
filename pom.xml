@@ -1978,6 +1978,45 @@
               </execution>
             </executions>
           </plugin>
+
+          <plugin>
+            <groupId>de.thetaphi</groupId>
+            <artifactId>forbiddenapis</artifactId>
+            <version>3.1</version>
+            <configuration>
+              <failOnUnresolvableSignatures>true</failOnUnresolvableSignatures>
+              <!--
+                if the used Java version is too new,
+                don't fail, just do nothing:
+              -->
+              <failOnUnsupportedJava>false</failOnUnsupportedJava>
+              <bundledSignatures>
+                <!--
+                  This will automatically choose the right
+                  signatures based on 'maven.compiler.target':
+                -->
+                <bundledSignature>jdk-unsafe</bundledSignature>
+                <bundledSignature>jdk-deprecated</bundledSignature>
+                <!-- disallow undocumented classes like sun.misc.Unsafe: -->
+                <bundledSignature>jdk-non-portable</bundledSignature>
+                <!-- don't allow unsafe reflective access: -->
+                <bundledSignature>jdk-reflection</bundledSignature>
+              </bundledSignatures>
+              <signaturesFiles>
+                <signaturesFile>${basedir}/config/signatures.txt</signaturesFile>
+              </signaturesFiles>
+            </configuration>
+            <executions>
+              <execution>
+                <id>forbiddenapis-verify</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>check</goal>
+                  <goal>testCheck</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
       </build>
 
