@@ -9,7 +9,7 @@ name: "Check no broken links"
 
 on:
   push:
-    branches: [ master ]
+    branches: []
 
 jobs:
   check_issues:

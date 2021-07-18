@@ -1,0 +1,97 @@
+name: "Pitest5"
+
+on:
+  push:
+    branches: [ MigrateTests ]
+  pull_request:
+    branches: [ MigrateTests ]
+
+jobs:
+
+  Pitest-packagenamesloader:
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-packagenamesloader
+        run: |
+          mkdir pitest-packagenamesloader-report
+          ./.ci/pitest.sh pitest-packagenamesloader
+          cp -r target/pit-reports/ pitest-packagenamesloader-report/
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest5-packagenamesloader-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-packagenamesloader-report/
+
+  Pitest-tree-walker:
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-tree-walker
+        run: |
+          mkdir pitest-tree-walker-report
+          ./.ci/pitest.sh pitest-tree-walker
+          cp -r target/pit-reports/ pitest-tree-walker-report/
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest5-tree-walker-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-tree-walker-report/
+
+  Pitest-naming:
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-naming
+        run: |
+          mkdir pitest-naming-report
+          ./.ci/pitest.sh pitest-naming
+          cp -r target/pit-reports/ pitest-naming-report/
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest5-naming-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-naming-report/
+
+  Pitest-metrics:
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-metrics
+        run: |
+          mkdir pitest-metrics-report
+          ./.ci/pitest.sh pitest-metrics
+          cp -r target/pit-reports/ pitest-metrics-report/
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest5-metrics-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-metrics-report/
