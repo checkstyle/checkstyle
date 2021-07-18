@@ -124,4 +124,12 @@
     <Field name="$jacocoData"/>
     <Bug pattern="SE_TRANSIENT_FIELD_NOT_RESTORED"/>
   </Match>
+  <Match>
+    <!-- false-positive. See details at https://github.com/spotbugs/spotbugs/issues/1601 -->
+    <Or>
+      <Bug pattern="MS_EXPOSE_REP"/>
+      <Bug pattern="EI_EXPOSE_REP"/>
+      <Bug pattern="EI_EXPOSE_REP2"/>
+    </Or>
+  </Match>
 </FindBugsFilter>
