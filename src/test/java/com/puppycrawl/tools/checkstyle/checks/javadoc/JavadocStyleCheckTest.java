@@ -470,4 +470,37 @@ public class JavadocStyleCheckTest
         verify(checkConfig, getPath("InputJavadocStyleNeverEndingXmlComment.java"), expected);
     }
 
+    @Test
+    public void testInterfaceMemberScopeIsPublic()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(JavadocStyleCheck.class);
+        checkConfig.addProperty("scope", "public");
+        checkConfig.addProperty("checkEmptyJavadoc", "true");
+        final String[] expected = {
+            "20: " + getCheckMessage(MSG_EMPTY),
+            "23: " + getCheckMessage(MSG_EMPTY),
+        };
+
+        verify(checkConfig, getPath("InputJavadocStyleInterfaceMemberScopeIsPublic.java"),
+                expected);
+    }
+
+    @Test
+    public void testEnumCtorScopeIsPrivate()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(JavadocStyleCheck.class);
+        checkConfig.addProperty("scope", "package");
+        checkConfig.addProperty("checkEmptyJavadoc", "true");
+        final String[] expected = {
+            "20: " + getCheckMessage(MSG_EMPTY),
+            "23: " + getCheckMessage(MSG_EMPTY),
+            "31: " + getCheckMessage(MSG_EMPTY),
+        };
+
+        verify(checkConfig, getPath("InputJavadocStyleEnumCtorScopeIsPrivate.java"),
+                expected);
+    }
+
 }

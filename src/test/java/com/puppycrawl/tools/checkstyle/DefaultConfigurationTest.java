@@ -53,12 +53,12 @@ public class DefaultConfigurationTest {
     @Test
     public void testDeprecatedAttributeMethods() throws CheckstyleException {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
-        config.addAttribute("attribute", "first");
+        config.addProperty("attribute", "first");
         final String[] actual = config.getAttributeNames();
         final String[] expected = {"attribute"};
         assertArrayEquals(expected, actual, "Invalid attribute names");
         assertEquals("first", config.getAttribute("attribute"), "Invalid property value");
-        config.addAttribute("attribute", "second");
+        config.addProperty("attribute", "second");
         assertEquals("first,second", config.getAttribute("attribute"), "Invalid property value");
     }
 
