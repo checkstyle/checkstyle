@@ -347,4 +347,19 @@ public class JavadocVariableCheckTest
                 expected);
     }
 
+    @Test
+    public void testInterfaceMemberScopeIsPublic() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocVariableCheck.class);
+        checkConfig.addProperty("scope", Scope.PUBLIC.getName());
+        checkConfig.addProperty("tokens", "ENUM_CONSTANT_DEF, VARIABLE_DEF");
+        final String[] expected = {
+            "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "20:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "27:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verify(checkConfig,
+                getPath("InputJavadocVariableInterfaceMemberScopeIsPublic.java"),
+                expected);
+    }
+
 }
