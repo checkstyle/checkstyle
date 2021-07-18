@@ -369,7 +369,7 @@ public final class Violation
             sLocale = Locale.ROOT;
         }
         else {
-            sLocale = locale;
+            sLocale = (Locale) locale.clone();
         }
     }
 
