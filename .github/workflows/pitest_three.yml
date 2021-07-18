@@ -1,0 +1,101 @@
+name: "Pitest3"
+
+on:
+  push:
+    branches: [ MigrateTests ]
+  pull_request:
+    branches: [ MigrateTests ]
+
+jobs:
+
+  Pitest-misc:
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-misc
+        run: |
+          mkdir pitest-misc-report
+          ./.ci/pitest.sh pitest-misc
+          cp -r target/pit-reports/ pitest-misc-report/
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest3-misc-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-misc-report/
+          retention-days: 3
+
+  Pitest-design:
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-Common
+        run: |
+          mkdir pitest-design-report
+          ./.ci/pitest.sh pitest-design
+          cp -r target/pit-reports/ pitest-design-report/
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest3-design-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-design-report/
+          retention-days: 3
+
+  Pitest-api:
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-api
+        run: |
+          mkdir pitest-api-report
+          ./.ci/pitest.sh pitest-api
+          cp -r target/pit-reports/ pitest-api-report/
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest3-api-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-api-report/
+          retention-days: 3
+
+  Pitest-utils:
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-utils
+        run: |
+          mkdir pitest-utils-report
+          ./.ci/pitest.sh pitest-utils
+          cp -r target/pit-reports/ pitest-utils-report/
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest3-utils-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-utils-report/
+          retention-days: 3
