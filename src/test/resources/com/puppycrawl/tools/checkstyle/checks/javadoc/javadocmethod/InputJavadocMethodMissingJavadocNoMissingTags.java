@@ -1,10 +1,17 @@
+/*
+JavadocMethod
+allowedAnnotations = (default)Override
+validateThrows = (default)false
+accessModifiers = (default)public, protected, package, private
+allowMissingParamTags = true
+allowMissingReturnTag = true
+tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-/**
- * Config:
- * allowMissingParamTags = true
- * allowMissingReturnTag = true
- */
 public class InputJavadocMethodMissingJavadocNoMissingTags {
     /**
      * Missing return.

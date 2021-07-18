@@ -1,4 +1,10 @@
-/** violation */
+/*
+InvalidJavadocPosition
+
+
+*/
+
+/** violation */ // violation
 /** valid */
 @Example
 package com.puppycrawl.tools.checkstyle.checks.javadoc.invalidjavadocposition;

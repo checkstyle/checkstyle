@@ -1,8 +1,11 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: Feb-2001
-// Ignore violation
-////////////////////////////////////////////////////////////////////////////////
+/*
+FileTabCharacter
+eachLine = (default)false
+fileExtensions = (default)
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.filetabcharacter;
 
 /**
@@ -16,7 +19,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.filetabcharacter;
 final class InputFileTabCharacterSimple
 {
     // Long line ----------------------------------------------------------------
-    // Contains a tab ->	<-
+    // Contains a tab ->	<- // violation
     // Contains trailing whitespace ->
 
     // Name format tests

@@ -54,7 +54,7 @@ public class UnnecessarySemicolonInTryWithResourcesCheckTest extends AbstractMod
     public void testNoBraceAfterAllowed() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
-        checkConfig.addAttribute("allowWhenNoBraceAfterSemicolon", "false");
+        checkConfig.addProperty("allowWhenNoBraceAfterSemicolon", "false");
         final String[] expected = {
             "16:42: " + getCheckMessage(MSG_SEMI),
             "19:13: " + getCheckMessage(MSG_SEMI),

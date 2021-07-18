@@ -59,8 +59,8 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     public void testNoBitwise() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(BooleanExpressionComplexityCheck.class);
-        checkConfig.addAttribute("max", "5");
-        checkConfig.addAttribute("tokens", "BXOR,LAND,LOR");
+        checkConfig.addProperty("max", "5");
+        checkConfig.addProperty("tokens", "BXOR,LAND,LOR");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -97,7 +97,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     public void testSmall() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(BooleanExpressionComplexityCheck.class);
-        checkConfig.addAttribute("max", "1");
+        checkConfig.addProperty("max", "1");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -108,7 +108,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     public void testBooleanExpressionComplexityRecordsAndCompactCtors() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(BooleanExpressionComplexityCheck.class);
-        checkConfig.addAttribute("max", "3");
+        checkConfig.addProperty("max", "3");
 
         final int max = 3;
 

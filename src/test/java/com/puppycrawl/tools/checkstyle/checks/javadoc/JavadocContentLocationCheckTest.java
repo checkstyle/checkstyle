@@ -57,8 +57,8 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocContentLocationCheck.class);
         final String[] expected = {
-            "14:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
-            "18:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
+            "17:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
+            "21:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
         };
         verify(checkConfig, getPath("InputJavadocContentLocationDefault.java"), expected);
     }
@@ -67,10 +67,10 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
     public void testFirstLine() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocContentLocationCheck.class);
-        checkConfig.addAttribute("location", "FIRST_LINE");
+        checkConfig.addProperty("location", "FIRST_LINE");
         final String[] expected = {
-            "7:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
-            "16:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
+            "12:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
+            "21:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
         };
         verify(checkConfig, getPath("InputJavadocContentLocationFirstLine.java"), expected);
     }
@@ -79,9 +79,9 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
     public void testPackage() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocContentLocationCheck.class);
-        checkConfig.addAttribute("location", "SECOND_LINE");
+        checkConfig.addProperty("location", "SECOND_LINE");
         final String[] expected = {
-            "1:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
+            "8:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
         };
         verify(checkConfig, getPath("package-info.java"), expected);
     }
@@ -90,9 +90,9 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
     public void testInterface() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocContentLocationCheck.class);
-        checkConfig.addAttribute("location", "FIRST_LINE");
+        checkConfig.addProperty("location", "FIRST_LINE");
         final String[] expected = {
-            "3:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
+            "10:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
         };
         verify(checkConfig, getPath("InputJavadocContentLocationInterface.java"), expected);
     }

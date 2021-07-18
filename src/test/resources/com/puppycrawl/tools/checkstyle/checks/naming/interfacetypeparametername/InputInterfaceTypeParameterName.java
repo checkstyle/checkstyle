@@ -1,3 +1,10 @@
+/*
+InterfaceTypeParameterName
+format = (default)^[A-Z]$
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.naming.interfacetypeparametername;
 
 import java.io.Serializable;
@@ -45,7 +52,7 @@ class MoreOther <T extends Cloneable> {
     }
 }
 
-interface Boo<Input> {
+interface Boo<Input> { // violation
     Input boo();
 }
 

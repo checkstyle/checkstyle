@@ -1,15 +1,16 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+JavadocVariable
+scope = (default)private
+excludeScope = (default)null
+ignoreNamePattern = (default)null
+tokens = (default)ENUM_CONSTANT_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
 /**
- * Config:
- * scope = private
- * excludeScope =null
- *
- *
  * Tests having inner types
  * @author Oliver Burn
  */

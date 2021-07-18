@@ -61,7 +61,7 @@ public class ArrayTrailingCommaCheckTest
     public void testAlwaysDemandTrailingComma() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(ArrayTrailingCommaCheck.class);
-        checkConfig.addAttribute("alwaysDemandTrailingComma", "true");
+        checkConfig.addProperty("alwaysDemandTrailingComma", "true");
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY),
             "22:29: " + getCheckMessage(MSG_KEY),

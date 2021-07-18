@@ -1,10 +1,14 @@
+/*
+LocalFinalVariableName
+format = [a-z]+
+tokens = (default)VARIABLE_DEF, PARAMETER_DEF, RESOURCE
+
+
+*/
+
 //non-compiled with javac: Compilable with Java9
 package com.puppycrawl.tools.checkstyle.checks.naming.localfinalvariablename;
 
-/*
- * Config:
- * format = "^[a-z]+$"
- */
 public class InputLocalFinalVariableNameTryResourcesJava9 {
     private static final Lock LOCK = new Lock();
 

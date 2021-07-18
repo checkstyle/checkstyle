@@ -49,11 +49,11 @@ public class TodoCommentCheckTest
     public void testIt() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(TodoCommentCheck.class);
-        checkConfig.addAttribute("format", "FIXME:");
+        checkConfig.addProperty("format", "FIXME:");
         final String[] expected = {
-            "161:7: " + getCheckMessage(MSG_KEY, "FIXME:"),
-            "162:7: " + getCheckMessage(MSG_KEY, "FIXME:"),
-            "167:17: " + getCheckMessage(MSG_KEY, "FIXME:"),
+            "163:7: " + getCheckMessage(MSG_KEY, "FIXME:"),
+            "164:7: " + getCheckMessage(MSG_KEY, "FIXME:"),
+            "169:17: " + getCheckMessage(MSG_KEY, "FIXME:"),
         };
         verify(checkConfig, getPath("InputTodoCommentSimple.java"), expected);
     }

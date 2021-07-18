@@ -64,7 +64,7 @@ public class InterfaceTypeParameterNameCheckTest
         final String pattern = "^[A-Z]$";
 
         final String[] expected = {
-            "48:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Input", pattern),
+            "55:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Input", pattern),
         };
         verify(checkConfig, getPath("InputInterfaceTypeParameterName.java"), expected);
     }
@@ -74,15 +74,15 @@ public class InterfaceTypeParameterNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(InterfaceTypeParameterNameCheck.class);
-        checkConfig.addAttribute("format", "^foo$");
+        checkConfig.addProperty("format", "^foo$");
 
         final String pattern = "^foo$";
 
         final String[] expected = {
-            "48:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Input", pattern),
-            "52:24: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
+            "55:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Input", pattern),
+            "59:25: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
         };
-        verify(checkConfig, getPath("InputInterfaceTypeParameterName.java"), expected);
+        verify(checkConfig, getPath("InputInterfaceTypeParameterName1.java"), expected);
     }
 
 }

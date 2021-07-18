@@ -50,15 +50,15 @@ public class PackageNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(PackageNameCheck.class);
-        checkConfig.addAttribute("format", "[A-Z]+");
+        checkConfig.addProperty("format", "[A-Z]+");
 
         final String pattern = "[A-Z]+";
 
         final String[] expected = {
-            "6:9: " + getCheckMessage(MSG_KEY,
+            "8:9: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks.naming.packagename", pattern),
         };
-        verify(checkConfig, getPath("InputPackageNameSimple.java"), expected);
+        verify(checkConfig, getPath("InputPackageNameSimple1.java"), expected);
     }
 
     @Test

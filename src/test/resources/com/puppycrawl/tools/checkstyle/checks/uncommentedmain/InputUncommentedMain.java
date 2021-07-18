@@ -1,7 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2003
-////////////////////////////////////////////////////////////////////////////////
+/*
+UncommentedMain
+excludedClasses = (default)^$
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.uncommentedmain;
 
 /**
@@ -11,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.uncommentedmain;
 public class InputUncommentedMain
 {
     // uncommented main
-    public static void main(String[] args)
+    public static void main(String[] args) // violation
     {
         System.identityHashCode("InputUncommentedMain.main()");
     }
@@ -20,7 +23,7 @@ public class InputUncommentedMain
 class Main1
 {
     // uncommented main in class Main
-    public static void main(String[] args)
+    public static void main(String[] args) // violation
     {
         System.identityHashCode("Main.main()");
     }
@@ -29,7 +32,7 @@ class Main1
 class UncommentedMainTest1
 {
     // one more uncommented main
-    public static void main(java.lang.String[] args)
+    public static void main(java.lang.String[] args) // violation
     {
         System.identityHashCode("test1.main()");
     }
@@ -93,7 +96,7 @@ class UncommentedMainTest7
 class UncommentedMainTest8
 {
 
-    public static void main(String... args)
+    public static void main(String... args) // violation
     {
         System.identityHashCode("test8.main()");
     }

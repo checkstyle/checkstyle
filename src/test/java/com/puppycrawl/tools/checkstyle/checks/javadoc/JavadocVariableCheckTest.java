@@ -67,10 +67,10 @@ public class JavadocVariableCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocVariableCheck.class);
         final String[] expected = {
-            "17:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "310:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "317:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "336:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "311:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "318:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "337:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputJavadocVariableTags.java"), expected);
     }
@@ -81,9 +81,9 @@ public class JavadocVariableCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocVariableCheck.class);
         final String[] expected = {
-            "22:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "29:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "35:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "23:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "30:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "36:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputJavadocVariableInner.java"), expected);
     }
@@ -93,7 +93,7 @@ public class JavadocVariableCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocVariableCheck.class);
-        checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
+        checkConfig.addProperty("scope", Scope.PUBLIC.getName());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJavadocVariableInner2.java"), expected);
     }
@@ -104,13 +104,13 @@ public class JavadocVariableCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocVariableCheck.class);
         final String[] expected = {
-            "15:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "20:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "40:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "47:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "48:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "17:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "22:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "42:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "49:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "50:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "51:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "52:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputJavadocVariablePublicOnly.java"), expected);
     }
@@ -120,9 +120,9 @@ public class JavadocVariableCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocVariableCheck.class);
-        checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
+        checkConfig.addProperty("scope", Scope.PUBLIC.getName());
         final String[] expected = {
-            "46:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "52:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputJavadocVariablePublicOnly2.java"), expected);
     }
@@ -132,43 +132,43 @@ public class JavadocVariableCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocVariableCheck.class);
         final String[] expected = {
-            "9:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "10:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "11:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "12:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "20:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "21:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "22:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "23:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "32:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "33:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "34:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "35:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "44:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "45:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "46:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "47:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "57:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "58:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "59:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "60:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "68:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "69:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "70:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "71:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "80:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "81:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "82:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "83:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "92:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "93:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "94:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "95:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "104:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "105:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "106:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "107:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "117:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "17:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "26:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "27:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "28:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "29:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "38:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "39:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "40:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "41:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "50:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "51:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "52:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "53:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "63:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "64:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "65:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "66:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "74:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "75:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "76:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "77:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "86:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "87:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "88:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "89:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "98:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "99:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "100:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "101:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "110:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "111:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "112:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "113:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "123:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
                getPath("InputJavadocVariableNoJavadoc.java"),
@@ -179,12 +179,12 @@ public class JavadocVariableCheckTest
     public void testScopes2() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocVariableCheck.class);
-        checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
+        checkConfig.addProperty("scope", Scope.PROTECTED.getName());
         final String[] expected = {
-            "10:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "11:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "21:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "22:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "26:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "27:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
                getPath("InputJavadocVariableNoJavadoc2.java"),
@@ -195,42 +195,42 @@ public class JavadocVariableCheckTest
     public void testExcludeScope() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocVariableCheck.class);
-        checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
-        checkConfig.addAttribute("excludeScope", Scope.PROTECTED.getName());
+        checkConfig.addProperty("scope", Scope.PRIVATE.getName());
+        checkConfig.addProperty("excludeScope", Scope.PROTECTED.getName());
         final String[] expected = {
-            "11:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "12:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "22:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "23:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "32:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "33:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "34:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "35:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "44:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "45:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "46:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "47:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "57:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "58:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "59:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "60:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "68:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "69:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "70:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "71:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "80:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "81:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "82:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "83:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "92:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "93:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "94:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "95:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "104:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "105:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "106:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "107:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "117:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "17:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "28:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "29:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "38:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "39:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "40:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "41:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "50:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "51:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "52:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "53:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "63:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "64:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "65:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "66:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "74:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "75:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "76:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "77:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "86:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "87:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "88:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "89:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "98:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "99:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "100:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "101:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "110:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "111:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "112:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "113:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "123:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
                getPath("InputJavadocVariableNoJavadoc3.java"),
@@ -242,44 +242,44 @@ public class JavadocVariableCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocVariableCheck.class);
-        checkConfig.addAttribute("ignoreNamePattern", "log|logger");
+        checkConfig.addProperty("ignoreNamePattern", "log|logger");
         final String[] expected = {
-            "10:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "11:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "12:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "21:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "22:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "23:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "24:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "33:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "34:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "35:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "36:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "45:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "46:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "47:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "48:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "58:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "59:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "60:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "61:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "69:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "70:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "71:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "72:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "81:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "82:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "83:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "84:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "93:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "94:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "95:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "96:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "105:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "106:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "107:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "108:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "17:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "26:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "27:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "28:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "29:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "38:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "39:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "40:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "41:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "50:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "51:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "52:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "53:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "63:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "64:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "65:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "66:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "74:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "75:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "76:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "77:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "86:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "87:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "88:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "89:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "98:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "99:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "100:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "101:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "110:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "111:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "112:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "113:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
                 getPath("InputJavadocVariableNoJavadoc4.java"),
@@ -291,45 +291,45 @@ public class JavadocVariableCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocVariableCheck.class);
-        checkConfig.addAttribute("ignoreNamePattern", "");
+        checkConfig.addProperty("ignoreNamePattern", "");
         final String[] expected = {
-            "10:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "11:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "12:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "21:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "22:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "23:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "24:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "33:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "34:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "35:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "36:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "45:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "46:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "47:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "48:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "58:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "59:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "60:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "61:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "69:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "70:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "71:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "72:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "81:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "82:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "83:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "84:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "93:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "94:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "95:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "96:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "105:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "106:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "107:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "108:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "118:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "17:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "26:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "27:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "28:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "29:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "38:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "39:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "40:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "41:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "50:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "51:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "52:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "53:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "63:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "64:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "65:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "66:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "74:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "75:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "76:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "77:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "86:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "87:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "88:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "89:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "98:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "99:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "100:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "101:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "110:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "111:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "112:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "113:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "123:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
                 getPath("InputJavadocVariableNoJavadoc5.java"),
@@ -340,7 +340,7 @@ public class JavadocVariableCheckTest
     public void testLambdaLocalVariablesDoNotNeedJavadoc() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocVariableCheck.class);
         final String[] expected = {
-            "10:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
                 getPath("InputJavadocVariableNoJavadocNeededInLambda.java"),

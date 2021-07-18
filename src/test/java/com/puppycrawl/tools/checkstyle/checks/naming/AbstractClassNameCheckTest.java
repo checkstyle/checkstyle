@@ -40,8 +40,8 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
     public void testIllegalAbstractClassName() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AbstractClassNameCheck.class);
-        checkConfig.addAttribute("ignoreName", "false");
-        checkConfig.addAttribute("ignoreModifier", "true");
+        checkConfig.addProperty("ignoreName", "false");
+        checkConfig.addProperty("ignoreModifier", "true");
 
         final String pattern = "^Abstract.+$";
 
@@ -61,9 +61,9 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
     public void testCustomFormat() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AbstractClassNameCheck.class);
-        checkConfig.addAttribute("ignoreName", "false");
-        checkConfig.addAttribute("ignoreModifier", "true");
-        checkConfig.addAttribute("format", "^NonAbstract.+$");
+        checkConfig.addProperty("ignoreName", "false");
+        checkConfig.addProperty("ignoreModifier", "true");
+        checkConfig.addProperty("format", "^NonAbstract.+$");
 
         final String[] expected = {
             "6:1: "
@@ -81,8 +81,8 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIllegalClassType() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AbstractClassNameCheck.class);
-        checkConfig.addAttribute("ignoreName", "true");
-        checkConfig.addAttribute("ignoreModifier", "false");
+        checkConfig.addProperty("ignoreName", "true");
+        checkConfig.addProperty("ignoreModifier", "false");
 
         final String[] expected = {
             "12:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClassType"),
@@ -95,8 +95,8 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAllVariants() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AbstractClassNameCheck.class);
-        checkConfig.addAttribute("ignoreName", "false");
-        checkConfig.addAttribute("ignoreModifier", "false");
+        checkConfig.addProperty("ignoreName", "false");
+        checkConfig.addProperty("ignoreModifier", "false");
 
         final String pattern = "^Abstract.+$";
 

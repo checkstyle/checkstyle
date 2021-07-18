@@ -54,7 +54,7 @@ public class LocalFinalVariableNameCheckTest
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "123:19: " + getCheckMessage(MSG_INVALID_PATTERN, "CDE", pattern),
+            "126:19: " + getCheckMessage(MSG_INVALID_PATTERN, "CDE", pattern),
         };
         verify(checkConfig, getPath("InputLocalFinalVariableName.java"), expected);
     }
@@ -64,14 +64,14 @@ public class LocalFinalVariableNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(LocalFinalVariableNameCheck.class);
-        checkConfig.addAttribute("format", "[A-Z]+");
+        checkConfig.addProperty("format", "[A-Z]+");
 
         final String pattern = "[A-Z]+";
 
         final String[] expected = {
-            "122:19: " + getCheckMessage(MSG_INVALID_PATTERN, "cde", pattern),
+            "125:19: " + getCheckMessage(MSG_INVALID_PATTERN, "cde", pattern),
         };
-        verify(checkConfig, getPath("InputLocalFinalVariableName.java"), expected);
+        verify(checkConfig, getPath("InputLocalFinalVariableName1.java"), expected);
     }
 
     @Test
@@ -100,16 +100,16 @@ public class LocalFinalVariableNameCheckTest
     public void testTryWithResources() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(LocalFinalVariableNameCheck.class);
-        checkConfig.addAttribute("format", "[A-Z]+");
+        checkConfig.addProperty("format", "[A-Z]+");
 
         final String pattern = "[A-Z]+";
 
         final String[] expected = {
-            "23:30: " + getCheckMessage(MSG_INVALID_PATTERN, "br", pattern),
-            "33:29: " + getCheckMessage(MSG_INVALID_PATTERN, "br", pattern),
-            "53:22: " + getCheckMessage(MSG_INVALID_PATTERN, "zf", pattern),
-            "71:30: " + getCheckMessage(MSG_INVALID_PATTERN, "fis8859_1", pattern),
-            "73:32: " + getCheckMessage(MSG_INVALID_PATTERN, "isrutf8", pattern),
+            "31:30: " + getCheckMessage(MSG_INVALID_PATTERN, "br", pattern),
+            "41:29: " + getCheckMessage(MSG_INVALID_PATTERN, "br", pattern),
+            "61:22: " + getCheckMessage(MSG_INVALID_PATTERN, "zf", pattern),
+            "79:30: " + getCheckMessage(MSG_INVALID_PATTERN, "fis8859_1", pattern),
+            "82:32: " + getCheckMessage(MSG_INVALID_PATTERN, "isrutf8", pattern),
         };
         verify(checkConfig, getPath("InputLocalFinalVariableNameTryResources.java"), expected);
     }
@@ -118,7 +118,7 @@ public class LocalFinalVariableNameCheckTest
     public void testTryWithResourcesJava9() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(LocalFinalVariableNameCheck.class);
-        checkConfig.addAttribute("format", "[a-z]+");
+        checkConfig.addProperty("format", "[a-z]+");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath(

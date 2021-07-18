@@ -60,18 +60,18 @@ public class JavadocMissingLeadingAsteriskCheckTest extends AbstractModuleTestSu
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocMissingLeadingAsteriskCheck.class);
         final String[] expected = {
-            "9: " + getCheckMessage(MSG_MISSING_ASTERISK),
-            "14: " + getCheckMessage(MSG_MISSING_ASTERISK),
-            "21: " + getCheckMessage(MSG_MISSING_ASTERISK),
-            "27: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "13: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "18: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "25: " + getCheckMessage(MSG_MISSING_ASTERISK),
             "31: " + getCheckMessage(MSG_MISSING_ASTERISK),
-            "32: " + getCheckMessage(MSG_MISSING_ASTERISK),
-            "37: " + getCheckMessage(MSG_MISSING_ASTERISK),
-            "42: " + getCheckMessage(MSG_MISSING_ASTERISK),
-            "49: " + getCheckMessage(MSG_MISSING_ASTERISK),
-            "58: " + getCheckMessage(MSG_MISSING_ASTERISK),
-            "59: " + getCheckMessage(MSG_MISSING_ASTERISK),
-            "60: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "35: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "36: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "41: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "46: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "53: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "62: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "63: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "64: " + getCheckMessage(MSG_MISSING_ASTERISK),
         };
         verify(checkConfig, getPath("InputJavadocMissingLeadingAsteriskIncorrect.java"), expected);
     }

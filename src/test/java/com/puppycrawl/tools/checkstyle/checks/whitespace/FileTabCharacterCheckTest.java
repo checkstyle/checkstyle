@@ -41,9 +41,9 @@ public class FileTabCharacterCheckTest
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(FileTabCharacterCheck.class);
-        checkConfig.addAttribute("eachLine", "false");
+        checkConfig.addProperty("eachLine", "false");
         final String[] expected = {
-            "19:25: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
+            "22:25: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
         };
         verify(createChecker(checkConfig), getPath("InputFileTabCharacterSimple.java"),
             expected);
@@ -53,18 +53,18 @@ public class FileTabCharacterCheckTest
     public void testVerbose() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(FileTabCharacterCheck.class);
-        checkConfig.addAttribute("eachLine", "true");
+        checkConfig.addProperty("eachLine", "true");
         final String[] expected = {
-            "19:25: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "145:35: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "146:64: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "154:9: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "155:10: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "156:1: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "157:3: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "158:3: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "22:25: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "148:35: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "149:64: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "157:9: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "158:10: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "159:1: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "160:3: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "161:3: " + getCheckMessage(MSG_CONTAINS_TAB),
         };
-        verify(createChecker(checkConfig), getPath("InputFileTabCharacterSimple.java"),
+        verify(createChecker(checkConfig), getPath("InputFileTabCharacterSimple1.java"),
             expected);
     }
 
@@ -72,7 +72,7 @@ public class FileTabCharacterCheckTest
     public void testBadFile() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(FileTabCharacterCheck.class);
-        checkConfig.addAttribute("eachLine", "false");
+        checkConfig.addProperty("eachLine", "false");
         final String path = getPath("Claira");
         final String exceptionMessage = " (No such file or directory)";
         final Violation violation = new Violation(1,

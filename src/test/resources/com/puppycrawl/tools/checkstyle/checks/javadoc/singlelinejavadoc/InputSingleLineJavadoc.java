@@ -1,9 +1,13 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.singlelinejavadoc;
+/*
+SingleLineJavadoc
+violateExecutionOnNonTightHtml = (default)false
+ignoredTags = (default)
+ignoreInlineTags = (default)true
 
-/* Config:
- * violateExecutionOnNonTightHtml = false
- * ignoreInlineTags = true
- */
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.singlelinejavadoc;
 
 class InputSingleLineJavadoc {
 

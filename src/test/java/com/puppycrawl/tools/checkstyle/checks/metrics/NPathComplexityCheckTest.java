@@ -57,7 +57,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(NPathComplexityCheck.class);
 
-        checkConfig.addAttribute("max", "0");
+        checkConfig.addProperty("max", "0");
         final String[] expected = {
             "5:5: " + getCheckMessage(MSG_KEY, 2, 0),
             "10:17: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -83,7 +83,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(NPathComplexityCheck.class);
 
-        checkConfig.addAttribute("max", "0");
+        checkConfig.addProperty("max", "0");
         final String[] expected = {
             "5:5: " + getCheckMessage(MSG_KEY, 5, 0),
             "11:5: " + getCheckMessage(MSG_KEY, 5, 0),
@@ -109,7 +109,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(NPathComplexityCheck.class);
 
-        checkConfig.addAttribute("max", "0");
+        checkConfig.addProperty("max", "0");
         final String[] expected = {
             "4:5: " + getCheckMessage(MSG_KEY, 64, 0),
         };
@@ -122,7 +122,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(NPathComplexityCheck.class);
 
-        checkConfig.addAttribute("max", "0");
+        checkConfig.addProperty("max", "0");
 
         final long largerThanMaxInt = 3_486_784_401L;
 
@@ -206,7 +206,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNpathComplexityRecords() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NPathComplexityCheck.class);
-        checkConfig.addAttribute("max", "1");
+        checkConfig.addProperty("max", "1");
 
         final int max = 1;
 
@@ -224,7 +224,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNpathComplexitySwitchExpression() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NPathComplexityCheck.class);
-        checkConfig.addAttribute("max", "1");
+        checkConfig.addProperty("max", "1");
 
         final int max = 1;
 

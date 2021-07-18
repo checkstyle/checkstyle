@@ -1,12 +1,21 @@
+/*
+JavadocType
+scope = (default)private
+excludeScope = (default)null
+authorFormat = (default)null
+versionFormat = (default)null
+allowMissingParamTags = (default)false
+allowUnknownTags = (default)false
+allowedAnnotations = Override
+tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
 
 import java.lang.SuppressWarnings;
-
-/* Config:
- *
- * allowedAnnotations = Override
- */
 
 @ThisIsOk_3 // ok
 class InputJavadocTypeAllowedAnnotations_3 {

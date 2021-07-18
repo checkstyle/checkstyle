@@ -1,3 +1,15 @@
+/*
+JavadocMethod
+allowedAnnotations = (default)Override
+validateThrows = true
+accessModifiers = (default)public, protected, package, private
+allowMissingParamTags = (default)false
+allowMissingReturnTag = (default)false
+tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -8,10 +20,6 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.function.Function;
 
-/**
- * Config:
- * validateThrows = true
- */
 public class InputJavadocMethodIgnoreThrows {
 
     /**

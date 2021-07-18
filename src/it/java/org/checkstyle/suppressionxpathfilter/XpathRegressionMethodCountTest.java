@@ -43,7 +43,7 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
             createModuleConfig(MethodCountCheck.class);
-        moduleConfig.addAttribute("maxTotal", "1");
+        moduleConfig.addProperty("maxTotal", "1");
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(MethodCountCheck.class,
@@ -71,7 +71,7 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
             createModuleConfig(MethodCountCheck.class);
-        moduleConfig.addAttribute("maxPrivate", "1");
+        moduleConfig.addProperty("maxPrivate", "1");
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(MethodCountCheck.class,
@@ -99,7 +99,7 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
             createModuleConfig(MethodCountCheck.class);
-        moduleConfig.addAttribute("maxPackage", "1");
+        moduleConfig.addProperty("maxPackage", "1");
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(MethodCountCheck.class,
@@ -127,7 +127,7 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
             createModuleConfig(MethodCountCheck.class);
-        moduleConfig.addAttribute("maxProtected", "1");
+        moduleConfig.addProperty("maxProtected", "1");
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(MethodCountCheck.class,
@@ -155,7 +155,7 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
             createModuleConfig(MethodCountCheck.class);
-        moduleConfig.addAttribute("maxPublic", "1");
+        moduleConfig.addProperty("maxPublic", "1");
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(MethodCountCheck.class,

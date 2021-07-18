@@ -1,8 +1,11 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: Feb-2001
-// Ignore violation
-////////////////////////////////////////////////////////////////////////////////
+/*
+LocalVariableName
+format = (default)^[a-z][a-zA-Z0-9]*$
+allowOneCharVarInForLoop = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.naming.localvariablename;
 import java.io.*;
 /**
@@ -116,7 +119,7 @@ final class InputLocalVariableName
     {
         // normal decl
         int abc = 0;
-        int ABC = 0;
+        int ABC = 0; // violation
 
         // final decls
         final int cde = 0;
@@ -127,9 +130,9 @@ final class InputLocalVariableName
         {
             String innerBlockVariable = "";
         }
-        for (int I = 0; I < 1; I++)
+        for (int I = 0; I < 1; I++) // violation
         {
-            String InnerBlockVariable = "";
+            String InnerBlockVariable = ""; // violation
         }
     }
 
@@ -204,7 +207,7 @@ class InputLocalVariableName2
     public void doSomething()
     {
         //"O" should be named "o"
-        for (Object O : new java.util.ArrayList())
+        for (Object O : new java.util.ArrayList()) // violation
         {
 
         }
