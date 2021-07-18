@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import java.util.Optional;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -34,28 +36,87 @@ public final class ScopeUtil {
     }
 
     /**
-     * Returns the Scope specified by the modifier set.
+     * Returns the {@code Scope} explicitly specified by the modifier set.
+     * Returns {@code null} if there are no modifiers.
+     *
+     * @param aMods root node of a modifier set
+     * @return a {@code Scope} value or {@code null}
+     */
+    public static Scope getDeclaredScopeFromMods(DetailAST aMods) {
+        Scope result = null;
+        for (DetailAST token = aMods.getFirstChild(); token != null;
+                token = token.getNextSibling()) {
+            if ("public".equals(token.getText())) {
+                result = Scope.PUBLIC;
+            }
+            else if ("protected".equals(token.getText())) {
+                result = Scope.PROTECTED;
+            }
+            else if ("private".equals(token.getText())) {
+                result = Scope.PRIVATE;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Returns the {@code Scope} for a given {@code DetailAST}.
+     *
+     * @param ast the DetailAST to examine
+     * @return a {@code Scope} value
+     */
+    public static Scope getScope(DetailAST ast) {
+        return Optional.ofNullable(ast.findFirstToken(TokenTypes.MODIFIERS))
+                .map(ScopeUtil::getScopeFromMods)
+                .orElseGet(() -> getDefaultScope(ast));
+    }
+
+    /**
+     * Returns the {@code Scope} specified by the modifier set. If no modifiers are present,
+     * the default scope is used.
      *
      * @param aMods root node of a modifier set
      * @return a {@code Scope} value
+     * @see #getDefaultScope(DetailAST)
      */
     public static Scope getScopeFromMods(DetailAST aMods) {
-        // default scope
-        Scope returnValue = Scope.PACKAGE;
-        for (DetailAST token = aMods.getFirstChild(); token != null
-                && returnValue == Scope.PACKAGE;
-                token = token.getNextSibling()) {
-            if ("public".equals(token.getText())) {
-                returnValue = Scope.PUBLIC;
+        return Optional.ofNullable(getDeclaredScopeFromMods(aMods))
+                .orElseGet(() -> getDefaultScope(aMods.getParent()));
+    }
+
+    /**
+     * Returns the default {@code Scope} for a {@code DetailAST}.
+     * <p>The following rules are taken into account:</p>
+     * <ul>
+     *     <li>enum constants are public</li>
+     *     <li>enum constructors are private</li>
+     *     <li>interface members are public</li>
+     *     <li>everything else is package private</li>
+     * </ul>
+     *
+     * @param ast DetailAST to process
+     * @return a {@code Scope} value
+     */
+    private static Scope getDefaultScope(DetailAST ast) {
+        final Scope result;
+        if (isInEnumBlock(ast)) {
+            if (ast.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+                result = Scope.PUBLIC;
             }
-            else if ("protected".equals(token.getText())) {
-                returnValue = Scope.PROTECTED;
+            else if (ast.getType() == TokenTypes.CTOR_DEF) {
+                result = Scope.PRIVATE;
             }
-            else if ("private".equals(token.getText())) {
-                returnValue = Scope.PRIVATE;
+            else {
+                result = Scope.PACKAGE;
             }
         }
-        return returnValue;
+        else if (isInInterfaceOrAnnotationBlock(ast)) {
+            result = Scope.PUBLIC;
+        }
+        else {
+            result = Scope.PACKAGE;
+        }
+        return result;
     }
 
     /**
@@ -71,11 +132,9 @@ public final class ScopeUtil {
              token = token.getParent()) {
             final int type = token.getType();
             if (TokenUtil.isTypeDeclaration(type)) {
-                final DetailAST mods =
-                    token.findFirstToken(TokenTypes.MODIFIERS);
-                final Scope modScope = getScopeFromMods(mods);
-                if (returnValue == null || returnValue.isIn(modScope)) {
-                    returnValue = modScope;
+                final Scope tokenScope = getScope(token);
+                if (returnValue == null || returnValue.isIn(tokenScope)) {
+                    returnValue = tokenScope;
                 }
             }
             else if (type == TokenTypes.LITERAL_NEW) {
