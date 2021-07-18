@@ -3255,6 +3255,10 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheckTest
                 </param>
+                <!-- 3% mutation in ScopeUtil -->
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyle
+                </param>
               </targetTests>
               <excludedTestClasses>
                 <param>*.Input*</param>

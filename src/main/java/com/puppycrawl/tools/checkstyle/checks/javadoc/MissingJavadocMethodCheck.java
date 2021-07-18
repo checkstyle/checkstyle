@@ -372,7 +372,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
 
     @Override
     public final void visitToken(DetailAST ast) {
-        final Scope theScope = calculateScope(ast);
+        final Scope theScope = ScopeUtil.getScope(ast);
         if (shouldCheck(ast, theScope)) {
             final FileContents contents = getFileContents();
             final TextBlock textBlock = contents.getJavadocBefore(ast.getLineNo());
@@ -467,33 +467,6 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
                 && surroundingScope != excludeScope)
             && nodeScope.isIn(scope)
             && surroundingScope.isIn(scope);
-    }
-
-    /**
-     * Returns the scope for the method/constructor at the specified AST. If
-     * the method is in an interface or annotation block, the scope is assumed
-     * to be public.
-     *
-     * @param ast the token of the method/constructor
-     * @return the scope of the method/constructor
-     */
-    private static Scope calculateScope(final DetailAST ast) {
-        final Scope scope;
-
-        if (ScopeUtil.isInAnnotationBlock(ast)) {
-            scope = Scope.PUBLIC;
-        }
-        else {
-            final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
-            final Scope modifiersScope = ScopeUtil.getScopeFromMods(mods);
-            if (modifiersScope == Scope.PACKAGE && ScopeUtil.isInInterfaceBlock(ast)) {
-                scope = Scope.PUBLIC;
-            }
-            else {
-                scope = modifiersScope;
-            }
-        }
-        return scope;
     }
 
 }
