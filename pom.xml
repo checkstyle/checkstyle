@@ -1549,6 +1549,9 @@
             <bundledSignature>jdk-system-out</bundledSignature>
             <bundledSignature>jdk-non-portable</bundledSignature>
           </bundledSignatures>
+          <signaturesFiles>
+            <signaturesFile>${basedir}/forbiddenapis/signatures.txt</signaturesFile>
+          </signaturesFiles>
           <excludes>
             <!-- system-out is ok there, that is CLI -->
             <exclude>**/Main.class</exclude>
@@ -1566,6 +1569,8 @@
               which has no Java 8 compatible workaround. -->
             <exclude>**/AllChecksTest.class</exclude>
             <exclude>**/XdocsPagesTest.class</exclude>
+            <!-- Needed for testing deprecated API. -->
+            <exclude>**/DefaultConfigurationTest.class</exclude>
           </excludes>
         </configuration>
         <executions>
@@ -1978,6 +1983,7 @@
               </execution>
             </executions>
           </plugin>
+
         </plugins>
       </build>
 
