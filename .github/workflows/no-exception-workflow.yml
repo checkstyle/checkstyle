@@ -2,7 +2,7 @@ name: "no-exception testing"
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: []
 
 jobs:
   no-exception-lucene-and-others-javadoc:
