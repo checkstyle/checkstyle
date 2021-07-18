@@ -1,0 +1,32 @@
+name: "Pitest8"
+
+on:
+  push:
+    branches: [ MigrateTests ]
+  pull_request:
+    branches: [ MigrateTests ]
+
+jobs:
+
+  Pitest-common-2:
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: pitest-common-2
+        run: |
+          mkdir pitest-common-2-report
+          ./.ci/pitest.sh pitest-common-2
+          cp -r target/pit-reports/ pitest-common-2-report/
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest8-common-2-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-common-2-report/
+          retention-days: 3
