@@ -1,0 +1,106 @@
+name: "Pitest2"
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  Pitest-main:
+    if: always()
+    runs-on: macos-latest
+    steps:
+      - name: Set up JDK 8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-main
+        run: |
+          mkdir pitest-main-report
+          ./.ci/pitest.sh pitest-main
+          cp -r target/pit-reports/ pitest-main-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest2-main-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-main-report/
+          retention-days: 3
+
+  Pitest-javadoc:
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-javadoc
+        run: |
+          mkdir pitest-javadoc-report
+          ./.ci/pitest.sh pitest-javadoc
+          cp -r target/pit-reports/ pitest-javadoc-report/
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest2-javadoc-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-javadoc-report/
+          retention-days: 3
+
+  Pitest-indentation:
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-indentation
+        run: |
+          mkdir pitest-indentation-report
+          ./.ci/pitest.sh pitest-indentation
+          cp -r target/pit-reports/ pitest-indentation-report/
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest2-indentation-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-indentation-report/
+          retention-days: 3
+
+  Pitest-xpath:
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-xpath
+        run: |
+          mkdir pitest-xpath-report
+          ./.ci/pitest.sh pitest-xpath
+          cp -r target/pit-reports/ pitest-xpath-report/
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest2-xpath-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-xpath-report/
+          retention-days: 3
