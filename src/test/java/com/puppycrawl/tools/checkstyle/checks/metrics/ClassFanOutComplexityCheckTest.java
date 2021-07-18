@@ -326,10 +326,20 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     public void testClassFanOutComplexityRemoveIncorrectTypeParameter() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(ClassFanOutComplexityCheck.class);
-        checkConfig.addAttribute("max", "1");
+        checkConfig.addProperty("max", "1");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                 getPath("InputClassFanOutComplexityRemoveIncorrectTypeParameter.java"), expected);
+    }
+
+    @Test
+    public void testClassFanOutComplexityRemoveMultiCatchBitwiseOr() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(ClassFanOutComplexityCheck.class);
+        checkConfig.addProperty("max", "4");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+                getPath("InputClassFanOutComplexityRemoveMultiCatchBitwiseOr.java"), expected);
     }
 
     /**
