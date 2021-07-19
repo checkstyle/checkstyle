@@ -3,7 +3,7 @@ VisibilityModifier
 packageAllowed = (default)false
 protectedAllowed = (default)false
 publicMemberPattern = (default)^serialVersionUID$
-allowPublicFinalFields = (default)false
+allowPublicFinalFields = true
 allowPublicImmutableFields = (default)false
 immutableClassCanonicalNames = (default)java.io.File, java.lang.Boolean, java.lang.Byte, \
                                java.lang.Character, java.lang.Double, java.lang.Float, \
@@ -21,24 +21,44 @@ ignoreAnnotationCanonicalNames = (default)com.google.common.annotations.VisibleF
 
 package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 
+import com.google.common.collect.ImmutableSet;
+
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 
-import com.google.common.collect.ImmutableSet;
+public final class InputVisibilityModifierImmutable4
+{
+    public final int someIntValue;
+    public final ImmutableSet<String> includes;
+    public final ImmutableSet<String> excludes;
+    public final String notes;
+    public final BigDecimal money;
+    public final List list;
 
-public class InputVisibilityModifiersPublicImmutable {
-    public final int someIntValue; // violation
-    public final ImmutableSet<String> includes; // violation
-    public final java.lang.String notes; // violation
-    public final BigDecimal value; // violation
-    public final List list; // violation
-    public InputVisibilityModifiersPublicImmutable(Collection<String> includes,
-                                            BigDecimal value, String notes, int someValue, List l) {
+    public InputVisibilityModifierImmutable4(Collection<String> includes,
+           Collection<String> excludes, BigDecimal value, String notes, int someValue, List l) {
         this.includes = ImmutableSet.copyOf(includes);
-        this.value = value;
+        this.excludes = ImmutableSet.copyOf(excludes);
+        this.money = value;
         this.notes = notes;
         this.someIntValue = someValue;
         this.list = l;
+    }
+
+    final class Immutable
+    {
+        public final float f = 4;
+        public final boolean bool = false;
+        public final java.net.URI uri = null;
+        public final java.io.File file = null;
+        public int value = 42; // violation
+        public final java.net.URL url = null;
+        public boolean bValue = false; // violation
+        public Long longValue = 1L; // violation
+    }
+
+    class Example {
+        final int C_D_E = 0;
     }
 }
