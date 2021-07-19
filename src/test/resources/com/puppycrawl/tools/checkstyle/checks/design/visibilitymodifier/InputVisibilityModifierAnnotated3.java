@@ -13,8 +13,7 @@ immutableClassCanonicalNames = (default)java.io.File, java.lang.Boolean, java.la
                                java.net.Inet4Address, java.net.Inet6Address, \
                                java.net.InetSocketAddress, java.net.URI, java.net.URL, \
                                java.util.Locale, java.util.UUID
-ignoreAnnotationCanonicalNames = (default)com.google.common.annotations.VisibleForTesting, \
-                                 org.junit.ClassRule, org.junit.Rule
+ignoreAnnotationCanonicalNames =
 
 
 */
@@ -23,39 +22,39 @@ package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 
 import com.google.common.annotations.VisibleForTesting;
 
-import org.junit.ClassRule;
-import org.junit.Rule;
-import org.junit.rules.TemporaryFolder;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-public class InputVisibilityModifierAnnotated {
+import org.junit.ClassRule;
+import org.junit.Rule;
+import org.junit.rules.TemporaryFolder;
+
+public class InputVisibilityModifierAnnotated3 {
     @Rule
-    public TemporaryFolder publicJUnitRule = new TemporaryFolder();
+    public TemporaryFolder publicJUnitRule = new TemporaryFolder(); // violation
 
-    @org.junit.Rule
-    public TemporaryFolder fqPublicJUnitRule = new TemporaryFolder();
-
-    @VisibleForTesting
-    public String googleCommonsAnnotatedPublic;
+    @Rule
+    public TemporaryFolder fqPublicJUnitRule = new TemporaryFolder(); // violation
 
     @VisibleForTesting
-    String googleCommonsAnnotatedPackage;
+    public String googleCommonsAnnotatedPublic; // violation
 
     @VisibleForTesting
-    protected String googleCommonsAnnotatedProtected;
+    String googleCommonsAnnotatedPackage; // violation
 
-    @com.google.common.annotations.VisibleForTesting
-    public String fqGoogleCommonsAnnotatedPublic;
+    @VisibleForTesting
+    protected String googleCommonsAnnotatedProtected; // violation
 
-    @com.google.common.annotations.VisibleForTesting
-    String fqGoogleCommonsAnnotatedPackage;
+    @VisibleForTesting
+    public String fqGoogleCommonsAnnotatedPublic; // violation
 
-    @com.google.common.annotations.VisibleForTesting
-    protected String fqGoogleCommonsAnnotatedProtected;
+    @VisibleForTesting
+    String fqGoogleCommonsAnnotatedPackage; // violation
+
+    @VisibleForTesting
+    protected String fqGoogleCommonsAnnotatedProtected; // violation
 
     @CustomAnnotation
     public String customAnnotatedPublic; // violation
@@ -77,8 +76,8 @@ public class InputVisibilityModifierAnnotated {
     }
 
     @ClassRule
-    public static TemporaryFolder publicJUnitClassRule = new TemporaryFolder();
+    public static TemporaryFolder publicJUnitClassRule = new TemporaryFolder(); // violation
 
-    @org.junit.ClassRule
-    public static TemporaryFolder fqPublicJUnitClassRule = new TemporaryFolder();
+    @ClassRule
+    public static TemporaryFolder fqPublicJUnitClassRule = new TemporaryFolder(); // violation
 }

@@ -4,7 +4,7 @@ packageAllowed = (default)false
 protectedAllowed = (default)false
 publicMemberPattern = (default)^serialVersionUID$
 allowPublicFinalFields = (default)false
-allowPublicImmutableFields = true
+allowPublicImmutableFields = (default)false
 immutableClassCanonicalNames = (default)java.io.File, java.lang.Boolean, java.lang.Byte, \
                                java.lang.Character, java.lang.Double, java.lang.Float, \
                                java.lang.Integer, java.lang.Long, java.lang.Short, \
@@ -21,16 +21,24 @@ ignoreAnnotationCanonicalNames = (default)com.google.common.annotations.VisibleF
 
 package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 
-/** Shows that sealed enum is good as final. */
-public enum InputVisibilityModifiersEnumIsSealed {
-    SOME_VALUE;
+import com.google.common.collect.ImmutableSet;
 
-    static class Hole {
+import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.List;
+
+public class InputVisibilityModifiersPublicImmutable2 {
+    public final int someIntValue; // violation
+    public final ImmutableSet<String> includes; // violation
+    public final String notes; // violation
+    public final BigDecimal value; // violation
+    public final List list; // violation
+    public InputVisibilityModifiersPublicImmutable2(Collection<String> includes,
+           BigDecimal value, String notes, int someValue, List l) {
+        this.includes = ImmutableSet.copyOf(includes);
+        this.value = value;
+        this.notes = notes;
+        this.someIntValue = someValue;
+        this.list = l;
     }
-
-    /** Normally disallowed if final enclosing class is required. */
-    public final int someField = Integer.MAX_VALUE;
-
-    /** Disallowed because mutable. */
-    public final Hole hole = null; // violation
 }

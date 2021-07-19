@@ -1,8 +1,24 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: Feb-2001
-// Ignore violation
-////////////////////////////////////////////////////////////////////////////////
+/*
+VisibilityModifier
+packageAllowed = (default)false
+protectedAllowed = (default)false
+publicMemberPattern = ^f[A-Z][a-zA-Z0-9]*$
+allowPublicFinalFields = (default)false
+allowPublicImmutableFields = (default)false
+immutableClassCanonicalNames = (default)java.io.File, java.lang.Boolean, java.lang.Byte, \
+                               java.lang.Character, java.lang.Double, java.lang.Float, \
+                               java.lang.Integer, java.lang.Long, java.lang.Short, \
+                               java.lang.StackTraceElement, java.lang.String, \
+                               java.math.BigDecimal, java.math.BigInteger, \
+                               java.net.Inet4Address, java.net.Inet6Address, \
+                               java.net.InetSocketAddress, java.net.URI, java.net.URL, \
+                               java.util.Locale, java.util.UUID
+ignoreAnnotationCanonicalNames = (default)com.google.common.annotations.VisibleForTesting, \
+                                 org.junit.ClassRule, org.junit.Rule
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 import java.io.*;
 /**
@@ -30,7 +46,7 @@ final class InputVisibilityModifierSimple
     /** Valid format **/
     private int mNumCreated1 = 0;
     /** Valid format **/
-    protected int mNumCreated2 = 0;
+    protected int mNumCreated2 = 0; // violation
 
     /** commas are wrong **/
     private int[] mInts = new int[] {1,2, 3,
@@ -40,16 +56,16 @@ final class InputVisibilityModifierSimple
     // Accessor tests
     //
     /** should be private **/
-    public static int sTest1;
+    public static int sTest1; // violation
     /** should be private **/
-    protected static int sTest3;
+    protected static int sTest3; // violation
     /** should be private **/
-    static int sTest2;
+    static int sTest2; // violation
 
     /** should be private **/
-    int mTest1;
+    int mTest1; // violation
     /** should be private **/
-    public int mTest2;
+    public int mTest2; // violation
 
     /**
      * @return hack
