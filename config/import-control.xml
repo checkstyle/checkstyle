@@ -46,8 +46,8 @@
   <allow class="com.puppycrawl.tools.checkstyle.XpathFileGeneratorAuditListener"
          local-only="true"/>
 
-  <file name="DetailAstImpl|JavaParser" regex="true">
-    <allow pkg="antlr"/>
+  <file name="DetailAstImpl|JavaParser|JavaAstVisitor" regex="true">
+    <allow pkg="org.antlr.v4.runtime"/>
   </file>
   <file name="JavadocDetailNodeParser">
     <allow pkg="org.antlr.v4.runtime"/>
@@ -56,8 +56,8 @@
     <allow class="java.math.BigInteger"/>
   </file>
   <file name="ParserUtil">
-    <allow class="antlr.Token"/>
     <allow class="com.puppycrawl.tools.checkstyle.DetailAstImpl"/>
+    <allow class="org.antlr.v4.runtime.CommonToken"/>
   </file>
 
   <file name="DefaultLogger">
@@ -111,6 +111,12 @@
     <allow class="com.puppycrawl.tools.checkstyle.Checker" local-only="true"/>
     <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3817 -->
     <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
+    <file name="DetailAST">
+      <allow class="org.antlr.v4.runtime.Token"/>
+    </file>
+    <file name="TokenTypes">
+      <allow class="org.antlr.v4.runtime.Recognizer"/>
+    </file>
   </subpackage>
 
   <subpackage name="checks">
@@ -166,7 +172,6 @@
 
   <subpackage name="gui" strategyOnMismatch="disallowed">
     <!-- until https://github.com/checkstyle/checkstyle/issues/3095 -->
-    <allow pkg="antlr"/>
     <allow class="com.puppycrawl.tools.checkstyle.DetailAstImpl"/>
     <allow class="com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator" />
 

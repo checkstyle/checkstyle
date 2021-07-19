@@ -30,9 +30,9 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.SortedSet;
 
+import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 
-import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
@@ -300,7 +300,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
     public void testDefaultHooks() {
         final NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
         final DetailAstImpl ast = new DetailAstImpl();
-        ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
+        ast.initialize(new CommonToken(TokenTypes.INTERFACE_DEF, "interface"));
 
         npathComplexityCheckObj.visitToken(ast);
         final SortedSet<Violation> violations1 = npathComplexityCheckObj.getViolations();
@@ -342,18 +342,18 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testVisitTokenBeforeExpressionRange() {
         // Create first ast
-        final DetailAstImpl astIf = mockAST(TokenTypes.LITERAL_IF, "if", "mockfile", 2, 2);
-        final DetailAstImpl astIfLeftParen = mockAST(TokenTypes.LPAREN, "(", "mockfile", 3, 3);
+        final DetailAstImpl astIf = mockAST(TokenTypes.LITERAL_IF, "if", 2, 2);
+        final DetailAstImpl astIfLeftParen = mockAST(TokenTypes.LPAREN, "(", 3, 3);
         astIf.addChild(astIfLeftParen);
         final DetailAstImpl astIfTrue =
-                mockAST(TokenTypes.LITERAL_TRUE, "true", "mockfile", 3, 3);
+                mockAST(TokenTypes.LITERAL_TRUE, "true", 3, 3);
         astIf.addChild(astIfTrue);
-        final DetailAstImpl astIfRightParen = mockAST(TokenTypes.RPAREN, ")", "mockfile", 4, 4);
+        final DetailAstImpl astIfRightParen = mockAST(TokenTypes.RPAREN, ")", 4, 4);
         astIf.addChild(astIfRightParen);
         // Create ternary ast
-        final DetailAstImpl astTernary = mockAST(TokenTypes.QUESTION, "?", "mockfile", 1, 1);
+        final DetailAstImpl astTernary = mockAST(TokenTypes.QUESTION, "?", 1, 1);
         final DetailAstImpl astTernaryTrue =
-                mockAST(TokenTypes.LITERAL_TRUE, "true", "mockfile", 1, 2);
+                mockAST(TokenTypes.LITERAL_TRUE, "true", 1, 2);
         astTernary.addChild(astTernaryTrue);
 
         final NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
@@ -376,19 +376,15 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
      *
      * @param tokenType type of token
      * @param tokenText text of token
-     * @param tokenFileName file name of token
      * @param tokenRow token position in a file (row)
      * @param tokenColumn token position in a file (column)
      * @return AST node for the token
      */
     private static DetailAstImpl mockAST(final int tokenType, final String tokenText,
-            final String tokenFileName, final int tokenRow, final int tokenColumn) {
-        final CommonHiddenStreamToken tokenImportSemi = new CommonHiddenStreamToken();
-        tokenImportSemi.setType(tokenType);
-        tokenImportSemi.setText(tokenText);
+            final int tokenRow, final int tokenColumn) {
+        final CommonToken tokenImportSemi = new CommonToken(tokenType, tokenText);
         tokenImportSemi.setLine(tokenRow);
-        tokenImportSemi.setColumn(tokenColumn);
-        tokenImportSemi.setFilename(tokenFileName);
+        tokenImportSemi.setCharPositionInLine(tokenColumn);
         final DetailAstImpl astSemi = new DetailAstImpl();
         astSemi.initialize(tokenImportSemi);
         return astSemi;
