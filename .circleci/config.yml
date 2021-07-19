@@ -1,10 +1,10 @@
 version: 2
 jobs:
 
-  build-caches:
-    machine: true
+  setup-env:
+    machine:
+      image: ubuntu-2004:202010-01
     steps:
-      # restore_cache.keys does not work, so multiple restore_cache.key is used
       - restore_cache:
           key: m2-cache
       - checkout
@@ -37,7 +37,7 @@ jobs:
               ls -la
               java -version
               mvn --version
-              mvn -e -Ppitest-metrics dependency:go-offline
+              mvn -e clean install -Pno-validations
             else
               echo "build is skipped ..."
             fi
@@ -47,7 +47,11 @@ jobs:
             RUN_JOB=`cat .ci-temp/run_job`
             echo "RUN_JOB="$RUN_JOB
             if [[ $RUN_JOB == 1 ]]; then
-              mvn -e -Ppitest-metrics dependency:go-offline
+              pwd
+              ls -la
+              java -version
+              mvn --version
+              mvn -e clean install -Pno-validations
             else
               echo "build is skipped ..."
             fi
@@ -59,220 +63,103 @@ jobs:
             - project
             - contribution
 
-  pitest1:
-    machine: true
-    parallelism: 4
+  lucene-and-others-javadoc:
+    machine:    
+      image: ubuntu-2004:202010-01
+    parallelism: 1
     steps:
       - attach_workspace:
           at: /home/circleci/
       - run:
           command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-coding"  >> commands.txt
-              echo "./.ci/pitest.sh pitest-common"  >> commands.txt
-              echo "./.ci/pitest.sh pitest-imports" >> commands.txt
-              echo "./.ci/pitest.sh pitest-ant"     >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
+            sudo apt install curl
+            curl -s get.sdkman.io | bash
+            source "$HOME/.sdkman/bin/sdkman-init.sh"
+            sdk install groovy
+            groovy -version
+            ./.ci/no-exception-test.sh no-exception-lucene-and-others-javadoc
 
-  pitest2:
-    machine: true
-    parallelism: 4
+  cassandra-storm-tapestry-javadoc:
+    machine:
+      image: ubuntu-2004:202010-01
+    parallelism: 1
     steps:
       - attach_workspace:
           at: /home/circleci/
       - run:
           command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-main"        >> commands.txt
-              echo "./.ci/pitest.sh pitest-javadoc"     >> commands.txt
-              echo "./.ci/pitest.sh pitest-indentation" >> commands.txt
-              echo "./.ci/pitest.sh pitest-xpath"       >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
+            sudo apt install curl
+            curl -s get.sdkman.io | bash
+            source "$HOME/.sdkman/bin/sdkman-init.sh"
+            sdk install groovy
+            groovy -version
+            ./.ci/no-exception-test.sh no-exception-cassandra-storm-tapestry-javadoc
 
-  pitest3:
-    machine: true
-    parallelism: 4
+  hadoop-apache-groovy-scouter-javadoc:
+    machine:
+      image: ubuntu-2004:202010-01
+    parallelism: 1
     steps:
       - attach_workspace:
           at: /home/circleci/
       - run:
           command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-misc"    >> commands.txt
-              echo "./.ci/pitest.sh pitest-design"  >> commands.txt
-              echo "./.ci/pitest.sh pitest-api"     >> commands.txt
-              echo "./.ci/pitest.sh pitest-utils"   >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
+            sudo apt install curl
+            curl -s get.sdkman.io | bash
+            source "$HOME/.sdkman/bin/sdkman-init.sh"
+            sdk install groovy
+            groovy -version
+            ./.ci/no-exception-test.sh no-exception-hadoop-apache-groovy-scouter-javadoc
 
-  pitest4:
-    machine: true
-    parallelism: 4
+  no-exception-only-javadoc:
+    machine:
+      image: ubuntu-2004:202010-01
+    parallelism: 1
     steps:
       - attach_workspace:
           at: /home/circleci/
       - run:
           command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-whitespace" >> commands.txt
-              echo "./.ci/pitest.sh pitest-filters"    >> commands.txt
-              echo "./.ci/pitest.sh pitest-header"     >> commands.txt
-              echo "./.ci/pitest.sh pitest-annotation" >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
+            sudo apt install curl
+            curl -s get.sdkman.io | bash
+            source "$HOME/.sdkman/bin/sdkman-init.sh"
+            sdk install groovy
+            groovy -version
+            ./.ci/no-exception-test.sh no-exception-only-javadoc
 
-  pitest5:
-    machine: true
-    parallelism: 4
+  no-error-xwiki:
+    machine:
+      image: ubuntu-2004:202010-01
+    parallelism: 1
     steps:
       - attach_workspace:
           at: /home/circleci/
       - run:
           command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-packagenamesloader" >> commands.txt
-              echo "./.ci/pitest.sh pitest-tree-walker"        >> commands.txt
-              echo "./.ci/pitest.sh pitest-naming"             >> commands.txt
-              echo "./.ci/pitest.sh pitest-metrics"            >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
-
-  pitest6:
-    machine: true
-    parallelism: 4
-    steps:
-      - attach_workspace:
-          at: /home/circleci/
-      - run:
-          command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-blocks"   >> commands.txt
-              echo "./.ci/pitest.sh pitest-sizes"    >> commands.txt
-              echo "./.ci/pitest.sh pitest-modifier" >> commands.txt
-              echo "./.ci/pitest.sh pitest-regexp"   >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
-
-  pitest7:
-    machine: true
-    parallelism: 4
-    steps:
-      - attach_workspace:
-          at: /home/circleci/
-      - run:
-          command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-gui"   >> commands.txt
-              # echo "./.ci/pitest.sh pitest-meta"  >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
-
-  pitest8:
-    machine: true
-    parallelism: 4
-    steps:
-      - attach_workspace:
-          at: /home/circleci/
-      - run:
-          command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-common-2"   >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
+            sudo apt install curl
+            curl -s get.sdkman.io | bash
+            source "$HOME/.sdkman/bin/sdkman-init.sh"
+            sdk install groovy
+            groovy -version
+            ./.ci/validation.sh no-error-xwiki
 
 workflows:
   version: 2
-  pitest-testing:
+  Tests:
     jobs:
-      - build-caches
-      - pitest1:
+      - setup-env
+      - lucene-and-others-javadoc:
           requires:
-            - build-caches
-      - pitest2:
+            - setup-env
+      - cassandra-storm-tapestry-javadoc:
           requires:
-            - build-caches
-      - pitest3:
+            - setup-env
+      - hadoop-apache-groovy-scouter-javadoc:
           requires:
-            - build-caches
-      - pitest4:
+            - setup-env
+      - no-exception-only-javadoc:
           requires:
-            - build-caches
-      - pitest5:
+            - setup-env
+      - no-error-xwiki:
           requires:
-            - build-caches
-      - pitest6:
-          requires:
-            - build-caches
-      # we do not do thorough testing of gui part
-      # - pitest7:
-      #     requires:
-      #       - build-caches
-      - pitest8:
-          requires:
-            - build-caches
+            - setup-env
