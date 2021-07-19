@@ -444,59 +444,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="design[\\/]throwscount[\\/]InputThrowsCountMethodWithAnnotation.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]visibilitymodifier[\\/]inputs[\\/]InetSocketAddress.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierAnnotated.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierAnnotatedSameTypeName.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierGenerics.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierGregorianCalendar.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierImmutable.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierImmutableSameTypeName.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierImmutableStarImport2.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierImmutableStarImport.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierInner.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierIsStarImport.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierLocalAnnotations.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierPackageClassName.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierPublicOnly.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifiersEnumIsSealed.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierSimple.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifiersNullModifiers.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifiersPublicImmutable.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="detailastimpl[\\/]InputDetailAstImplJustToMakeStackoverflowError.java"/>
@@ -2297,59 +2244,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="design[\\/]throwscount[\\/]InputThrowsCountMethodWithAnnotation.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]visibilitymodifier[\\/]inputs[\\/]InetSocketAddress.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierAnnotated.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierAnnotatedSameTypeName.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierGenerics.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierGregorianCalendar.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierImmutable.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierImmutableSameTypeName.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierImmutableStarImport2.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierImmutableStarImport.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierInner.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierIsStarImport.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierLocalAnnotations.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierPackageClassName.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierPublicOnly.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifiersEnumIsSealed.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifierSimple.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifiersNullModifiers.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]visibilitymodifier[\\/]InputVisibilityModifiersPublicImmutable.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="detailastimpl[\\/]InputDetailAstImplJustToMakeStackoverflowError.java"/>

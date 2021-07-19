@@ -21,16 +21,13 @@ ignoreAnnotationCanonicalNames = (default)com.google.common.annotations.VisibleF
 
 package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 
-/** Shows that sealed enum is good as final. */
-public enum InputVisibilityModifiersEnumIsSealed {
-    SOME_VALUE;
+import com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier.inputs.InetSocketAddress;
 
-    static class Hole {
-    }
-
-    /** Normally disallowed if final enclosing class is required. */
-    public final int someField = Integer.MAX_VALUE;
-
-    /** Disallowed because mutable. */
-    public final Hole hole = null; // violation
+public final class InputVisibilityModifierImmutableSameTypeName2
+{
+    public final java.util.GregorianCalendar calendar = null; // violation
+    public final InputVisibilityModifierGregorianCalendar calendar2 = null; // violation
+    public final InputVisibilityModifierGregorianCalendar calendar3 = null; // violation
+    public final InetSocketAddress address = null; // violation
+    public final java.net.InetSocketAddress adr = null;
 }

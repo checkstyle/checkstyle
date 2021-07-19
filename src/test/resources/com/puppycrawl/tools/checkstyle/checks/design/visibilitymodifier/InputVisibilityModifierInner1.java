@@ -1,8 +1,8 @@
 /*
 VisibilityModifier
-packageAllowed = (default)false
-protectedAllowed = (default)false
-publicMemberPattern = ^f[A-Z][a-zA-Z0-9]*$
+packageAllowed = true
+protectedAllowed = true
+publicMemberPattern = ^r[A-Z]
 allowPublicFinalFields = (default)false
 allowPublicImmutableFields = (default)false
 immutableClassCanonicalNames = (default)java.io.File, java.lang.Boolean, java.lang.Byte, \
@@ -25,13 +25,13 @@ package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
  * Tests having inner types
  * @author Oliver Burn
  **/
-class InputVisibilityModifierInner
+class InputVisibilityModifierInner1
 {
     // Ignore - two violations
     class InnerInner2
     {
         // Ignore
-        public int fData;
+        public int fData; // violation
     }
 
     // Ignore - 2 violations
@@ -44,20 +44,20 @@ class InputVisibilityModifierInner
         class InnerInterfaceInnerClass
         {
             // Ignore - need Javadoc and made private
-            public int rData; // violation
+            public int rData;
 
             /** needs to be made private unless allowProtected. */
-            protected int protectedVariable; // violation
+            protected int protectedVariable;
 
             /** needs to be made private unless allowPackage. */
-            int packageVariable; // violation
+            int packageVariable;
         }
     }
 
     /** demonstrate bug in handling static final **/
-    protected static Object sWeird = new Object(); // violation
+    protected static Object sWeird = new Object();
     /** demonstrate bug in handling static final **/
-    static Object sWeird2 = new Object(); // violation
+    static Object sWeird2 = new Object();
 
     /** demonstrate bug in local final variable */
     public interface Inter
@@ -94,5 +94,5 @@ class InputVisibilityModifierInner
         public int someValue; // violation
     }
 
-    float fSerialVersionUID = 0x1234567F; // violation
+    float fSerialVersionUID = 0x1234567F;
 }
