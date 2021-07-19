@@ -1,0 +1,639 @@
+name: "Pitest"
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  Pitest-main:
+    runs-on: macos-latest
+    steps:
+      - name: Set up JDK 8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-main
+        run: |
+          mkdir pitest-main-report
+          ./.ci/pitest.sh pitest-main
+      - name: Copy result
+        if: always()
+        run:  cp -r target/pit-reports/ pitest-main-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest2-main-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-main-report/
+          retention-days: 3
+
+  Pitest-javadoc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-javadoc
+        run: |
+          mkdir pitest-javadoc-report
+          ./.ci/pitest.sh pitest-javadoc
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-javadoc-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest2-javadoc-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-javadoc-report/
+          retention-days: 3
+
+  Pitest-indentation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-indentation
+        run: |
+          mkdir pitest-indentation-report
+          ./.ci/pitest.sh pitest-indentation
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-indentation-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest2-indentation-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-indentation-report/
+          retention-days: 3
+
+  Pitest-xpath:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-xpath
+        run: |
+          mkdir pitest-xpath-report
+          ./.ci/pitest.sh pitest-xpath
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-xpath-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest2-xpath-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-xpath-report/
+          retention-days: 3
+
+  Pitest-packagenamesloader:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-packagenamesloader
+        run: |
+          mkdir pitest-packagenamesloader-report
+          ./.ci/pitest.sh pitest-packagenamesloader
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-packagenamesloader-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest5-packagenamesloader-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-packagenamesloader-report/
+
+  Pitest-tree-walker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-tree-walker
+        run: |
+          mkdir pitest-tree-walker-report
+          ./.ci/pitest.sh pitest-tree-walker
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-tree-walker-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest5-tree-walker-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-tree-walker-report/
+
+  Pitest-naming:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-naming
+        run: |
+          mkdir pitest-naming-report
+          ./.ci/pitest.sh pitest-naming
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-naming-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest5-naming-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-naming-report/
+
+  Pitest-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-metrics
+        run: |
+          mkdir pitest-metrics-report
+          ./.ci/pitest.sh pitest-metrics
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-metrics-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest5-metrics-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-metrics-report/
+
+  Pitest-misc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-misc
+        run: |
+          mkdir pitest-misc-report
+          ./.ci/pitest.sh pitest-misc
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-misc-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest3-misc-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-misc-report/
+          retention-days: 3
+
+  Pitest-design:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-Common
+        run: |
+          mkdir pitest-design-report
+          ./.ci/pitest.sh pitest-design
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-design-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest3-design-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-design-report/
+          retention-days: 3
+
+  Pitest-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-api
+        run: |
+          mkdir pitest-api-report
+          ./.ci/pitest.sh pitest-api
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-api-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest3-api-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-api-report/
+          retention-days: 3
+
+  Pitest-utils:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-utils
+        run: |
+          mkdir pitest-utils-report
+          ./.ci/pitest.sh pitest-utils
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-utils-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest3-utils-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-utils-report/
+          retention-days: 3
+
+  Pitest-blocks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-blocks
+        run: |
+          mkdir pitest-blocks-report
+          ./.ci/pitest.sh pitest-blocks
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-blocks-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest6-blocks-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-blocks-report/
+          retention-days: 3
+
+  Pitest-sizes:
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-sizes
+        run: |
+          mkdir pitest-sizes-report
+          ./.ci/pitest.sh pitest-sizes
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-sizes-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest6-sizes-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-sizes-report/
+          retention-days: 3
+
+  Pitest-modifier:
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-modifier
+        run: |
+          mkdir pitest-modifier-report
+          ./.ci/pitest.sh pitest-modifier
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-modifier-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest6-modifier-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-modifier-report/
+          retention-days: 3
+
+  Pitest-regexp:
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-regexp
+        run: |
+          mkdir pitest-regexp-report
+          ./.ci/pitest.sh pitest-regexp
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-regexp-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest6-regexp-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-regexp-report/
+          retention-days: 3
+
+  Pitest-coding:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-Coding
+        run: |
+          mkdir pitest-coding-report
+          ./.ci/pitest.sh pitest-coding
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-coding-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest1-coding-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-coding-report/
+          retention-days: 3
+
+  Pitest-common:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-Common
+        run: |
+          mkdir pitest-common-report
+          ./.ci/pitest.sh pitest-common
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-common-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest1-common-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-common-report/
+          retention-days: 3
+
+  Pitest-imports:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-imports
+        run: |
+          mkdir pitest-imports-report
+          ./.ci/pitest.sh pitest-imports
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-imports-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest1-imports-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-imports-report/
+          retention-days: 3
+
+  Pitest-ant:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-ant
+        run: |
+          mkdir pitest-ant-report
+          ./.ci/pitest.sh pitest-ant
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-ant-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest1-ant-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-ant-report/
+          retention-days: 3
+
+
+  Pitest-annotation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-annotation
+        run: |
+          mkdir pitest-annotation-report
+          ./.ci/pitest.sh pitest-annotation
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-annotation-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest4-annotation-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-annotation-report/
+          retention-days: 3
+
+  Pitest-whitespace:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-whitespace
+        run: |
+          mkdir pitest-whitespace-report
+          ./.ci/pitest.sh pitest-whitespace
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-whitespace-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest4-whitespace-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-whitespace-report/
+          retention-days: 3
+
+  Pitest-filters:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-filters
+        run: |
+          mkdir pitest-filters-report
+          ./.ci/pitest.sh pitest-filters
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-filters-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest4-filters-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-filters-report/
+          retention-days: 3
+
+  Pitest-header:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-header
+        run: |
+          mkdir pitest-header-report
+          ./.ci/pitest.sh pitest-header
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-header-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest4-header-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-header-report/
+          retention-days: 3
+
+  Pitest-common-2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: pitest-common-2
+        run: |
+          mkdir pitest-common-2-report
+          ./.ci/pitest.sh pitest-common-2
+      - name: Copy result
+        if: always()
+        run: cp -r target/pit-reports/ pitest-common-2-report/
+      - name: Archive code coverage results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest8-common-2-coverage-report
+          path: /home/runner/work/checkstyle/checkstyle/pitest-common-2-report/
+          retention-days: 3
+
