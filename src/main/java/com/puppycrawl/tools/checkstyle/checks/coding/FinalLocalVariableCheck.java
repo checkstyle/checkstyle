@@ -300,8 +300,12 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 }
                 break;
             case TokenTypes.IDENT:
-                final int parentType = ast.getParent().getType();
-                if (isAssignOperator(parentType) && isFirstChild(ast)) {
+                final DetailAST parent = ast.getParent();
+                final int parentType = parent.getType();
+                final boolean isTypeCastWithAssign = parentType == TokenTypes.TYPECAST
+                        && isAssignOperator(parent.getParent().getType());
+
+                if (isTypeCastWithAssign || isAssignOperator(parentType) && isFirstChild(ast)) {
                     final Optional<FinalVariableCandidate> candidate = getFinalCandidate(ast);
                     if (candidate.isPresent()) {
                         determineAssignmentConditions(ast, candidate.get());
