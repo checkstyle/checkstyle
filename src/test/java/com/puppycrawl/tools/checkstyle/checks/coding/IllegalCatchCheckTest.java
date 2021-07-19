@@ -53,7 +53,7 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIllegalClassNames() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalCatchCheck.class);
-        checkConfig.addAttribute("illegalClassNames",
+        checkConfig.addProperty("illegalClassNames",
                                  "java.lang.Error, java.lang.Exception, java.lang.Throwable");
 
         final String[] expected = {
@@ -69,11 +69,11 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIllegalClassNamesBad() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalCatchCheck.class);
-        checkConfig.addAttribute("illegalClassNames",
+        checkConfig.addProperty("illegalClassNames",
                                  "java.lang.Error, java.lang.Exception, NullPointerException");
 
         // check that incorrect names don't break the Check
-        checkConfig.addAttribute("illegalClassNames",
+        checkConfig.addProperty("illegalClassNames",
                 "java.lang.IOException.");
 
         final String[] expected = {
@@ -87,11 +87,21 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMultipleTypes() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalCatchCheck.class);
+        checkConfig.addProperty("illegalClassNames",
+                                 "java.lang.Error, java.lang.Exception, NullPointerException,"
+                                + "OneMoreException, RuntimeException, SQLException");
 
         final String[] expected = {
             "7:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "7:11: " + getCheckMessage(MSG_KEY, "SQLException"),
             "10:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "10:11: " + getCheckMessage(MSG_KEY, "SQLException"),
+            "10:11: " + getCheckMessage(MSG_KEY, "OneMoreException"),
+            "13:11: " + getCheckMessage(MSG_KEY, "OneMoreException"),
             "13:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "13:11: " + getCheckMessage(MSG_KEY, "SQLException"),
+            "16:11: " + getCheckMessage(MSG_KEY, "OneMoreException"),
+            "16:11: " + getCheckMessage(MSG_KEY, "SQLException"),
             "16:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
         };
 

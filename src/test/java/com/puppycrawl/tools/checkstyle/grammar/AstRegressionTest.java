@@ -298,6 +298,12 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testInputManyAlternativesInMultiCatch() throws Exception {
+        verifyAst(getPath("InputAstRegressionManyAlternativesInMultiCatch.txt"),
+                getPath("InputAstRegressionManyAlternativesInMultiCatch.java"));
+    }
+
+    @Test
     public void testImpossibleExceptions() throws Exception {
         AssertGeneratedJavaLexer.verifyFail("mSTD_ESC", 'a');
         AssertGeneratedJavaLexer.verifyFail("mSTD_ESC", '0', (char) 0xFFFF);

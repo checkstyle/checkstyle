@@ -1,2 +1,9 @@
+/*
+MissingJavadocPackage
+
+
+*/
+
 @Deprecated
-package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.nojavadoc.annotation; // violation
+package com.puppycrawl.tools.checkstyle.checks // violation
+        .javadoc.missingjavadocpackage.nojavadoc.annotation;

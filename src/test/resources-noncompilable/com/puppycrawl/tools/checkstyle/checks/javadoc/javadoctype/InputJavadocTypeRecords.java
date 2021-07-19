@@ -1,17 +1,19 @@
+/*
+JavadocType
+scope = (default)private
+excludeScope = (default)null
+authorFormat = (default)null
+versionFormat = (default)null
+allowMissingParamTags = (default)false
+allowUnknownTags = (default)false
+allowedAnnotations = (default)Generated
+tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
-
-/* Config:
- *
- * scope = private
- * excludeScope = null
- * authorFormat = null
- * versionFormat = null
- * allowMissingParamTags = false
- * allowUnknownTags = false
- * allowedAnnotations = Generated
- * tokens = {INTERFACE_DEF , CLASS_DEF , ENUM_DEF , ANNOTATION_DEF, RECORD_DEF}
- */
 
 /**
  * Testing author and version tag patterns

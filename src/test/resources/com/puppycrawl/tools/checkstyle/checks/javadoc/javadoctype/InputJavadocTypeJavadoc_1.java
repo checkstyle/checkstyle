@@ -1,14 +1,18 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+JavadocType
+scope = (default)private
+excludeScope = (default)null
+authorFormat = ABC
+versionFormat = (default)null
+allowMissingParamTags = (default)false
+allowUnknownTags = (default)false
+allowedAnnotations = (default)Generated
+tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+
+
+*/
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
-
-/* Config:
- *
- * authorFormat = "ABC"
- */
 
 /**
  * Testing author and version tag patterns

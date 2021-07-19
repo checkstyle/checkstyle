@@ -1,13 +1,18 @@
+/*
+JavadocStyle
+scope = public
+excludeScope = (default)null
+checkFirstSentence = (default)true
+endOfSentenceFormat = (default)([.?!][ \t\n\r\f<])|([.?!]$)
+checkEmptyJavadoc = (default)false
+checkHtml = false
+tokens = METHOD_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
-/*
- * Config:
- * scope = public
- * checkFirstSentence = true
- * checkEmptyJavadoc = false
- * checkHtml = false
- * tokens = METHOD_DEF
- */
 public class InputJavadocStyle10 // ok
 {
    // This is OK. We don't flag missing javadoc.  That's left for other checks.

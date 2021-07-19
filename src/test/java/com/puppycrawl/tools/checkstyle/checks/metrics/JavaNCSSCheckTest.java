@@ -49,9 +49,9 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
     public void test() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavaNCSSCheck.class);
 
-        checkConfig.addAttribute("methodMaximum", "0");
-        checkConfig.addAttribute("classMaximum", "1");
-        checkConfig.addAttribute("fileMaximum", "2");
+        checkConfig.addProperty("methodMaximum", "0");
+        checkConfig.addProperty("classMaximum", "1");
+        checkConfig.addProperty("fileMaximum", "2");
 
         final String[] expected = {
             "2:1: " + getCheckMessage(MSG_FILE, 39, 2),
@@ -76,9 +76,9 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
     public void testEqualToMax() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavaNCSSCheck.class);
 
-        checkConfig.addAttribute("methodMaximum", "12");
-        checkConfig.addAttribute("classMaximum", "22");
-        checkConfig.addAttribute("fileMaximum", "39");
+        checkConfig.addProperty("methodMaximum", "12");
+        checkConfig.addProperty("classMaximum", "22");
+        checkConfig.addProperty("fileMaximum", "39");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -98,10 +98,10 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
     public void testRecordsAndCompactCtors() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavaNCSSCheck.class);
 
-        checkConfig.addAttribute("methodMaximum", "7");
-        checkConfig.addAttribute("classMaximum", "3");
-        checkConfig.addAttribute("fileMaximum", "2");
-        checkConfig.addAttribute("recordMaximum", "4");
+        checkConfig.addProperty("methodMaximum", "7");
+        checkConfig.addProperty("classMaximum", "3");
+        checkConfig.addProperty("fileMaximum", "2");
+        checkConfig.addProperty("recordMaximum", "4");
 
         final String[] expected = {
             "2:1: " + getCheckMessage(MSG_FILE, 89, 2),

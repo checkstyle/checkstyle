@@ -116,7 +116,7 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
         else {
             result = configs.stream().filter(conf -> {
                 try {
-                    return conf.getAttribute("id").equals(moduleId);
+                    return conf.getProperty("id").equals(moduleId);
                 }
                 catch (CheckstyleException ex) {
                     throw new IllegalStateException("problem to get ID attribute from " + conf, ex);
