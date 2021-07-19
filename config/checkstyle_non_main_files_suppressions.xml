@@ -17,6 +17,8 @@
              files="[\\/]test[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfSinglelineComments\.java"/>
   <suppress checks="NewlineAtEndOfFile"
              files="src[\\/]test[\\/]resources[\\/].*[\\/]InputNoCodeInFile6\.java"/>
+  <suppress checks="NewlineAtEndOfFile"
+             files="src[\\/]test[\\/]resources[\\/].*[\\/]InputAntlr4AstRegressionCassandraInputWithComments\.java"/>
 
   <!-- Grammar specific input file, should have exact structure to reproduce the case. -->
   <suppress checks="NewlineAtEndOfFile"

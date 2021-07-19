@@ -22,8 +22,6 @@ package com.puppycrawl.tools.checkstyle.gui;
 import java.util.HashMap;
 import java.util.Map;
 
-import antlr.ASTFactory;
-import antlr.collections.AST;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -78,7 +76,7 @@ public class ParseTreeTablePresentation {
      * @param parseTree DetailAST parse tree.
      */
     protected final void setParseTree(DetailAST parseTree) {
-        ((AST) root).setFirstChild((AST) parseTree);
+        ((DetailAstImpl) root).setFirstChild(parseTree);
     }
 
     /**
@@ -193,7 +191,7 @@ public class ParseTreeTablePresentation {
         }
         else {
             if (parseMode == ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS
-                    && ((AST) parent).getType() == TokenTypes.COMMENT_CONTENT
+                    && ((DetailAST) parent).getType() == TokenTypes.COMMENT_CONTENT
                     && JavadocUtil.isJavadocComment(((DetailAST) parent).getParent())) {
                 // getChildCount return 0 on COMMENT_CONTENT,
                 // but we need to attach javadoc tree, that is separate tree
@@ -266,9 +264,10 @@ public class ParseTreeTablePresentation {
      * @return artificial tree root.
      */
     private static DetailAST createArtificialTreeRoot() {
-        final ASTFactory factory = new ASTFactory();
-        factory.setASTNodeClass(DetailAstImpl.class.getName());
-        return (DetailAST) factory.create(TokenTypes.EOF, "ROOT");
+        final DetailAstImpl root = new DetailAstImpl();
+        root.setType(TokenTypes.EOF);
+        root.setText("ROOT");
+        return root;
     }
 
     /**
