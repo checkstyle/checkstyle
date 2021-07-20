@@ -1,6 +1,12 @@
+/*
+OneTopLevelClass
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.onetoplevelclass;
 
-public class InputOneTopLevelClass
+public class InputOneTopLevelClass // ok
 {
     static final int FOO2 = 3;
 

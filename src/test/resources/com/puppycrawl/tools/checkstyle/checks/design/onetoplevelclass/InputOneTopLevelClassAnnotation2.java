@@ -1,3 +1,9 @@
+/*
+OneTopLevelClass
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.onetoplevelclass;
 
 import javax.annotation.CheckForNull;
