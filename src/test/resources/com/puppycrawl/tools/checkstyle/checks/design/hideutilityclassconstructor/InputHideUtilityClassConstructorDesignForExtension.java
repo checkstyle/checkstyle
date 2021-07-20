@@ -1,14 +1,16 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+HideUtilityClassConstructor
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructor;
 
 /**
  * Test case for the "design for inheritance" check.
  * @author Lars Kühne
  **/
-public abstract class InputHideUtilityClassConstructorDesignForExtension
+public abstract class InputHideUtilityClassConstructorDesignForExtension // ok
 {
     // some methods that are OK
 
