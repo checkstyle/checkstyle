@@ -384,14 +384,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorSerializable.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]innertypelast[\\/]InputInnerTypeLastClass.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]innertypelast[\\/]InputInnerTypeLastClassRootClass2.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]innertypelast[\\/]InputInnerTypeLastClassRootClass.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="design[\\/]mutableexception[\\/]InputMutableExceptionClassExtendsGenericClass.java"/>
@@ -2184,14 +2176,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorSerializable.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]innertypelast[\\/]InputInnerTypeLastClass.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]innertypelast[\\/]InputInnerTypeLastClassRootClass2.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]innertypelast[\\/]InputInnerTypeLastClassRootClass.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="design[\\/]mutableexception[\\/]InputMutableExceptionClassExtendsGenericClass.java"/>

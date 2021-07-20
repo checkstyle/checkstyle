@@ -1,3 +1,9 @@
+/*
+InnerTypeLast
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.innertypelast;
 
 public class InputInnerTypeLastClass {
@@ -41,7 +47,7 @@ public class InputInnerTypeLastClass {
 		}
 	}
 
-	void methodTest2() { //violation
+	void methodTest2() { // violation
 		System.identityHashCode("test2");
 	}
 }
@@ -62,11 +68,11 @@ class Temp2 {
 		}
 	}
 
-	void methodTest2() { //violation
+	void methodTest2() { // violation
 		System.identityHashCode("test2");
 	}
 
-	private int i = 0; //violation
+	private int i = 0; // violation
 }
 
 class Temp3 {

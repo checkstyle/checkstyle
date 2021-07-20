@@ -1,7 +1,11 @@
+/*
+InnerTypeLast
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.innertypelast;
 
-/* Config: default
- */
 public class InputInnerTypeLastArray {
     static class P {}
     int[] x; // violation
