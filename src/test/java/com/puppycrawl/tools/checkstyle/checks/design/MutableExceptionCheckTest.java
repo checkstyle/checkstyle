@@ -58,9 +58,9 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(MutableExceptionCheck.class);
 
         final String[] expected = {
-            "6:9: " + getCheckMessage(MSG_KEY, "errorCode"),
-            "23:9: " + getCheckMessage(MSG_KEY, "errorCode"),
-            "46:9: " + getCheckMessage(MSG_KEY, "errorCode"),
+            "14:9: " + getCheckMessage(MSG_KEY, "errorCode"),
+            "31:9: " + getCheckMessage(MSG_KEY, "errorCode"),
+            "54:9: " + getCheckMessage(MSG_KEY, "errorCode"),
         };
 
         verify(checkConfig, getPath("InputMutableException.java"), expected);
@@ -69,16 +69,16 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMultipleInputs() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MutableExceptionCheck.class);
-        final String filePath1 = getPath("InputMutableException.java");
+        final String filePath1 = getPath("InputMutableException2.java");
         final String filePath2 = getPath("InputMutableExceptionMultipleInputs.java");
 
         final List<String> expected1 = Arrays.asList(
-            "6:9: " + getCheckMessage(MSG_KEY, "errorCode"),
-            "23:9: " + getCheckMessage(MSG_KEY, "errorCode"),
-            "46:9: " + getCheckMessage(MSG_KEY, "errorCode"));
+            "14:9: " + getCheckMessage(MSG_KEY, "errorCode"),
+            "31:9: " + getCheckMessage(MSG_KEY, "errorCode"),
+            "54:9: " + getCheckMessage(MSG_KEY, "errorCode"));
         final List<String> expected2 = Arrays.asList(
-            "6:9: " + getCheckMessage(MSG_KEY, "errorCode"),
-            "10:9: " + getCheckMessage(MSG_KEY, "errorCode"));
+            "14:9: " + getCheckMessage(MSG_KEY, "errorCode"),
+            "18:9: " + getCheckMessage(MSG_KEY, "errorCode"));
 
         final File[] inputs = {new File(filePath1), new File(filePath2)};
 
@@ -92,10 +92,10 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("format", "^.*Failure$");
         checkConfig.addProperty("extendedClassNameFormat", "^.*ThreadDeath$");
         final String[] expected = {
-            "34:13: " + getCheckMessage(MSG_KEY, "errorCode"),
+            "42:13: " + getCheckMessage(MSG_KEY, "errorCode"),
         };
 
-        verify(checkConfig, getPath("InputMutableException.java"), expected);
+        verify(checkConfig, getPath("InputMutableException3.java"), expected);
     }
 
     @Test
