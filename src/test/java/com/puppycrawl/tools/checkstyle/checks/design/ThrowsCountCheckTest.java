@@ -44,10 +44,10 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(ThrowsCountCheck.class);
 
         final String[] expected = {
-            "17:20: " + getCheckMessage(MSG_KEY, 5, 4),
-            "22:20: " + getCheckMessage(MSG_KEY, 5, 4),
-            "27:20: " + getCheckMessage(MSG_KEY, 6, 4),
-            "55:43: " + getCheckMessage(MSG_KEY, 5, 4),
+            "25:20: " + getCheckMessage(MSG_KEY, 5, 4),
+            "30:20: " + getCheckMessage(MSG_KEY, 5, 4),
+            "35:20: " + getCheckMessage(MSG_KEY, 6, 4),
+            "63:43: " + getCheckMessage(MSG_KEY, 5, 4),
         };
 
         verify(checkConfig, getPath("InputThrowsCount.java"), expected);
@@ -59,10 +59,10 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("max", "5");
 
         final String[] expected = {
-            "27:20: " + getCheckMessage(MSG_KEY, 6, 5),
+            "35:20: " + getCheckMessage(MSG_KEY, 6, 5),
         };
 
-        verify(checkConfig, getPath("InputThrowsCount.java"), expected);
+        verify(checkConfig, getPath("InputThrowsCount2.java"), expected);
     }
 
     @Test
@@ -99,20 +99,20 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(ThrowsCountCheck.class);
         checkConfig.addProperty("ignorePrivateMethods", "false");
         final String[] expected = {
-            "17:20: " + getCheckMessage(MSG_KEY, 5, 4),
-            "22:20: " + getCheckMessage(MSG_KEY, 5, 4),
-            "27:20: " + getCheckMessage(MSG_KEY, 6, 4),
-            "35:28: " + getCheckMessage(MSG_KEY, 5, 4),
-            "55:43: " + getCheckMessage(MSG_KEY, 5, 4),
+            "25:20: " + getCheckMessage(MSG_KEY, 5, 4),
+            "30:20: " + getCheckMessage(MSG_KEY, 5, 4),
+            "35:20: " + getCheckMessage(MSG_KEY, 6, 4),
+            "43:28: " + getCheckMessage(MSG_KEY, 5, 4),
+            "63:43: " + getCheckMessage(MSG_KEY, 5, 4),
         };
-        verify(checkConfig, getPath("InputThrowsCount.java"), expected);
+        verify(checkConfig, getPath("InputThrowsCount3.java"), expected);
     }
 
     @Test
     public void testMethodWithAnnotation() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ThrowsCountCheck.class);
         final String[] expected = {
-            "18:26: " + getCheckMessage(MSG_KEY, 5, 4),
+            "26:26: " + getCheckMessage(MSG_KEY, 5, 4),
         };
         verify(checkConfig, getPath("InputThrowsCountMethodWithAnnotation.java"), expected);
     }

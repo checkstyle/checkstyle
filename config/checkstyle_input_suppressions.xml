@@ -438,11 +438,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassSameLine.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]throwscount[\\/]InputThrowsCount.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]throwscount[\\/]InputThrowsCountMethodWithAnnotation.java"/>
 
 
   <suppress id="ConfigCommentOnTopInputs"
@@ -2238,11 +2233,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassSameLine.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]throwscount[\\/]InputThrowsCount.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]throwscount[\\/]InputThrowsCountMethodWithAnnotation.java"/>
 
 
   <suppress id="StyleValidationCommentInInputs"
