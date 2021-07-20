@@ -1980,13 +1980,13 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("arrayInitIndent", "4");
         checkConfig.addProperty("basicOffset", "4");
         checkConfig.addProperty("braceAdjustment", "0");
-        checkConfig.addProperty("caseIndent", "0");
+        checkConfig.addProperty("caseIndent", "4");
         checkConfig.addProperty("forceStrictCondition", "false");
         checkConfig.addProperty("lineWrappingIndentation", "4");
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("throwsIndent", "4");
         final String[] expected = {
-            "27:11: " + getCheckMessage(MSG_CHILD_ERROR, "case", 10, 8),
+            "27:15: " + getCheckMessage(MSG_CHILD_ERROR, "case", 14, 12),
         };
         verifyWarns(checkConfig, getPath("InputIndentationCaseLevel.java"), expected);
     }
@@ -2721,7 +2721,11 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     public void testIndentationSwitchExpressionCorrect() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        checkConfig.addProperty("lineWrappingIndentation", "6");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        final String[] expected = {
+            "67:21: " + getCheckMessage(MSG_ERROR, ".", 20, 14),
+        };
         verifyWarns(checkConfig,
             getNonCompilablePath("InputIndentationCheckSwitchExpressionCorrect.java"),
             expected);
