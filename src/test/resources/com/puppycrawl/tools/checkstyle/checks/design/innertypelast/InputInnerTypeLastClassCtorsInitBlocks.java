@@ -1,6 +1,11 @@
+/*
+InnerTypeLast
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.innertypelast;
 
-/* Config: default */
 public class InputInnerTypeLastClassCtorsInitBlocks {
     public class Inner { // violation
     }
