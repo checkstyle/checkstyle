@@ -59,7 +59,7 @@ public class InputIndentationCheckSwitchExpressionCorrect {                     
         return (a, b) -> 0;                                                         //indent:8 exp:8
     }                                                                               //indent:4 exp:4
                                                                                   //indent:82 exp:82
-    MathOperation2 tooManyParens2(int k) {                                          //indent:4 exp:4
+    MathOperation2 switchExpression(int k) {                                        //indent:4 exp:4
         int result = switch (k) {                                                   //indent:8 exp:8
             case 1 -> 1;                                                          //indent:12 exp:12
             case (2) -> 2;                                                        //indent:12 exp:12
