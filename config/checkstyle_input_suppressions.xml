@@ -403,11 +403,6 @@
             files="design[\\/]mutableexception[\\/]InputMutableExceptionMultipleInputs.java"/>
 
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]throwscount[\\/]InputThrowsCount.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]throwscount[\\/]InputThrowsCountMethodWithAnnotation.java"/>
 
 
   <suppress id="ConfigCommentOnTopInputs"
@@ -2168,11 +2163,6 @@
             files="design[\\/]mutableexception[\\/]InputMutableExceptionMultipleInputs.java"/>
 
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]throwscount[\\/]InputThrowsCount.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]throwscount[\\/]InputThrowsCountMethodWithAnnotation.java"/>
 
 
   <suppress id="StyleValidationCommentInInputs"

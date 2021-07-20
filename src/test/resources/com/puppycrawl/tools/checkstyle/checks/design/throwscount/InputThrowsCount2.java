@@ -1,6 +1,6 @@
 /*
 ThrowsCount
-max = (default)4
+max = 5
 ignorePrivateMethods = (default)true
 
 
@@ -13,22 +13,22 @@ import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 
-public class InputThrowsCount {
+public class InputThrowsCount2 {
     void method1() throws Exception
     {
     }
 
-    void method2() throws java.awt.AWTException
+    void method2() throws AWTException
     {
     }
 
-    void method3() throws Exception, AWTException, SQLException, // violation
+    void method3() throws Exception, AWTException, SQLException,
             FileNotFoundException, EOFException
     {
     }
 
-    void method4() throws Exception, java.awt.AWTException, java.sql.SQLException, // violation
-            java.io.FileNotFoundException, java.io.EOFException
+    void method4() throws Exception, AWTException, SQLException,
+            FileNotFoundException, EOFException
     {
     }
 
@@ -45,14 +45,14 @@ public class InputThrowsCount {
     }
 }
 
-class SubClass extends InputThrowsCount {
+class SubClass2 extends InputThrowsCount2 {
     @Override
     void method1() {
     }
 
     @Deprecated
     @Override
-    void method4() throws Exception, java.awt.AWTException {
+    void method4() throws Exception, AWTException {
     }
 
     @Override
@@ -60,11 +60,11 @@ class SubClass extends InputThrowsCount {
     }
 
     @SuppressWarnings("deprecation")
-    final void method2(Object ...objects) throws Exception, // violation
-            AWTException, SQLException, FileNotFoundException, EOFException{
+    final void method2(Object ...objects) throws Exception, AWTException, SQLException,
+            FileNotFoundException, EOFException{
     }
 
-    @java.lang.Override
+    @Override
     void method3() throws Exception {
     }
 }

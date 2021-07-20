@@ -1,3 +1,11 @@
+/*
+ThrowsCount
+max = (default)4
+ignorePrivateMethods = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.throwscount;
 
 import java.awt.AWTException;
@@ -15,6 +23,6 @@ public class InputThrowsCountMethodWithAnnotation extends ParentClass {
 }
 
 class ParentClass {
-    public void method() throws AWTException, SQLException,
+    public void method() throws AWTException, SQLException, // violation
     FileNotFoundException, EOFException, FileAlreadyExistsException {}
 }
