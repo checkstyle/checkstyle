@@ -1,6 +1,12 @@
+/*
+HideUtilityClassConstructor
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructor;
 
-public class InputHideUtilityClassConstructor {
+public class InputHideUtilityClassConstructor { // ok
 
     private static int field;
 

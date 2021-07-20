@@ -51,7 +51,7 @@ public class HideUtilityClassConstructorCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = {
-            "3:1: " + getCheckMessage(MSG_KEY),
+            "9:1: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputHideUtilityClassConstructorInnerStaticClasses.java"),
                 expected);
@@ -62,7 +62,7 @@ public class HideUtilityClassConstructorCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = {
-            "3:1: " + getCheckMessage(MSG_KEY),
+            "9:1: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputHideUtilityClassConstructorPublic.java"), expected);
     }

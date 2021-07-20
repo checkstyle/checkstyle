@@ -351,38 +351,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="design[\\/]finalclass[\\/]InputFinalClass.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorAbstract.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorAbstractSerializable.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorDesignForExtension.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorInnerStaticClasses.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructor.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorNonUtilityClass.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorPrivate.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorPublic.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorRegression.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorSerializableInnerStatic.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorSerializable.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="design[\\/]innertypelast[\\/]InputInnerTypeLastClass.java"/>
@@ -2151,38 +2119,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="design[\\/]finalclass[\\/]InputFinalClass.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorAbstract.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorAbstractSerializable.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorDesignForExtension.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorInnerStaticClasses.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructor.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorNonUtilityClass.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorPrivate.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorPublic.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorRegression.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorSerializableInnerStatic.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]hideutilityclassconstructor[\\/]InputHideUtilityClassConstructorSerializable.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="design[\\/]innertypelast[\\/]InputInnerTypeLastClass.java"/>
