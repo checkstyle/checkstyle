@@ -95,7 +95,7 @@ public class MatchXpathCheckTest
     public void testCheckWithSingleLineCommentsStartsWithSpace() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MatchXpathCheck.class);
-        checkConfig.addAttribute("query", "//SINGLE_LINE_COMMENT"
+        checkConfig.addProperty("query", "//SINGLE_LINE_COMMENT"
                 + "[./COMMENT_CONTENT[not(starts-with(@text, ' '))]]");
         final String[] expected = {
             "13:25: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
@@ -108,7 +108,7 @@ public class MatchXpathCheckTest
     public void testCheckWithBlockComments() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MatchXpathCheck.class);
-        checkConfig.addAttribute("query", "//BLOCK_COMMENT_BEGIN"
+        checkConfig.addProperty("query", "//BLOCK_COMMENT_BEGIN"
                 + "[./COMMENT_CONTENT[contains(@text, '{') "
                 + "and not(starts-with(@text, '\\nMatchXpath'))]]");
         final String[] expected = {
@@ -122,7 +122,7 @@ public class MatchXpathCheckTest
     public void testCheckWithMultilineComments() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MatchXpathCheck.class);
-        checkConfig.addAttribute("query", "//BLOCK_COMMENT_BEGIN"
+        checkConfig.addProperty("query", "//BLOCK_COMMENT_BEGIN"
                 + "[./COMMENT_CONTENT[contains(@text, '\\n    Forbidden comment\\n') "
                 + "and not(starts-with(@text, '\\nMatchXpath'))]]");
         final String[] expected = {
