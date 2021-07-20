@@ -301,7 +301,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 break;
             case TokenTypes.IDENT:
                 final int parentType = ast.getParent().getType();
-                if (isAssignOperator(parentType) && isFirstChild(ast)) {
+                if (isTypeCastWithAssign(ast)
+                        || isAssignOperator(parentType) && isFirstChild(ast)) {
                     final Optional<FinalVariableCandidate> candidate = getFinalCandidate(ast);
                     if (candidate.isPresent()) {
                         determineAssignmentConditions(ast, candidate.get());
@@ -714,6 +715,19 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             loop2 = loop2.getParent();
         }
         return loop2 != null;
+    }
+
+    /**
+     * Checks whether the given 'IDENT' ast is part of a typecasted
+     * assignment expression, i.e. '(int) myDouble++;'.
+     *
+     * @param ast the ast to check
+     * @return true if ast is part of a typecasted assignment
+     */
+    private static boolean isTypeCastWithAssign(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        return parent.getType() == TokenTypes.TYPECAST
+                && isAssignOperator(parent.getParent().getType());
     }
 
     /**
