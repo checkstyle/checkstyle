@@ -402,41 +402,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="design[\\/]mutableexception[\\/]InputMutableExceptionMultipleInputs.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassAnnotation2.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassAnnotation.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassClone.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassDeclarationOrder.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassEnum2.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassEnum.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassIndentation.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassInterface2.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassInterface.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClass.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassNoPublic.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassSameLine.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="design[\\/]throwscount[\\/]InputThrowsCount.java"/>
@@ -2202,41 +2167,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="design[\\/]mutableexception[\\/]InputMutableExceptionMultipleInputs.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassAnnotation2.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassAnnotation.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassClone.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassDeclarationOrder.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassEnum2.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassEnum.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassIndentation.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassInterface2.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassInterface.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClass.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassNoPublic.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassSameLine.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="design[\\/]throwscount[\\/]InputThrowsCount.java"/>

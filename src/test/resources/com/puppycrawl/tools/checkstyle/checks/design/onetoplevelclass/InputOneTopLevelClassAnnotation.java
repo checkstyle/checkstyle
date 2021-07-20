@@ -1,5 +1,11 @@
+/*
+OneTopLevelClass
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.onetoplevelclass;
 
-@interface InputOneTopLevelClassAnnotation {
+@interface InputOneTopLevelClassAnnotation { // ok
    String author();
 }
