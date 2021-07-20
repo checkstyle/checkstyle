@@ -1,6 +1,12 @@
+/*
+InnerTypeLast
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.innertypelast;
 
-public class InputInnerTypeLastClassRootClass2
+public class InputInnerTypeLastClassRootClass2 // ok
 {
     private int mFoo = 0;
 }

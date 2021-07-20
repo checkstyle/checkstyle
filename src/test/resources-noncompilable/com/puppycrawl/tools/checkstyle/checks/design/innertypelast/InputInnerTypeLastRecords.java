@@ -1,10 +1,12 @@
+/*
+InnerTypeLast
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.design.innertypelast;
 
-/* Config:
- *
- * default
- */
 public class InputInnerTypeLastRecords {
     record Test() {
         private static String s; // ok
