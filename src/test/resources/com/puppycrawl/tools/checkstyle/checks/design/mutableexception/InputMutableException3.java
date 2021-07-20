@@ -1,17 +1,17 @@
 /*
 MutableException
-format = (default)^.*Exception$|^.*Error$|^.*Throwable$
-extendedClassNameFormat = (default)^.*Exception$|^.*Error$|^.*Throwable$
+format = ^.*Failure$
+extendedClassNameFormat = ^.*ThreadDeath$
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.design.mutableexception;
 
-public class InputMutableException {
+public class InputMutableException3 {
     public class FooException extends Exception {
         private final int finalErrorCode;
-        private int errorCode = 1; // violation
+        private int errorCode = 1;
 
         public FooException() {
             finalErrorCode = 1;
@@ -28,7 +28,7 @@ public class InputMutableException {
     }
 
     public class BarError extends Throwable {
-        private int errorCode; // violation
+        private int errorCode;
     }
 
     public class BazDoesNotExtendError {
@@ -39,7 +39,7 @@ public class InputMutableException {
         private int errorCode;
 
         public class CustomFailure extends ThreadDeath {
-            private int errorCode;
+            private int errorCode; // violation
             public void someMethod() {
                 if(true) {
                     final int i = 0;
@@ -48,13 +48,13 @@ public class InputMutableException {
         }
     }
 
-    class CustomException extends java.lang.Exception {}
+    class CustomException extends Exception {}
 
-    class CustomMutableException extends java.lang.Exception {
-        int errorCode; // violation
+    class CustomMutableException extends Exception {
+        int errorCode;
     }
 
-    class ExampleException extends java.lang.Exception {
+    class ExampleException extends Exception {
         public void test() {
             Throwable cause = super.getCause();
             if (!(cause instanceof java.io.IOException))
