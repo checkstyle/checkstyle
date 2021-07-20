@@ -1,3 +1,9 @@
+/*
+HideUtilityClassConstructor
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructor;
 
 /**
@@ -5,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructo
  *
  * @author lkuehne
  */
-public class InputHideUtilityClassConstructorRegression
+public class InputHideUtilityClassConstructorRegression // ok
 {
     public long constructionTime = System.currentTimeMillis();
 

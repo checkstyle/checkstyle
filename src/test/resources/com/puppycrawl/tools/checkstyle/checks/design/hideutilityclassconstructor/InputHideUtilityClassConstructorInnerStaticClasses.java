@@ -1,6 +1,12 @@
+/*
+HideUtilityClassConstructor
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructor;
 
-public class InputHideUtilityClassConstructorInnerStaticClasses {
+public class InputHideUtilityClassConstructorInnerStaticClasses { // violation
     private static int value = 0;
     public static void foo (int val) { value = val;}
 
