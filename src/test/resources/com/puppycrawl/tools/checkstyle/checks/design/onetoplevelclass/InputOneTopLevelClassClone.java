@@ -1,3 +1,9 @@
+/*
+OneTopLevelClass
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.onetoplevelclass;
 public class InputOneTopLevelClassClone
 {/* class body */
@@ -22,29 +28,29 @@ public class InputOneTopLevelClassClone
     }
 }
 
-class NoSuperClone
+class NoSuperClone // violation
 {
 }
 
-class InnerClone
+class InnerClone // violation
 {
 }
 
-class CloneWithTypeArguments<T> extends CloneWithTypeArgumentsAndNoSuper<T>
+class CloneWithTypeArguments<T> extends CloneWithTypeArgumentsAndNoSuper<T> // violation
 {
 }
 
-class CloneWithTypeArgumentsAndNoSuper<T>
+class CloneWithTypeArgumentsAndNoSuper<T> // violation
 {
 }
 
-class MyClassWithGenericSuperMethod
+class MyClassWithGenericSuperMethod // violation
 {
 }
 
-class AnotherClass {
+class AnotherClass { // violation
 }
 
-class NativeTest {
+class NativeTest { // violation
     public native Object clone();
 }

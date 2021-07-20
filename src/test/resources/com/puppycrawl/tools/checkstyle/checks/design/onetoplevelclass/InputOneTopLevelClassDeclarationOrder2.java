@@ -6,14 +6,14 @@ OneTopLevelClass
 
 package com.puppycrawl.tools.checkstyle.checks.design.onetoplevelclass;
 
-public class InputOneTopLevelClassDeclarationOrder
+public class InputOneTopLevelClassDeclarationOrder2
 {
     private class InnerClass
     {
     }
 }
 
-enum InputDeclarationOrderEnum // violation
+enum InputDeclarationOrderEnum2 // violation
 {
     ENUM_VALUE_1;
 
@@ -23,7 +23,7 @@ enum InputDeclarationOrderEnum // violation
     }
 }
 
-@interface InputDeclarationOrderAnnotation // violation
+@interface InputDeclarationOrderAnnotation2 // violation
 {
 
 }
