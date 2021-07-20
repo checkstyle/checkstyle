@@ -8,8 +8,8 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;         
  * caseIndent = 4                                                                   //indent:1 exp:1
  * throwsIndent = 4                                                                 //indent:1 exp:1
  * arrayInitIndent = 4                                                              //indent:1 exp:1
- * lineWrappingIndentation = 4                                                      //indent:1 exp:1
- * forceStrictCondition = false                                                     //indent:1 exp:1
+ * lineWrappingIndentation = 6                                                      //indent:1 exp:1
+ * forceStrictCondition = true                                                      //indent:1 exp:1
  */                                                                                 //indent:1 exp:1
 public class InputIndentationCheckSwitchExpressionCorrect {                         //indent:0 exp:0
     MathOperation2 tooManyParens(int k) {                                           //indent:4 exp:4
@@ -56,6 +56,17 @@ public class InputIndentationCheckSwitchExpressionCorrect {                     
                 };                                                                //indent:16 exp:16
             }                                                                     //indent:12 exp:12
         }                                                                           //indent:8 exp:8
+        return (a, b) -> 0;                                                         //indent:8 exp:8
+    }                                                                               //indent:4 exp:4
+                                                                                  //indent:82 exp:82
+    MathOperation2 tooManyParens2(int k) {                                          //indent:4 exp:4
+        int result = switch (k) {                                                   //indent:8 exp:8
+            case 1 -> 1;                                                          //indent:12 exp:12
+            case (2) -> 2;                                                        //indent:12 exp:12
+            case 3 -> "three"                                                     //indent:12 exp:12
+                    .length();                                               //indent:20 exp:14 warn
+            default -> -1;                                                        //indent:12 exp:12
+        };                                                                          //indent:8 exp:8
         return (a, b) -> 0;                                                         //indent:8 exp:8
     }                                                                               //indent:4 exp:4
                                                                                   //indent:82 exp:82
