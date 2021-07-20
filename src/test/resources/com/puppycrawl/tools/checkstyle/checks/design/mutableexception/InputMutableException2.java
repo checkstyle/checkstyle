@@ -8,7 +8,7 @@ extendedClassNameFormat = (default)^.*Exception$|^.*Error$|^.*Throwable$
 
 package com.puppycrawl.tools.checkstyle.checks.design.mutableexception;
 
-public class InputMutableException {
+public class InputMutableException2 {
     public class FooException extends Exception {
         private final int finalErrorCode;
         private int errorCode = 1; // violation
@@ -48,13 +48,13 @@ public class InputMutableException {
         }
     }
 
-    class CustomException extends java.lang.Exception {}
+    class CustomException extends Exception {}
 
-    class CustomMutableException extends java.lang.Exception {
+    class CustomMutableException extends Exception {
         int errorCode; // violation
     }
 
-    class ExampleException extends java.lang.Exception {
+    class ExampleException extends Exception {
         public void test() {
             Throwable cause = super.getCause();
             if (!(cause instanceof java.io.IOException))
