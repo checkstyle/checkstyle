@@ -1,7 +1,11 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+DesignForExtension
+ignoredAnnotations = (default)After, AfterClass, Before, BeforeClass, Test
+requiredJavadocPhrase = (default).*
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
 /**
@@ -43,7 +47,7 @@ public abstract class InputDesignForExtension
 
     // this one is bad: neither abstract, final, or empty
 
-    protected void doh()
+    protected void doh() // violation
     {
         System.identityHashCode("nonempty and overriding possible");
     }
@@ -97,7 +101,7 @@ public abstract class InputDesignForExtension
     {
     //nonPrivate ctor
     public anotherNonFinalClass(){}
-        public void someMethod()
+        public void someMethod() // violation
         {
         System.identityHashCode("nonempty and overriding is possible");
         }
