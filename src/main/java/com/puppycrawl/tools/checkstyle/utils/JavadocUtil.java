@@ -59,7 +59,7 @@ public final class JavadocUtil {
     /** Maps from a token name to value. */
     private static final Map<String, Integer> TOKEN_NAME_TO_VALUE;
     /** Maps from a token value to name. */
-    private static final String[] TOKEN_VALUE_TO_NAME;
+    private static final Map<Integer, String> TOKEN_VALUE_TO_NAME;
 
     /** Exception message for unknown JavaDoc token id. */
     private static final String UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE = "Unknown javadoc"
@@ -77,7 +77,7 @@ public final class JavadocUtil {
     // initialise the constants
     static {
         TOKEN_NAME_TO_VALUE = TokenUtil.nameToValueMapFromPublicIntFields(JavadocTokenTypes.class);
-        TOKEN_VALUE_TO_NAME = TokenUtil.valueToNameArrayFromNameToValueMap(TOKEN_NAME_TO_VALUE);
+        TOKEN_VALUE_TO_NAME = TokenUtil.invertMap(TOKEN_NAME_TO_VALUE);
     }
 
     /** Prevent instantiation. */
@@ -315,18 +315,9 @@ public final class JavadocUtil {
      * @throws IllegalArgumentException if an unknown token ID was specified.
      */
     public static String getTokenName(int id) {
-        final String name;
-        if (id == JavadocTokenTypes.EOF) {
-            name = "EOF";
-        }
-        else if (id > TOKEN_VALUE_TO_NAME.length - 1) {
+        final String name = TOKEN_VALUE_TO_NAME.get(id);
+        if (name == null) {
             throw new IllegalArgumentException(UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE + id);
-        }
-        else {
-            name = TOKEN_VALUE_TO_NAME[id];
-            if (name == null) {
-                throw new IllegalArgumentException(UNKNOWN_JAVADOC_TOKEN_ID_EXCEPTION_MESSAGE + id);
-            }
         }
         return name;
     }
