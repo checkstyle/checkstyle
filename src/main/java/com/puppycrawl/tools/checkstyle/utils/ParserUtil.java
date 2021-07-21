@@ -22,7 +22,8 @@ package com.puppycrawl.tools.checkstyle.utils;
 import java.util.AbstractMap;
 import java.util.Map;
 
-import antlr.Token;
+import org.antlr.v4.runtime.CommonToken;
+
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -79,20 +80,18 @@ public final class ParserUtil {
      * @param token Token object.
      * @return DetailAST with BLOCK_COMMENT type.
      */
-    public static DetailAST createBlockCommentNode(Token token) {
+    public static DetailAST createBlockCommentNode(CommonToken token) {
         final DetailAstImpl blockComment = new DetailAstImpl();
         blockComment.initialize(TokenTypes.BLOCK_COMMENT_BEGIN, BLOCK_MULTIPLE_COMMENT_BEGIN);
 
-        // column counting begins from 0
-        blockComment.setColumnNo(token.getColumn() - 1);
+        blockComment.setColumnNo(token.getCharPositionInLine());
         blockComment.setLineNo(token.getLine());
 
         final DetailAstImpl blockCommentContent = new DetailAstImpl();
         blockCommentContent.setType(TokenTypes.COMMENT_CONTENT);
 
-        // column counting begins from 0
-        // plus length of '/*'
-        blockCommentContent.setColumnNo(token.getColumn() - 1 + 2);
+        // Add length of '/*'
+        blockCommentContent.setColumnNo(token.getCharPositionInLine() + 2);
         blockCommentContent.setLineNo(token.getLine());
         blockCommentContent.setText(token.getText());
 
@@ -100,7 +99,7 @@ public final class ParserUtil {
         blockCommentClose.initialize(TokenTypes.BLOCK_COMMENT_END, BLOCK_MULTIPLE_COMMENT_END);
 
         final Map.Entry<Integer, Integer> linesColumns = countLinesColumns(
-            token.getText(), token.getLine(), token.getColumn());
+            token.getText(), token.getLine(), token.getCharPositionInLine() + 1);
         blockCommentClose.setLineNo(linesColumns.getKey());
         blockCommentClose.setColumnNo(linesColumns.getValue());
 
