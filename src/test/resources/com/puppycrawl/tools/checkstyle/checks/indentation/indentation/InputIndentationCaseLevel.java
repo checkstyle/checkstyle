@@ -20,12 +20,12 @@ public class InputIndentationCaseLevel { //indent:0 exp:0
     public InputIndentationCaseLevel() { //indent:4 exp:4
         int test = 4; //indent:8 exp:8
         switch (test) { //indent:8 exp:8
-        case 4: //indent:8 exp:8
-            break; //indent:12 exp:12
-        case 2: //indent:8 exp:8
-            break; //indent:12 exp:12
-          default: //indent:10 exp:8 warn
-            break; //indent:12 exp:12
+            case 4: //indent:12 exp:12
+                break; //indent:16 exp:16
+            case 2: //indent:12 exp:12
+                break; //indent:16 exp:16
+              default: //indent:14 exp:12 warn
+                break; //indent:16 exp:16
         } //indent:8 exp:8
 
 
