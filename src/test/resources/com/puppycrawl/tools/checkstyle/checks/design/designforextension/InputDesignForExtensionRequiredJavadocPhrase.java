@@ -1,9 +1,13 @@
+/*
+DesignForExtension
+ignoredAnnotations = (default)After, AfterClass, Before, BeforeClass, Test
+requiredJavadocPhrase = This implementation
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
-/* Config:
- * requiredJavadocPhrase = "This implementation"
- *
- */
 public class InputDesignForExtensionRequiredJavadocPhrase {
 
     /**
