@@ -342,14 +342,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="design[\\/]designforextension[\\/]InputDesignForExtensionsLocalAnnotations.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]finalclass[\\/]InputFinalClassClassWithPrivateCtorWithNestedExtendingClass.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]finalclass[\\/]InputFinalClassClassWithPrivateCtorWithNestedExtendingClassWithoutPackage.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]finalclass[\\/]InputFinalClass.java"/>
 
 
 
@@ -2054,14 +2046,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="design[\\/]designforextension[\\/]InputDesignForExtensionsLocalAnnotations.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]finalclass[\\/]InputFinalClassClassWithPrivateCtorWithNestedExtendingClass.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]finalclass[\\/]InputFinalClassClassWithPrivateCtorWithNestedExtendingClassWithoutPackage.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]finalclass[\\/]InputFinalClass.java"/>
 
 
 
