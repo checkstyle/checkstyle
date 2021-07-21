@@ -320,4 +320,13 @@ public class FinalLocalVariableCheckTest
             expected);
     }
 
+    @Test
+    public void testFinalLocalVariablePostfixWithTypecast() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(FinalLocalVariableCheck.class);
+        final String[] expected = {
+            "19:13: " + getCheckMessage(MSG_KEY, "x"),
+        };
+        verify(checkConfig, getPath("InputFinalLocalVariableCheckPostfixWithTypecast.java"),
+            expected);
+    }
 }
