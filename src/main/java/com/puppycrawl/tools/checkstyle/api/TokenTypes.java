@@ -4901,9 +4901,34 @@ public final class TokenTypes {
      *
      * <p>parses as:</p>
      * <pre>
-     * --ANNOTATION -&gt; ANNOTATION
-     *      |--AT -&gt; @
-     *      `--IDENT -&gt; Override
+     * |--LCURLY -&gt; {
+     * |--METHOD_DEF -&gt; METHOD_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |   |--ANNOTATION -&gt; ANNOTATION
+     * |   |   |   |--AT -&gt; @
+     * |   |   |   `--IDENT -&gt; Override
+     * |   |   `--LITERAL_PUBLIC -&gt; public
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--LITERAL_VOID -&gt; void
+     * |   |--IDENT -&gt; set
+     * |   |--LPAREN -&gt; (
+     * |   |--PARAMETERS -&gt; PARAMETERS
+     * |   |   `--PARAMETER_DEF -&gt; PARAMETER_DEF
+     * |   |       |--MODIFIERS -&gt; MODIFIERS
+     * |   |       |--TYPE -&gt; TYPE
+     * |   |       |   `--LITERAL_INT -&gt; int
+     * |   |       `--IDENT -&gt; n
+     * |   |--RPAREN -&gt; )
+     * |   `--SLIST -&gt; {
+     * |       |--EXPR -&gt; EXPR
+     * |       |   `--ASSIGN -&gt; =
+     * |       |       |--DOT -&gt; .
+     * |       |       |   |--LITERAL_THIS -&gt; this
+     * |       |       |   `--IDENT -&gt; num
+     * |       |       `--IDENT -&gt; n
+     * |       |--SEMI -&gt; ;
+     * |       `--RCURLY -&gt; }
+     * `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
