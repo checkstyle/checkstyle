@@ -77,11 +77,14 @@ public class LineWrappingHandler {
      * @see NewHandler#getIndentImpl()
      * @see BlockParentHandler#curlyIndent()
      * @see ArrayInitHandler#getIndentImpl()
+     * @see CaseHandler#getIndentImpl()
      */
     private static final int[] IGNORED_LIST = {
         TokenTypes.RCURLY,
         TokenTypes.LITERAL_NEW,
         TokenTypes.ARRAY_INIT,
+        TokenTypes.LITERAL_DEFAULT,
+        TokenTypes.LITERAL_CASE,
     };
 
     /**
