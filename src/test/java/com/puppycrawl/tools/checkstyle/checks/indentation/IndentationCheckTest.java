@@ -2728,6 +2728,33 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIndentationSwitchExpressionDeclaration() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "8");
+        final String[] expected = {
+            "22:17: " + getCheckMessage(MSG_CHILD_ERROR, "case", 16, 12),
+            "23:17: " + getCheckMessage(MSG_CHILD_ERROR, "case", 16, 12),
+        };
+        verifyWarns(checkConfig,
+            getNonCompilablePath("InputIndentationCheckSwitchExpressionDeclaration.java"),
+            expected);
+    }
+
+    @Test
+    public void testIndentationSwitchExpressionDeclarationCorrect() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "8");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig,
+            getNonCompilablePath("InputIndentationCheckSwitchExpressionDeclarationCorrect.java"),
+            expected);
+    }
+
+    @Test
     public void testIndentationRecords() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");

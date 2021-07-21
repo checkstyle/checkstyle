@@ -6,7 +6,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent
  * arrayInitIndent = 4                                                        //indent:1 exp:1
  * basicOffset = 4                                                            //indent:1 exp:1
  * braceAdjustment = 0                                                        //indent:1 exp:1
- * caseIndent = 4                                                             //indent:1 exp:1
+ * caseIndent = 0                                                             //indent:1 exp:1
  * forceStrictCondition = false                                               //indent:1 exp:1
  * lineWrappingIndentation = 4                                                //indent:1 exp:1
  * tabWidth = 4                                                               //indent:1 exp:1
