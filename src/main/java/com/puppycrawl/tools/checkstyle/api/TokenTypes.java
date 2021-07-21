@@ -4999,6 +4999,26 @@ public final class TokenTypes {
      * to the interface literal signifying the definition of an annotation
      * declaration.
      *
+     * <p>For example:</p>
+     * <pre>
+     * &#64;Deprecated
+     * private int value;
+     * </pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |  |--ANNOTATION -&gt; ANNOTATION
+     * |  |  |--AT -&gt; &#64;
+     * |  |  `--IDENT -&gt; Deprecated
+     * |  `--LITERAL_PRIVATE -&gt; private
+     * |--TYPE -&gt; TYPE
+     * |  `--LITERAL_INT -&gt; int
+     * |--IDENT -&gt; value
+     * `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      */
