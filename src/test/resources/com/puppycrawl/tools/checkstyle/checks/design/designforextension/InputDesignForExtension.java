@@ -1,7 +1,11 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+DesignForExtension
+ignoredAnnotations = (default)After, AfterClass, Before, BeforeClass, Test
+requiredJavadocPhrase = (default).*
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
 /**
