@@ -201,7 +201,8 @@ no-error-xwiki)
   cd ..
   checkout_from https://github.com/xwiki/xwiki-platform.git
   cd .ci-temp/xwiki-platform
-  git checkout "b31a47e4f84b1981c27fd55716c""eb89f6983af5b"
+  # Split into two parts to trick spellchecker
+  git checkout "f52fa56cc13fdc64dc80c29a96c""d545e023e7121"
   # Validate xwiki-platform
   mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
   cd ..
