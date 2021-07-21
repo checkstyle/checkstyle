@@ -4896,6 +4896,18 @@ public final class TokenTypes {
      * to the interface literal signifying the definition of an annotation
      * declaration.
      *
+     * <p>For example:</p>
+     * <pre> @Override </pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * --MODIFIERS -&gt; MODIFIERS
+     *      |   |   |--ANNOTATION -&gt; ANNOTATION
+     *      |   |   |   |--AT -&gt; @
+     *      |   |   |   `--IDENT -&gt; Override
+     *      |   |   `--LITERAL_PUBLIC -&gt; public
+     * </pre>
+     *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      */
