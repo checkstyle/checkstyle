@@ -34,6 +34,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -468,6 +469,39 @@ public class JavadocStyleCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputJavadocStyleNeverEndingXmlComment.java"), expected);
+    }
+
+    @Test
+    public void testInterfaceMemberScopeIsPublic()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(JavadocStyleCheck.class);
+        checkConfig.addProperty("scope", Scope.PUBLIC.getName());
+        checkConfig.addProperty("checkEmptyJavadoc", "true");
+        final String[] expected = {
+            "20: " + getCheckMessage(MSG_EMPTY),
+            "23: " + getCheckMessage(MSG_EMPTY),
+        };
+
+        verify(checkConfig, getPath("InputJavadocStyleInterfaceMemberScopeIsPublic.java"),
+                expected);
+    }
+
+    @Test
+    public void testEnumCtorScopeIsPrivate()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(JavadocStyleCheck.class);
+        checkConfig.addProperty("scope", Scope.PACKAGE.getName());
+        checkConfig.addProperty("checkEmptyJavadoc", "true");
+        final String[] expected = {
+            "20: " + getCheckMessage(MSG_EMPTY),
+            "23: " + getCheckMessage(MSG_EMPTY),
+            "31: " + getCheckMessage(MSG_EMPTY),
+        };
+
+        verify(checkConfig, getPath("InputJavadocStyleEnumCtorScopeIsPrivate.java"),
+                expected);
     }
 
 }

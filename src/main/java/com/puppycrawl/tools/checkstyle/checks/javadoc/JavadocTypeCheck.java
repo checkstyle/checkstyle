@@ -403,15 +403,7 @@ public class JavadocTypeCheck
      * @return whether we should check a given node.
      */
     private boolean shouldCheck(DetailAST ast) {
-        final Scope customScope;
-
-        if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
-            customScope = Scope.PUBLIC;
-        }
-        else {
-            final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
-            customScope = ScopeUtil.getScopeFromMods(mods);
-        }
+        final Scope customScope = ScopeUtil.getScope(ast);
         final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
 
         return customScope.isIn(scope)
