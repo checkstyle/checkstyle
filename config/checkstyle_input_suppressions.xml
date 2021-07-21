@@ -324,23 +324,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="descendanttoken[\\/]InputDescendantTokenStringLiteralEquality.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]designforextension[\\/]InputDesignForExtensionIgnoredAnnotations.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]designforextension[\\/]InputDesignForExtension.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]designforextension[\\/]InputDesignForExtensionMultipleAnnotations.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]designforextension[\\/]InputDesignForExtensionNativeMethods.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]designforextension[\\/]InputDesignForExtensionOverridableMethods.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]designforextension[\\/]InputDesignForExtensionsLocalAnnotations.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="design[\\/]finalclass[\\/]InputFinalClassClassWithPrivateCtorWithNestedExtendingClass.java"/>
@@ -2036,23 +2019,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="descendanttoken[\\/]InputDescendantTokenStringLiteralEquality.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]designforextension[\\/]InputDesignForExtensionIgnoredAnnotations.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]designforextension[\\/]InputDesignForExtension.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]designforextension[\\/]InputDesignForExtensionMultipleAnnotations.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]designforextension[\\/]InputDesignForExtensionNativeMethods.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]designforextension[\\/]InputDesignForExtensionOverridableMethods.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]designforextension[\\/]InputDesignForExtensionsLocalAnnotations.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="design[\\/]finalclass[\\/]InputFinalClassClassWithPrivateCtorWithNestedExtendingClass.java"/>
