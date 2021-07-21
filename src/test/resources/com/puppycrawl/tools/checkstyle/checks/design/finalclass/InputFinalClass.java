@@ -1,12 +1,14 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2003
-////////////////////////////////////////////////////////////////////////////////
+/*
+FinalClass
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
 
 import java.util.ArrayList;
 
-public class InputFinalClass
+public class InputFinalClass // violation
 {
     private InputFinalClass() {}
 }
@@ -14,7 +16,7 @@ public class InputFinalClass
 final class test2 {}
 class test3
 {
-   class test4
+   class test4 // violation
    {
        private test4() {}
    }
@@ -112,7 +114,7 @@ enum testenum2
 {
     A, B;
 
-    public static class someinnerClass
+    public static class someinnerClass // violation
     {
         private someinnerClass() {}
     }
@@ -146,7 +148,7 @@ class TestAnonymousInnerClasses { // ok
     }
 }
 
-class TestNewKeyword { // violation, class should be declared final.
+class TestNewKeyword { // violation
 
     private TestNewKeyword(String s) {
         String a = "hello" + s;
@@ -179,7 +181,7 @@ abstract class TestPrivateCtorInAbstractClasses { // ok
 class TestAnonymousInnerClassInsideNestedClass { // ok
     private TestAnonymousInnerClassInsideNestedClass() { }
 
-    static class NestedClass { // violation, class should be declared final
+    static class NestedClass { // violation
 
         public final static TestAnonymousInnerClassInsideNestedClass ONE
                 = new TestAnonymousInnerClassInsideNestedClass() {
