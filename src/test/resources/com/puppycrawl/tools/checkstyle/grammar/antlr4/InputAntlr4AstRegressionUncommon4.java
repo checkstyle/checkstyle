@@ -19,10 +19,26 @@ public class InputAntlr4AstRegressionUncommon4 {
     }
 
     int m4 (int z, int q) throws FileNotFoundException {
-        try (java.io.BufferedReader bufferedReader = new BufferedReader(new FileReader("path"))) {
+        try (
+                java
+                        .
+                        io
+                        .
+                        BufferedReader bufferedReader
+                        = new BufferedReader(new FileReader("path"))) {
         } catch (IOException e) {
             e.printStackTrace();
         }
         return 8;
     }
+
+    class CelebrationLunch<I extends Number, L extends Number, D extends Number> {
+        class Section<A extends Number, B extends Number, C extends Number> {
+
+        }
+    }
+
+    private CelebrationLunch<Integer,Long,Double> inner;
+    CelebrationLunch<Integer, Long, Double>
+            .Section<Number, Number, Number> section = inner.new Section<>();
 }
