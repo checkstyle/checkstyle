@@ -25,4 +25,14 @@ public class InputAntlr4AstRegressionUncommon4 {
         }
         return 8;
     }
+
+    class CelebrationLunch<I extends Number, L extends Number, D extends Number> {
+        class Section<A extends Number, B extends Number, C extends Number> {
+
+        }
+    }
+
+    private CelebrationLunch<Integer,Long,Double> inner;
+    CelebrationLunch<Integer, Long, Double>
+            .Section<Number, Number, Number> section = inner.new Section<>();
 }
