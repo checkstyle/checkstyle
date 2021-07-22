@@ -1572,6 +1572,7 @@
             <exclude>**/XdocsPagesTest.class</exclude>
             <!-- Needed for testing deprecated API. -->
             <exclude>**/DefaultConfigurationTest.class</exclude>
+            <!--  -->
           </excludes>
         </configuration>
         <executions>

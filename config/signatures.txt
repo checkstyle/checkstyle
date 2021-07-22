@@ -1,3 +1,4 @@
 com.puppycrawl.tools.checkstyle.DefaultConfiguration#getAttributeNames() @ Usage of deprecated API is forbidden. Please use DefaultConfiguration.getPropertyNames() instead.
 com.puppycrawl.tools.checkstyle.DefaultConfiguration#getAttribute(java.lang.String) @ Usage of deprecated API is forbidden. Please use DefaultConfiguration.getProperty(String name) instead.
 com.puppycrawl.tools.checkstyle.DefaultConfiguration#addAttribute(java.lang.String,java.lang.String) @ Usage of deprecated API is forbidden. Please use DefaultConfiguration.addProperty(String name, String value) instead.
+com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport#verify(com.puppycrawl.tools.checkstyle.api.Configuration, java.lang.String, java.lang.String[]) @ Use inline config parsing instead.
