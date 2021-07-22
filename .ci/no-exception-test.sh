@@ -60,7 +60,7 @@ openjdk14-with-checks-nonjavadoc-error)
   cd .ci-temp/contribution/checkstyle-tester
   cp ../../../.ci/openjdk-projects-to-test-on.config openjdk-projects-to-test-on.config
   sed -i '/  <!-- Filters -->/r ../../../.ci/openjdk14-excluded.files' checks-nonjavadoc-error.xml
-  export MAVEN_OPTS="-Xmx2048m"
+  export MAVEN_OPTS="-Xmx7168m"
   groovy ./diff.groovy --listOfProjects openjdk-projects-to-test-on.config \
       --mode single --allowExcludes \
       --patchConfig checks-nonjavadoc-error.xml \
@@ -83,7 +83,7 @@ no-exception-lucene-and-others-javadoc)
   sed -i'' 's/#protonpack/protonpack/' projects-for-no-exception-javadoc.config
   sed -i'' 's/#jOOL/jOOL/' projects-for-no-exception-javadoc.config
   sed -i'' 's/#lucene-solr/lucene-solr/' projects-for-no-exception-javadoc.config
-  export MAVEN_OPTS="-Xmx2048m"
+  export MAVEN_OPTS="-Xmx3072m"
   groovy ./diff.groovy --listOfProjects projects-for-no-exception-javadoc.config \
       --patchConfig checks-only-javadoc-error.xml \
       --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false \
