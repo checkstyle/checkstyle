@@ -1,6 +1,8 @@
 /*
 AvoidStaticImport
-excludes = (default)
+excludes = java.io.File.listRoots.listRoots, javax.swing.WindowConstants, javax.swing.*, \
+           sun.net.ftpclient.FtpClient.*FtpClient, sun.net.ftpclient.FtpClientjunk, \
+           java.io.File.listRootsmorejunk
 
 
 */
@@ -57,16 +59,16 @@ import com.puppycrawl.tools.checkstyle.DefaultLogger;
  * @author Michael Studman
  * @see Calendar Should avoid unused import for Calendar
  **/
-class InputAvoidStaticImportDefault
+class InputAvoidStaticImportDefault4
 {
     /** ignore **/
     private Class mUse1 = Connection.class;
     /** ignore **/
-    private Class mUse2 = java.io.File.class;
+    private Class mUse2 = File.class;
     /** ignore **/
     private Class mUse3 = Iterator[].class;
     /** ignore **/
-    private Class mUse4 = java.util.Enumeration[].class;
+    private Class mUse4 = Enumeration[].class;
     /** usage of illegal import **/
     private String ftpClient = null;
 
@@ -74,7 +76,7 @@ class InputAvoidStaticImportDefault
     {
         int[] x = {};
         Arrays.sort(x);
-        Object obj = javax.swing.BorderFactory.createEmptyBorder();
+        Object obj = BorderFactory.createEmptyBorder();
         File[] files = listRoots();
     }
 
@@ -85,7 +87,7 @@ class InputAvoidStaticImportDefault
     private Object mUse5 = new Object();
 
     /** usage of inner class in constructor, fully qualified */
-    private Object mUse6 = new javax.swing.JToggleButton.ToggleButtonModel();
+    private Object mUse6 = new JToggleButton.ToggleButtonModel();
 
     /** we use class name as member's name.
      *  also an inline JavaDoc-only import {@link Vector linkText} */
