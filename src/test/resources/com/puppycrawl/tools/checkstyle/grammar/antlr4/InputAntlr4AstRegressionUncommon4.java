@@ -41,4 +41,8 @@ public class InputAntlr4AstRegressionUncommon4 {
     private CelebrationLunch<Integer,Long,Double> inner;
     CelebrationLunch<Integer, Long, Double>
             .Section<Number, Number, Number> section = inner.new Section<>();
+
+    @NonNull String p1 = "hello";
+
 }
+@interface NonNull{}
