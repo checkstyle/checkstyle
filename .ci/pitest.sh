@@ -172,6 +172,27 @@ pitest-utils)
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
+pitest-JavaAstVisitor)
+  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+  "JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        copy.setColumnNo(ast.getColumnNo());</span></pre></td></tr>"
+  "JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        copy.setLineNo(ast.getLineNo());</span></pre></td></tr>"
+  "JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        detailAst.initialize(token);</span></pre></td></tr>"
+  "JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        DetailAstPair.addASTChild(currentAST, visit(ctx.annotations()));</span></pre></td></tr>"
+  "JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        else if (ctx.anno.isEmpty()) {</span></pre></td></tr>"
+  "JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        enumDef.setLineNo(enumDef.getFirstChild().getLineNo());</span></pre></td></tr>"
+  # The two following ignored items are to improve performance on deeply nested expressions, such as
+  # deeply concatenated Strings. Normal AST construction would not fail if this code was removed
+  # under normal circumstances, but for deeply nested expressions, this optimization helps to avoid
+  # out of memory errors. Any test that would kill these mutations would take around 6 minutes or
+  # more to parse.
+  "JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        if (binOpList.isEmpty()) {</span></pre></td></tr>"
+  "JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        while (firstExpression instanceof CheckstyleJavaParser.BinOpContext) {</span></pre></td></tr>"
+  );
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
+
+
 # pitesttyle-gui)
 #   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
 #   # post validation is skipped, we do not test gui throughly
