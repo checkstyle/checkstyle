@@ -3,6 +3,7 @@ package com.puppycrawl.tools.checkstyle.grammar.antlr4;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOError;
 import java.io.IOException;
 import java.util.function.BiFunction;
 
@@ -41,4 +42,21 @@ public class InputAntlr4AstRegressionUncommon4 {
     private CelebrationLunch<Integer,Long,Double> inner;
     CelebrationLunch<Integer, Long, Double>
             .Section<Number, Number, Number> section = inner.new Section<>();
+
+    @NonNull String p1 = "hello";
+    void method() {
+        try {
+            System.out.println();
+        }
+        catch (@NonNull IOError | ArithmeticException e) {
+
+        }
+    }
+
+    void m23(Class<Object> clazz) {
+        if (InputAntlr4AstRegressionUncommon4.this != null) {
+        }
+    }
+
 }
+@interface NonNull{}
