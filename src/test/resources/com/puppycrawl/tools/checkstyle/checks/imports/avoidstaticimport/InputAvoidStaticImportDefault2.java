@@ -1,6 +1,6 @@
 /*
 AvoidStaticImport
-excludes = (default)
+excludes = java.io.File.*, sun.net.ftpclient.FtpClient.*
 
 
 */
@@ -23,12 +23,12 @@ import javax.swing.JToolBar;
 import javax.swing.JToggleButton;
 import javax.swing.ScrollPaneLayout;
 import javax.swing.BorderFactory;
-import static java.io.File.listRoots; // violation
+import static java.io.File.listRoots;
 
 import static javax.swing.WindowConstants.*; // violation
 import static java.io.File.createTempFile; // violation
 import static java.io.File.pathSeparator; // violation
-import static java.lang.Math.E; // violation
+import static java.lang.Math.E;
 import static java.lang.Math.sqrt; // violation
 import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass; // violation
 import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.one; // violation
@@ -57,16 +57,16 @@ import com.puppycrawl.tools.checkstyle.DefaultLogger;
  * @author Michael Studman
  * @see Calendar Should avoid unused import for Calendar
  **/
-class InputAvoidStaticImportDefault
+class InputAvoidStaticImportDefault2
 {
     /** ignore **/
     private Class mUse1 = Connection.class;
     /** ignore **/
-    private Class mUse2 = java.io.File.class;
+    private Class mUse2 = File.class;
     /** ignore **/
     private Class mUse3 = Iterator[].class;
     /** ignore **/
-    private Class mUse4 = java.util.Enumeration[].class;
+    private Class mUse4 = Enumeration[].class;
     /** usage of illegal import **/
     private String ftpClient = null;
 
@@ -74,7 +74,7 @@ class InputAvoidStaticImportDefault
     {
         int[] x = {};
         Arrays.sort(x);
-        Object obj = javax.swing.BorderFactory.createEmptyBorder();
+        Object obj = BorderFactory.createEmptyBorder();
         File[] files = listRoots();
     }
 
@@ -85,7 +85,7 @@ class InputAvoidStaticImportDefault
     private Object mUse5 = new Object();
 
     /** usage of inner class in constructor, fully qualified */
-    private Object mUse6 = new javax.swing.JToggleButton.ToggleButtonModel();
+    private Object mUse6 = new JToggleButton.ToggleButtonModel();
 
     /** we use class name as member's name.
      *  also an inline JavaDoc-only import {@link Vector linkText} */
