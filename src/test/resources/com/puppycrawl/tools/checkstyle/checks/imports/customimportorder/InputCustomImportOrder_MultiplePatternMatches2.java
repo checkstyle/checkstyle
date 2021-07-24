@@ -1,9 +1,9 @@
 /*
 CustomImportOrder
 customImportOrderRules = SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE
-standardPackageRegExp = junit
+standardPackageRegExp = unit
 thirdPartyPackageRegExp = (default).*
-specialImportsRegExp = org
+specialImportsRegExp = Test
 separateLineBetweenGroups = (default)true
 sortImportsInGroupAlphabetically = (default)false
 
@@ -15,5 +15,5 @@ package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import org.junit.Test;
 
-public class InputCustomImportOrder_MultiplePatternMatches { // ok
+public class InputCustomImportOrder_MultiplePatternMatches2 { // ok
 }
