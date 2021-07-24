@@ -1,11 +1,11 @@
 /*
 CustomImportOrder
-customImportOrderRules = STATIC###SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE
+customImportOrderRules = (default)
 standardPackageRegExp = (default)^(java|javax)\.
-thirdPartyPackageRegExp = com|org
+thirdPartyPackageRegExp = (default).*
 specialImportsRegExp = (default)^$
 separateLineBetweenGroups = (default)true
-sortImportsInGroupAlphabetically = true
+sortImportsInGroupAlphabetically = (default)false
 
 
 */
@@ -17,22 +17,22 @@ import static java.awt.Button.ABORT; // violation
 import static java.awt.print.Paper.*; // violation
 import static javax.swing.WindowConstants.*;
 
-import java.awt.Button; // violation
-import java.awt.Frame; // violation
+import java.awt.Button;
+import java.awt.Frame;
 import java.awt.Dialog; // violation
-import java.awt.color.ColorSpace; // violation
-import java.awt.event.ActionEvent; // violation
-import javax.swing.JComponent; // violation
-import javax.swing.JTable; // violation
+import java.awt.color.ColorSpace;
+import java.awt.event.ActionEvent;
+import javax.swing.JComponent;
+import javax.swing.JTable;
 import java.io.File; // violation
 import java.io.IOException; // violation
 import java.io.InputStream; // violation
 import java.io.Reader; // violation
 
-import com.puppycrawl.tools.checkstyle.*;
+import com.puppycrawl.tools.checkstyle.*; // violation
 
-import com.google.common.collect.*;
-import org.junit.*;
+import com.google.common.collect.*; // violation
+import org.junit.*; // violation
 
-public class InputCustomImportOrderDefault {
+public class InputCustomImportOrderDefault4 {
 }

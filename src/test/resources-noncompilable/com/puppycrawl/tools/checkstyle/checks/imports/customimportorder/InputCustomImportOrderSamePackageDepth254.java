@@ -1,6 +1,6 @@
 /*
 CustomImportOrder
-customImportOrderRules = SAME_PACKAGE(2)
+customImportOrderRules = SAME_PACKAGE(5)
 standardPackageRegExp = (default)^(java|javax)\.
 thirdPartyPackageRegExp = (default).*
 specialImportsRegExp = (default)^$
@@ -17,14 +17,14 @@ package java.util.concurrent.locks;
 // SAME_PACKAGE(4) should include only #6
 // SAME_PACKAGE(5) should include no imports because actual package has only 4 domains
 import java.io.File;
-import java.util.*; // violation
-import java.util.List; // violation
-import java.util.StringTokenizer; // violation
-import java.util.concurrent.*; // violation
-import java.util.concurrent.AbstractExecutorService; // violation
-import java.util.concurrent.locks.LockSupport; // violation
-import java.util.regex.Pattern; // violation
-import java.util.regex.Matcher; // violation
+import java.util.*; //#1
+import java.util.List; //#2
+import java.util.StringTokenizer; //#3
+import java.util.concurrent.*; //#4
+import java.util.concurrent.AbstractExecutorService; //#5
+import java.util.concurrent.locks.LockSupport; //#6
+import java.util.regex.Pattern; //#7
+import java.util.regex.Matcher; //#8
 
-public class InputCustomImportOrderSamePackageDepth25 {
+public class InputCustomImportOrderSamePackageDepth254 { // ok
 }
