@@ -5029,18 +5029,23 @@ public final class TokenTypes {
     /**
      * Text of single-line or block comment.
      *
+     * <p>For example:</p>
      * <pre>
-     * +--SINGLE_LINE_COMMENT
-     *         |
-     *         +--COMMENT_CONTENT
+     * //this is single line comment
+     *
+     * /&#42;
+     * this is multiline comment
+     * &#42;/
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--SINGLE_LINE_COMMENT -&gt; //
+     * |   `--COMMENT_CONTENT -&gt; this is single line comment\n
+     * |--BLOCK_COMMENT_BEGIN -&gt; /&#42;
+     * |   |--COMMENT_CONTENT -&gt; \n\t\t\tthis is multiline comment\n\t\t
+     * |   `--BLOCK_COMMENT_END -&gt; &#42;/
      * </pre>
      *
-     * <pre>
-     * +--BLOCK_COMMENT_BEGIN
-     *         |
-     *         +--COMMENT_CONTENT
-     *         +--BLOCK_COMMENT_END
-     * </pre>
      */
     public static final int COMMENT_CONTENT =
             GeneratedJavaTokenTypes.COMMENT_CONTENT;
