@@ -2695,6 +2695,49 @@ public final class TokenTypes {
      * The {@code case} keyword.  The first child is a constant
      * expression that evaluates to an integer.
      *
+     * <p>For example:</p>
+     * <pre>
+     * switch(num){
+     *    case 0:
+     *      num = 1;
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     *
+     * CASE_GROUP -&gt; CASE_GROUP
+     *    |--LITERAL_CASE -&gt; cas
+     *    |   |--EXPR -&gt; EXPR
+     *    |   |   `--NUM_INT -&gt; 0
+     *    |   `--COLON -&gt; :
+     *    `--SLIST -&gt; SLIST
+     *         |--EXPR -&gt; EXPR
+     *         |   `--ASSIGN -&gt; =
+     *         |       |--IDENT -&gt; num
+     *         |       `--NUM_INT -&gt; 1
+     *         `--SEMI -&gt; ;
+     * </pre>
+     * <p>For example:</p>
+     * <pre>
+     * switch(num){
+     *    case 1 -&gt; num = -1
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * SWITCH_RULE -&gt; SWITCH_RULE
+     *   |--LITERAL_CASE -&gt; case
+     *   |   `--EXPR -&gt; EXPR
+     *   |       `--NUM_INT -&gt; 1
+     *   |--LAMBDA -&gt; -&gt;
+     *   |--EXPR -&gt; EXPR
+     *   |   `--ASSIGN -&gt; =
+     *   |       |--IDENT -&gt; num
+     *   |       `--UNARY_MINUS -&gt; -
+     *   |           `--NUM_INT -&gt; 1
+     *   `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #CASE_GROUP
      * @see #EXPR
      **/
