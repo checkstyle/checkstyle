@@ -1,6 +1,6 @@
 /*
 UnusedImports
-processJavadoc = (default)true
+processJavadoc = false
 
 
 */
@@ -30,20 +30,20 @@ import static javax.swing.WindowConstants.*;
 import static java.io.File. // violation
     createTempFile;
 
-import java.awt.Graphics2D;
-import java.awt.HeadlessException;
+import java.awt.Graphics2D; // violation
+import java.awt.HeadlessException; // violation
 import java.awt.Label; // violation
-import java.util.Date;
-import java.util.Calendar;
-import java.util.BitSet;
+import java.util.Date; // violation
+import java.util.Calendar; // violation
+import java.util.BitSet; // violation
 
-import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.CheckerTest;
-import com.puppycrawl.tools.checkstyle.Definitions;
-import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImports15Extensions;
-import com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest;
-import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.Checker; // violation
+import com.puppycrawl.tools.checkstyle.CheckerTest; // violation
+import com.puppycrawl.tools.checkstyle.Definitions; // violation
+import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImports15Extensions; // violation
+import com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest; // violation
+import com.puppycrawl.tools.checkstyle.PackageNamesLoader; // violation
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration; // violation
 import com.puppycrawl.tools.checkstyle.DefaultLogger; // violation
 
 /**
@@ -54,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.DefaultLogger; // violation
  * @author Michael Studman
  * @see Calendar Should avoid unused import for Calendar
  **/
-class InputUnusedImports
+class InputUnusedImports2
 {
     /** ignore {@literal <B>Test Javadoc Tag that is not processed for imports</B>}**/
     private Class mUse1 = null;
