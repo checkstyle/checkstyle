@@ -557,20 +557,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="imports[\\/]importorder[\\/]InputImportOrderBug.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]redundantimport[\\/]InputRedundantImportBug.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]redundantimport[\\/]InputRedundantImportCheckClearState.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]redundantimport[\\/]InputRedundantImport_UnnamedPackage.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]redundantimport[\\/]InputRedundantImportWithChecker.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]redundantimport[\\/]InputRedundantImportWithoutWarnings.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="imports[\\/]unusedimports[\\/]InputUnusedImports15Extensions.java"/>
@@ -2256,20 +2242,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="imports[\\/]importorder[\\/]InputImportOrderBug.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]redundantimport[\\/]InputRedundantImportBug.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]redundantimport[\\/]InputRedundantImportCheckClearState.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]redundantimport[\\/]InputRedundantImport_UnnamedPackage.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]redundantimport[\\/]InputRedundantImportWithChecker.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]redundantimport[\\/]InputRedundantImportWithoutWarnings.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="imports[\\/]unusedimports[\\/]InputUnusedImports15Extensions.java"/>
