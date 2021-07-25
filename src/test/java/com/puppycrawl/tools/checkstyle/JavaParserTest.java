@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -35,7 +36,6 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import antlr.NoViableAltException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -156,11 +156,12 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         catch (CheckstyleException ex) {
             assertEquals(
                     CheckstyleException.class.getName()
-                            + ": NoViableAltException occurred while parsing file "
+                            + ": IllegalStateException occurred while parsing file "
                             + input.getAbsolutePath() + ".",
                     ex.toString(), "Invalid exception message");
-            assertSame(NoViableAltException.class, ex.getCause().getClass(), "Invalid class");
-            assertEquals(input.getAbsolutePath() + ":2:1: unexpected token: classD",
+            assertSame(IllegalStateException.class, ex.getCause().getClass(), "Invalid class");
+            assertEquals(IllegalStateException.class.getName()
+                            + ": 2:0: no viable alternative at input 'classD'",
                     ex.getCause().toString(), "Invalid exception message");
         }
     }
@@ -222,4 +223,12 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         }
     }
 
+    @Test
+    public void testNoStackOverflowOnDeepStringConcat() throws Exception {
+        final File file =
+                new File(getPath("InputJavaParserNoStackOverflowOnDeepStringConcat.java"));
+        assertWithMessage("File parsing should not throw StackOverflowError.")
+                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
+                .isNotNull();
+    }
 }
