@@ -48,9 +48,9 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         final String inputWithWarnings = getPath("InputUnusedImportsCheckClearState.java");
         final List<String> expectedFirstInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
         final List<String> expectedSecondInput = Arrays.asList(
-                "3:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
-                "4:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
-                "5:8: " + getCheckMessage(MSG_KEY, "java.util.Set")
+                "10:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+                "11:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+                "12:8: " + getCheckMessage(MSG_KEY, "java.util.Set")
         );
         final File[] inputsWithWarningsFirst =
             {new File(inputWithWarnings), new File(inputWithoutWarnings)};
@@ -70,57 +70,57 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         checkConfig.addProperty("processJavadoc", "false");
         final String[] expected = {
-            "8:16: " + getCheckMessage(MSG_KEY,
+            "11:16: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks."
                 + "imports.unusedimports.InputUnusedImportsBug"),
-            "11:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
-            "13:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "14:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "17:8: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
-            "20:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToggleButton"),
-            "22:8: " + getCheckMessage(MSG_KEY, "javax.swing.BorderFactory"),
-            "27:15: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
-            // "29:8: Unused import - java.awt.Component.", // Should be detected
-            "30:8: " + getCheckMessage(MSG_KEY, "java.awt.Graphics2D"),
-            "31:8: " + getCheckMessage(MSG_KEY, "java.awt.HeadlessException"),
-            "32:8: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
-            "33:8: " + getCheckMessage(MSG_KEY, "java.util.Date"),
-            "34:8: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
-            "35:8: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
-            "37:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Checker"),
-            "38:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.CheckerTest"),
-            "39:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Definitions"),
-            "40:8: " + getCheckMessage(MSG_KEY,
+            "14:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
+            "16:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "17:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "20:8: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
+            "23:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToggleButton"),
+            "25:8: " + getCheckMessage(MSG_KEY, "javax.swing.BorderFactory"),
+            "30:15: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
+            // "32:8: Unused import - java.awt.Component.", // Should be detected
+            "33:8: " + getCheckMessage(MSG_KEY, "java.awt.Graphics2D"),
+            "34:8: " + getCheckMessage(MSG_KEY, "java.awt.HeadlessException"),
+            "35:8: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
+            "36:8: " + getCheckMessage(MSG_KEY, "java.util.Date"),
+            "37:8: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
+            "38:8: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
+            "40:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Checker"),
+            "41:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.CheckerTest"),
+            "42:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Definitions"),
+            "43:8: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks.imports.unusedimports."
                         + "InputUnusedImports15Extensions"),
-            "41:8: " + getCheckMessage(MSG_KEY,
+            "44:8: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest"),
-            "42:8: " + getCheckMessage(MSG_KEY,
+            "45:8: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.PackageNamesLoader"),
-            "43:8: " + getCheckMessage(MSG_KEY,
+            "46:8: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.DefaultConfiguration"),
-            "44:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
+            "47:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
         };
-        verify(checkConfig, getPath("InputUnusedImports.java"), expected);
+        verify(checkConfig, getPath("InputUnusedImports2.java"), expected);
     }
 
     @Test
     public void testProcessJavadoc() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = {
-            "8:16: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks."
-                        + "imports.unusedimports.InputUnusedImportsBug"),
-            "11:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
-            "13:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "14:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "17:8: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
-            "20:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToggleButton"),
-            "22:8: " + getCheckMessage(MSG_KEY, "javax.swing.BorderFactory"),
-            "27:15: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
+            "11:16: " + getCheckMessage(MSG_KEY,
+                    "com.puppycrawl.tools.checkstyle.checks."
+                    + "imports.unusedimports.InputUnusedImportsBug"),
+            "14:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
+            "16:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "17:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "20:8: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
+            "23:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToggleButton"),
+            "25:8: " + getCheckMessage(MSG_KEY, "javax.swing.BorderFactory"),
+            "30:15: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
             // "29:8: Unused import - java.awt.Component.", // Should be detected
-            "32:8: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
-            "44:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
+            "35:8: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
+            "47:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
         };
         verify(checkConfig, getPath("InputUnusedImports.java"), expected);
     }
@@ -222,8 +222,8 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     public void testFileInUnnamedPackage() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = {
-            "5:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
-            "6:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
+            "12:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+            "13:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
         };
         verify(checkConfig, getNonCompilablePath("InputUnusedImportsFileInUnnamedPackage.java"),
             expected);
@@ -233,17 +233,17 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     public void testImportsFromJavaLang() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = {
-            "3:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
-            "4:8: " + getCheckMessage(MSG_KEY, "java.lang.Math"),
-            "5:8: " + getCheckMessage(MSG_KEY, "java.lang.Class"),
-            "6:8: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
-            "7:8: " + getCheckMessage(MSG_KEY, "java.lang.Runnable"),
-            "8:8: " + getCheckMessage(MSG_KEY, "java.lang.RuntimeException"),
-            "9:8: " + getCheckMessage(MSG_KEY, "java.lang.ProcessBuilder"),
-            "10:8: " + getCheckMessage(MSG_KEY, "java.lang.Double"),
-            "11:8: " + getCheckMessage(MSG_KEY, "java.lang.Integer"),
-            "12:8: " + getCheckMessage(MSG_KEY, "java.lang.Float"),
-            "13:8: " + getCheckMessage(MSG_KEY, "java.lang.Short"),
+            "10:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
+            "11:8: " + getCheckMessage(MSG_KEY, "java.lang.Math"),
+            "12:8: " + getCheckMessage(MSG_KEY, "java.lang.Class"),
+            "13:8: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
+            "14:8: " + getCheckMessage(MSG_KEY, "java.lang.Runnable"),
+            "15:8: " + getCheckMessage(MSG_KEY, "java.lang.RuntimeException"),
+            "16:8: " + getCheckMessage(MSG_KEY, "java.lang.ProcessBuilder"),
+            "17:8: " + getCheckMessage(MSG_KEY, "java.lang.Double"),
+            "18:8: " + getCheckMessage(MSG_KEY, "java.lang.Integer"),
+            "19:8: " + getCheckMessage(MSG_KEY, "java.lang.Float"),
+            "20:8: " + getCheckMessage(MSG_KEY, "java.lang.Short"),
         };
         verify(checkConfig, getPath("InputUnusedImportsFromJavaLang.java"), expected);
     }
@@ -252,7 +252,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     public void testImportsJavadocQualifiedName() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = {
-            "4:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "11:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
         };
         verify(checkConfig, getPath("InputUnusedImportsJavadocQualifiedName.java"), expected);
     }
@@ -261,7 +261,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     public void testSingleWordPackage() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = {
-            "3:8: " + getCheckMessage(MSG_KEY, "module"),
+            "10:8: " + getCheckMessage(MSG_KEY, "module"),
         };
         verify(checkConfig, getNonCompilablePath("InputUnusedImportsSingleWordPackage.java"),
                 expected);
@@ -271,8 +271,8 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     public void testRecordsAndCompactCtors() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = {
-            "12:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToolBar"),
-            "13:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToggleButton"),
+            "19:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToolBar"),
+            "20:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToggleButton"),
         };
         verify(checkConfig,
                 getNonCompilablePath("InputUnusedImportsRecordsAndCompactCtors.java"),
@@ -283,9 +283,9 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     public void testShadowedImports() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = {
-            "5:8: " + getCheckMessage(MSG_KEY, "java.util.Map"),
-            "6:8: " + getCheckMessage(MSG_KEY, "java.util.Set"),
-            "9:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports."
+            "12:8: " + getCheckMessage(MSG_KEY, "java.util.Map"),
+            "13:8: " + getCheckMessage(MSG_KEY, "java.util.Set"),
+            "16:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "unusedimports.InputUnusedImportsShadowed"),
         };
         verify(checkConfig, getPath("InputUnusedImportsShadowed.java"), expected);

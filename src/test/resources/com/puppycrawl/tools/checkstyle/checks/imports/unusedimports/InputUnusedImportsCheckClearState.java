@@ -1,7 +1,14 @@
+/*
+UnusedImports
+processJavadoc = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.Arrays; // violation
+import java.util.List; // violation
+import java.util.Set; // violation
 
 public class InputUnusedImportsCheckClearState {}
