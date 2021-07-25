@@ -63,8 +63,8 @@ public class RedundantImportCheckTest
         final String inputWithWarnings = getPath("InputRedundantImportCheckClearState.java");
         final String inputWithoutWarnings = getPath("InputRedundantImportWithoutWarnings.java");
         final List<String> expectedFirstInput = Arrays.asList(
-            "4:1: " + getCheckMessage(MSG_DUPLICATE, 3, "java.util.Arrays.asList"),
-            "7:1: " + getCheckMessage(MSG_DUPLICATE, 6, "java.util.List")
+            "10:1: " + getCheckMessage(MSG_DUPLICATE, 9, "java.util.Arrays.asList"),
+            "13:1: " + getCheckMessage(MSG_DUPLICATE, 12, "java.util.List")
         );
         final List<String> expectedSecondInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
         final File[] inputs = {new File(inputWithWarnings), new File(inputWithoutWarnings)};
@@ -80,15 +80,15 @@ public class RedundantImportCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(RedundantImportCheck.class);
         final String[] expected = {
-            "7:1: " + getCheckMessage(MSG_SAME,
+            "9:1: " + getCheckMessage(MSG_SAME,
                 "com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.*"),
-            "8:1: " + getCheckMessage(MSG_SAME,
+            "10:1: " + getCheckMessage(MSG_SAME,
                 "com.puppycrawl.tools.checkstyle.checks.imports.redundantimport."
                         + "InputRedundantImportBug"),
-            "10:1: " + getCheckMessage(MSG_LANG, "java.lang.*"),
-            "11:1: " + getCheckMessage(MSG_LANG, "java.lang.String"),
-            "14:1: " + getCheckMessage(MSG_DUPLICATE, 13, "java.util.List"),
-            "26:1: " + getCheckMessage(MSG_DUPLICATE, 25, "javax.swing.WindowConstants.*"),
+            "12:1: " + getCheckMessage(MSG_LANG, "java.lang.*"),
+            "13:1: " + getCheckMessage(MSG_LANG, "java.lang.String"),
+            "16:1: " + getCheckMessage(MSG_DUPLICATE, 15, "java.util.List"),
+            "28:1: " + getCheckMessage(MSG_DUPLICATE, 27, "javax.swing.WindowConstants.*"),
         };
         verify(checkConfig, getPath("InputRedundantImportWithChecker.java"), expected);
     }
@@ -99,8 +99,8 @@ public class RedundantImportCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(RedundantImportCheck.class);
         final String[] expected = {
-            "4:1: " + getCheckMessage(MSG_DUPLICATE, 3, "java.util.List"),
-            "6:1: " + getCheckMessage(MSG_LANG, "java.lang.String"),
+            "10:1: " + getCheckMessage(MSG_DUPLICATE, 9, "java.util.List"),
+            "12:1: " + getCheckMessage(MSG_LANG, "java.lang.String"),
         };
         verify(checkConfig, getNonCompilablePath("InputRedundantImport_UnnamedPackage.java"),
             expected);
