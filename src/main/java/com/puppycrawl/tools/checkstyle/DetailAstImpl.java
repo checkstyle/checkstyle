@@ -20,22 +20,21 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.util.BitSet;
+import java.util.Collections;
+import java.util.List;
 
-import antlr.CommonASTWithHiddenTokens;
-import antlr.Token;
-import antlr.collections.AST;
+import org.antlr.v4.runtime.Token;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * The implementation of {@link DetailAST}. This should only be directly used to
- * create custom AST nodes.
+ * create custom AST nodes and in 'JavaAstVisitor.java'.
  *
- * @noinspection FieldNotUsedInToString, SerializableHasSerializationMethods
+ * @noinspection FieldNotUsedInToString
  */
-public final class DetailAstImpl extends CommonASTWithHiddenTokens implements DetailAST {
-
-    private static final long serialVersionUID = -2580884815577559874L;
+public final class DetailAstImpl implements DetailAST {
 
     /** Constant to indicate if not calculated the child count. */
     private static final int NOT_INITIALIZED = Integer.MIN_VALUE;
@@ -52,6 +51,30 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
     /** Previous sibling. */
     private DetailAstImpl previousSibling;
 
+    /** First child of this DetailAST. */
+    private DetailAstImpl firstChild;
+
+    /** First sibling of this DetailAST.*/
+    private DetailAstImpl nextSibling;
+
+    /** Text of this DetailAST. */
+    private String text;
+
+    /** The type of this DetailAST. */
+    private int type;
+
+    /**
+     * All tokens on COMMENTS channel to the left of the current token up to the
+     * preceding token on the DEFAULT_TOKEN_CHANNEL.
+     */
+    private List<Token> hiddenBefore;
+
+    /**
+     * All tokens on COMMENTS channel to the right of the current token up to the
+     * next token on the DEFAULT_TOKEN_CHANNEL.
+     */
+    private List<Token> hiddenAfter;
+
     /**
      * All token types in this branch.
      * Token 'x' (where x is an int) is in this branch
@@ -59,47 +82,27 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
      */
     private BitSet branchTokenTypes;
 
-    @Override
+    /**
+     * Initializes this DetailAstImpl.
+     *
+     * @param tokenType the type of this DetailAstImpl
+     * @param tokenText the text of this DetailAstImpl
+     */
+    public void initialize(int tokenType, String tokenText) {
+        type = tokenType;
+        text = tokenText;
+    }
+
+    /**
+     * Initializes this DetailAstImpl.
+     *
+     * @param token the token to generate this DetailAstImpl from
+     */
     public void initialize(Token token) {
-        super.initialize(token);
+        text = token.getText();
+        type = token.getType();
         lineNo = token.getLine();
-
-        // expect columns to start @ 0
-        columnNo = token.getColumn() - 1;
-    }
-
-    @Override
-    public void initialize(AST ast) {
-        final DetailAstImpl detailAst = (DetailAstImpl) ast;
-        setText(detailAst.getText());
-        setType(detailAst.getType());
-        lineNo = detailAst.getLineNo();
-        columnNo = detailAst.getColumnNo();
-        hiddenAfter = detailAst.getHiddenAfter();
-        hiddenBefore = detailAst.getHiddenBefore();
-    }
-
-    @Override
-    public void setFirstChild(AST ast) {
-        clearBranchTokenTypes();
-        clearChildCountCache(this);
-        super.setFirstChild(ast);
-        if (ast != null) {
-            ((DetailAstImpl) ast).setParent(this);
-        }
-    }
-
-    @Override
-    public void setNextSibling(AST ast) {
-        clearBranchTokenTypes();
-        clearChildCountCache(parent);
-        super.setNextSibling(ast);
-        if (ast != null && parent != null) {
-            ((DetailAstImpl) ast).setParent(parent);
-        }
-        if (ast != null) {
-            ((DetailAstImpl) ast).previousSibling = this;
-        }
+        columnNo = token.getCharPositionInLine();
     }
 
     /**
@@ -130,22 +133,21 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
     }
 
     /**
-     * Add next sibling.
+     * Add next sibling, pushes other siblings back.
      *
-     * @param ast
-     *        DetailAST object.
+     * @param ast DetailAST object.
      */
     public void addNextSibling(DetailAST ast) {
         clearBranchTokenTypes();
         clearChildCountCache(parent);
         if (ast != null) {
             // parent is set in setNextSibling
-            final DetailAstImpl nextSibling = getNextSibling();
+            final DetailAstImpl sibling = nextSibling;
             final DetailAstImpl astImpl = (DetailAstImpl) ast;
 
-            if (nextSibling != null) {
-                astImpl.setNextSibling(nextSibling);
-                nextSibling.previousSibling = astImpl;
+            if (sibling != null) {
+                astImpl.setNextSibling(sibling);
+                sibling.previousSibling = astImpl;
             }
 
             astImpl.previousSibling = this;
@@ -153,16 +155,30 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
         }
     }
 
-    @Override
-    public void addChild(AST ast) {
+    /**
+     * Adds a new child to the current AST.
+     *
+     * @param child to DetailAST to add as child
+     */
+    public void addChild(DetailAST child) {
         clearBranchTokenTypes();
         clearChildCountCache(this);
-        if (ast != null) {
-            final DetailAstImpl astImpl = (DetailAstImpl) ast;
+        if (child != null) {
+            final DetailAstImpl astImpl = (DetailAstImpl) child;
             astImpl.setParent(this);
             astImpl.previousSibling = (DetailAstImpl) getLastChild();
         }
-        super.addChild(ast);
+        DetailAST temp = firstChild;
+        if (temp == null) {
+            firstChild = (DetailAstImpl) child;
+        }
+        else {
+            while (temp.getNextSibling() != null) {
+                temp = temp.getNextSibling();
+            }
+
+            ((DetailAstImpl) temp).setNextSibling(child);
+        }
     }
 
     @Override
@@ -170,7 +186,7 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
         // lazy init
         if (childCount == NOT_INITIALIZED) {
             childCount = 0;
-            AST child = getFirstChild();
+            DetailAST child = firstChild;
 
             while (child != null) {
                 childCount += 1;
@@ -181,10 +197,10 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
     }
 
     @Override
-    public int getChildCount(int type) {
+    public int getChildCount(int tokenType) {
         int count = 0;
-        for (AST ast = getFirstChild(); ast != null; ast = ast.getNextSibling()) {
-            if (ast.getType() == type) {
+        for (DetailAST ast = firstChild; ast != null; ast = ast.getNextSibling()) {
+            if (ast.getType() == tokenType) {
                 count++;
             }
         }
@@ -201,7 +217,7 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
         do {
             instance.clearBranchTokenTypes();
             instance.parent = parent;
-            instance = instance.getNextSibling();
+            instance = instance.nextSibling;
         } while (instance != null);
     }
 
@@ -211,16 +227,44 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
     }
 
     @Override
+    public String getText() {
+        return text;
+    }
+
+    /**
+     * Sets the text for this DetailAstImpl.
+     *
+     * @param text the text field of this DetailAstImpl
+     */
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    @Override
+    public int getType() {
+        return type;
+    }
+
+    /**
+     * Sets the type of this AST.
+     *
+     * @param type the token type of this DetailAstImpl
+     */
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    @Override
     public int getLineNo() {
         int resultNo = -1;
 
         if (lineNo == NOT_INITIALIZED) {
             // an inner AST that has been initialized
             // with initialize(String text)
-            resultNo = findLineNo(getFirstChild());
+            resultNo = findLineNo(firstChild);
 
             if (resultNo == -1) {
-                resultNo = findLineNo(getNextSibling());
+                resultNo = findLineNo(nextSibling);
             }
         }
         if (resultNo == -1) {
@@ -246,10 +290,10 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
         if (columnNo == NOT_INITIALIZED) {
             // an inner AST that has been initialized
             // with initialize(String text)
-            resultNo = findColumnNo(getFirstChild());
+            resultNo = findColumnNo(firstChild);
 
             if (resultNo == -1) {
-                resultNo = findColumnNo(getNextSibling());
+                resultNo = findColumnNo(nextSibling);
             }
         }
         if (resultNo == -1) {
@@ -270,9 +314,9 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
 
     @Override
     public DetailAST getLastChild() {
-        DetailAST ast = getFirstChild();
-        while (ast != null && ast.getNextSibling() != null) {
-            ast = ast.getNextSibling();
+        DetailAstImpl ast = firstChild;
+        while (ast != null && ast.nextSibling != null) {
+            ast = ast.nextSibling;
         }
         return ast;
     }
@@ -330,23 +374,23 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
         // lazy init
         if (branchTokenTypes == null) {
             branchTokenTypes = new BitSet();
-            branchTokenTypes.set(getType());
+            branchTokenTypes.set(type);
 
             // add union of all children
-            DetailAstImpl child = getFirstChild();
+            DetailAstImpl child = firstChild;
             while (child != null) {
                 final BitSet childTypes = child.getBranchTokenTypes();
                 branchTokenTypes.or(childTypes);
 
-                child = child.getNextSibling();
+                child = child.nextSibling;
             }
         }
         return branchTokenTypes;
     }
 
     @Override
-    public boolean branchContains(int type) {
-        return getBranchTokenTypes().get(type);
+    public boolean branchContains(int tokenType) {
+        return getBranchTokenTypes().get(tokenType);
     }
 
     @Override
@@ -355,10 +399,10 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
     }
 
     @Override
-    public DetailAST findFirstToken(int type) {
+    public DetailAST findFirstToken(int tokenType) {
         DetailAST returnValue = null;
-        for (DetailAST ast = getFirstChild(); ast != null; ast = ast.getNextSibling()) {
-            if (ast.getType() == type) {
+        for (DetailAST ast = firstChild; ast != null; ast = ast.getNextSibling()) {
+            if (ast.getType() == tokenType) {
                 returnValue = ast;
                 break;
             }
@@ -368,22 +412,27 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
 
     @Override
     public String toString() {
-        return super.toString() + "[" + getLineNo() + "x" + getColumnNo() + "]";
+        return text + "[" + getLineNo() + "x" + getColumnNo() + "]";
     }
 
     @Override
     public DetailAstImpl getNextSibling() {
-        return (DetailAstImpl) super.getNextSibling();
+        return nextSibling;
     }
 
     @Override
     public DetailAstImpl getFirstChild() {
-        return (DetailAstImpl) super.getFirstChild();
+        return firstChild;
+    }
+
+    @Override
+    public int getNumberOfChildren() {
+        return getChildCount();
     }
 
     @Override
     public boolean hasChildren() {
-        return getFirstChild() != null;
+        return firstChild != null;
     }
 
     /**
@@ -409,4 +458,77 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
         }
     }
 
+    /**
+     * Sets the next sibling of this AST.
+     *
+     * @param nextSibling the DetailAST to set as sibling
+     */
+    public void setNextSibling(DetailAST nextSibling) {
+        clearBranchTokenTypes();
+        clearChildCountCache(parent);
+        this.nextSibling = (DetailAstImpl) nextSibling;
+        if (nextSibling != null && parent != null) {
+            ((DetailAstImpl) nextSibling).setParent(parent);
+        }
+        if (nextSibling != null) {
+            ((DetailAstImpl) nextSibling).previousSibling = this;
+        }
+    }
+
+    /**
+     * Sets the first child of this AST.
+     *
+     * @param firstChild the DetailAST to set as first child
+     */
+    public void setFirstChild(DetailAST firstChild) {
+        clearBranchTokenTypes();
+        clearChildCountCache(this);
+        this.firstChild = (DetailAstImpl) firstChild;
+        if (firstChild != null) {
+            ((DetailAstImpl) firstChild).setParent(this);
+        }
+    }
+
+    /**
+     * Removes all children of this AST.
+     */
+    public void removeChildren() {
+        firstChild = null;
+    }
+
+    @Override
+    public List<Token> getHiddenBefore() {
+        List<Token> returnList = null;
+        if (hiddenBefore != null) {
+            returnList = Collections.unmodifiableList(hiddenBefore);
+        }
+        return returnList;
+    }
+
+    @Override
+    public List<Token> getHiddenAfter() {
+        List<Token> returnList = null;
+        if (hiddenAfter != null) {
+            returnList = Collections.unmodifiableList(hiddenAfter);
+        }
+        return returnList;
+    }
+
+    /**
+     * Sets the hiddenBefore token field.
+     *
+     * @param hiddenBefore comment token preceding this DetailAstImpl
+     */
+    public void setHiddenBefore(List<Token> hiddenBefore) {
+        this.hiddenBefore = Collections.unmodifiableList(hiddenBefore);
+    }
+
+    /**
+     * Sets the hiddenAfter token field.
+     *
+     * @param hiddenAfter comment token following this DetailAstImpl
+     */
+    public void setHiddenAfter(List<Token> hiddenAfter) {
+        this.hiddenAfter = Collections.unmodifiableList(hiddenAfter);
+    }
 }
