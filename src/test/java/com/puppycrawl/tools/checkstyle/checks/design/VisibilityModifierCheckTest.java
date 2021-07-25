@@ -28,10 +28,10 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.io.File;
 import java.lang.reflect.Method;
 
+import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 import org.powermock.reflect.Whitebox;
 
-import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
@@ -419,7 +419,7 @@ public class VisibilityModifierCheckTest
     public void testWrongTokenType() {
         final VisibilityModifierCheck obj = new VisibilityModifierCheck();
         final DetailAstImpl ast = new DetailAstImpl();
-        ast.initialize(new CommonHiddenStreamToken(TokenTypes.CLASS_DEF, "class"));
+        ast.initialize(new CommonToken(TokenTypes.CLASS_DEF, "class"));
         try {
             obj.visitToken(ast);
             fail("exception expected");
