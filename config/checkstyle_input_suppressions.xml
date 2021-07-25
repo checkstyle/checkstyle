@@ -459,44 +459,6 @@
 
 
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImports15Extensions.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsAnnotations.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsBug.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsCheckClearState.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsFileInUnnamedPackage.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsFromJavaLang.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImports.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsJavadocQualifiedName.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsSingleWordPackage.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsWithBlockMethodParameters.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsWithNewlinesInsideTags.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsWithoutWarnings.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsWithValueTag.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="indentation[\\/]commentsindentation[\\/]InputCommentsIndentationAfterAnnotation.java"/>
@@ -1590,44 +1552,6 @@
 
 
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImports15Extensions.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsAnnotations.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsBug.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsCheckClearState.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsFileInUnnamedPackage.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsFromJavaLang.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImports.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsJavadocQualifiedName.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsSingleWordPackage.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsWithBlockMethodParameters.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsWithNewlinesInsideTags.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsWithoutWarnings.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]unusedimports[\\/]InputUnusedImportsWithValueTag.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="indentation[\\/]commentsindentation[\\/]InputCommentsIndentationAfterAnnotation.java"/>
