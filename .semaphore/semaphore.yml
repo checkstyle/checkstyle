@@ -78,6 +78,20 @@ blocks:
                 # until https://github.com/checkstyle/checkstyle/issues/9248
                 # - mvn -e clean install -Pno-validations
                 #    && .ci/validation.sh no-violation-test-configurate
+          commands:
+            - sem-version java 11
+            - echo "eval of CMD is starting";
+            - echo "CMD=$CMD";
+            - eval $CMD;
+            - echo "eval of CMD is completed";
+
+        - name: openjdk14-with-checks-nonjavadoc-error
+          priority:
+            - value: 70
+              when: true
+          matrix:
+            - env_var: CMD
+              values:
                 - mvn -e --no-transfer-progress clean install -Pno-validations
                     && .ci/no-exception-test.sh openjdk14-with-checks-nonjavadoc-error
           commands:
