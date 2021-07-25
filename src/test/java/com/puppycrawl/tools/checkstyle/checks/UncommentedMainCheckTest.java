@@ -25,9 +25,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 
-import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
@@ -116,7 +116,7 @@ public class UncommentedMainCheckTest
     public void testIllegalStateException() {
         final UncommentedMainCheck check = new UncommentedMainCheck();
         final DetailAstImpl ast = new DetailAstImpl();
-        ast.initialize(new CommonHiddenStreamToken(TokenTypes.CTOR_DEF, "ctor"));
+        ast.initialize(new CommonToken(TokenTypes.CTOR_DEF, "ctor"));
         try {
             check.visitToken(ast);
             fail("IllegalStateException is expected");
