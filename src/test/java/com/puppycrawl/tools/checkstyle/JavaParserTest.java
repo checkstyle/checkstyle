@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -222,4 +223,12 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         }
     }
 
+    @Test
+    public void testNoStackOverflowOnDeepStringConcat() throws Exception {
+        final File file =
+                new File(getPath("InputJavaParserNoStackOverflowOnDeepStringConcat.java"));
+        assertWithMessage("File parsing should not throw StackOverflowError.")
+                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
+                .isNotNull();
+    }
 }
