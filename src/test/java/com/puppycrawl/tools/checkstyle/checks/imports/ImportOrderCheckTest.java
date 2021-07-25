@@ -26,9 +26,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 
-import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
@@ -689,10 +689,10 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testVisitTokenSwitchReflection() throws Exception {
         // Create mock ast
-        final DetailAstImpl astImport = mockAST(TokenTypes.IMPORT, "import", "mockfile", 0, 0);
-        final DetailAstImpl astIdent = mockAST(TokenTypes.IDENT, "myTestImport", "mockfile", 0, 0);
+        final DetailAstImpl astImport = mockAST(TokenTypes.IMPORT, "import", 0, 0);
+        final DetailAstImpl astIdent = mockAST(TokenTypes.IDENT, "myTestImport", 0, 0);
         astImport.addChild(astIdent);
-        final DetailAST astSemi = mockAST(TokenTypes.SEMI, ";", "mockfile", 0, 0);
+        final DetailAST astSemi = mockAST(TokenTypes.SEMI, ";", 0, 0);
         astIdent.addNextSibling(astSemi);
 
         // Set unsupported option
@@ -714,19 +714,15 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
      *
      * @param tokenType type of token
      * @param tokenText text of token
-     * @param tokenFileName file name of token
      * @param tokenRow token position in a file (row)
      * @param tokenColumn token position in a file (column)
      * @return AST node for the token
      */
     private static DetailAstImpl mockAST(final int tokenType, final String tokenText,
-            final String tokenFileName, final int tokenRow, final int tokenColumn) {
-        final CommonHiddenStreamToken tokenImportSemi = new CommonHiddenStreamToken();
-        tokenImportSemi.setType(tokenType);
-        tokenImportSemi.setText(tokenText);
+            final int tokenRow, final int tokenColumn) {
+        final CommonToken tokenImportSemi = new CommonToken(tokenType, tokenText);
         tokenImportSemi.setLine(tokenRow);
-        tokenImportSemi.setColumn(tokenColumn);
-        tokenImportSemi.setFilename(tokenFileName);
+        tokenImportSemi.setCharPositionInLine(tokenColumn);
         final DetailAstImpl astSemi = new DetailAstImpl();
         astSemi.initialize(tokenImportSemi);
         return astSemi;
