@@ -174,17 +174,6 @@
     </properties>
   </rule>
 
-  <rule ref="category/java/codestyle.xml/ShortMethodName">
-    <properties>
-      <!-- This inherited from GeneratedJavaLexer. -->
-      <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='AssertGeneratedJavaLexer']
-                        //MethodDeclaration[@Name='LA']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='AssertGenTextBlockLexer']
-                     //MethodDeclaration[@Name='LA']"/>
-    </properties>
-  </rule>
-
   <rule ref="category/java/design.xml/UseObjectForClearerAPI">
     <properties>
       <!-- This is checking for amount of String arguments more than 3 (hardcoded).
