@@ -3817,6 +3817,7 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.grammar.*</param>
                 <param>com.puppycrawl.tools.checkstyle.JavaParserTest</param>
+                <param>com.puppycrawl.tools.checkstyle.JavaAstVisitorTest</param>
               </targetTests>
               <excludedTestClasses>
                 <param>*.Input*</param>
