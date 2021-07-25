@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -200,6 +201,15 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         assertEquals(expectedContents, content.getText(), "Unexpected text block content");
     }
 
+    @Test
+    public void testNoStackOverflowOnDeepStringConcat() throws Exception {
+        final File file =
+                new File(getPath("InputJavaParserNoStackOverflowOnDeepStringConcat.java"));
+        assertWithMessage("File parsing should not throw StackOverflowError.")
+                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
+                .isNotNull();
+    }
+
     private static final class CountComments {
         private final List<String> lineComments = new ArrayList<>();
         private final List<String> blockComments = new ArrayList<>();
@@ -221,5 +231,4 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             }
         }
     }
-
 }
