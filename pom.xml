@@ -621,7 +621,8 @@
               </sourceDirectories>
               <excludes>
                 **/it/resources/**/*,**/it/resources-noncompilable/**/*,
-                ,**/test/resources/**/*,**/test/resources-noncompilable/**/*
+                ,**/test/resources/**/*,**/test/resources-noncompilable/**/*,
+                **/gen/**
               </excludes>
             </configuration>
             <goals>
