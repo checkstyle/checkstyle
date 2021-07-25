@@ -1,3 +1,10 @@
+/*
+UnusedImports
+processJavadoc = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
 import java.util.AbstractMap; // ok
@@ -13,9 +20,6 @@ import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedI
 import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed.Nested; // ok
 import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed.Nested.List.Map.Entry; // ok
 
-/*
- * Config: default
-*/
 @Deprecated(foo = Foo.class, classes = {Inner.class})
 public class InputUnusedImportsShadowed
         extends AbstractMap.SimpleEntry
