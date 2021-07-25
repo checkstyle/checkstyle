@@ -1,8 +1,15 @@
+/*
+UnusedImports
+processJavadoc = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
 import java.net.URL;
 
-public class InputUnusedImportsBug {
+public class InputUnusedImportsBug { // ok
    //same as a class name
    private static String URL = "This is a String object";
 
