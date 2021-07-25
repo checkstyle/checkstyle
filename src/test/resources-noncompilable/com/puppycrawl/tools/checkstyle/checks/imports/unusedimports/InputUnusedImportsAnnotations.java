@@ -1,8 +1,11 @@
-//non-compiled with javac: contains specially crafted set of imports for testing
-// this file content is based on package-info.java file structure
-// Created: 2005
-////////////////////////////////////////////////////////////////////////////////
-@MyAnnotation
+/*
+UnusedImports
+processJavadoc = (default)true
+
+
+*/
+
+@MyAnnotation1
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
-import com.puppycrawl.tools.checkstyle.MyAnnotation;
+import com.puppycrawl.tools.checkstyle.MyAnnotation1; // ok
