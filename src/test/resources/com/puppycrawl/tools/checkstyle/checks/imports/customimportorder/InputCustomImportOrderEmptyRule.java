@@ -1,15 +1,20 @@
+/*
+CustomImportOrder
+customImportOrderRules = (default)
+standardPackageRegExp = (default)^(java|javax)\.
+thirdPartyPackageRegExp = (default).*
+specialImportsRegExp = (default)^$
+separateLineBetweenGroups = (default)true
+sortImportsInGroupAlphabetically = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import java.util.Map;
 
-import java.util.List; // violation, extra separation in import group
+import java.util.List; // violation
 
 public class InputCustomImportOrderEmptyRule {
 }
-/*
- * test: testOrderRuleEmpty()
- *
- * Config = default
- * customImportOrderRules = ""
- *
- */

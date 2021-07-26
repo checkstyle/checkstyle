@@ -1,17 +1,19 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+RedundantImport
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.imports.redundantimport;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.*;
-import com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.InputRedundantImportBug;
+import com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.*; // violation
+import com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.InputRedundantImportBug; // violation
 import java.io.*;
-import java.lang.*;
-import java.lang.String;
+import java.lang.*; // violation
+import java.lang.String; // violation
 
 import java.util.List;
-import java.util.List;
+import java.util.List; // violation
 import java.util.Iterator;
 import java.util.Enumeration;
 import java.util.Arrays;
@@ -23,7 +25,7 @@ import javax.swing.BorderFactory;
 import static java.io.File.listRoots;
 
 import static javax.swing.WindowConstants.*;
-import static javax.swing.WindowConstants.*;
+import static javax.swing.WindowConstants.*; // violation
 import static java.io.File.createTempFile;
 import static java.io.File.pathSeparator;
 

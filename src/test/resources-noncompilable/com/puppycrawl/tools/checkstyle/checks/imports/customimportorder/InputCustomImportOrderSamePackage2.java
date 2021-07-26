@@ -4,7 +4,7 @@ customImportOrderRules = STATIC###SAME_PACKAGE(3)
 standardPackageRegExp = (default)^(java|javax)\.
 thirdPartyPackageRegExp = org.
 specialImportsRegExp = (default)^$
-separateLineBetweenGroups = (default)true
+separateLineBetweenGroups = false
 sortImportsInGroupAlphabetically = true
 
 
@@ -24,5 +24,5 @@ import static java.io.File.createTempFile; // violation
 import com.*; // violation
 import org.apache.*;
 
-public class InputCustomImportOrderSamePackage {
+public class InputCustomImportOrderSamePackage2 {
 }

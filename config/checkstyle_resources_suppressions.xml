@@ -38,8 +38,15 @@
   <suppress checks="PackageDeclarationCheck"
     files="customimportorder[\\/]InputCustomImportOrderSamePackage\.java"/>
   <suppress checks="PackageDeclarationCheck"
+    files="customimportorder[\\/]InputCustomImportOrderSamePackage2\.java"/>
+  <suppress checks="PackageDeclarationCheck"
     files="customimportorder[\\/]InputCustomImportOrderSamePackageDepth25\.java"/>
-
+  <suppress checks="PackageDeclarationCheck"
+    files="customimportorder[\\/]InputCustomImportOrderSamePackageDepth252\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="customimportorder[\\/]InputCustomImportOrderSamePackageDepth253\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="customimportorder[\\/]InputCustomImportOrderSamePackageDepth254\.java"/>
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
     files="illegalinstantiation[\\/]InputIllegalInstantiationNoPackage\.java"/>

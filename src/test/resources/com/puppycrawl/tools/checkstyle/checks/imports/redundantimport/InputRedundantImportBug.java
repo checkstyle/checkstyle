@@ -1,8 +1,14 @@
+/*
+No config
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.imports.redundantimport;
 
 import java.net.URL;
 
-public class InputRedundantImportBug {
+public class InputRedundantImportBug { // ok
    //same as a class name
    private static String URL = "This is a String object";
 
