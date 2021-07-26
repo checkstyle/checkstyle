@@ -2700,41 +2700,42 @@ public final class TokenTypes {
      * switch(num){
      *    case 0:
      *      num = 1;
-     *    case 1:
-     *      num = 0;
      * }
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     *  LITERAL_SWITCH -&gt; switch
-     *    |--LPAREN -&gt; (
-     *    |--EXPR -&gt; EXPR
-     *    |   `--IDENT -&gt; num
-     *    |--RPAREN -&gt; )
-     *    |--LCURLY -&gt; {
-     *    |--CASE_GROUP -&gt; CASE_GROUP
-     *    |   |--LITERAL_CASE -&gt; case
-     *    |   |   |--EXPR -&gt; EXPR
-     *    |   |   |   `--NUM_INT -&gt; 0
-     *    |   |   `--COLON -&gt; :
-     *    |   `--SLIST -&gt; SLIST
-     *    |       |--EXPR -&gt; EXPR
-     *    |       |   `--ASSIGN -&gt; =
-     *    |       |       |--IDENT -&gt; num
-     *    |       |       `--NUM_INT -&gt; 1
-     *    |       `--SEMI -&gt; ;
-     *    |--CASE_GROUP -&gt; CASE_GROUP
-     *    |   |--LITERAL_CASE -&gt; case
-     *    |   |   |--EXPR -&gt; EXPR
-     *    |   |   |   `--NUM_INT -&gt; 1
-     *    |   |   `--COLON -&gt; :
-     *    |   `--SLIST -&gt; SLIST
-     *    |       |--EXPR -&gt; EXPR
-     *    |       |   `--ASSIGN -&gt; =
-     *    |       |       |--IDENT -&gt; num
-     *    |       |       `--NUM_INT -&gt; 0
-     *    |       `--SEMI -&gt; ;
-     *    `--RCURLY -&gt; }
+     *
+     * CASE_GROUP -&gt; CASE_GROUP
+     *    |--LITERAL_CASE -&gt; cas
+     *    |   |--EXPR -&gt; EXPR
+     *    |   |   `--NUM_INT -&gt; 0
+     *    |   `--COLON -&gt; :
+     *    `--SLIST -&gt; SLIST
+     *         |--EXPR -&gt; EXPR
+     *         |   `--ASSIGN -&gt; =
+     *         |       |--IDENT -&gt; num
+     *         |       `--NUM_INT -&gt; 1
+     *         `--SEMI -&gt; ;
+     * </pre>
+     * <p>For example:</p>
+     * <pre>
+     * switch(num){
+     *    case 1 -&gt; num = -1
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * SWITCH_RULE -&gt; SWITCH_RULE
+     *   |--LITERAL_CASE -&gt; case
+     *   |   `--EXPR -&gt; EXPR
+     *   |       `--NUM_INT -&gt; 1
+     *   |--LAMBDA -&gt; -&gt;
+     *   |--EXPR -&gt; EXPR
+     *   |   `--ASSIGN -&gt; =
+     *   |       |--IDENT -&gt; num
+     *   |       `--UNARY_MINUS -&gt; -
+     *   |           `--NUM_INT -&gt; 1
+     *   `--SEMI -&gt; ;
      * </pre>
      *
      * @see #CASE_GROUP
