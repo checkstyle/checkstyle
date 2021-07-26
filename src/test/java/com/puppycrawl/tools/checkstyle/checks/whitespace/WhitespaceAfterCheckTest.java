@@ -196,4 +196,12 @@ public class WhitespaceAfterCheckTest
                expected);
     }
 
+    @Test
+    public void testCountUnicodeCorrectly() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAfterCheck.class);
+        final String[] expected = {
+            "9:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+        };
+        verify(checkConfig, getPath("InputWhitespaceAfterCountUnicodeCorrectly.java"), expected);
+    }
 }
