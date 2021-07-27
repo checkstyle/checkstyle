@@ -474,8 +474,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="imports[\\/]importcontrol[\\/]InputImportControl.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]importorder[\\/]InputImportOrderBug.java"/>
 
 
   <suppress id="ConfigCommentOnTopInputs"
@@ -2079,8 +2077,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="imports[\\/]importcontrol[\\/]InputImportControl.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]importorder[\\/]InputImportOrderBug.java"/>
 
 
   <suppress id="StyleValidationCommentInInputs"

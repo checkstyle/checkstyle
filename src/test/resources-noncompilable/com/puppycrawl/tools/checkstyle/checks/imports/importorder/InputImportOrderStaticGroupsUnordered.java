@@ -1,3 +1,19 @@
+/*
+ImportOrder
+option = top
+groups = org, com, java
+ordered = (default)true
+separated = (default)false
+separatedStaticGroups = (default)false
+caseSensitive = (default)true
+staticGroups = (default)
+sortStaticImportsAlphabetically = (default)false
+useContainerOrderingForStatic = (default)false
+tokens = (default)STATIC_IMPORT
+
+
+*/
+
 //non-compiled with javac: contains specially crafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 import static org.infinispan.test.TestingUtil.extractComponent; // ok
@@ -14,17 +30,5 @@ import java.util.Objects; // ok
 import java.util.concurrent.TimeUnit; // ok
 import javax.lang.model.type.ArrayType; // ok
 
-/*
- * Config:
- * option = top
- * groups = {org, com, java}
- * ordered = true
- * separated = false
- * separatedStaticGroups = false
- * caseSensitive = true
- * staticGroups = {}
- * sortStaticImportsAlphabetically = false
- * useContainerOrderingForStatic = false
- */
 public class InputImportOrderStaticGroupsUnordered {
 }

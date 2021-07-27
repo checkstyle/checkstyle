@@ -1,3 +1,19 @@
+/*
+ImportOrder
+option = inflow
+groups = (default)
+ordered = (default)true
+separated = (default)false
+separatedStaticGroups = (default)false
+caseSensitive = (default)true
+staticGroups = (default)
+sortStaticImportsAlphabetically = (default)false
+useContainerOrderingForStatic = (default)false
+tokens = (default)STATIC_IMPORT
+
+
+*/
+
 //non-compiled with javac: contains specially crafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 import com.google.common.collect.Lists; // ok
@@ -15,17 +31,5 @@ import static org.infinispan.test.TestingUtil.extractComponent; // ok
 import static org.junit.Assert.fail; // ok
 
 
-/*
- * Config:
- * option = inflow
- * groups = {}
- * ordered = true
- * separated = false
- * separatedStaticGroups = false
- * caseSensitive = true
- * staticGroups = {}
- * sortStaticImportsAlphabetically = false
- * useContainerOrderingForStatic = false
- */
 public class InputImportOrderStaticGroupsInflow {
 }

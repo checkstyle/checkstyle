@@ -1,3 +1,19 @@
+/*
+ImportOrder
+option = top
+groups = org, java
+ordered = (default)true
+separated = true
+separatedStaticGroups = (default)false
+caseSensitive = (default)true
+staticGroups = (default)
+sortStaticImportsAlphabetically = true
+useContainerOrderingForStatic = (default)false
+tokens = (default)STATIC_IMPORT
+
+
+*/
+
 //non-compiled with javac: contains specially crafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 import com.google.common.collect.Lists; // ok
@@ -6,17 +22,5 @@ import static org.junit.Assert.fail; // violation
 import static java.lang.String.format; // ok
 import static org.infinispan.test.TestingUtil.extract; // violation
 
-/*
- * Config:
- * option = top
- * groups = {}
- * ordered = true
- * separated = true
- * separatedStaticGroups = false
- * caseSensitive = true
- * staticGroups = {org, java}
- * sortStaticImportsAlphabetically = true
- * useContainerOrderingForStatic = false
- */
 public class InputImportOrderStaticGroupsNegative {
 }
