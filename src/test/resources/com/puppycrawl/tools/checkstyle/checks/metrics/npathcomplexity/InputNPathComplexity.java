@@ -1,21 +1,28 @@
+/*
+NPathComplexity
+max = 0
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.metrics.npathcomplexity;
 // Advise: for lack of ambiguity try to make all factors prime numbers
 public class InputNPathComplexity {
     //NP = 5
-    void testIfWithExpression() {
+    void testIfWithExpression() { // violation
         // NP = (if-range=1) + 1 + (expr=3) = 5
         if (true && true || (true || true)) { }
     }
 
     //NP = 5
-    void testIfElseWithExpression() {
+    void testIfElseWithExpression() { // violation
         // NP = (if-range=1) + (else-range=1) + (expr=3) = 5
         if (true && true || (true || true)) { }
         else { }
     }
 
     //NP = 4
-    int testSimpleSwitch() {
+    int testSimpleSwitch() { // violation
         int a = 0;
         // NP = (case-range[1]=1) + (case-range[2]=1) + (case-range[3]=1)
         //         + (default-range=1) + (expr=0) = 4
@@ -30,7 +37,7 @@ public class InputNPathComplexity {
     }
 
     //NP = 4
-    void testSimpleSwitchWithDefault() {
+    void testSimpleSwitchWithDefault() { // violation
         int a = 0;
         // NP = (case-range[1]=1) + (case-range[2]=1) + (case-range[3]=1)
         //         + (default-range=1) + (expr=0) = 4
@@ -46,7 +53,7 @@ public class InputNPathComplexity {
     }
 
     //NP = 6
-    void testSwitchWithExpression() {
+    void testSwitchWithExpression() { // violation
         int a = 0;
         // NP = (case-range[1]=1) + (case-range[2]=1) + (case-range[3]=1)
         //         + (default-range=1) + (expr=2) = 6
@@ -62,7 +69,7 @@ public class InputNPathComplexity {
     }
 
     //NP = 15
-    void testComplexSwitch() {
+    void testComplexSwitch() { // violation
         int a = 0;
         // NP = (case-range[1]=2) + (case-range[2]=5*2) + (case-range[3]=2)
         //         + (default-range=1) + (expr=0) = 15
@@ -87,7 +94,7 @@ public class InputNPathComplexity {
     }
 
     // NP = 11
-    void testComplexIfElse() {
+    void testComplexIfElse() { // violation
         // NP = (if-range=1) + (else-range=9) + (expr=1) = 11
         if (true && true) { }
         // NP(else-range) = (if-range=1) + (else-range=6) + (expr=2) = 9
@@ -97,7 +104,7 @@ public class InputNPathComplexity {
     }
 
     // NP = 8
-    boolean testComplexReturn() {
+    boolean testComplexReturn() { // violation
         // NP = (if-range=3) + (else-range=4) + (expr=1) = 8
         if (true && true) {
             // NP(if-range) = 3
@@ -110,7 +117,7 @@ public class InputNPathComplexity {
 
     // NP = (for-statement[1]=2) * (for-statement[2]=3)
     //         * (for-statement[3]=4) * (for-statement[4]=5) = 120
-    void testForCyclesComplex() {
+    void testForCyclesComplex() { // violation
         // NP(for-statement) = (for-range=1) + (expr(1)=0) + (expr(2)=0) + (expr(3)=0) + 1 = 2
         for (int i = 0; i < 10; i++);
         // NP(for-statement) = (for-range=1) + (expr(1)=0) + (expr(2)=1) + (expr(3)=0) + 1 = 3
@@ -122,7 +129,7 @@ public class InputNPathComplexity {
     }
 
     // NP = (while-statement[1]=2) * (while-statement[2]=3) = 6
-    boolean testWhileCyclesComplex() {
+    boolean testWhileCyclesComplex() { // violation
         int a = 0;
         // NP(while-statement) = (while-range=1) + (expr=0) + 1 = 2
         while (a != 0) { }
@@ -132,7 +139,7 @@ public class InputNPathComplexity {
     }
 
     // NP = (do-statement[1]=6) * (do-statement[2]=3) = 21
-    void testDoWhileCyclesComplex() {
+    void testDoWhileCyclesComplex() { // violation
         int a = 0;
         // NP(do-statement) = (do-range=1) + (expr=1) + 1 = 3
         do { } while (a < 10 && true);
@@ -145,7 +152,7 @@ public class InputNPathComplexity {
     }
 
     // NP = (question-statement[1]=5) * (question-statement[2]=7) = 35
-    void testComplexTernaryOperator() {
+    void testComplexTernaryOperator() { // violation
         // NP(question-statement) = (expr(1)=0) + (expr(2)=2) + (expr(3)=1+2) + 2 = 7
         boolean a = true ? (true ? true : true) : (false ? (true || false) : true);
         // NP(question-statement) = (expr(1)=0) + (expr(2)=2) + (expr(3)=1) + 2 = 5;
@@ -153,7 +160,7 @@ public class InputNPathComplexity {
     }
 
     // NP = (if-expression[1]=5) * (if-expression[2]=5) = 25
-    void testSimpleTernaryBadFormatting() {
+    void testSimpleTernaryBadFormatting() { // violation
         // NP(if-expression) = (if-range=2) + 1 + (expr=2) = 5
         if(
            true ? true : true
@@ -168,7 +175,7 @@ public class InputNPathComplexity {
 
     //Calculation for try-catch is wrong now
     //See issue #3814 https://github.com/checkstyle/checkstyle/issues/3814
-    void testTryCatch() {
+    void testTryCatch() { // violation
        try {
        }
        catch (Exception e) {
