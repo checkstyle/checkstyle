@@ -266,4 +266,10 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
                 getPath("InputAntlr4AstRegressionUncommon4.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
+
+    @Test
+    public void testUnusualAnnotation() throws Exception {
+        verifyAst(getPath("InputAntlr4AstRegressionUnusualAnnotation.txt"),
+                getPath("InputAntlr4AstRegressionUnusualAnnotation.java"));
+    }
 }
