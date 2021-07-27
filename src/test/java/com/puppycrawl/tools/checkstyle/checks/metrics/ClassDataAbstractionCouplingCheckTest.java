@@ -62,9 +62,9 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
         checkConfig.addProperty("excludedClasses", "InnerClass");
 
         final String[] expected = {
-            "6:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
-            "7:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
-            "27:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
+            "16:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
+            "17:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
+            "37:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
         };
 
         verify(checkConfig, getPath("InputClassDataAbstractionCoupling.java"), expected);
@@ -82,7 +82,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
                 + "inputs.b");
 
         final String[] expected = {
-            "8:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AAClass, ABClass]"),
+            "30:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AAClass, ABClass]"),
         };
 
         verify(checkConfig,
@@ -100,9 +100,9 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
             "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a");
 
         final String[] expected = {
-            "8:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AAClass, ABClass]"),
-            "12:5: " + getCheckMessage(MSG_KEY, 2, 0, "[BClass, CClass]"),
-            "18:1: " + getCheckMessage(MSG_KEY, 1, 0, "[CClass]"),
+            "28:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AAClass, ABClass]"),
+            "32:5: " + getCheckMessage(MSG_KEY, 2, 0, "[BClass, CClass]"),
+            "38:1: " + getCheckMessage(MSG_KEY, 1, 0, "[CClass]"),
         };
         verify(checkConfig,
             getPath("InputClassDataAbstractionCouplingExcludedPackagesCommonPackage.java"),
@@ -164,7 +164,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
         createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputClassDataAbstractionCoupling.java"), expected);
+        verify(checkConfig, getPath("InputClassDataAbstractionCoupling2.java"), expected);
     }
 
     @Test
@@ -192,11 +192,11 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
         checkConfig.addProperty("excludeClassesRegexps", "^Hash.*");
 
         final String[] expected = {
-            "6:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AnotherInnerClass, int]"),
-            "7:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
+            "22:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AnotherInnerClass, int]"),
+            "23:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
         };
 
-        verify(checkConfig, getPath("InputClassDataAbstractionCoupling.java"), expected);
+        verify(checkConfig, getPath("InputClassDataAbstractionCoupling3.java"), expected);
     }
 
     @Test
@@ -209,12 +209,12 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
         checkConfig.addProperty("excludeClassesRegexps", "");
 
         final String[] expected = {
-            "6:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
-            "7:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
-            "27:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
+            "22:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
+            "23:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
+            "43:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
         };
 
-        verify(checkConfig, getPath("InputClassDataAbstractionCoupling.java"), expected);
+        verify(checkConfig, getPath("InputClassDataAbstractionCoupling4.java"), expected);
     }
 
     @Test
@@ -226,12 +226,12 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
         final int maxAbstraction = 1;
         final String[] expected = {
-            "25:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
-            "30:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
-            "40:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
-            "49:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
-            "61:5: " + getCheckMessage(MSG_KEY, 3, maxAbstraction, "[Date, Place, Time]"),
-            };
+            "31:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "36:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "46:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "55:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "67:5: " + getCheckMessage(MSG_KEY, 3, maxAbstraction, "[Date, Place, Time]"),
+        };
 
         verify(checkConfig,
             getNonCompilablePath("InputClassDataAbstractionCouplingRecords.java"),

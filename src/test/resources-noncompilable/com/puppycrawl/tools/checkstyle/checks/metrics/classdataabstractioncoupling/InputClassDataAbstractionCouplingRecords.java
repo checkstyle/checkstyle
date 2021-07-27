@@ -1,3 +1,23 @@
+/*
+ClassDataAbstractionCoupling
+max = 1
+excludedClasses = (default)ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, \
+                  Character, Class, Collection, Deprecated, Deque, Double, DoubleStream, \
+                  EnumSet, Exception, Float, FunctionalInterface, HashMap, HashSet, \
+                  IllegalArgumentException, IllegalStateException, IndexOutOfBoundsException, \
+                  IntStream, Integer, LinkedHashMap, LinkedHashSet, LinkedList, List, Long, \
+                  LongStream, Map, NullPointerException, Object, Optional, OptionalDouble, \
+                  OptionalInt, OptionalLong, Override, Queue, RuntimeException, SafeVarargs, \
+                  SecurityException, Set, Short, SortedMap, SortedSet, Stream, String, \
+                  StringBuffer, StringBuilder, SuppressWarnings, Throwable, TreeMap, TreeSet, \
+                  UnsupportedOperationException, Void, boolean, byte, char, double, float, \
+                  int, long, short, var, void
+excludeClassesRegexps = (default)^$
+excludedPackages = (default)
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling;
 
@@ -8,20 +28,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-/* Config:
-
- * max = 1
- * excludedClasses = {ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, Character,
- *  Class, Deprecated, Deque, Double, Exception, Float, FunctionalInterface, HashMap,
- *  HashSet, IllegalArgumentException, IllegalStateException, IndexOutOfBoundsException,
- *  Integer, LinkedList, List, Long, Map, NullPointerException, Object, Override, Queue,
- *  RuntimeException, SafeVarargs, SecurityException, Set, Short, SortedMap, SortedSet,
- *  String, StringBuffer, StringBuilder, SuppressWarnings, Throwable,
- * TreeMap, TreeSet, UnsupportedOperationException, Void, boolean, byte, char, double,
- *  float, int, long, short, void}
- * excludeClassesRegexps = ^$
- * excludedPackages = {}
- */
 class InputClassDataAbstractionCouplingRecords {
     Date date = new Date(); // Counted, 1
     Time time = new Time(2, 2, 2); // violation
