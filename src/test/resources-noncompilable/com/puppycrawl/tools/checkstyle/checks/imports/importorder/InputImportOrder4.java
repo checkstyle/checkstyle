@@ -1,3 +1,19 @@
+/*
+ImportOrder
+option = (default)under
+groups = java.awt, javax.swing, java.io, java.util
+ordered = false
+separated = true
+separatedStaticGroups = (default)false
+caseSensitive = (default)true
+staticGroups = (default)
+sortStaticImportsAlphabetically = (default)false
+useContainerOrderingForStatic = (default)false
+tokens = (default)STATIC_IMPORT
+
+
+*/
+
 //non-compiled with javac: contains specially crafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 import java.awt.Button; // ok
@@ -18,17 +34,5 @@ import static javax.swing.WindowConstants.*; // violation
 import static sun.tools.util.ModifierFilter.ALL_ACCESS; // ok
 import static sun.tools.util.ModifierFilter.PACKAGE; // ok
 
-/*
- * Config:
- * option = under
- * groups = {java.awt, javax.swing, java.io, java.util}
- * ordered = false
- * separated = true
- * separatedStaticGroups = false
- * caseSensitive = true
- * staticGroups = {}
- * sortStaticImportsAlphabetically = false
- * useContainerOrderingForStatic = false
- */
 public class InputImportOrder4 {
 }

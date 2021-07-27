@@ -1,3 +1,19 @@
+/*
+ImportOrder
+option = top
+groups = android, androidx, java
+ordered = true
+separated = (default)false
+separatedStaticGroups = true
+caseSensitive = (default)true
+staticGroups = android, androidx, java
+sortStaticImportsAlphabetically = true
+useContainerOrderingForStatic = (default)false
+tokens = (default)STATIC_IMPORT
+
+
+*/
+
 //non-compiled with javac: contains specially crafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 import static android.app.slice.Slice.HINT_ACTIONS; // ok
@@ -24,17 +40,5 @@ import java.time.Duration; // ok
 import java.util.ArrayList; // ok
 import java.util.List; // ok
 
-/*
- * Config:
- * option = top
- * groups = {android, androidx, java}
- * ordered = true
- * separated = false
- * separatedStaticGroups = true
- * caseSensitive = true
- * staticGroups = {android, androidx, java}
- * sortStaticImportsAlphabetically = true
- * useContainerOrderingForStatic = false
- */
 public class InputImportOrderStaticGroupsTopSeparated {
 }
