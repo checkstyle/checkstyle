@@ -210,6 +210,15 @@ public class JavaParserTest extends AbstractModuleTestSupport {
                 .isNotNull();
     }
 
+    @Test
+    public void testNoFreezeOnDeeplyNestedLambdas() throws Exception {
+        final File file =
+                new File(getNonCompilablePath("InputJavaParserNoFreezeOnDeeplyNestedLambdas.java"));
+        assertWithMessage("File parsing should complete successfully.")
+                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
+                .isNotNull();
+    }
+
     private static final class CountComments {
         private final List<String> lineComments = new ArrayList<>();
         private final List<String> blockComments = new ArrayList<>();
