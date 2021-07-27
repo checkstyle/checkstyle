@@ -1,13 +1,23 @@
+/*
+CyclomaticComplexity
+max = 0
+switchBlockAsSingleDecisionPoint = (default)false
+tokens = (default)LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_SWITCH, \
+         LITERAL_CASE, LITERAL_CATCH, QUESTION, LAND, LOR
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 
 public class InputCyclomaticComplexity {
     // NP = 2
-    public void foo() {
+    public void foo() { // violation
         //NP(while-statement) = (while-range=1) + (expr=0) + 1 = 2
         while (true) {
             Runnable runnable = new Runnable() {
                // NP = 2
-                public void run() {
+                public void run() { // violation
                     // NP(while-statement) = (while-range=1) + (expr=0) + 1 = 2
                     while (true) {
                     }
@@ -19,7 +29,7 @@ public class InputCyclomaticComplexity {
     }
 
     // NP = 10
-    public void bar() {
+    public void bar() { // violation
         // NP = (if-range=3*3) + (expr=0) + 1 = 10
         if (System.currentTimeMillis() == 0) {
             //NP = (if-range=1) + 1 + (expr=1) = 3
@@ -32,7 +42,7 @@ public class InputCyclomaticComplexity {
     }
 
     // NP = 3
-    public void simpleElseIf() {
+    public void simpleElseIf() { // violation
         // NP = (if-range=1) + (else-range=2) + 0 = 3
         if (System.currentTimeMillis() == 0) {
         // NP(else-range) = (if-range=1) + (else-range=1) + (expr=0) = 2
@@ -42,7 +52,7 @@ public class InputCyclomaticComplexity {
     }
 
     // NP = 7
-    public void stupidElseIf() {
+    public void stupidElseIf() { // violation
         // NP = (if-range=1) + (else-range=3*2) + (expr=0) = 7
         if (System.currentTimeMillis() == 0) {
         } else {
@@ -60,7 +70,7 @@ public class InputCyclomaticComplexity {
     }
 
     // NP = 3
-    public InputCyclomaticComplexity()
+    public InputCyclomaticComplexity() // violation
     {
         int i = 1;
         // NP = (if-range=1) + (else-range=2) + 0 = 3
@@ -73,7 +83,7 @@ public class InputCyclomaticComplexity {
 
     // STATIC_INIT
     // NP = 3
-    static {
+    static { // violation
         int i = 1;
         // NP = (if-range=1) + (else-range=2) + 0 = 3
         if (System.currentTimeMillis() == 0) {
@@ -85,7 +95,7 @@ public class InputCyclomaticComplexity {
 
     // INSTANCE_INIT
     // NP = 3
-    {
+    { // violation
         int i = 1;
         // NP = (if-range=1) + (else-range=2) + 0 = 3
         if (System.currentTimeMillis() == 0) {
@@ -97,11 +107,11 @@ public class InputCyclomaticComplexity {
 
     /** Inner */
     // NP = 0
-    public InputCyclomaticComplexity(int aParam)
+    public InputCyclomaticComplexity(int aParam) // violation
     {
         Runnable runnable = new Runnable() {
             // NP = 2
-            public void run() {
+            public void run() { // violation
                 // NP(while-statement) = (while-range=1) + (expr=0) + 1 = 2
                 while (true) {
                 }

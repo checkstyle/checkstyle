@@ -893,11 +893,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="metrics[\\/]classfanoutcomplexity[\\/]inputs[\\/]c[\\/]CClass.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]cyclomaticcomplexity[\\/]InputCyclomaticComplexity.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]cyclomaticcomplexity[\\/]InputCyclomaticComplexitySwitchBlocks.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="metrics[\\/]javancss[\\/]InputJavaNCSS.java"/>
@@ -2279,11 +2274,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="metrics[\\/]classfanoutcomplexity[\\/]inputs[\\/]c[\\/]CClass.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]cyclomaticcomplexity[\\/]InputCyclomaticComplexity.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]cyclomaticcomplexity[\\/]InputCyclomaticComplexitySwitchBlocks.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="metrics[\\/]javancss[\\/]InputJavaNCSS.java"/>

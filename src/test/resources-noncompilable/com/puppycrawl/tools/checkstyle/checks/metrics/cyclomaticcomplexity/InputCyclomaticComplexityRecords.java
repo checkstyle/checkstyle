@@ -1,13 +1,16 @@
+/*
+CyclomaticComplexity
+max = 0
+switchBlockAsSingleDecisionPoint = (default)false
+tokens = (default)LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_SWITCH, \
+         LITERAL_CASE, LITERAL_CATCH, QUESTION, LAND, LOR
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 
-/* Config:
- * max = 0;
- * switchBlockAsSingleDecisionPoint = false
- * tokens = {LITERAL_WHILE , LITERAL_DO , LITERAL_FOR , LITERAL_IF , LITERAL_SWITCH ,
- *  LITERAL_CASE , LITERAL_CATCH , QUESTION , LAND , LOR, COMPACT_CTOR_DEF}
- *
- */
 public class InputCyclomaticComplexityRecords {
 
     public record MyRecord1(String str, Record record) {
