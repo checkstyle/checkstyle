@@ -489,14 +489,14 @@ public final class JavaAstVisitor extends CheckstyleJavaParserBaseVisitor<Detail
 
         final DetailAstImpl declaratorId;
         if (ctx.LITERAL_THIS() == null) {
-            declaratorId = visit(ctx.id());
+            declaratorId = visit(ctx.qualifiedName());
         }
         else if (ctx.DOT() == null) {
             declaratorId = create(ctx.LITERAL_THIS());
         }
         else {
             declaratorId = create(ctx.DOT());
-            declaratorId.addChild(visit(ctx.id()));
+            declaratorId.addChild(visit(ctx.qualifiedName()));
             declaratorId.addChild(create(ctx.LITERAL_THIS()));
         }
 
