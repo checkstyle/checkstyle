@@ -1,20 +1,20 @@
 /*
 NPathComplexity
-max = 0
+max = (default)200
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.npathcomplexity;
 
-public class InputNPathComplexityDefault {
+public class InputNPathComplexityDefault2 { // ok
     // NP = 2
-    public void foo() { // violation
+    public void foo() {
         //NP(while-statement) = (while-range=1) + (expr=0) + 1 = 2
         while (true) {
             Runnable runnable = new Runnable() {
                // NP = 2
-                public void run() { // violation
+                public void run() {
                     // NP(while-statement) = (while-range=1) + (expr=0) + 1 = 2
                     while (true) {
                     }
@@ -26,7 +26,7 @@ public class InputNPathComplexityDefault {
     }
 
     // NP = 10
-    public void bar() { // violation
+    public void bar() {
         // NP = (if-range=3*3) + (expr=0) + 1 = 10
         if (System.currentTimeMillis() == 0) {
             //NP = (if-range=1) + 1 + (expr=1) = 3
@@ -39,7 +39,7 @@ public class InputNPathComplexityDefault {
     }
 
     // NP = 3
-    public void simpleElseIf() { // violation
+    public void simpleElseIf() {
         // NP = (if-range=1) + (else-range=2) + 0 = 3
         if (System.currentTimeMillis() == 0) {
         // NP(else-range) = (if-range=1) + (else-range=1) + (expr=0) = 2
@@ -49,7 +49,7 @@ public class InputNPathComplexityDefault {
     }
 
     // NP = 7
-    public void stupidElseIf() { // violation
+    public void stupidElseIf() {
         // NP = (if-range=1) + (else-range=3*2) + (expr=0) = 7
         if (System.currentTimeMillis() == 0) {
         } else {
@@ -67,7 +67,7 @@ public class InputNPathComplexityDefault {
     }
 
     // NP = 3
-    public InputNPathComplexityDefault() // violation
+    public InputNPathComplexityDefault2()
     {
         int i = 1;
         // NP = (if-range=1) + (else-range=2) + 0 = 3
@@ -80,7 +80,7 @@ public class InputNPathComplexityDefault {
 
     // STATIC_INIT
     // NP = 3
-    static { // violation
+    static {
         int i = 1;
         // NP = (if-range=1) + (else-range=2) + 0 = 3
         if (System.currentTimeMillis() == 0) {
@@ -92,7 +92,7 @@ public class InputNPathComplexityDefault {
 
     // INSTANCE_INIT
     // NP = 3
-    { // violation
+    {
         int i = 1;
         // NP = (if-range=1) + (else-range=2) + 0 = 3
         if (System.currentTimeMillis() == 0) {
@@ -104,11 +104,11 @@ public class InputNPathComplexityDefault {
 
     /** Inner */
     // NP = 0
-    public InputNPathComplexityDefault(int aParam)
+    public InputNPathComplexityDefault2(int aParam)
     {
         Runnable runnable = new Runnable() {
             // NP = 2
-            public void run() { // violation
+            public void run() {
                 // NP(while-statement) = (while-range=1) + (expr=0) + 1 = 2
                 while (true) {
                 }
@@ -117,7 +117,7 @@ public class InputNPathComplexityDefault {
         new Thread(runnable).start();
     }
 
-    public void InputNestedTernaryCheck() { // violation
+    public void InputNestedTernaryCheck() {
         double x = (getSmth() || Math.random() == 5) ? null : (int) Math
                 .cos(400 * (10 + 40)); // good
         double y = (0.2 == Math.random()) ? (0.3 == Math.random()) ? null : (int) Math
@@ -127,14 +127,14 @@ public class InputNPathComplexityDefault {
                         .sin(300 * (12 + 30))); // bad (nested in second
                                                 // position)
     }
-    public boolean getSmth() { return true; }; // violation
-    public int apply(Object o) { return 0; } // violation
+    public boolean getSmth() { return true; };
+    public int apply(Object o) { return 0; }
 
     public void inClass(int type, Short s, int color) {
         switch (type) {
         case 3:
             new Object() {
-                public void anonymousMethod() { // violation
+                public void anonymousMethod() {
                     {
                         switch (s) {
                         case 5:
@@ -148,7 +148,7 @@ public class InputNPathComplexityDefault {
         default:
             new Object() {
                 class SwitchClass {
-                    { // violation
+                    {
                         switch (color) {
                         case 5:
                             switch (type) {

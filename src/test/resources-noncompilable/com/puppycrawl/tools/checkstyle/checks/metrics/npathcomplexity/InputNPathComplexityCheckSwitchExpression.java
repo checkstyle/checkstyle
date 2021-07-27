@@ -1,9 +1,13 @@
+/*
+NPathComplexity
+max = 1
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.metrics.npathcomplexity;
 
-/* Config:
- * max = 1
- */
 public class InputNPathComplexityCheckSwitchExpression {
     void howMany1(Nums k) { // violation
         switch (k) {
