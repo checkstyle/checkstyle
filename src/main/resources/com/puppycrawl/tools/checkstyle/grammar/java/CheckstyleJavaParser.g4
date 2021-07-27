@@ -750,7 +750,8 @@ creator
     ;
 
 createdName
-    : id typeArgumentsOrDiamond? extended+=createdNameExtended*            #createdNameObject
+    : annotations[false] id typeArgumentsOrDiamond?
+       extended+=createdNameExtended*                                      #createdNameObject
     | primitiveType                                                        #createdNamePrimitive
     ;
 
