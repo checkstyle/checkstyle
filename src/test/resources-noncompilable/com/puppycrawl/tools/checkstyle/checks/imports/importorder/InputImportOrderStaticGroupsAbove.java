@@ -1,3 +1,19 @@
+/*
+ImportOrder
+option = above
+groups = (default)
+ordered = (default)true
+separated = (default)false
+separatedStaticGroups = (default)false
+caseSensitive = (default)true
+staticGroups = (default)
+sortStaticImportsAlphabetically = (default)false
+useContainerOrderingForStatic = (default)false
+tokens = (default)STATIC_IMPORT
+
+
+*/
+
 //non-compiled with javac: contains specially crafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 import static com.google.common.truth.Truth.assertThat; // ok
@@ -15,17 +31,5 @@ import org.infinispan.Cache; // ok
 import org.infinispan.commons.api.BasicCacheContainer; // ok
 
 
-/*
- * Config:
- * option = above
- * groups = {}
- * ordered = true
- * separated = false
- * separatedStaticGroups = false
- * caseSensitive = true
- * staticGroups = {}
- * sortStaticImportsAlphabetically = false
- * useContainerOrderingForStatic = false
- */
 public class InputImportOrderStaticGroupsAbove {
 }

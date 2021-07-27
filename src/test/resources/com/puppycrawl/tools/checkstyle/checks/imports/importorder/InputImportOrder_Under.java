@@ -1,3 +1,19 @@
+/*
+ImportOrder
+option = (default)under
+groups = (default)
+ordered = (default)true
+separated = (default)false
+separatedStaticGroups = (default)false
+caseSensitive = (default)true
+staticGroups = (default)
+sortStaticImportsAlphabetically = (default)false
+useContainerOrderingForStatic = (default)false
+tokens = (default)STATIC_IMPORT
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 import java.awt.Button; // ok
@@ -16,17 +32,5 @@ import java.io.IOException; // ok
 import java.io.InputStream; // ok
 import java.io.Reader; // ok
 
-/*
- * Config:
- * option = under
- * groups = {}
- * ordered = true
- * separated = false
- * separatedStaticGroups = false
- * caseSensitive = true
- * staticGroups = {}
- * sortStaticImportsAlphabetically = false
- * useContainerOrderingForStatic = false
- */
 public class InputImportOrder_Under {
 }

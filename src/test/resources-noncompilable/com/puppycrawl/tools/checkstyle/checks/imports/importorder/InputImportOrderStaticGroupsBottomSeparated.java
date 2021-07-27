@@ -1,3 +1,19 @@
+/*
+ImportOrder
+option = bottom
+groups = android, com, net, junit, org, java, javax
+ordered = (default)true
+separated = true
+separatedStaticGroups = true
+caseSensitive = (default)true
+staticGroups = android, com, net, junit, org, java, javax
+sortStaticImportsAlphabetically = true
+useContainerOrderingForStatic = (default)false
+tokens = (default)STATIC_IMPORT
+
+
+*/
+
 //non-compiled with javac: contains specially crafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 import com.spotify.x.R; // ok
@@ -13,17 +29,5 @@ import static com.spotify.X.o; // ok
 
 import static org.hamcrest.core.AllOf.allOf; // ok
 
-/*
- * Config:
- * option = bottom
- * groups = {android, com, net, junit, org, java, javax}
- * ordered = true
- * separated = true
- * separatedStaticGroups = true
- * caseSensitive = true
- * staticGroups = {android, com, net, junit, org, java, javax}
- * sortStaticImportsAlphabetically = true
- * useContainerOrderingForStatic = false
- */
 public class InputImportOrderStaticGroupsBottomSeparated {
 }

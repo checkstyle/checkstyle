@@ -1,3 +1,19 @@
+/*
+ImportOrder
+option = (default)under
+groups = com, *, java
+ordered = (default)true
+separated = (default)false
+separatedStaticGroups = (default)false
+caseSensitive = (default)true
+staticGroups = (default)
+sortStaticImportsAlphabetically = (default)false
+useContainerOrderingForStatic = (default)false
+tokens = (default)STATIC_IMPORT
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 // groups are configured as follows
 // com.puppycrawl,*,java
@@ -8,17 +24,5 @@ import javax.crypto.BadPaddingException; // ok
 import java.util.List; //comment test // ok
 import javax.crypto.Cipher; // violation
 
-/*
- * Config:
- * option = under
- * groups = {com, *, java}
- * ordered = true
- * separated = false
- * separatedStaticGroups = false
- * caseSensitive = true
- * staticGroups = {}
- * sortStaticImportsAlphabetically = false
- * useContainerOrderingForStatic = false
- */
 public class InputImportOrder_Wildcard {
 }

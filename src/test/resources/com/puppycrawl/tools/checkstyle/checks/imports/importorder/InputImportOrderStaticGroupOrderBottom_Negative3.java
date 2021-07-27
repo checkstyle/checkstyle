@@ -1,3 +1,19 @@
+/*
+ImportOrder
+option = bottom
+groups = org, java
+ordered = (default)true
+separated = true
+separatedStaticGroups = (default)false
+caseSensitive = (default)true
+staticGroups = (default)
+sortStaticImportsAlphabetically = true
+useContainerOrderingForStatic = (default)false
+tokens = (default)STATIC_IMPORT
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 import org.antlr.v4.runtime.*; // ok
@@ -9,18 +25,6 @@ import java.util.Set; // violation
 
 import static java.util.Set.*; // ok
 
-/*
- * Config:
- * option = bottom
- * groups = {org, java}
- * ordered = true
- * separated = true
- * separatedStaticGroups = false
- * caseSensitive = true
- * staticGroups = {}
- * sortStaticImportsAlphabetically = true
- * useContainerOrderingForStatic = false
- */
 public class InputImportOrderStaticGroupOrderBottom_Negative3
 {
 
