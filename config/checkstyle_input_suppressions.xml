@@ -851,47 +851,6 @@
 
 
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexity15Extensions.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityAnnotations.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityExcludedPackagesAllIgnored.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityExcludedPackagesCommonPackage.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityExcludedPackagesDirectPackages.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityExtends.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityImplements.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexity.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityMultiDimensionalArray.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityPackageName.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]inputs[\\/]a[\\/]aa[\\/]AAClass.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]inputs[\\/]a[\\/]ab[\\/]ABClass.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]inputs[\\/]b[\\/]BClass.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]inputs[\\/]c[\\/]CClass.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="metrics[\\/]cyclomaticcomplexity[\\/]InputCyclomaticComplexity.java"/>
@@ -2237,47 +2196,6 @@
 
 
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexity15Extensions.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityAnnotations.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityExcludedPackagesAllIgnored.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityExcludedPackagesCommonPackage.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityExcludedPackagesDirectPackages.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityExtends.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityImplements.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexity.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityMultiDimensionalArray.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityPackageName.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]inputs[\\/]a[\\/]aa[\\/]AAClass.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]inputs[\\/]a[\\/]ab[\\/]ABClass.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]inputs[\\/]b[\\/]BClass.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classfanoutcomplexity[\\/]inputs[\\/]c[\\/]CClass.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="metrics[\\/]cyclomaticcomplexity[\\/]InputCyclomaticComplexity.java"/>
