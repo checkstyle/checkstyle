@@ -1,6 +1,14 @@
+/*
+BooleanExpressionComplexity
+max = 1
+tokens = (default)LAND, BAND, LOR, BOR, BXOR
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.metrics.booleanexpressioncomplexity;
 
-public class InputBooleanExpressionComplexitySmall {
+public class InputBooleanExpressionComplexitySmall { // ok
     public void method() {
         java.awt.EventQueue.invokeLater(() -> {
             try {
