@@ -1,11 +1,14 @@
+/*
+BooleanExpressionComplexity
+max = (default)3
+tokens = (default)LAND, BAND, LOR, BOR, BXOR
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.metrics.booleanexpressioncomplexity;
 
-/* Config:
- * max = 3
- * tokens = {LAND , BAND , LOR , BOR , BXOR}
- *
- */
 public class InputBooleanExpressionComplexityRecordsAndCompactCtors {
 
     record MyRecord1(boolean a, boolean b) {

@@ -849,14 +849,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocPeriod.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]booleanexpressioncomplexity[\\/]InputBooleanExpressionComplexity.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]booleanexpressioncomplexity[\\/]InputBooleanExpressionComplexityNPE.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]booleanexpressioncomplexity[\\/]InputBooleanExpressionComplexitySmall.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCouplingExcludedPackagesAllIgnored.java"/>
@@ -2266,14 +2258,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocPeriod.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]booleanexpressioncomplexity[\\/]InputBooleanExpressionComplexity.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]booleanexpressioncomplexity[\\/]InputBooleanExpressionComplexityNPE.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]booleanexpressioncomplexity[\\/]InputBooleanExpressionComplexitySmall.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCouplingExcludedPackagesAllIgnored.java"/>
