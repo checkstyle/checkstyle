@@ -1,9 +1,13 @@
+/*
+NPathComplexity
+max = (default)200
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.metrics.npathcomplexity;
 
-/* Config:
- * max = 1
- */
 public class InputNPathComplexityRecords {
 
     // in compact ctor, NP=3

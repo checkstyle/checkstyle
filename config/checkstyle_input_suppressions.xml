@@ -902,17 +902,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="metrics[\\/]javancss[\\/]InputJavaNCSS.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]npathcomplexity[\\/]InputNPathComplexityDefault2.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]npathcomplexity[\\/]InputNPathComplexityDefault.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]npathcomplexity[\\/]InputNPathComplexity.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]npathcomplexity[\\/]InputNPathComplexityOverflow.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="modifier[\\/]classmemberimpliedmodifier[\\/]InputClassMemberImpliedModifierOnClass.java"/>
@@ -2288,17 +2277,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="metrics[\\/]javancss[\\/]InputJavaNCSS.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]npathcomplexity[\\/]InputNPathComplexityDefault2.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]npathcomplexity[\\/]InputNPathComplexityDefault.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]npathcomplexity[\\/]InputNPathComplexity.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]npathcomplexity[\\/]InputNPathComplexityOverflow.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="modifier[\\/]classmemberimpliedmodifier[\\/]InputClassMemberImpliedModifierOnClass.java"/>

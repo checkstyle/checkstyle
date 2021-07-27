@@ -1,3 +1,10 @@
+/*
+NPathComplexity
+max = 0
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.metrics.npathcomplexity;
 
 /**
@@ -10,7 +17,7 @@ public class InputNPathComplexityOverflow {
      *          (if-range[5]=9) * (if-range[6]=9) * (if-range[7]=9) * (if-range[8]=9)
      *          (if-range[9]=9) * (if-range[10]=9) = 3486784401
      */
-    public void provokeNpathIntegerOverflow()
+    public void provokeNpathIntegerOverflow() // violation
     {
         // NP = (if-range=8) + 1 + (expr=0) = 9
         if (true) {
