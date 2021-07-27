@@ -299,7 +299,7 @@ variableDeclarator[List<ModifierContext> mods, TypeTypeContext type]
     ;
 
 variableDeclaratorId[List<VariableModifierContext> mods, ParserRuleContext type]
-    : (LITERAL_THIS | (id (DOT LITERAL_THIS)?)) arrayDeclarator*
+    : (LITERAL_THIS | (qualifiedName (DOT LITERAL_THIS)?)) arrayDeclarator*
     ;
 
 variableInitializer
