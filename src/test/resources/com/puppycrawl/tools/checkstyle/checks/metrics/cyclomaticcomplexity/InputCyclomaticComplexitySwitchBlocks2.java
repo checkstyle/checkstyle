@@ -1,7 +1,7 @@
 /*
 CyclomaticComplexity
 max = 0
-switchBlockAsSingleDecisionPoint = true
+switchBlockAsSingleDecisionPoint = (default)false
 tokens = (default)LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_SWITCH, \
          LITERAL_CASE, LITERAL_CATCH, QUESTION, LAND, LOR
 
@@ -10,7 +10,7 @@ tokens = (default)LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_SW
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 
-public class InputCyclomaticComplexitySwitchBlocks {
+public class InputCyclomaticComplexitySwitchBlocks2 {
     public void foo2() { // violation
         String programmingLanguage = "Java";
         switch (programmingLanguage) {

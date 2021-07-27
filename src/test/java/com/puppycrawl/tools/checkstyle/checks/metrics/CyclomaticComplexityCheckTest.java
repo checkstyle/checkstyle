@@ -45,7 +45,7 @@ public class CyclomaticComplexityCheckTest
         checkConfig.addProperty("switchBlockAsSingleDecisionPoint", "true");
 
         final String[] expected = {
-            "4:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "14:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
         verify(checkConfig, getPath("InputCyclomaticComplexitySwitchBlocks.java"), expected);
@@ -59,10 +59,10 @@ public class CyclomaticComplexityCheckTest
         checkConfig.addProperty("switchBlockAsSingleDecisionPoint", "false");
 
         final String[] expected = {
-            "4:5: " + getCheckMessage(MSG_KEY, 5, 0),
+            "14:5: " + getCheckMessage(MSG_KEY, 5, 0),
         };
 
-        verify(checkConfig, getPath("InputCyclomaticComplexitySwitchBlocks.java"), expected);
+        verify(checkConfig, getPath("InputCyclomaticComplexitySwitchBlocks2.java"), expected);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class CyclomaticComplexityCheckTest
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputCyclomaticComplexitySwitchBlocks.java"), expected);
+        verify(checkConfig, getPath("InputCyclomaticComplexitySwitchBlocks3.java"), expected);
     }
 
     @Test
@@ -84,16 +84,16 @@ public class CyclomaticComplexityCheckTest
         checkConfig.addProperty("max", "0");
 
         final String[] expected = {
-            "5:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "10:17: " + getCheckMessage(MSG_KEY, 2, 0),
-            "22:5: " + getCheckMessage(MSG_KEY, 6, 0),
-            "35:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "45:5: " + getCheckMessage(MSG_KEY, 5, 0),
-            "63:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "76:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "88:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "100:5: " + getCheckMessage(MSG_KEY, 1, 0),
-            "104:13: " + getCheckMessage(MSG_KEY, 2, 0),
+            "15:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "20:17: " + getCheckMessage(MSG_KEY, 2, 0),
+            "32:5: " + getCheckMessage(MSG_KEY, 6, 0),
+            "45:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "55:5: " + getCheckMessage(MSG_KEY, 5, 0),
+            "73:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "86:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "98:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "110:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "114:13: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
         verify(checkConfig, getPath("InputCyclomaticComplexity.java"), expected);
@@ -109,11 +109,11 @@ public class CyclomaticComplexityCheckTest
         final int max = 0;
 
         final String[] expected = {
-            "14:9: " + getCheckMessage(MSG_KEY, 11, max),
-            "45:9: " + getCheckMessage(MSG_KEY, 11, max),
-            "80:5: " + getCheckMessage(MSG_KEY, 11, max),
-            "112:5: " + getCheckMessage(MSG_KEY, 11, max),
-            "145:5: " + getCheckMessage(MSG_KEY, 11, max),
+            "17:9: " + getCheckMessage(MSG_KEY, 11, max),
+            "48:9: " + getCheckMessage(MSG_KEY, 11, max),
+            "83:5: " + getCheckMessage(MSG_KEY, 11, max),
+            "115:5: " + getCheckMessage(MSG_KEY, 11, max),
+            "148:5: " + getCheckMessage(MSG_KEY, 11, max),
         };
 
         verify(checkConfig,
@@ -167,7 +167,7 @@ public class CyclomaticComplexityCheckTest
         checkConfig.addProperty("max", "100");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputCyclomaticComplexitySwitchBlocks.java"), expected);
+        verify(checkConfig, getPath("InputCyclomaticComplexitySwitchBlocks4.java"), expected);
     }
 
 }
