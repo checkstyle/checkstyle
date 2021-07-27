@@ -1,3 +1,11 @@
+/*
+DesignForExtension
+ignoredAnnotations = (default)After, AfterClass, Before, BeforeClass, Test
+requiredJavadocPhrase = (default).*
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
 public class InputDesignForExtensionOverridableMethods {
@@ -102,7 +110,7 @@ public class InputDesignForExtensionOverridableMethods {
         public void foo24() {}
 
         /* Block comment violation */
-        public void foo25() {
+        public void foo25() { // violation
             return;
         }
 
@@ -126,7 +134,7 @@ public class InputDesignForExtensionOverridableMethods {
         }
 
         /* Block comment violation */
-        @Deprecated
+        @Deprecated // violation
         public void foo29() {
             return;
         }
@@ -147,8 +155,8 @@ public class InputDesignForExtensionOverridableMethods {
             return 1;
         }
 
-        /* */ // violation
-        public int foo31() {
+        /* */
+        public int foo31() { // violation
             /** */
             return 1;
         }
@@ -159,14 +167,14 @@ public class InputDesignForExtensionOverridableMethods {
             return 1;
         }
 
-        @Deprecated
-        /** */ // violation
+        @Deprecated // violation
+        /** */
         public int foo33() {
             return 1;
         }
 
-        @Deprecated
-        /* */ // violation
+        @Deprecated // violation
+        /* */
         public int foo34() {
             return 1;
         }
@@ -187,7 +195,7 @@ public class InputDesignForExtensionOverridableMethods {
         // comment
         public void foo38() { }
 
-        @Deprecated /** */ // violation
+        @Deprecated /** */
         public void foo39() {return; }
 
         void foo40() { // no violation: empty body
