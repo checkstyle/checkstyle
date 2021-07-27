@@ -2,7 +2,7 @@
 ClassDataAbstractionCoupling
 max = 0
 excludedClasses = InnerClass
-excludeClassesRegexps = (default)^$
+excludeClassesRegexps =
 excludedPackages = (default)
 
 
@@ -10,10 +10,16 @@ excludedPackages = (default)
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling;
 
-import javax.naming.NamingException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-public class InputClassDataAbstractionCoupling { // violation
+import javax.naming.NamingException;
+
+public class InputClassDataAbstractionCoupling4 { // violation
     private class InnerClass { // violation
         public List _list = new ArrayList();
     }
@@ -34,10 +40,10 @@ public class InputClassDataAbstractionCoupling { // violation
 
 }
 
-enum InnerEnum {
-    VALUE1; // violation
+enum InnerEnum4 { // violation
+    VALUE1;
 
-    private InnerEnum()
+    private InnerEnum4()
     {
         map2 = new HashMap();
     }
@@ -45,7 +51,7 @@ enum InnerEnum {
     private Map map2;
 }
 
-class InputThrows {
+class InputThrows4 {
 
     public void get() throws NamingException, IllegalArgumentException {
         new java.lang.ref.ReferenceQueue<Integer>();
