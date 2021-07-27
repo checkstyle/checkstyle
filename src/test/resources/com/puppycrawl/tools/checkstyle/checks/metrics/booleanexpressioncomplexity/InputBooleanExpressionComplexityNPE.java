@@ -1,6 +1,14 @@
+/*
+BooleanExpressionComplexity
+max = (default)3
+tokens = (default)LAND, BAND, LOR, BOR, BXOR
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.metrics.booleanexpressioncomplexity;
 
-public class InputBooleanExpressionComplexityNPE
+public class InputBooleanExpressionComplexityNPE // ok
 {
     static {
         try {

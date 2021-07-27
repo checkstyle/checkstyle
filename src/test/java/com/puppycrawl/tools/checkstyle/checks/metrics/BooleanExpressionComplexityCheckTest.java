@@ -45,11 +45,11 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
             createModuleConfig(BooleanExpressionComplexityCheck.class);
 
         final String[] expected = {
-            "13:9: " + getCheckMessage(MSG_KEY, 4, 3),
-            "29:87: " + getCheckMessage(MSG_KEY, 4, 3),
-            "39:9: " + getCheckMessage(MSG_KEY, 6, 3),
-            "45:34: " + getCheckMessage(MSG_KEY, 4, 3),
-            "47:34: " + getCheckMessage(MSG_KEY, 4, 3),
+            "21:9: " + getCheckMessage(MSG_KEY, 4, 3),
+            "38:46: " + getCheckMessage(MSG_KEY, 4, 3),
+            "48:9: " + getCheckMessage(MSG_KEY, 6, 3),
+            "54:34: " + getCheckMessage(MSG_KEY, 4, 3),
+            "56:34: " + getCheckMessage(MSG_KEY, 4, 3),
         };
 
         verify(checkConfig, getPath("InputBooleanExpressionComplexity.java"), expected);
@@ -64,7 +64,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputBooleanExpressionComplexity.java"), expected);
+        verify(checkConfig, getPath("InputBooleanExpressionComplexity2.java"), expected);
     }
 
     @Test
@@ -113,10 +113,10 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
         final int max = 3;
 
         final String[] expected = {
-            "13:12: " + getCheckMessage(MSG_KEY, 4, max),
-            "21:23: " + getCheckMessage(MSG_KEY, 4, max),
-            "32:23: " + getCheckMessage(MSG_KEY, 4, max),
-            "42:27: " + getCheckMessage(MSG_KEY, 4, max),
+            "16:12: " + getCheckMessage(MSG_KEY, 4, max),
+            "24:23: " + getCheckMessage(MSG_KEY, 4, max),
+            "35:23: " + getCheckMessage(MSG_KEY, 4, max),
+            "45:27: " + getCheckMessage(MSG_KEY, 4, max),
         };
 
         verify(checkConfig,
