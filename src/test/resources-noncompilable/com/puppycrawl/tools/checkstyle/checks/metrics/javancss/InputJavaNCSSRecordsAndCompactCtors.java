@@ -1,17 +1,21 @@
+/*
+JavaNCSS
+methodMaximum = 7
+classMaximum = 3
+fileMaximum = 2
+recordMaximum = 4
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
-package com.puppycrawl.tools.checkstyle.checks.metrics.javancss; // violation for file
+package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;  // violation
 
 import java.time.LocalDateTime;
 
-/* Config:
- * methodMaximum = 7
- * classMaximum = 3
- * fileMaximum = 2
- * recordMaximum = 4
- */
-public class InputJavaNCSSRecordsAndCompactCtors { // violation for class
+public class InputJavaNCSSRecordsAndCompactCtors {  // violation
 
-    class TestClass { // violation for class
+    class TestClass {  // violation
         //should count as 2
         private void testMethod1() {
 
@@ -29,7 +33,7 @@ public class InputJavaNCSSRecordsAndCompactCtors { // violation for class
         } // 7
     }
 
-    record MyRecord1(boolean t, boolean f) { // violation for record
+    record MyRecord1(boolean t, boolean f) {  // violation
         public MyRecord1 {
             System.out.println("test");
             System.out.println("test");
@@ -38,7 +42,7 @@ public class InputJavaNCSSRecordsAndCompactCtors { // violation for class
         } // 6
     }
 
-    record MyRecord2(boolean a, boolean b) { // violation for record
+    record MyRecord2(boolean a, boolean b) {  // violation
         MyRecord2() {
             this(true, false);
             System.out.println("test");
@@ -68,7 +72,7 @@ public class InputJavaNCSSRecordsAndCompactCtors { // violation for class
         }
     } // 15
 
-    record MyRecord3(boolean a, boolean b) { // violation for record
+    record MyRecord3(boolean a, boolean b) {  // violation
         public void foo () {
             //should give an ncss of 2
             record TestInnerRecord() {
@@ -102,7 +106,7 @@ public class InputJavaNCSSRecordsAndCompactCtors { // violation for class
         }
     }
 
-    public record FXOrder(int units, // violation for record, should be ncss of 8
+    public record FXOrder(int units,  // violation
                           String side,
                           double price,
                           LocalDateTime sentAt,
@@ -123,7 +127,7 @@ public class InputJavaNCSSRecordsAndCompactCtors { // violation for class
         } // 8
     }
 
-    public class FXOrderClass { // violation for class, ncss of 11
+    public class FXOrderClass {  // violation
         private int units;
         private int ttl;
         private double price; // 3
@@ -144,7 +148,7 @@ public class InputJavaNCSSRecordsAndCompactCtors { // violation for class
         } // 8
     }
 
-    record MyRecord7(int x, int y) { // violation
+    record MyRecord7(int x, int y) {  // violation
         public MyRecord7{
             System.out.println("test");
             System.out.println("test");
@@ -159,8 +163,8 @@ public class InputJavaNCSSRecordsAndCompactCtors { // violation for class
         }
     }
 
-    class MyClass { // violation
-        MyClass(int x) { // violation
+    class MyClass {  // violation
+        MyClass(int x) {  // violation
             System.out.println("test");
             System.out.println("test");
             System.out.println("test");
