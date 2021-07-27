@@ -858,29 +858,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="metrics[\\/]booleanexpressioncomplexity[\\/]InputBooleanExpressionComplexitySmall.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCouplingExcludedPackagesAllIgnored.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCouplingExcludedPackagesCommonPackage.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCouplingExcludedPackagesDirectPackages.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCoupling.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classdataabstractioncoupling[\\/]inputs[\\/]a[\\/]aa[\\/]AAClass.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classdataabstractioncoupling[\\/]inputs[\\/]a[\\/]ab[\\/]ABClass.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classdataabstractioncoupling[\\/]inputs[\\/]b[\\/]BClass.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="metrics[\\/]classdataabstractioncoupling[\\/]inputs[\\/]c[\\/]CClass.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexity15Extensions.java"/>
@@ -2275,29 +2252,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="metrics[\\/]booleanexpressioncomplexity[\\/]InputBooleanExpressionComplexitySmall.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCouplingExcludedPackagesAllIgnored.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCouplingExcludedPackagesCommonPackage.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCouplingExcludedPackagesDirectPackages.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCoupling.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classdataabstractioncoupling[\\/]inputs[\\/]a[\\/]aa[\\/]AAClass.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classdataabstractioncoupling[\\/]inputs[\\/]a[\\/]ab[\\/]ABClass.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classdataabstractioncoupling[\\/]inputs[\\/]b[\\/]BClass.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="metrics[\\/]classdataabstractioncoupling[\\/]inputs[\\/]c[\\/]CClass.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexity15Extensions.java"/>

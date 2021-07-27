@@ -1,6 +1,6 @@
 /*
 ClassDataAbstractionCoupling
-max = 0
+max = (default)7
 excludedClasses = (default)ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, \
                   Character, Class, Collection, Deprecated, Deque, Double, DoubleStream, \
                   EnumSet, Exception, Float, FunctionalInterface, HashMap, HashSet, \
@@ -13,28 +13,57 @@ excludedClasses = (default)ArrayIndexOutOfBoundsException, ArrayList, Boolean, B
                   UnsupportedOperationException, Void, boolean, byte, char, double, float, \
                   int, long, short, var, void
 excludeClassesRegexps = (default)^$
-excludedPackages = com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a
+excludedPackages = (default)
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling;
 
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.a.aa.AAClass;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.a.ab.ABClass;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.b.BClass;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.c.CClass;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-public class InputClassDataAbstractionCouplingExcludedPackagesCommonPackage { // violation
-    public AAClass aa = new AAClass(); // ok
-    public ABClass ab = new ABClass(); // ok
+import javax.naming.NamingException;
 
-    class Inner { // violation
-        public BClass b = new BClass();
-        public CClass c = new CClass();
+public class InputClassDataAbstractionCoupling2 { // ok
+    private class InnerClass { //singleline comment
+        public List _list = new ArrayList();
     }
+
+    private class AnotherInnerClass {
+        public String _string = "";
+    }
+
+    public Set _set = /*block comment*/new HashSet();
+    public Map _map = new HashMap();
+    public String _string = "";
+    public int[] _intArray = new int[0];
+    public InnerClass _innerClass = new InnerClass();
+    public AnotherInnerClass _anotherInnerClass = new AnotherInnerClass();
+
+    public void foo() throws NamingException {
+    }
+
 }
 
-class InputClassDataAbstractionCouplingExcludedPackagesCommonPackageHidden { // violation
-    public CClass c = new CClass();
+enum InnerEnum2 {
+    VALUE1;
+
+    private InnerEnum2()
+    {
+        map2 = new HashMap();
+    }
+    private Set map1 = new HashSet();
+    private Map map2;
+}
+
+class InputThrows2 {
+
+    public void get() throws NamingException, IllegalArgumentException {
+        new java.lang.ref.ReferenceQueue<Integer>();
+    }
 }
