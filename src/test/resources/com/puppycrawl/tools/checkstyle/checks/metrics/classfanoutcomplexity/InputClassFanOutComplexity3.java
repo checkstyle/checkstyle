@@ -1,6 +1,6 @@
 /*
 ClassFanOutComplexity
-max = 2
+max = 0
 excludedClasses = (default)ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, \
                   Character, Class, Collection, Deprecated, Deque, Double, DoubleStream, \
                   EnumSet, Exception, Float, FunctionalInterface, HashMap, HashSet, \
@@ -12,25 +12,37 @@ excludedClasses = (default)ArrayIndexOutOfBoundsException, ArrayList, Boolean, B
                   StringBuffer, StringBuilder, SuppressWarnings, Throwable, TreeMap, TreeSet, \
                   UnsupportedOperationException, Void, boolean, byte, char, double, float, \
                   int, long, short, var, void
-excludeClassesRegexps = (default)^$
+excludeClassesRegexps = ^Inner.*
 excludedPackages = (default)
 
 
 */
 
-//non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 
-import javax.naming.NamingException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 import java.util.Set;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
+import java.util.stream.Stream;
 
-class InputClassFanOutComplexityRecords { // violation
-    private class InnerClass {
+import javax.naming.NamingException;
+
+public class InputClassFanOutComplexity3 { // violation
+    private class InnerClass { //singleline comment
         public List _list = new ArrayList();
     }
 
@@ -38,39 +50,59 @@ class InputClassFanOutComplexityRecords { // violation
         public String _string = "";
     }
 
-    public static MyRecord2 myRecord2 = new MyRecord2();
     public Set _set = /*block comment*/new HashSet();
     public Map _map = new HashMap();
     public String _string = "";
     public int[] _intArray = new int[0];
-    public InnerClass _innerClass;
-    public AnotherInnerClass _anotherInnerClass;
+    public InnerClass _innerClass = new InnerClass();
+    public AnotherInnerClass _anotherInnerClass = new AnotherInnerClass();
 
     public void foo() throws NamingException {
     }
+
 }
 
-record MyRecord1(boolean a, boolean b) { // violation
-    private class InnerClass {
-        public List _list = new ArrayList();
+enum InnerEnum3 {
+    VALUE1;
+
+    private InnerEnum3()
+    {
+        map2 = new HashMap();
     }
+    private Set map1 = new HashSet();
+    private Map map2;
+}
 
-    private class AnotherInnerClass {
-        public String _string = "";
-    }
+class InputThrows3 { // violation
 
-    public static MyRecord2 myRecord2 = new MyRecord2();
-    public static Set _set = /*block comment*/new HashSet();
-    public static Map _map = new HashMap();
-    public static String _string = "";
-    public static int[] _intArray = new int[0];
-    public static InnerClass _innerClass;
-    public static AnotherInnerClass _anotherInnerClass;
-
-    public void foo() throws NamingException {
+    public void get() throws NamingException, IllegalArgumentException {
+        new java.lang.ref.ReferenceQueue<Integer>();
     }
 }
 
-record MyRecord2(){}
+class InputMultiDimensionalArray3 {
+    public  Object[][] get() {
+        return new Object[][]{};
+    }
+}
 
-record MyRecord3(int x){}
+class InputCollectionsExt3 {
+    private Collection col; // ok
+    private EnumSet enumSet; // ok
+    private LinkedHashMap map; // ok
+    private LinkedHashSet set; // ok
+}
+
+class InputOptionals3 {
+    private Optional<Long> op1; // ok
+    private OptionalInt op2; // ok
+    private OptionalLong op3; // ok
+    private OptionalDouble op4; // ok
+}
+
+class InputStreams3 {
+    private Stream s1; // ok
+    private IntStream s2; // ok
+    private LongStream s3; // ok
+    private DoubleStream s4; // ok
+}
