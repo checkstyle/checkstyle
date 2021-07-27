@@ -37,14 +37,6 @@
   <property name="fileNamePattern" value="[\\/]UnicodeAtEOL.java$"/>
 </module>
 
-<!-- until https://github.com/checkstyle/checkstyle/issues/8291 -->
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]NestedLambdaGenerics.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]NestedLambdaNoGenerics.java$"/>
-</module>
-
 <!-- until https://github.com/checkstyle/checkstyle/issues/8652 -->
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]T8011722.java$"/>
