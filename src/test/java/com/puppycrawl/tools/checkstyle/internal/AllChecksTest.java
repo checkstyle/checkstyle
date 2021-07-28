@@ -405,6 +405,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
         final Map<String, Set<String>> configCheckTokens = new HashMap<>();
         final Map<String, Set<String>> checkTokens = new HashMap<>();
+        AbstractCheck check;
 
         for (Configuration checkConfig : configChecks) {
             final String checkName = checkConfig.getName();
@@ -412,17 +413,17 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
             try {
                 instance = moduleFactory.createModule(checkName);
-            }
-            catch (CheckstyleException ex) {
+            } catch (CheckstyleException ex) {
                 throw new CheckstyleException("Couldn't find check: " + checkName, ex);
             }
 
-            if (instance instanceof AbstractCheck) {
-                final AbstractCheck check = (AbstractCheck) instance;
-                if (isAllTokensAcceptable(check)) {
-                    // we can not have in our config test for all tokens
-                    continue;
-                }
+            if (instance instanceof AbstractCheck
+                    && !isAllTokensAcceptable((AbstractCheck) instance)) {
+                // we can not have in our config test for all tokens
+                check = (AbstractCheck) instance;
+            } else {
+                continue;
+            }
 
                 Set<String> configTokens = configCheckTokens.get(checkName);
 
@@ -443,18 +444,15 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                             CheckUtil.getTokenNameSet(check.getAcceptableTokens()));
                 }
 
-                try {
-                    configTokens.addAll(Arrays.asList(checkConfig.getProperty("tokens").trim()
-                            .split(",\\s*")));
-                }
-                catch (CheckstyleException ex) {
-                    // no tokens defined, so it is using default
-                    if (defaultTokensMustBeExplicit) {
-                        validateDefaultTokens(checkConfig, check, configTokens);
-                    }
-                    else {
-                        configTokens.addAll(CheckUtil.getTokenNameSet(check.getDefaultTokens()));
-                    }
+            try {
+                configTokens.addAll(Arrays.asList(checkConfig.getAttribute("tokens").trim()
+                        .split(",\\s*")));
+            } catch (CheckstyleException ex) {
+                // no tokens defined, so it is using default
+                if (defaultTokensMustBeExplicit) {
+                    validateDefaultTokens(checkConfig, check, configTokens);
+                } else {
+                    configTokens.addAll(CheckUtil.getTokenNameSet(check.getDefaultTokens()));
                 }
             }
         }
