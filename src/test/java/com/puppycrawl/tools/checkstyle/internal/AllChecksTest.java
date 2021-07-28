@@ -405,6 +405,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
         final Map<String, Set<String>> configCheckTokens = new HashMap<>();
         final Map<String, Set<String>> checkTokens = new HashMap<>();
+        AbstractCheck check;
 
         for (Configuration checkConfig : configChecks) {
             final String checkName = checkConfig.getName();
@@ -417,48 +418,48 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 throw new CheckstyleException("Couldn't find check: " + checkName, ex);
             }
 
-            if (instance instanceof AbstractCheck) {
-                final AbstractCheck check = (AbstractCheck) instance;
-                if (isAllTokensAcceptable(check)) {
-                    // we can not have in our config test for all tokens
-                    continue;
+            if (instance instanceof AbstractCheck
+                    && !isAllTokensAcceptable((AbstractCheck) instance)) {
+                // we can not have in our config test for all tokens
+                check = (AbstractCheck) instance;
+            }
+            else {
+                continue;
+            }
+
+            Set<String> configTokens = configCheckTokens.get(checkName);
+
+            if (configTokens == null) {
+                configTokens = new HashSet<>();
+
+                configCheckTokens.put(checkName, configTokens);
+
+                // add all overridden tokens
+                final Set<String> overrideTokens = tokensToIgnore.get(checkName);
+
+                if (overrideTokens != null) {
+                    configTokens.addAll(overrideTokens);
                 }
 
-                Set<String> configTokens = configCheckTokens.get(checkName);
+                configTokens.addAll(CheckUtil.getTokenNameSet(check.getRequiredTokens()));
+                checkTokens.put(checkName,
+                        CheckUtil.getTokenNameSet(check.getAcceptableTokens()));
+            }
 
-                if (configTokens == null) {
-                    configTokens = new HashSet<>();
-
-                    configCheckTokens.put(checkName, configTokens);
-
-                    // add all overridden tokens
-                    final Set<String> overrideTokens = tokensToIgnore.get(checkName);
-
-                    if (overrideTokens != null) {
-                        configTokens.addAll(overrideTokens);
-                    }
-
-                    configTokens.addAll(CheckUtil.getTokenNameSet(check.getRequiredTokens()));
-                    checkTokens.put(checkName,
-                            CheckUtil.getTokenNameSet(check.getAcceptableTokens()));
+            try {
+                configTokens.addAll(Arrays.asList(checkConfig.getProperty("tokens").trim()
+                        .split(",\\s*")));
+            }
+            catch (CheckstyleException ex) {
+                // no tokens defined, so it is using default
+                if (defaultTokensMustBeExplicit) {
+                    validateDefaultTokens(checkConfig, check, configTokens);
                 }
-
-                try {
-                    configTokens.addAll(Arrays.asList(checkConfig.getProperty("tokens").trim()
-                            .split(",\\s*")));
-                }
-                catch (CheckstyleException ex) {
-                    // no tokens defined, so it is using default
-                    if (defaultTokensMustBeExplicit) {
-                        validateDefaultTokens(checkConfig, check, configTokens);
-                    }
-                    else {
-                        configTokens.addAll(CheckUtil.getTokenNameSet(check.getDefaultTokens()));
-                    }
+                else {
+                    configTokens.addAll(CheckUtil.getTokenNameSet(check.getDefaultTokens()));
                 }
             }
         }
-
         for (Entry<String, Set<String>> entry : checkTokens.entrySet()) {
             final Set<String> actual = configCheckTokens.get(entry.getKey());
             assertEquals(entry.getValue(), actual,
