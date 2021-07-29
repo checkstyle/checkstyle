@@ -5361,47 +5361,47 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * |--VARIABLE_DEF
-     * |   |--MODIFIERS
-     * |   |--TYPE
-     * |   |   `--LITERAL_INT (int)
-     * |   |--IDENT (yield)
-     * |   `--ASSIGN (=)
-     * |       `--EXPR
-     * |           `--NUM_INT (0)
-     * |--SEMI (;)
-     * |--LITERAL_RETURN (return)
-     * |   |--EXPR
-     * |   |   `--LITERAL_SWITCH (switch)
-     * |   |       |--LPAREN (()
-     * |   |       |--EXPR
-     * |   |       |   `--IDENT (mode)
-     * |   |       |--RPAREN ())
-     * |   |       |--LCURLY ({)
-     * |   |       |--CASE_GROUP
-     * |   |       |   |--LITERAL_CASE (case)
-     * |   |       |   |   |--EXPR
-     * |   |       |   |   |   `--STRING_LITERAL ("a")
-     * |   |       |   |   |--COMMA (,)
-     * |   |       |   |   |--EXPR
-     * |   |       |   |   |   `--STRING_LITERAL ("b")
-     * |   |       |   |   `--COLON (:)
-     * |   |       |   `--SLIST
-     * |   |       |       `--LITERAL_YIELD (yield)
-     * |   |       |           |--EXPR
-     * |   |       |           |   `--NUM_INT (1)
-     * |   |       |           `--SEMI (;)
-     * |   |       |--CASE_GROUP
-     * |   |       |   |--LITERAL_DEFAULT (default)
-     * |   |       |   |   `--COLON (:)
-     * |   |       |   `--SLIST
-     * |   |       |       `--LITERAL_YIELD (yield)
-     * |   |       |           |--EXPR
-     * |   |       |           |   `--UNARY_MINUS (-)
-     * |   |       |           |       `--NUM_INT (1)
-     * |   |       |           `--SEMI (;)
-     * |   |       `--RCURLY (})
-     * |   `--SEMI (;)
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--LITERAL_INT -&gt; int
+     * |   |--IDENT -&gt; yield
+     * |   `--ASSIGN -&gt; =
+     * |       `--EXPR -&gt; EXPR
+     * |           `--NUM_INT -&gt; 0
+     * |--SEMI -&gt; ;
+     * |--LITERAL_RETURN -&gt; return
+     * |   |--EXPR -&gt; EXPR
+     * |   |   `--LITERAL_SWITCH -&gt; switch
+     * |   |       |--LPAREN -&gt; (
+     * |   |       |--EXPR -&gt; EXPR
+     * |   |       |   `--IDENT -&gt; mode
+     * |   |       |--RPAREN -&gt; )
+     * |   |       |--LCURLY -&gt; {
+     * |   |       |--CASE_GROUP -&gt; CASE_GROUP
+     * |   |       |   |--LITERAL_CASE -&gt; case
+     * |   |       |   |   |--EXPR -&gt; EXPR
+     * |   |       |   |   |   `--STRING_LITERAL -&gt; "a"
+     * |   |       |   |   |--COMMA -&gt; ,
+     * |   |       |   |   |--EXPR -&gt; EXPR
+     * |   |       |   |   |   `--STRING_LITERAL -&gt; "b"
+     * |   |       |   |   `--COLON -&gt; :
+     * |   |       |   `--SLIST -&gt; SLIST
+     * |   |       |       `--LITERAL_YIELD -&gt; yield
+     * |   |       |           |--EXPR -&gt; EXPR
+     * |   |       |           |   `--NUM_INT -&gt; 1
+     * |   |       |           `--SEMI -&gt; ;
+     * |   |       |--CASE_GROUP -&gt; CASE_GROUP
+     * |   |       |   |--LITERAL_DEFAULT -&gt; default
+     * |   |       |   |   `--COLON -&gt; :
+     * |   |       |   `--SLIST -&gt; SLIST
+     * |   |       |       `--LITERAL_YIELD -&gt; yield
+     * |   |       |           |--EXPR -&gt; EXPR
+     * |   |       |           |   `--UNARY_MINUS -&gt; -
+     * |   |       |           |       `--NUM_INT -&gt; 1
+     * |   |       |           `--SEMI -&gt; ;
+     * |   |       `--RCURLY -&gt; }
+     * |   `--SEMI -&gt; ;
      * </pre>
      *
      *
