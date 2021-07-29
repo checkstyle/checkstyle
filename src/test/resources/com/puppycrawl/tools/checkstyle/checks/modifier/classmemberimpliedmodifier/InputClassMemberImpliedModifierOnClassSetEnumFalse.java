@@ -1,3 +1,12 @@
+/*
+ClassMemberImpliedModifier
+violateImpliedStaticOnNestedEnum = false
+violateImpliedStaticOnNestedInterface = (default)true
+violateImpliedStaticOnNestedRecord = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.modifier.classmemberimpliedmodifier;
 
 /**
