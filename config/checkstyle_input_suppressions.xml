@@ -838,20 +838,6 @@
             files="metrics[\\/]javancss[\\/]InputJavaNCSS.java"/>
 
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]classmemberimpliedmodifier[\\/]InputClassMemberImpliedModifierOnClass.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]classmemberimpliedmodifier[\\/]InputClassMemberImpliedModifierOnClassNoViolations.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]classmemberimpliedmodifier[\\/]InputClassMemberImpliedModifierOnClassSetEnumFalse.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]classmemberimpliedmodifier[\\/]InputClassMemberImpliedModifierOnClassSetInterfaceFalse.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]classmemberimpliedmodifier[\\/]InputClassMemberImpliedModifierOnInterface.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="modifier[\\/]interfacememberimpliedmodifier[\\/]InputInterfaceMemberImpliedModifierFieldsOnClass.java"/>
@@ -2148,20 +2134,6 @@
             files="metrics[\\/]javancss[\\/]InputJavaNCSS.java"/>
 
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]classmemberimpliedmodifier[\\/]InputClassMemberImpliedModifierOnClass.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]classmemberimpliedmodifier[\\/]InputClassMemberImpliedModifierOnClassNoViolations.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]classmemberimpliedmodifier[\\/]InputClassMemberImpliedModifierOnClassSetEnumFalse.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]classmemberimpliedmodifier[\\/]InputClassMemberImpliedModifierOnClassSetInterfaceFalse.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]classmemberimpliedmodifier[\\/]InputClassMemberImpliedModifierOnInterface.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="modifier[\\/]interfacememberimpliedmodifier[\\/]InputInterfaceMemberImpliedModifierFieldsOnClass.java"/>
