@@ -952,44 +952,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierTryWithResources.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameAbstractMultisetSetCount.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameCheckEnhancedInstanceof.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameIgnoreFinal.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameIgnoreFinalKeepStaticFinal.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameIgnore.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameIgnoreNonStaticFinal.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameIgnoreStaticFinal.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameIgnoreStatic.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameIgnoreStaticKeepStaticFinal.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameNoIgnore.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameOverridableMethod.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameReceiver.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameType.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]constantname[\\/]InputConstantNameInner.java"/>
@@ -2262,44 +2224,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierTryWithResources.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameAbstractMultisetSetCount.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameCheckEnhancedInstanceof.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameIgnoreFinal.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameIgnoreFinalKeepStaticFinal.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameIgnore.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameIgnoreNonStaticFinal.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameIgnoreStaticFinal.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameIgnoreStatic.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameIgnoreStaticKeepStaticFinal.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameNoIgnore.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameOverridableMethod.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameReceiver.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameType.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="naming[\\/]constantname[\\/]InputConstantNameInner.java"/>
