@@ -889,17 +889,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="modifier[\\/]interfacememberimpliedmodifier[\\/]InputInterfaceMemberImpliedModifierPrivateMethods.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]modifierorder[\\/]InputModifierOrderAnnotationDeclaration.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]modifierorder[\\/]InputModifierOrderDefaultMethods.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]modifierorder[\\/]InputModifierOrderIt.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]modifierorder[\\/]InputModifierOrderTypeAnnotations.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierAnnotationOnEnumConstructor.java"/>
@@ -2199,17 +2188,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="modifier[\\/]interfacememberimpliedmodifier[\\/]InputInterfaceMemberImpliedModifierPrivateMethods.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]modifierorder[\\/]InputModifierOrderAnnotationDeclaration.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]modifierorder[\\/]InputModifierOrderDefaultMethods.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]modifierorder[\\/]InputModifierOrderIt.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]modifierorder[\\/]InputModifierOrderTypeAnnotations.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierAnnotationOnEnumConstructor.java"/>

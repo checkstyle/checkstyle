@@ -1,9 +1,11 @@
+/*
+ModifierOrder
+
+
+*/
+
 //non-compiled with javac: Compilable with Java15
 package com.puppycrawl.tools.checkstyle.checks.modifier.modifierorder;
-
-/* Config:
- * default
- */
 
 public sealed class InputModifierOrderSealedAndNonSealedNoViolation // ok
     permits Circle, Square, Rectangle {

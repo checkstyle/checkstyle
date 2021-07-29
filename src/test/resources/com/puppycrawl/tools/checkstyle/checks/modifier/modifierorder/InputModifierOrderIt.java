@@ -1,7 +1,8 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+ModifierOrder
+
+
+*/
 
 package com.puppycrawl.tools.checkstyle.checks.modifier.modifierorder;
 
@@ -11,17 +12,17 @@ package com.puppycrawl.tools.checkstyle.checks.modifier.modifierorder;
  * - use of 'public' in interface definition
  * @author lkuehne
  */
-strictfp final class InputModifierOrderIt // illegal order of modifiers for class
+strictfp final class InputModifierOrderIt // violation
 {
 
     /** Illegal order of modifiers for variables */
-    static private boolean sModifierOrderVar = false;
+    static private boolean sModifierOrderVar = false; // violation
 
     /**
      * Illegal order of modifiers for methods. Make sure that the
      * first and last modifier from the JLS sequence is used.
      */
-    strictfp private void doStuff()
+    strictfp private void doStuff() // violation
     {
     }
 
@@ -31,17 +32,17 @@ strictfp final class InputModifierOrderIt // illegal order of modifiers for clas
     }
 
     /** Illegal order of annotation - must come first */
-    private @MyAnnotation2 void someMethod2()
+    private @MyAnnotation2 void someMethod2() // violation
     {
     }
 
     /** Annotation in middle of other modifiers otherwise in correct order */
-    private @MyAnnotation2 strictfp void someMethod3()
+    private @MyAnnotation2 strictfp void someMethod3() // violation
     {
     }
 
     /** Correct order */
-    @MyAnnotation2 private strictfp void someMethod4()
+    @MyAnnotation2 private strictfp void someMethod4() // violation
     {
     }
 
