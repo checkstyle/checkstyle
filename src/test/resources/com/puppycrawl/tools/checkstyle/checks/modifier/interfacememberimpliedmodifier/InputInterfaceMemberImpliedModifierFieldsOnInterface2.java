@@ -2,7 +2,7 @@
 InterfaceMemberImpliedModifier
 violateImpliedPublicField = (default)true
 violateImpliedStaticField = (default)true
-violateImpliedFinalField = (default)true
+violateImpliedFinalField = false
 violateImpliedPublicMethod = (default)true
 violateImpliedAbstractMethod = (default)true
 violateImpliedPublicNested = (default)true
@@ -13,11 +13,11 @@ violateImpliedStaticNested = (default)true
 
 package com.puppycrawl.tools.checkstyle.checks.modifier.interfacememberimpliedmodifier;
 
-public interface InputInterfaceMemberImpliedModifierFieldsOnInterface {
+public interface InputInterfaceMemberImpliedModifierFieldsOnInterface2 {
 
     public static final int fieldPublicStaticFinal = 1;
 
-    public static int fieldPublicStatic = 1; // violation
+    public static int fieldPublicStatic = 1;
 
     public final int fieldPublicFinal = 1; // violation
 
