@@ -841,56 +841,6 @@
 
 
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierAnnotationOnEnumConstructor.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierClassesInsideOfInterfaces.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierConstructorModifier.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierFinalInAbstractMethods.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierFinalInAnonymousClass.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierFinalInEnumMethods.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierFinalInEnumStaticMethods.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierFinalInInterface.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierFinalInTryWithResource.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierIt.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierNestedClassInPublicInterfaceRedundantModifiers.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierPrivateMethodInPrivateClass.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierPublicModifierInNotPublicClass.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierStaticInInnerTypeOfInterface.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierStaticMethodInInterface.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierStaticModifierInNestedEnum.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierTryWithResources.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameAbstractMultisetSetCount.java"/>
@@ -2091,56 +2041,6 @@
 
 
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierAnnotationOnEnumConstructor.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierClassesInsideOfInterfaces.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierConstructorModifier.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierFinalInAbstractMethods.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierFinalInAnonymousClass.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierFinalInEnumMethods.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierFinalInEnumStaticMethods.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierFinalInInterface.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierFinalInTryWithResource.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierIt.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierNestedClassInPublicInterfaceRedundantModifiers.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierPrivateMethodInPrivateClass.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierPublicModifierInNotPublicClass.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierStaticInInnerTypeOfInterface.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierStaticMethodInInterface.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierStaticModifierInNestedEnum.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="modifier[\\/]redundantmodifier[\\/]InputRedundantModifierTryWithResources.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameAbstractMultisetSetCount.java"/>

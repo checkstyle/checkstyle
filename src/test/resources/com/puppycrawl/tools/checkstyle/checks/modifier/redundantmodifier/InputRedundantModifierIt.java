@@ -1,7 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+RedundantModifier
+tokens = (default)METHOD_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, INTERFACE_DEF, \
+         CTOR_DEF, CLASS_DEF, ENUM_DEF, RESOURCE
+
+
+*/
 
 package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 

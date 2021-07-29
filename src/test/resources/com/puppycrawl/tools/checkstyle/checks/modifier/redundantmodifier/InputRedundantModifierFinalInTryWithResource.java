@@ -1,3 +1,11 @@
+/*
+RedundantModifier
+tokens = (default)METHOD_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, INTERFACE_DEF, \
+         CTOR_DEF, CLASS_DEF, ENUM_DEF, RESOURCE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
 import java.io.BufferedReader;
@@ -19,13 +27,13 @@ public class InputRedundantModifierFinalInTryWithResource {
         catch (IOException e) {
         }
 
-        try (final BufferedReader br = new BufferedReader(new InputStreamReader(null, "utf-8"))) {
+        try (final BufferedReader br = new BufferedReader(new InputStreamReader(null, "utf-8"))) { // violation
         }
         catch (IOException e) {
         }
 
-        try (final BufferedReader br = new BufferedReader(new InputStreamReader(null, "utf-8"));
-                final BufferedReader br2 = new BufferedReader(new InputStreamReader(null, "utf"))) {
+        try (final BufferedReader br = new BufferedReader(new InputStreamReader(null, "utf-8")); // violation
+                final BufferedReader br2 = new BufferedReader(new InputStreamReader(null, "utf"))) { // violation
         }
         catch (IOException e) {
         }
