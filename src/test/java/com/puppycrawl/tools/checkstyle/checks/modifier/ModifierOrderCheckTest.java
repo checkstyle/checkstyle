@@ -53,13 +53,13 @@ public class ModifierOrderCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = {
-            "14:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "final"),
-            "18:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
-            "24:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
-            "34:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation2"),
-            "39:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation2"),
-            "49:35: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation4"),
-            "157:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "default"),
+            "15:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "final"),
+            "19:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
+            "25:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
+            "35:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation2"),
+            "40:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation2"),
+            "50:35: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation4"),
+            "158:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "default"),
         };
         verify(checkConfig, getPath("InputModifierOrderIt.java"), expected);
     }
@@ -110,7 +110,7 @@ public class ModifierOrderCheckTest
     public void testSkipTypeAnnotations() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = {
-            "104:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
+            "110:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
         };
         verify(checkConfig, getPath("InputModifierOrderTypeAnnotations.java"),
             expected);
@@ -120,7 +120,7 @@ public class ModifierOrderCheckTest
     public void testAnnotationOnAnnotationDeclaration() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = {
-            "3:8: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@InterfaceAnnotation"),
+            "9:8: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@InterfaceAnnotation"),
         };
         verify(checkConfig, getPath("InputModifierOrderAnnotationDeclaration.java"), expected);
     }
@@ -129,12 +129,12 @@ public class ModifierOrderCheckTest
     public void testModifierOrderSealedAndNonSealed() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = {
-            "8:8: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
-            "24:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
-            "42:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "sealed"),
-            "48:11: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
-            "51:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "static"),
-            "56:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "non-sealed"),
+            "10:8: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
+            "26:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
+            "44:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "sealed"),
+            "50:11: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
+            "53:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "static"),
+            "58:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "non-sealed"),
         };
         verify(checkConfig,
             getNonCompilablePath("InputModifierOrderSealedAndNonSealed.java"), expected);
