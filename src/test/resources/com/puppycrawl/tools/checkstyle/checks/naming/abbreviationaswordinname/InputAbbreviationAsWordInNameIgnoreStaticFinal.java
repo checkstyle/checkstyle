@@ -1,15 +1,19 @@
+/*
+AbbreviationAsWordInName
+allowedAbbreviationLength = 4
+allowedAbbreviations = MARAZMATIC, VARIABLE
+ignoreFinal = false
+ignoreStatic = false
+ignoreStaticFinal = (default)true
+ignoreOverriddenMethods = (default)true
+tokens = CLASS_DEF, VARIABLE_DEF, METHOD_DEF, ENUM_DEF, ENUM_CONSTANT_DEF, PARAMETER_DEF, \
+         INTERFACE_DEF, ANNOTATION_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 
-/*
- * Config:
- * allowedAbbreviationLength = 4
- * allowedAbbreviations = MARAZMATIC,VARIABLE
- * tokens = CLASS_DEF,VARIABLE_DEF,METHOD_DEF,ENUM_DEF,ENUM_CONSTANT_DEF,
- *      PARAMETER_DEF,INTERFACE_DEF,ANNOTATION_DEF
- * ignoreStatic = false
- * ignoreFinal = false
- * ignoreStaticFinal = true
- */
 public class InputAbbreviationAsWordInNameIgnoreStaticFinal {
 
     abstract class InputAbbreviationAsWordInNameType {
