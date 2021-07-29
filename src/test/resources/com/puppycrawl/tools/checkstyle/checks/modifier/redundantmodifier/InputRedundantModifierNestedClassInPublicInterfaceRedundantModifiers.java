@@ -1,7 +1,11 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2015
-////////////////////////////////////////////////////////////////////////////////
+/*
+RedundantModifier
+tokens = (default)METHOD_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, INTERFACE_DEF, \
+         CTOR_DEF, CLASS_DEF, ENUM_DEF, RESOURCE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
 public interface InputRedundantModifierNestedClassInPublicInterfaceRedundantModifiers {
@@ -15,11 +19,11 @@ public interface InputRedundantModifierNestedClassInPublicInterfaceRedundantModi
     class PublicClassInsideInterface {
         private interface PrivateNestedInterface {
             class ClassInPrivateNestedInterface {
-                public ClassInPrivateNestedInterface() { } // Redundant in not public class
+                public ClassInPrivateNestedInterface() { } // violation
             }
             public interface PrivateNestedInterfaceWithPublicModifier {
                 class ClassInPrivateNestedInterface {
-                    public ClassInPrivateNestedInterface() { } // Redundant in non public scope
+                    public ClassInPrivateNestedInterface() { } // violation
                 }
             }
         }
@@ -30,7 +34,7 @@ public interface InputRedundantModifierNestedClassInPublicInterfaceRedundantModi
         }
         protected interface PublicInnerInnerProtectedInterface {
           class PublicInnerClassInNestedProtectedInterfaces {
-           public PublicInnerClassInNestedProtectedInterfaces() { } // Redundant in non public scope
+           public PublicInnerClassInNestedProtectedInterfaces() { } // violation
           }
         }
     }
@@ -38,7 +42,7 @@ public interface InputRedundantModifierNestedClassInPublicInterfaceRedundantModi
         public PublicNestedClassInInterfaceWithPublicConstructor() { } // OK in public class
         private class PrivateClassInPublicNestedClass {
             public class PublicInPrivateClass {
-                public PublicInPrivateClass() { } // Redundant in non public class
+                public PublicInPrivateClass() { } // violation
             }
         }
     }
