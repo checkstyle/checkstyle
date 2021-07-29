@@ -1,10 +1,18 @@
+/*
+RedundantModifier
+tokens = (default)METHOD_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, INTERFACE_DEF, \
+         CTOR_DEF, CLASS_DEF, ENUM_DEF, RESOURCE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
 public enum InputRedundantModifierFinalInEnumMethods {
     E1,
     E2 {
         @Override
-        public final void v() {
+        public final void v() { // violation
         }
     };
 
@@ -19,7 +27,7 @@ public enum InputRedundantModifierFinalInEnumMethods {
 enum InputRedundantModifierFinalInEnumMethods2 {
     E1 {
         @Override
-        public final void v() {
+        public final void v() { // violation
         }
     },
     E2 {
