@@ -1,3 +1,9 @@
+/*
+ModifierOrder
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.modifier.modifierorder;
 
 import java.io.File;
@@ -101,7 +107,7 @@ class MyClass {
 
     // It is annotation on method, but not on type!
     @MethodAnnotation void foo10() {}
-    private @MethodAnnotation void foo11() {}
+    private @MethodAnnotation void foo11() {} // violation
 
     public @TypeAnnotation MyClass() {}
     @ConstructorAnnotation public MyClass(String name) {}
