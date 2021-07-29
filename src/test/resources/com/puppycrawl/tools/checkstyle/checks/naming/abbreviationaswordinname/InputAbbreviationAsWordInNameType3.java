@@ -1,115 +1,113 @@
 /*
 AbbreviationAsWordInName
-allowedAbbreviationLength = (default)3
-allowedAbbreviations = (default)
+allowedAbbreviationLength = 4
+allowedAbbreviations = CLASS, FACTORY
 ignoreFinal = (default)true
 ignoreStatic = (default)true
 ignoreStaticFinal = (default)true
 ignoreOverriddenMethods = (default)true
-tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF, \
-         PARAMETER_DEF, VARIABLE_DEF, METHOD_DEF, PATTERN_VARIABLE_DEF, RECORD_DEF, \
-         RECORD_COMPONENT_DEF
+tokens = CLASS_DEF
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 
-abstract class InputAbbreviationAsWordInNameType {
+abstract class InputAbbreviationAsWordInNameType3 {
 }
 
-abstract class NonAAAAbstractClassName {
+abstract class NonAAAAbstractClassName3 {
 }
 
-abstract class FactoryWithBADNAme { // violation
+abstract class FactoryWithBADNAme3 {
 }
 
-abstract class AbstractCLASSName { // violation
+abstract class AbstractCLASSName3 {
     abstract class NonAbstractInnerClass {
     }
 }
 
-abstract class ClassFactory1 {
+abstract class ClassFactory13 {
     abstract class WellNamedFactory {
     }
 }
 
-class NonAbstractClass1 {
+class NonAbstractClass13 {
 }
 
-class AbstractClass1 {
+class AbstractClass13 {
 }
 
-class Class1Factory1 {
+class Class1Factory13 {
 }
 
-abstract class AbstractClassName3 {
+abstract class AbstractClassName33 {
     class AbstractINNERRClass { // violation
     }
 }
 
-abstract class Class3Factory {
-    class WellNamedFACTORY { // violation
-    	public void marazmaticMETHODName() { // violation
-    		int marazmaticVARIABLEName = 2; // violation
-    		int MARAZMATICVariableName = 1; // violation
+abstract class Class3Factory3 {
+    class WellNamedFACTORY {
+    	public void marazmaticMETHODName() {
+    		int marazmaticVARIABLEName = 2;
+    		int MARAZMATICVariableName = 1;
     	}
     }
 }
 
-interface Directions {
+interface Directions3 {
   int RIGHT=1;
   int LEFT=2;
   int UP=3;
   int DOWN=4;
 }
 
-interface BadNameForInterface
+interface BadNameForInterface3
 {
    void interfaceMethod();
 }
 
-abstract class NonAAAAbstractClassName21 {
-	public int serialNUMBER = 6; // violation
+abstract class NonAAAAbstractClassName23 {
+	public int serialNUMBER = 6;
 	public final int s1erialNUMBER = 6;
 	private static int s2erialNUMBER = 6;
 	private static final int s3erialNUMBER = 6;
 }
 
-interface Interface1 {
+interface Interface13 {
 
 	String VALUEEEE = "value"; // in interface this is final/static
 
 }
 
-interface Interface2 {
+interface Interface23 {
 
 	static String VALUEEEE = "value"; // in interface this is final/static
 
 }
 
-interface Interface3 {
+interface Interface33 {
 
 	final String VALUEEEE = "value"; // in interface this is final/static
 
 }
 
-interface Interface4 {
+interface Interface43 {
 
 	final static String VALUEEEE = "value"; // in interface this is final/static
 
 }
 
-class FIleNameFormatException extends Exception {
+class FIleNameFormatException3 extends Exception {
 
     private static final long serialVersionUID = 1L;
 
-    public FIleNameFormatException(Exception e) {
+    public FIleNameFormatException3(Exception e) {
         super(e);
     }
 }
 
-class StateX {
+class StateX3 {
     int userID;
     int scaleX, scaleY, scaleZ;
 
@@ -118,18 +116,18 @@ class StateX {
     }
 }
 
-@interface Annotation1 {
+@interface Annotation13 {
     String VALUE = "value"; // in @interface this is final/static
 }
 
-@interface Annotation2 {
+@interface Annotation23 {
     static String VALUE = "value"; // in @interface this is final/static
 }
 
-@interface Annotation3 {
+@interface Annotation33 {
     final String VALUE = "value"; // in @interface this is final/static
 }
 
-@interface Annotation4 {
+@interface Annotation43 {
     final static String VALUE = "value"; // in @interface this is final/static
 }
