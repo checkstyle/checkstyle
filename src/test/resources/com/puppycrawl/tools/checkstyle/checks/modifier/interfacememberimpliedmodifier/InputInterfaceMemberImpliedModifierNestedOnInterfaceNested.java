@@ -1,18 +1,31 @@
+/*
+InterfaceMemberImpliedModifier
+violateImpliedPublicField = (default)true
+violateImpliedStaticField = (default)true
+violateImpliedFinalField = (default)true
+violateImpliedPublicMethod = (default)true
+violateImpliedAbstractMethod = (default)true
+violateImpliedPublicNested = (default)true
+violateImpliedStaticNested = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.modifier.interfacememberimpliedmodifier;
 
 public interface InputInterfaceMemberImpliedModifierNestedOnInterfaceNested {
 
     public static interface NestedInterface {
 
-        interface NestedNestedInterface {
+        interface NestedNestedInterface { // violation
         }
 
-        enum NestedNestedEnum {
+        enum NestedNestedEnum { // violation
             TRUE,
             FALSE
         }
 
-        class NestedNestedClass {
+        class NestedNestedClass { // violation
         }
 
     }
