@@ -5,26 +5,26 @@ violateImpliedStaticField = (default)true
 violateImpliedFinalField = (default)true
 violateImpliedPublicMethod = (default)true
 violateImpliedAbstractMethod = (default)true
-violateImpliedPublicNested = (default)true
-violateImpliedStaticNested = (default)true
+violateImpliedPublicNested = false
+violateImpliedStaticNested = false
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.modifier.interfacememberimpliedmodifier;
 
-public interface InputInterfaceMemberImpliedModifierNestedOnInterface {
+public interface InputInterfaceMemberImpliedModifierNestedOnInterface4 { // ok
 
     public static interface NestedInterfacePublicStatic {
     }
 
-    public interface NestedInterfacePublic { // violation
+    public interface NestedInterfacePublic {
     }
 
-    static interface NestedInterfaceStatic { // violation
+    static interface NestedInterfaceStatic {
     }
 
-    interface NestedInterface { // violation
+    interface NestedInterface {
     }
 
     public static enum NestedEnumPublicStatic {
@@ -32,17 +32,17 @@ public interface InputInterfaceMemberImpliedModifierNestedOnInterface {
         FALSE
     }
 
-    public enum NestedEnumPublic { // violation
+    public enum NestedEnumPublic {
         TRUE,
         FALSE
     }
 
-    static enum NestedEnumStatic { // violation
+    static enum NestedEnumStatic {
         TRUE,
         FALSE
     }
 
-    enum NestedEnum { // violation
+    enum NestedEnum {
         TRUE,
         FALSE
     }
@@ -50,13 +50,13 @@ public interface InputInterfaceMemberImpliedModifierNestedOnInterface {
     public static class NestedClassPublicStatic {
     }
 
-    public class NestedClassPublic { // violation
+    public class NestedClassPublic {
     }
 
-    static class NestedClassStatic { // violation
+    static class NestedClassStatic {
     }
 
-    class NestedClass { // violation
+    class NestedClass {
     }
 
     public default boolean methodWithLocalClass(String input) {
