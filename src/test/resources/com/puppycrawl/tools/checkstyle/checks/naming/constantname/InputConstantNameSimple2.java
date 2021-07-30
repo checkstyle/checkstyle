@@ -1,10 +1,16 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: Feb-2001
-// Ignore violation
-////////////////////////////////////////////////////////////////////////////////
+/*
+ConstantName
+format = (default)^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$
+applyToPublic = false
+applyToProtected = false
+applyToPackage = false
+applyToPrivate = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.naming.constantname;
-import java.io.*;
+
 /**
  * Contains simple mistakes:
  * - Long lines
@@ -13,7 +19,7 @@ import java.io.*;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputConstantNameSimple
+final class InputConstantNameSimple2
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->        <-
@@ -66,11 +72,11 @@ final class InputConstantNameSimple
      * @param badFormat1 bad format
      * @param badFormat2 bad format
      * @param badFormat3 bad format
-     * @throws java.lang.Exception abc
+     * @throws Exception abc
      **/
     int test1(int badFormat1,int badFormat2,
               final int badFormat3)
-        throws java.lang.Exception
+        throws Exception
     {
         return 0;
     }
@@ -99,7 +105,7 @@ final class InputConstantNameSimple
     }
 
     /** constructor that is 10 lines long **/
-    private InputConstantNameSimple()
+    private InputConstantNameSimple2()
     {
         // a line
         // a line
@@ -139,7 +145,7 @@ final class InputConstantNameSimple
     }
 
     /** test illegal constant **/
-    private static final int BAD__NAME = 3;
+    private static final int BAD__NAME = 3; // violation
 
     // A very, very long line that is OK because it matches the regexp "^.*is OK.*regexp.*$"
     // long line that has a tab ->        <- and would be OK if tab counted as 1 char
@@ -198,7 +204,7 @@ final class InputConstantNameSimple
 }
 
 /** Test class for variable naming in for each clauses. */
-class InputConstantNameSimple2
+class InputConstantNameSimple22
 {
     /** Some more Javadoc. */
     public void doSomething()
@@ -212,7 +218,7 @@ class InputConstantNameSimple2
 }
 
 /** Test enum for member naming check */
-enum MyEnum1
+enum MyEnum12
 {
     /** ABC constant */
     ABC,
