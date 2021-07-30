@@ -54,8 +54,8 @@ public class MemberNameCheckTest
         final String pattern = "^m[A-Z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "35:17: " + getCheckMessage(MSG_INVALID_PATTERN, "badMember", pattern),
-            "224:17: " + getCheckMessage(MSG_INVALID_PATTERN, "someMember", pattern),
+            "41:17: " + getCheckMessage(MSG_INVALID_PATTERN, "badMember", pattern),
+            "230:17: " + getCheckMessage(MSG_INVALID_PATTERN, "someMember", pattern),
         };
         verify(checkConfig, getPath("InputMemberNameSimple.java"), expected);
     }
@@ -69,7 +69,7 @@ public class MemberNameCheckTest
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "56:25: " + getCheckMessage(MSG_INVALID_PATTERN, "ABC", pattern),
+            "63:25: " + getCheckMessage(MSG_INVALID_PATTERN, "ABC", pattern),
         };
         verify(checkConfig, getPath("InputMemberNameInner.java"), expected);
     }
@@ -82,10 +82,10 @@ public class MemberNameCheckTest
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "10:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
-            "11:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
-            "12:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
-            "13:17: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
+            "21:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "22:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "23:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
+            "24:17: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
         };
         verify(checkConfig, getPath("InputMemberName.java"), expected);
     }
@@ -99,12 +99,12 @@ public class MemberNameCheckTest
         final String pattern = "^_[a-z]*$";
 
         final String[] expected = {
-            "5:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
-            "6:19: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
-            "7:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
-            "8:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
+            "16:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
+            "17:19: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
+            "18:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
+            "19:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
         };
-        verify(checkConfig, getPath("InputMemberName.java"), expected);
+        verify(checkConfig, getPath("InputMemberName2.java"), expected);
     }
 
     @Test
@@ -119,9 +119,9 @@ public class MemberNameCheckTest
         final String pattern = "^_[a-z]*$";
 
         final String[] expected = {
-            "5:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
+            "16:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
         };
-        verify(checkConfig, getPath("InputMemberName.java"), expected);
+        verify(checkConfig, getPath("InputMemberName3.java"), expected);
     }
 
     @Test
@@ -136,9 +136,9 @@ public class MemberNameCheckTest
         final String pattern = "^_[a-z]*$";
 
         final String[] expected = {
-            "6:19: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
+            "17:19: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
         };
-        verify(checkConfig, getPath("InputMemberName.java"), expected);
+        verify(checkConfig, getPath("InputMemberName4.java"), expected);
     }
 
     @Test
@@ -153,9 +153,9 @@ public class MemberNameCheckTest
         final String pattern = "^_[a-z]*$";
 
         final String[] expected = {
-            "7:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
+            "18:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
         };
-        verify(checkConfig, getPath("InputMemberName.java"), expected);
+        verify(checkConfig, getPath("InputMemberName5.java"), expected);
     }
 
     @Test
@@ -170,9 +170,9 @@ public class MemberNameCheckTest
         final String pattern = "^_[a-z]*$";
 
         final String[] expected = {
-            "8:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
+            "19:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
         };
-        verify(checkConfig, getPath("InputMemberName.java"), expected);
+        verify(checkConfig, getPath("InputMemberName6.java"), expected);
     }
 
     @Test
@@ -184,11 +184,11 @@ public class MemberNameCheckTest
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "10:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
-            "11:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
-            "12:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
+            "21:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "22:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "23:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
         };
-        verify(checkConfig, getPath("InputMemberName.java"), expected);
+        verify(checkConfig, getPath("InputMemberName7.java"), expected);
     }
 
     @Test
@@ -200,38 +200,38 @@ public class MemberNameCheckTest
         final String pattern = "^[a-z][a-z0-9][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "8:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
-            "9:19: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
-            "10:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
-            "11:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
-            "13:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
-            "14:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
-            "15:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
-            "16:17: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
-            "19:20: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
-            "20:23: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
-            "21:13: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
-            "22:21: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
-            "24:20: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
-            "25:23: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
-            "26:13: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
-            "27:21: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
-            "31:20: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
-            "32:23: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
-            "33:13: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
-            "34:21: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
-            "36:20: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
-            "37:23: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
-            "38:13: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
-            "39:21: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
-            "63:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
-            "64:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
-            "65:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
-            "66:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
-            "68:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
-            "69:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
-            "70:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
-            "71:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
+            "19:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
+            "20:19: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
+            "21:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
+            "22:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
+            "24:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "25:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "26:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
+            "27:17: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
+            "30:20: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
+            "31:23: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
+            "32:13: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
+            "33:21: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
+            "35:20: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "36:23: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "37:13: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
+            "38:21: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
+            "42:20: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
+            "43:23: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
+            "44:13: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
+            "45:21: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
+            "47:20: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "48:23: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "49:13: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
+            "50:21: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
+            "74:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
+            "75:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
+            "76:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
+            "77:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
+            "79:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "80:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "81:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
+            "82:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
         };
         verify(checkConfig, getPath("InputMemberNameExtended.java"), expected);
     }
