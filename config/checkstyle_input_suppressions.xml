@@ -869,11 +869,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]methodname[\\/]InputMethodNameSimple.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]staticvariablename[\\/]InputStaticVariableName1.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]staticvariablename[\\/]InputStaticVariableName.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]typename[\\/]InputTypeName.java"/>
@@ -2017,11 +2012,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="naming[\\/]methodname[\\/]InputMethodNameSimple.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]staticvariablename[\\/]InputStaticVariableName1.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]staticvariablename[\\/]InputStaticVariableName.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="naming[\\/]typename[\\/]InputTypeName.java"/>

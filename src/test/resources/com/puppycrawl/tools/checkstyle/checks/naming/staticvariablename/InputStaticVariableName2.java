@@ -4,13 +4,13 @@ format = ^s[A-Z][a-zA-Z0-9]*$
 applyToPublic = (default)true
 applyToProtected = (default)true
 applyToPackage = (default)true
-applyToPrivate = (default)true
+applyToPrivate = false
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.naming.staticvariablename;
-import java.io.*;
+
 /**
  * Contains simple mistakes:
  * - Long lines
@@ -19,7 +19,7 @@ import java.io.*;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputStaticVariableName1
+final class InputStaticVariableName2 // ok
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->        <-
@@ -33,7 +33,7 @@ final class InputStaticVariableName1
     public static final int MAX_ROWS = 2;
 
     /** Invalid format **/
-    private static int badStatic = 2; // violation
+    private static int badStatic = 2;
     /** Valid format **/
     private static int sNumCreated = 0;
 
@@ -72,11 +72,11 @@ final class InputStaticVariableName1
      * @param badFormat1 bad format
      * @param badFormat2 bad format
      * @param badFormat3 bad format
-     * @throws java.lang.Exception abc
+     * @throws Exception abc
      **/
     int test1(int badFormat1,int badFormat2,
               final int badFormat3)
-        throws java.lang.Exception
+        throws Exception
     {
         return 0;
     }
@@ -105,7 +105,7 @@ final class InputStaticVariableName1
     }
 
     /** constructor that is 10 lines long **/
-    private InputStaticVariableName1()
+    private InputStaticVariableName2()
     {
         // a line
         // a line
@@ -204,7 +204,7 @@ final class InputStaticVariableName1
 }
 
 /** Test class for variable naming in for each clauses. */
-class InputStaticVariableName3
+class InputStaticVariableName4
 {
     /** Some more Javadoc. */
     public void doSomething()
@@ -218,7 +218,7 @@ class InputStaticVariableName3
 }
 
 /** Test enum for member naming check */
-enum MyEnum1
+enum MyEnum2
 {
     /** ABC constant */
     ABC,
