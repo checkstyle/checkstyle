@@ -1037,8 +1037,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]staticvariablename[\\/]InputStaticVariableName.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]typename[\\/]InputTypeName.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="newlineatendoffile[\\/]InputNewlineAtEndOfFileCr.java"/>
@@ -2347,8 +2345,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="naming[\\/]staticvariablename[\\/]InputStaticVariableName.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]typename[\\/]InputTypeName.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="newlineatendoffile[\\/]InputNewlineAtEndOfFileCr.java"/>
