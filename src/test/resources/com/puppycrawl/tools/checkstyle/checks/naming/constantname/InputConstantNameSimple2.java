@@ -10,7 +10,7 @@ applyToPrivate = (default)true
 */
 
 package com.puppycrawl.tools.checkstyle.checks.naming.constantname;
-import java.io.*;
+
 /**
  * Contains simple mistakes:
  * - Long lines
@@ -19,7 +19,7 @@ import java.io.*;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputConstantNameSimple1
+final class InputConstantNameSimple2
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->        <-
@@ -28,7 +28,7 @@ final class InputConstantNameSimple1
     // Name format tests
     //
     /** Invalid format **/
-    public static final int badConstant = 2; // violation
+    public static final int badConstant = 2;
     /** Valid format **/
     public static final int MAX_ROWS = 2;
 
@@ -72,11 +72,11 @@ final class InputConstantNameSimple1
      * @param badFormat1 bad format
      * @param badFormat2 bad format
      * @param badFormat3 bad format
-     * @throws java.lang.Exception abc
+     * @throws Exception abc
      **/
     int test1(int badFormat1,int badFormat2,
               final int badFormat3)
-        throws java.lang.Exception
+        throws Exception
     {
         return 0;
     }
@@ -105,7 +105,7 @@ final class InputConstantNameSimple1
     }
 
     /** constructor that is 10 lines long **/
-    private InputConstantNameSimple1()
+    private InputConstantNameSimple2()
     {
         // a line
         // a line
@@ -204,7 +204,7 @@ final class InputConstantNameSimple1
 }
 
 /** Test class for variable naming in for each clauses. */
-class InputConstantNameSimple21
+class InputConstantNameSimple22
 {
     /** Some more Javadoc. */
     public void doSomething()
@@ -218,7 +218,7 @@ class InputConstantNameSimple21
 }
 
 /** Test enum for member naming check */
-enum MyEnum11
+enum MyEnum12
 {
     /** ABC constant */
     ABC,

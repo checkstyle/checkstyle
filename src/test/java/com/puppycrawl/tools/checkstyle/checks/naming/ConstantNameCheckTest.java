@@ -77,8 +77,8 @@ public class ConstantNameCheckTest
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
         final String[] expected = {
-            "25:29: " + getCheckMessage(MSG_INVALID_PATTERN, "badConstant", pattern),
-            "142:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
+            "31:29: " + getCheckMessage(MSG_INVALID_PATTERN, "badConstant", pattern),
+            "148:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
         };
         verify(checkConfig, getPath("InputConstantNameSimple.java"), expected);
     }
@@ -95,9 +95,9 @@ public class ConstantNameCheckTest
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
         final String[] expected = {
-            "142:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
+            "148:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
         };
-        verify(checkConfig, getPath("InputConstantNameSimple.java"), expected);
+        verify(checkConfig, getPath("InputConstantNameSimple2.java"), expected);
     }
 
     @Test
@@ -109,8 +109,8 @@ public class ConstantNameCheckTest
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
         final String[] expected = {
-            "24:16: " + getCheckMessage(MSG_INVALID_PATTERN, "data", pattern),
-            "64:16: " + getCheckMessage(MSG_INVALID_PATTERN, "data", pattern),
+            "31:16: " + getCheckMessage(MSG_INVALID_PATTERN, "data", pattern),
+            "71:16: " + getCheckMessage(MSG_INVALID_PATTERN, "data", pattern),
         };
         verify(checkConfig, getPath("InputConstantNameInner.java"), expected);
     }
@@ -132,14 +132,14 @@ public class ConstantNameCheckTest
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
         final String[] expected = {
-            "45:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
-            "46:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
-            "47:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
-            "48:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
-            "50:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
-            "51:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
-            "52:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
-            "53:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
+            "56:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
+            "57:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
+            "58:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
+            "59:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
+            "61:16: " + getCheckMessage(MSG_INVALID_PATTERN, "_public", pattern),
+            "62:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
+            "63:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
+            "64:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
         };
         verify(checkConfig, getPath("InputConstantNameMemberExtended.java"), expected);
     }
