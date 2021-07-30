@@ -843,20 +843,6 @@
 
 
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]constantname[\\/]InputConstantNameInner.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]constantname[\\/]InputConstantName.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]constantname[\\/]InputConstantNameMemberExtended.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]constantname[\\/]InputConstantNameSimple.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]constantname[\\/]InputConstantNameStaticModifierInInterface.java"/>
 
 
   <suppress id="ConfigCommentOnTopInputs"
@@ -2005,20 +1991,6 @@
 
 
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]constantname[\\/]InputConstantNameInner.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]constantname[\\/]InputConstantName.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]constantname[\\/]InputConstantNameMemberExtended.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]constantname[\\/]InputConstantNameSimple.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]constantname[\\/]InputConstantNameStaticModifierInInterface.java"/>
 
 
   <suppress id="StyleValidationCommentInInputs"
