@@ -214,9 +214,11 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "53:15: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),
             "54:25: " + getWarningMessage("marazmaticMETHODName", expectedCapitalCount),
             "74:20: "
-                    + getWarningMessage("serialNUMBER", expectedCapitalCount), // not in ignore list
+                    + getWarningMessage(
+                            "serialNUMBER", expectedCapitalCount), // not in ignore list
             "76:28: "
-                    + getWarningMessage("s2erialNUMBER", expectedCapitalCount), // no ignore for static
+                    + getWarningMessage(
+                            "s2erialNUMBER", expectedCapitalCount), // no ignore for static
         };
 
         verify(checkConfig, getPath(
@@ -278,9 +280,11 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "74:20: "
                     + getWarningMessage("serialNUMBER", expectedCapitalCount), // not in ignore list
             "75:26: "
-                    + getWarningMessage("s1erialNUMBER", expectedCapitalCount), // no ignore for final
+                    + getWarningMessage(
+                            "s1erialNUMBER", expectedCapitalCount), // no ignore for final
             "76:28: "
-                    + getWarningMessage("s2erialNUMBER", expectedCapitalCount), // no ignore for static
+                    + getWarningMessage(
+                            "s2erialNUMBER", expectedCapitalCount), // no ignore for static
         };
 
         verify(checkConfig, getPath(
@@ -362,7 +366,8 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "74:20: "
                     + getWarningMessage("serialNUMBER", expectedCapitalCount), // not in ignore list
             "76:28: "
-                    + getWarningMessage("s2erialNUMBER", expectedCapitalCount), // no ignore for static
+                    + getWarningMessage(
+                            "s2erialNUMBER", expectedCapitalCount), // no ignore for static
             "77:34: " // no ignore for static final
                     + getWarningMessage("s3erialNUMBER", expectedCapitalCount),
             "82:16: "
@@ -405,7 +410,8 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "74:20: "
                     + getWarningMessage("serialNUMBER", expectedCapitalCount), // not in ignore list
             "75:26: "
-                    + getWarningMessage("s1erialNUMBER", expectedCapitalCount), // no ignore for final
+                    + getWarningMessage(
+                            "s1erialNUMBER", expectedCapitalCount), // no ignore for final
             "77:34: " // no ignore for static final
                     + getWarningMessage("s3erialNUMBER", expectedCapitalCount),
             "82:16: "
