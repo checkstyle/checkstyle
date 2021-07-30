@@ -1,7 +1,14 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+ConstantName
+format = (default)^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$
+applyToPublic = (default)true
+applyToProtected = (default)true
+applyToPackage = (default)true
+applyToPrivate = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.naming.constantname;
 
 /**
@@ -21,7 +28,7 @@ class InputConstantNameInner
     interface InnerInterface2
     {
         // Ignore - should be all upper case
-        String data = "zxzc";
+        String data = "zxzc"; // violation
 
         // Ignore
         class InnerInterfaceInnerClass
@@ -61,7 +68,7 @@ class InputConstantNameInner
     @interface InnerAnnotation
     {
         /** Ignore - should be all upper case. */
-        String data = "zxzc";
+        String data = "zxzc"; // violation
     }
 
     /** enum with public member variable */
