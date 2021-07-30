@@ -1,18 +1,18 @@
 /*
 TypeName
-format = ^inputHe
+format = (default)^[A-Z][a-zA-Z0-9]*$
 applyToPublic = (default)true
 applyToProtected = (default)true
 applyToPackage = (default)true
 applyToPrivate = (default)true
-tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+tokens = CLASS_DEF
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.naming.typename;
 
-class inputHeaderClass {
+class inputHeaderClass3 { // violation
 
     public interface inputHeaderInterface {};
 //comment
@@ -22,4 +22,4 @@ class inputHeaderClass {
 
 }
 
-public class InputTypeName {}
+public class InputTypeName3 {}
