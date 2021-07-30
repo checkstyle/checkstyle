@@ -48,10 +48,10 @@ abstract class AbstractClassName33 {
 
 abstract class Class3Factory3 {
     class WellNamedFACTORY {
-    	public void marazmaticMETHODName() {
-    		int marazmaticVARIABLEName = 2;
-    		int MARAZMATICVariableName = 1;
-    	}
+        public void marazmaticMETHODName() {
+            int marazmaticVARIABLEName = 2;
+            int MARAZMATICVariableName = 1;
+        }
     }
 }
 
@@ -68,33 +68,33 @@ interface BadNameForInterface3
 }
 
 abstract class NonAAAAbstractClassName23 {
-	public int serialNUMBER = 6;
-	public final int s1erialNUMBER = 6;
-	private static int s2erialNUMBER = 6;
-	private static final int s3erialNUMBER = 6;
+    public int serialNUMBER = 6;
+    public final int s1erialNUMBER = 6;
+    private static int s2erialNUMBER = 6;
+    private static final int s3erialNUMBER = 6;
 }
 
 interface Interface13 {
 
-	String VALUEEEE = "value"; // in interface this is final/static
+    String VALUEEEE = "value"; // in interface this is final/static
 
 }
 
 interface Interface23 {
 
-	static String VALUEEEE = "value"; // in interface this is final/static
+    static String VALUEEEE = "value"; // in interface this is final/static
 
 }
 
 interface Interface33 {
 
-	final String VALUEEEE = "value"; // in interface this is final/static
+    final String VALUEEEE = "value"; // in interface this is final/static
 
 }
 
 interface Interface43 {
 
-	final static String VALUEEEE = "value"; // in interface this is final/static
+    final static String VALUEEEE = "value"; // in interface this is final/static
 
 }
 
