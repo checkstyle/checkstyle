@@ -1,7 +1,14 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+MemberName
+format = (default)^[a-z][a-zA-Z0-9]*$
+applyToPublic = (default)true
+applyToProtected = (default)true
+applyToPackage = (default)true
+applyToPrivate = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.naming.membername;
 
 /**
@@ -53,7 +60,7 @@ class InputMemberNameInner
         {
             private static final int CDS = 1;
 
-            private int ABC;
+            private int ABC; // violation
         };
      }
 
