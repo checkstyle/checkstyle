@@ -1,8 +1,14 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: Feb-2001
-// Ignore violation
-////////////////////////////////////////////////////////////////////////////////
+/*
+MemberName
+format = ^m[A-Z][a-zA-Z0-9]*$
+applyToPublic = (default)true
+applyToProtected = (default)true
+applyToPackage = (default)true
+applyToPrivate = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.naming.membername;
 import java.io.*;
 /**
@@ -32,7 +38,7 @@ final class InputMemberNameSimple
     private static int sNumCreated = 0;
 
     /** Invalid format **/
-    private int badMember = 2;
+    private int badMember = 2; // violation
     /** Valid format **/
     private int mNumCreated1 = 0;
     /** Valid format **/
@@ -221,5 +227,5 @@ enum MyEnum1
     XYZ;
 
     /** Should be mSomeMember */
-    private int someMember;
+    private int someMember; // violation
 }
