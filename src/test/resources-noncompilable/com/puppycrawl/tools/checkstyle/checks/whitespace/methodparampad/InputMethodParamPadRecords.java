@@ -1,13 +1,18 @@
+/*
+MethodParamPad
+allowLineBreaks = true
+option = (default)nospace
+tokens = (default)CTOR_DEF, LITERAL_NEW, METHOD_CALL, METHOD_DEF, SUPER_CTOR_CALL, \
+         ENUM_CONSTANT_DEF, RECORD_DEF
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.whitespace.methodparampad;
 
 import org.w3c.dom.Node;
-/* Config:
- * allowLineBreaks = true
- * option = nospace
- * tokens = {CTOR_DEF , LITERAL_NEW , METHOD_CALL , METHOD_DEF ,
- * SUPER_CTOR_CALL , ENUM_CONSTANT_DEF , RECORD_DEF.
- */
+
 public class InputMethodParamPadRecords {
 
     // in record def
