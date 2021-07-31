@@ -1110,29 +1110,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorWithComments.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceAtStartOfTheLine.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceDefault.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceEndsTheLine.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceInnerClass.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceList.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceMethodRef1.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceMethodRef2.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceNested.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]methodparampad[\\/]InputMethodParamPad.java"/>
@@ -2247,29 +2224,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorWithComments.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceAtStartOfTheLine.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceDefault.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceEndsTheLine.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceInnerClass.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceList.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceMethodRef1.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceMethodRef2.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceNested.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]methodparampad[\\/]InputMethodParamPad.java"/>
