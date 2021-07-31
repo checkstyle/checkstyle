@@ -1,11 +1,15 @@
+/*
+NoWhitespaceAfter
+allowLineBreaks = (default)true
+tokens = METHOD_REF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 
 import java.util.function.Supplier;
 
-/*
- * Config: default
- * tokens = { METHOD_REF }
- */
 public class InputNoWhitespaceAfterTestMethodRefAfter {
     public static class SomeClass {
         public static class Nested<V> {

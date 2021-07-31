@@ -1,11 +1,15 @@
+/*
+NoWhitespaceAfter
+allowLineBreaks = (default)true
+tokens = DOT
+
+
+*/
+
 package com . puppycrawl
     .tools.
     checkstyle.checks.whitespace.nowhitespaceafter; // violation on line 1
 
-/*
- * Config: default
- * tokens = { DOT }
- */
 class InputNoWhitespaceAfterTestAllowLineBreaks
 {
     /** ignore assignment **/

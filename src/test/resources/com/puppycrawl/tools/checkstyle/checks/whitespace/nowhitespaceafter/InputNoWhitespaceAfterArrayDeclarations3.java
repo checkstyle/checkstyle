@@ -1,12 +1,16 @@
+/*
+NoWhitespaceAfter
+allowLineBreaks = (default)true
+tokens = ARRAY_DECLARATOR, INDEX_OP
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
-/*
- * Config: default
- * tokens = { ARRAY_DECLARATOR, INDEX_OP }
- */
 public class InputNoWhitespaceAfterArrayDeclarations3
 {
     public void testWithAnnotationInMiddle1(final char @AnnotationAfterTest [] a) {} // ok

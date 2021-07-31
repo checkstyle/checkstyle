@@ -1,9 +1,13 @@
+/*
+NoWhitespaceAfter
+allowLineBreaks = (default)true
+tokens = ARRAY_DECLARATOR, INDEX_OP
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 
-/*
- * Config: default
- * tokens = { ARRAY_DECLARATOR, INDEX_OP }
- */
 public class InputNoWhitespaceAfterArrayDeclarations
 {
     Object[] someStuff = {}; //Correct
