@@ -42,7 +42,7 @@ public class TypeNameCheckTest
                 createModuleConfig(TypeNameCheck.class);
         checkConfig.addProperty("format", "^inputHe");
         final String[] expected = {
-            "13:14: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "25:14: " + getCheckMessage(MSG_INVALID_PATTERN,
                         "InputTypeName", "^inputHe"),
         };
         verify(checkConfig, getPath("InputTypeName.java"), expected);
@@ -54,16 +54,16 @@ public class TypeNameCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(TypeNameCheck.class);
         final String[] expected = {
-            "3:7: " + getCheckMessage(MSG_INVALID_PATTERN,
-                    "inputHeaderClass", DEFAULT_PATTERN),
-            "5:22: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "15:7: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "inputHeaderClass2", DEFAULT_PATTERN),
+            "17:22: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderInterface", DEFAULT_PATTERN),
-            "7:17: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "19:17: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderEnum", DEFAULT_PATTERN),
-            "9:23: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "21:23: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderAnnotation", DEFAULT_PATTERN),
         };
-        verify(checkConfig, getPath("InputTypeName.java"), expected);
+        verify(checkConfig, getPath("InputTypeName2.java"), expected);
     }
 
     @Test
@@ -73,10 +73,10 @@ public class TypeNameCheckTest
             createModuleConfig(TypeNameCheck.class);
         checkConfig.addProperty("tokens", "CLASS_DEF");
         final String[] expected = {
-            "3:7: " + getCheckMessage(MSG_INVALID_PATTERN,
-                    "inputHeaderClass", DEFAULT_PATTERN),
+            "15:7: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "inputHeaderClass3", DEFAULT_PATTERN),
         };
-        verify(checkConfig, getPath("InputTypeName.java"), expected);
+        verify(checkConfig, getPath("InputTypeName3.java"), expected);
     }
 
     @Test
@@ -86,10 +86,10 @@ public class TypeNameCheckTest
             createModuleConfig(TypeNameCheck.class);
         checkConfig.addProperty("tokens", "INTERFACE_DEF");
         final String[] expected = {
-            "5:22: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "17:22: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderInterface", DEFAULT_PATTERN),
         };
-        verify(checkConfig, getPath("InputTypeName.java"), expected);
+        verify(checkConfig, getPath("InputTypeName4.java"), expected);
     }
 
     @Test
@@ -99,10 +99,10 @@ public class TypeNameCheckTest
             createModuleConfig(TypeNameCheck.class);
         checkConfig.addProperty("tokens", "ENUM_DEF");
         final String[] expected = {
-            "7:17: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "19:17: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderEnum", DEFAULT_PATTERN),
         };
-        verify(checkConfig, getPath("InputTypeName.java"), expected);
+        verify(checkConfig, getPath("InputTypeName5.java"), expected);
     }
 
     @Test
@@ -112,10 +112,10 @@ public class TypeNameCheckTest
             createModuleConfig(TypeNameCheck.class);
         checkConfig.addProperty("tokens", "ANNOTATION_DEF");
         final String[] expected = {
-            "9:23: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "21:23: " + getCheckMessage(MSG_INVALID_PATTERN,
                 "inputHeaderAnnotation", DEFAULT_PATTERN),
         };
-        verify(checkConfig, getPath("InputTypeName.java"), expected);
+        verify(checkConfig, getPath("InputTypeName6.java"), expected);
     }
 
     @Test
@@ -124,12 +124,12 @@ public class TypeNameCheckTest
             createModuleConfig(TypeNameCheck.class);
 
         final String[] expected = {
-            "20:10: " + getCheckMessage(MSG_INVALID_PATTERN, "Third_Name", DEFAULT_PATTERN),
-            "22:11: " + getCheckMessage(MSG_INVALID_PATTERN, "FourthName_", DEFAULT_PATTERN),
-            "25:12: " + getCheckMessage(MSG_INVALID_PATTERN, "My_Record", DEFAULT_PATTERN),
-            "26:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner__Record", DEFAULT_PATTERN),
-            "31:12: " + getCheckMessage(MSG_INVALID_PATTERN, "MyRecord__", DEFAULT_PATTERN),
-            };
+            "23:10: " + getCheckMessage(MSG_INVALID_PATTERN, "Third_Name", DEFAULT_PATTERN),
+            "25:11: " + getCheckMessage(MSG_INVALID_PATTERN, "FourthName_", DEFAULT_PATTERN),
+            "28:12: " + getCheckMessage(MSG_INVALID_PATTERN, "My_Record", DEFAULT_PATTERN),
+            "29:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner__Record", DEFAULT_PATTERN),
+            "34:12: " + getCheckMessage(MSG_INVALID_PATTERN, "MyRecord__", DEFAULT_PATTERN),
+        };
         verify(checkConfig,
             getNonCompilablePath("InputTypeNameRecords.java"), expected);
     }
