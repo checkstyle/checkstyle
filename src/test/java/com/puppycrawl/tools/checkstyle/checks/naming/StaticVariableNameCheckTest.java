@@ -55,7 +55,7 @@ public class StaticVariableNameCheckTest
         final String pattern = "^s[A-Z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "30:24: " + getCheckMessage(MSG_INVALID_PATTERN, "badStatic", pattern),
+            "36:24: " + getCheckMessage(MSG_INVALID_PATTERN, "badStatic", pattern),
         };
         verify(checkConfig, getPath("InputStaticVariableName1.java"), expected);
     }
@@ -71,7 +71,7 @@ public class StaticVariableNameCheckTest
         checkConfig.addProperty("applyToPrivate", "false");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputStaticVariableName1.java"), expected);
+        verify(checkConfig, getPath("InputStaticVariableName2.java"), expected);
     }
 
     @Test
