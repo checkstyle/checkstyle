@@ -1,3 +1,9 @@
+/*
+GenericWhitespace
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.genericwhitespace;
 
 import java.io.Serializable;
@@ -13,7 +19,7 @@ class InputGenericWhitespaceDefault implements Comparable<Object>, Serializable
     {
         List<Integer> x = new ArrayList<Integer>();
         List<List<Integer>> y = new ArrayList<List<Integer>>();
-        List < Integer > a = new ArrayList < Integer > ();
+        List < Integer > a = new ArrayList < Integer > (); // violation
         List < List < Integer > > b = new ArrayList < List < Integer > > ();
     }
     //always 0

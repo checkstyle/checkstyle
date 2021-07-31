@@ -59,40 +59,40 @@ public class GenericWhitespaceCheckTest
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = {
-            "16:14: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
-            "16:14: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
-            "16:24: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
-            "16:44: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
-            "16:44: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
-            "16:54: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
-            "17:14: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
-            "17:14: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
-            "17:21: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
-            "17:21: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
-            "17:31: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
-            "17:31: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
-            "17:33: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
-            "17:53: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
-            "17:53: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
-            "17:60: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
-            "17:60: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
-            "17:70: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
-            "17:70: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
-            "17:72: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
-            "30:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
-            "30:20: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, ">"),
-            "42:22: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
-            "42:29: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
-            "60:59: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
-            "63:59: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
-            "81:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
-            "82:34: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
-            "83:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
-            "83:41: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
-            "86:29: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
-            "87:35: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
-            "88:35: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
-            "88:42: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "22:14: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "22:14: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "22:24: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "22:44: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "22:44: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "22:54: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "23:14: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "23:14: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "23:21: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "23:21: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "23:31: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "23:31: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "23:33: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "23:53: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "23:53: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "23:60: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "23:60: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "23:70: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "23:70: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "23:72: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "36:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "36:20: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, ">"),
+            "48:22: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "48:29: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "66:59: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
+            "69:59: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "87:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "88:34: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "89:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "89:41: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "92:29: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "93:35: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "94:35: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "94:42: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
         };
         verify(checkConfig, getPath("InputGenericWhitespaceDefault.java"), expected);
     }
@@ -101,8 +101,8 @@ public class GenericWhitespaceCheckTest
     public void testAtTheStartOfTheLine() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = {
-            "10:2: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
-            "12:2: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "16:2: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "18:2: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
         };
         verify(checkConfig, getPath("InputGenericWhitespaceAtStartOfTheLine.java"), expected);
     }
@@ -111,7 +111,7 @@ public class GenericWhitespaceCheckTest
     public void testNestedGeneric() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = {
-            "11:1: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
+            "17:1: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
         };
         verify(checkConfig, getPath("InputGenericWhitespaceNested.java"), expected);
     }
@@ -141,7 +141,7 @@ public class GenericWhitespaceCheckTest
     public void testMethodReferences2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = {
-            "10:69: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "16:69: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
         };
         verify(checkConfig, getPath("InputGenericWhitespaceMethodRef2.java"), expected);
     }
