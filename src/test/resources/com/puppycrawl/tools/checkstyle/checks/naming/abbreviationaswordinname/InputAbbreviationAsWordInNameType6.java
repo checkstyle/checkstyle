@@ -49,10 +49,10 @@ abstract class AbstractClassName36 {
 
 abstract class Class3Factory6 {
     class WellNamedFACTORY { // violation
-    	public void marazmaticMETHODName() { // violation
-    		int marazmaticVARIABLEName = 2; // violation
-    		int MARAZMATICVariableName = 1; // violation
-    	}
+        public void marazmaticMETHODName() { // violation
+            int marazmaticVARIABLEName = 2; // violation
+            int MARAZMATICVariableName = 1; // violation
+        }
     }
 }
 
@@ -69,33 +69,33 @@ interface BadNameForInterface6
 }
 
 abstract class NonAAAAbstractClassName26 { // violation
-	public int serialNUMBER = 6; // violation
-	public final int s1erialNUMBER = 6; // violation
-	private static int s2erialNUMBER = 6; // violation
-	private static final int s3erialNUMBER = 6; // violation
+    public int serialNUMBER = 6; // violation
+    public final int s1erialNUMBER = 6; // violation
+    private static int s2erialNUMBER = 6; // violation
+    private static final int s3erialNUMBER = 6; // violation
 }
 
 interface Interface16 {
 
-	String VALUEEEE = "value"; // violation
+    String VALUEEEE = "value"; // violation
 
 }
 
 interface Interface26 {
 
-	static String VALUEEEE = "value"; // violation
+    static String VALUEEEE = "value"; // violation
 
 }
 
 interface Interface36 {
 
-	final String VALUEEEE = "value"; // violation
+    final String VALUEEEE = "value"; // violation
 
 }
 
 interface Interface46 {
 
-	final static String VALUEEEE = "value"; // violation
+    final static String VALUEEEE = "value"; // violation
 
 }
 
