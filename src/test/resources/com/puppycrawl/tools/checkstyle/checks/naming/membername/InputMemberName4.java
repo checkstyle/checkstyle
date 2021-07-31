@@ -1,6 +1,6 @@
 /*
 MemberName
-format = (default)^[a-z][a-zA-Z0-9]*$
+format = ^_[a-z]*$
 applyToPublic = (default)true
 applyToProtected = (default)true
 applyToPackage = (default)true
@@ -11,15 +11,15 @@ applyToPrivate = (default)true
 
 package com.puppycrawl.tools.checkstyle.checks.naming.membername;
 
-public class InputMemberName
+public class InputMemberName4
 {
     public int mPublic;
-    protected int mProtected;
+    protected int mProtected; // violation
     int mPackage;//comment
     private int mPrivate;
 
-    public int _public; // violation
-    protected int _protected; // violation
-    int _package; // violation
-    private int _private; // violation
+    public int _public;
+    protected int _protected;
+    int _package;
+    private int _private;
 }
