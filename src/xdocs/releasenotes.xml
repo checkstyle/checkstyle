@@ -10,6 +10,108 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.45">
+      <div class="releaseDate">31.07.2021</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Incorrect catch parameter line/ column number reported.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/10134">#10134</a>
+          </li>
+          <li>
+            Inconsistent `TYPE_ARGUMENT` AST.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/10121">#10121</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            new Check: NoWhitespaceBeforeCaseDefaultColon.
+            Author: Akash Mondal
+            <a href="https://github.com/checkstyle/checkstyle/issues/8186">#8186</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            MatchXpath: should support comments.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/10107">#10107</a>
+          </li>
+          <li>
+            Javadoc parser/grammar doesn&#39;t report the correct lines in Javadoc AST.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/10208">#10208</a>
+          </li>
+          <li>
+            Violations from TrailingComment should possible to suppress by xpath
+            by content of comment.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/9009">#9009</a>
+          </li>
+          <li>
+            ArrayTypeStyle false positives in nested generics.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/10215">#10215</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Refactor input files in check tests. 102 Check tests were updated.
+            Author: Shashwat Jaiswal
+            <a href="Refactor input files in check tests">#10080</a>
+          </li>
+          <li>
+            Add Configuration.getPropertyNames and Configuration.getProperty and
+            deprecate getAttributeNames getAttribute methods.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10164">#10164</a>
+          </li>
+          <li>
+            create example of AST for TokenTypes.COLON.
+            Author: vinayak-gaikwad
+            <a href="https://github.com/checkstyle/checkstyle/issues/9409">#9409</a>
+          </li>
+          <li>
+            Loggers should use class for printing to output that does only localization.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/9794">#9794</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - AbstractJavadocCheck.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10126">#10126</a>
+          </li>
+          <li>
+            doc: add example to ImportOrder about other groups.
+            Author: Ritik2604
+            <a href="https://github.com/checkstyle/checkstyle/issues/5982">#5982</a>
+          </li>
+          <li>
+            Google test uses check input for OneStatementPerLineTest.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10277">#10277</a>
+          </li>
+          <li>
+            Add support for violation message.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10079">#10079</a>
+          </li>
+          <li>
+            move all &quot;No Error&quot; execution from wercker.yml to travis.yml.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/10178">#10178</a>
+          </li>
+          <li>
+            Parse and extract violations.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10078">#10078</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.44">
       <div class="releaseDate">27.06.2021</div>
       <p>Breaking backward compatibility:</p>
