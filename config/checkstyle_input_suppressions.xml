@@ -1128,23 +1128,6 @@
             files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceNested.java"/>
 
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]nowhitespacebefore[\\/]InputNoWhitespaceBeforeAtStartOfTheLine.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]nowhitespacebefore[\\/]InputNoWhitespaceBeforeDefault.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]nowhitespacebefore[\\/]InputNoWhitespaceBeforeDotAllowLineBreaks.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]nowhitespacebefore[\\/]InputNoWhitespaceBeforeDot.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]nowhitespacebefore[\\/]InputNoWhitespaceBeforeEmptyForLoop.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]nowhitespacebefore[\\/]InputNoWhitespaceBeforeMethodRef.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]operatorwrap[\\/]InputOperatorWrap.java"/>
@@ -2253,23 +2236,6 @@
             files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceNested.java"/>
 
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]nowhitespacebefore[\\/]InputNoWhitespaceBeforeAtStartOfTheLine.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]nowhitespacebefore[\\/]InputNoWhitespaceBeforeDefault.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]nowhitespacebefore[\\/]InputNoWhitespaceBeforeDotAllowLineBreaks.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]nowhitespacebefore[\\/]InputNoWhitespaceBeforeDot.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]nowhitespacebefore[\\/]InputNoWhitespaceBeforeEmptyForLoop.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]nowhitespacebefore[\\/]InputNoWhitespaceBeforeMethodRef.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]operatorwrap[\\/]InputOperatorWrap.java"/>
