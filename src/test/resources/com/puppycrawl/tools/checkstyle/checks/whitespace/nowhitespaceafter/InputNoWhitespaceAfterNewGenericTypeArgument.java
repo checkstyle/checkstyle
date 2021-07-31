@@ -1,13 +1,16 @@
+/*
+NoWhitespaceAfter
+allowLineBreaks = (default)true
+tokens = (default)ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT, \
+         DOT, ARRAY_DECLARATOR, INDEX_OP
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 
 import java.io.PrintStream;
 
-/* Config:
- * tokens = { ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS,
- *    BNOT, LNOT, DOT, TYPECAST, ARRAY_DECLARATOR, INDEX_OP, LITERAL_SYNCHRONIZED,
- *    METHOD_REF }
- *
- */
 public class InputNoWhitespaceAfterNewGenericTypeArgument {
     static interface SomeInterface {
         int SEVENS = 777;

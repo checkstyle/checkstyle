@@ -1,9 +1,13 @@
+/*
+NoWhitespaceAfter
+allowLineBreaks = (default)true
+tokens = LITERAL_SYNCHRONIZED
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 
-/*
- * Config: default
- * tokens = { LITERAL_SYNCHRONIZED }
- */
 class InputNoWhitespaceAfterTestSynchronized {
     void method2()
     {
