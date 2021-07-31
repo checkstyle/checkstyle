@@ -1,3 +1,9 @@
+/*
+GenericWhitespace
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.genericwhitespace;
 
 public class InputGenericWhitespaceNested {
@@ -8,5 +14,5 @@ public class InputGenericWhitespaceNested {
     static class IntEnumValue implements IntEnum, NumberEnum<Integer> {}
 
     static class IntEnumValueType<E extends Enum<E
->& IntEnum & NumberEnum<E>> {}
+>& IntEnum & NumberEnum<E>> {} // violation
 }
