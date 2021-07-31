@@ -39,19 +39,19 @@ public class NoWhitespaceBeforeCheckTest
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
         final String[] expected = {
-            "30:15: " + getCheckMessage(MSG_KEY, "++"),
-            "30:22: " + getCheckMessage(MSG_KEY, "--"),
-            "176:19: " + getCheckMessage(MSG_KEY, ";"),
-            "178:24: " + getCheckMessage(MSG_KEY, ";"),
-            "185:19: " + getCheckMessage(MSG_KEY, ";"),
-            "187:28: " + getCheckMessage(MSG_KEY, ";"),
-            "195:27: " + getCheckMessage(MSG_KEY, ";"),
-            "211:16: " + getCheckMessage(MSG_KEY, ";"),
-            "266:1: " + getCheckMessage(MSG_KEY, ";"),
-            "270:16: " + getCheckMessage(MSG_KEY, ";"),
-            "284:1: " + getCheckMessage(MSG_KEY, ";"),
-            "287:62: " + getCheckMessage(MSG_KEY, "..."),
-            "291:16: " + getCheckMessage(MSG_KEY, ":"),
+            "34:15: " + getCheckMessage(MSG_KEY, "++"),
+            "34:22: " + getCheckMessage(MSG_KEY, "--"),
+            "180:19: " + getCheckMessage(MSG_KEY, ";"),
+            "182:24: " + getCheckMessage(MSG_KEY, ";"),
+            "189:19: " + getCheckMessage(MSG_KEY, ";"),
+            "191:28: " + getCheckMessage(MSG_KEY, ";"),
+            "199:27: " + getCheckMessage(MSG_KEY, ";"),
+            "215:16: " + getCheckMessage(MSG_KEY, ";"),
+            "270:1: " + getCheckMessage(MSG_KEY, ";"),
+            "274:16: " + getCheckMessage(MSG_KEY, ";"),
+            "288:1: " + getCheckMessage(MSG_KEY, ";"),
+            "291:62: " + getCheckMessage(MSG_KEY, "..."),
+            "295:16: " + getCheckMessage(MSG_KEY, ":"),
         };
         verify(checkConfig, getPath("InputNoWhitespaceBeforeDefault.java"), expected);
     }
@@ -61,12 +61,12 @@ public class NoWhitespaceBeforeCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
         checkConfig.addProperty("tokens", "DOT");
         final String[] expected = {
-            "5:13: " + getCheckMessage(MSG_KEY, "."),
-            "6:5: " + getCheckMessage(MSG_KEY, "."),
-            "129:18: " + getCheckMessage(MSG_KEY, "."),
-            "135:13: " + getCheckMessage(MSG_KEY, "."),
-            "136:11: " + getCheckMessage(MSG_KEY, "."),
-            "264:1: " + getCheckMessage(MSG_KEY, "."),
+            "9:13: " + getCheckMessage(MSG_KEY, "."),
+            "10:5: " + getCheckMessage(MSG_KEY, "."),
+            "133:18: " + getCheckMessage(MSG_KEY, "."),
+            "139:13: " + getCheckMessage(MSG_KEY, "."),
+            "140:11: " + getCheckMessage(MSG_KEY, "."),
+            "268:1: " + getCheckMessage(MSG_KEY, "."),
         };
         verify(checkConfig, getPath("InputNoWhitespaceBeforeDot.java"), expected);
     }
@@ -77,9 +77,9 @@ public class NoWhitespaceBeforeCheckTest
         checkConfig.addProperty("tokens", "DOT");
         checkConfig.addProperty("allowLineBreaks", "yes");
         final String[] expected = {
-            "5:13: " + getCheckMessage(MSG_KEY, "."),
-            "129:18: " + getCheckMessage(MSG_KEY, "."),
-            "136:11: " + getCheckMessage(MSG_KEY, "."),
+            "9:13: " + getCheckMessage(MSG_KEY, "."),
+            "133:18: " + getCheckMessage(MSG_KEY, "."),
+            "140:11: " + getCheckMessage(MSG_KEY, "."),
         };
         verify(checkConfig, getPath("InputNoWhitespaceBeforeDotAllowLineBreaks.java"), expected);
     }
@@ -89,8 +89,8 @@ public class NoWhitespaceBeforeCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
         checkConfig.addProperty("tokens", "METHOD_REF");
         final String[] expected = {
-            "17:32: " + getCheckMessage(MSG_KEY, "::"),
-            "18:61: " + getCheckMessage(MSG_KEY, "::"),
+            "25:32: " + getCheckMessage(MSG_KEY, "::"),
+            "26:61: " + getCheckMessage(MSG_KEY, "::"),
         };
         verify(checkConfig, getPath("InputNoWhitespaceBeforeMethodRef.java"), expected);
     }
@@ -100,7 +100,7 @@ public class NoWhitespaceBeforeCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
         checkConfig.addProperty("tokens", "DOT");
         final String[] expected = {
-            "2:1: " + getCheckMessage(MSG_KEY, "."),
+            "10:1: " + getCheckMessage(MSG_KEY, "."),
         };
         verify(checkConfig, getPath("InputNoWhitespaceBeforeAtStartOfTheLine.java"), expected);
     }
@@ -111,9 +111,9 @@ public class NoWhitespaceBeforeCheckTest
         checkConfig.addProperty("tokens", "METHOD_REF");
         checkConfig.addProperty("allowLineBreaks", "yes");
         final String[] expected = {
-            "14:3: " + getCheckMessage(MSG_KEY, "::"),
+            "22:3: " + getCheckMessage(MSG_KEY, "::"),
         };
-        verify(checkConfig, getPath("InputNoWhitespaceBeforeAtStartOfTheLine.java"), expected);
+        verify(checkConfig, getPath("InputNoWhitespaceBeforeAtStartOfTheLine2.java"), expected);
     }
 
     @Test
@@ -122,8 +122,8 @@ public class NoWhitespaceBeforeCheckTest
         checkConfig.addProperty("tokens", "SEMI");
         checkConfig.addProperty("allowLineBreaks", "yes");
         final String[] expected = {
-            "12:24: " + getCheckMessage(MSG_KEY, ";"),
-            "18:32: " + getCheckMessage(MSG_KEY, ";"),
+            "20:24: " + getCheckMessage(MSG_KEY, ";"),
+            "26:32: " + getCheckMessage(MSG_KEY, ";"),
         };
         verify(checkConfig, getPath("InputNoWhitespaceBeforeEmptyForLoop.java"), expected);
     }

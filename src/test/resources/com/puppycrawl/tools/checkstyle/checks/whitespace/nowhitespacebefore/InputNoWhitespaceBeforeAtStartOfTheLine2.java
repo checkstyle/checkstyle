@@ -7,11 +7,11 @@ tokens = (default)COMMA, SEMI, POST_INC, POST_DEC, ELLIPSIS, LABELED_STAT
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace
-.nowhitespacebefore; // violation
+.nowhitespacebefore;
 
 import java.util.function.Supplier;
 
-public class InputNoWhitespaceBeforeAtStartOfTheLine {
+public class InputNoWhitespaceBeforeAtStartOfTheLine2 {
     public static class A {
         private A() {
         }
@@ -19,6 +19,6 @@ public class InputNoWhitespaceBeforeAtStartOfTheLine {
 
     public <V> void methodName(V value) {
         Supplier<?> t =
-A ::new;
+A ::new; // violation
     }
 }
