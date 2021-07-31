@@ -1,15 +1,18 @@
+/*
+TypeName
+format = (default)^[A-Z][a-zA-Z0-9]*$
+applyToPublic = (default)true
+applyToProtected = (default)true
+applyToPackage = (default)true
+applyToPrivate = (default)true
+tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.naming.typename;
 
-/* Config:
- *
- * format = "^[A-Z][a-zA-Z0-9]*$"
- * applyToPublic = true
- * applyToProtected = true
- * applyToPackage = true
- * applyToPrivate = true
- * tokens = {CLASS_DEF , INTERFACE_DEF , ENUM_DEF , ANNOTATION_DEF, RECORD_DEF}
- */
 public class InputTypeNameRecords {
     interface FirstName {
     } // OK
