@@ -1,12 +1,16 @@
+/*
+NoWhitespaceAfter
+allowLineBreaks = (default)true
+tokens = ARRAY_DECLARATOR
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 
 import java.util.Map;
 import java.util.stream.IntStream;
 
-/*
- * Config: default
- * tokens = { ARRAY_DECLARATOR }
- */
 public class InputNoWhitespaceAfterTestArrayDeclarator {
     @SuppressWarnings("unchecked")
     Map.Entry<Integer,String>[] genEntries(int n) {
