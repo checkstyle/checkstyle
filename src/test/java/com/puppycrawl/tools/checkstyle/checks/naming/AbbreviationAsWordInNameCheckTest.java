@@ -42,7 +42,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
 
         final String[] expected = {
             "24:16: " + getWarningMessage("FactoryWithBADNAme", expectedCapitalCount),
-            "27:16: " + getWarningMessage("AbstractCLASSName", expectedCapitalCount),
+            "27:16: " + getWarningMessage("AbstractCLASSName1", expectedCapitalCount),
             "47:11: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
             "52:11: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),
             "53:21: " + getWarningMessage("marazmaticMETHODName", expectedCapitalCount),
@@ -125,8 +125,8 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "46:11: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
             "51:11: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),
             "52:21: " + getWarningMessage("marazmaticMETHODName", expectedCapitalCount),
-            "53:21: " + getWarningMessage("marazmaticVARIABLEName", expectedCapitalCount),
-            "54:21: " + getWarningMessage("MARAZMATICVariableName", expectedCapitalCount),
+            "53:17: " + getWarningMessage("marazmaticVARIABLEName", expectedCapitalCount),
+            "54:17: " + getWarningMessage("MARAZMATICVariableName", expectedCapitalCount),
         };
 
         verify(checkConfig, getPath("InputAbbreviationAsWordInNameType5.java"), expected);
@@ -215,8 +215,8 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "54:25: " + getWarningMessage("marazmaticMETHODName", expectedCapitalCount),
             "74:20: "
                     + getWarningMessage("serialNUMBER", expectedCapitalCount), // not in ignore list
-            "76:28: "
-                    + getWarningMessage("s2erialNUMBER", expectedCapitalCount), // no ignore for static
+            "76:28: " + getWarningMessage("s2erialNUMBER",
+                    expectedCapitalCount), // no ignore for static
         };
 
         verify(checkConfig, getPath(
@@ -277,10 +277,10 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "54:25: " + getWarningMessage("marazmaticMETHODName", expectedCapitalCount),
             "74:20: "
                     + getWarningMessage("serialNUMBER", expectedCapitalCount), // not in ignore list
-            "75:26: "
-                    + getWarningMessage("s1erialNUMBER", expectedCapitalCount), // no ignore for final
-            "76:28: "
-                    + getWarningMessage("s2erialNUMBER", expectedCapitalCount), // no ignore for static
+            "75:26: " + getWarningMessage("s1erialNUMBER",
+                    expectedCapitalCount), // no ignore for final
+            "76:28: " + getWarningMessage("s2erialNUMBER",
+                    expectedCapitalCount), // no ignore for static
         };
 
         verify(checkConfig, getPath(
@@ -361,8 +361,8 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "54:25: " + getWarningMessage("marazmaticMETHODName", expectedCapitalCount),
             "74:20: "
                     + getWarningMessage("serialNUMBER", expectedCapitalCount), // not in ignore list
-            "76:28: "
-                    + getWarningMessage("s2erialNUMBER", expectedCapitalCount), // no ignore for static
+            "76:28: " + getWarningMessage("s2erialNUMBER",
+                    expectedCapitalCount), // no ignore for static
             "77:34: " // no ignore for static final
                     + getWarningMessage("s3erialNUMBER", expectedCapitalCount),
             "82:16: "
@@ -404,8 +404,8 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "54:25: " + getWarningMessage("marazmaticMETHODName", expectedCapitalCount),
             "74:20: "
                     + getWarningMessage("serialNUMBER", expectedCapitalCount), // not in ignore list
-            "75:26: "
-                    + getWarningMessage("s1erialNUMBER", expectedCapitalCount), // no ignore for final
+            "75:26: " + getWarningMessage("s1erialNUMBER",
+                    expectedCapitalCount), // no ignore for final
             "77:34: " // no ignore for static final
                     + getWarningMessage("s3erialNUMBER", expectedCapitalCount),
             "82:16: "
@@ -451,10 +451,10 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
         final int expectedCapitalCount = 4;
 
         final String[] expected = {
-            "21:20: " + getWarningMessage("serialNUMBER", expectedCapitalCount),
-            "29:24: " + getWarningMessage("oveRRRRRrriddenMethod", expectedCapitalCount),
+            "21:16: " + getWarningMessage("serialNUMBER", expectedCapitalCount),
+            "29:20: " + getWarningMessage("oveRRRRRrriddenMethod", expectedCapitalCount),
             "37:20: " + getWarningMessage("oveRRRRRrriddenMethod", expectedCapitalCount),
-            "49:24: " + getWarningMessage("oveRRRRRrriddenMethod", expectedCapitalCount),
+            "49:20: " + getWarningMessage("oveRRRRRrriddenMethod", expectedCapitalCount),
         };
 
         verify(checkConfig,
@@ -483,21 +483,21 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "46:11: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
             "51:11: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),
             "52:21: " + getWarningMessage("marazmaticMETHODName", expectedCapitalCount),
-            "53:21: " + getWarningMessage("marazmaticVARIABLEName", expectedCapitalCount),
-            "54:21: " + getWarningMessage("MARAZMATICVariableName", expectedCapitalCount),
+            "53:17: " + getWarningMessage("marazmaticVARIABLEName", expectedCapitalCount),
+            "54:17: " + getWarningMessage("MARAZMATICVariableName", expectedCapitalCount),
             "60:7: " + getWarningMessage("RIGHT", expectedCapitalCount),
             "61:7: " + getWarningMessage("LEFT", expectedCapitalCount),
             "62:7: " + getWarningMessage("UP", expectedCapitalCount),
             "63:7: " + getWarningMessage("DOWN", expectedCapitalCount),
             "71:16: " + getWarningMessage("NonAAAAbstractClassName26", expectedCapitalCount),
-            "72:20: " + getWarningMessage("serialNUMBER", expectedCapitalCount),
-            "73:26: " + getWarningMessage("s1erialNUMBER", expectedCapitalCount),
-            "74:28: " + getWarningMessage("s2erialNUMBER", expectedCapitalCount),
-            "75:34: " + getWarningMessage("s3erialNUMBER", expectedCapitalCount),
-            "80:16: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
-            "86:23: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
-            "92:22: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
-            "98:29: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
+            "72:16: " + getWarningMessage("serialNUMBER", expectedCapitalCount),
+            "73:22: " + getWarningMessage("s1erialNUMBER", expectedCapitalCount),
+            "74:24: " + getWarningMessage("s2erialNUMBER", expectedCapitalCount),
+            "75:30: " + getWarningMessage("s3erialNUMBER", expectedCapitalCount),
+            "80:12: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
+            "86:19: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
+            "92:18: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
+            "98:25: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
             "102:7: " + getWarningMessage("FIleNameFormatException6", expectedCapitalCount),
             "104:31: " + getWarningMessage("serialVersionUID", expectedCapitalCount),
             "112:9: " + getWarningMessage("userID", expectedCapitalCount),

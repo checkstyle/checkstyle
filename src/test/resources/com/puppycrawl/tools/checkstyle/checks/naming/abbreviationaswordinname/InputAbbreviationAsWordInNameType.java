@@ -24,7 +24,7 @@ abstract class NonAAAAbstractClassName {
 abstract class FactoryWithBADNAme { // violation
 }
 
-abstract class AbstractCLASSName { // violation
+abstract class AbstractCLASSName1 { // violation
     abstract class NonAbstractInnerClass {
     }
 }
@@ -43,7 +43,7 @@ class AbstractClass1 {
 class Class1Factory1 {
 }
 
-abstract class AbstractClassName3 {
+abstract class AbstractClassName31 {
     class AbstractINNERRClass { // violation
     }
 }
