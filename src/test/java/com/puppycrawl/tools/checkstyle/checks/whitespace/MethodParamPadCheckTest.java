@@ -53,24 +53,24 @@ public class MethodParamPadCheckTest
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
         final String[] expected = {
-            "11:32: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "13:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "17:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "20:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "27:24: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "32:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "36:39: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "38:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "42:16: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "44:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "50:21: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "52:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "56:18: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "58:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "61:36: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "63:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "74:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "79:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "21:32: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "23:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "27:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "30:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "37:24: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "42:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "46:39: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "48:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "52:16: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "54:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "60:21: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "62:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "66:18: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "68:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "71:36: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "73:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "84:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "89:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
         };
         verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
     }
@@ -80,17 +80,17 @@ public class MethodParamPadCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
         checkConfig.addProperty("allowLineBreaks", "true");
         final String[] expected = {
-            "11:32: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "13:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "27:24: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "36:39: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "42:16: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "50:21: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "56:18: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "61:36: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "74:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "21:33: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "23:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "37:24: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "46:39: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "52:16: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "60:21: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "66:18: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "71:36: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "84:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
         };
-        verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
+        verify(checkConfig, getPath("InputMethodParamPad2.java"), expected);
     }
 
     @Test
@@ -98,30 +98,30 @@ public class MethodParamPadCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
         checkConfig.addProperty("option", "space");
         final String[] expected = {
-            "6:31: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "8:14: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "17:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "20:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "23:23: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "32:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "35:58: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "38:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "41:15: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "44:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "47:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "49:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "52:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "54:56: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "55:17: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "58:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "60:35: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "63:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
-            "66:25: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "69:66: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "70:57: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
-            "79:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "16:32: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "18:14: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "27:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "30:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "33:23: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "42:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "45:58: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "48:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "51:15: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "54:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "57:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "59:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "62:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "64:56: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "65:17: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "68:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "70:35: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "73:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "76:25: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "79:66: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "80:57: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "89:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
         };
-        verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
+        verify(checkConfig, getPath("InputMethodParamPad3.java"), expected);
     }
 
     @Test
@@ -129,16 +129,16 @@ public class MethodParamPadCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
         checkConfig.addProperty("allowLineBreaks", "true");
         final String[] expected = {
-            "14:25: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "15:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "26:26: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "27:23: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "32:26: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "33:33: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "39:26: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "40:18: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "46:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
-            "52:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "19:25: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "20:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "31:26: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "32:23: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "37:26: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "38:33: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "44:26: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "45:18: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "51:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "57:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
         };
         verify(checkConfig,
                 getNonCompilablePath("InputMethodParamPadRecords.java"), expected);
@@ -177,7 +177,7 @@ public class MethodParamPadCheckTest
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
+            verify(checkConfig, getPath("InputMethodParamPad4.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
