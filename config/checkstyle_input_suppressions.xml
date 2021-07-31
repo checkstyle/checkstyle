@@ -1145,11 +1145,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceNested.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]methodparampad[\\/]InputMethodParamPad.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]methodparampad[\\/]InputMethodParamPadWhitespaceAround.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]nowhitespacebefore[\\/]InputNoWhitespaceBeforeAtStartOfTheLine.java"/>
@@ -2293,11 +2288,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceNested.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]methodparampad[\\/]InputMethodParamPad.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]methodparampad[\\/]InputMethodParamPadWhitespaceAround.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]nowhitespacebefore[\\/]InputNoWhitespaceBeforeAtStartOfTheLine.java"/>
