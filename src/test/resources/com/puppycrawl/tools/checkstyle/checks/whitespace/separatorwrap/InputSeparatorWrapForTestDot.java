@@ -1,3 +1,11 @@
+/*
+SeparatorWrap
+option = nl
+tokens = DOT
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.separatorwrap;
 
 public class InputSeparatorWrapForTestDot<T extends FooForTestDot
@@ -27,7 +35,7 @@ class badCaseForTestDot<T extends FooForTestDot &  BarForTestDot> {
 
     public void goodCaseForTestDot(int... aFoo)throws FooExceptionForTestDot, BarExceptionForTestDot
     {
-        String s = "ffffooooString";
+        String s = "ffffooooString"; // violation
         s.
                 isEmpty(); //bad wrapping
         try {

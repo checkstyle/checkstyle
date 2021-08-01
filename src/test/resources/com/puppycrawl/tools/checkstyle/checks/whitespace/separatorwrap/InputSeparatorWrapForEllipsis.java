@@ -1,3 +1,11 @@
+/*
+SeparatorWrap
+option = (default)eol
+tokens = ELLIPSIS
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.separatorwrap;
 
 class InputSeparatorWrapForEllipsis {
@@ -8,7 +16,7 @@ class InputSeparatorWrapForEllipsis {
     }
 
     public void testMethodWithBadWrapping(String
-            ...parameters) {
+            ...parameters) { // violation
 
     }
 

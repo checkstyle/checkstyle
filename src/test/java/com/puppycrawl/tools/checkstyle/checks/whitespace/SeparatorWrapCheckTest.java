@@ -48,7 +48,7 @@ public class SeparatorWrapCheckTest
         checkConfig.addProperty("option", "NL");
         checkConfig.addProperty("tokens", "DOT");
         final String[] expected = {
-            "31:10: " + getCheckMessage(MSG_LINE_NEW, "."),
+            "39:10: " + getCheckMessage(MSG_LINE_NEW, "."),
         };
         verify(checkConfig, getPath("InputSeparatorWrapForTestDot.java"), expected);
     }
@@ -59,7 +59,7 @@ public class SeparatorWrapCheckTest
         checkConfig.addProperty("option", "EOL");
         checkConfig.addProperty("tokens", "COMMA");
         final String[] expected = {
-            "39:17: " + getCheckMessage(MSG_LINE_PREVIOUS, ","),
+            "47:17: " + getCheckMessage(MSG_LINE_PREVIOUS, ","),
         };
         verify(checkConfig, getPath("InputSeparatorWrapForTestComma.java"), expected);
     }
@@ -70,7 +70,7 @@ public class SeparatorWrapCheckTest
         checkConfig.addProperty("option", "NL");
         checkConfig.addProperty("tokens", "METHOD_REF");
         final String[] expected = {
-            "17:56: " + getCheckMessage(MSG_LINE_NEW, "::"),
+            "25:56: " + getCheckMessage(MSG_LINE_NEW, "::"),
         };
         verify(checkConfig, getPath("InputSeparatorWrapForTestMethodRef.java"), expected);
     }
@@ -112,7 +112,7 @@ public class SeparatorWrapCheckTest
         checkConfig.addProperty("option", "EOL");
         checkConfig.addProperty("tokens", "ELLIPSIS");
         final String[] expected = {
-            "11:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "..."),
+            "19:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "..."),
         };
         verify(checkConfig, getPath("InputSeparatorWrapForEllipsis.java"), expected);
     }
@@ -123,7 +123,7 @@ public class SeparatorWrapCheckTest
         checkConfig.addProperty("option", "EOL");
         checkConfig.addProperty("tokens", "ARRAY_DECLARATOR");
         final String[] expected = {
-            "9:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "["),
+            "17:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "["),
         };
         verify(checkConfig, getPath("InputSeparatorWrapForArrayDeclarator.java"), expected);
     }
