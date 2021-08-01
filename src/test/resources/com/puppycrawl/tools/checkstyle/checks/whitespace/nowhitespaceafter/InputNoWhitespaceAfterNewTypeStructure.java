@@ -1,3 +1,12 @@
+/*
+NoWhitespaceAfter
+allowLineBreaks = false
+tokens = ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT, DOT, TYPECAST, \
+         ARRAY_DECLARATOR, INDEX_OP, LITERAL_SYNCHRONIZED, METHOD_REF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 
 import java.awt.*;
@@ -10,12 +19,6 @@ import java.util.TreeSet;
 
 import javax.net.ssl.KeyManager;
 
-/* Config:
- * tokens = { ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS,
- *    BNOT, LNOT, DOT, TYPECAST, ARRAY_DECLARATOR, INDEX_OP, LITERAL_SYNCHRONIZED,
- *    METHOD_REF }
- *
- */
 public class InputNoWhitespaceAfterNewTypeStructure {
     private static class Slot {
         double sin2Phi = 2 * StrictMath.sin(1.618033988749895);

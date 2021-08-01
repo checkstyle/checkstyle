@@ -1,11 +1,16 @@
+/*
+NoWhitespaceAfter
+allowLineBreaks = false
+tokens = (default)ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT, \
+         DOT, ARRAY_DECLARATOR, INDEX_OP
+
+
+*/
+
 package com . puppycrawl
     .tools.
     checkstyle.checks.whitespace.nowhitespaceafter; // ^ 2 violations above
 
-/*
- * Config:
- * allowLineBreaks = false
- */
 class InputNoWhitespaceAfterTestDefault
 {
     /** ignore assignment **/

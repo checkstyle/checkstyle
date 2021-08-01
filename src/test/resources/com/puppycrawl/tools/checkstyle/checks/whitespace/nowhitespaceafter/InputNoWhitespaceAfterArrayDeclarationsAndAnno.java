@@ -1,3 +1,12 @@
+/*
+NoWhitespaceAfter
+allowLineBreaks = (default)true
+tokens = ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT, DOT, TYPECAST, \
+         ARRAY_DECLARATOR, INDEX_OP, LITERAL_SYNCHRONIZED, METHOD_REF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 
 import java.lang.annotation.ElementType;
@@ -6,11 +15,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.Map;
 
-/* Config:
- * tokens = { ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT,
- *  LNOT, DOT, TYPECAST, ARRAY_DECLARATOR, INDEX_OP, LITERAL_SYNCHRONIZED,
- *  METHOD_REF }
- */
 @Target(ElementType.TYPE_USE)
 @interface NonNull {}
 
