@@ -177,6 +177,8 @@
   <suppress checks="FileTabCharacter"
     files="[\\/]InputSingleSpaceSeparatorComments\.java"/>
   <suppress checks="FileTabCharacter"
+    files="[\\/]InputSingleSpaceSeparatorComments2\.java"/>
+  <suppress checks="FileTabCharacter"
     files="[\\/]InputSingleSpaceSeparatorErrors\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputParenPadWhitespace\.java"/>

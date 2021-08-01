@@ -1,1 +1,8 @@
-/* Comment only */
+/*
+SingleSpaceSeparator
+validateComments = (default)false
+
+
+*/
+
+/* Comment only */ // ok

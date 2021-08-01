@@ -65,38 +65,38 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(SingleSpaceSeparatorCheck.class);
         checkConfig.addProperty("validateComments", "true");
         final String[] expected = {
-            "1:10: " + getCheckMessage(MSG_KEY),
-            "1:28: " + getCheckMessage(MSG_KEY),
-            "4:9: " + getCheckMessage(MSG_KEY),
-            "6:19: " + getCheckMessage(MSG_KEY),
-            "6:52: " + getCheckMessage(MSG_KEY),
-            "7:21: " + getCheckMessage(MSG_KEY),
-            "8:12: " + getCheckMessage(MSG_KEY),
-            "8:16: " + getCheckMessage(MSG_KEY),
-            "11:4: " + getCheckMessage(MSG_KEY),
-            "12:6: " + getCheckMessage(MSG_KEY),
-            "13:8: " + getCheckMessage(MSG_KEY),
-            "14:9: " + getCheckMessage(MSG_KEY),
-            "17:14: " + getCheckMessage(MSG_KEY),
-            "17:24: " + getCheckMessage(MSG_KEY),
-            "17:33: " + getCheckMessage(MSG_KEY),
-            "18:16: " + getCheckMessage(MSG_KEY),
-            "18:23: " + getCheckMessage(MSG_KEY),
-            "19:17: " + getCheckMessage(MSG_KEY),
-            "19:24: " + getCheckMessage(MSG_KEY),
-            "20:20: " + getCheckMessage(MSG_KEY),
-            "21:22: " + getCheckMessage(MSG_KEY),
-            "26:22: " + getCheckMessage(MSG_KEY),
-            "26:28: " + getCheckMessage(MSG_KEY),
-            "27:15: " + getCheckMessage(MSG_KEY),
-            "27:24: " + getCheckMessage(MSG_KEY),
-            "27:32: " + getCheckMessage(MSG_KEY),
-            "27:47: " + getCheckMessage(MSG_KEY),
-            "28:17: " + getCheckMessage(MSG_KEY),
-            "28:23: " + getCheckMessage(MSG_KEY),
-            "30:17: " + getCheckMessage(MSG_KEY),
-            "30:34: " + getCheckMessage(MSG_KEY),
-            "31:8: " + getCheckMessage(MSG_KEY),
+            "8:10: " + getCheckMessage(MSG_KEY),
+            "8:28: " + getCheckMessage(MSG_KEY),
+            "11:9: " + getCheckMessage(MSG_KEY),
+            "13:19: " + getCheckMessage(MSG_KEY),
+            "13:52: " + getCheckMessage(MSG_KEY),
+            "14:21: " + getCheckMessage(MSG_KEY),
+            "15:12: " + getCheckMessage(MSG_KEY),
+            "15:16: " + getCheckMessage(MSG_KEY),
+            "18:4: " + getCheckMessage(MSG_KEY),
+            "19:6: " + getCheckMessage(MSG_KEY),
+            "20:8: " + getCheckMessage(MSG_KEY),
+            "21:9: " + getCheckMessage(MSG_KEY),
+            "24:14: " + getCheckMessage(MSG_KEY),
+            "24:24: " + getCheckMessage(MSG_KEY),
+            "24:33: " + getCheckMessage(MSG_KEY),
+            "25:16: " + getCheckMessage(MSG_KEY),
+            "25:23: " + getCheckMessage(MSG_KEY),
+            "26:17: " + getCheckMessage(MSG_KEY),
+            "26:24: " + getCheckMessage(MSG_KEY),
+            "27:20: " + getCheckMessage(MSG_KEY),
+            "28:22: " + getCheckMessage(MSG_KEY),
+            "33:22: " + getCheckMessage(MSG_KEY),
+            "33:28: " + getCheckMessage(MSG_KEY),
+            "34:15: " + getCheckMessage(MSG_KEY),
+            "34:24: " + getCheckMessage(MSG_KEY),
+            "34:32: " + getCheckMessage(MSG_KEY),
+            "34:47: " + getCheckMessage(MSG_KEY),
+            "35:17: " + getCheckMessage(MSG_KEY),
+            "35:23: " + getCheckMessage(MSG_KEY),
+            "37:17: " + getCheckMessage(MSG_KEY),
+            "37:34: " + getCheckMessage(MSG_KEY),
+            "38:8: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig, getPath("InputSingleSpaceSeparatorErrors.java"), expected);
@@ -108,12 +108,12 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(SingleSpaceSeparatorCheck.class);
         checkConfig.addProperty("validateComments", "true");
         final String[] expected = {
-            "5:11: " + getCheckMessage(MSG_KEY),
-            "5:43: " + getCheckMessage(MSG_KEY),
-            "6:14: " + getCheckMessage(MSG_KEY),
+            "12:11: " + getCheckMessage(MSG_KEY),
+            "12:43: " + getCheckMessage(MSG_KEY),
             "13:14: " + getCheckMessage(MSG_KEY),
-            "13:25: " + getCheckMessage(MSG_KEY),
-            "14:8: " + getCheckMessage(MSG_KEY),
+            "20:14: " + getCheckMessage(MSG_KEY),
+            "20:25: " + getCheckMessage(MSG_KEY),
+            "21:8: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig, getPath("InputSingleSpaceSeparatorComments.java"), expected);
@@ -124,7 +124,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(SingleSpaceSeparatorCheck.class);
         final String[] expected = {
-            "5:16: " + getCheckMessage(MSG_KEY),
+            "12:16: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig, getPath("InputSingleSpaceSeparatorChildNodes.java"), expected);
@@ -136,7 +136,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(SingleSpaceSeparatorCheck.class);
         checkConfig.addProperty("validateComments", "true");
         final String[] expected = {
-            "5:4: " + getCheckMessage(MSG_KEY),
+            "12:4: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig, getPath("InputSingleSpaceSeparatorMinColumnNo.java"), expected);
@@ -147,7 +147,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(SingleSpaceSeparatorCheck.class);
         final String[] expected = {
-            "5:7: " + getCheckMessage(MSG_KEY),
+            "12:7: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig, getPath("InputSingleSpaceSeparatorStartOfTheLine.java"), expected);
@@ -158,10 +158,10 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(SingleSpaceSeparatorCheck.class);
         final String[] expected = {
-            "13:14: " + getCheckMessage(MSG_KEY),
+            "20:14: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, getPath("InputSingleSpaceSeparatorComments.java"), expected);
+        verify(checkConfig, getPath("InputSingleSpaceSeparatorComments2.java"), expected);
     }
 
     @Test

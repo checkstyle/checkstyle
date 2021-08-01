@@ -1,10 +1,13 @@
+/*
+SingleSpaceSeparator
+validateComments = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.singlespaceseparator;
 
-/* Config:
- *
- * default
- */
-public class InputSingleSpaceSeparatorNoStackoverflowError {
+public class InputSingleSpaceSeparatorNoStackoverflowError { // ok
   private String str = ""
       +""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""
       +""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""
