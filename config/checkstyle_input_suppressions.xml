@@ -1040,68 +1040,6 @@
             files="utils[\\/]checkutil[\\/]InputCheckUtilTest.java"/>
 
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorBlockCommentSeparatedFromPackage.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorBlockCommentUnderPackage.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorClassDefinitionAndCommentNotSeparatedFromPackage.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorFormerException.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorHeader.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorImportSeparatedFromPackage.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorImports.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparator.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorModifierUnderPackage.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorMultipleEmptyLinesInside.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorMultipleEmptyLines.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorMultipleFieldsInClass.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorMultipleImportEmptyClass.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorNonPackageInfoWithJavadocBeforePackage.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorPrePreviousLineEmptiness.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorPrePreviousLineIsEmpty.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorPreviousLineEmptiness.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorSingleCommentSeparatedFromPackage.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorSingleCommentUnderPackage.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorWithComments.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceAtStartOfTheLine.java"/>
@@ -2170,68 +2108,6 @@
             files="utils[\\/]checkutil[\\/]InputCheckUtilTest.java"/>
 
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorBlockCommentSeparatedFromPackage.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorBlockCommentUnderPackage.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorClassDefinitionAndCommentNotSeparatedFromPackage.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorFormerException.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorHeader.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorImportSeparatedFromPackage.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorImports.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparator.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorModifierUnderPackage.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorMultipleEmptyLinesInside.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorMultipleEmptyLines.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorMultipleFieldsInClass.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorMultipleImportEmptyClass.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorNonPackageInfoWithJavadocBeforePackage.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorPrePreviousLineEmptiness.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorPrePreviousLineIsEmpty.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorPreviousLineEmptiness.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorSingleCommentSeparatedFromPackage.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorSingleCommentUnderPackage.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorWithComments.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceAtStartOfTheLine.java"/>
