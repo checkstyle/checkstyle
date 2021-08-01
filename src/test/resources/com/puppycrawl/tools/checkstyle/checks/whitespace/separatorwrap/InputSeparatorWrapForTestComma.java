@@ -1,3 +1,11 @@
+/*
+SeparatorWrap
+option = (default)eol
+tokens = COMMA
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.separatorwrap;
 
 public class InputSeparatorWrapForTestComma<T extends FooForTestComma
@@ -36,7 +44,7 @@ class badCaseForTestComma<T extends FooForTestComma &  BarForTestComma> {
                 | BarException4TC e) {}
 
         foo(1
-                ,s);  //bad wrapping
+                ,s);  //bad wrapping // violation
         int[] i;
     }
     public static String foo(int i, String s) throws FooException4TC, BarException4TC
