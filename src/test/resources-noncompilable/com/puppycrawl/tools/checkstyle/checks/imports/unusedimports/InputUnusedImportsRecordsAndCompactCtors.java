@@ -1,3 +1,10 @@
+/*
+UnusedImports
+processJavadoc = (default)true
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
@@ -14,10 +21,6 @@ import javax.swing.JToggleButton; // violation
 
 import org.w3c.dom.Node; // ok
 
-/*
- * Config:
- * processJavadoc = true
- */
 public class InputUnusedImportsRecordsAndCompactCtors {
 
     /**
