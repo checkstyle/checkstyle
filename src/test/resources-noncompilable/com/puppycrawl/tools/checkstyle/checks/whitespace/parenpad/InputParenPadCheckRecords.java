@@ -1,18 +1,21 @@
+/*
+ParenPad
+option = (default)nospace
+tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
+         ENUM_CONSTANT_DEF, EXPR, LITERAL_CATCH, LITERAL_DO, LITERAL_FOR, LITERAL_IF, \
+         LITERAL_NEW, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_WHILE, METHOD_CALL, \
+         METHOD_DEF, QUESTION, RESOURCE_SPECIFICATION, SUPER_CTOR_CALL, LAMBDA, RECORD_DEF
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 import java.util.HashMap;
 
 import org.w3c.dom.Node;
-/* Config:
- * option = nospace
- * tokens = {ANNOTATION , ANNOTATION_FIELD_DEF , CTOR_CALL , CTOR_DEF , DOT ,
- *  ENUM_CONSTANT_DEF , EXPR , LITERAL_CATCH , LITERAL_DO , LITERAL_FOR ,
- *  LITERAL_IF , LITERAL_NEW , LITERAL_SWITCH , LITERAL_SYNCHRONIZED ,
- *  LITERAL_WHILE , METHOD_CALL , METHOD_DEF , QUESTION , RESOURCE_SPECIFICATION ,
- *  SUPER_CTOR_CALL , LAMBDA, RECORD_DEF}
- *
- */
+
 public class InputParenPadCheckRecords {
     record MyRecord1( ) { // violation x2
 

@@ -1,6 +1,6 @@
 /*
 ParenPad
-option = (default)nospace
+option = space
 tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
          ENUM_CONSTANT_DEF, EXPR, LITERAL_CATCH, LITERAL_DO, LITERAL_FOR, LITERAL_IF, \
          LITERAL_NEW, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_WHILE, METHOD_CALL, \
@@ -17,7 +17,7 @@ package com . puppycrawl
  * Class for testing whitespace issues.
  * violation missing author tag
  **/
-class InputParenPadWhitespace
+class InputParenPadWhitespace2
 {
     /** ignore assignment **/
     private int mVar1=1;
@@ -33,7 +33,7 @@ class InputParenPadWhitespace
         int b= 1; // Ignore 1
         b=1; // Ignore 1
         b+=1; // Ignore 1
-        b -=- 1 + (+ b); // Ignore 2
+        b -=- 1 + (+ b); // violation
         b = b ++ + b --; // Ignore 1
         b = ++ b - -- b; // Ignore 1
     }
@@ -62,7 +62,7 @@ class InputParenPadWhitespace
     private void fastExit()
     {
         boolean complicatedStuffNeeded = true;
-        if( !complicatedStuffNeeded ) // violation
+        if( !complicatedStuffNeeded )
         {
             return; // should not complain about missing WS after return
         }
@@ -213,7 +213,7 @@ class InputParenPadWhitespace
  * @author o_sukhodolsky
  * @version 1.0
  */
-interface IFoo
+interface IFoo2
 {
     void foo() ;
     //        ^ whitespace
@@ -224,21 +224,21 @@ interface IFoo
  * @author lkuehne
  * @version 1.0
  */
-class SpecialCasesInForLoop
+class SpecialCasesInForLoop2
 {
     void forIterator()
     {
         // avoid conflict between WhiteSpaceAfter ';' and ParenPad(nospace)
         for (int i = 0; i++ < 5;) {
-	    //                  ^ no whitespace
-	}
+        //                  ^ no whitespace
+    }
 
         // bug 895072
-	// avoid conflict between ParenPad(space) and NoWhiteSpace before ';'
-	int i = 0;
-	for ( ; i < 5; i++ ) {
-	//   ^ whitespace
-	}
+    // avoid conflict between ParenPad(space) and NoWhiteSpace before ';'
+    int i = 0;
+    for ( ; i < 5; i++ ) {
+    //   ^ whitespace
+    }
         for (int anInt : getSomeInts()) {
             //Should be ignored
         }
