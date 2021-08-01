@@ -1,3 +1,11 @@
+/*
+ParenPad
+option = (default)nospace
+tokens = EXPR, METHOD_CALL, METHOD_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 public class InputParenPadWithDisabledLambda {
@@ -16,7 +24,7 @@ public class InputParenPadWithDisabledLambda {
 
         java.util.stream.Stream.of().forEach(( Object o ) -> o.toString()); // ok
 
-        java.util.stream.Stream.of().forEach(o -> o.toString( )); // 2 violations
+        java.util.stream.Stream.of().forEach(o -> o.toString( )); // violation
     }
 
     void someMethod( String param ) { // 2 violations

@@ -1,3 +1,11 @@
+/*
+ParenPad
+option = (default)nospace
+tokens = LAMBDA
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 public class InputParenPadLambdaOnly {
@@ -6,7 +14,7 @@ public class InputParenPadLambdaOnly {
 
         java.util.function.Consumer b = o -> { o.toString(); }; // ok
 
-        java.util.function.Consumer c = ( o ) -> { o.toString(); }; // 2 violations
+        java.util.function.Consumer c = ( o ) -> { o.toString(); }; // violation
 
         java.util.function.Consumer d = (o ) -> { o.toString(); }; // 1 violation
 
