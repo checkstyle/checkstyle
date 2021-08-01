@@ -1188,23 +1188,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]parenpad[\\/]InputParenPadWithSpace.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapForArrayDeclarator.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapForEllipsis.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapForInvalidOption.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapForTestComma.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapForTestDot.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapForTestMethodRef.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorChildNodes.java"/>
@@ -2313,23 +2296,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]parenpad[\\/]InputParenPadWithSpace.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapForArrayDeclarator.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapForEllipsis.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapForInvalidOption.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapForTestComma.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapForTestDot.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapForTestMethodRef.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorChildNodes.java"/>
