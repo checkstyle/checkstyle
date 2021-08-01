@@ -1,3 +1,10 @@
+/*
+WhitespaceAfter
+tokens = LITERAL_IF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 
 public class InputWhitespaceAfterLiteralIf {
@@ -15,7 +22,7 @@ public class InputWhitespaceAfterLiteralIf {
         }
 
         //Invalid
-        if(condition()) {                  //violation
+        if(condition()) {                  // violation
             testIfElse();
         } else {
             testIfElse();
@@ -24,7 +31,7 @@ public class InputWhitespaceAfterLiteralIf {
         //Invalid
         if (condition()) {
             testIfElse();
-        } else{                            //violation
+        } else{                            // violation
             testIfElse();
         }
     }

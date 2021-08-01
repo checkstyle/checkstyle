@@ -1,3 +1,10 @@
+/*
+WhitespaceAfter
+tokens = LITERAL_FOR
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 
 public class InputWhitespaceAfterLiteralFor {
@@ -15,7 +22,7 @@ public class InputWhitespaceAfterLiteralFor {
         }
 
         //Invalid
-        if(condition()) {                  //violation
+        if(condition()) {                  // violation
             testIfElse();
         } else {
             testIfElse();
@@ -24,7 +31,7 @@ public class InputWhitespaceAfterLiteralFor {
         //Invalid
         if (condition()) {
             testIfElse();
-        } else{                            //violation
+        } else{                            // violation
             testIfElse();
         }
     }
@@ -36,7 +43,7 @@ public class InputWhitespaceAfterLiteralFor {
         }
 
         //Invalid
-        while(condition()) {               //violation
+        while(condition()) {               // violation
             testWhile();
         }
     }
@@ -48,7 +55,7 @@ public class InputWhitespaceAfterLiteralFor {
         }
 
         //Invalid
-        for(int i = 0; i < 5; i++) {      //violation
+        for(int i = 0; i < 5; i++) {      // violation
             testFor();
         }
     }
@@ -60,7 +67,7 @@ public class InputWhitespaceAfterLiteralFor {
         } while (condition());
 
         //Invalid
-        do{                             //violation
+        do{                             // violation
             testDo();
         } while (condition());
     }

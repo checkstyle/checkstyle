@@ -1,3 +1,10 @@
+/*
+WhitespaceAfter
+tokens = LITERAL_WHILE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 
 public class InputWhitespaceAfterLiteralWhile {
@@ -36,7 +43,7 @@ public class InputWhitespaceAfterLiteralWhile {
         }
 
         //Invalid
-        while(condition()) {               //violation
+        while(condition()) {               // violation
             testWhile();
         }
     }

@@ -1,7 +1,15 @@
+/*
+WhitespaceAfter
+tokens = (default)COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_WHILE, \
+         LITERAL_DO, LITERAL_FOR, DO_WHILE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 
 @SuppressWarnings({"this", "that"})
-public class InputWhitespaceAfterAround
+public class InputWhitespaceAfterAround // ok
 {
     protected InputWhitespaceAfterAround ( int i )
     {
