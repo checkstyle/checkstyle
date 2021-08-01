@@ -1496,6 +1496,7 @@
                 <exclude>intellij-idea-inspections.properties</exclude>
                 <exclude>markdownlint.rb</exclude>
                 <exclude>signatures.txt</exclude>
+                <exclude>signatures-test.txt</exclude>
               </excludes>
             </validationSet>
             <validationSet>
@@ -1550,36 +1551,489 @@
             <bundledSignature>jdk-system-out</bundledSignature>
             <bundledSignature>jdk-non-portable</bundledSignature>
           </bundledSignatures>
-          <signaturesFiles>
-            <signaturesFile>${basedir}/config/signatures.txt</signaturesFile>
-          </signaturesFiles>
-          <excludes>
-            <!-- system-out is ok there, that is CLI -->
-            <exclude>**/Main.class</exclude>
-            <exclude>**/MainTest.class</exclude>
-            <exclude>**/Main$CliOptions.class</exclude>
-            <exclude>**/JavadocPropertiesGenerator.class</exclude>
-            <!-- generated classes, unfortunately use problematic api -->
-            <exclude>**/GeneratedJavaLexer.class</exclude>
-            <exclude>**/GeneratedTextBlockLexer.class</exclude>
-            <exclude>**/JavadocParser.class</exclude>
-            <exclude>**/Input*</exclude>
-            <!-- tests need forbidden apis to test the main code fully -->
-            <exclude>**/XpathFileGeneratorAuditListenerTest.class</exclude>
-            <!-- These tests uses java.lang.reflect.AccessibleObject.isAccessible
-              which has no Java 8 compatible workaround. -->
-            <exclude>**/AllChecksTest.class</exclude>
-            <exclude>**/XdocsPagesTest.class</exclude>
-            <!-- Needed for testing deprecated API. -->
-            <exclude>**/DefaultConfigurationTest.class</exclude>
-          </excludes>
         </configuration>
         <executions>
           <execution>
+            <id>forbiddenapis-main</id>
+            <phase>verify</phase>
             <goals>
               <goal>check</goal>
+            </goals>
+            <configuration>
+              <signaturesFiles>
+                <signaturesFile>${basedir}/config/signatures.txt</signaturesFile>
+              </signaturesFiles>
+              <excludes>
+                <!-- system-out is ok there, that is CLI -->
+                <exclude>**/Main.class</exclude>
+                <exclude>**/Main$CliOptions.class</exclude>
+                <exclude>**/JavadocPropertiesGenerator.class</exclude>
+                <!-- generated classes, unfortunately use problematic api -->
+                <exclude>**/GeneratedJavaLexer.class</exclude>
+                <exclude>**/GeneratedTextBlockLexer.class</exclude>
+                <exclude>**/JavadocParser.class</exclude>
+              </excludes>
+            </configuration>
+          </execution>
+          <execution>
+            <id>forbiddenapis-test</id>
+            <phase>verify</phase>
+            <goals>
               <goal>testCheck</goal>
             </goals>
+            <configuration>
+              <signaturesFiles>
+                <signaturesFile>${basedir}/config/signatures-test.txt</signaturesFile>
+              </signaturesFiles>
+              <excludes>
+                <exclude>**/Input*</exclude>
+                <!-- usage of system output by design -->
+                <exclude>**/MainTest.class</exclude>
+                <!-- tests need forbidden apis to test the main code fully -->
+                <exclude>**/XpathFileGeneratorAuditListenerTest.class</exclude>
+                <!-- These tests uses java.lang.reflect.AccessibleObject.isAccessible
+                  which has no Java 8 compatible workaround. -->
+                <exclude>**/AllChecksTest.class</exclude>
+                <exclude>**/XdocsPagesTest.class</exclude>
+                <!-- Needed for testing deprecated API. -->
+                <exclude>**/DefaultConfigurationTest.class</exclude>
+                <!-- untill https://github.com/checkstyle/checkstyle/issues/10394 -->
+                <exclude>**/SimplifyBooleanReturnCheckTest.class</exclude>
+
+                <!-- <exclude>**/GenericWhitespaceCheckTest.class</exclude> -->
+
+                <exclude>**/IllegalThrowsCheckTest.class</exclude>
+
+                <exclude>**/UniquePropertiesCheckTest.class</exclude>
+
+                <exclude>**/AbstractClassNameCheckTest.class</exclude>
+
+                <exclude>**/JavaNCSSCheckTest.class</exclude>
+
+                <exclude>**/ExplicitInitializationCheckTest.class</exclude>
+
+                <exclude>**/NPathComplexityCheckTest.class</exclude>
+
+                <exclude>**/DescendantTokenCheckTest.class</exclude>
+
+                <exclude>**/ConstantNameCheckTest.class</exclude>
+
+                <exclude>**/EmbeddedNullCharTest.class</exclude>
+
+                <exclude>**/EqualsHashCodeCheckTest.class</exclude>
+
+                <exclude>**/MultiDimensionalArraysInGenericsTest.class</exclude>
+
+                <exclude>**/OuterTypeFilenameCheckTest.class</exclude>
+
+                <exclude>**/PatternVariableNameCheckTest.class</exclude>
+
+                <exclude>**/LambdaParameterNameCheckTest.class</exclude>
+
+                <exclude>**/NoWhitespaceBeforeCaseDefaultColonCheckTest.class</exclude>
+
+                <exclude>**/EmptyStatementCheckTest.class</exclude>
+
+                <exclude>**/UnnecessarySemicolonInEnumerationCheckTest.class</exclude>
+
+                <exclude>**/ParameterNameCheckTest.class</exclude>
+
+                <exclude>**/LineLengthCheckTest.class</exclude>
+
+                <exclude>**/RedundantImportCheckTest.class</exclude>
+
+                <exclude>**/FinalLocalVariableCheckTest.class</exclude>
+
+                <exclude>**/Java9TryWithResourcesTest.class</exclude>
+
+                <exclude>**/MissingDeprecatedCheckTest.class</exclude>
+
+                <exclude>**/RegexpCheckTest.class</exclude>
+
+                <exclude>**/LocalVariableNameCheckTest.class</exclude>
+
+                <exclude>**/Java7NumericalLiteralsTest.class</exclude>
+
+                <exclude>**/ModifierOrderCheckTest.class</exclude>
+
+                <exclude>**/SuppressionSingleFilterTest.class</exclude>
+
+                <exclude>**/AnnotationOnSameLineCheckTest.class</exclude>
+
+                <exclude>**/AvoidStaticImportCheckTest.class</exclude>
+
+                <exclude>**/HiddenFieldCheckTest.class</exclude>
+
+                <exclude>**/ParameterNumberCheckTest.class</exclude>
+
+                <exclude>**/ReturnCountCheckTest.class</exclude>
+
+                <exclude>**/SimplifyBooleanExpressionCheckTest.class</exclude>
+
+                <exclude>**/SingleSpaceSeparatorCheckTest.class</exclude>
+
+                <exclude>**/SuperCloneCheckTest.class</exclude>
+
+                <exclude>**/TypeNameCheckTest.class</exclude>
+
+                <exclude>**/AllSinglelineCommentsTest.class</exclude>
+
+                <exclude>**/MemberNameCheckTest.class</exclude>
+
+                <exclude>**/ModifiedControlVariableCheckTest.class</exclude>
+
+                <exclude>**/FileSetCheckTest.class</exclude>
+
+                <exclude>**/DeclarationOrderCheckTest.class</exclude>
+
+                <exclude>**/PackageNameCheckTest.class</exclude>
+
+                <exclude>**/IllegalTypeCheckTest.class</exclude>
+
+                <exclude>**/NoLineWrapCheckTest.class</exclude>
+
+                <exclude>**/CovariantEqualsCheckTest.class</exclude>
+
+                <exclude>**/OperatorWrapCheckTest.class</exclude>
+
+                <exclude>**/LeftCurlyCheckTest.class</exclude>
+
+                <exclude>**/TodoCommentCheckTest.class</exclude>
+
+                <exclude>**/StringLiteralEqualityCheckTest.class</exclude>
+
+                <exclude>**/AbstractFileSetCheckTest.class</exclude>
+
+                <exclude>**/NoWhitespaceAfterCheckTest.class</exclude>
+
+                <exclude>**/ArrayTrailingCommaCheckTest.class</exclude>
+
+                <exclude>**/HideUtilityClassConstructorCheckTest.class</exclude>
+
+                <exclude>**/SeparatorWrapCheckTest.class</exclude>
+
+                <exclude>**/OrderedPropertiesCheckTest.class</exclude>
+
+                <exclude>**/SuppressionCommentFilterTest.class</exclude>
+
+                <exclude>**/Java7TryWithResourcesTest.class</exclude>
+
+                <exclude>**/NestedIfDepthCheckTest.class</exclude>
+
+                <exclude>**/RightCurlyCheckTest.class</exclude>
+
+                <exclude>**/AvoidDoubleBraceInitializationCheckTest.class</exclude>
+
+                <exclude>**/Java7StringSwitchTest.class</exclude>
+
+                <exclude>**/ClassMemberImpliedModifierCheckTest.class</exclude>
+
+                <exclude>**/PackageAnnotationCheckTest.class</exclude>
+
+                <exclude>**/CatchParameterNameCheckTest.class</exclude>
+
+                <exclude>**/RegexpMultilineCheckTest.class</exclude>
+
+                <exclude>**/CyclomaticComplexityCheckTest.class</exclude>
+
+                <exclude>**/UnusedImportsCheckTest.class</exclude>
+
+                <exclude>**/IllegalInstantiationCheckTest.class</exclude>
+
+                <exclude>**/NestedForDepthCheckTest.class</exclude>
+
+                <exclude>**/EmptyLineSeparatorCheckTest.class</exclude>
+
+                <exclude>**/AvoidEscapedUnicodeCharactersCheckTest.class</exclude>
+
+                <exclude>**/IllegalImportCheckTest.class</exclude>
+
+                <exclude>**/IndentationCheckTest.class</exclude>
+
+                <exclude>**/NoCodeInFileCheckTest.class</exclude>
+
+                <exclude>**/MagicNumberCheckTest.class</exclude>
+
+                <exclude>**/HexFloatsTest.class</exclude>
+
+                <exclude>**/StaticVariableNameCheckTest.class</exclude>
+
+                <exclude>**/EqualsAvoidNullCheckTest.class</exclude>
+
+                <exclude>**/NestedTryDepthCheckTest.class</exclude>
+
+                <exclude>**/UnnecessarySemicolonInTryWithResourcesCheckTest.class</exclude>
+
+                <exclude>**/TreeWalkerTest.class</exclude>
+
+                <exclude>**/UnicodeEscapeTest.class</exclude>
+
+                <exclude>**/AnnotationUseStyleCheckTest.class</exclude>
+
+                <exclude>**/FallThroughCheckTest.class</exclude>
+
+                <exclude>**/LambdaBodyLengthCheckTest.class</exclude>
+
+                <exclude>**/RegexpOnFilenameCheckTest.class</exclude>
+
+                <exclude>**/AvoidInlineConditionalsCheckTest.class</exclude>
+
+                <exclude>**/UncommentedMainCheckTest.class</exclude>
+
+                <exclude>**/FinalParametersCheckTest.class</exclude>
+
+                <exclude>**/ArrayTypeStyleCheckTest.class</exclude>
+
+                <exclude>**/ExecutableStatementCountCheckTest.class</exclude>
+
+                <exclude>**/InterfaceIsTypeCheckTest.class</exclude>
+
+                <exclude>**/ParameterAssignmentCheckTest.class</exclude>
+
+                <exclude>**/EmptyForIteratorPadCheckTest.class</exclude>
+
+                <exclude>**/InterfaceMemberImpliedModifierCheckTest.class</exclude>
+
+                <exclude>**/NoWhitespaceBeforeCheckTest.class</exclude>
+
+                <exclude>**/UpperEllCheckTest.class</exclude>
+
+                <exclude>**/EmptyForInitializerPadCheckTest.class</exclude>
+
+                <exclude>**/WhitespaceAfterCheckTest.class</exclude>
+
+                <exclude>**/InterfaceTypeParameterNameCheckTest.class</exclude>
+
+                <exclude>**/LocalFinalVariableNameCheckTest.class</exclude>
+
+                <exclude>**/OverloadMethodsDeclarationOrderCheckTest.class</exclude>
+
+                <exclude>**/ClassDataAbstractionCouplingCheckTest.class</exclude>
+
+                <exclude>**/GeneratedJava14LexerTest.class</exclude>
+
+                <exclude>**/Java7MultiCatchTest.class</exclude>
+
+                <exclude>**/MatchXpathCheckTest.class</exclude>
+
+                <exclude>**/CheckerTest.class</exclude>
+
+                <exclude>**/OneStatementPerLineCheckTest.class</exclude>
+
+                <exclude>**/RedundantModifierCheckTest.class</exclude>
+
+                <exclude>**/ClassFanOutComplexityCheckTest.class</exclude>
+
+                <exclude>**/MethodLengthCheckTest.class</exclude>
+
+                <exclude>**/HeaderCheckTest.class</exclude>
+
+                <exclude>**/AvoidNestedBlocksCheckTest.class</exclude>
+
+                <exclude>**/AvoidStarImportCheckTest.class</exclude>
+
+                <exclude>**/RecordComponentNumberCheckTest.class</exclude>
+
+                <exclude>**/UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest.class</exclude>
+
+                <exclude>**/SuppressWarningsFilterTest.class</exclude>
+
+                <exclude>**/MethodParamPadCheckTest.class</exclude>
+
+                <exclude>**/AnnotationLocationCheckTest.class</exclude>
+
+                <exclude>**/VisibilityModifierCheckTest.class</exclude>
+
+                <exclude>**/TrailingCommentCheckTest.class</exclude>
+
+                <exclude>**/NoFinalizerCheckTest.class</exclude>
+
+                <exclude>**/FinalClassCheckTest.class</exclude>
+
+                <exclude>**/MethodTypeParameterNameCheckTest.class</exclude>
+
+                <exclude>**/NoEnumTrailingCommaCheckTest.class</exclude>
+
+                <exclude>**/SuppressWarningsHolderTest.class</exclude>
+
+                <exclude>**/InnerAssignmentCheckTest.class</exclude>
+
+                <exclude>**/LineCommentAtTheEndOfFileTest.class</exclude>
+
+                <exclude>**/NoCloneCheckTest.class</exclude>
+
+                <exclude>**/ImportControlCheckTest.class</exclude>
+
+                <exclude>**/MethodCountCheckTest.class</exclude>
+
+                <exclude>**/BeforeExecutionExclusionFileFilterTest.class</exclude>
+
+                <exclude>**/ClassTypeParameterNameCheckTest.class</exclude>
+
+                <exclude>**/RegexpSinglelineCheckTest.class</exclude>
+
+                <exclude>**/UnnecessaryParenthesesCheckTest.class</exclude>
+
+                <exclude>**/SuppressWithPlainTextCommentFilterTest.class</exclude>
+
+                <exclude>**/WhitespaceAroundCheckTest.class</exclude>
+
+                <exclude>**/MultipleStringLiteralsCheckTest.class</exclude>
+
+                <exclude>**/VarargTest.class</exclude>
+
+                <exclude>**/AbstractCheckTest.class</exclude>
+
+                <exclude>**/ThrowsCountCheckTest.class</exclude>
+
+                <exclude>**/RequireThisCheckTest.class</exclude>
+
+                <exclude>**/FileLengthCheckTest.class</exclude>
+
+                <exclude>**/InnerTypeLastCheckTest.class</exclude>
+
+                <exclude>**/SuppressWarningsCheckTest.class</exclude>
+
+                <exclude>**/ParenPadCheckTest.class</exclude>
+
+                <exclude>**/OuterTypeNumberCheckTest.class</exclude>
+
+                <exclude>**/RegexpHeaderCheckTest.class</exclude>
+
+                <exclude>**/AnonInnerLengthCheckTest.class</exclude>
+
+                <exclude>**/ImportOrderCheckTest.class</exclude>
+
+                <exclude>**/IllegalIdentifierNameCheckTest.class</exclude>
+
+                <exclude>**/OneTopLevelClassCheckTest.class</exclude>
+
+                <exclude>**/MissingCtorCheckTest.class</exclude>
+
+                <exclude>**/AbbreviationAsWordInNameCheckTest.class</exclude>
+
+                <exclude>**/DetailAstImplTest.class</exclude>
+
+                <exclude>**/SuppressWithNearbyCommentFilterTest.class</exclude>
+
+                <exclude>**/DesignForExtensionCheckTest.class</exclude>
+
+                <exclude>**/Java14RecordsTest.class</exclude>
+
+                <exclude>**/EmptyCatchBlockCheckTest.class</exclude>
+
+                <exclude>**/TypecastParenPadCheckTest.class</exclude>
+
+                <exclude>**/PackageDeclarationCheckTest.class</exclude>
+
+                <exclude>**/BooleanExpressionComplexityCheckTest.class</exclude>
+
+                <exclude>**/RecordTypeParameterNameCheckTest.class</exclude>
+
+                <exclude>**/MethodNameCheckTest.class</exclude>
+
+                <exclude>**/UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest.class</exclude>
+
+                <exclude>**/DefaultComesLastCheckTest.class</exclude>
+
+                <exclude>**/NeedBracesCheckTest.class</exclude>
+
+                <exclude>**/RegexpSinglelineJavaCheckTest.class</exclude>
+
+                <exclude>**/CustomImportOrderCheckTest.class</exclude>
+
+                <exclude>**/MutableExceptionCheckTest.class</exclude>
+
+                <exclude>**/MissingSwitchDefaultCheckTest.class</exclude>
+
+                <exclude>**/SuperFinalizeCheckTest.class</exclude>
+
+                <exclude>**/AbstractModuleTestSupport.class</exclude>
+
+                <exclude>**/IllegalCatchCheckTest.class</exclude>
+
+                <exclude>**/VariableDeclarationUsageDistanceCheckTest.class</exclude>
+
+                <exclude>**/CommentsIndentationCheckTest.class</exclude>
+
+                <exclude>**/EmptyBlockCheckTest.class</exclude>
+
+                <exclude>**/IllegalTokenCheckTest.class</exclude>
+
+                <exclude>**/AvoidNoArgumentSuperConstructorCallCheckTest.class</exclude>
+
+                <exclude>**/SuppressionFilterTest.class</exclude>
+
+                <exclude>**/Java7DiamondTest.class</exclude>
+
+                <exclude>**/IllegalTokenTextCheckTest.class</exclude>
+
+                <exclude>**/AllBlockCommentsTest.class</exclude>
+
+                <exclude>**/RecordComponentNameCheckTest.class</exclude>
+
+                <exclude>**/MultipleVariableDeclarationsCheckTest.class</exclude>
+
+                <exclude>**/NoArrayTrailingCommaCheckTest.class</exclude>
+
+                <exclude>**/TypeUseAnnotationsOnQualifiedTypesTest.class</exclude>
+
+                <exclude>**/JavadocMethodCheckTest.class</exclude>
+
+                <exclude>**/JavadocParagraphCheckTest.class</exclude>
+
+                <exclude>**/MethodReferencesTest.class</exclude>
+
+                <exclude>**/SummaryJavadocCheckTest.class</exclude>
+
+                <exclude>**/MissingJavadocTypeCheckTest.class</exclude>
+
+                <exclude>**/JavadocTagContinuationIndentationCheckTest.class</exclude>
+
+                <exclude>**/AnnotationsOnArrayTest.class</exclude>
+
+                <exclude>**/SingleLineJavadocCheckTest.class</exclude>
+
+                <exclude>**/NonEmptyAtclauseDescriptionCheckTest.class</exclude>
+
+                <exclude>**/JavadocStyleCheckTest.class</exclude>
+
+                <exclude>**/WriteTagCheckTest.class</exclude>
+
+                <exclude>**/RequireEmptyLineBeforeBlockTagGroupCheckTest.class</exclude>
+
+                <exclude>**/JavadocBlockTagLocationCheckTest.class</exclude>
+
+                <exclude>**/JavadocMissingLeadingAsteriskCheckTest.class</exclude>
+
+                <exclude>**/DefaultMethodsTest.class</exclude>
+
+                <exclude>**/JavadocTypeCheckTest.class</exclude>
+
+                <exclude>**/InvalidJavadocPositionCheckTest.class</exclude>
+
+                <exclude>**/JavadocMissingWhitespaceAfterAsteriskCheckTest.class</exclude>
+
+                <exclude>**/MissingJavadocPackageCheckTest.class</exclude>
+
+                <exclude>**/ReceiverParameterTest.class</exclude>
+
+                <exclude>**/MissingJavadocMethodCheckTest.class</exclude>
+
+                <exclude>**/AnnotationTest.class</exclude>
+
+                <exclude>**/AtclauseOrderCheckTest.class</exclude>
+
+                <exclude>**/LambdaTest.class</exclude>
+
+                <exclude>**/JavadocContentLocationCheckTest.class</exclude>
+
+                <exclude>**/AbstractJavadocCheckTest.class</exclude>
+
+                <exclude>**/JavadocVariableCheckTest.class</exclude>
+
+              </excludes>
+            </configuration>
           </execution>
         </executions>
       </plugin>

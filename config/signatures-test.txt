@@ -1,0 +1,1 @@
+com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport#verify(com.puppycrawl.tools.checkstyle.api.Configuration, java.lang.String, java.lang.String[]) @ Use inline config parser instead.
