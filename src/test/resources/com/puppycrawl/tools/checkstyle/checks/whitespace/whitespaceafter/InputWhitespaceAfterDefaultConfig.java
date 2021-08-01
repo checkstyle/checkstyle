@@ -1,8 +1,11 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: Feb-2001
-// Ignore violation
-////////////////////////////////////////////////////////////////////////////////
+/*
+WhitespaceAfter
+tokens = (default)COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_WHILE, \
+         LITERAL_DO, LITERAL_FOR, DO_WHILE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 import java.io.*;
 /**
@@ -39,7 +42,7 @@ final class InputWhitespaceAfterDefaultConfig
     protected int mNumCreated2 = 0;
 
     /** commas are wrong **/
-    private int[] mInts = new int[] {1,2, 3,
+    private int[] mInts = new int[] {1,2, 3, // violation
                                      4};
 
     //
@@ -68,7 +71,7 @@ final class InputWhitespaceAfterDefaultConfig
      * @param badFormat3 bad format
      * @throws java.lang.Exception abc
      **/
-    int test1(int badFormat1,int badFormat2,
+    int test1(int badFormat1,int badFormat2, // violation
               final int badFormat3)
         throws java.lang.Exception
     {

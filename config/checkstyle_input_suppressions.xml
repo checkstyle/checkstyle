@@ -1227,44 +1227,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorStartOfTheLine.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterAround.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterBraces.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterDefaultConfig.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterDoWhile.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterFor.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterGenerics.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterLiteralDo.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterLiteralElse.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterLiteralFor.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterLiteralIf.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterLiteralWhile.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterMultilineCast.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterTypeCast.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundAllowEmptyLambdaExpressions.java"/>
@@ -2352,44 +2314,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorStartOfTheLine.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterAround.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterBraces.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterDefaultConfig.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterDoWhile.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterFor.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterGenerics.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterLiteralDo.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterLiteralElse.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterLiteralFor.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterLiteralIf.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterLiteralWhile.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterMultilineCast.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterTypeCast.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundAllowEmptyLambdaExpressions.java"/>
