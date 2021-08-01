@@ -1129,11 +1129,6 @@
 
 
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]operatorwrap[\\/]InputOperatorWrap.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]operatorwrap[\\/]InputOperatorWrapSeparatorAndInterfaces.java"/>
 
 
 
@@ -2185,11 +2180,6 @@
 
 
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]operatorwrap[\\/]InputOperatorWrap.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]operatorwrap[\\/]InputOperatorWrapSeparatorAndInterfaces.java"/>
 
 
 
