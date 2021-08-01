@@ -1,10 +1,17 @@
+/*
+SingleSpaceSeparator
+validateComments = true
+
+
+*/
+
 package  com.puppycrawl.   tools.checkstyle.checks.whitespace.singlespaceseparator;
 
 import java.util.List;
 import  java.util.Vector;
 
 public class      InputSingleSpaceSeparatorErrors  {
-    int             number; //violation
+    int             number; // violation
 int i =    99  ;
 {
 i=1;
