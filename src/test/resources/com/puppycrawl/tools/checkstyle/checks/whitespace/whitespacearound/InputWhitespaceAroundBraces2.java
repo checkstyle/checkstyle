@@ -1,7 +1,7 @@
 /*
 WhitespaceAround
-allowEmptyConstructors = (default)false
-allowEmptyMethods = (default)false
+allowEmptyConstructors = true
+allowEmptyMethods = true
 allowEmptyTypes = (default)false
 allowEmptyLoops = (default)false
 allowEmptyLambdas = (default)false
@@ -20,7 +20,7 @@ tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, B
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
-class InputWhitespaceAroundBraces
+class InputWhitespaceAroundBraces2
 {
     /** @return helper func **/
     boolean condition()
@@ -124,7 +124,7 @@ class InputWhitespaceAroundBraces
     }
 
     /** Empty constructor block. **/
-    public InputWhitespaceAroundBraces() {}
+    public InputWhitespaceAroundBraces2() {}
 
     /** Empty method block. **/
     public void emptyImplementation() {}

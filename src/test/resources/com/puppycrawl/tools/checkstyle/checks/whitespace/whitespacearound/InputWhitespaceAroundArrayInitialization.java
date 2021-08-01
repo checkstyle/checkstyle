@@ -1,10 +1,24 @@
+/*
+WhitespaceAround
+allowEmptyConstructors = (default)false
+allowEmptyMethods = (default)false
+allowEmptyTypes = (default)false
+allowEmptyLoops = (default)false
+allowEmptyLambdas = (default)false
+allowEmptyCatches = (default)false
+ignoreEnhancedForColon = (default)true
+tokens = ARRAY_INIT
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 public class InputWhitespaceAroundArrayInitialization {
 
     public void arrayInitTest() {
 
-        final int[] COLORS = new int[]{5 }; // missing WS before "{"
+        final int[] COLORS = new int[]{5 }; // violation
 
         final int[] COLORS1 = new int[] {5 }; // valid
 

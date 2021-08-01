@@ -2,7 +2,7 @@
 WhitespaceAround
 allowEmptyConstructors = (default)false
 allowEmptyMethods = (default)false
-allowEmptyTypes = (default)false
+allowEmptyTypes = true
 allowEmptyLoops = (default)false
 allowEmptyLambdas = (default)false
 allowEmptyCatches = (default)false
@@ -20,32 +20,34 @@ tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, B
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
-import java.util.Collection;
-import java.util.Map;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
-public class InputWhitespaceAroundGenerics<A, B extends Collection<?>,
-               C extends D&E, F extends Collection<? extends InputWhitespaceAroundGenerics[]>> // violation
-{
-}
+public class InputWhitespaceAroundAllowEmptyTypesAndNonEmptyClasses2{ // violation
 
-//No whitespace after commas
-class BadCommas < A,B,C extends Map < A,String > >
-{
-    private java.util.Hashtable < Integer, D > p =
-        new java.util.Hashtable < Integer, D > ();
-}
+    private Object object;
 
-class Wildcard
-{
-    public static void foo(Collection < ? extends Wildcard[] > collection) {
-        // A statement is important in this method to flush out any
-        // issues with parsing the wildcard in the signature
-        collection.size();
+    class SomeClass{
+        int a = 5;
     }
-}
 
-// we need these interfaces for generics
-interface D {
-}
-interface E {
+    public class CheckstyleTest{
+        private static final int SOMETHING = 1;
+    }
+
+    class MyClass{ int a; }
+
+    class SomeTestClass{int a;}
+
+    class TestClass { int a; }int b;
+
+    class Table {}
+
+    interface SupplierFunction<T> extends Function<Supplier<T>, T> {}
+
+    class NotEmptyClass{ public void foo1() { foo2(); } }
+
+    public void foo2() {
+        do {} while (true);
+    }
 }

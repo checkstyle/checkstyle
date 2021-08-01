@@ -2,8 +2,8 @@
 WhitespaceAround
 allowEmptyConstructors = (default)false
 allowEmptyMethods = (default)false
-allowEmptyTypes = true
-allowEmptyLoops = (default)false
+allowEmptyTypes = (default)false
+allowEmptyLoops = true
 allowEmptyLambdas = (default)false
 allowEmptyCatches = (default)false
 ignoreEnhancedForColon = (default)true
@@ -30,41 +30,41 @@ import java.util.function.Supplier;
 
 
 
-class InputWhitespaceAroundEmptyTypesAndCycles
+class InputWhitespaceAroundEmptyTypesAndCycles2
 {
-	private static final String ALLOWS_NULL_KEYS = "";
-	private static final String ALLOWS_NULL_VALUES = "";
+    private static final String ALLOWS_NULL_KEYS = "";
+    private static final String ALLOWS_NULL_VALUES = "";
 
-	@MapFeature.Require({ALLOWS_NULL_KEYS, ALLOWS_NULL_VALUES})
-	private void foo()
-	{
-		int i = 0;
-		String[][] x = { {"foo"} };
-		int len = 0;
-		String sequence = null;
-		for (int first = 0; first < len && matches(sequence.charAt(first)); first++) {} // violation
-		while (i == 1) {}
-		do {} while (i == 1);
-	}
+    @MapFeature.Require({ALLOWS_NULL_KEYS, ALLOWS_NULL_VALUES})
+    private void foo()
+    {
+        int i = 0;
+        String[][] x = { {"foo"} };
+        int len = 0;
+        String sequence = null;
+        for (int first = 0; first < len && matches(sequence.charAt(first)); first++) {}
+        while (i == 1) {}
+        do {} while (i == 1);
+    }
 
-	private boolean matches(char charAt)
-	{
-		return false;
-	}
+    private boolean matches(char charAt)
+    {
+        return false;
+    }
 }
 
-interface SupplierFunction<T> extends Function<Supplier<T>, T> {}
+interface SupplierFunction2<T> extends Function<Supplier<T>, T> {} // violation
 
-class EmptyFoo {}
+class EmptyFoo2 {}
 
-enum EmptyFooEnum {}
+enum EmptyFooEnum2 {}
 
-class WithEmptyAnonymous
+class WithEmptyAnonymous2
 {
-	private void foo()
-	{
-		MyClass c = new MyClass() {};
-	}
+    private void foo()
+    {
+        MyClass c = new MyClass() {};
+    }
 }
 
 
@@ -73,15 +73,15 @@ class WithEmptyAnonymous
     ElementType.ANNOTATION_TYPE)
 @Documented
 @Deprecated
-@interface Beta {}
-@interface MapFeature {
-	@interface Require {
+@interface Beta2 {}
+@interface MapFeature2 {
+    @interface Require {
 
-		String[] value();
+        String[] value();
 
-	}
+    }
 }
 
-class MyClass {
+class MyClass2 {
 
 }

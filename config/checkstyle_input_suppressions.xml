@@ -1271,56 +1271,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterTypeCast.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundAllowEmptyLambdaExpressions.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundAllowEmptyTypesAndNonEmptyClasses.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundAllTokens.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundArrayInitialization.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundBraces.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundCatch.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundDoubleBraceInitialization.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundDoWhile.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundEmptyTypesAndCycles.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundGenerics.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAround.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundKeywordsAndOperators.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundLambda.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundSimple.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundStartOfTheLine.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundSwitch.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundVarargs.java"/>
 
 
 
@@ -2401,55 +2351,5 @@
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterTypeCast.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundAllowEmptyLambdaExpressions.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundAllowEmptyTypesAndNonEmptyClasses.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundAllTokens.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundArrayInitialization.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundBraces.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundCatch.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundDoubleBraceInitialization.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundDoWhile.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundEmptyTypesAndCycles.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundGenerics.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAround.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundKeywordsAndOperators.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundLambda.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundSimple.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundStartOfTheLine.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundSwitch.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundVarargs.java"/>
 
 </suppressions>
