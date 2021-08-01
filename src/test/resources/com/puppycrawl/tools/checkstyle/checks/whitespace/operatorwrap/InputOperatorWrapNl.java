@@ -1,11 +1,15 @@
+/*
+OperatorWrap
+option = (default)nl
+tokens = ASSIGN, COLON, LAND, LOR, STAR, QUESTION
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.operatorwrap;
 
 import java.io.*; // Star import here as the check handles all TokenTypes.STAR
 
-/**
- * Config:
- * option = NL
- **/
 class InputOperatorWrapNl
 {
     {
