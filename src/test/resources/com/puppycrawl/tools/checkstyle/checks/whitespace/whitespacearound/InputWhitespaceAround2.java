@@ -6,7 +6,7 @@ allowEmptyTypes = (default)false
 allowEmptyLoops = (default)false
 allowEmptyLambdas = (default)false
 allowEmptyCatches = (default)false
-ignoreEnhancedForColon = (default)true
+ignoreEnhancedForColon = false
 tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, BXOR, \
          BXOR_ASSIGN, COLON, DIV, DIV_ASSIGN, DO_WHILE, EQUAL, GE, GT, LAMBDA, LAND, \
          LCURLY, LE, LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, \
@@ -20,32 +20,32 @@ tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, B
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
-import java.util.Collection;
-import java.util.Map;
-
-public class InputWhitespaceAroundGenerics<A, B extends Collection<?>,
-               C extends D&E, F extends Collection<? extends InputWhitespaceAroundGenerics[]>> // violation
+@SuppressWarnings({"this", "that"})
+public class InputWhitespaceAround2
 {
-}
+    protected InputWhitespaceAround2 ( int i )
+    {
+        this (); //whitespace
+        toString ();
+    }
+    protected InputWhitespaceAround2 ()
+    {
+        super ();
+    }
 
-//No whitespace after commas
-class BadCommas < A,B,C extends Map < A,String > >
-{
-    private java.util.Hashtable < Integer, D > p =
-        new java.util.Hashtable < Integer, D > ();
-}
-
-class Wildcard
-{
-    public static void foo(Collection < ? extends Wildcard[] > collection) {
-        // A statement is important in this method to flush out any
-        // issues with parsing the wildcard in the signature
-        collection.size();
+    public void enhancedFor ()
+    {
+        int[] i = new int[2];
+        for ( int j: i ) { // violation
+            System.identityHashCode ( j );
+        }
     }
 }
 
-// we need these interfaces for generics
-interface D {
+@interface CronExpression2 {
+    Class<?>[] groups() default {};
 }
-interface E {
+
+@interface CronExpression12 {
+    Class<?>[] groups() default { }; // extra space
 }
