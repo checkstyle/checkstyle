@@ -46,8 +46,8 @@ public class TypecastParenPadCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(TypecastParenPadCheck.class);
         final String[] expected = {
-            "82:13: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "82:22: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "86:13: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "86:22: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
         verify(checkConfig, getPath("InputTypecastParenPadWhitespace.java"), expected);
     }
@@ -59,14 +59,14 @@ public class TypecastParenPadCheckTest
             createModuleConfig(TypecastParenPadCheck.class);
         checkConfig.addProperty("option", PadOption.SPACE.toString());
         final String[] expected = {
-            "81:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "81:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
-            "82:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "82:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
-            "84:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "84:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
-            "235:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "235:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "84:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "84:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "85:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "85:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "87:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "87:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "238:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "238:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
         };
         verify(checkConfig, getPath("InputTypecastParenPadWhitespaceTestSpace.java"), expected);
     }
