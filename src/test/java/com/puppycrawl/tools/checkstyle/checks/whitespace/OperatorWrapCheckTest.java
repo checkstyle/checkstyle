@@ -44,13 +44,13 @@ public class OperatorWrapCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
         final String[] expected = {
-            "17:19: " + getCheckMessage(MSG_LINE_NEW, "+"),
-            "18:15: " + getCheckMessage(MSG_LINE_NEW, "-"),
-            "26:18: " + getCheckMessage(MSG_LINE_NEW, "&&"),
-            "48:30: " + getCheckMessage(MSG_LINE_NEW, "&"),
-            "61:30: " + getCheckMessage(MSG_LINE_NEW, "&"),
+            "23:19: " + getCheckMessage(MSG_LINE_NEW, "+"),
+            "24:15: " + getCheckMessage(MSG_LINE_NEW, "-"),
+            "32:18: " + getCheckMessage(MSG_LINE_NEW, "&&"),
+            "54:30: " + getCheckMessage(MSG_LINE_NEW, "&"),
+            "67:31: " + getCheckMessage(MSG_LINE_NEW, "&"),
         };
-        verify(checkConfig, getPath("InputOperatorWrap.java"), expected);
+        verify(checkConfig, getPath("InputOperatorWrap1.java"), expected);
     }
 
     @Test
@@ -59,11 +59,11 @@ public class OperatorWrapCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
         checkConfig.addProperty("option", WrapOption.EOL.toString());
         final String[] expected = {
-            "20:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "-"),
-            "24:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&&"),
-            "29:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&&"),
+            "26:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "-"),
+            "30:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&&"),
+            "35:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&&"),
         };
-        verify(checkConfig, getPath("InputOperatorWrap.java"), expected);
+        verify(checkConfig, getPath("InputOperatorWrap2.java"), expected);
     }
 
     @Test
@@ -72,9 +72,9 @@ public class OperatorWrapCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
         checkConfig.addProperty("tokens", "METHOD_REF");
         final String[] expected = {
-            "33:33: " + getCheckMessage(MSG_LINE_NEW, "::"),
+            "37:33: " + getCheckMessage(MSG_LINE_NEW, "::"),
         };
-        verify(checkConfig, getPath("InputOperatorWrap.java"), expected);
+        verify(checkConfig, getPath("InputOperatorWrap3.java"), expected);
     }
 
     @Test
@@ -84,10 +84,10 @@ public class OperatorWrapCheckTest
         checkConfig.addProperty("tokens", "METHOD_REF");
         checkConfig.addProperty("option", WrapOption.EOL.toString());
         final String[] expected = {
-            "31:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "::"),
-            "36:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "::"),
+            "35:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "::"),
+            "40:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "::"),
         };
-        verify(checkConfig, getPath("InputOperatorWrap.java"), expected);
+        verify(checkConfig, getPath("InputOperatorWrap4.java"), expected);
     }
 
     @Test
@@ -97,9 +97,9 @@ public class OperatorWrapCheckTest
         checkConfig.addProperty("tokens", "ASSIGN");
         checkConfig.addProperty("option", WrapOption.EOL.toString());
         final String[] expected = {
-            "42:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
+            "46:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
         };
-        verify(checkConfig, getPath("InputOperatorWrap.java"), expected);
+        verify(checkConfig, getPath("InputOperatorWrap5.java"), expected);
     }
 
     @Test
@@ -113,15 +113,15 @@ public class OperatorWrapCheckTest
         checkConfig.addProperty("tokens", "QUESTION");
         checkConfig.addProperty("option", WrapOption.EOL.toString());
         final String[] expected = {
-            "17:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
-            "18:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "*"),
-            "29:18: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
-            "34:21: " + getCheckMessage(MSG_LINE_PREVIOUS, ":"),
-            "35:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "?"),
-            "40:17: " + getCheckMessage(MSG_LINE_PREVIOUS, ":"),
-            "45:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
-            "57:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "||"),
-            "58:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "||"),
+            "21:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
+            "22:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "*"),
+            "33:18: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
+            "38:21: " + getCheckMessage(MSG_LINE_PREVIOUS, ":"),
+            "39:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "?"),
+            "44:17: " + getCheckMessage(MSG_LINE_PREVIOUS, ":"),
+            "49:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
+            "61:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "||"),
+            "62:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "||"),
         };
         verify(checkConfig, getPath("InputOperatorWrapEol.java"), expected);
     }
@@ -137,14 +137,14 @@ public class OperatorWrapCheckTest
         checkConfig.addProperty("tokens", "QUESTION");
         checkConfig.addProperty("option", WrapOption.NL.toString());
         final String[] expected = {
-            "16:16: " + getCheckMessage(MSG_LINE_NEW, "="),
-            "17:19: " + getCheckMessage(MSG_LINE_NEW, "*"),
-            "28:23: " + getCheckMessage(MSG_LINE_NEW, "="),
-            "31:25: " + getCheckMessage(MSG_LINE_NEW, "?"),
-            "39:24: " + getCheckMessage(MSG_LINE_NEW, ":"),
-            "44:18: " + getCheckMessage(MSG_LINE_NEW, "="),
-            "56:27: " + getCheckMessage(MSG_LINE_NEW, "&&"),
-            "57:31: " + getCheckMessage(MSG_LINE_NEW, "&&"),
+            "20:16: " + getCheckMessage(MSG_LINE_NEW, "="),
+            "21:19: " + getCheckMessage(MSG_LINE_NEW, "*"),
+            "32:23: " + getCheckMessage(MSG_LINE_NEW, "="),
+            "35:25: " + getCheckMessage(MSG_LINE_NEW, "?"),
+            "43:24: " + getCheckMessage(MSG_LINE_NEW, ":"),
+            "48:18: " + getCheckMessage(MSG_LINE_NEW, "="),
+            "60:27: " + getCheckMessage(MSG_LINE_NEW, "&&"),
+            "61:31: " + getCheckMessage(MSG_LINE_NEW, "&&"),
         };
         verify(checkConfig, getPath("InputOperatorWrapNl.java"), expected);
     }
@@ -157,7 +157,7 @@ public class OperatorWrapCheckTest
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputOperatorWrap.java"), expected);
+            verify(checkConfig, getPath("InputOperatorWrap6.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {

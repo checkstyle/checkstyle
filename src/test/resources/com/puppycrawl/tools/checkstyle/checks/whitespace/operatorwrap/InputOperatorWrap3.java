@@ -1,7 +1,11 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+OperatorWrap
+option = (default)nl
+tokens = METHOD_REF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.operatorwrap;
 
 import java.util.Arrays;
@@ -10,7 +14,7 @@ import java.util.Arrays;
  * Test case for detecting operator wrapping.
  * @author Lars K�hne
  **/
-class InputOperatorWrap
+class InputOperatorWrap3
 {
     void test()
     {
@@ -30,7 +34,7 @@ class InputOperatorWrap
         Arrays.sort(null, String
                     ::
                     compareToIgnoreCase);
-        Arrays.sort(null, String::
+        Arrays.sort(null, String:: // violation
                     compareToIgnoreCase);
         Arrays.sort(null, String
                     ::compareToIgnoreCase);
@@ -58,14 +62,14 @@ class InputOperatorWrap
     }
 }
 
-class badCase2<T extends Foo &
+class badCase23<T extends Foo &
     Bar> {
 }
 
-class goodCase<T extends Foo & Bar> {
+class goodCase3<T extends Foo & Bar> {
 }
 
-class Switch {
+class Switch3 {
     public void test(int i, int j) {
         switch(j) {
         case 7:
