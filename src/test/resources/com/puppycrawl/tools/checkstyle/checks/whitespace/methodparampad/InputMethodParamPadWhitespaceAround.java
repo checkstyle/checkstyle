@@ -1,7 +1,17 @@
+/*
+MethodParamPad
+allowLineBreaks = (default)false
+option = space
+tokens = (default)CTOR_DEF, LITERAL_NEW, METHOD_CALL, METHOD_DEF, SUPER_CTOR_CALL, \
+         ENUM_CONSTANT_DEF, RECORD_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.methodparampad;
 
 @SuppressWarnings({"this", "that"})
-public class InputMethodParamPadWhitespaceAround
+public class InputMethodParamPadWhitespaceAround // ok
 {
     protected InputMethodParamPadWhitespaceAround ( int i )
     {
