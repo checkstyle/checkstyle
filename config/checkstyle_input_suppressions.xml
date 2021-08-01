@@ -1206,26 +1206,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapForTestMethodRef.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorChildNodes.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorComments.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorEmpty.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorErrors.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorMinColumnNo.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorNoErrors.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorStartOfTheLine.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterAround.java"/>
@@ -2331,26 +2311,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapForTestMethodRef.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorChildNodes.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorComments.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorEmpty.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorErrors.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorMinColumnNo.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorNoErrors.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorStartOfTheLine.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterAround.java"/>

@@ -1,9 +1,16 @@
+/*
+SingleSpaceSeparator
+validateComments = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.singlespaceseparator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class InputSingleSpaceSeparatorNoErrors {
+public class InputSingleSpaceSeparatorNoErrors { // ok
 
     int count; //long indentation - OK
     String text = "             "; // OK
