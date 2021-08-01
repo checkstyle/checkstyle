@@ -1,10 +1,13 @@
+/*
+TypecastParenPad
+option = space
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.typecastparenpad;
 
-/*
- * Config:
- * option = PadOption.SPACE
- */
-class InputTypecastParenPadWhitespaceAround
+class InputTypecastParenPadWhitespaceAround // ok
 {
     protected InputTypecastParenPadWhitespaceAround ( int i )
     {
