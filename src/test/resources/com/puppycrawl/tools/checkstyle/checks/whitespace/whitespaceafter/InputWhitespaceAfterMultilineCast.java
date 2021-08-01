@@ -1,3 +1,10 @@
+/*
+WhitespaceAfter
+tokens = TYPECAST
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 
 public class InputWhitespaceAfterMultilineCast {
