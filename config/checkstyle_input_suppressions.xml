@@ -1135,41 +1135,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]operatorwrap[\\/]InputOperatorWrapSeparatorAndInterfaces.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadForWhitespace.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadLambda.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadLambdaOnly.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadLambdaOnlyWithSpace.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadLambdaWithSpace.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadLeftRightAndNoSpace.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadStartOfTheLine.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadTryWithResources.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadWhitespace.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadWithDisabledLambda.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadWithSpaceAndDisabledLambda.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadWithSpace.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapForArrayDeclarator.java"/>
@@ -2243,41 +2208,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]operatorwrap[\\/]InputOperatorWrapSeparatorAndInterfaces.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadForWhitespace.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadLambda.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadLambdaOnly.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadLambdaOnlyWithSpace.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadLambdaWithSpace.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadLeftRightAndNoSpace.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadStartOfTheLine.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadTryWithResources.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadWhitespace.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadWithDisabledLambda.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadWithSpaceAndDisabledLambda.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]parenpad[\\/]InputParenPadWithSpace.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapForArrayDeclarator.java"/>

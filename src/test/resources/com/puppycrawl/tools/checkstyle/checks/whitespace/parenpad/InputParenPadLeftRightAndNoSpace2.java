@@ -1,10 +1,18 @@
+/*
+ParenPad
+option = (default)nospace
+tokens = METHOD_CALL
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 
-public class InputParenPadLeftRightAndNoSpace
+public class InputParenPadLeftRightAndNoSpace2
 {
     class ParenPadNoSpace  {
         ParenPadNoSpace() {
@@ -87,7 +95,7 @@ public class InputParenPadLeftRightAndNoSpace
         void method(boolean status ) {
             try (Writer writer = new StringWriter( ) ) {
                 do {
-                    writer.append("a" );
+                    writer.append("a" ); // violation
                 } while (status );
             } catch (IOException e ) {
                 while (status ) {
@@ -114,7 +122,7 @@ public class InputParenPadLeftRightAndNoSpace
                         ( ( 3 < 4 )? false : true ) :
                         ( ( 1 == 1 ) ? false : true) ) ).toString();
     }
-    @MyAnnotation
+    @MyAnnotation2
     public boolean bar(boolean a) {
         assert ( true );
         return true;
@@ -122,11 +130,11 @@ public class InputParenPadLeftRightAndNoSpace
 
     boolean fooo = this.bar(( true && false ) && true);
 }
-@interface MyAnnotation {
+@interface MyAnnotation2 {
     String someField( ) default "Hello world";
 }
 
-enum MyEnum {
+enum MyEnum12 {
     SOME_CONSTANT( ) {
         int i = (int) (2 * (4 / 2)
                 );
@@ -212,7 +220,7 @@ enum MyEnum {
                 0, org.hamcrest.CoreMatchers.is( 1 ) );
     }
 }
-enum MyEnum2 {
+enum MyEnum22 {
     SOME_CONSTANT( ) {
         int i = (int) (2 * (4 / 2
 )                   );
