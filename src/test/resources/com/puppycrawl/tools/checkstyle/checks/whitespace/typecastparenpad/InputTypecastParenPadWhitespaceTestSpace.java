@@ -1,9 +1,12 @@
+/*
+TypecastParenPad
+option = space
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.typecastparenpad;
 
-/*
- * Config:
- * option = PadOption.SPACE
- */
 class InputTypecastParenPadWhitespaceTestSpace
 {
     /** ignore assignment **/
@@ -78,7 +81,7 @@ class InputTypecastParenPadWhitespaceTestSpace
     /** test casts **/
     private void testCasts()
     {
-        Object o = (Object) new Object(); // ok
+        Object o = (Object) new Object(); // violation
         o = (Object)o; // violation
         o = ( Object ) o;
         o = (Object)

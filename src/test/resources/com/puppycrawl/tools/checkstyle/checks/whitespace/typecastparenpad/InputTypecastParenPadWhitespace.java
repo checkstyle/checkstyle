@@ -1,8 +1,12 @@
+/*
+TypecastParenPad
+option = (default)nospace
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.typecastparenpad;
 
-/*
- * Config: default
- */
 class InputTypecastParenPadWhitespace
 {
     /** ignore assignment **/
@@ -78,8 +82,8 @@ class InputTypecastParenPadWhitespace
     private void testCasts()
     {
         Object o = (Object) new Object(); // ok
-        o = (Object)o; // violation
-        o = ( Object ) o; // ok
+        o = (Object)o; // ok
+        o = ( Object ) o; // violation
         o = (Object)
             o; // ok
     }
