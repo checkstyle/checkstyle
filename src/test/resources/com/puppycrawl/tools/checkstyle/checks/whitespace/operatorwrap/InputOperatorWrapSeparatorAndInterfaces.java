@@ -1,6 +1,12 @@
+/*
+No config
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.operatorwrap;
 
-public class InputOperatorWrapSeparatorAndInterfaces<T extends Foo
+public class InputOperatorWrapSeparatorAndInterfaces<T extends Foo // ok
                     & Bar> {
     public void goodCase() throws FooException, BarException
     {
