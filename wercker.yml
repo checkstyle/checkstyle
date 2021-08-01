@@ -33,7 +33,8 @@ build:
       name: install groovy
       code: |
          if [ ! -d ${WERCKER_CACHE_DIR}/groovy ]; then
-           GROOVY_LINK="https://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.7.zip"
+           GROOVY_LINK="https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/"
+           GROOVY_LINK=$GROOVY_LINK"apache-groovy-binary-2.4.7.zip"
            wget -O ${WERCKER_CACHE_DIR}/groovy.zip $GROOVY_LINK;
            unzip ${WERCKER_CACHE_DIR}/groovy.zip -d ${WERCKER_CACHE_DIR};
            mv ${WERCKER_CACHE_DIR}/groovy-2.4.7 ${WERCKER_CACHE_DIR}/groovy
