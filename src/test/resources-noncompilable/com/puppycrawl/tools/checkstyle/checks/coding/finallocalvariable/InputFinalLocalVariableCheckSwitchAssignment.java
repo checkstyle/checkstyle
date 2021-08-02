@@ -1,9 +1,14 @@
+/*
+FinalLocalVariable
+validateEnhancedForLoopVariable = (default)false
+tokens = (default)VARIABLE_DEF
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
-/* Config:
- * default
- */
 public class InputFinalLocalVariableCheckSwitchAssignment {
     private static final int staticValue = 2;
     private static final int staticField = switch(staticValue) {

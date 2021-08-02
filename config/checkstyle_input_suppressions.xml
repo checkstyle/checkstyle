@@ -111,50 +111,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]equalshashcode[\\/]InputEqualsHashCodeSemantic.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableAnonymousClass.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableAssignedInsideAndOutsideSwitch.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableAssignedMultipleTimes.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableBreak.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableEnhancedForLoopVariable.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableFalsePositive.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableFalsePositives.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariable.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableLeavingSlistToken.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableMultiCatch.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableMultipleAndNestedConditions.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableNameLambda.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableNameShadowing.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableNativeMethods.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableReceiverParameter.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]hiddenfield[\\/]InputHiddenField.java"/>
@@ -1181,50 +1137,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]equalshashcode[\\/]InputEqualsHashCodeSemantic.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableAnonymousClass.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableAssignedInsideAndOutsideSwitch.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableAssignedMultipleTimes.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableBreak.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableEnhancedForLoopVariable.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableFalsePositive.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableFalsePositives.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariable.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableLeavingSlistToken.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableMultiCatch.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableMultipleAndNestedConditions.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableNameLambda.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableNameShadowing.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableNativeMethods.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableReceiverParameter.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]hiddenfield[\\/]InputHiddenField.java"/>

@@ -1,11 +1,14 @@
+/*
+FinalLocalVariable
+validateEnhancedForLoopVariable = (default)false
+tokens = (default)VARIABLE_DEF
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
-/* Config:
- *
- * validateEnhancedForLoopVariable = false
- * tokens = {VARIABLE_DEF}
- */
 public class InputFinalLocalVariableCheckSwitchExpressions {
     void foo1() throws Exception {
 
