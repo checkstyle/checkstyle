@@ -67,16 +67,16 @@ public class IllegalInstantiationCheckTest
                 + "java.io.File,"
                 + "java.awt.Color");
         final String[] expected = {
-            "19:21: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
-            "24:21: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
-            "31:16: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
-            "38:21: " + getCheckMessage(MSG_KEY,
+            "25:21: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
+            "30:21: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
+            "37:16: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
+            "44:21: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks.coding."
                 + "illegalinstantiation.InputModifier"),
-            "41:18: " + getCheckMessage(MSG_KEY, "java.io.File"),
-            "44:21: " + getCheckMessage(MSG_KEY, "java.awt.Color"),
+            "47:18: " + getCheckMessage(MSG_KEY, "java.io.File"),
+            "50:21: " + getCheckMessage(MSG_KEY, "java.awt.Color"),
         };
-        verify(checkConfig, getPath("InputIllegalInstantiationSemantic.java"), expected);
+        verify(checkConfig, getPath("InputIllegalInstantiationSemantic2.java"), expected);
     }
 
     @Test
@@ -109,7 +109,7 @@ public class IllegalInstantiationCheckTest
                 "classes",
                 "java.lang.Boolean");
         final String[] expected = {
-            "2:20: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
+            "10:20: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
         };
         verify(checkConfig, getPath("InputIllegalInstantiationNoPackage.java"), expected);
     }
@@ -122,8 +122,8 @@ public class IllegalInstantiationCheckTest
                 "classes",
                 "java.lang.Boolean,java.lang.String");
         final String[] expected = {
-            "5:19: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
-            "13:20: " + getCheckMessage(MSG_KEY, "java.lang.String"),
+            "13:19: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
+            "21:20: " + getCheckMessage(MSG_KEY, "java.lang.String"),
         };
         verify(checkConfig,
                 getNonCompilablePath("InputIllegalInstantiationLang.java"),
@@ -139,7 +139,7 @@ public class IllegalInstantiationCheckTest
                 "jjva.lang.Boolean,java.lang*Boolean");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                getNonCompilablePath("InputIllegalInstantiationLang.java"),
+                getNonCompilablePath("InputIllegalInstantiationLang2.java"),
                 expected);
     }
 
