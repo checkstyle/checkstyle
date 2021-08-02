@@ -17,6 +17,8 @@
              files="[\\/]test[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfSinglelineComments\.java"/>
   <suppress checks="NewlineAtEndOfFile"
              files="src[\\/]test[\\/]resources[\\/].*[\\/]InputNoCodeInFile6\.java"/>
+  <suppress checks="NewlineAtEndOfFile"
+             files="src[\\/]test[\\/]resources[\\/].*[\\/]InputAntlr4AstRegressionCassandraInputWithComments\.java"/>
 
   <!-- Grammar specific input file, should have exact structure to reproduce the case. -->
   <suppress checks="NewlineAtEndOfFile"
@@ -65,6 +67,9 @@
          files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocPosition.*\.java"/>
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocLeaveToken.*\.java"/>
+
+  <!-- 'fileNamePattern' property requires long paths due to multiple files with the same name -->
+  <suppress id="lineLength" files=".ci[\\/]openjdk14-excluded\.files"/>
 
   <!-- we can not change expected as it will require change of main class logic -->
   <suppress id="lineLength"

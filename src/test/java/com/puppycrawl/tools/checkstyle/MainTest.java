@@ -838,11 +838,39 @@ public class MainTest {
             invokeMain("-c", getPath("InputMainConfig-classname.xml"),
                     getNonCompilablePath("InputMainIncorrectClass.java"));
         });
-        final String exceptionFirstLine = addEndOfLine("com.puppycrawl.tools.checkstyle.api."
+        final String exceptionMessage = addEndOfLine("com.puppycrawl.tools.checkstyle.api."
                 + "CheckstyleException: Exception was thrown while processing "
                 + new File(getNonCompilablePath("InputMainIncorrectClass.java")).getPath());
-        assertTrue(systemErr.getCapturedData().startsWith(exceptionFirstLine),
+        assertTrue(systemErr.getCapturedData().contains(exceptionMessage),
                 "Unexpected system error log");
+    }
+
+    @Test
+    public void testRemoveLexerDefaultErrorListener(@SysErr Capturable systemErr) {
+        assertExitWithStatus(-2, () -> {
+            invokeMain("-t", getNonCompilablePath("InputMainIncorrectClass.java"));
+        });
+
+        assertWithMessage("First line of exception message should not contain lexer error.")
+            .that(systemErr.getCapturedData().startsWith("line 2:2 token recognition error"))
+                .isFalse();
+    }
+
+    @Test
+    public void testRemoveParserDefaultErrorListener(@SysErr Capturable systemErr) {
+        assertExitWithStatus(-2, () -> {
+            invokeMain("-t", getNonCompilablePath("InputMainIncorrectClass.java"));
+        });
+
+        final String capturedData = systemErr.getCapturedData();
+
+        assertWithMessage("First line of exception message should not contain parser error.")
+            .that(capturedData.startsWith("line 2:0 no viable alternative"))
+                .isFalse();
+        assertWithMessage("Second line of exception message should not contain parser error.")
+            .that(capturedData.startsWith("line 2:0 no viable alternative",
+                    capturedData.indexOf('\n') + 1))
+                .isFalse();
     }
 
     @Test
