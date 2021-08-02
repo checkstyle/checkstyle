@@ -1,278 +1,57 @@
 version: 2
 jobs:
 
-  build-caches:
-    machine: true
+  lucene-and-others-javadoc:
+    docker:
+      - image: akmo03/groovy-jdk11:latest
     steps:
-      # restore_cache.keys does not work, so multiple restore_cache.key is used
-      - restore_cache:
-          key: m2-cache
       - checkout
       - run:
-          name: run_job creation
           command: |
-            mkdir -p .ci-temp
-            SKIP_FILES1=".github|appveyor.yml|.travis.yml|\.ci/"
-            SKIP_FILES2="|fast-forward-merge.sh"
-            SKIP_FILES3="|LICENSE|LICENSE.apache20|README.md|release.sh"
-            SKIP_FILES4="|RIGHTS.antlr|codeship"
-            SKIP_FILES5="|wercker.yml|wercker.sh"
-            SKIP_FILES6="|intellij-idea-inspections.xml"
-            SKIP_FILES7="|org.eclipse.jdt.core.prefs"
-            FULL_SKIP1=$SKIP_FILES1$SKIP_FILES2$SKIP_FILES3$SKIP_FILES4
-            FULL_SKIP2=$SKIP_FILES5$SKIP_FILES6$SKIP_FILES7
-            SKIP_FILES=$FULL_SKIP1$FULL_SKIP2
-            export RUN_JOB=1
-            # source ./.ci/common.sh
-            # should_run_job will change RUN_JOB variable
-            # should_run_job "recheck" $SKIP_FILES
-            echo $RUN_JOB > .ci-temp/run_job
-      - run:
-          name: download all maven dependencies and groovy
-          command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              pwd
-              ls -la
-              java -version
-              mvn --version
-              mvn -e -Ppitest-metrics dependency:go-offline
-            else
-              echo "build is skipped ..."
-            fi
-      - run:
-          name: download all maven dependencies and groovy (second try)
-          command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              mvn -e -Ppitest-metrics dependency:go-offline
-            else
-              echo "build is skipped ..."
-            fi
-          when: on_fail
-      - persist_to_workspace:
-          root: /home/circleci/
-          paths:
-            - .m2
-            - project
-            - contribution
+            ./.ci/no-exception-test.sh no-exception-lucene-and-others-javadoc
 
-  pitest1:
-    machine: true
-    parallelism: 4
+  cassandra-storm-tapestry-javadoc:
+    docker:
+      - image: akmo03/groovy-jdk11:latest
     steps:
-      - attach_workspace:
-          at: /home/circleci/
+      - checkout
       - run:
           command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-coding"  >> commands.txt
-              echo "./.ci/pitest.sh pitest-common"  >> commands.txt
-              echo "./.ci/pitest.sh pitest-imports" >> commands.txt
-              echo "./.ci/pitest.sh pitest-ant"     >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
+            ./.ci/no-exception-test.sh no-exception-cassandra-storm-tapestry-javadoc
 
-  pitest2:
-    machine: true
-    parallelism: 4
+  hadoop-apache-groovy-scouter-javadoc:
+    docker:
+      - image: akmo03/groovy-jdk11:latest
     steps:
-      - attach_workspace:
-          at: /home/circleci/
+      - checkout
       - run:
           command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-main"        >> commands.txt
-              echo "./.ci/pitest.sh pitest-javadoc"     >> commands.txt
-              echo "./.ci/pitest.sh pitest-indentation" >> commands.txt
-              echo "./.ci/pitest.sh pitest-xpath"       >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
+            ./.ci/no-exception-test.sh no-exception-hadoop-apache-groovy-scouter-javadoc
 
-  pitest3:
-    machine: true
-    parallelism: 4
+  no-exception-only-javadoc:
+    docker:
+      - image: akmo03/groovy-jdk11:latest
     steps:
-      - attach_workspace:
-          at: /home/circleci/
+      - checkout
       - run:
           command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-misc"    >> commands.txt
-              echo "./.ci/pitest.sh pitest-design"  >> commands.txt
-              echo "./.ci/pitest.sh pitest-api"     >> commands.txt
-              echo "./.ci/pitest.sh pitest-utils"   >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
+            ./.ci/no-exception-test.sh no-exception-only-javadoc
 
-  pitest4:
-    machine: true
-    parallelism: 4
+  no-error-xwiki:
+    docker:
+      - image: akmo03/groovy-jdk11:latest
     steps:
-      - attach_workspace:
-          at: /home/circleci/
+      - checkout
       - run:
           command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-whitespace" >> commands.txt
-              echo "./.ci/pitest.sh pitest-filters"    >> commands.txt
-              echo "./.ci/pitest.sh pitest-header"     >> commands.txt
-              echo "./.ci/pitest.sh pitest-annotation" >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
-
-  pitest5:
-    machine: true
-    parallelism: 4
-    steps:
-      - attach_workspace:
-          at: /home/circleci/
-      - run:
-          command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-packagenamesloader" >> commands.txt
-              echo "./.ci/pitest.sh pitest-tree-walker"        >> commands.txt
-              echo "./.ci/pitest.sh pitest-naming"             >> commands.txt
-              echo "./.ci/pitest.sh pitest-metrics"            >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
-
-  pitest6:
-    machine: true
-    parallelism: 4
-    steps:
-      - attach_workspace:
-          at: /home/circleci/
-      - run:
-          command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-blocks"   >> commands.txt
-              echo "./.ci/pitest.sh pitest-sizes"    >> commands.txt
-              echo "./.ci/pitest.sh pitest-modifier" >> commands.txt
-              echo "./.ci/pitest.sh pitest-regexp"   >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
-
-  pitest7:
-    machine: true
-    parallelism: 4
-    steps:
-      - attach_workspace:
-          at: /home/circleci/
-      - run:
-          command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-gui"   >> commands.txt
-              # echo "./.ci/pitest.sh pitest-meta"  >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
-
-  pitest8:
-    machine: true
-    parallelism: 4
-    steps:
-      - attach_workspace:
-          at: /home/circleci/
-      - run:
-          command: |
-            RUN_JOB=`cat .ci-temp/run_job`
-            echo "RUN_JOB="$RUN_JOB
-            if [[ $RUN_JOB == 1 ]]; then
-              echo "./.ci/pitest.sh pitest-common-2"   >> commands.txt
-              CMD="$(circleci tests split commands.txt)"
-              echo "Command: $CMD"
-              eval $CMD
-            else
-              echo "build is skipped ..."
-            fi
-      - store_artifacts:
-          path: ./target/pit-reports
+            ./.ci/validation.sh no-error-xwiki
 
 workflows:
   version: 2
-  pitest-testing:
+  No-Exception-Tests:
     jobs:
-      - build-caches
-      - pitest1:
-          requires:
-            - build-caches
-      - pitest2:
-          requires:
-            - build-caches
-      - pitest3:
-          requires:
-            - build-caches
-      - pitest4:
-          requires:
-            - build-caches
-      - pitest5:
-          requires:
-            - build-caches
-      - pitest6:
-          requires:
-            - build-caches
-      # we do not do thorough testing of gui part
-      # - pitest7:
-      #     requires:
-      #       - build-caches
-      - pitest8:
-          requires:
-            - build-caches
+      - lucene-and-others-javadoc
+      - cassandra-storm-tapestry-javadoc
+      - hadoop-apache-groovy-scouter-javadoc
+      - no-exception-only-javadoc
+      - no-error-xwiki
