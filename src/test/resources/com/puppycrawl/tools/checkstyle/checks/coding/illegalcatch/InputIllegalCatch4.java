@@ -1,18 +1,17 @@
 /*
 IllegalCatch
-illegalClassNames = (default)Error, Exception, RuntimeException, Throwable, java.lang.Error, \
-                    java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable
+illegalClassNames = java.lang.Error, java.lang.Exception, NullPointerException
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalcatch;
 
-public class InputIllegalCatch {
+public class InputIllegalCatch4 {
     public void foo() {
         try { //class names
-        } catch (RuntimeException e) { // violation
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
+        } catch (Exception e) { // violation
         } catch (Throwable e) {
         }
     }

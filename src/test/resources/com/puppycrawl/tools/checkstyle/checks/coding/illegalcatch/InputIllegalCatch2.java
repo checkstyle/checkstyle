@@ -1,10 +1,18 @@
+/*
+IllegalCatch
+illegalClassNames = java.lang.Error, java.lang.Exception, NullPointerException, \
+                    OneMoreException, RuntimeException, SQLException
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalcatch;
 
 public class InputIllegalCatch2 {
     public void foo() throws OneMoreException {
         try {
                 foo1();
-        } catch (RuntimeException | SQLException e) {}
+        } catch (RuntimeException | SQLException e) {} // violation
         try {
                 foo1();
         } catch (RuntimeException | SQLException | OneMoreException e) {}

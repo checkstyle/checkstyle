@@ -39,12 +39,12 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalCatchCheck.class);
 
         final String[] expected = {
-            "6:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
-            "7:11: " + getCheckMessage(MSG_KEY, "Exception"),
-            "8:11: " + getCheckMessage(MSG_KEY, "Throwable"),
-            "14:11: " + getCheckMessage(MSG_KEY, "java.lang.RuntimeException"),
-            "15:11: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
-            "16:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
+            "14:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "15:11: " + getCheckMessage(MSG_KEY, "Exception"),
+            "16:11: " + getCheckMessage(MSG_KEY, "Throwable"),
+            "22:11: " + getCheckMessage(MSG_KEY, "java.lang.RuntimeException"),
+            "23:11: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
+            "24:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
         };
 
         verify(checkConfig, getPath("InputIllegalCatch.java"), expected);
@@ -57,13 +57,13 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
                                  "java.lang.Error, java.lang.Exception, java.lang.Throwable");
 
         final String[] expected = {
-            "7:11: " + getCheckMessage(MSG_KEY, "Exception"),
-            "8:11: " + getCheckMessage(MSG_KEY, "Throwable"),
-            "15:11: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
-            "16:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
+            "14:11: " + getCheckMessage(MSG_KEY, "Exception"),
+            "15:11: " + getCheckMessage(MSG_KEY, "Throwable"),
+            "22:11: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
+            "23:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
         };
 
-        verify(checkConfig, getPath("InputIllegalCatch.java"), expected);
+        verify(checkConfig, getPath("InputIllegalCatch3.java"), expected);
     }
 
     @Test
@@ -77,11 +77,11 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
                 "java.lang.IOException.");
 
         final String[] expected = {
-            "7:11: " + getCheckMessage(MSG_KEY, "Exception"),
-            "15:11: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
+            "14:11: " + getCheckMessage(MSG_KEY, "Exception"),
+            "22:11: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
         };
 
-        verify(checkConfig, getPath("InputIllegalCatch.java"), expected);
+        verify(checkConfig, getPath("InputIllegalCatch4.java"), expected);
     }
 
     @Test
@@ -92,17 +92,17 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
                                 + "OneMoreException, RuntimeException, SQLException");
 
         final String[] expected = {
-            "7:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
-            "7:11: " + getCheckMessage(MSG_KEY, "SQLException"),
-            "10:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
-            "10:11: " + getCheckMessage(MSG_KEY, "SQLException"),
-            "10:11: " + getCheckMessage(MSG_KEY, "OneMoreException"),
-            "13:11: " + getCheckMessage(MSG_KEY, "OneMoreException"),
-            "13:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
-            "13:11: " + getCheckMessage(MSG_KEY, "SQLException"),
-            "16:11: " + getCheckMessage(MSG_KEY, "OneMoreException"),
-            "16:11: " + getCheckMessage(MSG_KEY, "SQLException"),
-            "16:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "15:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "15:11: " + getCheckMessage(MSG_KEY, "SQLException"),
+            "18:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "18:11: " + getCheckMessage(MSG_KEY, "SQLException"),
+            "18:11: " + getCheckMessage(MSG_KEY, "OneMoreException"),
+            "21:11: " + getCheckMessage(MSG_KEY, "OneMoreException"),
+            "21:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "21:11: " + getCheckMessage(MSG_KEY, "SQLException"),
+            "24:11: " + getCheckMessage(MSG_KEY, "OneMoreException"),
+            "24:11: " + getCheckMessage(MSG_KEY, "SQLException"),
+            "24:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
         };
 
         verify(checkConfig, getPath("InputIllegalCatch2.java"), expected);
