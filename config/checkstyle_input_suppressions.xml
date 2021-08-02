@@ -171,11 +171,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]hiddenfield[\\/]InputHiddenFieldStaticVisibility.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]illegalcatch[\\/]InputIllegalCatch2.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]illegalcatch[\\/]InputIllegalCatch.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]illegalinstantiation[\\/]InputIllegalInstantiation.java"/>
@@ -1241,11 +1236,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]hiddenfield[\\/]InputHiddenFieldStaticVisibility.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]illegalcatch[\\/]InputIllegalCatch2.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]illegalcatch[\\/]InputIllegalCatch.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]illegalinstantiation[\\/]InputIllegalInstantiation.java"/>
