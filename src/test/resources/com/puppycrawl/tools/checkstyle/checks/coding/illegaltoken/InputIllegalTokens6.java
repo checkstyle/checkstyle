@@ -1,6 +1,6 @@
 /*
 IllegalToken
-tokens = (default)LABELED_STAT
+tokens = BLOCK_COMMENT_END
 
 
 */
@@ -9,8 +9,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 
 /**
  * Test for illegal tokens
- */
-public class InputIllegalTokens
+ */ // violation
+public class InputIllegalTokens6
 {
     public void methodWithPreviouslyIllegalTokens()
     {
@@ -33,7 +33,7 @@ public class InputIllegalTokens
     }
 
     public void methodWithLabels() {
-        label: // violation
+        label:
         {
             anotherLabel: // some comment href
             do {
