@@ -1,3 +1,15 @@
+/*
+HiddenField
+ignoreFormat = (default)null
+ignoreConstructorParameter = (default)false
+ignoreSetter = (default)false
+setterCanReturnItsClass = (default)false
+ignoreAbstractMethods = (default)false
+tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_COMPONENT_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
 import java.util.Comparator;
@@ -7,7 +19,7 @@ public class InputHiddenFieldStaticVisibility {
     static Object other = null;
     Object field = null;
 
-    static void method(Object field, Object other) {
+    static void method(Object field, Object other) { // violation
         // field 'field' can not be referenced form a static context
         // static field 'other' can be referenced from a static context
     }

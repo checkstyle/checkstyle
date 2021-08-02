@@ -1,3 +1,15 @@
+/*
+HiddenField
+ignoreFormat = (default)null
+ignoreConstructorParameter = (default)false
+ignoreSetter = (default)false
+setterCanReturnItsClass = (default)false
+ignoreAbstractMethods = (default)false
+tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_COMPONENT_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -15,7 +27,7 @@ class InputHiddenFieldReorder
 
     public InputHiddenFieldReorder()
     {
-        int hidden = 0; //shadows field
+        int hidden = 0; // violation
     }
 
     public InputHiddenFieldReorder(int hidden) //parameter shadows field
