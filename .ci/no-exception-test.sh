@@ -52,6 +52,7 @@ guava-with-sun-checks)
   ;;
 
 openjdk16-with-checks-nonjavadoc-error)
+  mvn -e --no-transfer-progress clean install -Pno-validations
   LOCAL_GIT_REPO=$(pwd)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   checkout_from https://github.com/checkstyle/contribution
