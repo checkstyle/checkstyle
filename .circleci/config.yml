@@ -246,6 +246,16 @@ jobs:
       - store_artifacts:
           path: ./target/pit-reports
 
+  openjdk16-with-checks-nonjavadoc-error:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          command: |
+            sudo apt-get install groovy maven
+            .ci/no-exception-test.sh openjdk16-with-checks-nonjavadoc-error
+          no_output_timeout: 60m
+
 workflows:
   version: 2
   pitest-testing:
@@ -276,3 +286,6 @@ workflows:
       - pitest8:
           requires:
             - build-caches
+  no-exception-testing:
+    jobs:
+      - openjdk16-with-checks-nonjavadoc-error
