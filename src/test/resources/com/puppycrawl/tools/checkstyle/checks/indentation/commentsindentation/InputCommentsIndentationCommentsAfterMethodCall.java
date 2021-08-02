@@ -1,6 +1,12 @@
+/*
+CommentsIndentation
+tokens = (default)SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
 
-/* Config: default */
 
 public class InputCommentsIndentationCommentsAfterMethodCall {
     public static void main() {

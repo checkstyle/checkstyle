@@ -1,4 +1,11 @@
 /*
+CommentsIndentation
+tokens = (default)SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN
+
+
+*/
+
+/*
  * Copyright (C) 2012 The Guava Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +33,7 @@ import java.lang.reflect.Method;
  * Provides convenience methods such as {@link #isPublic} and {@link #isPackagePrivate}.
  *
  */
-class InputCommentsIndentationNoNpe {
+class InputCommentsIndentationNoNpe { // ok
 
 }
 /* The Check should not throw NPE here! */
