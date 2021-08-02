@@ -1,0 +1,635 @@
+name: "Pitest"
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  Pitest-main:
+    runs-on: macos-latest
+    steps:
+      - name: Set up JDK 8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-main
+        run: |
+          ./.ci/pitest.sh pitest-main
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest2-main-coverage-report
+          path: staging
+          retention-days: 3
+
+  Pitest-javadoc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-javadoc
+        run: |
+          ./.ci/pitest.sh pitest-javadoc
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest2-javadoc-coverage-report
+          path: staging
+          retention-days: 3
+
+  Pitest-indentation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-indentation
+        run: |
+          ./.ci/pitest.sh pitest-indentation
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest2-indentation-coverage-report
+          path: staging
+          retention-days: 3
+
+  Pitest-xpath:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-xpath
+        run: |
+          ./.ci/pitest.sh pitest-xpath
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest2-xpath-coverage-report
+          path: staging
+          retention-days: 3
+
+  Pitest-packagenamesloader:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-packagenamesloader
+        run: |
+          ./.ci/pitest.sh pitest-packagenamesloader
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest5-packagenamesloader-coverage-report
+          path: staging
+
+  Pitest-tree-walker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-tree-walker
+        run: |
+          ./.ci/pitest.sh pitest-tree-walker
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest5-tree-walker-coverage-report
+          path: staging
+
+  Pitest-naming:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-naming
+        run: |
+          ./.ci/pitest.sh pitest-naming
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest5-naming-coverage-report
+          path: staging
+
+  Pitest-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-metrics
+        run: |
+          ./.ci/pitest.sh pitest-metrics
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest5-metrics-coverage-report
+          path: staging
+
+  Pitest-misc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-misc
+        run: |
+          ./.ci/pitest.sh pitest-misc
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest3-misc-coverage-report
+          path: staging
+          retention-days: 3
+
+  Pitest-design:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-Common
+        run: |
+          ./.ci/pitest.sh pitest-design
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest3-design-coverage-report
+          path: staging
+          retention-days: 3
+
+  Pitest-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-api
+        run: |
+          ./.ci/pitest.sh pitest-api
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest3-api-coverage-report
+          path: staging
+          retention-days: 3
+
+  Pitest-utils:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-utils
+        run: |
+          ./.ci/pitest.sh pitest-utils
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest3-utils-coverage-report
+          path: staging
+          retention-days: 3
+
+  Pitest-blocks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-blocks
+        run: |
+          ./.ci/pitest.sh pitest-blocks
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest6-blocks-coverage-report
+          path: staging
+          retention-days: 3
+
+  Pitest-sizes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-sizes
+        run: |
+          ./.ci/pitest.sh pitest-sizes
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest6-sizes-coverage-report
+          path: staging
+          retention-days: 3
+
+  Pitest-modifier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-modifier
+        run: |
+          ./.ci/pitest.sh pitest-modifier
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest6-modifier-coverage-report
+          path: staging
+          retention-days: 3
+
+  Pitest-regexp:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-regexp
+        run: |
+          ./.ci/pitest.sh pitest-regexp
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest6-regexp-coverage-report
+          path: staging
+          retention-days: 3
+
+  Pitest-coding:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-Coding
+        run: |
+          ./.ci/pitest.sh pitest-coding
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest1-coding-coverage-report
+          path: staging
+          retention-days: 3
+
+  Pitest-common:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-Common
+        run: |
+          ./.ci/pitest.sh pitest-common
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest1-common-coverage-report
+          path: staging
+          retention-days: 3
+
+  Pitest-imports:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-imports
+        run: |
+          ./.ci/pitest.sh pitest-imports
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest1-imports-coverage-report
+          path: staging
+          retention-days: 3
+
+  Pitest-ant:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-ant
+        run: |
+          ./.ci/pitest.sh pitest-ant
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest1-ant-coverage-report
+          path: staging
+          retention-days: 3
+
+
+  Pitest-annotation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-annotation
+        run: |
+          ./.ci/pitest.sh pitest-annotation
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest4-annotation-coverage-report
+          path: staging
+          retention-days: 3
+
+  Pitest-whitespace:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-whitespace
+        run: |
+          ./.ci/pitest.sh pitest-whitespace
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest4-whitespace-coverage-report
+          path: staging
+          retention-days: 3
+
+  Pitest-filters:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-filters
+        run: |
+          ./.ci/pitest.sh pitest-filters
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest4-filters-coverage-report
+          path: staging
+          retention-days: 3
+
+  Pitest-header:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Pitest-header
+        run: |
+          ./.ci/pitest.sh pitest-header
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest4-header-coverage-report
+          path: staging
+          retention-days: 3
+
+  Pitest-common-2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: pitest-common-2
+        run: |
+          ./.ci/pitest.sh pitest-common-2
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest8-common-2-coverage-report
+          path: staging
+          retention-days: 3

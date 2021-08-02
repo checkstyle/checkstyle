@@ -47,6 +47,7 @@ pitest-annotation|pitest-design \
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
+
 pitest-header)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
