@@ -9,20 +9,20 @@
 SET OPTION=%1
 
 if "%OPTION%" == "sevntu" (
-  call mvn -e verify -DskipTests -DskipITs -Dpmd.skip=true^
+  call mvn -ntp -e verify -DskipTests -DskipITs -Dpmd.skip=true^
     -Dspotbugs.skip=true -Djacoco.skip=true -Dxml.skip=true^
     || goto :ERROR
   goto :END_CASE
 )
 
 if "%OPTION%" ==  "verify_without_checkstyle" (
-  call mvn -e verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true^
+  call mvn -ntp -e verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true^
     || goto :ERROR
   goto :END_CASE
 )
 
 if "%OPTION%" ==  "site_without_verify" (
-  call mvn -e -Pno-validations site^
+  call mvn -ntp -e -Pno-validations site^
     || goto :ERROR
   goto :END_CASE
 )
