@@ -1,6 +1,6 @@
 /*
 CommentsIndentation
-tokens = (default)SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN
+tokens = BLOCK_COMMENT_BEGIN
 
 
 */
@@ -8,10 +8,10 @@ tokens = (default)SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN
 // comment
 package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
 
-import java.util.*;
+import java.util.Arrays;
 
 // some
-public class InputCommentsIndentationSurroundingCode
+public class InputCommentsIndentationSurroundingCode3
 {
     private void foo1() {
         if (true) {
@@ -157,7 +157,7 @@ public class InputCommentsIndentationSurroundingCode
         // Test
     }
 
-    public InputCommentsIndentationSurroundingCode() {
+    public InputCommentsIndentationSurroundingCode3() {
     }
 
     // Test
