@@ -1,3 +1,15 @@
+/*
+HiddenField
+ignoreFormat = (default)null
+ignoreConstructorParameter = (default)false
+ignoreSetter = true
+setterCanReturnItsClass = true
+ignoreAbstractMethods = (default)false
+tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_COMPONENT_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -9,16 +21,16 @@ package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
  * Test case for hidden fields
  * @author Rick Giles
  **/
-class InputHiddenField
+class InputHiddenField5
 {
     private int hidden = 0;
 
-    public InputHiddenField()
+    public InputHiddenField5()
     {
-        int hidden = 0; //shadows field
+        int hidden = 0; // violation
     }
 
-    public InputHiddenField(int hidden) //parameter shadows field
+    public InputHiddenField5(int hidden) //parameter shadows field
     {
     }
 
@@ -83,7 +95,7 @@ class InputHiddenField
     }
 }
 
-interface NothingHidden
+interface NothingHidden5
 {
     public static int notHidden = 0;
 
@@ -92,7 +104,7 @@ interface NothingHidden
 }
 
 /** tests ignoring the parameter of a property setter method */
-class PropertySetter
+class PropertySetter15
 {
     private int prop;
 
@@ -116,7 +128,7 @@ class PropertySetter
 }
 
 /** tests a non-void method */
-class PropertySetter2
+class PropertySetter25
 {
     private int prop;
 
@@ -129,7 +141,7 @@ class PropertySetter2
 }
 
 /** tests for static fields */
-class StaticFields
+class StaticFields5
 {
     private static int hidden;
 
@@ -154,7 +166,7 @@ class StaticFields
 }
 
 /** tests static methods & initializers */
-class StaticMethods
+class StaticMethods5
 {
     private int notHidden;
 
@@ -182,7 +194,7 @@ class StaticMethods
     }
 }
 
-enum HiddenEnum
+enum HiddenEnum15
 {
     A(129),
     B(283),
@@ -207,7 +219,7 @@ enum HiddenEnum
     /**
      * ctor parameter hides member
      */
-    HiddenEnum(int hidden)
+    HiddenEnum15(int hidden)
     {
     }
 
@@ -225,12 +237,12 @@ enum HiddenEnum
 }
 
 // we should ignore this if user wants (ignoreAbstractMethods is true)
-abstract class InputHiddenFieldBug1084512 {
+abstract class InputHiddenFieldBug10845125 {
     String x;
     public abstract void methodA(String x);
 }
 
-class Bug3370946 {
+class Bug33709465 {
     private int xAxis;
 
     public void setxAxis(int xAxis) {
@@ -239,7 +251,7 @@ class Bug3370946 {
 }
 
 /** tests chain-setter */
-class PropertySetter3
+class PropertySetter35
 {
     private int prop;
 
@@ -250,7 +262,7 @@ class PropertySetter3
      * if setterCanReturnItsClass == true then
      *     success as it is then considered to be a setter
      */
-    public PropertySetter3 setProp(int prop)
+    public PropertySetter35 setProp(int prop)
     {
         this.prop = prop;
         return this;
@@ -258,7 +270,7 @@ class PropertySetter3
 }
 
 /** tests setters (both regular and the chain one) on the enum */
-enum PropertySetter4 {
+enum PropertySetter45 {
     INSTANCE;
 
     private int prop;
@@ -275,7 +287,7 @@ enum PropertySetter4 {
      * if setterCanReturnItsClass == true then
      *     success as it is then considered to be a setter
      */
-    public PropertySetter4 setProp2(int prop2)
+    public PropertySetter45 setProp2(int prop2)
     {
         this.prop2 = prop2;
         return this;
@@ -283,7 +295,7 @@ enum PropertySetter4 {
 }
 
 /** Tests setter for one letter field (issue #730). */
-class OneLetterField
+class OneLetterField5
 {
     int i;
 
@@ -293,13 +305,15 @@ class OneLetterField
     }
     enum Inner {}
 }
-class DuplicateFieldFromPreviousClass
+
+class DuplicateFieldFromPreviousClass5
 {
     public void method() {
         int i = 0;
     }
 }
-class NestedEnum {
+
+class NestedEnum5 {
     enum Test { A, B, C; int i; }
 
     void method(int i) {}

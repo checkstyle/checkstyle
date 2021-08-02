@@ -1,16 +1,20 @@
+/*
+HiddenField
+ignoreFormat = (default)null
+ignoreConstructorParameter = (default)false
+ignoreSetter = (default)false
+setterCanReturnItsClass = (default)false
+ignoreAbstractMethods = (default)false
+tokens = PATTERN_VARIABLE_DEF
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
 import java.util.Locale;
-/* Config:
- *
- * ignoreFormat = null
- * ignoreConstructorParameter = false
- * ignoreSetter = false
- * setterCanReturnItsClass = false
- * ignoreAbstractMethods = false
- * tokens = {VARIABLE_DEF , PARAMETER_DEF , LAMBDA, PATTERN_VARIABLE_DEF}
- */
+
 public class InputHiddenFieldEnhancedInstanceof {
 
     public class Keyboard {
