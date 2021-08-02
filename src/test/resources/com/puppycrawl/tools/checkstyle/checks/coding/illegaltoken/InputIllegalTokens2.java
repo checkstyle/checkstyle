@@ -1,6 +1,6 @@
 /*
 IllegalToken
-tokens = (default)LABELED_STAT
+tokens = LITERAL_SWITCH,POST_INC,POST_DEC
 
 
 */
@@ -10,12 +10,12 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 /**
  * Test for illegal tokens
  */
-public class InputIllegalTokens
+public class InputIllegalTokens2
 {
     public void methodWithPreviouslyIllegalTokens()
     {
         int i = 0;
-        switch (i)
+        switch (i) // violation
         {
             default:
                 i--;
@@ -33,7 +33,7 @@ public class InputIllegalTokens
     }
 
     public void methodWithLabels() {
-        label: // violation
+        label:
         {
             anotherLabel: // some comment href
             do {
