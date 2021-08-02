@@ -192,8 +192,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]illegalinstantiation[\\/]InputIllegalInstantiationSemantic.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]illegaltoken[\\/]InputIllegalTokens.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]illegaltokentext[\\/]InputIllegalTokenTextTokens.java"/>
@@ -1262,8 +1260,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]illegalinstantiation[\\/]InputIllegalInstantiationSemantic.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]illegaltoken[\\/]InputIllegalTokens.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]illegaltokentext[\\/]InputIllegalTokenTextTokens.java"/>
