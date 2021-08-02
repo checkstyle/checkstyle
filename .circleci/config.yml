@@ -246,6 +246,16 @@ jobs:
       - store_artifacts:
           path: ./target/pit-reports
 
+  openjdk16-with-checks-nonjavadoc-error:
+    docker:
+      - image: akmo03/groovy-jdk11:latest
+    steps:
+      - checkout
+      - run:
+          command: |
+            mvn -e --no-transfer-progress clean install -Pno-validations
+                && .ci/no-exception-test.sh openjdk16-with-checks-nonjavadoc-error
+
 workflows:
   version: 2
   pitest-testing:
@@ -276,3 +286,6 @@ workflows:
       - pitest8:
           requires:
             - build-caches
+  no-exception-testing:
+    jobs:
+      - openjdk16-with-checks-nonjavadoc-error
