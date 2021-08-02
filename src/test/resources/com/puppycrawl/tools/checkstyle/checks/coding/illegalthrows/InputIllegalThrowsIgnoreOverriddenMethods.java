@@ -1,9 +1,15 @@
+/*
+IllegalThrows
+illegalClassNames = (default)Error, RuntimeException, Throwable, java.lang.Error, \
+                    java.lang.RuntimeException, java.lang.Throwable
+ignoredMethodNames = (default)finalize
+ignoreOverriddenMethods = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalthrows;
 
-/*
- * Config:
- * ignoreOverriddenMethods = true
- */
 public class InputIllegalThrowsIgnoreOverriddenMethods
              extends InputIllegalThrowsTestDefault
 {

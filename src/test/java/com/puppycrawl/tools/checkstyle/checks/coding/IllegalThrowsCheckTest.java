@@ -40,9 +40,9 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalThrowsCheck.class);
 
         final String[] expected = {
-            "12:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
-            "17:45: " + getCheckMessage(MSG_KEY, "java.lang.RuntimeException"),
-            "17:73: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
+            "19:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "24:45: " + getCheckMessage(MSG_KEY, "java.lang.RuntimeException"),
+            "24:73: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
         };
 
         verify(checkConfig, getPath("InputIllegalThrowsTestDefault.java"), expected);
@@ -59,8 +59,8 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
                 "java.lang.IOException.");
 
         final String[] expected = {
-            "10:33: " + getCheckMessage(MSG_KEY, "NullPointerException"),
-            "19:73: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
+            "15:33: " + getCheckMessage(MSG_KEY, "NullPointerException"),
+            "24:73: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
         };
 
         verify(checkConfig, getPath("InputIllegalThrowsTestIllegalClassNames.java"), expected);
@@ -75,8 +75,8 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("ignoredMethodNames", "methodTwo");
 
         final String[] expected = {
-            "13:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
-            "22:35: " + getCheckMessage(MSG_KEY, "Throwable"),
+            "19:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "28:35: " + getCheckMessage(MSG_KEY, "Throwable"),
         };
 
         verify(checkConfig, getPath("InputIllegalThrowsIgnoreMethodNames.java"), expected);
@@ -93,8 +93,8 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("ignoredMethodNames", "methodTwo");
 
         final String[] expected = {
-            "10:33: " + getCheckMessage(MSG_KEY, "NullPointerException"),
-            "23:35: " + getCheckMessage(MSG_KEY, "Throwable"),
+            "14:33: " + getCheckMessage(MSG_KEY, "NullPointerException"),
+            "27:35: " + getCheckMessage(MSG_KEY, "Throwable"),
         };
 
         verify(checkConfig, getPath("InputIllegalThrowsTestClassNames.java"), expected);
@@ -124,8 +124,8 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("ignoreOverriddenMethods", "false");
 
         final String[] expected = {
-            "11:36: " + getCheckMessage(MSG_KEY, "RuntimeException"),
-            "16:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "17:36: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "22:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
         };
 
         verify(checkConfig, getPath("InputIllegalThrowsNotIgnoreOverriddenMethod.java"), expected);

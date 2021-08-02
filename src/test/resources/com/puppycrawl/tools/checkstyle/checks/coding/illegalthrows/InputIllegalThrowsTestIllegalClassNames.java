@@ -1,10 +1,15 @@
+/*
+IllegalThrows
+illegalClassNames = java.lang.Error, java.lang.Exception, NullPointerException, \
+                    java.lang.IOException.
+ignoredMethodNames = (default)finalize
+ignoreOverriddenMethods = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalthrows;
 
-/*
- * Config:
- * illegalClassNames = { java.lang.Error, java.lang.Exception, NullPointerException,
- *                       java.lang.IOException }
- */
 public class InputIllegalThrowsTestIllegalClassNames {
 
     public void method() throws NullPointerException // violation
