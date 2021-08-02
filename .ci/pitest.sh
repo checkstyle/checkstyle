@@ -38,6 +38,7 @@ pitest-annotation|pitest-design \
 |pitest-packagenamesloader \
 |pitest-common-2|pitest-misc|pitest-xpath \
 |pitest-filters \
+|pitest-main \
 |pitest-coding \
 |pitest-regexp \
 |pitest-meta)
@@ -46,14 +47,6 @@ pitest-annotation|pitest-design \
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
-# till #9351
-pitest-main)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  declare -a ignoredItems=(
-  "Main.java.html:<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>"
-  );
-  checkPitestReport "${ignoredItems[@]}"
-  ;;
 
 pitest-header)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
