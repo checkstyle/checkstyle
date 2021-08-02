@@ -23,16 +23,13 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 
-import org.antlr.v4.runtime.BailErrorStrategy;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.BufferedTokenStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonToken;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.FailedPredicateException;
-import org.antlr.v4.runtime.InputMismatchException;
 import org.antlr.v4.runtime.NoViableAltException;
-import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
@@ -180,7 +177,7 @@ public class JavadocDetailNodeParser {
 
         // JavadocParserErrorStrategy stops parsing on first parse error encountered unlike the
         // DefaultErrorStrategy used by ANTLR which rather attempts error recovery.
-        parser.setErrorHandler(new JavadocParserErrorStrategy());
+        parser.setErrorHandler(new CheckstyleParserErrorStrategy());
 
         return parser;
     }
@@ -779,29 +776,4 @@ public class JavadocDetailNodeParser {
         }
 
     }
-
-    /**
-     * The DefaultErrorStrategy used by ANTLR attempts to recover from parse errors
-     * which might result in a performance overhead. Also, a parse error indicate
-     * that javadoc doesn't follow checkstyle Javadoc grammar and the user should be made aware
-     * of it.
-     * <a href="https://www.antlr.org/api/Java/org/antlr/v4/runtime/BailErrorStrategy.html">
-     * BailErrorStrategy</a> is used to make ANTLR generated parser bail out on the first error
-     * in parser and not attempt any recovery methods but it doesn't report error to the
-     * listeners. This class is to ensure proper error reporting.
-     *
-     * @see DescriptiveErrorListener
-     * @see <a href="https://www.antlr.org/api/Java/org/antlr/v4/runtime/ANTLRErrorStrategy.html">
-     *     ANTLRErrorStrategy</a>
-     */
-    private static class JavadocParserErrorStrategy extends BailErrorStrategy {
-
-        @Override
-        public Token recoverInline(Parser recognizer) {
-            reportError(recognizer, new InputMismatchException(recognizer));
-            return super.recoverInline(recognizer);
-        }
-
-    }
-
 }
