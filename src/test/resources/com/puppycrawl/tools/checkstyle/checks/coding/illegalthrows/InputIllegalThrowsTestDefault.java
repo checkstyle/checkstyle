@@ -1,8 +1,15 @@
+/*
+IllegalThrows
+illegalClassNames = (default)Error, RuntimeException, Throwable, java.lang.Error, \
+                    java.lang.RuntimeException, java.lang.Throwable
+ignoredMethodNames = (default)finalize
+ignoreOverriddenMethods = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalthrows;
 
-/*
- * Config: default
- */
 public class InputIllegalThrowsTestDefault {
 
     public void method() throws NullPointerException // ok
