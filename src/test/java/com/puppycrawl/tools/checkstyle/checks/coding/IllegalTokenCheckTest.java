@@ -44,8 +44,8 @@ public class IllegalTokenCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(IllegalTokenCheck.class);
         final String[] expected = {
-            "29:14: " + getCheckMessage(MSG_KEY, "label:"),
-            "31:25: " + getCheckMessage(MSG_KEY, "anotherLabel:"),
+            "36:14: " + getCheckMessage(MSG_KEY, "label:"),
+            "38:25: " + getCheckMessage(MSG_KEY, "anotherLabel:"),
         };
         verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
     }
@@ -57,11 +57,11 @@ public class IllegalTokenCheckTest
             createModuleConfig(IllegalTokenCheck.class);
         checkConfig.addProperty("tokens", "LITERAL_SWITCH,POST_INC,POST_DEC");
         final String[] expected = {
-            "11:9: " + getCheckMessage(MSG_KEY, "switch"),
-            "14:18: " + getCheckMessage(MSG_KEY, "--"),
-            "15:18: " + getCheckMessage(MSG_KEY, "++"),
+            "18:9: " + getCheckMessage(MSG_KEY, "switch"),
+            "21:18: " + getCheckMessage(MSG_KEY, "--"),
+            "22:18: " + getCheckMessage(MSG_KEY, "++"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTokens2.java"), expected);
     }
 
     @Test
@@ -70,9 +70,9 @@ public class IllegalTokenCheckTest
             createModuleConfig(IllegalTokenCheck.class);
         checkConfig.addProperty("tokens", "LITERAL_NATIVE");
         final String[] expected = {
-            "20:12: " + getCheckMessage(MSG_KEY, "native"),
+            "27:12: " + getCheckMessage(MSG_KEY, "native"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTokens3.java"), expected);
     }
 
     @Test
@@ -82,19 +82,26 @@ public class IllegalTokenCheckTest
                 createModuleConfig(IllegalTokenCheck.class);
         checkConfig.addProperty("tokens", "COMMENT_CONTENT");
 
-        final String path = getPath("InputIllegalTokens.java");
+        final String path = getPath("InputIllegalTokens4.java");
         final String lineSeparator =
                 CheckUtil.getLineSeparatorForFile(path, StandardCharsets.UTF_8);
         final String[] expected = {
-            "3:3: " + getCheckMessage(MSG_KEY,
+            "1:3: " + getCheckMessage(MSG_KEY,
                         JavadocUtil.escapeAllControlChars(
-                            "*" + lineSeparator
+                            lineSeparator
+                            + "IllegalToken\\ntokens = COMMENT_CONTENT"
+                            + lineSeparator
+                            + lineSeparator
+                            + lineSeparator)),
+            "10:3: " + getCheckMessage(MSG_KEY,
+                        JavadocUtil.escapeAllControlChars(
+                            "* // violation" + lineSeparator
                             + " * Test for illegal tokens"
                             + lineSeparator + " ")),
-            "31:29: " + getCheckMessage(MSG_KEY,
+            "38:29: " + getCheckMessage(MSG_KEY,
                         JavadocUtil.escapeAllControlChars(
                             " some comment href" + lineSeparator)),
-            "35:28: " + getCheckMessage(MSG_KEY,
+            "42:28: " + getCheckMessage(MSG_KEY,
                         JavadocUtil.escapeAllControlChars(
                             " some a href" + lineSeparator)),
         };
@@ -109,9 +116,10 @@ public class IllegalTokenCheckTest
         checkConfig.addProperty("tokens", "BLOCK_COMMENT_BEGIN");
 
         final String[] expected = {
-            "3:1: " + getCheckMessage(MSG_KEY, "/*"),
+            "1:1: " + getCheckMessage(MSG_KEY, "/*"),
+            "10:1: " + getCheckMessage(MSG_KEY, "/*"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTokens5.java"), expected);
     }
 
     @Test
@@ -122,9 +130,10 @@ public class IllegalTokenCheckTest
         checkConfig.addProperty("tokens", "BLOCK_COMMENT_END");
 
         final String[] expected = {
-            "5:2: " + getCheckMessage(MSG_KEY, "*/"),
+            "6:1: " + getCheckMessage(MSG_KEY, "*/"),
+            "12:2: " + getCheckMessage(MSG_KEY, "*/"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTokens6.java"), expected);
     }
 
     @Test
@@ -135,10 +144,10 @@ public class IllegalTokenCheckTest
         checkConfig.addProperty("tokens", "SINGLE_LINE_COMMENT");
 
         final String[] expected = {
-            "31:27: " + getCheckMessage(MSG_KEY, "//"),
-            "35:26: " + getCheckMessage(MSG_KEY, "//"),
+            "38:27: " + getCheckMessage(MSG_KEY, "//"),
+            "42:26: " + getCheckMessage(MSG_KEY, "//"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTokens7.java"), expected);
     }
 
 }
