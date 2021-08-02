@@ -1,3 +1,11 @@
+/*
+FinalLocalVariable
+validateEnhancedForLoopVariable = (default)false
+tokens = (default)VARIABLE_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 import java.util.HashMap;

@@ -1,8 +1,16 @@
+/*
+FinalLocalVariable
+validateEnhancedForLoopVariable = (default)false
+tokens = (default)VARIABLE_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 import java.util.stream.Stream;
 
-public class InputFinalLocalVariableLeavingSlistToken {
+public class InputFinalLocalVariableLeavingSlistToken { // ok
 
     private int assignedInInstanceInitAndCtor;
     private static int assignedInStaticInitAndFoo1;

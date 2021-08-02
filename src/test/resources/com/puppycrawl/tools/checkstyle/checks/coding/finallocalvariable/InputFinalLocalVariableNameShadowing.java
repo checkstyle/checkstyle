@@ -1,7 +1,15 @@
+/*
+FinalLocalVariable
+validateEnhancedForLoopVariable = (default)false
+tokens = VARIABLE_DEF, PARAMETER_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 class InputFinalLocalVariableNameShadowing {
-    public void foo(String text) {
+    public void foo(String text) { // violation
         System.identityHashCode(text);
 
         class Bar {
@@ -14,7 +22,7 @@ class InputFinalLocalVariableNameShadowing {
 
 class Foo2 {
     public void foo() {
-        int x;
+        int x; // violation
         class Bar {
             void bar () {
                 int x = 1;

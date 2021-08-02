@@ -1,20 +1,20 @@
 /*
 FinalLocalVariable
 validateEnhancedForLoopVariable = (default)false
-tokens = (default)VARIABLE_DEF
+tokens = PARAMETER_DEF
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
-public class InputFinalLocalVariable
+public class InputFinalLocalVariable2
 {
     private int m_ClassVariable = 0;
     //static block
     static
     {
-        int i, j = 0; // violation
+        int i, j = 0;
         Runnable runnable = new Runnable()
         {
             public void run()
@@ -23,7 +23,7 @@ public class InputFinalLocalVariable
         };
     }
     /** constructor */
-    public InputFinalLocalVariable()
+    public InputFinalLocalVariable2()
     {
         int i = 0;
         // final variable
@@ -50,7 +50,7 @@ public class InputFinalLocalVariable
         };
     }
 
-    public void method(int aArg, final int aFinal, int aArg2)
+    public void method(int aArg, final int aFinal, int aArg2) // violation
     {
         int z = 0;
 
@@ -125,17 +125,17 @@ public class InputFinalLocalVariable
     }
 }
 
-interface Inter
+interface Inter2
 {
     void method(int aParam);
 }
 
-abstract class AbstractClass
+abstract class AbstractClass2
 {
     public abstract void abstractMethod(int aParam);
 }
 
-class Blah
+class Blah2
 {
     static
     {
@@ -150,7 +150,7 @@ class Blah
     }
 }
 
-class test_1241722
+class test_12417222
 {
     private Object o_;
 
@@ -165,21 +165,21 @@ class test_1241722
     }
 }
 
-class class1
+class class12
 {
-    public class1(final int x){
+    public class12(final int x){
 
     }
 }
 
-class AA {
+class AA2 {
     {
         int y = 0;
         y = 9;
     }
 }
 
-enum Enum1 {
+enum Enum12 {
     ;
 
     {
@@ -188,7 +188,7 @@ enum Enum1 {
     }
 }
 
-class class2 {
+class class22 {
     public void method1(){
         int x;
         x = 3;
@@ -270,7 +270,7 @@ class class2 {
     }
 }
 
-class classs3 {
+class classs32 {
     public void method(final int i) {
         switch (i) {
             case 1:
@@ -290,7 +290,7 @@ class classs3 {
     }
 }
 
-class Class3 {
+class Class32 {
     public void test1() {
         final boolean b = true;
         int shouldBeFinal;        //Violation
@@ -360,7 +360,7 @@ class Class3 {
     }
 }
 
-class class4 {
+class class42 {
     public void foo() {
         int shouldBeFinal;    //violation
         class Bar {
@@ -377,7 +377,7 @@ class class4 {
     }
 }
 
-class class5 {
+class class52 {
     public void test1(){
         final boolean b = false;
         int shouldBeFinal;    //Violation

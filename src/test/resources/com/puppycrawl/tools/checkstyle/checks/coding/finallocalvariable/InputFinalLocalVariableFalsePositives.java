@@ -1,3 +1,11 @@
+/*
+FinalLocalVariable
+validateEnhancedForLoopVariable = (default)false
+tokens = (default)VARIABLE_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 import java.util.ArrayList;
@@ -341,7 +349,7 @@ public class InputFinalLocalVariableFalsePositives {
 
     // openjdk8/src/share/classes/sun/text/normalizer/NormalizerBase.java
     private void foo14() {
-        int c, c2; // violation: Variable 'c2' should be declared final
+        int c, c2; // violation
         if (true) {
         }
         if (true) {
