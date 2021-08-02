@@ -1,7 +1,14 @@
+/*
+CommentsIndentation
+tokens = (default)SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
 
   /**
-   * violation
+   * // violation
    */
 public class InputCommentsIndentationJavadoc {
 
@@ -9,7 +16,7 @@ public class InputCommentsIndentationJavadoc {
     int i;
 
         /**
-         * violation
+         * // violation
          */
     void foo() {}
 

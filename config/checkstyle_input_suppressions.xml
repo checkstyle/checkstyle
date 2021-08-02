@@ -498,29 +498,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="imports[\\/]unusedimports[\\/]InputUnusedImportsWithValueTag.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]commentsindentation[\\/]InputCommentsIndentationAfterAnnotation.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]commentsindentation[\\/]InputCommentsIndentationCommentIsAtTheEndOfBlock.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]commentsindentation[\\/]InputCommentsIndentationInEmptyBlock.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]commentsindentation[\\/]InputCommentsIndentationInMultiblockStructures.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]commentsindentation[\\/]InputCommentsIndentationInSwitchBlock.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]commentsindentation[\\/]InputCommentsIndentationJavadoc.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]commentsindentation[\\/]InputCommentsIndentationNoNpe.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]commentsindentation[\\/]InputCommentsIndentationSurroundingCode.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="indentation[\\/]indentation[\\/]InputIndentation15Extensions.java"/>
@@ -1679,29 +1656,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="imports[\\/]unusedimports[\\/]InputUnusedImportsWithValueTag.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="indentation[\\/]commentsindentation[\\/]InputCommentsIndentationAfterAnnotation.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="indentation[\\/]commentsindentation[\\/]InputCommentsIndentationCommentIsAtTheEndOfBlock.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="indentation[\\/]commentsindentation[\\/]InputCommentsIndentationInEmptyBlock.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="indentation[\\/]commentsindentation[\\/]InputCommentsIndentationInMultiblockStructures.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="indentation[\\/]commentsindentation[\\/]InputCommentsIndentationInSwitchBlock.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="indentation[\\/]commentsindentation[\\/]InputCommentsIndentationJavadoc.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="indentation[\\/]commentsindentation[\\/]InputCommentsIndentationNoNpe.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="indentation[\\/]commentsindentation[\\/]InputCommentsIndentationSurroundingCode.java"/>
   <!-- indentation Inputs have special trailing comments -->
 
   <suppress id="StyleValidationCommentInInputs"
