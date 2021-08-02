@@ -1,6 +1,6 @@
 /*
 FinalLocalVariable
-validateEnhancedForLoopVariable = true
+validateEnhancedForLoopVariable = (default)false
 tokens = VARIABLE_DEF, PARAMETER_DEF
 
 
@@ -8,19 +8,19 @@ tokens = VARIABLE_DEF, PARAMETER_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
-public class InputFinalLocalVariableEnhancedForLoopVariable {
+public class InputFinalLocalVariableEnhancedForLoopVariable2 {
     public void method1()
     {
         final java.util.List<Object> list = new java.util.ArrayList<>();
 
-        for(Object a : list){ // violation
+        for(Object a : list){
         }
     }
 
     public void method2()
     {
         final int[] squares = {0, 1, 4, 9, 16, 25};
-        int x;
+        int x; // violation
         for (final int i : squares) {
         }
 
