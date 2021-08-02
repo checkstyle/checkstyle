@@ -246,6 +246,18 @@ jobs:
       - store_artifacts:
           path: ./target/pit-reports
 
+  openjdk16-with-checks-nonjavadoc-error:
+    machine: true
+    parallelism: 1
+    steps:
+      # we still attach workspace for maven and groovy dependencies
+      - attach_workspace:
+          at: /home/circleci/
+      - run:
+          command: |
+            mvn -e --no-transfer-progress clean install -Pno-validations
+                && .ci/no-exception-test.sh openjdk16-with-checks-nonjavadoc-error
+
 workflows:
   version: 2
   pitest-testing:
@@ -276,3 +288,6 @@ workflows:
       - pitest8:
           requires:
             - build-caches
+  no-exception-testing:
+    jobs:
+      - openjdk16-with-checks-nonjavadoc-error
