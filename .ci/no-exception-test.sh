@@ -52,6 +52,7 @@ guava-with-sun-checks)
   ;;
 
 openjdk16-with-checks-nonjavadoc-error)
+  mvn -e --no-transfer-progress clean install -Pno-validations
   LOCAL_GIT_REPO=$(pwd)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   checkout_from https://github.com/checkstyle/contribution
@@ -60,7 +61,7 @@ openjdk16-with-checks-nonjavadoc-error)
   cd .ci-temp/contribution/checkstyle-tester
   cp ../../../.ci/openjdk-projects-to-test-on.config openjdk-projects-to-test-on.config
   sed -i '/  <!-- Filters -->/r ../../../.ci/openjdk16-excluded.files' checks-nonjavadoc-error.xml
-  export MAVEN_OPTS="-Xmx2048m"
+  export MAVEN_OPTS="-Xmx7168m"
   groovy ./diff.groovy --listOfProjects openjdk-projects-to-test-on.config \
       --mode single --allowExcludes \
       --patchConfig checks-nonjavadoc-error.xml \
