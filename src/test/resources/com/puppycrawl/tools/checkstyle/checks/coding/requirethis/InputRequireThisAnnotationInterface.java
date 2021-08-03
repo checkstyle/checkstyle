@@ -1,4 +1,13 @@
-package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
+/*
+RequireThis
+checkFields = (default)true
+checkMethods = (default)true
+validateOnlyOverlapping = false
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.coding.requirethis; // ok
 
 public @interface InputRequireThisAnnotationInterface {
     String DEFAULT_VALUE = "DEFAULT_VALUE";

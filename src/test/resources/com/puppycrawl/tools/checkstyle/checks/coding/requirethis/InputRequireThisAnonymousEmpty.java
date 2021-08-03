@@ -1,3 +1,12 @@
+/*
+RequireThis
+checkFields = (default)true
+checkMethods = (default)true
+validateOnlyOverlapping = false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 public class InputRequireThisAnonymousEmpty {
@@ -16,7 +25,7 @@ public class InputRequireThisAnonymousEmpty {
 
             @Override
             public void fooEmpty() {
-                int a = doSideEffect();
+                int a = doSideEffect(); // violation
             }
 
             public int doSideEffect() {
