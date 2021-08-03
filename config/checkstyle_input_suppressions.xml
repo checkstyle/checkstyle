@@ -198,8 +198,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]illegaltokentext[\\/]InputIllegalTokenTextTokens.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]magicnumber[\\/]InputMagicNumberIntMethodAnnotation.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]modifiedcontrolvariable[\\/]InputModifiedControlVariableBothForLoops.java"/>
@@ -1268,8 +1266,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]illegaltokentext[\\/]InputIllegalTokenTextTokens.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]magicnumber[\\/]InputMagicNumberIntMethodAnnotation.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]modifiedcontrolvariable[\\/]InputModifiedControlVariableBothForLoops.java"/>
