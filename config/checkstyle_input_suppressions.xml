@@ -239,14 +239,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]requirethis[\\/]InputRequireThisValidateOnlyOverlappingTrue.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]returncount[\\/]InputReturnCountLambda.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]returncount[\\/]InputReturnCountSwitches.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]returncount[\\/]InputReturnCountVoid.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="descendanttoken[\\/]InputDescendantTokenEmptyStatement.java"/>
@@ -1254,14 +1246,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]requirethis[\\/]InputRequireThisValidateOnlyOverlappingTrue.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]returncount[\\/]InputReturnCountLambda.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]returncount[\\/]InputReturnCountSwitches.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]returncount[\\/]InputReturnCountVoid.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="descendanttoken[\\/]InputDescendantTokenEmptyStatement.java"/>

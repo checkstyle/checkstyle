@@ -1,7 +1,17 @@
+/*
+ReturnCount
+max = (default)2
+maxForVoid = 0
+format = (default)^equals$
+tokens = (default)CTOR_DEF, METHOD_DEF, LAMBDA
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.returncount;
 
 class InputReturnCountVoid {
-    public InputReturnCountVoid() {
+    public InputReturnCountVoid() { // violation
         return;
     }
 
