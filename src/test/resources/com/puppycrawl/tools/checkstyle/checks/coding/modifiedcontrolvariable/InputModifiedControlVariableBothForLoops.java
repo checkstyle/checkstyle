@@ -1,7 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for FOR_ITERATION and whitespace.
-// Created: 2003
-////////////////////////////////////////////////////////////////////////////////
+/*
+ModifiedControlVariable
+skipEnhancedForLoopVariable = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.modifiedcontrolvariable;
 import java.io.Serializable;
 class InputModifiedControlVariableBothForLoops
@@ -11,7 +14,7 @@ class InputModifiedControlVariableBothForLoops
     {
         //Violations:
         for (int i = 0; i < 1; i++) {
-            i++;
+            i++; // violation
         }
         for (int i = 0; i < 1; i++) {
             i = i + 1;
