@@ -1,12 +1,15 @@
+/*
+MultipleStringLiterals
+allowedDuplicates = (default)1
+ignoreStringsRegexp =
+ignoreOccurrenceContext = (default)ANNOTATION
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.coding.multiplestringliterals;
 
-/* Config:
- *
- * allowedDuplicates = 1
- * ignoreStringsRegexp = null
- * ignoreOccurrenceContext = ANNOTATION
- */
 public class InputMultipleStringLiteralsTextBlocks {
     String string1 = "string"; // occurance #1
     String string2a = "string"; // violation #1
