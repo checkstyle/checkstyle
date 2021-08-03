@@ -1,11 +1,14 @@
+/*
+RequireThis
+checkFields = (default)true
+checkMethods = false
+validateOnlyOverlapping = false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-/**
- * Config
- * validateOnlyOverlapping = false
- * checkMethods = false
- * checkFields = true
- */
 public class InputRequireThisExpressions {
     String id;
     int length;

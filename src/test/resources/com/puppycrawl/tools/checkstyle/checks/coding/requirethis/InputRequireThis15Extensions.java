@@ -1,5 +1,14 @@
+/*
+RequireThis
+checkFields = (default)true
+checkMethods = (default)true
+validateOnlyOverlapping = false
+
+
+*/
+
 // someexamples of 1.5 extensions
-package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
+package com.puppycrawl.tools.checkstyle.checks.coding.requirethis; // ok
 
 @interface MyAnnotation1 {
     String name();

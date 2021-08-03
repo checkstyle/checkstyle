@@ -1,6 +1,6 @@
 /*
 RequireThis
-checkFields = (default)true
+checkFields = false
 checkMethods = (default)true
 validateOnlyOverlapping = false
 
@@ -9,21 +9,20 @@ validateOnlyOverlapping = false
 
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-import java.awt.Toolkit;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class InputRequireThisEnumInnerClassesAndBugs {
+public class InputRequireThisEnumInnerClassesAndBugs2 {
     int i;
     void method1() {
-        i = 3; // violation
+        i = 3;
     }
 
     void method2(int i) {
         i++;
         this.i = i;
-        method1();
+        method1(); // violation
         try {
             this.method1();
         }
@@ -47,8 +46,9 @@ public class InputRequireThisEnumInnerClassesAndBugs {
     int I = 0;
     private class I {}
 }
+
 //  enum
-enum MyEnum
+enum MyEnum2
 {
     A,
     B
@@ -60,13 +60,13 @@ enum MyEnum
     };
 
     int z;
-    private MyEnum()
+    private MyEnum2()
     {
         z = 0;
     }
 }
 
-class Bug2123003 {
+class Bug21230032 {
     @Rock(band = "GnR")
     private String band;
 
@@ -85,7 +85,7 @@ class Bug2123003 {
     }
 }
 
-class Bug1155921 {
+class Bug11559212 {
     private static int CONST = 1;
     private static int static_method() {
         return 1;
@@ -100,12 +100,12 @@ class Bug1155921 {
     }
 }
 
-interface Issue155 {
+interface Issue1552 {
     String BASE = "A";
     String EXT = BASE + "B";
 }
 
-class Issue257 {
+class Issue2572 {
     public void foo() {
         try (final InputStream foo = new ByteArrayInputStream(new byte[512])) {
             foo.read();
@@ -116,7 +116,7 @@ class Issue257 {
     }
 }
 
-class Issue2240 {
+class Issue22402 {
     int i;
     void foo() {
         i++;
@@ -133,7 +133,7 @@ class Issue2240 {
     }
 }
 
-class Issue2539{
+class Issue25392{
     void foo(int i) {}
     static void foo(double i) {}
     void foo() {}
@@ -143,10 +143,11 @@ class Issue2539{
         foo();
     }
 }
-class NestedRechange {
+
+class NestedRechange2 {
     final String s = "";
 
-    NestedRechange() {
+    NestedRechange2() {
         String s = "t";
         s = s.substring(0);
     }
@@ -159,7 +160,8 @@ class NestedRechange {
         }
     }
 }
-class NestedFrames {
+
+class NestedFrames2 {
     int a = 0;
     int b = 0;
 

@@ -1,4 +1,13 @@
-package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
+/*
+RequireThis
+checkFields = (default)true
+checkMethods = (default)true
+validateOnlyOverlapping = false
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.coding.requirethis; // ok
 
 public class InputRequireThisEnumConstant {
     private final String TEST = "";
