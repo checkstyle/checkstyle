@@ -53,7 +53,7 @@ public class IllegalTokenTextCheckTest
         checkConfig.addProperty("format", "a href");
         checkConfig.addProperty("ignoreCase", "false");
         final String[] expected = {
-            "24:28: " + getCheckMessage(MSG_KEY, "a href"),
+            "34:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verify(checkConfig, getPath("InputIllegalTokenTextTokens.java"), expected);
     }
@@ -67,10 +67,10 @@ public class IllegalTokenTextCheckTest
         checkConfig.addProperty("format", "a href");
         checkConfig.addProperty("ignoreCase", "true");
         final String[] expected = {
-            "24:28: " + getCheckMessage(MSG_KEY, "a href"),
-            "25:32: " + getCheckMessage(MSG_KEY, "a href"),
+            "34:28: " + getCheckMessage(MSG_KEY, "a href"),
+            "35:32: " + getCheckMessage(MSG_KEY, "a href"),
         };
-        verify(checkConfig, getPath("InputIllegalTokenTextTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTokenTextTokens2.java"), expected);
     }
 
     @Test
@@ -83,9 +83,9 @@ public class IllegalTokenTextCheckTest
 
         checkConfig.addProperty("message", "My custom message");
         final String[] expected = {
-            "24:28: " + "My custom message",
+            "34:28: " + "My custom message",
         };
-        verify(checkConfig, getPath("InputIllegalTokenTextTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTokenTextTokens3.java"), expected);
     }
 
     @Test
@@ -98,9 +98,9 @@ public class IllegalTokenTextCheckTest
 
         checkConfig.addProperty("message", null);
         final String[] expected = {
-            "24:28: " + getCheckMessage(MSG_KEY, "a href"),
+            "34:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
-        verify(checkConfig, getPath("InputIllegalTokenTextTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTokenTextTokens4.java"), expected);
     }
 
     @Test
@@ -111,12 +111,12 @@ public class IllegalTokenTextCheckTest
         checkConfig.addProperty("format", "a href");
 
         final String[] expected = {
-            "13:28: " + getCheckMessage(MSG_KEY, "a href"),
-            "16:32: " + getCheckMessage(MSG_KEY, "a href"),
-            "28:37: " + getCheckMessage(MSG_KEY, "a href"),
-            "33:37: " + getCheckMessage(MSG_KEY, "a href"),
-            "39:54: " + getCheckMessage(MSG_KEY, "a href"),
-            };
+            "16:28: " + getCheckMessage(MSG_KEY, "a href"),
+            "19:32: " + getCheckMessage(MSG_KEY, "a href"),
+            "31:37: " + getCheckMessage(MSG_KEY, "a href"),
+            "36:37: " + getCheckMessage(MSG_KEY, "a href"),
+            "42:54: " + getCheckMessage(MSG_KEY, "a href"),
+        };
         verify(checkConfig,
             getNonCompilablePath("InputIllegalTokenTextTextBlocks.java"), expected);
     }
@@ -129,14 +129,14 @@ public class IllegalTokenTextCheckTest
         checkConfig.addProperty("format", "\"");
 
         final String[] expected = {
-            "13:28: " + getCheckMessage(MSG_KEY, "\""),
-            "14:33: " + getCheckMessage(MSG_KEY, "\""),
-            "16:32: " + getCheckMessage(MSG_KEY, "\""),
-            "18:36: " + getCheckMessage(MSG_KEY, "\""),
-            "28:37: " + getCheckMessage(MSG_KEY, "\""),
-            "33:37: " + getCheckMessage(MSG_KEY, "\""),
-            "39:42: " + getCheckMessage(MSG_KEY, "\""),
-            };
+            "16:28: " + getCheckMessage(MSG_KEY, "\""),
+            "17:33: " + getCheckMessage(MSG_KEY, "\""),
+            "19:32: " + getCheckMessage(MSG_KEY, "\""),
+            "21:36: " + getCheckMessage(MSG_KEY, "\""),
+            "31:37: " + getCheckMessage(MSG_KEY, "\""),
+            "36:37: " + getCheckMessage(MSG_KEY, "\""),
+            "42:42: " + getCheckMessage(MSG_KEY, "\""),
+        };
         verify(checkConfig,
             getNonCompilablePath("InputIllegalTokenTextTextBlocksQuotes.java"), expected);
     }
@@ -160,9 +160,10 @@ public class IllegalTokenTextCheckTest
 
         checkConfig.addProperty("message", null);
         final String[] expected = {
-            "35:28: " + getCheckMessage(MSG_KEY, "a href"),
+            "1:3: " + getCheckMessage(MSG_KEY, "a href"),
+            "45:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
-        verify(checkConfig, getPath("InputIllegalTokenTextTokens.java"), expected);
+        verify(checkConfig, getPath("InputIllegalTokenTextTokens5.java"), expected);
     }
 
     @Test

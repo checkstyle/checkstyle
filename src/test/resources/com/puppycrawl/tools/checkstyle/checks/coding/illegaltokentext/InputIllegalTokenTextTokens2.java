@@ -1,7 +1,7 @@
 /*
 IllegalTokenText
 format = a href
-ignoreCase = (default)false
+ignoreCase = true
 message = (default)
 tokens = STRING_LITERAL
 
@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 /**
  * Test for illegal tokens
  */
-public class InputIllegalTokenTextTokens
+public class InputIllegalTokenTextTokens2
 {
     public void methodWithPreviouslyIllegalTokens()
     {
