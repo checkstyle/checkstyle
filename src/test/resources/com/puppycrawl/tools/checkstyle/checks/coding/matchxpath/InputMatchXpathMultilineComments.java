@@ -3,6 +3,7 @@ MatchXpath
 query = //BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT[contains(@text, '\n    Forbidden comment\n') \
         and not(starts-with(@text, '\nMatchXpath'))]]
 
+
 */
 
 

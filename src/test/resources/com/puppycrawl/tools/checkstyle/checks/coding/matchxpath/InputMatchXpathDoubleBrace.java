@@ -1,12 +1,17 @@
+/*
+MatchXpath
+query = //INSTANCE_INIT[not(../*[not(\n                    self::LCURLY or\n                    \
+        self::INSTANCE_INIT or\n                    self::RCURLY or\n                    \
+        self::SINGLE_LINE_COMMENT or\n                    self::BLOCK_COMMENT_BEGIN\
+        \n                )])]
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
 import java.util.ArrayList;
 
-/* Config:
- *
- * query: //INSTANCE_INIT[not(../*[not(self::LCURLY or self::INSTANCE_INIT or self::RCURLY or
- * self::SINGLE_LINE_COMMENT or self::BLOCK_COMMENT_BEGIN)])]
- */
 public class InputMatchXpathDoubleBrace {
     public void test() {
         new ArrayList<Integer>() {{ // violation

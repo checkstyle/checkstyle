@@ -7,7 +7,7 @@ query = (default)
 
 package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
-public class InputMatchXpath {
+public class InputMatchXpath2 {
     public void test() { } // violation
 
     public void foo() { } // violation
