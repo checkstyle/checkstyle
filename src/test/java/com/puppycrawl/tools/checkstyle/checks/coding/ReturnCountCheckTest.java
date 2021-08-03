@@ -52,10 +52,10 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ReturnCountCheck.class);
         final String[] expected = {
-            "18:5: " + getCheckMessage(MSG_KEY_VOID, 7, 1),
-            "30:5: " + getCheckMessage(MSG_KEY_VOID, 2, 1),
-            "35:17: " + getCheckMessage(MSG_KEY_VOID, 6, 1),
-            "49:5: " + getCheckMessage(MSG_KEY, 7, 2),
+            "28:5: " + getCheckMessage(MSG_KEY_VOID, 7, 1),
+            "40:5: " + getCheckMessage(MSG_KEY_VOID, 2, 1),
+            "45:17: " + getCheckMessage(MSG_KEY_VOID, 6, 1),
+            "59:5: " + getCheckMessage(MSG_KEY, 7, 2),
         };
         verify(checkConfig, getPath("InputReturnCountSwitches.java"), expected);
     }
@@ -66,13 +66,13 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(ReturnCountCheck.class);
         checkConfig.addProperty("format", "^$");
         final String[] expected = {
-            "5:5: " + getCheckMessage(MSG_KEY, 7, 2),
-            "18:5: " + getCheckMessage(MSG_KEY_VOID, 7, 1),
-            "30:5: " + getCheckMessage(MSG_KEY_VOID, 2, 1),
-            "35:17: " + getCheckMessage(MSG_KEY_VOID, 6, 1),
-            "49:5: " + getCheckMessage(MSG_KEY, 7, 2),
+            "15:5: " + getCheckMessage(MSG_KEY, 7, 2),
+            "28:5: " + getCheckMessage(MSG_KEY_VOID, 7, 1),
+            "40:5: " + getCheckMessage(MSG_KEY_VOID, 2, 1),
+            "45:17: " + getCheckMessage(MSG_KEY_VOID, 6, 1),
+            "59:5: " + getCheckMessage(MSG_KEY, 7, 2),
         };
-        verify(checkConfig, getPath("InputReturnCountSwitches.java"), expected);
+        verify(checkConfig, getPath("InputReturnCountSwitches2.java"), expected);
     }
 
     @Test
@@ -80,11 +80,11 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(ReturnCountCheck.class);
         checkConfig.addProperty("max", "1");
         final String[] expected = {
-            "15:55: " + getCheckMessage(MSG_KEY, 2, 1),
-            "27:49: " + getCheckMessage(MSG_KEY, 2, 1),
-            "34:42: " + getCheckMessage(MSG_KEY, 3, 1),
-            "41:5: " + getCheckMessage(MSG_KEY, 2, 1),
-            "49:57: " + getCheckMessage(MSG_KEY, 2, 1),
+            "25:55: " + getCheckMessage(MSG_KEY, 2, 1),
+            "37:49: " + getCheckMessage(MSG_KEY, 2, 1),
+            "44:42: " + getCheckMessage(MSG_KEY, 3, 1),
+            "51:5: " + getCheckMessage(MSG_KEY, 2, 1),
+            "59:57: " + getCheckMessage(MSG_KEY, 2, 1),
         };
         verify(checkConfig, getPath("InputReturnCountLambda.java"), expected);
     }
@@ -94,9 +94,9 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(ReturnCountCheck.class);
         checkConfig.addProperty("tokens", "LAMBDA");
         final String[] expected = {
-            "34:42: " + getCheckMessage(MSG_KEY, 3, 2),
+            "43:42: " + getCheckMessage(MSG_KEY, 3, 2),
         };
-        verify(checkConfig, getPath("InputReturnCountLambda.java"), expected);
+        verify(checkConfig, getPath("InputReturnCountLambda2.java"), expected);
     }
 
     @Test
@@ -104,12 +104,12 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(ReturnCountCheck.class);
         checkConfig.addProperty("tokens", "METHOD_DEF");
         final String[] expected = {
-            "26:5: " + getCheckMessage(MSG_KEY, 3, 2),
-            "33:5: " + getCheckMessage(MSG_KEY, 4, 2),
-            "41:5: " + getCheckMessage(MSG_KEY, 4, 2),
-            "56:5: " + getCheckMessage(MSG_KEY, 3, 2),
+            "35:5: " + getCheckMessage(MSG_KEY, 3, 2),
+            "42:5: " + getCheckMessage(MSG_KEY, 4, 2),
+            "50:5: " + getCheckMessage(MSG_KEY, 4, 2),
+            "65:5: " + getCheckMessage(MSG_KEY, 3, 2),
         };
-        verify(checkConfig, getPath("InputReturnCountLambda.java"), expected);
+        verify(checkConfig, getPath("InputReturnCountLambda3.java"), expected);
     }
 
     @Test
@@ -117,7 +117,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(ReturnCountCheck.class);
         checkConfig.addProperty("tokens", "LITERAL_RETURN");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputReturnCountLambda.java"), expected);
+        verify(checkConfig, getPath("InputReturnCountLambda4.java"), expected);
     }
 
     @Test
@@ -150,11 +150,11 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("max", "2");
         checkConfig.addProperty("maxForVoid", "0");
         final String[] expected = {
-            "4:5: " + getCheckMessage(MSG_KEY_VOID, 1, 0),
-            "8:5: " + getCheckMessage(MSG_KEY_VOID, 1, 0),
-            "14:5: " + getCheckMessage(MSG_KEY_VOID, 2, 0),
-            "30:5: " + getCheckMessage(MSG_KEY, 3, 2),
-            "41:5: " + getCheckMessage(MSG_KEY_VOID, 2, 0),
+            "14:5: " + getCheckMessage(MSG_KEY_VOID, 1, 0),
+            "18:5: " + getCheckMessage(MSG_KEY_VOID, 1, 0),
+            "24:5: " + getCheckMessage(MSG_KEY_VOID, 2, 0),
+            "40:5: " + getCheckMessage(MSG_KEY, 3, 2),
+            "51:5: " + getCheckMessage(MSG_KEY_VOID, 2, 0),
         };
         verify(checkConfig, getPath("InputReturnCountVoid.java"), expected);
     }
