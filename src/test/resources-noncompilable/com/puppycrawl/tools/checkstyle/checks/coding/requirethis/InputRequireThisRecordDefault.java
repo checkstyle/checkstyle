@@ -1,12 +1,15 @@
+/*
+RequireThis
+checkFields = (default)true
+checkMethods = (default)true
+validateOnlyOverlapping = (default)true
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-/* Config:
- * checkFields = true
- * checkMethods = true
- * validateOnlyOverlapping = true
- *
- */
 public record InputRequireThisRecordDefault(int x, int y) {
     private static int i; // all fields must be static in a record definition
 

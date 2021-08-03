@@ -1,6 +1,15 @@
+/*
+RequireThis
+checkFields = (default)true
+checkMethods = (default)true
+validateOnlyOverlapping = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-public class InputRequireThisCaseGroup {
+public class InputRequireThisCaseGroup { // ok
     private String aVariable;
 
     public String method1(int val) {

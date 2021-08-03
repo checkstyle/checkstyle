@@ -1,3 +1,12 @@
+/*
+RequireThis
+checkFields = (default)true
+checkMethods = (default)true
+validateOnlyOverlapping = false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 import java.io.BufferedReader;
@@ -5,7 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.io.IOException;
 
-public final class InputRequireThisStatic {
+public final class InputRequireThisStatic { // ok
     public static String staticField1 = "";
 
     public static String staticField2 = new String(staticField1);

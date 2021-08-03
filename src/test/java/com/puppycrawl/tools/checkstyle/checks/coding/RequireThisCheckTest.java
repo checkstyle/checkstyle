@@ -57,24 +57,24 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(RequireThisCheck.class);
         checkConfig.addProperty("validateOnlyOverlapping", "false");
         final String[] expected = {
-            "11:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
-            "17:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
-            "31:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
-            "49:13: " + getCheckMessage(MSG_VARIABLE, "z", ""),
-            "56:9: " + getCheckMessage(MSG_VARIABLE, "z", ""),
-            "113:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
-            "114:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
-            "115:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", ""),
-            "121:13: " + getCheckMessage(MSG_METHOD, "instanceMethod", "Issue2240."),
-            "122:13: " + getCheckMessage(MSG_VARIABLE, "i", "Issue2240."),
-            "134:9: " + getCheckMessage(MSG_METHOD, "foo", ""),
-            "142:9: " + getCheckMessage(MSG_VARIABLE, "s", ""),
-            "168:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "168:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "168:24: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "174:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "174:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "174:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "20:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "26:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
+            "40:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "58:13: " + getCheckMessage(MSG_VARIABLE, "z", ""),
+            "65:9: " + getCheckMessage(MSG_VARIABLE, "z", ""),
+            "122:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "123:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "124:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", ""),
+            "130:13: " + getCheckMessage(MSG_METHOD, "instanceMethod", "Issue2240."),
+            "131:13: " + getCheckMessage(MSG_VARIABLE, "i", "Issue2240."),
+            "143:9: " + getCheckMessage(MSG_METHOD, "foo", ""),
+            "151:9: " + getCheckMessage(MSG_VARIABLE, "s", ""),
+            "177:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "177:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "177:24: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "183:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "183:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "183:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
         };
         verify(checkConfig,
                getPath("InputRequireThisEnumInnerClassesAndBugs.java"),
@@ -88,13 +88,13 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("checkFields", "false");
         checkConfig.addProperty("validateOnlyOverlapping", "false");
         final String[] expected = {
-            "17:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
-            "115:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", ""),
-            "121:13: " + getCheckMessage(MSG_METHOD, "instanceMethod", "Issue2240."),
-            "134:9: " + getCheckMessage(MSG_METHOD, "foo", ""),
+            "25:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
+            "124:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", ""),
+            "130:13: " + getCheckMessage(MSG_METHOD, "instanceMethod", "Issue22402."),
+            "143:9: " + getCheckMessage(MSG_METHOD, "foo", ""),
         };
         verify(checkConfig,
-               getPath("InputRequireThisEnumInnerClassesAndBugs.java"),
+               getPath("InputRequireThisEnumInnerClassesAndBugs2.java"),
                expected);
     }
 
@@ -105,23 +105,23 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("checkMethods", "false");
         checkConfig.addProperty("validateOnlyOverlapping", "false");
         final String[] expected = {
-            "11:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
-            "31:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
-            "49:13: " + getCheckMessage(MSG_VARIABLE, "z", ""),
-            "56:9: " + getCheckMessage(MSG_VARIABLE, "z", ""),
-            "113:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
-            "114:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
-            "122:13: " + getCheckMessage(MSG_VARIABLE, "i", "Issue2240."),
-            "142:9: " + getCheckMessage(MSG_VARIABLE, "s", ""),
-            "168:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "168:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "168:24: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "174:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "174:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "174:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "19:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "39:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "58:13: " + getCheckMessage(MSG_VARIABLE, "z", ""),
+            "65:9: " + getCheckMessage(MSG_VARIABLE, "z", ""),
+            "122:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "123:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
+            "131:13: " + getCheckMessage(MSG_VARIABLE, "i", "Issue22403."),
+            "152:9: " + getCheckMessage(MSG_VARIABLE, "s", ""),
+            "179:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "179:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "179:24: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "185:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "185:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "185:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
         };
         verify(checkConfig,
-               getPath("InputRequireThisEnumInnerClassesAndBugs.java"),
+               getPath("InputRequireThisEnumInnerClassesAndBugs3.java"),
                expected);
     }
 
@@ -132,25 +132,25 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("checkMethods", "false");
         checkConfig.addProperty("validateOnlyOverlapping", "false");
         final String[] expected = {
-            "15:28: " + getCheckMessage(MSG_VARIABLE, "id", ""),
-            "16:28: " + getCheckMessage(MSG_VARIABLE, "length", ""),
-            "17:28: " + getCheckMessage(MSG_VARIABLE, "length", ""),
-            "18:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
-            "19:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
-            "20:25: " + getCheckMessage(MSG_VARIABLE, "length", ""),
-            "21:25: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "18:28: " + getCheckMessage(MSG_VARIABLE, "id", ""),
+            "19:28: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "20:28: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "21:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
             "22:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
-            "23:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
-            "24:33: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "25:36: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "23:25: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "24:25: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "25:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
             "26:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
-            "27:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
-            "28:28: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "27:33: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "28:36: " + getCheckMessage(MSG_VARIABLE, "b", ""),
             "29:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
             "30:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
-            "31:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
-            "32:31: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "33:32: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "31:28: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "32:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "33:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "34:26: " + getCheckMessage(MSG_VARIABLE, "length", ""),
+            "35:31: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "36:32: " + getCheckMessage(MSG_VARIABLE, "b", ""),
         };
         verify(checkConfig,
                getPath("InputRequireThisExpressions.java"),
@@ -172,8 +172,8 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(RequireThisCheck.class);
         checkConfig.addProperty("validateOnlyOverlapping", "false");
         final String[] expected = {
-            "7:19: " + getCheckMessage(MSG_VARIABLE, "number", ""),
-            "8:16: " + getCheckMessage(MSG_METHOD, "other", ""),
+            "16:19: " + getCheckMessage(MSG_VARIABLE, "number", ""),
+            "17:16: " + getCheckMessage(MSG_METHOD, "other", ""),
         };
         verify(checkConfig,
                 getPath("InputRequireThisSimple.java"),
@@ -193,9 +193,9 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(RequireThisCheck.class);
         checkConfig.addProperty("validateOnlyOverlapping", "false");
         final String[] expected = {
-            "19:25: " + getCheckMessage(MSG_METHOD, "doSideEffect", ""),
-            "23:24: " + getCheckMessage(MSG_VARIABLE, "bar", "InputRequireThisAnonymousEmpty."),
-            "46:17: " + getCheckMessage(MSG_VARIABLE, "foobar", ""),
+            "28:25: " + getCheckMessage(MSG_METHOD, "doSideEffect", ""),
+            "32:24: " + getCheckMessage(MSG_VARIABLE, "bar", "InputRequireThisAnonymousEmpty."),
+            "55:17: " + getCheckMessage(MSG_VARIABLE, "foobar", ""),
         };
         verify(checkConfig,
                 getPath("InputRequireThisAnonymousEmpty.java"),
@@ -220,51 +220,51 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(RequireThisCheck.class);
         checkConfig.addProperty("validateOnlyOverlapping", "false");
         final String[] expected = {
-            "20:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "21:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
-            "22:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
-            "23:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
-            "27:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
-            "28:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
-            "29:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
-            "33:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
-            "37:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
-            "41:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
-            "43:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "45:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
-            "49:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
-            "50:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
-            "60:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
-            "61:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
-            "80:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "119:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "29:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "30:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
+            "31:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
+            "32:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
+            "36:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
+            "37:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
+            "38:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
+            "42:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
+            "46:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
+            "50:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
+            "52:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "54:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
+            "58:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
+            "59:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
+            "69:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
+            "70:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
+            "89:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "128:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "132:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
-            "168:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
-            "169:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
-            "170:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
-            "172:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "176:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
-            "177:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
-            "178:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
-            "180:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "185:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "137:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "141:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
+            "177:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
+            "178:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
+            "179:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
+            "181:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "185:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
+            "186:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal2", ""),
+            "187:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal3", ""),
             "189:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "210:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "217:29: " + getCheckMessage(MSG_VARIABLE, "booleanField", ""),
-            "228:21: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "238:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "253:9: " + getCheckMessage(MSG_VARIABLE, "booleanField", ""),
-            "262:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "270:18: " + getCheckMessage(MSG_METHOD, "addSuf2F", ""),
-            "275:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "275:18: " + getCheckMessage(MSG_METHOD, "addSuf2F", ""),
-            "301:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "340:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "374:25: " + getCheckMessage(MSG_METHOD, "getAction", ""),
-            "376:20: " + getCheckMessage(MSG_METHOD, "processAction", ""),
-            "384:16: " + getCheckMessage(MSG_METHOD, "processAction", ""),
-            "490:22: " + getCheckMessage(MSG_VARIABLE, "add", ""),
+            "194:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "198:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "219:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "226:29: " + getCheckMessage(MSG_VARIABLE, "booleanField", ""),
+            "237:21: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "247:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "262:9: " + getCheckMessage(MSG_VARIABLE, "booleanField", ""),
+            "271:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "279:18: " + getCheckMessage(MSG_METHOD, "addSuf2F", ""),
+            "284:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "284:18: " + getCheckMessage(MSG_METHOD, "addSuf2F", ""),
+            "310:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "349:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "383:25: " + getCheckMessage(MSG_METHOD, "getAction", ""),
+            "385:20: " + getCheckMessage(MSG_METHOD, "processAction", ""),
+            "393:16: " + getCheckMessage(MSG_METHOD, "processAction", ""),
+            "499:22: " + getCheckMessage(MSG_VARIABLE, "add", ""),
         };
         verify(checkConfig, getPath("InputRequireThisValidateOnlyOverlappingFalse.java"), expected);
     }
@@ -273,18 +273,18 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     public void testValidateOnlyOverlappingTrue() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RequireThisCheck.class);
         final String[] expected = {
-            "20:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "43:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "80:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "119:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "172:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "180:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "238:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "253:9: " + getCheckMessage(MSG_VARIABLE, "booleanField", ""),
-            "262:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "275:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "301:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "339:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "29:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "52:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "89:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "128:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "181:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "189:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "247:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "262:9: " + getCheckMessage(MSG_VARIABLE, "booleanField", ""),
+            "271:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "284:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "310:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "348:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
         };
         verify(checkConfig, getPath("InputRequireThisValidateOnlyOverlappingTrue.java"), expected);
     }
@@ -316,7 +316,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     public void testMethodReferences() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RequireThisCheck.class);
         final String[] expected = {
-            "15:9: " + getCheckMessage(MSG_VARIABLE, "tags", ""),
+            "24:9: " + getCheckMessage(MSG_VARIABLE, "tags", ""),
         };
         verify(checkConfig, getPath("InputRequireThisMethodReferences.java"), expected);
     }
@@ -327,12 +327,12 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("validateOnlyOverlapping", "false");
         checkConfig.addProperty("checkMethods", "false");
         final String[] expected = {
-            "14:9: " + getCheckMessage(MSG_VARIABLE, "s1", ""),
-            "22:9: " + getCheckMessage(MSG_VARIABLE, "s1", ""),
-            "35:9: " + getCheckMessage(MSG_VARIABLE, "s2", ""),
-            "40:9: " + getCheckMessage(MSG_VARIABLE, "s2", ""),
-            "46:9: " + getCheckMessage(MSG_VARIABLE, "s2", ""),
-            "47:16: " + getCheckMessage(MSG_VARIABLE, "s1", ""),
+            "18:9: " + getCheckMessage(MSG_VARIABLE, "s1", ""),
+            "26:9: " + getCheckMessage(MSG_VARIABLE, "s1", ""),
+            "39:9: " + getCheckMessage(MSG_VARIABLE, "s2", ""),
+            "44:9: " + getCheckMessage(MSG_VARIABLE, "s2", ""),
+            "50:9: " + getCheckMessage(MSG_VARIABLE, "s2", ""),
+            "51:16: " + getCheckMessage(MSG_VARIABLE, "s1", ""),
         };
         verify(checkConfig, getPath("InputRequireThisAllowLocalVars.java"), expected);
     }
@@ -343,10 +343,10 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("validateOnlyOverlapping", "false");
         checkConfig.addProperty("checkMethods", "false");
         final String[] expected = {
-            "15:9: " + getCheckMessage(MSG_VARIABLE, "s1", ""),
-            "37:21: " + getCheckMessage(MSG_VARIABLE, "z", ""),
-            "62:29: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "62:34: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "24:9: " + getCheckMessage(MSG_VARIABLE, "s1", ""),
+            "46:21: " + getCheckMessage(MSG_VARIABLE, "z", ""),
+            "71:29: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "71:34: " + getCheckMessage(MSG_VARIABLE, "b", ""),
         };
         verify(checkConfig, getPath("InputRequireThisAllowLambdaParameters.java"), expected);
     }
@@ -356,7 +356,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(RequireThisCheck.class);
         checkConfig.addProperty("validateOnlyOverlapping", "false");
         final String[] expected = {
-            "29:21: " + getCheckMessage(MSG_VARIABLE, "ex", ""),
+            "38:21: " + getCheckMessage(MSG_VARIABLE, "ex", ""),
         };
         verify(checkConfig, getPath("InputRequireThisCatchVariables.java"), expected);
     }
@@ -382,8 +382,8 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(RequireThisCheck.class);
         checkConfig.addProperty("validateOnlyOverlapping", "false");
         final String[] expected = {
-            "13:13: " + getCheckMessage(MSG_VARIABLE, "bottom", ""),
-            "21:34: " + getCheckMessage(MSG_VARIABLE, "name", ""),
+            "22:13: " + getCheckMessage(MSG_VARIABLE, "bottom", ""),
+            "30:34: " + getCheckMessage(MSG_VARIABLE, "name", ""),
         };
         verify(checkConfig, getPath("InputRequireThisFor.java"), expected);
     }
@@ -392,8 +392,8 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     public void testFinalInstanceVariable() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RequireThisCheck.class);
         final String[] expected = {
-            "13:9: " + getCheckMessage(MSG_VARIABLE, "y", ""),
-            "14:9: " + getCheckMessage(MSG_VARIABLE, "z", ""),
+            "18:9: " + getCheckMessage(MSG_VARIABLE, "y", ""),
+            "19:9: " + getCheckMessage(MSG_VARIABLE, "z", ""),
         };
         verify(checkConfig, getPath("InputRequireThisFinalInstanceVariable.java"), expected);
     }
@@ -419,14 +419,14 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("checkFields", "false");
         checkConfig.addProperty("validateOnlyOverlapping", "false");
         final String[] expected = {
-            "15:13: " + getCheckMessage(MSG_METHOD, "method1", ""),
-            "16:13: " + getCheckMessage(MSG_METHOD, "method2", ""),
-            "17:13: " + getCheckMessage(MSG_METHOD, "method3", ""),
-            "27:13: " + getCheckMessage(MSG_METHOD, "method1", ""),
-            "53:13: " + getCheckMessage(MSG_METHOD, "method1", ""),
-            "54:13: " + getCheckMessage(MSG_METHOD, "method2", ""),
-            "55:13: " + getCheckMessage(MSG_METHOD, "method3", ""),
-            "65:13: " + getCheckMessage(MSG_METHOD, "method1", ""),
+            "18:13: " + getCheckMessage(MSG_METHOD, "method1", ""),
+            "19:13: " + getCheckMessage(MSG_METHOD, "method2", ""),
+            "20:13: " + getCheckMessage(MSG_METHOD, "method3", ""),
+            "30:13: " + getCheckMessage(MSG_METHOD, "method1", ""),
+            "56:13: " + getCheckMessage(MSG_METHOD, "method1", ""),
+            "57:13: " + getCheckMessage(MSG_METHOD, "method2", ""),
+            "58:13: " + getCheckMessage(MSG_METHOD, "method3", ""),
+            "68:13: " + getCheckMessage(MSG_METHOD, "method1", ""),
         };
         verify(checkConfig,
                 getNonCompilablePath("InputRequireThisRecordsAndCompactCtors.java"),
@@ -449,13 +449,13 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("checkFields", "true");
         checkConfig.addProperty("validateOnlyOverlapping", "false");
         final String[] expected = {
-            "14:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
-            "15:9: " + getCheckMessage(MSG_METHOD, "method2", ""),
-            "16:9: " + getCheckMessage(MSG_METHOD, "method3", ""),
-            "23:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
-            "27:21: " + getCheckMessage(MSG_VARIABLE, "x", ""),
-            "35:17: " + getCheckMessage(MSG_VARIABLE, "y", ""),
-            "42:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
+            "17:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
+            "18:9: " + getCheckMessage(MSG_METHOD, "method2", ""),
+            "19:9: " + getCheckMessage(MSG_METHOD, "method3", ""),
+            "26:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
+            "30:21: " + getCheckMessage(MSG_VARIABLE, "x", ""),
+            "38:17: " + getCheckMessage(MSG_VARIABLE, "y", ""),
+            "45:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
         };
         verify(checkConfig,
                 getNonCompilablePath("InputRequireThisRecordAsTopLevel.java"),
@@ -466,7 +466,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     public void testRecordsDefault() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RequireThisCheck.class);
         final String[] expected = {
-            "23:9: " + getCheckMessage(MSG_VARIABLE, "x", ""),
+            "26:9: " + getCheckMessage(MSG_VARIABLE, "x", ""),
         };
         verify(checkConfig,
                 getNonCompilablePath("InputRequireThisRecordDefault.java"),

@@ -1,3 +1,12 @@
+/*
+RequireThis
+checkFields = (default)true
+checkMethods = false
+validateOnlyOverlapping = false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 import java.util.function.Consumer;
@@ -12,7 +21,7 @@ public class InputRequireThisAllowLambdaParameters {
         strings.stream().filter(s1 -> s1.contains("f"))  // NO violation; s1 is a lambda parameter
                 .collect(java.util.stream.Collectors.toList());
 
-        s1 = "foo1"; // violation; validateOnlyOverlapping=false
+        s1 = "foo1"; // violation
     }
 
     void foo2() {
