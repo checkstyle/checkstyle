@@ -1,15 +1,20 @@
+/*
+MagicNumber
+ignoreNumbers = (default)-1, 0, 1, 2
+ignoreHashCodeMethod = (default)false
+ignoreAnnotation = (default)false
+ignoreFieldDeclaration = true
+ignoreAnnotationElementDefaults = (default)true
+constantWaiverParentToken = (default)TYPECAST, METHOD_CALL, EXPR, ARRAY_INIT, UNARY_MINUS, \
+                            UNARY_PLUS, ELIST, STAR, ASSIGN, PLUS, MINUS, DIV, LITERAL_NEW
+tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
-/* Config:
- * ignoreNumbers = {-1, 0, 1, 2}
- * ignoreHashCodeMethod = false
- * ignoreAnnotation = false
- * ignoreFieldDeclaration = true
- * ignoreAnnotationElementDefaults = true
- * constantWaiverParentToken = {TYPECAST , METHOD_CALL , EXPR , ARRAY_INIT , UNARY_MINUS ,
- *  UNARY_PLUS , ELIST , STAR , ASSIGN , PLUS , MINUS , DIV , LITERAL_NEW}
- * tokens = {NUM_DOUBLE , NUM_FLOAT , NUM_INT , NUM_LONG}
- */
+
 public class InputMagicNumberIgnoreFieldDeclarationRecords {
     @anno(6) // violation
     public record MyRecord() {
