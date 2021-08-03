@@ -1,6 +1,6 @@
 /*
 MatchXpath
-query = //SINGLE_LINE_COMMENT[./COMMENT_CONTENT[not(starts-with (@text, ' '))]]
+query = //SINGLE_LINE_COMMENT[./COMMENT_CONTENT[not(starts-with(@text, ' '))]]
 
 */
 

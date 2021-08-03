@@ -1,9 +1,12 @@
+/*
+MatchXpath
+query = //STRING_LITERAL[not(@text='')]
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
-/* Config:
- *
- * query: //STRING_LITERAL[not(@text='')]
- */
 public class InputMatchXpathNoStackoverflowError {
   private String str = ""
       +""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""+""
