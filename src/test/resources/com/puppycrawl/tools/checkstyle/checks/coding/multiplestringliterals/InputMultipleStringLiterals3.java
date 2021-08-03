@@ -1,7 +1,7 @@
 /*
 MultipleStringLiterals
 allowedDuplicates = 2
-ignoreStringsRegexp =
+ignoreStringsRegexp = (default)^""$
 ignoreOccurrenceContext = (default)ANNOTATION
 
 
@@ -9,7 +9,7 @@ ignoreOccurrenceContext = (default)ANNOTATION
 
 package com.puppycrawl.tools.checkstyle.checks.coding.multiplestringliterals;
 
-public class InputMultipleStringLiterals
+public class InputMultipleStringLiterals3
 {   /*string literals*/
     String m = "StringContents"; // violation
     String m1 = "SingleString";

@@ -48,9 +48,9 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("ignoreStringsRegexp", "");
 
         final String[] expected = {
-            "5:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
-            "8:17: " + getCheckMessage(MSG_KEY, "\"\"", 4),
-            "10:23: " + getCheckMessage(MSG_KEY, "\", \"", 3),
+            "14:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
+            "17:17: " + getCheckMessage(MSG_KEY, "\"\"", 4),
+            "19:23: " + getCheckMessage(MSG_KEY, "\", \"", 3),
         };
 
         verify(checkConfig,
@@ -65,12 +65,12 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("allowedDuplicates", "2");
 
         final String[] expected = {
-            "5:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
-            "10:23: " + getCheckMessage(MSG_KEY, "\", \"", 3),
+            "14:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
+            "19:23: " + getCheckMessage(MSG_KEY, "\", \"", 3),
         };
 
         verify(checkConfig,
-               getPath("InputMultipleStringLiterals.java"),
+               getPath("InputMultipleStringLiterals2.java"),
                expected);
     }
 
@@ -80,14 +80,14 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(MultipleStringLiteralsCheck.class);
         checkConfig.addProperty("allowedDuplicates", "2");
 
-        final String firstInput = getPath("InputMultipleStringLiterals.java");
+        final String firstInput = getPath("InputMultipleStringLiterals3.java");
         final String secondInput = getPath("InputMultipleStringLiteralsNoWarnings.java");
 
         final File[] inputs = {new File(firstInput), new File(secondInput)};
 
         final List<String> expectedFirstInput = Arrays.asList(
-            "5:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
-            "10:23: " + getCheckMessage(MSG_KEY, "\", \"", 3)
+            "14:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
+            "19:23: " + getCheckMessage(MSG_KEY, "\", \"", 3)
         );
         final List<String> expectedSecondInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
 
@@ -104,11 +104,11 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("ignoreStringsRegexp", "^((\"\")|(\", \"))$");
 
         final String[] expected = {
-            "5:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
+            "14:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
         };
 
         verify(checkConfig,
-               getPath("InputMultipleStringLiterals.java"),
+               getPath("InputMultipleStringLiterals4.java"),
                expected);
     }
 
@@ -120,11 +120,11 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("ignoreOccurrenceContext", "");
 
         final String[] expected = {
-            "19:23: " + getCheckMessage(MSG_KEY, "\"unchecked\"", 4),
+            "28:23: " + getCheckMessage(MSG_KEY, "\"unchecked\"", 4),
         };
 
         verify(checkConfig,
-               getPath("InputMultipleStringLiterals.java"),
+               getPath("InputMultipleStringLiterals5.java"),
                expected);
     }
 
@@ -141,14 +141,14 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MultipleStringLiteralsCheck.class);
         final String[] expected = {
-            "5:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
-            "7:17: " + getCheckMessage(MSG_KEY, "\"DoubleString\"", 2),
-            "10:23: " + getCheckMessage(MSG_KEY, "\", \"", 3),
+            "14:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
+            "16:17: " + getCheckMessage(MSG_KEY, "\"DoubleString\"", 2),
+            "19:23: " + getCheckMessage(MSG_KEY, "\", \"", 3),
         };
 
         createChecker(checkConfig);
         verify(checkConfig,
-            getPath("InputMultipleStringLiterals.java"),
+            getPath("InputMultipleStringLiterals6.java"),
             expected);
     }
 
@@ -159,12 +159,12 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("ignoreStringsRegexp", null);
         checkConfig.addProperty("ignoreOccurrenceContext", "VARIABLE_DEF");
         final String[] expected = {
-            "19:23: " + getCheckMessage(MSG_KEY, "\"unchecked\"", 4),
+            "28:23: " + getCheckMessage(MSG_KEY, "\"unchecked\"", 4),
         };
 
         createChecker(checkConfig);
         verify(checkConfig,
-            getPath("InputMultipleStringLiterals.java"),
+            getPath("InputMultipleStringLiterals7.java"),
             expected);
     }
 
@@ -176,23 +176,23 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("ignoreOccurrenceContext", "ANNOTATION");
 
         final String[] expected = {
-            "11:22: " + getCheckMessage(MSG_KEY, "\"string\"", 3),
-            "16:25: " + getCheckMessage(MSG_KEY, "\"other string\"", 2),
-            "20:25: " + getCheckMessage(MSG_KEY, "\"other string\\n\"", 2),
-            "27:25: " + getCheckMessage(MSG_KEY, "\"<html>\\u000D\\u000A\\n\\u2000\\n "
+            "14:22: " + getCheckMessage(MSG_KEY, "\"string\"", 3),
+            "19:25: " + getCheckMessage(MSG_KEY, "\"other string\"", 2),
+            "23:25: " + getCheckMessage(MSG_KEY, "\"other string\\n\"", 2),
+            "30:25: " + getCheckMessage(MSG_KEY, "\"<html>\\u000D\\u000A\\n\\u2000\\n "
                 + "   <body>\\u000D\\u000A\\n\\u2000\\n        <p>Hello, world</p>\\u000D\\"
                 + "u000A\\n\\u2000\\n    </body>\\u000D\\u000A\\n\\u2000\\n</html>\\u000D\\"
                 + "u000A\\u2000\\n\"", 2),
-            "34:34: " + getCheckMessage(MSG_KEY, "\"fun with\\n\\n whitespace\\t"
+            "37:34: " + getCheckMessage(MSG_KEY, "\"fun with\\n\\n whitespace\\t"
                 + "\\r\\n and other escapes \\\"\"\"\\n\"", 2),
-            "39:34: " + getCheckMessage(MSG_KEY, "\"\\b \\f \\\\ \\0 \\1 \\2 "
+            "42:34: " + getCheckMessage(MSG_KEY, "\"\\b \\f \\\\ \\0 \\1 \\2 "
                 + "\\r \\r\\n \\\\r\\\\n \\\\''\\n\\\\11 \\\\57 \\n\\\\n\\n\\\\\\n\\n \\\\ \"\"a "
                 + "\"a\\n\\\\' \\\\\\' \\'\\n\"", 2),
-            "62:20: " + getCheckMessage(MSG_KEY, "\"foo\"", 4),
-            "70:19: " + getCheckMessage(MSG_KEY, "\"another test\"", 2),
-            "74:20: " + getCheckMessage(MSG_KEY, "\"\"", 6),
-            "85:23: " + getCheckMessage(MSG_KEY, "\"        .\\n         .\\n.\\n\"", 2),
-            "101:24: " + getCheckMessage(MSG_KEY, "\"             foo\\n\\n\\n "
+            "65:20: " + getCheckMessage(MSG_KEY, "\"foo\"", 4),
+            "73:19: " + getCheckMessage(MSG_KEY, "\"another test\"", 2),
+            "77:20: " + getCheckMessage(MSG_KEY, "\"\"", 6),
+            "88:23: " + getCheckMessage(MSG_KEY, "\"        .\\n         .\\n.\\n\"", 2),
+            "104:24: " + getCheckMessage(MSG_KEY, "\"             foo\\n\\n\\n "
                 + "       bar\"", 2),
             };
 
