@@ -1,3 +1,20 @@
+/*
+IllegalType
+validateAbstractClassNames = (default)false
+illegalClassNames = HashMap, HashSet, LinkedHashMap, LinkedHashSet, TreeMap, TreeSet, \
+                    java.util.HashMap, java.util.HashSet, java.util.LinkedHashMap, \
+                    java.util.LinkedHashSet, java.util.TreeMap, java.util.TreeSet, Cloneable
+legalAbstractClassNames = (default)
+ignoredMethodNames = (default)getEnvironment, getInitialContext
+illegalAbstractClassNameFormat = (default)^(.*[.])?Abstract.*$
+memberModifiers = (default)
+tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, INTERFACE_DEF, METHOD_CALL, METHOD_DEF, \
+         METHOD_REF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, RECORD_DEF, \
+         RECORD_COMPONENT_DEF
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 
@@ -5,12 +22,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.TreeSet;
 
-/*
- * Config:
- * illegalClassNames = { HashMap, HashSet, LinkedHashMap,LinkedHashSet, TreeMap, TreeSet,
-                         java.util.HashMap, java.util.HashSet, java.util.TreeMap,
-                         java.util.TreeSet, Cloneable }
- */
 public class InputIllegalTypeRecordsAndCompactCtors {
     record MyTestRecord
             (LinkedHashMap<Integer, Integer> linkedHashMap) { // violation
