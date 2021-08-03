@@ -1,10 +1,18 @@
-package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
+/*
+MagicNumber
+ignoreNumbers = (default)-1, 0, 1, 2
+ignoreHashCodeMethod = (default)false
+ignoreAnnotation = (default)false
+ignoreFieldDeclaration = (default)false
+ignoreAnnotationElementDefaults = (default)true
+constantWaiverParentToken = ASSIGN, ARRAY_INIT, EXPR, UNARY_PLUS, UNARY_MINUS, TYPECAST, \
+                            ELIST, STAR, DIV, PLUS, MINUS
+tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 
-/* Config:
- *
- * constantWaiverParentToken ={ASSIGN, ARRAY_INIT, EXPR, UNARY_PLUS, UNARY_MINUS, TYPECAST,
- * ELIST, STAR, DIV, PLUS, MINUS}
- */
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
 /**
  * Describe class InputMagicNumber

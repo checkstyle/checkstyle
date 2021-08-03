@@ -1,3 +1,17 @@
+/*
+MagicNumber
+ignoreNumbers =
+ignoreHashCodeMethod = (default)false
+ignoreAnnotation = true
+ignoreFieldDeclaration = (default)false
+ignoreAnnotationElementDefaults = (default)true
+constantWaiverParentToken = (default)TYPECAST, METHOD_CALL, EXPR, ARRAY_INIT, UNARY_MINUS, \
+                            UNARY_PLUS, ELIST, STAR, ASSIGN, PLUS, MINUS, DIV, LITERAL_NEW
+tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
 /* Config:
