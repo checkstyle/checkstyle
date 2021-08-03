@@ -1,9 +1,12 @@
+/*
+MatchXpath
+query = //CTOR_DEF[count(./PARAMETERS/node()) > 0]
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
-/* Config:
- *
- * query: //CTOR_DEF[count(./PARAMETERS/node()) > 0]
- */
 public class InputMatchXpathForbidParameterizedConstructor {
 
     public InputMatchXpathForbidParameterizedConstructor(Object c) { } // violation
