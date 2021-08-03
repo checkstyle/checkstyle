@@ -1,3 +1,18 @@
+/*
+IllegalType
+validateAbstractClassNames = (default)false
+illegalClassNames = List, InputIllegalTypeGregCal, java.io.File, ArrayList, Boolean
+legalAbstractClassNames = (default)
+ignoredMethodNames = (default)getEnvironment, getInitialContext
+illegalAbstractClassNameFormat = (default)^(.*[.])?Abstract.*$
+memberModifiers = (default)
+tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, INTERFACE_DEF, METHOD_CALL, METHOD_DEF, \
+         METHOD_REF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, RECORD_DEF, \
+         RECORD_COMPONENT_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 
 import java.awt.List;
@@ -5,10 +20,6 @@ import java.util.ArrayList;
 
 import com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalTypeGregCal.SubCal;
 
-/*
- * Config:
- * illegalClassNames = { List, InputIllegalTypeGregCal, java.io.File, ArrayList, Boolean }
- */
 public class InputIllegalTypeTestSameFileNameGeneral
 {
     InputIllegalTypeGregCal cal = AnObject.getInstance(); // violation
