@@ -149,25 +149,7 @@
 
 
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationDiffDirectoryAtParent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationDiffDirectoryAtSubpackage.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationDiffDirectory.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationEmptyFile.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationNoPackage.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationPlain.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationWithCommentOnly.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]requirethis[\\/]InputRequireThis15Extensions.java"/>
@@ -1151,25 +1133,7 @@
 
 
   <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationDiffDirectoryAtParent.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationDiffDirectoryAtSubpackage.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationDiffDirectory.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationEmptyFile.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationNoPackage.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationPlain.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationWithCommentOnly.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]requirethis[\\/]InputRequireThis15Extensions.java"/>

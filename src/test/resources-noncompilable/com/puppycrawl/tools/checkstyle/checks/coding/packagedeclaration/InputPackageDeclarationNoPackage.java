@@ -1,3 +1,10 @@
+/*
+PackageDeclaration
+matchDirectoryStructure = (default)true
+
+
+*/
+
 // comment
-class InputPackageDeclarationNoPackage {
+class InputPackageDeclarationNoPackage { // violation
 }
