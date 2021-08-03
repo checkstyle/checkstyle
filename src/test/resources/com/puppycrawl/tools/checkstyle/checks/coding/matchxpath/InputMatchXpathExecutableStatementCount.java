@@ -1,9 +1,12 @@
+/*
+MatchXpath
+query = //METHOD_DEF[count(./SLIST/*) > 2]
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
-/* Config:
- *
- * query: //METHOD_DEF[count(./SLIST/*) > 2]
- */
 public class InputMatchXpathExecutableStatementCount {
     public void test() {
         while (true) { // ok

@@ -1,10 +1,13 @@
+/*
+MatchXpath
+query = //LITERAL_THROWS[./IDENT[@text='Throwable' or @text='RuntimeException' or \
+        ends-with(@text, 'Error')]]
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
-/* Config:
- *
- * query: //LITERAL_THROWS[./IDENT[@text='Throwable' or @text='RuntimeException' or
- * ends-with(@text, 'Error')]]
- */
 public class InputMatchXpathIllegalThrows {
     public void func1() throws RuntimeException {} // violation
     public void func2() throws Exception {}  // ok
