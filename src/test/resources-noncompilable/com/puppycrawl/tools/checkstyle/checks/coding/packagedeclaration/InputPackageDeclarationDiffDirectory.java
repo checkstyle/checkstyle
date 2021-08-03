@@ -1,4 +1,11 @@
-package com.testing.packagediffdirectory;
+/*
+PackageDeclaration
+matchDirectoryStructure = (default)true
+
+
+*/
+
+package com.testing.packagediffdirectory; // violation
 
 public class InputPackageDeclarationDiffDirectory {
     public String value;
