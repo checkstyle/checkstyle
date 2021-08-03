@@ -1,13 +1,16 @@
+/*
+IllegalTokenText
+format = "
+ignoreCase = (default)false
+message = (default)
+tokens = STRING_LITERAL, TEXT_BLOCK_CONTENT
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 
-/* Config:
- *
- * format  = "\""
- * ignoreCase = false
- * message = false
- * tokens = {STRING_LITERAL, TEXT_BLOCK_CONTENT}
- */
 public class InputIllegalTokenTextTextBlocksQuotes {
     public void methodWithLiterals() {
         final String ref = "<a href=\""; // violation
