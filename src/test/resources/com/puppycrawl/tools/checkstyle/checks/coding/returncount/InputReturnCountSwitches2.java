@@ -2,7 +2,7 @@
 ReturnCount
 max = (default)2
 maxForVoid = (default)1
-format = (default)^equals$
+format = ^$
 tokens = (default)CTOR_DEF, METHOD_DEF, LAMBDA
 
 
@@ -10,9 +10,9 @@ tokens = (default)CTOR_DEF, METHOD_DEF, LAMBDA
 
 package com.puppycrawl.tools.checkstyle.checks.coding.returncount;
 /* комментарий на русском */
-public class InputReturnCountSwitches
+public class InputReturnCountSwitches2
 {
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj) { // violation
         int i = 1;
         switch (i) {
         case 1: return true;
@@ -25,7 +25,7 @@ public class InputReturnCountSwitches
         return false;
     }
 
-    void foo(int i) { // violation
+    void foo(int i) {
         switch (i) {
         case 1: return;
         case 2: return;
@@ -70,7 +70,7 @@ public class InputReturnCountSwitches
     }
 }
 
-class Test {
+class Test2 {
 
-    public Test() {}
+    public Test2() {}
 }

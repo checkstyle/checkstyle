@@ -1,28 +1,27 @@
 /*
 ReturnCount
-max = 1
+max = (default)2
 maxForVoid = (default)1
 format = (default)^equals$
-tokens = (default)CTOR_DEF, METHOD_DEF, LAMBDA
+tokens = METHOD_DEF
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.returncount;
 
-import java.lang.Integer;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.function.Supplier;
 
 
-public class InputReturnCountLambda {
+public class InputReturnCountLambda3 {
 
     Runnable fieldWithOneReturnInLambda = () -> {
         return;
     };
 
-    Callable<Integer> fieldWithTwoReturnInLambda = () -> { // violation
+    Callable<Integer> fieldWithTwoReturnInLambda = () -> {
         if (hashCode() == 0) return 0;
         else return 1;
     };
@@ -33,7 +32,7 @@ public class InputReturnCountLambda {
         });
     }
 
-    Optional<Integer> methodWithTwoReturnInLambda() {
+    Optional<Integer> methodWithTwoReturnInLambda() { // violation
         return Optional.of(hashCode()).filter(i -> {
             if (i > 0) return true;
             else return false;
