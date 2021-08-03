@@ -116,12 +116,8 @@
           <!-- Do not validate possible source code remnants after regression testing -->
           <exclude name=".ci-temp/**/*"/>
 
-          <!-- Exclude because printed AST has line length > 100 characters -->
-          <exclude name="**/InputJava14InstanceofWithPatternMatchingAST.txt"/>
-          <exclude name="**/InputJava14Records.txt"/>
-          <exclude name="**/InputJava14TextBlocks.txt"/>
-          <exclude name="**/InputJava14SwitchExpression.txt"/>
-          <exclude name="**/InputPatternVariableWithModifiers.txt"/>
+          <!-- Exclude because printed AST is verified by matching checkstyle output -->
+          <exclude name="**/grammar/**/Input*.txt"/>
 
         </fileset>
       </path>
