@@ -146,14 +146,6 @@
 
 
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]modifiedcontrolvariable[\\/]InputModifiedControlVariableBothForLoops.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]modifiedcontrolvariable[\\/]InputModifiedControlVariableEnhancedForLoopVariable2.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]modifiedcontrolvariable[\\/]InputModifiedControlVariableEnhancedForLoopVariable.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]multiplestringliterals[\\/]InputMultipleStringLiterals.java"/>
@@ -1161,14 +1153,6 @@
 
 
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]modifiedcontrolvariable[\\/]InputModifiedControlVariableBothForLoops.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]modifiedcontrolvariable[\\/]InputModifiedControlVariableEnhancedForLoopVariable2.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]modifiedcontrolvariable[\\/]InputModifiedControlVariableEnhancedForLoopVariable.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]multiplestringliterals[\\/]InputMultipleStringLiterals.java"/>

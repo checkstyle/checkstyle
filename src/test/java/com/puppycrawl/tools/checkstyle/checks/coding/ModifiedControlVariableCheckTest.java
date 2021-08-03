@@ -53,15 +53,15 @@ public class ModifiedControlVariableCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(ModifiedControlVariableCheck.class);
         final String[] expected = {
-            "14:14: " + getCheckMessage(MSG_KEY, "i"),
-            "17:15: " + getCheckMessage(MSG_KEY, "i"),
-            "20:37: " + getCheckMessage(MSG_KEY, "i"),
-            "21:17: " + getCheckMessage(MSG_KEY, "i"),
-            "49:15: " + getCheckMessage(MSG_KEY, "s"),
-            "56:14: " + getCheckMessage(MSG_KEY, "m"),
-            "67:15: " + getCheckMessage(MSG_KEY, "i"),
-            "68:15: " + getCheckMessage(MSG_KEY, "k"),
-            "78:15: " + getCheckMessage(MSG_KEY, "v"),
+            "17:14: " + getCheckMessage(MSG_KEY, "i"),
+            "20:15: " + getCheckMessage(MSG_KEY, "i"),
+            "23:37: " + getCheckMessage(MSG_KEY, "i"),
+            "24:17: " + getCheckMessage(MSG_KEY, "i"),
+            "52:15: " + getCheckMessage(MSG_KEY, "s"),
+            "59:14: " + getCheckMessage(MSG_KEY, "m"),
+            "70:15: " + getCheckMessage(MSG_KEY, "i"),
+            "71:15: " + getCheckMessage(MSG_KEY, "k"),
+            "81:15: " + getCheckMessage(MSG_KEY, "v"),
         };
         verify(checkConfig, getPath("InputModifiedControlVariableBothForLoops.java"), expected);
     }
@@ -83,9 +83,9 @@ public class ModifiedControlVariableCheckTest
             createModuleConfig(ModifiedControlVariableCheck.class);
 
         final String[] expected = {
-            "9:18: " + getCheckMessage(MSG_KEY, "line"),
+            "16:18: " + getCheckMessage(MSG_KEY, "line"),
         };
-        verify(checkConfig, getPath("InputModifiedControlVariableEnhancedForLoopVariable.java"),
+        verify(checkConfig, getPath("InputModifiedControlVariableEnhancedForLoopVariable3.java"),
             expected);
     }
 
@@ -96,7 +96,7 @@ public class ModifiedControlVariableCheckTest
         checkConfig.addProperty("skipEnhancedForLoopVariable", "true");
 
         final String[] expected = {
-            "14:18: " + getCheckMessage(MSG_KEY, "i"),
+            "21:18: " + getCheckMessage(MSG_KEY, "i"),
         };
         verify(checkConfig, getPath("InputModifiedControlVariableEnhancedForLoopVariable2.java"),
             expected);
