@@ -1,9 +1,14 @@
+/*
+RequireThis
+checkFields = (default)true
+checkMethods = (default)true
+validateOnlyOverlapping = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-/**
- * Config
- * default
- */
 public class InputRequireThisFinalInstanceVariable {
     final int x = 1;
     final int y = 2;

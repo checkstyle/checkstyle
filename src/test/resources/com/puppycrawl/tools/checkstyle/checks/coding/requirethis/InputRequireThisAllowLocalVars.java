@@ -1,11 +1,15 @@
 /*
-Input test file for RequireThisCheck.
-Created: 2017
- */
+RequireThis
+checkFields = (default)true
+checkMethods = false
+validateOnlyOverlapping = false
+
+
+*/
 
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-class InputRequireThisAllowLocalVars {
+class InputRequireThisAllowLocalVars { // ok
 
     private String s1 = "foo1";
     String s2 = "foo2";

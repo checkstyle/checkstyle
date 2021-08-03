@@ -1,3 +1,12 @@
+/*
+RequireThis
+checkFields = (default)true
+checkMethods = (default)true
+validateOnlyOverlapping = false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 public class InputRequireThisCatchVariables extends Thread {
@@ -26,7 +35,7 @@ public class InputRequireThisCatchVariables extends Thread {
                     debug("Expected exception thrown", err);
                 }
                 else {
-                    ex.printStackTrace();
+                    ex.printStackTrace(); // violation
                 }
             }
             catch (Throwable ex) {
