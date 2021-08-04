@@ -55,7 +55,7 @@ public class MethodNameCheckTest
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "137:10: " + getCheckMessage(MSG_INVALID_PATTERN, "ALL_UPPERCASE_METHOD", pattern),
+            "144:10: " + getCheckMessage(MSG_INVALID_PATTERN, "ALL_UPPERCASE_METHOD", pattern),
         };
         verify(checkConfig, getPath("InputMethodNameSimple.java"), expected);
     }
@@ -68,22 +68,22 @@ public class MethodNameCheckTest
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "12:16: " + getCheckMessage(MSG_KEY, "InputMethodNameEqualClassName"),
-            "12:16: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "24:16: " + getCheckMessage(MSG_KEY, "InputMethodNameEqualClassName"),
+            "24:16: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "InputMethodNameEqualClassName", pattern),
-            "17:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PRIVATEInputMethodNameEqualClassName",
-                pattern),
-            "23:20: " + getCheckMessage(MSG_KEY, "Inner"),
-            "23:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
-            "28:20: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "29:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PRIVATEInputMethodNameEqualClassName",
+                    pattern),
+            "35:20: " + getCheckMessage(MSG_KEY, "Inner"),
+            "35:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
+            "40:20: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "InputMethodNameEqualClassName", pattern),
-            "37:24: " + getCheckMessage(MSG_KEY, "InputMethodNameEqualClassName"),
-            "37:24: " + getCheckMessage(MSG_INVALID_PATTERN,
+            "49:24: " + getCheckMessage(MSG_KEY, "InputMethodNameEqualClassName"),
+            "49:24: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "InputMethodNameEqualClassName", pattern),
-            "47:9: " + getCheckMessage(MSG_KEY, "SweetInterface"),
-            "47:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
-            "53:17: " + getCheckMessage(MSG_KEY, "Outer"),
-            "53:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
+            "59:9: " + getCheckMessage(MSG_KEY, "SweetInterface"),
+            "59:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
+            "65:17: " + getCheckMessage(MSG_KEY, "Outer"),
+            "65:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
         };
 
         verify(checkConfig, getPath("InputMethodNameEqualClassName.java"), expected);
@@ -100,20 +100,20 @@ public class MethodNameCheckTest
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "12:16: " + getCheckMessage(MSG_INVALID_PATTERN,
-                    "InputMethodNameEqualClassName", pattern),
-            "17:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PRIVATEInputMethodNameEqualClassName",
-                pattern),
-            "23:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
-            "28:20: " + getCheckMessage(MSG_INVALID_PATTERN,
-                    "InputMethodNameEqualClassName", pattern),
-            "37:24: " + getCheckMessage(MSG_INVALID_PATTERN,
-                    "InputMethodNameEqualClassName", pattern),
-            "47:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
-            "53:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
+            "24:16: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "InputMethodNameEqualClassName2", pattern),
+            "29:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PRIVATEInputMethodNameEqualClassName",
+                    pattern),
+            "35:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
+            "40:20: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "InputMethodNameEqualClassName2", pattern),
+            "49:24: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "InputMethodNameEqualClassName2", pattern),
+            "59:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
+            "65:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
         };
 
-        verify(checkConfig, getPath("InputMethodNameEqualClassName.java"), expected);
+        verify(checkConfig, getPath("InputMethodNameEqualClassName2.java"), expected);
     }
 
     @Test
@@ -130,18 +130,18 @@ public class MethodNameCheckTest
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "12:16: " + getCheckMessage(MSG_INVALID_PATTERN,
-                    "InputMethodNameEqualClassName", pattern),
-            "23:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
-            "28:20: " + getCheckMessage(MSG_INVALID_PATTERN,
-                    "InputMethodNameEqualClassName", pattern),
-            "37:24: " + getCheckMessage(MSG_INVALID_PATTERN,
-                    "InputMethodNameEqualClassName", pattern),
-            "47:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
-            "53:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
+            "24:16: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "InputMethodNameEqualClassName3", pattern),
+            "35:20: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
+            "40:20: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "InputMethodNameEqualClassName3", pattern),
+            "49:24: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "InputMethodNameEqualClassName3", pattern),
+            "59:9: " + getCheckMessage(MSG_INVALID_PATTERN, "SweetInterface", pattern),
+            "65:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
         };
 
-        verify(checkConfig, getPath("InputMethodNameEqualClassName.java"), expected);
+        verify(checkConfig, getPath("InputMethodNameEqualClassName3.java"), expected);
     }
 
     @Test
@@ -162,8 +162,8 @@ public class MethodNameCheckTest
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "17:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PUBLICfoo", pattern),
-            "20:20: " + getCheckMessage(MSG_INVALID_PATTERN, "PROTECTEDfoo", pattern),
+            "29:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PUBLICfoo", pattern),
+            "32:20: " + getCheckMessage(MSG_INVALID_PATTERN, "PROTECTEDfoo", pattern),
         };
 
         verify(checkConfig, getPath("InputMethodNameOverriddenMethods.java"), expected);
@@ -177,8 +177,8 @@ public class MethodNameCheckTest
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "10:18: " + getCheckMessage(MSG_INVALID_PATTERN, "PrivateMethod", pattern),
-            "12:25: " + getCheckMessage(MSG_INVALID_PATTERN, "PrivateMethod2", pattern),
+            "18:18: " + getCheckMessage(MSG_INVALID_PATTERN, "PrivateMethod", pattern),
+            "20:25: " + getCheckMessage(MSG_INVALID_PATTERN, "PrivateMethod2", pattern),
         };
 
         verify(checkConfig, getNonCompilablePath("InputMethodNamePublicMethodsInInterfaces.java"),
@@ -193,10 +193,10 @@ public class MethodNameCheckTest
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "14:18: " + getCheckMessage(MSG_INVALID_PATTERN, "DefaultMethod", pattern),
-            "17:25: " + getCheckMessage(MSG_INVALID_PATTERN, "DefaultMethod2", pattern),
-            "20:10: " + getCheckMessage(MSG_INVALID_PATTERN, "PublicMethod", pattern),
-            "22:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PublicMethod2", pattern),
+            "22:18: " + getCheckMessage(MSG_INVALID_PATTERN, "DefaultMethod", pattern),
+            "25:25: " + getCheckMessage(MSG_INVALID_PATTERN, "DefaultMethod2", pattern),
+            "28:10: " + getCheckMessage(MSG_INVALID_PATTERN, "PublicMethod", pattern),
+            "30:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PublicMethod2", pattern),
         };
 
         verify(checkConfig, getNonCompilablePath("InputMethodNamePrivateMethodsInInterfaces.java"),
