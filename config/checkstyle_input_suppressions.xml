@@ -593,20 +593,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="javadocpropertiesgenerator[\\/]InputJavadocPropertiesGeneratorNotImplementedTag.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocCorrect.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocIncorrect.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocNoPeriod.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocPeriodAtEnd.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocPeriod.java"/>
 
 
 
@@ -1314,20 +1300,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="javadocpropertiesgenerator[\\/]InputJavadocPropertiesGeneratorNotImplementedTag.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocCorrect.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocIncorrect.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocNoPeriod.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocPeriodAtEnd.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocPeriod.java"/>
 
 
 

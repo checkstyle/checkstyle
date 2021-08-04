@@ -1,8 +1,7 @@
 /*
 SummaryJavadocCheckTest
 violateExecutionOnNonTightHtml = (default)false
-forbiddenSummaryFragments = ^@return the *|^This method returns |^A \
-                            [{]@code [a-zA-Z0-9]+[}]( is a )
+forbiddenSummaryFragments = (default)^$
 period = (default).
 
 
@@ -14,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
  * A {@code Foo. Foo}
  * is a simple Javadoc. Some javadoc.
  */
-class InputSummaryJavadocIncorrect {
+class InputSummaryJavadocIncorrect2 {
 
     /**
      * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}

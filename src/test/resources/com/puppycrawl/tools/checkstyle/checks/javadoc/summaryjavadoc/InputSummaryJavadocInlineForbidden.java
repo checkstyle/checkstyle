@@ -1,12 +1,14 @@
+/*
+SummaryJavadocCheckTest
+violateExecutionOnNonTightHtml = (default)false
+forbiddenSummaryFragments = @return the *|This method returns
+period = (default).
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
 
-/*
- * Config:
- * This test-input is intended to be checked using following configuration:
- *
- * Attributes = forbiddenSummaryFragments
- * value = "^@return the *|^This method returns |^A [{]@code [a-zA-Z0-9]+[}]( is a )"
- */
 public class InputSummaryJavadocInlineForbidden {
 
     /**
@@ -28,7 +30,7 @@ public class InputSummaryJavadocInlineForbidden {
     }
 
     /**
-     * {@summary This code {@see Javadoc} is wrong }
+     * {@summary This code {@see Javadoc} is wrong } // violation
      */
     void foo6() { // violation
     }
