@@ -1,6 +1,6 @@
 /*
 DescendantToken
-limitedTokens = LCURLY, RCURLY
+limitedTokens = RCURLY, LCURLY
 minimumDepth = (default)0
 maximumDepth = 2
 minimumNumber = (default)0
@@ -18,4 +18,4 @@ package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 /**
  * Created by valeria on 8/19/17.
  */
-public class InputDescendantTokenLastTokenType {} // violation
+public class InputDescendantTokenLastTokenType2 {} // violation

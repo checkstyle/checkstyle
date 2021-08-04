@@ -1,21 +1,21 @@
 /*
 DescendantToken
-limitedTokens = (default)
-minimumDepth = (default)0
+limitedTokens = LITERAL_DEFAULT
+minimumDepth = 3
 maximumDepth = (default)2147483647
 minimumNumber = (default)0
-maximumNumber = (default)2147483647
+maximumNumber = 0
 sumTokenCounts = (default)false
 minimumMessage = (default)null
 maximumMessage = (default)null
-tokens = (default)empty
+tokens = LITERAL_SWITCH
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
-public class InputDescendantTokenIllegalTokens // ok
+public class InputDescendantTokenIllegalTokens5 // ok
 {
     public void methodWithPreviouslyIllegalTokens()
     {

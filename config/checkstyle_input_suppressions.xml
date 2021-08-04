@@ -153,26 +153,6 @@
 
 
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="descendanttoken[\\/]InputDescendantTokenEmptyStatement.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="descendanttoken[\\/]InputDescendantTokenIllegalTokens.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="descendanttoken[\\/]InputDescendantTokenLastTokenType.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="descendanttoken[\\/]InputDescendantTokenMissingSwitchDefault.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="descendanttoken[\\/]InputDescendantTokenReturnFromCatch.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="descendanttoken[\\/]InputDescendantTokenReturnFromFinally.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="descendanttoken[\\/]InputDescendantTokenStringLiteralEquality.java"/>
 
 
 
@@ -1037,26 +1017,6 @@
 
 
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="descendanttoken[\\/]InputDescendantTokenEmptyStatement.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="descendanttoken[\\/]InputDescendantTokenIllegalTokens.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="descendanttoken[\\/]InputDescendantTokenLastTokenType.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="descendanttoken[\\/]InputDescendantTokenMissingSwitchDefault.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="descendanttoken[\\/]InputDescendantTokenReturnFromCatch.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="descendanttoken[\\/]InputDescendantTokenReturnFromFinally.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="descendanttoken[\\/]InputDescendantTokenStringLiteralEquality.java"/>
 
 
 

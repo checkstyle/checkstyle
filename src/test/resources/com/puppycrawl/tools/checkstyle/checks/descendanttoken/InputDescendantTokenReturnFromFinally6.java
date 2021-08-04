@@ -1,25 +1,25 @@
 /*
 DescendantToken
-limitedTokens = LITERAL_RETURN
+limitedTokens = LITERAL_THIS, LITERAL_NULL
 minimumDepth = (default)0
 maximumDepth = (default)2147483647
-minimumNumber = (default)0
-maximumNumber = 0
-sumTokenCounts = (default)false
-minimumMessage = (default)null
-maximumMessage = Return from finally is not allowed.
-tokens = LITERAL_FINALLY
+minimumNumber = 3
+maximumNumber = (default)2147483647
+sumTokenCounts = true
+minimumMessage = custom message
+maximumMessage = (default)null
+tokens = NOT_EQUAL, EQUAL
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
-public class InputDescendantTokenReturnFromFinally {
+public class InputDescendantTokenReturnFromFinally6 {
     public void foo() {
         try {
             System.currentTimeMillis();
-        } finally { // violation
+        } finally {
             return;
         }
     }
@@ -28,7 +28,7 @@ public class InputDescendantTokenReturnFromFinally {
         try {
             System.currentTimeMillis();
         } finally {
-            if (System.currentTimeMillis() == 0) {
+            if (System.currentTimeMillis() == 0) { // violation
                 return; // return from if statement
             }
         }
