@@ -1,26 +1,26 @@
 /*
 DescendantToken
-limitedTokens = (default)
+limitedTokens = LITERAL_SWITCH, POST_INC, POST_DEC
 minimumDepth = (default)0
-maximumDepth = (default)2147483647
+maximumDepth = 0
 minimumNumber = (default)0
-maximumNumber = (default)2147483647
+maximumNumber = 0
 sumTokenCounts = (default)false
 minimumMessage = (default)null
-maximumMessage = (default)null
-tokens = (default)empty
+maximumMessage = Using ''{2}'' is not allowed.
+tokens = LITERAL_SWITCH, POST_INC, POST_DEC
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
-public class InputDescendantTokenIllegalTokens // ok
+public class InputDescendantTokenIllegalTokens7
 {
     public void methodWithPreviouslyIllegalTokens()
     {
         int i = 0;
-        switch (i)
+        switch (i) // violation
         {
             default:
                 i--;
