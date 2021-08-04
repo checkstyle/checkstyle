@@ -1,8 +1,14 @@
-package com.puppycrawl.tools.checkstyle.checks.naming.abstractclassname;
 /*
- * Config: pattern = "^NonAbstract.+$"
- *
- */
+AbstractClassName
+format = ^NonAbstract.+$
+ignoreModifier = true
+ignoreName = (default)false
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.naming.abstractclassname;
+
 abstract public class InputAbstractClassNameCustom { // violation
 }
 
