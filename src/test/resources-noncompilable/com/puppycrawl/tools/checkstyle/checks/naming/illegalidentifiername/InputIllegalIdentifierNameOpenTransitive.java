@@ -1,12 +1,18 @@
+/*
+IllegalIdentifierName
+format = (?i)^(?!(record|yield|var|permits|sealed|open|transitive)$).+$
+tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF, \
+         PARAMETER_DEF, VARIABLE_DEF, METHOD_DEF, ENUM_CONSTANT_DEF, PATTERN_VARIABLE_DEF, \
+         RECORD_DEF, RECORD_COMPONENT_DEF, LAMBDA
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.naming.illegalidentifiername;
 
 import java.util.logging.LogRecord;
 
-/* Config:
- *
- * format = "(?i)^(?!(record|yield|var|permits|sealed|open|transitive)$).+$"
- */
 public class InputIllegalIdentifierNameOpenTransitive {
     public Class<Record[]> getRecordType() { // ok
         return Record[].class;
