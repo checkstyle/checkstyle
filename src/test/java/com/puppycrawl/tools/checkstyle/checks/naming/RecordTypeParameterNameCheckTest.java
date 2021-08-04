@@ -53,9 +53,9 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
         final String pattern = "^[A-Z]$";
 
         final String[] expected = {
-            "13:44: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
-            "20:15: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
-            "35:25: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
+            "16:44: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
+            "23:15: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
+            "38:25: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
         };
         verify(checkConfig,
                 getNonCompilablePath("InputRecordTypeParameterName.java"), expected);
@@ -71,9 +71,9 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
         final String pattern = "^foo$";
 
         final String[] expected = {
-            "13:47: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
-            "20:15: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
-            "41:19: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
+            "16:47: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
+            "23:15: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
+            "44:19: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
         };
         verify(checkConfig,
                 getNonCompilablePath("InputRecordTypeParameterNameFoo.java"), expected);
