@@ -1,13 +1,16 @@
+/*
+MissingJavadocType
+scope = private
+excludeScope = (default)null
+skipAnnotations = NonNull1
+tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
-/* Config:
- *
- * scope = public
- * excludeScope = null
- * skipAnnotations = Generated
- * tokens = {INTERFACE_DEF , CLASS_DEF , ENUM_DEF , ANNOTATION_DEF, RECORD_DEF}
- */
 public record InputMissingJavadocTypeRecords() { // violation
     class TestClass { // violation
     }

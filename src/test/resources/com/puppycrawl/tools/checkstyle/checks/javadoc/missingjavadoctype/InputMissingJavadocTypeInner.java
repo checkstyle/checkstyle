@@ -1,3 +1,13 @@
+/*
+MissingJavadocType
+scope = private
+excludeScope = (default)null
+skipAnnotations = (default)Generated
+tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
 /**
@@ -6,20 +16,20 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 class InputMissingJavadocTypeInner
 {
     // Ignore - two violations
-    class InnerInner2 // warn
+    class InnerInner2 // violation
     {
         // Ignore
         public int fData;
     }
 
     // Ignore - 2 violations
-    interface InnerInterface2 // warn
+    interface InnerInterface2 // violation
     {
         // Ignore - should be all upper case
         String data = "zxzc";
 
         // Ignore
-        class InnerInterfaceInnerClass // warn
+        class InnerInterfaceInnerClass // violation
         {
             // Ignore - need Javadoc and made private
             public int rData;
