@@ -1,11 +1,14 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
-
 /*
- * Config:
- * scope = package
- * excludeScope = null
- * skipAnnotations = Generated
- */
+MissingJavadocType
+scope = package
+excludeScope = (default)null
+skipAnnotations = (default)Generated
+tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
 /**
    Checks javadoc scoping for inner classes.

@@ -1,11 +1,15 @@
+/*
+MissingJavadocType
+scope = protected
+excludeScope = (default)null
+skipAnnotations = (default)Generated
+tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
-/*
- * Config:
- * scope = protected
- * excludeScope = null
- * skipAnnotations = Generated
- */
 public class InputMissingJavadocTypeNoJavadoc2 // violation
 {
     public int i1;

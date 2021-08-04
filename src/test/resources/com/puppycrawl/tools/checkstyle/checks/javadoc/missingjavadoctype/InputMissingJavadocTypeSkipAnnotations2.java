@@ -1,11 +1,15 @@
+/*
+MissingJavadocType
+scope = private
+excludeScope = (default)null
+skipAnnotations = com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype.ThisIsOk2
+tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
-/*
- * Config:
- * scope = private
- * excludeScope = null
- * skipAnnotations = com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype.ThisIsOk2
- */
 @ThisIsOk2
 class InputMissingJavadocTypeSkipAnnotations2 { // violation
 }
