@@ -53,10 +53,10 @@ public class RecordComponentNameCheckTest extends AbstractModuleTestSupport {
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "14:34: " + getCheckMessage(MSG_INVALID_PATTERN, "value_123", pattern),
-            "15:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Values", pattern),
-            "18:35: " + getCheckMessage(MSG_INVALID_PATTERN, "_value123", pattern),
-            "19:9: " + getCheckMessage(MSG_INVALID_PATTERN, "$age", pattern),
+            "19:34: " + getCheckMessage(MSG_INVALID_PATTERN, "value_123", pattern),
+            "20:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Values", pattern),
+            "23:35: " + getCheckMessage(MSG_INVALID_PATTERN, "_value123", pattern),
+            "24:9: " + getCheckMessage(MSG_INVALID_PATTERN, "$age", pattern),
         };
         verify(checkConfig,
                 getNonCompilablePath("InputRecordComponentNameDefault.java"), expected);
@@ -72,10 +72,10 @@ public class RecordComponentNameCheckTest extends AbstractModuleTestSupport {
         final String pattern = "^[a-z0-9]+$";
 
         final String[] expected = {
-            "15:36: " + getCheckMessage(MSG_INVALID_PATTERN, "value_123", pattern),
-            "16:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Values", pattern),
-            "19:37: " + getCheckMessage(MSG_INVALID_PATTERN, "V", pattern),
-            "20:9: " + getCheckMessage(MSG_INVALID_PATTERN, "$age", pattern),
+            "19:36: " + getCheckMessage(MSG_INVALID_PATTERN, "value_123", pattern),
+            "20:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Values", pattern),
+            "23:37: " + getCheckMessage(MSG_INVALID_PATTERN, "V", pattern),
+            "24:9: " + getCheckMessage(MSG_INVALID_PATTERN, "$age", pattern),
         };
         verify(checkConfig,
                 getNonCompilablePath("InputRecordComponentNameLowercase.java"), expected);
