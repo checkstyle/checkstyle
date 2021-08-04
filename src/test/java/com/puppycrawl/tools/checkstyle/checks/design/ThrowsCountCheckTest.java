@@ -24,9 +24,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 
-import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
@@ -84,7 +84,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
     public void testWrongTokenType() {
         final ThrowsCountCheck obj = new ThrowsCountCheck();
         final DetailAstImpl ast = new DetailAstImpl();
-        ast.initialize(new CommonHiddenStreamToken(TokenTypes.CLASS_DEF, "class"));
+        ast.initialize(new CommonToken(TokenTypes.CLASS_DEF, "class"));
         try {
             obj.visitToken(ast);
             fail("IllegalStateException is expected");
