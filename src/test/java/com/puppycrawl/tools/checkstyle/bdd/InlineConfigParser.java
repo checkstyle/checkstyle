@@ -40,7 +40,7 @@ public final class InlineConfigParser {
 
     /** A pattern to find the string: "// violation". */
     private static final Pattern VIOLATION_PATTERN = Pattern
-            .compile(".*//\\s*violation(?:\\W+(.*))?$");
+            .compile(".*//\\s*violation(?:\\W+'(.*)')?$");
 
     /** Stop instances being created. **/
     private InlineConfigParser() {
