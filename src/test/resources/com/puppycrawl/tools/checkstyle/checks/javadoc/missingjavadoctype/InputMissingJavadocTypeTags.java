@@ -1,7 +1,17 @@
+/*
+MissingJavadocType
+scope = private
+excludeScope = (default)null
+skipAnnotations = (default)Generated
+tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 import java.io.IOException;
 // Tests for Javadoc tags.
-class InputMissingJavadocTypeTags1 // warn
+class InputMissingJavadocTypeTags1 // violation
 {
     // Invalid - should be Javadoc
     private int mMissingJavadoc;
@@ -295,7 +305,7 @@ class InputMissingJavadocTypeTags1 // warn
     }
 }
 
-enum InputJavadocTypeTagsEnum // warn
+enum InputJavadocTypeTagsEnum // violation
 {
     CONSTANT_A,
 
@@ -320,7 +330,7 @@ enum InputJavadocTypeTagsEnum // warn
     }
 }
 
-@interface InputJavadocTypeTagsAnnotation // warn
+@interface InputJavadocTypeTagsAnnotation // violation
 {
     String someField();
     int A_CONSTANT = 0;
