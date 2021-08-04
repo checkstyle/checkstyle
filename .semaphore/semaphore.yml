@@ -78,8 +78,6 @@ blocks:
                 # until https://github.com/checkstyle/checkstyle/issues/9248
                 # - mvn -e clean install -Pno-validations
                 #    && .ci/validation.sh no-violation-test-configurate
-                - mvn -e --no-transfer-progress clean install -Pno-validations
-                    && .ci/no-exception-test.sh openjdk16-with-checks-nonjavadoc-error
           commands:
             - sem-version java 11
             - echo "eval of CMD is starting";
