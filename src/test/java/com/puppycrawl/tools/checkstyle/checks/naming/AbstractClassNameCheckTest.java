@@ -46,11 +46,11 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         final String pattern = "^Abstract.+$";
 
         final String[] expected = {
-            "6:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName",
+            "12:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName",
                 pattern),
-            "9:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractClassName",
+            "15:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractClassName",
                 pattern),
-            "13:5: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClass",
+            "19:5: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClass",
                 pattern),
         };
 
@@ -66,12 +66,12 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("format", "^NonAbstract.+$");
 
         final String[] expected = {
-            "6:1: "
+            "12:1: "
                 + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassNameCustom",
                 "^NonAbstract.+$"),
-            "12:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractClassOtherCustom",
+            "18:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractClassOtherCustom",
                 "^NonAbstract.+$"),
-            "24:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractClassName2Custom",
+            "30:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractClassName2Custom",
                 "^NonAbstract.+$"),
         };
 
@@ -85,8 +85,8 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("ignoreModifier", "false");
 
         final String[] expected = {
-            "12:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClassType"),
-            "21:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClassTypes"),
+            "18:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClassType"),
+            "27:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClassTypes"),
         };
 
         verify(checkConfig, getPath("InputAbstractClassNameType.java"), expected);
@@ -101,15 +101,15 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         final String pattern = "^Abstract.+$";
 
         final String[] expected = {
-            "6:1: "
+            "12:1: "
                 + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassNameVariants",
                 pattern),
-            "9:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractClassNameVa",
+            "15:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractClassNameVa",
                 pattern),
-            "13:5: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClassVa",
+            "19:5: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClassVa",
                 pattern),
-            "21:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClassVa"),
-            "25:5: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClassVa"),
+            "27:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClassVa"),
+            "31:5: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClassVa"),
         };
 
         verify(checkConfig, getPath("InputAbstractClassNameVariants.java"), expected);
@@ -120,14 +120,14 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(AbstractClassNameCheck.class);
         final String pattern = "^Abstract.+$";
         final String[] expected = {
-            "6:1: "
+            "12:1: "
                 + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME,
                         "InputAbstractClassNameFormerFalsePositive",
                 pattern),
-            "13:5: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClassFP",
+            "19:5: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClassFP",
                 pattern),
-            "21:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClassNameFP"),
-            "25:5: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClassFP"),
+            "27:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClassNameFP"),
+            "31:5: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClassFP"),
         };
 
         verify(checkConfig, getPath("InputAbstractClassNameFormerFalsePositive.java"), expected);
