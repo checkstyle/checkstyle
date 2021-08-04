@@ -1,13 +1,16 @@
+/*
+PatternVariableName
+format = (default)^[a-z][a-zA-Z0-9]*$
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.naming.patternvariablename;
 
 import java.util.ArrayList;
 import java.util.Locale;
-/*
- * Config:
- * tokens = PATTERN_VARIABLE_DEF
- * format = "^[a-z][a-zA-Z0-9]+$"
- */
+
 public class InputPatternVariableNameEnhancedInstanceofNoSingleChar {
     private Object obj;
 
