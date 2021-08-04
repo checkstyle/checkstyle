@@ -1,10 +1,25 @@
+/*
+DescendantToken
+limitedTokens = STRING_LITERAL
+minimumDepth = (default)0
+maximumDepth = 1
+minimumNumber = (default)0
+maximumNumber = 0
+sumTokenCounts = (default)false
+minimumMessage = (default)null
+maximumMessage = Literal Strings should be compared using equals(), not ''==''.
+tokens = EQUAL, NOT_EQUAL
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
 public class InputDescendantTokenStringLiteralEquality
 {
     void foo(String name)
     {
-        if (name == "Lars")
+        if (name == "Lars") // violation
         {
             // flagged, should use equals
         }

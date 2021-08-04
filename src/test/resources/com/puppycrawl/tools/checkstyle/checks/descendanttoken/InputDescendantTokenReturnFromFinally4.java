@@ -1,25 +1,25 @@
 /*
 DescendantToken
-limitedTokens = LITERAL_RETURN
+limitedTokens = LITERAL_THIS, LITERAL_NULL
 minimumDepth = (default)0
-maximumDepth = (default)2147483647
+maximumDepth = 1
 minimumNumber = (default)0
-maximumNumber = 0
-sumTokenCounts = (default)false
+maximumNumber = 1
+sumTokenCounts = true
 minimumMessage = (default)null
-maximumMessage = Return from finally is not allowed.
-tokens = LITERAL_FINALLY
+maximumMessage = (default)null
+tokens = NOT_EQUAL, EQUAL
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
-public class InputDescendantTokenReturnFromFinally {
+public class InputDescendantTokenReturnFromFinally4 {
     public void foo() {
         try {
             System.currentTimeMillis();
-        } finally { // violation
+        } finally {
             return;
         }
     }
@@ -34,7 +34,7 @@ public class InputDescendantTokenReturnFromFinally {
         }
     }
     public void thisNull() {
-        boolean result = (this == null) || (null == this);
+        boolean result = (this == null) || (null == this); // violation
         boolean result2 = (this != null) && (null != this);
         boolean result3 = (this.getClass().getName()
             == String.valueOf(null == System.getProperty("abc")));
