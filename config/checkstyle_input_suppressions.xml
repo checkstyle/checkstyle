@@ -151,62 +151,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationEmptyFile.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThis15Extensions.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisAllowLambdaParameters.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisAllowLocalVars.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisAnnotationInterface.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisAnonymousEmpty.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisBraceAlone.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisCaseGroup.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisCatchVariables.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisEnumConstant.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisEnumInnerClassesAndBugs.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisExpressions.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisExtendedMethod.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisFor.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisMethodReferences.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisReceiver.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisSimple.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisStatic.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisValidateOnlyOverlappingFalse.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisValidateOnlyOverlappingTrue.java"/>
 
 
   <suppress id="ConfigCommentOnTopInputs"
@@ -1127,62 +1071,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationEmptyFile.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThis15Extensions.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisAllowLambdaParameters.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisAllowLocalVars.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisAnnotationInterface.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisAnonymousEmpty.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisBraceAlone.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisCaseGroup.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisCatchVariables.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisEnumConstant.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisEnumInnerClassesAndBugs.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisExpressions.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisExtendedMethod.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisFor.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisMethodReferences.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisReceiver.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisSimple.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisStatic.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisValidateOnlyOverlappingFalse.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]requirethis[\\/]InputRequireThisValidateOnlyOverlappingTrue.java"/>
 
 
   <suppress id="StyleValidationCommentInInputs"

@@ -1,7 +1,7 @@
 /*
 RequireThis
 checkFields = (default)true
-checkMethods = (default)true
+checkMethods = false
 validateOnlyOverlapping = false
 
 
@@ -9,12 +9,11 @@ validateOnlyOverlapping = false
 
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-import java.awt.Toolkit;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class InputRequireThisEnumInnerClassesAndBugs {
+public class InputRequireThisEnumInnerClassesAndBugs3 {
     int i;
     void method1() {
         i = 3; // violation
@@ -47,8 +46,9 @@ public class InputRequireThisEnumInnerClassesAndBugs {
     int I = 0;
     private class I {}
 }
+
 //  enum
-enum MyEnum
+enum MyEnum3
 {
     A,
     B
@@ -60,13 +60,13 @@ enum MyEnum
     };
 
     int z;
-    private MyEnum()
+    private MyEnum3()
     {
         z = 0;
     }
 }
 
-class Bug2123003 {
+class Bug21230033 {
     @Rock(band = "GnR")
     private String band;
 
@@ -85,7 +85,7 @@ class Bug2123003 {
     }
 }
 
-class Bug1155921 {
+class Bug11559213 {
     private static int CONST = 1;
     private static int static_method() {
         return 1;
@@ -100,12 +100,12 @@ class Bug1155921 {
     }
 }
 
-interface Issue155 {
+interface Issue1553 {
     String BASE = "A";
     String EXT = BASE + "B";
 }
 
-class Issue257 {
+class Issue2573 {
     public void foo() {
         try (final InputStream foo = new ByteArrayInputStream(new byte[512])) {
             foo.read();
@@ -116,7 +116,7 @@ class Issue257 {
     }
 }
 
-class Issue2240 {
+class Issue22403 {
     int i;
     void foo() {
         i++;
@@ -133,7 +133,7 @@ class Issue2240 {
     }
 }
 
-class Issue2539{
+class Issue25393{
     void foo(int i) {}
     static void foo(double i) {}
     void foo() {}
@@ -143,10 +143,11 @@ class Issue2539{
         foo();
     }
 }
-class NestedRechange {
+
+class NestedRechange3 {
     final String s = "";
 
-    NestedRechange() {
+    NestedRechange3() {
         String s = "t";
         s = s.substring(0);
     }
@@ -159,7 +160,8 @@ class NestedRechange {
         }
     }
 }
-class NestedFrames {
+
+class NestedFrames3 {
     int a = 0;
     int b = 0;
 
