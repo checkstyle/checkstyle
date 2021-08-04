@@ -635,17 +635,6 @@
 
 
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]methodname[\\/]InputMethodNameEqualClassName.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]methodname[\\/]InputMethodNameExtra.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]methodname[\\/]InputMethodNameOverriddenMethods.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]methodname[\\/]InputMethodNameSimple.java"/>
 
 
 
@@ -1367,17 +1356,6 @@
 
 
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]methodname[\\/]InputMethodNameEqualClassName.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]methodname[\\/]InputMethodNameExtra.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]methodname[\\/]InputMethodNameOverriddenMethods.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]methodname[\\/]InputMethodNameSimple.java"/>
 
 
 

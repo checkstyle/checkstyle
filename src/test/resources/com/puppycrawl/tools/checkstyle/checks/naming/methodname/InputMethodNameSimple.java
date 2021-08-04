@@ -1,8 +1,15 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: Feb-2001
-// Ignore violation
-////////////////////////////////////////////////////////////////////////////////
+/*
+MethodName
+format = (default)^[a-z][a-zA-Z0-9]*$
+allowClassName = (default)false
+applyToPublic = (default)true
+applyToProtected = (default)true
+applyToPackage = (default)true
+applyToPrivate = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 import java.io.*;
 /**
@@ -134,7 +141,7 @@ final class InputMethodNameSimple
     }
 
     /** test method pattern */
-    void ALL_UPPERCASE_METHOD()
+    void ALL_UPPERCASE_METHOD() // violation
     {
     }
 
