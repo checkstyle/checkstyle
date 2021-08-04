@@ -1,3 +1,12 @@
+/*
+SummaryJavadocCheckTest
+violateExecutionOnNonTightHtml = (default)false
+forbiddenSummaryFragments = (default)^$
+period = (default).
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
 
 
@@ -10,7 +19,7 @@ public class InputSummaryJavadocPeriodAtEnd {
     /**
      * @throws Exception if a problem occurs.
      */
-    public void foo1() throws Exception {
+    public void foo1() throws Exception { // violation
 
     }
 

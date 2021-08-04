@@ -1,3 +1,12 @@
+/*
+SummaryJavadocCheckTest
+violateExecutionOnNonTightHtml = (default)false
+forbiddenSummaryFragments = (default)^$
+period = (default).
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
 
 /**
