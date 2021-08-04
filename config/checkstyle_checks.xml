@@ -429,14 +429,18 @@
       <property name="id" value="singleLineCommentStartWithSpace"/>
       <property name="query"
                 value="//SINGLE_LINE_COMMENT[./COMMENT_CONTENT[not(starts-with(@text, ' '))
-                       and not(@text = '\n') and not(ends-with(@text, '//\n')) ]]"/>
+                       and not(@text = '\n') and not(ends-with(@text, '//\n'))
+                       and not(@text = '\r') and not(ends-with(@text, '//\r'))
+                       and not(@text = '\r\n') and not(ends-with(@text, '//\r\n'))]]"/>
       <message key="matchxpath.match" value="Single line comment text should start with space."/>
     </module>
     <module name="MatchXpath">
       <property name="id" value="blockCommentStartWithSpace"/>
       <property name="query"
                 value="//BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT[matches(@text, '\\n+ *\*[^\\n ]\S')
-                       or matches(@text, '^[^\* \\n]') and not(starts-with(@text, '*'))]]"/>
+                       or matches(@text, '^[^\* \\n]') or matches(@text, '\\r+ *\*[^\\r ]\S')
+                       or matches(@text, '^[^\* \\r]') or matches(@text, '\\r\\n+ *\*[^\\r\\n ]\S')
+                       or matches(@text, '^[^\* \\r\\n]') and not(starts-with(@text, '*'))]]"/>
       <message key="matchxpath.match"
                value="Block comment text should start with space after asterisk."/>
     </module>
