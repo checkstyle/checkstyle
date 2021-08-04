@@ -1,11 +1,11 @@
 /*
 MethodName
 format = (default)^[a-z][a-zA-Z0-9]*$
-allowClassName = (default)false
+allowClassName = true
 applyToPublic = (default)true
 applyToProtected = (default)true
 applyToPackage = (default)true
-applyToPrivate = (default)true
+applyToPrivate = false
 
 
 */
@@ -18,10 +18,10 @@ package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
  *
  * @author Travis Schneeberger
  */
-public class InputMethodNameEqualClassName {
+public class InputMethodNameEqualClassName3 {
 
         //illegal name
-    public int InputMethodNameEqualClassName() { // violation
+    public int InputMethodNameEqualClassName3() { // violation
         return 0;
     }
 
@@ -37,7 +37,7 @@ public class InputMethodNameEqualClassName {
                 }
 
                 //OK name - name of the outter class's ctor
-        public int InputMethodNameEqualClassName() {
+        public int InputMethodNameEqualClassName3() {
                         return 0;
                 }
         }
@@ -46,20 +46,20 @@ public class InputMethodNameEqualClassName {
                 new InputMethodNameEqualClassName() {
 
                         //illegal name
-            public int InputMethodNameEqualClassName() {
+            public int InputMethodNameEqualClassName3() {
                                 return 1;
                         }
                 };
         }
 }
 
-interface SweetInterface {
+interface SweetInterface3 {
 
         //illegal name
     int SweetInterface();
 }
 
-class Outer {
+class Outer3 {
 
         //illegal name
     public void Outer() {

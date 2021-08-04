@@ -1,10 +1,18 @@
+/*
+MethodName
+format = (default)^[a-z][a-zA-Z0-9]*$
+allowClassName = (default)false
+applyToPublic = (default)true
+applyToProtected = (default)true
+applyToPackage = (default)true
+applyToPrivate = false
+
+
+*/
+
 //non-compiled with javac: Compilable with Java9
 package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 
-/*
- * Config:
- * applyToPrivate = false
- */
 public interface InputMethodNamePrivateMethodsInInterfaces {
 
     private void PrivateMethod() {} // ok
