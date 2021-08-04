@@ -26,9 +26,9 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Collection;
 
+import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 
-import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
@@ -153,7 +153,7 @@ public class ExecutableStatementCountCheckTest
             new ExecutableStatementCountCheck();
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(
-            new CommonHiddenStreamToken(TokenTypes.ENUM, "ENUM"));
+            new CommonToken(TokenTypes.ENUM, "ENUM"));
         try {
             checkObj.visitToken(ast);
             fail("exception expected");
@@ -169,7 +169,7 @@ public class ExecutableStatementCountCheckTest
             new ExecutableStatementCountCheck();
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(
-            new CommonHiddenStreamToken(TokenTypes.ENUM, "ENUM"));
+            new CommonToken(TokenTypes.ENUM, "ENUM"));
         try {
             checkObj.leaveToken(ast);
             fail("exception expected");
