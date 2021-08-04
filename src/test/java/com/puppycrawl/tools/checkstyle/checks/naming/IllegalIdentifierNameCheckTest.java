@@ -78,20 +78,20 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
         final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
 
         final String[] expected = {
-            "15:25: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "16:24: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "22:13: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "24:21: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "39:9: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "51:13: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
-            "53:13: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "55:16: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "57:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Record", format),
-            "58:25: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "68:37: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "68:52: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "68:69: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
-            };
+            "21:25: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "22:24: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "28:13: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
+            "30:21: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
+            "45:9: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
+            "57:13: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "59:13: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "61:16: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
+            "63:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Record", format),
+            "64:25: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "74:37: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "74:52: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
+            "74:69: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+        };
         verify(checkConfig, getNonCompilablePath("InputIllegalIdentifierName.java"), expected);
     }
 
@@ -105,21 +105,21 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
         final String format = "(?i)^(?!(record|yield|var|permits|sealed|open|transitive)$).+$";
 
         final String[] expected = {
-            "15:25: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "16:24: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "22:13: " + getCheckMessage(MSG_INVALID_PATTERN, "open", format),
-            "24:21: " + getCheckMessage(MSG_INVALID_PATTERN, "transitive", format),
-            "39:9: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "51:13: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
-            "53:13: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "55:16: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "57:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Record", format),
-            "58:25: " + getCheckMessage(MSG_INVALID_PATTERN, "transitive", format),
-            "67:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Transitive", format),
-            "70:37: " + getCheckMessage(MSG_INVALID_PATTERN, "transitive", format),
-            "70:56: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "70:72: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
-            };
+            "21:25: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "22:24: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "28:13: " + getCheckMessage(MSG_INVALID_PATTERN, "open", format),
+            "30:21: " + getCheckMessage(MSG_INVALID_PATTERN, "transitive", format),
+            "45:9: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
+            "57:13: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "59:13: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "61:16: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
+            "63:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Record", format),
+            "64:25: " + getCheckMessage(MSG_INVALID_PATTERN, "transitive", format),
+            "73:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Transitive", format),
+            "76:37: " + getCheckMessage(MSG_INVALID_PATTERN, "transitive", format),
+            "76:56: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
+            "76:72: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+        };
         verify(checkConfig,
             getNonCompilablePath("InputIllegalIdentifierNameOpenTransitive.java"), expected);
     }
@@ -143,8 +143,8 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
         final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
 
         final String[] expected = {
-            "12:12: " + getCheckMessage(MSG_INVALID_PATTERN, "_", format),
-            };
+            "18:12: " + getCheckMessage(MSG_INVALID_PATTERN, "_", format),
+        };
         verify(checkConfig,
             getNonCompilablePath("InputIllegalIdentifierNameUnderscore.java"), expected);
     }
@@ -156,11 +156,11 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
         final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
 
         final String[] expected = {
-            "11:39: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
-            "12:40: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
-            "24:9: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
-            "27:9: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "34:47: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "19:39: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "20:40: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "32:9: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "35:9: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
+            "42:47: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
         };
         verify(checkConfig,
             getNonCompilablePath("InputIllegalIdentifierNameLambda.java"), expected);
