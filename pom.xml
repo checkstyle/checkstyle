@@ -1933,7 +1933,6 @@
 
                 <exclude>**/UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest.class</exclude>
 
-                <exclude>**/DefaultComesLastCheckTest.class</exclude>
 
                 <exclude>**/NeedBracesCheckTest.class</exclude>
 
