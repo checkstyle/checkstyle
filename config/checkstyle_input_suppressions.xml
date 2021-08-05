@@ -620,32 +620,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="nocodeinfile[\\/]InputNoCodeInFile5.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="outertypefilename[\\/]InputOuterTypeFilename15Extensions.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="outertypefilename[\\/]InputOuterTypeFilename1a.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="outertypefilename[\\/]InputOuterTypeFilename1.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="outertypefilename[\\/]InputOuterTypeFilename2.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="outertypefilename[\\/]InputOuterTypeFilename3.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="outertypefilename[\\/]InputOuterTypeFilename5.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="outertypefilename[\\/]InputOuterTypeFilenameCheckPublic.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="outertypefilename[\\/]InputOuterTypeFilenameIllegalTokens.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="outertypefilename[\\/]InputOuterTypeFilenameNoPublic.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="packagenamesloader[\\/]InputPackageNamesLoaderNotXml.java"/>
@@ -1296,32 +1270,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="nocodeinfile[\\/]InputNoCodeInFile5.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="outertypefilename[\\/]InputOuterTypeFilename15Extensions.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="outertypefilename[\\/]InputOuterTypeFilename1a.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="outertypefilename[\\/]InputOuterTypeFilename1.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="outertypefilename[\\/]InputOuterTypeFilename2.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="outertypefilename[\\/]InputOuterTypeFilename3.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="outertypefilename[\\/]InputOuterTypeFilename5.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="outertypefilename[\\/]InputOuterTypeFilenameCheckPublic.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="outertypefilename[\\/]InputOuterTypeFilenameIllegalTokens.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="outertypefilename[\\/]InputOuterTypeFilenameNoPublic.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="packagenamesloader[\\/]InputPackageNamesLoaderNotXml.java"/>

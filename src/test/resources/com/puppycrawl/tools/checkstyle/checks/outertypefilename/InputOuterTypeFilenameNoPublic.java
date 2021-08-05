@@ -1,4 +1,10 @@
+/*
+OuterTypeFilename
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.outertypefilename;
 
-class Foo {}
+class Foo {} // violation
 enum FooEnum {}

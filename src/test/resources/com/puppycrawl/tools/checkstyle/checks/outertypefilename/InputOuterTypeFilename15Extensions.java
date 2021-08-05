@@ -1,7 +1,13 @@
+/*
+OuterTypeFilename
+
+
+*/
+
 // someexamples of 1.5 extensions
 package com.puppycrawl.tools.checkstyle.checks.outertypefilename;
 
-@interface MyAnnotation1 {
+@interface MyAnnotation1 { // ok
     String name();
     int version();
 }
