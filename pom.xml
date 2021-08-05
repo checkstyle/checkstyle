@@ -1721,7 +1721,6 @@
 
                 <exclude>**/RightCurlyCheckTest.class</exclude>
 
-                <exclude>**/AvoidDoubleBraceInitializationCheckTest.class</exclude>
 
                 <exclude>**/Java7StringSwitchTest.class</exclude>
 
