@@ -122,7 +122,8 @@ public class OneTopLevelClassCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        DetailAST currentNode = rootAST;
+        // We get first child of 'COMPILATION_UNIT'
+        DetailAST currentNode = rootAST.getFirstChild();
         boolean publicTypeFound = false;
         DetailAST firstType = null;
 

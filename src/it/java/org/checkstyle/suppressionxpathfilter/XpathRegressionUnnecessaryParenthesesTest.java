@@ -51,11 +51,13 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses1']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses1']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a']]"
                 + "/ASSIGN/EXPR",
 
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses1']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses1']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a']]"
                 + "/ASSIGN/EXPR/LPAREN"
         );
@@ -78,11 +80,13 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses2']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses2']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                 + "/SLIST/LITERAL_IF/EXPR",
 
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses2']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses2']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                 + "/SLIST/LITERAL_IF/EXPR/LPAREN"
         );
@@ -105,7 +109,8 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses3']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses3']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='predicate']]"
                 + "/ASSIGN/LAMBDA"
         );
@@ -128,7 +133,8 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses4']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses4']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='b']]"
                 + "/ASSIGN/EXPR/PLUS/IDENT[@text='a']"
@@ -152,7 +158,8 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses5']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses5']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='str']]"
                 + "/ASSIGN/EXPR/PLUS/STRING_LITERAL[@text='Checkstyle']"
@@ -176,7 +183,8 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses6']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses6']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='a']]"
                 + "/ASSIGN/EXPR/PLUS/NUM_INT[@text='10']"
@@ -200,11 +208,13 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses7']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses7']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                 + "/SLIST/LITERAL_RETURN/EXPR",
 
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses7']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses7']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                 + "/SLIST/LITERAL_RETURN/EXPR/LPAREN"
         );
@@ -227,12 +237,14 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses8']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses8']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='c']]"
                 + "/ASSIGN/EXPR",
 
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses8']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses8']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='c']]"
                 + "/ASSIGN/EXPR/LPAREN"

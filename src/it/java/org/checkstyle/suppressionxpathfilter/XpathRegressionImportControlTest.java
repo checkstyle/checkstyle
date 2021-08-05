@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/IMPORT"
+            "/COMPILATION_UNIT/IMPORT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -75,8 +76,8 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
                 ImportControlCheck.MSG_UNKNOWN_PKG),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
-            "/PACKAGE_DEF"
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -96,8 +97,8 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
                 ImportControlCheck.MSG_MISSING_FILE),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
-            "/PACKAGE_DEF"
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -120,7 +121,7 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/IMPORT[./DOT/IDENT[@text='Scanner']]"
+            "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='Scanner']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

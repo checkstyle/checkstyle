@@ -493,7 +493,7 @@ public final class CheckUtil {
     public static AccessModifierOption getSurroundingAccessModifier(DetailAST node) {
         AccessModifierOption returnValue = null;
         for (DetailAST token = node.getParent();
-             token != null && returnValue == null;
+             returnValue == null;
              token = token.getParent()) {
             final int type = token.getType();
             if (type == TokenTypes.CLASS_DEF

@@ -54,7 +54,8 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
             };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/RECORD_DEF[./IDENT[@text='SuppressionXpathRegressionIllegalIdentifierNameTestOne'"
+            "/COMPILATION_UNIT/RECORD_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionIllegalIdentifierNameTestOne'"
                 + "]]/RECORD_COMPONENTS/RECORD_COMPONENT_DEF/IDENT[@text='yield']"
         );
 
@@ -78,7 +79,8 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
             };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIllegalIdentifierNameTestTwo']"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionIllegalIdentifierNameTestTwo']"
                 + "]/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/PARAMETERS/PARAMETER_DEF"
                 + "/IDENT[@text='yield']"
         );
