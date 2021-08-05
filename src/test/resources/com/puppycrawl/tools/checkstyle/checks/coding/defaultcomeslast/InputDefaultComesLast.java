@@ -28,19 +28,19 @@ public class InputDefaultComesLast
         switch (i) {
         case 1:
             break;
-        default: /**default is not last*/
+        default: /**default is not last*/ // violation 'Default should be last label in the switch.'
             break;
         case 2:
             break;
         }
 
         switch (i) {
-        case 1: break; default: break; case 2: break;
+        case 1: break; default: break; case 2: break; // violation 'Default should be last label in the switch.'
         }
 
         switch (i) {
             case 1:
-            default: // violation
+            default: // violation 'Default should be last label in the switch.'
                 break;
             case 2:
                 break;
@@ -48,37 +48,7 @@ public class InputDefaultComesLast
 
         switch (i) {
             case 1:
-            default: // violation
-            case 2:
-                break;
-            case 3:
-                break;
-        }
-
-        switch (i) {
-            default: // violation
-            case 1:
-                break;
-            case 2:
-                break;
-        }
-
-        switch (i) {
-            case 0: default: case 1: break; case 2: break; // violation
-        }
-
-        switch (i) {
-            default: case 1: break; case 2: break; // violation
-        }
-
-        switch (i) {
-            case 1: default: break; case 2: break; // violation
-        }
-
-        switch (i) {
-            case 1:
-            default: // violation
-                break;
+            default: // violation 'Default should be last label in the switch.'
             case 2:
                 break;
             case 3:
@@ -86,9 +56,29 @@ public class InputDefaultComesLast
         }
 
         switch (i) {
+            default: // violation 'Default should be last label in the switch.'
             case 1:
                 break;
-            default: // violation
+            case 2:
+                break;
+        }
+
+        switch (i) {
+            case 0: default: case 1: break; case 2: break; // violation 'Default should be last label in the switch.'
+        }
+
+        switch (i) {
+            default: case 1: break; case 2: break; // violation 'Default should be last label in the switch.'
+        }
+
+        switch (i) {
+            case 1: default: break; case 2: break; // violation 'Default should be last label in the switch.'
+        }
+
+        switch (i) {
+            case 1:
+            default: // violation 'Default should be last label in the switch.'
+                break;
             case 2:
                 break;
             case 3:
@@ -98,8 +88,8 @@ public class InputDefaultComesLast
         switch (i) {
             case 1:
                 break;
+            default: // violation 'Default should be last label in the switch.'
             case 2:
-            default: // violation
                 break;
             case 3:
                 break;
@@ -109,7 +99,17 @@ public class InputDefaultComesLast
             case 1:
                 break;
             case 2:
-            default: // violation
+            default: // violation 'Default should be last label in the switch.'
+                break;
+            case 3:
+                break;
+        }
+
+        switch (i) {
+            case 1:
+                break;
+            case 2:
+            default: // violation 'Default should be last label in the switch.'
             case 3:
                 break;
             case 4:
@@ -117,7 +117,7 @@ public class InputDefaultComesLast
         }
 
         switch (i) {
-            default: // violation
+            default: // violation 'Default should be last label in the switch.'
                 break;
             case 1:
                 break;
@@ -128,7 +128,7 @@ public class InputDefaultComesLast
                 break;
             case 2:
                 break;
-            default: // violation
+            default: // violation 'Default should be last label in the switch.'
             case 5:
             case 6:
                 break;
