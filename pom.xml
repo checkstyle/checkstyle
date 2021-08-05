@@ -1706,7 +1706,6 @@
 
                 <exclude>**/NoWhitespaceAfterCheckTest.class</exclude>
 
-                <exclude>**/ArrayTrailingCommaCheckTest.class</exclude>
 
                 <exclude>**/HideUtilityClassConstructorCheckTest.class</exclude>
 
