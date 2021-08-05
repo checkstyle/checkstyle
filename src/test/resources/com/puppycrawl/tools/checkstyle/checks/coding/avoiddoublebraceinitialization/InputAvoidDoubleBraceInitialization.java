@@ -58,7 +58,7 @@ public class InputAvoidDoubleBraceInitialization {
                 add(null);
             } /* comment */
         };
-        list = new ArrayList<Object>() {
+        list = new ArrayList<Object>() { // violation
             ;
             ;
             {}
