@@ -1684,7 +1684,6 @@
 
                 <exclude>**/FileSetCheckTest.class</exclude>
 
-                <exclude>**/DeclarationOrderCheckTest.class</exclude>
 
                 <exclude>**/PackageNameCheckTest.class</exclude>
 
