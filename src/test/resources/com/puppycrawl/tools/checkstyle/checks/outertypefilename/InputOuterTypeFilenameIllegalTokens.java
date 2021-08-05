@@ -1,6 +1,12 @@
+/*
+OuterTypeFilename
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.outertypefilename;
 
-public class InputOuterTypeFilenameIllegalTokens
+public class InputOuterTypeFilenameIllegalTokens // ok
 {
     public void methodWithPreviouslyIllegalTokens()
     {
