@@ -48,7 +48,8 @@ public class CovariantEqualsCheckTest
             "140:20: " + getCheckMessage(MSG_KEY),
             "144:9: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputCovariantEquals.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputCovariantEquals.java"), expected);
     }
 
     @Test
@@ -60,7 +61,7 @@ public class CovariantEqualsCheckTest
             "13:24: " + getCheckMessage(MSG_KEY),
             "29:28: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath("InputCovariantEqualsRecords.java"), expected);
     }
 

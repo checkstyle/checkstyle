@@ -1620,7 +1620,6 @@
 
                 <exclude>**/NoLineWrapCheckTest.class</exclude>
 
-                <exclude>**/CovariantEqualsCheckTest.class</exclude>
 
                 <exclude>**/OperatorWrapCheckTest.class</exclude>
 
