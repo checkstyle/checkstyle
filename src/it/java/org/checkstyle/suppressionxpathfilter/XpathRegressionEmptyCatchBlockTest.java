@@ -50,7 +50,8 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyCatchBlock1']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionEmptyCatchBlock1']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]"
                 + "/SLIST/LITERAL_TRY/LITERAL_CATCH/SLIST"
         );
@@ -70,7 +71,8 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyCatchBlock2']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionEmptyCatchBlock2']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]"
                 + "/SLIST/LITERAL_TRY/LITERAL_CATCH/SLIST"
         );

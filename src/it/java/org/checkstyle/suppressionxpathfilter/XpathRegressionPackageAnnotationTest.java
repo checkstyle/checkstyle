@@ -20,7 +20,7 @@
 package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -51,7 +51,8 @@ public class XpathRegressionPackageAnnotationTest extends AbstractXpathTestSuppo
                 PackageAnnotationCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList("/PACKAGE_DEF");
+        final List<String> expectedXpathQueries =
+                Arrays.asList("/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
@@ -71,7 +72,8 @@ public class XpathRegressionPackageAnnotationTest extends AbstractXpathTestSuppo
                 PackageAnnotationCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList("/PACKAGE_DEF");
+        final List<String> expectedXpathQueries =
+                Arrays.asList("/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);

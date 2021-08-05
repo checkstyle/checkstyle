@@ -21,7 +21,6 @@ package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -51,8 +50,8 @@ public class XpathRegressionPackageDeclarationTest extends AbstractXpathTestSupp
                     PackageDeclarationCheck.MSG_KEY_MISMATCH),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
-                "/PACKAGE_DEF"
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -73,9 +72,12 @@ public class XpathRegressionPackageDeclarationTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegression2']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegression2']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegression2']]/MODIFIERS/LITERAL_PUBLIC"
+                "/COMPILATION_UNIT",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegression2']]",
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegression2']]/MODIFIERS",
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegression2']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

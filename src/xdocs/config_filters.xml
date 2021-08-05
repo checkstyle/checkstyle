@@ -1134,7 +1134,8 @@ files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
           either method definitions.
         </p>
         <source>
-&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//CLASS_DEF | //METHOD_DEF&quot;/&gt;
+&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//COMPILATION_UNIT/CLASS_DEF
+          | //METHOD_DEF&quot;/&gt;
         </source>
         <p>
           Suppress checks for certain methods:
@@ -1148,7 +1149,7 @@ files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
           inside <i>TestClass</i> class.
         </p>
         <source>
-&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;/CLASS_DEF[@text='TestClass']
+&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;/COMPILATION_UNIT/CLASS_DEF[@text='TestClass']
           //METHOD_DEF[./IDENT[@text='testMethod']]
           //VARIABLE_DEF[./IDENT[@text='testVariable']]&quot;/&gt;
         </source>
@@ -1157,7 +1158,8 @@ files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
           for classes with name <i>Main</i> or for methods with name <i>calculate</i>.
         </p>
         <source>
-&lt;suppress-xpath checks=&quot;LeftCurly&quot; query=&quot;/CLASS_DEF[./IDENT[@text='Main']]//*
+&lt;suppress-xpath checks=&quot;LeftCurly&quot;
+          query=&quot;/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Main']]//*
           | //METHOD_DEF[./IDENT[@text='calculate']]/*&quot;/&gt;
         </source>
         <p>
@@ -1166,7 +1168,7 @@ files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
         </p>
         <source>
 &lt;suppress-xpath checks=&quot;RequireThis&quot;
-     query=&quot;/CLASS_DEF[./IDENT[@text='InputTest']]
+     query=&quot;/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputTest']]
           //METHOD_DEF[./IDENT[@text='changeAge']]//ASSIGN/IDENT[@text='age']&quot;/&gt;
         </source>
         <source>
@@ -1460,9 +1462,10 @@ CLASS_DEF -> CLASS_DEF [1:0]
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="files" value="File(One|Two)\.java"/&gt;
   &lt;property name="checks" value="MethodName"/&gt;
-  &lt;property name="query" value="(/CLASS_DEF[@text='FileOne']/OBJBLOCK/
+  &lt;property name="query" value="(/COMPILATION_UNIT/CLASS_DEF[@text='FileOne']/OBJBLOCK/
             METHOD_DEF[@text='MyMethod']/IDENT)|
-            (/CLASS_DEF[@text='FileTwo']/OBJBLOCK/METHOD_DEF[@text='MyMethod']/IDENT)"/&gt;
+            (/COMPILATION_UNIT/CLASS_DEF[@text='FileTwo']
+            /OBJBLOCK/METHOD_DEF[@text='MyMethod']/IDENT)"/&gt;
 &lt;/module&gt;
           </pre>
         </div>
@@ -1603,8 +1606,9 @@ public class FileTwo {
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="checks" value=".*"/&gt;
   &lt;property name="query"
-            value="(/CLASS_DEF[@text='FileOne'])|
-            (/CLASS_DEF[@text='FileOne']/OBJBLOCK/METHOD_DEF[@text='MyMethod']/IDENT)"/&gt;
+            value="(/COMPILATION_UNIT/CLASS_DEF[@text='FileOne'])|
+            (/COMPILATION_UNIT/CLASS_DEF[@text='FileOne']
+            /OBJBLOCK/METHOD_DEF[@text='MyMethod']/IDENT)"/&gt;
 &lt;/module&gt;
           </pre>
         </div>
@@ -1629,7 +1633,7 @@ abstract class FileTwo { // violation of the AbstractClassName check,
           <pre>
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="checks" value="MethodName"/&gt;
-  &lt;property name="query" value="/CLASS_DEF[@text='FileOne']/OBJBLOCK/
+  &lt;property name="query" value="/COMPILATION_UNIT/CLASS_DEF[@text='FileOne']/OBJBLOCK/
             METHOD_DEF[@text='MyMethod1' or @text='MyMethod2']/IDENT"/&gt;
 &lt;/module&gt;
           </pre>
@@ -1653,7 +1657,7 @@ public class FileOne {
           <pre>
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="checks" value="LocalFinalVariableName"/&gt;
-  &lt;property name="query" value="/CLASS_DEF[@text='TestClass']/OBJBLOCK
+  &lt;property name="query" value="/COMPILATION_UNIT/CLASS_DEF[@text='TestClass']/OBJBLOCK
         /METHOD_DEF[@text='testMethod']/SLIST
         /VARIABLE_DEF[@text='testVariable1']/IDENT"/&gt;
 &lt;/module&gt;
@@ -1680,7 +1684,7 @@ public class TestClass {
           <pre>
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="checks" value="LeftCurly"/&gt;
-  &lt;property name="query" value="/CLASS_DEF[@text='TestClass']/OBJBLOCK
+  &lt;property name="query" value="/COMPILATION_UNIT/CLASS_DEF[@text='TestClass']/OBJBLOCK
         /METHOD_DEF[@text='testMethod1']/SLIST*"/&gt;
 &lt;/module&gt;
           </pre>
@@ -1707,7 +1711,7 @@ public class TestClass {
           <pre>
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="checks" value="RequireThis"/&gt;
-  &lt;property name="query" value="/CLASS_DEF[@text='InputTest']
+  &lt;property name="query" value="/COMPILATION_UNIT/CLASS_DEF[@text='InputTest']
         //METHOD_DEF[@text='changeAge']//ASSIGN[@text='age']/IDENT"/&gt;
 &lt;/module&gt;
           </pre>

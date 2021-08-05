@@ -162,7 +162,8 @@ public class XpathFileGeneratorAuditListenerTest {
                 + "       files=\"InputXpathFileGeneratorAuditListener.java\"" + EOL
                 + "       checks=\"LeftCurlyCheck\""
                 + EOL
-                + "       query=\"/CLASS_DEF[./IDENT[@text='InputXpathFileGeneratorAuditListener']]"
+                + "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathFileGeneratorAuditListener']]"
                 + "/OBJBLOCK/LCURLY\"/>" + EOL
                 + "</suppressions>" + EOL;
 
@@ -187,12 +188,14 @@ public class XpathFileGeneratorAuditListenerTest {
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputXpathFileGeneratorAuditListener.java\"" + EOL
                 + "       id=\"MyModule\"" + EOL
-                + "       query=\"/CLASS_DEF[./IDENT[@text='InputXpathFileGeneratorAuditListener']]"
+                + "       query=\"/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathFileGeneratorAuditListener']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='sort']]\"/>" + EOL
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputXpathFileGeneratorAuditListener.java\"" + EOL
                 + "       checks=\"NestedForDepthCheck\"" + EOL
-                + "       query=\"/CLASS_DEF[./IDENT[@text='InputXpathFileGeneratorAuditListener']]"
+                + "       query=\"/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathFileGeneratorAuditListener']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='sort']]/SLIST/LITERAL_FOR/SLIST"
                 + "/LITERAL_FOR\"/>" + EOL
                 + "</suppressions>" + EOL;
@@ -221,7 +224,8 @@ public class XpathFileGeneratorAuditListenerTest {
                 + "<suppress-xpath" + EOL
                 + "       files=\"InputXpathFileGeneratorAuditListener.java\"" + EOL
                 + "       id=\"JavadocModuleId\"" + EOL
-                + "       query=\"/CLASS_DEF[./IDENT[@text='InputXpathFileGeneratorAuditListener']]"
+                + "       query=\"/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputXpathFileGeneratorAuditListener']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='isValid']]\"/>" + EOL
                 + "</suppressions>" + EOL;
 

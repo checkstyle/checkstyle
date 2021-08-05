@@ -208,18 +208,17 @@ public final class BlockCommentPosition {
     public static boolean isOnEnumConstant(DetailAST blockComment) {
         final DetailAST parent = blockComment.getParent();
         boolean result = false;
-        if (parent != null) {
-            if (parent.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
-                final DetailAST prevSibling = getPrevSiblingSkipComments(blockComment);
-                if (prevSibling.getType() == TokenTypes.ANNOTATIONS && !prevSibling.hasChildren()) {
-                    result = true;
-                }
-            }
-            else if (parent.getType() == TokenTypes.ANNOTATION
-                    && parent.getParent().getParent().getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+        if (parent.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+            final DetailAST prevSibling = getPrevSiblingSkipComments(blockComment);
+            if (prevSibling.getType() == TokenTypes.ANNOTATIONS && !prevSibling.hasChildren()) {
                 result = true;
             }
         }
+        else if (parent.getType() == TokenTypes.ANNOTATION
+                && parent.getParent().getParent().getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+            result = true;
+        }
+
         return result;
     }
 
@@ -245,8 +244,7 @@ public final class BlockCommentPosition {
      */
     private static boolean isOnPlainToken(DetailAST blockComment,
             int parentTokenType, int nextTokenType) {
-        return blockComment.getParent() != null
-                && blockComment.getParent().getType() == parentTokenType
+        return blockComment.getParent().getType() == parentTokenType
                 && !getPrevSiblingSkipComments(blockComment).hasChildren()
                 && getNextSiblingSkipComments(blockComment).getType() == nextTokenType;
     }
@@ -259,8 +257,7 @@ public final class BlockCommentPosition {
      * @return true if block comment is on specified token with modifiers
      */
     private static boolean isOnTokenWithModifiers(DetailAST blockComment, int tokenType) {
-        return blockComment.getParent() != null
-                && blockComment.getParent().getType() == TokenTypes.MODIFIERS
+        return blockComment.getParent().getType() == TokenTypes.MODIFIERS
                 && blockComment.getParent().getParent().getType() == tokenType
                 && getPrevSiblingSkipComments(blockComment) == null;
     }
@@ -273,8 +270,7 @@ public final class BlockCommentPosition {
      * @return true if block comment is on specified token with annotation
      */
     private static boolean isOnTokenWithAnnotation(DetailAST blockComment, int tokenType) {
-        return blockComment.getParent() != null
-                && blockComment.getParent().getType() == TokenTypes.ANNOTATION
+        return blockComment.getParent().getType() == TokenTypes.ANNOTATION
                 && getPrevSiblingSkipComments(blockComment.getParent()) == null
                 && blockComment.getParent().getParent().getParent().getType() == tokenType
                 && getPrevSiblingSkipComments(blockComment) == null;
@@ -290,11 +286,10 @@ public final class BlockCommentPosition {
     private static boolean isOnPlainClassMember(DetailAST blockComment, int memberType) {
         DetailAST parent = blockComment.getParent();
         // type could be in fully qualified form, so we go up to Type token
-        while (parent != null && parent.getType() == TokenTypes.DOT) {
+        while (parent.getType() == TokenTypes.DOT) {
             parent = parent.getParent();
         }
-        return parent != null
-                && (parent.getType() == TokenTypes.TYPE
+        return (parent.getType() == TokenTypes.TYPE
                     || parent.getType() == TokenTypes.TYPE_PARAMETERS)
                 && parent.getParent().getType() == memberType
                 // previous parent sibling is always TokenTypes.MODIFIERS
