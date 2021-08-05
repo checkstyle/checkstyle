@@ -30,7 +30,7 @@ public class InputDefaultComesLastSwitchExpressionsSkipIfLast {
             case 1 -> {
                 x = 8;
             }
-            default -> { // violation
+            default -> { // violation 'Default should be last label in the switch.'
                 x = 9;
             }
             case 2 -> {
@@ -45,7 +45,7 @@ public class InputDefaultComesLastSwitchExpressionsSkipIfLast {
     public int method3(int i) {
         return switch (i) {
             case 1 -> 8;
-            default -> 9; // violation
+            default -> 9; // violation 'Default should be last label in the switch.'
             case 2 -> 7;
         };
     }
