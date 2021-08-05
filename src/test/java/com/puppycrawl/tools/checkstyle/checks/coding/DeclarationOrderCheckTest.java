@@ -72,7 +72,8 @@ public class DeclarationOrderCheckTest
             "193:5: " + getCheckMessage(MSG_INSTANCE),
             "198:9: " + getCheckMessage(MSG_ACCESS),
         };
-        verify(checkConfig, getPath("InputDeclarationOrder.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputDeclarationOrder.java"), expected);
     }
 
     @Test
@@ -91,7 +92,8 @@ public class DeclarationOrderCheckTest
             "152:5: " + getCheckMessage(MSG_CONSTRUCTOR),
             "178:5: " + getCheckMessage(MSG_INSTANCE),
         };
-        verify(checkConfig, getPath("InputDeclarationOrderOnlyConstructors.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputDeclarationOrderOnlyConstructors.java"), expected);
     }
 
     @Test
@@ -122,7 +124,8 @@ public class DeclarationOrderCheckTest
             "191:5: " + getCheckMessage(MSG_INSTANCE),
             "196:9: " + getCheckMessage(MSG_ACCESS),
         };
-        verify(checkConfig, getPath("InputDeclarationOrderOnlyModifiers.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputDeclarationOrderOnlyModifiers.java"), expected);
     }
 
     @Test
@@ -185,9 +188,10 @@ public class DeclarationOrderCheckTest
             "25:5: " + getCheckMessage(MSG_ACCESS),
             "31:5: " + getCheckMessage(MSG_ACCESS),
             "49:5: " + getCheckMessage(MSG_STATIC),
-            "70:5: " + getCheckMessage(MSG_ACCESS),
+            "69:5: " + getCheckMessage(MSG_ACCESS),
         };
-        verify(checkConfig, getPath("InputDeclarationOrderForwardReference.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputDeclarationOrderForwardReference.java"), expected);
     }
 
     @Test
@@ -200,7 +204,7 @@ public class DeclarationOrderCheckTest
             "36:9: " + getCheckMessage(MSG_STATIC),
             "43:9: " + getCheckMessage(MSG_STATIC),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputDeclarationOrderRecordsAndCompactCtors.java"),
             expected);
     }
@@ -211,7 +215,7 @@ public class DeclarationOrderCheckTest
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_STATIC),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getPath("InputDeclarationOrderInterfaceMemberScopeIsPublic.java"),
             expected);
     }
@@ -220,9 +224,10 @@ public class DeclarationOrderCheckTest
     public void testVariableAccess() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(DeclarationOrderCheck.class);
         final String[] expected = {
-            "24:5: " + getCheckMessage(MSG_ACCESS),
+            "23:5: " + getCheckMessage(MSG_ACCESS),
         };
-        verify(checkConfig, getPath("InputDeclarationOrderVariableAccess.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputDeclarationOrderVariableAccess.java"), expected);
     }
 
     @Test
@@ -231,7 +236,7 @@ public class DeclarationOrderCheckTest
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_STATIC),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getPath("InputDeclarationOrderAvoidDuplicatesInStaticFinalFields.java"),
                 expected);
     }
