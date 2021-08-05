@@ -54,8 +54,10 @@ public class AvoidDoubleBraceInitializationCheckTest extends AbstractModuleTestS
             "76:33: " + getCheckMessage(MSG_KEY),
             "77:33: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputAvoidDoubleBraceInitialization.java"),
-            expected);
+        System.out.println(getCheckMessage(MSG_KEY));
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAvoidDoubleBraceInitialization.java"),
+                expected);
     }
 
     @Test
