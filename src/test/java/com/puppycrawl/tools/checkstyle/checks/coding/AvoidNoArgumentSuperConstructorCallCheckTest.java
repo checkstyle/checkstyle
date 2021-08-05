@@ -47,8 +47,9 @@ public class AvoidNoArgumentSuperConstructorCallCheckTest
             "20:9: " + getCheckMessage(MSG_CTOR),
         };
 
-        verify(checkConfig, getPath("InputAvoidNoArgumentSuperConstructorCall.java"),
-            expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAvoidNoArgumentSuperConstructorCall.java"),
+                expected);
     }
 
     @Test

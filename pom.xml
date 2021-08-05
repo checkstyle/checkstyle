@@ -1955,7 +1955,6 @@
 
                 <exclude>**/IllegalTokenCheckTest.class</exclude>
 
-                <exclude>**/AvoidNoArgumentSuperConstructorCallCheckTest.class</exclude>
 
                 <exclude>**/SuppressionFilterTest.class</exclude>
 
