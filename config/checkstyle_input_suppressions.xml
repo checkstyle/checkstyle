@@ -207,14 +207,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="filters[\\/]xpathfilterelement[\\/]InputXpathFilterElementSuppressByXpath.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="finalparameters[\\/]InputFinalParameters.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="finalparameters[\\/]InputFinalParametersPrimitiveTypes.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="finalparameters[\\/]InputFinalParametersReceiver.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="header[\\/]header[\\/]InputHeaderBlankLines2.java"/>
@@ -1071,14 +1063,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="filters[\\/]xpathfilterelement[\\/]InputXpathFilterElementSuppressByXpath.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="finalparameters[\\/]InputFinalParameters.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="finalparameters[\\/]InputFinalParametersPrimitiveTypes.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="finalparameters[\\/]InputFinalParametersReceiver.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="header[\\/]header[\\/]InputHeaderBlankLines2.java"/>
