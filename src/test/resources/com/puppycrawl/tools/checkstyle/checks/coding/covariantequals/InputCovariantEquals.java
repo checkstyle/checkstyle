@@ -14,7 +14,7 @@ public class InputCovariantEquals
 {
     private class Inner
     {
-        public boolean equals(Inner aInner) // violation
+        public boolean equals(Inner aInner) // violation 'covariant equals without overriding equals(java.lang.Object).'
         {
             return false;
         }
@@ -33,7 +33,7 @@ public class InputCovariantEquals
         }
     }
 
-    public boolean equals(InputCovariantEquals aInputCovariantEquals) // violation
+    public boolean equals(InputCovariantEquals aInputCovariantEquals) // violation 'covariant equals without overriding equals(java.lang.Object).'
     {
         return false;
     }
@@ -67,7 +67,7 @@ class InputCovariant3
 
 class InputCovariant4
 {
-    public boolean equals(int i) // violation
+    public boolean equals(int i) // violation 'covariant equals without overriding equals(java.lang.Object).'
     {
         return false;
     }
@@ -81,7 +81,7 @@ class InputAnonymousIC
             {
                 return 0;
             }
-            public boolean equals(String aString) // violation
+            public boolean equals(String aString) // violation 'covariant equals without overriding equals(java.lang.Object).'
             {
                 return false;
             }
@@ -137,11 +137,11 @@ class InputGenericCovariant8
 enum InputEnumCovariant {
     EQUALS;
 
-    public boolean equals(InputEnumCovariant inputEnumCovariant) { // violation
+    public boolean equals(InputEnumCovariant inputEnumCovariant) { // violation 'covariant equals without overriding equals(java.lang.Object).'
         return false;
     }
 
-    int equals(Integer integer) { // violation
+    int equals(Integer integer) { // violation 'covariant equals without overriding equals(java.lang.Object).'
         return 0;
     }
 }
