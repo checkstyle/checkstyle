@@ -9,15 +9,15 @@ package com.puppycrawl.tools.checkstyle.checks.coding.avoidnoargumentsuperconstr
 public class InputAvoidNoArgumentSuperConstructorCall extends java.util.ArrayList {
 
     public InputAvoidNoArgumentSuperConstructorCall() {
-        super(); // violation
+        super(); // violation 'Unnecessary call to superclass constructor with no arguments.'
     }
 
     public InputAvoidNoArgumentSuperConstructorCall(int a, long b) {
-        super(/**/); // violation
+        super(/**/); // violation 'Unnecessary call to superclass constructor with no arguments.'
     }
 
     public InputAvoidNoArgumentSuperConstructorCall(long a, long b) {
-        super( // violation
+        super( // violation 'Unnecessary call to superclass constructor with no arguments.'
         );
     }
 
