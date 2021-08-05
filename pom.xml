@@ -1776,7 +1776,6 @@
 
                 <exclude>**/RegexpOnFilenameCheckTest.class</exclude>
 
-                <exclude>**/AvoidInlineConditionalsCheckTest.class</exclude>
 
                 <exclude>**/UncommentedMainCheckTest.class</exclude>
 
