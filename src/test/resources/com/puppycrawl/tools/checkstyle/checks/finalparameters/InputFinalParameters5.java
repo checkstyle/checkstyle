@@ -1,50 +1,51 @@
 /*
 FinalParameters
 ignorePrimitiveTypes = (default)false
-tokens = (default)METHOD_DEF, CTOR_DEF
+tokens = FOR_EACH_CLAUSE
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.finalparameters;
 
+import java.awt.event.ActionEvent;
+
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import java.awt.event.ActionEvent;
 
 /**
  * Test case for detecting missing final parameters.
  * @author Lars Kühne
  **/
-class InputFinalParameters
+class InputFinalParameters5
 {
     /** no param constructor */
-    InputFinalParameters()
+    InputFinalParameters5()
     {
     }
 
     /** non final param constructor */
-    InputFinalParameters(String s) // violation
+    InputFinalParameters5(String s)
     {
     }
 
     /** non final param constructor */
-    InputFinalParameters(final Integer i)
+    InputFinalParameters5(final Integer i)
     {
     }
 
     /** final param constructor with annotation */
-    InputFinalParameters(final @MyAnnotation33 Class<Object> i)
+    InputFinalParameters5(final @MyAnnotation33 Class<Object> i)
     {
     }
 
     /** non-final param constructor with annotation*/
-    InputFinalParameters(@MyAnnotation33 Boolean i)
+    InputFinalParameters5(@MyAnnotation33 Boolean i)
     {
     }
 
     /** mixed */
-    InputFinalParameters(String s, final Integer i)
+    InputFinalParameters5(String s, final Integer i)
     {
     }
 
@@ -111,13 +112,13 @@ class InputFinalParameters
     }
 
     /** methods with complicated types of the parameters. */
-    void methodA(java.lang.String aParam) {
+    void methodA(String aParam) {
     }
 
     void methodB(String[] args) {
     }
 
-    void methodC(java.lang.String[] args) {
+    void methodC(String[] args) {
     }
 
     /** some catch blocks */
@@ -126,7 +127,7 @@ class InputFinalParameters
         try {
             String.CASE_INSENSITIVE_ORDER.equals("");
         }
-        catch (java.lang.NullPointerException npe) {
+        catch (NullPointerException npe) {
             npe.getMessage();
         }
         catch (@MyAnnotation33 final ClassCastException e) {
@@ -143,17 +144,17 @@ class InputFinalParameters
     native void method(int i);
 }
 
-abstract class AbstractClass
+abstract class AbstractClass5
 {
     public abstract void abstractMethod(int aParam);
 }
 
-class Foo
+class Foo5
 {
     /* Some for-each clauses */
     public void Bar()
     {
-        for(String s : someExpression())
+        for(String s : someExpression()) // violation
         {
 
         }
@@ -177,5 +178,5 @@ class Foo
     }
 }
 
-@interface MyAnnotation3 {
+@interface MyAnnotation35 {
 }
