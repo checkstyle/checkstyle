@@ -20,7 +20,7 @@ import java.io.File;
  * Test case for detecting simple semantic violations.
  * @author Lars Kühne
  **/
-class InputRegexpSemantic // ok
+class InputRegexpSemantic3 // ok
 {
     /* Boolean instantiation in a static initializer */
     static {

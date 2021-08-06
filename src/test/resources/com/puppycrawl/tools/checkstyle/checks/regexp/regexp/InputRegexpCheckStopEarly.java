@@ -1,13 +1,17 @@
+/*
+Regexp
+format = a
+message = (default)null
+illegalPattern = (default)false
+duplicateLimit = -1
+errorLimit = (default)100
+ignoreComments = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
-/* Config:
-* format: a
-* illegalPattern: false
-* duplicateLimit: -1
-* => With this config, the program only needs to find 1 'a' and then
-* stop. If it DOESN'T STOP but instead keep going till end of file,
-* a Stackoverflow error / timeout will occurs.
-* */
 public class InputRegexpCheckStopEarly { // ok
     // a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a
     // a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a

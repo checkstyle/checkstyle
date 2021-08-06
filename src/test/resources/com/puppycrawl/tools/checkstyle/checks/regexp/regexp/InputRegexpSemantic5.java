@@ -1,6 +1,6 @@
 /*
 Regexp
-format = Test case file
+format = Boolean x = new Boolean
 message = (default)null
 illegalPattern = (default)false
 duplicateLimit = (default)0
@@ -20,16 +20,16 @@ import java.io.File;
  * Test case for detecting simple semantic violations.
  * @author Lars Kühne
  **/
-class InputRegexpSemantic // ok
+class InputRegexpSemantic5
 {
     /* Boolean instantiation in a static initializer */
     static {
-        Boolean x = new Boolean(true);
+        Boolean x = new Boolean(true); // violation
     }
 
     /* Boolean instantiation in a non-static initializer */
     {
-        Boolean x = new Boolean(true);
+        Boolean x = new Boolean(true); // violation
         Boolean[] y = new Boolean[]{Boolean.TRUE, Boolean.FALSE};
     }
 

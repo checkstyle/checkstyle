@@ -1,10 +1,10 @@
 /*
 Regexp
-format = Test case file
+format = ^import
 message = (default)null
-illegalPattern = (default)false
+illegalPattern = true
 duplicateLimit = (default)0
-errorLimit = (default)100
+errorLimit = 2
 ignoreComments = (default)false
 
 
@@ -12,15 +12,15 @@ ignoreComments = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
-import java.awt.*;
-import java.io.ByteArrayOutputStream;
+import java.awt.*; // violation
+import java.io.ByteArrayOutputStream; // violation
 import java.io.File;
 
 /**
  * Test case for detecting simple semantic violations.
  * @author Lars Kühne
  **/
-class InputRegexpSemantic // ok
+class InputRegexpSemantic8
 {
     /* Boolean instantiation in a static initializer */
     static {
