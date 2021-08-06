@@ -52,7 +52,7 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
                 UnnecessarySemicolonInTryWithResourcesCheck.MSG_SEMI),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text="
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                         + "'SuppressionXpathRegressionUnnecessarySemicolonInTryWithResources']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='m']]/SLIST/LITERAL_TRY"
                         + "/RESOURCE_SPECIFICATION/SEMI"
@@ -76,7 +76,7 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text="
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                     + "'SuppressionXpathRegressionUnnecessarySemicolonInTryWithResourcesNoBrace']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/LITERAL_TRY/RESOURCE_SPECIFICATION/SEMI"

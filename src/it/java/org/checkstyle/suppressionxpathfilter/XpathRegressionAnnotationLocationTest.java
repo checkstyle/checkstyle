@@ -51,12 +51,16 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationClass']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationClass']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationClass']]",
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationClass']]"
                         + "/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationClass']]/"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationClass']]/"
                         + "MODIFIERS/ANNOTATION[./IDENT[@text='ClassAnnotation']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationClass']]/"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationClass']]/"
                         + "MODIFIERS/ANNOTATION[./IDENT[@text='ClassAnnotation']]/AT"
         );
 
@@ -79,13 +83,17 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/INTERFACE_DEF[./IDENT[@text='SuppressionXpathRegression"
+            "/COMPILATION_UNIT/INTERFACE_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegression"
                     + "AnnotationLocationInterface']]",
-            "/INTERFACE_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationInterface'"
-                        + "]]/MODIFIERS",
-            "/INTERFACE_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationInterface']]"
+            "/COMPILATION_UNIT/INTERFACE_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationInterface'"
+                    + "]]/MODIFIERS",
+            "/COMPILATION_UNIT/INTERFACE_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationInterface']]"
                     + "/MODIFIERS/ANNOTATION[./IDENT[@text='InterfaceAnnotation']]",
-            "/INTERFACE_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationInterface']]"
+            "/COMPILATION_UNIT/INTERFACE_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationInterface']]"
                     + "/MODIFIERS/ANNOTATION[./IDENT[@text='InterfaceAnnotation']]/AT"
         );
 
@@ -108,13 +116,16 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/ENUM_DEF[./IDENT[@text='SuppressionXpathRegression"
+                "/COMPILATION_UNIT/ENUM_DEF[./IDENT[@text='SuppressionXpathRegression"
                         + "AnnotationLocationEnum']]",
-                "/ENUM_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationEnum']]"
+                "/COMPILATION_UNIT/ENUM_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationEnum']]"
                         + "/MODIFIERS",
-                "/ENUM_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationEnum']]"
+                "/COMPILATION_UNIT/ENUM_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationEnum']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='EnumAnnotation']]",
-                "/ENUM_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationEnum']]"
+                "/COMPILATION_UNIT/ENUM_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationEnum']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='EnumAnnotation']]/AT"
         );
 
@@ -139,14 +150,18 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationMethod']]/"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationMethod']]/"
                         + "OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationMethod']]/"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationMethod']]/"
                         + "OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationMethod']]/"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationMethod']]/"
                         + "OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]/MODIFIERS/"
                         + "ANNOTATION[./IDENT[@text='MethodAnnotation']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationMethod']]/"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationMethod']]/"
                         + "OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]/MODIFIERS/"
                         + "ANNOTATION[./IDENT[@text='MethodAnnotation']]/AT"
         );
@@ -172,14 +187,18 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationVariable']]/"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationVariable']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='b']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationVariable']]/"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationVariable']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='b']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationVariable']]/"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationVariable']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='b']]/MODIFIERS/"
                         + "ANNOTATION[./IDENT[@text='VariableAnnotation']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationVariable']]/"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationVariable']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='b']]/MODIFIERS/"
                         + "ANNOTATION[./IDENT[@text='VariableAnnotation']]/AT"
         );
@@ -205,20 +224,20 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegression"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegression"
                         + "AnnotationLocationCTOR']]/OBJBLOCK/CTOR_DEF"
                         + "[./IDENT[@text='SuppressionXpathRegression"
                         + "AnnotationLocationCTOR']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegression"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegression"
                         + "AnnotationLocationCTOR']]/OBJBLOCK/CTOR_DEF"
                         + "[./IDENT[@text='SuppressionXpathRegression"
                         + "AnnotationLocationCTOR']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegression"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegression"
                         + "AnnotationLocationCTOR']]/OBJBLOCK/CTOR_DEF"
                         + "[./IDENT[@text='SuppressionXpathRegression"
                         + "AnnotationLocationCTOR']]/"
                         + "MODIFIERS/ANNOTATION[./IDENT[@text='CTORAnnotation']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegression"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegression"
                         + "AnnotationLocationCTOR']]/OBJBLOCK/CTOR_DEF"
                         + "[./IDENT[@text='SuppressionXpathRegression"
                         + "AnnotationLocationCTOR']]/"

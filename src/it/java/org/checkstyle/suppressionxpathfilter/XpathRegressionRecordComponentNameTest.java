@@ -53,7 +53,7 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/RECORD_DEF[./IDENT[@text='SuppressionXpathRecordComponentName1']]"
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='SuppressionXpathRecordComponentName1']]"
                 + "/RECORD_COMPONENTS/RECORD_COMPONENT_DEF/IDENT[@text='_value']"
         );
 
@@ -77,7 +77,8 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRecordComponentName2']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRecordComponentName2']]/OBJBLOCK"
                 + "/RECORD_DEF[./IDENT[@text='MyRecord']]"
                 + "/RECORD_COMPONENTS/RECORD_COMPONENT_DEF/IDENT[@text='otherValue']"
         );
