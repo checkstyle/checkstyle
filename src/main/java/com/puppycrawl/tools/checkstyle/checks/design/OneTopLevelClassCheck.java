@@ -23,7 +23,6 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -114,16 +113,20 @@ public class OneTopLevelClassCheck extends AbstractCheck {
         return getRequiredTokens();
     }
 
-    // ZERO tokens as Check do Traverse of Tree himself, he does not need to subscribed to Tokens
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtil.EMPTY_INT_ARRAY;
+        return new int[] {
+            TokenTypes.COMPILATION_UNIT,
+        };
     }
 
     @Override
-    public void beginTree(DetailAST rootAST) {
-        // We get first child of 'COMPILATION_UNIT'
-        DetailAST currentNode = rootAST.getFirstChild();
+    public void beginTree(DetailAST compilationUnit) {
+        DetailAST currentNode = compilationUnit;
+        if (currentNode != null) {
+            currentNode = currentNode.getFirstChild();
+        }
+
         boolean publicTypeFound = false;
         DetailAST firstType = null;
 

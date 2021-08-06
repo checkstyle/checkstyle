@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,6 +33,7 @@ import org.junit.jupiter.api.Test;
 import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
@@ -44,8 +46,10 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final OneTopLevelClassCheck checkObj = new OneTopLevelClassCheck();
-        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens(),
-                "Required tokens array is not empty");
+        final int[] expected = {TokenTypes.COMPILATION_UNIT};
+        assertWithMessage("Required tokens are invalid.")
+                .that(checkObj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test
@@ -224,4 +228,11 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getNonCompilablePath("InputOneTopLevelClassRecords.java"), expected);
     }
 
+    @Test
+    public void testOneTopLevelClassEmpty() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(OneTopLevelClassCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputOneTopLevelClassEmpty.java"), expected);
+    }
 }
