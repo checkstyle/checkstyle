@@ -96,8 +96,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="checker[\\/]InputChecker.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="checks[\\/]nocodeinfile[\\/]InputNoCodeInFile6.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]equalshashcode[\\/]InputEqualsHashCodeEqualsParameter.java"/>
@@ -603,15 +601,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="nocodeinfile[\\/]InputNoCodeInFile2.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="nocodeinfile[\\/]InputNoCodeInFile3.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="nocodeinfile[\\/]InputNoCodeInFile4.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="nocodeinfile[\\/]InputNoCodeInFile5.java"/>
-
 
   <suppress id="ConfigCommentOnTopInputs"
             files="packagenamesloader[\\/]InputPackageNamesLoaderNotXml.java"/>
@@ -925,9 +914,6 @@
 
   <suppress id="StyleValidationCommentInInputs"
             files="checker[\\/]InputChecker.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="checks[\\/]nocodeinfile[\\/]InputNoCodeInFile6.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]equalshashcode[\\/]InputEqualsHashCodeEqualsParameter.java"/>
@@ -1245,14 +1231,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="nocodeinfile[\\/]InputNoCodeInFile2.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="nocodeinfile[\\/]InputNoCodeInFile3.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="nocodeinfile[\\/]InputNoCodeInFile4.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="nocodeinfile[\\/]InputNoCodeInFile5.java"/>
 
 
   <suppress id="StyleValidationCommentInInputs"
