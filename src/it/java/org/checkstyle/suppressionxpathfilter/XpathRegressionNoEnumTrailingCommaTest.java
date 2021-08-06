@@ -51,7 +51,8 @@ public class XpathRegressionNoEnumTrailingCommaTest extends AbstractXpathTestSup
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoEnumTrailingCommaOne']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionNoEnumTrailingCommaOne']]"
                     + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Foo3']]/OBJBLOCK/COMMA[2]"
         );
 
@@ -72,7 +73,8 @@ public class XpathRegressionNoEnumTrailingCommaTest extends AbstractXpathTestSup
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoEnumTrailingCommaTwo']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionNoEnumTrailingCommaTwo']]"
                     + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Foo6']]/OBJBLOCK/COMMA[2]"
         );
 

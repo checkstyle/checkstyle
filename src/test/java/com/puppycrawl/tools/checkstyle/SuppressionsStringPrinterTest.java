@@ -29,7 +29,6 @@ import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
-import antlr.NoViableAltException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
@@ -50,10 +49,12 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
 
     @Test
     public void testCorrect() throws Exception {
-        final String expected = "/CLASS_DEF[./IDENT[@text='InputSuppressionsStringPrinter']]" + EOL
-                + "/CLASS_DEF[./IDENT[@text='InputSuppressionsStringPrinter']]/MODIFIERS" + EOL
-                + "/CLASS_DEF[./IDENT[@text='InputSuppressionsStringPrinter']]/MODIFIERS"
-                + "/LITERAL_PUBLIC" + EOL;
+        final String expected = "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputSuppressionsStringPrinter']]" + EOL
+                + "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputSuppressionsStringPrinter']]"
+                + "/MODIFIERS" + EOL
+                + "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputSuppressionsStringPrinter']]"
+                + "/MODIFIERS/LITERAL_PUBLIC" + EOL;
 
         final File input = new File(getPath("InputSuppressionsStringPrinter.java"));
         final String lineAndColumnNumber = "3:1";
@@ -66,11 +67,14 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
 
     @Test
     public void testCustomTabWidth() throws Exception {
-        final String expected = "/CLASS_DEF[./IDENT[@text='InputSuppressionsStringPrinter']]"
+        final String expected = "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputSuppressionsStringPrinter']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='toString']]" + EOL
-                + "/CLASS_DEF[./IDENT[@text='InputSuppressionsStringPrinter']]/OBJBLOCK"
+                + "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputSuppressionsStringPrinter']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='toString']]/MODIFIERS" + EOL
-                + "/CLASS_DEF[./IDENT[@text='InputSuppressionsStringPrinter']]/OBJBLOCK"
+                + "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputSuppressionsStringPrinter']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='toString']]/MODIFIERS/LITERAL_PUBLIC" + EOL;
 
         final File input = new File(getPath("InputSuppressionsStringPrinter.java"));
@@ -119,8 +123,9 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertSame(NoViableAltException.class, ex.getCause().getClass(), "Invalid class");
-            assertEquals(input.getAbsolutePath() + ":2:1: unexpected token: classD",
+            assertSame(IllegalStateException.class, ex.getCause().getClass(), "Invalid class");
+            assertEquals(IllegalStateException.class.getName()
+                            + ": 2:0: no viable alternative at input 'classD'",
                     ex.getCause().toString(), "Invalid exception message");
         }
     }
