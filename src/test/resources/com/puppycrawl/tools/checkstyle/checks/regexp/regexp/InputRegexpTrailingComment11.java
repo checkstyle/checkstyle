@@ -2,7 +2,7 @@
 Regexp
 format = don't use trailing comments
 message = (default)null
-illegalPattern = true
+illegalPattern = (default)false
 duplicateLimit = (default)0
 errorLimit = (default)100
 ignoreComments = true
@@ -12,7 +12,7 @@ ignoreComments = true
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
-public class InputRegexpTrailingComment { // ok
+public class InputRegexpTrailingComment11 { // violation
     int i; // don't use trailing comments :)
     // it fine to have comment w/o any statement
     /* good c-style comment. */
