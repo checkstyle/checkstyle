@@ -1,6 +1,6 @@
 /*
 Regexp
-format = Test case file
+format = This\stext is not in the file
 message = (default)null
 illegalPattern = (default)false
 duplicateLimit = (default)0
@@ -20,7 +20,7 @@ import java.io.File;
  * Test case for detecting simple semantic violations.
  * @author Lars Kühne
  **/
-class InputRegexpSemantic // ok
+class InputRegexpSemantic2 // violation
 {
     /* Boolean instantiation in a static initializer */
     static {
