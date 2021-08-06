@@ -113,7 +113,7 @@ public class FinalClassCheckTest
     public void testImproperToken() {
         final FinalClassCheck finalClassCheck = new FinalClassCheck();
         final DetailAstImpl badAst = new DetailAstImpl();
-        final int unsupportedTokenByCheck = TokenTypes.EOF;
+        final int unsupportedTokenByCheck = TokenTypes.COMPILATION_UNIT;
         badAst.setType(unsupportedTokenByCheck);
         try {
             finalClassCheck.visitToken(badAst);

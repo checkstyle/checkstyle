@@ -51,7 +51,8 @@ public class XpathRegressionNestedTryDepthTest extends AbstractXpathTestSupport 
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNestedTryDepth']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionNestedTryDepth']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_TRY/SLIST"
                 + "/LITERAL_TRY/SLIST/LITERAL_TRY"
         );
@@ -75,7 +76,8 @@ public class XpathRegressionNestedTryDepthTest extends AbstractXpathTestSupport 
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNestedTryDepthMax']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionNestedTryDepthMax']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/LITERAL_TRY"
                 + "/SLIST/LITERAL_TRY"

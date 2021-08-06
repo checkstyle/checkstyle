@@ -51,9 +51,9 @@ public class XpathRegressionOneTopLevelClassTest extends AbstractXpathTestSuppor
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='ViolatingSecondClass']]",
-                "/CLASS_DEF[./IDENT[@text='ViolatingSecondClass']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='ViolatingSecondClass']]/LITERAL_CLASS"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='ViolatingSecondClass']]",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='ViolatingSecondClass']]/MODIFIERS",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='ViolatingSecondClass']]/LITERAL_CLASS"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

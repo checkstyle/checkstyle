@@ -51,7 +51,8 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMethodParamPadOne']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='SuppressionXpathRegressionMethodParamPadOne']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='InputMethodParamPad']]/LPAREN"
         );
 
@@ -73,7 +74,8 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMethodParamPadTwo']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='SuppressionXpathRegressionMethodParamPadTwo']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='sayHello']]/LPAREN"
         );
 
@@ -96,7 +98,8 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMethodParamPadThree']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='SuppressionXpathRegressionMethodParamPadThree']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='sayHello']]/LPAREN"
         );
 

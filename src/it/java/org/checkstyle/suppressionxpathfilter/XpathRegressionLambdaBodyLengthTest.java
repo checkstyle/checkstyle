@@ -49,7 +49,8 @@ public class XpathRegressionLambdaBodyLengthTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionLambdaBodyLength1']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionLambdaBodyLength1']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST"
                 + "/VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA");
 
@@ -67,7 +68,8 @@ public class XpathRegressionLambdaBodyLengthTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionLambdaBodyLength2']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionLambdaBodyLength2']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST"
                 + "/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/LAMBDA");
 
