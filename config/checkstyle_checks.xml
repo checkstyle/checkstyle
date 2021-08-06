@@ -402,7 +402,7 @@
     <module name="InnerAssignment"/>
     <module name="MagicNumber"/>
     <module name="MatchXpath">
-      <property name="query" value="//CLASS_DEF[@text!='Checker' and @text!='Main']
+      <property name="query" value="//COMPILATION_UNIT/CLASS_DEF[@text!='Checker' and @text!='Main']
       //LITERAL_CATCH//METHOD_CALL[.//IDENT[@text = 'printStackTrace']]/.."/>
       <message key="matchxpath.match" value="Avoid using 'printStackTrace'."/>
     </module>
