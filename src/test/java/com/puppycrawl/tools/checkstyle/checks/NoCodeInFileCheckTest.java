@@ -93,13 +93,4 @@ public class NoCodeInFileCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputNoCodeInFile5.java"), expected);
     }
-
-    @Test
-    public void testFileWithNoLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoCodeInFileCheck.class);
-        final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY_NO_CODE),
-        };
-        verify(checkConfig, getPath("InputNoCodeInFile6.java"), expected);
-    }
 }
