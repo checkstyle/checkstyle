@@ -1,4 +1,10 @@
-// single line comment
+/*
+NoCodeInFile
+
+
+*/
+
+// single line comment // violation
 /*
 multi line comment
 */
