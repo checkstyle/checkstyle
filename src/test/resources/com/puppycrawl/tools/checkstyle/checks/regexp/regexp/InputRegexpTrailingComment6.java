@@ -1,6 +1,6 @@
 /*
 Regexp
-format = don't use trailing comments
+format = Let's check multi-line comments
 message = (default)null
 illegalPattern = true
 duplicateLimit = (default)0
@@ -12,7 +12,7 @@ ignoreComments = true
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
-public class InputRegexpTrailingComment { // ok
+public class InputRegexpTrailingComment6 { // ok
     int i; // don't use trailing comments :)
     // it fine to have comment w/o any statement
     /* good c-style comment. */

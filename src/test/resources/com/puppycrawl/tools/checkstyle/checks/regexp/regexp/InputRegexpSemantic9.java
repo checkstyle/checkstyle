@@ -1,8 +1,8 @@
 /*
 Regexp
-format = Test case file
-message = (default)null
-illegalPattern = (default)false
+format = System\.(out)|(err)\.print(ln)?\(
+message = Bad line :(
+illegalPattern = true
 duplicateLimit = (default)0
 errorLimit = (default)100
 ignoreComments = (default)false
@@ -20,7 +20,7 @@ import java.io.File;
  * Test case for detecting simple semantic violations.
  * @author Lars Kühne
  **/
-class InputRegexpSemantic // ok
+class InputRegexpSemantic9
 {
     /* Boolean instantiation in a static initializer */
     static {
@@ -74,7 +74,7 @@ class InputRegexpSemantic // ok
             // can never happen, empty compound statement is another workaround
         }
         catch (UnsupportedOperationException handledException) {
-            System.out.println(handledException.getMessage());
+            System.out.println(handledException.getMessage()); // violation
         }
         catch (SecurityException ex) { /* hello */ }
         catch (StringIndexOutOfBoundsException ex) {}
