@@ -5,15 +5,15 @@ message = (default)null
 illegalPattern = true
 duplicateLimit = (default)0
 errorLimit = (default)100
-ignoreComments = true
+ignoreComments = (default)false
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
-public class InputRegexpTrailingComment { // ok
-    int i; // don't use trailing comments :)
+public class InputRegexpTrailingComment2 {
+    int i; // don't use trailing comments :) // violation
     // it fine to have comment w/o any statement
     /* good c-style comment. */
     int j; /* bad c-style comment. */
