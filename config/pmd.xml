@@ -121,7 +121,9 @@
       | //ClassOrInterfaceDeclaration[@SimpleName='AbstractImportControl']
               //MethodDeclaration[@Name='checkAccess']
       | //ClassOrInterfaceDeclaration[@SimpleName='HandlerFactory']
-              //MethodDeclaration[@Name='getHandler']"/>
+              //MethodDeclaration[@Name='getHandler']
+      | //ClassOrInterfaceDeclaration[@SimpleName='JavaAstVisitor']
+              //MethodDeclaration[@Name='visitWildCardTypeArgument']"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/EmptyMethodInAbstractClassShouldBeAbstract">
@@ -320,7 +322,8 @@
            JavadocMethodCheck is in the process of being rewritten. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='PackageObjectFactory']
-          | //ClassOrInterfaceDeclaration[@SimpleName='JavadocMethodCheck']"/>
+          | //ClassOrInterfaceDeclaration[@SimpleName='JavadocMethodCheck']
+          | //ClassOrInterfaceDeclaration[@SimpleName='JavaAstVisitor']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveClassLength">
@@ -331,7 +334,7 @@
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypes'
         or @SimpleName='TokenTypes' or @SimpleName='RequireThisCheck'
-        or @SimpleName='JavadocMethodCheck']"/>
+        or @SimpleName='JavadocMethodCheck' or @SimpleName='JavaAstVisitor']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">
@@ -385,5 +388,12 @@
     <exclude name="AvoidInstantiatingObjectsInLoops"/>
     <!-- Not configurable, decreases readability. -->
     <exclude name="UseStringBufferForStringAppends"/>
+  </rule>
+
+  <rule ref="category/java/design.xml/ExcessivePublicCount">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@SimpleName='JavaAstVisitor']"/>
+    </properties>
   </rule>
 </ruleset>
