@@ -73,7 +73,8 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         final FileText testFileText = new FileText(
                 new File(getPath("InputFullIdentTestArrayType.java")).getAbsoluteFile(),
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
-        final DetailAST packageDefinitionNode = JavaParser.parse(new FileContents(testFileText));
+        final DetailAST packageDefinitionNode =
+                JavaParser.parse(new FileContents(testFileText)).getFirstChild();
         final DetailAST packageName = packageDefinitionNode.getFirstChild().getNextSibling();
         final FullIdent ident = FullIdent.createFullIdent(packageName);
         assertEquals("com[1x8]", ident.getDetailAst().toString(), "Invalid full indent");
@@ -96,7 +97,8 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         final FileText testFileText = new FileText(
                 new File(getPath("InputFullIdentTestArrayType.java")).getAbsoluteFile(),
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
-        final DetailAST packageDefinitionNode = JavaParser.parse(new FileContents(testFileText));
+        final DetailAST packageDefinitionNode =
+                JavaParser.parse(new FileContents(testFileText)).getFirstChild();
         final DetailAST arrayDeclarator = packageDefinitionNode.getNextSibling()
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.VARIABLE_DEF)
@@ -111,7 +113,8 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         final FileText testFileText = new FileText(
                 new File(getPath("InputFullIdentAnnotation.java")).getAbsoluteFile(),
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
-        final DetailAST packageDefinitionNode = JavaParser.parse(new FileContents(testFileText));
+        final DetailAST packageDefinitionNode =
+                JavaParser.parse(new FileContents(testFileText)).getFirstChild();
         final DetailAST methodDef = packageDefinitionNode
                 .getNextSibling()
                 .getNextSibling()
@@ -135,7 +138,8 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         final FileText testFileText = new FileText(
                 new File(getPath("InputFullIdentArrayInit.java")).getAbsoluteFile(),
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
-        final DetailAST packageDefinitionNode = JavaParser.parse(new FileContents(testFileText));
+        final DetailAST packageDefinitionNode =
+                JavaParser.parse(new FileContents(testFileText)).getFirstChild();
         final DetailAST variableDef = packageDefinitionNode
                 .getNextSibling()
                 .getLastChild()
@@ -188,7 +192,8 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         final FileText testFileText = new FileText(
                 new File(getPath("InputFullIdentReturnNoAnnotation.java")).getAbsoluteFile(),
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
-        final DetailAST packageDefinitionNode = JavaParser.parse(new FileContents(testFileText));
+        final DetailAST packageDefinitionNode =
+                JavaParser.parse(new FileContents(testFileText)).getFirstChild();
         final DetailAST annotationNode = packageDefinitionNode.getFirstChild();
         final FullIdent ident = FullIdent.createFullIdent(annotationNode);
         assertWithMessage("Full ident text should be empty.")
@@ -200,7 +205,8 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         final FileText testFileText = new FileText(
                 new File(getPath("InputFullIdentFullyQualifiedStringArray.java")).getAbsoluteFile(),
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
-        final DetailAST packageDefinitionNode = JavaParser.parse(new FileContents(testFileText));
+        final DetailAST packageDefinitionNode =
+                JavaParser.parse(new FileContents(testFileText)).getFirstChild();
         final DetailAST objectBlock = packageDefinitionNode.getNextSibling().getLastChild();
         final DetailAST mainMethodNode = objectBlock.findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST parameter = mainMethodNode

@@ -58,7 +58,7 @@ public class ParseTreeTableModel implements TreeModel {
      * @param parseTree DetailAST parse tree.
      */
     protected final void setParseTree(DetailAST parseTree) {
-        pModel.setParseTree(parseTree);
+        pModel.setRoot(parseTree);
         final Object[] path = {pModel.getRoot()};
         // no need to setup remaining info, as the call results in a
         // table structure changed event anyway - we just pass nulls

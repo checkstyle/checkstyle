@@ -282,8 +282,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      * @return true if generic before a method ref
      */
     private static boolean isGenericBeforeMethod(DetailAST ast) {
-        return ast.getParent().getParent().getType() == TokenTypes.DOT
-                && ast.getParent().getParent().getParent().getType() == TokenTypes.METHOD_CALL
+        return ast.getParent().getParent().getParent().getType() == TokenTypes.METHOD_CALL
                 || isAfterMethodReference(ast);
     }
 

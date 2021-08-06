@@ -49,7 +49,8 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingSwitchDefaultOne']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMissingSwitchDefaultOne']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test1']]"
                         + "/SLIST/LITERAL_SWITCH"
         );
@@ -69,10 +70,12 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingSwitchDefaultTwo']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMissingSwitchDefaultTwo']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test2']]"
                         + "/SLIST/LITERAL_SWITCH/CASE_GROUP/SLIST",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingSwitchDefaultTwo']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMissingSwitchDefaultTwo']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test2']]"
                         + "/SLIST/LITERAL_SWITCH/CASE_GROUP/SLIST/"
                         + "LITERAL_SWITCH"
