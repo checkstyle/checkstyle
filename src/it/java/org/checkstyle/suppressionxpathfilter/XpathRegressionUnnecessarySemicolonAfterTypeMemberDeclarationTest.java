@@ -49,9 +49,11 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
                 UnnecessarySemicolonAfterTypeMemberDeclarationCheck.MSG_SEMI),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList("/CLASS_DEF[./IDENT"
-            + "[@text='SuppressionXpathRegressionUnnecessarySemicolonAfterTypeMemberDeclaration']]"
-            + "/OBJBLOCK/SEMI"
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text="
+                + "'SuppressionXpathRegressionUnnecessarySemicolonAfterTypeMemberDeclaration']]"
+                + "/OBJBLOCK/SEMI"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -71,7 +73,7 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[."
+            "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text='SuppressionXpathRegressionUnnecessarySemicolonAfterTypeMember"
                     + "DeclarationTokens']]"
                 + "/OBJBLOCK/SEMI[1]"

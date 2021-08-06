@@ -54,11 +54,14 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNPathComplexityOne']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionNPathComplexityOne']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='test']]",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNPathComplexityOne']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionNPathComplexityOne']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNPathComplexityOne']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionNPathComplexityOne']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -81,7 +84,8 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNPathComplexityTwo']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionNPathComplexityTwo']]"
                 + "/OBJBLOCK/STATIC_INIT"
         );
 

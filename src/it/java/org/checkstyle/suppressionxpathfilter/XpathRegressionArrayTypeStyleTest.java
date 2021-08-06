@@ -48,7 +48,8 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionArrayTypeStyleVariable']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionArrayTypeStyleVariable']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='strings']]/TYPE["
                         + "./IDENT[@text='String']]/ARRAY_DECLARATOR"
         );
@@ -70,7 +71,8 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionArrayTypeStyleMethodDef']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionArrayTypeStyleMethodDef']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getData']]/TYPE/ARRAY_DECLARATOR"
         );
 

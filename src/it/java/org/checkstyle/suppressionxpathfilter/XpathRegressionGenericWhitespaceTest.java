@@ -52,7 +52,8 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionGenericWhitespaceEnd']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionGenericWhitespaceEnd']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='bad']]"
                 + "/PARAMETERS/PARAMETER_DEF[./IDENT[@text='cls']]"
                 + "/TYPE[./IDENT[@text='Class']]/TYPE_ARGUMENTS/GENERIC_END"
@@ -76,7 +77,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT["
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionGenericWhitespaceNestedGenericsOne']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bad']]/TYPE_PARAMETERS"
                 + "/TYPE_PARAMETER[./IDENT[@text='E']]"
@@ -101,7 +102,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT["
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionGenericWhitespaceNestedGenericsTwo']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bad']]/TYPE_PARAMETERS"
                 + "/TYPE_PARAMETER[./IDENT[@text='E']]"
@@ -126,7 +127,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT["
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionGenericWhitespaceNestedGenericsThree']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bad']]/TYPE_PARAMETERS"
                 + "/TYPE_PARAMETER[./IDENT[@text='E']]"
@@ -151,7 +152,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT["
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionGenericWhitespaceSingleGenericOne']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/EXPR/METHOD_CALL"
                 + "/DOT[./IDENT[@text='Collections']]"
@@ -176,7 +177,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT["
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionGenericWhitespaceSingleGenericTwo']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bad']]/TYPE_PARAMETERS/GENERIC_END"
         );
@@ -199,9 +200,11 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionGenericWhitespaceStartOne']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                    + "[@text='SuppressionXpathRegressionGenericWhitespaceStartOne']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bad']]/TYPE_PARAMETERS",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionGenericWhitespaceStartOne']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                    + "[@text='SuppressionXpathRegressionGenericWhitespaceStartOne']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bad']]/TYPE_PARAMETERS/GENERIC_START"
         );
 
@@ -223,11 +226,13 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionGenericWhitespaceStartTwo']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='SuppressionXpathRegressionGenericWhitespaceStartTwo']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bad']]/PARAMETERS"
                 + "/PARAMETER_DEF[./IDENT[@text='consumer']]"
                 + "/TYPE[./IDENT[@text='Consumer']]/TYPE_ARGUMENTS",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionGenericWhitespaceStartTwo']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='SuppressionXpathRegressionGenericWhitespaceStartTwo']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bad']]/PARAMETERS"
                 + "/PARAMETER_DEF[./IDENT[@text='consumer']]"
                 + "/TYPE[./IDENT[@text='Consumer']]/TYPE_ARGUMENTS/GENERIC_START"
@@ -251,13 +256,17 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionGenericWhitespaceStartThree']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='SuppressionXpathRegressionGenericWhitespaceStartThree']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bad']]",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionGenericWhitespaceStartThree']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='SuppressionXpathRegressionGenericWhitespaceStartThree']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bad']]/MODIFIERS",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionGenericWhitespaceStartThree']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='SuppressionXpathRegressionGenericWhitespaceStartThree']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bad']]/TYPE_PARAMETERS",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionGenericWhitespaceStartThree']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='SuppressionXpathRegressionGenericWhitespaceStartThree']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bad']]/TYPE_PARAMETERS/GENERIC_START"
         );
 

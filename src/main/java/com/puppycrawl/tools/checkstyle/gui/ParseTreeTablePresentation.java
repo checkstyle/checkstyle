@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.gui;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -49,13 +48,11 @@ public class ParseTreeTablePresentation {
         "Text",
     };
 
-    /**
-     * The root node of the tree table model.
-     */
-    private final Object root;
-
     /** Cache to store already parsed Javadoc comments. Used for optimisation purposes. */
     private final Map<DetailAST, DetailNode> blockCommentToJavadocTree = new HashMap<>();
+
+    /** The root node of the tree table model. */
+    private DetailAST root;
 
     /** Parsing mode. */
     private ParseMode parseMode;
@@ -66,8 +63,7 @@ public class ParseTreeTablePresentation {
      * @param parseTree DetailAST parse tree.
      */
     public ParseTreeTablePresentation(DetailAST parseTree) {
-        root = createArtificialTreeRoot();
-        setParseTree(parseTree);
+        root = parseTree;
     }
 
     /**
@@ -75,8 +71,8 @@ public class ParseTreeTablePresentation {
      *
      * @param parseTree DetailAST parse tree.
      */
-    protected final void setParseTree(DetailAST parseTree) {
-        ((DetailAstImpl) root).setFirstChild(parseTree);
+    protected final void setRoot(DetailAST parseTree) {
+        root = parseTree;
     }
 
     /**
@@ -256,18 +252,6 @@ public class ParseTreeTablePresentation {
      */
     public boolean isCellEditable(int column) {
         return false;
-    }
-
-    /**
-     * Creates artificial tree root.
-     *
-     * @return artificial tree root.
-     */
-    private static DetailAST createArtificialTreeRoot() {
-        final DetailAstImpl root = new DetailAstImpl();
-        root.setType(TokenTypes.EOF);
-        root.setText("ROOT");
-        return root;
     }
 
     /**
