@@ -1632,7 +1632,6 @@
 
                 <exclude>**/NoWhitespaceBeforeCaseDefaultColonCheckTest.class</exclude>
 
-                <exclude>**/EmptyStatementCheckTest.class</exclude>
 
                 <exclude>**/UnnecessarySemicolonInEnumerationCheckTest.class</exclude>
 
