@@ -51,10 +51,12 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionFallThroughOne']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionFallThroughOne']]"
+                + "/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/CASE_GROUP["
                 + "./LITERAL_CASE/EXPR/NUM_INT[@text='2']]",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionFallThroughOne']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionFallThroughOne']]"
+                + "/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_CASE"
         );
 
@@ -77,12 +79,12 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionFallThroughTwo']]/OBJBLOCK"
-                + "/METHOD_DEF["
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionFallThroughTwo']]"
+                + "/OBJBLOCK/METHOD_DEF["
                 + "./IDENT[@text='methodFallThruCustomWords']]/SLIST/LITERAL_WHILE/SLIST"
                 + "/LITERAL_SWITCH/CASE_GROUP[./SLIST/EXPR/POST_INC/IDENT[@text='i']]",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionFallThroughTwo']]/OBJBLOCK"
-                + "/METHOD_DEF["
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionFallThroughTwo']]"
+                + "/OBJBLOCK/METHOD_DEF["
                 + "./IDENT[@text='methodFallThruCustomWords']]/SLIST/LITERAL_WHILE/SLIST"
                 + "/LITERAL_SWITCH/CASE_GROUP/LITERAL_DEFAULT"
         );

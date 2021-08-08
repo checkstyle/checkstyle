@@ -28,10 +28,10 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.io.File;
 import java.lang.reflect.Method;
 
+import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 import org.powermock.reflect.Whitebox;
 
-import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
@@ -419,7 +419,7 @@ public class VisibilityModifierCheckTest
     public void testWrongTokenType() {
         final VisibilityModifierCheck obj = new VisibilityModifierCheck();
         final DetailAstImpl ast = new DetailAstImpl();
-        ast.initialize(new CommonHiddenStreamToken(TokenTypes.CLASS_DEF, "class"));
+        ast.initialize(new CommonToken(TokenTypes.CLASS_DEF, "class"));
         try {
             obj.visitToken(ast);
             fail("exception expected");
@@ -488,7 +488,7 @@ public class VisibilityModifierCheckTest
     public void testIsStarImportNullAst() throws Exception {
         final DetailAST importAst = JavaParser.parseFile(
             new File(getPath("InputVisibilityModifierIsStarImport.java")),
-            JavaParser.Options.WITHOUT_COMMENTS).getNextSibling();
+            JavaParser.Options.WITHOUT_COMMENTS).getFirstChild().getNextSibling();
         final VisibilityModifierCheck check = new VisibilityModifierCheck();
         final Method method = Whitebox.getMethod(VisibilityModifierCheck.class,
             "isStarImport", DetailAST.class);

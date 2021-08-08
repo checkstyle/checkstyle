@@ -49,7 +49,8 @@ public class XpathRegressionUnnecessarySemicolonAfterOuterTypeDeclarationTest
                 UnnecessarySemicolonAfterOuterTypeDeclarationCheck.MSG_SEMI),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList("/SEMI");
+        final List<String> expectedXpathQueries =
+                Collections.singletonList("/COMPILATION_UNIT/SEMI");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
@@ -65,7 +66,8 @@ public class XpathRegressionUnnecessarySemicolonAfterOuterTypeDeclarationTest
                 UnnecessarySemicolonAfterOuterTypeDeclarationCheck.MSG_SEMI),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList("/SEMI");
+        final List<String> expectedXpathQueries =
+                Collections.singletonList("/COMPILATION_UNIT/SEMI");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }

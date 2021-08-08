@@ -34,7 +34,6 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
-import antlr.NoViableAltException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileText;
@@ -61,9 +60,9 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertSame(NoViableAltException.class, ex.getCause().getClass(), "Invalid class");
-            assertEquals(input.getAbsolutePath() + ":2:1: unexpected token: classD",
-                    ex.getCause().toString(), "Invalid exception message");
+            assertSame(IllegalStateException.class, ex.getCause().getClass(), "Invalid class");
+            assertEquals("2:0: no viable alternative at input 'classD'",
+                    ex.getCause().getMessage(), "Invalid exception message");
         }
     }
 
@@ -80,10 +79,12 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
             new File(getPath("InputAstTreeStringPrinterPrintBranch.java")),
             JavaParser.Options.WITH_COMMENTS);
         final String expected = addEndOfLine(
-            "CLASS_DEF -> CLASS_DEF [3:0]",
-            "|--MODIFIERS -> MODIFIERS [3:0]",
-            "|   `--LITERAL_PUBLIC -> public [3:0]");
-        final DetailAST nodeToPrint = ast.getNextSibling().getFirstChild().getFirstChild();
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
+            "`--CLASS_DEF -> CLASS_DEF [3:0]",
+            "    |--MODIFIERS -> MODIFIERS [3:0]",
+            "    |   `--LITERAL_PUBLIC -> public [3:0]");
+        final DetailAST nodeToPrint = ast.getFirstChild().getNextSibling()
+                .getFirstChild().getFirstChild();
         final String result = AstTreeStringPrinter.printBranch(nodeToPrint);
         assertThat("Branches do not match", result, is(expected));
     }
@@ -159,7 +160,8 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
     public void testTextBlocksEscapesAreOneChar() throws Exception {
         final String inputFilename = "InputAstTreeStringPrinterTextBlocksEscapesAreOneChar.java";
         final DetailAST ast = JavaParser.parseFile(
-                new File(getNonCompilablePath(inputFilename)), JavaParser.Options.WITHOUT_COMMENTS);
+                new File(getNonCompilablePath(inputFilename)), JavaParser.Options.WITHOUT_COMMENTS)
+                .getFirstChild();
 
         final DetailAST objectBlockNode = ast.findFirstToken(TokenTypes.OBJBLOCK);
         final DetailAST variableDefNode = objectBlockNode.findFirstToken(TokenTypes.VARIABLE_DEF);
