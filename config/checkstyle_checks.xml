@@ -378,8 +378,6 @@
                 value="org.xml.sax.SAXException, org.xml.sax.SAXParseException,
                        org.apache.commons.beanutils.ConversionException,
                        org.antlr.v4.runtime.misc.ParseCancellationException,
-                       antlr.RecognitionException, antlr.TokenStreamException,
-                       antlr.TokenStreamRecognitionException, antlr.ANTLRException,
                        java.lang.StringBuffer"/>
     </module>
     <module name="IllegalThrows"/>
