@@ -643,8 +643,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="regexp[\\/]regexponfilename[\\/]InputRegexpOnFilenameSemantic.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="regexp[\\/]regexpsingleline[\\/]InputRegexpSinglelineSemantic.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="regexp[\\/]regexpsinglelinejava[\\/]InputRegexpSinglelineJavaSemantic.java"/>
@@ -1285,8 +1283,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="regexp[\\/]regexponfilename[\\/]InputRegexpOnFilenameSemantic.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="regexp[\\/]regexpsingleline[\\/]InputRegexpSinglelineSemantic.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="regexp[\\/]regexpsinglelinejava[\\/]InputRegexpSinglelineJavaSemantic.java"/>
