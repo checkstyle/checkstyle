@@ -10,6 +10,77 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.45.1">
+      <div class="releaseDate">08.08.2021</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            MissingJavadocMethod misses inner classes of interfaces.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9876">#9876</a>
+          </li>
+          <li>
+            Indentation: Java14 switch expressions[JEP-361] fails indentation
+            checks when lineWrappingIndentation property of Indentation module is
+            a non-default value.
+            Author: Vadym
+            <a href="https://github.com/checkstyle/checkstyle/issues/8929">#8929</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Migrate to Inline Config Parser in Tests.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10548">#10548</a>
+          </li>
+          <li>
+            Refactor input files in check tests. 39 Check tests were updated.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10080">#10080</a>
+          </li>
+          <li>
+            upgrade appveyor to 3.8.1 maven and use option to now show download process.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/10513">#10513</a>
+          </li>
+          <li>
+            JavadocTagContinuationIndentation does not check text inside HTML elements.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9315">#9315</a>
+          </li>
+          <li>
+            Run regression testing in CI over openjdk16.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/10431">#10431</a>
+          </li>
+          <li>
+            Violate original verify method and suppress errors.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/10391">#10391</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LCURLY.
+            Author: Hreshi
+            <a href="https://github.com/checkstyle/checkstyle/issues/9460">#9460</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.COMMENT_CONTENT.
+            Author: vinayak-gaikwad
+            <a href="https://github.com/checkstyle/checkstyle/issues/9411">#9411</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_CASE.
+            Author: vinayak-gaikwad
+            <a href="https://github.com/checkstyle/checkstyle/issues/9466">#9466</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_YIELD.
+            Author: Shubhojeet Banerjee
+            <a href="https://github.com/checkstyle/checkstyle/issues/9507">#9507</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.45">
       <div class="releaseDate">31.07.2021</div>
       <p>Breaking backward compatibility:</p>
