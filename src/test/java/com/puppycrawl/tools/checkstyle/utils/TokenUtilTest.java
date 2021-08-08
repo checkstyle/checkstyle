@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -89,18 +89,21 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testValueToNameArrayFromNameToValueMap() {
+    public void testInvertMap() {
         final Map<String, Integer> map = new TreeMap<>();
         map.put("ZERO", 0);
         map.put("ONE", 1);
         map.put("TWO", 2);
         map.put("NEGATIVE", -1);
 
-        final String[] actualArray =
-            TokenUtil.valueToNameArrayFromNameToValueMap(map);
-        final String[] expectedArray = {"ZERO", "ONE", "TWO"};
+        final Map<Integer, String> invertedMap = TokenUtil.invertMap(map);
 
-        assertArrayEquals(expectedArray, actualArray, "Unexpected value to name array");
+        assertWithMessage("Key set of 'map' and values of 'invertedMap' should be the same.")
+                .that(invertedMap.values())
+                .containsExactlyElementsIn(map.keySet());
+        assertWithMessage("Values of 'map' and key set of 'invertedMap' should be the same.")
+                .that(invertedMap.keySet())
+                .containsExactlyElementsIn(map.values());
     }
 
     @Test
@@ -230,17 +233,18 @@ public class TokenUtilTest {
 
     @Test
     public void testCorrectBehaviourOfGetTokenId() {
-        final String id = "EOF";
+        final String id = "COMPILATION_UNIT";
 
-        assertEquals(TokenTypes.EOF, TokenUtil.getTokenId(id), "Invalid token id");
+        assertEquals(TokenTypes.COMPILATION_UNIT, TokenUtil.getTokenId(id), "Invalid token id");
     }
 
     @Test
     public void testCorrectBehaviourOfShortDescription() {
-        final String id = "EOF";
+        final String id = "COMPILATION_UNIT";
         final String shortDescription = TokenUtil.getShortDescription(id);
 
-        assertEquals("The end of file token.", shortDescription, "Invalid short description");
+        assertEquals("This is the root node for the source file.",
+                shortDescription, "Invalid short description");
     }
 
     @Test

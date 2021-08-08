@@ -51,7 +51,8 @@ public class XpathRegressionNoWhitespaceBeforeTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceBefore']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceBefore']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='bad']]/SEMI"
         );
 
@@ -74,7 +75,8 @@ public class XpathRegressionNoWhitespaceBeforeTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceBeforeTokens']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceBeforeTokens']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/TYPE/DOT[./IDENT[@text='String']]"
                 + "/DOT[./IDENT[@text='java']]"
@@ -99,7 +101,8 @@ public class XpathRegressionNoWhitespaceBeforeTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceBeforeLineBreaks']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceBeforeLineBreaks']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='array']]"
                 + "/ASSIGN/ARRAY_INIT/COMMA"

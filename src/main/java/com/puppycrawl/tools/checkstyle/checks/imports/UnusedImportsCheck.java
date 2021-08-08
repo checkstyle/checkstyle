@@ -274,8 +274,7 @@ public class UnusedImportsCheck extends AbstractCheck {
         final boolean isQualifiedIdent = parentType == TokenTypes.DOT
                 && ast.getNextSibling() != null;
 
-        final boolean isQualifiedNameArrayType = parentType == TokenTypes.DOT
-                && parent.getParent().getType() == TokenTypes.DOT
+        final boolean isQualifiedNameArrayType = parent.getParent().getType() == TokenTypes.DOT
                 && ast.getNextSibling() != null
                 && ast.getNextSibling().getType() == TokenTypes.ARRAY_DECLARATOR;
 

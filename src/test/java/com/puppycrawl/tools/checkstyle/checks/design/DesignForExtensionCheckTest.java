@@ -165,6 +165,16 @@ public class DesignForExtensionCheckTest
     }
 
     @Test
+    public void testInterfaceMemberScopeIsPublicExtended() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
+        final String[] expected = {
+            "13:9: " + getCheckMessage(MSG_KEY, "Inner", "getProperty"),
+        };
+        verify(checkConfig, getPath("InputDesignForExtensionInterfaceMemberScopeIsPublic.java"),
+            expected);
+    }
+
+    @Test
     public void testInterfaceMemberScopeIsPublic() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
         final String[] expected = {

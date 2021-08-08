@@ -41,7 +41,8 @@ pitest-annotation|pitest-design \
 |pitest-main \
 |pitest-coding \
 |pitest-regexp \
-|pitest-meta)
+|pitest-meta \
+|pitest-java-ast-visitor)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
   checkPitestReport "${ignoredItems[@]}"

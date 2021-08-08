@@ -144,4 +144,19 @@ public class JavadocTagContinuationIndentationCheckTest
                 expected);
     }
 
+    @Test
+    public void testJavadocTagContinuationIndentationNestedTags() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(JavadocTagContinuationIndentationCheck.class);
+        final String[] expected = {
+            "12: " + getCheckMessage(MSG_KEY, 4),
+            "13: " + getCheckMessage(MSG_KEY, 4),
+            "14: " + getCheckMessage(MSG_KEY, 4),
+            "15: " + getCheckMessage(MSG_KEY, 4),
+            "16: " + getCheckMessage(MSG_KEY, 4),
+        };
+        verify(checkConfig,
+                getPath("InputJavadocTagContinuationIndentationDescriptionNestedTags.java"),
+                expected);
+    }
 }

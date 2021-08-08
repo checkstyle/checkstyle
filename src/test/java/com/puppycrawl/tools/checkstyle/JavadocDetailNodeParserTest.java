@@ -42,7 +42,7 @@ public class JavadocDetailNodeParserTest extends AbstractModuleTestSupport {
         final DetailAST ast = JavaParser.parseFile(
             new File(getPath("InputJavadocDetailNodeParser.java")),
             JavaParser.Options.WITH_COMMENTS)
-                .getNextSibling().getFirstChild().getFirstChild();
+                .getFirstChild().getNextSibling().getFirstChild().getFirstChild();
         final JavadocDetailNodeParser parser = new JavadocDetailNodeParser();
         final JavadocDetailNodeParser.ParseStatus status = parser.parseJavadocAsDetailNode(ast);
         final String actual = toLfLineEnding(DetailNodeTreeStringPrinter.printTree(status.getTree(),
