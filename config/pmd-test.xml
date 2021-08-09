@@ -91,7 +91,9 @@
            JavadocTokenTypesTest.TokenValues contains several asserts as it checks each
              token explicitly.
            XdocsPagesTest.getModulePropertyExpectedTypeName is a complicated list of
-             different checks. -->
+             different checks.
+          MainTest.testGenerateXpathSuppressionOptionOne requires a very long 'expected' string
+      -->
       <property name="violationSuppressXPath"
                value="//ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenNumbering']
@@ -104,7 +106,9 @@
                     | //ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
                         //MethodDeclaration[@Name='getModulePropertyExpectedTypeName']
                     | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
-                        //MethodDeclaration[@Name='testTokenNumbers']"/>
+                        //MethodDeclaration[@Name='testTokenNumbers']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='MainTest']
+                        //MethodDeclaration[@Name='testGenerateXpathSuppressionOptionOne']"/>
     </properties>
   </rule>
 
@@ -171,17 +175,6 @@
       <property name="violationSuppressXPath"
                value="//ClassOrInterfaceDeclaration[@SimpleName='CommitValidationTest']
                         //MethodDeclaration[@Name='validateCommitMessage']"/>
-    </properties>
-  </rule>
-
-  <rule ref="category/java/codestyle.xml/ShortMethodName">
-    <properties>
-      <!-- This inherited from GeneratedJavaLexer. -->
-      <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='AssertGeneratedJavaLexer']
-                        //MethodDeclaration[@Name='LA']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='AssertGenTextBlockLexer']
-                     //MethodDeclaration[@Name='LA']"/>
     </properties>
   </rule>
 

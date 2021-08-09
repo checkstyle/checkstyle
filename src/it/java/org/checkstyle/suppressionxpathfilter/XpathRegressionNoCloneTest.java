@@ -50,11 +50,14 @@ public class XpathRegressionNoCloneTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoCloneOne']]/OBJBLOCK"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionNoCloneOne']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='clone']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoCloneOne']]/OBJBLOCK"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionNoCloneOne']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoCloneOne']]/OBJBLOCK"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionNoCloneOne']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -75,13 +78,16 @@ public class XpathRegressionNoCloneTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoCloneTwo']]/OBJBLOCK"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoCloneTwo']]"
+                        + "/OBJBLOCK"
                         + "/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
                         + "/METHOD_DEF[./IDENT[@text='clone']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoCloneTwo']]/OBJBLOCK"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoCloneTwo']]"
+                        + "/OBJBLOCK"
                         + "/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
                         + "METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoCloneTwo']]/OBJBLOCK"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoCloneTwo']]"
+                        + "/OBJBLOCK"
                         + "/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
                         + "/METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS/LITERAL_PUBLIC"
         );

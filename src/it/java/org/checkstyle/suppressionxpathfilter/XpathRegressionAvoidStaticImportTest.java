@@ -53,7 +53,7 @@ public class XpathRegressionAvoidStaticImportTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/STATIC_IMPORT/DOT"
+                "/COMPILATION_UNIT/STATIC_IMPORT/DOT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -73,7 +73,7 @@ public class XpathRegressionAvoidStaticImportTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/STATIC_IMPORT/DOT[./IDENT[@text='createTempFile']]"
+                "/COMPILATION_UNIT/STATIC_IMPORT/DOT[./IDENT[@text='createTempFile']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);

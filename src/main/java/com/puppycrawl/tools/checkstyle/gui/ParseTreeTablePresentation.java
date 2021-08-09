@@ -22,9 +22,6 @@ package com.puppycrawl.tools.checkstyle.gui;
 import java.util.HashMap;
 import java.util.Map;
 
-import antlr.ASTFactory;
-import antlr.collections.AST;
-import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -51,13 +48,11 @@ public class ParseTreeTablePresentation {
         "Text",
     };
 
-    /**
-     * The root node of the tree table model.
-     */
-    private final Object root;
-
     /** Cache to store already parsed Javadoc comments. Used for optimisation purposes. */
     private final Map<DetailAST, DetailNode> blockCommentToJavadocTree = new HashMap<>();
+
+    /** The root node of the tree table model. */
+    private DetailAST root;
 
     /** Parsing mode. */
     private ParseMode parseMode;
@@ -68,8 +63,7 @@ public class ParseTreeTablePresentation {
      * @param parseTree DetailAST parse tree.
      */
     public ParseTreeTablePresentation(DetailAST parseTree) {
-        root = createArtificialTreeRoot();
-        setParseTree(parseTree);
+        root = parseTree;
     }
 
     /**
@@ -77,8 +71,8 @@ public class ParseTreeTablePresentation {
      *
      * @param parseTree DetailAST parse tree.
      */
-    protected final void setParseTree(DetailAST parseTree) {
-        ((AST) root).setFirstChild((AST) parseTree);
+    protected final void setRoot(DetailAST parseTree) {
+        root = parseTree;
     }
 
     /**
@@ -193,7 +187,7 @@ public class ParseTreeTablePresentation {
         }
         else {
             if (parseMode == ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS
-                    && ((AST) parent).getType() == TokenTypes.COMMENT_CONTENT
+                    && ((DetailAST) parent).getType() == TokenTypes.COMMENT_CONTENT
                     && JavadocUtil.isJavadocComment(((DetailAST) parent).getParent())) {
                 // getChildCount return 0 on COMMENT_CONTENT,
                 // but we need to attach javadoc tree, that is separate tree
@@ -258,17 +252,6 @@ public class ParseTreeTablePresentation {
      */
     public boolean isCellEditable(int column) {
         return false;
-    }
-
-    /**
-     * Creates artificial tree root.
-     *
-     * @return artificial tree root.
-     */
-    private static DetailAST createArtificialTreeRoot() {
-        final ASTFactory factory = new ASTFactory();
-        factory.setASTNodeClass(DetailAstImpl.class.getName());
-        return (DetailAST) factory.create(TokenTypes.EOF, "ROOT");
     }
 
     /**
