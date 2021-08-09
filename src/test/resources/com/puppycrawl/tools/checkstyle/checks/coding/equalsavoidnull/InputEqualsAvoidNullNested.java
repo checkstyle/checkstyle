@@ -22,27 +22,27 @@ public class InputEqualsAvoidNullNested {
                 c = in.read();
                 if (c == '/') {
                     String nm = in.toString();
-                    if (nm.equalsIgnoreCase("applet") || // violation
-                            nm.equalsIgnoreCase("object") || // violation
-                            nm.equalsIgnoreCase("embed")) { // violation
+                    if (nm.equalsIgnoreCase("applet") || // violation 'String literal expressions should be on the left side of an equalsIgnoreCase comparison.'
+                            nm.equalsIgnoreCase("object") || // violation 'String literal expressions should be on the left side of an equalsIgnoreCase comparison.'
+                            nm.equalsIgnoreCase("embed")) { // violation 'String literal expressions should be on the left side of an equalsIgnoreCase comparison.'
                         break;
                     }
                 }
                 else {
                     String nm = scanIdentifier(in);
-                    if (nm.equalsIgnoreCase("param")) { // violation
+                    if (nm.equalsIgnoreCase("param")) { // violation 'String literal expressions should be on the left side of an equalsIgnoreCase comparison.'
                         ;
                     }
-                    else if (nm.equalsIgnoreCase("applet")) { // violation
+                    else if (nm.equalsIgnoreCase("applet")) { // violation 'String literal expressions should be on the left side of an equalsIgnoreCase comparison.'
                         ;
                     }
-                    else if (nm.equalsIgnoreCase("object")) { // violation
+                    else if (nm.equalsIgnoreCase("object")) { // violation 'String literal expressions should be on the left side of an equalsIgnoreCase comparison.'
                         ;
                     }
-                    else if (nm.equalsIgnoreCase("embed")) { // violation
+                    else if (nm.equalsIgnoreCase("embed")) { // violation 'String literal expressions should be on the left side of an equalsIgnoreCase comparison.'
                         ;
                     }
-                    else if (nm.equalsIgnoreCase("app")) { // violation
+                    else if (nm.equalsIgnoreCase("app")) { // violation 'String literal expressions should be on the left side of an equalsIgnoreCase comparison.'
                         ;
                     }
                 }
