@@ -1757,7 +1757,6 @@
 
                 <exclude>**/StaticVariableNameCheckTest.class</exclude>
 
-                <exclude>**/EqualsAvoidNullCheckTest.class</exclude>
 
                 <exclude>**/NestedTryDepthCheckTest.class</exclude>
 
