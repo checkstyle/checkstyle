@@ -52,11 +52,14 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionUncommentedMain']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionUncommentedMain']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionUncommentedMain']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionUncommentedMain']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionUncommentedMain']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionUncommentedMain']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -78,13 +81,16 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionUncommentedMainTwo']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionUncommentedMainTwo']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Launcher']"
                         + "]/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionUncommentedMainTwo']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionUncommentedMainTwo']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Launcher']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionUncommentedMainTwo']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionUncommentedMainTwo']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Launcher']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS/LITERAL_PUBLIC"
         );

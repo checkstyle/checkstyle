@@ -54,11 +54,14 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocMethodOne']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocMethodOne']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='uninheritableMethod']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocMethodOne']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocMethodOne']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='uninheritableMethod']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocMethodOne']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocMethodOne']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='uninheritableMethod']]/MODIFIERS"
                         + "/LITERAL_PRIVATE");
 
@@ -80,7 +83,8 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocMethodTwo']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocMethodTwo']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='checkParam']]/PARAMETERS"
                         + "/PARAMETER_DEF/IDENT[@text='x']");
 
@@ -102,10 +106,12 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocMethodThree']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocMethodThree']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='checkTypeParam']]/TYPE_PARAMETERS"
                         + "/TYPE_PARAMETER[./IDENT[@text='T']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocMethodThree']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocMethodThree']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='checkTypeParam']]/TYPE_PARAMETERS"
                         + "/TYPE_PARAMETER/IDENT[@text='T']");
 
@@ -129,7 +135,8 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocMethodFour']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocMethodFour']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                         + "/LITERAL_THROWS/IDENT[@text='Exception']");
 
@@ -153,7 +160,8 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocMethodFive']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocMethodFive']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bar']]/SLIST"
                         + "/LITERAL_THROW/EXPR/LITERAL_NEW"
                         + "/DOT[./IDENT[@text='BuildException']]"

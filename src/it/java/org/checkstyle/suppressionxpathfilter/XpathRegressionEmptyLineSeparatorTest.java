@@ -51,8 +51,8 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
                     EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "package"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
-                "/PACKAGE_DEF"
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -73,8 +73,8 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
                     EmptyLineSeparatorCheck.MSG_MULTIPLE_LINES, "package"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
-                "/PACKAGE_DEF"
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -96,14 +96,17 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator3']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator3']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator3']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator3']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]"
                         + "/MODIFIERS",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator3']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator3']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]"
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
@@ -127,7 +130,8 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator4']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator4']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]/SLIST/RCURLY"
         );
 
@@ -151,7 +155,8 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator5']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator5']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]/SLIST/LITERAL_TRY/SLIST"
                         + "/SINGLE_LINE_COMMENT/COMMENT_CONTENT[@text=' warn\\n']"
         );
