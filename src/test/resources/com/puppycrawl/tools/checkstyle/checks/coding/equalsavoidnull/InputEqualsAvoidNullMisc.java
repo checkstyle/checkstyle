@@ -17,7 +17,7 @@ public enum InputEqualsAvoidNullMisc {
 }
 class Receiver {
     public void foo4(Receiver this, String s) {
-        s.equals("abc"); // violation
+        s.equals("abc"); // violation 'String literal expressions should be on the left side of an equals comparison.'
     }
 
     private class Inner {

@@ -78,8 +78,8 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
             "323:33: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "326:70: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "327:51: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "327:77: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "328:55: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "328:43: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "329:55: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "342:28: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "343:36: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "344:42: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
@@ -97,7 +97,8 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
             "424:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "428:22: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
         };
-        verify(checkConfig, getPath("InputEqualsAvoidNull.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputEqualsAvoidNull.java"), expected);
     }
 
     @Test
@@ -132,8 +133,8 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
             "323:33: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "326:70: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "327:51: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "327:77: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "328:55: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "328:53: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "329:55: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "342:28: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "343:37: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "344:42: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
@@ -151,7 +152,8 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
             "424:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "428:22: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
         };
-        verify(checkConfig, getPath("InputEqualsAvoidNullIgnoreCase.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputEqualsAvoidNullIgnoreCase.java"), expected);
     }
 
     @Test
@@ -163,7 +165,8 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
             "14:28: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "21:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
         };
-        verify(checkConfig, getPath("InputEqualsAvoidNullOnTheSameLine.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputEqualsAvoidNullOnTheSameLine.java"), expected);
     }
 
     @Test
@@ -181,7 +184,8 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
             "42:49: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
             "45:49: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
         };
-        verify(checkConfig, getPath("InputEqualsAvoidNullNested.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputEqualsAvoidNullNested.java"), expected);
     }
 
     @Test
@@ -195,9 +199,9 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
             "26:50: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "27:38: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "28:38: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "28:65: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "29:35: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath("InputEqualsAvoidNullEnhancedInstanceof.java"),
                 expected);
     }
@@ -210,7 +214,8 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "20:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
         };
-        verify(checkConfig, getPath("InputEqualsAvoidNullMisc.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputEqualsAvoidNullMisc.java"), expected);
     }
 
     @Test
@@ -224,7 +229,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
             "34:33: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
             "41:33: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath("InputEqualsAvoidNullRecordsAndCompactCtors.java"),
                 expected);
     }
@@ -239,9 +244,9 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
             "15:28: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "22:25: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "32:39: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
-            };
+        };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputEqualsAvoidNullTextBlocks.java"),
             expected);
     }

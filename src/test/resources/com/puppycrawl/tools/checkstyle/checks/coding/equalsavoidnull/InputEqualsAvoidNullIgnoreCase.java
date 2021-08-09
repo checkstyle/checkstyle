@@ -242,20 +242,20 @@ class NewTest1 {
     NewTest1 testObj = new NewTest1("");
 
     NewTest1(String param) {
-        param.equals("");
+        param.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
     }
 
     public void method(String param) {
         final String localVar = "";
 
-        localVar.equals("");
-        param.equals("");
+        localVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+        param.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
 
-        classVar.equals("");
-        instanceVar.equals("");
-        NewTest1.classVar.equals("");
-        this.classVar.equals("");
-        this.instanceVar.equals("");
+        classVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+        instanceVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+        NewTest1.classVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+        this.classVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+        this.instanceVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
 
         NewTest1 testObj = new NewTest1("");
         this.testObj.instanceVar.equals(""); // not violated, too confusing
@@ -272,13 +272,13 @@ class NewTest1 {
             String instanceVarInner;
 
             public void main() {
-                classVar.equals("");
-                instanceVar.equals("");
-                NewTest1.classVar.equals("");
+                classVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+                instanceVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+                NewTest1.classVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
 
-                instanceVarInner.equals("");
-                this.instanceVarInner.equals("");
-                localVar.equals("");
+                instanceVarInner.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+                this.instanceVarInner.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+                localVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
 
                 NewTest1 testObj = new NewTest1("");
                 testObj.instanceVar.equals(""); // not violated
@@ -299,33 +299,34 @@ class NewTest1 {
     }
     static {
         final String s = "";
-        s.equals("");
+        s.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
         {
             final String x = "";
             class A {
                 void foo() {
-                    s.equals("");
-                    x.equals("");
+                    s.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+                    x.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
                 }
             }
         }
     }
     void foo(String param) {
         try {
-            param.equals("");
+            param.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
             do {
                 String s = "";
-                s.equals("");
-            } while (param.equals(""));
+                s.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+            } while (param.equals("")); // violation 'String literal expressions should be on the left side of an equals comparison.'
         } catch (Exception e) {
-            while (param.equals("")) {
-                for (String s = ""; s.equals(""); ){
-                    if (s.equals("")) {
+            while (param.equals("")) { // violation 'String literal expressions should be on the left side of an equals comparison.'
+                for (String s = ""; s.equals(""); ){ // violation 'String literal expressions should be on the left side of an equals comparison.'
+                    if (s.equals("")) { // violation 'String literal expressions should be on the left side of an equals comparison.'
                         synchronized (this) {
                             switch (s) {
-                                case "1": String str = ""; str.equals("");
-                                case "2": s.equals(""); str = ""; str.equals("");
-                                case "3": param.equals("");
+                                case "1": String str = ""; str.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+                                case "2": s.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+                                str = ""; str.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+                                case "3": param.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
                                     break;
                             }
                         }
@@ -334,23 +335,22 @@ class NewTest1 {
             }
         }
     }
-
     static class Nested {
         static String nestedClassVar;
         String nestedInstanceVar;
         public void method() {
-            classVar.equals("");
-            NewTest1.classVar.equals("");
-            this.nestedInstanceVar.equals("");
-            nestedClassVar.equals("");
-            nestedInstanceVar.equals("");
+            classVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+            NewTest1.classVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+            this.nestedInstanceVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+            nestedClassVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+            nestedInstanceVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
 
             class Inner {
                 public void method() {
-                    classVar.equals("");
-                    NewTest1.classVar.equals("");
-                    nestedClassVar.equals("");
-                    nestedInstanceVar.equals("");
+                    classVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+                    NewTest1.classVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+                    nestedClassVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
+                    nestedInstanceVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
                 }
             }
         }
@@ -361,7 +361,7 @@ class NewTest1 {
         C(1212) {
             String constDefVar;
             public void doSomething() {
-                constDefVar.equals("");
+                constDefVar.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
             }
         };
 
@@ -372,7 +372,7 @@ class NewTest1 {
         }
 
         public static void doSomethingStatic() {
-            enumStatic.equals("");
+            enumStatic.equals(""); // violation 'String literal expressions should be on the left side of an equals comparison.'
             enumStatic.equals(null);
         }
         static String enumStatic;
@@ -398,7 +398,7 @@ class Anonymous1 {
         Runnable anonym = new Runnable() {
             String nullableStr = null;
             public void run() {
-                nullableStr.equals("Null");
+                nullableStr.equals("Null"); // violation 'String literal expressions should be on the left side of an equals comparison.'
             };
         };
         Object nullableStr = new Object();
@@ -419,13 +419,13 @@ class TestConcatenations1 {
     String s = null;
 
     void foo() {
-        s.equals(s + s);
-        s.equals("a" + "b");
-        s.equals(getInt() + s);
+        s.equals(s + s); // violation 'String literal expressions should be on the left side of an equals comparison.'
+        s.equals("a" + "b"); // violation 'String literal expressions should be on the left side of an equals comparison.'
+        s.equals(getInt() + s); // violation 'String literal expressions should be on the left side of an equals comparison.'
         s.equals(getInt() + getInt());
         s.endsWith("a");
         String s = "";
-        if (!s.equals("Hello[EOL]" + System.getProperty("line.separator")))
+        if (!s.equals("Hello[EOL]" + System.getProperty("line.separator"))) // violation 'String literal expressions should be on the left side of an equals comparison.'
             foo();
     }
 
