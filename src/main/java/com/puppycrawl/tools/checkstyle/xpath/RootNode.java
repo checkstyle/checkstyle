@@ -224,7 +224,7 @@ public class RootNode extends AbstractNode {
      */
     @Override
     public int getTokenType() {
-        return TokenTypes.EOF;
+        return TokenTypes.COMPILATION_UNIT;
     }
 
     /**

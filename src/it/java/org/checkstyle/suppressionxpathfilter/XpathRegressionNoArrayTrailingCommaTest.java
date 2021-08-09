@@ -51,7 +51,8 @@ public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSu
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoArrayTrailingCommaOne']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                    + "[@text='SuppressionXpathRegressionNoArrayTrailingCommaOne']]"
                     + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='t1']]/ASSIGN/EXPR"
                     + "/LITERAL_NEW/ARRAY_INIT/COMMA[4]"
         );
@@ -74,7 +75,8 @@ public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSu
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoArrayTrailingCommaTwo']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionNoArrayTrailingCommaTwo']]"
                     + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='t4']]"
                     + "/ASSIGN/EXPR/LITERAL_NEW/ARRAY_INIT/COMMA"
         );
