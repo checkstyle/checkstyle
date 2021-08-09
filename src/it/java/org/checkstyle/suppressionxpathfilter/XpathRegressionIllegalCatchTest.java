@@ -51,7 +51,8 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIllegalCatchOne']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionIllegalCatchOne']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='fun']]/SLIST"
                 + "/LITERAL_TRY/LITERAL_CATCH"
         );
@@ -74,7 +75,8 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIllegalCatchTwo']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionIllegalCatchTwo']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='methodTwo']]/SLIST"
                 + "/LITERAL_TRY/LITERAL_CATCH"
         );

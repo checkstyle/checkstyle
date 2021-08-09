@@ -71,7 +71,8 @@ public class XpathFileGeneratorAstFilterTest {
                 getPath("InputXpathFileGeneratorAstFilter.java"), violation);
 
         assertEquals(
-                "/CLASS_DEF[./IDENT[@text='InputXpathFileGeneratorAstFilter']]/OBJBLOCK/LCURLY",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathFileGeneratorAstFilter']]"
+                        + "/OBJBLOCK/LCURLY",
                 XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent),
                 "expected xpath");
     }
@@ -110,8 +111,8 @@ public class XpathFileGeneratorAstFilterTest {
                 getPath("InputXpathFileGeneratorAstFilter.java"), violation);
 
         assertEquals(
-                "/CLASS_DEF[./IDENT[@text='InputXpathFileGeneratorAstFilter']]/OBJBLOCK"
-                        + "/METHOD_DEF[./IDENT[@text='tabMethod']]/SLIST/LITERAL_RETURN",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathFileGeneratorAstFilter']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='tabMethod']]/SLIST/LITERAL_RETURN",
                 XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent),
                 "expected xpath");
     }

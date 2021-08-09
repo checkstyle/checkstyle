@@ -51,7 +51,7 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/IMPORT"
+                "/COMPILATION_UNIT/IMPORT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -72,7 +72,7 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/IMPORT[./DOT/IDENT[@text='Set']]"
+                "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='Set']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -95,7 +95,7 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/IMPORT[./DOT/DOT/IDENT[@text='org']]"
+                "/COMPILATION_UNIT/IMPORT[./DOT/DOT/IDENT[@text='org']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -117,7 +117,7 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/STATIC_IMPORT"
+                "/COMPILATION_UNIT/STATIC_IMPORT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -139,7 +139,7 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/IMPORT[./DOT/IDENT[@text='Date']]"
+                "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='Date']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

@@ -51,12 +51,15 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMethodCount1']]",
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMethodCount1']]",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMethodCount1']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMethodCount1']]"
                     + "/MODIFIERS",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMethodCount1']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMethodCount1']]"
                     + "/LITERAL_CLASS"
         );
 
@@ -79,12 +82,15 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMethodCount2']]",
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount2']]",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMethodCount2']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount2']]"
                     + "/MODIFIERS",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMethodCount2']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount2']]"
                     + "/LITERAL_CLASS"
         );
 
@@ -107,12 +113,15 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMethodCount1']]",
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount1']]",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMethodCount1']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount1']]"
                     + "/MODIFIERS",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMethodCount1']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount1']]"
                     + "/LITERAL_CLASS"
         );
 
@@ -135,12 +144,15 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMethodCount3']]",
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount3']]",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMethodCount3']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount3']]"
                     + "/MODIFIERS",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMethodCount3']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount3']]"
                     + "/LITERAL_CLASS"
         );
 
@@ -163,12 +175,15 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMethodCount4']]",
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount4']]",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMethodCount4']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount4']]"
                     + "/MODIFIERS",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMethodCount4']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount4']]"
                     + "/LITERAL_CLASS"
         );
 
