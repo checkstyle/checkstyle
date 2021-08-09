@@ -26,6 +26,15 @@ public final class TestInputViolation {
     /** Pattern to match the symbol: "{". */
     private static final Pattern OPEN_CURLY_PATTERN = Pattern.compile("\\{");
 
+    /** Pattern to match the symbol: "(". */
+    private static final Pattern OPEN_PAREN_PATTERN = Pattern.compile("\\(");
+
+    /** Pattern to match the symbol: ")". */
+    private static final Pattern CLOSE_PAREN_PATTERN = Pattern.compile("\\)");
+
+    /** Pattern to match the symbol: ".". */
+    private static final Pattern DOT_PATTERN = Pattern.compile("\\.");
+
     /** Parsed violation line number. */
     private final int lineNo;
 
@@ -67,12 +76,17 @@ public final class TestInputViolation {
      * @return the regex string.
      */
     public String toRegex() {
-        String regex = lineNo + ":(?:\\d+:)+\\s";
+        String regex = lineNo + ":(?:\\d+:)?\\s";
         if (message == null) {
             regex += ".*";
         }
         else {
-            regex += OPEN_CURLY_PATTERN.matcher(message).replaceAll("\\\\{");
+            String rawMessage = message;
+            rawMessage = OPEN_CURLY_PATTERN.matcher(rawMessage).replaceAll("\\\\{");
+            rawMessage = OPEN_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\(");
+            rawMessage = CLOSE_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\)");
+            rawMessage = DOT_PATTERN.matcher(rawMessage).replaceAll("\\\\.");
+            regex += rawMessage;
         }
         return regex;
     }
