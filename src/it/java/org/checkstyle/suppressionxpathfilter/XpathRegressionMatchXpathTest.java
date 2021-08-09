@@ -53,11 +53,11 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathOne']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathOne']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathOne']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathOne']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathOne']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathOne']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -80,7 +80,8 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathTwo']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathTwo']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='func1']]"
                         + "/LITERAL_THROWS[./IDENT[@text='RuntimeException']]"
         );
@@ -104,10 +105,12 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedQuoteString']]/"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedQuoteString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='quoteChar']]/ASSIGN/EXPR"
                     + "[./STRING_LITERAL[@text='\\&quot;testOne\\&quot;']]",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedQuoteString']]/"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedQuoteString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='quoteChar']]/ASSIGN/EXPR"
                     + "/STRING_LITERAL[@text='\\&quot;testOne\\&quot;']"
         );
@@ -131,10 +134,12 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedLessString']]/"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedLessString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='lessChar']]/ASSIGN/EXPR"
                     + "[./STRING_LITERAL[@text='&lt;testTwo']]",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedLessString']]/"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedLessString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='lessChar']]/ASSIGN/EXPR/"
                     + "STRING_LITERAL[@text='&lt;testTwo']"
         );
@@ -158,10 +163,12 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedNewLineString']]/"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedNewLineString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='newLineChar']]/ASSIGN/EXPR"
                     + "[./STRING_LITERAL[@text='testFive\\n']]",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedNewLineString']]/"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedNewLineString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='newLineChar']]/ASSIGN/EXPR"
                     + "/STRING_LITERAL[@text='testFive\\n']"
         );
@@ -185,10 +192,12 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedGreaterString']]/"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedGreaterString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='greaterChar']]/ASSIGN/EXPR"
                     + "[./STRING_LITERAL[@text='&gt;testFour']]",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedGreaterString']]/"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedGreaterString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='greaterChar']]/ASSIGN/EXPR"
                     + "/STRING_LITERAL[@text='&gt;testFour']"
         );
@@ -212,10 +221,12 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAmpString']]/"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAmpString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='ampersandChar']]/ASSIGN/EXPR"
                     + "[./STRING_LITERAL[@text='&amp;testThree']]",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAmpString']]/"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAmpString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='ampersandChar']]/ASSIGN/EXPR"
                     + "/STRING_LITERAL[@text='&amp;testThree']"
         );
@@ -239,10 +250,12 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAposString']]/"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAposString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='aposChar']]/ASSIGN/EXPR"
                     + "[./STRING_LITERAL[@text='&apos;&apos;SingleQuoteOnBothSide&apos;&apos;']]",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAposString']]/"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAposString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='aposChar']]/ASSIGN/EXPR"
                     + "/STRING_LITERAL[@text='&apos;&apos;SingleQuoteOnBothSide&apos;&apos;']"
         );
@@ -266,10 +279,12 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedCarriage"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedCarriage"
                         + "String']]/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='carriageChar']]/ASSIGN"
                         + "/EXPR[./STRING_LITERAL[@text='carriageCharAtEnd\\r']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedCarriage"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedCarriage"
                         + "String']]/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='carriageChar']]/ASSIGN"
                         + "/EXPR/STRING_LITERAL[@text='carriageCharAtEnd\\r']"
         );
@@ -293,10 +308,12 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueriesForAmpersand = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAmpChar']]/"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAmpChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='ampChar']]/ASSIGN/EXPR"
                         + "[./CHAR_LITERAL[@text='&apos;&apos;&amp;&apos;&apos;']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAmpChar']]/"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAmpChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='ampChar']]/ASSIGN/EXPR"
                         + "/CHAR_LITERAL[@text='&apos;&apos;&amp;&apos;&apos;']"
         );
@@ -320,10 +337,12 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueriesForQuote = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedQuotChar']]/"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedQuotChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='quotChar']]/ASSIGN/EXPR"
                         + "[./CHAR_LITERAL[@text='&apos;&apos;\\&quot;&apos;&apos;']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedQuotChar']]/"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedQuotChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='quotChar']]/ASSIGN/EXPR/"
                         + "CHAR_LITERAL[@text='&apos;&apos;\\&quot;&apos;&apos;']"
         );
@@ -347,10 +366,12 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueriesForLess = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedLessChar']]/"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedLessChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='lessChar']]/ASSIGN/EXPR"
                         + "[./CHAR_LITERAL[@text='&apos;&apos;&lt;&apos;&apos;']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedLessChar']]/"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedLessChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='lessChar']]/ASSIGN/EXPR/"
                         + "CHAR_LITERAL[@text='&apos;&apos;&lt;&apos;&apos;']"
         );
@@ -374,10 +395,12 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueriesForApos = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAposChar']]/"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAposChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='aposChar']]/ASSIGN/EXPR"
                         + "[./CHAR_LITERAL[@text='&apos;&apos;\\&apos;&apos;&apos;&apos;']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAposChar']]/"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAposChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='aposChar']]/ASSIGN/EXPR/"
                         + "CHAR_LITERAL[@text='&apos;&apos;\\&apos;&apos;&apos;&apos;']"
         );
@@ -401,11 +424,13 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueriesForGreater = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncoded"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncoded"
                         + "GreaterChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='greaterChar']]/ASSIGN/EXPR"
                         + "[./CHAR_LITERAL[@text='&apos;&apos;&gt;&apos;&apos;']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncoded"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncoded"
                         + "GreaterChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='greaterChar']]/ASSIGN/EXPR/"
                         + "CHAR_LITERAL[@text='&apos;&apos;&gt;&apos;&apos;']"

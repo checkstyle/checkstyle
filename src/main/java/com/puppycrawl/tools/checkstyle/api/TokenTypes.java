@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import org.antlr.v4.runtime.Recognizer;
-
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLexer;
 
 /**
@@ -35,17 +33,53 @@ import com.puppycrawl.tools.checkstyle.grammar.java.JavaLexer;
 public final class TokenTypes {
 
     /**
-     * The end of file token.  This is the root node for the source
-     * file.  It's children are an optional package definition, zero
-     * or more import statements, and one or more class or interface
-     * definitions.
+     * This is the root node for the source file.  It's children
+     * are an optional package definition, zero or more import statements,
+     * and zero or more type declarations.
+      * <p>For example:</p>
+     * <pre>
+     * import java.util.List;
+     *
+     * class MyClass{}
+     * interface MyInterface{}
+     * ;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * COMPILATION_UNIT -&gt; COMPILATION_UNIT
+     * |--IMPORT -&gt; import
+     * |   |--DOT -&gt; .
+     * |   |   |--DOT -&gt; .
+     * |   |   |   |--IDENT -&gt; java
+     * |   |   |   `--IDENT -&gt; util
+     * |   |   `--IDENT -&gt; List
+     * |   `--SEMI -&gt; ;
+     * |--CLASS_DEF -&gt; CLASS_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--LITERAL_CLASS -&gt; class
+     * |   |--IDENT -&gt; MyClass
+     * |   `--OBJBLOCK -&gt; OBJBLOCK
+     * |       |--LCURLY -&gt; {
+     * |       `--RCURLY -&gt; }
+     * |--INTERFACE_DEF -&gt; INTERFACE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--LITERAL_INTERFACE -&gt; interface
+     * |   |--IDENT -&gt; MyInterface
+     * |   `--OBJBLOCK -&gt; OBJBLOCK
+     * |       |--LCURLY -&gt; {
+     * |       `--RCURLY -&gt; }
+     * `--SEMI -&gt; ;
+     * </pre>
      *
      * @see #PACKAGE_DEF
      * @see #IMPORT
      * @see #CLASS_DEF
      * @see #INTERFACE_DEF
+     * @see #RECORD_DEF
+     * @see #ANNOTATION_DEF
+     * @see #ENUM_DEF
      **/
-    public static final int EOF = Recognizer.EOF;
+    public static final int COMPILATION_UNIT = JavaLexer.COMPILATION_UNIT;
     /**
      * Modifiers for type, method, and field declarations.  The
      * modifiers element is always present even though it may have no
@@ -5039,7 +5073,7 @@ public final class TokenTypes {
     public static final int GENERIC_END = JavaLexer.GENERIC_END;
 
     /**
-     * Special lambda symbol {@code ->}.
+     * Special lambda symbol {@code -&gt;}.
      */
     public static final int LAMBDA = JavaLexer.LAMBDA;
 
