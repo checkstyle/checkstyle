@@ -1,6 +1,6 @@
 /*
 FileLength
-max = 20
+max = 225
 fileExtensions = (default)all files
 
 
@@ -16,7 +16,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.filelength;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputFileLength // violation
+final class InputFileLength2 // ok
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->        <-
@@ -102,7 +102,7 @@ final class InputFileLength // violation
     }
 
     /** constructor that is 10 lines long **/
-    private InputFileLength()
+    private InputFileLength2()
     {
         // a line
         // a line
@@ -201,7 +201,7 @@ final class InputFileLength // violation
 }
 
 /** Test class for variable naming in for each clauses. */
-class InputSimple2
+class InputSimple22
 {
     /** Some more Javadoc. */
     public void doSomething()
@@ -215,11 +215,8 @@ class InputSimple2
 }
 
 /** Test enum for member naming check */
-enum MyEnum1
+enum MyEnum12
 {
-    /** ABC constant */
-    ABC,
-
     /** XYZ constant */
     XYZ;
 
