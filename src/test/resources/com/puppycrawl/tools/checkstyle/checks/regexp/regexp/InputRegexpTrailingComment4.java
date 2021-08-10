@@ -1,18 +1,18 @@
 /*
 Regexp
-format = don't use trailing comments
+format = c-style 1
 message = (default)null
 illegalPattern = true
 duplicateLimit = (default)0
 errorLimit = (default)100
-ignoreComments = true
+ignoreComments = (default)false
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
-public class InputRegexpTrailingComment { // ok
+public class InputRegexpTrailingComment4 {
     int i; // don't use trailing comments :)
     // it fine to have comment w/o any statement
     /* good c-style comment. */
@@ -28,7 +28,7 @@ public class InputRegexpTrailingComment { // ok
       Let's check multi-line comments.
     */
     /* c-style */ // cpp-style
-    /* c-style 1 */ /*c-style 2 */
+    /* c-style 1 */ /*c-style 2 */ // violation
 
     void method2(long ms /* we should ignore this */) {
         /* comment before text */int z;
