@@ -1,7 +1,7 @@
 /*
 ParameterNumber
 max = (default)7
-ignoreOverriddenMethods = true
+ignoreOverriddenMethods = (default)false
 tokens = (default)METHOD_DEF, CTOR_DEF
 
 
@@ -9,7 +9,7 @@ tokens = (default)METHOD_DEF, CTOR_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.parameternumber;
 
-class InputParameterNumberCheckBase
+class InputParameterNumberCheckBase2
 {
     // method with many parameters
     void myMethod(int a, int b, int c, int d, int e, int f, int g, int h) { // violation
@@ -22,7 +22,7 @@ class InputParameterNumberCheckBase
     }
 }
 
-public class InputParameterNumber extends InputParameterNumberCheckBase
+public class InputParameterNumber2 extends InputParameterNumberCheckBase
 {
     @Override
     void myMethod(int a, int b, int c, int d, int e, int f, int g, int h) {
