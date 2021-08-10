@@ -1,6 +1,6 @@
 /*
 ParameterNumber
-max = (default)7
+max = 2
 ignoreOverriddenMethods	= (default)false
 tokens = (default)METHOD_DEF, CTOR_DEF
 
@@ -8,7 +8,7 @@ tokens = (default)METHOD_DEF, CTOR_DEF
 */
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.parameternumber;
-import java.io.*;
+
 /**
  * Contains simple mistakes:
  * - Long lines
@@ -17,7 +17,7 @@ import java.io.*;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputParameterNumberSimple
+final class InputParameterNumberSimple2
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->        <-
@@ -70,11 +70,11 @@ final class InputParameterNumberSimple
      * @param badFormat1 bad format
      * @param badFormat2 bad format
      * @param badFormat3 bad format
-     * @throws java.lang.Exception abc
+     * @throws Exception abc
      **/
-    int test1(int badFormat1,int badFormat2,
+    int test1(int badFormat1,int badFormat2, // violation
               final int badFormat3)
-        throws java.lang.Exception
+        throws Exception
     {
         return 0;
     }
@@ -103,7 +103,7 @@ final class InputParameterNumberSimple
     }
 
     /** constructor that is 10 lines long **/
-    private InputParameterNumberSimple()
+    private InputParameterNumberSimple2()
     {
         // a line
         // a line
@@ -195,14 +195,14 @@ final class InputParameterNumberSimple
     /**
      * @see to lazy to document all args. Testing excessive # args
      **/
-    void toManyArgs(int aArg1, int aArg2, int aArg3, int aArg4, int aArg5, // violation
+    void toManyArgs(int aArg1, int aArg2, int aArg3, int aArg4, int aArg5,
                     int aArg6, int aArg7, int aArg8, int aArg9)
     {
     }
 }
 
 /** Test class for variable naming in for each clauses. */
-class InputSimple2
+class InputSimple22
 {
     /** Some more Javadoc. */
     public void doSomething()
@@ -216,7 +216,7 @@ class InputSimple2
 }
 
 /** Test enum for member naming check */
-enum MyEnum1
+enum MyEnum12
 {
     /** ABC constant */
     ABC,
