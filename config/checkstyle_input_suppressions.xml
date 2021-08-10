@@ -263,24 +263,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="header[\\/]regexpheader[\\/]InputRegexpHeaderSmallHeader.java"/>
 
-
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]importcontrol[\\/]InputImportControl_Blacklist.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]importcontrol[\\/]InputImportControlDisallowClassOfAllowPackage.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]importcontrol[\\/]InputImportControlFileName.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]importcontrol[\\/]InputImportControl.java"/>
-
-
-
-
-
   <suppress id="ConfigCommentOnTopInputs"
             files="indentation[\\/]indentation[\\/]InputIndentation15Extensions.java"/>
 
@@ -1078,23 +1060,6 @@
 
   <suppress id="StyleValidationCommentInInputs"
             files="header[\\/]regexpheader[\\/]InputRegexpHeaderSmallHeader.java"/>
-
-
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]importcontrol[\\/]InputImportControl_Blacklist.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]importcontrol[\\/]InputImportControlDisallowClassOfAllowPackage.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]importcontrol[\\/]InputImportControlFileName.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]importcontrol[\\/]InputImportControl.java"/>
-
-
-
 
   <!-- indentation Inputs have special trailing comments -->
 
