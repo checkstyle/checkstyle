@@ -517,26 +517,6 @@
 
 
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]methodcount[\\/]InputMethodCount2.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]methodcount[\\/]InputMethodCount3.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]methodcount[\\/]InputMethodCount4.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]methodcount[\\/]InputMethodCount5.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]methodcount[\\/]InputMethodCount6.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]methodcount[\\/]InputMethodCount7.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]methodcount[\\/]InputMethodCount.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="sizes[\\/]outertypenumber[\\/]InputOuterTypeNumberEmptyInner.java"/>
@@ -910,26 +890,6 @@
 
 
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]methodcount[\\/]InputMethodCount2.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]methodcount[\\/]InputMethodCount3.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]methodcount[\\/]InputMethodCount4.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]methodcount[\\/]InputMethodCount5.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]methodcount[\\/]InputMethodCount6.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]methodcount[\\/]InputMethodCount7.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]methodcount[\\/]InputMethodCount.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="sizes[\\/]outertypenumber[\\/]InputOuterTypeNumberEmptyInner.java"/>

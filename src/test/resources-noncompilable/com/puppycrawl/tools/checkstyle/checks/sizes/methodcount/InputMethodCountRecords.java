@@ -1,12 +1,18 @@
+/*
+MethodCount
+maxTotal = 2
+maxPrivate = (default)100
+maxPackage = (default)100
+maxProtected = (default)100
+maxPublic = (default)100
+tokens = (default)CLASS_DEF, ENUM_CONSTANT_DEF, ENUM_DEF, INTERFACE_DEF, ANNOTATION_DEF, RECORD_DEF
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodcount;
 
-/* Config:
- * maxTotal = 2
- * tokens = {CLASS_DEF , ENUM_CONSTANT_DEF , ENUM_DEF , INTERFACE_DEF ,
- *  ANNOTATION_DEF, RECORD_DEF}
- *
- */
 public class InputMethodCountRecords {
 
     record MyTestRecord() { // violation
