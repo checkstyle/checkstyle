@@ -612,13 +612,7 @@
             files="packageobjectfactory[\\/]foo[\\/]FooCheck.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
-            files="regexp[\\/]regexp[\\/]InputRegexpSemantic.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
             files="regexp[\\/]regexp[\\/]InputRegexpStartingWithEmptyLine.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="regexp[\\/]regexp[\\/]InputRegexpTrailingComment.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="regexp[\\/]regexpmultiline[\\/]InputRegexpMultilineMultilineSupport2.java"/>
@@ -1240,14 +1234,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="packageobjectfactory[\\/]foo[\\/]FooCheck.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="regexp[\\/]regexp[\\/]InputRegexpSemantic.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="regexp[\\/]regexp[\\/]InputRegexpStartingWithEmptyLine.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="regexp[\\/]regexp[\\/]InputRegexpTrailingComment.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="regexp[\\/]regexpmultiline[\\/]InputRegexpMultilineMultilineSupport2.java"/>
