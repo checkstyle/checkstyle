@@ -681,11 +681,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="sizes[\\/]methodcount[\\/]InputMethodCount.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]outertypenumber[\\/]InputOuterTypeNumberEmptyInner.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]outertypenumber[\\/]InputOuterTypeNumberSimple.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="sizes[\\/]parameternumber[\\/]InputParameterNumber.java"/>
@@ -1310,11 +1305,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="sizes[\\/]methodcount[\\/]InputMethodCount.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]outertypenumber[\\/]InputOuterTypeNumberEmptyInner.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]outertypenumber[\\/]InputOuterTypeNumberSimple.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="sizes[\\/]parameternumber[\\/]InputParameterNumber.java"/>
