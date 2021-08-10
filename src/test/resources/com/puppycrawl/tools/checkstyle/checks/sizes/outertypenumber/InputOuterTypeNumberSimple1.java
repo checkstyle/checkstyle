@@ -1,12 +1,12 @@
 /*
 OuterTypeNumber
-max = 30
+max = (default)1
 
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber; // violation
-import java.io.*;
+package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber; // ok
+
 /**
  * Contains simple mistakes:
  * - Long lines
@@ -15,7 +15,7 @@ import java.io.*;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputOuterTypeNumberSimple
+final class InputOuterTypeNumberSimple1
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->        <-
@@ -68,11 +68,11 @@ final class InputOuterTypeNumberSimple
      * @param badFormat1 bad format
      * @param badFormat2 bad format
      * @param badFormat3 bad format
-     * @throws java.lang.Exception abc
+     * @throws Exception abc
      **/
     int test1(int badFormat1,int badFormat2,
               final int badFormat3)
-        throws java.lang.Exception
+        throws Exception
     {
         return 0;
     }
@@ -101,7 +101,7 @@ final class InputOuterTypeNumberSimple
     }
 
     /** constructor that is 10 lines long **/
-    private InputOuterTypeNumberSimple()
+    private InputOuterTypeNumberSimple1()
     {
         // a line
         // a line
@@ -200,7 +200,7 @@ final class InputOuterTypeNumberSimple
 }
 
 /** Test class for variable naming in for each clauses. */
-class InputOuterTypeNumberSimple2
+class InputOuterTypeNumberSimple3
 {
     /** Some more Javadoc. */
     public void doSomething()
@@ -214,7 +214,7 @@ class InputOuterTypeNumberSimple2
 }
 
 /** Test enum for member naming check */
-enum MyEnum1
+enum MyEnum2
 {
     /** ABC constant */
     ABC,
