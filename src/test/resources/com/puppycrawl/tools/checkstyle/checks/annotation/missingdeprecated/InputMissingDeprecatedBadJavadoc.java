@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 import java.lang.annotation.Inherited;
 
 @Deprecated
-public class InputMissingDeprecatedBadJavadoc
+public class InputMissingDeprecatedBadJavadoc // ok
 {
     /**
      * @Deprecated this is not the same

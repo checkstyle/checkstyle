@@ -9,7 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 
 /**
  * @deprecated bleh
- * @deprecated boo
+ * @deprecated boo // violation
  */
 @Deprecated
 public class InputMissingDeprecatedSpecialCase

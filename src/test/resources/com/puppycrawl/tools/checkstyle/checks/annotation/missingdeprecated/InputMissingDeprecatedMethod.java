@@ -15,7 +15,7 @@ public class InputMissingDeprecatedMethod {
      *
      * @param comment
      */
-    public void method(){
+    public void method(){ // violation
     }
 
 }
