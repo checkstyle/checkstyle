@@ -9,6 +9,6 @@ PackageAnnotation
 @Deprecated
 package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
 
-public class InputPackageAnnotation2 {
+public class InputPackageAnnotation2 { // ok
 
 }

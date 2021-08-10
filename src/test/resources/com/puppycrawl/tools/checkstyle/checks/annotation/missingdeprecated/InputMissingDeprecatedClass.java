@@ -16,7 +16,7 @@ import java.lang.annotation.Inherited;
  *stuff
  *stuff
  */
-public class InputMissingDeprecatedClass
+public class InputMissingDeprecatedClass // ok
 {
 
 }

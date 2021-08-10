@@ -14,7 +14,7 @@ tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 import java.io.IOException;
 // Tests for Javadoc tags.
-class InputJavadocMethodTags1
+class InputJavadocMethodTags1 // ok
 {
     // Invalid - should be Javadoc
     private int mMissingJavadoc;

@@ -17,7 +17,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
  * The following is a bad tag.
  * @mytag Hello
  */
-public class InputMissingJavadocMethodSmallMethods extends Some
+public class InputMissingJavadocMethodSmallMethods extends Some // ok
 {
     //with comments
 

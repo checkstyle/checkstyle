@@ -11,7 +11,7 @@ tokens = (default)METHOD_DEF , CTOR_DEF , ANNOTATION_FIELD_DEF , COMPACT_CTOR_DE
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod; // ok
 
 /* Config:
  * scope = "private"
