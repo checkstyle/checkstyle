@@ -43,8 +43,8 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("max", "80");
         checkConfig.addProperty("ignorePattern", "^.*is OK.*regexp.*$");
         final String[] expected = {
-            "18: " + getCheckMessage(MSG_KEY, 80, 81),
-            "145: " + getCheckMessage(MSG_KEY, 80, 83),
+            "22: " + getCheckMessage(MSG_KEY, 80, 81),
+            "149: " + getCheckMessage(MSG_KEY, 80, 83),
         };
         verify(checkConfig, getPath("InputLineLengthSimple.java"), expected);
     }
@@ -58,10 +58,10 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("ignorePattern", "^.*is OK.*regexp.*$");
         checkConfig.addMessage("maxLineLen", "{0},{1}");
         final String[] expected = {
-            "18: 80,81",
-            "145: 80,83",
+            "22: 80,81",
+            "149: 80,83",
         };
-        verify(checkConfig, getPath("InputLineLengthSimple.java"), expected);
+        verify(checkConfig, getPath("InputLineLengthSimple1.java"), expected);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(LineLengthCheck.class);
         checkConfig.addProperty("max", "80");
         final String[] expected = {
-            "9: " + getCheckMessage(MSG_KEY, 80, 87),
+            "18: " + getCheckMessage(MSG_KEY, 80, 100),
         };
         verify(checkConfig, getPath("InputLineLengthLongImportStatements.java"), expected);
     }
@@ -81,7 +81,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(LineLengthCheck.class);
         checkConfig.addProperty("max", "80");
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_KEY, 80, 88),
+            "16: " + getCheckMessage(MSG_KEY, 80, 101),
         };
         verify(checkConfig, getNonCompilablePath("InputLineLengthLongPackageStatement.java"),
                 expected);
@@ -95,7 +95,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("ignorePattern",
             "^ *\\* *([^ ]+|\\{@code .*|<a href=\"[^\"]+\">)$");
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_KEY, 80, 98),
+            "13: " + getCheckMessage(MSG_KEY, 80, 111),
         };
         verify(checkConfig, getPath("InputLineLengthLongLink.java"), expected);
     }
@@ -110,8 +110,8 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
 
         final String[] expected = {
-            "6: " + getCheckMessage(MSG_KEY, 100, 136),
-            "7: " + getCheckMessage(MSG_KEY, 100, 136),
+            "15: " + getCheckMessage(MSG_KEY, 100, 149),
+            "16: " + getCheckMessage(MSG_KEY, 100, 149),
         };
 
         verify(checkerConfig, getPath("InputLineLengthUnicodeChars.java"), expected);
