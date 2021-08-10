@@ -61,21 +61,6 @@
             files="checker[\\/]InputChecker.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]illegalinstantiation[\\/]InputIllegalInstantiation.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]illegalinstantiation[\\/]InputIllegalInstantiationLang.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]illegalinstantiation[\\/]InputIllegalInstantiationNoPackage.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]illegalinstantiation[\\/]InputIllegalInstantiationSameClassNameJavaLang.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]illegalinstantiation[\\/]InputIllegalInstantiationSemantic.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationEmptyFile.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
@@ -674,21 +659,6 @@
 
   <suppress id="StyleValidationCommentInInputs"
             files="checker[\\/]InputChecker.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]illegalinstantiation[\\/]InputIllegalInstantiation.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]illegalinstantiation[\\/]InputIllegalInstantiationLang.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]illegalinstantiation[\\/]InputIllegalInstantiationNoPackage.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]illegalinstantiation[\\/]InputIllegalInstantiationSameClassNameJavaLang.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]illegalinstantiation[\\/]InputIllegalInstantiationSemantic.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationEmptyFile.java"/>
