@@ -1,14 +1,15 @@
 /*
 AnonInnerLength
-max = (default)20
+max = 6
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.anoninnerlength;
 
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JButton;
 
 /**
@@ -16,7 +17,7 @@ import javax.swing.JButton;
  * @author Rob Worth
  * @author Lars Kühne
  **/
-public class InputAnonInnerLength
+public class InputAnonInnerLength2
 {
     /**
      * Check that instantiations of normal classes work OK.
@@ -75,7 +76,7 @@ public class InputAnonInnerLength
     /**
        anon inner in member variable initialization which is 20 lines long
     */
-    private Runnable mRunnable2 = new Runnable() {
+    private Runnable mRunnable2 = new Runnable() { // violation
         public void run() // should not have to be documented, class is anon.
         {
             System.identityHashCode("running");
@@ -99,7 +100,7 @@ public class InputAnonInnerLength
     /**
        anon inner in constructor.
     */
-    InputAnonInnerLength()
+    InputAnonInnerLength2()
     {
         mButton.addMouseListener( new MouseAdapter()
             {
