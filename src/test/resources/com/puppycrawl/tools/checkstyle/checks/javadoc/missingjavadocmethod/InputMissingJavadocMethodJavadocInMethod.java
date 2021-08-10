@@ -17,7 +17,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
  * scope = "private"
  */
 public class InputMissingJavadocMethodJavadocInMethod {
-    public void foo1() { }
+    public void foo1() { } // violation
 
     @Deprecated
     public void foo2() { }

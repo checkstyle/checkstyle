@@ -57,7 +57,7 @@ public abstract class InputMissingJavadocMethodExtendAnnotation<E>
   private static final String SUPPORTS_ADD = "";
   private static final String SUPPORTS_REMOVE = null;
 
-@CollectionFeature.Require
+@CollectionFeature.Require // violation
   public void testSetCount_zeroToZero_unsupported() {
     try {
       assertZeroToZero();

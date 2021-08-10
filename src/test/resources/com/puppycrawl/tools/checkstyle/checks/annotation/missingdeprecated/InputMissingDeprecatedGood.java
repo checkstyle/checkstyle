@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
  * bleh
  */
 @Deprecated
-public class InputMissingDeprecatedGood
+public class InputMissingDeprecatedGood // ok
 {
     /**
      * @deprecated           bleh
