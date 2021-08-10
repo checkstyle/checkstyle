@@ -642,8 +642,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="sizes[\\/]anoninnerlength[\\/]InputAnonInnerLength.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]filelength[\\/]InputFileLength.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="sizes[\\/]linelength[\\/]InputLineLengthLongImportStatements.java"/>
@@ -1271,8 +1269,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="sizes[\\/]anoninnerlength[\\/]InputAnonInnerLength.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]filelength[\\/]InputFileLength.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="sizes[\\/]linelength[\\/]InputLineLengthLongImportStatements.java"/>
