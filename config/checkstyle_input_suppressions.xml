@@ -516,20 +516,6 @@
 
 
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]linelength[\\/]InputLineLengthLongImportStatements.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]linelength[\\/]InputLineLengthLongLink.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]linelength[\\/]InputLineLengthLongPackageStatement.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]linelength[\\/]InputLineLengthSimple.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]linelength[\\/]InputLineLengthUnicodeChars.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="sizes[\\/]methodcount[\\/]InputMethodCount2.java"/>
@@ -923,20 +909,6 @@
 
 
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]linelength[\\/]InputLineLengthLongImportStatements.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]linelength[\\/]InputLineLengthLongLink.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]linelength[\\/]InputLineLengthLongPackageStatement.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]linelength[\\/]InputLineLengthSimple.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]linelength[\\/]InputLineLengthUnicodeChars.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="sizes[\\/]methodcount[\\/]InputMethodCount2.java"/>
