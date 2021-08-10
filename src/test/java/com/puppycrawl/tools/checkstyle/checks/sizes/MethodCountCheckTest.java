@@ -87,18 +87,18 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("maxTotal", "3");
 
         final String[] expected = {
-            "3:1: " + getCheckMessage(MSG_PACKAGE_METHODS, 5, 3),
-            "3:1: " + getCheckMessage(MSG_PRIVATE_METHODS, 5, 3),
-            "3:1: " + getCheckMessage(MSG_PROTECTED_METHODS, 5, 3),
-            "3:1: " + getCheckMessage(MSG_PUBLIC_METHODS, 5, 3),
-            "3:1: " + getCheckMessage(MSG_MANY_METHODS, 20, 3),
-            "9:3: " + getCheckMessage(MSG_PUBLIC_METHODS, 5, 3),
-            "9:3: " + getCheckMessage(MSG_MANY_METHODS, 5, 3),
-            "45:3: " + getCheckMessage(MSG_PUBLIC_METHODS, 5, 3),
-            "45:3: " + getCheckMessage(MSG_MANY_METHODS, 5, 3),
+            "15:1: " + getCheckMessage(MSG_PACKAGE_METHODS, 5, 3),
+            "15:1: " + getCheckMessage(MSG_PRIVATE_METHODS, 5, 3),
+            "15:1: " + getCheckMessage(MSG_PROTECTED_METHODS, 5, 3),
+            "15:1: " + getCheckMessage(MSG_PUBLIC_METHODS, 5, 3),
+            "15:1: " + getCheckMessage(MSG_MANY_METHODS, 20, 3),
+            "21:3: " + getCheckMessage(MSG_PUBLIC_METHODS, 5, 3),
+            "21:3: " + getCheckMessage(MSG_MANY_METHODS, 5, 3),
+            "57:3: " + getCheckMessage(MSG_PUBLIC_METHODS, 5, 3),
+            "57:3: " + getCheckMessage(MSG_MANY_METHODS, 5, 3),
         };
 
-        verify(checkConfig, getPath("InputMethodCount.java"), expected);
+        verify(checkConfig, getPath("InputMethodCount1.java"), expected);
     }
 
     @Test
@@ -109,8 +109,8 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("maxTotal", "2");
 
         final String[] expected = {
-            "9:5: " + getCheckMessage(MSG_PRIVATE_METHODS, 1, 0),
-            "9:5: " + getCheckMessage(MSG_MANY_METHODS, 3, 2),
+            "21:5: " + getCheckMessage(MSG_PRIVATE_METHODS, 1, 0),
+            "21:5: " + getCheckMessage(MSG_MANY_METHODS, 3, 2),
         };
 
         verify(checkConfig, getPath("InputMethodCount2.java"), expected);
@@ -123,7 +123,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("maxTotal", "2");
 
         final String[] expected = {
-            "3:1: " + getCheckMessage(MSG_MANY_METHODS, 5, 2),
+            "15:1: " + getCheckMessage(MSG_MANY_METHODS, 5, 2),
         };
 
         verify(checkConfig, getPath("InputMethodCount3.java"), expected);
@@ -145,7 +145,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("maxTotal", "1");
 
         final String[] expected = {
-            "3:1: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
+            "15:1: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
         };
 
         verify(checkConfig, getPath("InputMethodCount5.java"), expected);
@@ -169,7 +169,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tokens", "ENUM_DEF");
 
         final String[] expected = {
-            "10:5: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
+            "22:5: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
         };
 
         verify(checkConfig, getPath("InputMethodCount7.java"), expected);
@@ -182,8 +182,8 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tokens", "ENUM_DEF, CLASS_DEF");
 
         final String[] expected = {
-            "18:5: " + getCheckMessage(MSG_PUBLIC_METHODS, 2, 1),
-            "28:5: " + getCheckMessage(MSG_PUBLIC_METHODS, 2, 1),
+            "17:5: " + getCheckMessage(MSG_PUBLIC_METHODS, 2, 1),
+            "27:5: " + getCheckMessage(MSG_PUBLIC_METHODS, 2, 1),
         };
 
         verify(checkConfig, getPath("InputMethodCountInterfaceMemberScopeIsPublic.java"),
@@ -197,12 +197,12 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         final int max = 2;
 
         final String[] expected = {
-            "12:5: " + getCheckMessage(MSG_MANY_METHODS, 3, max),
-            "44:13: " + getCheckMessage(MSG_MANY_METHODS, 3, max),
-            "62:5: " + getCheckMessage(MSG_MANY_METHODS, 3, max),
-            "72:9: " + getCheckMessage(MSG_MANY_METHODS, 3, max),
-            "81:13: " + getCheckMessage(MSG_MANY_METHODS, 4, max),
-            "93:21: " + getCheckMessage(MSG_MANY_METHODS, 3, max),
+            "18:5: " + getCheckMessage(MSG_MANY_METHODS, 3, max),
+            "50:13: " + getCheckMessage(MSG_MANY_METHODS, 3, max),
+            "68:5: " + getCheckMessage(MSG_MANY_METHODS, 3, max),
+            "78:9: " + getCheckMessage(MSG_MANY_METHODS, 3, max),
+            "87:13: " + getCheckMessage(MSG_MANY_METHODS, 4, max),
+            "99:21: " + getCheckMessage(MSG_MANY_METHODS, 3, max),
         };
 
         verify(checkConfig, getNonCompilablePath("InputMethodCountRecords.java"), expected);
