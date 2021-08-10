@@ -19,7 +19,7 @@ import java.lang.annotation.Target;
 /* Config = default */
 public class InputMissingJavadocMethodPublicMethods {
 
-    public void annotation(final char @SomeAnnotation [] arg) {}
+    public void annotation(final char @SomeAnnotation [] arg) {} // violation
 
     public @SomeAnnotation String @SomeAnnotation [] annotationInSignature() {
         return new String[]{};

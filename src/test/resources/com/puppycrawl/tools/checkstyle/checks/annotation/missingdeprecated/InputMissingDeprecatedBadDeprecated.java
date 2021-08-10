@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
  * @deprecated
  *  stuff
  */
-public class InputMissingDeprecatedBadDeprecated
+public class InputMissingDeprecatedBadDeprecated // violation
 {
     /**
      * @deprecated        stuff

@@ -20,7 +20,7 @@ class InputJavadocMethodTags1
     private int mMissingJavadoc;
 
     // Invalid - should be Javadoc
-    void method1()
+    void method1() // violation
     {
     }
 

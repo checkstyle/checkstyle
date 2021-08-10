@@ -20,7 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 /**
  * Some javadoc.
  */
-public class InputMissingJavadocMethodAllowedAnnotations implements SomeInterface {
+public class InputMissingJavadocMethodAllowedAnnotations implements SomeInterface { // ok
 
     @ThisIsOk
     public void allowed1() {}

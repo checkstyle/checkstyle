@@ -49,7 +49,7 @@ public class InputMissingJavadocMethodScopeInnerInterfaces
         public String CA = "CONST A";
         String CB = "CONST b";
 
-        public void ma();
+        public void ma(); // violation
         void mb();
     }
 
