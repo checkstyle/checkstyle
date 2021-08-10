@@ -51,7 +51,7 @@ import java.util.List;
  * correct.
  */
 @SuppressWarnings(value = "unchecked")
-public abstract class InputMissingJavadocMethodExtendAnnotation<E>
+public abstract class InputMissingJavadocMethodExtendAnnotation<E> // ok
   {
 
   private static final String SUPPORTS_ADD = "";

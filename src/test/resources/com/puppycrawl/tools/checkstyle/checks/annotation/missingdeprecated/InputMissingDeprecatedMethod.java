@@ -7,7 +7,7 @@ violateExecutionOnNonTightHtml = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 
-public class InputMissingDeprecatedMethod {
+public class InputMissingDeprecatedMethod { // ok
 
 
     /**

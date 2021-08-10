@@ -17,7 +17,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
 /* Config = default */
-public class InputMissingJavadocMethodPublicMethods {
+public class InputMissingJavadocMethodPublicMethods { // ok
 
     public void annotation(final char @SomeAnnotation [] arg) {}
 
