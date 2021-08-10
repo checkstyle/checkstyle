@@ -1,3 +1,15 @@
+/*
+MethodCount
+maxTotal = 1
+maxPrivate = (default)100
+maxPackage = (default)100
+maxProtected = (default)100
+maxPublic = (default)100
+tokens = ENUM_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodcount;
 
 public class InputMethodCount7 {
@@ -7,7 +19,7 @@ public class InputMethodCount7 {
     void method2() {
     }
 
-    enum InnerEnum {
+    enum InnerEnum { // violation
         ;
 
         public static void test1() {
