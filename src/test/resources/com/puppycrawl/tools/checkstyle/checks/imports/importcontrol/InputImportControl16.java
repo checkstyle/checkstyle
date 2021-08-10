@@ -1,6 +1,6 @@
 /*
 ImportControl
-file = InputImportControlOne.xml
+file = (default)null
 path = (default).*
 
 
@@ -13,7 +13,7 @@ import javax.swing.border.*;
 import java.io.File; // violation
 import static java.awt.Button.ABORT;
 
-public class InputImportControl
+public class InputImportControl16
 {
 
 }
