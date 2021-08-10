@@ -17,7 +17,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputLineLengthSimple
+final class InputLineLengthSimple1
 {
     // Long line --------------------------------------------------- // violation
     // Contains a tab ->	<-
@@ -103,7 +103,7 @@ final class InputLineLengthSimple
     }
 
     /** constructor that is 10 lines long **/
-    private InputLineLengthSimple()
+    private InputLineLengthSimple1()
     {
         // a line
         // a line
@@ -202,7 +202,7 @@ final class InputLineLengthSimple
 }
 
 /** Test class for variable naming in for each clauses. */
-class InputLineLengthSimple2
+class InputLineLengthSimple3
 {
     /** Some more Javadoc. */
     public void doSomething()
@@ -216,7 +216,7 @@ class InputLineLengthSimple2
 }
 
 /** Test enum for member naming check */
-enum MyEnum1
+enum MyEnum2
 {
     /** ABC constant */
     ABC,
