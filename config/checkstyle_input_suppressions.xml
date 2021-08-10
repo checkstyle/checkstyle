@@ -515,8 +515,6 @@
             files="regexp[\\/]regexpsinglelinejava[\\/]InputRegexpSinglelineJavaTrailingComment.java"/>
 
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]filelength[\\/]InputFileLength.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="sizes[\\/]linelength[\\/]InputLineLengthLongImportStatements.java"/>
@@ -924,8 +922,6 @@
             files="regexp[\\/]regexpsinglelinejava[\\/]InputRegexpSinglelineJavaTrailingComment.java"/>
 
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]filelength[\\/]InputFileLength.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="sizes[\\/]linelength[\\/]InputLineLengthLongImportStatements.java"/>
