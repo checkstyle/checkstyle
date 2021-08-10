@@ -1,3 +1,9 @@
+/*
+No config
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation.inputs;
 
 import java.lang.annotation.ElementType;
@@ -9,7 +15,7 @@ import java.lang.annotation.Target;
  */
 
 @Target(ElementType.PACKAGE)
-@interface PackageAnnotations {
+@interface PackageAnnotations { // ok
 
     PackageAnnotation[] value();
 
