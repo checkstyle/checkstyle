@@ -212,6 +212,12 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testJava16LocalEnumAndInterface() throws Exception {
+        verifyAst(getPath("InputAntlr4AstRegressionJava16LocalEnumAndInterface.txt"),
+                getNonCompilablePath("InputAntlr4AstRegressionJava16LocalEnumAndInterface.java"));
+    }
+
+    @Test
     public void testTrickySwitchWithComments() throws Exception {
         verifyAst(getPath("InputAntlr4AstRegressionTrickySwitchWithComments.txt"),
                 getPath("InputAntlr4AstRegressionTrickySwitchWithComments.java"),
