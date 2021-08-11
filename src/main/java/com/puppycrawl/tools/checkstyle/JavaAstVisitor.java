@@ -1712,6 +1712,7 @@ public final class JavaAstVisitor extends CheckstyleJavaParserBaseVisitor<Detail
     @Override
     public DetailAstImpl visitCreatedNameObject(CheckstyleJavaParser.CreatedNameObjectContext ctx) {
         final DetailAstPair currentAST = new DetailAstPair();
+        DetailAstPair.addAstChild(currentAST, visit(ctx.annotations()));
         DetailAstPair.addAstChild(currentAST, visit(ctx.id()));
         DetailAstPair.addAstChild(currentAST, visit(ctx.typeArgumentsOrDiamond()));
 
