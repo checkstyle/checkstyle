@@ -52,7 +52,7 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text="
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                         + "'SuppressionXpathRegressionTodoCommentOne']]/OBJBLOCK/"
                         + "SINGLE_LINE_COMMENT/COMMENT_CONTENT[@text=' warn FIXME:\\n']");
 
@@ -74,7 +74,7 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text="
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                         + "'SuppressionXpathRegressionTodoCommentTwo']]/"
                         + "OBJBLOCK/BLOCK_COMMENT_BEGIN/COMMENT_CONTENT"
                         + "[@text=' // warn\\n     * FIXME:\\n     * TODO\\n     ']"

@@ -60,14 +60,14 @@ import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
  * </p>
  * <ul>
  *     <li>
- *         /CLASS_DEF[./IDENT[@text='Main']]/OBJBLOCK/METHOD_DEF[./IDENT[@text='sayHello']]
+ *         /COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Main']]/OBJBLOCK/METHOD_DEF[./IDENT[@text='sayHello']]
  *     </li>
  *     <li>
- *         /CLASS_DEF[./IDENT[@text='Main']]/OBJBLOCK/METHOD_DEF[./IDENT[@text='sayHello']]
+ *         /COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Main']]/OBJBLOCK/METHOD_DEF[./IDENT[@text='sayHello']]
  *         /MODIFIERS
  *     </li>
  *     <li>
- *         /CLASS_DEF[./IDENT[@text='Main']]/OBJBLOCK/METHOD_DEF[./IDENT[@text='sayHello']]
+ *         /COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Main']]/OBJBLOCK/METHOD_DEF[./IDENT[@text='sayHello']]
  *         /MODIFIERS/LITERAL_PUBLIC
  *     </li>
  * </ul>

@@ -57,10 +57,13 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocTypeOne']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocTypeOne']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocTypeOne']]",
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocTypeOne']]"
                         + "/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocTypeOne']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocTypeOne']]"
                         + "/MODIFIERS/LITERAL_PUBLIC");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -83,10 +86,12 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocTypeTwo']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocTypeTwo']]"
-                        + "/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocTypeTwo']]"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                        + "[@text='SuppressionXpathRegressionJavadocTypeTwo']]",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                        + "[@text='SuppressionXpathRegressionJavadocTypeTwo']]/MODIFIERS",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                        + "[@text='SuppressionXpathRegressionJavadocTypeTwo']]"
                         + "/MODIFIERS/LITERAL_PUBLIC");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -107,10 +112,13 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocTypeThree']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocTypeThree']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocTypeThree']]",
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocTypeThree']]"
                         + "/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocTypeThree']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocTypeThree']]"
                         + "/MODIFIERS/LITERAL_PUBLIC");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

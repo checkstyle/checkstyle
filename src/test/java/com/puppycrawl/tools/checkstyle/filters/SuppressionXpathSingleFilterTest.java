@@ -58,7 +58,8 @@ public class SuppressionXpathSingleFilterTest
 
     @Test
     public void testMatching() throws Exception {
-        final String xpath = "/CLASS_DEF[./IDENT[@text='InputSuppressionXpathSingleFilter']]";
+        final String xpath = "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputSuppressionXpathSingleFilter']]";
         final SuppressionXpathSingleFilter filter =
                 createSuppressionXpathSingleFilter("InputSuppressionXpathSingleFilter", "Test",
                         null, null, xpath);
@@ -80,7 +81,8 @@ public class SuppressionXpathSingleFilterTest
 
     @Test
     public void testNonMatchingLineNumber() throws Exception {
-        final String xpath = "/CLASS_DEF[@text='InputSuppressionXpathSingleFilter']";
+        final String xpath = "/COMPILATION_UNIT/"
+                + "CLASS_DEF[@text='InputSuppressionXpathSingleFilter']";
         final SuppressionXpathSingleFilter filter =
                 createSuppressionXpathSingleFilter("InputSuppressionXpathSingleFilter", "Test",
                         null, null, xpath);
@@ -91,7 +93,8 @@ public class SuppressionXpathSingleFilterTest
 
     @Test
     public void testNonMatchingColumnNumber() throws Exception {
-        final String xpath = "/CLASS_DEF[@text='InputSuppressionXpathSingleFilter']";
+        final String xpath = "/COMPILATION_UNIT/CLASS_DEF"
+                + "[@text='InputSuppressionXpathSingleFilter']";
         final SuppressionXpathSingleFilter filter =
                 createSuppressionXpathSingleFilter("InputSuppressionXpathSingleFilter", "Test",
                         null, null, xpath);
@@ -220,7 +223,8 @@ public class SuppressionXpathSingleFilterTest
 
     @Test
     public void testMatchingModuleId() throws Exception {
-        final String xpath = "/CLASS_DEF[./IDENT[@text='InputSuppressionXpathSingleFilter']]";
+        final String xpath = "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputSuppressionXpathSingleFilter']]";
         final SuppressionXpathSingleFilter filter =
                 createSuppressionXpathSingleFilter("InputSuppressionXpathSingleFilter", "Test",
                         null, "id19", xpath);
@@ -286,7 +290,8 @@ public class SuppressionXpathSingleFilterTest
 
     @Test
     public void testThrowException() {
-        final String xpath = "/CLASS_DEF[@text='InputSuppressionXpathSingleFilter']";
+        final String xpath = "/COMPILATION_UNIT"
+                + "/CLASS_DEF[@text='InputSuppressionXpathSingleFilter']";
         final SuppressionXpathSingleFilter filter =
                 createSuppressionXpathSingleFilter("InputSuppressionXpathSingleFilter",
                         "Test", null, null, xpath);

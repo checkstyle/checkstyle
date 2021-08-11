@@ -21,7 +21,6 @@ package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -50,8 +49,8 @@ public class XpathRegressionNoLineWrapTest extends AbstractXpathTestSupport {
                     NoLineWrapCheck.MSG_KEY, "package"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
-                "/PACKAGE_DEF"
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -73,14 +72,17 @@ public class XpathRegressionNoLineWrapTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoLineWrap2']]"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                    + "[@text='SuppressionXpathRegressionNoLineWrap2']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test2']]",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoLineWrap2']]"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                    + "[@text='SuppressionXpathRegressionNoLineWrap2']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test2']]"
                     + "/MODIFIERS",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoLineWrap2']]"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                    + "[@text='SuppressionXpathRegressionNoLineWrap2']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test2']]"
                     + "/MODIFIERS/LITERAL_PUBLIC"
 
@@ -105,14 +107,17 @@ public class XpathRegressionNoLineWrapTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoLineWrap3']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionNoLineWrap3']]"
                     + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='SuppressionXpathRegressionNoLineWrap3']]",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoLineWrap3']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionNoLineWrap3']]"
                     + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='SuppressionXpathRegressionNoLineWrap3']]"
                     + "/MODIFIERS",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoLineWrap3']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionNoLineWrap3']]"
                     + "/OBJBLOCK/CTOR_DEF/IDENT[@text='SuppressionXpathRegressionNoLineWrap3']"
         );
 
