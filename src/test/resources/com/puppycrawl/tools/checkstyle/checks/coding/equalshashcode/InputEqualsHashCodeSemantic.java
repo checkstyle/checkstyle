@@ -93,7 +93,7 @@ class InputEqualsHashCodeSemantic
 
         ByteArrayOutputStream bos2 = new ByteArrayOutputStream()
         {
-            public boolean equals(Object a) // violation
+            public boolean equals(Object a) // violation 'Definition of 'equals()' without corresponding definition of 'hashCode()'.'
             {
                 return true;
             }
