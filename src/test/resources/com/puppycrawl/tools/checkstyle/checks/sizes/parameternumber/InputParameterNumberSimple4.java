@@ -17,7 +17,7 @@ import java.io.*;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputParameterNumberSimple
+final class InputParameterNumberSimple4
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->        <-
@@ -103,7 +103,7 @@ final class InputParameterNumberSimple
     }
 
     /** constructor that is 10 lines long **/
-    private InputParameterNumberSimple()
+    private InputParameterNumberSimple4()
     {
         // a line
         // a line
@@ -202,7 +202,7 @@ final class InputParameterNumberSimple
 }
 
 /** Test class for variable naming in for each clauses. */
-class InputSimple2
+class InputSimple24
 {
     /** Some more Javadoc. */
     public void doSomething()
@@ -216,7 +216,7 @@ class InputSimple2
 }
 
 /** Test enum for member naming check */
-enum MyEnum1
+enum MyEnum14
 {
     /** ABC constant */
     ABC,

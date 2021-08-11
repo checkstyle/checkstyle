@@ -1,6 +1,6 @@
 /*
 ParameterNumber
-max = (default)7
+max = 9
 ignoreOverriddenMethods = (default)false
 tokens = (default)METHOD_DEF, CTOR_DEF
 
@@ -17,7 +17,7 @@ import java.io.*;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputParameterNumberSimple
+final class InputParameterNumberSimple3
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->        <-
@@ -103,7 +103,7 @@ final class InputParameterNumberSimple
     }
 
     /** constructor that is 10 lines long **/
-    private InputParameterNumberSimple()
+    private InputParameterNumberSimple3()
     {
         // a line
         // a line
@@ -202,7 +202,7 @@ final class InputParameterNumberSimple
 }
 
 /** Test class for variable naming in for each clauses. */
-class InputSimple2
+class InputSimple23
 {
     /** Some more Javadoc. */
     public void doSomething()
@@ -216,7 +216,7 @@ class InputSimple2
 }
 
 /** Test enum for member naming check */
-enum MyEnum1
+enum MyEnum13
 {
     /** ABC constant */
     ABC,
