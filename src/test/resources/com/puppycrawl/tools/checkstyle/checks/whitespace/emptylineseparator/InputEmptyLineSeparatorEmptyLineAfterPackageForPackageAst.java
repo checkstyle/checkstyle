@@ -1,3 +1,13 @@
+/*
+EmptyLineSeparator
+allowNoEmptyLineBetweenFields = (default)false
+allowMultipleEmptyLines = (default)true
+allowMultipleEmptyLinesInsideClassMembers = (default)true
+tokens = PACKAGE_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 /** // violation
  * violation expected at line above.
@@ -6,9 +16,5 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 import java.util.Arrays;
 import java.util.Objects;
 
-/**
- * Config:
- * tokens - PACKAGE_DEF
- */
 public class InputEmptyLineSeparatorEmptyLineAfterPackageForPackageAst {
 }
