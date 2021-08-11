@@ -650,21 +650,17 @@ public final class JavaAstVisitor extends CheckstyleJavaParserBaseVisitor<Detail
 
     @Override
     public DetailAstImpl visitQualifiedName(CheckstyleJavaParser.QualifiedNameContext ctx) {
-        DetailAstImpl ast = visit(ctx.id(0));
+        final DetailAstImpl ast = visit(ctx.id());
         final DetailAstPair currentAst = new DetailAstPair();
         DetailAstPair.addAstChild(currentAst, ast);
 
-        for (int i = 1; i < ctx.children.size(); i += 2) {
-
-            // Token to become root
-            final DetailAstImpl temp = create((Token) ctx.children.get(i).getPayload());
-            DetailAstPair.makeAstRoot(currentAst, temp);
-
-            // Token to become child or next sibling
-            final Object child = ctx.children.get(i + 1).getPayload();
-            ast = visit((ParseTree) child);
-
-            DetailAstPair.addAstChild(currentAst, ast);
+        for (int i = 0; i < ctx.extended.size(); i++) {
+            final ParserRuleContext extendedContext = ctx.extended.get(i);
+            final DetailAstImpl dot = create(extendedContext.start);
+            DetailAstPair.makeAstRoot(currentAst, dot);
+            final List<ParseTree> childList = extendedContext
+                    .children.subList(1, extendedContext.children.size());
+            processChildren(dot, childList);
         }
         return currentAst.getRoot();
     }
