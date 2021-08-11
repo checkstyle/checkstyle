@@ -519,11 +519,6 @@
 
 
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]parameternumber[\\/]InputParameterNumber.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]parameternumber[\\/]InputParameterNumberSimple.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="suppresswarningsholder[\\/]InputSuppressWarningsHolder2.java"/>
@@ -887,11 +882,6 @@
 
 
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]parameternumber[\\/]InputParameterNumber.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]parameternumber[\\/]InputParameterNumberSimple.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="suppresswarningsholder[\\/]InputSuppressWarningsHolder2.java"/>

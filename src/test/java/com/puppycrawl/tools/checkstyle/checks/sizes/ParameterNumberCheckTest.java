@@ -63,7 +63,7 @@ public class ParameterNumberCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(ParameterNumberCheck.class);
         final String[] expected = {
-            "194:10: " + getCheckMessage(MSG_KEY, 7, 9),
+            "198:10: " + getCheckMessage(MSG_KEY, 7, 9),
         };
         verify(checkConfig, getPath("InputParameterNumberSimple.java"), expected);
     }
@@ -75,10 +75,10 @@ public class ParameterNumberCheckTest
             createModuleConfig(ParameterNumberCheck.class);
         checkConfig.addProperty("max", "2");
         final String[] expected = {
-            "71:9: " + getCheckMessage(MSG_KEY, 2, 3),
-            "194:10: " + getCheckMessage(MSG_KEY, 2, 9),
+            "75:9: " + getCheckMessage(MSG_KEY, 2, 3),
+            "198:10: " + getCheckMessage(MSG_KEY, 2, 9),
         };
-        verify(checkConfig, getPath("InputParameterNumberSimple.java"), expected);
+        verify(checkConfig, getPath("InputParameterNumberSimple2.java"), expected);
     }
 
     @Test
@@ -88,7 +88,7 @@ public class ParameterNumberCheckTest
                 createModuleConfig(ParameterNumberCheck.class);
         checkConfig.addProperty("max", "9");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputParameterNumberSimple.java"), expected);
+        verify(checkConfig, getPath("InputParameterNumberSimple3.java"), expected);
     }
 
     @Test
@@ -98,9 +98,9 @@ public class ParameterNumberCheckTest
             createModuleConfig(ParameterNumberCheck.class);
         checkConfig.addMessage("maxParam", "{0},{1}");
         final String[] expected = {
-            "194:10: 7,9",
+            "198:10: 7,9",
         };
-        verify(checkConfig, getPath("InputParameterNumberSimple.java"), expected);
+        verify(checkConfig, getPath("InputParameterNumberSimple4.java"), expected);
     }
 
     @Test
@@ -110,8 +110,8 @@ public class ParameterNumberCheckTest
                 createModuleConfig(ParameterNumberCheck.class);
         checkConfig.addProperty("ignoreOverriddenMethods", "true");
         final String[] expected = {
-            "6:10: " + getCheckMessage(MSG_KEY, 7, 8),
-            "11:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "15:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "20:10: " + getCheckMessage(MSG_KEY, 7, 8),
         };
         verify(checkConfig, getPath("InputParameterNumber.java"), expected);
     }
@@ -122,12 +122,12 @@ public class ParameterNumberCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(ParameterNumberCheck.class);
         final String[] expected = {
-            "6:10: " + getCheckMessage(MSG_KEY, 7, 8),
-            "11:10: " + getCheckMessage(MSG_KEY, 7, 8),
-            "19:10: " + getCheckMessage(MSG_KEY, 7, 8),
-            "24:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "15:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "20:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "28:10: " + getCheckMessage(MSG_KEY, 7, 8),
+            "33:10: " + getCheckMessage(MSG_KEY, 7, 8),
         };
-        verify(checkConfig, getPath("InputParameterNumber.java"), expected);
+        verify(checkConfig, getPath("InputParameterNumber2.java"), expected);
     }
 
 }
