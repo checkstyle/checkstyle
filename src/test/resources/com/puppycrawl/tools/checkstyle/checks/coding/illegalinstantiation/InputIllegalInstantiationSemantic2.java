@@ -1,6 +1,7 @@
 /*
 IllegalInstantiation
-classes = (default)
+classes = java.lang.Boolean, com.puppycrawl.tools.checkstyle.checks.coding.illegalinstantiation.\
+          InputModifier, java.io.File, java.awt.Color
 tokens = (default)CLASS_DEF
 
 
@@ -16,11 +17,11 @@ import java.awt.Color;
  * Test case for detecting simple semantic violations.
  * @author Lars Kühne
  **/
-class InputIllegalInstantiationSemantic // ok
+class InputIllegalInstantiationSemantic2
 {
     /* Boolean instantiation in a static initializer */
     static {
-        Boolean x = new Boolean(true);
+        Boolean x = new Boolean(true); // violation
     }
 
     /* Boolean instantiation in a non-static initializer */
