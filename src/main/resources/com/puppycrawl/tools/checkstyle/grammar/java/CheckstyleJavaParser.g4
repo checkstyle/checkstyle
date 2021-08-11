@@ -346,7 +346,11 @@ lastFormalParameter
     ;
 
 qualifiedName
-    : id (DOT id)*
+    : id extended+=qualifiedNameExtended*
+    ;
+
+qualifiedNameExtended
+    : DOT annotations[false] id
     ;
 
 literal
@@ -727,7 +731,8 @@ creator
     ;
 
 createdName
-    : id typeArgumentsOrDiamond? extended+=createdNameExtended*            #createdNameObject
+    : annotations[false] id typeArgumentsOrDiamond?
+       extended+=createdNameExtended*                                      #createdNameObject
     | primitiveType                                                        #createdNamePrimitive
     ;
 
