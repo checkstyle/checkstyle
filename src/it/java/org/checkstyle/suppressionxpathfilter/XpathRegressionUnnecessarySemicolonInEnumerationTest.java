@@ -53,7 +53,7 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/ENUM_DEF[./IDENT[@text='Bad']]/OBJBLOCK/SEMI"
+                "/COMPILATION_UNIT/ENUM_DEF[./IDENT[@text='Bad']]/OBJBLOCK/SEMI"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -74,7 +74,7 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/ENUM_DEF[./IDENT[@text="
+            "/COMPILATION_UNIT/ENUM_DEF[./IDENT[@text="
                 + "'SuppressionXpathRegressionUnnecessarySemicolonInEnumerationAll']]"
                 + "/OBJBLOCK/SEMI"
         );

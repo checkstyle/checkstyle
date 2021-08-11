@@ -53,7 +53,7 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                     + "[@text='SuppressionXpathRegressionAvoidNoArgumentSuperConstructorCall']]"
                     + "/OBJBLOCK/CTOR_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionAvoidNoArgumentSuperConstructorCall']]"
@@ -78,7 +78,7 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text="
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                 + "'SuppressionXpathRegressionAvoidNoArgumentSuperConstructorCallInnerClass']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/CLASS_DEF[./IDENT[@text='Inner']]"

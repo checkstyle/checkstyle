@@ -151,7 +151,7 @@ public class JavaAstVisitorTest {
     private static List<String> getOrderedVisitMethodNames(DetailAST root) {
         final List<String> orderedVisitMethodNames = new ArrayList<>();
 
-        DetailAST classDef = root;
+        DetailAST classDef = root.getFirstChild();
         while (classDef.getType() != TokenTypes.CLASS_DEF) {
             classDef = classDef.getNextSibling();
         }

@@ -50,16 +50,16 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/INTERFACE_DEF[./IDENT"
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                 + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier1']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='str']]",
 
-            "/INTERFACE_DEF[./IDENT"
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                 + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier1']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='str']]"
                 + "/MODIFIERS",
 
-            "/INTERFACE_DEF[./IDENT"
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                 + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier1']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='str']]"
                 + "/MODIFIERS/LITERAL_PUBLIC"
@@ -83,16 +83,16 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/INTERFACE_DEF[./IDENT"
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                 + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier2']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='setData']]",
 
-            "/INTERFACE_DEF[./IDENT"
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                 + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier2']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='setData']]"
                 + "/MODIFIERS",
 
-            "/INTERFACE_DEF[./IDENT"
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                 + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier2']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='setData']]"
                 + "/MODIFIERS/ABSTRACT"
@@ -116,16 +116,16 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/INTERFACE_DEF[./IDENT"
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                 + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier3']]"
                 + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Data']]",
 
-            "/INTERFACE_DEF[./IDENT"
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                 + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier3']]"
                 + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Data']]"
                 + "/MODIFIERS",
 
-            "/INTERFACE_DEF[./IDENT"
+            "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                 + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier3']]"
                 + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Data']]"
                 + "/MODIFIERS/LITERAL_PUBLIC"

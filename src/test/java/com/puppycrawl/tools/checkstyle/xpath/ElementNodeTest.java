@@ -117,7 +117,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertEquals(1, nodes.size(), "Invalid number of nodes");
         final AbstractNode root = (AbstractNode) nodes.get(0).getRoot();
-        assertEquals(TokenTypes.EOF, root.getTokenType(), "Invalid token type");
+        assertEquals(TokenTypes.COMPILATION_UNIT, root.getTokenType(), "Invalid token type");
         assertTrue(root instanceof RootNode,
                 "Should return true, because selected node is RootNode");
     }
