@@ -54,9 +54,9 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/RECORD_DEF[./IDENT[@text='Other']]/"
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='Other']]/"
                     + "TYPE_PARAMETERS/TYPE_PARAMETER[./IDENT[@text='foo']]",
-            "/RECORD_DEF[./IDENT[@text='Other']]/TYPE_PARAMETERS/"
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='Other']]/TYPE_PARAMETERS/"
                     + "TYPE_PARAMETER/IDENT[@text='foo']"
         );
 
@@ -80,9 +80,9 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/RECORD_DEF[./IDENT[@text='InputRecordTypeParameterName']]"
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='InputRecordTypeParameterName']]"
                     + "/TYPE_PARAMETERS/TYPE_PARAMETER[./IDENT[@text='t']]",
-            "/RECORD_DEF[./IDENT[@text='InputRecordTypeParameterName']]"
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='InputRecordTypeParameterName']]"
                     + "/TYPE_PARAMETERS/TYPE_PARAMETER/IDENT[@text='t']"
                 );
 

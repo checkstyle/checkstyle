@@ -50,11 +50,11 @@ public class XpathRegressionFinalClassTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT["
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                         + "@text='SuppressionXpathRegressionFinalClass1']]",
-                "/CLASS_DEF[./IDENT["
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                         + "@text='SuppressionXpathRegressionFinalClass1']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT["
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                         + "@text='SuppressionXpathRegressionFinalClass1']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -76,13 +76,13 @@ public class XpathRegressionFinalClassTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT["
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                         + "@text='SuppressionXpathRegressionFinalClass2']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]",
-                "/CLASS_DEF[./IDENT["
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                         + "@text='SuppressionXpathRegressionFinalClass2']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT["
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                         + "@text='SuppressionXpathRegressionFinalClass2']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]/LITERAL_CLASS"
         );
