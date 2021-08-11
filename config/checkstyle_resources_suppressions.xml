@@ -167,6 +167,8 @@
   <suppress checks="FileTabCharacter"
     files="[\\/]InputLineLengthSimple\.java"/>
   <suppress checks="FileTabCharacter"
+    files="[\\/]InputLineLengthSimple1\.java"/>
+  <suppress checks="FileTabCharacter"
     files="[\\/]InputTodoCommentSimple\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputWhitespaceAroundSimple\.java"/>
