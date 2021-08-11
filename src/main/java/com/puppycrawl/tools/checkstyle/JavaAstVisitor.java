@@ -540,28 +540,28 @@ public final class JavaAstVisitor extends CheckstyleJavaParserBaseVisitor<Detail
     @Override
     public DetailAstImpl visitClassOrInterfaceType(
             CheckstyleJavaParser.ClassOrInterfaceTypeContext ctx) {
-        final DetailAstPair currentAST = new DetailAstPair();
-        DetailAstPair.addAstChild(currentAST, visit(ctx.id()));
-        DetailAstPair.addAstChild(currentAST, visit(ctx.typeArguments()));
+        final DetailAstPair currentAst = new DetailAstPair();
+        DetailAstPair.addAstChild(currentAst, visit(ctx.id()));
+        DetailAstPair.addAstChild(currentAst, visit(ctx.typeArguments()));
 
         // This is how we build the annotations/ qualified name/ type parameters tree
         for (int i = 0; i < ctx.extended.size(); i++) {
             final ParserRuleContext extendedContext = ctx.extended.get(i);
             final DetailAstImpl dot = create(extendedContext.start);
-            DetailAstPair.makeAstRoot(currentAST, dot);
+            DetailAstPair.makeAstRoot(currentAst, dot);
             final List<ParseTree> childList = extendedContext
                     .children.subList(1, extendedContext.children.size());
-            childList.forEach(child -> DetailAstPair.addAstChild(currentAST, visit(child)));
+            childList.forEach(child -> DetailAstPair.addAstChild(currentAst, visit(child)));
         }
 
         // Create imaginary 'TYPE' parent if specified
         final DetailAstImpl returnTree;
         if (ctx.createImaginaryNode) {
             returnTree = createImaginary(TokenTypes.TYPE);
-            returnTree.addChild(currentAST.root);
+            returnTree.addChild(currentAst.root);
         }
         else {
-            returnTree = currentAST.root;
+            returnTree = currentAst.root;
         }
         return returnTree;
     }
@@ -650,21 +650,17 @@ public final class JavaAstVisitor extends CheckstyleJavaParserBaseVisitor<Detail
 
     @Override
     public DetailAstImpl visitQualifiedName(CheckstyleJavaParser.QualifiedNameContext ctx) {
-        DetailAstImpl ast = visit(ctx.id(0));
+        final DetailAstImpl ast = visit(ctx.id());
         final DetailAstPair currentAst = new DetailAstPair();
         DetailAstPair.addAstChild(currentAst, ast);
 
-        for (int i = 1; i < ctx.children.size(); i += 2) {
-
-            // Token to become root
-            final DetailAstImpl temp = create((Token) ctx.children.get(i).getPayload());
-            DetailAstPair.makeAstRoot(currentAst, temp);
-
-            // Token to become child or next sibling
-            final Object child = ctx.children.get(i + 1).getPayload();
-            ast = visit((ParseTree) child);
-
-            DetailAstPair.addAstChild(currentAst, ast);
+        for (int i = 0; i < ctx.extended.size(); i++) {
+            final ParserRuleContext extendedContext = ctx.extended.get(i);
+            final DetailAstImpl dot = create(extendedContext.start);
+            DetailAstPair.makeAstRoot(currentAst, dot);
+            final List<ParseTree> childList = extendedContext
+                    .children.subList(1, extendedContext.children.size());
+            processChildren(dot, childList);
         }
         return currentAst.getRoot();
     }
@@ -1715,21 +1711,22 @@ public final class JavaAstVisitor extends CheckstyleJavaParserBaseVisitor<Detail
 
     @Override
     public DetailAstImpl visitCreatedNameObject(CheckstyleJavaParser.CreatedNameObjectContext ctx) {
-        final DetailAstPair currentAST = new DetailAstPair();
-        DetailAstPair.addAstChild(currentAST, visit(ctx.id()));
-        DetailAstPair.addAstChild(currentAST, visit(ctx.typeArgumentsOrDiamond()));
+        final DetailAstPair currentAst = new DetailAstPair();
+        DetailAstPair.addAstChild(currentAst, visit(ctx.annotations()));
+        DetailAstPair.addAstChild(currentAst, visit(ctx.id()));
+        DetailAstPair.addAstChild(currentAst, visit(ctx.typeArgumentsOrDiamond()));
 
         // This is how we build the type arguments/ qualified name tree
         for (int i = 0; i < ctx.extended.size(); i++) {
             final ParserRuleContext extendedContext = ctx.extended.get(i);
             final DetailAstImpl dot = create(extendedContext.start);
-            DetailAstPair.makeAstRoot(currentAST, dot);
+            DetailAstPair.makeAstRoot(currentAst, dot);
             final List<ParseTree> childList = extendedContext
                     .children.subList(1, extendedContext.children.size());
             processChildren(dot, childList);
         }
 
-        return currentAST.root;
+        return currentAst.root;
     }
 
     @Override
