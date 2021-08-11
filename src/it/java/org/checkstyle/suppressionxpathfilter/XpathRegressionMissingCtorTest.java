@@ -51,9 +51,11 @@ public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingCtor1']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingCtor1']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT["
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMissingCtor1']]",
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMissingCtor1']]/MODIFIERS",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionMissingCtor1']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -75,13 +77,13 @@ public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT["
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionMissingCtor2']]"
                     + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]",
-                "/CLASS_DEF[./IDENT["
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionMissingCtor2']]"
                     + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT["
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionMissingCtor2']]"
                     + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/LITERAL_CLASS"
         );

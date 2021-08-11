@@ -49,11 +49,14 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoFinalizer1']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer1']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='finalize']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoFinalizer1']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer1']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoFinalizer1']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer1']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS/LITERAL_PROTECTED"
         );
 
@@ -75,17 +78,21 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoFinalizer2']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer2']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
                 + "METHOD_DEF[./IDENT[@text='finalize']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoFinalizer2']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer2']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
                 + "METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoFinalizer2']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer2']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
                 + "METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS/"
                 + "ANNOTATION[./IDENT[@text='Override']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoFinalizer2']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer2']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
                 + "METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS/"
                 + "ANNOTATION[./IDENT[@text='Override']]/AT"

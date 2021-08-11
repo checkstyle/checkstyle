@@ -51,13 +51,13 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionOverloadMethodsDeclarationOrder1']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]",
-                "/CLASS_DEF[./IDENT"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionOverloadMethodsDeclarationOrder1']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionOverloadMethodsDeclarationOrder1']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]"
                         + "/MODIFIERS/LITERAL_PUBLIC"
@@ -79,17 +79,17 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text="
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                         + "'SuppressionXpathRegressionOverloadMethodsDeclarationOrder2']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text="
                         + "'MySuppressionXpathRegressionOverloadMethodsDeclarationOrder2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]",
-                "/CLASS_DEF[./IDENT[@text="
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                         + "'SuppressionXpathRegressionOverloadMethodsDeclarationOrder2']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text="
                         + "'MySuppressionXpathRegressionOverloadMethodsDeclarationOrder2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text="
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                         + "'SuppressionXpathRegressionOverloadMethodsDeclarationOrder2']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text="
                         + "'MySuppressionXpathRegressionOverloadMethodsDeclarationOrder2']]"
