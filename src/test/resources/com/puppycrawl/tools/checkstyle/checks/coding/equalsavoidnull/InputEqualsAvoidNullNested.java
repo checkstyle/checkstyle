@@ -22,27 +22,27 @@ public class InputEqualsAvoidNullNested {
                 c = in.read();
                 if (c == '/') {
                     String nm = in.toString();
-                    if (nm.equalsIgnoreCase("applet") || // violation
-                            nm.equalsIgnoreCase("object") || // violation
-                            nm.equalsIgnoreCase("embed")) { // violation
+                    if (nm.equalsIgnoreCase("applet") || // violation '.* left .* of .* equalsIgnoreCase .*.'
+                            nm.equalsIgnoreCase("object") || // violation '.* left .* of .* equalsIgnoreCase .*.'
+                            nm.equalsIgnoreCase("embed")) { // violation '.* left .* of .* equalsIgnoreCase .*.'
                         break;
                     }
                 }
                 else {
                     String nm = scanIdentifier(in);
-                    if (nm.equalsIgnoreCase("param")) { // violation
+                    if (nm.equalsIgnoreCase("param")) { // violation '.* left .* of .* equalsIgnoreCase .*.'
                         ;
                     }
-                    else if (nm.equalsIgnoreCase("applet")) { // violation
+                    else if (nm.equalsIgnoreCase("applet")) { // violation '.* left .* of .* equalsIgnoreCase .*.'
                         ;
                     }
-                    else if (nm.equalsIgnoreCase("object")) { // violation
+                    else if (nm.equalsIgnoreCase("object")) { // violation '.* left .* of .* equalsIgnoreCase .*.'
                         ;
                     }
-                    else if (nm.equalsIgnoreCase("embed")) { // violation
+                    else if (nm.equalsIgnoreCase("embed")) { // violation '.* left .* of .* equalsIgnoreCase .*.'
                         ;
                     }
-                    else if (nm.equalsIgnoreCase("app")) { // violation
+                    else if (nm.equalsIgnoreCase("app")) { // violation '.* left .* of .* equalsIgnoreCase .*.'
                         ;
                     }
                 }
