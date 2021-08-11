@@ -220,7 +220,7 @@ public class TokenUtilTest {
         final int sum = Arrays.stream(allTokenIds).sum();
 
         assertEquals(184, allTokenIds.length, "Invalid token length");
-        assertEquals(18735, sum, "invalid sum");
+        assertEquals(18737, sum, "invalid sum");
     }
 
     @Test
@@ -233,17 +233,18 @@ public class TokenUtilTest {
 
     @Test
     public void testCorrectBehaviourOfGetTokenId() {
-        final String id = "EOF";
+        final String id = "COMPILATION_UNIT";
 
-        assertEquals(TokenTypes.EOF, TokenUtil.getTokenId(id), "Invalid token id");
+        assertEquals(TokenTypes.COMPILATION_UNIT, TokenUtil.getTokenId(id), "Invalid token id");
     }
 
     @Test
     public void testCorrectBehaviourOfShortDescription() {
-        final String id = "EOF";
+        final String id = "COMPILATION_UNIT";
         final String shortDescription = TokenUtil.getShortDescription(id);
 
-        assertEquals("The end of file token.", shortDescription, "Invalid short description");
+        assertEquals("This is the root node for the source file.",
+                shortDescription, "Invalid short description");
     }
 
     @Test

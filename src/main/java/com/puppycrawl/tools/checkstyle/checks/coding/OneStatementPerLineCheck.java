@@ -301,9 +301,8 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
      * @return true if node is a resource
      */
     private static boolean isResource(DetailAST ast) {
-        return ast != null
-            && (ast.getType() == TokenTypes.RESOURCES
-                 || ast.getType() == TokenTypes.RESOURCE_SPECIFICATION);
+        return ast.getType() == TokenTypes.RESOURCES
+                 || ast.getType() == TokenTypes.RESOURCE_SPECIFICATION;
     }
 
     /**
@@ -355,7 +354,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         else {
             final DetailAST prevSibling = ast.getPreviousSibling();
             multiline = !TokenUtil.areOnSameLine(prevSibling, ast)
-                    && ast.getParent() != null;
+                    && ast.getParent().getType() != TokenTypes.COMPILATION_UNIT;
         }
         return multiline;
     }

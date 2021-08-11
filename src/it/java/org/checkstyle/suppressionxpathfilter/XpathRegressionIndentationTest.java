@@ -51,16 +51,20 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIndentationTestOne']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionIndentationTestOne']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='wrongIntend']]",
 
-             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIndentationTestOne']]"
+             "/COMPILATION_UNIT/CLASS_DEF"
+                     + "[./IDENT[@text='SuppressionXpathRegressionIndentationTestOne']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='wrongIntend']]/MODIFIERS",
 
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIndentationTestOne']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionIndentationTestOne']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='wrongIntend']]/TYPE",
 
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIndentationTestOne']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionIndentationTestOne']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='wrongIntend']]/TYPE/LITERAL_VOID"
         );
 
@@ -90,16 +94,20 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIndentationTestTwo']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionIndentationTestTwo']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
 
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIndentationTestTwo']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionIndentationTestTwo']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
 
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIndentationTestTwo']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionIndentationTestTwo']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE",
 
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIndentationTestTwo']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionIndentationTestTwo']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/LITERAL_VOID"
         );
 
@@ -129,11 +137,13 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIndentationTestThree']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionIndentationTestThree']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/"
                     + "CASE_GROUP",
 
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIndentationTestThree']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionIndentationTestThree']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/"
                     + "CASE_GROUP/LITERAL_CASE"
         );
@@ -164,7 +174,8 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIndentationLambdaTest1"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionIndentationLambdaTest1"
                     + "']]/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF"
                     + "[./IDENT[@text='getA']]/ASSIGN/LAMBDA/LPAREN"
         );
@@ -195,7 +206,8 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIndentationLambdaTest2']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionIndentationLambdaTest2']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF["
                     + "./IDENT[@text='div']]/ASSIGN/LAMBDA/SLIST/LITERAL_RETURN"
         );
@@ -227,7 +239,8 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIndentationIfWithoutCurly']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionIndentationIfWithoutCurly']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_IF/EXPR/"
                     + "METHOD_CALL/IDENT[@text='e']"
         );
@@ -259,7 +272,8 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIndentationElseWithoutCurly']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionIndentationElseWithoutCurly']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_IF/LITERAL_ELSE"
                     + "/EXPR/METHOD_CALL/IDENT[@text='exp']"
         );
