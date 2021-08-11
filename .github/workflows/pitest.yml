@@ -636,7 +636,7 @@ jobs:
           path: staging
           retention-days: 7
 
-  pitest9:
+  pitest-java-ast-visitor:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
