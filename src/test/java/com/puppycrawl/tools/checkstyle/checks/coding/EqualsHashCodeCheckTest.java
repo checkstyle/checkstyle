@@ -50,7 +50,8 @@ public class EqualsHashCodeCheckTest
         final String[] expected = {
             "96:13: " + getCheckMessage(MSG_KEY_HASHCODE),
         };
-        verify(checkConfig, getPath("InputEqualsHashCodeSemantic.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputEqualsHashCodeSemantic.java"), expected);
     }
 
     @Test
@@ -60,7 +61,8 @@ public class EqualsHashCodeCheckTest
         final String[] expected = {
             "10:5: " + getCheckMessage(MSG_KEY_EQUALS),
         };
-        verify(checkConfig, getPath("InputEqualsHashCodeNoEquals.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputEqualsHashCodeNoEquals.java"), expected);
     }
 
     @Test
@@ -68,7 +70,8 @@ public class EqualsHashCodeCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(EqualsHashCodeCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputEqualsHashCode.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputEqualsHashCode.java"), expected);
     }
 
     @Test
@@ -117,7 +120,8 @@ public class EqualsHashCodeCheckTest
             "88:9: " + getCheckMessage(MSG_KEY_HASHCODE),
             "103:9: " + getCheckMessage(MSG_KEY_EQUALS),
         };
-        verify(checkConfig, getPath("InputEqualsHashCodeEqualsParameter.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputEqualsHashCodeEqualsParameter.java"), expected);
     }
 
     @Test
