@@ -656,20 +656,6 @@ public class MethodLimitCheck extends AbstractCheck
         There are basically only a few limits for Checkstyle:
       </p>
       <ul>
-        <li>Java
-          <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.5">
-            tokens (identifiers, keywords)</a>
-          should be written with
-          <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a>
-          characters ONLY,
-          no
-          <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.3">
-            Unicode escape</a>
-          support in keywords and no
-          <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.1">
-            Unicode</a>
-          support in identifiers.
-        </li>
         <li>To get valid violations, code have to be compilable, in other case you can get not easy
         to understand parse errors.</li>
         <li>You cannot determine the type of an expression.
