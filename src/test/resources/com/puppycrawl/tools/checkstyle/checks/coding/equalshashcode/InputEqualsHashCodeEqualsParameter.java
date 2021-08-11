@@ -13,7 +13,7 @@ public class InputEqualsHashCodeEqualsParameter {
         }
     }
     public static class TestClass2 { // violation, no correct `equals`
-        public int hashCode() {
+        public int hashCode() { // violation '.*hashCode().*equals().*'
             return 1;
         }
         public boolean equals(String o) {
@@ -21,7 +21,7 @@ public class InputEqualsHashCodeEqualsParameter {
         }
     }
     public static class TestClass3 { // violation, no `hashCode`
-        public boolean equals(Object o) {
+        public boolean equals(Object o) { // violation '.*equals().*hashCode().*'
             return true;
         }
         public boolean equals(String o) {
@@ -51,12 +51,12 @@ public class InputEqualsHashCodeEqualsParameter {
         public static int hashCode(int i) {
             return 1;
         }
-        public boolean equals(Object o) {
+        public boolean equals(Object o) { // violation '.*equals().*hashCode().*'
             return true;
         }
     }
     public static class TestClass7 { // violation, no `equals` implementation
-        public int hashCode() {
+        public int hashCode() { // violation '.*hashCode().*equals().*'
             return 1;
         }
         public static boolean equals(Object o, Object o2) {
@@ -68,24 +68,24 @@ public class InputEqualsHashCodeEqualsParameter {
         public native boolean equals(Object o);
     }
     public static class TestClass9 { // violation, no `equals` implementation
-        public native int hashCode();
+        public native int hashCode(); // violation '.*hashCode().*equals().*'
     }
     public static class TestClass10 { // violation, no `hashCode` implementation
-        public native boolean equals(Object o);
+        public native boolean equals(Object o); // violation '.*equals().*hashCode().*'
     }
     public static abstract class TestClass11 { // ok
         public abstract int hashCode();
         public abstract boolean equals(Object o);
     }
     public static abstract class TestClass12 { // violation, no `equals` implementation
-        public int hashCode() {
+        public int hashCode() { // violation '.*hashCode().*equals().*'
             return 1;
         }
         public abstract boolean equals(Object o);
     }
     public static abstract class TestClass13 { // violation, no `hashCode` implementation
         public abstract int hashCode();
-        public boolean equals(java.lang.Object o) {
+        public boolean equals(java.lang.Object o) { // violation '.*equals().*hashCode().*'
             return true;
         }
     }
@@ -100,7 +100,7 @@ public class InputEqualsHashCodeEqualsParameter {
         public int hashCode();
     }
     public class TestClass17 {
-        public int hashCode() {
+        public int hashCode() { // violation '.*hashCode().*equals().*'
             return 1;
         }
         public int hashCode(int val) {
