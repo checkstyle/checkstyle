@@ -254,6 +254,13 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testSingleCommaInArrayInit() throws Exception {
+        verifyAst(getPath("InputAntlr4AstRegressionSingleCommaInArrayInit.txt"),
+                getPath("InputAntlr4AstRegressionSingleCommaInArrayInit.java"),
+                JavaParser.Options.WITH_COMMENTS);
+    }
+
+    @Test
     public void testUncommon3() throws Exception {
         verifyAst(getPath("InputAntlr4AstRegressionUncommon3.txt"),
                 getNonCompilablePath("InputAntlr4AstRegressionUncommon3.java"),
