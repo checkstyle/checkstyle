@@ -176,6 +176,12 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testNestedTypeParametersAndArrayDeclarators() throws Exception {
+        verifyAst(getPath("InputAntlr4AstRegressionNestedTypeParametersAndArrayDeclarators.txt"),
+                getPath("InputAntlr4AstRegressionNestedTypeParametersAndArrayDeclarators.java"));
+    }
+
+    @Test
     public void testNewLineAtEndOfFileCr() throws Exception {
         verifyAst(getPath("InputAntlr4AstRegressionNewLineAtEndOfFileCr.txt"),
                 getPath("InputAntlr4AstRegressionNewLineAtEndOfFileCr.java"));
