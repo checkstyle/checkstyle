@@ -85,7 +85,6 @@ public final class TestInputViolation {
             rawMessage = OPEN_CURLY_PATTERN.matcher(rawMessage).replaceAll("\\\\{");
             rawMessage = OPEN_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\(");
             rawMessage = CLOSE_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\)");
-            rawMessage = DOT_PATTERN.matcher(rawMessage).replaceAll("\\\\.");
             regex += rawMessage;
         }
         return regex;
