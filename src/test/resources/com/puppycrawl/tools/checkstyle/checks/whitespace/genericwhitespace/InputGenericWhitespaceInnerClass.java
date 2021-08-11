@@ -1,4 +1,10 @@
-package com.puppycrawl.tools.checkstyle.checks.whitespace.genericwhitespace;
+/*
+GenericWhitespace
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.whitespace.genericwhitespace; // ok
 
 import java.util.List;
 
