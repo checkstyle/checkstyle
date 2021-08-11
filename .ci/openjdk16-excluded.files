@@ -73,11 +73,6 @@
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]LocalInterface.java$"/>
 </module>
 
-<!-- until https://github.com/checkstyle/checkstyle/issues/10515 -->
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]parser[\\/]SingleCommaAnnotationValue.java$"/>
-</module>
-
 <!-- until https://github.com/checkstyle/checkstyle/issues/9267 -->
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]DeepStringConcat.java$"/>
