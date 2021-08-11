@@ -1,6 +1,6 @@
 /*
 ImportControl
-file = InputImportControlOne.xml
+file = InputImportControlStrategyOnMismatchThree.xml
 path = (default).*
 
 
@@ -8,12 +8,12 @@ path = (default).*
 
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol;
 
-import java.awt.Image;
+import java.awt.Image; // violation
 import javax.swing.border.*;
-import java.io.File; // violation
+import java.io.File;
 import static java.awt.Button.ABORT;
 
-public class InputImportControl
+public class InputImportControl14
 {
 
 }
