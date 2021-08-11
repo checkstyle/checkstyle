@@ -1,6 +1,6 @@
 /*
 IllegalInstantiation
-classes = java.lang.Boolean, java.lang.String
+classes = jjva.lang.Boolean, java.lang*Boolean
 tokens = (default)CLASS_DEF
 
 
@@ -10,7 +10,7 @@ tokens = (default)CLASS_DEF
 package java.lang;
 
 class InputIllegalInstantiationLang {
-    Boolean obj = new Boolean(); // violation
+    Boolean obj = new Boolean();
     Integer obj2 = new Integer();
 }
 
