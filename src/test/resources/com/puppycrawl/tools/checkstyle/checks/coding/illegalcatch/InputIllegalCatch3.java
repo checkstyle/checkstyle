@@ -12,15 +12,15 @@ public class InputIllegalCatch3 {
         try { //class names
         } catch (RuntimeException e) {
         } catch (Exception e) { // violation
-        } catch (Throwable e) {
+        } catch (Throwable e) { // violation
         }
     }
 
     public void bar() {
         try { /* fully qualified class names */
         } catch (java.lang.RuntimeException e) {
-        } catch (java.lang.Exception e) {
-        } catch (java.lang.Throwable e) {
+        } catch (java.lang.Exception e) { // violation
+        } catch (java.lang.Throwable e) { // violation
         }
     }
 }
