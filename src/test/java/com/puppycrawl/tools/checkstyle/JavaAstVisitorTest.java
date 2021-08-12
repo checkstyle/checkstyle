@@ -74,7 +74,8 @@ public class JavaAstVisitorTest {
             "visitSuperSuffixSimple",
             "visitFieldAccessNoIdent",
             "visitClassType",
-            "visitClassOrInterfaceTypeExtended"
+            "visitClassOrInterfaceTypeExtended",
+            "visitQualifiedNameExtended"
     );
 
     @Test
