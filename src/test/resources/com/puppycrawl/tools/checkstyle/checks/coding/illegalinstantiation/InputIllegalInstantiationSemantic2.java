@@ -1,7 +1,7 @@
 /*
 IllegalInstantiation
-classes = java.lang.Boolean, com.puppycrawl.tools.checkstyle.checks.coding.illegalinstantiation.\
-          InputModifier, java.io.File, java.awt.Color
+classes = java.lang.Boolean,com.puppycrawl.tools.checkstyle.checks.coding.illegalinstantiation.\
+          InputModifier,java.io.File,java.awt.Color
 tokens = (default)CLASS_DEF
 
 
@@ -26,27 +26,27 @@ class InputIllegalInstantiationSemantic2
 
     /* Boolean instantiation in a non-static initializer */
     {
-        Boolean x = new Boolean(true);
+        Boolean x = new Boolean(true); // violation
         Boolean[] y = new Boolean[]{Boolean.TRUE, Boolean.FALSE};
     }
 
     /** fully qualified Boolean instantiation in a method. **/
     Boolean getBoolean()
     {
-        return new java.lang.Boolean(true);
+        return new java.lang.Boolean(true); // violation
     }
 
     void otherInstantiations()
     {
         // instantiation of classes in the same package
         Object o1 = new InputBraces();
-        Object o2 = new InputModifier();
+        Object o2 = new InputModifier(); // violation
         // classes in another package with .* import
         ByteArrayOutputStream s = new ByteArrayOutputStream();
-        File f = new File("/tmp");
+        File f = new File("/tmp"); // violation
         // classes in another package with explicit import
         Dimension dim = new Dimension();
-        Color col = new Color(0, 0, 0);
+        Color col = new Color(0, 0, 0); // violation
     }
 
     public class EqualsVsHashCode1

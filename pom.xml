@@ -1662,7 +1662,6 @@
 
                 <exclude>**/UnusedImportsCheckTest.class</exclude>
 
-                <exclude>**/IllegalInstantiationCheckTest.class</exclude>
 
                 <exclude>**/NestedForDepthCheckTest.class</exclude>
 
