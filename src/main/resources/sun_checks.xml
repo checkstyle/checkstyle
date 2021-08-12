@@ -146,7 +146,7 @@
     <module name="WhitespaceAround"/>
 
     <!-- Modifier Checks                                    -->
-    <!-- See https://checkstyle.org/config_modifiers.html -->
+    <!-- See https://checkstyle.org/config_modifier.html -->
     <module name="ModifierOrder"/>
     <module name="RedundantModifier"/>
 
