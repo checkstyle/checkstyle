@@ -76,7 +76,8 @@ public class IllegalInstantiationCheckTest
             "46:18: " + getCheckMessage(MSG_KEY, "java.io.File"),
             "49:21: " + getCheckMessage(MSG_KEY, "java.awt.Color"),
         };
-        verify(checkConfig, getPath("InputIllegalInstantiationSemantic2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalInstantiationSemantic2.java"), expected);
     }
 
     @Test
@@ -87,7 +88,8 @@ public class IllegalInstantiationCheckTest
             "classes",
             "java.lang.InputTest");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputIllegalInstantiationSameClassNameJavaLang.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalInstantiationSameClassNameJavaLang.java"),
                 expected);
     }
 
@@ -96,7 +98,7 @@ public class IllegalInstantiationCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(IllegalInstantiationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getPath("InputIllegalInstantiation.java"),
                 expected);
     }
@@ -111,7 +113,8 @@ public class IllegalInstantiationCheckTest
         final String[] expected = {
             "10:20: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
         };
-        verify(checkConfig, getPath("InputIllegalInstantiationNoPackage.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalInstantiationNoPackage.java"), expected);
     }
 
     @Test
@@ -125,7 +128,7 @@ public class IllegalInstantiationCheckTest
             "13:19: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
             "21:20: " + getCheckMessage(MSG_KEY, "java.lang.String"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath("InputIllegalInstantiationLang.java"),
                 expected);
     }
@@ -138,7 +141,7 @@ public class IllegalInstantiationCheckTest
                 "classes",
                 "jjva.lang.Boolean,java.lang*Boolean");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath("InputIllegalInstantiationLang2.java"),
                 expected);
     }

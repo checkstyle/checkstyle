@@ -1,6 +1,6 @@
 /*
 IllegalInstantiation
-classes = java.lang.Boolean, java.lang.String
+classes = java.lang.Boolean,java.lang.String
 tokens = (default)CLASS_DEF
 
 
@@ -18,5 +18,5 @@ class Boolean{}
 class Integer{}
 
 class Input2 {
-	String a = new String();
+	String a = new String(); // violation
 }
