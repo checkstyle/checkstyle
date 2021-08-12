@@ -12,14 +12,14 @@ public class InputEqualsAvoidNullRecordsAndCompactCtors {
 
     record TestRecord1(String str) {
         public TestRecord1 {
-            str.equals("my string"); // violation
+            str.equals("my string"); // violation 'String literal expressions should be on the left side of an equals comparison.'
             "my string".equals(str); // ok
         }
     }
 
     record TestRecord2() {
         public boolean stringCheck1 (String toCheck){
-            return toCheck.equals("my string"); // violation
+            return toCheck.equals("my string"); // violation 'String literal expressions should be on the left side of an equals comparison.'
         }
 
         public boolean stringCheck2 (String toCheck){
@@ -31,14 +31,14 @@ public class InputEqualsAvoidNullRecordsAndCompactCtors {
         private static String str;
         TestRecord3 (String str){
             this();
-            str.equalsIgnoreCase("my string"); // violation
+            str.equalsIgnoreCase("my string"); // violation 'String literal expressions should be on the left side of an equalsIgnoreCase comparison.'
             "my string".equals(str); // ok
         }
     }
 
     record TestRecord4(String str) {
         public TestRecord4 {
-            str.equalsIgnoreCase("my string"); // violation
+            str.equalsIgnoreCase("my string"); // violation 'String literal expressions should be on the left side of an equalsIgnoreCase comparison.'
             "my string".equals(str); // ok
         }
     }
