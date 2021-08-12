@@ -35,7 +35,7 @@ public class InputIllegalTokens
     public void methodWithLabels() {
         label: // violation
         {
-            anotherLabel: // some comment href
+            anotherLabel: // violation
             do {
                 continue anotherLabel;
             } while (false);
