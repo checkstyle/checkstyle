@@ -42,10 +42,11 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "19:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
             "24:45: " + getCheckMessage(MSG_KEY, "java.lang.RuntimeException"),
-            "24:73: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
+            "25:22: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
         };
 
-        verify(checkConfig, getPath("InputIllegalThrowsTestDefault.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalThrowsTestDefault.java"), expected);
     }
 
     @Test
@@ -63,7 +64,8 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
             "24:73: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
         };
 
-        verify(checkConfig, getPath("InputIllegalThrowsTestIllegalClassNames.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalThrowsTestIllegalClassNames.java"), expected);
     }
 
     /**
@@ -79,7 +81,8 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
             "28:35: " + getCheckMessage(MSG_KEY, "Throwable"),
         };
 
-        verify(checkConfig, getPath("InputIllegalThrowsIgnoreMethodNames.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalThrowsIgnoreMethodNames.java"), expected);
     }
 
     /**
@@ -97,7 +100,8 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
             "27:35: " + getCheckMessage(MSG_KEY, "Throwable"),
         };
 
-        verify(checkConfig, getPath("InputIllegalThrowsTestClassNames.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalThrowsTestClassNames.java"), expected);
     }
 
     /**
@@ -111,7 +115,8 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputIllegalThrowsIgnoreOverriddenMethods.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalThrowsIgnoreOverriddenMethods.java"), expected);
     }
 
     /**
@@ -128,7 +133,8 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
             "22:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
         };
 
-        verify(checkConfig, getPath("InputIllegalThrowsNotIgnoreOverriddenMethod.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalThrowsNotIgnoreOverriddenMethod.java"), expected);
     }
 
     @Test

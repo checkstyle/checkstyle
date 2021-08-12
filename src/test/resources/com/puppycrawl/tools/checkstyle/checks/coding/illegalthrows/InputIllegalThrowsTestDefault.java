@@ -21,7 +21,8 @@ public class InputIllegalThrowsTestDefault {
         return null;
     }
 
-    public void methodTwo() throws java.lang.RuntimeException, java.lang.Error // violation
+    public void methodTwo() throws java.lang.RuntimeException, // violation
+            java.lang.Error // violation
     {
     }
 
