@@ -26,24 +26,24 @@ public abstract class InputIllegalTypeTestGenerics {
     private Set<Boolean> privateSet; // OK
     private java.util.List<Map<Boolean, Foo>> privateList; // OK
     public Set<Boolean> set; // violation
-    public java.util.List<Map<Boolean, Foo>> list; // violation
+    public java.util.List<Map<Boolean, Foo>> list; // 2 violations
 
     private void methodCall() {
         Bounded.<Boolean>foo(); // violation
-        final Consumer<Foo> consumer = Foo<Boolean>::foo; // violation
+        final Consumer<Foo> consumer = Foo<Boolean>::foo; // 2 violations
     }
 
-    public <T extends Boolean, U extends Serializable> void typeParameter(T a) {} // violation
+    public <T extends Boolean, U extends Serializable> void typeParameter(T a) {} // 2 violations
 
     public void fullName(java.util.ArrayList<? super Boolean> a) {} // violation
 
-    public abstract Set<Boolean> shortName(Set<? super Set<Boolean>> a); // violation
+    public abstract Set<Boolean> shortName(Set<? super Set<Boolean>> a); // 2 violations
 
-    public Set<? extends Foo<Boolean>> typeArgument() { // violation
+    public Set<? extends Foo<Boolean>> typeArgument() { // 2 violations
         return new TreeSet<Foo<Boolean>>(); // OK
     }
 
-    public class MyClass<Foo extends Boolean> {} // violation
+    public class MyClass<Foo extends Boolean> {} // 2 violations
 
 }
 
