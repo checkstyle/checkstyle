@@ -23,7 +23,7 @@ public class InputIllegalTypeTestIgnoreMethodNames implements InputIllegalTypeSu
     private AbstractClass a = null; // violation
     private NotAnAbstractClass b = null; /*another comment*/
 
-    private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalType.AbstractClass
+    private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalType.AbstractClass // violation
         c = null; // ^ violation above
     private java.util.List d = null;
 
