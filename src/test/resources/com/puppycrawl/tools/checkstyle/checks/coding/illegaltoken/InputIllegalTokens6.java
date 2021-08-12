@@ -3,7 +3,7 @@ IllegalToken
 tokens = BLOCK_COMMENT_END
 
 
-*/
+*/ // violation
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 
