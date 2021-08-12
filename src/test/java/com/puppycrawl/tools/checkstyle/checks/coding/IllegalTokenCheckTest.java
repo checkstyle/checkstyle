@@ -47,7 +47,8 @@ public class IllegalTokenCheckTest
             "36:14: " + getCheckMessage(MSG_KEY, "label:"),
             "38:25: " + getCheckMessage(MSG_KEY, "anotherLabel:"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalTokens.java"), expected);
     }
 
     @Test
@@ -61,7 +62,8 @@ public class IllegalTokenCheckTest
             "21:18: " + getCheckMessage(MSG_KEY, "--"),
             "22:18: " + getCheckMessage(MSG_KEY, "++"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalTokens2.java"), expected);
     }
 
     @Test
@@ -72,7 +74,8 @@ public class IllegalTokenCheckTest
         final String[] expected = {
             "27:12: " + getCheckMessage(MSG_KEY, "native"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens3.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalTokens3.java"), expected);
     }
 
     @Test
@@ -133,7 +136,8 @@ public class IllegalTokenCheckTest
             "6:1: " + getCheckMessage(MSG_KEY, "*/"),
             "12:2: " + getCheckMessage(MSG_KEY, "*/"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens6.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalTokens6.java"), expected);
     }
 
     @Test
@@ -147,7 +151,8 @@ public class IllegalTokenCheckTest
             "38:27: " + getCheckMessage(MSG_KEY, "//"),
             "42:26: " + getCheckMessage(MSG_KEY, "//"),
         };
-        verify(checkConfig, getPath("InputIllegalTokens7.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalTokens7.java"), expected);
     }
 
 }

@@ -18,8 +18,8 @@ public class InputIllegalTokens2
         switch (i) // violation
         {
             default:
-                i--;
-                i++;
+                i--; // violation
+                i++; // violation
                 break;
         }
     }
