@@ -285,4 +285,10 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
         verifyAst(getPath("InputAntlr4AstRegressionQualifiedConstructorParameter.txt"),
                 getNonCompilablePath("InputAntlr4AstRegressionQualifiedConstructorParameter.java"));
     }
+
+    @Test
+    public void testUnusualAnnotation() throws Exception {
+        verifyAst(getPath("InputAntlr4AstRegressionUnusualAnnotation.txt"),
+                getPath("InputAntlr4AstRegressionUnusualAnnotation.java"));
+    }
 }
