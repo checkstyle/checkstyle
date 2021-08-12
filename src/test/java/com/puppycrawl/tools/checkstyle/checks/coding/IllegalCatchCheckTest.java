@@ -47,7 +47,8 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
             "24:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
         };
 
-        verify(checkConfig, getPath("InputIllegalCatch.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalCatch.java"), expected);
     }
 
     @Test
@@ -63,7 +64,8 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
             "23:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
         };
 
-        verify(checkConfig, getPath("InputIllegalCatch3.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalCatch3.java"), expected);
     }
 
     @Test
@@ -77,11 +79,12 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
                 "java.lang.IOException.");
 
         final String[] expected = {
-            "14:11: " + getCheckMessage(MSG_KEY, "Exception"),
-            "22:11: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
+            "15:11: " + getCheckMessage(MSG_KEY, "Exception"),
+            "23:11: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
         };
 
-        verify(checkConfig, getPath("InputIllegalCatch4.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalCatch4.java"), expected);
     }
 
     @Test
