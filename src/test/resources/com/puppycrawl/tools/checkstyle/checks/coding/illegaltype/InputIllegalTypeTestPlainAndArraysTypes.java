@@ -1,7 +1,7 @@
 /*
 IllegalType
 validateAbstractClassNames = (default)false
-illegalClassNames = Boolean[], Boolean[][]
+illegalClassNames = Boolean, Boolean[][]
 legalAbstractClassNames = (default)
 ignoredMethodNames = (default)getEnvironment, getInitialContext
 illegalAbstractClassNameFormat = (default)^(.*[.])?Abstract.*$

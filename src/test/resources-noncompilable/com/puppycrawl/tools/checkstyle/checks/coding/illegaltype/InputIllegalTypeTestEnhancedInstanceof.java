@@ -37,7 +37,7 @@ public class InputIllegalTypeTestEnhancedInstanceof {
         }
     }
 
-    public void InputIllegalTypeEnhancedInstanceof(TreeSet treeSet) {
+    public void InputIllegalTypeEnhancedInstanceof(TreeSet treeSet) { // violation
         if (treeSet instanceof TreeSet t) { // violation
             System.out.println(t);
         }
