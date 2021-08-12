@@ -32,7 +32,7 @@ public class InputIllegalTokenTextTokens2
     public void methodWithLiterals()
     {
         final String ref = "<a href=\""; // violation
-        final String refCase = "<A hReF=\"";
+        final String refCase = "<A hReF=\""; // violation
     }
 
     public void methodWithLabels() {
