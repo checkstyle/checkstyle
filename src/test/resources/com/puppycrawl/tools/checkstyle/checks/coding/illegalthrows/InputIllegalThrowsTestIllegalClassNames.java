@@ -1,6 +1,6 @@
 /*
 IllegalThrows
-illegalClassNames = java.lang.Error, java.lang.Exception, NullPointerException, \
+illegalClassNames = java.lang.Error, java.lang.Exception, NullPointerException,\
                     java.lang.IOException.
 ignoredMethodNames = (default)finalize
 ignoreOverriddenMethods = (default)true

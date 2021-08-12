@@ -1532,7 +1532,6 @@
 
                 <exclude>**/GenericWhitespaceCheckTest.class</exclude>
 
-                <exclude>**/IllegalThrowsCheckTest.class</exclude>
 
                 <exclude>**/UniquePropertiesCheckTest.class</exclude>
 
