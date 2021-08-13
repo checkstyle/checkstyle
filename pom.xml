@@ -1866,7 +1866,6 @@
 
                 <exclude>**/MutableExceptionCheckTest.class</exclude>
 
-                <exclude>**/MissingSwitchDefaultCheckTest.class</exclude>
 
                 <exclude>**/SuperFinalizeCheckTest.class</exclude>
 

@@ -44,7 +44,7 @@ public class MissingSwitchDefaultCheckTest
             "35:17: " + getCheckMessage(MSG_KEY, "default"),
             "46:17: " + getCheckMessage(MSG_KEY, "default"),
         };
-        verify(
+        verifyWithInlineConfigParser(
             checkConfig,
             getPath("InputMissingSwitchDefault.java"),
             expected);
@@ -65,7 +65,7 @@ public class MissingSwitchDefaultCheckTest
         final String[] expected = {
             "14:9: " + getCheckMessage(MSG_KEY, "default"),
         };
-        verify(
+        verifyWithInlineConfigParser(
             checkConfig,
             getNonCompilablePath("InputMissingSwitchDefaultCheckSwitchExpressions.java"),
             expected);
@@ -79,7 +79,7 @@ public class MissingSwitchDefaultCheckTest
             "14:9: " + getCheckMessage(MSG_KEY, "default"),
             "26:9: " + getCheckMessage(MSG_KEY, "default"),
         };
-        verify(
+        verifyWithInlineConfigParser(
                 checkConfig,
                 getNonCompilablePath("InputMissingSwitchDefaultCheckSwitchExpressionsTwo.java"),
                 expected);
