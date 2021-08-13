@@ -1550,7 +1550,6 @@
 
                 <exclude>**/EmbeddedNullCharTest.class</exclude>
 
-                <exclude>**/EqualsHashCodeCheckTest.class</exclude>
 
                 <exclude>**/MultiDimensionalArraysInGenericsTest.class</exclude>
 
