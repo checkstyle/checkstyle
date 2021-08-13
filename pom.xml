@@ -1780,7 +1780,6 @@
 
                 <exclude>**/SuppressWarningsHolderTest.class</exclude>
 
-                <exclude>**/InnerAssignmentCheckTest.class</exclude>
 
                 <exclude>**/LineCommentAtTheEndOfFileTest.class</exclude>
 
