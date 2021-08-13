@@ -175,7 +175,9 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
             final List<DetailNode> textNodes = getAllNewlineNodes(ast);
             for (DetailNode newlineNode : textNodes) {
                 final DetailNode textNode = JavadocUtil.getNextSibling(newlineNode);
-                if (textNode.getType() == JavadocTokenTypes.TEXT && isViolation(textNode)) {
+                final boolean isTextOrWhitespace = textNode.getType() == JavadocTokenTypes.TEXT
+                        || textNode.getType() == JavadocTokenTypes.WS;
+                if (isTextOrWhitespace && isViolation(textNode)) {
                     log(textNode.getLineNumber(), MSG_KEY, offset);
                 }
             }
