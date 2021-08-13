@@ -43,7 +43,7 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
             "9:1: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                getPath("InputMissingCtor.java"),
                expected);
     }
@@ -63,11 +63,11 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY),
-            "9:34: " + getCheckMessage(MSG_KEY),
-            "9:49: " + getCheckMessage(MSG_KEY),
+            "10:5: " + getCheckMessage(MSG_KEY),
+            "11:9: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getPath("InputMissingCtor2.java"),
                 expected);
     }
