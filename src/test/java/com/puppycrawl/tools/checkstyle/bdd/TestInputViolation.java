@@ -76,16 +76,12 @@ public final class TestInputViolation {
      * @return the regex string.
      */
     public String toRegex() {
-        String regex = lineNo + ":(?:\\d+:)?\\s";
-        if (message == null) {
-            regex += ".*";
-        }
-        else {
+        String regex = lineNo + ":(?:\\d+:)?\\s.*";
+        if (message != null) {
             String rawMessage = message;
             rawMessage = OPEN_CURLY_PATTERN.matcher(rawMessage).replaceAll("\\\\{");
             rawMessage = OPEN_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\(");
             rawMessage = CLOSE_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\)");
-            rawMessage = DOT_PATTERN.matcher(rawMessage).replaceAll("\\\\.");
             regex += rawMessage;
         }
         return regex;
