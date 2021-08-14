@@ -488,7 +488,7 @@ public class VisibilityModifierCheckTest
     public void testIsStarImportNullAst() throws Exception {
         final DetailAST importAst = JavaParser.parseFile(
             new File(getPath("InputVisibilityModifierIsStarImport.java")),
-            JavaParser.Options.WITHOUT_COMMENTS).getNextSibling();
+            JavaParser.Options.WITHOUT_COMMENTS).getFirstChild().getNextSibling();
         final VisibilityModifierCheck check = new VisibilityModifierCheck();
         final Method method = Whitebox.getMethod(VisibilityModifierCheck.class,
             "isStarImport", DetailAST.class);

@@ -51,11 +51,14 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocVariableOne']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionJavadocVariableOne']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='age']]",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocVariableOne']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionJavadocVariableOne']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='age']]/MODIFIERS",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocVariableOne']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionJavadocVariableOne']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='age']]/MODIFIERS/LITERAL_PRIVATE"
         );
 
@@ -77,13 +80,16 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocVariableTwo']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionJavadocVariableTwo']]/OBJBLOCK"
                 + "/CLASS_DEF[./IDENT[@text='InnerInner2']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='fData']]",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocVariableTwo']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionJavadocVariableTwo']]/OBJBLOCK"
                 + "/CLASS_DEF[./IDENT[@text='InnerInner2']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='fData']]/MODIFIERS",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocVariableTwo']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionJavadocVariableTwo']]/OBJBLOCK"
                 + "/CLASS_DEF[./IDENT[@text='InnerInner2']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='fData']]/MODIFIERS"
                 + "/LITERAL_PUBLIC"

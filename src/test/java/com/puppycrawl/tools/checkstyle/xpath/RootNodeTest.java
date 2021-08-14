@@ -90,7 +90,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetTokenType() {
-        assertEquals(TokenTypes.EOF, rootNode.getTokenType(), "Invalid token type");
+        assertEquals(TokenTypes.COMPILATION_UNIT, rootNode.getTokenType(), "Invalid token type");
     }
 
     @Test

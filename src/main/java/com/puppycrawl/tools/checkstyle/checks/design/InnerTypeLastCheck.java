@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -140,8 +141,7 @@ public class InnerTypeLastCheck extends AbstractCheck {
 
     @Override
     public void leaveToken(DetailAST ast) {
-        // Is this a root class
-        if (ast.getParent() == null) {
+        if (TokenUtil.isRootNode(ast.getParent())) {
             rootClass = true;
         }
     }

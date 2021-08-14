@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.gui;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -54,14 +55,17 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     @BeforeEach
     public void loadTree() throws Exception {
         tree = JavaParser.parseFile(new File(getPath("InputParseTreeTablePresentation.java")),
-            JavaParser.Options.WITH_COMMENTS).getNextSibling();
+            JavaParser.Options.WITH_COMMENTS).getFirstChild().getNextSibling();
     }
 
     @Test
-    public void testRoot() {
-        final Object root = new ParseTreeTablePresentation(tree).getRoot();
-        final int childCount = new ParseTreeTablePresentation(null).getChildCount(root);
-        assertEquals(1, childCount, "Invalid child count");
+    public void testRoot() throws Exception {
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputParseTreeTablePresentation.java")),
+                JavaParser.Options.WITH_COMMENTS);
+        assertWithMessage("Root node should have 2 children")
+                .that(root.getChildCount())
+                .isEqualTo(2);
     }
 
     @Test
