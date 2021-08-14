@@ -667,6 +667,11 @@ public class MethodLimitCheck extends AbstractCheck
             Unicode escape sequence </a>
           support (i.e. <code>\uXXXX</code>) in keywords and identifiers.
         </li>
+        <li>Javadoc comments are limited to
+          <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> characters until
+          <a href="https://github.com/checkstyle/checkstyle/issues/10629">
+          Issue #10629.</a>
+        </li>
         <li>To get valid violations, code have to be compilable, in other case you can get not easy
         to understand parse errors.</li>
         <li>You cannot determine the type of an expression.
