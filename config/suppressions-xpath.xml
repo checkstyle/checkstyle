@@ -7,18 +7,18 @@
 <suppressions>
   <!-- Tone down the checking for test code -->
   <suppress-xpath checks="NPathComplexity"
-                   query="/CLASS_DEF[./IDENT[@text='XdocsPagesTest']]
+                   query="//CLASS_DEF[./IDENT[@text='XdocsPagesTest']]
                            //METHOD_DEF[./IDENT[@text='validateCheckSection'
                                 or @text='getModulePropertyExpectedValue']]"/>
   <suppress-xpath checks="CyclomaticComplexity"
-                   query="/CLASS_DEF[./IDENT[@text='XdocsPagesTest']]//METHOD_DEF"/>
+                   query="//CLASS_DEF[./IDENT[@text='XdocsPagesTest']]//METHOD_DEF"/>
   <!-- Suppressions from PMD configuration -->
   <!-- JavadocMethodCheck, JavadocStyleCheck, JavadocUtil.getJavadocTags() - deprecated -->
   <suppress-xpath checks="CyclomaticComplexity"
-                   query="/CLASS_DEF[./IDENT[@text='JavadocMethodCheck'
+                   query="//CLASS_DEF[./IDENT[@text='JavadocMethodCheck'
                      or @text='JavadocStyleCheck' or @text='CustomImportOrderCheck']]//METHOD_DEF"/>
   <!-- there are 3 thrown and all of them could be caused by xml parsing -->
   <suppress-xpath checks="ThrowsCount"
-                  query="/CLASS_DEF[./IDENT[@text='XmlMetaReader']]
+                  query="//CLASS_DEF[./IDENT[@text='XmlMetaReader']]
                         //METHOD_DEF[./IDENT[@text='read']]/LITERAL_THROWS"/>
 </suppressions>

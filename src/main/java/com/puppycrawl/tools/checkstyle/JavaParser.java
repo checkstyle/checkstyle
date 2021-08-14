@@ -118,9 +118,9 @@ public final class JavaParser {
     public static DetailAST parseFileText(FileText text, Options options)
             throws CheckstyleException {
         final FileContents contents = new FileContents(text);
-        DetailAST ast = parse(contents);
+        final DetailAST ast = parse(contents);
         if (options == Options.WITH_COMMENTS) {
-            ast = appendHiddenCommentNodes(ast);
+            appendHiddenCommentNodes(ast);
         }
         return ast;
     }
@@ -150,7 +150,6 @@ public final class JavaParser {
      * @return root of AST with comment nodes
      */
     public static DetailAST appendHiddenCommentNodes(DetailAST root) {
-        DetailAST result = root;
         DetailAST curNode = root;
         DetailAST lastNode = root;
 
@@ -170,9 +169,6 @@ public final class JavaParser {
                                     reverseCommentsIterator.previous());
                     ((DetailAstImpl) currentSibling).addPreviousSibling(newCommentNode);
 
-                    if (currentSibling == result) {
-                        result = newCommentNode;
-                    }
                     currentSibling = newCommentNode;
                 }
             }
@@ -195,7 +191,7 @@ public final class JavaParser {
                 currentSibling = newCommentNode;
             }
         }
-        return result;
+        return root;
     }
 
     /**

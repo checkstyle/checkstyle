@@ -20,7 +20,7 @@
 package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -50,8 +50,8 @@ public class XpathRegressionOuterTypeNumberTest extends AbstractXpathTestSupport
                 OuterTypeNumberCheck.MSG_KEY, 2, 1),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
-            "/PACKAGE_DEF"
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -72,8 +72,8 @@ public class XpathRegressionOuterTypeNumberTest extends AbstractXpathTestSupport
                 OuterTypeNumberCheck.MSG_KEY, 3, 0),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
-            "/PACKAGE_DEF"
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

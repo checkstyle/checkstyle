@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.util.Arrays;
@@ -32,6 +32,7 @@ import org.junit.jupiter.api.Test;
 import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
@@ -44,8 +45,10 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final OneTopLevelClassCheck checkObj = new OneTopLevelClassCheck();
-        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens(),
-                "Required tokens array is not empty");
+        final int[] expected = {TokenTypes.COMPILATION_UNIT};
+        assertWithMessage("Required tokens are invalid.")
+                .that(checkObj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test
@@ -75,11 +78,9 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAcceptableTokens() {
         final OneTopLevelClassCheck check = new OneTopLevelClassCheck();
-        check.getAcceptableTokens();
-        // ZERO tokens as Check do Traverse of Tree himself, he does not need to subscribed to
-        // Tokens
-        assertEquals(0, check.getAcceptableTokens().length,
-                "Acceptable tokens array size larger than 0");
+        final int[] expected = {TokenTypes.COMPILATION_UNIT};
+        assertArrayEquals(expected, check.getAcceptableTokens(),
+                "Default required tokens are invalid");
     }
 
     @Test
@@ -224,4 +225,11 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getNonCompilablePath("InputOneTopLevelClassRecords.java"), expected);
     }
 
+    @Test
+    public void testOneTopLevelClassEmpty() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(OneTopLevelClassCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getNonCompilablePath("InputOneTopLevelClassEmpty.java"), expected);
+    }
 }
