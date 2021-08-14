@@ -54,7 +54,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/STATIC_IMPORT[./DOT/IDENT[@text='PI']]"
+                "/COMPILATION_UNIT/STATIC_IMPORT[./DOT/IDENT[@text='PI']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -76,7 +76,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/IMPORT[./DOT/IDENT[@text='File']]"
+                "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='File']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -98,7 +98,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/STATIC_IMPORT[./DOT/IDENT[@text='PI']]"
+                "/COMPILATION_UNIT/STATIC_IMPORT[./DOT/IDENT[@text='PI']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -121,7 +121,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/IMPORT[./DOT/IDENT[@text='DetailAST']]"
+                "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='DetailAST']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -144,7 +144,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/STATIC_IMPORT[./DOT/IDENT[@text='PI']]"
+                "/COMPILATION_UNIT/STATIC_IMPORT[./DOT/IDENT[@text='PI']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -169,7 +169,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/IMPORT[./DOT/IDENT[@text='DetailAST']]"
+                "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='DetailAST']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

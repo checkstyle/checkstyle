@@ -51,7 +51,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT["
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameAnnotation']]"
                     + "/OBJBLOCK/ANNOTATION_DEF/IDENT[@text='ANNOTATION']"
         );
@@ -74,7 +74,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/ANNOTATION_DEF[./IDENT["
+                "/COMPILATION_UNIT/ANNOTATION_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameAnnotationField']]"
                     + "/OBJBLOCK/ANNOTATION_FIELD_DEF/IDENT[@text='ANNOTATION_FIELD']"
         );
@@ -97,7 +97,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT["
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameClass']]"
                     + "/OBJBLOCK/CLASS_DEF/IDENT[@text='CLASS']"
         );
@@ -120,7 +120,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT["
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameEnum']]"
                     + "/OBJBLOCK/ENUM_DEF/IDENT[@text='ENUMERATION']"
         );
@@ -143,7 +143,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT["
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameField']]"
                     + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='FIELD']"
         );
@@ -166,7 +166,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT["
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameInterface']]"
                     + "/OBJBLOCK/INTERFACE_DEF/IDENT[@text='INTERFACE']"
         );
@@ -189,7 +189,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/INTERFACE_DEF[./IDENT["
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameMethod']]"
                     + "/OBJBLOCK/METHOD_DEF/IDENT[@text='METHOD']"
         );
@@ -212,7 +212,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/INTERFACE_DEF[./IDENT["
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameParameter']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]"
                     + "/PARAMETERS/PARAMETER_DEF/IDENT[@text='PARAMETER']"
@@ -236,7 +236,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT["
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameVariable']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]"
                     + "/SLIST/VARIABLE_DEF/IDENT[@text='VARIABLE']"

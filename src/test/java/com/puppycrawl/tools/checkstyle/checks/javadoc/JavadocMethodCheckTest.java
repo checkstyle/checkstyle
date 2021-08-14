@@ -472,4 +472,12 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 
+    @Test
+    public void testCompilationUnit() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
+        config.addProperty("validateThrows", "true");
+        verify(config, getNonCompilablePath("InputJavadocMethodCompilationUnit.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
 }

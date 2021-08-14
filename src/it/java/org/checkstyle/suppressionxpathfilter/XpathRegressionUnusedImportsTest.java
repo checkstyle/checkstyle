@@ -51,7 +51,7 @@ public class XpathRegressionUnusedImportsTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/IMPORT/DOT[./IDENT[@text='List']]/DOT/IDENT[@text='java']");
+                "/COMPILATION_UNIT/IMPORT/DOT[./IDENT[@text='List']]/DOT/IDENT[@text='java']");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
@@ -71,7 +71,8 @@ public class XpathRegressionUnusedImportsTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/STATIC_IMPORT/DOT[./IDENT[@text='Entry']]/DOT[./IDENT[@text='Map']]"
+                "/COMPILATION_UNIT/STATIC_IMPORT/DOT"
+                        + "[./IDENT[@text='Entry']]/DOT[./IDENT[@text='Map']]"
                         + "/DOT/IDENT[@text='java']");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
