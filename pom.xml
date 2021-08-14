@@ -834,7 +834,7 @@
                       com.puppycrawl.tools.checkstyle.grammar.java.CheckstyleJavaParser*
                     </exclude>
                     <exclude>
-                      com.puppycrawl.tools.checkstyle.grammar.java.JavaLexer
+                        com.puppycrawl.tools.checkstyle.grammar.java.CheckstyleJavaLexer
                     </exclude>
                     <exclude>
                       com.puppycrawl.tools.checkstyle.CheckstyleParserErrorStrategy
@@ -902,7 +902,7 @@
                 <rule>
                   <element>CLASS</element>
                   <includes>
-                    <include>com.puppycrawl.tools.checkstyle.grammar.java.JavaLexer</include>
+                    <include>com.puppycrawl.tools.checkstyle.grammar.java.CheckstyleJavaLexer</include>
                   </includes>
                   <limits>
                     <limit>
