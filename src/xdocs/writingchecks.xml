@@ -665,7 +665,10 @@ public class MethodLimitCheck extends AbstractCheck
           no
           <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.3">
             Unicode escape sequence </a>
-          support (i.e. <code>\uXXXX</code>) in keywords and identifiers.
+          support (i.e. <code>\uXXXX</code>) in keywords and identifiers. Javadoc
+          comments are limited to
+          <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a>
+          characters only at this time.
         </li>
         <li>To get valid violations, code have to be compilable, in other case you can get not easy
         to understand parse errors.</li>
