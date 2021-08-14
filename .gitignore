@@ -47,4 +47,4 @@ replay_pid*
 
 # antlr4 grammar generates these
 **/gen
-**/JavaLexer.tokens
+**/JavaLanguageLexer.tokens
