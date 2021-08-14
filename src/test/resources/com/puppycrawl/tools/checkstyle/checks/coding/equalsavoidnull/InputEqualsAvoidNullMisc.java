@@ -17,7 +17,7 @@ public enum InputEqualsAvoidNullMisc {
 }
 class Receiver {
     public void foo4(Receiver this, String s) {
-        s.equals("abc"); // violation
+        s.equals("abc"); // violation '.* left .* of .* equals .*.'
     }
 
     private class Inner {
