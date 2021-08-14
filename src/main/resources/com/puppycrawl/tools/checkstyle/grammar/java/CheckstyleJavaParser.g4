@@ -19,7 +19,7 @@
 
 parser grammar CheckstyleJavaParser;
 
-options { tokenVocab=JavaLexer; }
+options { tokenVocab=CheckstyleJavaLexer; }
 
 @parser::members {
     /**
@@ -37,7 +37,7 @@ options { tokenVocab=JavaLexer; }
      * @return true if next statement is a yield statement.
      */
     private boolean isYieldStatement() {
-        return _input.LT(1).getType() == JavaLexer.LITERAL_YIELD && switchBlockDepth > 0;
+        return _input.LT(1).getType() == CheckstyleJavaLexer.LITERAL_YIELD && switchBlockDepth > 0;
     }
 }
 

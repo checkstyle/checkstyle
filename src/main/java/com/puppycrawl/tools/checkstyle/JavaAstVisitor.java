@@ -36,9 +36,9 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.grammar.java.CheckstyleJavaLexer;
 import com.puppycrawl.tools.checkstyle.grammar.java.CheckstyleJavaParser;
 import com.puppycrawl.tools.checkstyle.grammar.java.CheckstyleJavaParserBaseVisitor;
-import com.puppycrawl.tools.checkstyle.grammar.java.JavaLexer;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -673,10 +673,10 @@ public final class JavaAstVisitor extends CheckstyleJavaParserBaseVisitor<Detail
     @Override
     public DetailAstImpl visitIntegerLiteral(CheckstyleJavaParser.IntegerLiteralContext ctx) {
         final int[] longTypes = {
-            JavaLexer.DECIMAL_LITERAL_LONG,
-            JavaLexer.HEX_LITERAL_LONG,
-            JavaLexer.OCT_LITERAL_LONG,
-            JavaLexer.BINARY_LITERAL_LONG,
+            CheckstyleJavaLexer.DECIMAL_LITERAL_LONG,
+            CheckstyleJavaLexer.HEX_LITERAL_LONG,
+            CheckstyleJavaLexer.OCT_LITERAL_LONG,
+            CheckstyleJavaLexer.BINARY_LITERAL_LONG,
         };
 
         final int tokenType;
@@ -694,7 +694,7 @@ public final class JavaAstVisitor extends CheckstyleJavaParserBaseVisitor<Detail
     public DetailAstImpl visitFloatLiteral(CheckstyleJavaParser.FloatLiteralContext ctx) {
         final DetailAstImpl floatLiteral;
         if (TokenUtil.isOfType(ctx.start.getType(),
-                JavaLexer.DOUBLE_LITERAL, JavaLexer.HEX_DOUBLE_LITERAL)) {
+                CheckstyleJavaLexer.DOUBLE_LITERAL, CheckstyleJavaLexer.HEX_DOUBLE_LITERAL)) {
             floatLiteral = create(TokenTypes.NUM_DOUBLE, ctx.start);
         }
         else {
@@ -1378,10 +1378,10 @@ public final class JavaAstVisitor extends CheckstyleJavaParserBaseVisitor<Detail
     public DetailAstImpl visitPrefix(CheckstyleJavaParser.PrefixContext ctx) {
         final int tokenType;
         switch (ctx.prefix.getType()) {
-            case JavaLexer.PLUS:
+            case CheckstyleJavaLexer.PLUS:
                 tokenType = TokenTypes.UNARY_PLUS;
                 break;
-            case JavaLexer.MINUS:
+            case CheckstyleJavaLexer.MINUS:
                 tokenType = TokenTypes.UNARY_MINUS;
                 break;
             default:
@@ -1491,7 +1491,7 @@ public final class JavaAstVisitor extends CheckstyleJavaParserBaseVisitor<Detail
     @Override
     public DetailAstImpl visitPostfix(CheckstyleJavaParser.PostfixContext ctx) {
         final DetailAstImpl postfix;
-        if (ctx.postfix.getType() == JavaLexer.INC) {
+        if (ctx.postfix.getType() == CheckstyleJavaLexer.INC) {
             postfix = create(TokenTypes.POST_INC, ctx.postfix);
         }
         else {
@@ -2021,9 +2021,9 @@ public final class JavaAstVisitor extends CheckstyleJavaParserBaseVisitor<Detail
     private DetailAstImpl create(Token token) {
         final int tokenIndex = token.getTokenIndex();
         final List<Token> tokensToLeft =
-                tokens.getHiddenTokensToLeft(tokenIndex, JavaLexer.COMMENTS);
+                tokens.getHiddenTokensToLeft(tokenIndex, CheckstyleJavaLexer.COMMENTS);
         final List<Token> tokensToRight =
-                tokens.getHiddenTokensToRight(tokenIndex, JavaLexer.COMMENTS);
+                tokens.getHiddenTokensToRight(tokenIndex, CheckstyleJavaLexer.COMMENTS);
 
         final DetailAstImpl detailAst = new DetailAstImpl();
         detailAst.initialize(token);
