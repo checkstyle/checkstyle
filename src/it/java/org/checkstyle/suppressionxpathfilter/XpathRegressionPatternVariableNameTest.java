@@ -55,7 +55,8 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionPatternVariableName1']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionPatternVariableName1']]"
                 + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/EXPR/"
                 + "LITERAL_INSTANCEOF[./IDENT[@text='o1']]/PATTERN_VARIABLE_DEF/"
                 + "IDENT[@text='STRING1']"
@@ -83,7 +84,8 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionPatternVariableName2']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionPatternVariableName2']]"
                 + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/EXPR/"
                 + "LITERAL_INSTANCEOF[./IDENT[@text='o1']]/"
                 + "PATTERN_VARIABLE_DEF/IDENT[@text='s']"
@@ -111,7 +113,8 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionPatternVariableName3']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionPatternVariableName3']]"
                     + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/"
                     + "EXPR/LITERAL_INSTANCEOF[./IDENT[@text='o1']]/"
                     + "PATTERN_VARIABLE_DEF/IDENT[@text='STR']"
@@ -139,7 +142,8 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionPatternVariableName1']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionPatternVariableName1']]"
                     + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/EXPR/"
                     + "LITERAL_INSTANCEOF[./IDENT[@text='o1']]/"
                     + "PATTERN_VARIABLE_DEF/IDENT[@text='st']"

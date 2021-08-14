@@ -294,7 +294,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * method inside <i>TestClass</i> class.
  * </p>
  * <pre>
- * &lt;suppress-xpath checks=&quot;.*&quot; query=&quot;/CLASS_DEF[@text='TestClass']
+ * &lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//CLASS_DEF[@text='TestClass']
  *           //METHOD_DEF[./IDENT[@text='testMethod']]
  *           //VARIABLE_DEF[./IDENT[@text='testVariable']]&quot;/&gt;
  * </pre>
@@ -303,7 +303,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * for classes with name <i>Main</i> or for methods with name <i>calculate</i>.
  * </p>
  * <pre>
- * &lt;suppress-xpath checks=&quot;LeftCurly&quot; query=&quot;/CLASS_DEF[./IDENT[@text='Main']]//*
+ * &lt;suppress-xpath checks=&quot;LeftCurly&quot; query=&quot;//CLASS_DEF[./IDENT[@text='Main']]//*
  *           | //METHOD_DEF[./IDENT[@text='calculate']]/*&quot;/&gt;
  * </pre>
  * <p>
@@ -312,7 +312,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </p>
  * <pre>
  * &lt;suppress-xpath checks=&quot;RequireThis&quot;
- *      query=&quot;/CLASS_DEF[./IDENT[@text='InputTest']]
+ *      query=&quot;//CLASS_DEF[./IDENT[@text='InputTest']]
  *           //METHOD_DEF[./IDENT[@text='changeAge']]//ASSIGN/IDENT[@text='age']&quot;/&gt;
  * </pre>
  * <pre>

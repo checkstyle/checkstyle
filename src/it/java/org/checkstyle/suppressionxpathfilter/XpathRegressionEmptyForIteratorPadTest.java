@@ -52,10 +52,10 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT["
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionEmptyForIteratorPadFollowed']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/FOR_ITERATOR",
-            "/CLASS_DEF[./IDENT["
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionEmptyForIteratorPadFollowed']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/RPAREN"
         );
@@ -79,10 +79,10 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT["
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionEmptyForIteratorPadNotFollowed']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/FOR_ITERATOR",
-            "/CLASS_DEF[./IDENT["
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionEmptyForIteratorPadNotFollowed']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/RPAREN"
         );
