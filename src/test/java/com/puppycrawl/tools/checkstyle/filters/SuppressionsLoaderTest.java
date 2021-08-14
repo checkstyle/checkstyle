@@ -312,10 +312,10 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
 
         final Set<TreeWalkerFilter> expectedFilterSet = new HashSet<>();
         final XpathFilterElement xf0 =
-                new XpathFilterElement("file1", "test", null, "id1", "/CLASS_DEF");
+                new XpathFilterElement("file1", "test", null, "id1", "//CLASS_DEF");
         expectedFilterSet.add(xf0);
         final XpathFilterElement xf1 =
-                new XpathFilterElement(null, null, "message1", null, "/CLASS_DEF");
+                new XpathFilterElement(null, null, "message1", null, "//CLASS_DEF");
         expectedFilterSet.add(xf1);
         assertEquals(expectedFilterSet,
                 filterSet, "Multiple xpath suppressions were loaded incorrectly");

@@ -51,16 +51,19 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod1']]"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                    + "[@text='SuppressionXpathRegressionMissingJavadocMethod1']]"
                     + "/OBJBLOCK/CTOR_DEF[."
                     + "/IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod1']]",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod1']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod1']]"
                     + "/OBJBLOCK/CTOR_DEF[."
                     + "/IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod1']]"
                     + "/MODIFIERS",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod1']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod1']]"
                     + "/OBJBLOCK/CTOR_DEF[."
                     + "/IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod1']]"
                     + "/MODIFIERS/LITERAL_PUBLIC"
@@ -85,14 +88,17 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod2']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod2']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod2']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod2']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                     + "/MODIFIERS",
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod2']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod2']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                     + "/MODIFIERS/LITERAL_PUBLIC"
         );
