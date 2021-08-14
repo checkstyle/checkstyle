@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import org.antlr.v4.runtime.Recognizer;
 
-import com.puppycrawl.tools.checkstyle.grammar.java.JavaLexer;
+import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
 
 /**
  * Contains the constants for all the tokens contained in the Abstract
@@ -82,7 +82,7 @@ public final class TokenTypes {
      * @see #ANNOTATION
      * @see #LITERAL_DEFAULT
      **/
-    public static final int MODIFIERS = JavaLexer.MODIFIERS;
+    public static final int MODIFIERS = JavaLanguageLexer.MODIFIERS;
 
     /**
      * An object block.  These are children of class, interface, enum,
@@ -118,7 +118,7 @@ public final class TokenTypes {
      * @see #ENUM_CONSTANT_DEF
      * @see #ANNOTATION_DEF
      **/
-    public static final int OBJBLOCK = JavaLexer.OBJBLOCK;
+    public static final int OBJBLOCK = JavaLanguageLexer.OBJBLOCK;
     /**
      * A list of statements.
      *
@@ -160,7 +160,7 @@ public final class TokenTypes {
      * @see #LITERAL_ELSE
      * @see #CASE_GROUP
      **/
-    public static final int SLIST = JavaLexer.SLIST;
+    public static final int SLIST = JavaLanguageLexer.SLIST;
     /**
      * A constructor declaration.
      *
@@ -213,7 +213,7 @@ public final class TokenTypes {
      * @see #OBJBLOCK
      * @see #CLASS_DEF
      **/
-    public static final int CTOR_DEF = JavaLexer.CTOR_DEF;
+    public static final int CTOR_DEF = JavaLanguageLexer.CTOR_DEF;
     /**
      * A method declaration.  The children are modifiers, type parameters,
      * return type, method name, parameter list, an optional throws list, and
@@ -269,7 +269,7 @@ public final class TokenTypes {
      * @see #SLIST
      * @see #OBJBLOCK
      **/
-    public static final int METHOD_DEF = JavaLexer.METHOD_DEF;
+    public static final int METHOD_DEF = JavaLanguageLexer.METHOD_DEF;
     /**
      * A field or local variable declaration.  The children are
      * modifiers, type, the identifier name, and an optional
@@ -299,7 +299,7 @@ public final class TokenTypes {
      * @see #ASSIGN
      **/
     public static final int VARIABLE_DEF =
-        JavaLexer.VARIABLE_DEF;
+        JavaLanguageLexer.VARIABLE_DEF;
 
     /**
      * An instance initializer.  Zero or more instance initializers
@@ -313,7 +313,7 @@ public final class TokenTypes {
      * @see #OBJBLOCK
      **/
     public static final int INSTANCE_INIT =
-        JavaLexer.INSTANCE_INIT;
+        JavaLanguageLexer.INSTANCE_INIT;
 
     /**
      * A static initialization block.  Zero or more static
@@ -346,7 +346,7 @@ public final class TokenTypes {
      * @see #OBJBLOCK
      **/
     public static final int STATIC_INIT =
-        JavaLexer.STATIC_INIT;
+        JavaLanguageLexer.STATIC_INIT;
 
     /**
      * A type.  This is either a return type of a method or a type of
@@ -387,7 +387,7 @@ public final class TokenTypes {
      * @see #ARRAY_DECLARATOR
      * @see #TYPE_ARGUMENTS
      **/
-    public static final int TYPE = JavaLexer.TYPE;
+    public static final int TYPE = JavaLanguageLexer.TYPE;
     /**
      * A class declaration.
      *
@@ -418,7 +418,7 @@ public final class TokenTypes {
      * @see #OBJBLOCK
      * @see #LITERAL_NEW
      **/
-    public static final int CLASS_DEF = JavaLexer.CLASS_DEF;
+    public static final int CLASS_DEF = JavaLanguageLexer.CLASS_DEF;
     /**
      * An interface declaration.
      *
@@ -452,7 +452,7 @@ public final class TokenTypes {
      * @see #OBJBLOCK
      **/
     public static final int INTERFACE_DEF =
-        JavaLexer.INTERFACE_DEF;
+        JavaLanguageLexer.INTERFACE_DEF;
 
     /**
      * The package declaration.  This is optional, but if it is
@@ -493,7 +493,7 @@ public final class TokenTypes {
      * @see #ANNOTATIONS
      * @see FullIdent
      **/
-    public static final int PACKAGE_DEF = JavaLexer.PACKAGE_DEF;
+    public static final int PACKAGE_DEF = JavaLanguageLexer.PACKAGE_DEF;
     /**
      * An array declaration.
      *
@@ -531,7 +531,7 @@ public final class TokenTypes {
      * @see #ARRAY_INIT
      **/
     public static final int ARRAY_DECLARATOR =
-        JavaLexer.ARRAY_DECLARATOR;
+        JavaLanguageLexer.ARRAY_DECLARATOR;
 
     /**
      * An extends clause.  This appear as part of class and interface
@@ -565,7 +565,7 @@ public final class TokenTypes {
      * @see FullIdent
      **/
     public static final int EXTENDS_CLAUSE =
-        JavaLexer.EXTENDS_CLAUSE;
+        JavaLanguageLexer.EXTENDS_CLAUSE;
 
     /**
      * An implements clause.  This always appears in a class or enum
@@ -600,7 +600,7 @@ public final class TokenTypes {
      * @see #ENUM_DEF
      **/
     public static final int IMPLEMENTS_CLAUSE =
-        JavaLexer.IMPLEMENTS_CLAUSE;
+        JavaLanguageLexer.IMPLEMENTS_CLAUSE;
 
     /**
      * A list of parameters to a method or constructor.  The children
@@ -636,7 +636,7 @@ public final class TokenTypes {
      * @see #METHOD_DEF
      * @see #CTOR_DEF
      **/
-    public static final int PARAMETERS = JavaLexer.PARAMETERS;
+    public static final int PARAMETERS = JavaLanguageLexer.PARAMETERS;
     /**
      * A parameter declaration. The last parameter in a list of parameters may
      * be variable length (indicated by the ELLIPSIS child node immediately
@@ -678,7 +678,7 @@ public final class TokenTypes {
      * @see #ELLIPSIS
      **/
     public static final int PARAMETER_DEF =
-        JavaLexer.PARAMETER_DEF;
+        JavaLanguageLexer.PARAMETER_DEF;
 
     /**
      * A labeled statement.
@@ -727,7 +727,7 @@ public final class TokenTypes {
      * @see #SLIST
      **/
     public static final int LABELED_STAT =
-        JavaLexer.LABELED_STAT;
+        JavaLanguageLexer.LABELED_STAT;
 
     /**
      * A type-cast.
@@ -758,7 +758,7 @@ public final class TokenTypes {
      * @see #TYPE_ARGUMENTS
      * @see #RPAREN
      **/
-    public static final int TYPECAST = JavaLexer.TYPECAST;
+    public static final int TYPECAST = JavaLanguageLexer.TYPECAST;
     /**
      * The array index operator.
      *
@@ -781,7 +781,7 @@ public final class TokenTypes {
      *
      * @see #EXPR
      **/
-    public static final int INDEX_OP = JavaLexer.INDEX_OP;
+    public static final int INDEX_OP = JavaLanguageLexer.INDEX_OP;
     /**
      * The {@code ++} (postfix increment) operator.
      *
@@ -803,7 +803,7 @@ public final class TokenTypes {
      * @see #EXPR
      * @see #INC
      **/
-    public static final int POST_INC = JavaLexer.POST_INC;
+    public static final int POST_INC = JavaLanguageLexer.POST_INC;
     /**
      * The {@code --} (postfix decrement) operator.
      *
@@ -825,7 +825,7 @@ public final class TokenTypes {
      * @see #EXPR
      * @see #DEC
      **/
-    public static final int POST_DEC = JavaLexer.POST_DEC;
+    public static final int POST_DEC = JavaLanguageLexer.POST_DEC;
     /**
      * A method call. A method call may have type arguments however these
      * are attached to the appropriate node in the qualified method name.
@@ -857,7 +857,7 @@ public final class TokenTypes {
      * @see #RPAREN
      * @see FullIdent
      **/
-    public static final int METHOD_CALL = JavaLexer.METHOD_CALL;
+    public static final int METHOD_CALL = JavaLanguageLexer.METHOD_CALL;
 
     /**
      * A reference to a method or constructor without arguments. Part of Java 8 syntax.
@@ -892,7 +892,7 @@ public final class TokenTypes {
      * @see #IDENT
      * @see #DOUBLE_COLON
      */
-    public static final int METHOD_REF = JavaLexer.METHOD_REF;
+    public static final int METHOD_REF = JavaLanguageLexer.METHOD_REF;
     /**
      * An expression.  Operators with lower precedence appear at a
      * higher level in the tree than operators with higher precedence.
@@ -938,7 +938,7 @@ public final class TokenTypes {
      * @see #LPAREN
      * @see #RPAREN
      **/
-    public static final int EXPR = JavaLexer.EXPR;
+    public static final int EXPR = JavaLanguageLexer.EXPR;
     /**
      * An array initialization.  This may occur as part of an array
      * declaration or inline with {@code new}.
@@ -1011,7 +1011,7 @@ public final class TokenTypes {
      * @see #LITERAL_NEW
      * @see #COMMA
      **/
-    public static final int ARRAY_INIT = JavaLexer.ARRAY_INIT;
+    public static final int ARRAY_INIT = JavaLanguageLexer.ARRAY_INIT;
     /**
      * An import declaration.  Import declarations are option, but
      * must appear after the package declaration and before the first type
@@ -1044,7 +1044,7 @@ public final class TokenTypes {
      * @see #SEMI
      * @see FullIdent
      **/
-    public static final int IMPORT = JavaLexer.IMPORT;
+    public static final int IMPORT = JavaLanguageLexer.IMPORT;
     /**
      * The {@code -} (unary minus) operator.
      * <p>For example:</p>
@@ -1066,7 +1066,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.15.4</a>
      * @see #EXPR
      **/
-    public static final int UNARY_MINUS = JavaLexer.UNARY_MINUS;
+    public static final int UNARY_MINUS = JavaLanguageLexer.UNARY_MINUS;
     /**
      * The {@code +} (unary plus) operator.
      * <p>For example:</p>
@@ -1088,7 +1088,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.15.3</a>
      * @see #EXPR
      **/
-    public static final int UNARY_PLUS = JavaLexer.UNARY_PLUS;
+    public static final int UNARY_PLUS = JavaLanguageLexer.UNARY_PLUS;
     /**
      * A group of case clauses.  Case clauses with no associated
      * statements are grouped together into a case group.  The last
@@ -1133,7 +1133,7 @@ public final class TokenTypes {
      * @see #LITERAL_SWITCH
      * @see #LITERAL_YIELD
      **/
-    public static final int CASE_GROUP = JavaLexer.CASE_GROUP;
+    public static final int CASE_GROUP = JavaLanguageLexer.CASE_GROUP;
     /**
      * An expression list.  The children are a comma separated list of
      * expressions.
@@ -1146,7 +1146,7 @@ public final class TokenTypes {
      * @see #CTOR_CALL
      * @see #SUPER_CTOR_CALL
      **/
-    public static final int ELIST = JavaLexer.ELIST;
+    public static final int ELIST = JavaLanguageLexer.ELIST;
     /**
      * A for loop initializer.  This is a child of
      * {@code LITERAL_FOR}.  The children of this element may be
@@ -1193,7 +1193,7 @@ public final class TokenTypes {
      * @see #ELIST
      * @see #LITERAL_FOR
      **/
-    public static final int FOR_INIT = JavaLexer.FOR_INIT;
+    public static final int FOR_INIT = JavaLanguageLexer.FOR_INIT;
     /**
      * A for loop condition.  This is a child of
      * {@code LITERAL_FOR}.  The child of this element is an
@@ -1239,7 +1239,7 @@ public final class TokenTypes {
      * @see #LITERAL_FOR
      **/
     public static final int FOR_CONDITION =
-        JavaLexer.FOR_CONDITION;
+        JavaLanguageLexer.FOR_CONDITION;
 
     /**
      * A for loop iterator.  This is a child of
@@ -1286,7 +1286,7 @@ public final class TokenTypes {
      * @see #LITERAL_FOR
      **/
     public static final int FOR_ITERATOR =
-        JavaLexer.FOR_ITERATOR;
+        JavaLanguageLexer.FOR_ITERATOR;
 
     /**
      * The empty statement.  This goes in place of an
@@ -1299,7 +1299,7 @@ public final class TokenTypes {
      * @see #LITERAL_FOR
      * @see #LITERAL_WHILE
      **/
-    public static final int EMPTY_STAT = JavaLexer.EMPTY_STAT;
+    public static final int EMPTY_STAT = JavaLanguageLexer.EMPTY_STAT;
     /**
      * The {@code final} keyword.
      *
@@ -1324,7 +1324,7 @@ public final class TokenTypes {
      *
      * @see #MODIFIERS
      **/
-    public static final int FINAL = JavaLexer.FINAL;
+    public static final int FINAL = JavaLanguageLexer.FINAL;
     /**
      * The {@code abstract} keyword.
      *
@@ -1349,7 +1349,7 @@ public final class TokenTypes {
      *
      * @see #MODIFIERS
      **/
-    public static final int ABSTRACT = JavaLexer.ABSTRACT;
+    public static final int ABSTRACT = JavaLanguageLexer.ABSTRACT;
     /**
      * The {@code strictfp} keyword.
      *
@@ -1371,7 +1371,7 @@ public final class TokenTypes {
      *
      * @see #MODIFIERS
      **/
-    public static final int STRICTFP = JavaLexer.STRICTFP;
+    public static final int STRICTFP = JavaLanguageLexer.STRICTFP;
     /**
      * A super constructor call.
      *
@@ -1381,7 +1381,7 @@ public final class TokenTypes {
      * @see #CTOR_CALL
      **/
     public static final int SUPER_CTOR_CALL =
-        JavaLexer.SUPER_CTOR_CALL;
+        JavaLanguageLexer.SUPER_CTOR_CALL;
 
     /**
      * A constructor call.
@@ -1409,7 +1409,7 @@ public final class TokenTypes {
      * @see #SEMI
      * @see #SUPER_CTOR_CALL
      **/
-    public static final int CTOR_CALL = JavaLexer.CTOR_CALL;
+    public static final int CTOR_CALL = JavaLanguageLexer.CTOR_CALL;
 
     /**
      * The statement terminator ({@code ;}).  Depending on the
@@ -1438,7 +1438,7 @@ public final class TokenTypes {
      * @see #ARRAY_INIT
      * @see #LITERAL_FOR
      **/
-    public static final int SEMI = JavaLexer.SEMI;
+    public static final int SEMI = JavaLanguageLexer.SEMI;
 
     /**
      * The {@code ]} symbol.
@@ -1462,7 +1462,7 @@ public final class TokenTypes {
      * @see #INDEX_OP
      * @see #ARRAY_DECLARATOR
      **/
-    public static final int RBRACK = JavaLexer.RBRACK;
+    public static final int RBRACK = JavaLanguageLexer.RBRACK;
     /**
      * The {@code void} keyword.
      *
@@ -1482,7 +1482,7 @@ public final class TokenTypes {
      * @see #TYPE
      **/
     public static final int LITERAL_VOID =
-        JavaLexer.LITERAL_VOID;
+        JavaLanguageLexer.LITERAL_VOID;
 
     /**
      * The {@code boolean} keyword.
@@ -1490,7 +1490,7 @@ public final class TokenTypes {
      * @see #TYPE
      **/
     public static final int LITERAL_BOOLEAN =
-        JavaLexer.LITERAL_BOOLEAN;
+        JavaLanguageLexer.LITERAL_BOOLEAN;
 
     /**
      * The {@code byte} keyword.
@@ -1513,7 +1513,7 @@ public final class TokenTypes {
      * @see #TYPE
      **/
     public static final int LITERAL_BYTE =
-        JavaLexer.LITERAL_BYTE;
+        JavaLanguageLexer.LITERAL_BYTE;
 
     /**
      * The {@code char} keyword.
@@ -1538,7 +1538,7 @@ public final class TokenTypes {
      * @see #TYPE
      **/
     public static final int LITERAL_CHAR =
-        JavaLexer.LITERAL_CHAR;
+        JavaLanguageLexer.LITERAL_CHAR;
 
     /**
      * The {@code short} keyword.
@@ -1561,7 +1561,7 @@ public final class TokenTypes {
      * @see #TYPE
      **/
     public static final int LITERAL_SHORT =
-        JavaLexer.LITERAL_SHORT;
+        JavaLanguageLexer.LITERAL_SHORT;
 
     /**
      * The {@code int} keyword.
@@ -1583,7 +1583,7 @@ public final class TokenTypes {
      *
      * @see #TYPE
      **/
-    public static final int LITERAL_INT = JavaLexer.LITERAL_INT;
+    public static final int LITERAL_INT = JavaLanguageLexer.LITERAL_INT;
     /**
      * The {@code float} keyword.
      *
@@ -1605,7 +1605,7 @@ public final class TokenTypes {
      * @see #TYPE
      **/
     public static final int LITERAL_FLOAT =
-        JavaLexer.LITERAL_FLOAT;
+        JavaLanguageLexer.LITERAL_FLOAT;
 
     /**
      * The {@code long} keyword.
@@ -1628,7 +1628,7 @@ public final class TokenTypes {
      * @see #TYPE
      **/
     public static final int LITERAL_LONG =
-        JavaLexer.LITERAL_LONG;
+        JavaLanguageLexer.LITERAL_LONG;
 
     /**
      * The {@code double} keyword.
@@ -1651,13 +1651,13 @@ public final class TokenTypes {
      * @see #TYPE
      **/
     public static final int LITERAL_DOUBLE =
-        JavaLexer.LITERAL_DOUBLE;
+        JavaLanguageLexer.LITERAL_DOUBLE;
 
     /**
      * An identifier.  These can be names of types, subpackages,
      * fields, methods, parameters, and local variables.
      **/
-    public static final int IDENT = JavaLexer.IDENT;
+    public static final int IDENT = JavaLanguageLexer.IDENT;
     /**
      * The <code>&#46;</code> (dot) operator.
      *
@@ -1678,7 +1678,7 @@ public final class TokenTypes {
      * @see FullIdent
      * @noinspection HtmlTagCanBeJavadocTag
      **/
-    public static final int DOT = JavaLexer.DOT;
+    public static final int DOT = JavaLanguageLexer.DOT;
     /**
      * The {@code *} (multiplication or wildcard) operator.
      *
@@ -1706,7 +1706,7 @@ public final class TokenTypes {
      * @see #EXPR
      * @see #IMPORT
      **/
-    public static final int STAR = JavaLexer.STAR;
+    public static final int STAR = JavaLanguageLexer.STAR;
     /**
      * The {@code private} keyword.
      *
@@ -1728,7 +1728,7 @@ public final class TokenTypes {
      * @see #MODIFIERS
      **/
     public static final int LITERAL_PRIVATE =
-        JavaLexer.LITERAL_PRIVATE;
+        JavaLanguageLexer.LITERAL_PRIVATE;
 
     /**
      * The {@code public} keyword.
@@ -1751,7 +1751,7 @@ public final class TokenTypes {
      * @see #MODIFIERS
      **/
     public static final int LITERAL_PUBLIC =
-        JavaLexer.LITERAL_PUBLIC;
+        JavaLanguageLexer.LITERAL_PUBLIC;
 
     /**
      * The {@code protected} keyword.
@@ -1774,7 +1774,7 @@ public final class TokenTypes {
      * @see #MODIFIERS
      **/
     public static final int LITERAL_PROTECTED =
-        JavaLexer.LITERAL_PROTECTED;
+        JavaLanguageLexer.LITERAL_PROTECTED;
 
     /**
      * The {@code static} keyword.
@@ -1798,7 +1798,7 @@ public final class TokenTypes {
      * @see #MODIFIERS
      **/
     public static final int LITERAL_STATIC =
-        JavaLexer.LITERAL_STATIC;
+        JavaLanguageLexer.LITERAL_STATIC;
 
     /**
      * The {@code transient} keyword.
@@ -1821,7 +1821,7 @@ public final class TokenTypes {
      * @see #MODIFIERS
      **/
     public static final int LITERAL_TRANSIENT =
-        JavaLexer.LITERAL_TRANSIENT;
+        JavaLanguageLexer.LITERAL_TRANSIENT;
 
     /**
      * The {@code native} keyword.
@@ -1829,7 +1829,7 @@ public final class TokenTypes {
      * @see #MODIFIERS
      **/
     public static final int LITERAL_NATIVE =
-        JavaLexer.LITERAL_NATIVE;
+        JavaLanguageLexer.LITERAL_NATIVE;
 
     /**
      * The {@code synchronized} keyword.  This may be used as a
@@ -1870,7 +1870,7 @@ public final class TokenTypes {
      * @see #RCURLY
      **/
     public static final int LITERAL_SYNCHRONIZED =
-        JavaLexer.LITERAL_SYNCHRONIZED;
+        JavaLanguageLexer.LITERAL_SYNCHRONIZED;
 
     /**
      * The {@code volatile} keyword. This may be used as a
@@ -1894,7 +1894,7 @@ public final class TokenTypes {
      * @see #MODIFIERS
      **/
     public static final int LITERAL_VOLATILE =
-        JavaLexer.LITERAL_VOLATILE;
+        JavaLanguageLexer.LITERAL_VOLATILE;
 
     /**
      * The {@code class} keyword.  This element appears both
@@ -1934,7 +1934,7 @@ public final class TokenTypes {
      * @see FullIdent
      **/
     public static final int LITERAL_CLASS =
-        JavaLexer.LITERAL_CLASS;
+        JavaLanguageLexer.LITERAL_CLASS;
 
     /**
      * The {@code interface} keyword. This token appears in
@@ -1964,7 +1964,7 @@ public final class TokenTypes {
      * @see #INTERFACE_DEF
      **/
     public static final int LITERAL_INTERFACE =
-        JavaLexer.LITERAL_INTERFACE;
+        JavaLanguageLexer.LITERAL_INTERFACE;
 
     /**
      * A left curly brace (<code>{</code>).
@@ -1997,7 +1997,7 @@ public final class TokenTypes {
      * @see #ARRAY_INIT
      * @see #SLIST
      **/
-    public static final int LCURLY = JavaLexer.LCURLY;
+    public static final int LCURLY = JavaLanguageLexer.LCURLY;
     /**
      * A right curly brace (<code>}</code>).
      *
@@ -2025,7 +2025,7 @@ public final class TokenTypes {
      * @see #ARRAY_INIT
      * @see #SLIST
      **/
-    public static final int RCURLY = JavaLexer.RCURLY;
+    public static final int RCURLY = JavaLanguageLexer.RCURLY;
 
     /**
      * The {@code ,} (comma) operator.
@@ -2056,7 +2056,7 @@ public final class TokenTypes {
      * @see #LITERAL_THROWS
      * @see #IMPLEMENTS_CLAUSE
      **/
-    public static final int COMMA = JavaLexer.COMMA;
+    public static final int COMMA = JavaLanguageLexer.COMMA;
 
     /**
      * A left parenthesis ({@code (}).
@@ -2106,7 +2106,7 @@ public final class TokenTypes {
      * @see #LITERAL_SWITCH
      * @see #LITERAL_CATCH
      **/
-    public static final int LPAREN = JavaLexer.LPAREN;
+    public static final int LPAREN = JavaLanguageLexer.LPAREN;
     /**
      * A right parenthesis ({@code )}).
      *
@@ -2137,7 +2137,7 @@ public final class TokenTypes {
      * @see #LITERAL_SWITCH
      * @see #LITERAL_CATCH
      **/
-    public static final int RPAREN = JavaLexer.RPAREN;
+    public static final int RPAREN = JavaLanguageLexer.RPAREN;
     /**
      * The {@code this} keyword use to refer the current object.
      * This can also be used to call the constructor.
@@ -2178,7 +2178,7 @@ public final class TokenTypes {
      * @see #CTOR_CALL
      **/
     public static final int LITERAL_THIS =
-        JavaLexer.LITERAL_THIS;
+        JavaLanguageLexer.LITERAL_THIS;
 
     /**
      * The {@code super} keyword.
@@ -2203,7 +2203,7 @@ public final class TokenTypes {
      * @see #SUPER_CTOR_CALL
      **/
     public static final int LITERAL_SUPER =
-        JavaLexer.LITERAL_SUPER;
+        JavaLanguageLexer.LITERAL_SUPER;
 
     /**
      * The {@code =} (assignment) operator.
@@ -2226,7 +2226,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.26.1</a>
      * @see #EXPR
      **/
-    public static final int ASSIGN = JavaLexer.ASSIGN;
+    public static final int ASSIGN = JavaLanguageLexer.ASSIGN;
     /**
      * The {@code throws} keyword.  The children are a number of
      * one or more identifiers separated by commas.
@@ -2265,7 +2265,7 @@ public final class TokenTypes {
      * @see FullIdent
      **/
     public static final int LITERAL_THROWS =
-        JavaLexer.LITERAL_THROWS;
+        JavaLanguageLexer.LITERAL_THROWS;
 
     /**
      * The {@code :} (colon) operator.  This will appear as part
@@ -2291,7 +2291,7 @@ public final class TokenTypes {
      * @see #LABELED_STAT
      * @see #CASE_GROUP
      **/
-    public static final int COLON = JavaLexer.COLON;
+    public static final int COLON = JavaLanguageLexer.COLON;
 
     /**
      * The {@code ::} (double colon) separator.
@@ -2300,7 +2300,7 @@ public final class TokenTypes {
      *
      * @see #METHOD_REF
      */
-    public static final int DOUBLE_COLON = JavaLexer.DOUBLE_COLON;
+    public static final int DOUBLE_COLON = JavaLanguageLexer.DOUBLE_COLON;
     /**
      * The {@code if} keyword.
      *
@@ -2346,7 +2346,7 @@ public final class TokenTypes {
      * @see #EMPTY_STAT
      * @see #LITERAL_ELSE
      **/
-    public static final int LITERAL_IF = JavaLexer.LITERAL_IF;
+    public static final int LITERAL_IF = JavaLanguageLexer.LITERAL_IF;
     /**
      * The {@code for} keyword.  The children are {@code (},
      * an initializer, a condition, an iterator, a {@code )} and
@@ -2399,7 +2399,7 @@ public final class TokenTypes {
      * @see #EMPTY_STAT
      * @see #EXPR
      **/
-    public static final int LITERAL_FOR = JavaLexer.LITERAL_FOR;
+    public static final int LITERAL_FOR = JavaLanguageLexer.LITERAL_FOR;
     /**
      * The {@code while} keyword.
      *
@@ -2427,7 +2427,7 @@ public final class TokenTypes {
      * </pre>
      **/
     public static final int LITERAL_WHILE =
-        JavaLexer.LITERAL_WHILE;
+        JavaLanguageLexer.LITERAL_WHILE;
 
     /**
      * The {@code do} keyword.  Note the the while token does not
@@ -2471,7 +2471,7 @@ public final class TokenTypes {
      * @see #RPAREN
      * @see #SEMI
      **/
-    public static final int LITERAL_DO = JavaLexer.LITERAL_DO;
+    public static final int LITERAL_DO = JavaLanguageLexer.LITERAL_DO;
     /**
      * Literal {@code while} in do-while loop.
      *
@@ -2498,7 +2498,7 @@ public final class TokenTypes {
      *
      * @see #LITERAL_DO
      */
-    public static final int DO_WHILE = JavaLexer.DO_WHILE;
+    public static final int DO_WHILE = JavaLanguageLexer.DO_WHILE;
     /**
      * The {@code break} keyword.  The first child is an optional
      * identifier and the last child is a semicolon.
@@ -2508,7 +2508,7 @@ public final class TokenTypes {
      * @see #SLIST
      **/
     public static final int LITERAL_BREAK =
-        JavaLexer.LITERAL_BREAK;
+        JavaLanguageLexer.LITERAL_BREAK;
 
     /**
      * The {@code continue} keyword.  The first child is an
@@ -2541,7 +2541,7 @@ public final class TokenTypes {
      * @see #SLIST
      **/
     public static final int LITERAL_CONTINUE =
-        JavaLexer.LITERAL_CONTINUE;
+        JavaLanguageLexer.LITERAL_CONTINUE;
 
     /**
      * The {@code return} keyword.  The first child is an
@@ -2585,7 +2585,7 @@ public final class TokenTypes {
      * @see #SLIST
      **/
     public static final int LITERAL_RETURN =
-        JavaLexer.LITERAL_RETURN;
+        JavaLanguageLexer.LITERAL_RETURN;
 
     /**
      * The {@code switch} keyword.
@@ -2668,7 +2668,7 @@ public final class TokenTypes {
      * @see #SWITCH_RULE
      **/
     public static final int LITERAL_SWITCH =
-        JavaLexer.LITERAL_SWITCH;
+        JavaLanguageLexer.LITERAL_SWITCH;
 
     /**
      * The {@code throw} keyword.  The first child is an
@@ -2681,7 +2681,7 @@ public final class TokenTypes {
      * @see #EXPR
      **/
     public static final int LITERAL_THROW =
-        JavaLexer.LITERAL_THROW;
+        JavaLanguageLexer.LITERAL_THROW;
 
     /**
      * The {@code else} keyword.  This appears as a child of an
@@ -2715,7 +2715,7 @@ public final class TokenTypes {
      * @see #LITERAL_IF
      **/
     public static final int LITERAL_ELSE =
-        JavaLexer.LITERAL_ELSE;
+        JavaLanguageLexer.LITERAL_ELSE;
 
     /**
      * The {@code case} keyword.  The first child is a constant
@@ -2768,7 +2768,7 @@ public final class TokenTypes {
      * @see #EXPR
      **/
     public static final int LITERAL_CASE =
-        JavaLexer.LITERAL_CASE;
+        JavaLanguageLexer.LITERAL_CASE;
 
     /**
      * The {@code default} keyword.  This element has no
@@ -2822,7 +2822,7 @@ public final class TokenTypes {
      * @see #SWITCH_RULE
      **/
     public static final int LITERAL_DEFAULT =
-        JavaLexer.LITERAL_DEFAULT;
+        JavaLanguageLexer.LITERAL_DEFAULT;
 
     /**
      * The {@code try} keyword.  The children are a statement
@@ -2850,7 +2850,7 @@ public final class TokenTypes {
      * @see #LITERAL_CATCH
      * @see #LITERAL_FINALLY
      **/
-    public static final int LITERAL_TRY = JavaLexer.LITERAL_TRY;
+    public static final int LITERAL_TRY = JavaLanguageLexer.LITERAL_TRY;
 
     /**
      * The Java 7 try-with-resources construct.
@@ -2940,7 +2940,7 @@ public final class TokenTypes {
      * @see #LITERAL_TRY
      **/
     public static final int RESOURCE_SPECIFICATION =
-        JavaLexer.RESOURCE_SPECIFICATION;
+        JavaLanguageLexer.RESOURCE_SPECIFICATION;
 
     /**
      * A list of resources in the Java 7 try-with-resources construct.
@@ -2982,7 +2982,7 @@ public final class TokenTypes {
      * @see #RESOURCE_SPECIFICATION
      **/
     public static final int RESOURCES =
-        JavaLexer.RESOURCES;
+        JavaLanguageLexer.RESOURCES;
 
     /**
      * A resource in the Java 7 try-with-resources construct.
@@ -3032,7 +3032,7 @@ public final class TokenTypes {
      * @see #RESOURCE_SPECIFICATION
      **/
     public static final int RESOURCE =
-        JavaLexer.RESOURCE;
+        JavaLanguageLexer.RESOURCE;
 
     /**
      * The {@code catch} keyword.
@@ -3084,7 +3084,7 @@ public final class TokenTypes {
      * @see #LITERAL_TRY
      **/
     public static final int LITERAL_CATCH =
-        JavaLexer.LITERAL_CATCH;
+        JavaLanguageLexer.LITERAL_CATCH;
 
     /**
      * The {@code finally} keyword.
@@ -3107,7 +3107,7 @@ public final class TokenTypes {
      * @see #LITERAL_TRY
      **/
     public static final int LITERAL_FINALLY =
-        JavaLexer.LITERAL_FINALLY;
+        JavaLanguageLexer.LITERAL_FINALLY;
 
     /**
      * The {@code +=} (addition assignment) operator.
@@ -3130,7 +3130,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int PLUS_ASSIGN = JavaLexer.PLUS_ASSIGN;
+    public static final int PLUS_ASSIGN = JavaLanguageLexer.PLUS_ASSIGN;
     /**
      * The {@code -=} (subtraction assignment) operator.
      *
@@ -3153,7 +3153,7 @@ public final class TokenTypes {
      * @see #EXPR
      **/
     public static final int MINUS_ASSIGN =
-        JavaLexer.MINUS_ASSIGN;
+        JavaLanguageLexer.MINUS_ASSIGN;
 
     /**
      * The {@code *=} (multiplication assignment) operator.
@@ -3176,7 +3176,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int STAR_ASSIGN = JavaLexer.STAR_ASSIGN;
+    public static final int STAR_ASSIGN = JavaLanguageLexer.STAR_ASSIGN;
     /**
      * The {@code /=} (division assignment) operator.
      *
@@ -3198,7 +3198,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int DIV_ASSIGN = JavaLexer.DIV_ASSIGN;
+    public static final int DIV_ASSIGN = JavaLanguageLexer.DIV_ASSIGN;
     /**
      * The {@code %=} (remainder assignment) operator.
      * <p>For example:</p>
@@ -3217,7 +3217,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int MOD_ASSIGN = JavaLexer.MOD_ASSIGN;
+    public static final int MOD_ASSIGN = JavaLanguageLexer.MOD_ASSIGN;
     /**
      * The {@code >>=} (signed right shift assignment)
      * operator.
@@ -3240,7 +3240,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int SR_ASSIGN = JavaLexer.SR_ASSIGN;
+    public static final int SR_ASSIGN = JavaLanguageLexer.SR_ASSIGN;
     /**
      * The {@code >>>=} (unsigned right shift assignment)
      * operator.
@@ -3263,7 +3263,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int BSR_ASSIGN = JavaLexer.BSR_ASSIGN;
+    public static final int BSR_ASSIGN = JavaLanguageLexer.BSR_ASSIGN;
     /**
      * The {@code <<=} (left shift assignment) operator.
      *
@@ -3272,7 +3272,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int SL_ASSIGN = JavaLexer.SL_ASSIGN;
+    public static final int SL_ASSIGN = JavaLanguageLexer.SL_ASSIGN;
     /**
      * The {@code &=} (bitwise AND assignment) operator.
      *
@@ -3294,7 +3294,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int BAND_ASSIGN = JavaLexer.BAND_ASSIGN;
+    public static final int BAND_ASSIGN = JavaLanguageLexer.BAND_ASSIGN;
     /**
      * The {@code ^=} (bitwise exclusive OR assignment) operator.
      *
@@ -3303,7 +3303,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int BXOR_ASSIGN = JavaLexer.BXOR_ASSIGN;
+    public static final int BXOR_ASSIGN = JavaLanguageLexer.BXOR_ASSIGN;
     /**
      * The {@code |=} (bitwise OR assignment) operator.
      *
@@ -3325,7 +3325,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.26.2</a>
      * @see #EXPR
      **/
-    public static final int BOR_ASSIGN = JavaLexer.BOR_ASSIGN;
+    public static final int BOR_ASSIGN = JavaLanguageLexer.BOR_ASSIGN;
     /**
      * The <code>&#63;</code> (conditional) operator.  Technically,
      * the colon is also part of this operator, but it appears as a
@@ -3363,7 +3363,7 @@ public final class TokenTypes {
      * @see #COLON
      * @noinspection HtmlTagCanBeJavadocTag
      **/
-    public static final int QUESTION = JavaLexer.QUESTION;
+    public static final int QUESTION = JavaLanguageLexer.QUESTION;
     /**
      * The {@code ||} (conditional OR) operator.
      *
@@ -3392,7 +3392,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.24</a>
      * @see #EXPR
      **/
-    public static final int LOR = JavaLexer.LOR;
+    public static final int LOR = JavaLanguageLexer.LOR;
     /**
      * The {@code &&} (conditional AND) operator.
      *
@@ -3420,7 +3420,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.23</a>
      * @see #EXPR
      **/
-    public static final int LAND = JavaLexer.LAND;
+    public static final int LAND = JavaLanguageLexer.LAND;
     /**
      * The {@code |} (bitwise OR) operator.
      *
@@ -3444,7 +3444,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.22.1</a>
      * @see #EXPR
      **/
-    public static final int BOR = JavaLexer.BOR;
+    public static final int BOR = JavaLanguageLexer.BOR;
     /**
      * The {@code ^} (bitwise exclusive OR) operator.
      *
@@ -3453,7 +3453,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.22.1</a>
      * @see #EXPR
      **/
-    public static final int BXOR = JavaLexer.BXOR;
+    public static final int BXOR = JavaLanguageLexer.BXOR;
     /**
      * The {@code &} (bitwise AND) operator.
      *
@@ -3477,7 +3477,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.22.1</a>
      * @see #EXPR
      **/
-    public static final int BAND = JavaLexer.BAND;
+    public static final int BAND = JavaLanguageLexer.BAND;
     /**
      * The <code>&#33;=</code> (not equal) operator.
      *
@@ -3497,7 +3497,7 @@ public final class TokenTypes {
      * @see #EXPR
      * @noinspection HtmlTagCanBeJavadocTag
      **/
-    public static final int NOT_EQUAL = JavaLexer.NOT_EQUAL;
+    public static final int NOT_EQUAL = JavaLanguageLexer.NOT_EQUAL;
     /**
      * The {@code ==} (equal) operator.
      *
@@ -3516,7 +3516,7 @@ public final class TokenTypes {
      *
      * @see #EXPR
      **/
-    public static final int EQUAL = JavaLexer.EQUAL;
+    public static final int EQUAL = JavaLanguageLexer.EQUAL;
     /**
      * The {@code <} (less than) operator.
      *
@@ -3537,7 +3537,7 @@ public final class TokenTypes {
      *
      * @see #EXPR
      **/
-    public static final int LT = JavaLexer.LT;
+    public static final int LT = JavaLanguageLexer.LT;
     /**
      * The {@code >} (greater than) operator.
      *
@@ -3558,7 +3558,7 @@ public final class TokenTypes {
      *
      * @see #EXPR
      **/
-    public static final int GT = JavaLexer.GT;
+    public static final int GT = JavaLanguageLexer.GT;
     /**
      * The {@code <=} (less than or equal) operator.
      *
@@ -3579,13 +3579,13 @@ public final class TokenTypes {
      *
      * @see #EXPR
      **/
-    public static final int LE = JavaLexer.LE;
+    public static final int LE = JavaLanguageLexer.LE;
     /**
      * The {@code >=} (greater than or equal) operator.
      *
      * @see #EXPR
      **/
-    public static final int GE = JavaLexer.GE;
+    public static final int GE = JavaLanguageLexer.GE;
     /**
      * The {@code instanceof} operator.  The first child is an
      * object reference or something that evaluates to an object
@@ -3621,7 +3621,7 @@ public final class TokenTypes {
      * @see FullIdent
      **/
     public static final int LITERAL_INSTANCEOF =
-        JavaLexer.LITERAL_INSTANCEOF;
+        JavaLanguageLexer.LITERAL_INSTANCEOF;
 
     /**
      * The {@code <<} (shift left) operator.
@@ -3646,7 +3646,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.19</a>
      * @see #EXPR
      **/
-    public static final int SL = JavaLexer.SL;
+    public static final int SL = JavaLanguageLexer.SL;
     /**
      * The {@code >>} (signed shift right) operator.
      *
@@ -3670,7 +3670,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.19</a>
      * @see #EXPR
      **/
-    public static final int SR = JavaLexer.SR;
+    public static final int SR = JavaLanguageLexer.SR;
     /**
      * The {@code >>>} (unsigned shift right) operator.
      *
@@ -3692,7 +3692,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.19</a>
      * @see #EXPR
      **/
-    public static final int BSR = JavaLexer.BSR;
+    public static final int BSR = JavaLanguageLexer.BSR;
     /**
      * The {@code +} (addition) operator.
      *
@@ -3716,7 +3716,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.18</a>
      * @see #EXPR
      **/
-    public static final int PLUS = JavaLexer.PLUS;
+    public static final int PLUS = JavaLanguageLexer.PLUS;
     /**
      * The {@code -} (subtraction) operator.
      *
@@ -3740,7 +3740,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.18</a>
      * @see #EXPR
      **/
-    public static final int MINUS = JavaLexer.MINUS;
+    public static final int MINUS = JavaLanguageLexer.MINUS;
     /**
      * The {@code /} (division) operator.
      *
@@ -3764,7 +3764,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.17.2</a>
      * @see #EXPR
      **/
-    public static final int DIV = JavaLexer.DIV;
+    public static final int DIV = JavaLanguageLexer.DIV;
     /**
      * The {@code %} (remainder) operator.
      *
@@ -3788,7 +3788,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.17.3</a>
      * @see #EXPR
      **/
-    public static final int MOD = JavaLexer.MOD;
+    public static final int MOD = JavaLanguageLexer.MOD;
     /**
      * The {@code ++} (prefix increment) operator.
      *
@@ -3810,7 +3810,7 @@ public final class TokenTypes {
      * @see #EXPR
      * @see #POST_INC
      **/
-    public static final int INC = JavaLexer.INC;
+    public static final int INC = JavaLanguageLexer.INC;
     /**
      * The {@code --} (prefix decrement) operator.
      *
@@ -3832,7 +3832,7 @@ public final class TokenTypes {
      * @see #EXPR
      * @see #POST_DEC
      **/
-    public static final int DEC = JavaLexer.DEC;
+    public static final int DEC = JavaLanguageLexer.DEC;
     /**
      * The {@code ~} (bitwise complement) operator.
      *
@@ -3855,7 +3855,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.15.5</a>
      * @see #EXPR
      **/
-    public static final int BNOT = JavaLexer.BNOT;
+    public static final int BNOT = JavaLanguageLexer.BNOT;
     /**
      * The <code>&#33;</code> (logical complement) operator.
      *
@@ -3879,7 +3879,7 @@ public final class TokenTypes {
      * @see #EXPR
      * @noinspection HtmlTagCanBeJavadocTag
      **/
-    public static final int LNOT = JavaLexer.LNOT;
+    public static final int LNOT = JavaLanguageLexer.LNOT;
     /**
      * The {@code true} keyword.
      *
@@ -3907,7 +3907,7 @@ public final class TokenTypes {
      * @see #LITERAL_FALSE
      **/
     public static final int LITERAL_TRUE =
-        JavaLexer.LITERAL_TRUE;
+        JavaLanguageLexer.LITERAL_TRUE;
 
     /**
      * The {@code false} keyword.
@@ -3936,7 +3936,7 @@ public final class TokenTypes {
      * @see #LITERAL_TRUE
      **/
     public static final int LITERAL_FALSE =
-        JavaLexer.LITERAL_FALSE;
+        JavaLanguageLexer.LITERAL_FALSE;
 
     /**
      * The {@code null} keyword.
@@ -3964,7 +3964,7 @@ public final class TokenTypes {
      * @see #EXPR
      **/
     public static final int LITERAL_NULL =
-        JavaLexer.LITERAL_NULL;
+        JavaLanguageLexer.LITERAL_NULL;
 
     /**
      * The {@code new} keyword.  This element is used to define
@@ -4098,7 +4098,7 @@ public final class TokenTypes {
      * @see #ARRAY_INIT
      * @see FullIdent
      **/
-    public static final int LITERAL_NEW = JavaLexer.LITERAL_NEW;
+    public static final int LITERAL_NEW = JavaLanguageLexer.LITERAL_NEW;
     /**
      * An integer literal.  These may be specified in decimal,
      * hexadecimal, or octal form.
@@ -4122,7 +4122,7 @@ public final class TokenTypes {
      * @see #EXPR
      * @see #NUM_LONG
      **/
-    public static final int NUM_INT = JavaLexer.NUM_INT;
+    public static final int NUM_INT = JavaLanguageLexer.NUM_INT;
     /**
      * A character literal.  This is a (possibly escaped) character
      * enclosed in single quotes.
@@ -4145,7 +4145,7 @@ public final class TokenTypes {
      * @see #EXPR
      **/
     public static final int CHAR_LITERAL =
-        JavaLexer.CHAR_LITERAL;
+        JavaLanguageLexer.CHAR_LITERAL;
 
     /**
      * A string literal.  This is a sequence of (possibly escaped)
@@ -4172,7 +4172,7 @@ public final class TokenTypes {
      * @see #EXPR
      **/
     public static final int STRING_LITERAL =
-        JavaLexer.STRING_LITERAL;
+        JavaLanguageLexer.STRING_LITERAL;
 
     /**
      * A single precision floating point literal.  This is a floating
@@ -4197,7 +4197,7 @@ public final class TokenTypes {
      * @see #EXPR
      * @see #NUM_DOUBLE
      **/
-    public static final int NUM_FLOAT = JavaLexer.NUM_FLOAT;
+    public static final int NUM_FLOAT = JavaLanguageLexer.NUM_FLOAT;
     /**
      * A long integer literal.  These are almost the same as integer
      * literals, but they have an {@code L} or {@code l}
@@ -4222,7 +4222,7 @@ public final class TokenTypes {
      * @see #EXPR
      * @see #NUM_INT
      **/
-    public static final int NUM_LONG = JavaLexer.NUM_LONG;
+    public static final int NUM_LONG = JavaLanguageLexer.NUM_LONG;
     /**
      * A double precision floating point literal.  This is a floating
      * point number with an optional {@code D} or {@code d}
@@ -4247,7 +4247,7 @@ public final class TokenTypes {
      * @see #EXPR
      * @see #NUM_FLOAT
      **/
-    public static final int NUM_DOUBLE = JavaLexer.NUM_DOUBLE;
+    public static final int NUM_DOUBLE = JavaLanguageLexer.NUM_DOUBLE;
 
     /**
      * The {@code assert} keyword.  This is only for Java 1.4 and
@@ -4272,7 +4272,7 @@ public final class TokenTypes {
      *     +--SEMI (;)
      * </pre>
      **/
-    public static final int LITERAL_ASSERT = JavaLexer.ASSERT;
+    public static final int LITERAL_ASSERT = JavaLanguageLexer.ASSERT;
 
     /**
      * A static import declaration.  Static import declarations are optional,
@@ -4305,7 +4305,7 @@ public final class TokenTypes {
      * @see FullIdent
      **/
     public static final int STATIC_IMPORT =
-        JavaLexer.STATIC_IMPORT;
+        JavaLanguageLexer.STATIC_IMPORT;
 
     /**
      * An enum declaration. Its notable children are
@@ -4379,14 +4379,14 @@ public final class TokenTypes {
      * @see #ENUM_CONSTANT_DEF
      **/
     public static final int ENUM_DEF =
-        JavaLexer.ENUM_DEF;
+        JavaLanguageLexer.ENUM_DEF;
 
     /**
      * The {@code enum} keyword.  This element appears
      * as part of an enum declaration.
      **/
     public static final int ENUM =
-        JavaLexer.ENUM;
+        JavaLanguageLexer.ENUM;
 
     /**
      * An enum constant declaration. Its notable children are annotations,
@@ -4446,7 +4446,7 @@ public final class TokenTypes {
      * @see #OBJBLOCK
      **/
     public static final int ENUM_CONSTANT_DEF =
-        JavaLexer.ENUM_CONSTANT_DEF;
+        JavaLanguageLexer.ENUM_CONSTANT_DEF;
 
     /**
      * A for-each clause.  This is a child of
@@ -4488,7 +4488,7 @@ public final class TokenTypes {
      * @see #LITERAL_FOR
      **/
     public static final int FOR_EACH_CLAUSE =
-        JavaLexer.FOR_EACH_CLAUSE;
+        JavaLanguageLexer.FOR_EACH_CLAUSE;
 
     /**
      * An annotation declaration. The notable children are the name of the
@@ -4531,7 +4531,7 @@ public final class TokenTypes {
      * @see #ANNOTATION_FIELD_DEF
      **/
     public static final int ANNOTATION_DEF =
-        JavaLexer.ANNOTATION_DEF;
+        JavaLanguageLexer.ANNOTATION_DEF;
 
     /**
      * An annotation field declaration.  The notable children are modifiers,
@@ -4568,7 +4568,7 @@ public final class TokenTypes {
      * @see #LITERAL_DEFAULT
      */
     public static final int ANNOTATION_FIELD_DEF =
-        JavaLexer.ANNOTATION_FIELD_DEF;
+        JavaLanguageLexer.ANNOTATION_FIELD_DEF;
 
     // note: &#064; is the html escape for '@',
     // used here to avoid confusing the javadoc tool
@@ -4607,7 +4607,7 @@ public final class TokenTypes {
      * @see #IDENT
      */
     public static final int ANNOTATIONS =
-        JavaLexer.ANNOTATIONS;
+        JavaLanguageLexer.ANNOTATIONS;
 
     // note: &#064; is the html escape for '@',
     // used here to avoid confusing the javadoc tool
@@ -4657,7 +4657,7 @@ public final class TokenTypes {
      * @see #ANNOTATION_MEMBER_VALUE_PAIR
      */
     public static final int ANNOTATION =
-        JavaLexer.ANNOTATION;
+        JavaLanguageLexer.ANNOTATION;
 
     /**
      * An initialization of an annotation member with a value.
@@ -4670,7 +4670,7 @@ public final class TokenTypes {
      * @see #IDENT
      */
     public static final int ANNOTATION_MEMBER_VALUE_PAIR =
-        JavaLexer.ANNOTATION_MEMBER_VALUE_PAIR;
+        JavaLanguageLexer.ANNOTATION_MEMBER_VALUE_PAIR;
 
     /**
      * An annotation array member initialization.
@@ -4707,7 +4707,7 @@ public final class TokenTypes {
      * @see #ANNOTATION_MEMBER_VALUE_PAIR
      */
     public static final int ANNOTATION_ARRAY_INIT =
-        JavaLexer.ANNOTATION_ARRAY_INIT;
+        JavaLanguageLexer.ANNOTATION_ARRAY_INIT;
 
     /**
      * A list of type parameters to a class, interface or
@@ -4752,7 +4752,7 @@ public final class TokenTypes {
      * @see #COMMA
      */
     public static final int TYPE_PARAMETERS =
-        JavaLexer.TYPE_PARAMETERS;
+        JavaLanguageLexer.TYPE_PARAMETERS;
 
     /**
      * A type parameter to a class, interface or method definition.
@@ -4793,7 +4793,7 @@ public final class TokenTypes {
      * @see #TYPE_UPPER_BOUNDS
      */
     public static final int TYPE_PARAMETER =
-        JavaLexer.TYPE_PARAMETER;
+        JavaLanguageLexer.TYPE_PARAMETER;
 
     /**
      * A list of type arguments to a type reference or
@@ -4830,7 +4830,7 @@ public final class TokenTypes {
      * @see #COMMA
      */
     public static final int TYPE_ARGUMENTS =
-        JavaLexer.TYPE_ARGUMENTS;
+        JavaLanguageLexer.TYPE_ARGUMENTS;
 
     /**
      * A type arguments to a type reference or a method/ctor invocation.
@@ -4862,7 +4862,7 @@ public final class TokenTypes {
      * @see #TYPE_LOWER_BOUNDS
      */
     public static final int TYPE_ARGUMENT =
-        JavaLexer.TYPE_ARGUMENT;
+        JavaLanguageLexer.TYPE_ARGUMENT;
 
     /**
      * The type that refers to all types. This node has no children.
@@ -4893,7 +4893,7 @@ public final class TokenTypes {
      * @see #TYPE_LOWER_BOUNDS
      */
     public static final int WILDCARD_TYPE =
-        JavaLexer.WILDCARD_TYPE;
+        JavaLanguageLexer.WILDCARD_TYPE;
 
     /**
      * An upper bounds on a wildcard type argument or type parameter.
@@ -4926,7 +4926,7 @@ public final class TokenTypes {
      * @see #WILDCARD_TYPE
      */
     public static final int TYPE_UPPER_BOUNDS =
-        JavaLexer.TYPE_UPPER_BOUNDS;
+        JavaLanguageLexer.TYPE_UPPER_BOUNDS;
 
     /**
      * A lower bounds on a wildcard type argument. This node has one child
@@ -4958,7 +4958,7 @@ public final class TokenTypes {
      * @see #WILDCARD_TYPE
      */
     public static final int TYPE_LOWER_BOUNDS =
-        JavaLexer.TYPE_LOWER_BOUNDS;
+        JavaLanguageLexer.TYPE_LOWER_BOUNDS;
 
     /**
      * An {@code @} symbol - signifying an annotation instance or the prefix
@@ -4968,7 +4968,7 @@ public final class TokenTypes {
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      */
-    public static final int AT = JavaLexer.AT;
+    public static final int AT = JavaLanguageLexer.AT;
 
     /**
      * A triple dot for variable-length parameters. This token only ever occurs
@@ -4977,7 +4977,7 @@ public final class TokenTypes {
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      */
-    public static final int ELLIPSIS = JavaLexer.ELLIPSIS;
+    public static final int ELLIPSIS = JavaLanguageLexer.ELLIPSIS;
 
     /**
      * The {@code &} symbol when used to extend a generic upper or lower bounds constrain
@@ -5025,23 +5025,23 @@ public final class TokenTypes {
      * Java Language Specification, &sect;15.16</a>
      */
     public static final int TYPE_EXTENSION_AND =
-        JavaLexer.TYPE_EXTENSION_AND;
+        JavaLanguageLexer.TYPE_EXTENSION_AND;
 
     /**
      * A {@code <} symbol signifying the start of type arguments or type parameters.
      */
     public static final int GENERIC_START =
-        JavaLexer.GENERIC_START;
+        JavaLanguageLexer.GENERIC_START;
 
     /**
      * A {@code >} symbol signifying the end of type arguments or type parameters.
      */
-    public static final int GENERIC_END = JavaLexer.GENERIC_END;
+    public static final int GENERIC_END = JavaLanguageLexer.GENERIC_END;
 
     /**
      * Special lambda symbol {@code ->}.
      */
-    public static final int LAMBDA = JavaLexer.LAMBDA;
+    public static final int LAMBDA = JavaLanguageLexer.LAMBDA;
 
     /**
      * Beginning of single line comment: '//'.
@@ -5063,7 +5063,7 @@ public final class TokenTypes {
      * </pre>
      */
     public static final int SINGLE_LINE_COMMENT =
-            JavaLexer.SINGLE_LINE_COMMENT;
+            JavaLanguageLexer.SINGLE_LINE_COMMENT;
 
     /**
      * Beginning of block comment: '/*'.
@@ -5080,7 +5080,7 @@ public final class TokenTypes {
      * </pre>
      */
     public static final int BLOCK_COMMENT_BEGIN =
-            JavaLexer.BLOCK_COMMENT_BEGIN;
+            JavaLanguageLexer.BLOCK_COMMENT_BEGIN;
 
     /**
      * End of block comment: '&#42;/'.
@@ -5093,7 +5093,7 @@ public final class TokenTypes {
      * </pre>
      */
     public static final int BLOCK_COMMENT_END =
-            JavaLexer.BLOCK_COMMENT_END;
+            JavaLanguageLexer.BLOCK_COMMENT_END;
 
     /**
      * Text of single-line or block comment.
@@ -5117,7 +5117,7 @@ public final class TokenTypes {
      *
      */
     public static final int COMMENT_CONTENT =
-            JavaLexer.COMMENT_CONTENT;
+            JavaLanguageLexer.COMMENT_CONTENT;
 
     /**
      * A pattern variable definition; when conditionally matched,
@@ -5147,7 +5147,7 @@ public final class TokenTypes {
      * @since 8.35
      */
     public static final int PATTERN_VARIABLE_DEF =
-            JavaLexer.PATTERN_VARIABLE_DEF;
+            JavaLanguageLexer.PATTERN_VARIABLE_DEF;
 
     /**
      * The {@code record} keyword.  This element appears
@@ -5177,7 +5177,7 @@ public final class TokenTypes {
      * @since 8.35
      **/
     public static final int LITERAL_RECORD =
-            JavaLexer.LITERAL_RECORD;
+            JavaLanguageLexer.LITERAL_RECORD;
 
     /**
      * A declaration of a record specifies a name, a header, and a body.
@@ -5208,7 +5208,7 @@ public final class TokenTypes {
      * @since 8.35
      */
     public static final int RECORD_DEF =
-            JavaLexer.RECORD_DEF;
+            JavaLanguageLexer.RECORD_DEF;
 
     /**
      * Record components are a (possibly empty) list containing the components of a record, which
@@ -5247,7 +5247,7 @@ public final class TokenTypes {
      * @since 8.36
      */
     public static final int RECORD_COMPONENTS =
-            JavaLexer.RECORD_COMPONENTS;
+            JavaLanguageLexer.RECORD_COMPONENTS;
 
     /**
      * A record component is a variable that comprises the state of a record.  Record components
@@ -5290,7 +5290,7 @@ public final class TokenTypes {
      * @since 8.36
      */
     public static final int RECORD_COMPONENT_DEF =
-            JavaLexer.RECORD_COMPONENT_DEF;
+            JavaLanguageLexer.RECORD_COMPONENT_DEF;
 
     /**
      * A compact canonical constructor eliminates the list of formal parameters; they are
@@ -5326,7 +5326,7 @@ public final class TokenTypes {
      * @since 8.36
      */
     public static final int COMPACT_CTOR_DEF =
-            JavaLexer.COMPACT_CTOR_DEF;
+            JavaLanguageLexer.COMPACT_CTOR_DEF;
 
     /**
      * Beginning of a Java 14 Text Block literal,
@@ -5356,7 +5356,7 @@ public final class TokenTypes {
      * @since 8.36
      */
     public static final int TEXT_BLOCK_LITERAL_BEGIN =
-            JavaLexer.TEXT_BLOCK_LITERAL_BEGIN;
+            JavaLanguageLexer.TEXT_BLOCK_LITERAL_BEGIN;
 
     /**
      * Content of a Java 14 text block. This is a
@@ -5387,7 +5387,7 @@ public final class TokenTypes {
      * @since 8.36
      */
     public static final int TEXT_BLOCK_CONTENT =
-            JavaLexer.TEXT_BLOCK_CONTENT;
+            JavaLanguageLexer.TEXT_BLOCK_CONTENT;
 
     /**
      * End of a Java 14 text block literal, delimited by three
@@ -5417,7 +5417,7 @@ public final class TokenTypes {
      * @since 8.36
      */
     public static final int TEXT_BLOCK_LITERAL_END =
-            JavaLexer.TEXT_BLOCK_LITERAL_END;
+            JavaLanguageLexer.TEXT_BLOCK_LITERAL_END;
 
     /**
      * The {@code yield} keyword.  This element appears
@@ -5490,7 +5490,7 @@ public final class TokenTypes {
      * @since 8.36
      */
     public static final int LITERAL_YIELD =
-            JavaLexer.LITERAL_YIELD;
+            JavaLanguageLexer.LITERAL_YIELD;
 
     /**
      * Switch Expressions.
@@ -5544,7 +5544,7 @@ public final class TokenTypes {
      * @since 8.36
      */
     public static final int SWITCH_RULE =
-            JavaLexer.SWITCH_RULE;
+            JavaLanguageLexer.SWITCH_RULE;
 
     /**
      * The {@code non-sealed} keyword.  This element appears
@@ -5575,7 +5575,7 @@ public final class TokenTypes {
      * @since 8.42
      */
     public static final int LITERAL_NON_SEALED =
-        JavaLexer.LITERAL_NON_SEALED;
+        JavaLanguageLexer.LITERAL_NON_SEALED;
 
     /**
      * The {@code sealed} restricted identifier.  This element appears
@@ -5611,7 +5611,7 @@ public final class TokenTypes {
      * @since 8.42
      */
     public static final int LITERAL_SEALED =
-        JavaLexer.LITERAL_SEALED;
+        JavaLanguageLexer.LITERAL_SEALED;
 
     /**
      * The {@code permits} restricted identifier.  This element appears
@@ -5647,7 +5647,7 @@ public final class TokenTypes {
      * @since 8.42
      */
     public static final int LITERAL_PERMITS =
-        JavaLexer.LITERAL_PERMITS;
+        JavaLanguageLexer.LITERAL_PERMITS;
 
     /**
      * A permits clause.  A permits clause's children are a comma separated list of one or
@@ -5687,7 +5687,7 @@ public final class TokenTypes {
      * @since 8.42
      */
     public static final int PERMITS_CLAUSE =
-        JavaLexer.PERMITS_CLAUSE;
+        JavaLanguageLexer.PERMITS_CLAUSE;
 
     /** Prevent instantiation. */
     private TokenTypes() {

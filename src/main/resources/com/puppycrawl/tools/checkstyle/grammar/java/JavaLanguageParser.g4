@@ -17,9 +17,9 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-parser grammar CheckstyleJavaParser;
+parser grammar JavaLanguageParser;
 
-options { tokenVocab=JavaLexer; }
+options { tokenVocab=JavaLanguageLexer; }
 
 @parser::members {
     /**
@@ -37,7 +37,7 @@ options { tokenVocab=JavaLexer; }
      * @return true if next statement is a yield statement.
      */
     private boolean isYieldStatement() {
-        return _input.LT(1).getType() == JavaLexer.LITERAL_YIELD && switchBlockDepth > 0;
+        return _input.LT(1).getType() == JavaLanguageLexer.LITERAL_YIELD && switchBlockDepth > 0;
     }
 }
 
