@@ -1607,7 +1607,6 @@
 
                 <exclude>**/MemberNameCheckTest.class</exclude>
 
-                <exclude>**/ModifiedControlVariableCheckTest.class</exclude>
 
                 <exclude>**/FileSetCheckTest.class</exclude>
 
