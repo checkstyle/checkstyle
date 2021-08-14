@@ -140,7 +140,7 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
         if (seenFirstToken) {
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             if (modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
-                    && ast.getParent() == null) {
+                    && ast.getParent().getType() == TokenTypes.COMPILATION_UNIT) {
                 hasPublic = true;
             }
         }

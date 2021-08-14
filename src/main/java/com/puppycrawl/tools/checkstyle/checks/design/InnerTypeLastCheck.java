@@ -141,7 +141,7 @@ public class InnerTypeLastCheck extends AbstractCheck {
     @Override
     public void leaveToken(DetailAST ast) {
         // Is this a root class
-        if (ast.getParent() == null) {
+        if (ast.getParent().getType() == TokenTypes.COMPILATION_UNIT) {
             rootClass = true;
         }
     }

@@ -79,10 +79,12 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
             new File(getPath("InputAstTreeStringPrinterPrintBranch.java")),
             JavaParser.Options.WITH_COMMENTS);
         final String expected = addEndOfLine(
-            "CLASS_DEF -> CLASS_DEF [3:0]",
-            "|--MODIFIERS -> MODIFIERS [3:0]",
-            "|   `--LITERAL_PUBLIC -> public [3:0]");
-        final DetailAST nodeToPrint = ast.getNextSibling().getFirstChild().getFirstChild();
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
+            "`--CLASS_DEF -> CLASS_DEF [3:0]",
+            "    |--MODIFIERS -> MODIFIERS [3:0]",
+            "    |   `--LITERAL_PUBLIC -> public [3:0]");
+        final DetailAST nodeToPrint = ast.getFirstChild().getNextSibling()
+                .getFirstChild().getFirstChild();
         final String result = AstTreeStringPrinter.printBranch(nodeToPrint);
         assertThat("Branches do not match", result, is(expected));
     }
@@ -158,7 +160,8 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
     public void testTextBlocksEscapesAreOneChar() throws Exception {
         final String inputFilename = "InputAstTreeStringPrinterTextBlocksEscapesAreOneChar.java";
         final DetailAST ast = JavaParser.parseFile(
-                new File(getNonCompilablePath(inputFilename)), JavaParser.Options.WITHOUT_COMMENTS);
+                new File(getNonCompilablePath(inputFilename)), JavaParser.Options.WITHOUT_COMMENTS)
+                .getFirstChild();
 
         final DetailAST objectBlockNode = ast.findFirstToken(TokenTypes.OBJBLOCK);
         final DetailAST variableDefNode = objectBlockNode.findFirstToken(TokenTypes.VARIABLE_DEF);
