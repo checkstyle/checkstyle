@@ -1,8 +1,8 @@
 /*
 MultipleStringLiterals
 allowedDuplicates = 3
-ignoreStringsRegexp =
-ignoreOccurrenceContext = (default)ANNOTATION
+ignoreStringsRegexp = (default)^""$
+ignoreOccurrenceContext =
 
 
 */

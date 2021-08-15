@@ -16,7 +16,7 @@ public class InputMultipleStringLiterals2
     String m2 = "DoubleString" + "DoubleString";
     String m3 = "" + "";
     String m4 = "" + "";
-    String debugStr = ", " + ", " + ", ";
+    String debugStr = ", " + ", " + ", "; // violation
 
     void method1() {
         String a1 = "StringContents";
