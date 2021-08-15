@@ -1662,7 +1662,6 @@
                 <exclude>**/UnusedImportsCheckTest.class</exclude>
 
 
-                <exclude>**/NestedForDepthCheckTest.class</exclude>
 
                 <exclude>**/EmptyLineSeparatorCheckTest.class</exclude>
 
