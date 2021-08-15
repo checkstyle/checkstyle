@@ -13,10 +13,10 @@ public class InputMultipleStringLiterals6
 {   /*string literals*/
     String m = "StringContents"; // violation
     String m1 = "SingleString";
-    String m2 = "DoubleString" + "DoubleString";
+    String m2 = "DoubleString" + "DoubleString"; // violation
     String m3 = "" + "";
     String m4 = "" + "";
-    String debugStr = ", " + ", " + ", ";
+    String debugStr = ", " + ", " + ", "; // violation
 
     void method1() {
         String a1 = "StringContents";
