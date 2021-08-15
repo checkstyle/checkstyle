@@ -246,7 +246,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
             "32:39: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputEqualsAvoidNullTextBlocks.java"),
             expected);
     }
