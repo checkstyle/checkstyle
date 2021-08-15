@@ -11,14 +11,14 @@ package com.puppycrawl.tools.checkstyle.checks.coding.equalsavoidnull;
 public class InputEqualsAvoidNullTextBlocks {
     public void equalsAvoid(String myString) {
         if (myString.equals("stuff")) { // violation 'String literal expressions should be on the left side of an equals comparison.'
-        }
+        } // violation below 'String .* left .* of .* equals .*'
         if (myString.equals("""
                 stuff""")) {
         }
     }
 
     public void method(Object object) {
-        if (object instanceof String s) {
+        if (object instanceof String s) { // violation below 'String .* left .* of .* equals .*'
             if (s.equals("""
                     my string""")) {
                 System.out.println(s);
@@ -28,7 +28,7 @@ public class InputEqualsAvoidNullTextBlocks {
 
     record MyRecord(String a, Object obj) {
         public MyRecord {
-            if (obj instanceof String s) { // next line is a violation
+            if (obj instanceof String s) { // violation below 'String .* left .* of .* equalsIgnoreCase .*'
                 if (s.equalsIgnoreCase("""
                         my other string""" + """
                         plus this string""" + """
