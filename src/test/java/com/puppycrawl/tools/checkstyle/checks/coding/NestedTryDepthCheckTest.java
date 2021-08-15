@@ -45,7 +45,8 @@ public class NestedTryDepthCheckTest extends AbstractModuleTestSupport {
             "41:21: " + getCheckMessage(MSG_KEY, 3, 1),
         };
 
-        verify(checkConfig, getPath("InputNestedTryDepth.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNestedTryDepth.java"), expected);
     }
 
     @Test
@@ -58,7 +59,8 @@ public class NestedTryDepthCheckTest extends AbstractModuleTestSupport {
             "41:21: " + getCheckMessage(MSG_KEY, 3, 2),
         };
 
-        verify(checkConfig, getPath("InputNestedTryDepthMax.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNestedTryDepthMax.java"), expected);
     }
 
     @Test
