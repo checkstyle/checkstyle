@@ -38,6 +38,18 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/styleguides/google-java-style-20180523/javaguide.html#s4.8.6.1-block-comment-style">
  * here</a>
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenSet}.
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">
+ * SINGLE_LINE_COMMENT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
+ * BLOCK_COMMENT_BEGIN</a>.
+ * </li>
+ * </ul>
  * <p>
  * Please take a look at the following examples to understand how the check works:
  * </p>
@@ -215,18 +227,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * 13     } catch (Exception e) { ... }
  * 14  }
  * </pre>
- * <ul>
- * <li>
- * Property {@code tokens} - tokens to check
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
- * Default value is:
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">
- * SINGLE_LINE_COMMENT</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
- * BLOCK_COMMENT_BEGIN</a>.
- * </li>
- * </ul>
  * <p>
  * To configure the Check:
  * </p>
