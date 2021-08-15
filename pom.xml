@@ -1682,7 +1682,6 @@
 
                 <exclude>**/EqualsAvoidNullCheckTest.class</exclude>
 
-                <exclude>**/NestedTryDepthCheckTest.class</exclude>
 
                 <exclude>**/UnnecessarySemicolonInTryWithResourcesCheckTest.class</exclude>
 
