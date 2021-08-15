@@ -1882,7 +1882,6 @@
 
                 <exclude>**/Java7DiamondTest.class</exclude>
 
-                <exclude>**/IllegalTokenTextCheckTest.class</exclude>
 
                 <exclude>**/AllBlockCommentsTest.class</exclude>
 
