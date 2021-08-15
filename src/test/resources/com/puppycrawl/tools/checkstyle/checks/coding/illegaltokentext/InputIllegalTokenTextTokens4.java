@@ -2,7 +2,7 @@
 IllegalTokenText
 format = a href
 ignoreCase = (default)false
-message = (default)
+message = (null)
 tokens = STRING_LITERAL
 
 
