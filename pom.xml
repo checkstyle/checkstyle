@@ -1641,7 +1641,6 @@
 
                 <exclude>**/Java7TryWithResourcesTest.class</exclude>
 
-                <exclude>**/NestedIfDepthCheckTest.class</exclude>
 
                 <exclude>**/RightCurlyCheckTest.class</exclude>
 
