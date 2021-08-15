@@ -42,6 +42,14 @@ public final class InlineConfigParser {
     private static final Pattern VIOLATION_PATTERN = Pattern
             .compile(".*//\\s*violation(?:\\W+'(.*)')?$");
 
+    /** A pattern to find the string: "// violation above". */
+    private static final Pattern VIOLATION_ABOVE_PATTERN = Pattern
+            .compile(".*//\\s*violation above(?:\\W+'(.*)')?$");
+
+    /** A pattern to find the string: "// violation below". */
+    private static final Pattern VIOLATION_BELOW_PATTERN = Pattern
+            .compile(".*//\\s*violation below(?:\\W+'(.*)')?$");
+
     /** Stop instances being created. **/
     private InlineConfigParser() {
     }
@@ -121,8 +129,18 @@ public final class InlineConfigParser {
                                       List<String> lines) {
         for (int lineNo = 2; lineNo < lines.size(); lineNo++) {
             final Matcher violationMatcher = VIOLATION_PATTERN.matcher(lines.get(lineNo));
+            final Matcher violationAboveMatcher =
+                    VIOLATION_ABOVE_PATTERN.matcher(lines.get(lineNo));
+            final Matcher violationBelowMatcher =
+                    VIOLATION_BELOW_PATTERN.matcher(lines.get(lineNo));
             if (violationMatcher.matches()) {
                 inputConfigBuilder.addViolation(lineNo + 1, violationMatcher.group(1));
+            }
+            else if (violationAboveMatcher.matches()) {
+                inputConfigBuilder.addViolation(lineNo, violationAboveMatcher.group(1));
+            }
+            else if (violationBelowMatcher.matches()) {
+                inputConfigBuilder.addViolation(lineNo + 2, violationBelowMatcher.group(1));
             }
         }
     }
