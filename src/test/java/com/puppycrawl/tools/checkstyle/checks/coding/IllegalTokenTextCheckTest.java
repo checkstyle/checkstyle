@@ -103,7 +103,7 @@ public class IllegalTokenTextCheckTest
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getPath("InputIllegalTokenTextTokens4.java"), expected);
     }
 
@@ -167,7 +167,7 @@ public class IllegalTokenTextCheckTest
             "1:3: " + getCheckMessage(MSG_KEY, "a href"),
             "45:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getPath("InputIllegalTokenTextTokens5.java"), expected);
     }
 
