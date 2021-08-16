@@ -152,8 +152,9 @@ public final class InlineConfigParser {
             else if (multipleViolationsMatcher.matches()) {
                 Collections
                         .nCopies(Integer.parseInt(multipleViolationsMatcher.group(1)), lineNo + 1)
-                        .forEach(actualLineNumber ->
-                                inputConfigBuilder.addViolation(actualLineNumber, null));
+                        .forEach(actualLineNumber -> {
+                            inputConfigBuilder.addViolation(actualLineNumber, null);
+                        });
             }
         }
     }

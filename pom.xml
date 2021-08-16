@@ -1539,7 +1539,6 @@
 
                 <exclude>**/JavaNCSSCheckTest.class</exclude>
 
-                <exclude>**/ExplicitInitializationCheckTest.class</exclude>
 
                 <exclude>**/NPathComplexityCheckTest.class</exclude>
 
