@@ -205,9 +205,16 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     public void testNoStackOverflowOnDeepStringConcat() throws Exception {
         final File file =
                 new File(getPath("InputJavaParserNoStackOverflowOnDeepStringConcat.java"));
-        assertWithMessage("File parsing should not throw StackOverflowError.")
-                .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
-                .isNotNull();
+        final boolean isExecutableWithLimitedResources =
+                TestUtil.isExecutableWithLimitedResources(() -> {
+                    return JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS);
+                });
+        final String message = "File parsing should not throw StackOverflowError"
+                + " with limited resources.";
+
+        assertWithMessage(message)
+                .that(isExecutableWithLimitedResources)
+                .isTrue();
     }
 
     @Test

@@ -27,6 +27,9 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 import java.util.function.Predicate;
 
 import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
@@ -39,6 +42,21 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 public final class TestUtil {
+
+    /**
+     * The stack size used in {@link TestUtil#isExecutableWithLimitedResources}.
+     * This value should be as small as possible. Some JVM requires this value to be
+     * at least 144k.
+     *
+     * @see <a href="https://www.baeldung.com/jvm-configure-stack-sizes">
+     *      Configuring Stack Sizes in the JVM</a>
+     */
+    private static final int MINIMAL_STACK_SIZE = 147456;
+
+    /**
+     * Timeout for  {@link TestUtil#isExecutableWithLimitedResources} method.
+     */
+    private static final int EXECUTION_TIMEOUT = 10_000;
 
     private TestUtil() {
     }
@@ -237,4 +255,23 @@ public final class TestUtil {
         return result;
     }
 
+    /**
+     * Verifies that a task with an expected result can be executed with
+     * limited stack size and time duration.
+     *
+     * @param <V> return type of task
+     * @param callable the task to execute
+     * @return true if task completes
+     * @throws InterruptedException if thread execution is interrupted
+     * @throws ExecutionException if task fails
+     */
+    public static <V> boolean isExecutableWithLimitedResources(Callable<V> callable)
+            throws InterruptedException, ExecutionException {
+        final FutureTask<V> futureTask = new FutureTask<>(callable);
+        final Thread thread = new Thread(null, futureTask,
+                "LimitedStackSizeThread", MINIMAL_STACK_SIZE);
+        thread.start();
+        thread.join(EXECUTION_TIMEOUT);
+        return futureTask.get() != null;
+    }
 }
