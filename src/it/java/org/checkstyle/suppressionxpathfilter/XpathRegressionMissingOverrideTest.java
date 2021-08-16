@@ -51,11 +51,14 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingOverrideClass']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMissingOverrideClass']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingOverrideClass']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMissingOverrideClass']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingOverrideClass']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMissingOverrideClass']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS/LITERAL_PUBLIC"
 
         );
@@ -79,16 +82,16 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/INTERFACE_DEF[./IDENT"
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionMissingOverrideInterface']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
-                "/INTERFACE_DEF[./IDENT"
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionMissingOverrideInterface']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
-                "/INTERFACE_DEF[./IDENT"
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionMissingOverrideInterface']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE",
-                "/INTERFACE_DEF[./IDENT"
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionMissingOverrideInterface']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/LITERAL_BOOLEAN"
 
@@ -113,16 +116,18 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionMissingOverrideAnonymous']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/EXPR/"
                         + "LITERAL_NEW[./IDENT[@text='Runnable']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='run']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingOverrideAnonymous']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMissingOverrideAnonymous']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/EXPR/"
                         + "LITERAL_NEW[./IDENT[@text='Runnable']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='run']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingOverrideAnonymous']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMissingOverrideAnonymous']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/EXPR/"
                         + "LITERAL_NEW[./IDENT[@text='Runnable']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='run']]/MODIFIERS/LITERAL_PUBLIC"
@@ -148,13 +153,13 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionMissingOverrideInheritDocInvalid1']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
-                "/CLASS_DEF[./IDENT"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionMissingOverrideInheritDocInvalid1']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionMissingOverrideInheritDocInvalid1']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PRIVATE"
 
@@ -179,13 +184,13 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionMissingOverrideInheritDocInvalid2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
-                "/CLASS_DEF[./IDENT"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionMissingOverrideInheritDocInvalid2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionMissingOverrideInheritDocInvalid2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PUBLIC"
 
@@ -211,11 +216,14 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingOverrideClass']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMissingOverrideClass']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingOverrideClass']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMissingOverrideClass']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingOverrideClass']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionMissingOverrideClass']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS/LITERAL_PUBLIC"
 
         );
@@ -240,16 +248,16 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/INTERFACE_DEF[./IDENT"
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionMissingOverrideInterface']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
-                "/INTERFACE_DEF[./IDENT"
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionMissingOverrideInterface']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
-                "/INTERFACE_DEF[./IDENT"
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionMissingOverrideInterface']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE",
-                "/INTERFACE_DEF[./IDENT"
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionMissingOverrideInterface']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/LITERAL_BOOLEAN"
 

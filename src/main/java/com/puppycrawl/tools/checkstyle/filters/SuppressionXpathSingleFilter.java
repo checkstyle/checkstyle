@@ -89,9 +89,9 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  * &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
  *   &lt;property name=&quot;files&quot; value=&quot;File(One|Two)\.java&quot;/&gt;
  *   &lt;property name=&quot;checks&quot; value=&quot;MethodName&quot;/&gt;
- *   &lt;property name=&quot;query&quot; value=&quot;(/CLASS_DEF[@text='FileOne']/OBJBLOCK/
+ *   &lt;property name=&quot;query&quot; value=&quot;(//CLASS_DEF[@text='FileOne']/OBJBLOCK/
  *             METHOD_DEF[@text='MyMethod']/IDENT)|
- *             (/CLASS_DEF[@text='FileTwo']/OBJBLOCK/METHOD_DEF[@text='MyMethod']/IDENT)&quot;/&gt;
+ *             (//CLASS_DEF[@text='FileTwo']/OBJBLOCK/METHOD_DEF[@text='MyMethod']/IDENT)&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
@@ -219,8 +219,8 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  * &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
  *   &lt;property name=&quot;checks&quot; value=&quot;.*&quot;/&gt;
  *   &lt;property name=&quot;query&quot;
- *             value=&quot;(/CLASS_DEF[@text='FileOne'])|
- *             (/CLASS_DEF[@text='FileOne']/OBJBLOCK/METHOD_DEF[@text='MyMethod']/IDENT)&quot;/&gt;
+ *             value=&quot;(//CLASS_DEF[@text='FileOne'])|
+ *             (//CLASS_DEF[@text='FileOne']/OBJBLOCK/METHOD_DEF[@text='MyMethod']/IDENT)&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
@@ -243,7 +243,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  * <pre>
  * &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
  *   &lt;property name=&quot;checks&quot; value=&quot;MethodName&quot;/&gt;
- *   &lt;property name=&quot;query&quot; value=&quot;/CLASS_DEF[@text='FileOne']/OBJBLOCK/
+ *   &lt;property name=&quot;query&quot; value=&quot;//CLASS_DEF[@text='FileOne']/OBJBLOCK/
  *             METHOD_DEF[@text='MyMethod1' or @text='MyMethod2']/IDENT&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
@@ -264,7 +264,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  * <pre>
  * &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
  *   &lt;property name=&quot;checks&quot; value=&quot;LocalFinalVariableName&quot;/&gt;
- *   &lt;property name=&quot;query&quot; value=&quot;/CLASS_DEF[@text='TestClass']/OBJBLOCK
+ *   &lt;property name=&quot;query&quot; value=&quot;//CLASS_DEF[@text='TestClass']/OBJBLOCK
  *         /METHOD_DEF[@text='testMethod']/SLIST
  *         /VARIABLE_DEF[@text='testVariable1']/IDENT&quot;/&gt;
  * &lt;/module&gt;
@@ -288,7 +288,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  * <pre>
  * &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
  *   &lt;property name=&quot;checks&quot; value=&quot;LeftCurly&quot;/&gt;
- *   &lt;property name=&quot;query&quot; value=&quot;/CLASS_DEF[@text='TestClass']/OBJBLOCK
+ *   &lt;property name=&quot;query&quot; value=&quot;//CLASS_DEF[@text='TestClass']/OBJBLOCK
  *         /METHOD_DEF[@text='testMethod1']/SLIST*&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
@@ -313,7 +313,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  * <pre>
  * &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
  *   &lt;property name=&quot;checks&quot; value=&quot;RequireThis&quot;/&gt;
- *   &lt;property name=&quot;query&quot; value=&quot;/CLASS_DEF[@text='InputTest']
+ *   &lt;property name=&quot;query&quot; value=&quot;//CLASS_DEF[@text='InputTest']
  *         //METHOD_DEF[@text='changeAge']//ASSIGN[@text='age']/IDENT&quot;/&gt;
  * &lt;/module&gt;
  * </pre>

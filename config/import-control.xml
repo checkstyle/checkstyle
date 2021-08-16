@@ -171,8 +171,6 @@
   </subpackage>
 
   <subpackage name="gui" strategyOnMismatch="disallowed">
-    <!-- until https://github.com/checkstyle/checkstyle/issues/3095 -->
-    <allow class="com.puppycrawl.tools.checkstyle.DetailAstImpl"/>
     <allow class="com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator" />
 
 

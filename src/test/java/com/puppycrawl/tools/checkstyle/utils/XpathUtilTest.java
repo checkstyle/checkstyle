@@ -99,12 +99,13 @@ public class XpathUtilTest {
         final File file = File.createTempFile("junit", null, tempFolder);
         Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
         final String expected = addEndOfLine(
-            "CLASS_DEF -> CLASS_DEF [1:0]",
-            "`--OBJBLOCK -> OBJBLOCK [1:11]",
-            "    |--METHOD_DEF -> METHOD_DEF [1:13]",
-            "    |   `--SLIST -> { [1:34]",
-            "    |       |--VARIABLE_DEF -> VARIABLE_DEF [1:35]",
-            "    |       |   |--IDENT -> a [1:39]");
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
+            "`--CLASS_DEF -> CLASS_DEF [1:0]",
+            "    `--OBJBLOCK -> OBJBLOCK [1:11]",
+            "        |--METHOD_DEF -> METHOD_DEF [1:13]",
+            "        |   `--SLIST -> { [1:34]",
+            "        |       |--VARIABLE_DEF -> VARIABLE_DEF [1:35]",
+            "        |       |   |--IDENT -> a [1:39]");
         final String result = XpathUtil.printXpathBranch(
             "//CLASS_DEF//METHOD_DEF//VARIABLE_DEF//IDENT", file);
         assertThat("Branch string is different", result, is(expected));
@@ -116,9 +117,10 @@ public class XpathUtilTest {
         final File file = File.createTempFile("junit", null, tempFolder);
         Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
         final String expected = addEndOfLine(
-            "CLASS_DEF -> CLASS_DEF [1:0]",
-            "`--OBJBLOCK -> OBJBLOCK [1:11]",
-            "    |--BLOCK_COMMENT_BEGIN -> /* [1:13]");
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
+            "`--CLASS_DEF -> CLASS_DEF [1:0]",
+            "    `--OBJBLOCK -> OBJBLOCK [1:11]",
+            "        |--BLOCK_COMMENT_BEGIN -> /* [1:13]");
         final String result = XpathUtil.printXpathBranch(
             "//CLASS_DEF//BLOCK_COMMENT_BEGIN", file);
         assertThat("Branch string is different", result, is(expected));
@@ -130,19 +132,21 @@ public class XpathUtilTest {
         final File file = File.createTempFile("junit", null, tempFolder);
         Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
         final String expected = addEndOfLine(
-            "CLASS_DEF -> CLASS_DEF [1:0]",
-            "`--OBJBLOCK -> OBJBLOCK [1:11]",
-            "    |--METHOD_DEF -> METHOD_DEF [1:13]",
-            "    |   `--SLIST -> { [1:34]",
-            "    |       |--VARIABLE_DEF -> VARIABLE_DEF [1:35]",
-            "    |       |   |--IDENT -> a [1:39]",
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
+            "`--CLASS_DEF -> CLASS_DEF [1:0]",
+            "    `--OBJBLOCK -> OBJBLOCK [1:11]",
+            "        |--METHOD_DEF -> METHOD_DEF [1:13]",
+            "        |   `--SLIST -> { [1:34]",
+            "        |       |--VARIABLE_DEF -> VARIABLE_DEF [1:35]",
+            "        |       |   |--IDENT -> a [1:39]",
             "---------",
-            "CLASS_DEF -> CLASS_DEF [1:0]",
-            "`--OBJBLOCK -> OBJBLOCK [1:11]",
-            "    |--METHOD_DEF -> METHOD_DEF [1:13]",
-            "    |   `--SLIST -> { [1:34]",
-            "    |       |--VARIABLE_DEF -> VARIABLE_DEF [1:46]",
-            "    |       |   |--IDENT -> b [1:50]");
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
+            "`--CLASS_DEF -> CLASS_DEF [1:0]",
+            "    `--OBJBLOCK -> OBJBLOCK [1:11]",
+            "        |--METHOD_DEF -> METHOD_DEF [1:13]",
+            "        |   `--SLIST -> { [1:34]",
+            "        |       |--VARIABLE_DEF -> VARIABLE_DEF [1:46]",
+            "        |       |   |--IDENT -> b [1:50]");
         final String result = XpathUtil.printXpathBranch(
             "//CLASS_DEF//METHOD_DEF//VARIABLE_DEF//IDENT", file);
         assertThat("Branch string is different", result, is(expected));
@@ -153,7 +157,8 @@ public class XpathUtilTest {
         final String fileContent = "class Test { public void method() {int a = 5; int b = 5;}}";
         final File file = File.createTempFile("junit", null, tempFolder);
         Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
-        final String invalidXpath = "\\//CLASS_DEF//METHOD_DEF//VARIABLE_DEF//IDENT";
+        final String invalidXpath = "\\//CLASS_DEF"
+                + "//METHOD_DEF//VARIABLE_DEF//IDENT";
         try {
             XpathUtil.printXpathBranch(invalidXpath, file);
             fail("Should end with exception");
