@@ -51,11 +51,11 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='SuppressionXpathRegressionAvoidEscapedUnicodeCharactersDefault']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev2']]"
                 + "/ASSIGN/EXPR[./STRING_LITERAL[@text='\\u03bcs']]",
-            "/CLASS_DEF[./IDENT"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='SuppressionXpathRegressionAvoidEscapedUnicodeCharactersDefault']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev2']]"
                 + "/ASSIGN/EXPR/STRING_LITERAL[@text='\\u03bcs']"
@@ -80,12 +80,12 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[."
+            "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text="
                     + "'SuppressionXpathRegressionAvoidEscapedUnicodeCharactersControlCharacters']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
                 + "/ASSIGN/EXPR[./STRING_LITERAL[@text='\\u03bcs']]",
-            "/CLASS_DEF[."
+            "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text="
                     + "'SuppressionXpathRegressionAvoidEscapedUnicodeCharactersControlCharacters']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
@@ -110,12 +110,12 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[."
+            "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text="
                     + "'SuppressionXpathRegressionAvoidEscapedUnicodeCharactersTailComment']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
                 + "/ASSIGN/EXPR[./STRING_LITERAL[@text='\\u03bcs']]",
-            "/CLASS_DEF[."
+            "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text="
                     + "'SuppressionXpathRegressionAvoidEscapedUnicodeCharactersTailComment']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
@@ -140,12 +140,12 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[."
+                "/COMPILATION_UNIT/CLASS_DEF[."
                     + "/IDENT[@text="
                         + "'SuppressionXpathRegressionAvoidEscapedUnicodeCharactersAllEscaped']]"
                     + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
                     + "/ASSIGN/EXPR[./STRING_LITERAL[@text='\\u03bcs']]",
-                "/CLASS_DEF[."
+                "/COMPILATION_UNIT/CLASS_DEF[."
                     + "/IDENT[@text="
                         + "'SuppressionXpathRegressionAvoidEscapedUnicodeCharactersAllEscaped']]"
                     + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
@@ -170,12 +170,12 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[."
+            "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text="
                     + "'SuppressionXpathRegressionAvoidEscapedUnicodeCharactersNonPrintable']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
                 + "/ASSIGN/EXPR[./STRING_LITERAL[@text='\\u03bcs']]",
-            "/CLASS_DEF[."
+            "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text="
                     + "'SuppressionXpathRegressionAvoidEscapedUnicodeCharactersNonPrintable']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"

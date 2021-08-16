@@ -53,7 +53,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text="
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                     + "'SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonOne']]"
                     + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_CASE/COLON"
         );
@@ -77,7 +77,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text="
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                     + "'SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonTwo']]"
                     + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP"
                     + "/LITERAL_DEFAULT/COLON"
@@ -102,7 +102,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text="
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                     + "'SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonThree']]"
                     + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP"
                     + "/LITERAL_CASE/COLON"
@@ -127,7 +127,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text="
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                     + "'SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonFour']]"
                     + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP"
                     + "/LITERAL_DEFAULT/COLON"

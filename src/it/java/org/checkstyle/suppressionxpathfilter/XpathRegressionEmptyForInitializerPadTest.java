@@ -52,9 +52,11 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyForInitializerPadPreceded']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionEmptyForInitializerPadPreceded']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/FOR_INIT",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyForInitializerPadPreceded']]"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='SuppressionXpathRegressionEmptyForInitializerPadPreceded']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/SEMI[1]"
         );
 
@@ -77,10 +79,10 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT["
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionEmptyForInitializerPadNotPreceded']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/FOR_INIT",
-            "/CLASS_DEF[./IDENT["
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionEmptyForInitializerPadNotPreceded']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_FOR/SEMI[1]"
         );

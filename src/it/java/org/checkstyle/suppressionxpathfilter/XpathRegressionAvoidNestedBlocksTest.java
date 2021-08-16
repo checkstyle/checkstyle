@@ -50,7 +50,8 @@ public class XpathRegressionAvoidNestedBlocksTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAvoidNestedBlocksEmpty']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAvoidNestedBlocksEmpty']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='empty']]/SLIST/SLIST"
         );
 
@@ -72,7 +73,8 @@ public class XpathRegressionAvoidNestedBlocksTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAvoidNestedBlocksVariable']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAvoidNestedBlocksVariable']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='varAssign']]/SLIST/SLIST"
         );
 
@@ -98,10 +100,12 @@ public class XpathRegressionAvoidNestedBlocksTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAvoidNestedBlocksSwitch1']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAvoidNestedBlocksSwitch1']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='s']]/SLIST/LITERAL_SWITCH"
                         + "/CASE_GROUP/SLIST",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAvoidNestedBlocksSwitch1']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAvoidNestedBlocksSwitch1']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='s']]/SLIST/LITERAL_SWITCH"
                         + "/CASE_GROUP/SLIST/SLIST"
         );
@@ -127,10 +131,12 @@ public class XpathRegressionAvoidNestedBlocksTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAvoidNestedBlocksSwitch2']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAvoidNestedBlocksSwitch2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='s']]/SLIST/LITERAL_SWITCH"
                         + "/CASE_GROUP/SLIST",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAvoidNestedBlocksSwitch2']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAvoidNestedBlocksSwitch2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='s']]/SLIST/LITERAL_SWITCH"
                         + "/CASE_GROUP/SLIST/SLIST"
         );

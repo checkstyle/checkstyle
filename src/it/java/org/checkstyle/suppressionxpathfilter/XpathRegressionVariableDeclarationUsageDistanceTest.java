@@ -54,19 +54,19 @@ public class XpathRegressionVariableDeclarationUsageDistanceTest extends Abstrac
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text="
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                         + "'SuppressionXpathRegressionVariableDeclarationUsageDistance1']]/"
                         + "OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='temp']]",
-                "/CLASS_DEF[./IDENT[@text="
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                         + "'SuppressionXpathRegressionVariableDeclarationUsageDistance1']]/"
                         + "OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='temp']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text="
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                         + "'SuppressionXpathRegressionVariableDeclarationUsageDistance1']]/"
                         + "OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='temp']]/TYPE",
-                "/CLASS_DEF[./IDENT[@text="
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                         + "'SuppressionXpathRegressionVariableDeclarationUsageDistance1']]/"
                         + "OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='temp']]/TYPE/LITERAL_INT"
@@ -95,19 +95,19 @@ public class XpathRegressionVariableDeclarationUsageDistanceTest extends Abstrac
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text="
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                         + "'SuppressionXpathRegressionVariableDeclarationUsageDistance2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod2']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='count']]",
-                "/CLASS_DEF[./IDENT[@text="
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                         + "'SuppressionXpathRegressionVariableDeclarationUsageDistance2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod2']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='count']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text="
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                         + "'SuppressionXpathRegressionVariableDeclarationUsageDistance2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod2']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='count']]/TYPE",
-                "/CLASS_DEF[./IDENT[@text="
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                         + "'SuppressionXpathRegressionVariableDeclarationUsageDistance2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod2']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='count']]/TYPE/LITERAL_INT"

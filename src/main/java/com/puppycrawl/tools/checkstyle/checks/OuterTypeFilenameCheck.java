@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -140,7 +141,7 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
         if (seenFirstToken) {
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             if (modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
-                    && ast.getParent() == null) {
+                    && TokenUtil.isRootNode(ast.getParent())) {
                 hasPublic = true;
             }
         }

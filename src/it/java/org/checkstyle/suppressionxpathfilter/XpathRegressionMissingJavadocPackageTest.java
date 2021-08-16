@@ -20,7 +20,7 @@
 package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -49,8 +49,8 @@ public class XpathRegressionMissingJavadocPackageTest extends AbstractXpathTestS
             "4:1: " + getCheckMessage(MissingJavadocPackageCheck.class,
                 MissingJavadocPackageCheck.MSG_PKG_JAVADOC_MISSING),
         };
-        final List<String> expectedXpathQueries = Collections.singletonList(
-            "/PACKAGE_DEF"
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -70,8 +70,8 @@ public class XpathRegressionMissingJavadocPackageTest extends AbstractXpathTestS
                 MissingJavadocPackageCheck.MSG_PKG_JAVADOC_MISSING),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
-            "/PACKAGE_DEF"
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT", "/COMPILATION_UNIT/PACKAGE_DEF"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
