@@ -18,7 +18,7 @@ public class InputExplicitInitializationOnlyObjectReference {
     private boolean b2 = true;
     private boolean b3;
     private String str = "";
-    java.lang.String str1 = null, str3 = null; // violation
+    java.lang.String str1 = null, str3 = null; // 2 violations
     int ar1[] = null; // violation
     int ar2[] = new int[1];
     int ar3[];
