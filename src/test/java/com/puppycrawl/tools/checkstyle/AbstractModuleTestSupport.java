@@ -47,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
 public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport {
@@ -345,6 +346,28 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         });
 
         checker.destroy();
+    }
+
+    /**
+     * Runs 'verify' with limited stack size and time duration.
+     *
+     * @param aConfig configuration.
+     * @param fileName file name to verify.
+     * @param expected an array of expected messages.
+     * @throws Exception if exception occurs during verification process.
+     */
+    protected final void verifyWithLimitedResources(Configuration aConfig,
+                                                    String fileName, String... expected)
+            throws Exception {
+        // We return null here, which gives us a result to make an assertion about
+        // 'futureTask.get()'.
+        final Void result = TestUtil.getResultwithLimitedResources(() -> {
+            verify(aConfig, fileName, expected);
+            return null;
+        });
+        assertWithMessage("Verify should complete successfully.")
+                .that(result)
+                .isNull();
     }
 
     /**

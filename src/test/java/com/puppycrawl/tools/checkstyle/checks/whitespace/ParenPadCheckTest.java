@@ -471,7 +471,8 @@ public class ParenPadCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ParenPadCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputParenPadNoStackoverflowError.java"), expected);
+        verifyWithLimitedResources(checkConfig, getPath("InputParenPadNoStackoverflowError.java"),
+                expected);
     }
 
     @Test
