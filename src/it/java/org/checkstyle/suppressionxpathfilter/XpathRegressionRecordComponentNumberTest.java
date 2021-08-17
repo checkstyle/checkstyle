@@ -52,10 +52,10 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/RECORD_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber1']]",
-            "/RECORD_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber1']]"
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber1']]",
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber1']]"
                     + "/MODIFIERS",
-            "/RECORD_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber1']]"
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber1']]"
                     + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -79,11 +79,11 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber2']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber2']]"
                     + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber2']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber2']]"
                     + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]/MODIFIERS",
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber2']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber2']]"
                     + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]/MODIFIERS"
                     + "/LITERAL_PUBLIC"
         );

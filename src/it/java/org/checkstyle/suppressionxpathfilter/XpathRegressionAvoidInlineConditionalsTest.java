@@ -50,11 +50,11 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
                         + "SuppressionXpathRegressionAvoidInlineConditionalsVariableDef']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='substring']]/SLIST"
                         + "/VARIABLE_DEF[./IDENT[@text='b']]/ASSIGN/EXPR",
-                "/CLASS_DEF[./IDENT[@text='"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
                         + "SuppressionXpathRegressionAvoidInlineConditionalsVariableDef']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='substring']]/SLIST"
                         + "/VARIABLE_DEF[./IDENT[@text='b']]/ASSIGN/EXPR/QUESTION"
@@ -78,7 +78,7 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text='"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
                         + "SuppressionXpathRegressionAvoidInlineConditionalsAssign']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='setB']]/SLIST"
                         + "/EXPR/ASSIGN[./IDENT[@text='b']]/QUESTION"
@@ -102,11 +102,11 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
                         + "SuppressionXpathRegressionAvoidInlineConditionalsAssert']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='assertA']]/SLIST"
                         + "/LITERAL_ASSERT/EXPR[./QUESTION/METHOD_CALL/DOT/IDENT[@text='a']]",
-                "/CLASS_DEF[./IDENT[@text='"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
                         + "SuppressionXpathRegressionAvoidInlineConditionalsAssert']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='assertA']]/SLIST"
                         + "/LITERAL_ASSERT/EXPR/QUESTION"

@@ -50,9 +50,11 @@ public class XpathRegressionCovariantEqualsTest extends AbstractXpathTestSupport
                         CovariantEqualsCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList("/CLASS_DEF"
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='SuppressionXpathRegressionCovariantEqualsInClass']]"
-                        + "/OBJBLOCK/METHOD_DEF/IDENT[@text='equals']");
+                + "/OBJBLOCK/METHOD_DEF/IDENT[@text='equals']"
+        );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
@@ -71,7 +73,8 @@ public class XpathRegressionCovariantEqualsTest extends AbstractXpathTestSupport
                         CovariantEqualsCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList("/ENUM_DEF"
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/COMPILATION_UNIT/ENUM_DEF"
                 + "[./IDENT[@text='SuppressionXpathRegressionCovariantEqualsInEnum']]"
                         + "/OBJBLOCK/METHOD_DEF/IDENT[@text='equals']");
 
@@ -93,7 +96,8 @@ public class XpathRegressionCovariantEqualsTest extends AbstractXpathTestSupport
                         CovariantEqualsCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList("/RECORD_DEF"
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/COMPILATION_UNIT/RECORD_DEF"
                 + "[./IDENT[@text='SuppressionXpathRegressionCovariantEqualsInRecord']]"
                         + "/OBJBLOCK/METHOD_DEF/IDENT[@text='equals']");
 

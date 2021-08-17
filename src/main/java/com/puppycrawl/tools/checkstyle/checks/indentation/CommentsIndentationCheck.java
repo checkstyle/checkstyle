@@ -1062,8 +1062,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     private static DetailAST getPrevCaseToken(DetailAST parentStatement) {
         final DetailAST prevCaseToken;
         final DetailAST parentBlock = parentStatement.getParent();
-        if (parentBlock.getParent() != null
-                && parentBlock.getParent().getPreviousSibling() != null
+        if (parentBlock.getParent().getPreviousSibling() != null
                 && parentBlock.getParent().getPreviousSibling().getType()
                     == TokenTypes.LITERAL_CASE) {
             prevCaseToken = parentBlock.getParent().getPreviousSibling();
@@ -1192,8 +1191,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @return true, if comment is inside inside a method call with same indentation.
      */
     private static boolean areInSameMethodCallWithSameIndent(DetailAST comment) {
-        return comment.getParent() != null
-                && comment.getParent().getType() == TokenTypes.METHOD_CALL
+        return comment.getParent().getType() == TokenTypes.METHOD_CALL
                 && comment.getColumnNo()
                      == getFirstExpressionNodeFromMethodCall(comment.getParent()).getColumnNo();
     }
