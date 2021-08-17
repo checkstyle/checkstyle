@@ -19,7 +19,7 @@ public class InputInnerAssignment
         int b;
         int c;
 
-        a = b = c = 1; // violation
+        a = b = c = 1; // 2 violations
 
         String s = Integer.toString(b = 2); // violation
 
@@ -47,8 +47,8 @@ public class InputInnerAssignment
         if ((bb = false)) {} // violation
         for (int j = 0; (bb = false); j += 1) {} // violation
         while ((bb = false)) {} // violation
-        i = (bb = false) ? (b = 2) : (b += 1); // violation
-        i = (b += 1) + (b -= 1); // violation
+        i = (bb = false) ? (b = 2) : (b += 1); // 3 violations
+        i = (b += 1) + (b -= 1); // 2 violations
         do {i += 1;} while (bb = false); // violation
     }
 
