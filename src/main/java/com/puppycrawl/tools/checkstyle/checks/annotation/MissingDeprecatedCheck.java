@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -255,7 +256,7 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
     private static DetailAST getParent(DetailAST commentBlock) {
         DetailAST result = commentBlock.getParent();
 
-        if (result == null) {
+        if (TokenUtil.isRootNode(result)) {
             result = commentBlock.getNextSibling();
         }
 

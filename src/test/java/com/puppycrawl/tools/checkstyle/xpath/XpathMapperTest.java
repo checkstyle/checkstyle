@@ -68,11 +68,13 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFullPath() throws Exception {
-        final String xpath = "/CLASS_DEF/OBJBLOCK/METHOD_DEF[1]/SLIST/VARIABLE_DEF[2]";
+        final String xpath = "/COMPILATION_UNIT/CLASS_DEF/OBJBLOCK"
+                + "/METHOD_DEF[1]/SLIST/VARIABLE_DEF[2]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
@@ -89,7 +91,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST);
@@ -103,7 +106,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedCurlyNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                        TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
@@ -118,7 +122,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedClassDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF);
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF);
         final DetailAST expectedMethodDefNode1 = expectedClassDefNode
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF);
@@ -130,11 +135,12 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testComplexQueryOne() throws Exception {
-        final String xpath = "/CLASS_DEF | /CLASS_DEF/OBJBLOCK";
+        final String xpath = "//CLASS_DEF | //CLASS_DEF/OBJBLOCK";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedClassDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF);
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF);
         final DetailAST expectedObjblockNode = expectedClassDefNode
                 .findFirstToken(TokenTypes.OBJBLOCK);
         final DetailAST[] expected = {expectedClassDefNode, expectedObjblockNode};
@@ -143,11 +149,12 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testComplexQueryTwo() throws Exception {
-        final String xpath = "/PACKAGE_DEF | /PACKAGE_DEF/ANNOTATIONS";
+        final String xpath = "//PACKAGE_DEF | //PACKAGE_DEF/ANNOTATIONS";
         final RootNode rootNode = getRootNode("InputXpathMapperAnnotation.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedPackageDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.PACKAGE_DEF);
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.PACKAGE_DEF);
         final DetailAST expectedAnnotationsNode = expectedPackageDefNode
                 .findFirstToken(TokenTypes.ANNOTATIONS);
         final DetailAST[] expected = {expectedPackageDefNode, expectedAnnotationsNode};
@@ -156,11 +163,13 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testComplexQueryThree() throws Exception {
-        final String xpath = "//CLASS_DEF | //CLASS_DEF//METHOD_DEF | /CLASS_DEF/OBJBLOCK";
+        final String xpath = "//CLASS_DEF | //CLASS_DEF//METHOD_DEF |"
+                + " /COMPILATION_UNIT/CLASS_DEF/OBJBLOCK";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedClassDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF);
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF);
         final DetailAST expectedObjblockNode = expectedClassDefNode
                 .findFirstToken(TokenTypes.OBJBLOCK);
         final DetailAST expectedMethodDefNode = expectedObjblockNode
@@ -180,7 +189,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedClassDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF);
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF);
         final DetailAST expectedMethodDefNode = expectedClassDefNode
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
@@ -196,7 +206,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedClassDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF);
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF);
         final DetailAST expectedMethodDefNode = expectedClassDefNode
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF);
@@ -219,7 +230,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         assertThat("Invalid number of nodes", actual.length, equalTo(1));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
@@ -246,7 +258,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testQueryAllMethodDefinitionsInContext() throws Exception {
-        final String objectXpath = "/CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]//OBJBLOCK";
+        final String objectXpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]//OBJBLOCK";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> objectNodes = getXpathItems(objectXpath, rootNode);
         assertThat("Invalid number of nodes", objectNodes.size(), equalTo(1));
@@ -256,7 +268,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         assertThat("Invalid number of nodes", methodsNodes.size(), equalTo(2));
         final DetailAST[] actual = convertToArray(methodsNodes);
         final DetailAST expectedMethodDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST[] expected = {expectedMethodDefNode,
@@ -268,7 +281,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testQueryAllClassDefinitions() throws Exception {
-        final String xpath = "CLASS_DEF";
+        final String xpath = "/COMPILATION_UNIT/CLASS_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertThat("Invalid number of nodes", nodes.size(), equalTo(1));
@@ -277,7 +290,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         assertThat("Invalid column number", classDefNode.getColumnNumber(), equalTo(0));
         final DetailAST[] actual = convertToArray(nodes);
         final DetailAST expectedClassDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF);
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF);
         final DetailAST[] expected = {expectedClassDefNode};
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
@@ -288,7 +302,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedMethodDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
@@ -298,12 +313,13 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testQueryMethodDefinitionsByClassName() throws Exception {
-        final String xpath = "/CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]"
+        final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]"
                 + "//OBJBLOCK//METHOD_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedMethodDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST[] expected = {expectedMethodDefNode,
@@ -315,12 +331,13 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testQueryByClassNameAndMethodName() throws Exception {
-        final String xpath = "/CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]//OBJBLOCK"
+        final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]//OBJBLOCK"
                 + "//METHOD_DEF[./IDENT[@text='getSomeMethod']]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedMethodDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
@@ -330,12 +347,13 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testQueryClassDefinitionByClassName() throws Exception {
-        final String xpath = "/CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]";
+        final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         final DetailAST[] actual = convertToArray(nodes);
         final DetailAST expectedClassDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF);
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF);
         final DetailAST[] expected = {expectedClassDefNode};
         final ElementNode classDefNode = (ElementNode) nodes.get(0);
         assertThat("Invalid node name", classDefNode.getLocalPart(), equalTo("CLASS_DEF"));
@@ -366,7 +384,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedMethodDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST[] expected = {expectedMethodDefNode};
@@ -380,7 +399,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
@@ -405,7 +425,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedMethodDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST[] expected = {expectedMethodDefNode,
@@ -448,7 +469,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testQueryElementNotImplementedAxis() throws Exception {
-        final String xpath = "/CLASS_DEF//namespace::*";
+        final String xpath = "/COMPILATION_UNIT/CLASS_DEF//namespace::*";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         try {
             getXpathItems(xpath, rootNode);
@@ -461,7 +482,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testQuerySelf() throws Exception {
-        final String objectXpath = "/CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]//OBJBLOCK";
+        final String objectXpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]//OBJBLOCK";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> objectNodes = getXpathItems(objectXpath, rootNode);
         assertThat("Invalid number of nodes", objectNodes.size(), equalTo(1));
@@ -469,7 +490,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String methodsXpath = "self::OBJBLOCK";
         final DetailAST[] actual = convertToArray(getXpathItems(methodsXpath, objNode));
         final DetailAST expectedObjBlockNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK);
         final DetailAST[] expected = {expectedObjBlockNode};
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
@@ -477,7 +499,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testQueryNonExistentAttribute() throws Exception {
-        final String xpath = "/CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]";
+        final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         final ElementNode classDefNode = (ElementNode) nodes.get(0);
@@ -499,7 +521,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAnnotation.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedAnnotationNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.MODIFIERS)
                 .findFirstToken(TokenTypes.ANNOTATION);
         final DetailAST[] expected = {expectedAnnotationNode};
@@ -516,18 +539,19 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testQueryEnumDef() throws Exception {
-        final String xpath = "/ENUM_DEF";
+        final String xpath = "/COMPILATION_UNIT/ENUM_DEF";
         final RootNode enumRootNode = getRootNode("InputXpathMapperEnum.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, enumRootNode));
         final DetailAST expectedEnumDefNode = getSiblingByType(enumRootNode.getUnderlyingNode(),
-                TokenTypes.ENUM_DEF);
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.ENUM_DEF);
         final DetailAST[] expected = {expectedEnumDefNode};
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
     @Test
     public void testQueryEnumElementsNumber() throws Exception {
-        final String xpath = "/ENUM_DEF/OBJBLOCK/ENUM_CONSTANT_DEF";
+        final String xpath = "/COMPILATION_UNIT/ENUM_DEF/OBJBLOCK/ENUM_CONSTANT_DEF";
         final RootNode enumRootNode = getRootNode("InputXpathMapperEnum.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, enumRootNode);
         assertThat("Invalid number of nodes", nodes.size(), equalTo(3));
@@ -540,7 +564,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, enumRootNode));
         final DetailAST expectedEnumConstantDefNode = getSiblingByType(
                 enumRootNode.getUnderlyingNode(),
-                TokenTypes.ENUM_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.ENUM_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.ENUM_CONSTANT_DEF)
                 .getNextSibling()
@@ -551,19 +576,20 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testQueryInterfaceDef() throws Exception {
-        final String xpath = "/INTERFACE_DEF";
+        final String xpath = "//INTERFACE_DEF";
         final RootNode interfaceRootNode = getRootNode("InputXpathMapperInterface.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, interfaceRootNode));
         final DetailAST expectedInterfaceDefNode = getSiblingByType(
                 interfaceRootNode.getUnderlyingNode(),
-                TokenTypes.INTERFACE_DEF);
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.INTERFACE_DEF);
         final DetailAST[] expected = {expectedInterfaceDefNode};
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
     @Test
     public void testQueryInterfaceMethodDefNumber() throws Exception {
-        final String xpath = "/INTERFACE_DEF/OBJBLOCK/METHOD_DEF";
+        final String xpath = "//INTERFACE_DEF/OBJBLOCK/METHOD_DEF";
         final RootNode interfaceRootNode = getRootNode("InputXpathMapperInterface.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, interfaceRootNode);
         assertThat("Invalid number of nodes", nodes.size(), equalTo(4));
@@ -576,7 +602,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, interfaceRootNode));
         final DetailAST expectedMethodDefNode = getSiblingByType(
                 interfaceRootNode.getUnderlyingNode(),
-                TokenTypes.INTERFACE_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.INTERFACE_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
@@ -586,12 +613,13 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIdent() throws Exception {
-        final String xpath = "/CLASS_DEF/IDENT[@text='InputXpathMapperAst']";
+        final String xpath = "//CLASS_DEF/IDENT[@text='InputXpathMapperAst']";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         final DetailAST[] actual = convertToArray(nodes);
         final DetailAST expectedIdentNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.IDENT);
 
         final DetailAST[] expected = {expectedIdentNode};
@@ -604,7 +632,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedMethodDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.PACKAGE_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.PACKAGE_DEF)
                 .findFirstToken(TokenTypes.DOT)
                 .findFirstToken(TokenTypes.DOT)
                 .findFirstToken(TokenTypes.DOT)
@@ -622,7 +651,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
@@ -638,7 +668,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
@@ -666,7 +697,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAnnotation.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedAnnotationNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
@@ -676,44 +708,51 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFirstImport() throws Exception {
-        final String xpath = "/IMPORT[1]";
+        final String xpath = "/COMPILATION_UNIT/IMPORT[1]";
         final RootNode rootNode = getRootNode("InputXpathMapperPositions.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.IMPORT);
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.IMPORT);
         final DetailAST[] expected = {expectedVariableDefNode};
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
     @Test
     public void testSecondImport() throws Exception {
-        final String xpath = "/IMPORT[2]";
+        final String xpath = "/COMPILATION_UNIT/IMPORT[2]";
         final RootNode rootNode = getRootNode("InputXpathMapperPositions.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.IMPORT).getNextSibling();
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.IMPORT)
+                .getNextSibling();
         final DetailAST[] expected = {expectedVariableDefNode};
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
     @Test
     public void testThirdImport() throws Exception {
-        final String xpath = "/IMPORT[3]";
+        final String xpath = "/COMPILATION_UNIT/IMPORT[3]";
         final RootNode rootNode = getRootNode("InputXpathMapperPositions.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.IMPORT).getNextSibling().getNextSibling();
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.IMPORT)
+                .getNextSibling()
+                .getNextSibling();
         final DetailAST[] expected = {expectedVariableDefNode};
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
     @Test
     public void testLastImport() throws Exception {
-        final String xpath = "/IMPORT[9]";
+        final String xpath = "/COMPILATION_UNIT/IMPORT[9]";
         final RootNode rootNode = getRootNode("InputXpathMapperPositions.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.IMPORT)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.IMPORT)
                 .getNextSibling()
                 .getNextSibling()
                 .getNextSibling()
@@ -728,13 +767,14 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFirstCaseGroup() throws Exception {
-        final String xpath = "/CLASS_DEF[./IDENT[@text='InputXpathMapperPositions']]"
+        final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperPositions']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='switchMethod']]"
                 + "/SLIST/LITERAL_SWITCH/CASE_GROUP[1]";
         final RootNode rootNode = getRootNode("InputXpathMapperPositions.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
@@ -746,13 +786,14 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSecondCaseGroup() throws Exception {
-        final String xpath = "/CLASS_DEF[./IDENT[@text='InputXpathMapperPositions']]"
+        final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperPositions']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='switchMethod']]"
                 + "/SLIST/LITERAL_SWITCH/CASE_GROUP[2]";
         final RootNode rootNode = getRootNode("InputXpathMapperPositions.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
@@ -765,13 +806,14 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testThirdCaseGroup() throws Exception {
-        final String xpath = "/CLASS_DEF[./IDENT[@text='InputXpathMapperPositions']]"
+        final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperPositions']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='switchMethod']]"
                 + "/SLIST/LITERAL_SWITCH/CASE_GROUP[3]";
         final RootNode rootNode = getRootNode("InputXpathMapperPositions.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
@@ -785,13 +827,14 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFourthCaseGroup() throws Exception {
-        final String xpath = "/CLASS_DEF[./IDENT[@text='InputXpathMapperPositions']]"
+        final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperPositions']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='switchMethod']]"
                 + "/SLIST/LITERAL_SWITCH/CASE_GROUP[4]";
         final RootNode rootNode = getRootNode("InputXpathMapperPositions.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
@@ -810,7 +853,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedMethodDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
@@ -835,7 +879,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedRightCurlyNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling().getNextSibling();
@@ -849,7 +894,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedAssignNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
@@ -870,7 +916,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedMethodDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST[] expected = {expectedMethodDefNode,
@@ -894,7 +941,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode1 = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
@@ -914,7 +962,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode1 = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
@@ -931,7 +980,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
@@ -944,19 +994,25 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     public void testQueryElementPrecedingOne() throws Exception {
         final String xpath = "//LITERAL_CLASS/preceding::*";
         final RootNode rootNode = getRootNode("InputXpathMapperSingleTopClass.java");
-        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
-        assertThat("Invalid number of nodes", actual.length, equalTo(17));
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath,
+                rootNode.createChildren().get(0)));
+        assertThat("Invalid number of nodes", actual.length, equalTo(18));
     }
 
     @Test
     public void testQueryElementPrecedingTwo() throws Exception {
-        final String xpath = "/PACKAGE_DEF/DOT/preceding::*";
+        final String xpath = "//PACKAGE_DEF/DOT/preceding::*";
         final RootNode rootNode = getRootNode("InputXpathMapperSingleTopClass.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedPackageDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.PACKAGE_DEF);
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.PACKAGE_DEF);
         final DetailAST expectedAnnotationsNode = expectedPackageDefNode.getFirstChild();
-        final DetailAST[] expected = {expectedPackageDefNode, expectedAnnotationsNode};
+        final DetailAST[] expected = {
+            rootNode.getUnderlyingNode(),
+            expectedPackageDefNode,
+            expectedAnnotationsNode,
+        };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -966,7 +1022,10 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperSingleTopClass.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedLiteralPublicNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF).getFirstChild().getFirstChild();
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
+                .getFirstChild()
+                .getFirstChild();
         final DetailAST[] expected = {expectedLiteralPublicNode};
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
@@ -978,7 +1037,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNodeForNonCompilable("InputXpathMapperTextBlock.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.VARIABLE_DEF)
                 .findFirstToken(TokenTypes.ASSIGN)
@@ -994,7 +1054,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNodeWithComments("InputXpathMapperSingleLineComment.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
+                TokenTypes.COMPILATION_UNIT)
+                .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.SINGLE_LINE_COMMENT);
         final DetailAST[] expected = {expectedVariableDefNode};

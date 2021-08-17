@@ -441,12 +441,11 @@ public class RedundantModifierCheck
      */
     private static boolean isClassPublic(DetailAST ast) {
         boolean isAccessibleFromPublic = false;
-        final boolean isMostOuterScope = ast.getParent() == null;
         final DetailAST modifiersAst = ast.findFirstToken(TokenTypes.MODIFIERS);
         final boolean hasPublicModifier =
                 modifiersAst.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null;
 
-        if (isMostOuterScope) {
+        if (TokenUtil.isRootNode(ast.getParent())) {
             isAccessibleFromPublic = hasPublicModifier;
         }
         else {
@@ -479,10 +478,7 @@ public class RedundantModifierCheck
      */
     private static boolean isInterfaceOrAnnotationMember(DetailAST ast) {
         DetailAST parentTypeDef = ast.getParent();
-
-        if (parentTypeDef != null) {
-            parentTypeDef = parentTypeDef.getParent();
-        }
+        parentTypeDef = parentTypeDef.getParent();
         return parentTypeDef != null
                 && (parentTypeDef.getType() == TokenTypes.INTERFACE_DEF
                     || parentTypeDef.getType() == TokenTypes.ANNOTATION_DEF);

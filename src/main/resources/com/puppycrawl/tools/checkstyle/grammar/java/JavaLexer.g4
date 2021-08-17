@@ -22,8 +22,11 @@ lexer grammar JavaLexer;
 channels { COMMENTS }
 //Please add new tokens only in the end of list! Otherwise you break compatibility!
 tokens {
-    // These are for compatability, antlr4 doesn't count the EOF token
-    EOF_PLACEHOLDER, PLACEHOLDER1, NULL_TREE_LOOKAHEAD,
+    // Root of Checkstyle AST
+    COMPILATION_UNIT,
+
+    // Maintain compatibility in token numbering
+    PLACEHOLDER1, NULL_TREE_LOOKAHEAD,
 
     // Pre-1.4 tokens
     BLOCK, MODIFIERS, OBJBLOCK, SLIST, CTOR_DEF, METHOD_DEF, VARIABLE_DEF,

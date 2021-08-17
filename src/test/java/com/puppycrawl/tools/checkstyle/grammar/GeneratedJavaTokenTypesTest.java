@@ -25,7 +25,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 
-import org.antlr.v4.runtime.Recognizer;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLexer;
@@ -64,7 +63,7 @@ public class GeneratedJavaTokenTypesTest {
                 + "See Issue: https://github.com/checkstyle/checkstyle/issues/505";
 
         // Read JavaDoc before changing
-        assertEquals(-1, Recognizer.EOF, message);
+        assertEquals(1, JavaLexer.COMPILATION_UNIT, message);
         assertEquals(3, JavaLexer.NULL_TREE_LOOKAHEAD, message);
         assertEquals(4, JavaLexer.BLOCK, message);
         assertEquals(5, JavaLexer.MODIFIERS, message);
