@@ -205,4 +205,12 @@
                      //MethodDeclaration[@Name='testClose']"/>
     </properties>
   </rule>
+  <rule ref="category/java/multithreading.xml/DoNotUseThreads">
+    <properties>
+      <!-- We use thread to limit the stack size for a test method. -->
+      <property name="violationSuppressXPath"
+               value="//ClassOrInterfaceDeclaration[@SimpleName='TestUtil']
+                        //MethodDeclaration[@Name='getResultWithLimitedResources']"/>
+    </properties>
+  </rule>
 </ruleset>
