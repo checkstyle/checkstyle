@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
 /**
  * Two import statements on the same line are illegal.
  */
-import java.io.EOFException; import java.io.BufferedReader;
+import java.io.EOFException; import java.io.BufferedReader; // violation
 
 /**
  * This Class contains no logic, but serves as test-input for the unit tests for the
@@ -117,7 +117,7 @@ public class InputOneStatementPerLineSingleLine {
    */
   public void doIllegal2() {
     one = 1
-    ; two = 2;
+    ; two = 2; // violation
   }
 
   /**
@@ -143,7 +143,7 @@ public class InputOneStatementPerLineSingleLine {
   /**
    * Two declaration statements on the same line are illegal.
    */
-  int a; int b;
+  int a; int b; // violation
 
   /**
    * Two declaration statements which are not on the same line
@@ -155,7 +155,7 @@ public class InputOneStatementPerLineSingleLine {
   /**
    * Two assignment (declaration) statements on the same line are illegal.
    */
-  int e = 1; int f = 2;
+  int e = 1; int f = 2; // violation
 
   /**
    * Two assignment (declaration) statements on the different lines
@@ -175,10 +175,10 @@ public class InputOneStatementPerLineSingleLine {
     int var2 = 2;
 
     //Two increment statements on the same line are illegal.
-    var1++; var2++;
+    var1++; var2++; // violation
 
     //Two object creation statements on the same line are illegal.
-    Object obj1 = new Object(); Object obj2 = new Object();
+    Object obj1 = new Object(); Object obj2 = new Object(); // violation
   }
 
   /**

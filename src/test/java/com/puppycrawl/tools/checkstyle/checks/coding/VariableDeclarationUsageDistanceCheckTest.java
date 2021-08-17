@@ -83,7 +83,8 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "1036:9: " + getCheckMessage(MSG_KEY, "c", 3, 1),
             "1066:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
         };
-        verify(checkConfig, getPath("InputVariableDeclarationUsageDistanceGeneral.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputVariableDeclarationUsageDistanceGeneral.java"), expected);
     }
 
     @Test
@@ -105,7 +106,8 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "979:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
             "1066:9: " + getCheckMessage(MSG_KEY, "a", 4, 3),
         };
-        verify(checkConfig, getPath("InputVariableDeclarationUsageDistance.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputVariableDeclarationUsageDistance.java"), expected);
     }
 
     @Test
@@ -144,7 +146,8 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "552:13: " + getCheckMessage(MSG_KEY, "id", 2, 1),
             "554:13: " + getCheckMessage(MSG_KEY, "parentId", 3, 1),
         };
-        verify(checkConfig, getPath("InputVariableDeclarationUsageDistanceRegExp.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputVariableDeclarationUsageDistanceRegExp.java"), expected);
     }
 
     @Test
@@ -181,7 +184,8 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "1036:9: " + getCheckMessage(MSG_KEY, "c", 4, 1),
             "1066:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
         };
-        verify(checkConfig, getPath("InputVariableDeclarationUsageDistanceScopes.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputVariableDeclarationUsageDistanceScopes.java"), expected);
     }
 
     @Test
@@ -228,7 +232,8 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "1036:9: " + getCheckMessage(MSG_KEY_EXT, "c", 3, 1),
             "1066:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 1),
         };
-        verify(checkConfig, getPath("InputVariableDeclarationUsageDistanceFinal.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputVariableDeclarationUsageDistanceFinal.java"), expected);
     }
 
     @Test
@@ -254,7 +259,8 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "1066:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 3),
         };
 
-        verify(checkConfig, getPath("InputVariableDeclarationUsageDistanceDefault.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputVariableDeclarationUsageDistanceDefault.java"), expected);
     }
 
     @Test
@@ -265,7 +271,8 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "19:9: " + getCheckMessage(MSG_KEY_EXT, "prefs", 4, 3),
         };
 
-        verify(checkConfig, getPath("InputVariableDeclarationUsageDistanceAnonymous.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputVariableDeclarationUsageDistanceAnonymous.java"),
                 expected);
     }
 
@@ -275,7 +282,8 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputVariableDeclarationUsageDistanceLabels.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputVariableDeclarationUsageDistanceLabels.java"), expected);
     }
 
     @Test
@@ -300,7 +308,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         };
 
         final String filename = "InputVariableDeclarationUsageDistanceCheckSwitchExpressions.java";
-        verify(checkConfig, getNonCompilablePath(filename), expected);
+        verifyWithInlineConfigParser(checkConfig, getNonCompilablePath(filename), expected);
     }
 
 }

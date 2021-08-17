@@ -46,7 +46,8 @@ public class OverloadMethodsDeclarationOrderCheckTest
             "72:5: " + getCheckMessage(MSG_KEY, 70),
             "115:5: " + getCheckMessage(MSG_KEY, 104),
         };
-        verify(checkConfig, getPath("InputOverloadMethodsDeclarationOrder.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputOverloadMethodsDeclarationOrder.java"), expected);
     }
 
     @Test
@@ -58,8 +59,8 @@ public class OverloadMethodsDeclarationOrderCheckTest
             "21:9: " + getCheckMessage(MSG_KEY, 15),
             "41:9: " + getCheckMessage(MSG_KEY, 35),
             "57:9: " + getCheckMessage(MSG_KEY, 50),
-            };
-        verify(checkConfig,
+        };
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputOverloadMethodsDeclarationOrderRecords.java"),
             expected);
     }
