@@ -46,7 +46,8 @@ public class UnnecessarySemicolonInTryWithResourcesCheckTest extends AbstractMod
             "18:72: " + getCheckMessage(MSG_SEMI),
         };
 
-        verify(checkConfig, getPath("InputUnnecessarySemicolonInTryWithResourcesDefault.java"),
+        verifyWithInlineConfigParser(checkConfig,
+            getPath("InputUnnecessarySemicolonInTryWithResourcesDefault.java"),
             expected);
     }
 
@@ -61,7 +62,7 @@ public class UnnecessarySemicolonInTryWithResourcesCheckTest extends AbstractMod
             "22:36: " + getCheckMessage(MSG_SEMI),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getPath("InputUnnecessarySemicolonInTryWithResourcesNoBraceAfterAllowed.java"),
             expected);
     }

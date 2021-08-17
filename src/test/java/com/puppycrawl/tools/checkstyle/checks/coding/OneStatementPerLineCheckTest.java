@@ -48,7 +48,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
             "181:59: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getPath("InputOneStatementPerLineSingleLine.java"),
             expected);
     }
@@ -76,7 +76,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
             "184:47: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getPath("InputOneStatementPerLineMultiline.java"),
             expected);
     }
@@ -93,7 +93,8 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
             "50:85: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, getNonCompilablePath("InputOneStatementPerLine.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getNonCompilablePath("InputOneStatementPerLine.java"), expected);
     }
 
     @Test
@@ -107,7 +108,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
             "46:46: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath("InputOneStatementPerLineTryWithResources.java"),
                 expected);
     }
@@ -116,7 +117,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     public void testResourcesIgnored() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OneStatementPerLineCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath("InputOneStatementPerLineTryWithResourcesIgnore.java"),
                 expected);
     }

@@ -50,7 +50,8 @@ public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
             "40:2: " + getCheckMessage(MSG_SEMI),
         };
 
-        verify(checkConfig, getPath("InputUnnecessarySemicolonAfterOuterTypeDeclaration.java"),
+        verifyWithInlineConfigParser(checkConfig,
+            getPath("InputUnnecessarySemicolonAfterOuterTypeDeclaration.java"),
             expected);
     }
 
@@ -64,7 +65,7 @@ public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
             "23:2: " + getCheckMessage(MSG_SEMI),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputUnnecessarySemicolonAfterOuterTypeDeclarationRecords.java"),
             expected);
     }

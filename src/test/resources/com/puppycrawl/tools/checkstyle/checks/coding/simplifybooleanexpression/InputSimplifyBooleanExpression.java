@@ -42,7 +42,7 @@ public class InputSimplifyBooleanExpression
     {
         boolean tt = isOddMillis() || true; // violation
         boolean ff = isOddMillis() && false; // violation
-        return !false || (true != false); // violation
+        return !false || (true != false); // 2 violations
     }
 
     public void tryToProvokeNPE()

@@ -49,7 +49,8 @@ public class NoCloneCheckTest
             "67:5: " + getCheckMessage(MSG_KEY),
             "106:5: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputNoClone.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNoClone.java"), expected);
     }
 
     @Test
