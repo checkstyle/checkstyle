@@ -15,29 +15,29 @@ public record InputUnnecessarySemicolonAfterTypeMemberDeclarationRecords() {
 
     static {}
 
-    ; // violation, extra semicolon after init block
+    ; // violation
 
     static {}
 
-    ; // violation, extra semicolon after static init block
+    ; // violation
 
     public InputUnnecessarySemicolonAfterTypeMemberDeclarationRecords {
     }
 
-    ; // violation, extra semicolon after compact constructor definition
+    ; // violation
 
     public InputUnnecessarySemicolonAfterTypeMemberDeclarationRecords(Object o) {
         this();
     }
 
-    ; // violation, extra semicolon after constructor definition
+    ; // violation
 
     void method() {
     }
 
-    ; // violation, extra semicolon after method definition
+    ; // violation
     static int field = 10;
-    ; // violation, extra semicolon after field declaration
+    ; // violation
 
     static {
         ; // no violation, it is empty statement inside init block

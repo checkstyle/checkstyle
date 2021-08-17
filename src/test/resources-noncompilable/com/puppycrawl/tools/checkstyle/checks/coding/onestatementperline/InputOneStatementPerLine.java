@@ -42,7 +42,7 @@ public class InputOneStatementPerLine {
         List<Integer> ints = new LinkedList<Integer>();
         ints.stream().map( t -> { return t * 2;} ).filter( t -> { return false;});
         ints.stream().map( t -> { int m = t * 2; return m; } ); // violation
-        ints.stream().map( t -> { int m = t * 2; return m; } ); int i = 3; // violation
+        ints.stream().map( t -> { int m = t * 2; return m; } ); int i = 3; // 2 violations
         ints.stream().map( t -> t * 2); int k = 4; // violation
         ints.stream().map( t -> t * 2);
         List<Integer> ints2 = new LinkedList<Integer>();
