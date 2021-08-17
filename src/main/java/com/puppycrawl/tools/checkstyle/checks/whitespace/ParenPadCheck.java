@@ -250,8 +250,6 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.METHOD_CALL:
-                processLeft(ast);
-                processRight(ast.findFirstToken(TokenTypes.RPAREN));
                 break;
             case TokenTypes.DOT:
             case TokenTypes.EXPR:
