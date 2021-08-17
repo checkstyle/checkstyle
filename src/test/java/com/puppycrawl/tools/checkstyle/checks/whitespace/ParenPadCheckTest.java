@@ -64,7 +64,7 @@ public class ParenPadCheckTest
             "284:17: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "284:24: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputParenPadWhitespace.java"), expected);
+        verifyWithLimitedResources(checkConfig, getPath("InputParenPadWhitespace.java"), expected);
     }
 
     @Test
@@ -494,7 +494,7 @@ public class ParenPadCheckTest
             "53:21: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "54:52: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
-        verify(checkConfig,
+        verifyWithLimitedResources(checkConfig,
                 getNonCompilablePath("InputParenPadCheckRecords.java"), expected);
     }
 
