@@ -1528,7 +1528,6 @@
                 <!-- Needed for testing deprecated API. -->
                 <exclude>**/DefaultConfigurationTest.class</exclude>
                 <!-- untill https://github.com/checkstyle/checkstyle/issues/10394 -->
-                <exclude>**/SimplifyBooleanReturnCheckTest.class</exclude>
 
                 <exclude>**/GenericWhitespaceCheckTest.class</exclude>
 
@@ -1560,7 +1559,6 @@
                 <exclude>**/NoWhitespaceBeforeCaseDefaultColonCheckTest.class</exclude>
 
 
-                <exclude>**/UnnecessarySemicolonInEnumerationCheckTest.class</exclude>
 
                 <exclude>**/ParameterNameCheckTest.class</exclude>
 
@@ -1594,11 +1592,9 @@
 
                 <exclude>**/ReturnCountCheckTest.class</exclude>
 
-                <exclude>**/SimplifyBooleanExpressionCheckTest.class</exclude>
 
                 <exclude>**/SingleSpaceSeparatorCheckTest.class</exclude>
 
-                <exclude>**/SuperCloneCheckTest.class</exclude>
 
                 <exclude>**/TypeNameCheckTest.class</exclude>
 
@@ -1623,7 +1619,6 @@
 
                 <exclude>**/TodoCommentCheckTest.class</exclude>
 
-                <exclude>**/StringLiteralEqualityCheckTest.class</exclude>
 
                 <exclude>**/AbstractFileSetCheckTest.class</exclude>
 
@@ -1679,7 +1674,6 @@
                 <exclude>**/EqualsAvoidNullCheckTest.class</exclude>
 
 
-                <exclude>**/UnnecessarySemicolonInTryWithResourcesCheckTest.class</exclude>
 
                 <exclude>**/TreeWalkerTest.class</exclude>
 
@@ -1704,7 +1698,6 @@
 
                 <exclude>**/InterfaceIsTypeCheckTest.class</exclude>
 
-                <exclude>**/ParameterAssignmentCheckTest.class</exclude>
 
                 <exclude>**/EmptyForIteratorPadCheckTest.class</exclude>
 
@@ -1722,7 +1715,6 @@
 
                 <exclude>**/LocalFinalVariableNameCheckTest.class</exclude>
 
-                <exclude>**/OverloadMethodsDeclarationOrderCheckTest.class</exclude>
 
                 <exclude>**/ClassDataAbstractionCouplingCheckTest.class</exclude>
 
@@ -1734,7 +1726,6 @@
 
                 <exclude>**/CheckerTest.class</exclude>
 
-                <exclude>**/OneStatementPerLineCheckTest.class</exclude>
 
                 <exclude>**/RedundantModifierCheckTest.class</exclude>
 
@@ -1750,7 +1741,6 @@
 
                 <exclude>**/RecordComponentNumberCheckTest.class</exclude>
 
-                <exclude>**/UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest.class</exclude>
 
                 <exclude>**/SuppressWarningsFilterTest.class</exclude>
 
@@ -1762,13 +1752,11 @@
 
                 <exclude>**/TrailingCommentCheckTest.class</exclude>
 
-                <exclude>**/NoFinalizerCheckTest.class</exclude>
 
                 <exclude>**/FinalClassCheckTest.class</exclude>
 
                 <exclude>**/MethodTypeParameterNameCheckTest.class</exclude>
 
-                <exclude>**/NoEnumTrailingCommaCheckTest.class</exclude>
 
                 <exclude>**/SuppressWarningsHolderTest.class</exclude>
 
@@ -1776,7 +1764,6 @@
 
                 <exclude>**/LineCommentAtTheEndOfFileTest.class</exclude>
 
-                <exclude>**/NoCloneCheckTest.class</exclude>
 
                 <exclude>**/ImportControlCheckTest.class</exclude>
 
@@ -1847,7 +1834,6 @@
 
                 <exclude>**/MethodNameCheckTest.class</exclude>
 
-                <exclude>**/UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest.class</exclude>
 
 
                 <exclude>**/NeedBracesCheckTest.class</exclude>
@@ -1859,13 +1845,11 @@
                 <exclude>**/MutableExceptionCheckTest.class</exclude>
 
 
-                <exclude>**/SuperFinalizeCheckTest.class</exclude>
 
                 <exclude>**/AbstractModuleTestSupport.class</exclude>
 
                 <exclude>**/IllegalCatchCheckTest.class</exclude>
 
-                <exclude>**/VariableDeclarationUsageDistanceCheckTest.class</exclude>
 
                 <exclude>**/CommentsIndentationCheckTest.class</exclude>
 
@@ -1886,7 +1870,6 @@
 
                 <exclude>**/MultipleVariableDeclarationsCheckTest.class</exclude>
 
-                <exclude>**/NoArrayTrailingCommaCheckTest.class</exclude>
 
                 <exclude>**/TypeUseAnnotationsOnQualifiedTypesTest.class</exclude>
 

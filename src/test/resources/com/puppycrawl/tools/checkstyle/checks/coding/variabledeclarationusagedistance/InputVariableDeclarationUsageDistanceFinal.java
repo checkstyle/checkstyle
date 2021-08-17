@@ -464,7 +464,7 @@ public class InputVariableDeclarationUsageDistanceFinal {
 
     public void testIssue32_6() {
         Option aOpt = null; // violation
-        Option bOpt = null;
+        Option bOpt = null; // violation
         Option cOpt = null;
         isNull(cOpt); // distance = 1
         isNull(bOpt); // distance = 2
@@ -480,7 +480,7 @@ public class InputVariableDeclarationUsageDistanceFinal {
     }
 
     public void testIssue32_8(Writer w1, Writer w2, Writer w3) {
-        String l1="1", l2="2", l3="3"; // violation
+        String l1="1", l2="2", l3="3"; // 2 violations
         w1.write(l3); //distance=1
         w2.write(l2); //distance=2
         w3.write(l1); //distance=3
@@ -500,7 +500,7 @@ public class InputVariableDeclarationUsageDistanceFinal {
 
     public void testIssue32_10() {
         Options options = new Options();
-        Option myOption = null;
+        Option myOption = null; // violation
         options.addBindFile(null);
         options.addBindFile(null);
         options.addBindFile(null);
