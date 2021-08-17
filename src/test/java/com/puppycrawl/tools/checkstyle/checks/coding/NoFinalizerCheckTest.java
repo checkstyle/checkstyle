@@ -59,7 +59,8 @@ public class NoFinalizerCheckTest
         final String[] expected = {
             "11:5: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputNoFinalizerHasFinalizer.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNoFinalizerHasFinalizer.java"), expected);
     }
 
     @Test
@@ -68,7 +69,8 @@ public class NoFinalizerCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(NoFinalizerCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputNoFinalizerFallThrough.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNoFinalizerFallThrough.java"), expected);
     }
 
     @Test
@@ -77,7 +79,8 @@ public class NoFinalizerCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(NoFinalizerCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputNoFinalizerFallThrough.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getNonCompilablePath("InputNoFinalizerFallThrough.java"), expected);
     }
 
 }

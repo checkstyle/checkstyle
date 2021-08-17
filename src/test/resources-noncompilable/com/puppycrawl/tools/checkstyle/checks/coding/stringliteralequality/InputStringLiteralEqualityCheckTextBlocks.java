@@ -20,13 +20,13 @@ public class InputStringLiteralEqualityCheckTextBlocks {
                 pending""";
 
         if (status2 == """
-                done""") {} // violation
+                done""") {} // violation above
 
         while (status2 != """
-                done""") {} // violation
+                done""") {} // violation above
 
         boolean flag3 = (status2 == """
-                done"""); // violation
+                done"""); // violation above
 
         boolean flag4 = (status2.equals("""
                 done""")); // ok

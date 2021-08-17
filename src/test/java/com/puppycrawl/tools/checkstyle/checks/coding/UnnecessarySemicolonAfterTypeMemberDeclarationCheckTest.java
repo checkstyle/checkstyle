@@ -60,7 +60,8 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
             "52:20: " + getCheckMessage(MSG_SEMI),
         };
 
-        verify(checkConfig, getPath("InputUnnecessarySemicolonAfterTypeMemberDeclaration.java"),
+        verifyWithInlineConfigParser(checkConfig,
+            getPath("InputUnnecessarySemicolonAfterTypeMemberDeclaration.java"),
             expected);
     }
 
@@ -79,7 +80,7 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
             "40:5: " + getCheckMessage(MSG_SEMI),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputUnnecessarySemicolonAfterTypeMemberDeclarationRecords.java"),
             expected);
     }

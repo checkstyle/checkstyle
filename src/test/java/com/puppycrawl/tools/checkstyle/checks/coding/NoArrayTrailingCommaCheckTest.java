@@ -47,7 +47,8 @@ public class NoArrayTrailingCommaCheckTest extends AbstractModuleTestSupport {
             "53:14: " + getCheckMessage(MSG_KEY),
             "67:29: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputNoArrayTrailingComma.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNoArrayTrailingComma.java"), expected);
     }
 
     @Test
