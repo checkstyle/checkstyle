@@ -55,6 +55,9 @@ public final class InlineConfigParser {
     private static final Pattern MULTIPLE_VIOLATIONS_PATTERN = Pattern
             .compile(".*//\\s*(\\d) violations(?: .*)?$");
 
+    /** The String "(null)". */
+    private static final String NULL_STRING = "(null)";
+
     /** Stop instances being created. **/
     private InlineConfigParser() {
     }
@@ -121,18 +124,28 @@ public final class InlineConfigParser {
             final String key = entry.getKey().toString();
             final String value = entry.getValue().toString();
             if (value.startsWith("(default)")) {
-                inputConfigBuilder.addDefaultProperty(key,
-                        value.substring(value.indexOf(')') + 1));
+                final String defaultValue = value.substring(value.indexOf(')') + 1);
+                if (NULL_STRING.equals(defaultValue)) {
+                    inputConfigBuilder.addDefaultProperty(key, null);
+                }
+                else {
+                    inputConfigBuilder.addDefaultProperty(key, defaultValue);
+                }
             }
             else {
-                inputConfigBuilder.addNonDefaultProperty(key, value);
+                if (NULL_STRING.equals(value)) {
+                    inputConfigBuilder.addNonDefaultProperty(key, null);
+                }
+                else {
+                    inputConfigBuilder.addNonDefaultProperty(key, value);
+                }
             }
         }
     }
 
     private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
                                       List<String> lines) {
-        for (int lineNo = 2; lineNo < lines.size(); lineNo++) {
+        for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
             final Matcher violationMatcher = VIOLATION_PATTERN.matcher(lines.get(lineNo));
             final Matcher violationAboveMatcher =
                     VIOLATION_ABOVE_PATTERN.matcher(lines.get(lineNo));
