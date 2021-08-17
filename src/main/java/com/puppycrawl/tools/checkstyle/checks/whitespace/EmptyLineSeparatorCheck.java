@@ -645,7 +645,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @param nextToken next token
      */
     private void processPackage(DetailAST ast, DetailAST nextToken) {
-        if (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)) {
+        if (true||ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)) {
             if (getFileContents().getFileName().endsWith("package-info.java")) {
                 if (!ast.getFirstChild().hasChildren() && !isPrecededByJavadoc(ast)) {
                     log(ast, MSG_SHOULD_BE_SEPARATED, ast.getText());

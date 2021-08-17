@@ -1,7 +1,7 @@
 /*
 EmptyLineSeparator
 allowNoEmptyLineBetweenFields = (default)false
-allowMultipleEmptyLines = false
+allowMultipleEmptyLines = (default)true
 allowMultipleEmptyLinesInsideClassMembers = (default)true
 tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, ENUM_DEF, \
          STATIC_INIT, INSTANCE_INIT, METHOD_DEF, CTOR_DEF, VARIABLE_DEF, RECORD_DEF, \
@@ -28,7 +28,7 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; // violation
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 
 
 
@@ -36,70 +36,50 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; //
 
 
 
-import java.lang.Object; // violation
-
-import java.lang.Class; // no violation
-
-
 // violation
-import java.lang.Integer;
 
 // no violation
-import java.lang.Long;
 
 
 /*
  * violation
  */
-import java.lang.Float;
 
 /*
  * no violation
  */
-import java.lang.Double;
 
 
 /**
  * violation
  */
-import java.lang.Character;
 
 /**
  * no violation
  */
-import java.lang.String;
 
 /*
  * no violation
  */
 /* no violation */
-import java.lang.Object;
 
 
 // violation
 // .
-import java.lang.Boolean;
 // no violation
-import java.lang.Byte;
 
 // no violation
 /* no violation */
-import java.lang.Short;
 
 
 /* violation */
 // .
-import java.lang.Number;
 
-
-import java.lang.Runnable;
-import java.lang.Thread;
 
 // no violation
 
 
 // violation
-import java.lang.StringBuilder;
 
 
 /*
@@ -107,7 +87,7 @@ import java.lang.StringBuilder;
  */
 import static java.lang.Math.abs;
 
-public class InputEmptyLineSeparatorWithComments {
+public class InputEmptyLineSeparatorWithComments2 {
 
 
     public int testViolationWithoutComment = 1; // violation
@@ -255,7 +235,7 @@ public class InputEmptyLineSeparatorWithComments {
     // violation
     public interface Interface2 { }
     // violation
-    public // violation
+    public
     // .
     interface Interface3 { }
 
@@ -333,12 +313,12 @@ public class InputEmptyLineSeparatorWithComments {
 
     // violation
     // .
-    /* . */ public InputEmptyLineSeparatorWithComments() {
+    /* . */ public InputEmptyLineSeparatorWithComments2() {
         testNoViolationWithJavadoc = 1;
     }
 
     // no violation
-    /* . */ public InputEmptyLineSeparatorWithComments(int i) {
+    /* . */ public InputEmptyLineSeparatorWithComments2(int i) {
         testNoViolationWithJavadoc = 1;
     }
 
@@ -346,7 +326,7 @@ public class InputEmptyLineSeparatorWithComments {
     // no violation
 
     // no violation
-    public InputEmptyLineSeparatorWithComments(int i, int j) {
+    public InputEmptyLineSeparatorWithComments2(int i, int j) {
         testNoViolationWithJavadoc = 1;
     }
 
@@ -360,7 +340,7 @@ public class InputEmptyLineSeparatorWithComments {
 
 
     // violation
-    public InputEmptyLineSeparatorWithComments(int i, int j, int k) {
+    public InputEmptyLineSeparatorWithComments2(int i, int j, int k) {
         testNoViolationWithJavadoc = 1;
     }
 
