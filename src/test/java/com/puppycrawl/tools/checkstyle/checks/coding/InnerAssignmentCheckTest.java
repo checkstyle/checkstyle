@@ -61,7 +61,8 @@ public class InnerAssignmentCheckTest
             "92:19: " + getCheckMessage(MSG_KEY),
             "181:22: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputInnerAssignment.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputInnerAssignment.java"), expected);
     }
 
     @Test
