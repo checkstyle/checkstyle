@@ -103,7 +103,7 @@ public final class JavadocPropertiesGenerator {
         try (PrintWriter writer = new PrintWriter(options.outputFile,
                 StandardCharsets.UTF_8.name())) {
             final DetailAST top = JavaParser.parseFile(options.inputFile,
-                    JavaParser.Options.WITH_COMMENTS);
+                    JavaParser.Options.WITH_COMMENTS).getFirstChild();
             final DetailAST objBlock = getClassBody(top);
             if (objBlock != null) {
                 iteratePublicStaticIntFields(objBlock, writer::println);
