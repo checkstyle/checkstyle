@@ -2192,7 +2192,7 @@ public class InputFinalLocalVariableFalsePositives {
 
     private void foo89() {
         final int a = 8;
-        String b;
+        String b; // violation
         switch (a) {
             case 8:
                 b = "b";
