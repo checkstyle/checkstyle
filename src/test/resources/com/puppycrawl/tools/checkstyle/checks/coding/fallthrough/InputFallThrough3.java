@@ -421,7 +421,7 @@ public class InputFallThrough3
                 switch (hashCode()) { // causing NullPointerException in the past
                     case 1:
                 }
-            default: // violation - no fall through comment
+            default: // violation
         }
     }
 
