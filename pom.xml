@@ -1608,7 +1608,6 @@
 
                 <exclude>**/PackageNameCheckTest.class</exclude>
 
-                <exclude>**/IllegalTypeCheckTest.class</exclude>
 
                 <exclude>**/NoLineWrapCheckTest.class</exclude>
 
