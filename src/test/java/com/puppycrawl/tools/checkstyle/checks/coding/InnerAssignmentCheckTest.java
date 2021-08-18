@@ -61,7 +61,8 @@ public class InnerAssignmentCheckTest
             "92:19: " + getCheckMessage(MSG_KEY),
             "181:22: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputInnerAssignment.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputInnerAssignment.java"), expected);
     }
 
     @Test
@@ -69,8 +70,9 @@ public class InnerAssignmentCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(InnerAssignmentCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputInnerAssignmentLambdaExpressions.java"),
-            expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputInnerAssignmentLambdaExpressions.java"),
+                expected);
     }
 
     @Test
