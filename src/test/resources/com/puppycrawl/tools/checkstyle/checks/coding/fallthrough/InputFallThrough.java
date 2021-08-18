@@ -128,7 +128,7 @@ public class InputFallThrough
                 default:
                     return;
                 }
-            default: // violation
+            default: // 2 violations
                 // this is the last label
                 i++;
             }
@@ -421,7 +421,7 @@ public class InputFallThrough
                 switch (hashCode()) { // causing NullPointerException in the past
                     case 1:
                 }
-            default: // violation - no fall through comment
+            default: // violation
         }
     }
 

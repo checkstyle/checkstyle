@@ -154,12 +154,12 @@ class test_12417222
 {
     private Object o_;
 
-    public void doSomething(Object _o)
+    public void doSomething(Object _o) // violation
     {
         System.identityHashCode(_o);
     }
 
-    public void doSomething2(Object _o1)
+    public void doSomething2(Object _o1) // violation
     {
         o_ = _o1;
     }
@@ -362,7 +362,7 @@ class Class32 {
 
 class class42 {
     public void foo() {
-        int shouldBeFinal;    //violation
+        int shouldBeFinal;
         class Bar {
             void bar () {
                 int shouldBeFinal;    //Violation
@@ -423,7 +423,7 @@ class class52 {
         }
     }
     public void test4() {
-        int shouldBeFinal;    //violation
+        int shouldBeFinal;
         class Bar {
             void bar () {
                 int shouldBeFinal;    //Violation

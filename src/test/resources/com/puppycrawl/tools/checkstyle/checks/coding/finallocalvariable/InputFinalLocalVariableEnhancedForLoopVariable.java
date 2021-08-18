@@ -20,15 +20,15 @@ public class InputFinalLocalVariableEnhancedForLoopVariable {
     public void method2()
     {
         final int[] squares = {0, 1, 4, 9, 16, 25};
-        int x;
+        int x; // violation
         for (final int i : squares) {
         }
 
     }
 
-    public java.util.List<String> method3(java.util.List<String> snippets) {
-        java.util.List<String> filteredSnippets = new java.util.ArrayList<>();
-        for (String snippet : snippets) {
+    public java.util.List<String> method3(java.util.List<String> snippets) { // violation
+        java.util.List<String> filteredSnippets = new java.util.ArrayList<>(); // violation
+        for (String snippet : snippets) { // violation
             filteredSnippets.add(snippet);
         }
         if (filteredSnippets.size() == 0) {
@@ -43,10 +43,10 @@ public class InputFinalLocalVariableEnhancedForLoopVariable {
     {
         final java.util.List<Object> list = new java.util.ArrayList<>();
 
-        for(Object a : list) {
+        for(Object a : list) { // violation
         }
 
-        Object a;
+        Object a; // violation
         if (list.isEmpty())
         {
             a = new String("empty");
