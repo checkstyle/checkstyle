@@ -1,7 +1,7 @@
 /*
 FinalLocalVariable
 validateEnhancedForLoopVariable = (default)false
-tokens = VARIABLE_DEF, PARAMETER_DEF
+tokens = PARAMETER_DEF,VARIABLE_DEF
 
 
 */

@@ -1566,7 +1566,6 @@
 
                 <exclude>**/RedundantImportCheckTest.class</exclude>
 
-                <exclude>**/FinalLocalVariableCheckTest.class</exclude>
 
                 <exclude>**/Java9TryWithResourcesTest.class</exclude>
 
@@ -1681,7 +1680,6 @@
 
                 <exclude>**/AnnotationUseStyleCheckTest.class</exclude>
 
-                <exclude>**/FallThroughCheckTest.class</exclude>
 
                 <exclude>**/LambdaBodyLengthCheckTest.class</exclude>
 

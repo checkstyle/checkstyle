@@ -154,12 +154,12 @@ class test_12417222
 {
     private Object o_;
 
-    public void doSomething(Object _o)
+    public void doSomething(Object _o) // violation
     {
         System.identityHashCode(_o);
     }
 
-    public void doSomething2(Object _o1)
+    public void doSomething2(Object _o1) // violation
     {
         o_ = _o1;
     }
