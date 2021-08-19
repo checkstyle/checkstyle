@@ -43,7 +43,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Created anonymous class is not static, it holds an implicit reference to the outer class
  * instance.
  * See this
- * <a href="https://blog.jooq.org/2014/12/08/dont-be-clever-the-double-curly-braces-anti-pattern/">
+ * <a href="https://blog.jooq.org/dont-be-clever-the-double-curly-braces-anti-pattern/">
  * blog post</a> and
  * <a href="https://www.baeldung.com/java-double-brace-initialization">
  * article</a> for more details.
