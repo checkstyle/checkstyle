@@ -116,11 +116,18 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitCompilationUnit(JavaLanguageParser.CompilationUnitContext ctx) {
-        final DetailAstImpl root = visit(ctx.children.get(0));
-        for (int i = 1; i < ctx.children.size(); i++) {
-            addLastSibling(root, visit(ctx.children.get(i)));
+        final DetailAstImpl compilationUnit;
+        // 'EOF' token is always present; therefore if we only have one child, we have an empty file
+        final boolean isEmptyFile = ctx.children.size() == 1;
+        if (isEmptyFile) {
+            compilationUnit = null;
         }
-        return root;
+        else {
+            compilationUnit = createImaginary(TokenTypes.COMPILATION_UNIT);
+            // last child is 'EOF', we do not include this token in AST
+            processChildren(compilationUnit, ctx.children.subList(0, ctx.children.size() - 1));
+        }
+        return compilationUnit;
     }
 
     @Override

@@ -59,14 +59,18 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineOne']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineOne']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getX']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineOne']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineOne']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getX']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineOne']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineOne']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getX']]/MODIFIERS"
                         + "/ANNOTATION[./IDENT[@text='Deprecated']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineOne']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineOne']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getX']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='Deprecated']]/AT"
         );
@@ -91,14 +95,18 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineTwo']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineTwo']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='names']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineTwo']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineTwo']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='names']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineTwo']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineTwo']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='names']]/MODIFIERS"
                         + "/ANNOTATION[./IDENT[@text='Deprecated']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineTwo']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineTwo']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='names']]/MODIFIERS"
                         + "/ANNOTATION[./IDENT[@text='Deprecated']]/AT"
         );
@@ -127,15 +135,15 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/INTERFACE_DEF["
+                "/COMPILATION_UNIT/INTERFACE_DEF["
                         + "./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineThree']]",
-                "/INTERFACE_DEF["
+                "/COMPILATION_UNIT/INTERFACE_DEF["
                         + "./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineThree']]"
                         + "/MODIFIERS",
-                "/INTERFACE_DEF["
+                "/COMPILATION_UNIT/INTERFACE_DEF["
                         + "./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineThree']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='Deprecated']]",
-                "/INTERFACE_DEF["
+                "/COMPILATION_UNIT/INTERFACE_DEF["
                         + "./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineThree']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='Deprecated']]/AT"
         );

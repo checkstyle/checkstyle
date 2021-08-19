@@ -63,7 +63,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMatching() throws Exception {
-        final String xpath = "/CLASS_DEF[./IDENT[@text='InputXpathFilterElementSuppressByXpath']]";
+        final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathFilterElementSuppressByXpath']]";
         final XpathFilterElement filter = new XpathFilterElement(
                 "InputXpathFilterElementSuppressByXpath", "Test", null, null, xpath);
         final TreeWalkerAuditEvent ev = getEvent(3, 0,
@@ -83,7 +83,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNonMatchingLineNumber() throws Exception {
-        final String xpath = "/CLASS_DEF[./IDENT[@text='InputXpathFilterElementSuppressByXpath']]";
+        final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathFilterElementSuppressByXpath']]";
         final XpathFilterElement filter = new XpathFilterElement(
                 "InputXpathFilterElementSuppressByXpath", "Test", null, null, xpath);
         final TreeWalkerAuditEvent ev = getEvent(100, 0,
@@ -93,7 +93,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNonMatchingColumnNumber() throws Exception {
-        final String xpath = "/CLASS_DEF[./IDENT[@text='InputXpathFilterElementSuppressByXpath']]";
+        final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathFilterElementSuppressByXpath']]";
         final XpathFilterElement filter = new XpathFilterElement(
                 "InputXpathFilterElementSuppressByXpath", "Test", null, null, xpath);
         final TreeWalkerAuditEvent ev = getEvent(3, 100,
@@ -225,7 +225,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMatchingModuleId() throws Exception {
-        final String xpath = "/CLASS_DEF[./IDENT[@text='InputXpathFilterElementSuppressByXpath']]";
+        final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathFilterElementSuppressByXpath']]";
         final XpathFilterElement filter = new XpathFilterElement(
                 "InputXpathFilterElementSuppressByXpath", "Test", null, "id19", xpath);
         final Violation message =
@@ -283,7 +283,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
 
     @Test
     public void testThrowException() {
-        final String xpath = "/CLASS_DEF[@text='InputXpathFilterElementSuppressByXpath']";
+        final String xpath = "//CLASS_DEF[@text='InputXpathFilterElementSuppressByXpath']";
         final XpathFilterElement filter = new XpathFilterElement(
                 "InputXpathFilterElementSuppressByXpath", "Test", null, null, xpath);
         final Violation message =

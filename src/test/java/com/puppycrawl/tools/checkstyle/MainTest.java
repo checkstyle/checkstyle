@@ -886,33 +886,34 @@ public class MainTest {
     public void testPrintTreeOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws IOException {
         final String expected = addEndOfLine(
-            "PACKAGE_DEF -> package [1:0]",
-            "|--ANNOTATIONS -> ANNOTATIONS [1:39]",
-            "|--DOT -> . [1:39]",
-            "|   |--DOT -> . [1:28]",
-            "|   |   |--DOT -> . [1:22]",
-            "|   |   |   |--DOT -> . [1:11]",
-            "|   |   |   |   |--IDENT -> com [1:8]",
-            "|   |   |   |   `--IDENT -> puppycrawl [1:12]",
-            "|   |   |   `--IDENT -> tools [1:23]",
-            "|   |   `--IDENT -> checkstyle [1:29]",
-            "|   `--IDENT -> main [1:40]",
-            "`--SEMI -> ; [1:44]",
-            "CLASS_DEF -> CLASS_DEF [3:0]",
-            "|--MODIFIERS -> MODIFIERS [3:0]",
-            "|   `--LITERAL_PUBLIC -> public [3:0]",
-            "|--LITERAL_CLASS -> class [3:7]",
-            "|--IDENT -> InputMain [3:13]",
-            "`--OBJBLOCK -> OBJBLOCK [3:23]",
-            "    |--LCURLY -> { [3:23]",
-            "    `--RCURLY -> } [4:0]",
-            "CLASS_DEF -> CLASS_DEF [5:0]",
-            "|--MODIFIERS -> MODIFIERS [5:0]",
-            "|--LITERAL_CLASS -> class [5:0]",
-            "|--IDENT -> InputMainInner [5:6]",
-            "`--OBJBLOCK -> OBJBLOCK [5:21]",
-            "    |--LCURLY -> { [5:21]",
-            "    `--RCURLY -> } [6:0]");
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
+            "|--PACKAGE_DEF -> package [1:0]",
+            "|   |--ANNOTATIONS -> ANNOTATIONS [1:39]",
+            "|   |--DOT -> . [1:39]",
+            "|   |   |--DOT -> . [1:28]",
+            "|   |   |   |--DOT -> . [1:22]",
+            "|   |   |   |   |--DOT -> . [1:11]",
+            "|   |   |   |   |   |--IDENT -> com [1:8]",
+            "|   |   |   |   |   `--IDENT -> puppycrawl [1:12]",
+            "|   |   |   |   `--IDENT -> tools [1:23]",
+            "|   |   |   `--IDENT -> checkstyle [1:29]",
+            "|   |   `--IDENT -> main [1:40]",
+            "|   `--SEMI -> ; [1:44]",
+            "|--CLASS_DEF -> CLASS_DEF [3:0]",
+            "|   |--MODIFIERS -> MODIFIERS [3:0]",
+            "|   |   `--LITERAL_PUBLIC -> public [3:0]",
+            "|   |--LITERAL_CLASS -> class [3:7]",
+            "|   |--IDENT -> InputMain [3:13]",
+            "|   `--OBJBLOCK -> OBJBLOCK [3:23]",
+            "|       |--LCURLY -> { [3:23]",
+            "|       `--RCURLY -> } [4:0]",
+            "`--CLASS_DEF -> CLASS_DEF [5:0]",
+            "    |--MODIFIERS -> MODIFIERS [5:0]",
+            "    |--LITERAL_CLASS -> class [5:0]",
+            "    |--IDENT -> InputMainInner [5:6]",
+            "    `--OBJBLOCK -> OBJBLOCK [5:21]",
+            "        |--LCURLY -> { [5:21]",
+            "        `--RCURLY -> } [6:0]");
 
         Main.main("-t", getPath("InputMain.java"));
         assertEquals(expected, systemOut.getCapturedData(), "Unexpected output log");
@@ -923,13 +924,15 @@ public class MainTest {
     public void testPrintXpathOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws IOException {
         final String expected = addEndOfLine(
-            "CLASS_DEF -> CLASS_DEF [3:0]",
-            "`--OBJBLOCK -> OBJBLOCK [3:28]",
-            "    |--METHOD_DEF -> METHOD_DEF [4:4]",
-            "    |   `--SLIST -> { [4:20]",
-            "    |       |--VARIABLE_DEF -> VARIABLE_DEF [5:8]",
-            "    |       |   |--IDENT -> a [5:12]");
-        Main.main("-b", "/CLASS_DEF//METHOD_DEF[./IDENT[@text='methodOne']]//VARIABLE_DEF/IDENT",
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
+            "|--CLASS_DEF -> CLASS_DEF [3:0]",
+            "|   `--OBJBLOCK -> OBJBLOCK [3:28]",
+            "|       |--METHOD_DEF -> METHOD_DEF [4:4]",
+            "|       |   `--SLIST -> { [4:20]",
+            "|       |       |--VARIABLE_DEF -> VARIABLE_DEF [5:8]",
+            "|       |       |   |--IDENT -> a [5:12]");
+        Main.main("-b", "/COMPILATION_UNIT/CLASS_DEF//METHOD_DEF[./IDENT[@text='methodOne']]"
+                        + "//VARIABLE_DEF/IDENT",
                 getPath("InputMainXPath.java"));
         assertThat("Unexpected output log", systemOut.getCapturedData(), is(expected));
         assertThat("Unexpected system error log", systemErr.getCapturedData(), is(""));
@@ -939,11 +942,13 @@ public class MainTest {
     public void testPrintXpathCommentNode(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
         final String expected = addEndOfLine(
-            "CLASS_DEF -> CLASS_DEF [17:0]",
-            "`--OBJBLOCK -> OBJBLOCK [17:19]",
-            "    |--CTOR_DEF -> CTOR_DEF [19:4]",
-            "    |   |--BLOCK_COMMENT_BEGIN -> /* [18:4]");
-        Main.main("-b", "/CLASS_DEF//BLOCK_COMMENT_BEGIN", getPath("InputMainXPath.java"));
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
+            "`--CLASS_DEF -> CLASS_DEF [17:0]",
+            "    `--OBJBLOCK -> OBJBLOCK [17:19]",
+            "        |--CTOR_DEF -> CTOR_DEF [19:4]",
+            "        |   |--BLOCK_COMMENT_BEGIN -> /* [18:4]");
+        Main.main("-b", "/COMPILATION_UNIT/CLASS_DEF//BLOCK_COMMENT_BEGIN",
+                getPath("InputMainXPath.java"));
         assertThat("Unexpected output log", systemOut.getCapturedData(), is(expected));
         assertThat("Unexpected system error log", systemErr.getCapturedData(), is(""));
     }
@@ -951,8 +956,8 @@ public class MainTest {
     @Test
     public void testPrintXpathNodeParentNull(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
-        final String expected = addEndOfLine("PACKAGE_DEF -> package [1:0]");
-        Main.main("-b", "/PACKAGE_DEF", getPath("InputMainXPath.java"));
+        final String expected = addEndOfLine("COMPILATION_UNIT -> COMPILATION_UNIT [1:0]");
+        Main.main("-b", "/COMPILATION_UNIT", getPath("InputMainXPath.java"));
         assertThat("Unexpected output log", systemOut.getCapturedData(), is(expected));
         assertThat("Unexpected system error log", systemErr.getCapturedData(), is(""));
     }
@@ -961,13 +966,15 @@ public class MainTest {
     public void testPrintXpathFullOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws IOException {
         final String expected = addEndOfLine(
-            "CLASS_DEF -> CLASS_DEF [3:0]",
-            "`--OBJBLOCK -> OBJBLOCK [3:28]",
-            "    |--METHOD_DEF -> METHOD_DEF [8:4]",
-            "    |   `--SLIST -> { [8:26]",
-            "    |       |--VARIABLE_DEF -> VARIABLE_DEF [9:8]",
-            "    |       |   |--IDENT -> a [9:12]");
-        final String xpath = "/CLASS_DEF//METHOD_DEF[./IDENT[@text='method']]//VARIABLE_DEF/IDENT";
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
+            "|--CLASS_DEF -> CLASS_DEF [3:0]",
+            "|   `--OBJBLOCK -> OBJBLOCK [3:28]",
+            "|       |--METHOD_DEF -> METHOD_DEF [8:4]",
+            "|       |   `--SLIST -> { [8:26]",
+            "|       |       |--VARIABLE_DEF -> VARIABLE_DEF [9:8]",
+            "|       |       |   |--IDENT -> a [9:12]");
+        final String xpath = "/COMPILATION_UNIT/CLASS_DEF//METHOD_DEF[./IDENT[@text='method']]"
+                + "//VARIABLE_DEF/IDENT";
         Main.main("--branch-matching-xpath", xpath, getPath("InputMainXPath.java"));
         assertThat("Unexpected output log", systemOut.getCapturedData(), is(expected));
         assertThat("Unexpected system error log", systemErr.getCapturedData(), is(""));
@@ -977,14 +984,17 @@ public class MainTest {
     public void testPrintXpathTwoResults(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws IOException {
         final String expected = addEndOfLine(
-            "CLASS_DEF -> CLASS_DEF [12:0]",
-            "`--OBJBLOCK -> OBJBLOCK [12:10]",
-            "    |--METHOD_DEF -> METHOD_DEF [13:4]",
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
+            "|--CLASS_DEF -> CLASS_DEF [12:0]",
+            "|   `--OBJBLOCK -> OBJBLOCK [12:10]",
+            "|       |--METHOD_DEF -> METHOD_DEF [13:4]",
             "---------",
-            "CLASS_DEF -> CLASS_DEF [12:0]",
-            "`--OBJBLOCK -> OBJBLOCK [12:10]",
-            "    |--METHOD_DEF -> METHOD_DEF [14:4]");
-        Main.main("--branch-matching-xpath", "/CLASS_DEF[./IDENT[@text='Two']]//METHOD_DEF",
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
+            "|--CLASS_DEF -> CLASS_DEF [12:0]",
+            "|   `--OBJBLOCK -> OBJBLOCK [12:10]",
+            "|       |--METHOD_DEF -> METHOD_DEF [14:4]");
+        Main.main("--branch-matching-xpath", "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Two']]"
+                        + "//METHOD_DEF",
                 getPath("InputMainXPath.java"));
         assertThat("Unexpected output log", systemOut.getCapturedData(), is(expected));
         assertThat("Unexpected system error log", systemErr.getCapturedData(), is(""));
@@ -992,7 +1002,8 @@ public class MainTest {
 
     @Test
     public void testPrintXpathInvalidXpath(@SysErr Capturable systemErr) throws Exception {
-        final String invalidXpath = "\\/CLASS_DEF[./IDENT[@text='Two']]//METHOD_DEF";
+        final String invalidXpath = "\\/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Two']]"
+                + "//METHOD_DEF";
         final String filePath = getFilePath("InputMainXPath.java");
         assertExitWithStatus(-2, () -> {
             invokeMain("--branch-matching-xpath", invalidXpath, filePath);
@@ -1008,36 +1019,37 @@ public class MainTest {
     public void testPrintTreeCommentsOption(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
         final String expected = addEndOfLine(
-            "PACKAGE_DEF -> package [1:0]",
-            "|--ANNOTATIONS -> ANNOTATIONS [1:39]",
-            "|--DOT -> . [1:39]",
-            "|   |--DOT -> . [1:28]",
-            "|   |   |--DOT -> . [1:22]",
-            "|   |   |   |--DOT -> . [1:11]",
-            "|   |   |   |   |--IDENT -> com [1:8]",
-            "|   |   |   |   `--IDENT -> puppycrawl [1:12]",
-            "|   |   |   `--IDENT -> tools [1:23]",
-            "|   |   `--IDENT -> checkstyle [1:29]",
-            "|   `--IDENT -> main [1:40]",
-            "`--SEMI -> ; [1:44]",
-            "CLASS_DEF -> CLASS_DEF [3:0]",
-            "|--MODIFIERS -> MODIFIERS [3:0]",
-            "|   |--BLOCK_COMMENT_BEGIN -> /* [2:0]",
-            "|   |   |--COMMENT_CONTENT -> comment [2:2]",
-            "|   |   `--BLOCK_COMMENT_END -> */ [2:8]",
-            "|   `--LITERAL_PUBLIC -> public [3:0]",
-            "|--LITERAL_CLASS -> class [3:7]",
-            "|--IDENT -> InputMain [3:13]",
-            "`--OBJBLOCK -> OBJBLOCK [3:23]",
-            "    |--LCURLY -> { [3:23]",
-            "    `--RCURLY -> } [4:0]",
-            "CLASS_DEF -> CLASS_DEF [5:0]",
-            "|--MODIFIERS -> MODIFIERS [5:0]",
-            "|--LITERAL_CLASS -> class [5:0]",
-            "|--IDENT -> InputMainInner [5:6]",
-            "`--OBJBLOCK -> OBJBLOCK [5:21]",
-            "    |--LCURLY -> { [5:21]",
-            "    `--RCURLY -> } [6:0]");
+            "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
+            "|--PACKAGE_DEF -> package [1:0]",
+            "|   |--ANNOTATIONS -> ANNOTATIONS [1:39]",
+            "|   |--DOT -> . [1:39]",
+            "|   |   |--DOT -> . [1:28]",
+            "|   |   |   |--DOT -> . [1:22]",
+            "|   |   |   |   |--DOT -> . [1:11]",
+            "|   |   |   |   |   |--IDENT -> com [1:8]",
+            "|   |   |   |   |   `--IDENT -> puppycrawl [1:12]",
+            "|   |   |   |   `--IDENT -> tools [1:23]",
+            "|   |   |   `--IDENT -> checkstyle [1:29]",
+            "|   |   `--IDENT -> main [1:40]",
+            "|   `--SEMI -> ; [1:44]",
+            "|--CLASS_DEF -> CLASS_DEF [3:0]",
+            "|   |--MODIFIERS -> MODIFIERS [3:0]",
+            "|   |   |--BLOCK_COMMENT_BEGIN -> /* [2:0]",
+            "|   |   |   |--COMMENT_CONTENT -> comment [2:2]",
+            "|   |   |   `--BLOCK_COMMENT_END -> */ [2:8]",
+            "|   |   `--LITERAL_PUBLIC -> public [3:0]",
+            "|   |--LITERAL_CLASS -> class [3:7]",
+            "|   |--IDENT -> InputMain [3:13]",
+            "|   `--OBJBLOCK -> OBJBLOCK [3:23]",
+            "|       |--LCURLY -> { [3:23]",
+            "|       `--RCURLY -> } [4:0]",
+            "`--CLASS_DEF -> CLASS_DEF [5:0]",
+            "    |--MODIFIERS -> MODIFIERS [5:0]",
+            "    |--LITERAL_CLASS -> class [5:0]",
+            "    |--IDENT -> InputMainInner [5:6]",
+            "    `--OBJBLOCK -> OBJBLOCK [5:21]",
+            "        |--LCURLY -> { [5:21]",
+            "        `--RCURLY -> } [6:0]");
 
         Main.main("-T", getPath("InputMain.java"));
         assertEquals(expected, systemOut.getCapturedData(), "Unexpected output log");
@@ -1061,9 +1073,11 @@ public class MainTest {
     public void testPrintSuppressionOption(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
         final String expected = addEndOfLine(
-            "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]",
-                "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]/LITERAL_CLASS");
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]"
+                        + "/MODIFIERS",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']"
+                        + "]/LITERAL_CLASS");
 
         Main.main(getPath("InputMainSuppressionsStringPrinter.java"), "-s", "3:1");
         assertEquals(expected, systemOut.getCapturedData(), "Unexpected output log");
@@ -1074,16 +1088,20 @@ public class MainTest {
     public void testPrintSuppressionAndTabWidthOption(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
         final String expected = addEndOfLine(
-            "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]/OBJBLOCK"
+            "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputMainSuppressionsStringPrinter']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='getName']]"
                     + "/SLIST/VARIABLE_DEF[./IDENT[@text='var']]",
-                "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]/OBJBLOCK"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputMainSuppressionsStringPrinter']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='getName']]/SLIST"
                     + "/VARIABLE_DEF[./IDENT[@text='var']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]/OBJBLOCK"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputMainSuppressionsStringPrinter']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='getName']]/SLIST"
                     + "/VARIABLE_DEF[./IDENT[@text='var']]/TYPE",
-                "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]/OBJBLOCK"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputMainSuppressionsStringPrinter']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='getName']]/SLIST"
                     + "/VARIABLE_DEF[./IDENT[@text='var']]/TYPE/LITERAL_INT");
 
@@ -1157,80 +1175,92 @@ public class MainTest {
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"MissingJavadocMethodCheck\"",
-                "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"LeftCurlyCheck\"",
-                "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
                     + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
                     + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
                     + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
                     + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
                     + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
                     + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
                     + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
                     + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
                     + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
                     + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
                     + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
                     + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
                     + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
                     + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
                     + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
                     + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
                     + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
                     + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/CLASS_DEF[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
+                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
                     + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
                     + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
@@ -1255,18 +1285,21 @@ public class MainTest {
             "<suppress-xpath",
             "       files=\"InputMainGenerateXpathSuppressions.java\"",
             "       checks=\"ExplicitInitializationCheck\"",
-            "       query=\"/CLASS_DEF[./IDENT[@text='InputMainGenerateXpathSuppressions']]"
+            "       query=\"/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputMainGenerateXpathSuppressions']]"
                 + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='low']\"/>",
             "<suppress-xpath",
             "       files=\"InputMainGenerateXpathSuppressions.java\"",
             "       checks=\"IllegalThrowsCheck\"",
-            "       query=\"/CLASS_DEF[./IDENT[@text='InputMainGenerateXpathSuppressions']]"
+            "       query=\"/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputMainGenerateXpathSuppressions']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/LITERAL_THROWS"
                 + "/IDENT[@text='RuntimeException']\"/>",
             "<suppress-xpath",
             "       files=\"InputMainGenerateXpathSuppressions.java\"",
             "       checks=\"NestedForDepthCheck\"",
-            "       query=\"/CLASS_DEF[./IDENT[@text='InputMainGenerateXpathSuppressions']]"
+            "       query=\"/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='InputMainGenerateXpathSuppressions']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_FOR/SLIST"
                 + "/LITERAL_FOR/SLIST/LITERAL_FOR\"/>",
             "</suppressions>");
@@ -1302,7 +1335,7 @@ public class MainTest {
                 "<suppress-xpath",
                 "       files=\"InputMainGenerateXpathSuppressionsTabWidth.java\"",
                 "       checks=\"ExplicitInitializationCheck\"",
-                "       query=\"/CLASS_DEF[./IDENT["
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                     + "@text='InputMainGenerateXpathSuppressionsTabWidth']]"
                     + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='low']\"/>",
                 "</suppressions>");
@@ -1330,7 +1363,7 @@ public class MainTest {
                 "<suppress-xpath",
                 "       files=\"InputMainGenerateXpathSuppressionsTabWidth.java\"",
                 "       checks=\"ExplicitInitializationCheck\"",
-                "       query=\"/CLASS_DEF[./IDENT["
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                     + "@text='InputMainGenerateXpathSuppressionsTabWidth']]"
                     + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='low']\"/>",
                 "</suppressions>");
