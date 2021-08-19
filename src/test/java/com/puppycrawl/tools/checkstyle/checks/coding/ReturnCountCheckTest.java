@@ -57,7 +57,8 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
             "45:17: " + getCheckMessage(MSG_KEY_VOID, 6, 1),
             "59:5: " + getCheckMessage(MSG_KEY, 7, 2),
         };
-        verify(checkConfig, getPath("InputReturnCountSwitches.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputReturnCountSwitches.java"), expected);
     }
 
     @Test
@@ -72,7 +73,8 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
             "45:17: " + getCheckMessage(MSG_KEY_VOID, 6, 1),
             "59:5: " + getCheckMessage(MSG_KEY, 7, 2),
         };
-        verify(checkConfig, getPath("InputReturnCountSwitches2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputReturnCountSwitches2.java"), expected);
     }
 
     @Test
@@ -86,7 +88,8 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
             "51:5: " + getCheckMessage(MSG_KEY, 2, 1),
             "59:57: " + getCheckMessage(MSG_KEY, 2, 1),
         };
-        verify(checkConfig, getPath("InputReturnCountLambda.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputReturnCountLambda.java"), expected);
     }
 
     @Test
@@ -96,7 +99,8 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "43:42: " + getCheckMessage(MSG_KEY, 3, 2),
         };
-        verify(checkConfig, getPath("InputReturnCountLambda2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputReturnCountLambda2.java"), expected);
     }
 
     @Test
@@ -109,7 +113,8 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
             "50:5: " + getCheckMessage(MSG_KEY, 4, 2),
             "65:5: " + getCheckMessage(MSG_KEY, 3, 2),
         };
-        verify(checkConfig, getPath("InputReturnCountLambda3.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputReturnCountLambda3.java"), expected);
     }
 
     @Test
@@ -117,7 +122,8 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(ReturnCountCheck.class);
         checkConfig.addProperty("tokens", "LITERAL_RETURN");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputReturnCountLambda4.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputReturnCountLambda4.java"), expected);
     }
 
     @Test
@@ -156,7 +162,8 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
             "40:5: " + getCheckMessage(MSG_KEY, 3, 2),
             "51:5: " + getCheckMessage(MSG_KEY_VOID, 2, 0),
         };
-        verify(checkConfig, getPath("InputReturnCountVoid.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputReturnCountVoid.java"), expected);
     }
 
     /**

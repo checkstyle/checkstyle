@@ -25,7 +25,7 @@ public class InputUnnecessaryParentheses15Extensions
 
 }
 
-@MyAnnotation1(name = ("ABC" + "DEF"), version = (1)) // violation
+@MyAnnotation1(name = ("ABC" + "DEF"), version = (1)) // 2 violations
 class AnnotationWithUnnecessaryParentheses
 {
 

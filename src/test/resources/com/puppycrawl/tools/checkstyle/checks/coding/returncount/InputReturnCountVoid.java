@@ -15,13 +15,13 @@ class InputReturnCountVoid {
         return;
     }
 
-    public void method() {
+    public void method() { // violation
         if (true) {
             return;
         }
     }
 
-    public void method2() {
+    public void method2() { // violation
         if (true) {
             return;
         }
@@ -37,7 +37,7 @@ class InputReturnCountVoid {
         return 0;
     }
 
-    public int method4() {
+    public int method4() { // violation
         if (true) {
             return 0;
         }
@@ -48,7 +48,7 @@ class InputReturnCountVoid {
         return 0;
     }
 
-    void method5() {
+    void method5() { // violation
         if (true) {
             return;
         }

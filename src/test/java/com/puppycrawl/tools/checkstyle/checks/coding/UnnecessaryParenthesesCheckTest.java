@@ -98,7 +98,8 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "106:14: " + getCheckMessage(MSG_STRING, "\"12345678901234567890123\""),
         };
 
-        verify(checkConfig, getPath("InputUnnecessaryParenthesesOperatorsAndCasts.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputUnnecessaryParenthesesOperatorsAndCasts.java"), expected);
     }
 
     @Test
@@ -109,7 +110,8 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "28:23: " + getCheckMessage(MSG_EXPR),
             "28:51: " + getCheckMessage(MSG_LITERAL, "1"),
         };
-        verify(checkConfig, getPath("InputUnnecessaryParentheses15Extensions.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputUnnecessaryParentheses15Extensions.java"), expected);
     }
 
     @Test
@@ -127,7 +129,8 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "48:25: " + getCheckMessage(MSG_LAMBDA),
             "51:31: " + getCheckMessage(MSG_LAMBDA),
         };
-        verify(checkConfig, getPath("InputUnnecessaryParenthesesLambdas.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputUnnecessaryParenthesesLambdas.java"), expected);
     }
 
     @Test
@@ -147,7 +150,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "53:28: " + getCheckMessage(MSG_ASSIGN),
             "58:28: " + getCheckMessage(MSG_ASSIGN),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath(
                         "InputUnnecessaryParenthesesCheckSwitchExpression.java"),
                 expected);
@@ -167,10 +170,10 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
                 + "           that\""),
             "24:20: " + getCheckMessage(MSG_STRING, "\"\\n     "
                 + "           other\""),
-            "26:27: " + getCheckMessage(MSG_STRING, "\"\\n                this i...\""),
-            "27:40: " + getCheckMessage(MSG_STRING, "\"\\n                and an...\""),
-            };
-        verify(checkConfig,
+            "27:27: " + getCheckMessage(MSG_STRING, "\"\\n                this i...\""),
+            "28:40: " + getCheckMessage(MSG_STRING, "\"\\n                and an...\""),
+        };
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath(
                 "InputUnnecessaryParenthesesCheckTextBlocks.java"),
             expected);
@@ -223,7 +226,8 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "145:20: " + getCheckMessage(MSG_EXPR),
         };
 
-        verify(checkConfig, getPath("InputUnnecessaryParenthesesIfStatement.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputUnnecessaryParenthesesIfStatement.java"), expected);
     }
 
 }

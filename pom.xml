@@ -1588,7 +1588,6 @@
 
                 <exclude>**/ParameterNumberCheckTest.class</exclude>
 
-                <exclude>**/ReturnCountCheckTest.class</exclude>
 
 
                 <exclude>**/SingleSpaceSeparatorCheckTest.class</exclude>
@@ -1769,7 +1768,6 @@
 
                 <exclude>**/RegexpSinglelineCheckTest.class</exclude>
 
-                <exclude>**/UnnecessaryParenthesesCheckTest.class</exclude>
 
                 <exclude>**/SuppressWithPlainTextCommentFilterTest.class</exclude>
 
