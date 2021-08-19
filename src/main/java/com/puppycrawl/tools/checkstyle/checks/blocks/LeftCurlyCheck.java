@@ -299,7 +299,7 @@ public class LeftCurlyCheck
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST startToken;
-        DetailAST brace;
+        final DetailAST brace;
 
         switch (ast.getType()) {
             case TokenTypes.CTOR_DEF:
@@ -315,12 +315,7 @@ public class LeftCurlyCheck
             case TokenTypes.ENUM_CONSTANT_DEF:
             case TokenTypes.RECORD_DEF:
                 startToken = skipModifierAnnotations(ast);
-                final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
-                brace = objBlock;
-
-                if (objBlock != null) {
-                    brace = objBlock.getFirstChild();
-                }
+                brace = ast.findFirstToken(TokenTypes.OBJBLOCK);
                 break;
             case TokenTypes.LITERAL_WHILE:
             case TokenTypes.LITERAL_CATCH:

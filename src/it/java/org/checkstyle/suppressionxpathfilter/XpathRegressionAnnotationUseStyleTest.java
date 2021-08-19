@@ -53,9 +53,11 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleOne']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleOne']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='SuppressWarnings']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleOne']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleOne']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='SuppressWarnings']]/AT"
         );
 
@@ -81,12 +83,16 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleTwo']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleTwo']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleTwo']]",
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleTwo']]"
                         + "/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleTwo']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleTwo']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='Deprecated']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleTwo']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleTwo']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='Deprecated']]/AT"
         );
 
@@ -111,14 +117,18 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleThree']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleThree']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleThree']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleThree']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleThree']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleThree']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/MODIFIERS"
                         + "/ANNOTATION[./IDENT[@text='SuppressWarnings']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleThree']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleThree']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/MODIFIERS"
                         + "/ANNOTATION[./IDENT[@text='SuppressWarnings']]/AT"
         );
@@ -145,7 +155,8 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleFour']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleFour']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='SuppressWarnings']]"
                         + "/ANNOTATION_ARRAY_INIT/RCURLY"
         );
@@ -173,12 +184,16 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleFive']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleFive']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleFive']]",
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleFive']]"
                          + "/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleFive']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleFive']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='SuppressWarnings']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleFive']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleFive']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='SuppressWarnings']]/AT"
         );
 
@@ -205,12 +220,16 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleSix']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleSix']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleSix']]",
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleSix']]"
                         + "/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleSix']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleSix']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='SuppressWarnings']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleSix']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleSix']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='SuppressWarnings']]/AT"
         );
 
@@ -233,9 +252,11 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleSeven']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleSeven']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='SuppressWarnings']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleSeven']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleSeven']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='SuppressWarnings']]/AT"
         );
 
@@ -261,7 +282,8 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleEight']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationUseStyleEight']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='SuppressWarnings']]"
                         + "/ANNOTATION_ARRAY_INIT/COMMA"
         );
