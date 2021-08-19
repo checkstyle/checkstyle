@@ -52,7 +52,7 @@ public class MultipleVariableDeclarationsCheckTest extends AbstractModuleTestSup
             "42:44: " + getCheckMessage(MSG_MULTIPLE),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                getPath("InputMultipleVariableDeclarations.java"),
                expected);
     }

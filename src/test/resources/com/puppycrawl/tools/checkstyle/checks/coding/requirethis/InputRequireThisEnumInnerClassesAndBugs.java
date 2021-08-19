@@ -23,7 +23,7 @@ public class InputRequireThisEnumInnerClassesAndBugs {
     void method2(int i) {
         i++;
         this.i = i;
-        method1();
+        method1(); // violation
         try {
             this.method1();
         }
@@ -37,7 +37,7 @@ public class InputRequireThisEnumInnerClassesAndBugs {
 
     <T> void method3()
     {
-        i = 3;
+        i = 3; // violation
     }
 
     void method4() {
@@ -55,14 +55,14 @@ enum MyEnum
     {
         void doSomething()
         {
-            z = 1;
+            z = 1; // violation
         }
     };
 
     int z;
     private MyEnum()
     {
-        z = 0;
+        z = 0; // violation
     }
 }
 
@@ -119,16 +119,16 @@ class Issue257 {
 class Issue2240 {
     int i;
     void foo() {
-        i++;
-        i++; int i = 1; i++;
-        instanceMethod();
+        i++; // violation
+        i++; int i = 1; i++; // violation
+        instanceMethod(); // violation
     }
     void instanceMethod() {};
 
     class Nested {
         void bar() {
-            instanceMethod();
-            i++;
+            instanceMethod(); // violation
+            i++; // violation
         }
     }
 }
@@ -140,7 +140,7 @@ class Issue2539{
 
     void bar() {
         foo(1);
-        foo();
+        foo(); // violation
     }
 }
 class NestedRechange {
@@ -148,7 +148,7 @@ class NestedRechange {
 
     NestedRechange() {
         String s = "t";
-        s = s.substring(0);
+        s = s.substring(0); // violation
     }
 
     private static class NestedStatic {
@@ -174,13 +174,13 @@ class NestedFrames {
                 }
             }
         }
-        return a + a * a;
+        return a + a * a; // 3 violations
     }
 
     public int oneReturnInMethod3() {
         for (int b = 0; b < 10; b++) {
         }
-        return b + b * b;
+        return b + b * b; // 3 violations
     }
     final NestedFrames NestedFrames = new NestedFrames();
 }

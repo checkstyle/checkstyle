@@ -29,7 +29,7 @@ public class InputRequireThisAnonymousEmpty {
             }
 
             public int doSideEffect() {
-                return bar;
+                return bar; // violation
             }
         };
 
@@ -52,7 +52,7 @@ public class InputRequireThisAnonymousEmpty {
             int foobar = 1;
             @Override
             public void fooEmpty() {
-                foobar++;
+                foobar++; // violation
             }
         };
     }

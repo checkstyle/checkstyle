@@ -121,13 +121,13 @@ class Issue22402 {
     void foo() {
         i++;
         i++; int i = 1; i++;
-        instanceMethod();
+        instanceMethod(); // violation
     }
     void instanceMethod() {};
 
     class Nested {
         void bar() {
-            instanceMethod();
+            instanceMethod(); // violation
             i++;
         }
     }
@@ -140,7 +140,7 @@ class Issue25392{
 
     void bar() {
         foo(1);
-        foo();
+        foo(); // violation
     }
 }
 
