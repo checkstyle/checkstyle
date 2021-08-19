@@ -39,7 +39,7 @@ public class InputReturnCountLambda3 {
         });
     }
 
-    Optional<Object> methodWithThreeReturnInLambda(int number) {
+    Optional<Object> methodWithThreeReturnInLambda(int number) { // violation
         return Optional.of(number).map(i -> {
             if (i == 42) return true;
             else if (i == 7) return true;
@@ -47,7 +47,7 @@ public class InputReturnCountLambda3 {
         });
     }
 
-    int methodWithTwoReturnWithLambdas(final int number) {
+    int methodWithTwoReturnWithLambdas(final int number) { // violation
         if (hashCode() > 0) {
             new Thread(
                 () -> {
@@ -62,7 +62,7 @@ public class InputReturnCountLambda3 {
         }
     }
 
-    Supplier<Supplier<Integer>> methodWithOneReturnPerLambda() {
+    Supplier<Supplier<Integer>> methodWithOneReturnPerLambda() { // violation
         return () -> {
             return () -> {
                 return 1;
