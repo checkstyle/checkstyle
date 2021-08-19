@@ -42,32 +42,32 @@ public class InputMagicNumber_3 {
         int int_var2 = (2); // violation
         long long_var1 = 0L; // violation
         long long_var2 = 0l; // violation
-        double double_var1 = 0D; // ok
-        double double_var2 = 0d; // ok
+        double double_var1 = 0D; // ok // violation
+        double double_var2 = 0d; // ok // violation
 
         int[] int_array = new int[2]; // violation
 
-        int_var1 = 1 + 2; // violation
+        int_var1 = 1 + 2; // 2 violations
         int_var1 += 1;  // violation
-        double_var1 = 1.0 + 2.0; // violation
+        double_var1 = 1.0 + 2.0; // 2 violations
 
-        for (int i = 0; i < 2; i++); // violation
+        for (int i = 0; i < 2; i++); // 2 violations
 
-        if (1 < 2); // violation
+        if (1 < 2); // 2 violations
 
-        if (1.0 < 2.0); // violation
+        if (1.0 < 2.0); // 2 violations
 
 
         int int_magic1 = 3_000; // violation
         double double_magic1 = 1.5_0; // violation
-        int int_magic2 = (3 + 4); // violation
+        int int_magic2 = (3 + 4); // 2 violations
 
         int_array = new int[3]; // violation
 
         int_magic1 += 3; // violation
         double_magic1 *= 1.5; // violation
 
-        for (int j = 3; j < 5; j += 3) { // violation
+        for (int j = 3; j < 5; j += 3) { // 3 violations
             int_magic1++;
         }
 

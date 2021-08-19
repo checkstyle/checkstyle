@@ -54,14 +54,14 @@ public class InputMagicNumber {
 
         int int_magic1 = 3_000; // violation
         double double_magic1 = 1.5_0; // violation
-        int int_magic2 = (3 + 4);  // violation
+        int int_magic2 = (3 + 4);  // 2 violations
 
         int_array = new int[3];  // violation
 
         int_magic1 += 3;   // violation
         double_magic1 *= 1.5; // violation
 
-        for (int j = 3; j < 5; j += 3) {  // violation
+        for (int j = 3; j < 5; j += 3) {  // 3 violations
             int_magic1++;
         }
 
@@ -154,7 +154,7 @@ class InputComplexButNotFlagged
     public final Integer DefaultInit = new Integer(27); // violation
     public final int SpecsPerDay = 24 * 60 * 60, SpecialRatio = 4 / 3;
     public final javax.swing.border.Border StdBorder =
-        javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3); // violation
+        javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3); // 4 violations
 }
 
 enum MyEnum2
@@ -189,7 +189,7 @@ class TestHashCodeMethod {
     }
 
     {
-        int y=37;
+        int y=37; // violation
     }
 
     public TestHashCodeMethod() {

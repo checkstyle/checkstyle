@@ -54,14 +54,14 @@ public class InputMagicNumber_5 {
 
         int int_magic1 = 3_000; // violation
         double double_magic1 = 1.5_0;
-        int int_magic2 = (3 + 4); // violation
+        int int_magic2 = (3 + 4); // 2 violations
 
         int_array = new int[3]; // violation
 
         int_magic1 += 3; // violation
         double_magic1 *= 1.5;
 
-        for (int j = 3; j < 5; j += 3) { // violation
+        for (int j = 3; j < 5; j += 3) { // 3 violations
             int_magic1++;
         }
 
@@ -112,7 +112,7 @@ class Signed_5
     public static final int CONST_PLUS_THREE = +3;
     public static final int CONST_MINUS_TWO = -2;
     private int mPlusThree = +3; // violation
-    private int mMinusTwo = -2; // violation
+    private int mMinusTwo = -2;
     private double mPlusDecimal = +3.5;
     private double mMinusDecimal = -2.5;
 }
