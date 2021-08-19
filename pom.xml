@@ -1664,7 +1664,6 @@
 
                 <exclude>**/NoCodeInFileCheckTest.class</exclude>
 
-                <exclude>**/MagicNumberCheckTest.class</exclude>
 
                 <exclude>**/HexFloatsTest.class</exclude>
 
