@@ -6,4 +6,4 @@ violateExecutionOnNonTightHtml = (default)false
 */
 
 /** @deprecated */
-package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
+package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated; // violation

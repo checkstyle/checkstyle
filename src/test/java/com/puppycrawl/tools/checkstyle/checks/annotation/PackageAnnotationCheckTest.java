@@ -45,7 +45,8 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("package-info.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("package-info.java"), expected);
     }
 
     @Test
@@ -62,7 +63,8 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputPackageAnnotation.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputPackageAnnotation.java"), expected);
     }
 
     @Test
@@ -73,7 +75,8 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
             "10:1: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, getNonCompilablePath("InputPackageAnnotation2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getNonCompilablePath("InputPackageAnnotation2.java"), expected);
     }
 
 }

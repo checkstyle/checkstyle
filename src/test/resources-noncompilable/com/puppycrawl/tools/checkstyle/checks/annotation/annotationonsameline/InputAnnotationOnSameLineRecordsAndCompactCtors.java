@@ -1,11 +1,14 @@
+/*
+AnnotationOnSameLine
+tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, \
+         VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationonsameline;
 
-/* Config:
- *
- * tokens = {CLASS_DEF , INTERFACE_DEF , ENUM_DEF , METHOD_DEF , CTOR_DEF , VARIABLE_DEF,
- *  RECORD_DEF, COMPACT_CTOR_DEF}
- */
 public class InputAnnotationOnSameLineRecordsAndCompactCtors {
     @NonNull1 // violation
     public record MyRecord1() {
