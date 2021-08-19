@@ -15,14 +15,14 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 public class InputUnnecessaryParenthesesOperatorsAndCasts {
     int f1() {
         int x = 0;
-        for (int i = (0+1); ((i) < (6+6)); i += (1+0)) { // violation
+        for (int i = (0+1); ((i) < (6+6)); i += (1+0)) { // 4 violations
             x += (i + 100); // violation
-            (x) += (i + 100/**comment test*/); // violation
+            (x) += (i + 100/**comment test*/); // 2 violations
             x = (x + i + 100); // violation
-            (x) = (x + i + 100); // violation
+            (x) = (x + i + 100); // 2 violations
         }
 
-        for (int i = (0+1); (i) < ((6+6)); i += (1+0)) { // violation
+        for (int i = (0+1); (i) < ((6+6)); i += (1+0)) { // 3 violations
             System.identityHashCode("hi");
         }
 
@@ -46,15 +46,15 @@ public class InputUnnecessaryParenthesesOperatorsAndCasts {
         a = (a + b) * (c + d);
         b = ((((a + b) * (c + d)))); // violation
         c = (((a) <= b)) ? 0 : 1; // violation
-        d = (a) + (b) * (600) / (int) (12.5f) + (int) (arg2); // violation
-        e = ("this") + ("that") + ("is" + "other"); // violation
-        f = ("this is a really, really long string that should be truncated."); // violation
+        d = (a) + (b) * (600) / (int) (12.5f) + (int) (arg2); // 5 violations
+        e = ("this") + ("that") + ("is" + "other"); // 2 violations
+        f = ("this is a really, really long string that should be truncated."); // 2 violations
 
         return (x + a + b + d); // violation
     }
 
     private boolean f3() {
-        int x = f2((1), (13.5)); // violation
+        int x = f2((1), (13.5)); // 2 violations
         boolean b = (true); // violation
         return (b); // violation
     }
@@ -91,7 +91,7 @@ public class InputUnnecessaryParenthesesOperatorsAndCasts {
         TypeB b = (TypeB) a;
         TypeC c = ((TypeC) a); // violation
         int r = 12345;
-        r <<= (3); // violation
+        r <<= (3); // 2 violations
         TypeParameterized<String> d = ((TypeParameterized<String>) a); // violation
     }
 
@@ -103,7 +103,7 @@ public class InputUnnecessaryParenthesesOperatorsAndCasts {
     private int f7() {
         String f;
 
-        f = ("12345678901234567890123"); // violation
+        f = ("12345678901234567890123"); // 2 violations
 
         return 0;
     }

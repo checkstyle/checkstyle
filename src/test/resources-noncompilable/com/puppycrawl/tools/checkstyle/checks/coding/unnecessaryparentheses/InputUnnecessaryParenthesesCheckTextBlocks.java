@@ -16,15 +16,16 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 
 public class InputUnnecessaryParenthesesCheckTextBlocks {
     void method() {
-        String string1 = ("this") + ("that") + ("other"); // violation
+        String string1 = ("this") + ("that") + ("other"); // 3 violations
         String string2 = ("""
-                this""")
+                this""") // violation above
                 + ("""
-                that""")
+                that""") // violation above
                 + ("""
-                other"""); // should be violation
+                other"""); // violation above
+        // violation below
         String string3 = ("""
                 this is a test.""") + ("""
-                and another line""");
+                and another line"""); // violation above
     }
 }

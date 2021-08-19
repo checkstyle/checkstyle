@@ -42,7 +42,7 @@ public class InputUnnecessaryParenthesesLambdas {
                     return t1 -> t2 -> apply(t1, t2);
         }
         default Function1<T1, CheckedFunction1<T2, R>> curried2() {
-            return (t1) -> (t2) -> apply(t1, t2); // violation
+            return (t1) -> (t2) -> apply(t1, t2); // 2 violations
         }
         default Function1<T1, CheckedFunction1<T2, R>> curried3() {
             return (t1) -> t2 -> apply(t1, t2); // violation
