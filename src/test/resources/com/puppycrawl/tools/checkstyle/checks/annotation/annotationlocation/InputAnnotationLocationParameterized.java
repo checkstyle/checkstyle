@@ -17,13 +17,13 @@ class InputAnnotationLocationParameterized {
 
     @Annotation void singleParameterless() {} // violation
 
-    @Annotation @Annotation void multipleParameterless() {} // violation
+    @Annotation @Annotation void multipleParameterless() {} // 2 violations
 
     @Annotation("") void parameterized() {}
 
     @Annotation(value = "") void namedParameterized() {}
 
-    @Annotation @Annotation("") @Annotation(value = "") void multiple() {} // violation
+    @Annotation @Annotation("") @Annotation(value = "") void multiple() {} // 3 violations
 
     @Annotation("") @Annotation(value = "") void multipleParametrized() {} // violation
 
