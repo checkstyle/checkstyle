@@ -30,22 +30,22 @@ class InputHiddenField5
         int hidden = 0; // violation
     }
 
-    public InputHiddenField5(int hidden) //parameter shadows field
+    public InputHiddenField5(int hidden) //parameter shadows field // violation
     {
     }
 
     public void shadow()
     {
-        int hidden = 0; //shadows field
+        int hidden = 0; //shadows field // violation
     }
 
     public void shadowFor()
     {
-        for (int hidden = 0; hidden < 1; hidden++) { //shadows field
+        for (int hidden = 0; hidden < 1; hidden++) { //shadows field // violation
         }
     }
 
-    public void shadowParam(int hidden) //parameter shadows field
+    public void shadowParam(int hidden) //parameter shadows field // violation
     {
     }
 
@@ -55,43 +55,43 @@ class InputHiddenField5
 
         public Inner()
         {
-            int innerHidden = 0; //shadows field
+            int innerHidden = 0; //shadows field // violation
         }
 
-        public Inner(int innerHidden) //shadows field
+        public Inner(int innerHidden) //shadows field // violation
         {
         }
 
         private void innerShadow()
         {
-            int innerHidden = 0; //shadows inner field
-            int hidden = 0; //shadows outer field
+            int innerHidden = 0; //shadows inner field // violation
+            int hidden = 0; //shadows outer field // violation
         }
 
         private void innerShadowFor()
         {
-            for (int innerHidden = 0; innerHidden < 1; innerHidden++) {
+            for (int innerHidden = 0; innerHidden < 1; innerHidden++) { // violation
             }
             //shadows outer field
-            for (int hidden = 0; hidden < 1; hidden++) {
+            for (int hidden = 0; hidden < 1; hidden++) { // violation
             }
         }
 
         private void shadowParam(
-            int innerHidden, //parameter shadows inner field
-            int hidden //parameter shadows outer field
+            int innerHidden, //parameter shadows inner field // violation
+            int hidden //parameter shadows outer field // violation
         )
         {
         }
 
         {
-            int innerHidden = 0;//shadows inner field
-            int hidden = 0; //shadows outer field
+            int innerHidden = 0;//shadows inner field // violation
+            int hidden = 0; //shadows outer field // violation
         }
     }
 
     {
-        int hidden = 0;//shadows field
+        int hidden = 0;//shadows field // violation
     }
 }
 
@@ -115,13 +115,13 @@ class PropertySetter15
     }
 
     /** violation - incorrect method name */
-    public void setprop(int prop)
+    public void setprop(int prop) // violation
     {
         this.prop = prop;
     }
 
     /** violation - more than one parameter */
-    public void setProp(int prop, int extra)
+    public void setProp(int prop, int extra) // violation
     {
         this.prop = prop;
     }
@@ -133,7 +133,7 @@ class PropertySetter25
     private int prop;
 
     /** violation - not a void method */
-    public int setProp(int prop)
+    public int setProp(int prop) // violation
     {
         this.prop = prop;
         return 0;
@@ -147,21 +147,21 @@ class StaticFields5
 
     public static void staticMethod()
     {
-        int hidden;
+        int hidden; // violation
     }
 
     public void method()
     {
-        int hidden;
+        int hidden; // violation
     }
 
     static
     {
-        int hidden;
+        int hidden; // violation
     }
 
     {
-        int hidden;
+        int hidden; // violation
     }
 }
 
@@ -188,7 +188,7 @@ class StaticMethods5
         void useX(int x) {
             x++;
         }
-        void useY(int y) {
+        void useY(int y) { // violation
             y++;
         }
     }
@@ -209,7 +209,7 @@ enum HiddenEnum15
         public void doSomething()
         {
             //Should be flagged as hiding enum constant member
-            int hidden = 0;
+            int hidden = 0; // violation
         }
     };
 
@@ -219,27 +219,27 @@ enum HiddenEnum15
     /**
      * ctor parameter hides member
      */
-    HiddenEnum15(int hidden)
+    HiddenEnum15(int hidden) // violation
     {
     }
 
     public void doSomething()
     {
         //Should be flagged as hiding static member
-        int hidden = 0;
+        int hidden = 0; // violation
     }
 
     public static void doSomethingStatic()
     {
         //Should be flagged as hiding static member
-        int hiddenStatic = 0;
+        int hiddenStatic = 0; // violation
     }
 }
 
 // we should ignore this if user wants (ignoreAbstractMethods is true)
 abstract class InputHiddenFieldBug10845125 {
     String x;
-    public abstract void methodA(String x);
+    public abstract void methodA(String x); // violation
 }
 
 class Bug33709465 {

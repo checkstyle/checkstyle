@@ -67,7 +67,8 @@ public class HiddenFieldCheckTest
             "231:55: " + getCheckMessage(MSG_KEY, "someObject"),
             "239:52: " + getCheckMessage(MSG_KEY, "someObject"),
         };
-        verify(checkConfig, getPath("InputHiddenFieldLambdas.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHiddenFieldLambdas.java"), expected);
     }
 
     @Test
@@ -81,7 +82,8 @@ public class HiddenFieldCheckTest
             "46:53: " + getCheckMessage(MSG_KEY, "other"),
             "58:26: " + getCheckMessage(MSG_KEY, "someField"),
         };
-        verify(checkConfig, getPath("InputHiddenFieldStaticVisibility.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHiddenFieldStaticVisibility.java"), expected);
     }
 
     @Test
@@ -110,7 +112,8 @@ public class HiddenFieldCheckTest
             "229:13: " + getCheckMessage(MSG_KEY, "hidden"),
             "235:13: " + getCheckMessage(MSG_KEY, "hiddenStatic"),
         };
-        verify(checkConfig, getPath("InputHiddenField1.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHiddenField1.java"), expected);
     }
 
     @Test
@@ -155,7 +158,8 @@ public class HiddenFieldCheckTest
             "290:42: " + getCheckMessage(MSG_KEY, "prop2"),
             "302:19: " + getCheckMessage(MSG_KEY, "i"),
         };
-        verify(checkConfig, getPath("InputHiddenField2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHiddenField2.java"), expected);
     }
 
     /** Tests ignoreFormat property. */
@@ -197,7 +201,8 @@ public class HiddenFieldCheckTest
             "279:29: " + getCheckMessage(MSG_KEY, "prop"),
             "290:42: " + getCheckMessage(MSG_KEY, "prop2"),
         };
-        verify(checkConfig, getPath("InputHiddenField3.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHiddenField3.java"), expected);
     }
 
     /** Tests ignoreSetter property. */
@@ -240,7 +245,8 @@ public class HiddenFieldCheckTest
             "265:41: " + getCheckMessage(MSG_KEY, "prop"),
             "290:42: " + getCheckMessage(MSG_KEY, "prop2"),
         };
-        verify(checkConfig, getPath("InputHiddenField4.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHiddenField4.java"), expected);
     }
 
     /** Tests ignoreSetter and setterCanReturnItsClass properties. */
@@ -282,7 +288,8 @@ public class HiddenFieldCheckTest
             "235:13: " + getCheckMessage(MSG_KEY, "hiddenStatic"),
             "242:41: " + getCheckMessage(MSG_KEY, "x"),
         };
-        verify(checkConfig, getPath("InputHiddenField5.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHiddenField5.java"), expected);
     }
 
     /** Tests ignoreConstructorParameter property. */
@@ -326,7 +333,8 @@ public class HiddenFieldCheckTest
             "289:42: " + getCheckMessage(MSG_KEY, "prop2"),
             "301:19: " + getCheckMessage(MSG_KEY, "i"),
         };
-        verify(checkConfig, getPath("InputHiddenField6.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHiddenField6.java"), expected);
     }
 
     /** Test against a class with field declarations in different order. */
@@ -357,7 +365,8 @@ public class HiddenFieldCheckTest
             "137:13: " + getCheckMessage(MSG_KEY, "hidden"),
             "143:13: " + getCheckMessage(MSG_KEY, "hiddenStatic"),
         };
-        verify(checkConfig, getPath("InputHiddenFieldReorder.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHiddenFieldReorder.java"), expected);
     }
 
     @Test
@@ -402,14 +411,16 @@ public class HiddenFieldCheckTest
             "290:42: " + getCheckMessage(MSG_KEY, "prop2"),
             "302:19: " + getCheckMessage(MSG_KEY, "i"),
         };
-        verify(checkConfig, getPath("InputHiddenField7.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHiddenField7.java"), expected);
     }
 
     @Test
     public void testReceiverParameter() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(HiddenFieldCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputHiddenFieldReceiver.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHiddenFieldReceiver.java"), expected);
     }
 
     @Test
@@ -422,7 +433,7 @@ public class HiddenFieldCheckTest
             "26:39: " + getCheckMessage(MSG_KEY, "price"),
             "37:35: " + getCheckMessage(MSG_KEY, "hiddenStaticField"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath("InputHiddenFieldEnhancedInstanceof.java"), expected);
     }
 
@@ -447,7 +458,7 @@ public class HiddenFieldCheckTest
             "67:21: " + getCheckMessage(MSG_KEY, "a"),
             "71:21: " + getCheckMessage(MSG_KEY, "b"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath("InputHiddenFieldSwitchExpression.java"), expected);
     }
 
@@ -467,7 +478,7 @@ public class HiddenFieldCheckTest
             "81:21: " + getCheckMessage(MSG_KEY, "x"),
             "85:20: " + getCheckMessage(MSG_KEY, "string"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputHiddenFieldRecords.java"), expected);
     }
 

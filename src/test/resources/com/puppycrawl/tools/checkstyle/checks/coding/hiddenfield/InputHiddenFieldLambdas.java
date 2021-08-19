@@ -60,7 +60,7 @@ public class InputHiddenFieldLambdas {
     static List<String> languageCodes = Arrays.asList("de", "ja", "fr", "pt");
     static String languageCode = new String();
     {
-        languageCodes.forEach(languageCode -> String.valueOf(languageCode)); // 1 violation
+        languageCodes.forEach(languageCode -> String.valueOf(languageCode)); // violation
     }
 
     /**
@@ -110,7 +110,7 @@ public class InputHiddenFieldLambdas {
     static String note = new String();
     private void foo4() {
         List<String> acceptableNotes = Arrays.asList("C", "D", "E", "F", "G", "A", "B");
-        acceptableNotes.forEach(note -> String.valueOf(note)); // 1 violation
+        acceptableNotes.forEach(note -> String.valueOf(note)); // 1 violation // violation
     }
 
     /**
@@ -146,7 +146,7 @@ public class InputHiddenFieldLambdas {
      */
     Double doubleValue = 8.5;
     {
-        Function <Integer, Double> a =(Integer integerValue, Double doubleValue) -> { // 1 violation
+        Function <Integer, Double> a =(Integer integerValue, Double doubleValue) -> { // violation
             return  integerValue + doubleValue;
         };
         String.valueOf(a.apply(2, 2.2));
@@ -174,7 +174,7 @@ public class InputHiddenFieldLambdas {
      */
     Integer first = 1;
     {
-        Function<Integer, Character> turnToZ = (first, second) -> 'z'; // 1 violation
+        Function<Integer, Character> turnToZ = (first, second) -> 'z'; // violation
     }
 
     @FunctionalInterface
@@ -200,7 +200,7 @@ public class InputHiddenFieldLambdas {
     List<Double> simpleNumbers = Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0, 6.0);
     {
         simpleNumbers.forEach(digit -> {
-            FunctionWithOneParameter<Double> strangeAdder = (mPi -> mPi+= digit); // 1 violation
+            FunctionWithOneParameter<Double> strangeAdder = (mPi -> mPi+= digit); // violation
         });
     }
 
@@ -228,7 +228,7 @@ public class InputHiddenFieldLambdas {
      * hides other field
      */
     Object someObject = new Object();
-    FunctionWithOneParameter objectToString = (Object someObject) -> { // 1 violation
+    FunctionWithOneParameter objectToString = (Object someObject) -> { // violation
         return someObject.toString();
     };
 
@@ -236,7 +236,7 @@ public class InputHiddenFieldLambdas {
      * Example 16: lambda stored in field (with untyped parameter)
      * hides other field
      */
-    FunctionWithOneParameter otherObjectToString = someObject -> { // 1 violation
+    FunctionWithOneParameter otherObjectToString = someObject -> { // violation
         return someObject.toString();
     };
 
