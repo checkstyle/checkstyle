@@ -36,12 +36,12 @@ class InputHiddenField1
 
     public void shadow()
     {
-        int hidden = 0; //shadows field
+        int hidden = 0; //shadows field // violation
     }
 
     public void shadowFor()
     {
-        for (int hidden = 0; hidden < 1; hidden++) { //shadows field
+        for (int hidden = 0; hidden < 1; hidden++) { //shadows field // violation
         }
     }
 
@@ -55,7 +55,7 @@ class InputHiddenField1
 
         public Inner()
         {
-            int innerHidden = 0; //shadows field
+            int innerHidden = 0; //shadows field // violation
         }
 
         public Inner(int innerHidden) //shadows field
@@ -64,16 +64,16 @@ class InputHiddenField1
 
         private void innerShadow()
         {
-            int innerHidden = 0; //shadows inner field
-            int hidden = 0; //shadows outer field
+            int innerHidden = 0; //shadows inner field // violation
+            int hidden = 0; //shadows outer field // violation
         }
 
         private void innerShadowFor()
         {
-            for (int innerHidden = 0; innerHidden < 1; innerHidden++) {
+            for (int innerHidden = 0; innerHidden < 1; innerHidden++) { // violation
             }
             //shadows outer field
-            for (int hidden = 0; hidden < 1; hidden++) {
+            for (int hidden = 0; hidden < 1; hidden++) { // violation
             }
         }
 
@@ -85,13 +85,13 @@ class InputHiddenField1
         }
 
         {
-            int innerHidden = 0;//shadows inner field
-            int hidden = 0; //shadows outer field
+            int innerHidden = 0;//shadows inner field // violation
+            int hidden = 0; //shadows outer field // violation
         }
     }
 
     {
-        int hidden = 0;//shadows field
+        int hidden = 0;//shadows field // violation
     }
 }
 
@@ -147,21 +147,21 @@ class StaticFields1
 
     public static void staticMethod()
     {
-        int hidden;
+        int hidden; // violation
     }
 
     public void method()
     {
-        int hidden;
+        int hidden; // violation
     }
 
     static
     {
-        int hidden;
+        int hidden; // violation
     }
 
     {
-        int hidden;
+        int hidden; // violation
     }
 }
 
@@ -209,7 +209,7 @@ enum HiddenEnum11
         public void doSomething()
         {
             //Should be flagged as hiding enum constant member
-            int hidden = 0;
+            int hidden = 0; // violation
         }
     };
 
@@ -226,13 +226,13 @@ enum HiddenEnum11
     public void doSomething()
     {
         //Should be flagged as hiding static member
-        int hidden = 0;
+        int hidden = 0; // violation
     }
 
     public static void doSomethingStatic()
     {
         //Should be flagged as hiding static member
-        int hiddenStatic = 0;
+        int hiddenStatic = 0; // violation
     }
 }
 
