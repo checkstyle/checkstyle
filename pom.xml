@@ -1585,7 +1585,6 @@
 
                 <exclude>**/AvoidStaticImportCheckTest.class</exclude>
 
-                <exclude>**/HiddenFieldCheckTest.class</exclude>
 
                 <exclude>**/ParameterNumberCheckTest.class</exclude>
 
