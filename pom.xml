@@ -1737,7 +1737,6 @@
 
                 <exclude>**/MethodParamPadCheckTest.class</exclude>
 
-                <exclude>**/AnnotationLocationCheckTest.class</exclude>
 
                 <exclude>**/VisibilityModifierCheckTest.class</exclude>
 

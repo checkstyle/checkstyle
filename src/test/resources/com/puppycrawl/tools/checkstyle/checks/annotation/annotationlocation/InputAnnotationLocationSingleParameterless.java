@@ -25,9 +25,9 @@ class InputAnnotationLocationSingleParameterless {
 
     @Annotation(value = "") void namedParameterized() {} // violation
 
-    @Annotation @Annotation("") @Annotation(value = "") void multiple() {} // violation
+    @Annotation @Annotation("") @Annotation(value = "") void multiple() {} // 2 violations
 
-    @Annotation("") @Annotation(value = "") void multipleParametrized() {} // violation
+    @Annotation("") @Annotation(value = "") void multipleParametrized() {} // 2 violations
 
     void parameterlessSamelineInForEach() {
         for (@Annotation Object o : new Object[0]) break; //ok
