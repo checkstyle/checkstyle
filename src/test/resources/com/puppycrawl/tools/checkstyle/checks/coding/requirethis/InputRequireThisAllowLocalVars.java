@@ -15,7 +15,7 @@ class InputRequireThisAllowLocalVars { // ok
     String s2 = "foo2";
 
     InputRequireThisAllowLocalVars() {
-        s1 = "bar1"; // Violation. Requires "this".
+        s1 = "bar1"; // violation
         String s2;
         s2 = "bar2"; // No violation. Local var allowed.
     }
@@ -23,7 +23,7 @@ class InputRequireThisAllowLocalVars { // ok
     public int getS1() {
         String s1 = null;
         s1 = "bar"; // No violation
-        s1 = s1;    // Violation. "this" required here to resolve any confusion due to overlapping.
+        s1 = s1; // violation
         return 1;
     }
 
@@ -36,18 +36,18 @@ class InputRequireThisAllowLocalVars { // ok
 
     String getS2() {
         String s2 = null;
-        s2+=s2; // Violation. "this" required here to resolve any confusion due to overlapping.
+        s2+=s2; // violation
         return "return";
     }
 
     String getS2(String s2) {
-        s2 = null; // Violation. Requires "this". s2 is a param not a local var.
+        s2 = null; // violation
         return s2; // No violation. param is returned.
     }
 
     String getS2(int a) {
         String s2 = " ";
-        s2 += s2;  // Violation. "this" required here to resolve any confusion due to overlapping.
-        return s1; // Violation. Requires "this".
+        s2 += s2; // violation
+        return s1; // violation
     }
 }

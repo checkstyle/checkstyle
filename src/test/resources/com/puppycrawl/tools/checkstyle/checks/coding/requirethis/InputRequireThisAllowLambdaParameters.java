@@ -43,7 +43,7 @@ public class InputRequireThisAllowLambdaParameters {
                 new String("y = " + y);  // NO violation; y is a lambda parameter
                 new String("InputRequireThisAllowLambdaParameters.this.x = " +
                         InputRequireThisAllowLambdaParameters.this.x);
-                y=x+z++; // 1 violation for z; NO violation for y; y is a lambda parameter
+                y=x+z++; // 1 violation for z; NO violation for y; y is a lambda // violation
             };
             myConsumer.accept(x);
         }

@@ -14,7 +14,7 @@ public class InputRequireThisSimple {
 
     public int check() {
         int sum = number; // violation
-        sum += other();
+        sum += other(); // violation
         return sum;
     }
 

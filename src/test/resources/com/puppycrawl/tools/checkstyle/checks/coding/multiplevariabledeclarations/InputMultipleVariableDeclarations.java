@@ -39,7 +39,7 @@ public class InputMultipleVariableDeclarations
     }
 
     void method3() {
-        java.lang.Object obj; Object obj1; Object obj2; Object obj3; // violation
+        java.lang.Object obj; Object obj1; Object obj2; Object obj3; // 3 violations
         for (String s : new String[] {}) {}
     }
 }

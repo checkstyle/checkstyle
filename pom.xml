@@ -1783,7 +1783,6 @@
 
                 <exclude>**/ThrowsCountCheckTest.class</exclude>
 
-                <exclude>**/RequireThisCheckTest.class</exclude>
 
                 <exclude>**/FileLengthCheckTest.class</exclude>
 
@@ -1862,7 +1861,6 @@
 
                 <exclude>**/RecordComponentNameCheckTest.class</exclude>
 
-                <exclude>**/MultipleVariableDeclarationsCheckTest.class</exclude>
 
 
                 <exclude>**/TypeUseAnnotationsOnQualifiedTypesTest.class</exclude>
