@@ -40,8 +40,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.grammar.java.CheckstyleJavaParser;
-import com.puppycrawl.tools.checkstyle.grammar.java.JavaLexer;
+import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
+import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
 import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
 
 /**
@@ -83,17 +83,17 @@ public final class JavaParser {
             throws CheckstyleException {
         final String fullText = contents.getText().getFullText().toString();
         final CharStream codePointCharStream = CharStreams.fromString(fullText);
-        final JavaLexer lexer = new JavaLexer(codePointCharStream, true);
+        final JavaLanguageLexer lexer = new JavaLanguageLexer(codePointCharStream, true);
         lexer.setCommentListener(contents);
         lexer.removeErrorListeners();
 
         final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
-        final CheckstyleJavaParser parser = new CheckstyleJavaParser(tokenStream);
+        final JavaLanguageParser parser = new JavaLanguageParser(tokenStream);
         parser.setErrorHandler(new CheckstyleParserErrorStrategy());
         parser.removeErrorListeners();
         parser.addErrorListener(new CheckstyleErrorListener());
 
-        final CheckstyleJavaParser.CompilationUnitContext compilationUnit;
+        final JavaLanguageParser.CompilationUnitContext compilationUnit;
         try {
             compilationUnit = parser.compilationUnit();
         }

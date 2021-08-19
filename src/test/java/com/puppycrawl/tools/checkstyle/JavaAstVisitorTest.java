@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.grammar.java.CheckstyleJavaParserBaseVisitor;
+import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParserBaseVisitor;
 
 public class JavaAstVisitorTest {
 
@@ -80,7 +80,7 @@ public class JavaAstVisitorTest {
 
     @Test
     public void testAllVisitMethodsAreOverridden() {
-        final Method[] baseVisitMethods = CheckstyleJavaParserBaseVisitor
+        final Method[] baseVisitMethods = JavaLanguageParserBaseVisitor
                 .class.getDeclaredMethods();
         final Method[] visitMethods = JavaAstVisitor.class.getDeclaredMethods();
 
@@ -100,8 +100,8 @@ public class JavaAstVisitorTest {
         // remove overridden 'visit' method from ParseTreeVisitor interface in JavaAstVisitor
         filteredVisitMethodNames.removeIf(name -> name.matches("visit"));
 
-        final String message = "Visit methods in 'CheckstyleJavaParserBaseVisitor' generated from "
-                + "production rules and labeled alternatives in 'CheckstyleJavaParser.g4' should "
+        final String message = "Visit methods in 'JavaLanguageParserBaseVisitor' generated from "
+                + "production rules and labeled alternatives in 'JavaLanguageParser.g4' should "
                 + "be overridden in 'JavaAstVisitor' or be added to 'VISIT_METHODS_NOT_OVERRIDDEN' "
                 + "with comment explaining why.";
 
@@ -113,9 +113,9 @@ public class JavaAstVisitorTest {
     @Test
     public void testOrderOfVisitMethodsAndProductionRules() throws Exception {
         // Order of BaseVisitor's generated 'visit' methods match the order of
-        // production rules in 'CheckstyleJavaParser.g4'.
+        // production rules in 'JavaLanguageParser.g4'.
         final String baseVisitorFilename = "target/generated-sources/antlr/com/puppycrawl"
-                + "/tools/checkstyle/grammar/java/CheckstyleJavaParserBaseVisitor.java";
+                + "/tools/checkstyle/grammar/java/JavaLanguageParserBaseVisitor.java";
         final DetailAST baseVisitorAst = JavaParser.parseFile(new File(baseVisitorFilename),
                             JavaParser.Options.WITHOUT_COMMENTS);
 
@@ -135,7 +135,7 @@ public class JavaAstVisitorTest {
         orderedVisitorMethodNames.removeIf(name -> name.matches("visit"));
 
         assertWithMessage("Visit methods in 'JavaAstVisitor' should appear in same order as "
-                + "production rules and labeled alternatives in 'CheckstyleJavaParser.g4'.")
+                + "production rules and labeled alternatives in 'JavaLanguageParser.g4'.")
                 .that(orderedVisitorMethodNames)
                 .containsExactlyElementsIn(orderedBaseVisitorMethodNames)
                 .inOrder();
@@ -144,7 +144,7 @@ public class JavaAstVisitorTest {
     /**
      * Finds all {@code visit...} methods in a source file, and collects
      * the method names into a list. This method counts on the simple structure
-     * of 'JavaAstVisitor' and 'CheckstyleJavaParserBaseVisitor'.
+     * of 'JavaAstVisitor' and 'JavaLanguageParserBaseVisitor'.
      *
      * @param root the root of the AST to extract method names from
      * @return list of all {@code visit...} method names

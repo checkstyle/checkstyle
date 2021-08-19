@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-lexer grammar JavaLexer;
+lexer grammar JavaLanguageLexer;
 
 channels { COMMENTS }
 //Please add new tokens only in the end of list! Otherwise you break compatibility!
@@ -123,7 +123,7 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
      * @param input the character stream to tokenize
      * @param crAwareConstructor dummy parameter
      */
-    public JavaLexer(CharStream input, boolean crAwareConstructor) {
+    public JavaLanguageLexer(CharStream input, boolean crAwareConstructor) {
       super(input);
       _interp = new CrAwareLexerSimulator(this, _ATN, _decisionToDFA, _sharedContextCache);
     }
