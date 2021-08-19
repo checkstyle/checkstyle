@@ -6,13 +6,13 @@
   <suppress-xpath
          files="InputMainViolationsForGoogle.java"
          checks="MemberNameCheck"
-         query="/CLASS_DEF[./IDENT[@text='InputMainViolationsForGoogle']]/
+         query="//CLASS_DEF[./IDENT[@text='InputMainViolationsForGoogle']]/
                   OBJBLOCK/VARIABLE_DEF/IDENT[@text='m_field']"
   />
   <suppress-xpath
          files="InputMainViolationsForGoogle.java"
          checks="MethodNameCheck"
-         query="/CLASS_DEF[./IDENT[@text='InputMainViolationsForGoogle']]/
+         query="//CLASS_DEF[./IDENT[@text='InputMainViolationsForGoogle']]/
                   OBJBLOCK/METHOD_DEF/IDENT[@text='_method']"
   />
 </suppressions>

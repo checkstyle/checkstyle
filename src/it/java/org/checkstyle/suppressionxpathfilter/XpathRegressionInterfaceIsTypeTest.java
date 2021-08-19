@@ -51,11 +51,11 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/INTERFACE_DEF[./IDENT["
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionInterfaceIsType1']]",
-                "/INTERFACE_DEF[./IDENT["
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionInterfaceIsType1']]/MODIFIERS",
-                "/INTERFACE_DEF[./IDENT["
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionInterfaceIsType1']]"
                     + "/MODIFIERS/LITERAL_PUBLIC"
         );
@@ -80,11 +80,11 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/INTERFACE_DEF[./IDENT["
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionInterfaceIsType2']]",
-                "/INTERFACE_DEF[./IDENT["
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionInterfaceIsType2']]/MODIFIERS",
-                "/INTERFACE_DEF[./IDENT["
+                "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionInterfaceIsType2']]"
                     + "/MODIFIERS/LITERAL_PUBLIC"
         );

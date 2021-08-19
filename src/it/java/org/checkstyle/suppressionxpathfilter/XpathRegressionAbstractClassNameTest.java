@@ -52,10 +52,13 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAbstractClassNameTop']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAbstractClassNameTop']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAbstractClassNameTop']]",
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAbstractClassNameTop']]"
                         + "/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAbstractClassNameTop']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAbstractClassNameTop']]"
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -78,11 +81,14 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAbstractClassNameInner']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAbstractClassNameInner']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='MyClass']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAbstractClassNameInner']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAbstractClassNameInner']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='MyClass']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAbstractClassNameInner']]"
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionAbstractClassNameInner']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='MyClass']]/MODIFIERS/ABSTRACT"
         );
 
@@ -105,13 +111,13 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
                         + "SuppressionXpathRegressionAbstractClassNameNoModifier']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='AbstractMyClass']]",
-                "/CLASS_DEF[./IDENT[@text='"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
                         + "SuppressionXpathRegressionAbstractClassNameNoModifier']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='AbstractMyClass']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
                         + "SuppressionXpathRegressionAbstractClassNameNoModifier']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='AbstractMyClass']]/LITERAL_CLASS"
         );
