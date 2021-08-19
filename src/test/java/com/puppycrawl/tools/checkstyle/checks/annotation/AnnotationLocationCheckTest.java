@@ -49,7 +49,8 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputAnnotationLocationCorrect.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAnnotationLocationCorrect.java"), expected);
     }
 
     @Test
@@ -81,7 +82,8 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "99:9: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation1"),
             "106:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_21", 0, 3),
         };
-        verify(checkConfig, getPath("InputAnnotationLocationIncorrect.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAnnotationLocationIncorrect.java"), expected);
     }
 
     @Test
@@ -116,7 +118,8 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "99:9: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation_13"),
             "106:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_23", 0, 3),
         };
-        verify(checkConfig, getPath("InputAnnotationLocationIncorrect3.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAnnotationLocationIncorrect3.java"), expected);
     }
 
     @Test
@@ -144,7 +147,8 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     public void testWithoutAnnotations() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputAnnotationLocationEmpty.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAnnotationLocationEmpty.java"), expected);
     }
 
     @Test
@@ -168,7 +172,8 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "96:11: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_22", 10, 8),
             "106:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_22", 0, 3),
         };
-        verify(checkConfig, getPath("InputAnnotationLocationIncorrect2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAnnotationLocationIncorrect2.java"), expected);
     }
 
     @Test
@@ -179,8 +184,9 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "14:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation11"),
             "14:17: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation12"),
             "14:33: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation13"),
-            };
-        verify(checkConfig, getPath("InputAnnotationLocationCustomAnnotationsDeclared.java"),
+        };
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAnnotationLocationCustomAnnotationsDeclared.java"),
                 expected);
     }
 
@@ -190,7 +196,8 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, "
                 + "CTOR_DEF, VARIABLE_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputAnnotationLocationWithoutAnnotations.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAnnotationLocationWithoutAnnotations.java"), expected);
     }
 
     @Test
@@ -198,12 +205,13 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
         checkConfig.addProperty("tokens", "ANNOTATION_DEF, ANNOTATION_FIELD_DEF");
         final String[] expected = {
-            "17:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "AnnotationAnnotation", 2, 0),
-            "18:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "AnnotationAnnotation"),
-            "21:7: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "AnnotationAnnotation", 6, 4),
-            "22:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "AnnotationAnnotation"),
+            "18:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "AnnotationAnnotation", 2, 0),
+            "19:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "AnnotationAnnotation"),
+            "22:7: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "AnnotationAnnotation", 6, 4),
+            "23:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "AnnotationAnnotation"),
         };
-        verify(checkConfig, getPath("InputAnnotationLocationAnnotation.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAnnotationLocationAnnotation.java"), expected);
     }
 
     @Test
@@ -218,7 +226,8 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "26:7: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "ClassAnnotation", 6, 4),
             "27:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "ClassAnnotation"),
         };
-        verify(checkConfig, getPath("InputAnnotationLocationClass.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAnnotationLocationClass.java"), expected);
     }
 
     @Test
@@ -231,7 +240,8 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "22:7: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "EnumAnnotation", 6, 4),
             "23:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "EnumAnnotation"),
         };
-        verify(checkConfig, getPath("InputAnnotationLocationEnum.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAnnotationLocationEnum.java"), expected);
     }
 
     @Test
@@ -244,7 +254,8 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "22:7: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "InterfaceAnnotation", 6, 4),
             "23:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "InterfaceAnnotation"),
         };
-        verify(checkConfig, getPath("InputAnnotationLocationInterface.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAnnotationLocationInterface.java"), expected);
     }
 
     @Test
@@ -255,7 +266,8 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "12:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "PackageAnnotation", 2, 0),
             "13:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "PackageAnnotation"),
         };
-        verify(checkConfig, getPath("inputs/package-info.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("inputs/package-info.java"), expected);
     }
 
     @Test
@@ -267,7 +279,8 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("allowSamelineSingleParameterlessAnnotation", "false");
         checkConfig.addProperty("allowSamelineParameterizedAnnotation", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputAnnotationLocationDeprecatedAndCustom.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAnnotationLocationDeprecatedAndCustom.java"), expected);
     }
 
     @Test
@@ -277,7 +290,8 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("allowSamelineSingleParameterlessAnnotation", "false");
         checkConfig.addProperty("allowSamelineParameterizedAnnotation", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputAnnotationLocationMultiple.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAnnotationLocationMultiple.java"), expected);
     }
 
     @Test
@@ -295,7 +309,8 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "26:33: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
             "28:21: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
         };
-        verify(checkConfig, getPath("InputAnnotationLocationParameterized.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAnnotationLocationParameterized.java"), expected);
     }
 
     @Test
@@ -313,22 +328,23 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "30:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
             "30:21: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
         };
-        verify(checkConfig, getPath("InputAnnotationLocationSingleParameterless.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAnnotationLocationSingleParameterless.java"), expected);
     }
 
     @Test
     public void testAnnotationLocationRecordsAndCompactCtors() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
         final String[] expected = {
-            "20:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
-            "23:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
-            "26:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
-            "27:9: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
-            "33:13: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
-            "44:13: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
-            "54:34: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "19:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "22:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "25:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "26:9: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "32:13: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "43:13: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "53:34: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputAnnotationLocationRecordsAndCompactCtors.java"),
             expected);
     }

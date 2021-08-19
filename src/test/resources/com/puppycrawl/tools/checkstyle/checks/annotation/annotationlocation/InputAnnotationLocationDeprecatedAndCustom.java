@@ -1,7 +1,7 @@
 /*
 AnnotationLocation
 allowSamelineMultipleAnnotations = (default)false
-allowSamelineSingleParameterlessAnnotation = (default)true
+allowSamelineSingleParameterlessAnnotation = false
 allowSamelineParameterizedAnnotation = (default)false
 tokens = CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, \
          VARIABLE_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF
