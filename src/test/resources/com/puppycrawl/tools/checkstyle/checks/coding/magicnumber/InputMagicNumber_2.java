@@ -1,6 +1,6 @@
 /*
 MagicNumber
-ignoreNumbers = 0,1,3.0,8,16,3000
+ignoreNumbers = 0, 1, 3.0, 8, 16, 3000
 ignoreHashCodeMethod = (default)false
 ignoreAnnotation = true
 ignoreFieldDeclaration = (default)false
