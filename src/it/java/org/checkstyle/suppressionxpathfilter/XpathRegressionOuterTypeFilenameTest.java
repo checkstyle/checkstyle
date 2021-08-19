@@ -51,9 +51,9 @@ public class XpathRegressionOuterTypeFilenameTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='Class1']]",
-                "/CLASS_DEF[./IDENT[@text='Class1']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='Class1']]/LITERAL_CLASS"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Class1']]",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Class1']]/MODIFIERS",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Class1']]/LITERAL_CLASS"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -74,9 +74,9 @@ public class XpathRegressionOuterTypeFilenameTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='Test']]",
-                "/CLASS_DEF[./IDENT[@text='Test']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='Test']]/LITERAL_CLASS"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Test']]",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Test']]/MODIFIERS",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Test']]/LITERAL_CLASS"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
