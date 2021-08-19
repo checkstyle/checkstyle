@@ -37,12 +37,12 @@ public class InputReturnCountSwitches
         return;
     }
 
-    void foo1(int i) {
+    void foo1(int i) { // violation
         if (i == 1) {
             return;
         }
         Object obj = new Object() {
-                void method1(int i) {
+                void method1(int i) { // violation
                     switch (i) {
                     case 1: return;
                     case 2: return;
@@ -56,7 +56,7 @@ public class InputReturnCountSwitches
         return;
     }
 
-    public boolean foo2() {
+    public boolean foo2() { // violation
         int i = 1;
         switch (i) {
         case 1: return true;
