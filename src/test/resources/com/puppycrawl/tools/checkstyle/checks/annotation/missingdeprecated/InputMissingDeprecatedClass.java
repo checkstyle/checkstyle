@@ -13,7 +13,7 @@ import java.lang.annotation.Inherited;
  * @author idubinin
  *@deprecated
  *@deprecated
- *stuff
+ *stuff // violation above
  *stuff
  */
 public class InputMissingDeprecatedClass // violation
