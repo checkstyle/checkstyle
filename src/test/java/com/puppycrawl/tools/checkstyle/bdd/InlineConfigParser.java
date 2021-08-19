@@ -27,6 +27,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Matcher;
@@ -79,12 +80,11 @@ public final class InlineConfigParser {
         return inputConfigBuilder.build();
     }
 
-    private static String getPackageFromFilePath(String filePath) {
+    private static String getFullyQualifiedClassName(String filePath, String checkName) {
         final String path = SLASH_PATTERN.matcher(filePath).replaceAll("\\.");
         final int beginIndex = path.indexOf("com.puppycrawl");
-        final int endIndex = path.lastIndexOf('.',
-                path.lastIndexOf('.', path.lastIndexOf('.') - 1) - 1);
-        return path.substring(beginIndex, endIndex);
+        final int endIndex = path.lastIndexOf(checkName.toLowerCase(Locale.ROOT));
+        return path.substring(beginIndex, endIndex) + checkName + "Check";
     }
 
     private static List<String> readFile(Path filePath) throws CheckstyleException {
@@ -103,8 +103,8 @@ public final class InlineConfigParser {
             throw new CheckstyleException("Config not specified in " + filePath);
         }
         final String checkName = lines.get(1);
-        final String checkPath = getPackageFromFilePath(filePath) + "." + checkName + "Check";
-        inputConfigBuilder.setCheckName(checkPath);
+        final String fullyQualifiedClassName = getFullyQualifiedClassName(filePath, checkName);
+        inputConfigBuilder.setCheckName(fullyQualifiedClassName);
     }
 
     private static void setCheckProperties(TestInputConfiguration.Builder inputConfigBuilder,

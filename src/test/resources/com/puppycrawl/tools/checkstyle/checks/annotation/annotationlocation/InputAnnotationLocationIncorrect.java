@@ -34,7 +34,7 @@ class InputAnnotationLocationIncorrect
 (value = "")
     public InputAnnotationLocationIncorrect() {}
 
-    @MyAnnotation1("foo") @MyAnn_21 void foo1() {} // violation
+    @MyAnnotation1("foo") @MyAnn_21 void foo1() {} // 2 violations
 
     @MyAnnotation1(value = "") // ok
        @MyAnn_21 // violation

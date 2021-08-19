@@ -3,8 +3,8 @@ AnnotationLocation
 allowSamelineMultipleAnnotations = (default)false
 allowSamelineSingleParameterlessAnnotation = (default)true
 allowSamelineParameterizedAnnotation = (default)false
-tokens = CLASS_DEF, INTERFACE_DEF, PACKAGE_DEF, ENUM_CONSTANT_DEF, ENUM_DEF, \
-         METHOD_DEF, CTOR_DEF, VARIABLE_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF
+tokens = CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF, \
+         ANNOTATION_DEF, ANNOTATION_FIELD_DEF, ENUM_CONSTANT_DEF, PACKAGE_DEF
 
 
 */
@@ -34,7 +34,7 @@ class InputAnnotationLocationIncorrect3
 (value = "")
     public InputAnnotationLocationIncorrect3() {}
 
-    @MyAnnotation_13("foo") @MyAnn_23 void foo1() {} // violation
+    @MyAnnotation_13("foo") @MyAnn_23 void foo1() {} // 2 violations
 
     @MyAnnotation_13(value = "") // ok
        @MyAnn_23 // violation
