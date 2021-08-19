@@ -223,7 +223,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
         String field1 = "Hello";
         field1 = "Java"; // No violation. Local var allowed
         this.booleanField = true;
-        this.booleanField = booleanField;
+        this.booleanField = booleanField; // violation
     }
 
     void foo25() {
@@ -276,12 +276,12 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
     }
 
     String foo32(String field1) {
-        field1 = addSuf2F(field1); // no violation! modification of parameter which is returned
+        field1 = addSuf2F(field1); // violation
         return field1;
     }
 
     String foo33(String field1 ) {
-        field1 = addSuf2F(field1); // violation (no return, variable 'stringField' will not be saved
+        field1 = addSuf2F(field1); // 2 violations
         return "New String";
     }
 
@@ -380,9 +380,9 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
     }
 
     public String foo45() {
-        String action = getAction(); // violation (Method call to 'getaction' needs "this.".)
+        String action = getAction(); // violation
         if (true) {
-            return processAction("action"); //violation(Method call to 'processAction' need "this.")
+            return processAction("action"); // violation
         }
         else if (action.endsWith("/")) {
             if (action.startsWith("/")) {
@@ -390,7 +390,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
             }
         }
         action = "action"; // No violation. Local var allowed
-        return processAction(action); // violation (Method call to 'processAction' needs "this.".)
+        return processAction(action); // violation
     }
 
     private String processAction(String action) {
