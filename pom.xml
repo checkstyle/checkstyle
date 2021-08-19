@@ -1671,7 +1671,6 @@
 
                 <exclude>**/UnicodeEscapeTest.class</exclude>
 
-                <exclude>**/AnnotationUseStyleCheckTest.class</exclude>
 
 
                 <exclude>**/LambdaBodyLengthCheckTest.class</exclude>

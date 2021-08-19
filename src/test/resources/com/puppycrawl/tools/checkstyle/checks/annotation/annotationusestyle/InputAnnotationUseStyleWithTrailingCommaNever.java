@@ -30,13 +30,13 @@ public class InputAnnotationUseStyleWithTrailingCommaNever
         };
     }
 
-    @Test4(value={"foo",}, more={"bar",}) // violation
+    @Test4(value={"foo",}, more={"bar",}) // 2 violations
     /**
 
     */
     enum P {
 
-        @Pooches4(tokens={Pooches4.class,},other={1,}) // violation
+        @Pooches4(tokens={Pooches4.class,},other={1,}) // 2 violations
         L,
 
         /**

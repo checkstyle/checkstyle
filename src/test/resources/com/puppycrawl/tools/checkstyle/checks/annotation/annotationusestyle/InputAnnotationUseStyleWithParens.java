@@ -1,8 +1,8 @@
 /*
 AnnotationUseStyle
-elementStyle = (default)compact_no_array
-closingParens = (default)never
-trailingArrayComma = (default)never
+elementStyle = ignore
+closingParens = always
+trailingArrayComma = ignore
 
 
 */
@@ -87,7 +87,7 @@ class Example7 {}
 class Example8 {}
 
 class Foo2 {
-   Foo2(@Another String par1, @Another int par2) {} // violation
+   Foo2(@Another String par1, @Another int par2) {} // 2 violations
 }
 
 @interface AnnotationWithAnnotationValue2 {
