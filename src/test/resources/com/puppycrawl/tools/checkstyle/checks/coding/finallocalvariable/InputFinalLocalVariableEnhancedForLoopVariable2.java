@@ -26,8 +26,8 @@ public class InputFinalLocalVariableEnhancedForLoopVariable2 {
 
     }
 
-    public java.util.List<String> method3(java.util.List<String> snippets) {
-        java.util.List<String> filteredSnippets = new java.util.ArrayList<>();
+    public java.util.List<String> method3(java.util.List<String> snippets) { // violation
+        java.util.List<String> filteredSnippets = new java.util.ArrayList<>(); // violation
         for (String snippet : snippets) {
             filteredSnippets.add(snippet);
         }
@@ -46,7 +46,7 @@ public class InputFinalLocalVariableEnhancedForLoopVariable2 {
         for(Object a : list) {
         }
 
-        Object a;
+        Object a; // violation
         if (list.isEmpty())
         {
             a = new String("empty");
