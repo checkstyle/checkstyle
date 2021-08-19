@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
 public class InputAnnotationUseStyleNoTrailingComma
 {
-  @Test2(value={(false) ? "" : "foo"}, more={(true) ? "" : "bar"}) // violation
+  @Test2(value={(false) ? "" : "foo"}, more={(true) ? "" : "bar"}) // 2 violations
 
   enum P {
       L,

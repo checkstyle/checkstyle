@@ -1678,7 +1678,6 @@
 
                 <exclude>**/UnicodeEscapeTest.class</exclude>
 
-                <exclude>**/AnnotationUseStyleCheckTest.class</exclude>
 
                 <exclude>**/FallThroughCheckTest.class</exclude>
 
