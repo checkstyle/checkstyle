@@ -78,7 +78,8 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             "19:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Deprecated"),
             "24:18: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
         };
-        verify(config, getPath("InputAnnotationOnSameLineCheck.java"), expected);
+        verifyWithInlineConfigParser(config,
+                getPath("InputAnnotationOnSameLineCheck.java"), expected);
     }
 
     @Test
@@ -94,7 +95,8 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             "20:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Deprecated"),
             "25:18: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation3"),
         };
-        verify(config, getPath("InputAnnotationOnSameLineCheck3.java"), expected);
+        verifyWithInlineConfigParser(config,
+                getPath("InputAnnotationOnSameLineCheck3.java"), expected);
     }
 
     @Test
@@ -106,7 +108,8 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             "27:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
             "28:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
         };
-        verify(config, getPath("InputAnnotationOnSameLineCheck2.java"), expected);
+        verifyWithInlineConfigParser(config,
+                getPath("InputAnnotationOnSameLineCheck2.java"), expected);
     }
 
     @Test
@@ -134,26 +137,27 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             "59:1: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
             "62:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
         };
-        verify(config, getPath("InputAnnotationOnSameLineCheckOnDifferentTokens.java"), expected);
+        verifyWithInlineConfigParser(config,
+                getPath("InputAnnotationOnSameLineCheckOnDifferentTokens.java"), expected);
     }
 
     @Test
     public void testAnnotationOnSameLineRecordsAndCompactCtors() throws Exception {
         final DefaultConfiguration config = createModuleConfig(AnnotationOnSameLineCheck.class);
-        config.addProperty("tokens", "CLASS_DEF , INTERFACE_DEF , ENUM_DEF , METHOD_DEF,"
-            + " CTOR_DEF , VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF");
+        config.addProperty("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF,"
+            + " CTOR_DEF, VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF");
 
         final String[] expected = {
-            "10:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "NonNull1"),
-            "14:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
-            "19:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
-            "24:9: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
-            "29:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
-            "32:27: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
-            "41:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
-            "47:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
-            };
-        verify(config,
+            "13:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "NonNull1"),
+            "17:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
+            "22:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
+            "27:9: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
+            "32:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
+            "35:27: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
+            "44:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
+            "50:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
+        };
+        verifyWithInlineConfigParser(config,
             getNonCompilablePath("InputAnnotationOnSameLineRecordsAndCompactCtors.java"),
             expected);
     }

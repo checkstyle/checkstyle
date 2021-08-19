@@ -1570,7 +1570,6 @@
 
                 <exclude>**/Java9TryWithResourcesTest.class</exclude>
 
-                <exclude>**/MissingDeprecatedCheckTest.class</exclude>
 
                 <exclude>**/RegexpCheckTest.class</exclude>
 
@@ -1582,7 +1581,6 @@
 
                 <exclude>**/SuppressionSingleFilterTest.class</exclude>
 
-                <exclude>**/AnnotationOnSameLineCheckTest.class</exclude>
 
                 <exclude>**/AvoidStaticImportCheckTest.class</exclude>
 
@@ -1642,7 +1640,6 @@
 
                 <exclude>**/ClassMemberImpliedModifierCheckTest.class</exclude>
 
-                <exclude>**/PackageAnnotationCheckTest.class</exclude>
 
                 <exclude>**/CatchParameterNameCheckTest.class</exclude>
 

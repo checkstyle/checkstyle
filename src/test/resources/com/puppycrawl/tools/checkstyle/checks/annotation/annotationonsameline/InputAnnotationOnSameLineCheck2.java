@@ -16,10 +16,10 @@ import java.util.ArrayList;
 
 public class InputAnnotationOnSameLineCheck2 {
 
-    @Ann        // ok
+    @Ann        // violation
     private List<String> names = new ArrayList<>();
 
-    @Ann private List<String> names2 = new ArrayList<>();       // violation
+    @Ann private List<String> names2 = new ArrayList<>();       // ok
 
     @SuppressWarnings("deprecation")        // violation
     @Ann Integer x;

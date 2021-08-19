@@ -78,7 +78,8 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             "63: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("InputMissingDeprecatedBadDeprecated.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMissingDeprecatedBadDeprecated.java"), expected);
     }
 
     /**
@@ -96,7 +97,8 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             "62: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("InputMissingDeprecatedBadJavadoc.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMissingDeprecatedBadJavadoc.java"), expected);
     }
 
     /**
@@ -119,7 +121,8 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             "113: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("InputMissingDeprecatedSpecialCase.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMissingDeprecatedSpecialCase.java"), expected);
     }
 
     /**
@@ -131,7 +134,8 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputMissingDeprecatedGood.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMissingDeprecatedGood.java"), expected);
     }
 
     @Test
@@ -143,7 +147,8 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             "19: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("InputMissingDeprecatedClass.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMissingDeprecatedClass.java"), expected);
     }
 
     @Test
@@ -154,7 +159,8 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             "18: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("InputMissingDeprecatedMethod.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMissingDeprecatedMethod.java"), expected);
     }
 
     @Test
@@ -165,7 +171,8 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             "9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("package-info.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("package-info.java"), expected);
     }
 
     @Test
@@ -176,7 +183,8 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             "14: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verify(checkConfig, getPath("InputMissingDeprecatedAbovePackage.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMissingDeprecatedAbovePackage.java"), expected);
     }
 
     @Test
@@ -185,6 +193,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputMissingDeprecatedSingleComment.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMissingDeprecatedSingleComment.java"), expected);
     }
 }
