@@ -71,7 +71,7 @@ public class InputSuppressWarningsExpandedNonConstant1
         }
     }
 
-    @SuppressWarnings(value={(false) ? "unchecked" : "", (false) ? "unchecked" : ""}) // violation
+    @SuppressWarnings(value={(false) ? "unchecked" : "", (false) ? "unchecked" : ""}) // 2 violations
     class Cond {
 
         @SuppressWarnings(value={(false) ? "" : "unchecked"}) // violation
@@ -91,9 +91,9 @@ public class InputSuppressWarningsExpandedNonConstant1
         }
 
         @java.lang.SuppressWarnings(value={(false) ? "unchecked" :
-                    ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused", // violation
+                    ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused", // 2 violations
                 (false) ? "unchecked" :
-                    ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused"}) // violation
+                    ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused"}) // 2 violations
         public void seriously() {
 
         }

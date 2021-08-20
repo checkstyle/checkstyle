@@ -12,13 +12,13 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 import java.lang.annotation.Documented;
 
-@SuppressWarnings(value={"unchecked", "unused"}) // violation
+@SuppressWarnings(value={"unchecked", "unused"}) // 2 violations
 public class InputSuppressWarningsExpandedNonConstant2
 {
     @SuppressWarnings(value={"   "}) // violation
     class Empty {
 
-        @SuppressWarnings(value={"unchecked", ""}) // violation
+        @SuppressWarnings(value={"unchecked", ""}) // 2 violations
         public Empty() {
 
         }
@@ -27,7 +27,7 @@ public class InputSuppressWarningsExpandedNonConstant2
     @SuppressWarnings(value={"unused"}) // violation
     enum Duh {
 
-        @SuppressWarnings(value={"unforgiven", "    un"}) // violation
+        @SuppressWarnings(value={"unforgiven", "    un"}) // 2 violations
         D;
 
         public static void foo() {
@@ -54,7 +54,7 @@ public class InputSuppressWarningsExpandedNonConstant2
     @SuppressWarnings(value={}) // violation
     @interface MoreSweetness {
 
-        @SuppressWarnings(value={"unused", "bleh"}) // violation
+        @SuppressWarnings(value={"unused", "bleh"}) // 2 violations
         int cool();
     }
 
@@ -71,29 +71,29 @@ public class InputSuppressWarningsExpandedNonConstant2
         }
     }
 
-    @SuppressWarnings(value={(false) ? "unchecked" : "", (false) ? "unchecked" : ""}) // violation
+    @SuppressWarnings(value={(false) ? "unchecked" : "", (false) ? "unchecked" : ""}) // 4 violations
     class Cond {
 
-        @SuppressWarnings(value={(false) ? "" : "unchecked"}) // violation
+        @SuppressWarnings(value={(false) ? "" : "unchecked"}) // 2 violations
         public Cond() {
 
         }
 
-        @SuppressWarnings(value={(false) ? (true) ? "   " : "unused" : "unchecked", // violation
-            (false) ? (true) ? "   " : "unused" : "unchecked"}) // violation
+        @SuppressWarnings(value={(false) ? (true) ? "   " : "unused" : "unchecked", // 3 violations
+            (false) ? (true) ? "   " : "unused" : "unchecked"}) // 3 violations
         public void aCond1() {
 
         }
 
-        @SuppressWarnings(value={(false) ? "unchecked" : (true) ? "   " : "unused"}) // violation
+        @SuppressWarnings(value={(false) ? "unchecked" : (true) ? "   " : "unused"}) // 3 violations
         public void aCond2() {
 
         }
 
         @java.lang.SuppressWarnings(value={(false) ? "unchecked" : // violation
-                    ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused", // violation
+                    ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused", // 4 violations
                 (false) ? "unchecked" : // violation
-                    ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused"}) // violation
+                    ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused"}) // 4 violations
         public void seriously() {
 
         }

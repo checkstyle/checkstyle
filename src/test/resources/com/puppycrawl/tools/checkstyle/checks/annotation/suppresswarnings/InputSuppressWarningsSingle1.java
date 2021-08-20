@@ -90,7 +90,7 @@ public class InputSuppressWarningsSingle1
         }
 
         @java.lang.SuppressWarnings((false) ? "unchecked" :
-                ("" == "") ? (false) ? (true) ? "" : "foo" : "    " : "unused") // violation
+                ("" == "") ? (false) ? (true) ? "" : "foo" : "    " : "unused") // 2 violations
         public void seriously() {
 
         }
