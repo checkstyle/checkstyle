@@ -63,7 +63,8 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "108:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
             "109:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
         };
-        verify(checkConfig, getPath("InputNeedBracesTestIt.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNeedBracesTestIt.java"), expected);
     }
 
     @Test
@@ -94,7 +95,8 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "109:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
             "110:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
         };
-        verify(checkConfig, getPath("InputNeedBracesTestItWithAllowsOn.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNeedBracesTestItWithAllowsOn.java"), expected);
     }
 
     @Test
@@ -115,7 +117,8 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "116:47: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
             "123:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
         };
-        verify(checkConfig, getPath("InputNeedBracesSingleLineStatements.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNeedBracesSingleLineStatements.java"), expected);
     }
 
     @Test
@@ -130,7 +133,8 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "24:60: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
             "25:27: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
         };
-        verify(checkConfig, getPath("InputNeedBracesTestSingleLineLambda.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNeedBracesTestSingleLineLambda.java"), expected);
     }
 
     @Test
@@ -146,7 +150,8 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "24:60: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
             "25:27: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
         };
-        verify(checkConfig, getPath("InputNeedBracesTestNotAllowSingleLineLambda.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNeedBracesTestNotAllowSingleLineLambda.java"), expected);
     }
 
     @Test
@@ -161,7 +166,8 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "131:17: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "133:17: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
         };
-        verify(checkConfig, getPath("InputNeedBracesTestSingleLineCaseDefault.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNeedBracesTestSingleLineCaseDefault.java"), expected);
     }
 
     @Test
@@ -171,7 +177,8 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tokens", "LITERAL_CASE, LITERAL_DEFAULT");
         checkConfig.addProperty("allowSingleLineStatement", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputNeedBracesTestSingleLineCaseDefault2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNeedBracesTestSingleLineCaseDefault2.java"), expected);
     }
 
     @Test
@@ -187,7 +194,8 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "33:17: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "34:17: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
         };
-        verify(checkConfig, getPath("InputNeedBracesTestCaseDefaultNoSingleLine.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNeedBracesTestCaseDefaultNoSingleLine.java"), expected);
     }
 
     @Test
@@ -196,7 +204,8 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tokens", "LITERAL_WHILE, LITERAL_DO, LITERAL_FOR");
         checkConfig.addProperty("allowSingleLineStatement", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputNeedBracesTestCycles.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNeedBracesTestCycles.java"), expected);
     }
 
     @Test
@@ -209,7 +218,8 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "53:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "65:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
         };
-        verify(checkConfig, getPath("InputNeedBracesTestConditions.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNeedBracesTestConditions.java"), expected);
     }
 
     @Test
@@ -220,7 +230,8 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "106:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
         };
-        verify(checkConfig, getPath("InputNeedBracesLoopBodyTrue.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNeedBracesLoopBodyTrue.java"), expected);
     }
 
     @Test
@@ -246,7 +257,8 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "106:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
             "117:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
         };
-        verify(checkConfig, getPath("InputNeedBracesLoopBodyFalse.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNeedBracesLoopBodyFalse.java"), expected);
     }
 
     @Test
@@ -255,7 +267,8 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tokens", "LITERAL_DEFAULT");
         checkConfig.addProperty("allowSingleLineStatement", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputNeedBracesEmptySingleLineDefaultStmt.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNeedBracesEmptySingleLineDefaultStmt.java"), expected);
     }
 
     @Test
@@ -283,7 +296,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "73:47: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
             "80:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
             };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputNeedBracesTestSwitchExpressionNoSingleLine.java"),
             expected);
     }
@@ -311,8 +324,8 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "52:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "55:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
             "69:47: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
-            };
-        verify(checkConfig,
+        };
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputNeedBracesTestSwitchExpression.java"),
             expected);
     }

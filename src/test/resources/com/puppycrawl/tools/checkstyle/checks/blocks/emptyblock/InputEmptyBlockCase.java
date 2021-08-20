@@ -1,6 +1,6 @@
 /*
 EmptyBlock
-option = text
+option = TEXT
 tokens = LITERAL_CASE
 
 

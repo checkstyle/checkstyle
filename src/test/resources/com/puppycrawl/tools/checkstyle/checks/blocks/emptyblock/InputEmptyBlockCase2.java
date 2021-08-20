@@ -1,6 +1,6 @@
 /*
 EmptyBlock
-option = (default)statement
+option = (default)STATEMENT
 tokens = LITERAL_CASE
 
 
@@ -33,7 +33,7 @@ class InputEmptyBlockCase2
         switch(c) { case 0: {} method1(1); }    // violation
         switch(c) { case 0: method1(0); {} }    // ok
         switch(c) { case 0: case 1: {} }    // violation
-        switch(c) { case 0: {} case 1: {    // violation
+        switch(c) { case 0: {} case 1: {    // 2 violations
         }
         }
     }
