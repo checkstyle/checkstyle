@@ -1,6 +1,6 @@
 /*
 EmptyBlock
-option = text
+option = TEXT
 tokens = (default)LITERAL_WHILE, LITERAL_TRY, LITERAL_FINALLY, LITERAL_DO, \
          LITERAL_IF, LITERAL_ELSE, LITERAL_FOR, INSTANCE_INIT, STATIC_INIT, \
          LITERAL_SWITCH, LITERAL_SYNCHRONIZED
@@ -36,9 +36,9 @@ class InputEmptyBlockSemanticText
     void exHandlerTest()
     {
         try {
-        }   // ^ violation
+        }   // violation above
         finally {
-        }   // ^ violation
+        }   // violation above
         try {   // ok
             // something
         }
@@ -66,7 +66,7 @@ class InputEmptyBlockSemanticText
 
     // empty instance initializer
     {
-    }
+    }// violation above
 
     private class InputBraces {
 
@@ -84,7 +84,7 @@ class InputEmptyBlockSemanticText
     static {
 
         int a = 0;}
-
+    // violation below
     static {
 
     }

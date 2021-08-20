@@ -2,7 +2,7 @@
 NeedBraces
 allowSingleLineStatement = true
 allowEmptyLoopBody = (default)false
-tokens = LITERAL_CASE, LITERAL_DEFAULT, LITERAL_ELSE
+tokens = LITERAL_CASE, LITERAL_ELSE, LITERAL_DEFAULT
 
 
 */
