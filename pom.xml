@@ -1619,7 +1619,6 @@
                 <exclude>**/NoWhitespaceAfterCheckTest.class</exclude>
 
 
-                <exclude>**/HideUtilityClassConstructorCheckTest.class</exclude>
 
                 <exclude>**/SeparatorWrapCheckTest.class</exclude>
 
@@ -1742,7 +1741,6 @@
                 <exclude>**/TrailingCommentCheckTest.class</exclude>
 
 
-                <exclude>**/FinalClassCheckTest.class</exclude>
 
                 <exclude>**/MethodTypeParameterNameCheckTest.class</exclude>
 
@@ -1803,7 +1801,6 @@
 
                 <exclude>**/SuppressWithNearbyCommentFilterTest.class</exclude>
 
-                <exclude>**/DesignForExtensionCheckTest.class</exclude>
 
                 <exclude>**/Java14RecordsTest.class</exclude>
 

@@ -195,14 +195,14 @@ public class InputDesignForExtensionOverridableMethods {
         // comment
         public void foo38() { }
 
-        @Deprecated /** */
+        @Deprecated /** */ // violation
         public void foo39() {return; }
 
         void foo40() { // no violation: empty body
             /** */
         }
 
-        void foo41() { // violation: no javadoc comment, but method designed for extension
+        void foo41() { // violation
             return;
         }
 

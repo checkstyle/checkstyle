@@ -1,7 +1,7 @@
 /*
 DesignForExtension
 ignoredAnnotations = (default)After, AfterClass, Before, BeforeClass, Test
-requiredJavadocPhrase = This[\s\S]*implementation
+requiredJavadocPhrase = This[\\s\\S]*implementation
 
 
 */
