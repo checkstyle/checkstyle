@@ -55,7 +55,8 @@ public class AvoidNestedBlocksCheckTest
             "53:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
             "61:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
         };
-        verify(checkConfig, getPath("InputAvoidNestedBlocksDefault.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAvoidNestedBlocksDefault.java"), expected);
     }
 
     @Test
@@ -70,7 +71,8 @@ public class AvoidNestedBlocksCheckTest
             "43:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
             "57:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
         };
-        verify(checkConfig, getPath("InputAvoidNestedBlocksAllowInSwitchCase.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAvoidNestedBlocksAllowInSwitchCase.java"), expected);
     }
 
     @Test

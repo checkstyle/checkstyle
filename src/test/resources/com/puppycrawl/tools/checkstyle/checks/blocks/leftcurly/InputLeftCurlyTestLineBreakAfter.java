@@ -1,6 +1,6 @@
 /*
 LeftCurly
-option = (default)eol
+option = (default)EOL
 ignoreEnums = (default)true
 tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, \
          ENUM_DEF, INTERFACE_DEF, LAMBDA, LITERAL_CASE, LITERAL_CATCH, \
@@ -49,7 +49,7 @@ class InputLeftCurlyTestLineBreakAfter
             finally { break; } // violation
         }
 
-        synchronized (this) { do { x = 2; } while (x == 2); } // violation
+        synchronized (this) { do { x = 2; } while (x == 2); } // 2 violations
 
         synchronized (this) {
             do {} while (x == 2);

@@ -30,7 +30,7 @@ public class InputEmptyCatchBlockDefault
         try {
             throw new IOException();
         } catch (IOException | NullPointerException | ArithmeticException ignore) {
-        }
+        } // violation above
     }
 
     private void foo3() { // comment
