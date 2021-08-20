@@ -1,11 +1,15 @@
+/*
+NeedBraces
+allowSingleLineStatement = true
+allowEmptyLoopBody = (default)false
+tokens = LITERAL_CASE, LITERAL_DEFAULT, LAMBDA
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
-/*
- * Config:
- * allowSingleLineStatement = true
- * tokens = { LITERAL_CASE, LITERAL_DEFAULT, LAMBDA }
- */
 public class InputNeedBracesTestSwitchExpression {
     void howMany1(Nums k) {
         switch (k) {

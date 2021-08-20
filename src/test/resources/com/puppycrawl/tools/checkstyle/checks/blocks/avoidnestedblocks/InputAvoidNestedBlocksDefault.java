@@ -22,7 +22,7 @@ class InputAvoidNestedBlocksDefault
         int x = 0;
 
         // if (condition that is not important anymore)
-        { // violation, nested block, should be marked
+        { // violation
             int z = 1;
             int y = z;
         }

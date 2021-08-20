@@ -1,6 +1,6 @@
 /*
 LeftCurly
-option = (default)eol
+option = (default)EOL
 ignoreEnums = (default)true
 tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, \
          ENUM_DEF, INTERFACE_DEF, LAMBDA, LITERAL_CASE, LITERAL_CATCH, \
@@ -44,20 +44,20 @@ public class InputLeftCurlyTestSwitchExpressions {
         return switch (k)
                 { // violation
             case 1 ->
-                    {// violation
-                yield 2;
+                    {
+                yield 2; // violation above
             }
             case 2 ->
-                    {// violation
-                yield 3;
+                    {
+                yield 3; // violation above
             }
             case 3 ->
-                    {// violation
-                yield 4;
+                    {
+                yield 4; // violation above
             }
             default ->
-                    {// violation
-                yield k;
+                    {
+                yield k; // violation above
             }
         };
     }
