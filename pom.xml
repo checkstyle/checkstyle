@@ -1630,7 +1630,6 @@
                 <exclude>**/Java7TryWithResourcesTest.class</exclude>
 
 
-                <exclude>**/RightCurlyCheckTest.class</exclude>
 
 
                 <exclude>**/Java7StringSwitchTest.class</exclude>

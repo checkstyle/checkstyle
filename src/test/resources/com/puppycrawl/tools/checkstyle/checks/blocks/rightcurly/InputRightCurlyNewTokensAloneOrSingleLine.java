@@ -1,6 +1,6 @@
 /*
 RightCurly
-option = alone_or_singleline
+option = ALONE_OR_SINGLELINE
 tokens = ENUM_DEF
 
 

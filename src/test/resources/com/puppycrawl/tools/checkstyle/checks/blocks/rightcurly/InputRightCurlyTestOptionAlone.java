@@ -1,6 +1,6 @@
 /*
 RightCurly
-option = alone
+option = ALONE
 tokens = CLASS_DEF, METHOD_DEF, LITERAL_IF, LITERAL_ELSE, LITERAL_DO, LITERAL_WHILE, \
          LITERAL_FOR, STATIC_INIT, INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF
 
@@ -72,7 +72,7 @@ public class InputRightCurlyTestOptionAlone {
             put("Hello", "World");
             put("first", "second");
             put("polygene", "lubricants");
-        }{}; // violation
+        }{}; // 2 violations
         };
     }
 
