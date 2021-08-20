@@ -38,16 +38,21 @@ public final class TestInputConfiguration {
     /** Map of non default properties. */
     private final Map<String, String> nonDefaultProperties;
 
+    /** Map of non default properties. */
+    private final Map<String, String> checkMessages;
+
     /** List of parsed violations. */
     private final List<TestInputViolation> violations;
 
     private TestInputConfiguration(String checkName,
                                Map<String, String> defaultProperties,
                                Map<String, String> nonDefaultProperties,
+                               Map<String, String> checkMessages,
                                List<TestInputViolation> violations) {
         this.checkName = checkName;
         this.defaultProperties = defaultProperties;
         this.nonDefaultProperties = nonDefaultProperties;
+        this.checkMessages = checkMessages;
         this.violations = violations;
     }
 
@@ -70,6 +75,10 @@ public final class TestInputConfiguration {
         return Collections.unmodifiableMap(nonDefaultProperties);
     }
 
+    public Map<String, String> getCheckMessages() {
+        return Collections.unmodifiableMap(checkMessages);
+    }
+
     public List<TestInputViolation> getViolations() {
         return Collections.unmodifiableList(violations);
     }
@@ -77,6 +86,7 @@ public final class TestInputConfiguration {
     public DefaultConfiguration createConfiguration() {
         final DefaultConfiguration parsedConfig = new DefaultConfiguration(checkName);
         nonDefaultProperties.forEach(parsedConfig::addProperty);
+        checkMessages.forEach(parsedConfig::addMessage);
         return parsedConfig;
     }
 
@@ -90,6 +100,8 @@ public final class TestInputConfiguration {
 
         private final Map<String, String> nonDefaultProperties = new HashMap<>();
 
+        private final Map<String, String> checkMessages = new HashMap<>();
+
         private final List<TestInputViolation> violations = new ArrayList<>();
 
         private String checkName;
@@ -98,12 +110,16 @@ public final class TestInputConfiguration {
             this.checkName = checkName;
         }
 
-        public void addDefaultProperty(String key, String value) {
-            defaultProperties.put(key, value);
+        public void addDefaultProperty(String propertyName, String defaultPropertyValue) {
+            defaultProperties.put(propertyName, defaultPropertyValue);
         }
 
-        public void addNonDefaultProperty(String key, String value) {
-            nonDefaultProperties.put(key, value);
+        public void addNonDefaultProperty(String propertyName, String nonDefaultPropertyValue) {
+            nonDefaultProperties.put(propertyName, nonDefaultPropertyValue);
+        }
+
+        public void addMessage(String messageKey, String messageString) {
+            checkMessages.put(messageKey, messageString);
         }
 
         public void addViolation(int violationLine, String violationMessage) {
@@ -115,6 +131,7 @@ public final class TestInputConfiguration {
                     checkName,
                     defaultProperties,
                     nonDefaultProperties,
+                    checkMessages,
                     violations
             );
         }
