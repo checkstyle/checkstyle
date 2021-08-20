@@ -1,6 +1,6 @@
 /*
 RightCurly
-option = (default)same
+option = (default)SAME
 tokens = CLASS_DEF, METHOD_DEF, CTOR_DEF, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF
 
 
@@ -71,7 +71,7 @@ public class InputRightCurlyTestOptSameBlocksWithSemi {
         void display();
         interface Interface4 {
             void myMethod();
-        };}; // 2 violatons
+        };}; // 2 violations
 
     interface InterfaceEndingWithSemiColon2 {
         public void fooEmpty();

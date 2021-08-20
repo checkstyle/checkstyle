@@ -1,6 +1,6 @@
 /*
 RightCurly
-option = alone
+option = ALONE
 tokens = CLASS_DEF
 
 

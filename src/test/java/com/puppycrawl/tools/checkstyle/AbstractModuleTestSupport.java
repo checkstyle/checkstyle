@@ -28,6 +28,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -215,6 +218,46 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 .toString();
     }
 
+    protected final void addViolationComments(String inputFilePath, String... expected)
+            throws IOException {
+        final Path filePath = Paths.get(inputFilePath);
+        final List<String> lines = Files.readAllLines(filePath);
+        HashMap<Integer, Integer> violationFrequency = new HashMap<>();
+        Arrays.asList(expected)
+                .stream()
+                .map(s -> s.substring(0, s.indexOf(":")))
+                .map(Integer::parseInt)
+                .forEach(i -> violationFrequency.put(i,
+                        violationFrequency.getOrDefault(i, 0)+1)
+                );
+        for(int i=0;i<lines.size();i++){
+            if(violationFrequency.containsKey(i+1)){
+                int k=i+1;
+                int v=violationFrequency.get(i+1);
+                if(lines.get(k-1).contains("//")){
+                    lines.set(k-1, lines.get(k-1).substring(0, lines.get(k-1).indexOf("//")-1));
+                }
+                if(v==1){
+                    lines.set(k-1, lines.get(k-1)+" // violation");
+                }
+                else{
+                    lines.set(k-1, lines.get(k-1)+" // "+v+" violations");
+                }
+            }
+            else{
+                if(lines.get(i).contains("// violation")){
+                    lines.set(i, lines.get(i).substring(0, lines.get(i).indexOf("// violation")-1));
+                }
+            }
+        }
+        violationFrequency.forEach((k, v) -> {
+
+                });
+        Files.deleteIfExists(filePath);
+        Files.createFile(filePath);
+        Files.write(filePath, lines);
+    }
+
     /**
      * Performs verification of the file with the given file path using specified configuration
      * and the array expected messages. Also performs verification of the config specified in
@@ -228,6 +271,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     protected final void verifyWithInlineConfigParser(Configuration aConfig,
                                              String filePath, String... expected)
             throws Exception {
+        addViolationComments(filePath, expected);
         final TestInputConfiguration testInputConfiguration = InlineConfigParser.parse(filePath);
         final Configuration parsedConfig = testInputConfiguration.createConfiguration();
         verifyConfig(aConfig, parsedConfig, testInputConfiguration);
