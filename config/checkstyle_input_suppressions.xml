@@ -12,59 +12,45 @@
 
   <suppress id="StyleValidationCommentInInputs" files="package-info.java"/>
 
-  <!-- Suppress input files for JavadocMetadataScraper, as they are not inputs related to check
-        configuration. -->
+  <!-- Suppress input files for following test classes, as they are not inputs related to
+  check configuration. -->
 
   <suppress id="ConfigCommentOnTopInputs" files="meta[\\/].*"/>
 
-  <suppress id="StyleValidationCommentInInputs" files="meta[\\/].*"/>
-
-  <!-- Suppress older check UT input files -->
+  <suppress id="ConfigCommentOnTopInputs"
+            files="asttreestringprinter[\\/].*.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
-            files="annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsHolder.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsHolderNonConstant.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="asttreestringprinter[\\/]InputAstTreeStringPrinterAttributesAndMethodsJavadoc.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="asttreestringprinter[\\/]InputAstTreeStringPrinterComments.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockCommentsCR.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockComments.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfSinglelineComments.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="asttreestringprinter[\\/]InputAstTreeStringPrinterJavaAndJavadoc.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="asttreestringprinter[\\/]InputAstTreeStringPrinterJavadoc.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="asttreestringprinter[\\/]InputAstTreeStringPrinterJavadocPosition.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="asttreestringprinter[\\/]InputAstTreeStringPrinterPrintBranch.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="checker[\\/]InputCheckerClearDetailAstLazyLoadCache.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="checker[\\/]InputChecker.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationEmptyFile.java"/>
+            files="checker[\\/].*.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="detailastimpl[\\/]InputDetailAstImplJustToMakeStackoverflowError.java"/>
+
+  <suppress id="ConfigCommentOnTopInputs"
+            files="header[\\/].*.java"/>
+
+  <suppress id="ConfigCommentOnTopInputs"
+            files="internal[\\/]allchecks[\\/]InputAllChecksDefaultConfig.java"/>
+
+  <suppress id="ConfigCommentOnTopInputs"
+            files="javadocdetailnodeparser[\\/]InputJavadocDetailNodeParser.java"/>
+
+  <suppress id="ConfigCommentOnTopInputs"
+            files="javadocpropertiesgenerator[\\/].*.java"/>
+
+  <suppress id="ConfigCommentOnTopInputs"
+            files="suppresswarningsholder[\\/].*.java"/>
+
+  <suppress id="ConfigCommentOnTopInputs"
+            files="utils[\\/]checkutil[\\/]InputCheckUtilTest.java"/>
+
+  <suppress id="ConfigCommentOnTopInputs"
+            files="packagenamesloader[\\/]InputPackageNamesLoaderNotXml.java"/>
+
+  <suppress id="ConfigCommentOnTopInputs"
+            files="packageobjectfactory[\\/].*.java"/>
+
+  <!-- until https://github.com/checkstyle/checkstyle/issues/10653 -->
 
   <suppress id="ConfigCommentOnTopInputs"
             files="filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilter.java"/>
@@ -108,335 +94,13 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="filters[\\/]xpathfilterelement[\\/]InputXpathFilterElementSuppressByXpath.java"/>
 
+  <!-- until https://github.com/checkstyle/checkstyle/issues/10663 -->
   <suppress id="ConfigCommentOnTopInputs"
-            files="header[\\/]header[\\/]InputHeaderBlankLines2.java"/>
+            files="indentation[\\/]indentation[\\/].*.java"/>
 
+  <!-- needed for coverage -->
   <suppress id="ConfigCommentOnTopInputs"
-            files="header[\\/]header[\\/]InputHeaderBlankLines.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="header[\\/]header[\\/]InputHeader.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="header[\\/]header[\\/]InputHeaderjava2.header"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="header[\\/]header[\\/]InputHeaderjava3.header"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="header[\\/]header[\\/]InputHeaderjava.blank-lines2.header"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="header[\\/]header[\\/]InputHeaderjava.blank-lines.header"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="header[\\/]header[\\/]InputHeaderjava.header"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="header[\\/]header[\\/]InputHeaderRegexp.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderConsecutiveNewLines.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderDefaultConfig.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderIgnore.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderIgnoreLinesSorted.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderMulti2.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderMulti4.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderMulti52.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderMulti5.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderMulti6.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderSmallHeader.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentation15Extensions.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationAndroidStyle.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationAnnotationClosingParenthesisEndsInSameIndentationAsOpening.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationAnnotationDefinition.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationAnnotationIncorrect.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationAnnotationScopeIndentationCheck.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationAnonymousClasses.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationAnonymousClassInMethodCurlyOnNewLine.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationAnonymousClassInMethod.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationArrays.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationBraceAdjustment.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationCaseLevel.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationChainedMethods.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationChainedMethodWithBracketOnNewLine.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationClassesMethods.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationCorrectIfAndParameter.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationCorrectMultipleAnnotationsWithWrappedLines.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationCtorCall.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationCustomAnnotation.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationDifficultAnnotations.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationEmptyArray.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationFromGuava2.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationFromGuava.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationInvalidAnonymousClassIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationInvalidArrayInitIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationInvalidAssignIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationInvalidBlockIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationInvalidClassDefIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationInvalidDoWhileIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationInvalidForIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationInvalidIfIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationInvalidImportIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationInvalidLabelIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationInvalidLabelWithWhileLoopIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationInvalidMethodIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationInvalidSwitchIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationInvalidThrowsIndent2.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationInvalidThrowsIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationInvalidTryIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationInvalidWhileIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationLabels.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationLambda1.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationLambda2.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationLambda3.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationLambda4.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationLambda5.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationMembers.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationMethodCallLineWrap.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationMethodCStyle.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationMethodPrecededByAnnotationWithParameterOnSeparateLine.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationNewHandler.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationPackageDeclaration3.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationPackageDeclaration4.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationPackageDeclaration.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationSeparatedStatements.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationSeparatedStatementWithSpaces.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationStrictCondition.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationSwitchCustom.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationSynchronizedMethod.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationSynchronizedStatement.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationTryResourcesNotStrict.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationTryWithResourcesStrict.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationTwoStatementsPerLine.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationUseTabs.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationUseTwoSpaces.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationValidArrayInitDefaultIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationValidArrayInitIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationValidAssignIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationValidBlockIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationValidClassDefIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationValidCommaIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationValidDotIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationValidDoWhileIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationValidForIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationValidIfIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationValidInterfaceDefIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationValidLabelIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationValidMethodIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationValidSwitchIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationValidTryIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationValidTryResourcesIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationValidWhileIndent.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="indentation[\\/]indentation[\\/]InputIndentationZeroCaseLevel.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="internal[\\/]allchecks[\\/]InputAllChecksDefaultConfig.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadocdetailnodeparser[\\/]InputJavadocDetailNodeParser.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadocpropertiesgenerator[\\/]InputJavadocPropertiesGeneratorCorrect.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadocpropertiesgenerator[\\/]InputJavadocPropertiesGeneratorEmptyJavadoc.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadocpropertiesgenerator[\\/]InputJavadocPropertiesGeneratorJavadocParseError.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadocpropertiesgenerator[\\/]InputJavadocPropertiesGeneratorNotClass.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadocpropertiesgenerator[\\/]InputJavadocPropertiesGeneratorNotConstants.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadocpropertiesgenerator[\\/]InputJavadocPropertiesGeneratorNotImplementedTag.java"/>
+            files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationEmptyFile.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="newlineatendoffile[\\/]InputNewlineAtEndOfFileCr.java"/>
@@ -451,19 +115,7 @@
             files="newlineatendoffile[\\/]InputNewlineAtEndOfFileNoNewline.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
-            files="nocodeinfile[\\/]InputNoCodeInFile1.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="nocodeinfile[\\/]InputNoCodeInFile2.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="packagenamesloader[\\/]InputPackageNamesLoaderNotXml.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="packageobjectfactory[\\/]bar[\\/]FooCheck.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="packageobjectfactory[\\/]foo[\\/]FooCheck.java"/>
+            files="nocodeinfile[\\/].*.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="regexp[\\/]regexp[\\/]InputRegexpStartingWithEmptyLine.java"/>
@@ -480,49 +132,16 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="regexp[\\/]regexponfilename[\\/]InputRegexpOnFilenameSemantic.java"/>
 
-
   <suppress id="ConfigCommentOnTopInputs"
             files="regexp[\\/]regexpsinglelinejava[\\/]InputRegexpSinglelineJavaSemantic.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="regexp[\\/]regexpsinglelinejava[\\/]InputRegexpSinglelineJavaTrailingComment.java"/>
 
-
-
-
-
-
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="suppresswarningsholder[\\/]InputSuppressWarningsHolder2.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="suppresswarningsholder[\\/]InputSuppressWarningsHolder3.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="suppresswarningsholder[\\/]InputSuppressWarningsHolder4.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="suppresswarningsholder[\\/]InputSuppressWarningsHolder5.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="suppresswarningsholder[\\/]InputSuppressWarningsHolder6.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="suppresswarningsholder[\\/]InputSuppressWarningsHolder7.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="suppresswarningsholder[\\/]InputSuppressWarningsHolder.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="suppresswarningsholder[\\/]InputSuppressWarningsHolderNonConstant.java"/>
-
   <suppress id="ConfigCommentOnTopInputs"
             files="trailingcomment[\\/]InputTrailingComment.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="utils[\\/]checkutil[\\/]InputCheckUtilTest.java"/>
-
+  <!-- until https://github.com/checkstyle/checkstyle/issues/10469 -->
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorBlockCommentSeparatedFromPackage.java"/>
 
@@ -586,44 +205,45 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorWithComments.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="asttreestringprinter[\\/]InputAstTreeStringPrinterAttributesAndMethodsJavadoc.java"/>
+  <!-- Suppress input files for following test classes, as they are not inputs related to
+  check configuration. -->
+
+  <suppress id="StyleValidationCommentInInputs" files="meta[\\/].*"/>
 
   <suppress id="StyleValidationCommentInInputs"
-            files="asttreestringprinter[\\/]InputAstTreeStringPrinterComments.java"/>
+            files="asttreestringprinter[\\/].*.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
-            files="asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockCommentsCR.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockComments.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfSinglelineComments.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="asttreestringprinter[\\/]InputAstTreeStringPrinterJavaAndJavadoc.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="asttreestringprinter[\\/]InputAstTreeStringPrinterJavadoc.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="asttreestringprinter[\\/]InputAstTreeStringPrinterJavadocPosition.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="asttreestringprinter[\\/]InputAstTreeStringPrinterPrintBranch.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="checker[\\/]InputCheckerClearDetailAstLazyLoadCache.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="checker[\\/]InputChecker.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationEmptyFile.java"/>
+            files="checker[\\/].*.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="detailastimpl[\\/]InputDetailAstImplJustToMakeStackoverflowError.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="header[\\/].*.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="internal[\\/]allchecks[\\/]InputAllChecksDefaultConfig.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="javadocdetailnodeparser[\\/]InputJavadocDetailNodeParser.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="javadocpropertiesgenerator[\\/].*.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="utils[\\/]checkutil[\\/]InputCheckUtilTest.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="suppresswarningsholder[\\/].*.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="packagenamesloader[\\/]InputPackageNamesLoaderNotXml.java"/>
+
+  <suppress id="StyleValidationCommentInInputs"
+            files="packageobjectfactory[\\/].*.java"/>
+
+  <!-- until https://github.com/checkstyle/checkstyle/issues/10653 -->
 
   <suppress id="StyleValidationCommentInInputs"
             files="filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilter.java"/>
@@ -667,91 +287,13 @@
   <suppress id="StyleValidationCommentInInputs"
             files="filters[\\/]xpathfilterelement[\\/]InputXpathFilterElementSuppressByXpath.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="header[\\/]header[\\/]InputHeaderBlankLines2.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="header[\\/]header[\\/]InputHeaderBlankLines.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="header[\\/]header[\\/]InputHeader.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="header[\\/]header[\\/]InputHeaderjava2.header"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="header[\\/]header[\\/]InputHeaderjava3.header"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="header[\\/]header[\\/]InputHeaderjava.blank-lines2.header"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="header[\\/]header[\\/]InputHeaderjava.blank-lines.header"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="header[\\/]header[\\/]InputHeaderjava.header"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="header[\\/]header[\\/]InputHeaderRegexp.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderConsecutiveNewLines.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderDefaultConfig.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderIgnore.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderIgnoreLinesSorted.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderMulti2.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderMulti4.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderMulti52.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderMulti5.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderMulti6.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="header[\\/]regexpheader[\\/]InputRegexpHeaderSmallHeader.java"/>
-
-  <!-- indentation Inputs have special trailing comments -->
-
+  <!-- until https://github.com/checkstyle/checkstyle/issues/10663 -->
   <suppress id="StyleValidationCommentInInputs"
             files="indentation[\\/]indentation[\\/].*"/>
 
+  <!-- needed for coverage -->
   <suppress id="StyleValidationCommentInInputs"
-            files="internal[\\/]allchecks[\\/]InputAllChecksDefaultConfig.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadocdetailnodeparser[\\/]InputJavadocDetailNodeParser.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadocpropertiesgenerator[\\/]InputJavadocPropertiesGeneratorCorrect.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadocpropertiesgenerator[\\/]InputJavadocPropertiesGeneratorEmptyJavadoc.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadocpropertiesgenerator[\\/]InputJavadocPropertiesGeneratorJavadocParseError.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadocpropertiesgenerator[\\/]InputJavadocPropertiesGeneratorNotClass.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadocpropertiesgenerator[\\/]InputJavadocPropertiesGeneratorNotConstants.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadocpropertiesgenerator[\\/]InputJavadocPropertiesGeneratorNotImplementedTag.java"/>
+            files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationEmptyFile.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="newlineatendoffile[\\/]InputNewlineAtEndOfFileCr.java"/>
@@ -772,16 +314,6 @@
             files="nocodeinfile[\\/]InputNoCodeInFile2.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
-            files="packagenamesloader[\\/]InputPackageNamesLoaderNotXml.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="packageobjectfactory[\\/]bar[\\/]FooCheck.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="packageobjectfactory[\\/]foo[\\/]FooCheck.java"/>
-
-
-  <suppress id="StyleValidationCommentInInputs"
             files="regexp[\\/]regexpmultiline[\\/]InputRegexpMultilineMultilineSupport2.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
@@ -799,42 +331,10 @@
   <suppress id="StyleValidationCommentInInputs"
             files="regexp[\\/]regexpsinglelinejava[\\/]InputRegexpSinglelineJavaTrailingComment.java"/>
 
-
-
-
-
-
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="suppresswarningsholder[\\/]InputSuppressWarningsHolder2.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="suppresswarningsholder[\\/]InputSuppressWarningsHolder3.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="suppresswarningsholder[\\/]InputSuppressWarningsHolder4.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="suppresswarningsholder[\\/]InputSuppressWarningsHolder5.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="suppresswarningsholder[\\/]InputSuppressWarningsHolder6.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="suppresswarningsholder[\\/]InputSuppressWarningsHolder7.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="suppresswarningsholder[\\/]InputSuppressWarningsHolder.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="suppresswarningsholder[\\/]InputSuppressWarningsHolderNonConstant.java"/>
-
   <suppress id="StyleValidationCommentInInputs"
             files="trailingcomment[\\/]InputTrailingComment.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="utils[\\/]checkutil[\\/]InputCheckUtilTest.java"/>
-
+  <!-- until https://github.com/checkstyle/checkstyle/issues/10469 -->
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorBlockCommentSeparatedFromPackage.java"/>
 
@@ -897,6 +397,5 @@
 
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorWithComments.java"/>
-
 
 </suppressions>
