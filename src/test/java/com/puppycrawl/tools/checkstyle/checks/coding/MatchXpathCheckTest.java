@@ -177,9 +177,10 @@ public class MatchXpathCheckTest
         checkConfig.addMessage("matchxpath.match", "Executable number of statements "
                 + "exceed threshold");
         final String[] expected = {
-            "24:5: Executable number of statements exceed threshold",
+            "25:5: Executable number of statements exceed threshold",
         };
-        verify(checkConfig, getPath("InputMatchXpathExecutableStatementCount.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMatchXpathExecutableStatementCount.java"), expected);
     }
 
     @Test
