@@ -1774,7 +1774,6 @@
 
                 <exclude>**/AbstractCheckTest.class</exclude>
 
-                <exclude>**/ThrowsCountCheckTest.class</exclude>
 
 
                 <exclude>**/FileLengthCheckTest.class</exclude>
@@ -1794,7 +1793,6 @@
 
                 <exclude>**/IllegalIdentifierNameCheckTest.class</exclude>
 
-                <exclude>**/OneTopLevelClassCheckTest.class</exclude>
 
 
                 <exclude>**/AbbreviationAsWordInNameCheckTest.class</exclude>
