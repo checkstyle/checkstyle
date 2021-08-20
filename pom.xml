@@ -1609,7 +1609,6 @@
 
                 <exclude>**/OperatorWrapCheckTest.class</exclude>
 
-                <exclude>**/LeftCurlyCheckTest.class</exclude>
 
                 <exclude>**/TodoCommentCheckTest.class</exclude>
 
@@ -1725,7 +1724,6 @@
 
                 <exclude>**/HeaderCheckTest.class</exclude>
 
-                <exclude>**/AvoidNestedBlocksCheckTest.class</exclude>
 
                 <exclude>**/AvoidStarImportCheckTest.class</exclude>
 
@@ -1808,7 +1806,6 @@
 
                 <exclude>**/Java14RecordsTest.class</exclude>
 
-                <exclude>**/EmptyCatchBlockCheckTest.class</exclude>
 
                 <exclude>**/TypecastParenPadCheckTest.class</exclude>
 
@@ -1822,7 +1819,6 @@
 
 
 
-                <exclude>**/NeedBracesCheckTest.class</exclude>
 
                 <exclude>**/RegexpSinglelineJavaCheckTest.class</exclude>
 
@@ -1839,7 +1835,6 @@
 
                 <exclude>**/CommentsIndentationCheckTest.class</exclude>
 
-                <exclude>**/EmptyBlockCheckTest.class</exclude>
 
                 <exclude>**/IllegalTokenCheckTest.class</exclude>
 
