@@ -1,6 +1,6 @@
 /*
 EmptyBlock
-option = text
+option = TEXT
 tokens = LITERAL_DEFAULT
 
 
@@ -86,7 +86,7 @@ public class InputEmptyBlockDefault {
             case 3:
             default:
             {
-            }   // ^ violation
+            }   // violation above
         }
 
         switch (b) {
