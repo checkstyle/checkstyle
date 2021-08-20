@@ -7,26 +7,26 @@ InnerTypeLast
 package com.puppycrawl.tools.checkstyle.checks.design.innertypelast;
 
 public class InputInnerTypeLastClassCtorsInitBlocks {
-    public class Inner { // violation
+    public class Inner {
     }
 
-    public InputInnerTypeLastClassCtorsInitBlocks() {
+    public InputInnerTypeLastClassCtorsInitBlocks() { // violation
     }
 }
 
 class BeforeInitBlock {
 
-    public class Inner2 { // violation
+    public class Inner2 {
     }
 
-    {}
+    {} // violation
 
 }
 
 class BeforeStaticInitBlock {
 
-    public interface Inner3 { // violation
+    public interface Inner3 {
     }
 
-    static {}
+    static {} // violation
 }

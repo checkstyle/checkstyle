@@ -44,7 +44,8 @@ public class InterfaceIsTypeCheckTest
         final String[] expected = {
             "28:5: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputInterfaceIsType.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputInterfaceIsType.java"), expected);
     }
 
     @Test
@@ -57,7 +58,8 @@ public class InterfaceIsTypeCheckTest
             "23:5: " + getCheckMessage(MSG_KEY),
             "28:5: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputInterfaceIsTypeAllowMarker.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputInterfaceIsTypeAllowMarker.java"), expected);
     }
 
     @Test

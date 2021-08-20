@@ -81,7 +81,7 @@ class Temp3 {
         private int I = 0;
     }
 
-    public int[] getDefaultTokens()
+    public int[] getDefaultTokens() // violation
     {
         return new int[]{1, };
     }

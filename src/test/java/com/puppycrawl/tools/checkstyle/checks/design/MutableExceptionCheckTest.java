@@ -49,8 +49,9 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputMutableExceptionClassExtendsGenericClass.java"),
-            expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMutableExceptionClassExtendsGenericClass.java"),
+                expected);
     }
 
     @Test
@@ -63,7 +64,8 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
             "54:9: " + getCheckMessage(MSG_KEY, "errorCode"),
         };
 
-        verify(checkConfig, getPath("InputMutableException.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMutableException.java"), expected);
     }
 
     @Test
@@ -95,7 +97,8 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
             "42:13: " + getCheckMessage(MSG_KEY, "errorCode"),
         };
 
-        verify(checkConfig, getPath("InputMutableException3.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMutableException3.java"), expected);
     }
 
     @Test
