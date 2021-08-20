@@ -34,8 +34,8 @@ public class InputClassDataAbstractionCoupling { // violation
 
 }
 
-enum InnerEnum {
-    VALUE1; // violation
+enum InnerEnum { // violation
+    VALUE1;
 
     private InnerEnum()
     {

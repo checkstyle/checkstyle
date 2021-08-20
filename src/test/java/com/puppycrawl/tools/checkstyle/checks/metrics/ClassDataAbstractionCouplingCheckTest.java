@@ -67,7 +67,8 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
             "37:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
         };
 
-        verify(checkConfig, getPath("InputClassDataAbstractionCoupling.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputClassDataAbstractionCoupling.java"), expected);
     }
 
     @Test
@@ -78,14 +79,14 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
         checkConfig.addProperty("max", "0");
         checkConfig.addProperty("excludedPackages",
             "com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.c,"
-                + "com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling."
+                + " com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling."
                 + "inputs.b");
 
         final String[] expected = {
             "30:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AAClass, ABClass]"),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getPath("InputClassDataAbstractionCouplingExcludedPackagesDirectPackages.java"),
                 expected);
     }
@@ -104,7 +105,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
             "32:5: " + getCheckMessage(MSG_KEY, 2, 0, "[BClass, CClass]"),
             "38:1: " + getCheckMessage(MSG_KEY, 1, 0, "[CClass]"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getPath("InputClassDataAbstractionCouplingExcludedPackagesCommonPackage.java"),
                 expected);
     }
@@ -144,16 +145,16 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
         checkConfig.addProperty("max", "0");
         checkConfig.addProperty("excludedPackages",
             "com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs."
-                    + "a.aa,"
+                    + "a.aa, "
                 + "com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling."
-                    + "inputs.a.ab,"
+                    + "inputs.a.ab, "
                 + "com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling."
-                    + "inputs.b,"
+                    + "inputs.b, "
                 + "com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling."
                     + "inputs.c");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getPath("InputClassDataAbstractionCouplingExcludedPackagesAllIgnored.java"), expected);
     }
 
@@ -164,7 +165,8 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
         createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputClassDataAbstractionCoupling2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputClassDataAbstractionCoupling2.java"), expected);
     }
 
     @Test
@@ -196,7 +198,8 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
             "23:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
         };
 
-        verify(checkConfig, getPath("InputClassDataAbstractionCoupling3.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputClassDataAbstractionCoupling3.java"), expected);
     }
 
     @Test
@@ -214,7 +217,8 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
             "43:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
         };
 
-        verify(checkConfig, getPath("InputClassDataAbstractionCoupling4.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputClassDataAbstractionCoupling4.java"), expected);
     }
 
     @Test
@@ -233,7 +237,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
             "67:5: " + getCheckMessage(MSG_KEY, 3, maxAbstraction, "[Date, Place, Time]"),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputClassDataAbstractionCouplingRecords.java"),
             expected);
     }

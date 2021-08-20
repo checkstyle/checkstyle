@@ -28,12 +28,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-class InputClassDataAbstractionCouplingRecords {
+class InputClassDataAbstractionCouplingRecords { // violation
     Date date = new Date(); // Counted, 1
-    Time time = new Time(2, 2, 2); // violation
+    Time time = new Time(2, 2, 2);
 }
 
-record MyRecord1(boolean a, boolean b) {
+record MyRecord1(boolean a, boolean b) { // violation
 
     private boolean myBool() {
         Date date = new Date(); // Counted, 1
@@ -43,7 +43,7 @@ record MyRecord1(boolean a, boolean b) {
 
 }
 
-record MyRecord2(String myString, boolean a, boolean b) {
+record MyRecord2(String myString, boolean a, boolean b) { // violation
 
     // in compact ctor
     public MyRecord2 {
@@ -52,7 +52,7 @@ record MyRecord2(String myString, boolean a, boolean b) {
     }
 }
 
-record MyRecord3(int x) {
+record MyRecord3(int x) { // violation
 
     // in ctor
     MyRecord3() {
@@ -64,7 +64,7 @@ record MyRecord3(int x) {
 }
 
 record MyRecord4(int y) {
-    private record MyRecord5(int z) {
+    private record MyRecord5(int z) { // violation
         static Set<Integer> set = new HashSet<>(); // HashSet ignored
         static Map<String, Integer> map = new HashMap<>(); // HashMap ignored
         static Date date = new Date(); // Counted, 1
