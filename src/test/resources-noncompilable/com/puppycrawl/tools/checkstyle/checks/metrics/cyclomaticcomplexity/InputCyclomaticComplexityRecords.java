@@ -45,7 +45,7 @@ public class InputCyclomaticComplexityRecords {
             d = a < 0 ? -1 : 1; // 11, ternary operator
         }
 
-        public void foo() { // violation, method
+        public void foo() { // violation
             int a = 1;
             int b = 1;
             int c = 1;
@@ -145,7 +145,7 @@ record MyRecord3(boolean a, boolean b) {
 }
 
 record MyRecord4(boolean a, boolean b) {
-    public Record foo() { // violation, function declaration
+    public Record foo() { // violation
         int a = 1;
         int b = 1;
         int c = 1;

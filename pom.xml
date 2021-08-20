@@ -1536,7 +1536,6 @@
 
                 <exclude>**/AbstractClassNameCheckTest.class</exclude>
 
-                <exclude>**/JavaNCSSCheckTest.class</exclude>
 
 
                 <exclude>**/NPathComplexityCheckTest.class</exclude>
@@ -1642,7 +1641,6 @@
 
                 <exclude>**/RegexpMultilineCheckTest.class</exclude>
 
-                <exclude>**/CyclomaticComplexityCheckTest.class</exclude>
 
                 <exclude>**/UnusedImportsCheckTest.class</exclude>
 

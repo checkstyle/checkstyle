@@ -48,7 +48,8 @@ public class CyclomaticComplexityCheckTest
             "14:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("InputCyclomaticComplexitySwitchBlocks.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputCyclomaticComplexitySwitchBlocks.java"), expected);
     }
 
     @Test
@@ -62,7 +63,8 @@ public class CyclomaticComplexityCheckTest
             "14:5: " + getCheckMessage(MSG_KEY, 5, 0),
         };
 
-        verify(checkConfig, getPath("InputCyclomaticComplexitySwitchBlocks2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputCyclomaticComplexitySwitchBlocks2.java"), expected);
     }
 
     @Test
@@ -73,7 +75,8 @@ public class CyclomaticComplexityCheckTest
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputCyclomaticComplexitySwitchBlocks3.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputCyclomaticComplexitySwitchBlocks3.java"), expected);
     }
 
     @Test
@@ -96,7 +99,8 @@ public class CyclomaticComplexityCheckTest
             "114:13: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("InputCyclomaticComplexity.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputCyclomaticComplexity.java"), expected);
     }
 
     @Test
@@ -116,7 +120,7 @@ public class CyclomaticComplexityCheckTest
             "148:5: " + getCheckMessage(MSG_KEY, 11, max),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath("InputCyclomaticComplexityRecords.java"), expected);
     }
 
@@ -167,7 +171,8 @@ public class CyclomaticComplexityCheckTest
         checkConfig.addProperty("max", "100");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputCyclomaticComplexitySwitchBlocks4.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputCyclomaticComplexitySwitchBlocks4.java"), expected);
     }
 
 }
