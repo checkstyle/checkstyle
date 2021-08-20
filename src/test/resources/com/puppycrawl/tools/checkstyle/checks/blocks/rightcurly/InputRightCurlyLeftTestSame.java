@@ -1,6 +1,6 @@
 /*
 RightCurly
-option = (default)same
+option = (default)SAME
 tokens = LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, \
          LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, ANNOTATION_DEF, ENUM_DEF
 
