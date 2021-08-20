@@ -53,7 +53,7 @@ public class InputJavaNCSSRecordsAndCompactCtors {  // violation
         } // 6
 
         //should give an ncss of 8 , violation for method
-        private void testMethod() {
+        private void testMethod() { // violation
 
             for (int i=0; i<10; i++) {
 
@@ -149,7 +149,7 @@ public class InputJavaNCSSRecordsAndCompactCtors {  // violation
     }
 
     record MyRecord7(int x, int y) {  // violation
-        public MyRecord7{
+        public MyRecord7{ // violation
             System.out.println("test");
             System.out.println("test");
             System.out.println("test");

@@ -75,7 +75,8 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             "151:21: " + getCheckMessage(MSG_KEY, 3, 0),
         };
 
-        verify(checkConfig, getPath("InputNPathComplexityDefault.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNPathComplexityDefault.java"), expected);
     }
 
     @Test
@@ -101,7 +102,8 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             "178:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("InputNPathComplexity.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNPathComplexity.java"), expected);
     }
 
     @Test
@@ -114,7 +116,8 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             "11:5: " + getCheckMessage(MSG_KEY, 64, 0),
         };
 
-        verify(checkConfig, getNonCompilablePath("InputNPathComplexityDefault2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getNonCompilablePath("InputNPathComplexityDefault2.java"), expected);
     }
 
     @Test
@@ -130,7 +133,8 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             "20:5: " + getCheckMessage(MSG_KEY, largerThanMaxInt, 0),
         };
 
-        verify(checkConfig, getPath("InputNPathComplexityOverflow.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNPathComplexityOverflow.java"), expected);
     }
 
     @Test
@@ -200,7 +204,8 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
         createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputNPathComplexityDefault2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNPathComplexityDefault2.java"), expected);
     }
 
     @Test
@@ -217,7 +222,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             "44:9: " + getCheckMessage(MSG_KEY, 3, max),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath("InputNPathComplexityRecords.java"), expected);
     }
 
@@ -235,7 +240,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             "60:5: " + getCheckMessage(MSG_KEY, 6, max),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputNPathComplexityCheckSwitchExpression.java"),
             expected);
     }

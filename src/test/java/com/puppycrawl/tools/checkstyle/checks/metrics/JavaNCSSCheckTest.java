@@ -69,7 +69,8 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
             "93:5: " + getCheckMessage(MSG_METHOD, 1, 0),
         };
 
-        verify(checkConfig, getPath("InputJavaNCSS.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputJavaNCSS.java"), expected);
     }
 
     @Test
@@ -82,7 +83,8 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputJavaNCSS2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputJavaNCSS2.java"), expected);
     }
 
     @Test
@@ -91,7 +93,8 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
 
         createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputJavaNCSS3.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputJavaNCSS3.java"), expected);
     }
 
     @Test
@@ -119,7 +122,7 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
             "167:9: " + getCheckMessage(MSG_METHOD, 11, 7),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath("InputJavaNCSSRecordsAndCompactCtors.java"),
                 expected);
     }

@@ -1,6 +1,6 @@
 /*
 NPathComplexity
-max = (default)200
+max = 1
 
 
 */
