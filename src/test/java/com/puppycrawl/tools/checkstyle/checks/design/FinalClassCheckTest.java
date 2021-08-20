@@ -67,7 +67,8 @@ public class FinalClassCheckTest
             "151:1: " + getCheckMessage(MSG_KEY, "TestNewKeyword"),
             "184:5: " + getCheckMessage(MSG_KEY, "NestedClass"),
         };
-        verify(checkConfig, getPath("InputFinalClass.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputFinalClass.java"), expected);
     }
 
     @Test
@@ -77,7 +78,7 @@ public class FinalClassCheckTest
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_KEY, "C"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath(
                         "InputFinalClassClassWithPrivateCtorWithNestedExtendingClass.java"),
                 expected);
@@ -91,7 +92,7 @@ public class FinalClassCheckTest
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY, "C"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath(
                 "InputFinalClassClassWithPrivateCtorWithNestedExtendingClassWithoutPackage.java"),
                 expected);
@@ -104,7 +105,7 @@ public class FinalClassCheckTest
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputFinalClassConstructorInRecord.java"),
             expected);
     }

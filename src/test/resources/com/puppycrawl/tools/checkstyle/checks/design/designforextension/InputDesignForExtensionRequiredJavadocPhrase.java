@@ -48,7 +48,7 @@ public class InputDesignForExtensionRequiredJavadocPhrase {
     public int foo8(int a) {return a - 2;} // violation
 
     // This implementation
-    public int foo9(int a, int b) {return a + b;} // violation, not javadoc
+    public int foo9(int a, int b) {return a + b;} // violation
 
     @Deprecated
     protected final int foo10(int a) {return a - 2;} // ok, deprecated

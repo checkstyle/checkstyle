@@ -29,7 +29,7 @@ public class InputDesignForExtensionNativeMethods {
     /*
      * Violation. Block-commend doc for native method.
      */
-    public native void foo6();
+    public native void foo6(); // violation
 
     @Deprecated
     public native void foo7();
