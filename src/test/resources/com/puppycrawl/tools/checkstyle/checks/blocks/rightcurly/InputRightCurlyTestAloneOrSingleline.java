@@ -1,6 +1,6 @@
 /*
 RightCurly
-option = alone_or_singleline
+option = ALONE_OR_SINGLELINE
 tokens = LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, \
          CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, \
          STATIC_INIT, INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF
@@ -80,8 +80,8 @@ public class InputRightCurlyTestAloneOrSingleline {
         if (false) {
         }
     }
-
-    void f17() { int var1 = 5; var2 = 6; } private void f18() {int var1 = 5; var2 = 6; }//violation
+    // violation below
+    void f17() { int var1 = 5; var2 = 6; } private void f18() {int var1 = 5; var2 = 6; }
 
     private void foo19() {int var1 = 5;
         var2 = 6;} // violation
@@ -96,7 +96,7 @@ public class InputRightCurlyTestAloneOrSingleline {
     }
 
     private void foo21() {
-        new Object() { @Override protected void finalize() { "".toString(); }};
+        new Object() { @Override protected void finalize() { "".toString(); }}; // violation
     }
 
     void foo22() {
@@ -118,11 +118,11 @@ public class InputRightCurlyTestAloneOrSingleline {
         }}; //NO violation
 
         Thread t = new Thread() {@Override public void run() {super.run();}}; // violation
-        // violation
+        // 2 violations below
         new Object() { @Override protected void finalize() { "".toString(); }  { int a = 5; }};
-        // violation
+        // violation below
         new Object() { @Override protected void finalize() { "".toString(); }  int b = 10; };
-        // violation
+        // 2 violations below
         new Object() { protected void finalize() { hashCode(); }  { int c = 5; } int d = 8; };
 
         java.util.Map<String, String> map2 = new java.util.LinkedHashMap<String, String>() {{
@@ -167,14 +167,14 @@ public class InputRightCurlyTestAloneOrSingleline {
     void foo25() {
         for (int i = 0; i < 10; i++) {
             System.identityHashCode("Hello, world!");
-        }} // violation
+        }} // 2 violations
 
     void foo26() {
         for (int i = 0; i < 10; i++) {
-            System.identityHashCode("Hello, world!");}} // violation
+            System.identityHashCode("Hello, world!");}} // 2 violations
 
     void foo27() {
-        for (int i = 0; i < 10; i++) {for (int j = 0; j < 15; j++) {int a;}}} // violation
+        for (int i = 0; i < 10; i++) {for (int j = 0; j < 15; j++) {int a;}}} // 3 violations
 
     private java.util.ArrayList<Integer> foo28(int delta) {
         return new java.util.ArrayList<Integer>() {
