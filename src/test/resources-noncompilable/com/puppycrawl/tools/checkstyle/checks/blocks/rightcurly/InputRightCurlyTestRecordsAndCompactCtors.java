@@ -1,6 +1,6 @@
 /*
 RightCurly
-option = (default)same
+option = (default)SAME
 tokens = RECORD_DEF, COMPACT_CTOR_DEF, CTOR_DEF, METHOD_DEF
 
 
@@ -20,7 +20,7 @@ public class InputRightCurlyTestRecordsAndCompactCtors {
                 value = i;
             }
             return value > 10;
-        } } // violation x2
+        } } // 2 violations
 
     record MyTestRecord2() {
         MyTestRecord2(String one, String two, String three) {
