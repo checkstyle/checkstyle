@@ -2,6 +2,7 @@
 MatchXpath
 query = //LITERAL_THROWS[./IDENT[@text='Throwable' or @text='RuntimeException' or \
         ends-with(@text, 'Error')]]
+message.matchxpath.match = Illegal throws statement
 
 
 */

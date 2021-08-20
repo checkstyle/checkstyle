@@ -4,6 +4,7 @@ query = //INSTANCE_INIT[not(../*[not(\n                    self::LCURLY or\n    
         self::INSTANCE_INIT or\n                    self::RCURLY or\n                    \
         self::SINGLE_LINE_COMMENT or\n                    self::BLOCK_COMMENT_BEGIN\
         \n                )])]
+message.matchxpath.match = Do not use double-brace initialization
 
 
 */
