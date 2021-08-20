@@ -1,6 +1,6 @@
 /*
 RightCurly
-option = alone_or_singleline
+option = ALONE_OR_SINGLELINE
 tokens = (default)LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE
 
 

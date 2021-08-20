@@ -1,6 +1,6 @@
 /*
 RightCurly
-option = alone_or_singleline
+option = ALONE_OR_SINGLELINE
 tokens = CLASS_DEF, METHOD_DEF, CTOR_DEF, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF
 
 
