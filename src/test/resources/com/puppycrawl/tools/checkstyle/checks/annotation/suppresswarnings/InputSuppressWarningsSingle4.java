@@ -1,7 +1,7 @@
 /*
 SuppressWarnings
 format = ^unchecked$*
-tokens = CLASS_DEF, METHOD_DEF
+tokens = CLASS_DEF,METHOD_DEF
 
 
 */

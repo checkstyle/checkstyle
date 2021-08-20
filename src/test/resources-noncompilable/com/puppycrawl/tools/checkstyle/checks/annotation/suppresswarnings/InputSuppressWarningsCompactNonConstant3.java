@@ -69,7 +69,7 @@ public class InputSuppressWarningsCompactNonConstant3
         }
     }
 
-    @SuppressWarnings({(false) ? "unchecked" : "", (false) ? "unchecked" : ""}) // violation
+    @SuppressWarnings({(false) ? "unchecked" : "", (false) ? "unchecked" : ""}) // 2 violations
     class Cond {
 
         @SuppressWarnings({(false) ? "" : "unchecked"})

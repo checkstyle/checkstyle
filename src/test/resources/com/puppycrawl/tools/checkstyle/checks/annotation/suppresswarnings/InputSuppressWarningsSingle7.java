@@ -71,26 +71,26 @@ public class InputSuppressWarningsSingle7
         }
     }
 
-    @SuppressWarnings((false) ? "unchecked" : "") // violation
+    @SuppressWarnings((false) ? "unchecked" : "") // 2 violations
     class Cond {
 
-        @SuppressWarnings((false) ? "" : "unchecked") // violation
+        @SuppressWarnings((false) ? "" : "unchecked") // 2 violations
         public Cond() {
 
         }
 
-        @SuppressWarnings((false) ? (true) ? "   " : "unused" : "unchecked") // violation
+        @SuppressWarnings((false) ? (true) ? "   " : "unused" : "unchecked") // 3 violations
         public void aCond1() {
 
         }
 
-        @SuppressWarnings((false) ? "unchecked" : (true) ? "   " : "unused") // violation
+        @SuppressWarnings((false) ? "unchecked" : (true) ? "   " : "unused") // 3 violations
         public void aCond2() {
 
         }
 
         @java.lang.SuppressWarnings((false) ? "unchecked" : // violation
-                ("" == "") ? (false) ? (true) ? "" : "foo" : "    " : "unused") // violation
+                ("" == "") ? (false) ? (true) ? "" : "foo" : "    " : "unused") // 4 violations
         public void seriously() {
 
         }

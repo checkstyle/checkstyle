@@ -12,13 +12,13 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 
 import java.lang.annotation.Documented;
 
-@SuppressWarnings({"unchecked", "unused"}) // violation
+@SuppressWarnings({"unchecked", "unused"}) // 2 violations
 public class InputSuppressWarningsCompact7
 {
     @SuppressWarnings({"   "}) // violation
     class Empty {
 
-        @SuppressWarnings({"unchecked", ""}) // violation
+        @SuppressWarnings({"unchecked", ""}) // 2 violations
         public Empty() {
 
         }
@@ -27,7 +27,7 @@ public class InputSuppressWarningsCompact7
     @SuppressWarnings({"unused"}) // violation
     enum Duh {
 
-        @SuppressWarnings({"unforgiven", "    un"}) // violation
+        @SuppressWarnings({"unforgiven", "    un"}) // 2 violations
         D;
 
         public static void foo() {
@@ -54,7 +54,7 @@ public class InputSuppressWarningsCompact7
     @SuppressWarnings({}) // violation
     @interface MoreSweetness {
 
-        @SuppressWarnings({"unused", "bleh"}) // violation
+        @SuppressWarnings({"unused", "bleh"}) // 2 violations
         int cool();
     }
 
