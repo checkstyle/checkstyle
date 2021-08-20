@@ -1706,7 +1706,6 @@
                 <exclude>**/LocalFinalVariableNameCheckTest.class</exclude>
 
 
-                <exclude>**/ClassDataAbstractionCouplingCheckTest.class</exclude>
 
                 <exclude>**/GeneratedJava14LexerTest.class</exclude>
 
@@ -1719,7 +1718,6 @@
 
                 <exclude>**/RedundantModifierCheckTest.class</exclude>
 
-                <exclude>**/ClassFanOutComplexityCheckTest.class</exclude>
 
                 <exclude>**/MethodLengthCheckTest.class</exclude>
 
@@ -1813,7 +1811,6 @@
 
                 <exclude>**/PackageDeclarationCheckTest.class</exclude>
 
-                <exclude>**/BooleanExpressionComplexityCheckTest.class</exclude>
 
                 <exclude>**/RecordTypeParameterNameCheckTest.class</exclude>
 

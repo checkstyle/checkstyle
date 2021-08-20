@@ -1,7 +1,7 @@
 /*
 BooleanExpressionComplexity
 max = 5
-tokens = LAND, LOR, BXOR
+tokens = BXOR,LAND,LOR
 
 
 */
