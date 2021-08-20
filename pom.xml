@@ -1686,7 +1686,6 @@
 
                 <exclude>**/ExecutableStatementCountCheckTest.class</exclude>
 
-                <exclude>**/InterfaceIsTypeCheckTest.class</exclude>
 
 
                 <exclude>**/EmptyForIteratorPadCheckTest.class</exclude>
@@ -1779,7 +1778,6 @@
 
                 <exclude>**/FileLengthCheckTest.class</exclude>
 
-                <exclude>**/InnerTypeLastCheckTest.class</exclude>
 
 
                 <exclude>**/ParenPadCheckTest.class</exclude>
@@ -1827,7 +1825,6 @@
 
                 <exclude>**/CustomImportOrderCheckTest.class</exclude>
 
-                <exclude>**/MutableExceptionCheckTest.class</exclude>
 
 
 
