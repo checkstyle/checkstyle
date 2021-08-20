@@ -53,7 +53,8 @@ public class HideUtilityClassConstructorCheckTest
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputHideUtilityClassConstructorInnerStaticClasses.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHideUtilityClassConstructorInnerStaticClasses.java"),
                 expected);
     }
 
@@ -64,7 +65,8 @@ public class HideUtilityClassConstructorCheckTest
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputHideUtilityClassConstructorPublic.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHideUtilityClassConstructorPublic.java"), expected);
     }
 
     @Test
@@ -72,7 +74,8 @@ public class HideUtilityClassConstructorCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputHideUtilityClassConstructorPrivate.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHideUtilityClassConstructorPrivate.java"), expected);
     }
 
     /** Non-static methods - always OK. */
@@ -81,7 +84,8 @@ public class HideUtilityClassConstructorCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputHideUtilityClassConstructorDesignForExtension.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHideUtilityClassConstructorDesignForExtension.java"),
                 expected);
     }
 
@@ -90,7 +94,8 @@ public class HideUtilityClassConstructorCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputHideUtilityClassConstructorNonUtilityClass.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHideUtilityClassConstructorNonUtilityClass.java"),
                 expected);
     }
 
@@ -99,7 +104,8 @@ public class HideUtilityClassConstructorCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputHideUtilityClassConstructorRegression.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHideUtilityClassConstructorRegression.java"),
                 expected);
     }
 
@@ -108,7 +114,8 @@ public class HideUtilityClassConstructorCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputHideUtilityClassConstructorAbstractSerializable.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHideUtilityClassConstructorAbstractSerializable.java"),
                 expected);
     }
 
@@ -117,7 +124,8 @@ public class HideUtilityClassConstructorCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputHideUtilityClassConstructorAbstract.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHideUtilityClassConstructorAbstract.java"),
                 expected);
     }
 
@@ -126,7 +134,8 @@ public class HideUtilityClassConstructorCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputHideUtilityClassConstructorSerializable.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHideUtilityClassConstructorSerializable.java"),
                 expected);
     }
 
@@ -135,7 +144,8 @@ public class HideUtilityClassConstructorCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath(
+        verifyWithInlineConfigParser(checkConfig,
+                getPath(
                 "InputHideUtilityClassConstructorSerializableInnerStatic.java"),
                 expected);
     }
@@ -145,7 +155,8 @@ public class HideUtilityClassConstructorCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(HideUtilityClassConstructorCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputHideUtilityClassConstructor.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputHideUtilityClassConstructor.java"), expected);
     }
 
     @Test
