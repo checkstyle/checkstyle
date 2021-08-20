@@ -1,6 +1,7 @@
 /*
 MatchXpath
 query = //METHOD_DEF[count(./SLIST/*) > 2]
+message.matchxpath.match = Executable number of statements exceed threshold
 
 
 */

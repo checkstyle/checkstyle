@@ -123,7 +123,10 @@ public final class InlineConfigParser {
         for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
             final String key = entry.getKey().toString();
             final String value = entry.getValue().toString();
-            if (value.startsWith("(default)")) {
+            if (key.startsWith("message.")) {
+                inputConfigBuilder.addCheckMessage(key.substring(8), value);
+            }
+            else if (value.startsWith("(default)")) {
                 final String defaultValue = value.substring(value.indexOf(')') + 1);
                 if (NULL_STRING.equals(defaultValue)) {
                     inputConfigBuilder.addDefaultProperty(key, null);
