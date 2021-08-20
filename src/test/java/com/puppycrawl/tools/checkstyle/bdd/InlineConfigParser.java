@@ -56,6 +56,14 @@ public final class InlineConfigParser {
     private static final Pattern MULTIPLE_VIOLATIONS_PATTERN = Pattern
             .compile(".*//\\s*(\\d) violations(?: .*)?$");
 
+    /** A pattern to find the string: "// X violations above". */
+    private static final Pattern MULTIPLE_VIOLATIONS_ABOVE_PATTERN = Pattern
+            .compile(".*//\\s*(\\d) violations above(?: .*)?$");
+
+    /** A pattern to find the string: "// X violations below". */
+    private static final Pattern MULTIPLE_VIOLATIONS_BELOW_PATTERN = Pattern
+            .compile(".*//\\s*(\\d) violations below(?: .*)?$");
+
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
 
@@ -149,13 +157,18 @@ public final class InlineConfigParser {
     private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
                                       List<String> lines) {
         for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
-            final Matcher violationMatcher = VIOLATION_PATTERN.matcher(lines.get(lineNo));
+            final Matcher violationMatcher =
+                    VIOLATION_PATTERN.matcher(lines.get(lineNo));
             final Matcher violationAboveMatcher =
                     VIOLATION_ABOVE_PATTERN.matcher(lines.get(lineNo));
             final Matcher violationBelowMatcher =
                     VIOLATION_BELOW_PATTERN.matcher(lines.get(lineNo));
             final Matcher multipleViolationsMatcher =
                     MULTIPLE_VIOLATIONS_PATTERN.matcher(lines.get(lineNo));
+            final Matcher multipleViolationsAboveMatcher =
+                    MULTIPLE_VIOLATIONS_ABOVE_PATTERN.matcher(lines.get(lineNo));
+            final Matcher multipleViolationsBelowMatcher =
+                    MULTIPLE_VIOLATIONS_BELOW_PATTERN.matcher(lines.get(lineNo));
             if (violationMatcher.matches()) {
                 inputConfigBuilder.addViolation(lineNo + 1, violationMatcher.group(1));
             }
@@ -168,6 +181,21 @@ public final class InlineConfigParser {
             else if (multipleViolationsMatcher.matches()) {
                 Collections
                         .nCopies(Integer.parseInt(multipleViolationsMatcher.group(1)), lineNo + 1)
+                        .forEach(actualLineNumber -> {
+                            inputConfigBuilder.addViolation(actualLineNumber, null);
+                        });
+            }
+            else if (multipleViolationsAboveMatcher.matches()) {
+                Collections
+                        .nCopies(Integer.parseInt(multipleViolationsAboveMatcher.group(1)), lineNo)
+                        .forEach(actualLineNumber -> {
+                            inputConfigBuilder.addViolation(actualLineNumber, null);
+                        });
+            }
+            else if (multipleViolationsBelowMatcher.matches()) {
+                Collections
+                        .nCopies(Integer.parseInt(multipleViolationsBelowMatcher.group(1)),
+                                lineNo + 2)
                         .forEach(actualLineNumber -> {
                             inputConfigBuilder.addViolation(actualLineNumber, null);
                         });
