@@ -88,7 +88,8 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputOneTopLevelClass.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputOneTopLevelClass.java"), expected);
     }
 
     @Test
@@ -96,7 +97,8 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputOneTopLevelClassInterface.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputOneTopLevelClassInterface.java"), expected);
     }
 
     @Test
@@ -104,7 +106,8 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputOneTopLevelClassEnum.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputOneTopLevelClassEnum.java"), expected);
     }
 
     @Test
@@ -112,7 +115,8 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputOneTopLevelClassAnnotation.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputOneTopLevelClassAnnotation.java"), expected);
     }
 
     @Test
@@ -122,7 +126,8 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassNoPublic2"),
         };
-        verify(checkConfig, getPath("InputOneTopLevelClassNoPublic.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputOneTopLevelClassNoPublic.java"), expected);
     }
 
     @Test
@@ -133,7 +138,8 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
             "9:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface3inner1"),
             "17:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface3inner2"),
         };
-        verify(checkConfig, getPath("InputOneTopLevelClassInterface3.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputOneTopLevelClassInterface3.java"), expected);
     }
 
     @Test
@@ -144,7 +150,8 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
             "9:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassEnum2inner1"),
             "17:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassEnum2inner2"),
         };
-        verify(checkConfig, getPath("InputOneTopLevelClassEnum2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputOneTopLevelClassEnum2.java"), expected);
     }
 
     @Test
@@ -155,7 +162,8 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
             "15:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassAnnotation2A"),
             "20:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassAnnotation2B"),
         };
-        verify(checkConfig, getPath("InputOneTopLevelClassAnnotation2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputOneTopLevelClassAnnotation2.java"), expected);
     }
 
     @Test
@@ -171,7 +179,8 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
             "51:1: " + getCheckMessage(MSG_KEY, "AnotherClass"),
             "54:1: " + getCheckMessage(MSG_KEY, "NativeTest"),
         };
-        verify(checkConfig, getPath("InputOneTopLevelClassClone.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputOneTopLevelClassClone.java"), expected);
     }
 
     @Test
@@ -182,14 +191,16 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
             "16:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderEnum2"),
             "26:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderAnnotation2"),
         };
-        verify(checkConfig, getPath("InputOneTopLevelClassDeclarationOrder2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputOneTopLevelClassDeclarationOrder2.java"), expected);
     }
 
     @Test
     public void testPackageInfoWithNoTypesDeclared() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("package-info.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getNonCompilablePath("package-info.java"), expected);
     }
 
     @Test
@@ -199,7 +210,8 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "9:47: " + getCheckMessage(MSG_KEY, "ViolatingSecondType"),
         };
-        verify(checkConfig, getPath("InputOneTopLevelClassSameLine.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputOneTopLevelClassSameLine.java"), expected);
     }
 
     @Test
@@ -211,7 +223,8 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
             "17:5: " + getCheckMessage(MSG_KEY, "ViolatingIndentedClass2"),
             "21:1: " + getCheckMessage(MSG_KEY, "ViolatingNonIndentedInterface"),
         };
-        verify(checkConfig, getPath("InputOneTopLevelClassIndentation.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputOneTopLevelClassIndentation.java"), expected);
     }
 
     @Test
@@ -222,7 +235,8 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
             "13:1: " + getCheckMessage(MSG_KEY, "TestRecord1"),
             "17:1: " + getCheckMessage(MSG_KEY, "TestRecord2"),
         };
-        verify(checkConfig, getNonCompilablePath("InputOneTopLevelClassRecords.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getNonCompilablePath("InputOneTopLevelClassRecords.java"), expected);
     }
 
     @Test
@@ -230,6 +244,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputOneTopLevelClassEmpty.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getNonCompilablePath("InputOneTopLevelClassEmpty.java"), expected);
     }
 }
