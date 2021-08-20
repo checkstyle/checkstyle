@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 
 import java.lang.annotation.Documented;
 
-@SuppressWarnings(value={"unchecked", "unused"}) // violation
+@SuppressWarnings(value={"unchecked", "unused"}) // 2 violations
 public class InputSuppressWarningsExpanded6
 {
     @SuppressWarnings(value={"   "})

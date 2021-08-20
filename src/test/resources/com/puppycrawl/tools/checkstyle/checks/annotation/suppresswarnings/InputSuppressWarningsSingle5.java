@@ -79,12 +79,12 @@ public class InputSuppressWarningsSingle5
 
         }
 
-        @SuppressWarnings((false) ? (true) ? "   " : "unused" : "unchecked") // violation
+        @SuppressWarnings((false) ? (true) ? "   " : "unused" : "unchecked") // 2 violations
         public void aCond1() {
 
         }
 
-        @SuppressWarnings((false) ? "unchecked" : (true) ? "   " : "unused") // violation
+        @SuppressWarnings((false) ? "unchecked" : (true) ? "   " : "unused") // 2 violations
         public void aCond2() {
 
         }

@@ -21,16 +21,16 @@ import java.util.HashMap;
  * ANNOTATION_FIELD_DEF , ENUM_CONSTANT_DEF , PARAMETER_DEF ,
  * VARIABLE_DEF , METHOD_DEF , CTOR_DEF, RECORD_DEF, COMPACT_CTOR_DEF}
  */
-@SuppressWarnings(value = {"unchecked", "unused"}) // violation x2
+@SuppressWarnings(value = {"unchecked", "unused"}) // 2 violations
 public record InputSuppressWarningsRecords
         (String x) {
 
-    @SuppressWarnings(value = {"unchecked", ""}) // violation x2
+    @SuppressWarnings(value = {"unchecked", ""}) // 2 violations
     public InputSuppressWarningsRecords{}
     @SuppressWarnings(value = {"   "}) // violation
     class Empty {
 
-        @SuppressWarnings(value = {"unchecked", ""}) // violation x2
+        @SuppressWarnings(value = {"unchecked", ""}) // 2 violations
         public Empty() {
 
         }
@@ -39,7 +39,7 @@ public record InputSuppressWarningsRecords
     @SuppressWarnings(value = {"unused"}) // violation
     enum Duh {
 
-        @SuppressWarnings(value = {"unforgiven", "    un"}) // violation x2
+        @SuppressWarnings(value = {"unforgiven", "    un"}) // 2 violations
         D;
 
         public static void foo() {
@@ -60,7 +60,7 @@ public record InputSuppressWarningsRecords
     @SuppressWarnings(value = {}) // violation
     @interface MoreSweetness {
 
-        @SuppressWarnings(value = {"unused", "something else"}) // violation x2
+        @SuppressWarnings(value = {"unused", "something else"}) // 2 violations
         int cool();
     }
 

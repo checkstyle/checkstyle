@@ -12,7 +12,7 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 import java.lang.annotation.Documented;
 
-@SuppressWarnings({"unchecked", "unused"}) // violation
+@SuppressWarnings({"unchecked", "unused"}) // 2 violations
 public class InputSuppressWarningsCompactNonConstant5
 {
     @SuppressWarnings({"   "})
@@ -71,7 +71,7 @@ public class InputSuppressWarningsCompactNonConstant5
         }
     }
 
-    @SuppressWarnings({(false) ? "unchecked" : "", (false) ? "unchecked" : ""}) // violation
+    @SuppressWarnings({(false) ? "unchecked" : "", (false) ? "unchecked" : ""}) // 2 violations
     class Cond {
 
         @SuppressWarnings({(false) ? "" : "unchecked"}) // violation
@@ -79,21 +79,21 @@ public class InputSuppressWarningsCompactNonConstant5
 
         }
 
-        @SuppressWarnings({(false) ? (true) ? "   " : "unused" : "unchecked", // violation
-            (false) ? (true) ? "   " : "unused" : "unchecked"}) // violation
+        @SuppressWarnings({(false) ? (true) ? "   " : "unused" : "unchecked", // 2 violations
+            (false) ? (true) ? "   " : "unused" : "unchecked"}) // 2 violations
         public void aCond1() {
 
         }
 
-        @SuppressWarnings({(false) ? "unchecked" : (true) ? "   " : "unused"}) // violation
+        @SuppressWarnings({(false) ? "unchecked" : (true) ? "   " : "unused"}) // 2 violations
         public void aCond2() {
 
         }
 
         @java.lang.SuppressWarnings({(false) ? "unchecked" : // violation
                 ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused", // violation
-            (false) ? "unchecked" : ("" == "") ? (false) ? (true) ? "" :
-                    "foo" : "   " : // violation
+            (false) ? "unchecked" : ("" == "") ? (false) ? (true) ? "" : // violation
+                    "foo" : "   " :
                     "unused"}) // violation
         public void seriously() {
 

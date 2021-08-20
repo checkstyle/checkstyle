@@ -1781,7 +1781,6 @@
 
                 <exclude>**/InnerTypeLastCheckTest.class</exclude>
 
-                <exclude>**/SuppressWarningsCheckTest.class</exclude>
 
                 <exclude>**/ParenPadCheckTest.class</exclude>
 

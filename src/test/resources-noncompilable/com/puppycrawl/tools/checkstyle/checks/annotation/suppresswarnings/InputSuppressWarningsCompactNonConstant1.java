@@ -71,7 +71,7 @@ public class InputSuppressWarningsCompactNonConstant1
         }
     }
 
-    @SuppressWarnings({(false) ? "unchecked" : "", (false) ? "unchecked" : ""}) // violation
+    @SuppressWarnings({(false) ? "unchecked" : "", (false) ? "unchecked" : ""}) // 2 violations
     class Cond {
 
         @SuppressWarnings({(false) ? "" : "unchecked"}) // violation
@@ -91,7 +91,7 @@ public class InputSuppressWarningsCompactNonConstant1
         }
 
         @java.lang.SuppressWarnings({(false) ? "unchecked" :
-                ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused", // violation
+                ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused", // 2 violations
             (false) ? "unchecked" : ("" == "") ? (false) ? (true) ? "" : // violation
                     "foo" : "   " : // violation
                     "unused"})
