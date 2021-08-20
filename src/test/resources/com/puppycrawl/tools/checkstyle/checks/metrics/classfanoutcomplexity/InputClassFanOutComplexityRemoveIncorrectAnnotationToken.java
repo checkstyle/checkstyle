@@ -80,7 +80,7 @@ import net.bytebuddy.description.modifier.Visibility;
  * @author Ben Yu
  * @since 14.0
  */
-@MyAnnotation // violation
+@MyAnnotation
 @GwtIncompatible
 public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken { // ok
     private static final Ordering<Invokable<?, ?>> BY_METHOD_NAME =

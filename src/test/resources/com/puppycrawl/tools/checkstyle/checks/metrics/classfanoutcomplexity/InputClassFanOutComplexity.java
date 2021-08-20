@@ -1,6 +1,6 @@
 /*
 ClassFanOutComplexity
-max = (default)20
+max = 0
 excludedClasses = (default)ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, \
                   Character, Class, Collection, Deprecated, Deque, Double, DoubleStream, \
                   EnumSet, Exception, Float, FunctionalInterface, HashMap, HashSet, \

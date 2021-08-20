@@ -52,7 +52,8 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
             "56:34: " + getCheckMessage(MSG_KEY, 4, 3),
         };
 
-        verify(checkConfig, getPath("InputBooleanExpressionComplexity.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputBooleanExpressionComplexity.java"), expected);
     }
 
     @Test
@@ -64,7 +65,8 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputBooleanExpressionComplexity2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputBooleanExpressionComplexity2.java"), expected);
     }
 
     @Test
@@ -74,7 +76,8 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputBooleanExpressionComplexityNPE.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputBooleanExpressionComplexityNPE.java"), expected);
     }
 
     @Test
@@ -101,7 +104,8 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputBooleanExpressionComplexitySmall.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputBooleanExpressionComplexitySmall.java"), expected);
     }
 
     @Test
@@ -119,7 +123,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
             "45:27: " + getCheckMessage(MSG_KEY, 4, max),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath(
                         "InputBooleanExpressionComplexityRecordsAndCompactCtors.java"),
                 expected);
