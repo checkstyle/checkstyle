@@ -1,6 +1,7 @@
 /*
 MatchXpath
-query = //CTOR_DEF[count(./PARAMETERS/node()) > 0]
+query = //CTOR_DEF[count(./PARAMETERS/*) > 0]
+message.matchxpath.match = Parameterized constructors are not allowed
 
 
 */

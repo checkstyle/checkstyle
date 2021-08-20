@@ -1,6 +1,7 @@
 /*
 MatchXpath
 query = //LITERAL_CATCH//METHOD_CALL[.//IDENT[@text = 'printStackTrace']]/..
+message.matchxpath.match = printStackTrace() method calls are forbidden
 
 
 */
