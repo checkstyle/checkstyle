@@ -1,3 +1,11 @@
+/*
+RecordComponentNumber
+max = 20
+accessModifiers = (default)public, protected, package, private
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentnumber;
 
@@ -8,11 +16,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.w3c.dom.Node;
-
-/* Config:
- *
- * max = 20
- */
 
 public class InputRecordComponentNumberMax20 {
 

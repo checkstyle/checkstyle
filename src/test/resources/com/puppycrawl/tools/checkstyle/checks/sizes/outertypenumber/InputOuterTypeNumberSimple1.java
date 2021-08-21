@@ -1,6 +1,6 @@
 /*
 OuterTypeNumber
-max = (default)1
+max = 30
 
 
 */

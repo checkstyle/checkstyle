@@ -1,3 +1,11 @@
+/*
+RecordComponentNumber
+max = (default)8
+accessModifiers = private
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentnumber;
 
@@ -9,11 +17,6 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
-/* Config:
- *
- * max = 8
- * accessModifiers = private
- */
 public class InputRecordComponentNumberPrivateModifier {
 
     public record TestRecord1(int x){
@@ -64,13 +67,13 @@ public class InputRecordComponentNumberPrivateModifier {
 
         }
 
-        private record InnerRecordBad(int x, int y, int z,// violation
+        private record InnerRecordBad(int x, int y, int z, // violation
                                       int a, int b, int c,
                                       int d, int e, int f,
                                       int g, int h, int i,
                                       int j, int k){
 
-            private record InnerRecordCeptionBad(int x, int y, int z,// violation
+            private record InnerRecordCeptionBad(int x, int y, int z, // violation
                                                  int a, int b, int c,
                                                  int d, int e, int f,
                                                  int g, int h, int i,
@@ -116,13 +119,13 @@ public class InputRecordComponentNumberPrivateModifier {
 
     }
 
-    private static record MyPrivateRecord1(int x, int y, int z,// ok
+    private static record MyPrivateRecord1(int x, int y, int z, // violation
                                            int a, int b, int c,
                                            int d, int e, int f,
                                            int g, int h, int i,
                                            int j, int k, String... myVarargs) {}
 
-    private static record MyPrivateRecord2(int x, int y) {} // violation
+    private static record MyPrivateRecord2(int x, int y) {}
 
     protected static record MyProtectedRecord1(int x, int y) {} // ok
 

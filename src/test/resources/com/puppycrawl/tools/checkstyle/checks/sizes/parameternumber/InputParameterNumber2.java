@@ -25,12 +25,12 @@ class InputParameterNumberCheckBase2
 public class InputParameterNumber2 extends InputParameterNumberCheckBase
 {
     @Override
-    void myMethod(int a, int b, int c, int d, int e, int f, int g, int h) {
+    void myMethod(int a, int b, int c, int d, int e, int f, int g, int h) { // violation
 
     }
 
     @java.lang.Override
-    void myMethod2(int a, int b, int c, int d, int e, int f, int g, int h) {
+    void myMethod2(int a, int b, int c, int d, int e, int f, int g, int h) { // violation
 
     }
 }
