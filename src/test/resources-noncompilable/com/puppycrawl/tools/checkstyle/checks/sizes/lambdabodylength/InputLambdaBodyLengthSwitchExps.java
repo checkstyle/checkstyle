@@ -1,10 +1,15 @@
+/*
+LambdaBodyLength
+max = (default)10
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.sizes.lambdabodylength;
 
 import java.util.stream.Stream;
 
-/* Config: default
- */
 public class InputLambdaBodyLengthSwitchExps {
 
     boolean method1(Nums k, String string) {
