@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent; // ok
 import javax.swing.JComponent; // ok
 import javax.swing.JTable; // ok
 
-import java.io.File; // violation
+import java.io.File; // 2 violations
 import static java.io.File.createTempFile; // violation
 import java.io.IOException; // ok
 import java.io.InputStream; // ok

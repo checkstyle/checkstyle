@@ -31,7 +31,7 @@ import java.io.InputStream; // ok
 import javax.swing.JComponent; // violation
 import javax.swing.JTable; // ok
 
-import static java.io.File.*; // violation
+import static java.io.File.*; // 2 violations
 import java.io.File; // ok
 import java.io.Reader; // ok
 

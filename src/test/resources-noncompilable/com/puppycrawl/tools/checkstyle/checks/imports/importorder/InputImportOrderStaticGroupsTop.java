@@ -1,7 +1,7 @@
 /*
 ImportOrder
 option = top
-groups = org, com java, javax
+groups = org, com, java, javax
 ordered = (default)true
 separated = true
 separatedStaticGroups = (default)false

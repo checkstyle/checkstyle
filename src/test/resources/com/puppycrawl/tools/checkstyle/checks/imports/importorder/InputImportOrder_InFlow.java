@@ -28,7 +28,7 @@ import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE; // violation
 import static javax.swing.WindowConstants.*; // violation
 import javax.swing.JTable; // violation
 
-import static java.io.File.createTempFile; // violation
+import static java.io.File.createTempFile; // 2 violations
 import java.io.File; // violation
 import java.io.IOException; // ok
 import java.io.InputStream; // ok
