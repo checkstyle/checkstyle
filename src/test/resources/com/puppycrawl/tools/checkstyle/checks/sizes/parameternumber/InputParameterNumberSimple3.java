@@ -195,7 +195,7 @@ final class InputParameterNumberSimple3
     /**
      * @see to lazy to document all args. Testing excessive # args
      **/
-    void toManyArgs(int aArg1, int aArg2, int aArg3, int aArg4, int aArg5, // violation
+    void toManyArgs(int aArg1, int aArg2, int aArg3, int aArg4, int aArg5,
                     int aArg6, int aArg7, int aArg8, int aArg9)
     {
     }

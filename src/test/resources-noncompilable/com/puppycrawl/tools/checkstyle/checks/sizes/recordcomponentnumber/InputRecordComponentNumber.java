@@ -1,3 +1,11 @@
+/*
+RecordComponentNumber
+max = (default)8
+accessModifiers = (default)public, protected, package, private
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentnumber;
 
@@ -9,10 +17,6 @@ import java.util.List;
 
 import org.w3c.dom.Node;
 
-/* Config:
- *
- * max = 8
- */
 public class InputRecordComponentNumber {
 
     public record TestRecord1(int x){
@@ -59,7 +63,7 @@ public class InputRecordComponentNumber {
     }
     public record TestRecord7(int y){ // ok
 
-        record InnerRecordOk(int x, int y, int z){ // ok
+        record InnerRecordOk(int x, int y, int z){
 
         }
 
@@ -90,7 +94,7 @@ public class InputRecordComponentNumber {
         }
     }
 
-    public record TestRecord8(int x, int y, int z, String... myVarargs){ // ok
+    public record TestRecord8(int x, int y, int z, String... myVarargs){
 
     }
 
@@ -121,7 +125,7 @@ public class InputRecordComponentNumber {
                                            int g, int h, int i,
                                            int j, int k, String... myVarargs) {}
 
-    private static record MyPrivateRecord2(int x, int y) {} // ok
+    private static record MyPrivateRecord2(int x, int y) {}
 
     protected static record MyProtectedRecord1(int x, int y) {} // ok
 

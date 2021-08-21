@@ -18,7 +18,7 @@ public enum InputMethodCount2 {
         @Override void something() {};
     },
 
-    BLUE { // violation
+    BLUE { // 2 violations
         @Override void something() {};
         protected void other1() {};
         private void other2() {};

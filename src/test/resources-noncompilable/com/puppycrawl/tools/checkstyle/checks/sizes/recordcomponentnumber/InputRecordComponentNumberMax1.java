@@ -1,10 +1,13 @@
+/*
+RecordComponentNumber
+max = 1
+accessModifiers = (default)public, protected, package, private
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentnumber;
-
-/* Config:
- *
- * max = 1
- */
 
 import java.awt.Point;
 import java.awt.Shape;

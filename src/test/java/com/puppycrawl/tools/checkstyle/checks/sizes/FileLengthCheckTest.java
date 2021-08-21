@@ -46,7 +46,7 @@ public class FileLengthCheckTest
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY, 228, 20),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getPath("InputFileLength.java"), expected);
     }
 
@@ -56,7 +56,7 @@ public class FileLengthCheckTest
                 createModuleConfig(FileLengthCheck.class);
         checkConfig.addProperty("max", "225");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getPath("InputFileLength2.java"), expected);
     }
 
@@ -66,7 +66,7 @@ public class FileLengthCheckTest
             createModuleConfig(FileLengthCheck.class);
         checkConfig.addProperty("max", "1000");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getPath("InputFileLength3.java"), expected);
     }
 
@@ -94,7 +94,7 @@ public class FileLengthCheckTest
         checkConfig.addProperty("fileExtensions", "txt");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getPath("InputFileLength4.java"), expected);
     }
 

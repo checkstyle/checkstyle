@@ -3,6 +3,7 @@ ParameterNumber
 max = (default)7
 ignoreOverriddenMethods = (default)false
 tokens = (default)METHOD_DEF, CTOR_DEF
+message.maxParam = {0},{1}
 
 
 */

@@ -72,7 +72,7 @@ final class InputMethodLengthCountEmptyIsFalse
         return 0;
     }
 
-    /** method that is 20 lines long **/ // violation
+    /** method that is 20 lines long **/
     private void longMethod()
     {
         // a line
