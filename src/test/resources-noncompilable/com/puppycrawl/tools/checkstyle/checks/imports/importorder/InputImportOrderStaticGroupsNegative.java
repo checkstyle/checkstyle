@@ -1,12 +1,12 @@
 /*
 ImportOrder
 option = top
-groups = org, java
+groups = (default)
 ordered = (default)true
 separated = true
 separatedStaticGroups = (default)false
 caseSensitive = (default)true
-staticGroups = (default)
+staticGroups = org, java
 sortStaticImportsAlphabetically = true
 useContainerOrderingForStatic = (default)false
 tokens = (default)STATIC_IMPORT

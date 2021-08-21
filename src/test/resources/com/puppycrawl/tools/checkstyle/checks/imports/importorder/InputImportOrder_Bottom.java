@@ -34,7 +34,7 @@ import static java.io.File.createTempFile; // violation
 import static java.awt.Button.ABORT; // ok
 import static javax.swing.WindowConstants.*; // ok
 
-import java.io.Reader; // violation
+import java.io.Reader; // 2 violations
 
 public class InputImportOrder_Bottom {
 }

@@ -1,7 +1,7 @@
 /*
 ImportOrder
 option = (default)under
-groups = java.awt, javax.swing, java.io
+groups = java.awt,javax.swing,java.io
 ordered = (default)true
 separated = (default)false
 separatedStaticGroups = (default)false
