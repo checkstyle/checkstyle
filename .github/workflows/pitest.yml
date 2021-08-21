@@ -649,11 +649,14 @@ jobs:
 
       - name: Generate pitest report
         run: ./.ci/pitest.sh pitest-java-ast-visitor
-
-      - name: Archive report
-        if: always()
+      - name: Stage results
+        if: failure()
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure()
         uses: actions/upload-artifact@v2
         with:
             name: pitest-report-java-ast-visitor
-            path: /home/runner/work/checkstyle/checkstyle/target/pit-reports/
+            path: staging
             retention-days: 7
