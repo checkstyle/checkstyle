@@ -1582,7 +1582,6 @@
                 <exclude>**/AvoidStaticImportCheckTest.class</exclude>
 
 
-                <exclude>**/ParameterNumberCheckTest.class</exclude>
 
 
 
@@ -1709,14 +1708,12 @@
 
 
 
-                <exclude>**/MethodLengthCheckTest.class</exclude>
 
                 <exclude>**/HeaderCheckTest.class</exclude>
 
 
                 <exclude>**/AvoidStarImportCheckTest.class</exclude>
 
-                <exclude>**/RecordComponentNumberCheckTest.class</exclude>
 
 
                 <exclude>**/SuppressWarningsFilterTest.class</exclude>
@@ -1741,7 +1738,6 @@
 
                 <exclude>**/ImportControlCheckTest.class</exclude>
 
-                <exclude>**/MethodCountCheckTest.class</exclude>
 
                 <exclude>**/BeforeExecutionExclusionFileFilterTest.class</exclude>
 
@@ -1762,17 +1758,14 @@
 
 
 
-                <exclude>**/FileLengthCheckTest.class</exclude>
 
 
 
                 <exclude>**/ParenPadCheckTest.class</exclude>
 
-                <exclude>**/OuterTypeNumberCheckTest.class</exclude>
 
                 <exclude>**/RegexpHeaderCheckTest.class</exclude>
 
-                <exclude>**/AnonInnerLengthCheckTest.class</exclude>
 
                 <exclude>**/ImportOrderCheckTest.class</exclude>
 

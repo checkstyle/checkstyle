@@ -73,7 +73,8 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputMethodCount.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMethodCount.java"), expected);
     }
 
     @Test
@@ -98,7 +99,8 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
             "57:3: " + getCheckMessage(MSG_MANY_METHODS, 5, 3),
         };
 
-        verify(checkConfig, getPath("InputMethodCount1.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMethodCount1.java"), expected);
     }
 
     @Test
@@ -113,7 +115,8 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
             "21:5: " + getCheckMessage(MSG_MANY_METHODS, 3, 2),
         };
 
-        verify(checkConfig, getPath("InputMethodCount2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMethodCount2.java"), expected);
     }
 
     @Test
@@ -126,7 +129,8 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
             "15:1: " + getCheckMessage(MSG_MANY_METHODS, 5, 2),
         };
 
-        verify(checkConfig, getPath("InputMethodCount3.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMethodCount3.java"), expected);
     }
 
     @Test
@@ -136,7 +140,8 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputMethodCount4.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMethodCount4.java"), expected);
     }
 
     @Test
@@ -148,7 +153,8 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
             "15:1: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
         };
 
-        verify(checkConfig, getPath("InputMethodCount5.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMethodCount5.java"), expected);
     }
 
     @Test
@@ -159,7 +165,8 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputMethodCount6.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMethodCount6.java"), expected);
     }
 
     @Test
@@ -172,7 +179,8 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
             "22:5: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
         };
 
-        verify(checkConfig, getPath("InputMethodCount7.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMethodCount7.java"), expected);
     }
 
     @Test
@@ -186,7 +194,8 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
             "27:5: " + getCheckMessage(MSG_PUBLIC_METHODS, 2, 1),
         };
 
-        verify(checkConfig, getPath("InputMethodCountInterfaceMemberScopeIsPublic.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMethodCountInterfaceMemberScopeIsPublic.java"),
                 expected);
     }
 
@@ -205,7 +214,8 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
             "99:21: " + getCheckMessage(MSG_MANY_METHODS, 3, max),
         };
 
-        verify(checkConfig, getNonCompilablePath("InputMethodCountRecords.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getNonCompilablePath("InputMethodCountRecords.java"), expected);
     }
 
 }
