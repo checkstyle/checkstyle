@@ -90,7 +90,8 @@ public class RedundantImportCheckTest
             "16:1: " + getCheckMessage(MSG_DUPLICATE, 15, "java.util.List"),
             "28:1: " + getCheckMessage(MSG_DUPLICATE, 27, "javax.swing.WindowConstants.*"),
         };
-        verify(checkConfig, getPath("InputRedundantImportWithChecker.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputRedundantImportWithChecker.java"), expected);
     }
 
     @Test
@@ -102,7 +103,8 @@ public class RedundantImportCheckTest
             "10:1: " + getCheckMessage(MSG_DUPLICATE, 9, "java.util.List"),
             "12:1: " + getCheckMessage(MSG_LANG, "java.lang.String"),
         };
-        verify(checkConfig, getNonCompilablePath("InputRedundantImport_UnnamedPackage.java"),
+        verifyWithInlineConfigParser(checkConfig,
+            getNonCompilablePath("InputRedundantImport_UnnamedPackage.java"),
             expected);
     }
 

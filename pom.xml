@@ -1564,7 +1564,6 @@
                 <!-- permanent suppression -->
                 <exclude>**/LineLengthCheckTest.class</exclude>
 
-                <exclude>**/RedundantImportCheckTest.class</exclude>
 
 
                 <exclude>**/Java9TryWithResourcesTest.class</exclude>
@@ -1637,7 +1636,6 @@
                 <exclude>**/RegexpMultilineCheckTest.class</exclude>
 
 
-                <exclude>**/UnusedImportsCheckTest.class</exclude>
 
 
 
