@@ -25,10 +25,10 @@ public interface InputInterfaceMemberImpliedModifierFieldsOnInterface3 {
 
     static final int fieldStaticFinal = 1; // violation
 
-    static int fieldStatic = 1; // violation
+    static int fieldStatic = 1; // 2 violations
 
     final int fieldFinal = 1; // violation
 
-    int field = 1; // violation
+    int field = 1; // 2 violations
 
 }

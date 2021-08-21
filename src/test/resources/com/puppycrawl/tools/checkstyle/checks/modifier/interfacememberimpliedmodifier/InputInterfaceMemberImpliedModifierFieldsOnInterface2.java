@@ -27,8 +27,8 @@ public interface InputInterfaceMemberImpliedModifierFieldsOnInterface2 {
 
     static int fieldStatic = 1; // violation
 
-    final int fieldFinal = 1; // violation
+    final int fieldFinal = 1; // 2 violations
 
-    int field = 1; // violation
+    int field = 1; // 2 violations
 
 }

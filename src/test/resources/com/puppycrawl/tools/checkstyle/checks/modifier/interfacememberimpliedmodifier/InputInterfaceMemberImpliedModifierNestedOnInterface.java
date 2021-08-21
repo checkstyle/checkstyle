@@ -24,7 +24,7 @@ public interface InputInterfaceMemberImpliedModifierNestedOnInterface {
     static interface NestedInterfaceStatic { // violation
     }
 
-    interface NestedInterface { // violation
+    interface NestedInterface { // 2 violations
     }
 
     public static enum NestedEnumPublicStatic {
@@ -42,7 +42,7 @@ public interface InputInterfaceMemberImpliedModifierNestedOnInterface {
         FALSE
     }
 
-    enum NestedEnum { // violation
+    enum NestedEnum { // 2 violations
         TRUE,
         FALSE
     }
@@ -56,7 +56,7 @@ public interface InputInterfaceMemberImpliedModifierNestedOnInterface {
     static class NestedClassStatic { // violation
     }
 
-    class NestedClass { // violation
+    class NestedClass { // 2 violations
     }
 
     public default boolean methodWithLocalClass(String input) {
