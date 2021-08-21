@@ -59,14 +59,15 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(LambdaBodyLengthCheck.class);
         final String[] expected = {
-            "10:27: " + getCheckMessage(MSG_KEY, 12, 10),
-            "22:27: " + getCheckMessage(MSG_KEY, 12, 10),
-            "35:27: " + getCheckMessage(MSG_KEY, 11, 10),
-            "48:35: " + getCheckMessage(MSG_KEY, 13, 10),
-            "51:15: " + getCheckMessage(MSG_KEY, 11, 10),
-            "62:34: " + getCheckMessage(MSG_KEY, 11, 10),
+            "16:27: " + getCheckMessage(MSG_KEY, 12, 10),
+            "28:27: " + getCheckMessage(MSG_KEY, 12, 10),
+            "41:27: " + getCheckMessage(MSG_KEY, 11, 10),
+            "54:35: " + getCheckMessage(MSG_KEY, 13, 10),
+            "57:15: " + getCheckMessage(MSG_KEY, 11, 10),
+            "68:34: " + getCheckMessage(MSG_KEY, 11, 10),
         };
-        verify(checkConfig, getPath("InputLambdaBodyLengthDefault.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputLambdaBodyLengthDefault.java"), expected);
     }
 
     @Test
@@ -74,7 +75,8 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(LambdaBodyLengthCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputLambdaBodyLengthSwitchExps.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getNonCompilablePath("InputLambdaBodyLengthSwitchExps.java"), expected);
     }
 
     @Test
@@ -83,12 +85,13 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(LambdaBodyLengthCheck.class);
         checkConfig.addProperty("max", "3");
         final String[] expected = {
-            "13:27: " + getCheckMessage(MSG_KEY, 4, 3),
-            "17:27: " + getCheckMessage(MSG_KEY, 4, 3),
-            "27:35: " + getCheckMessage(MSG_KEY, 5, 3),
-            "33:34: " + getCheckMessage(MSG_KEY, 4, 3),
+            "16:27: " + getCheckMessage(MSG_KEY, 4, 3),
+            "20:27: " + getCheckMessage(MSG_KEY, 4, 3),
+            "30:35: " + getCheckMessage(MSG_KEY, 5, 3),
+            "36:34: " + getCheckMessage(MSG_KEY, 4, 3),
         };
-        verify(checkConfig, getPath("InputLambdaBodyLengthMax.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputLambdaBodyLengthMax.java"), expected);
     }
 
 }

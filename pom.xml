@@ -1666,7 +1666,6 @@
 
 
 
-                <exclude>**/LambdaBodyLengthCheckTest.class</exclude>
 
                 <exclude>**/RegexpOnFilenameCheckTest.class</exclude>
 
