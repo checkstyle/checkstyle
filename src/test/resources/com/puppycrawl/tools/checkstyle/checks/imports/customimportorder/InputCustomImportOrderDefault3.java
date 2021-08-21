@@ -31,7 +31,7 @@ import java.io.Reader; // violation
 
 import com.puppycrawl.tools.checkstyle.*;
 
-import com.google.common.collect.*; // violation
+import com.google.common.collect.*; // 2 violations
 import org.junit.*;
 
 public class InputCustomImportOrderDefault3 {

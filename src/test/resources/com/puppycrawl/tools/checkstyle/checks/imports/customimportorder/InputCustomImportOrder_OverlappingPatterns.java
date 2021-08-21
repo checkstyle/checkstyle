@@ -24,18 +24,18 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl; // violat
 
 // STANDARD - keyword Check
 
-import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck; // (JC_)
+import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck; // violation
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck; // (_C_)
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck; // (JCT)
 
 // SPECIAL_IMPORTS - keyword Tag
 
-import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag; // (J_T)
+import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag; // violation
 //import com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser; // (__T)
 import com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck; // violation
 
 import com.puppycrawl.tools.checkstyle.*;
-//import com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag; // violation
+//import com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag; // violation
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck; // violation
 import com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck; // violation

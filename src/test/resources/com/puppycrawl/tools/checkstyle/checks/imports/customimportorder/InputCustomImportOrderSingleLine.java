@@ -2,9 +2,9 @@
 CustomImportOrder
 customImportOrderRules = STATIC###STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE###\
                          SPECIAL_IMPORTS###SAME_PACKAGE(3)
-standardPackageRegExp = (default)^(java|javax)\.
-thirdPartyPackageRegExp = ^com\.google\..+
-specialImportsRegExp = ^org\..+
+standardPackageRegExp = (default)^(java|javax)\\.
+thirdPartyPackageRegExp = ^com\\.google\\..+
+specialImportsRegExp = ^org\\..+
 separateLineBetweenGroups = (default)true
 sortImportsInGroupAlphabetically = (default)false
 

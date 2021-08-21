@@ -3,7 +3,7 @@ CustomImportOrder
 customImportOrderRules = STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###SAME_PACKAGE(3)
 standardPackageRegExp = (default)^(java|javax)\.
 thirdPartyPackageRegExp = (default).*
-specialImportsRegExp = ^org\..+
+specialImportsRegExp = ^org\\..+
 separateLineBetweenGroups = (default)true
 sortImportsInGroupAlphabetically = (default)false
 
