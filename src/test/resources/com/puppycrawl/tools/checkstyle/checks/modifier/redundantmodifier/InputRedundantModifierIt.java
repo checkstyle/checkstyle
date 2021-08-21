@@ -157,7 +157,7 @@ interface InputDefaultPublicModifier
     }
 
     /** wrong order */
-    strictfp default void b() // violation
+    strictfp default void b()
     {
     }
 }

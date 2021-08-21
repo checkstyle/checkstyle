@@ -35,7 +35,7 @@ public class InputInterfaceMemberImpliedModifierMethodsOnClassNested {
 
         public void methodPublic(); // violation
 
-        void method(); // violation
+        void method(); // 2 violations
 
     }
 

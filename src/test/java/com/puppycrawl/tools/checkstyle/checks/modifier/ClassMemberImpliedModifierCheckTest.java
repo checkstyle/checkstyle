@@ -52,7 +52,8 @@ public class ClassMemberImpliedModifierCheckTest
             "76:9: " + getCheckMessage(MSG_KEY, "static"),
             "83:5: " + getCheckMessage(MSG_KEY, "static"),
         };
-        verify(checkConfig, getPath("InputClassMemberImpliedModifierOnClass.java"),
+        verifyWithInlineConfigParser(checkConfig,
+            getPath("InputClassMemberImpliedModifierOnClass.java"),
             expected);
     }
 
@@ -78,7 +79,8 @@ public class ClassMemberImpliedModifierCheckTest
             "77:9: " + getCheckMessage(MSG_KEY, "static"),
             "84:5: " + getCheckMessage(MSG_KEY, "static"),
         };
-        verify(checkConfig, getPath("InputClassMemberImpliedModifierOnClassSetEnumFalse.java"),
+        verifyWithInlineConfigParser(checkConfig,
+            getPath("InputClassMemberImpliedModifierOnClassSetEnumFalse.java"),
             expected);
     }
 
@@ -92,7 +94,8 @@ public class ClassMemberImpliedModifierCheckTest
             "63:5: " + getCheckMessage(MSG_KEY, "static"),
             "70:9: " + getCheckMessage(MSG_KEY, "static"),
         };
-        verify(checkConfig, getPath("InputClassMemberImpliedModifierOnClassSetInterfaceFalse.java"),
+        verifyWithInlineConfigParser(checkConfig,
+            getPath("InputClassMemberImpliedModifierOnClassSetInterfaceFalse.java"),
             expected);
     }
 
@@ -103,7 +106,8 @@ public class ClassMemberImpliedModifierCheckTest
         checkConfig.addProperty("violateImpliedStaticOnNestedEnum", "false");
         checkConfig.addProperty("violateImpliedStaticOnNestedInterface", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputClassMemberImpliedModifierOnClassNoViolations.java"),
+        verifyWithInlineConfigParser(checkConfig,
+            getPath("InputClassMemberImpliedModifierOnClassNoViolations.java"),
             expected);
     }
 
@@ -119,7 +123,8 @@ public class ClassMemberImpliedModifierCheckTest
             "85:13: " + getCheckMessage(MSG_KEY, "static"),
             "92:9: " + getCheckMessage(MSG_KEY, "static"),
         };
-        verify(checkConfig, getPath("InputClassMemberImpliedModifierOnInterface.java"),
+        verifyWithInlineConfigParser(checkConfig,
+            getPath("InputClassMemberImpliedModifierOnInterface.java"),
             expected);
     }
 
@@ -135,7 +140,7 @@ public class ClassMemberImpliedModifierCheckTest
             "33:9: " + getCheckMessage(MSG_KEY, "static"),
             "37:9: " + getCheckMessage(MSG_KEY, "static"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath("InputClassMemberImpliedModifierRecords.java"),
                 expected);
     }
@@ -151,7 +156,7 @@ public class ClassMemberImpliedModifierCheckTest
             "33:9: " + getCheckMessage(MSG_KEY, "static"),
             "37:9: " + getCheckMessage(MSG_KEY, "static"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath(
                         "InputClassMemberImpliedModifierNoViolationRecords.java"),
                 expected);
