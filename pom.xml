@@ -1644,7 +1644,6 @@
 
                 <exclude>**/AvoidEscapedUnicodeCharactersCheckTest.class</exclude>
 
-                <exclude>**/IllegalImportCheckTest.class</exclude>
 
                 <exclude>**/IndentationCheckTest.class</exclude>
 

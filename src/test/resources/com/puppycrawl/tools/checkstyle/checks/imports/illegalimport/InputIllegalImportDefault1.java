@@ -1,6 +1,6 @@
 /*
 IllegalImport
-illegalPkgs = (default)sun
+illegalPkgs = java.io
 illegalClasses = (default)
 regexp = (default)false
 
