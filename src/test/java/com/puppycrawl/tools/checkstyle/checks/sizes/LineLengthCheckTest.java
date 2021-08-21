@@ -46,7 +46,8 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
             "22: " + getCheckMessage(MSG_KEY, 80, 81),
             "149: " + getCheckMessage(MSG_KEY, 80, 83),
         };
-        verify(checkConfig, getPath("InputLineLengthSimple.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputLineLengthSimple.java"), expected);
     }
 
     @Test
@@ -58,10 +59,11 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("ignorePattern", "^.*is OK.*regexp.*$");
         checkConfig.addMessage("maxLineLen", "{0},{1}");
         final String[] expected = {
-            "22: 80,81",
-            "149: 80,83",
+            "23: 80,81",
+            "150: 80,83",
         };
-        verify(checkConfig, getPath("InputLineLengthSimple1.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputLineLengthSimple1.java"), expected);
     }
 
     @Test
@@ -72,7 +74,8 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "18: " + getCheckMessage(MSG_KEY, 80, 100),
         };
-        verify(checkConfig, getPath("InputLineLengthLongImportStatements.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputLineLengthLongImportStatements.java"), expected);
     }
 
     @Test
@@ -83,7 +86,8 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_KEY, 80, 101),
         };
-        verify(checkConfig, getNonCompilablePath("InputLineLengthLongPackageStatement.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getNonCompilablePath("InputLineLengthLongPackageStatement.java"),
                 expected);
     }
 
@@ -97,7 +101,8 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "13: " + getCheckMessage(MSG_KEY, 80, 111),
         };
-        verify(checkConfig, getPath("InputLineLengthLongLink.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputLineLengthLongLink.java"), expected);
     }
 
     @Test

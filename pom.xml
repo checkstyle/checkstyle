@@ -1561,6 +1561,7 @@
 
                 <exclude>**/ParameterNameCheckTest.class</exclude>
 
+                <!-- permanent suppression -->
                 <exclude>**/LineLengthCheckTest.class</exclude>
 
                 <exclude>**/RedundantImportCheckTest.class</exclude>
