@@ -1580,7 +1580,6 @@
                 <exclude>**/SuppressionSingleFilterTest.class</exclude>
 
 
-                <exclude>**/AvoidStaticImportCheckTest.class</exclude>
 
 
 
@@ -1711,7 +1710,6 @@
                 <exclude>**/HeaderCheckTest.class</exclude>
 
 
-                <exclude>**/AvoidStarImportCheckTest.class</exclude>
 
 
 
@@ -1796,7 +1794,6 @@
 
                 <exclude>**/RegexpSinglelineJavaCheckTest.class</exclude>
 
-                <exclude>**/CustomImportOrderCheckTest.class</exclude>
 
 
 
