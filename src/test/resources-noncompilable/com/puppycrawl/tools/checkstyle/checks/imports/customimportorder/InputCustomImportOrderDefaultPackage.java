@@ -32,7 +32,7 @@ import java.io.Reader; // violation
 
 import com.puppycrawl.tools.*;
 
-import com.google.common.*; // violation
+import com.google.common.*; // 2 violations
 import org.apache.*;
 
 public class InputCustomImportOrderDefaultPackage {

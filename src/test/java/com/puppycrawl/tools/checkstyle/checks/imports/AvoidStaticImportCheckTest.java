@@ -64,7 +64,8 @@ public class AvoidStaticImportCheckTest
                     + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.one"),
         };
 
-        verify(checkConfig, getPath("InputAvoidStaticImportDefault.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAvoidStaticImportDefault.java"), expected);
     }
 
     @Test
@@ -72,7 +73,7 @@ public class AvoidStaticImportCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AvoidStaticImportCheck.class);
-        checkConfig.addProperty("excludes", "java.io.File.*,sun.net.ftpclient.FtpClient.*");
+        checkConfig.addProperty("excludes", "java.io.File.*, sun.net.ftpclient.FtpClient.*");
         // allow the "java.io.File.*" AND "sun.net.ftpclient.FtpClient.*" star imports
         final String[] expected = {
             "28:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
@@ -85,7 +86,8 @@ public class AvoidStaticImportCheckTest
                     "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.one"),
         };
-        verify(checkConfig, getPath("InputAvoidStaticImportDefault2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAvoidStaticImportDefault2.java"), expected);
     }
 
     @Test
@@ -93,7 +95,7 @@ public class AvoidStaticImportCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AvoidStaticImportCheck.class);
-        checkConfig.addProperty("excludes", "java.io.File.listRoots,java.lang.Math.E");
+        checkConfig.addProperty("excludes", "java.io.File.listRoots, java.lang.Math.E");
         // allow the java.io.File.listRoots and java.lang.Math.E member imports
         final String[] expected = {
             "28:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
@@ -107,7 +109,8 @@ public class AvoidStaticImportCheckTest
                     "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.one"),
         };
-        verify(checkConfig, getPath("InputAvoidStaticImportDefault3.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAvoidStaticImportDefault3.java"), expected);
     }
 
     @Test
@@ -120,7 +123,7 @@ public class AvoidStaticImportCheckTest
         checkConfig.addProperty(
             "excludes",
             "java.io.File.listRoots.listRoots, javax.swing.WindowConstants, javax.swing.*,"
-            + "sun.net.ftpclient.FtpClient.*FtpClient, sun.net.ftpclient.FtpClientjunk,"
+            + " sun.net.ftpclient.FtpClient.*FtpClient, sun.net.ftpclient.FtpClientjunk,"
             + " java.io.File.listRootsmorejunk");
         final String[] expected = {
             "28:27: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
@@ -136,7 +139,8 @@ public class AvoidStaticImportCheckTest
                     "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.one"),
         };
-        verify(checkConfig, getPath("InputAvoidStaticImportDefault4.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAvoidStaticImportDefault4.java"), expected);
     }
 
     @Test
@@ -162,7 +166,8 @@ public class AvoidStaticImportCheckTest
                     "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass"),
         };
-        verify(checkConfig, getPath("InputAvoidStaticImportDefault5.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAvoidStaticImportDefault5.java"), expected);
     }
 
     @Test
