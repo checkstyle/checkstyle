@@ -21,7 +21,7 @@ public interface InputInterfaceMemberImpliedModifierFieldsOnInterface4 {
 
     public final int fieldPublicFinal = 1; // violation
 
-    public int fieldPublic = 1; // violation
+    public int fieldPublic = 1; // 2 violations
 
     static final int fieldStaticFinal = 1;
 
@@ -29,6 +29,6 @@ public interface InputInterfaceMemberImpliedModifierFieldsOnInterface4 {
 
     final int fieldFinal = 1; // violation
 
-    int field = 1; // violation
+    int field = 1; // 2 violations
 
 }

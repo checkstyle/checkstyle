@@ -21,14 +21,14 @@ public interface InputInterfaceMemberImpliedModifierFieldsOnInterface {
 
     public final int fieldPublicFinal = 1; // violation
 
-    public int fieldPublic = 1; // violation
+    public int fieldPublic = 1; // 2 violations
 
     static final int fieldStaticFinal = 1; // violation
 
-    static int fieldStatic = 1; // violation
+    static int fieldStatic = 1; // 2 violations
 
-    final int fieldFinal = 1; // violation
+    final int fieldFinal = 1; // 2 violations
 
-    int field = 1; // violation
+    int field = 1; // 3 violations
 
 }
