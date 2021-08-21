@@ -51,7 +51,8 @@ public class AvoidStarImportCheckTest
             "33:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
         };
 
-        verify(checkConfig, getPath("InputAvoidStarImportDefault.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAvoidStarImportDefault.java"),
                 expected);
     }
 
@@ -61,14 +62,15 @@ public class AvoidStarImportCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(AvoidStarImportCheck.class);
         checkConfig.addProperty("excludes",
-            "java.io,java.lang,javax.swing.WindowConstants.*");
+            "java.io, java.lang, javax.swing.WindowConstants.*");
         // allow the java.io/java.lang,javax.swing.WindowConstants star imports
         final String[] expected2 = {
             "12:54: " + getCheckMessage(MSG_KEY, "com.puppycrawl."
                     + "tools.checkstyle.checks.imports.*"),
             "33:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
         };
-        verify(checkConfig, getPath("InputAvoidStarImportExcludes.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAvoidStarImportExcludes.java"),
                 expected2);
     }
 
@@ -81,7 +83,8 @@ public class AvoidStarImportCheckTest
             "30:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "31:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "33:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"), };
-        verify(checkConfig, getPath("InputAvoidStarImportAllowClass.java"), expected2);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAvoidStarImportAllowClass.java"), expected2);
     }
 
     @Test
@@ -95,7 +98,8 @@ public class AvoidStarImportCheckTest
             "14:15: " + getCheckMessage(MSG_KEY, "java.io.*"),
             "15:17: " + getCheckMessage(MSG_KEY, "java.lang.*"),
         };
-        verify(checkConfig, getPath("InputAvoidStarImportAllowStaticMember.java"), expected2);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAvoidStarImportAllowStaticMember.java"), expected2);
     }
 
     @Test

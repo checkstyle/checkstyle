@@ -1,11 +1,11 @@
 /*
 CustomImportOrder
-customImportOrderRules = (default)
+customImportOrderRules = STATIC###STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE###SAME_PACKAGE(3)
 standardPackageRegExp = (default)^(java|javax)\.
-thirdPartyPackageRegExp = (default).*
+thirdPartyPackageRegExp = org.
 specialImportsRegExp = (default)^$
 separateLineBetweenGroups = (default)true
-sortImportsInGroupAlphabetically = (default)false
+sortImportsInGroupAlphabetically = true
 
 
 */

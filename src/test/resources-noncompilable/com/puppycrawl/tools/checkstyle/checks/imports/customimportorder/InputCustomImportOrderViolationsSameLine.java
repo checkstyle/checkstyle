@@ -18,7 +18,7 @@ import    static   java.util.Collections   .*; // violation
 import static java.lang.String . CASE_INSENSITIVE_ORDER; // violation
 
 
-import java . // violation
+import java . // 2 violations
         net.Socket    ;
 
 public class InputCustomImportOrderViolationsSameLine {}
