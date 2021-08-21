@@ -1575,7 +1575,6 @@
 
                 <exclude>**/Java7NumericalLiteralsTest.class</exclude>
 
-                <exclude>**/ModifierOrderCheckTest.class</exclude>
 
                 <exclude>**/SuppressionSingleFilterTest.class</exclude>
 
@@ -1632,7 +1631,6 @@
 
                 <exclude>**/Java7StringSwitchTest.class</exclude>
 
-                <exclude>**/ClassMemberImpliedModifierCheckTest.class</exclude>
 
 
                 <exclude>**/CatchParameterNameCheckTest.class</exclude>
@@ -1686,7 +1684,6 @@
 
                 <exclude>**/EmptyForIteratorPadCheckTest.class</exclude>
 
-                <exclude>**/InterfaceMemberImpliedModifierCheckTest.class</exclude>
 
                 <exclude>**/NoWhitespaceBeforeCheckTest.class</exclude>
 
@@ -1711,7 +1708,6 @@
                 <exclude>**/CheckerTest.class</exclude>
 
 
-                <exclude>**/RedundantModifierCheckTest.class</exclude>
 
 
                 <exclude>**/MethodLengthCheckTest.class</exclude>

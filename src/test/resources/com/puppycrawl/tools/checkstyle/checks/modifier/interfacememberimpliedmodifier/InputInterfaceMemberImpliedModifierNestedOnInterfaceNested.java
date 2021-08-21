@@ -17,15 +17,15 @@ public interface InputInterfaceMemberImpliedModifierNestedOnInterfaceNested {
 
     public static interface NestedInterface {
 
-        interface NestedNestedInterface { // violation
+        interface NestedNestedInterface { // 2 violations
         }
 
-        enum NestedNestedEnum { // violation
+        enum NestedNestedEnum { // 2 violations
             TRUE,
             FALSE
         }
 
-        class NestedNestedClass { // violation
+        class NestedNestedClass { // 2 violations
         }
 
     }

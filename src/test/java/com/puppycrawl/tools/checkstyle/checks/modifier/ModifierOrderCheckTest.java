@@ -61,7 +61,8 @@ public class ModifierOrderCheckTest
             "50:35: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation4"),
             "158:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "default"),
         };
-        verify(checkConfig, getPath("InputModifierOrderIt.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+            getPath("InputModifierOrderIt.java"), expected);
     }
 
     @Test
@@ -70,7 +71,8 @@ public class ModifierOrderCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputModifierOrderDefaultMethods.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+            getPath("InputModifierOrderDefaultMethods.java"), expected);
     }
 
     @Test
@@ -112,7 +114,8 @@ public class ModifierOrderCheckTest
         final String[] expected = {
             "110:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
         };
-        verify(checkConfig, getPath("InputModifierOrderTypeAnnotations.java"),
+        verifyWithInlineConfigParser(checkConfig,
+            getPath("InputModifierOrderTypeAnnotations.java"),
             expected);
     }
 
@@ -122,7 +125,8 @@ public class ModifierOrderCheckTest
         final String[] expected = {
             "9:8: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@InterfaceAnnotation"),
         };
-        verify(checkConfig, getPath("InputModifierOrderAnnotationDeclaration.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+            getPath("InputModifierOrderAnnotationDeclaration.java"), expected);
     }
 
     @Test
@@ -136,7 +140,7 @@ public class ModifierOrderCheckTest
             "53:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "static"),
             "58:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "non-sealed"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputModifierOrderSealedAndNonSealed.java"), expected);
     }
 
@@ -144,7 +148,7 @@ public class ModifierOrderCheckTest
     public void testModifierOrderSealedAndNonSealedNoViolation() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputModifierOrderSealedAndNonSealedNoViolation.java"), expected);
     }
 
