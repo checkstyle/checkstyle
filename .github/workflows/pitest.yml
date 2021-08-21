@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-  pull_request:
 
 jobs:
   pitest-annotation:
@@ -21,11 +20,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-annotation
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-annotation-coverage-report
@@ -46,11 +45,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-ant
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-ant-coverage-report
@@ -71,11 +70,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-api
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-api-coverage-report
@@ -96,11 +95,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-blocks
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-blocks-coverage-report
@@ -121,11 +120,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-coding
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-coding-coverage-report
@@ -146,11 +145,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-common
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-common-coverage-report
@@ -171,11 +170,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-common-2
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-common-2-coverage-report
@@ -196,11 +195,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-design
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-design-coverage-report
@@ -221,11 +220,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-filters
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-filters-coverage-report
@@ -246,11 +245,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-header
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-header-coverage-report
@@ -271,11 +270,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-imports
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-imports-coverage-report
@@ -296,11 +295,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-indentation
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-indentation-coverage-report
@@ -321,11 +320,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-javadoc
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-javadoc-coverage-report
@@ -350,11 +349,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-main
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-main-coverage-report
@@ -375,11 +374,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-metrics
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-metrics-coverage-report
@@ -400,11 +399,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-misc
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-misc-coverage-report
@@ -425,11 +424,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-modifier
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-modifier-coverage-report
@@ -450,11 +449,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-naming
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-naming-coverage-report
@@ -475,11 +474,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-packagenamesloader
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-packagenamesloader-coverage-report
@@ -500,11 +499,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-regexp
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-regexp-coverage-report
@@ -525,11 +524,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-sizes
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-sizes-coverage-report
@@ -550,11 +549,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-tree-walker
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-tree-walker-coverage-report
@@ -575,11 +574,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-utils
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-utils-coverage-report
@@ -600,11 +599,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-whitespace
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-whitespace-coverage-report
@@ -625,11 +624,11 @@ jobs:
         run: |
           ./.ci/pitest.sh pitest-xpath
       - name: Stage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
       - name: Archive code coverage results
-        if: failure()
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
           name: pitest-xpath-coverage-report
@@ -649,11 +648,14 @@ jobs:
 
       - name: Generate pitest report
         run: ./.ci/pitest.sh pitest-java-ast-visitor
-
-      - name: Archive report
-        if: always()
+      - name: Stage results
+        if: failure() || github.ref == 'refs/heads/master'
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
             name: pitest-report-java-ast-visitor
-            path: /home/runner/work/checkstyle/checkstyle/target/pit-reports/
+            path: staging
             retention-days: 7
