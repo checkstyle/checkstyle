@@ -1,6 +1,6 @@
 /*
 RightCurly
-option = alone
+option = ALONE
 tokens = (default)LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE
 
 
@@ -32,9 +32,9 @@ class InputRightCurlyTestTryWithResourceAlone {
                 BufferedReader br2 = new BufferedReader(br1)) { ; } // violation
         catch (IOException e) { ; } // violation
         try (BufferedReader br1 = new BufferedReader(null);
-                // violation on next line
+
                 BufferedReader br2 = new BufferedReader(br1)) {} catch (IOException e) { ; }
-        try (BufferedReader br1 = new BufferedReader(null);
+        try (BufferedReader br1 = new BufferedReader(null); // 2 violations above
                 BufferedReader br2 = new BufferedReader(br1)) {
             ;
         }

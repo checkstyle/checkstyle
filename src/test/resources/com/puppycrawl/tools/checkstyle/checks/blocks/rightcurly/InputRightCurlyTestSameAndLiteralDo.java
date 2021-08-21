@@ -1,6 +1,6 @@
 /*
 RightCurly
-option = (default)same
+option = (default)SAME
 tokens = LITERAL_DO
 
 

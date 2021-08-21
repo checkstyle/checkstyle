@@ -1,6 +1,6 @@
 /*
 RightCurly
-option = alone
+option = ALONE
 tokens = LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, \
          CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, \
          STATIC_INIT, INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF
@@ -54,9 +54,9 @@ class InputRightCurlyTestWithAnnotations
     @SuppressWarnings("unused")
     public InputRightCurlyTestWithAnnotations() { this.var1 = 1; } // violation
     @SuppressWarnings("unused")
-    // violation on next line
-    public InputRightCurlyTestWithAnnotations(int v1, int v2) {this.var1 = v1; this.var2 = v2; }
 
+    public InputRightCurlyTestWithAnnotations(int v1, int v2) {this.var1 = v1; this.var2 = v2; }
+    // violation above
     @SuppressWarnings("unused")
     private void foo9() { ;; } // violation
 
@@ -64,12 +64,12 @@ class InputRightCurlyTestWithAnnotations
     private void foo10() { ; } // violation
 
     @SuppressWarnings("unused")
-    private void foo11() {  } // empty block - violation
+    private void foo11() {  } // violation
 
     @SuppressWarnings("unused")
     private void foo12() {
         try { int i = 5; int b = 10; } // violation
-        catch (Exception e) { } // empty block - violation
+        catch (Exception e) { } // violation
     }
 
     @Deprecated
@@ -102,7 +102,7 @@ class InputRightCurlyTestWithAnnotations
     @Deprecated
     private void foo15() {
         class A { int a; } var1++; // violation
-        class B {  } // empty block - violation
+        class B {  } // violation
         if(true) {
 
         }
@@ -111,16 +111,16 @@ class InputRightCurlyTestWithAnnotations
 
     @Deprecated
     private void foo16() {
-        if (true) { return; } else { } // violation
+        if (true) { return; } else { } // 2 violations
         if (false) {
         }
 
-        if (true) { return; } else { } // violation
+        if (true) { return; } else { } // 2 violations
     }
 
     @Deprecated
-    void foo17() { int v1 = 5; v2 = 6; } @Deprecated void foo18() {int v1 = 5; v2 = 6; }//violation
-
+    void foo17() { int v1 = 5; v2 = 6; } @Deprecated void foo18() {int v1 = 5; v2 = 6; }
+    // 2 violations above
     private void foo19() {int var1 = 5;
         var2 = 6;} // violation
 
@@ -146,7 +146,7 @@ class InputRightCurlyTestWithAnnotations
             toString();
         } catch (Exception e) { // violation
             throw new RuntimeException(e);
-        } finally { toString(); } // violation
+        } finally { toString(); } // 2 violations
     }
 
     @SuppressWarnings("")
@@ -159,10 +159,10 @@ class InputRightCurlyTestWithAnnotations
         }}; //NO violation
 
         Thread t = new Thread() {@Override public void run() {super.run();}}; // violation
-        new Object() { public int hashCode() { return 1; }  { int a = 5; }}; // violation
+        new Object() { public int hashCode() { return 1; }  { int a = 5; }}; // 2 violations
         new Object() { public int hashCode() { return 1; }  int b = 10; }; // violation
-        new Object() { public int hashCode() { return 1; }  { int c = 5; } int d = 8; };//violation
-
+        new Object() { public int hashCode() { return 1; }  { int c = 5; } int d = 8; };
+        // 2 violations above
         java.util.Map<String, String> map2 = new java.util.LinkedHashMap<String, String>() {{
             put("Hello", "World");
             put("first", "second");
@@ -196,7 +196,7 @@ class InputRightCurlyTestWithAnnotations
             add("AB21/X");
             add("YYLEX");
             add("AR5E");
-        }});} // violation
+        }});} // 2 violations
 
 
     void foo23(java.util.HashSet<String> set) {
@@ -205,14 +205,14 @@ class InputRightCurlyTestWithAnnotations
     void foo25() {
         for (int i = 0; i < 10; i++) {
             System.identityHashCode("Hello, world!");
-        }} // violation
+        }} // 2 violations
 
     void foo26() {
         for (int i = 0; i < 10; i++) {
-            System.identityHashCode("Hello, world!");}} // violation
+            System.identityHashCode("Hello, world!");}} // 2 violations
 
     void foo27() {
-        for (int i = 0; i < 10; i++) {for (int j = 0; j < 15; j++) {int a;}}} // violation
+        for (int i = 0; i < 10; i++) {for (int j = 0; j < 15; j++) {int a;}}} // 3 violations
 
     private java.util.ArrayList<Integer> foo28(int delta) {
         return new java.util.ArrayList<Integer>() {

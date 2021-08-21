@@ -1,6 +1,6 @@
 /*
 RightCurly
-option = alone_or_singleline
+option = ALONE_OR_SINGLELINE
 tokens = CLASS_DEF, METHOD_DEF, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF
 
 
@@ -108,7 +108,7 @@ class FooCtorTestShouldStartLine2
         public void FooCtor()
     {
                 i = 1;
-    }} // violation
+    }} // 2 violations
 
 /**
 * Test input for closing brace if that brace terminates
@@ -119,7 +119,7 @@ class FooMethodTestShouldStartLine2
         public void fooMethod()
     {
                 int i = 1;
-    }} // violation
+    }} // 2 violations
 
 /**
 * Test input for closing brace if that brace terminates
@@ -133,7 +133,7 @@ class FooInnerTestShouldStartLine2
         {
 
                 }
-    }} // violation
+    }} // 2 violations
 
 /**
  * False positive
@@ -208,5 +208,5 @@ class ClassWithStaticInitializersTestShouldStartLine2
         void display();
         interface Interface4 {
             void myMethod();
-        }} // violation
+        }} // 2 violations
 }
