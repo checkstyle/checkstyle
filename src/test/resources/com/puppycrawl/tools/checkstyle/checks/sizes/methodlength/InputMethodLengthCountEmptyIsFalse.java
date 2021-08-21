@@ -10,7 +10,7 @@ tokens = (default)METHOD_DEF , CTOR_DEF , COMPACT_CTOR_DEF
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 import java.io.*;
 
-final class InputMethodLengthCountEmptyIsFalse
+final class InputMethodLengthCountEmptyIsFalse // ok
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->        <-
@@ -72,7 +72,7 @@ final class InputMethodLengthCountEmptyIsFalse
         return 0;
     }
 
-    /** method that is 20 lines long **/ // violation
+    /** method that is 20 lines long **/
     private void longMethod()
     {
         // a line

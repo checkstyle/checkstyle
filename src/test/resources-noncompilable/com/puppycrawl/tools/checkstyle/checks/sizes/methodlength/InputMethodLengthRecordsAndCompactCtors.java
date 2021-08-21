@@ -1,8 +1,8 @@
 /*
 MethodLength
 max = 2
-countEmpty = default(true)
-tokens = (default)METHOD_DEF , CTOR_DEF , COMPACT_CTOR_DEF
+countEmpty = (default)true
+tokens = (default)METHOD_DEF, CTOR_DEF, COMPACT_CTOR_DEF
 
 
 */
@@ -60,7 +60,7 @@ public class InputMethodLengthRecordsAndCompactCtors {
     }
 
     class LocalRecordHelper {
-        Class<?> m(int x) {
+        Class<?> m(int x) { // violation
             record R76(int x) {
 
                 public R76 { // violation

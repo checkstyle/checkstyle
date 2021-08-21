@@ -72,8 +72,8 @@ final class InputMethodLengthSimple
         return 0;
     }
 
-    /** method that is 20 lines long **/ // violation
-    private void longMethod()
+    /** method that is 20 lines long **/
+    private void longMethod() // violation
     {
         // a line
         // a line

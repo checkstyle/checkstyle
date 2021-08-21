@@ -1,4 +1,4 @@
-/*
+/* // violation
 FileLength
 max = 20
 fileExtensions = (default)all files
@@ -16,7 +16,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.filelength;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputFileLength // violation
+final class InputFileLength
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->        <-

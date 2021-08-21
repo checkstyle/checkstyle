@@ -12,13 +12,13 @@ tokens = (default)CLASS_DEF, ENUM_CONSTANT_DEF, ENUM_DEF, INTERFACE_DEF, ANNOTAT
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodcount;
 
-public class InputMethodCount1 { // violation
+public class InputMethodCount1 { // 5 violations
 
   /**
    * Dummy inner class to check that the inner-classes methods are not counted
    * for the outer class.
    */
-  public class PublicMethodsInnerclassInnerclass {
+  public class PublicMethodsInnerclassInnerclass { // 2 violations
     /**
      * Dummy method doing nothing
      */
@@ -54,7 +54,7 @@ public class InputMethodCount1 { // violation
    * Dummy inner class to check that the inner-classes methods are not counted
    * for the outer class.
    */
-  public interface PublicMethodsInnerInterface {
+  public interface PublicMethodsInnerInterface { // 2 violations
     /**
      * Dummy method doing nothing
      */
