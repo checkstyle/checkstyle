@@ -20,7 +20,7 @@ import org.antlr.v4.runtime.*; // ok
 
 import java.util.Set; // violation
 
-import static java.lang.Math.PI; // violation
+import static java.lang.Math.PI; // 2 violations
 import static org.antlr.v4.runtime.Recognizer.EOF; // violation
 
 public class InputImportOrderStaticGroupOrderBottom3

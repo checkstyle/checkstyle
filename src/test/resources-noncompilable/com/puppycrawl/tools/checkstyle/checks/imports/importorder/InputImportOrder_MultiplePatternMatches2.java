@@ -1,7 +1,7 @@
 /*
 ImportOrder
 option = bottom
-groups = /^javax\./, com
+groups = /^javax\\./, com
 ordered = (default)true
 separated = true
 separatedStaticGroups = (default)false

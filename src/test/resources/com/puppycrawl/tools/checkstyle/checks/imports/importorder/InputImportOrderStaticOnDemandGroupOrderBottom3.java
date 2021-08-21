@@ -20,7 +20,7 @@ import org.antlr.v4.runtime.*; // ok
 
 import java.util.Set; // violation
 
-import static java.lang.Math.*; // violation
+import static java.lang.Math.*; // 2 violations
 import static org.antlr.v4.runtime.CommonToken.*; // violation
 
 public class InputImportOrderStaticOnDemandGroupOrderBottom3
