@@ -65,7 +65,8 @@ public class ParameterNumberCheckTest
         final String[] expected = {
             "198:10: " + getCheckMessage(MSG_KEY, 7, 9),
         };
-        verify(checkConfig, getPath("InputParameterNumberSimple.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParameterNumberSimple.java"), expected);
     }
 
     @Test
@@ -78,7 +79,8 @@ public class ParameterNumberCheckTest
             "75:9: " + getCheckMessage(MSG_KEY, 2, 3),
             "198:10: " + getCheckMessage(MSG_KEY, 2, 9),
         };
-        verify(checkConfig, getPath("InputParameterNumberSimple2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParameterNumberSimple2.java"), expected);
     }
 
     @Test
@@ -88,7 +90,8 @@ public class ParameterNumberCheckTest
                 createModuleConfig(ParameterNumberCheck.class);
         checkConfig.addProperty("max", "9");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputParameterNumberSimple3.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParameterNumberSimple3.java"), expected);
     }
 
     @Test
@@ -98,9 +101,10 @@ public class ParameterNumberCheckTest
             createModuleConfig(ParameterNumberCheck.class);
         checkConfig.addMessage("maxParam", "{0},{1}");
         final String[] expected = {
-            "198:10: 7,9",
+            "199:10: 7,9",
         };
-        verify(checkConfig, getPath("InputParameterNumberSimple4.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParameterNumberSimple4.java"), expected);
     }
 
     @Test
@@ -113,7 +117,8 @@ public class ParameterNumberCheckTest
             "15:10: " + getCheckMessage(MSG_KEY, 7, 8),
             "20:10: " + getCheckMessage(MSG_KEY, 7, 8),
         };
-        verify(checkConfig, getPath("InputParameterNumber.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParameterNumber.java"), expected);
     }
 
     @Test
@@ -127,7 +132,8 @@ public class ParameterNumberCheckTest
             "28:10: " + getCheckMessage(MSG_KEY, 7, 8),
             "33:10: " + getCheckMessage(MSG_KEY, 7, 8),
         };
-        verify(checkConfig, getPath("InputParameterNumber2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParameterNumber2.java"), expected);
     }
 
 }
