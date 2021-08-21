@@ -3,6 +3,7 @@ LineLength
 fileExtensions = (default)all files
 ignorePattern = ^.*is OK.*regexp.*$
 max = (default)80
+message.maxLineLen = {0},{1}
 
 
 */
