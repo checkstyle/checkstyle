@@ -54,7 +54,8 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
             "28:1: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
             "32:1: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
         };
-        verify(checkConfig, getPath("InputIllegalImportDefault1.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalImportDefault1.java"), expected);
     }
 
     @Test
@@ -63,7 +64,8 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(IllegalImportCheck.class);
         final String[] expected = {};
-        verify(checkConfig, getPath("InputIllegalImportDefault2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalImportDefault2.java"), expected);
     }
 
     @Test
@@ -76,7 +78,8 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY, "sun.reflect.*"),
         };
-        verify(checkConfig, getNonCompilablePath("InputIllegalImportDefault.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getNonCompilablePath("InputIllegalImportDefault.java"), expected);
     }
 
     @Test
@@ -101,7 +104,8 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
             "20:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
             "33:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
         };
-        verify(checkConfig, getPath("InputIllegalImportDefault3.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalImportDefault3.java"), expected);
     }
 
     @Test
@@ -116,7 +120,8 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
             "20:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
             "33:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
         };
-        verify(checkConfig, getPath("InputIllegalImportDefault4.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalImportDefault4.java"), expected);
     }
 
     @Test
@@ -135,7 +140,8 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
             "40:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
             "41:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
         };
-        verify(checkConfig, getPath("InputIllegalImportDefault5.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalImportDefault5.java"), expected);
     }
 
     @Test
@@ -151,7 +157,8 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
             "18:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
             "22:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
         };
-        verify(checkConfig, getPath("InputIllegalImportDefault6.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalImportDefault6.java"), expected);
     }
 
     @Test
@@ -176,7 +183,8 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
             "40:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
             "41:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
         };
-        verify(checkConfig, getPath("InputIllegalImportDefault7.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalImportDefault7.java"), expected);
     }
 
 }
