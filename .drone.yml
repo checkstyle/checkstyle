@@ -3,30 +3,94 @@ kind: pipeline
 name: pipeline1
 
 steps:
+- name: restore-cache
+  image: plugins/s3-cache
+  failure: ignore
+  settings:
+    pull: true
+    access_key:
+      from_secret: drone_aws_access_key_id
+    secret_key:
+      from_secret: drone_aws_secret_access_key
+    restore: true
+    root: TODO-BUCKET-NAME
+    filename: pipeline1.tar
+
 - name: checkstyle-and-sevntu
   image: maven:3.6.3-adoptopenjdk-8
+  environment:
+    MAVEN_OPTS: "-Dmaven.repo.local=.m2"
   commands:
   - ./.ci/travis/travis.sh checkstyle-and-sevntu
 
 - name: spotbugs-and-pmd
   image: maven:3.6.3-adoptopenjdk-8
+  environment:
+    MAVEN_OPTS: "-Dmaven.repo.local=.m2"
   commands:
   - ./.ci/travis/travis.sh spotbugs-and-pmd
+
+- name: rebuild-cache
+  image: plugins/s3-cache
+  failure: ignore
+  settings:
+    pull: true
+    access_key:
+      from_secret: drone_aws_access_key_id
+    secret_key:
+      from_secret: drone_aws_secret_access_key
+    rebuild: true
+    root: TODO-BUCKET-NAME
+    filename: pipeline1.tar
+    mount:
+    - .m2
 
 ---
 kind: pipeline
 name: pipeline2
 
 steps:
+- name: restore-cache
+  image: plugins/s3-cache
+  failure: ignore
+  settings:
+    pull: true
+    access_key:
+      from_secret: drone_aws_access_key_id
+    secret_key:
+      from_secret: drone_aws_secret_access_key
+    restore: true
+    root: TODO-BUCKET-NAME
+    filename: pipeline2.tar
+
 - name: site
   image: maven:3.6.3-adoptopenjdk-8
+  environment:
+    MAVEN_OPTS: "-Dmaven.repo.local=.m2"
   commands:
   - ./.ci/travis/travis.sh site
 
 - name: release-dry-run
   image: maven:3.6.3-adoptopenjdk-8
+  environment:
+    MAVEN_OPTS: "-Dmaven.repo.local=.m2"
   commands:
   - ./.ci/travis/travis.sh release-dry-run
+
+- name: rebuild-cache
+  image: plugins/s3-cache
+  failure: ignore
+  settings:
+    pull: true
+    access_key:
+      from_secret: drone_aws_access_key_id
+    secret_key:
+      from_secret: drone_aws_secret_access_key
+    rebuild: true
+    root: TODO-BUCKET-NAME
+    filename: pipeline2.tar
+    mount:
+    - .m2
 
 ---
 kind: pipeline
@@ -38,18 +102,49 @@ steps:
   commands:
   - ./.ci/travis/travis.sh check-chmod
 
+- name: restore-cache
+  image: plugins/s3-cache
+  failure: ignore
+  settings:
+    pull: true
+    access_key:
+      from_secret: drone_aws_access_key_id
+    secret_key:
+      from_secret: drone_aws_secret_access_key
+    restore: true
+    root: TODO-BUCKET-NAME
+    filename: pipeline3.tar
+
 - name: releasenotes-gen
   image: maven:3.6.3-adoptopenjdk-8
   environment:
     READ_ONLY_TOKEN:
       from_secret: READ_ONLY_TOKEN
+    MAVEN_OPTS: "-Dmaven.repo.local=.m2"
   commands:
   - export PULL_REQUEST=$DRONE_PULL_REQUEST && ./.ci/travis/travis.sh releasenotes-gen
 
 - name: assembly-run-all-jar
   image: maven:3.6.3-adoptopenjdk-8
+  environment:
+    MAVEN_OPTS: "-Dmaven.repo.local=.m2"
   commands:
   - ./.ci/travis/travis.sh assembly-run-all-jar
+
+- name: rebuild-cache
+  image: plugins/s3-cache
+  failure: ignore
+  settings:
+    pull: true
+    access_key:
+      from_secret: drone_aws_access_key_id
+    secret_key:
+      from_secret: drone_aws_secret_access_key
+    rebuild: true
+    root: TODO-BUCKET-NAME
+    filename: pipeline3.tar
+    mount:
+    - .m2
 
 ---
 kind: pipeline
@@ -91,23 +186,85 @@ steps:
   commands:
   - ./.ci/travis/travis.sh javac16
 
+- name: restore-cache
+  image: plugins/s3-cache
+  failure: ignore
+  settings:
+    pull: true
+    access_key:
+      from_secret: drone_aws_access_key_id
+    secret_key:
+      from_secret: drone_aws_secret_access_key
+    restore: true
+    root: TODO-BUCKET-NAME
+    filename: pipeline5.tar
+
 - name: no-error-test-sbe
   image: maven:3.6.3-adoptopenjdk-8
+  environment:
+    MAVEN_OPTS: "-Dmaven.repo.local=.m2"
   commands:
   - ./.ci/travis/travis.sh no-error-test-sbe
+
+- name: rebuild-cache
+  image: plugins/s3-cache
+  failure: ignore
+  settings:
+    pull: true
+    access_key:
+      from_secret: drone_aws_access_key_id
+    secret_key:
+      from_secret: drone_aws_secret_access_key
+    rebuild: true
+    root: TODO-BUCKET-NAME
+    filename: pipeline5.tar
+    mount:
+    - .m2
 
 ---
 kind: pipeline
 name: pipeline6
 
 steps:
+- name: restore-cache
+  image: plugins/s3-cache
+  failure: ignore
+  settings:
+    pull: true
+    access_key:
+      from_secret: drone_aws_access_key_id
+    secret_key:
+      from_secret: drone_aws_secret_access_key
+    restore: true
+    root: TODO-BUCKET-NAME
+    filename: pipeline6.tar
+
 - name: jdk14-assembly-site
   image: maven:3.6.3-jdk-14
+  environment:
+    MAVEN_OPTS: "-Dmaven.repo.local=.m2"
   commands:
   - ./.ci/travis/travis.sh jdk14-assembly-site
 
 - name: assembly/site with OpenJDK11
   image: maven:3.6.3-adoptopenjdk-11
+  environment:
+    MAVEN_OPTS: "-Dmaven.repo.local=.m2"
   commands:
   - "mvn -e --no-transfer-progress package -Passembly && \
      mvn -e --no-transfer-progress site -Dlinkcheck.skip=true"
+
+- name: rebuild-cache
+  image: plugins/s3-cache
+  failure: ignore
+  settings:
+    pull: true
+    access_key:
+      from_secret: drone_aws_access_key_id
+    secret_key:
+      from_secret: drone_aws_secret_access_key
+    rebuild: true
+    root: TODO-BUCKET-NAME
+    filename: pipeline6.tar
+    mount:
+    - .m2
