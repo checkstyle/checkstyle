@@ -1,9 +1,15 @@
+/*
+LambdaBodyLength
+max = (default)10
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.sizes.lambdabodylength;
 
 import java.util.List;
 import java.util.function.*;
 
-/* Config = default */
 public class InputLambdaBodyLengthDefault {
     {
         List<String> list = null;
@@ -59,7 +65,7 @@ public class InputLambdaBodyLengthDefault {
 
 
             };
-        Supplier<String> s1 = () -> // violation, 11 lines
+        Supplier<String> s1 = () -> // violation
             "1"
                 + "2"
                 + "3"

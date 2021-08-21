@@ -1,12 +1,15 @@
+/*
+LambdaBodyLength
+max = 3
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.sizes.lambdabodylength;
 
 import java.util.List;
 import java.util.function.Supplier;
 
-/*
- * Config:
- * max = 3
- */
 public class InputLambdaBodyLengthMax {
     {
         List<String> list = null;
@@ -27,7 +30,7 @@ public class InputLambdaBodyLengthMax {
         Supplier<Runnable> s = () -> // violation
             (
 
-            ) -> { // ok, 3 lines
+            ) -> {
 
             };
         Supplier<String> s1 = () -> // violation
