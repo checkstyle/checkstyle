@@ -27,7 +27,7 @@ public class InputDescendantTokenReturnFromCatch {
     public void bar() {
         try {
             System.currentTimeMillis();
-        } catch (Exception e) {
+        } catch (Exception e) { // violation
             if (System.currentTimeMillis() == 0) {
                 return; // return from if statement
             }
