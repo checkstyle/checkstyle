@@ -45,7 +45,7 @@ public class FileTabCharacterCheckTest
         final String[] expected = {
             "22:25: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
         };
-        verify(createChecker(checkConfig), getPath("InputFileTabCharacterSimple.java"),
+        verify(checkConfig, getPath("InputFileTabCharacterSimple.java"),
             expected);
     }
 
@@ -64,7 +64,7 @@ public class FileTabCharacterCheckTest
             "160:3: " + getCheckMessage(MSG_CONTAINS_TAB),
             "161:3: " + getCheckMessage(MSG_CONTAINS_TAB),
         };
-        verify(createChecker(checkConfig), getPath("InputFileTabCharacterSimple1.java"),
+        verify(checkConfig, getPath("InputFileTabCharacterSimple1.java"),
             expected);
     }
 
@@ -82,7 +82,7 @@ public class FileTabCharacterCheckTest
         final String[] expected = {
             "1: " + violation.getViolation(),
         };
-        verify(createChecker(checkConfig), path, expected);
+        verify(checkConfig, path, expected);
     }
 
 }

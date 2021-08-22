@@ -57,7 +57,8 @@ public class EmptyForIteratorPadCheckTest
             "46:33: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
             "58:12: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
         };
-        verify(checkConfig, getPath("InputEmptyForIteratorPad.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputEmptyForIteratorPad.java"), expected);
     }
 
     @Test
@@ -67,7 +68,8 @@ public class EmptyForIteratorPadCheckTest
         final String[] expected = {
             "26:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
-        verify(checkConfig, getPath("InputEmptyForIteratorPad1.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputEmptyForIteratorPad1.java"), expected);
     }
 
     @Test
