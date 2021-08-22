@@ -29,7 +29,7 @@ class SomeClass {
     public void PUBLICfoo() {  // violation
 
     }
-    protected void PROTECTEDfoo() { //Warning (broken naming convention)
+    protected void PROTECTEDfoo() { // violation
 
     }
 }

@@ -18,7 +18,7 @@ public class InputLambdaParameterName {
     Function<String, String> badNamedParameterWithParenthesis = (st) -> // violation
             st.trim().toLowerCase();
 
-    BiFunction<String, String, String> twoBadNamedParameters = (s1,
+    BiFunction<String, String, String> twoBadNamedParameters = (s1, // violation
                                                                 s2) -> s1 + s2; // violation
 
     BiFunction<String, String, String> badNamedParameterInBiFunction =

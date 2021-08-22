@@ -79,25 +79,25 @@ public class InputAbbreviationAsWordInNameNoIgnore {
 
     interface Interface1 {
 
-        String VALUEEEE = "value"; // in interface this is final/static
+        String VALUEEEE = "value"; // violation
 
     }
 
     interface Interface2 {
 
-        static String VALUEEEE = "value"; // in interface this is final/static
+        static String VALUEEEE = "value"; // violation
 
     }
 
     interface Interface3 {
 
-        final String VALUEEEE = "value"; // in interface this is final/static
+        final String VALUEEEE = "value"; // violation
 
     }
 
     interface Interface4 {
 
-        final static String VALUEEEE = "value"; // in interface this is final/static
+        final static String VALUEEEE = "value"; // violation
 
     }
 

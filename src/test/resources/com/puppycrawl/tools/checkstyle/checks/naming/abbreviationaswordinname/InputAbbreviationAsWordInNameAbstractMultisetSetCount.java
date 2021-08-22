@@ -1,7 +1,7 @@
 /*
 AbbreviationAsWordInName
 allowedAbbreviationLength = 2
-allowedAbbreviations = null
+allowedAbbreviations = (null)
 ignoreFinal = false
 ignoreStatic = (default)true
 ignoreStaticFinal = (default)true
