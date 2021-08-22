@@ -6,8 +6,8 @@ maximumDepth = 1
 minimumNumber = (default)0
 maximumNumber = 1
 sumTokenCounts = true
-minimumMessage = this cannot be null.
-maximumMessage = (default)null
+minimumMessage = (default)null
+maximumMessage = this cannot be null.
 tokens = NOT_EQUAL, EQUAL
 
 
@@ -34,8 +34,8 @@ public class InputDescendantTokenReturnFromFinally3 {
         }
     }
     public void thisNull() {
-        boolean result = (this == null) || (null == this); // violation
-        boolean result2 = (this != null) && (null != this);
+        boolean result = (this == null) || (null == this); // 2 violations
+        boolean result2 = (this != null) && (null != this); // 2 violations
         boolean result3 = (this.getClass().getName()
             == String.valueOf(null == System.getProperty("abc")));
     }
