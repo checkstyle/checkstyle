@@ -1,6 +1,6 @@
 /*
 TypecastParenPad
-option = space
+option = SPACE
 
 
 */
@@ -81,10 +81,10 @@ class InputTypecastParenPadWhitespaceTestSpace
     /** test casts **/
     private void testCasts()
     {
-        Object o = (Object) new Object(); // violation
-        o = (Object)o; // violation
+        Object o = (Object) new Object(); // 2 violations
+        o = (Object)o; // 2 violations
         o = ( Object ) o;
-        o = (Object)
+        o = (Object) // 2 violations
             o; // ok
     }
 
@@ -235,7 +235,7 @@ class SpecialCasesInForLoop_TypecastParenPad2
     }
 
     int[] getSomeInts() {
-        int i = (int) ( 2 / 3 ); // ok
+        int i = (int) ( 2 / 3 ); // 2 violations
         return null;
     }
 

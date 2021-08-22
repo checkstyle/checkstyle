@@ -1,6 +1,6 @@
 /*
 ParenPad
-option = space
+option = SPACE
 tokens = EXPR, METHOD_CALL, METHOD_DEF
 
 
@@ -27,6 +27,6 @@ class InputParenPadWithSpaceAndDisabledLambda {
         java.util.stream.Stream.of().forEach( o -> o.toString() ); // ok
     }
 
-    void someMethod(String param) { // violation
+    void someMethod(String param) { // 2 violations
     }
 }

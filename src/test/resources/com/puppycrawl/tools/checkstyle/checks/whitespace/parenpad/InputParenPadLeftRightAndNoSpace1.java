@@ -1,6 +1,6 @@
 /*
 ParenPad
-option = (default)nospace
+option = (default)NOSPACE
 tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
          ENUM_CONSTANT_DEF, EXPR, LITERAL_CATCH, LITERAL_DO, LITERAL_FOR, LITERAL_IF, \
          LITERAL_NEW, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_WHILE, METHOD_CALL, \
@@ -52,28 +52,28 @@ public class InputParenPadLeftRightAndNoSpace1
     }
 
     class ParenPadSpaceLeft {
-        ParenPadSpaceLeft( ) { // violation
-            this( 0);
+        ParenPadSpaceLeft( ) { // 2 violations
+            this( 0); // violation
         }
 
-        ParenPadSpaceLeft( int i) {
-            super( );
+        ParenPadSpaceLeft( int i) { // violation
+            super( ); // 2 violations
         }
 
-        @SuppressWarnings( "")
-        void method( boolean status) {
-            try ( Writer writer = new StringWriter( )) {
+        @SuppressWarnings( "") // violation
+        void method( boolean status) { // violation
+            try ( Writer writer = new StringWriter( )) { // 3 violations
                 do {
                     writer.append("a");
-                } while ( status);
-            } catch ( IOException e) {
-                while ( status) {
-                    for ( int i = 0; i < ( long) ( 2 * ( 4 / 2)); i++) {
-                        if ( i > 2) {
-                            synchronized ( this) {
-                                switch ( i) {
+                } while ( status); // violation
+            } catch ( IOException e) { // violation
+                while ( status) { // violation
+                    for ( int i = 0; i < ( long) ( 2 * ( 4 / 2)); i++) { // 3 violations
+                        if ( i > 2) { // violation
+                            synchronized ( this) { // violation
+                                switch ( i) { // violation
                                     case 3:
-                                    case ( 4):
+                                    case ( 4): // violation
                                     case 5:
                                         break;
                                 }
@@ -86,28 +86,28 @@ public class InputParenPadLeftRightAndNoSpace1
     }
 
     class ParenPadSpaceRight {
-        ParenPadSpaceRight( ) {
-            this(0 );
+        ParenPadSpaceRight( ) { // 2 violations
+            this(0 ); // violation
         }
 
-        ParenPadSpaceRight(int i ) {
-            super( );
+        ParenPadSpaceRight(int i ) { // violation
+            super( ); // 2 violations
         }
 
-        @SuppressWarnings("" )
-        void method(boolean status ) {
-            try (Writer writer = new StringWriter( ) ) {
+        @SuppressWarnings("" ) // violation
+        void method(boolean status ) { // violation
+            try (Writer writer = new StringWriter( ) ) { // 3 violations
                 do {
-                    writer.append("a" );
-                } while (status );
-            } catch (IOException e ) {
-                while (status ) {
-                    for (int i = 0; i < (long ) (2 * (4 / 2 ) ); i++ ) {
-                        if (i > 2 ) {
-                            synchronized (this ) {
-                                switch (i ) {
+                    writer.append("a" ); // violation
+                } while (status ); // violation
+            } catch (IOException e ) { // violation
+                while (status ) { // violation
+                    for (int i = 0; i < (long ) (2 * (4 / 2 ) ); i++ ) { // 3 violations
+                        if (i > 2 ) { // violation
+                            synchronized (this ) { // violation
+                                switch (i ) { // violation
                                     case 3:
-                                    case (4 ):
+                                    case (4 ): // violation
                                     case 5:
                                         break;
                                 }
@@ -120,25 +120,25 @@ public class InputParenPadLeftRightAndNoSpace1
     }
 
     String foo() {
-        return ( (Object
-                ) bar( ( 1 > 2 ) ?
-                        ( ( 3 < 4 )? false : true ) :
-                        ( ( 1 == 1 ) ? false : true) ) ).toString();
+        return ( (Object // violation
+                ) bar( ( 1 > 2 ) ? // 3 violations
+                        ( ( 3 < 4 )? false : true ) : // 4 violations
+                        ( ( 1 == 1 ) ? false : true) ) ).toString(); // 5 violations
     }
     @MyAnnotation1
     public boolean bar(boolean a) {
-        assert ( true );
+        assert ( true ); // 2 violations
         return true;
     }
 
-    boolean fooo = this.bar(( true && false ) && true);
+    boolean fooo = this.bar(( true && false ) && true); // 2 violations
 }
 @interface MyAnnotation1 {
-    String someField( ) default "Hello world";
+    String someField( ) default "Hello world"; // 2 violations
 }
 
 enum MyEnum1 {
-    SOME_CONSTANT( ) {
+    SOME_CONSTANT( ) { // 2 violations
         int i = (int) (2 * (4 / 2)
                 );
     };
@@ -147,13 +147,13 @@ enum MyEnum1 {
         String s = "test";
         Object o = s;
         ((String)o).length();
-        ( (String)o ).length();
+        ( (String)o ).length(); // 2 violations
     }
 
     public void crisRon() {
         Object leo = "messi";
         Object ibra = leo;
-        ((String)leo).compareTo( (String)ibra );
+        ((String)leo).compareTo( (String)ibra ); // 2 violations
         Math.random();
     }
 
@@ -161,29 +161,29 @@ enum MyEnum1 {
         Object a = 5;
         Object b = "string";
         int w = Integer.parseInt((String)a);
-        int x = Integer.parseInt( (String)a);
-        double y = Double.parseDouble((String)a );
-        float z = Float.parseFloat( (String)a );
+        int x = Integer.parseInt( (String)a); // violation
+        double y = Double.parseDouble((String)a ); // violation
+        float z = Float.parseFloat( (String)a ); // 2 violations
         String d = ((String)b);
     }
 
-    public int something( Object o ) {
-        if ( o == null || !( o instanceof Float ) ) {
+    public int something( Object o ) { // 2 violations
+        if ( o == null || !( o instanceof Float ) ) { // 4 violations
             return -1;
         }
-        return Integer.valueOf( 22 ).compareTo( (Integer) o );
+        return Integer.valueOf( 22 ).compareTo( (Integer) o ); // 4 violations
     }
 
-    private void launch(Integer number ) {
-        String myInt = ( number.toString() + '\0' );
+    private void launch(Integer number ) { // violation
+        String myInt = ( number.toString() + '\0' ); // 2 violations
         boolean result = false;
         if (number == 123)
             result = true;
     }
 
-    private static String getterName( Exception t) {
-        if (t instanceof ClassNotFoundException ) {
-            return ( (ClassNotFoundException) t ).getMessage();
+    private static String getterName( Exception t) { // violation
+        if (t instanceof ClassNotFoundException ) { // violation
+            return ( (ClassNotFoundException) t ).getMessage(); // 2 violations
         }
         else {
             return "?";
@@ -193,39 +193,39 @@ enum MyEnum1 {
     private Object exam;
 
     public String testing() {
-        return ( this.exam != null )
-                ? ( ( Enum )this.exam ).name()
+        return ( this.exam != null ) // 2 violations
+                ? ( ( Enum )this.exam ).name() // 2 violations
                 : null;
     }
 
-    Object stringReturnValue( Object result ) {
-        if ( result instanceof String ) {
-            result = ( (String) result ).length();
+    Object stringReturnValue( Object result ) { // 2 violations
+        if ( result instanceof String ) { // 2 violations
+            result = ( (String) result ).length(); // 2 violations
         }
         return result;
     }
 
 
 
-    private void except() {
+    private void except() { // 2 violations below
         java.util.ArrayList<Integer> arrlist = new java.util.ArrayList<Integer>( 5 );
-        arrlist.add( 20);
-        arrlist.add(15 );
-        arrlist.add( 30 );
+        arrlist.add( 20); // violation
+        arrlist.add(15 ); // violation
+        arrlist.add( 30 ); // 2 violations
         arrlist.add(45);
         try {
-            ( arrlist ).remove( 2);
-        } catch ( IndexOutOfBoundsException x ) {
+            ( arrlist ).remove( 2); // 3 violations
+        } catch ( IndexOutOfBoundsException x ) { // 2 violations
             x.getMessage();
         }
-        org.junit.Assert.assertThat( "123", org.hamcrest.CoreMatchers.is( "123" ) );
-        org.junit.Assert.assertThat( "Help! Integers don't work",
-                0, org.hamcrest.CoreMatchers.is( 1 ) );
+        org.junit.Assert.assertThat( "123", org.hamcrest.CoreMatchers.is( "123" ) ); // 4 violations
+        org.junit.Assert.assertThat( "Help! Integers don't work", // violation
+                0, org.hamcrest.CoreMatchers.is( 1 ) ); // 3 violations
     }
 }
 enum MyEnum21 {
-    SOME_CONSTANT( ) {
+    SOME_CONSTANT( ) { // 2 violations
         int i = (int) (2 * (4 / 2
-)                   );
+)                   ); // violation
     };
 }
