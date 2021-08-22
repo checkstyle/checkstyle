@@ -31,7 +31,7 @@ class InputNoWhitespaceBeforeDefault
         b=1; // Ignore 1
         b+=1; // Ignore 1
         b -=- 1 + (+ b); // Ignore 2
-        b = b ++ + b --; // Ignore 1
+        b = b ++ + b --; // 2 violations
         b = ++ b - -- b; // Ignore 1
     }
 
@@ -89,7 +89,7 @@ class InputNoWhitespaceBeforeDefault
     private void testCasts()
     {
         Object o = (Object) new Object(); // ok
-        o = (Object)o; // violation
+        o = (Object)o;
         o = ( Object ) o; // ok
         o = (Object)
                 o; // ok
@@ -177,18 +177,18 @@ class InputNoWhitespaceBeforeDefault
     /** rfe 521323, detect whitespace before ';' */
     void rfe521323()
     {
-        doStuff() ;
+        doStuff() ; // violation
         //       ^ whitespace
-        for (int i = 0 ; i < 5; i++) {
+        for (int i = 0 ; i < 5; i++) { // violation
             //        ^ whitespace
         }
     }
 
 
     /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
-    private int i ;
+    private int i ; // violation
     //           ^ whitespace
-    private int i1, i2, i3 ;
+    private int i1, i2, i3 ; // violation
     //                    ^ whitespace
     private int i4, i5, i6;
 
@@ -196,7 +196,7 @@ class InputNoWhitespaceBeforeDefault
     void bug806243()
     {
         Object o = new InputNoWhitespaceBeforeDefault() {
-            private int j ;
+            private int j ; // violation
             //           ^ whitespace
         };
     }
@@ -212,7 +212,7 @@ class InputNoWhitespaceBeforeDefault
  */
 interface IFoo_NoWhitespaceBeforeDefault
 {
-    void foo() ;
+    void foo() ; // violation
     //        ^ whitespace
 }
 
@@ -267,11 +267,11 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         runs[0]
 .
  run()
-;
+; // violation
     }
 
     public void testNullSemi() {
-        return ;
+        return ; // violation
     }
 
     public void register(Object obj) { }
@@ -285,10 +285,10 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
         testNullSemi
 (
 )
-;
+; // violation
     }
 
-    public static void testNoWhitespaceBeforeEllipses(String ... args) {
+    public static void testNoWhitespaceBeforeEllipses(String ... args) { // violation
     }
 
     {

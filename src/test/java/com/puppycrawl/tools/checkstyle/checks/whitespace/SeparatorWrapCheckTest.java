@@ -50,7 +50,8 @@ public class SeparatorWrapCheckTest
         final String[] expected = {
             "39:10: " + getCheckMessage(MSG_LINE_NEW, "."),
         };
-        verify(checkConfig, getPath("InputSeparatorWrapForTestDot.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputSeparatorWrapForTestDot.java"), expected);
     }
 
     @Test
@@ -61,7 +62,8 @@ public class SeparatorWrapCheckTest
         final String[] expected = {
             "47:17: " + getCheckMessage(MSG_LINE_PREVIOUS, ","),
         };
-        verify(checkConfig, getPath("InputSeparatorWrapForTestComma.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputSeparatorWrapForTestComma.java"), expected);
     }
 
     @Test
@@ -72,7 +74,8 @@ public class SeparatorWrapCheckTest
         final String[] expected = {
             "25:56: " + getCheckMessage(MSG_LINE_NEW, "::"),
         };
-        verify(checkConfig, getPath("InputSeparatorWrapForTestMethodRef.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputSeparatorWrapForTestMethodRef.java"), expected);
     }
 
     @Test
@@ -94,7 +97,8 @@ public class SeparatorWrapCheckTest
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputSeparatorWrapForInvalidOption.java"), expected);
+            verifyWithInlineConfigParser(checkConfig,
+                getPath("InputSeparatorWrapForInvalidOption.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
@@ -114,7 +118,8 @@ public class SeparatorWrapCheckTest
         final String[] expected = {
             "19:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "..."),
         };
-        verify(checkConfig, getPath("InputSeparatorWrapForEllipsis.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputSeparatorWrapForEllipsis.java"), expected);
     }
 
     @Test
@@ -125,7 +130,8 @@ public class SeparatorWrapCheckTest
         final String[] expected = {
             "17:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "["),
         };
-        verify(checkConfig, getPath("InputSeparatorWrapForArrayDeclarator.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputSeparatorWrapForArrayDeclarator.java"), expected);
     }
 
 }

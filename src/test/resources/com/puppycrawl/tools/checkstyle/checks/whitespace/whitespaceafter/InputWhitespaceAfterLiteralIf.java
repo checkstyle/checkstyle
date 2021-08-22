@@ -31,7 +31,7 @@ public class InputWhitespaceAfterLiteralIf {
         //Invalid
         if (condition()) {
             testIfElse();
-        } else{                            // violation
+        } else{
             testIfElse();
         }
     }
@@ -43,7 +43,7 @@ public class InputWhitespaceAfterLiteralIf {
         }
 
         //Invalid
-        while(condition()) {               //violation
+        while(condition()) {
             testWhile();
         }
     }
@@ -55,7 +55,7 @@ public class InputWhitespaceAfterLiteralIf {
         }
 
         //Invalid
-        for(int i = 0; i < 5; i++) {      //violation
+        for(int i = 0; i < 5; i++) {
             testFor();
         }
     }
@@ -67,7 +67,7 @@ public class InputWhitespaceAfterLiteralIf {
         } while (condition());
 
         //Invalid
-        do{                             //violation
+        do{
             testDo();
         } while (condition());
     }

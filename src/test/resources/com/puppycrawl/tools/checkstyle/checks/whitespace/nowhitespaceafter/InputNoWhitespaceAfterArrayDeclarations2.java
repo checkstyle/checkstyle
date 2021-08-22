@@ -1,7 +1,7 @@
 /*
 NoWhitespaceAfter
 allowLineBreaks = (default)true
-tokens = ARRAY_DECLARATOR, INDEX_OP
+tokens = ARRAY_DECLARATOR,INDEX_OP
 
 
 */
@@ -35,14 +35,14 @@ public class InputNoWhitespaceAfterArrayDeclarations2
 
     public class D {
         public int[][]   [] create(int i, int j) { // violation
-            return new int  [ i + j ]    [ i + j ]               [ 0 ]     ;//violation 30:29,42,66
+            return new int  [ i + j ]    [ i + j ]               [ 0 ]     ; // 3 violations
         }
     }
 
     public class E {
-        public int create(int i, int j, int   [][] k)[] [][] { // violation, 35:47,57
-            int e [][] [] = new int[i + j] [2][i + j]; // violation, 36:19,24,44
-            e [0] [1][2] = 0; e[1][1][1] = 0; // violation, 37:15,19
+        public int create(int i, int j, int   [][] k)[] [][] { // 2 violations
+            int e [][] [] = new int[i + j] [2][i + j]; // 3 violations
+            e [0] [1][2] = 0; e[1][1][1] = 0; // 2 violations
             return e;
         }
     }
@@ -53,7 +53,7 @@ public class InputNoWhitespaceAfterArrayDeclarations2
         }
     }
     public class G {
-        public List<String> [] [] [] create(int i, int j) { // violation, 48:29,32,35
+        public List<String> [] [] [] create(int i, int j) { // 3 violations
             //cannot build with check - generic array creation error, but whitespaces still caught
             //List<String> g[][] [] = new List<String> [0][1][2];//incorrect 49:33,55
             //return new List<String>[i + j][i + j][0];//correct
@@ -61,20 +61,20 @@ public class InputNoWhitespaceAfterArrayDeclarations2
             g[  0][0   ][   0   ]=0;
             g [0][0][0]=0; // violation
             g[0] [0][0]=0; // violation
-            g [0] [0] [0]        =0; // violation 56:15,19,23
+            g [0] [0] [0]        =0; // 3 violations
             return null;
         }
 
     }
     public class H {
-        public List<Integer> create(int i, int j)     []      [][] { // violation, 62:55,63
+        public List<Integer> create(int i, int j)     []      [][] { // 2 violations
             return null;
         }
     }
 
     Object someStuff4 = boolean [].class; // violation
     String[][] someStuff5 = new String[4][9];
-    String[][] someStuff6 = (java.lang.String  []  []) someStuff5; // violation, 69:48,52
+    String[][] someStuff6 = (java.lang.String  []  []) someStuff5; // 2 violations
     String[][] someStuff7 = (String [][]) someStuff5; // violation
 
     //this is legal until allowLineBreaks is set to false
@@ -95,7 +95,7 @@ public class InputNoWhitespaceAfterArrayDeclarations2
     void foo(List<? extends String[]> bar, Comparable<? super Object []> baz) { } // violation
 
     Integer someStuff13 = F.create(1,1)[0][0][0];
-    Integer someStuff131 = F.create(1,1)  [0][0]   [0]; // violation 90:43,52
+    Integer someStuff131 = F.create(1,1)  [0][0]   [0]; // 2 violations
     Object[] someStuff14 = (Object[]) null;
     Object[] someStuff15 = (Object  []  ) null; // violation
 

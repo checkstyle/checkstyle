@@ -53,7 +53,8 @@ public class NoWhitespaceBeforeCheckTest
             "291:62: " + getCheckMessage(MSG_KEY, "..."),
             "295:16: " + getCheckMessage(MSG_KEY, ":"),
         };
-        verify(checkConfig, getPath("InputNoWhitespaceBeforeDefault.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNoWhitespaceBeforeDefault.java"), expected);
     }
 
     @Test
@@ -68,7 +69,8 @@ public class NoWhitespaceBeforeCheckTest
             "140:11: " + getCheckMessage(MSG_KEY, "."),
             "268:1: " + getCheckMessage(MSG_KEY, "."),
         };
-        verify(checkConfig, getPath("InputNoWhitespaceBeforeDot.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNoWhitespaceBeforeDot.java"), expected);
     }
 
     @Test
@@ -81,7 +83,8 @@ public class NoWhitespaceBeforeCheckTest
             "133:18: " + getCheckMessage(MSG_KEY, "."),
             "140:11: " + getCheckMessage(MSG_KEY, "."),
         };
-        verify(checkConfig, getPath("InputNoWhitespaceBeforeDotAllowLineBreaks.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNoWhitespaceBeforeDotAllowLineBreaks.java"), expected);
     }
 
     @Test
@@ -92,7 +95,8 @@ public class NoWhitespaceBeforeCheckTest
             "25:32: " + getCheckMessage(MSG_KEY, "::"),
             "26:61: " + getCheckMessage(MSG_KEY, "::"),
         };
-        verify(checkConfig, getPath("InputNoWhitespaceBeforeMethodRef.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNoWhitespaceBeforeMethodRef.java"), expected);
     }
 
     @Test
@@ -102,7 +106,8 @@ public class NoWhitespaceBeforeCheckTest
         final String[] expected = {
             "10:1: " + getCheckMessage(MSG_KEY, "."),
         };
-        verify(checkConfig, getPath("InputNoWhitespaceBeforeAtStartOfTheLine.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNoWhitespaceBeforeAtStartOfTheLine.java"), expected);
     }
 
     @Test
@@ -113,7 +118,8 @@ public class NoWhitespaceBeforeCheckTest
         final String[] expected = {
             "22:3: " + getCheckMessage(MSG_KEY, "::"),
         };
-        verify(checkConfig, getPath("InputNoWhitespaceBeforeAtStartOfTheLine2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNoWhitespaceBeforeAtStartOfTheLine2.java"), expected);
     }
 
     @Test
@@ -125,7 +131,8 @@ public class NoWhitespaceBeforeCheckTest
             "20:24: " + getCheckMessage(MSG_KEY, ";"),
             "26:32: " + getCheckMessage(MSG_KEY, ";"),
         };
-        verify(checkConfig, getPath("InputNoWhitespaceBeforeEmptyForLoop.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNoWhitespaceBeforeEmptyForLoop.java"), expected);
     }
 
     @Test
@@ -134,7 +141,7 @@ public class NoWhitespaceBeforeCheckTest
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputNoWhitespaceBeforeTextBlocksTabIndent.java"), expected);
     }
 

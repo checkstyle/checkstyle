@@ -83,7 +83,7 @@ class InputTypecastParenPadWhitespace
     {
         Object o = (Object) new Object(); // ok
         o = (Object)o; // ok
-        o = ( Object ) o; // violation
+        o = ( Object ) o; // 2 violations
         o = (Object)
             o; // ok
     }

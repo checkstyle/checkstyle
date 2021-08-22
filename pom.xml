@@ -1529,7 +1529,6 @@
                 <exclude>**/DefaultConfigurationTest.class</exclude>
                 <!-- untill https://github.com/checkstyle/checkstyle/issues/10394 -->
 
-                <exclude>**/GenericWhitespaceCheckTest.class</exclude>
 
 
                 <exclude>**/UniquePropertiesCheckTest.class</exclude>
@@ -1551,7 +1550,6 @@
 
 
 
-                <exclude>**/NoWhitespaceBeforeCaseDefaultColonCheckTest.class</exclude>
 
 
 
@@ -1578,7 +1576,6 @@
 
 
 
-                <exclude>**/SingleSpaceSeparatorCheckTest.class</exclude>
 
 
 
@@ -1591,10 +1588,8 @@
 
 
 
-                <exclude>**/NoLineWrapCheckTest.class</exclude>
 
 
-                <exclude>**/OperatorWrapCheckTest.class</exclude>
 
 
                 <exclude>**/TodoCommentCheckTest.class</exclude>
@@ -1602,11 +1597,9 @@
 
                 <exclude>**/AbstractFileSetCheckTest.class</exclude>
 
-                <exclude>**/NoWhitespaceAfterCheckTest.class</exclude>
 
 
 
-                <exclude>**/SeparatorWrapCheckTest.class</exclude>
 
                 <exclude>**/OrderedPropertiesCheckTest.class</exclude>
 
@@ -1665,16 +1658,12 @@
 
 
 
-                <exclude>**/EmptyForIteratorPadCheckTest.class</exclude>
 
 
-                <exclude>**/NoWhitespaceBeforeCheckTest.class</exclude>
 
                 <exclude>**/UpperEllCheckTest.class</exclude>
 
-                <exclude>**/EmptyForInitializerPadCheckTest.class</exclude>
 
-                <exclude>**/WhitespaceAfterCheckTest.class</exclude>
 
 
 
@@ -1700,7 +1689,6 @@
 
                 <exclude>**/SuppressWarningsFilterTest.class</exclude>
 
-                <exclude>**/MethodParamPadCheckTest.class</exclude>
 
 
                 <exclude>**/VisibilityModifierCheckTest.class</exclude>
@@ -1728,7 +1716,6 @@
 
                 <exclude>**/SuppressWithPlainTextCommentFilterTest.class</exclude>
 
-                <exclude>**/WhitespaceAroundCheckTest.class</exclude>
 
                 <exclude>**/MultipleStringLiteralsCheckTest.class</exclude>
 
@@ -1741,7 +1728,6 @@
 
 
 
-                <exclude>**/ParenPadCheckTest.class</exclude>
 
 
                 <exclude>**/RegexpHeaderCheckTest.class</exclude>
@@ -1761,7 +1747,6 @@
                 <exclude>**/Java14RecordsTest.class</exclude>
 
 
-                <exclude>**/TypecastParenPadCheckTest.class</exclude>
 
                 <exclude>**/PackageDeclarationCheckTest.class</exclude>
 
