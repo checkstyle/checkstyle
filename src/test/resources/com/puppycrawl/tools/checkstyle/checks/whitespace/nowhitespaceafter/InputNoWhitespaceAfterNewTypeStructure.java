@@ -63,7 +63,7 @@ public class InputNoWhitespaceAfterNewTypeStructure {
         int[][
                 ]
                  a
-                  []
+                  [] // violation
                         [] ; // violation
                 int[][
                  ]
@@ -87,7 +87,7 @@ public class InputNoWhitespaceAfterNewTypeStructure {
     void method3(int x) {
         KeyManager[] kmaw = null;
          if (x == 1) {
-             kmaw = (javax.net.ssl.KeyManager[])
+             kmaw = (javax.net.ssl.KeyManager[]) // violation
                        SSLSecurity.truncateArray(kmaw,
                            new javax.net.ssl.KeyManager [3]); // violation
          }
@@ -179,7 +179,7 @@ public class InputNoWhitespaceAfterNewTypeStructure {
         return null;
     }
     String[] c, d[]; // ok
-    String [] e, f []; // violation
+    String [] e, f []; // 2 violations
 
     public enum Stooge {
         MOE, CURLY, LARRY,

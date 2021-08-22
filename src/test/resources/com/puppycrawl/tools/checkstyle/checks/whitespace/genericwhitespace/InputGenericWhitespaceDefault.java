@@ -19,8 +19,8 @@ class InputGenericWhitespaceDefault implements Comparable<Object>, Serializable
     {
         List<Integer> x = new ArrayList<Integer>();
         List<List<Integer>> y = new ArrayList<List<Integer>>();
-        List < Integer > a = new ArrayList < Integer > (); // violation
-        List < List < Integer > > b = new ArrayList < List < Integer > > ();
+        List < Integer > a = new ArrayList < Integer > (); // 6 violations
+        List < List < Integer > > b = new ArrayList < List < Integer > > (); // 14 violations
     }
     //always 0
     public int compareTo(Object aObject)
@@ -33,7 +33,7 @@ class InputGenericWhitespaceDefault implements Comparable<Object>, Serializable
         return null;
     }
 
-    public static<T>Callable<T> callable2(Runnable task, T result)
+    public static<T>Callable<T> callable2(Runnable task, T result) // 2 violations
     {
         Map<Class<?>, Integer> x = new HashMap<Class<?>, Integer>();
         for (final Map.Entry<Class<?>, Integer> entry : x.entrySet()) {
@@ -45,7 +45,7 @@ class InputGenericWhitespaceDefault implements Comparable<Object>, Serializable
     public int getConstructor(Class<?>... parameterTypes)
     {
         Collections.<Object>emptySet();
-        Collections. <Object> emptySet();
+        Collections. <Object> emptySet(); // 2 violations
         return 666;
     }
 
@@ -63,10 +63,10 @@ class InputGenericWhitespaceDefault implements Comparable<Object>, Serializable
     public static class IntEnumValueType<E extends Enum<E> & IntEnum> {
     }
 
-    public static class IntEnumValueType2<E extends Enum<E>& IntEnum> {
+    public static class IntEnumValueType2<E extends Enum<E>& IntEnum> { // violation
     }
 
-    public static class IntEnumValueType3<E extends Enum<E>  & IntEnum> {
+    public static class IntEnumValueType3<E extends Enum<E>  & IntEnum> { // violation
     }
 
     public static class IntEnumValueType4<T extends Comparable<List<T>> & IntEnum> {
@@ -86,12 +86,12 @@ Integer> x = new ArrayList<Integer
     Object ok = new <String>Object();
     Object notOkStart = new<String>Object(); // violation
     Object notOkEnd = new <String> Object(); // violation
-    Object notOkStartAndEnd = new<String> Object(); // violation
+    Object notOkStartAndEnd = new<String> Object(); // 2 violations
     Object okWithPackage = new <String>java.lang.Object();
     Object ok2 = new <String>Outer.Inner();
     Object notOkStart2 = new<String>Outer.Inner(); // violation
     Object notOkEnd2 = new <String> Outer.Inner(); // violation
-    Object notOkStartAndEnd2 = new<String> Outer.Inner(); // violation
+    Object notOkStartAndEnd2 = new<String> Outer.Inner(); // 2 violations
 }
 interface SupplierFunction<T> extends Map<List<T>, T> {}
 

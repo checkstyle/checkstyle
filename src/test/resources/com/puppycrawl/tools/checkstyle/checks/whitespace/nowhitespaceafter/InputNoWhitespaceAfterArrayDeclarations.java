@@ -1,7 +1,7 @@
 /*
 NoWhitespaceAfter
 allowLineBreaks = (default)true
-tokens = ARRAY_DECLARATOR, INDEX_OP
+tokens = ARRAY_DECLARATOR,INDEX_OP
 
 
 */
@@ -52,12 +52,12 @@ public class InputNoWhitespaceAfterArrayDeclarations
         return null;
     }
     int aa = new int[]{1}[0];//Correct
-    int bb = new int[]{1} [0];// violation
+    int bb = new int[]{1} [0]; // violation
     int aaa = new int[][]{{1},{2}}[0][0];//Correct
-    int bbb = new int [][]{{1},{2}}[0][0];// violation
-    int ccc = new int[] []{{1},{2}}[0][0];// violation
-    int ddd = new int[][]{{1},{2}} [0][0];// violation
-    int eee = new int[][]{{1},{2}}[0] [0];// violation
+    int bbb = new int [][]{{1},{2}}[0][0]; // violation
+    int ccc = new int[] []{{1},{2}}[0][0]; // violation
+    int ddd = new int[][]{{1},{2}} [0][0]; // violation
+    int eee = new int[][]{{1},{2}}[0] [0]; // violation
     int in1 = new int[][]{{1},{2}}[ 0][0];//Correct
     int in2 = new int[][]{{1},{2}}[0 ][0];//Correct
     int in3 = new int[][]{{1},{2}}[0][ 0];//Correct

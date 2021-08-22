@@ -7,8 +7,8 @@ tokens = ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT, DOT, \
 
 */
 
-package com . puppycrawl
-    .tools.
+package com . puppycrawl // violation
+    .tools. // violation
     checkstyle.checks.whitespace.nowhitespaceafter; // ^ 2 violations above
 
 class InputNoWhitespaceAfterTestAllTokens
@@ -27,9 +27,9 @@ class InputNoWhitespaceAfterTestAllTokens
         int b= 1; // Ignore 1
         b=1; // Ignore 1
         b+=1; // Ignore 1
-        b -=- 1 + (+ b); // violation
+        b -=- 1 + (+ b); // 2 violations
         b = b ++ + b --; // Ignore 1
-        b = ++ b - -- b; // violation
+        b = ++ b - -- b; // 2 violations
     }
 
     /** method **/
@@ -298,7 +298,7 @@ class SpecialCasesInForLoopTestAllTokens
     }
 
     Object foo() {
-        return ( (Object
+        return ( (Object // violation
                 ) ""); // ^ violation
     }
 

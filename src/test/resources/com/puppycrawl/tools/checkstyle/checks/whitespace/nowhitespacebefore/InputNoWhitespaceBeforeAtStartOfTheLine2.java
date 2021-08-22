@@ -1,7 +1,7 @@
 /*
 NoWhitespaceBefore
-allowLineBreaks = (default)false
-tokens = (default)COMMA, SEMI, POST_INC, POST_DEC, ELLIPSIS, LABELED_STAT
+allowLineBreaks = yes
+tokens = METHOD_REF
 
 
 */

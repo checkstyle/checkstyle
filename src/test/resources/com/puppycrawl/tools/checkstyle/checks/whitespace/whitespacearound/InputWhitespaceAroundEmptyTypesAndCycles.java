@@ -42,9 +42,9 @@ class InputWhitespaceAroundEmptyTypesAndCycles
 		String[][] x = { {"foo"} };
 		int len = 0;
 		String sequence = null;
-		for (int first = 0; first < len && matches(sequence.charAt(first)); first++) {} // violation
-		while (i == 1) {}
-		do {} while (i == 1);
+		for (int first = 0; first < len && matches(sequence.charAt(first)); first++) {} // 2 violations
+		while (i == 1) {} // 2 violations
+		do {} while (i == 1); // 2 violations
 	}
 
 	private boolean matches(char charAt)

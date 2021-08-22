@@ -1,9 +1,12 @@
+/*
+NoWhitespaceBeforeCaseDefaultColon
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebeforecasedefaultcolon;
 
-/*
- * Config: default
- */
 class InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings {
 
     enum Day {
@@ -36,7 +39,7 @@ class InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings {
                     : numLetters = 8; // violation
                          break;
             case WED,
-                    SUN : numLetters = 9; // volation
+                    SUN : numLetters = 9; // violation
                           break;
         };
         return numLetters;
@@ -65,7 +68,7 @@ class InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings {
     int numberOfDays(String month) {
         int days = -1;
         switch (month) {
-            case "FEB": days = 28; // ok
+            case "FEB": days = 28;
                         break;
             case "JAN", "MAR"
                        , "MAY" : days = 31; break; // violation

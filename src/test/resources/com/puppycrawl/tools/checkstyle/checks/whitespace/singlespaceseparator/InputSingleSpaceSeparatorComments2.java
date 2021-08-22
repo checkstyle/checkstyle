@@ -17,6 +17,6 @@ public class InputSingleSpaceSeparatorComments2 {
      */
     void foo() {
         /* Always correct */
-        int  a = 0;	// <- a tab // violation
+        int  a = 0; // violation
     }  // Wrong if X is enabled
 }
