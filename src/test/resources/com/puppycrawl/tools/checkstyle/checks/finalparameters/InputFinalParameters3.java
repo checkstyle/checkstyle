@@ -71,13 +71,13 @@ class InputFinalParameters3
     }
 
     /** non-final param method with annotation **/
-    void method(@MyAnnotation33 Class<Object> s)
+    void method(@MyAnnotation33 Class<Object> s) // violation
     {
 
     }
 
     /** mixed */
-    void method(String s, final Integer i)
+    void method(String s, final Integer i) // violation
     {
     }
 
@@ -92,10 +92,10 @@ class InputFinalParameters3
     {
         Action a = new AbstractAction()
             {
-                public void actionPerformed(ActionEvent e)
+                public void actionPerformed(ActionEvent e) // violation
                 {
                 }
-                void somethingElse(@MyAnnotation33 ActionEvent e)
+                void somethingElse(@MyAnnotation33 ActionEvent e) // violation
                 {
                 }
             };
@@ -112,13 +112,13 @@ class InputFinalParameters3
     }
 
     /** methods with complicated types of the parameters. */
-    void methodA(String aParam) {
+    void methodA(String aParam) { // violation
     }
 
-    void methodB(String[] args) {
+    void methodB(String[] args) { // violation
     }
 
-    void methodC(String[] args) {
+    void methodC(String[] args) { // violation
     }
 
     /** some catch blocks */

@@ -1,6 +1,6 @@
 /*
 DescendantToken
-limitedTokens = (EMPTY_STAT
+limitedTokens = EMPTY_STAT
 minimumDepth = (default)0
 maximumDepth = 0
 minimumNumber = (default)0
@@ -24,23 +24,23 @@ public class InputDescendantTokenEmptyStatement
 
    public void EmptyMethod()
    {
-      ;
+      ; // violation
    }
 
    public void EmptyStatements(boolean cond)
    {
-      for (;cond;);
+      for (;cond;); // violation
 
       for (;cond;)
       {
-         ;
+         ; // violation
       }
 
-      if (true);
+      if (true); // violation
 
       if (true)
       {
-         ;
+         ; // violation
       }
 
       if (cond)
@@ -50,44 +50,44 @@ public class InputDescendantTokenEmptyStatement
 
       else
       {
-         ;
+         ; // violation
       }
 
       switch (1)
       {
          case 1 :
-            ;
+            ; // violation
          default :
-            ;
+            ; // violation
       }
 
-      while (cond);
+      while (cond); // violation
 
       while (cond)
       {
-         ;
+         ; // violation
       }
 
-      do;
+      do; // violation
       while (cond);
 
       do
       {
-         ;
+         ; // violation
       }
       while (cond);
 
       try
       {
-         ;
+         ; // violation
       }
       catch (Exception ex)
       {
-         ;
+         ; // violation
       }
       finally
       {
-         ;
+         ; // violation
       }
    }
 }
