@@ -53,17 +53,17 @@ class InputWhitespaceAroundEmptyTypesAndCycles2
     }
 }
 
-interface SupplierFunction2<T> extends Function<Supplier<T>, T> {} // violation
+interface SupplierFunction2<T> extends Function<Supplier<T>, T> {} // 2 violations
 
-class EmptyFoo2 {}
+class EmptyFoo2 {} // 2 violations
 
-enum EmptyFooEnum2 {}
+enum EmptyFooEnum2 {} // 2 violations
 
 class WithEmptyAnonymous2
 {
     private void foo()
     {
-        MyClass c = new MyClass() {};
+        MyClass c = new MyClass() {}; // 2 violations
     }
 }
 
@@ -73,7 +73,7 @@ class WithEmptyAnonymous2
     ElementType.ANNOTATION_TYPE)
 @Documented
 @Deprecated
-@interface Beta2 {}
+@interface Beta2 {} // 2 violations
 @interface MapFeature2 {
     @interface Require {
 

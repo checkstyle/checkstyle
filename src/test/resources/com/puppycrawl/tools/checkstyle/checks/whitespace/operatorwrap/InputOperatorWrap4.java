@@ -1,6 +1,6 @@
 /*
 OperatorWrap
-option = eol
+option = EOL
 tokens = METHOD_REF
 
 
@@ -37,7 +37,7 @@ class InputOperatorWrap4
         Arrays.sort(null, String::
                     compareToIgnoreCase);
         Arrays.sort(null, String
-                    ::compareToIgnoreCase);
+                    ::compareToIgnoreCase); // violation
     }
 
     void testAssignment()

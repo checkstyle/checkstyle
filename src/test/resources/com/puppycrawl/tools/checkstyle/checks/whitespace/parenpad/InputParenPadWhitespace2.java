@@ -1,6 +1,6 @@
 /*
 ParenPad
-option = space
+option = SPACE
 tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
          ENUM_CONSTANT_DEF, EXPR, LITERAL_CATCH, LITERAL_DO, LITERAL_FOR, LITERAL_IF, \
          LITERAL_NEW, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_WHILE, METHOD_CALL, \
@@ -33,7 +33,7 @@ class InputParenPadWhitespace2
         int b= 1; // Ignore 1
         b=1; // Ignore 1
         b+=1; // Ignore 1
-        b -=- 1 + (+ b); // violation
+        b -=- 1 + (+ b); // 2 violations
         b = b ++ + b --; // Ignore 1
         b = ++ b - -- b; // Ignore 1
     }
@@ -41,11 +41,11 @@ class InputParenPadWhitespace2
     /** method **/
     void method2()
     {
-        synchronized(this) {
+        synchronized(this) { // 2 violations
         }
         try{
         }
-        catch(RuntimeException e){
+        catch(RuntimeException e){ // 2 violations
         }
     }
 
@@ -80,7 +80,7 @@ class InputParenPadWhitespace2
     {
         if ( true )
         {
-            return(2); // should complain about missing WS after return
+            return(2); // 2 violations
         }
         else
         {
@@ -92,7 +92,7 @@ class InputParenPadWhitespace2
     private void testCasts()
     {
         Object o = (Object) new Object(); // ok
-        o = (Object)o; // violation
+        o = (Object)o;
         o = ( Object ) o; // ok
         o = (Object)
             o; // ok
@@ -101,8 +101,8 @@ class InputParenPadWhitespace2
     /** test questions **/
     private void testQuestions()
     {
-        boolean b = (1 == 2)?true:false;
-        b = (1==2) ? false : true;
+        boolean b = (1 == 2)?true:false; // 2 violations
+        b = (1==2) ? false : true; // 2 violations
     }
 
     /** star test **/
@@ -154,22 +154,22 @@ class InputParenPadWhitespace2
         assert true : "Whups";
 
         // evil colons, should be OK
-        assert "OK".equals(null) ? false : true : "Whups";
+        assert "OK".equals(null) ? false : true : "Whups"; // 2 violations
 
         // missing WS around assert
-        assert(true);
+        assert(true); // 2 violations
 
         // missing WS around colon
         assert true:"Whups";
     }
 
     /** another check */
-    void donBradman(Runnable aRun)
+    void donBradman(Runnable aRun) // 2 violations
     {
-        donBradman(new Runnable() {
+        donBradman(new Runnable() { // violation
             public void run() {
             }
-        });
+        }); // violation
 
         final Runnable r = new Runnable() {
             public void run() {
@@ -182,7 +182,7 @@ class InputParenPadWhitespace2
     {
         doStuff() ;
         //       ^ whitespace
-        for (int i = 0 ; i < 5; i++) {
+        for (int i = 0 ; i < 5; i++) { // 2 violations
             //        ^ whitespace
         }
     }
@@ -229,7 +229,7 @@ class SpecialCasesInForLoop2
     void forIterator()
     {
         // avoid conflict between WhiteSpaceAfter ';' and ParenPad(nospace)
-        for (int i = 0; i++ < 5;) {
+        for (int i = 0; i++ < 5;) { // violation
         //                  ^ no whitespace
     }
 
@@ -239,7 +239,7 @@ class SpecialCasesInForLoop2
     for ( ; i < 5; i++ ) {
     //   ^ whitespace
     }
-        for (int anInt : getSomeInts()) {
+        for (int anInt : getSomeInts()) { // 2 violations
             //Should be ignored
         }
     }
@@ -255,7 +255,7 @@ class SpecialCasesInForLoop2
             }
         }.start();
     }
-
+    // 2 violations below
     public void foo(java.util.List<? extends String[]> bar, Comparable<? super Object[]> baz) { }
 
     public void mySuperMethod() {
@@ -277,10 +277,10 @@ class SpecialCasesInForLoop2
         return ;
     }
 
-    public void register(Object obj) { }
+    public void register(Object obj) { } // 2 violations
 
-    public void doSomething(String args[]) {
-        register(boolean[].class);
+    public void doSomething(String args[]) { // 2 violations
+        register(boolean[].class); // 2 violations
         register( args );
     }
 
@@ -291,6 +291,6 @@ class SpecialCasesInForLoop2
 ;
     }
 
-    public static void testNoWhitespaceBeforeEllipses(String ... args) {
+    public static void testNoWhitespaceBeforeEllipses(String ... args) { // 2 violations
     }
 }

@@ -6,9 +6,9 @@ tokens = DOT
 
 */
 
-package com . puppycrawl
+package com . puppycrawl // violation
     .tools.
-    checkstyle.checks.whitespace.nowhitespaceafter; // violation on line 1
+    checkstyle.checks.whitespace.nowhitespaceafter;
 
 class InputNoWhitespaceAfterTestAllowLineBreaks
 {
@@ -85,7 +85,7 @@ class InputNoWhitespaceAfterTestAllowLineBreaks
     private void testCasts()
     {
         Object o = (Object) new Object(); // ok
-        o = (Object)o; // violation
+        o = (Object)o;
         o = ( Object ) o; // ok
         o = (Object) // ok
             o; // ok

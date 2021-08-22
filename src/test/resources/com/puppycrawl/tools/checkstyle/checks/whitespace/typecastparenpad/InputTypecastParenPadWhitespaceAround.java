@@ -1,6 +1,6 @@
 /*
 TypecastParenPad
-option = space
+option = SPACE
 
 
 */
@@ -11,7 +11,7 @@ class InputTypecastParenPadWhitespaceAround // ok
 {
     protected InputTypecastParenPadWhitespaceAround ( int i )
     {
-        this (); // violation
+        this ();
         toString ();
     }
     protected InputTypecastParenPadWhitespaceAround ()

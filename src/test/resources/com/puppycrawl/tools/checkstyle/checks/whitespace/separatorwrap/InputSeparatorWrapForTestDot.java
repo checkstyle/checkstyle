@@ -1,6 +1,6 @@
 /*
 SeparatorWrap
-option = nl
+option = NL
 tokens = DOT
 
 
@@ -35,7 +35,7 @@ class badCaseForTestDot<T extends FooForTestDot &  BarForTestDot> {
 
     public void goodCaseForTestDot(int... aFoo)throws FooExceptionForTestDot, BarExceptionForTestDot
     {
-        String s = "ffffooooString"; // violation
+        String s = "ffffooooString"; // violation below
         s.
                 isEmpty(); //bad wrapping
         try {

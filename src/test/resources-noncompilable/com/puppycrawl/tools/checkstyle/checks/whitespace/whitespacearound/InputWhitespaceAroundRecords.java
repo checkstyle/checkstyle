@@ -23,7 +23,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 public class InputWhitespaceAroundRecords {
     // simple record def
-    record MyRecord() {} // violation x2
+    record MyRecord() {} // 2 violations
 
     // simple record def
     record MyRecord1() {
@@ -31,9 +31,9 @@ public class InputWhitespaceAroundRecords {
 
     // nested constructs
     record MyRecord2() {
-        class MyClass {} // violation 2x
-        interface Foo {} // violation 2x
-        record MyRecord () {} // violation x2
+        class MyClass {} // 2 violations
+        interface Foo {} // 2 violations
+        record MyRecord () {} // 2 violations
     }
 
     // method
@@ -41,7 +41,7 @@ public class InputWhitespaceAroundRecords {
         void method (){ // violation
             final int a = 1;
             int b= 1; // violation
-            b=1; // violation x2
+            b=1; // 2 violations
         }
 
     }
@@ -51,7 +51,7 @@ public class InputWhitespaceAroundRecords {
         public MyRecord4() {
             final int a = 1;
             int b= 1; // violation
-            b=1; // violation x2
+            b=1; // 2 violations
         }
     }
 
@@ -60,7 +60,7 @@ public class InputWhitespaceAroundRecords {
         public MyRecord5 {
             final int a = 1;
             int b= 1; // violation
-            b=1; // violation x2
+            b=1; // 2 violations
         }
     }
 
@@ -71,7 +71,7 @@ public class InputWhitespaceAroundRecords {
     }
 
     record TestRecord7() {
-        public TestRecord7 {} // violation
+        public TestRecord7 {} // 2 violations
     }
 
     record TestRecord8() {

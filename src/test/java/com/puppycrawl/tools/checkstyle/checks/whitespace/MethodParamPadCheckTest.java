@@ -72,7 +72,8 @@ public class MethodParamPadCheckTest
             "84:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "89:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
         };
-        verify(checkConfig, getPath("InputMethodParamPad.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMethodParamPad.java"), expected);
     }
 
     @Test
@@ -90,7 +91,8 @@ public class MethodParamPadCheckTest
             "71:36: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "84:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
         };
-        verify(checkConfig, getPath("InputMethodParamPad2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMethodParamPad2.java"), expected);
     }
 
     @Test
@@ -121,7 +123,8 @@ public class MethodParamPadCheckTest
             "80:57: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
             "89:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
         };
-        verify(checkConfig, getPath("InputMethodParamPad3.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMethodParamPad3.java"), expected);
     }
 
     @Test
@@ -140,7 +143,7 @@ public class MethodParamPadCheckTest
             "51:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "57:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath("InputMethodParamPadRecords.java"), expected);
     }
 
@@ -149,7 +152,8 @@ public class MethodParamPadCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
         checkConfig.addProperty("option", PadOption.SPACE.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputMethodParamPadWhitespaceAround.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMethodParamPadWhitespaceAround.java"),
                expected);
     }
 

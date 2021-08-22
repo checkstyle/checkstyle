@@ -39,7 +39,8 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     public void testNoSpaceErrors() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(SingleSpaceSeparatorCheck.class);
-        verify(checkConfig, getPath("InputSingleSpaceSeparatorNoErrors.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputSingleSpaceSeparatorNoErrors.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 
@@ -47,7 +48,8 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     public void testNoStackoverflowError() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(SingleSpaceSeparatorCheck.class);
-        verify(checkConfig, getPath("InputSingleSpaceSeparatorNoStackoverflowError.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputSingleSpaceSeparatorNoStackoverflowError.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 
@@ -99,7 +101,8 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
             "38:8: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, getPath("InputSingleSpaceSeparatorErrors.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputSingleSpaceSeparatorErrors.java"), expected);
     }
 
     @Test
@@ -116,7 +119,8 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
             "21:8: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, getPath("InputSingleSpaceSeparatorComments.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputSingleSpaceSeparatorComments.java"), expected);
     }
 
     @Test
@@ -127,7 +131,8 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
             "12:16: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, getPath("InputSingleSpaceSeparatorChildNodes.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputSingleSpaceSeparatorChildNodes.java"), expected);
     }
 
     @Test
@@ -139,7 +144,8 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
             "12:4: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, getPath("InputSingleSpaceSeparatorMinColumnNo.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputSingleSpaceSeparatorMinColumnNo.java"), expected);
     }
 
     @Test
@@ -150,7 +156,8 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
             "12:7: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, getPath("InputSingleSpaceSeparatorStartOfTheLine.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputSingleSpaceSeparatorStartOfTheLine.java"), expected);
     }
 
     @Test
@@ -161,7 +168,8 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
             "20:14: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, getPath("InputSingleSpaceSeparatorComments2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputSingleSpaceSeparatorComments2.java"), expected);
     }
 
     @Test
@@ -170,6 +178,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(SingleSpaceSeparatorCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputSingleSpaceSeparatorEmpty.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputSingleSpaceSeparatorEmpty.java"), expected);
     }
 }
