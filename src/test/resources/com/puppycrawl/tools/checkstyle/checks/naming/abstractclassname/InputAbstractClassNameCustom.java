@@ -23,11 +23,11 @@ abstract class AbstractClassOtherCustom { // violation
 class NonAbstractClassCustom { // ok
 }
 
-class AbstractClassCustom { // violation
+class AbstractClassCustom {
 }
 
 
 abstract class AbstractClassName2Custom { // violation
-    class AbstractInnerClass { // violation
+    class AbstractInnerClass {
     }
 }

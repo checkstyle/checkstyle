@@ -2,9 +2,9 @@
 MemberName
 format = ^_[a-z]*$
 applyToPublic = (default)true
-applyToProtected = (default)true
-applyToPackage = (default)true
-applyToPrivate = (default)true
+applyToProtected = false
+applyToPackage = false
+applyToPrivate = false
 
 
 */

@@ -1,6 +1,6 @@
 /*
 RecordComponentName
-format = ^[a-z\\d]+$
+format = ^[a-z0-9]+$
 
 
 */

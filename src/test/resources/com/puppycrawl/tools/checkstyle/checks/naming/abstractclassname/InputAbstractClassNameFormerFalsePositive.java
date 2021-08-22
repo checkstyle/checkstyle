@@ -1,7 +1,7 @@
 /*
 AbstractClassName
 format = (default)^Abstract.+$
-ignoreModifier = true
+ignoreModifier = (default)false
 ignoreName = (default)false
 
 
@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.abstractclassname;
 abstract public class InputAbstractClassNameFormerFalsePositive { // violation
 }
 
-abstract class AbstractClassFP { // violation
+abstract class AbstractClassFP {
 }
 
 abstract class AbstractClassOtherFP { // ok
@@ -20,7 +20,7 @@ abstract class AbstractClassOtherFP { // ok
     }
 }
 
-class NonAbstractClassFP { // violation
+class NonAbstractClassFP {
 }
 
 

@@ -18,8 +18,8 @@ public class InputIllegalIdentifierNameOpenTransitive {
         return Record[].class;
     }
 
-    private static void record(LogRecord... logArray) { // violation, method def
-        for (LogRecord record : logArray) { // violation, foreach variable
+    private static void record(LogRecord... logArray) { // violation
+        for (LogRecord record : logArray) { // violation
             record.getLevel();
         }
     }
@@ -42,7 +42,7 @@ public class InputIllegalIdentifierNameOpenTransitive {
         SUN,
     }
 
-    int yield(Day day) { // violation, method def
+    int yield(Day day) { // violation
         return switch (day) {
             case MON, TUE -> Math.addExact(0, 1);
             case WED -> Math.addExact(1, 1);
@@ -54,14 +54,14 @@ public class InputIllegalIdentifierNameOpenTransitive {
     }
 
     public static void main(String... args) {
-        var var = 4; // violation, "var" should not be used as an identifier.
+        var var = 4; // violation
 
-        int record = 15; // violation, "record" should not be used as an identifier.
+        int record = 15; // violation
 
-        String yield = "yield"; // violation, "yield" should not be used as an identifier.
+        String yield = "yield"; // violation
 
-        record Record // violation, "Record" should not be used as an identifier.
-                (Record transitive) { // violation, "transitive" should not be
+        record Record // violation
+                (Record transitive) { // violation
                                       // used as an identifier.
         }
 
@@ -73,7 +73,7 @@ public class InputIllegalIdentifierNameOpenTransitive {
         String Transitive = "record"; // violation
         Transitive = Transitive.substring(record, 20); // ok
 
-        record MyOtherRecord(String transitive, String yield, String...var) { // violation x3
+        record MyOtherRecord(String transitive, String yield, String...var) { // 3 violations
         }
 
         int requires = 3;
