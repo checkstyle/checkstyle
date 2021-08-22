@@ -1629,6 +1629,7 @@
 
                 <exclude>**/EmptyLineSeparatorCheckTest.class</exclude>
 
+                <!-- permanent suppression -->
                 <exclude>**/AvoidEscapedUnicodeCharactersCheckTest.class</exclude>
 
 
