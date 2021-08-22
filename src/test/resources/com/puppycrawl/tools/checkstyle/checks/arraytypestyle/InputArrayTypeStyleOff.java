@@ -46,13 +46,13 @@ public class InputArrayTypeStyleOff
             return null;
         }
 
-        public Test getOldTests()[][] // violation
+        public Test getOldTests()[][] // 2 violations
         {
             return null;
         }
 
         public Test[]
-            getMoreTests()[][] // violation
+            getMoreTests()[][] // 2 violations
         {
             return null;
         }

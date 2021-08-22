@@ -162,7 +162,7 @@ class Foo5
         {
 
         }
-        for(@MyAnnotation33 String s : someExpression())
+        for(@MyAnnotation33 String s : someExpression()) // violation
         {
 
         }
