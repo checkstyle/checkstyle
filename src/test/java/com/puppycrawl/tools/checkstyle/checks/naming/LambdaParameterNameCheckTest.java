@@ -73,7 +73,8 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
             "22:65: " + getCheckMessage(MSG_INVALID_PATTERN, "s2", pattern),
             "25:21: " + getCheckMessage(MSG_INVALID_PATTERN, "s", pattern),
         };
-        verify(checkConfig, getPath("InputLambdaParameterName.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputLambdaParameterName.java"), expected);
     }
 
     @Test
@@ -91,7 +92,7 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
             "57:35: " + getCheckMessage(MSG_INVALID_PATTERN, "Word", pattern),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputLambdaParameterNameSwitchExpression.java"),
             expected);
     }

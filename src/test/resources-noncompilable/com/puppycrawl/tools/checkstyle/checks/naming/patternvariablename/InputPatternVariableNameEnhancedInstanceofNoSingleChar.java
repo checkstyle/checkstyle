@@ -1,6 +1,6 @@
 /*
 PatternVariableName
-format = (default)^[a-z][a-zA-Z0-9]*$
+format = ^[a-z][a-zA-Z0-9]+$
 
 
 */
@@ -43,7 +43,7 @@ public class InputPatternVariableNameEnhancedInstanceofNoSingleChar {
         if (!(o1 instanceof String S) // violation
                 && (o2 instanceof String STRING)) { // violation
         }
-        if (o1 instanceof String STRING //violation
+        if (o1 instanceof String STRING // violation
                 || !(o2 instanceof String STRING)) { // violation
         }
         b = ((VoidPredicate) () -> o1 instanceof String s).get(); // violation

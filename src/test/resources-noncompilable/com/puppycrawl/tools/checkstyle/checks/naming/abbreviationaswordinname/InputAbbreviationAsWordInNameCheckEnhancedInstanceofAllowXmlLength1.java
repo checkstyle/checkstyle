@@ -23,7 +23,7 @@ public class InputAbbreviationAsWordInNameCheckEnhancedInstanceofAllowXmlLength1
 
     public void t(Object o1, Object o2) {
         if (!(o1 instanceof String STRING) // violation
-                && (o2 instanceof Integer INTEGER)) {} //violation
+                && (o2 instanceof Integer INTEGER)) {} // violation
 
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
         if (arrayList instanceof ArrayList<Integer> aXML) { // ok, allowed XML
