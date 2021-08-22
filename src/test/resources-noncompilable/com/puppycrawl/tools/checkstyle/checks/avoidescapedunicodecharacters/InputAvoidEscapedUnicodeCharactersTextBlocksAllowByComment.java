@@ -12,32 +12,32 @@ allowNonPrintableEscapes = (default)false
 package com.puppycrawl.tools.checkstyle.checks.avoidescapedunicodecharacters;
 
 public class InputAvoidEscapedUnicodeCharactersTextBlocksAllowByComment {
-/** Note that "violation" comments cannot be on the same line for this config */
+/** Note that "violation below" comments cannot be on the same line for this config */
     public void multiplyString1() {
-        // violation
+        // violation below
         String unitAbbrev2 = "asd\u03bcsasd";
-        // violation
+        // violation below
         String unitAbbrev3 = "aBc\u03bcssdf\u03bc";
-        // violation
+        // violation below
         String unitAbbrev4 = "\u03bcaBc\u03bcssdf\u03bc";
         String unitAbbrev5 = "\u03bcs"; // Greek letter mu, "s" ok
-        // violation
+        // violation below
         String allCharactersEscaped = "\u03bc\u03bc";
     }
 
     public void multiplyString2() {
-        // violation
+        // violation below
         String unitAbbrev2 = """
                 asd\u03bcsasd""";
-        // violation
+        // violation below
         String unitAbbrev3 = """
                 aBc\u03bcssdf\u03bc""";
-        // violation
+        // violation below
         String unitAbbrev4 = """
                 \u03bcaBc\u03bcssdf\u03bc""";
         String unitAbbrev5 = """
                 \u03bcs"""; // Greek letter mu, "s" ok
-        // violation
+        // violation below
         String allCharactersEscaped = """
                 \u03bc\u03bc""";
     }
