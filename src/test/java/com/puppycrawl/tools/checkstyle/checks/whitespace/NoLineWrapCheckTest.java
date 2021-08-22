@@ -39,7 +39,8 @@ public class NoLineWrapCheckTest
     public void testCaseWithoutLineWrapping() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoLineWrapCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputNoLineWrapGood.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNoLineWrapGood.java"), expected);
     }
 
     @Test
@@ -50,7 +51,8 @@ public class NoLineWrapCheckTest
             "13:1: " + getCheckMessage(MSG_KEY, "import"),
             "17:1: " + getCheckMessage(MSG_KEY, "import"),
         };
-        verify(checkConfig, getPath("InputNoLineWrapBad.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNoLineWrapBad.java"), expected);
     }
 
     @Test
@@ -66,7 +68,8 @@ public class NoLineWrapCheckTest
             "23:9: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
             "30:1: " + getCheckMessage(MSG_KEY, "ENUM_DEF"),
         };
-        verify(checkConfig, getPath("InputNoLineWrapBad2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNoLineWrapBad2.java"), expected);
     }
 
     @Test
@@ -87,7 +90,7 @@ public class NoLineWrapCheckTest
             "47:9: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
             "49:13: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath("InputNoLineWrapRecordsAndCompactCtors.java"),
                 expected);
     }

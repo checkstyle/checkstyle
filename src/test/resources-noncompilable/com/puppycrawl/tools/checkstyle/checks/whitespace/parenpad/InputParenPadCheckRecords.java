@@ -17,9 +17,9 @@ import java.util.HashMap;
 import org.w3c.dom.Node;
 
 public class InputParenPadCheckRecords {
-    record MyRecord1( ) { // violation x2
+    record MyRecord1( ) { // 2 violations
 
-        MyRecord1( int x ){this();} // violation x2
+        MyRecord1( int x ){this();} // 2 violations
 
         public MyRecord1{
             bar( 1);  // violation
@@ -49,7 +49,7 @@ public class InputParenPadCheckRecords {
 
     //record components
     record MyRecord2( String s){} // violation
-    record MyRecord4( String s, String ...varargs ){} // violation
+    record MyRecord4( String s, String ...varargs ){} // 2 violations
     record MyRecord6( String[] strArr){} // violation
     record MyRecord7(HashMap<String, Node> hashMap ){} // violation
 }

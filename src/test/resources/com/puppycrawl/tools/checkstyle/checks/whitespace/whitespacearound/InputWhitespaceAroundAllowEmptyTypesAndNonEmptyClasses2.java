@@ -27,27 +27,27 @@ public class InputWhitespaceAroundAllowEmptyTypesAndNonEmptyClasses2{ // violati
 
     private Object object;
 
-    class SomeClass{
+    class SomeClass{ // violation
         int a = 5;
     }
 
-    public class CheckstyleTest{
+    public class CheckstyleTest{ // violation
         private static final int SOMETHING = 1;
     }
 
-    class MyClass{ int a; }
+    class MyClass{ int a; } // violation
 
-    class SomeTestClass{int a;}
+    class SomeTestClass{int a;} // 3 violations
 
-    class TestClass { int a; }int b;
+    class TestClass { int a; }int b; // violation
 
     class Table {}
 
     interface SupplierFunction<T> extends Function<Supplier<T>, T> {}
 
-    class NotEmptyClass{ public void foo1() { foo2(); } }
+    class NotEmptyClass{ public void foo1() { foo2(); } } // violation
 
     public void foo2() {
-        do {} while (true);
+        do {} while (true); // 2 violations
     }
 }

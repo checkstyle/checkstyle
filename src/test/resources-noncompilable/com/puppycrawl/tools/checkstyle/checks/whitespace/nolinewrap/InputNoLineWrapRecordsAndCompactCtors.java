@@ -10,22 +10,22 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.nolinewrap;
 
 public class InputNoLineWrapRecordsAndCompactCtors {
     class Bar { // OK
-        public // violation, constructor definition not wrapped in a single line
+        public // violation
         Bar() {
         }
         public void fun() { // OK
         }
     }
-    record // should be a violation, record definition not wrapped in a single line
+    record // violation
     MyRecord1() {
         public MyRecord1() { // OK
         }
-        public static void // violation, method definition not wrapped in a single line
+        public static void
         doSomething() {
         }
     }
     record MyRecord2() { // OK
-        public // violation, constructor definition not wrapped in a single line
+        public // violation
         MyRecord2() {
         }
         public void fun() { // OK
@@ -33,13 +33,13 @@ public class InputNoLineWrapRecordsAndCompactCtors {
     }
     record MyRecord3(String str, int // violation
                      x) {
-        public // should be a violation, constructor definition not wrapped in a single line
+        public // violation
         MyRecord3{}
     }
 
     record MyRecord4(String str, int x, // violation
                      int y) {
-        public // should be a violation, constructor definition not wrapped in a single line
+        public // violation
         MyRecord4{}
     }
 

@@ -21,7 +21,7 @@ class InputOperatorWrap1
     void test()
     {
         int x = 1 + // violation
-            2 -
+            2 - // violation
             3
             -
             4;
@@ -29,7 +29,7 @@ class InputOperatorWrap1
         boolean y = true
             &&
             false;
-        y = true &&
+        y = true && // violation
             false;
         y = false
             && true;
@@ -51,7 +51,7 @@ class InputOperatorWrap1
     }
 
     <
-        T extends Comparable &
+        T extends Comparable & // violation
         java.io.Serializable
     >
     void testGenerics1()
@@ -64,7 +64,7 @@ class InputOperatorWrap1
     }
 }
 
-class badCase21<T extends Foo &
+class badCase21<T extends Foo & // violation
     Bar> {
 }
 

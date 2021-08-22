@@ -62,7 +62,7 @@ class InputParenPadWhitespace
     private void fastExit()
     {
         boolean complicatedStuffNeeded = true;
-        if( !complicatedStuffNeeded ) // violation
+        if( !complicatedStuffNeeded ) // 2 violations
         {
             return; // should not complain about missing WS after return
         }
@@ -78,7 +78,7 @@ class InputParenPadWhitespace
     */
     private int nonVoid()
     {
-        if ( true )
+        if ( true ) // 2 violations
         {
             return(2); // should complain about missing WS after return
         }
@@ -92,7 +92,7 @@ class InputParenPadWhitespace
     private void testCasts()
     {
         Object o = (Object) new Object(); // ok
-        o = (Object)o; // violation
+        o = (Object)o;
         o = ( Object ) o; // ok
         o = (Object)
             o; // ok
@@ -236,7 +236,7 @@ class SpecialCasesInForLoop
         // bug 895072
 	// avoid conflict between ParenPad(space) and NoWhiteSpace before ';'
 	int i = 0;
-	for ( ; i < 5; i++ ) {
+	for ( ; i < 5; i++ ) { // violation
 	//   ^ whitespace
 	}
         for (int anInt : getSomeInts()) {
@@ -245,7 +245,7 @@ class SpecialCasesInForLoop
     }
 
     int[] getSomeInts() {
-        int i = (int) ( 2 / 3 );
+        int i = (int) ( 2 / 3 ); // 2 violations
         return null;
     }
 
@@ -281,7 +281,7 @@ class SpecialCasesInForLoop
 
     public void doSomething(String args[]) {
         register(boolean[].class);
-        register( args );
+        register( args ); // 2 violations
     }
 
     public void parentheses() {

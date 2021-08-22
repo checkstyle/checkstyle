@@ -1,7 +1,7 @@
 /*
 NoWhitespaceAfter
 allowLineBreaks = (default)true
-tokens = ARRAY_DECLARATOR, INDEX_OP
+tokens = ARRAY_DECLARATOR,INDEX_OP
 
 
 */
