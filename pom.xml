@@ -1665,14 +1665,12 @@
 
 
 
-                <exclude>**/EmptyForIteratorPadCheckTest.class</exclude>
 
 
                 <exclude>**/NoWhitespaceBeforeCheckTest.class</exclude>
 
                 <exclude>**/UpperEllCheckTest.class</exclude>
 
-                <exclude>**/EmptyForInitializerPadCheckTest.class</exclude>
 
                 <exclude>**/WhitespaceAfterCheckTest.class</exclude>
 
