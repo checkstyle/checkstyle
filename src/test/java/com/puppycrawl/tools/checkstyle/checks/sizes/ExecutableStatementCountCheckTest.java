@@ -65,20 +65,21 @@ public class ExecutableStatementCountCheckTest
         checkConfig.addProperty("max", "0");
 
         final String[] expected = {
-            "8:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "11:17: " + getCheckMessage(MSG_KEY, 1, 0),
-            "21:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "31:5: " + getCheckMessage(MSG_KEY, 1, 0),
-            "38:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "52:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "62:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "71:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "80:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "83:13: " + getCheckMessage(MSG_KEY, 1, 0),
-            "94:29: " + getCheckMessage(MSG_KEY, 1, 0),
+            "12:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "15:17: " + getCheckMessage(MSG_KEY, 1, 0),
+            "25:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "35:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "42:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "56:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "66:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "75:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "84:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "87:13: " + getCheckMessage(MSG_KEY, 1, 0),
+            "98:29: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
-        verify(checkConfig, getPath("InputExecutableStatementCountMaxZero.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputExecutableStatementCountMaxZero.java"), expected);
     }
 
     @Test
@@ -90,15 +91,16 @@ public class ExecutableStatementCountCheckTest
         checkConfig.addProperty("tokens", "METHOD_DEF");
 
         final String[] expected = {
-            "9:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "12:17: " + getCheckMessage(MSG_KEY, 1, 0),
-            "22:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "32:5: " + getCheckMessage(MSG_KEY, 1, 0),
-            "39:5: " + getCheckMessage(MSG_KEY, 3, 0),
-            "57:13: " + getCheckMessage(MSG_KEY, 1, 0),
+            "12:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "15:17: " + getCheckMessage(MSG_KEY, 1, 0),
+            "25:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "35:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "42:5: " + getCheckMessage(MSG_KEY, 3, 0),
+            "60:13: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
-        verify(checkConfig, getPath("InputExecutableStatementCountMethodDef.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputExecutableStatementCountMethodDef.java"), expected);
     }
 
     @Test
@@ -110,11 +112,12 @@ public class ExecutableStatementCountCheckTest
         checkConfig.addProperty("tokens", "CTOR_DEF");
 
         final String[] expected = {
-            "9:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "19:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "12:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "22:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("InputExecutableStatementCountCtorDef.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputExecutableStatementCountCtorDef.java"), expected);
     }
 
     @Test
@@ -126,10 +129,11 @@ public class ExecutableStatementCountCheckTest
         checkConfig.addProperty("tokens", "STATIC_INIT");
 
         final String[] expected = {
-            "10:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "13:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("InputExecutableStatementCountStaticInit.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputExecutableStatementCountStaticInit.java"), expected);
     }
 
     @Test
@@ -141,10 +145,11 @@ public class ExecutableStatementCountCheckTest
         checkConfig.addProperty("tokens", "INSTANCE_INIT");
 
         final String[] expected = {
-            "10:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "13:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verify(checkConfig, getPath("InputExecutableStatementCountInstanceInit.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputExecutableStatementCountInstanceInit.java"), expected);
     }
 
     @Test
@@ -184,9 +189,9 @@ public class ExecutableStatementCountCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(ExecutableStatementCountCheck.class);
 
-        createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputExecutableStatementCountDefaultConfig.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputExecutableStatementCountDefaultConfig.java"), expected);
     }
 
     @Test
@@ -198,15 +203,15 @@ public class ExecutableStatementCountCheckTest
         final int max = 1;
 
         final String[] expected = {
-            "11:9: " + getCheckMessage(MSG_KEY, 3, max),
-            "20:9: " + getCheckMessage(MSG_KEY, 3, max),
-            "29:9: " + getCheckMessage(MSG_KEY, 3, max),
-            "37:9: " + getCheckMessage(MSG_KEY, 4, max),
-            "47:9: " + getCheckMessage(MSG_KEY, 6, max),
-            "61:17: " + getCheckMessage(MSG_KEY, 6, max),
+            "15:9: " + getCheckMessage(MSG_KEY, 3, max),
+            "24:9: " + getCheckMessage(MSG_KEY, 3, max),
+            "33:9: " + getCheckMessage(MSG_KEY, 3, max),
+            "41:9: " + getCheckMessage(MSG_KEY, 4, max),
+            "51:9: " + getCheckMessage(MSG_KEY, 6, max),
+            "65:17: " + getCheckMessage(MSG_KEY, 6, max),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath("InputExecutableStatementCountRecords.java"),
                 expected);
     }
@@ -221,13 +226,14 @@ public class ExecutableStatementCountCheckTest
         final int max = 1;
 
         final String[] expected = {
-            "13:22: " + getCheckMessage(MSG_KEY, 6, max),
-            "22:22: " + getCheckMessage(MSG_KEY, 2, max),
-            "23:26: " + getCheckMessage(MSG_KEY, 2, max),
-            "27:26: " + getCheckMessage(MSG_KEY, 4, max),
+            "16:22: " + getCheckMessage(MSG_KEY, 6, max),
+            "25:22: " + getCheckMessage(MSG_KEY, 2, max),
+            "26:26: " + getCheckMessage(MSG_KEY, 2, max),
+            "30:26: " + getCheckMessage(MSG_KEY, 4, max),
         };
 
-        verify(checkConfig, getPath("InputExecutableStatementCountLambdas.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputExecutableStatementCountLambdas.java"), expected);
     }
 
 }

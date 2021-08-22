@@ -1672,7 +1672,6 @@
 
                 <exclude>**/ArrayTypeStyleCheckTest.class</exclude>
 
-                <exclude>**/ExecutableStatementCountCheckTest.class</exclude>
 
 
 
