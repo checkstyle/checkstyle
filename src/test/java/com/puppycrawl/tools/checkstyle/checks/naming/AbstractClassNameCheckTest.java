@@ -54,7 +54,8 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
                 pattern),
         };
 
-        verify(checkConfig, getPath("InputAbstractClassName.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAbstractClassName.java"), expected);
     }
 
     @Test
@@ -75,7 +76,8 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
                 "^NonAbstract.+$"),
         };
 
-        verify(checkConfig, getPath("InputAbstractClassNameCustom.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAbstractClassNameCustom.java"), expected);
     }
 
     @Test
@@ -89,7 +91,8 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
             "27:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClassTypes"),
         };
 
-        verify(checkConfig, getPath("InputAbstractClassNameType.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAbstractClassNameType.java"), expected);
     }
 
     @Test
@@ -112,7 +115,8 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
             "31:5: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClassVa"),
         };
 
-        verify(checkConfig, getPath("InputAbstractClassNameVariants.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAbstractClassNameVariants.java"), expected);
     }
 
     @Test
@@ -130,7 +134,8 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
             "31:5: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClassFP"),
         };
 
-        verify(checkConfig, getPath("InputAbstractClassNameFormerFalsePositive.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAbstractClassNameFormerFalsePositive.java"), expected);
     }
 
     @Test

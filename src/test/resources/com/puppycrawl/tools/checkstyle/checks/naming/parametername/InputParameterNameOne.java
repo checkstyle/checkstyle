@@ -65,7 +65,7 @@ final class InputParameterNameOne
      * @param badFormat3 bad format
      * @throws java.lang.Exception abc
      **/
-    int test1(int badFormat1,int badFormat2, // violation
+    int test1(int badFormat1,int badFormat2, // 2 violations
               final int badFormat3)          // violation
         throws java.lang.Exception
     {

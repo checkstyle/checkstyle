@@ -63,7 +63,7 @@ public class PatternVariableNameCheckTest
             "66:43: " + getCheckMessage(MSG_INVALID_PATTERN, "Thing1", pattern),
             "70:41: " + getCheckMessage(MSG_INVALID_PATTERN, "Thing2", pattern),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath(
                         "InputPatternVariableNameEnhancedInstanceofTestDefault.java"),
                 expected);
@@ -98,7 +98,7 @@ public class PatternVariableNameCheckTest
             "83:41: " + getCheckMessage(MSG_INVALID_PATTERN, "s", pattern),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath(
                         "InputPatternVariableNameEnhancedInstanceofNoSingleChar.java"),
                 expected);
