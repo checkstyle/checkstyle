@@ -20,57 +20,57 @@ public class InputMethodParamPad
 
     public InputMethodParamPad (int aParam) // violation
     {
-        super ();
+        super (); // violation
     }
 
     public InputMethodParamPad
-        (double aParam)
+        (double aParam) // violation
     {
         super
-            ();
+            (); // violation
     }
 
     public void method()
     {
     }
 
-    public void method (int aParam)
+    public void method (int aParam) // violation
     {
     }
 
     public void method
-        (double aParam)
+        (double aParam) // violation
     {
         // invoke constructor
         InputMethodParamPad pad = new InputMethodParamPad();
-        pad = new InputMethodParamPad ();
+        pad = new InputMethodParamPad (); // violation
         pad = new InputMethodParamPad
-            ();
+            (); // violation
 
         // call method
         method();
-        method ();
+        method (); // violation
         method
-            ();
+            (); // violation
     }
 
     public void dottedCalls()
     {
         this.method();
-        this.method ();
+        this.method (); // violation
         this.method
-            ();
+            (); // violation
 
         InputMethodParamPad p = new InputMethodParamPad();
         p.method();
-        p.method ();
+        p.method (); // violation
         p.method
-            ();
+            (); // violation
 
         java.lang.Integer.parseInt("0");
-        java.lang.Integer.parseInt ("0");
+        java.lang.Integer.parseInt ("0"); // violation
         java.lang.Integer.parseInt
-            ("0");
+            ("0"); // violation
     }
 
     public void newArray()
@@ -81,12 +81,12 @@ public class InputMethodParamPad
     }
 
     enum TestEnum {
-        FIRST ()
+        FIRST () // violation
             {
             },
 
         SECOND
-            ()
+            () // violation
         {
         }
     }

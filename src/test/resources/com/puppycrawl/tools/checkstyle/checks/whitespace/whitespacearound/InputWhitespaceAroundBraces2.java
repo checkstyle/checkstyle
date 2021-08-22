@@ -67,7 +67,7 @@ class InputWhitespaceAroundBraces2
         }
 
         // Invalid
-        for(int i = 1;i < 5;i++);
+        for(int i = 1;i < 5;i++); // violation
         for (int i = 1; i < 5; i++)
             testFor();
         for (int i = 1; i < 5;
@@ -131,6 +131,6 @@ class InputWhitespaceAroundBraces2
 
     public void foo() {
         boolean flag = true;
-        if(flag){}
+        if(flag){} // 4 violations
     }
 }

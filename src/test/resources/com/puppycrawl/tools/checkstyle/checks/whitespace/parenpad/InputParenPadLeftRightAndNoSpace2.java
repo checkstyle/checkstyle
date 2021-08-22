@@ -118,9 +118,9 @@ public class InputParenPadLeftRightAndNoSpace2
 
     String foo() {
         return ( (Object
-                ) bar( ( 1 > 2 ) ?
+                ) bar( ( 1 > 2 ) ? // violation
                         ( ( 3 < 4 )? false : true ) :
-                        ( ( 1 == 1 ) ? false : true) ) ).toString();
+                        ( ( 1 == 1 ) ? false : true) ) ).toString(); // violation
     }
     @MyAnnotation2
     public boolean bar(boolean a) {
@@ -150,7 +150,7 @@ enum MyEnum12 {
     public void crisRon() {
         Object leo = "messi";
         Object ibra = leo;
-        ((String)leo).compareTo( (String)ibra );
+        ((String)leo).compareTo( (String)ibra ); // 2 violations
         Math.random();
     }
 
@@ -158,9 +158,9 @@ enum MyEnum12 {
         Object a = 5;
         Object b = "string";
         int w = Integer.parseInt((String)a);
-        int x = Integer.parseInt( (String)a);
-        double y = Double.parseDouble((String)a );
-        float z = Float.parseFloat( (String)a );
+        int x = Integer.parseInt( (String)a); // violation
+        double y = Double.parseDouble((String)a ); // violation
+        float z = Float.parseFloat( (String)a ); // 2 violations
         String d = ((String)b);
     }
 
@@ -168,7 +168,7 @@ enum MyEnum12 {
         if ( o == null || !( o instanceof Float ) ) {
             return -1;
         }
-        return Integer.valueOf( 22 ).compareTo( (Integer) o );
+        return Integer.valueOf( 22 ).compareTo( (Integer) o ); // 4 violations
     }
 
     private void launch(Integer number ) {
@@ -206,18 +206,18 @@ enum MyEnum12 {
 
     private void except() {
         java.util.ArrayList<Integer> arrlist = new java.util.ArrayList<Integer>( 5 );
-        arrlist.add( 20);
-        arrlist.add(15 );
-        arrlist.add( 30 );
+        arrlist.add( 20); // violation
+        arrlist.add(15 ); // violation
+        arrlist.add( 30 ); // 2 violations
         arrlist.add(45);
         try {
-            ( arrlist ).remove( 2);
+            ( arrlist ).remove( 2); // violation
         } catch ( IndexOutOfBoundsException x ) {
             x.getMessage();
         }
-        org.junit.Assert.assertThat( "123", org.hamcrest.CoreMatchers.is( "123" ) );
-        org.junit.Assert.assertThat( "Help! Integers don't work",
-                0, org.hamcrest.CoreMatchers.is( 1 ) );
+        org.junit.Assert.assertThat( "123", org.hamcrest.CoreMatchers.is( "123" ) ); // 4 violations
+        org.junit.Assert.assertThat( "Help! Integers don't work", // violation
+                0, org.hamcrest.CoreMatchers.is( 1 ) ); // 3 violations
     }
 }
 enum MyEnum22 {

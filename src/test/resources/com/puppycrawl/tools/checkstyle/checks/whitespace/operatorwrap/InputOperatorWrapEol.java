@@ -1,7 +1,7 @@
 /*
 OperatorWrap
-option = eol
-tokens = ASSIGN, COLON, LAND, LOR, STAR, QUESTION
+option = EOL
+tokens = ASSIGN,COLON,LAND,LOR,STAR,QUESTION
 
 
 */
@@ -58,8 +58,8 @@ class InputOperatorWrapEol
             ) {
         }
         if (magic == 0x32 // '2'
-                || magic == 0x41 // ')' // violation
-                || magic == 0x58 // 'X' // violation
+                || magic == 0x41 // violation
+                || magic == 0x58 // violation
         ) {
         }
     }

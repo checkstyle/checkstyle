@@ -1,6 +1,6 @@
 /*
 SeparatorWrap
-option = (default)eol
+option = (default)EOL
 tokens = ARRAY_DECLARATOR
 
 

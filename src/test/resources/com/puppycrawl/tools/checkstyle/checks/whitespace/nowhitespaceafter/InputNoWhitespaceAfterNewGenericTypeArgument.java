@@ -56,19 +56,19 @@ public class InputNoWhitespaceAfterNewGenericTypeArgument {
     static SomeClass[] v2 = new FinalSubclass[4];
 
     public static int run(String args[],PrintStream out) {
-        int i [], j []; // violation 2x
+        int i [], j []; // 2 violations
         SomeInterface u []; // violation
         SomeInterface v[] [] = null; // violation
         AnotherInterface w []; // violation
-        SomeClass x [] []; // violation 2x
+        SomeClass x [] []; // 2 violations
 
-        x = (SomeClass [] []) v; // violation 2x
+        x = (SomeClass [] []) v; // 2 violations
 
-        x[0] = (SomeClass []) new ImmediateSubclass [4]; // violation 2x
-        if (! (x[0] instanceof ImmediateSubclass [])) // violation 2x
+        x[0] = (SomeClass []) new ImmediateSubclass [4]; // 2 violations
+        if (! (x[0] instanceof ImmediateSubclass [])) // 2 violations
             errorAlert(out, 8);
 
-        if (! (x[1] instanceof FinalSubclass []))  // violation 2x
+        if (! (x[1] instanceof FinalSubclass []))  // 2 violations
             errorAlert(out, 10);
 
         w = (AnotherInterface []) x[1]; // violation

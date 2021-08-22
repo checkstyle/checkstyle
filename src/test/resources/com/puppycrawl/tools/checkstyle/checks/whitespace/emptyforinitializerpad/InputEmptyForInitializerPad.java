@@ -1,6 +1,6 @@
 /*
 EmptyForInitializerPad
-option = space
+option = SPACE
 
 
 */

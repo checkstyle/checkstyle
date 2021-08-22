@@ -49,7 +49,8 @@ public class TypecastParenPadCheckTest
             "86:13: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "86:22: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputTypecastParenPadWhitespace.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputTypecastParenPadWhitespace.java"), expected);
     }
 
     @Test
@@ -68,7 +69,8 @@ public class TypecastParenPadCheckTest
             "238:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "238:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputTypecastParenPadWhitespaceTestSpace.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputTypecastParenPadWhitespaceTestSpace.java"), expected);
     }
 
     @Test
@@ -77,7 +79,8 @@ public class TypecastParenPadCheckTest
             createModuleConfig(TypecastParenPadCheck.class);
         checkConfig.addProperty("option", PadOption.SPACE.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputTypecastParenPadWhitespaceAround.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputTypecastParenPadWhitespaceAround.java"),
                expected);
     }
 

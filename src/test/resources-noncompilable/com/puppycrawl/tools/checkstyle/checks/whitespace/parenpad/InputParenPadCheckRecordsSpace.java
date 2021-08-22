@@ -1,6 +1,6 @@
 /*
 ParenPad
-option = space
+option = SPACE
 tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
          ENUM_CONSTANT_DEF, EXPR, LITERAL_CATCH, LITERAL_DO, LITERAL_FOR, LITERAL_IF, \
          LITERAL_NEW, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_WHILE, METHOD_CALL, \
@@ -32,14 +32,14 @@ public class InputParenPadCheckRecordsSpace {
         }
 
         public void bar(int k ) {  // violation
-            while (k > 0) {  // violation x2
+            while (k > 0) {  // 2 violations
             }
         }
 
         public void fun2() {  // ok
             switch( n) {  // violation
                 case 2:
-                    bar(n);  // violation x2
+                    bar(n);  // 2 violations
                 default:
                     break;
             }

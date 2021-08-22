@@ -1,12 +1,12 @@
 /*
 NoWhitespaceBefore
-allowLineBreaks = (default)false
-tokens = (default)COMMA, SEMI, POST_INC, POST_DEC, ELLIPSIS, LABELED_STAT
+allowLineBreaks = yes
+tokens = DOT
 
 
 */
 
-package com . puppycrawl
+package com . puppycrawl // violation
     .tools.
     checkstyle.checks.whitespace.nowhitespacebefore;
 
@@ -89,7 +89,7 @@ class InputNoWhitespaceBeforeDotAllowLineBreaks
     private void testCasts()
     {
         Object o = (Object) new Object(); // ok
-        o = (Object)o; // violation
+        o = (Object)o;
         o = ( Object ) o; // ok
         o = (Object)
             o; // ok
@@ -130,14 +130,14 @@ class InputNoWhitespaceBeforeDotAllowLineBreaks
     }
 
     /** @return dot test **/
-    private java .lang.  String dotTest()
+    private java .lang.  String dotTest() // violation
     {
         Object o = new java.lang.Object();
         o.
             toString();
         o
             .toString();
-        o . toString();
+        o . toString(); // violation
         return o.toString();
     }
 
