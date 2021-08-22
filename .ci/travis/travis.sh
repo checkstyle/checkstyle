@@ -196,6 +196,12 @@ versions)
   fi
   ;;
 
+restore-maven-cache)
+  curl -o cache.tar -Ss https://dl.dropboxusercontent.com/s/dab3q91plu962ge/checkstyle-maven-cache.tar
+  tar -xf cache.tar -C /
+  rm cache.tar
+  ;;
+
 assembly-run-all-jar)
   mvn -e --no-transfer-progress clean package -Passembly
   CS_POM_VERSION="$(getCheckstylePomVersion)"
