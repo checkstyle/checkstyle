@@ -24,16 +24,16 @@ public class InputAvoidEscapedUnicodeCharactersEscapedS {
     String value6 = """
             \s\s\s\n not all escaped chars
             """; // ok, no unicode chars
-    String value7 = /* violation */"""
+    String value7 = /* violation */""" // violation
             \u03bc\s not all escaped chars
-            """; // violation on line 24
-    String value8 = /* violation */"""
+            """;
+    String value8 = /* violation */""" // violation
             \u03bc\n not all escaped chars
-            """; // violation on line 27
-    String value9 = /* violation */"""
+            """;
+    String value9 = /* violation */""" // violation
             l\u03bc\n
-            """; // violation on line 30
-    String value10 = "\n       \u03bc\s";
+            """;
+    String value10 = "\n       \u03bc\s"; // violation
     String value11 = """
         \u03bc\
         \s\u03bc\
