@@ -1,11 +1,16 @@
+/*
+WhitespaceAfter
+tokens = (default)COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_WHILE, \
+         LITERAL_DO, LITERAL_FOR, DO_WHILE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 
-/* Config:
- * default
- */
 public class InputWhitespaceAfterCountUnicodeCorrectly {
     String a = "  ";
     String b = "💩💩";
-    String c = "💩💩";// violation
+    String c = "💩💩";// message // violation
     String d = "💩💩"; // ok
 }

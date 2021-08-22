@@ -1,6 +1,6 @@
 /*
 OperatorWrap
-option = eol
+option = EOL
 tokens = ASSIGN
 
 
@@ -43,8 +43,8 @@ class InputOperatorWrap5
     void testAssignment()
     {
         int x
-            = 0; //violation when checking assignment operators with EOL wrap option
-        int y = // violation
+            = 0; // violation
+        int y =
             0;
     }
 

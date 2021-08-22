@@ -15,7 +15,7 @@ public class InputMethodParamPad3
 {
     public InputMethodParamPad3() // violation
     {
-        super();
+        super(); // violation
     }
 
     public InputMethodParamPad3 (int aParam)
@@ -24,13 +24,13 @@ public class InputMethodParamPad3
     }
 
     public InputMethodParamPad3
-        (double aParam)
+        (double aParam) // violation
     {
         super
-            ();
+            (); // violation
     }
 
-    public void method()
+    public void method() // violation
     {
     }
 
@@ -39,45 +39,45 @@ public class InputMethodParamPad3
     }
 
     public void method
-        (double aParam)
+        (double aParam) // violation
     {
         // invoke constructor
-        InputMethodParamPad pad = new InputMethodParamPad();
+        InputMethodParamPad pad = new InputMethodParamPad(); // violation
         pad = new InputMethodParamPad ();
         pad = new InputMethodParamPad
-            ();
+            (); // violation
 
         // call method
-        method();
+        method(); // violation
         method ();
         method
-            ();
+            (); // violation
     }
 
-    public void dottedCalls()
+    public void dottedCalls() // violation
     {
-        this.method();
+        this.method(); // violation
         this.method ();
         this.method
-            ();
+            (); // violation
 
-        InputMethodParamPad p = new InputMethodParamPad();
-        p.method();
+        InputMethodParamPad p = new InputMethodParamPad(); // violation
+        p.method(); // violation
         p.method ();
         p.method
-            ();
+            (); // violation
 
-        java.lang.Integer.parseInt("0");
+        java.lang.Integer.parseInt("0"); // violation
         java.lang.Integer.parseInt ("0");
         java.lang.Integer.parseInt
-            ("0");
+            ("0"); // violation
     }
 
-    public void newArray()
+    public void newArray() // violation
     {
         int[] a = new int[]{0, 1};
-        java.util.Vector<String> v = new java.util.Vector<String>();
-        java.util.Vector<String> v1 = new Vector<String>();
+        java.util.Vector<String> v = new java.util.Vector<String>(); // violation
+        java.util.Vector<String> v1 = new Vector<String>(); // violation
     }
 
     enum TestEnum {
@@ -86,7 +86,7 @@ public class InputMethodParamPad3
             },
 
         SECOND
-            ()
+            () // violation
         {
         }
     }

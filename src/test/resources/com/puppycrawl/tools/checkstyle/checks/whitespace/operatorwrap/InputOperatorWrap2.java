@@ -1,6 +1,6 @@
 /*
 OperatorWrap
-option = eol
+option = EOL
 tokens = (default)QUESTION, COLON, EQUAL, NOT_EQUAL, DIV, PLUS, MINUS, STAR, MOD, \
          SR, BSR, GE, GT, SL, LE, LT, BXOR, BOR, LOR, BAND, LAND, TYPE_EXTENSION_AND, \
          LITERAL_INSTANCEOF
@@ -27,12 +27,12 @@ class InputOperatorWrap2
             4;
         x = x + 2;
         boolean y = true
-            &&
+            && // violation
             false;
         y = true &&
             false;
         y = false
-            && true;
+            && true; // violation
         Arrays.sort(null, String
                     ::
                     compareToIgnoreCase);

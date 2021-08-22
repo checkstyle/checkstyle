@@ -4,7 +4,7 @@ allowEmptyConstructors = (default)false
 allowEmptyMethods = (default)false
 allowEmptyTypes = (default)false
 allowEmptyLoops = (default)false
-allowEmptyLambdas = (default)false
+allowEmptyLambdas = true
 allowEmptyCatches = (default)false
 ignoreEnhancedForColon = (default)true
 tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, BXOR, \
@@ -29,6 +29,6 @@ public class InputWhitespaceAroundAllowEmptyLambdaExpressions2 {
         int x = 10;
     };
     BinaryOperator<Integer> sum = (x, y) -> x + y;
-    Runnable noop3 = () -> {;}; // violation
-    Runnable noop4 = () -> {new String();};
+    Runnable noop3 = () -> {;}; // 2 violations
+    Runnable noop4 = () -> {new String();}; // 2 violations
 }

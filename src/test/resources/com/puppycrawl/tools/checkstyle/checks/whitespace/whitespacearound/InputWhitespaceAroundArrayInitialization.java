@@ -22,9 +22,9 @@ public class InputWhitespaceAroundArrayInitialization {
 
         final int[] COLORS1 = new int[] {5 }; // valid
 
-        final String[][] COLORS2 = {{"Green"}, {"Red"}}; //missing WS before inner array
+        final String[][] COLORS2 = {{"Green"}, {"Red"}}; // violation
 
-        final String[][] COLORS21 = { {"Green", "Red"},{"White"} }; //missing WS between "," and "{"
+        final String[][] COLORS21 = { {"Green", "Red"},{"White"} }; // violation
 
         final String[][] COLORS22 = { {"White", "Yellow"}, {"Pink"} }; //valid
 
@@ -32,13 +32,13 @@ public class InputWhitespaceAroundArrayInitialization {
                                        { {"Green", "Brown", "Magneta"}},
                                        { {"Red", "Purple", "Violet"}} }; //valid
 
-        final String[][][] COLORS32 = { {{"Red", "Green"},{"Pink"}} }; //missing before Red and Pink
+        final String[][][] COLORS32 = { {{"Red", "Green"},{"Pink"}} }; // 2 violations
 
-        final String[][][] COLORS33 = {{{"White"}}}; //missing WS before "{"
+        final String[][][] COLORS33 = {{{"White"}}}; // 2 violations
 
         final String[][][][] COLORS41 = { { { {"Green"}}, { {"Purple"}}}, { { {"Yellow"}}} };//valid
 
-        final String[][][][] COLORS42 = { { {{"White", "Blue"}, //missing WS between "{"
+        final String[][][][] COLORS42 = { { {{"White", "Blue"}, // violation
                                              {"Gray", "Black"},},},
                                              { { {"Red"}}}};
 
