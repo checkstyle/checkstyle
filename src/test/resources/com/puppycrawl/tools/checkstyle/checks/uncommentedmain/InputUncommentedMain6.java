@@ -1,6 +1,6 @@
 /*
 UncommentedMain
-excludedClasses = \.Main.*$
+excludedClasses = \\.Main.*$
 
 
 */

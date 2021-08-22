@@ -1,10 +1,10 @@
-/*
+/* // violation
 NoCodeInFile
 
 
 */
 
-// single line comment // violation
+// single line comment
 /*
 multi line comment
 */

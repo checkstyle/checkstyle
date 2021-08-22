@@ -1,6 +1,6 @@
 /*
 UncommentedMain
-excludedClasses = uncommentedmain\.InputUncommentedMain5
+excludedClasses = uncommentedmain\\.InputUncommentedMain5
 
 
 */

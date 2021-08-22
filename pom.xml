@@ -1549,7 +1549,6 @@
 
                 <exclude>**/MultiDimensionalArraysInGenericsTest.class</exclude>
 
-                <exclude>**/OuterTypeFilenameCheckTest.class</exclude>
 
                 <exclude>**/PatternVariableNameCheckTest.class</exclude>
 
@@ -1606,7 +1605,6 @@
                 <exclude>**/OperatorWrapCheckTest.class</exclude>
 
 
-                <exclude>**/TodoCommentCheckTest.class</exclude>
 
 
                 <exclude>**/AbstractFileSetCheckTest.class</exclude>
@@ -1666,7 +1664,6 @@
                 <exclude>**/RegexpOnFilenameCheckTest.class</exclude>
 
 
-                <exclude>**/UncommentedMainCheckTest.class</exclude>
 
                 <exclude>**/FinalParametersCheckTest.class</exclude>
 
@@ -1681,7 +1678,6 @@
 
                 <exclude>**/NoWhitespaceBeforeCheckTest.class</exclude>
 
-                <exclude>**/UpperEllCheckTest.class</exclude>
 
                 <exclude>**/EmptyForInitializerPadCheckTest.class</exclude>
 
