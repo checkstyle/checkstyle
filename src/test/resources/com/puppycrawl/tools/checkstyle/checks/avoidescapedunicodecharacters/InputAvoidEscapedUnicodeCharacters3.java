@@ -16,14 +16,14 @@ public class InputAvoidEscapedUnicodeCharacters3 {
 
         private String unitAbbrev2 = "\u03bcs"; // violation
 
-        private String unitAbbrev3 = "\u03bcs"; // Greek letter mu // violation
+        private String unitAbbrev3 = "\u03bcs"; // violation
 
-        private String unitAbbrev4 = "\u03bcs"; // Greek letter mu // violation
+        private String unitAbbrev4 = "\u03bcs"; // violation
 
         public Object fooString() {
                 String unitAbbrev = "Î¼s";
                 String unitAbbrev2 = "\u03bcs"; // violation
-                String unitAbbrev3 = "\u03bcs"; // Greek letter mu, "s" // violation
+                String unitAbbrev3 = "\u03bcs"; // violation
                 String fakeUnicode = "asd\tsasd";
                 String fakeUnicode2 = "\\u23\\u123i\\u";
                 String content = null;
@@ -49,7 +49,7 @@ public class InputAvoidEscapedUnicodeCharacters3 {
                 case NANOSECONDS:
                         return "ns";
                 case MICROSECONDS:
-                        return "\u03bcs"; // μs // violation
+                        return "\u03bcs"; // violation
                 case MILLISECONDS:
                         return "ms";
                 case SECONDS:
@@ -93,9 +93,9 @@ public class InputAvoidEscapedUnicodeCharacters3 {
               }
          }
 
-        private String unitAbbrev5 = "\u03bcs";         // comment is separated by space + tab
-        private String unitAbbrev6 = "\u03bcs";        // comment is separated by tab // violation
-        private String unitAbbrev7 = "\u03bcs";        /* comment is separated by tab */
+        private String unitAbbrev5 = "\u03bcs";         // violation
+        private String unitAbbrev6 = "\u03bcs";        // violation
+        private String unitAbbrev7 = "\u03bcs";        /* comment separated by tab */ // violation
         private String unitAbbrev8 = "\u03bcs"; /* comment // violation
                                                    has 2 lines */
         void foo() {
@@ -114,15 +114,15 @@ public class InputAvoidEscapedUnicodeCharacters3 {
         private String onlyEscaped = "\\\u1234";
 
         private String sumilarToEscapedByB = "b\u1234"; // violation
-        private String sumilarToEscapedCommentedByB = "b\u1234"; // comment // violation
+        private String sumilarToEscapedCommentedByB = "b\u1234"; // violation
         private String sumilarToEscapedByF = "f\u1234"; // violation
-        private String sumilarToEscapedCommentedByF = "f\u1234"; // comment // violation
+        private String sumilarToEscapedCommentedByF = "f\u1234"; // violation
         private String sumilarToEscapedByR = "r\u1234"; // violation
-        private String sumilarToEscapedCommentedByR = "r\u1234"; // comment // violation
+        private String sumilarToEscapedCommentedByR = "r\u1234"; // violation
         private String sumilarToEscapedByN = "n\u1234"; // violation
-        private String sumilarToEscapedCommentedByN = "n\u1234"; // comment // violation
+        private String sumilarToEscapedCommentedByN = "n\u1234"; // violation
         private String sumilarToEscapedByT = "t\u1234"; // violation
-        private String sumilarToEscapedCommentedByT = "t\u1234"; // comment // violation
+        private String sumilarToEscapedCommentedByT = "t\u1234"; // violation
         private String validEscapeWithManyUs = "t\uuuuuuuuu1234"; // violation
-        private String validEscapeWithManyUsCommented = "t\uuuuuuuuu1234"; // comment // violation
+        private String validEscapeWithManyUsCommented = "t\uuuuuuuuu1234"; // violation
 }
