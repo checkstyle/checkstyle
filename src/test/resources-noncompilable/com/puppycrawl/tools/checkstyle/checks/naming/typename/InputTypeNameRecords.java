@@ -26,7 +26,7 @@ public class InputTypeNameRecords {
     }
 
     record My_Record() { // violation
-        record Inner__Record(Record MyRecord) {
+        record Inner__Record(Record MyRecord) { // violation
             public Inner__Record{}
         }
     }

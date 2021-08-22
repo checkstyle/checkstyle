@@ -25,16 +25,16 @@ public class InputParameterNameOverrideAnnotation {
 
     void foo3() {} // No NPE here! // ok
 
-    void foo4(int abc, int bd) {} // No NPE here! // violation
+    void foo4(int abc, int bd) {} // 2 violations
 
-    int foo5(int abc) {return 1;} // No NPE here! // violation
+    int foo5(int abc) {return 1;} // violation
 
     private int field;
     private java.util.Set<String> packageNames;
 
     InputParameterNameOverrideAnnotation() {} // No NPE here! // ok
 
-    InputParameterNameOverrideAnnotation(int fie, java.util.Set<String> pkgNames) {} // violation
+    InputParameterNameOverrideAnnotation(int fie, java.util.Set<String> pkgNames) {} // 2 violations
 
 
 }

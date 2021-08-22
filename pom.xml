@@ -1534,7 +1534,6 @@
 
                 <exclude>**/UniquePropertiesCheckTest.class</exclude>
 
-                <exclude>**/AbstractClassNameCheckTest.class</exclude>
 
 
 
@@ -1542,7 +1541,6 @@
 
                 <exclude>**/DescendantTokenCheckTest.class</exclude>
 
-                <exclude>**/ConstantNameCheckTest.class</exclude>
 
                 <exclude>**/EmbeddedNullCharTest.class</exclude>
 
@@ -1551,15 +1549,12 @@
 
                 <exclude>**/OuterTypeFilenameCheckTest.class</exclude>
 
-                <exclude>**/PatternVariableNameCheckTest.class</exclude>
 
-                <exclude>**/LambdaParameterNameCheckTest.class</exclude>
 
                 <exclude>**/NoWhitespaceBeforeCaseDefaultColonCheckTest.class</exclude>
 
 
 
-                <exclude>**/ParameterNameCheckTest.class</exclude>
 
                 <!-- permanent suppression -->
                 <exclude>**/LineLengthCheckTest.class</exclude>
@@ -1571,7 +1566,6 @@
 
                 <exclude>**/RegexpCheckTest.class</exclude>
 
-                <exclude>**/LocalVariableNameCheckTest.class</exclude>
 
                 <exclude>**/Java7NumericalLiteralsTest.class</exclude>
 
@@ -1587,17 +1581,14 @@
                 <exclude>**/SingleSpaceSeparatorCheckTest.class</exclude>
 
 
-                <exclude>**/TypeNameCheckTest.class</exclude>
 
                 <exclude>**/AllSinglelineCommentsTest.class</exclude>
 
-                <exclude>**/MemberNameCheckTest.class</exclude>
 
 
                 <exclude>**/FileSetCheckTest.class</exclude>
 
 
-                <exclude>**/PackageNameCheckTest.class</exclude>
 
 
                 <exclude>**/NoLineWrapCheckTest.class</exclude>
@@ -1630,7 +1621,6 @@
 
 
 
-                <exclude>**/CatchParameterNameCheckTest.class</exclude>
 
                 <exclude>**/RegexpMultilineCheckTest.class</exclude>
 
@@ -1650,7 +1640,6 @@
 
                 <exclude>**/HexFloatsTest.class</exclude>
 
-                <exclude>**/StaticVariableNameCheckTest.class</exclude>
 
                 <exclude>**/EqualsAvoidNullCheckTest.class</exclude>
 
@@ -1687,9 +1676,7 @@
 
                 <exclude>**/WhitespaceAfterCheckTest.class</exclude>
 
-                <exclude>**/InterfaceTypeParameterNameCheckTest.class</exclude>
 
-                <exclude>**/LocalFinalVariableNameCheckTest.class</exclude>
 
 
 
@@ -1722,7 +1709,6 @@
 
 
 
-                <exclude>**/MethodTypeParameterNameCheckTest.class</exclude>
 
 
                 <exclude>**/SuppressWarningsHolderTest.class</exclude>
@@ -1736,7 +1722,6 @@
 
                 <exclude>**/BeforeExecutionExclusionFileFilterTest.class</exclude>
 
-                <exclude>**/ClassTypeParameterNameCheckTest.class</exclude>
 
                 <exclude>**/RegexpSinglelineCheckTest.class</exclude>
 
@@ -1764,11 +1749,9 @@
 
                 <exclude>**/ImportOrderCheckTest.class</exclude>
 
-                <exclude>**/IllegalIdentifierNameCheckTest.class</exclude>
 
 
 
-                <exclude>**/AbbreviationAsWordInNameCheckTest.class</exclude>
 
                 <exclude>**/DetailAstImplTest.class</exclude>
 
@@ -1783,9 +1766,7 @@
                 <exclude>**/PackageDeclarationCheckTest.class</exclude>
 
 
-                <exclude>**/RecordTypeParameterNameCheckTest.class</exclude>
 
-                <exclude>**/MethodNameCheckTest.class</exclude>
 
 
 
@@ -1815,7 +1796,6 @@
 
                 <exclude>**/AllBlockCommentsTest.class</exclude>
 
-                <exclude>**/RecordComponentNameCheckTest.class</exclude>
 
 
 

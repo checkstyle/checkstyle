@@ -45,7 +45,8 @@ public class TypeNameCheckTest
             "25:14: " + getCheckMessage(MSG_INVALID_PATTERN,
                         "InputTypeName", "^inputHe"),
         };
-        verify(checkConfig, getPath("InputTypeName.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputTypeName.java"), expected);
     }
 
     @Test
@@ -63,7 +64,8 @@ public class TypeNameCheckTest
             "21:23: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderAnnotation", DEFAULT_PATTERN),
         };
-        verify(checkConfig, getPath("InputTypeName2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputTypeName2.java"), expected);
     }
 
     @Test
@@ -76,7 +78,8 @@ public class TypeNameCheckTest
             "15:7: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderClass3", DEFAULT_PATTERN),
         };
-        verify(checkConfig, getPath("InputTypeName3.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputTypeName3.java"), expected);
     }
 
     @Test
@@ -89,7 +92,8 @@ public class TypeNameCheckTest
             "17:22: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderInterface", DEFAULT_PATTERN),
         };
-        verify(checkConfig, getPath("InputTypeName4.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputTypeName4.java"), expected);
     }
 
     @Test
@@ -102,7 +106,8 @@ public class TypeNameCheckTest
             "19:17: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderEnum", DEFAULT_PATTERN),
         };
-        verify(checkConfig, getPath("InputTypeName5.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputTypeName5.java"), expected);
     }
 
     @Test
@@ -115,7 +120,8 @@ public class TypeNameCheckTest
             "21:23: " + getCheckMessage(MSG_INVALID_PATTERN,
                 "inputHeaderAnnotation", DEFAULT_PATTERN),
         };
-        verify(checkConfig, getPath("InputTypeName6.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputTypeName6.java"), expected);
     }
 
     @Test
@@ -130,7 +136,7 @@ public class TypeNameCheckTest
             "29:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner__Record", DEFAULT_PATTERN),
             "34:12: " + getCheckMessage(MSG_INVALID_PATTERN, "MyRecord__", DEFAULT_PATTERN),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputTypeNameRecords.java"), expected);
     }
 

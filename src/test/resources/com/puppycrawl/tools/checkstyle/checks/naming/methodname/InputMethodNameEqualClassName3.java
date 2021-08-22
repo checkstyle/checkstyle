@@ -32,12 +32,12 @@ public class InputMethodNameEqualClassName3 {
 
     class Inner {
                 //illegal name
-        public int Inner() {
+        public int Inner() { // violation
                         return 0;
                 }
 
                 //OK name - name of the outter class's ctor
-        public int InputMethodNameEqualClassName3() {
+        public int InputMethodNameEqualClassName3() { // violation
                         return 0;
                 }
         }
@@ -46,7 +46,7 @@ public class InputMethodNameEqualClassName3 {
                 new InputMethodNameEqualClassName() {
 
                         //illegal name
-            public int InputMethodNameEqualClassName3() {
+            public int InputMethodNameEqualClassName3() { // violation
                                 return 1;
                         }
                 };
@@ -56,13 +56,13 @@ public class InputMethodNameEqualClassName3 {
 interface SweetInterface3 {
 
         //illegal name
-    int SweetInterface();
+    int SweetInterface(); // violation
 }
 
 class Outer3 {
 
         //illegal name
-    public void Outer() {
+    public void Outer() { // violation
 
         }
 }

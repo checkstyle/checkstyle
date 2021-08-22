@@ -56,7 +56,8 @@ public class LocalFinalVariableNameCheckTest
         final String[] expected = {
             "126:19: " + getCheckMessage(MSG_INVALID_PATTERN, "CDE", pattern),
         };
-        verify(checkConfig, getPath("InputLocalFinalVariableName.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputLocalFinalVariableName.java"), expected);
     }
 
     @Test
@@ -71,7 +72,8 @@ public class LocalFinalVariableNameCheckTest
         final String[] expected = {
             "125:19: " + getCheckMessage(MSG_INVALID_PATTERN, "cde", pattern),
         };
-        verify(checkConfig, getPath("InputLocalFinalVariableName1.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputLocalFinalVariableName1.java"), expected);
     }
 
     @Test
@@ -80,7 +82,8 @@ public class LocalFinalVariableNameCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(LocalFinalVariableNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputLocalFinalVariableNameInnerClass.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputLocalFinalVariableNameInnerClass.java"), expected);
     }
 
     @Test
@@ -111,7 +114,8 @@ public class LocalFinalVariableNameCheckTest
             "79:30: " + getCheckMessage(MSG_INVALID_PATTERN, "fis8859_1", pattern),
             "82:32: " + getCheckMessage(MSG_INVALID_PATTERN, "isrutf8", pattern),
         };
-        verify(checkConfig, getPath("InputLocalFinalVariableNameTryResources.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputLocalFinalVariableNameTryResources.java"), expected);
     }
 
     @Test
@@ -121,7 +125,8 @@ public class LocalFinalVariableNameCheckTest
         checkConfig.addProperty("format", "[a-z]+");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath(
+        verifyWithInlineConfigParser(checkConfig,
+                getNonCompilablePath(
             "InputLocalFinalVariableNameTryResourcesJava9.java"), expected);
     }
 
