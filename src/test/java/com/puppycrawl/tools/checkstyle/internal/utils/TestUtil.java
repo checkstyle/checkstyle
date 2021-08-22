@@ -27,6 +27,9 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 
 import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
@@ -39,6 +42,16 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 public final class TestUtil {
+
+    /**
+     * The stack size used in {@link TestUtil#getResultWithLimitedResources}.
+     * This value should be as small as possible. Some JVM requires this value to be
+     * at least 144k.
+     *
+     * @see <a href="https://www.baeldung.com/jvm-configure-stack-sizes">
+     *      Configuring Stack Sizes in the JVM</a>
+     */
+    private static final int MINIMAL_STACK_SIZE = 147456;
 
     private TestUtil() {
     }
@@ -237,4 +250,22 @@ public final class TestUtil {
         return result;
     }
 
+    /**
+     * Runs a given task with limited stack size and time duration, then
+     * returns the result. See AbstractModuleTestSupport#verifyWithLimitedResources
+     * for an example of how to use this method when task does not return a result, i.e.
+     * the given method's return type is {@code void}.
+     *
+     * @param callable the task to execute
+     * @param <V> return type of task - {@code Void} if task does not return result
+     * @return result
+     * @throws Exception if getting result fails
+     */
+    public static <V> V getResultWithLimitedResources(Callable<V> callable) throws Exception {
+        final FutureTask<V> futureTask = new FutureTask<>(callable);
+        final Thread thread = new Thread(null, futureTask,
+                "LimitedStackSizeThread", MINIMAL_STACK_SIZE);
+        thread.start();
+        return futureTask.get(10, TimeUnit.SECONDS);
+    }
 }
