@@ -1,7 +1,7 @@
 /*
 OperatorWrap
-option = (default)nl
-tokens = ASSIGN, COLON, LAND, LOR, STAR, QUESTION
+option = (default)NL
+tokens = ASSIGN,COLON,LAND,LOR,STAR,QUESTION
 
 
 */
@@ -57,8 +57,8 @@ class InputOperatorWrapNl
                 || magic == 0x58 // 'X' // ok
         ) {
         }
-        if (magic != 0x31 && // '1'     // violation
-                magic != 0x41 && // ')' // violation
+        if (magic != 0x31 && // violation
+                magic != 0x41 && // violation
                 magic != 0x59 // 'Y'
         ) {
         }

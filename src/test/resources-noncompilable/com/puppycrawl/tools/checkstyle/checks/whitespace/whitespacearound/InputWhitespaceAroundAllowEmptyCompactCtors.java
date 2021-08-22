@@ -23,7 +23,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 public class InputWhitespaceAroundAllowEmptyCompactCtors {
     //simple record def
-    record MyRecord() {} // violation x2
+    record MyRecord() {} // 2 violations
 
     // simple record def
     record MyRecord1() {
@@ -31,9 +31,9 @@ public class InputWhitespaceAroundAllowEmptyCompactCtors {
 
     // nested constructs
     record MyRecord2() {
-        class MyClass {} // violation 2x
-        interface Foo {} // violation 2x
-        record MyRecord () {} // violation x2
+        class MyClass {} // 2 violations
+        interface Foo {} // 2 violations
+        record MyRecord () {} // 2 violations
     }
 
     // method
@@ -41,7 +41,7 @@ public class InputWhitespaceAroundAllowEmptyCompactCtors {
         void method (){ // violation
             final int a = 1;
             int b= 1; // violation
-            b=1; // violation x2
+            b=1; // 2 violations
         }
 
     }
@@ -51,7 +51,7 @@ public class InputWhitespaceAroundAllowEmptyCompactCtors {
         public MyRecord4() {
             final int a = 1;
             int b= 1; // violation
-            b=1; // violation x2
+            b=1; // 2 violations
         }
     }
 
@@ -77,14 +77,14 @@ class foo {
 }
 
 class foo2 {
-    public foo2(){} // violation, no WS before '{'
+    public foo2(){} // violation
 }
 
 class foo3 {
-    public foo3(){System.out.println();} // violation, no WS before and after '{'
+    public foo3(){System.out.println();} // 3 violations
                                     //-^--- violation, no WS before '}'
 }
 
 record TestRecord8(int a, int b) {
-    public TestRecord8{} // violation, no WS before '{'
+    public TestRecord8{} // violation
 }

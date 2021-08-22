@@ -54,15 +54,15 @@ public final class InlineConfigParser {
 
     /** A pattern to find the string: "// X violations". */
     private static final Pattern MULTIPLE_VIOLATIONS_PATTERN = Pattern
-            .compile(".*//\\s*(\\d) violations$");
+            .compile(".*//\\s*(\\d+) violations$");
 
     /** A pattern to find the string: "// X violations above". */
     private static final Pattern MULTIPLE_VIOLATIONS_ABOVE_PATTERN = Pattern
-            .compile(".*//\\s*(\\d) violations above$");
+            .compile(".*//\\s*(\\d+) violations above$");
 
     /** A pattern to find the string: "// X violations below". */
     private static final Pattern MULTIPLE_VIOLATIONS_BELOW_PATTERN = Pattern
-            .compile(".*//\\s*(\\d) violations below$");
+            .compile(".*//\\s*(\\d+) violations below$");
 
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";

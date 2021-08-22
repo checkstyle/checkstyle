@@ -56,7 +56,8 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
             "89:38: " + getCheckMessage(MSG_KEY, ":"),
             "92:35: " + getCheckMessage(MSG_KEY, ":"),
         };
-        verify(checkConfig, getPath("InputNoWhitespaceBeforeCaseDefaultColon.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputNoWhitespaceBeforeCaseDefaultColon.java"),
                 expected);
     }
 
@@ -65,16 +66,16 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(
                 NoWhitespaceBeforeCaseDefaultColonCheck.class);
         final String[] expected = {
-            "33:22: " + getCheckMessage(MSG_KEY, ":"),
-            "36:21: " + getCheckMessage(MSG_KEY, ":"),
-            "39:25: " + getCheckMessage(MSG_KEY, ":"),
-            "58:20: " + getCheckMessage(MSG_KEY, ":"),
-            "71:32: " + getCheckMessage(MSG_KEY, ":"),
-            "88:17: " + getCheckMessage(MSG_KEY, ":"),
-            "91:20: " + getCheckMessage(MSG_KEY, ":"),
-            "94:21: " + getCheckMessage(MSG_KEY, ":"),
+            "36:22: " + getCheckMessage(MSG_KEY, ":"),
+            "39:21: " + getCheckMessage(MSG_KEY, ":"),
+            "42:25: " + getCheckMessage(MSG_KEY, ":"),
+            "61:20: " + getCheckMessage(MSG_KEY, ":"),
+            "74:32: " + getCheckMessage(MSG_KEY, ":"),
+            "91:17: " + getCheckMessage(MSG_KEY, ":"),
+            "94:20: " + getCheckMessage(MSG_KEY, ":"),
+            "97:21: " + getCheckMessage(MSG_KEY, ":"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath("InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings.java"),
                 expected);
     }

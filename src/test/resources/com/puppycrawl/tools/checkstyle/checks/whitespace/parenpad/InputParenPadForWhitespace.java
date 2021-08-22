@@ -24,7 +24,7 @@ class InputParenPadForWhitespace
         for (int i = 0; i < 1;i++ ) { // violation
         }
 
-        for (int i = 0; i < 1; i++ ) {
+        for (int i = 0; i < 1; i++ ) { // violation
         }
 
         for (int i = 0; i < 1;) {
@@ -44,18 +44,18 @@ class InputParenPadForWhitespace
 
     void method2()
     {
-        for ( int i = 0; i < 1; i++ ) {
+        for ( int i = 0; i < 1; i++ ) { // 2 violations
         }
 
-        for ( int i = 0; i < 1; ) {
+        for ( int i = 0; i < 1; ) { // violation
             i++;
         }
 
         int i = 0;
-        for ( ; i < 1; i++ ) {
+        for ( ; i < 1; i++ ) { // violation
         }
 
-        for (; i < 2; i++ ) {
+        for (; i < 2; i++ ) { // violation
         }
 
         for (

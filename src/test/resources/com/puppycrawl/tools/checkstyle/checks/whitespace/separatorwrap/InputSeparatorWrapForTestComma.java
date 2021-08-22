@@ -1,6 +1,6 @@
 /*
 SeparatorWrap
-option = (default)eol
+option = (default)EOL
 tokens = COMMA
 
 
@@ -44,7 +44,7 @@ class badCaseForTestComma<T extends FooForTestComma &  BarForTestComma> {
                 | BarException4TC e) {}
 
         foo(1
-                ,s);  //bad wrapping // violation
+                ,s);  // violation
         int[] i;
     }
     public static String foo(int i, String s) throws FooException4TC, BarException4TC
