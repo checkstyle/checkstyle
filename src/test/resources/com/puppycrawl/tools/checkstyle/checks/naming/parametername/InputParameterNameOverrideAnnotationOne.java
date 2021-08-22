@@ -25,7 +25,7 @@ public class InputParameterNameOverrideAnnotationOne {
 
     void foo3() {} // No NPE here! // ok
 
-    void foo4(int abc, int bd) {} // violation
+    void foo4(int abc, int bd) {} // 2 violations
 
     int foo5(int abc) {return 1;} // violation
 
@@ -33,8 +33,8 @@ public class InputParameterNameOverrideAnnotationOne {
     private java.util.Set<String> packageNames;
 
     InputParameterNameOverrideAnnotationOne() {} // No NPE here! // ok
-
-    InputParameterNameOverrideAnnotationOne(int fie, java.util.Set<String> pkgNames) {} // violation
+    // 2 violations below
+    InputParameterNameOverrideAnnotationOne(int fie, java.util.Set<String> pkgNames) {}
 
 
 }

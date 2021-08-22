@@ -52,7 +52,8 @@ public class ParameterNameCheckTest
             createModuleConfig(ParameterNameCheck.class);
         checkConfig.addProperty("format", "^NO_WAY_MATEY$");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputParameterNameCatchOnly.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParameterNameCatchOnly.java"), expected);
     }
 
     @Test
@@ -69,7 +70,8 @@ public class ParameterNameCheckTest
             "68:34: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat2", pattern),
             "69:25: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat3", pattern),
         };
-        verify(checkConfig, getPath("InputParameterNameOne.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParameterNameOne.java"), expected);
     }
 
     @Test
@@ -78,7 +80,8 @@ public class ParameterNameCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(ParameterNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputParameterName.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParameterName.java"), expected);
     }
 
     @Test
@@ -110,7 +113,8 @@ public class ParameterNameCheckTest
             "37:46: " + getCheckMessage(MSG_INVALID_PATTERN, "fie", pattern),
             "37:73: " + getCheckMessage(MSG_INVALID_PATTERN, "pkgNames", pattern),
             };
-        verify(checkConfig, getPath("InputParameterNameOverrideAnnotation.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParameterNameOverrideAnnotation.java"), expected);
     }
 
     @Test
@@ -133,7 +137,8 @@ public class ParameterNameCheckTest
             "37:49: " + getCheckMessage(MSG_INVALID_PATTERN, "fie", pattern),
             "37:76: " + getCheckMessage(MSG_INVALID_PATTERN, "pkgNames", pattern),
             };
-        verify(checkConfig, getPath("InputParameterNameOverrideAnnotationOne.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParameterNameOverrideAnnotationOne.java"), expected);
     }
 
     @Test
@@ -154,7 +159,8 @@ public class ParameterNameCheckTest
             "53:24: " + getCheckMessage(MSG_INVALID_PATTERN, "packpub", pattern),
             "69:21: " + getCheckMessage(MSG_INVALID_PATTERN, "packifc", pattern),
             };
-        verify(checkConfig, getPath("InputParameterNameAccessModifier.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParameterNameAccessModifier.java"), expected);
     }
 
     @Test
@@ -164,21 +170,24 @@ public class ParameterNameCheckTest
         checkConfig.addProperty("format", "^[a-z][a-zA-Z0-9]*$");
         checkConfig.addProperty("ignoreOverridden", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputParameterNameOverrideAnnotationNoNPE.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParameterNameOverrideAnnotationNoNPE.java"), expected);
     }
 
     @Test
     public void testReceiverParameter() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ParameterNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputParameterNameReceiver.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParameterNameReceiver.java"), expected);
     }
 
     @Test
     public void testLambdaParameterNoViolationAtAll() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ParameterNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputParameterNameLambda.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParameterNameLambda.java"), expected);
     }
 
 }
