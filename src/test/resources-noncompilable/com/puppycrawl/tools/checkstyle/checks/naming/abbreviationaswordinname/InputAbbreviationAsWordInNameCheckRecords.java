@@ -23,14 +23,14 @@ public class InputAbbreviationAsWordInNameCheckRecords {
         int INTEGER = 2; // violation
         void METHOD(){} // violation
 
-        public myCLASS(String STRING) { // violation for param
+        public myCLASS(String STRING) { // violation
             int INTEGER = 6; // violation
 
         }
 
     }
 
-    record myRECORD1(String STRING) { // violation x2
+    record myRECORD1(String STRING) { // 2 violations
 
         void METHOD(){} // violation
 
@@ -51,7 +51,7 @@ public class InputAbbreviationAsWordInNameCheckRecords {
         }
     }
 
-    record myRECORD3(String STRING, int INTEGER, Node[] NODES) { // violation x4
+    record myRECORD3(String STRING, int INTEGER, Node[] NODES) { // 4 violations
 
     }
 }

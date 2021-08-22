@@ -20,7 +20,7 @@ abstract class AbstractClassOtherVa { // ok
     }
 }
 
-class NonAbstractClassVa { // violation
+class NonAbstractClassVa {
 }
 
 

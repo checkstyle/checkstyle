@@ -70,7 +70,8 @@ public class MethodTypeParameterNameCheckTest
             "30:6: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
             "35:10: " + getCheckMessage(MSG_INVALID_PATTERN, "_fo", pattern),
         };
-        verify(checkConfig, getPath("InputMethodTypeParameterName.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMethodTypeParameterName.java"), expected);
     }
 
     @Test
@@ -90,7 +91,8 @@ public class MethodTypeParameterNameCheckTest
             "42:6: " + getCheckMessage(MSG_INVALID_PATTERN, "E", pattern),
             "44:14: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
         };
-        verify(checkConfig, getPath("InputMethodTypeParameterName1.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMethodTypeParameterName1.java"), expected);
     }
 
 }
