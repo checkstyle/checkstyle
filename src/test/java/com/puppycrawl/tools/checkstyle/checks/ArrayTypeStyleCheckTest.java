@@ -60,7 +60,8 @@ public class ArrayTypeStyleCheckTest
             "55:27: " + getCheckMessage(MSG_KEY),
             "55:29: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputArrayTypeStyle.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputArrayTypeStyle.java"), expected);
     }
 
     @Test
@@ -80,7 +81,8 @@ public class ArrayTypeStyleCheckTest
             "55:27: " + getCheckMessage(MSG_KEY),
             "55:29: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputArrayTypeStyleOff.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputArrayTypeStyleOff.java"), expected);
     }
 
     @Test
@@ -89,12 +91,13 @@ public class ArrayTypeStyleCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(ArrayTypeStyleCheck.class);
         final String[] expected = {
-            "18:45: " + getCheckMessage(MSG_KEY),
-            "19:61: " + getCheckMessage(MSG_KEY),
-            "20:76: " + getCheckMessage(MSG_KEY),
-            "27:16: " + getCheckMessage(MSG_KEY),
+            "22:45: " + getCheckMessage(MSG_KEY),
+            "23:61: " + getCheckMessage(MSG_KEY),
+            "24:76: " + getCheckMessage(MSG_KEY),
+            "31:16: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputArrayTypeStyleNestedGenerics.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputArrayTypeStyleNestedGenerics.java"), expected);
     }
 
     @Test

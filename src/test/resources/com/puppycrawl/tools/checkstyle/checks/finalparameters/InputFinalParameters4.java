@@ -133,10 +133,10 @@ class InputFinalParameters4
         catch (@MyAnnotation33 final ClassCastException e) {
             e.getMessage();
         }
-        catch (RuntimeException e) {
+        catch (RuntimeException e) { // violation
             e.getMessage();
         }
-        catch (@MyAnnotation33 NoClassDefFoundError e) {
+        catch (@MyAnnotation33 NoClassDefFoundError e) { // violation
             e.getMessage();
         }
     }

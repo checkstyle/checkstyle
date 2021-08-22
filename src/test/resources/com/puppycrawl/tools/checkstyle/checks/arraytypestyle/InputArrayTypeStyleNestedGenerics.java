@@ -1,8 +1,12 @@
+/*
+ArrayTypeStyle
+javaStyle = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.arraytypestyle;
 
-/* Config:
- * default
- */
 public class InputArrayTypeStyleNestedGenerics {
     protected Pair<Integer, Object>[] values1; // ok
     protected Pair<Integer, Pair<String, Object>[]>[] values2; // ok
@@ -13,7 +17,7 @@ public class InputArrayTypeStyleNestedGenerics {
             String,
             Pair<String, Object>
         >[]
-    >[] values3b; // ok
+    >[] values3b;
 
     protected Pair<Integer, Object> values1b[]; // violation
     protected Pair<Integer, Pair<String, Object>[]> values2b[]; // violation
