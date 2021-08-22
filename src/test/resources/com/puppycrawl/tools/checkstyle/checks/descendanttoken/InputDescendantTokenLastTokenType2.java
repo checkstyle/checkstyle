@@ -18,4 +18,4 @@ package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 /**
  * Created by valeria on 8/19/17.
  */
-public class InputDescendantTokenLastTokenType2 {} // violation
+public class InputDescendantTokenLastTokenType2 {} // 2 violations

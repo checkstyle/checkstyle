@@ -39,12 +39,12 @@ class InputFinalParameters
     }
 
     /** non-final param constructor with annotation*/
-    InputFinalParameters(@MyAnnotation33 Boolean i)
+    InputFinalParameters(@MyAnnotation33 Boolean i) // violation
     {
     }
 
     /** mixed */
-    InputFinalParameters(String s, final Integer i)
+    InputFinalParameters(String s, final Integer i) // violation
     {
     }
 
@@ -54,7 +54,7 @@ class InputFinalParameters
     }
 
     /** non final param method */
-    void method(String s)
+    void method(String s) // violation
     {
     }
 
@@ -70,13 +70,13 @@ class InputFinalParameters
     }
 
     /** non-final param method with annotation **/
-    void method(@MyAnnotation33 Class<Object> s)
+    void method(@MyAnnotation33 Class<Object> s) // violation
     {
 
     }
 
     /** mixed */
-    void method(String s, final Integer i)
+    void method(String s, final Integer i) // violation
     {
     }
 
@@ -91,10 +91,10 @@ class InputFinalParameters
     {
         Action a = new AbstractAction()
             {
-                public void actionPerformed(ActionEvent e)
+                public void actionPerformed(ActionEvent e) // violation
                 {
                 }
-                void somethingElse(@MyAnnotation33 ActionEvent e)
+                void somethingElse(@MyAnnotation33 ActionEvent e) // violation
                 {
                 }
             };
@@ -111,13 +111,13 @@ class InputFinalParameters
     }
 
     /** methods with complicated types of the parameters. */
-    void methodA(java.lang.String aParam) {
+    void methodA(java.lang.String aParam) { // violation
     }
 
-    void methodB(String[] args) {
+    void methodB(String[] args) { // violation
     }
 
-    void methodC(java.lang.String[] args) {
+    void methodC(java.lang.String[] args) { // violation
     }
 
     /** some catch blocks */

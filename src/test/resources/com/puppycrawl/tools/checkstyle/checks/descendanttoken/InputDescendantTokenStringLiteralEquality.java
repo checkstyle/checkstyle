@@ -24,12 +24,12 @@ public class InputDescendantTokenStringLiteralEquality
             // flagged, should use equals
         }
 
-        if ("Oleg" == name)
+        if ("Oleg" == name) // violation
         {
             // flagged, should use equals
         }
 
-        if ("Oliver" == "Oliver")
+        if ("Oliver" == "Oliver") // violation
         {
             // doesn't make much sense because this can be evaluated
             // to true at compile time, but is flagged anyway

@@ -1540,7 +1540,6 @@
 
                 <exclude>**/NPathComplexityCheckTest.class</exclude>
 
-                <exclude>**/DescendantTokenCheckTest.class</exclude>
 
                 <exclude>**/ConstantNameCheckTest.class</exclude>
 
@@ -1668,9 +1667,7 @@
 
                 <exclude>**/UncommentedMainCheckTest.class</exclude>
 
-                <exclude>**/FinalParametersCheckTest.class</exclude>
 
-                <exclude>**/ArrayTypeStyleCheckTest.class</exclude>
 
                 <exclude>**/ExecutableStatementCountCheckTest.class</exclude>
 

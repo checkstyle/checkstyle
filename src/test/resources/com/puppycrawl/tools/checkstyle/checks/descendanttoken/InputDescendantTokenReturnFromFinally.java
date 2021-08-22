@@ -27,7 +27,7 @@ public class InputDescendantTokenReturnFromFinally {
     public void bar() {
         try {
             System.currentTimeMillis();
-        } finally {
+        } finally { // violation
             if (System.currentTimeMillis() == 0) {
                 return; // return from if statement
             }

@@ -34,9 +34,9 @@ public class InputDescendantTokenReturnFromFinally6 {
         }
     }
     public void thisNull() {
-        boolean result = (this == null) || (null == this);
-        boolean result2 = (this != null) && (null != this);
+        boolean result = (this == null) || (null == this); // 2 violations
+        boolean result2 = (this != null) && (null != this); // 2 violations
         boolean result3 = (this.getClass().getName()
-            == String.valueOf(null == System.getProperty("abc")));
+            == String.valueOf(null == System.getProperty("abc"))); // 2 violations
     }
 }
