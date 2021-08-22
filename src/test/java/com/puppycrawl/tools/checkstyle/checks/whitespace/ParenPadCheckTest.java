@@ -64,7 +64,8 @@ public class ParenPadCheckTest
             "284:17: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "284:24: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputParenPadWhitespace.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParenPadWhitespace.java"), expected);
     }
 
     @Test
@@ -110,7 +111,8 @@ public class ParenPadCheckTest
             "294:54: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "294:70: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputParenPadWhitespace2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParenPadWhitespace2.java"), expected);
     }
 
     @Test
@@ -127,7 +129,8 @@ public class ParenPadCheckTest
             "55:28: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
             "58:27: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputParenPadForWhitespace.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParenPadForWhitespace.java"), expected);
     }
 
     @Test
@@ -147,7 +150,8 @@ public class ParenPadCheckTest
             "34:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "39:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
         };
-        verify(checkConfig, getPath("InputParenPadForWhitespace2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParenPadForWhitespace2.java"), expected);
     }
 
     @Test
@@ -156,7 +160,8 @@ public class ParenPadCheckTest
             createModuleConfig(ParenPadCheck.class);
         checkConfig.addProperty("option", PadOption.SPACE.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputParenPadWithSpace.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParenPadWithSpace.java"),
                expected);
     }
 
@@ -288,7 +293,8 @@ public class ParenPadCheckTest
             "227:20: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
             "229:21: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputParenPadLeftRightAndNoSpace1.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParenPadLeftRightAndNoSpace1.java"), expected);
     }
 
     @Test
@@ -324,7 +330,8 @@ public class ParenPadCheckTest
             "220:52: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
             "220:54: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputParenPadLeftRightAndNoSpace2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParenPadLeftRightAndNoSpace2.java"), expected);
     }
 
     @Test
@@ -335,7 +342,8 @@ public class ParenPadCheckTest
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputParenPadLeftRightAndNoSpace3.java"), expected);
+            verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParenPadLeftRightAndNoSpace3.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
@@ -364,7 +372,8 @@ public class ParenPadCheckTest
             "33:20: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "33:35: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputParenPadLambda.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParenPadLambda.java"), expected);
     }
 
     @Test
@@ -383,7 +392,8 @@ public class ParenPadCheckTest
             "33:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "33:33: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputParenPadLambdaWithSpace.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParenPadLambdaWithSpace.java"), expected);
     }
 
     @Test
@@ -396,7 +406,8 @@ public class ParenPadCheckTest
             "30:20: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "30:35: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputParenPadWithDisabledLambda.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParenPadWithDisabledLambda.java"), expected);
     }
 
     @Test
@@ -408,7 +419,8 @@ public class ParenPadCheckTest
             "30:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "30:33: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputParenPadWithSpaceAndDisabledLambda.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParenPadWithSpaceAndDisabledLambda.java"), expected);
     }
 
     @Test
@@ -425,7 +437,8 @@ public class ParenPadCheckTest
             "25:46: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "25:57: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputParenPadLambdaOnly.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParenPadLambdaOnly.java"), expected);
     }
 
     @Test
@@ -443,7 +456,8 @@ public class ParenPadCheckTest
             "25:47: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "25:56: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputParenPadLambdaOnlyWithSpace.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParenPadLambdaOnlyWithSpace.java"), expected);
     }
 
     @Test
@@ -453,7 +467,8 @@ public class ParenPadCheckTest
         final String[] expected = {
             "16:2: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputParenPadStartOfTheLine.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParenPadStartOfTheLine.java"), expected);
     }
 
     @Test
@@ -463,7 +478,8 @@ public class ParenPadCheckTest
             "20:37: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
             "21:61: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
-        verify(checkConfig, getPath("InputParenPadTryWithResources.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParenPadTryWithResources.java"), expected);
     }
 
     @Test
@@ -471,7 +487,8 @@ public class ParenPadCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ParenPadCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputParenPadNoStackoverflowError.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputParenPadNoStackoverflowError.java"), expected);
     }
 
     @Test
@@ -493,7 +510,7 @@ public class ParenPadCheckTest
             "53:21: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "54:52: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath("InputParenPadCheckRecords.java"), expected);
     }
 
@@ -516,7 +533,7 @@ public class ParenPadCheckTest
             "54:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "55:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getNonCompilablePath("InputParenPadCheckRecordsSpace.java"), expected);
     }
 

@@ -56,7 +56,8 @@ public class EmptyForInitializerPadCheckTest
         final String[] expected = {
             "51:15: " + getCheckMessage(MSG_PRECEDED, ";"),
         };
-        verify(checkConfig, getPath("InputEmptyForInitializerPadDefaultConfig.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputEmptyForInitializerPadDefaultConfig.java"), expected);
     }
 
     @Test
@@ -67,7 +68,8 @@ public class EmptyForInitializerPadCheckTest
         final String[] expected = {
             "54:14: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
         };
-        verify(checkConfig, getPath("InputEmptyForInitializerPad.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputEmptyForInitializerPad.java"), expected);
     }
 
     @Test
@@ -110,7 +112,8 @@ public class EmptyForInitializerPadCheckTest
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputEmptyForInitializerPad2.java"), expected);
+            verify(createChecker(checkConfig),
+                    getPath("InputEmptyForInitializerPad2.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {

@@ -67,7 +67,7 @@ class InputWhitespaceAroundBraces
         }
 
         // Invalid
-        for(int i = 1;i < 5;i++);
+        for(int i = 1;i < 5;i++); // violation
         for (int i = 1; i < 5; i++)
             testFor();
         for (int i = 1; i < 5;
@@ -124,13 +124,13 @@ class InputWhitespaceAroundBraces
     }
 
     /** Empty constructor block. **/
-    public InputWhitespaceAroundBraces() {}
+    public InputWhitespaceAroundBraces() {} // 2 violations
 
     /** Empty method block. **/
-    public void emptyImplementation() {}
+    public void emptyImplementation() {} // 2 violations
 
     public void foo() {
         boolean flag = true;
-        if(flag){}
+        if(flag){} // 4 violations
     }
 }

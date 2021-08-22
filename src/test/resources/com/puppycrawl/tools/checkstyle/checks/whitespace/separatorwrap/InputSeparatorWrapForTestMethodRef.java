@@ -1,6 +1,6 @@
 /*
 SeparatorWrap
-option = nl
+option = NL
 tokens = METHOD_REF
 
 
@@ -21,7 +21,7 @@ public class InputSeparatorWrapForTestMethodRef {
 
     void badCase() {
         String[] stringArray = { "Barbara", "James", "Mary", "John",
-            "Patricia", "Robert", "Michael", "Linda" }; // violation
+            "Patricia", "Robert", "Michael", "Linda" }; // violation below
         /* violation */ Arrays.sort(stringArray, String::
                 compareToIgnoreCase);
     }

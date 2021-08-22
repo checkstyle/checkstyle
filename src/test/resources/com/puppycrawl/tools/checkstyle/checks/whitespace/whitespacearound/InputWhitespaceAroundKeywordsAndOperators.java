@@ -29,9 +29,9 @@ package com . puppycrawl
 class InputWhitespaceAroundKeywordsAndOperators
 {
     /** ignore assignment **/
-    private int mVar1=1; // violation
+    private int mVar1=1; // 2 violations
     /** ignore assignment **/
-    private int mVar2 =1;
+    private int mVar2 =1; // violation
     /** Should be ok **/
     private int mVar3 = 1;
 
@@ -39,10 +39,10 @@ class InputWhitespaceAroundKeywordsAndOperators
     void method1()
     {
         final int a = 1;
-        int b= 1; // Ignore 1
-        b=1; // Ignore 1
-        b+=1; // Ignore 1
-        b -=- 1 + (+ b); // Ignore 2
+        int b= 1; // violation
+        b=1; // 2 violations
+        b+=1; // 2 violations
+        b -=- 1 + (+ b); // violation
         b = b ++ + b --; // Ignore 1
         b = ++ b - -- b; // Ignore 1
     }
@@ -50,11 +50,11 @@ class InputWhitespaceAroundKeywordsAndOperators
     /** method **/
     void method2()
     {
-        synchronized(this) {
+        synchronized(this) { // violation
         }
-        try{
+        try{ // 2 violations
         }
-        catch(RuntimeException e){
+        catch(RuntimeException e){ // 2 violations
         }
     }
 
@@ -71,7 +71,7 @@ class InputWhitespaceAroundKeywordsAndOperators
     private void fastExit()
     {
         boolean complicatedStuffNeeded = true;
-        if( !complicatedStuffNeeded )
+        if( !complicatedStuffNeeded ) // violation
         {
             return; // should not complain about missing WS after return
         }
@@ -89,7 +89,7 @@ class InputWhitespaceAroundKeywordsAndOperators
     {
         if ( true )
         {
-            return(2); // should complain about missing WS after return
+            return(2); // violation
         }
         else
         {
@@ -101,7 +101,7 @@ class InputWhitespaceAroundKeywordsAndOperators
     private void testCasts()
     {
         Object o = (Object) new Object(); // ok
-        o = (Object)o; // violation
+        o = (Object)o;
         o = ( Object ) o; // ok
         o = (Object)
             o; // ok
@@ -110,14 +110,14 @@ class InputWhitespaceAroundKeywordsAndOperators
     /** test questions **/
     private void testQuestions()
     {
-        boolean b = (1 == 2)?true:false;
-        b = (1==2) ? false : true;
+        boolean b = (1 == 2)?true:false; // 4 violations
+        b = (1==2) ? false : true; // 2 violations
     }
 
     /** star test **/
     private void starTest()
     {
-        int x = 2 *3* 4;
+        int x = 2 *3* 4; // 2 violations
     }
 
     /** boolean test **/
@@ -132,13 +132,13 @@ class InputWhitespaceAroundKeywordsAndOperators
     private void divTest()
     {
         int a = 4 % 2;
-        int b = 4% 2;
-        int c = 4 %2;
-        int d = 4%2;
+        int b = 4% 2; // violation
+        int c = 4 %2; // violation
+        int d = 4%2; // 2 violations
         int e = 4 / 2;
-        int f = 4/ 2;
-        int g = 4 /2;
-        int h = 4/2;
+        int f = 4/ 2; // violation
+        int g = 4 /2; // violation
+        int h = 4/2; // 2 violations
     }
 
     /** @return dot test **/
@@ -166,10 +166,10 @@ class InputWhitespaceAroundKeywordsAndOperators
         assert "OK".equals(null) ? false : true : "Whups";
 
         // missing WS around assert
-        assert(true);
+        assert(true); // violation
 
         // missing WS around colon
-        assert true:"Whups";
+        assert true:"Whups"; // 2 violations
     }
 
     /** another check */
@@ -275,7 +275,7 @@ class SpecialCasesInForLoop
             new Runnable() {
                 public void run() {
                 }
-            }};
+            }}; // violation
         runs[0]
 .
  run()
@@ -304,6 +304,6 @@ class SpecialCasesInForLoop
     }
     public String test() {
         int pc = 0;
-        return ((100000+pc)+"").substring(1);
+        return ((100000+pc)+"").substring(1); // 4 violations
     }
 }

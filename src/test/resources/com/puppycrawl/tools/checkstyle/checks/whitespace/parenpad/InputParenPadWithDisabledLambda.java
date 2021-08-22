@@ -24,7 +24,7 @@ public class InputParenPadWithDisabledLambda {
 
         java.util.stream.Stream.of().forEach(( Object o ) -> o.toString()); // ok
 
-        java.util.stream.Stream.of().forEach(o -> o.toString( )); // violation
+        java.util.stream.Stream.of().forEach(o -> o.toString( )); // 2 violations
     }
 
     void someMethod( String param ) { // 2 violations
