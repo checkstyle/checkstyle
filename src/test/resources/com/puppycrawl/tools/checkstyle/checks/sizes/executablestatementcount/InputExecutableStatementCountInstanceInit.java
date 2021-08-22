@@ -1,9 +1,12 @@
-package com.puppycrawl.tools.checkstyle.checks.sizes.executablestatementcount;
+/*
+ExecutableStatementCount
+max = 0
+tokens = INSTANCE_INIT
 
-/* Config:
- * max = 0
- * tokens = INSTANCE_DEF
- */
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.sizes.executablestatementcount;
 
 public class InputExecutableStatementCountInstanceInit {
     // INSTANCE_INIT

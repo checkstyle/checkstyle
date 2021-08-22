@@ -1,8 +1,12 @@
-package com.puppycrawl.tools.checkstyle.checks.sizes.executablestatementcount;
+/*
+ExecutableStatementCount
+max = 0
+tokens = (default)CTOR_DEF, METHOD_DEF, INSTANCE_INIT, STATIC_INIT, COMPACT_CTOR_DEF, LAMBDA
 
-/* Config:
- * max = 0
- */
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.sizes.executablestatementcount;
 
 public class InputExecutableStatementCountMaxZero {
     public void foo() { // violation

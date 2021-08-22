@@ -1,9 +1,12 @@
-package com.puppycrawl.tools.checkstyle.checks.sizes.executablestatementcount;
+/*
+ExecutableStatementCount
+max = 0
+tokens = CTOR_DEF
 
-/* Config:
- * max = 0
- * tokens = CTOR_DEF
- */
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.sizes.executablestatementcount;
 
 public class InputExecutableStatementCountCtorDef {
     public InputExecutableStatementCountCtorDef() // violation

@@ -1651,7 +1651,6 @@
 
 
 
-                <exclude>**/ExecutableStatementCountCheckTest.class</exclude>
 
 
 
