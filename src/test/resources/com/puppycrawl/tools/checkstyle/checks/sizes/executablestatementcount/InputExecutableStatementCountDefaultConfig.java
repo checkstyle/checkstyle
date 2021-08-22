@@ -1,7 +1,12 @@
-package com.puppycrawl.tools.checkstyle.checks.sizes.executablestatementcount;
+/*
+ExecutableStatementCount
+max = (default)30
+tokens = (default)CTOR_DEF, METHOD_DEF, INSTANCE_INIT, STATIC_INIT, COMPACT_CTOR_DEF, LAMBDA
 
-/* Config:
- */
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.sizes.executablestatementcount;
 
 public class InputExecutableStatementCountDefaultConfig {
     public void foo() { // ok

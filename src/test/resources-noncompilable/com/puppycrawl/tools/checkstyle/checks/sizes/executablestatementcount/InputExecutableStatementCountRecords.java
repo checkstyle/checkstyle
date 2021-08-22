@@ -1,10 +1,14 @@
+/*
+ExecutableStatementCount
+max = 1
+tokens = (default)CTOR_DEF, METHOD_DEF, INSTANCE_INIT, STATIC_INIT, COMPACT_CTOR_DEF, LAMBDA
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.sizes.executablestatementcount;
-/* Config:
- * max = 1
- * tokens = {CTOR_DEF , METHOD_DEF , INSTANCE_INIT , STATIC_INIT, COMPACT_CTOR_DEF}
- *
- */
+
 public class InputExecutableStatementCountRecords {
 
     record MyTestRecord() {

@@ -1,9 +1,12 @@
-package com.puppycrawl.tools.checkstyle.checks.sizes.executablestatementcount;
+/*
+ExecutableStatementCount
+max = 0
+tokens = STATIC_INIT
 
-/* Config:
- * max = 0
- * tokens = METHOD_DEF
- */
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.sizes.executablestatementcount;
 
 public class InputExecutableStatementCountStaticInit {
     // STATIC_INIT

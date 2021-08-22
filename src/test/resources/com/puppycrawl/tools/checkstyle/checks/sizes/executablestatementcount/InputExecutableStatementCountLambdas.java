@@ -1,12 +1,15 @@
+/*
+ExecutableStatementCount
+max = 1
+tokens = LAMBDA
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.sizes.executablestatementcount;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
-
-/* Config:
- * max = 1
- * tokens = LAMBDA
- */
 
 public class InputExecutableStatementCountLambdas {
 
