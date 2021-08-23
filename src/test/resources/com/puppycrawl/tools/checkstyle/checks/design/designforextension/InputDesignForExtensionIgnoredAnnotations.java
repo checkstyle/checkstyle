@@ -172,3 +172,8 @@ public class InputDesignForExtensionIgnoredAnnotations {
 
     public @interface MyAnnotation { }
 }
+class InputDesignForExtensionsLocalAnnotations {
+    @interface Rule {}
+
+    @interface ClassRule {}
+}
