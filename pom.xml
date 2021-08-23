@@ -1781,7 +1781,6 @@
 
                 <exclude>**/JavadocMethodCheckTest.class</exclude>
 
-                <exclude>**/JavadocParagraphCheckTest.class</exclude>
 
                 <exclude>**/MethodReferencesTest.class</exclude>
 
