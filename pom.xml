@@ -1787,7 +1787,6 @@
 
                 <exclude>**/SummaryJavadocCheckTest.class</exclude>
 
-                <exclude>**/MissingJavadocTypeCheckTest.class</exclude>
 
                 <exclude>**/JavadocTagContinuationIndentationCheckTest.class</exclude>
 
@@ -1815,7 +1814,6 @@
 
                 <exclude>**/JavadocMissingWhitespaceAfterAsteriskCheckTest.class</exclude>
 
-                <exclude>**/MissingJavadocPackageCheckTest.class</exclude>
 
                 <exclude>**/ReceiverParameterTest.class</exclude>
 

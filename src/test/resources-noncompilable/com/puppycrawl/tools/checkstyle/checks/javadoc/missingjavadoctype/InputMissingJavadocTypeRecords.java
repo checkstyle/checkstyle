@@ -1,6 +1,6 @@
 /*
 MissingJavadocType
-scope = private
+scope = PRIVATE
 excludeScope = (default)null
 skipAnnotations = NonNull1
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF

@@ -70,7 +70,8 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
             "308:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "333:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig, getPath("InputMissingJavadocTypeTags.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMissingJavadocTypeTags.java"), expected);
     }
 
     @Test
@@ -83,7 +84,8 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
             "26:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "32:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig, getPath("InputMissingJavadocTypeInner.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMissingJavadocTypeInner.java"), expected);
     }
 
     @Test
@@ -97,7 +99,8 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
             "20:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "40:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig, getPath("InputMissingJavadocTypePublicOnly1.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMissingJavadocTypePublicOnly1.java"), expected);
     }
 
     @Test
@@ -108,7 +111,8 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "13:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig, getPath("InputMissingJavadocTypePublicOnly2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMissingJavadocTypePublicOnly2.java"), expected);
     }
 
     @Test
@@ -120,7 +124,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
             "13:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "44:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                getPath("InputMissingJavadocTypeScopeInnerInterfaces1.java"),
                expected);
     }
@@ -136,7 +140,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
             "44:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "71:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                getPath("InputMissingJavadocTypeScopeInnerInterfaces2.java"),
                expected);
     }
@@ -153,7 +157,8 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
             "24:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "26:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig, getPath("InputMissingJavadocTypeScopeInnerClasses1.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMissingJavadocTypeScopeInnerClasses1.java"), expected);
     }
 
     @Test
@@ -166,7 +171,8 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig, getPath("InputMissingJavadocTypeScopeInnerClasses2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputMissingJavadocTypeScopeInnerClasses2.java"), expected);
     }
 
     @Test
@@ -186,7 +192,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
             "109:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "121:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                getPath("InputMissingJavadocTypeNoJavadoc1.java"),
                expected);
     }
@@ -200,7 +206,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                getPath("InputMissingJavadocTypeNoJavadocOnInterface.java"),
                expected);
     }
@@ -214,7 +220,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
             "13:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "25:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                getPath("InputMissingJavadocTypeNoJavadoc2.java"),
                expected);
     }
@@ -235,7 +241,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
             "109:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "121:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                getPath("InputMissingJavadocTypeNoJavadoc3.java"),
                expected);
     }
@@ -245,7 +251,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MissingJavadocTypeCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getPath("InputMissingJavadocTypeUnusedParamInJavadocForClass.java"),
                 expected);
     }
@@ -261,7 +267,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
             "17:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "21:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getPath("InputMissingJavadocTypeSkipAnnotations1.java"),
             expected);
     }
@@ -280,7 +286,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
             "17:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "21:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getPath("InputMissingJavadocTypeSkipAnnotations2.java"),
                 expected);
     }
@@ -292,7 +298,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("skipAnnotations", "Generated3, ThisIsOk3");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getPath("InputMissingJavadocTypeSkipAnnotations3.java"),
             expected);
     }
@@ -309,7 +315,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
             "17:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "21:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getPath("InputMissingJavadocTypeSkipAnnotations4.java"),
             expected);
     }
@@ -330,7 +336,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
             "32:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "41:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputMissingJavadocTypeRecords.java"),
             expected);
     }
@@ -346,7 +352,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
             "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "19:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getPath("InputMissingJavadocTypeInterfaceMemberScopeIsPublic.java"),
             expected);
     }
