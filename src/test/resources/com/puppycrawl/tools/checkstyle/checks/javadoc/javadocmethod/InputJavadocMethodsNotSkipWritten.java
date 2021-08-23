@@ -16,21 +16,21 @@ public class InputJavadocMethodsNotSkipWritten {
     /**
      * Description.
      *
-     * @param BAD
+     * @param BAD // violation
      *            This param doesn't exist.
      */
     @MyAnnotation
-    public void InputJavadocMethodsNotSkipWritten() { // violation at line 11
+    public void InputJavadocMethodsNotSkipWritten() {
     }
 
     /**
      * Description.
      *
-     * @param BAD
+     * @param BAD // violation
      *            This param doesn't exist.
      */
     @MyAnnotation
-    public void test() { // violation at line 21
+    public void test() {
     }
 
     /** Description. */
