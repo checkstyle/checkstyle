@@ -14,8 +14,8 @@ public class InputJavadocMissingLeadingAsteriskIncorrect {
    **/
   public int missingAsterisk;
 
-  /** // violation on next line
-
+  /**
+ // violation
    *
    */
   public int blankComment;
@@ -58,8 +58,8 @@ public class InputJavadocMissingLeadingAsteriskIncorrect {
 }
 
 /**
-* EOF immediately after NEWLINE. // violation on next line
-
+* EOF immediately after NEWLINE.
+ // violation
 @deprecated block tag // violation
 Not blank text*/ // violation
 class NoTextAfterNewLineIncorrect {
