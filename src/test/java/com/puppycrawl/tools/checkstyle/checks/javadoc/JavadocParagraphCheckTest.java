@@ -52,7 +52,8 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocParagraphCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputJavadocParagraphCorrect.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputJavadocParagraphCorrect.java"), expected);
     }
 
     @Test
@@ -96,7 +97,8 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
             "87: " + getCheckMessage(MSG_TAG_AFTER),
             "88: " + getCheckMessage(MSG_TAG_AFTER),
         };
-        verify(checkConfig, getPath("InputJavadocParagraphIncorrect.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputJavadocParagraphIncorrect.java"), expected);
     }
 
     @Test
@@ -124,7 +126,8 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
             "87: " + getCheckMessage(MSG_TAG_AFTER),
             "88: " + getCheckMessage(MSG_TAG_AFTER),
         };
-        verify(checkConfig, getPath("InputJavadocParagraphIncorrect2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputJavadocParagraphIncorrect2.java"), expected);
     }
 
 }
