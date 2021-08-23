@@ -70,11 +70,11 @@ public class InputJavadocStyle10 // ok
     */
    void method7() {} // ok
 
-   /**
+   /** // violation
     * Public check should fail</code>
     * should fail <
     */
-   public void method8() {} // violation
+   public void method8() {}
 
    /** {@inheritDoc} **/
    public void method9() {} // ok
@@ -333,10 +333,10 @@ public class InputJavadocStyle10 // ok
      * Javadoc without dot
      */
     public interface TestInterface { // ok
-        /**
+        /** // violation
          * Javadoc without dot
          */
-        void method(); // violation
+        void method();
     }
 
     static class TestStaticClass { // ok
@@ -365,14 +365,14 @@ public class InputJavadocStyle10 // ok
      */
     void inheritDocWithThrows() {} // ok
 
-    /**
+    /** // violation
      * /
      *
      **
      * @param s
      * @return Return
      */
-    public int test(String s) { return 0; } // violation
+    public int test(String s) { return 0; }
 
     /** Set of all class field names.*/
     public String field; // ok

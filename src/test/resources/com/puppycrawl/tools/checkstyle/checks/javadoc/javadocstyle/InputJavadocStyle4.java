@@ -73,9 +73,9 @@ public class InputJavadocStyle4
    void method7() {}
 
    /**
-    * Public check should fail</code> // violation and line below, too
+    * Public check should fail</code> // violation
     * should fail <
-    */
+    */ // violation above
    public void method8() {}
 
    /** {@inheritDoc} **/

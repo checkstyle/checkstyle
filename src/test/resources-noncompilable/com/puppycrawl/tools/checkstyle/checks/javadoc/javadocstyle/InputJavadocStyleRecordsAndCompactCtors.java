@@ -20,10 +20,10 @@ public class InputJavadocStyleRecordsAndCompactCtors { // ok
 
     public record MyRecord() { // ok
 
-        /**
+        /** // violation
          * This Javadoc is missing an ending period
          */
-        private static String second; // violation
+        private static String second;
 
         /**
          * We don't want {@link com.puppycrawl.tools.checkstyle.checks.JavadocStyleCheck}
@@ -40,10 +40,10 @@ public class InputJavadocStyleRecordsAndCompactCtors { // ok
         private void method1() { // ok
         }
 
-        /**
+        /** // violation
          * This should fail even.though.there are embedded periods
          */
-        private void method4() { // violation
+        private void method4() {
         }
 
         /**
@@ -67,11 +67,11 @@ public class InputJavadocStyleRecordsAndCompactCtors { // ok
     public record MySecondRecord() {
         static String props = "";
 
-        /**
-         * Public check should fail</code> // violation and line below, too
+        /** // violation
+         * Public check should fail</code> // violation
          * should fail <
-         */
-        public void method8() { // violation
+         */ // violation above
+        public void method8() {
         }
     }
 
@@ -99,10 +99,10 @@ public class InputJavadocStyleRecordsAndCompactCtors { // ok
     }
 
     public record MyFifthRecord() { // ok
-        /**
+        /** // violation
          * No period here on compact ctor
          */
-        public MyFifthRecord { // violation
+        public MyFifthRecord {
         }
     }
 }
