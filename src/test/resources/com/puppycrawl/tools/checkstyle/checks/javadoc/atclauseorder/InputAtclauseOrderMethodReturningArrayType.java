@@ -15,10 +15,10 @@ import java.sql.SQLException;
 
 public interface InputAtclauseOrderMethodReturningArrayType {
     /**
-     * @return int array // violation
+     * @return int array
      * @exception SQLException
      * @throws java.sql.SQLTimeoutException
-     * @see #addBatch
+     * @see #addBatch // violation above
      * @see DatabaseMetaData#supportsBatchUpdates
      * @since 1.2
      */
@@ -29,8 +29,8 @@ public interface InputAtclauseOrderMethodReturningArrayType {
       * the indices of items that have been selected.
       *
       * @serial
-      * @see #getSelectedIndexes()
-      * @see #getSelectedIndex()
+      * @see #getSelectedIndexes() // violation
+      * @see #getSelectedIndex() // violation
       */
     int selected[] = new int[0];
 }

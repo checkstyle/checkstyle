@@ -1,6 +1,6 @@
 /*
 JavadocBlockTagLocation
-tags = apiNote, implSpec, implNote
+tags = apiNote,implSpec, implNote
 violateExecutionOnNonTightHtml = (default)false
 
 
@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocblocktaglocation;
 public class InputJavadocBlockTagLocationCustomTags {
 
     /**
-     * Text. @apiNote note @implNote note @implSpec spec // violation
+     * Text. @apiNote note @implNote note @implSpec spec // 3 violations
      * {@code @apiNote}
      * text @apiNote note1 // violation
      * text text @implNote note2  // violation

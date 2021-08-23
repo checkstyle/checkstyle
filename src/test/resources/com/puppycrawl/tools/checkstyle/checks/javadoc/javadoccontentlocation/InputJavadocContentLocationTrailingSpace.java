@@ -1,6 +1,6 @@
 /*
 JavadocContentLocation
-location = (defaut)SECOND_LINE
+location = (default)SECOND_LINE
 
 
 */
@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoccontentlocation;
 public interface InputJavadocContentLocationTrailingSpace {
 
     /**  
-     * ^^ There is a trailing space in the first line // OK
+     * ^^ There is a trailing space in the first line // ok
      */
     void space();
 
@@ -76,5 +76,5 @@ public interface InputJavadocContentLocationTrailingSpace {
      **  
      ***
      */
-    void blankLinesOnly(); // violation
+    void blankLinesOnly();
 }

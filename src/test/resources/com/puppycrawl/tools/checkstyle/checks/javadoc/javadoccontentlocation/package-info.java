@@ -1,6 +1,6 @@
 /*
 JavadocContentLocation
-location = (defaut)SECOND_LINE
+location = (default)SECOND_LINE
 
 
 */
