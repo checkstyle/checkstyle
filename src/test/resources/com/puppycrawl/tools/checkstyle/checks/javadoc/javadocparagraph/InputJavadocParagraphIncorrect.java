@@ -9,15 +9,15 @@ allowNewlineParagraph = (default)true
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
 /**
- * Some Javadoc.
+ * Some Javadoc. // 2 violations below
  * <p>
- * /^ WARN/   Some Javadoc.<p> // violation
+ * /^ WARN/   Some Javadoc.<p> // 2 violations
  *
  */
 class InputJavadocParagraphIncorrect {
 
     /**
-     * Some Javadoc.<P> // violation
+     * Some Javadoc.<P> // 2 violations
      *
      * <p>  Some Javadoc. // violation
      *
@@ -35,26 +35,26 @@ class InputJavadocParagraphIncorrect {
      */
     boolean emulated() {return false;}
 
-    /**<p>Some Javadoc.<p>  // violation
-     * <p>  // violation
-     * <p><p>  // violation
-     * <p>/^WARN/   Some Javadoc.<p>*/  // violation
+    /**<p>Some Javadoc.<p>  // 3 violations
+     * <p>  // 2 violations
+     * <p><p>  // 2 violations
+     * <p>/^WARN/   Some Javadoc.<p>*/  // 2 violations
      class InnerInputJavadocParagraphIncorrect {
 
         /**
-         * Some Javadoc./WARN/<p>  // violation
+         * Some Javadoc./WARN/<p>  // 2 violations
          *
          * @since 8.0
          */
         public static final byte NUL = 0;
 
-        /**<p>  // violation
-         * /^WARN/ Some Javadoc.
+        /**<p>
+         * /^WARN/ Some Javadoc. // 2 violations above
          *
          * <P> // violation
          * /^WARN/
-         * <p> // violation
-         *  /^WARN/ Some Javadoc.<p> // violation
+         * <p> // 2 violations
+         *  /^WARN/ Some Javadoc.<p> // 2 violations
          * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
          *     Documentation about GWT emulated source</a>
          */
@@ -66,27 +66,27 @@ class InputJavadocParagraphIncorrect {
             /**
          * <p>Some Javadoc. // violation
          *
-         * Some Javadoc.
+         * Some Javadoc. // violation above
          *
          * @since 8.0
          */
         public static final byte NUL = 0;
 
         /**
-         * /WARN/  Some Javadoc.<p> // violation
+         * /WARN/  Some Javadoc.<p> // 2 violations
          *
          *  <p>  Some Javadoc. // violation
          *
          * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
-         *     Documentation about <p> GWT emulated source</a> // violation
+         *     Documentation about <p> GWT emulated source</a> // 2 violations
          */
         boolean emulated() {return false;}
 
         /**
-         * Double newline.
+         * Double newline. // violation below
          *
          *
-         * Some Javadoc. //DOUBLE WARN AT TWO PREVIOUS LINES
+         * Some Javadoc. //DOUBLE WARN AT TWO PREVIOUS LINES // violation above
          */
          void doubleNewline() {}
     };

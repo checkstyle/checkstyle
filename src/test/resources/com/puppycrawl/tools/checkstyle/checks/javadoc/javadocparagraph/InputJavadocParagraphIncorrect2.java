@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
 /**
  * Some Javadoc.
- * <p>
+ * <p> // violation
  * /^ WARN/   Some Javadoc.<p> // violation
  *
  */
@@ -35,7 +35,7 @@ class InputJavadocParagraphIncorrect2 {
      */
     boolean emulated() {return false;}
 
-    /**<p>Some Javadoc.<p>  // violation
+    /**<p>Some Javadoc.<p>  // 2 violations
      * <p>  // violation
      * <p><p>  // violation
      * <p>/^WARN/   Some Javadoc.<p>*/  // violation
@@ -66,7 +66,7 @@ class InputJavadocParagraphIncorrect2 {
             /**
          * <p>Some Javadoc. // violation
          *
-         * Some Javadoc.
+         * Some Javadoc. // violation above
          *
          * @since 8.0
          */
@@ -83,10 +83,10 @@ class InputJavadocParagraphIncorrect2 {
         boolean emulated() {return false;}
 
         /**
-         * Double newline.
+         * Double newline. // violation below
          *
          *
-         * Some Javadoc. //DOUBLE WARN AT TWO PREVIOUS LINES
+         * Some Javadoc. //DOUBLE WARN AT TWO PREVIOUS LINES // violation above
          */
          void doubleNewline() {}
     };
