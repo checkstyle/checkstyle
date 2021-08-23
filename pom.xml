@@ -1791,7 +1791,6 @@
 
                 <exclude>**/AnnotationsOnArrayTest.class</exclude>
 
-                <exclude>**/SingleLineJavadocCheckTest.class</exclude>
 
                 <exclude>**/NonEmptyAtclauseDescriptionCheckTest.class</exclude>
 
@@ -1799,7 +1798,6 @@
 
                 <exclude>**/WriteTagCheckTest.class</exclude>
 
-                <exclude>**/RequireEmptyLineBeforeBlockTagGroupCheckTest.class</exclude>
 
                 <exclude>**/JavadocBlockTagLocationCheckTest.class</exclude>
 
@@ -1826,7 +1824,6 @@
 
                 <exclude>**/AbstractJavadocCheckTest.class</exclude>
 
-                <exclude>**/JavadocVariableCheckTest.class</exclude>
 
               </excludes>
             </configuration>

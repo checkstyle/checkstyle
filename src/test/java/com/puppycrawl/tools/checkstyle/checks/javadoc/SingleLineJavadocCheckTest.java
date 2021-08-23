@@ -62,14 +62,15 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
             "53: " + getCheckMessage(MSG_KEY),
             "59: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputSingleLineJavadoc.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputSingleLineJavadoc.java"), expected);
     }
 
     @Test
     public void testIgnoredTags() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(SingleLineJavadocCheck.class);
-        checkConfig.addProperty("ignoredTags", "@inheritDoc, @throws,  "
+        checkConfig.addProperty("ignoredTags", "@inheritDoc, @throws, "
             + "@ignoredCustomTag");
         checkConfig.addProperty("ignoreInlineTags", "false");
 
@@ -81,7 +82,8 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
             "56: " + getCheckMessage(MSG_KEY),
             "59: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputSingleLineJavadocIgnoredTags.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputSingleLineJavadocIgnoredTags.java"), expected);
     }
 
 }
