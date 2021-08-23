@@ -1527,7 +1527,7 @@
                 <exclude>**/XdocsPagesTest.class</exclude>
                 <!-- Needed for testing deprecated API. -->
                 <exclude>**/DefaultConfigurationTest.class</exclude>
-                <!-- untill https://github.com/checkstyle/checkstyle/issues/10394 -->
+                <!-- untill https://github.com/checkstyle/checkstyle/issues/10390 -->
 
 
 
