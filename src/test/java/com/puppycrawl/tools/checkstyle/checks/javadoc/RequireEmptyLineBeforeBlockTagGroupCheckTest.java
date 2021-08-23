@@ -52,7 +52,7 @@ public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModule
                 RequireEmptyLineBeforeBlockTagGroupCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getPath("InputRequireEmptyLineBeforeBlockTagGroupCorrect.java"),
                 expected);
     }
@@ -67,7 +67,7 @@ public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModule
             "28: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@param"),
             "35: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@return"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getPath("InputRequireEmptyLineBeforeBlockTagGroupIncorrect.java"),
                 expected);
     }
