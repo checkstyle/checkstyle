@@ -68,9 +68,9 @@ public class InputMissingJavadocTypeScopeInnerInterfaces2 // violation
     MyInterface2 { // ok
     }
 
-    protected
+    protected // violation
     enum
-    MyEnum { // violation
+    MyEnum {
     }
 
     private
