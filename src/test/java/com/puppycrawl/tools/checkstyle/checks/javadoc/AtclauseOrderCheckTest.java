@@ -59,7 +59,8 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(AtclauseOrderCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputAtclauseOrderCorrect.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAtclauseOrderCorrect.java"), expected);
     }
 
     @Test
@@ -109,7 +110,8 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
             "289: " + getCheckMessage(MSG_KEY, tagOrder),
             "299: " + getCheckMessage(MSG_KEY, tagOrder),
         };
-        verify(checkConfig, getPath("InputAtclauseOrderIncorrect.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAtclauseOrderIncorrect.java"), expected);
     }
 
     @Test
@@ -117,14 +119,15 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(AtclauseOrderCheck.class);
         checkConfig.addProperty("target", "CLASS_DEF");
         checkConfig.addProperty("tagOrder", "@since, @version, @param, @return, @throws, "
-                + "@exception, @deprecated, @see, @serial, @serialField, @serialData,@author");
+                + "@exception, @deprecated, @see, @serial, @serialField, @serialData, @author");
 
         final String tagOrder = "[@since, @version, @param, @return, @throws, @exception,"
                 + " @deprecated, @see, @serial, @serialField, @serialData, @author]";
         final String[] expected = {
             "123: " + getCheckMessage(MSG_KEY, tagOrder),
         };
-        verify(checkConfig, getPath("InputAtclauseOrderIncorrectCustom.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAtclauseOrderIncorrectCustom.java"), expected);
     }
 
     @Test
@@ -132,14 +135,15 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(AtclauseOrderCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("package-info.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("package-info.java"), expected);
     }
 
     @Test
     public void testAtclauseOrderRecords() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AtclauseOrderCheck.class);
-        checkConfig.addProperty("target", "CLASS_DEF , INTERFACE_DEF , ENUM_DEF , METHOD_DEF ,"
-            + " CTOR_DEF , VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF");
+        checkConfig.addProperty("target", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF,"
+            + " CTOR_DEF, VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF");
 
         checkConfig.addProperty("tagOrder", "@author, @version, @param, @return, @throws,"
             + " @exception, @see, @since, @serial, @serialField, @serialData, @deprecated");
@@ -156,9 +160,9 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
             "58: " + getCheckMessage(MSG_KEY, tagOrder),
             "77: " + getCheckMessage(MSG_KEY, tagOrder),
             "92: " + getCheckMessage(MSG_KEY, tagOrder),
-
-            };
-        verify(checkConfig, getNonCompilablePath("InputAtclauseOrderRecords.java"), expected);
+        };
+        verifyWithInlineConfigParser(checkConfig,
+                getNonCompilablePath("InputAtclauseOrderRecords.java"), expected);
     }
 
     @Test
@@ -171,21 +175,23 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
             "32: " + getCheckMessage(MSG_KEY, tagOrder),
             "33: " + getCheckMessage(MSG_KEY, tagOrder),
         };
-        verify(checkConfig, getPath("InputAtclauseOrderMethodReturningArrayType.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputAtclauseOrderMethodReturningArrayType.java"), expected);
     }
 
     @Test
     public void testAtclauseOrderLotsOfRecords() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AtclauseOrderCheck.class);
-        checkConfig.addProperty("target", "CLASS_DEF , INTERFACE_DEF , ENUM_DEF , METHOD_DEF ,"
-            + " CTOR_DEF , VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF");
+        checkConfig.addProperty("target", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF,"
+            + " CTOR_DEF, VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF");
 
         checkConfig.addProperty("tagOrder", "@author, @version, @param, @return, @throws,"
             + " @exception, @see, @since, @serial, @serialField, @serialData, @deprecated");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getNonCompilablePath("InputAtclauseOrderLotsOfRecords.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getNonCompilablePath("InputAtclauseOrderLotsOfRecords.java"), expected);
     }
 
     @Test
@@ -217,7 +223,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
             "102: " + getCheckMessage(MSG_KEY, tagOrder),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getPath("InputAtclauseOrderWithAnnotationsOutsideJavadoc.java"), expected);
     }
 
@@ -235,7 +241,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
             "80: " + getCheckMessage(MSG_KEY, tagOrder),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getPath("InputAtclauseOrderNewArrayDeclaratorStructure.java"), expected);
     }
 }

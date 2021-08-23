@@ -1,6 +1,6 @@
 /*
 JavadocContentLocation
-location = (defaut)SECOND_LINE
+location = (default)SECOND_LINE
 
 
 */
@@ -18,9 +18,9 @@ public interface InputJavadocContentLocationDefault {
      */
     void violation();
 
-    /**
+    /** // violation
      *
-     * Third line. // violation
+     * Third line.
      */
     void thirdLineViolation();
 

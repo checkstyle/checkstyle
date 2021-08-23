@@ -1798,14 +1798,12 @@
                 <exclude>**/WriteTagCheckTest.class</exclude>
 
 
-                <exclude>**/JavadocBlockTagLocationCheckTest.class</exclude>
 
                 <exclude>**/JavadocMissingLeadingAsteriskCheckTest.class</exclude>
 
                 <exclude>**/DefaultMethodsTest.class</exclude>
 
 
-                <exclude>**/InvalidJavadocPositionCheckTest.class</exclude>
 
                 <exclude>**/JavadocMissingWhitespaceAfterAsteriskCheckTest.class</exclude>
 
@@ -1819,7 +1817,6 @@
 
                 <exclude>**/LambdaTest.class</exclude>
 
-                <exclude>**/JavadocContentLocationCheckTest.class</exclude>
 
                 <exclude>**/AbstractJavadocCheckTest.class</exclude>
 

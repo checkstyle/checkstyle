@@ -60,7 +60,8 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
             "17:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
             "21:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
         };
-        verify(checkConfig, getPath("InputJavadocContentLocationDefault.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputJavadocContentLocationDefault.java"), expected);
     }
 
     @Test
@@ -72,7 +73,8 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
             "12:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
             "21:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
         };
-        verify(checkConfig, getPath("InputJavadocContentLocationFirstLine.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputJavadocContentLocationFirstLine.java"), expected);
     }
 
     @Test
@@ -83,7 +85,8 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
         };
-        verify(checkConfig, getPath("package-info.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("package-info.java"), expected);
     }
 
     @Test
@@ -94,7 +97,8 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "10:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
         };
-        verify(checkConfig, getPath("InputJavadocContentLocationInterface.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputJavadocContentLocationInterface.java"), expected);
     }
 
     @Test
@@ -102,7 +106,8 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocContentLocationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputJavadocContentLocationTrailingSpace.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputJavadocContentLocationTrailingSpace.java"), expected);
     }
 
 }

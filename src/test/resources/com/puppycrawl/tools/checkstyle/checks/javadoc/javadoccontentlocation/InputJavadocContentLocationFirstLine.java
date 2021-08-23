@@ -10,17 +10,17 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoccontentlocation;
 public interface InputJavadocContentLocationFirstLine {
 
     /**
-     * Text. // violation
+     * Text. // violation above
      */
     void violation();
 
     /** Text. // OK
      */
     void ok();
-
+    // violation below
     /**
      *
-     * Third line. // violation
+     * Third line.
      */
     void thirdLineViolation();
 
