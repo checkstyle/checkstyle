@@ -83,25 +83,25 @@ public class InputJavadocTagContinuationIndentationBlockTag {
      * Javadoc from regression test case (apache-ant).
      *
      * @param c the command line which will be configured
-     * if the commandline is initially null, the function is a noop
-     * otherwise the function append to the commandline arguments concerning
-     * <ul> // violation, not correctly indented
-     * <li> // violation, not correctly indented
-     * cvs package // violation, not correctly indented
-     * </li> // violation, not correctly indented
-     * <li> // violation, not correctly indented
-     * compression // violation, not correctly indented
-     * </li> // violation, not correctly indented
-     * <li> // violation, not correctly indented
-     * quiet or reallyquiet // violation, not correctly indented
-     * </li> // violation, not correctly indented
-     * <li>cvsroot</li> // violation, not correctly indented
-     * <li>noexec</li> // violation, not correctly indented
+     * if the commandline is initially null, the function is a noop // violation
+     * otherwise the function append to the commandline arguments concerning // violation
+     * <ul> // violation
+     * <li> // violation
+     * cvs package // violation
+     * </li> // violation
+     * <li> // violation
+     * compression // violation
+     * </li> // violation
+     * <li> // violation
+     * quiet or reallyquiet // violation
+     * </li> // violation
+     * <li>cvsroot</li> // violation
+     * <li>noexec</li> // violation
      *     <li>
      *     another item // ok
      *     </li>
      *     <li> yet another item </li> // ok
-     * </ul> // violation, not correctly indented
+     * </ul> // violation
      * some text <i>word</i> more text. // violation
      *     some text <i>word</i> more text. // ok
      */

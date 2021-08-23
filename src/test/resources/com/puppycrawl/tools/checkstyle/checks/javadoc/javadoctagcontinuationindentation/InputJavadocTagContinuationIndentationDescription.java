@@ -44,10 +44,10 @@ public class InputJavadocTagContinuationIndentationDescription {
 
     /**
      * @param s
-     *Description with missing space.
+     *Description with missing space. // violation
      * @param s2
-     *****Description with multiple asterisk and missing space
-     ***** Description with multiple asterisk and missing space
+     *****Description with multiple asterisk and missing space // violation
+     ***** Description with multiple asterisk and missing space // violation
      */
     public void testOtherCases(String s, String s2) {}
 }

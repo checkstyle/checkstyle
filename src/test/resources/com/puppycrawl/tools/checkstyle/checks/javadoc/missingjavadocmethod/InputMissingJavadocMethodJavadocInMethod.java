@@ -2,7 +2,7 @@
 MissingJavadocMethod
 minLineCount = (default)-1
 allowedAnnotations = (default)Override
-scope = (default)public
+scope = private
 excludeScope = (default)null
 allowMissingPropertyJavadoc = (default)false
 ignoreMethodNamesRegex = (default)null
@@ -19,14 +19,14 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 public class InputMissingJavadocMethodJavadocInMethod {
     public void foo1() { } // violation
 
-    @Deprecated
+    @Deprecated // violation
     public void foo2() { }
 
-    @Deprecated
+    @Deprecated // violation
     /** */
     public void foo3() { }
 
-    public void foo4() { /** */ }
+    public void foo4() { /** */ } // violation
 
     @Deprecated
     public void foo5() { /** */ }
