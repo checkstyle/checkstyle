@@ -49,7 +49,7 @@ public class InputJavadocVariablePublicOnly2 // ignore - need javadoc
     private int mSize; // ignore - when not relaxed about Javadoc
     int mLen; // ignore - when not relaxed about Javadoc
     protected int mDeer; // ignore
-    public int aFreddo; // ignore // violation
+    public int aFreddo; // violation
 
     // ignore - need Javadoc
     private InputJavadocVariablePublicOnly2(int aA)

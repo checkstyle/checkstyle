@@ -2,8 +2,8 @@
 MissingJavadocMethod
 minLineCount = (default)-1
 allowedAnnotations = (default)Override
-scope = (default)public
-excludeScope = (default)null
+scope = private
+excludeScope = protected
 allowMissingPropertyJavadoc = (default)false
 ignoreMethodNamesRegex = (default)null
 tokens = (default)METHOD_DEF , CTOR_DEF , ANNOTATION_FIELD_DEF , COMPACT_CTOR_DEF
@@ -35,10 +35,10 @@ public class InputMissingJavadocMethodNoJavadoc3 //comment test
         int i3;
         private int i4;
 
-        public void foo1() {} // violation
+        public void foo1() {}
         protected void foo2() {} // ok
-        void foo3() {} // violation
-        private void foo4() {} // violation
+        void foo3() {}
+        private void foo4() {}
     }
 
     class PackageInner {
