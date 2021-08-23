@@ -34,8 +34,8 @@ public class InputJavadocMethodTypeParamsTags<A,B1,C456 extends Comparable> // o
 
     /**
      * Some explanation.
-     * @param <BB> The wrong type param
-     */ // violation above line
+     * @param <BB> The wrong type param // violation
+     */
     public <Z> void doSomethingElse() // violation
     {
     }
@@ -61,9 +61,9 @@ public class InputJavadocMethodTypeParamsTags<A,B1,C456 extends Comparable> // o
 
     /**
      * Some explanation.
-     * @param <Z The wrong type param
-     */ // violation above line
-    public <Z> void unclosedGenericParam()
+     * @param <Z The wrong type param // violation
+     */
+    public <Z> void unclosedGenericParam() // violation
     {
     }
 }

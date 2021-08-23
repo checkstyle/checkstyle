@@ -1779,7 +1779,6 @@
 
                 <exclude>**/TypeUseAnnotationsOnQualifiedTypesTest.class</exclude>
 
-                <exclude>**/JavadocMethodCheckTest.class</exclude>
 
                 <exclude>**/JavadocParagraphCheckTest.class</exclude>
 
@@ -1805,7 +1804,6 @@
 
                 <exclude>**/JavadocBlockTagLocationCheckTest.class</exclude>
 
-                <exclude>**/JavadocMissingLeadingAsteriskCheckTest.class</exclude>
 
                 <exclude>**/DefaultMethodsTest.class</exclude>
 
@@ -1813,7 +1811,6 @@
 
                 <exclude>**/InvalidJavadocPositionCheckTest.class</exclude>
 
-                <exclude>**/JavadocMissingWhitespaceAfterAsteriskCheckTest.class</exclude>
 
                 <exclude>**/MissingJavadocPackageCheckTest.class</exclude>
 

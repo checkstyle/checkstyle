@@ -37,9 +37,9 @@ public class InputJavadocMethodRecordsAndCompactCtors {
          */
         public void doSomething5(String properties) {
             // here is NPE possible
-            if (properties.charAt(0) == 0) {
+            if (properties.charAt(0) == 0) { // violation below
                 throw new java.lang.IllegalArgumentException("cannot have char with code 0");
-            }                       // violation ^
+            }
         }
     }
 
