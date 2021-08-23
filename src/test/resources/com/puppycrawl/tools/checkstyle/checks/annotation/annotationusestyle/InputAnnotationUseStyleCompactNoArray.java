@@ -36,7 +36,7 @@ enum SON6 {
     ETHAN
 }
 
-@InputAnnotationUseStyleCustomAnnotation()
+@InputAnnotationUseStyleCustomAnnotation2()
 enum DOGS6 {
 
     @Deprecated()
@@ -93,3 +93,4 @@ class Foo6 {
 @interface AnnotationWithAnnotationValue6 {
     Another value();
 }
+@interface InputAnnotationUseStyleCustomAnnotation2 {}
