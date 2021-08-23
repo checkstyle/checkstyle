@@ -51,11 +51,11 @@ class InputInvalidJavadocPosition2 {
     void method25() { /** violation */ int variable; } // violation
 }
 @Deprecated
-/** violation */
-class InputInvalidJavadocPosition3 {} // violation
+/** violation */ // violation
+class InputInvalidJavadocPosition3 {}
 /** valid */
 @Deprecated
-class InputInvalidJavadocPosition4 {} // violation
+class InputInvalidJavadocPosition4 {}
 class /** violation */ InputInvalidJavadocPosition5 {} // violation
 class InputInvalidJavadocPosition6 /** violation */ {} // violation
 class InputInvalidJavadocPosition7 {

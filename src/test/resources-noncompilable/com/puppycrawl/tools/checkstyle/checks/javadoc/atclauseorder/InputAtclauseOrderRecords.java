@@ -3,8 +3,8 @@ AtclauseOrder
 violateExecutionOnNonTightHtml = (default)false
 target = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, \
          CTOR_DEF, VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
-tagOrder = (default)@author, @deprecated, @exception, @param, @return, \
-           @see, @serial, @serialData, @serialField, @since, @throws, @version
+tagOrder = @author, @version, @param, @return, @throws, @exception, @see, @since, @serial, \
+           @serialField, @serialData, @deprecated
 
 
 */
@@ -35,7 +35,7 @@ public class InputAtclauseOrderRecords {
          * @since the other day
          * @param aString Some text. // violation
          * @return Some text. // violation
-         * @throws Exception Some text.
+         * @throws Exception Some text. // violation
          */
         String method1(String aString) throws Exception {
             return "null";
@@ -55,7 +55,7 @@ public class InputAtclauseOrderRecords {
         /**
          * Some text.
          * @since since
-         * @throws Exception Some text. // should be a violation, but doesn't work w/ anno
+         * @throws Exception Some text. // violation
          * @since Some text.
          */
         void method3() throws Exception {
@@ -74,7 +74,7 @@ public class InputAtclauseOrderRecords {
 record myOtherOtherRecord() {
     /**
      * @since Some javadoc.
-     * @author max // should be a violation
+     * @author max // violation
      **/
     public myOtherOtherRecord{}
 }
@@ -89,7 +89,7 @@ record myOtherOtherRecord() {
 class myOtherOtherClass {
         /**
          * @since Some javadoc.
-         * @author max // should be a violation
+         * @author max // violation
          **/
     public myOtherOtherClass() {
     }

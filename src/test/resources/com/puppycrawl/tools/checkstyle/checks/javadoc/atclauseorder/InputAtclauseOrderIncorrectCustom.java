@@ -2,8 +2,8 @@
 AtclauseOrder
 violateExecutionOnNonTightHtml = (default)false
 target = CLASS_DEF
-tagOrder = (default)@author, @deprecated, @exception, @param, @return, \
-           @see, @serial, @serialData, @serialField, @since, @throws, @version
+tagOrder = @since, @version, @param, @return, @throws, @exception, @deprecated, @see, \
+           @serial, @serialField, @serialData, @author
 
 
 */
