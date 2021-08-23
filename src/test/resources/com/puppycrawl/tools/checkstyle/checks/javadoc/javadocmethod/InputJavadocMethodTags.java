@@ -64,7 +64,7 @@ class InputJavadocMethodTags1
 
     /** @throws WrongException problem **/
     void method7()
-        throws Exception, NullPointerException // violation
+        throws Exception, NullPointerException // 2 violations
     {
     }
 
@@ -82,23 +82,23 @@ class InputJavadocMethodTags1
     }
 
     /** @param WrongParam problem **/ // violation
-    void method10(int aOne, int aTwo) // violation
+    void method10(int aOne, int aTwo) // 2 violations
     {
     }
 
     /**
-     * @param Unneeded parameter
-     * @return also unneeded
+     * @param Unneeded parameter // violation
+     * @return also unneeded // violation
      **/
-    void method11() // violation at line 82,83
+    void method11()
     {
     }
 
     /**
      * @return first one
-     * @return duplicate
+     * @return duplicate // violation
      **/
-    int method12() // violation
+    int method12()
     {
         return 0;
     }
@@ -271,11 +271,11 @@ class InputJavadocMethodTags1
 
     /**
      * Bug 841942, "ArrayIndexOutOfBounds in JavadocStyle".
-     * @param aParam there is no such param in the method.
+     * @param aParam there is no such param in the method. // violation
      * The problem should be reported with correct line number.
      */
 
-    void method25() // violation
+    void method25()
     {
     }
 
@@ -314,7 +314,7 @@ class InputJavadocMethodTags1
      * misplaced @param aParam
      * misplaced @return something very important.
      */
-    int method29(int aParam) // violation
+    int method29(int aParam) // 2 violations
     { return 0;
     }
 }
@@ -352,8 +352,8 @@ enum InputJavadocMethodTagsEnum
     int B_CONSTANT = 1;
     /** @return This tag is valid here and expected with Java 8 */
     String someField2();
-    /** {@inheritDoc} */ // violation
-    String someField3();
+    /** {@inheritDoc} */
+    String someField3(); // violation
 }
 
 /**
@@ -392,9 +392,9 @@ class WrongException extends RuntimeException // ok
 @interface InputInterfaceTest {
     /** @return
      * nothing
-     * @return
+     * @return // violation
      * oops */
-    String[] results() default {}; // violation
+    String[] results() default {};
 }
 class MoreExamples {
     /** @param algorithm*/ // ok
