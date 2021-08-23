@@ -86,3 +86,5 @@ class Switch1 {
         for (int k : new int[]{1,2,3}) {}
     }
 }
+interface Foo {}
+interface Bar {}
