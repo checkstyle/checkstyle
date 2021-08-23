@@ -21,18 +21,18 @@ public class InputMissingJavadocMethodPublicMethods {
 
     public void annotation(final char @SomeAnnotation [] arg) {} // violation
 
-    public @SomeAnnotation String @SomeAnnotation [] annotationInSignature() {
+    public @SomeAnnotation String @SomeAnnotation [] annotationInSignature() { // violation
         return new String[]{};
     }
 
-    public static <T> T[] typeInSignature(T[] array) {
+    public static <T> T[] typeInSignature(T[] array) { // violation
         return null;
     }
-    public static <T> T[][] typeInSignature2(T[][] array) {
+    public static <T> T[][] typeInSignature2(T[][] array) { // violation
         return null;
     }
 
-    public static void main(String[] args) throws Exception {}
+    public static void main(String[] args) throws Exception {} // violation
 
     /**
      * Some javadoc

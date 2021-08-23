@@ -1,8 +1,8 @@
 /*
 MissingJavadocMethod
-minLineCount = (default)-1
-allowedAnnotations = (default)Override
-scope = (default)public
+minLineCount = 2
+allowedAnnotations = MyAnnotation, Override
+scope = private
 excludeScope = (default)null
 allowMissingPropertyJavadoc = (default)false
 ignoreMethodNamesRegex = (default)null

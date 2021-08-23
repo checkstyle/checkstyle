@@ -1789,7 +1789,6 @@
 
                 <exclude>**/MissingJavadocTypeCheckTest.class</exclude>
 
-                <exclude>**/JavadocTagContinuationIndentationCheckTest.class</exclude>
 
                 <exclude>**/AnnotationsOnArrayTest.class</exclude>
 
@@ -1809,7 +1808,6 @@
 
                 <exclude>**/DefaultMethodsTest.class</exclude>
 
-                <exclude>**/JavadocTypeCheckTest.class</exclude>
 
                 <exclude>**/InvalidJavadocPositionCheckTest.class</exclude>
 
@@ -1819,7 +1817,6 @@
 
                 <exclude>**/ReceiverParameterTest.class</exclude>
 
-                <exclude>**/MissingJavadocMethodCheckTest.class</exclude>
 
                 <exclude>**/AnnotationTest.class</exclude>
 

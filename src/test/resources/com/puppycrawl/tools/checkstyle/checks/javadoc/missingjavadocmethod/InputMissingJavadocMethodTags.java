@@ -2,7 +2,7 @@
 MissingJavadocMethod
 minLineCount = (default)-1
 allowedAnnotations = (default)Override
-scope = (default)public
+scope = private
 excludeScope = (default)null
 allowMissingPropertyJavadoc = (default)false
 ignoreMethodNamesRegex = (default)null
@@ -334,7 +334,7 @@ enum InputJavadocMethodTagsEnum
         {
         }
 
-        public void someOtherMethod()
+        public void someOtherMethod() // violation
         {
 
         }
@@ -343,7 +343,7 @@ enum InputJavadocMethodTagsEnum
 
 @interface InputJavadocMethodTagsAnnotation
 {
-    String someField();
+    String someField(); // violation
     int A_CONSTANT = 0;
     /** Some javadoc. */
     int B_CONSTANT = 1;
