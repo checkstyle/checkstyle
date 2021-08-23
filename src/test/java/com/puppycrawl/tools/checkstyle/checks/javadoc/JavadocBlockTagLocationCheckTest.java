@@ -52,7 +52,8 @@ public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport 
                 createModuleConfig(JavadocBlockTagLocationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputJavadocBlockTagLocationCorrect.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputJavadocBlockTagLocationCorrect.java"), expected);
     }
 
     /**
@@ -70,7 +71,7 @@ public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport 
                 createModuleConfig(JavadocBlockTagLocationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getPath("InputJavadocBlockTagLocationMultilineCodeBlock.java"), expected);
     }
 
@@ -87,7 +88,7 @@ public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport 
             "21: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "return"),
             "21: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "throws"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getPath("InputJavadocBlockTagLocationIncorrect.java"), expected);
     }
 
@@ -105,7 +106,7 @@ public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport 
             "17: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "implNote"),
             "18: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "implSpec"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getPath("InputJavadocBlockTagLocationCustomTags.java"), expected);
     }
 
