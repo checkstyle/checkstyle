@@ -288,7 +288,7 @@ class InputJavadocTagContinuationIndentation implements Serializable
 
         /**
          * Some text.
-         *       Some javadoc. // violation
+         *       Some javadoc.
          * @param aString Some text.
          *    Some javadoc. // violation
          * @return Some text.
@@ -329,7 +329,7 @@ enum Foo1 {}
  * @serialData Some javadoc.
  *   Line below is empty on purpose. // violation
  * @see Some Text.
- * L.
+ * L. // violation
  *
  * @author max
  * @customTag {@link com.puppycrawl.tools.checkstyle.AllChecksPresentOnAvailableChecksPageTest
@@ -347,7 +347,7 @@ class ShortNextLine {
      * Test.
      *
      * @return Test
-     * tt <code>null</code>.
+     * tt <code>null</code>. // violation
      */
     public void example() {
     }

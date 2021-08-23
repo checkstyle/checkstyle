@@ -51,7 +51,7 @@ public class JavadocTagContinuationIndentationCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocTagContinuationIndentationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                getPath("InputJavadocTagContinuationIndentationGuavaFalsePositive.java"),
                expected);
     }
@@ -76,7 +76,8 @@ public class JavadocTagContinuationIndentationCheckTest
             "332: " + getCheckMessage(MSG_KEY, 4),
             "350: " + getCheckMessage(MSG_KEY, 4),
         };
-        verify(checkConfig, getPath("InputJavadocTagContinuationIndentation.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputJavadocTagContinuationIndentation.java"),
                 expected);
     }
 
@@ -89,7 +90,8 @@ public class JavadocTagContinuationIndentationCheckTest
             "15: " + getCheckMessage(MSG_KEY, 3),
             "27: " + getCheckMessage(MSG_KEY, 3),
         };
-        verify(checkConfig, getPath("InputJavadocTagContinuationIndentationOffset3.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputJavadocTagContinuationIndentationOffset3.java"),
                 expected);
     }
 
@@ -105,7 +107,8 @@ public class JavadocTagContinuationIndentationCheckTest
             "49: " + getCheckMessage(MSG_KEY, 4),
             "50: " + getCheckMessage(MSG_KEY, 4),
         };
-        verify(checkConfig, getPath("InputJavadocTagContinuationIndentationDescription.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputJavadocTagContinuationIndentationDescription.java"),
                 expected);
     }
 
@@ -140,7 +143,8 @@ public class JavadocTagContinuationIndentationCheckTest
             "104: " + getCheckMessage(MSG_KEY, 4),
             "105: " + getCheckMessage(MSG_KEY, 4),
         };
-        verify(checkConfig, getPath("InputJavadocTagContinuationIndentationBlockTag.java"),
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputJavadocTagContinuationIndentationBlockTag.java"),
                 expected);
     }
 
