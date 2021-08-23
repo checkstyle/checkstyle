@@ -3,7 +3,7 @@ JavadocType
 scope = (default)private
 excludeScope = (default)null
 authorFormat = (default)null
-versionFormat = \$Revision.*\$
+versionFormat = \\$Revision.*\\$
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated
@@ -109,7 +109,7 @@ enum InputJavadocTypeEnum_22 // violation
  * tags are multi line ones
  * @author Oliver Burn
  * @version 1.0 */
-@interface InputJavadocInterface_22
+@interface InputJavadocInterface_22 // violation
 {
 }
 

@@ -19,7 +19,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
  ****    @author Oliver Burn
  * @version 1.0
  */
-class InputJavadocTypeJavadoc // violation
+class InputJavadocTypeJavadoc
 {
 }
 

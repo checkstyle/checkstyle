@@ -3,7 +3,7 @@ JavadocType
 scope = (default)private
 excludeScope = (default)null
 authorFormat = (default)null
-versionFormat = ^\p{Digit}+\.\p{Digit}+$
+versionFormat = ^\\p{Digit}+\\.\\p{Digit}+$
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated

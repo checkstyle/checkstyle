@@ -2,7 +2,7 @@
 JavadocType
 scope = (default)private
 excludeScope = (default)null
-authorFormat = (default)null
+authorFormat = ABC
 versionFormat = (default)null
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false

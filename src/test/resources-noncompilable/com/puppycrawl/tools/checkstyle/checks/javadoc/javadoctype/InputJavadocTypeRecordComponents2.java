@@ -59,7 +59,7 @@ record MyRecord5<X>(){}
  * @param notMyString // violation
  * @param <X>
  */
-record MyRecord6<X>(String myString, int myInt){} // violation x2
+record MyRecord6<X>(String myString, int myInt){} // 2 violations
 
 /**
  *
@@ -78,4 +78,4 @@ record MyRecord8<X, T>(String X){} // violation
  * @param notMyString // violation
  * @param <X>
  */
-record MyRecord9<X, T>(String myString, int myInt){} // violation x3
+record MyRecord9<X, T>(String myString, int myInt){} // 3 violations

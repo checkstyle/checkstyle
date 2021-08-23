@@ -19,33 +19,33 @@ public class InputMissingJavadocMethodRecordsAndCtorsMinLineCount {
         private static int mNumber;
 
         // not javadoc
-        public void setNumber(final int number) { // violation
+        public void setNumber(final int number) {
             mNumber = number;
         }
 
         // not javadoc
-        public int getNumber() { // violation
+        public int getNumber() {
             return mNumber;
         }
 
-        public void setNumber1() { // violation
+        public void setNumber1() {
             mNumber = mNumber;
         }
     }
 
     public record MySecondRecord() {
         // not a javadoc comment on compact ctor
-        public MySecondRecord { // violation
+        public MySecondRecord {
         }
     }
 
     public record MyThirdRecord() {
         // not a javadoc comment on ctor
-        public MyThirdRecord() { // violation
+        public MyThirdRecord() {
         }
     }
 
-    public void setNumber1() // violation
+    public void setNumber1()
     {
 
     }
