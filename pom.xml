@@ -1793,7 +1793,6 @@
 
                 <exclude>**/NonEmptyAtclauseDescriptionCheckTest.class</exclude>
 
-                <exclude>**/JavadocStyleCheckTest.class</exclude>
 
                 <exclude>**/WriteTagCheckTest.class</exclude>
 
