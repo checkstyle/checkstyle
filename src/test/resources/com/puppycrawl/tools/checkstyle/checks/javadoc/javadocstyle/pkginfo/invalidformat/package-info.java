@@ -13,7 +13,7 @@ tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
 
 */
 
-/**
+/** // violation
  * blah blah
  */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle.pkginfo.invalidformat;

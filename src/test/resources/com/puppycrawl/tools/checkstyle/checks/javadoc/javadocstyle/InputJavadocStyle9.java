@@ -20,8 +20,8 @@ public class InputJavadocStyle9 // ok
    // This is OK. We don't flag missing javadoc.  That's left for other checks.
    private String first; // ok
 
-   /** This Javadoc is missing an ending period */
-   private String second; // violation
+   /** This Javadoc is missing an ending period */ // violation
+   private String second;
 
    /**
     * We don't want {@link com.puppycrawl.tools.checkstyle.checks.JavadocStyleCheck}
@@ -45,10 +45,10 @@ public class InputJavadocStyle9 // ok
     */
    private void method3() {} // ok
 
-   /**
+   /** // violation
     * This should fail even.though.there are embedded periods
     */
-   private void method4() {} // violation
+   private void method4() {}
 
    /**
     * Test HTML in Javadoc comment
@@ -67,10 +67,10 @@ public class InputJavadocStyle9 // ok
     */
    protected void method6() {} // ok
 
-   /**
+   /** // violation
     * Package protected check <b>should fail // violation
     */
-   void method7() {} // violation
+   void method7() {}
 
    /**
     * Public check should fail</code>
@@ -163,12 +163,12 @@ public class InputJavadocStyle9 // ok
 
     private void method14() {}
 
-    /**
+    /** // violation
      * Empty line between javadoc and method declaration cause wrong
      * line number for reporting error (bug 841942)
      */
 
-    private void method15() {} // violation
+    private void method15() {}
 
     /** Description of field: {@value}. */
     public static final int dummy = 4911; // ok
@@ -321,11 +321,11 @@ public class InputJavadocStyle9 // ok
          */
         final int i = 0; // ok
     }
-
+    // violation below
     /**
      * {@inheritDoc}
      */
-    private void inheritDoc() {} // violation
+    private void inheritDoc() {}
 
     /**
      * <p><b>Note:<b> it's unterminated tag.</p> // violation
@@ -343,10 +343,10 @@ public class InputJavadocStyle9 // ok
     }
 
     static class TestStaticClass { // ok
-        /**
+        /** // violation
          * Javadoc without dot
          */
-        public int field; // violation
+        public int field;
     }
 
     /**
@@ -355,11 +355,11 @@ public class InputJavadocStyle9 // ok
      */
     void foo() throws Exception {} // ok
 
-    /**
+    /** // violation
      * text /
      * @throws Exception if an error occurs
      */
-    void bar() throws Exception {} // violation
+    void bar() throws Exception {}
 
     /**
      * {@inheritDoc}

@@ -171,27 +171,27 @@ public class InputJavadocStyle8 // ok
 
     /** Description of field: {@value}. */
     public static final int dummy = 4911; // ok
-
+     // violation below
     /**
      */
-    public void method16() {} // violation
-
+    public void method16() {}
+     // violation below
     /**
      * @param a A parameter
      */
-    protected void method17(String a) {} // violation
-
+    protected void method17(String a) {}
+     // violation below
     /**
      * @exception RuntimeException should be thrown
      */
-    void method18(String a) {} // violation
-
+    void method18(String a) {}
+     // violation below
     /**
      */
-    private static int ASDF = 0; // violation
+    private static int ASDF = 0;
 
-    /** @see Object */
-    public void method19() {} // violation
+    /** @see Object */ // violation
+    public void method19() {}
 
     public enum Test
     {
