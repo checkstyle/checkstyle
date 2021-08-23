@@ -84,7 +84,8 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
             "65:9: " + getCheckMessage(MSG_KEY),
             "68:1: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputInvalidJavadocPosition.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputInvalidJavadocPosition.java"), expected);
     }
 
     @Test
@@ -93,7 +94,8 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "7:1: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("package-info.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("package-info.java"), expected);
     }
 
     @Test
@@ -102,7 +104,8 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "7:1: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("comment/package-info.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("comment/package-info.java"), expected);
     }
 
 }

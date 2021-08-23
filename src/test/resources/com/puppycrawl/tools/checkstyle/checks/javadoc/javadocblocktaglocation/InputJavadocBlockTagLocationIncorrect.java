@@ -18,7 +18,7 @@ public class InputJavadocBlockTagLocationIncorrect {
      * @param param2 a parameter @custom
      * * @throws Exception // violation
     +    * @see PersistenceContext#setReadOnly(Object,boolean) // violation
-     * text @return one more @throws text again. // violation
+     * text @return one more @throws text again. // 2 violations
      */
     public void method(int param1, int param2) {
     }
