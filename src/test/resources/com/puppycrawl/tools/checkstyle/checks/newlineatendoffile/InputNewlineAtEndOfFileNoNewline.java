@@ -1,7 +1,11 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2003
-////////////////////////////////////////////////////////////////////////////////
+/* // violation
+NewlineAtEndOfFile
+lineSeparator = (default)LF_CR_CRLF
+fileExtensions = (default)all files
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.newlineatendoffile;
 
 /**
