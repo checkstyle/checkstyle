@@ -1,5 +1,5 @@
 /*
-SummaryJavadocCheckTest
+SummaryJavadoc
 violateExecutionOnNonTightHtml = (default)false
 forbiddenSummaryFragments = ^@return the *|^This method returns *|^A \
                             [{]@code [a-zA-Z0-9]+[}]( is a )

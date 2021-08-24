@@ -1,5 +1,5 @@
 /*
-SummaryJavadocCheckTest
+SummaryJavadoc
 violateExecutionOnNonTightHtml = (default)false
 forbiddenSummaryFragments = @return the *|This method returns
 period = (default).
@@ -22,50 +22,50 @@ public class InputSummaryJavadocInlineForbidden {
      */
     void foo3() { // ok
     }
-
+    // violation below
     /**
      * {@summary This code is wrong }
      */
-    void foo5() { // violation
+    void foo5() {
     }
-
+    // violation below
     /**
-     * {@summary This code {@see Javadoc} is wrong } // violation
+     * {@summary This code {@see Javadoc} is wrong }
      */
-    void foo6() { // violation
+    void foo6() {
     }
-
+    // violation below
     /**
      * {@summary As of , replaced by {@link #setBounds(int, int, int, int)}}
      */
-    void foo11() { // violation
+    void foo11() {
     }
-
+    // violation below
     /**
      * {@summary This method returns something.}
      */
-    public static final byte NUL = 0; // violation
-
+    public static final byte NUL = 0;
+    // violation below
     /**
      * {@summary <a href="mailto:vlad@htmlbook.ru"/>}
      */
-    class InnerInputCorrectJavaDocParagraphCheck { // violation
-
+    class InnerInputCorrectJavaDocParagraphCheck {
+    // violation below
         /**
          * {@summary foooo@foooo}
          */
-        public static final byte NUL = 0; // violation
+        public static final byte NUL = 0;
 
         /**
          * {@summary Some java@doc.}
          */
         public static final byte NUL_2 = 0; // ok
-
+    // violation below
         /**
          * {@summary @return the
          * customer ID some javadoc.}
          */
-        int geId() { // violation
+        int geId() {
             return 666;
         }
 
@@ -82,11 +82,11 @@ public class InputSummaryJavadocInlineForbidden {
      */
     InputSummaryJavadocInlineForbidden.InnerInputCorrectJavaDocParagraphCheck anon =
             new InputSummaryJavadocInlineForbidden.InnerInputCorrectJavaDocParagraphCheck() {
-
+                // violation below
                 /**
                  * mm{@inheritDoc}
                  */
-                void foo7() { // violation
+                void foo7() {
                 }
 
                 /**
@@ -95,7 +95,7 @@ public class InputSummaryJavadocInlineForbidden {
                 void foo10() { // ok
                 }
             };
-
+    // violation below
     /**
      * {@summary first sentence is normally the summary.
      * Use of html tags:
@@ -107,21 +107,21 @@ public class InputSummaryJavadocInlineForbidden {
      * <p> This is the paragraph.</p>
      * <h1> This is a heading </h1>}
      */
-    public void validInlineJavadoc() // violation
+    public void validInlineJavadoc()
     {
     }
-
+    // violation below
     /**
      * {@summary <p> </p>}
      */
-    void foo12() { // violation
+    void foo12() {
     }
-
+    // violation below
     /**
      * Sentence starts as a plain text sentence
      * {@summary ... but ends in the summary tag}
      */
-    public class TestClass {} // violation
+    public class TestClass {}
 
     /**
      * {@summary first sentence is normally the summary.}

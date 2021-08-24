@@ -1,5 +1,5 @@
 /*
-SummaryJavadocCheckTest
+SummaryJavadoc
 violateExecutionOnNonTightHtml = (default)false
 forbiddenSummaryFragments = (default)^$
 period = (default).
@@ -18,11 +18,11 @@ public class InputSummaryJavadocHtmlFormat {
      * <p><b>{@summary Normal Javadoc.}</b></p>
      */
     private void foo1() {} // ok
-
+    // violation below
     /**
      * <p><b><i>{@summary Normal Javadoc}</i></b></p>
      */
-    private void foo2() {} // violation
+    private void foo2() {}
 
     /**
      * <p>{@summary Normal Javadoc {@author my code}.}</p>
@@ -33,16 +33,16 @@ public class InputSummaryJavadocHtmlFormat {
      * {@summary <p> .</p>}
      */
     private void foo4() {} // ok
-
+    // violation below
     /**
      * <p>{@code Code.}</p>
      */
-    private void foo6() {} // violation
-
+    private void foo6() {}
+    // violation below
     /**
      * <p>{@summary}</p>
      */
-    private void foo11() {} // violation
+    private void foo11() {}
 
     /**
      * <b><p>{@summary Normal Javadoc.}</p></b>
