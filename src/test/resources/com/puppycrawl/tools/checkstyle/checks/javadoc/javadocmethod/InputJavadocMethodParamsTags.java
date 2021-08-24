@@ -58,7 +58,7 @@ public class InputJavadocMethodParamsTags {
 
   }
 
-  /** @param t
+  /** @param t // violation
    */
   public void setPathRef4(Object w) { // violation
 
