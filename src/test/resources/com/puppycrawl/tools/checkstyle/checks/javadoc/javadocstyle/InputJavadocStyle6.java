@@ -62,21 +62,21 @@ public class InputJavadocStyle6 // ok
     */
    private void method5(int arg1) {} // ok
 
-   /**
+   /** // violation
     * Protected check <b>should fail // violation
     */
-   protected void method6() {} // violation
+   protected void method6() {}
 
    /**
     * Package protected check <b>should fail
     */
    void method7() {} // ok
 
-   /**
-    * Public check should fail</code> // violation and line below, too
+   /** // violation
+    * Public check should fail</code> // violation
     * should fail <
-    */
-   public void method8() {} // violation
+    */ // violation above
+   public void method8() {}
 
    /** {@inheritDoc} **/
    public void method9() {} // ok
@@ -172,15 +172,15 @@ public class InputJavadocStyle6 // ok
 
     /** Description of field: {@value}. */
     public static final int dummy = 4911; // ok
-
+    // violation below
     /**
      */
-    public void method16() {} // violation
-
+    public void method16() {}
+    // violation below
     /**
      * @param a A parameter
      */
-    protected void method17(String a) {} // violation
+    protected void method17(String a) {}
 
     /**
      * @exception RuntimeException should be thrown
@@ -191,15 +191,15 @@ public class InputJavadocStyle6 // ok
      */
     private static int ASDF = 0; // ok
 
-    /** @see Object */
-    public void method19() {} // violation
+    /** @see Object */ // violation
+    public void method19() {}
 
     public enum Test
     {
-        /**
+        /** // violation
          * Value 1 without a period
          */
-        value1, // violation
+        value1,
 
         /**
          * Value 2 with a period.
@@ -332,14 +332,14 @@ public class InputJavadocStyle6 // ok
      */
     private void unterminatedTag() {} // ok
 
-    /**
+    /** // violation
      * Javadoc without dot
      */
-    public interface TestInterface { // violation
-        /**
+    public interface TestInterface {
+        /** // violation
          * Javadoc without dot
          */
-        void method(); // violation
+        void method();
     }
 
     static class TestStaticClass { // ok
@@ -368,14 +368,14 @@ public class InputJavadocStyle6 // ok
      */
     void inheritDocWithThrows() {} // ok
 
-    /**
+    /** // violation
      * /
      *
      **
      * @param s
      * @return Return
      */
-    public int test(String s) { return 0; } // violation
+    public int test(String s) { return 0; }
 
     /** Set of all class field names.*/
     public String field; // ok

@@ -20,8 +20,8 @@ public class InputJavadocStyle1 // ok
    // This is OK. We don't flag missing javadoc.  That's left for other checks.
    private String first; // ok
 
-   /** This Javadoc is missing an ending period */
-   private String second; // violation
+   /** This Javadoc is missing an ending period */ // violation
+   private String second;
 
    /**
     * We don't want {@link com.puppycrawl.tools.checkstyle.checks.JavadocStyleCheck}
@@ -45,10 +45,10 @@ public class InputJavadocStyle1 // ok
     */
    private void method3() {} // ok
 
-   /**
+   /** // violation
     * This should fail even.though.there are embedded periods
     */
-   private void method4() {} // violation
+   private void method4() {}
 
    /**
     * Test HTML in Javadoc comment
@@ -62,21 +62,21 @@ public class InputJavadocStyle1 // ok
     */
    private void method5(int arg1) {}
 
-   /**
+   /** // violation
     * Protected check <b>should fail // violation
     */
-   protected void method6() {} // violation
+   protected void method6() {}
 
-   /**
+   /** // violation
     * Package protected check <b>should fail // violation
     */
-   void method7() {} // violation
+   void method7() {}
 
-   /**
-    * Public check should fail</code> // violation and line below, too
+   /** // violation
+    * Public check should fail</code> // violation
     * should fail <
-    */
-   public void method8() {} // violation
+    */ // violation above
+   public void method8() {}
 
    /** {@inheritDoc} **/
    public void method9() {} // ok
@@ -163,12 +163,12 @@ public class InputJavadocStyle1 // ok
 
     private void method14() {}
 
-    /**
+    /** // violation
      * Empty line between javadoc and method declaration cause wrong
      * line number for reporting error (bug 841942)
      */
 
-    private void method15() {} // violation
+    private void method15() {}
 
     /** Description of field: {@value}. */
     public static final int dummy = 4911; // ok
@@ -196,10 +196,10 @@ public class InputJavadocStyle1 // ok
 
     public enum Test // ok
     {
-        /**
+        /** // violation
          * Value 1 without a period
          */
-        value1, // violation
+        value1,
 
         /**
          * Value 2 with a period.
@@ -321,32 +321,32 @@ public class InputJavadocStyle1 // ok
          */
         final int i = 0; // ok
     }
-
+    // violation below
     /**
      * {@inheritDoc}
      */
-    private void inheritDoc() {} // violation
+    private void inheritDoc() {}
 
     /**
      * <p><b>Note:<b> it's unterminated tag.</p> // violation
      */
     private void unterminatedTag() {}
 
-    /**
+    /** // violation
      * Javadoc without dot
      */
-    public interface TestInterface { // violation
-        /**
+    public interface TestInterface {
+        /** // violation
          * Javadoc without dot
          */
-        void method(); // violation
+        void method();
     }
 
     static class TestStaticClass {
-        /**
+        /** // violation
          * Javadoc without dot
          */
-        public int field; // violation
+        public int field;
     }
 
     /**
@@ -355,11 +355,11 @@ public class InputJavadocStyle1 // ok
      */
     void foo() throws Exception {} // ok
 
-    /**
+    /** // violation
      * text /
      * @throws Exception if an error occurs
      */
-    void bar() throws Exception {} // violation
+    void bar() throws Exception {}
 
     /**
      * {@inheritDoc}
@@ -368,14 +368,14 @@ public class InputJavadocStyle1 // ok
      */
     void inheritDocWithThrows() {} // ok
 
-    /**
+    /** // violation
      * /
      *
      **
      * @param s
      * @return Return
      */
-    public int test(String s) { return 0; } // violation
+    public int test(String s) { return 0; }
 
     /** Set of all class field names.*/
     public String field; // ok
