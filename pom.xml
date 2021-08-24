@@ -1666,7 +1666,6 @@
 
                 <exclude>**/Java7MultiCatchTest.class</exclude>
 
-                <exclude>**/MatchXpathCheckTest.class</exclude>
 
                 <exclude>**/CheckerTest.class</exclude>
 
