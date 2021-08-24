@@ -86,7 +86,7 @@ public class NewlineAtEndOfFileCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(
             createChecker(checkConfig),
-            getPath("InputNewlineAtEndOfFileCrlf.java"),
+            getPath("InputNewlineAtEndOfFileCrlf3.java"),
             expected);
     }
 
@@ -110,15 +110,15 @@ public class NewlineAtEndOfFileCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(
             createChecker(checkConfig),
-            getPath("InputNewlineAtEndOfFileCrlf.java"),
+            getPath("InputNewlineAtEndOfFileCrlf2.java"),
             expected);
         verify(
             createChecker(checkConfig),
-            getPath("InputNewlineAtEndOfFileLf.java"),
+            getPath("InputNewlineAtEndOfFileLf2.java"),
             expected);
         verify(
             createChecker(checkConfig),
-            getPath("InputNewlineAtEndOfFileCr.java"),
+            getPath("InputNewlineAtEndOfFileCr2.java"),
             expected);
     }
 
@@ -146,7 +146,7 @@ public class NewlineAtEndOfFileCheckTest
         };
         verify(
             createChecker(checkConfig),
-            getPath("InputNewlineAtEndOfFileNoNewline.java"),
+            getPath("InputNewlineAtEndOfFileNoNewline2.java"),
             expected);
     }
 

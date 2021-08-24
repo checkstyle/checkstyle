@@ -1,6 +1,6 @@
 /*
 NewlineAtEndOfFile
-lineSeparator = LF
+lineSeparator = (default)LF_CR_CRLF
 fileExtensions = (default)all files
 
 
@@ -13,6 +13,6 @@ package com.puppycrawl.tools.checkstyle.checks.newlineatendoffile;
  * NewlineAtEndOfFileCheck.
  * @author Martin Steiger
  **/
-public interface InputNewlineAtEndOfFileLf // ok
+public interface InputNewlineAtEndOfFileLf2 // ok
 {
 }

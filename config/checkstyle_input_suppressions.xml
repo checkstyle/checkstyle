@@ -103,18 +103,6 @@
             files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationEmptyFile.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
-            files="newlineatendoffile[\\/]InputNewlineAtEndOfFileCr.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="newlineatendoffile[\\/]InputNewlineAtEndOfFileCrlf.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="newlineatendoffile[\\/]InputNewlineAtEndOfFileLf.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="newlineatendoffile[\\/]InputNewlineAtEndOfFileNoNewline.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
             files="nocodeinfile[\\/].*.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
@@ -294,18 +282,6 @@
   <!-- needed for coverage -->
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationEmptyFile.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="newlineatendoffile[\\/]InputNewlineAtEndOfFileCr.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="newlineatendoffile[\\/]InputNewlineAtEndOfFileCrlf.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="newlineatendoffile[\\/]InputNewlineAtEndOfFileLf.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="newlineatendoffile[\\/]InputNewlineAtEndOfFileNoNewline.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="nocodeinfile[\\/]InputNoCodeInFile1.java"/>
