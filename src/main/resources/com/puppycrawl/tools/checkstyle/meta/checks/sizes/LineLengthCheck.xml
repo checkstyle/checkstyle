@@ -21,10 +21,6 @@
  property {@code tabWidth} which applies to all Checks, including {@code LineLength};
  or can set property {@code tabWidth} for {@code LineLength} alone.
  &lt;/li&gt;
- &lt;li&gt;
- Package and import statements (lines matching pattern {@code ^(package|import) .*})
- are not verified by this check.
- &lt;/li&gt;
  &lt;/ul&gt;</description>
          <properties>
             <property default-value="" name="fileExtensions" type="java.lang.String[]">
@@ -37,6 +33,12 @@
             </property>
             <property default-value="80" name="max" type="int">
                <description>Specify the maximum line length allowed.</description>
+            </property>
+            <property default-value="false" name="validateImport" type="boolean">
+               <description>Validate checking of import statements.</description>
+            </property>
+            <property default-value="false" name="validatePackage" type="boolean">
+               <description>Validate checking of package statements.</description>
             </property>
          </properties>
          <message-keys>
