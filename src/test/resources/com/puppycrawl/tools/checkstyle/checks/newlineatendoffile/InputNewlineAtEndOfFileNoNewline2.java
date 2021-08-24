@@ -1,6 +1,6 @@
 /* // violation
 NewlineAtEndOfFile
-lineSeparator = LF
+lineSeparator = (default)LF_CR_CRLF
 fileExtensions = (default)all files
 
 
@@ -9,10 +9,10 @@ fileExtensions = (default)all files
 package com.puppycrawl.tools.checkstyle.checks.newlineatendoffile;
 
 /**
- * Test case for detection of an existing CRLF newline at EOF, using the
+ * Test case for detection of missing newlines at EOF, using the
  * NewlineAtEndOfFileCheck.
- * @author Martin Steiger
+ * @author Christopher Lenz
  **/
-public interface InputNewlineAtEndOfFileCrlf
+public interface InputNewlineAtEndOfFileNoNewline2
 {
 }
