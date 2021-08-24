@@ -1783,7 +1783,6 @@
 
                 <exclude>**/MethodReferencesTest.class</exclude>
 
-                <exclude>**/SummaryJavadocCheckTest.class</exclude>
 
 
 

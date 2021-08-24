@@ -1,5 +1,5 @@
 /*
-SummaryJavadocCheckTest
+SummaryJavadoc
 violateExecutionOnNonTightHtml = (default)false
 forbiddenSummaryFragments = (default)^$
 period = (default).
@@ -18,36 +18,36 @@ class InputSummaryJavadocInlineDefault {
      * {@summary A simple correct Javadoc.}
      */
     void foo1() {} // ok
-
+    // violation below
     /**
      * {@summary This code is wrong }
      */
-    void foo5(){} // violation
-
+    void foo5(){}
+    // violation below
     /**
      * {@summary This code {@see Javadoc} is wrong }
      */
-    void foo6(){} // violation
-
+    void foo6(){}
+    // violation below
     /**
      * {@sometag This code {@see Javadoc} is wrong }
      */
-    void foo7(){} // violation
+    void foo7(){}
 
     /**
      * {@summary <p>This code is right.</p>}
      */
     void foo8(){} // ok
-
+    // violation below
     /**
      * {@summary As of , replaced by {@link #setBounds(int,int,int,int)}}
      */
-    void foo11() {} // violation
-
+    void foo11() {}
+    // violation below
     /**
      * {@summary {@throws Exception if a problem occurs}}
      */
-    void foo12() throws Exception {} // violation
+    void foo12() throws Exception {}
 
     /** {@summary An especially short bit of Javadoc.} */
     void foo13() {} // ok
@@ -56,16 +56,16 @@ class InputSummaryJavadocInlineDefault {
      * {@summary Some Javadoc.}
      */
     public static final byte NUL = 0; // ok
-
+    // violation below
     /**
      * {@summary <a href="mailto:vlad@htmlbook.ru"/>}
      */
-    class InnerInputCorrectJavaDocParagraphCheck { // violation
-
+    class InnerInputCorrectJavaDocParagraphCheck {
+    // violation below
         /**
          * {@summary foooo@foooo}
          */
-        public static final byte NUL = 0; // violation
+        public static final byte NUL = 0;
 
         /**
          * {@summary Some java@doc.}
@@ -118,32 +118,32 @@ class InputSummaryJavadocInlineDefault {
          * from {@link #setBounds(int,int,int,int)}.
          */
         void foo3() {} // ok
-
+    // violation below
         /**
          * {@summary {}@throws Exception if a problem occurs}
          */
-        void foo4() throws Exception {} // violation
-
+        void foo4() throws Exception {}
+    // violation below
         /**
          * mm{@inheritDoc}
          */
-        void foo7() {} // violation
-
+        void foo7() {}
+    // violation below
         /**
          * {@link #setBounds(int,int,int,int)}
          */
-        void foo8() {} // violation
+        void foo8() {}
 
         /**
          * {@summary {@code see} .}
          */
         void foo10() {} // ok
     };
-
+    // violation below
     /**
      * {@summary M m m m {@inheritDoc}}
      */
-    void foo14() {} // violation
+    void foo14() {}
 
     /**{@summary @summary .} */
     int foo15() {return 0;} // ok
@@ -157,14 +157,14 @@ class InputSummaryJavadocInlineDefault {
      * {@summary {@input Javadoc}.}
      */
     void foo17(){} // ok
-
+    // violation below
     /**
      * {@summary}
      */
-    void foo22() {} // violation
+    void foo22() {}
 
     /** */
-    String[] foo9() {return null;} // violation
+    String[] foo9() {return null;} // violation above
 
     /**
      * {@summary Javadoc {@code code} correct.}
@@ -182,7 +182,7 @@ class InputSummaryJavadocInlineDefault {
     private void invalidInlineJavadocTwo() // ok
     {
     }
-
+    // violation below
     /**
      * {@summary first sentence is normally the summary.
      * Use of html tags:
@@ -192,7 +192,7 @@ class InputSummaryJavadocInlineDefault {
      * <li>No period here</li>
      * </ul>}
      */
-    private void invalidInlineJavadocList() // violation
+    private void invalidInlineJavadocList()
     {
     }
 }
