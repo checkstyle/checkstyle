@@ -62,11 +62,11 @@ class InputOperatorWrap4
     }
 }
 
-class badCase24<T extends Foo &
-    Bar> {
+class badCase24<T extends Foo4 &
+    Bar4> {
 }
 
-class goodCase4<T extends Foo & Bar> {
+class goodCase4<T extends Foo4 & Bar4> {
 }
 
 class Switch4 {
@@ -84,3 +84,5 @@ class Switch4 {
         for (int k : new int[]{1,2,3}) {}
     }
 }
+interface Foo4 {}
+interface Bar4 {}

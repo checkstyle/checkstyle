@@ -240,3 +240,6 @@ class A {
         }
     }
 }
+@interface InputMagicNumberIntMethodAnnotation { // ok
+        int value();
+}

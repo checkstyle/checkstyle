@@ -93,3 +93,4 @@ class Foo5 {
 @interface AnnotationWithAnnotationValue5 {
     Another value();
 }
+@interface InputAnnotationUseStyleCustomAnnotation {}
