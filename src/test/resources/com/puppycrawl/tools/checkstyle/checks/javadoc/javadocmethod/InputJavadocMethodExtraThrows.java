@@ -45,7 +45,7 @@ public class InputJavadocMethodExtraThrows {
     }
 
     /**
-     * declared exception in method signature is missed in javadoc // violation
+     * declared exception in method signature is missed in javadoc
      * @param properties some value
      * @throws java.lang.IllegalArgumentException when argument is wrong // ok
      * @throws java.lang.NullPointerException indicates null was passed // ok
@@ -58,7 +58,7 @@ public class InputJavadocMethodExtraThrows {
     }
 
     /**
-     * exception is explitly thrown in code missed in javadoc // violation
+     * exception is explitly thrown in code missed in javadoc
      * @param properties some value
      * @throws java.lang.IllegalStateException when argument is wrong // ok
      */
@@ -70,7 +70,7 @@ public class InputJavadocMethodExtraThrows {
     }
 
     /**
-     * exception is explitly thrown in code missed in javadoc // violation
+     * exception is explitly thrown in code missed in javadoc
      * @param properties some value
      * @throws java.lang.IllegalStateException when argument is wrong // ok
      */
@@ -82,7 +82,7 @@ public class InputJavadocMethodExtraThrows {
     }
 
     /**
-     * exception is explitly thrown in code missed in javadoc // violation
+     * exception is explitly thrown in code missed in javadoc
      * @param properties some value
      * @throws java.lang.IllegalStateException when argument is wrong // ok
      */

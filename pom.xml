@@ -1779,7 +1779,6 @@
 
                 <exclude>**/TypeUseAnnotationsOnQualifiedTypesTest.class</exclude>
 
-                <exclude>**/JavadocMethodCheckTest.class</exclude>
 
 
                 <exclude>**/MethodReferencesTest.class</exclude>
@@ -1799,13 +1798,11 @@
 
 
 
-                <exclude>**/JavadocMissingLeadingAsteriskCheckTest.class</exclude>
 
                 <exclude>**/DefaultMethodsTest.class</exclude>
 
 
 
-                <exclude>**/JavadocMissingWhitespaceAfterAsteriskCheckTest.class</exclude>
 
 
                 <exclude>**/ReceiverParameterTest.class</exclude>
