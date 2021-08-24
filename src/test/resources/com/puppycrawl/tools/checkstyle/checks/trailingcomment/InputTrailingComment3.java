@@ -1,6 +1,6 @@
 /*
 TrailingComment
-format = (default)^[\s});]*$
+format = NOT MATCH
 legalComment = (default)(null)
 
 
@@ -8,7 +8,7 @@ legalComment = (default)(null)
 
 package com.puppycrawl.tools.checkstyle.checks.trailingcomment;
 
-public class InputTrailingComment {
+public class InputTrailingComment3 {
     int i; // don't use trailing comments :)
     // it fine to have comment w/o any statement
     /* good c-style comment. */
