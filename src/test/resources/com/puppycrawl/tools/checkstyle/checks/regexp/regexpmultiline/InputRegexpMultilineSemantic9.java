@@ -1,10 +1,10 @@
 /*
 RegexpMultiline
-format = System\.(out)|(err)\.print(ln)?\(
+format = ^import
 message = (default)(null)
 ignoreCase = (default)false
 minimum = (default)0
-maximum = (default)0
+maximum = 5000
 matchAcrossLines = (default)false
 fileExtensions = (default)all files
 
@@ -13,7 +13,8 @@ fileExtensions = (default)all files
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpmultiline;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
@@ -21,7 +22,7 @@ import java.io.File;
  * Test case for detecting simple semantic violations.
  * @author Lars Kühne
  **/
-class InputRegexpMultilineSemantic
+class InputRegexpMultilineSemantic9 // ok
 {
     /* Boolean instantiation in a static initializer */
     static {
@@ -74,7 +75,7 @@ class InputRegexpMultilineSemantic
             }
             // can never happen, empty compound statement is another workaround
         }
-        catch (UnsupportedOperationException handledException) { // violation below
+        catch (UnsupportedOperationException handledException) {
             System.out.println(handledException.getMessage());
         }
         catch (SecurityException ex) { /* hello */ }

@@ -121,15 +121,6 @@
             files="regexp[\\/]regexp[\\/]InputRegexpStartingWithEmptyLine.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
-            files="regexp[\\/]regexpmultiline[\\/]InputRegexpMultilineMultilineSupport2.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="regexp[\\/]regexpmultiline[\\/]InputRegexpMultilineMultilineSupport.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="regexp[\\/]regexpmultiline[\\/]InputRegexpMultilineSemantic.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
             files="regexp[\\/]regexponfilename[\\/]InputRegexpOnFilenameSemantic.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
@@ -309,15 +300,6 @@
 
   <suppress id="StyleValidationCommentInInputs"
             files="nocodeinfile[\\/]InputNoCodeInFile2.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="regexp[\\/]regexpmultiline[\\/]InputRegexpMultilineMultilineSupport2.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="regexp[\\/]regexpmultiline[\\/]InputRegexpMultilineMultilineSupport.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="regexp[\\/]regexpmultiline[\\/]InputRegexpMultilineSemantic.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="regexp[\\/]regexponfilename[\\/]InputRegexpOnFilenameSemantic.java"/>

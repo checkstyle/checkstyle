@@ -1,3 +1,16 @@
+/*
+RegexpMultiline
+format = (a)bc.*def
+message = (default)(null)
+ignoreCase = (default)false
+minimum = (default)0
+maximum = (default)0
+matchAcrossLines = true
+fileExtensions = (default)all files
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpmultiline;
 
 /**
@@ -5,7 +18,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp.regexpmultiline;
  * matchAcrossLines = true
  */
 public class InputRegexpMultilineMultilineSupport {
-    void method() {
+    void method() { // violation below
 // abc - violation
 // def
 // abc
