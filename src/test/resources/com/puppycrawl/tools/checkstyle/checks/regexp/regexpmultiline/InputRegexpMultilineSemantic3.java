@@ -1,8 +1,8 @@
 /*
 RegexpMultiline
-format = System\.(out)|(err)\.print(ln)?\(
+format = SYSTEM\.(OUT)|(ERR)\.PRINT(LN)?\(
 message = (default)(null)
-ignoreCase = (default)false
+ignoreCase = true
 minimum = (default)0
 maximum = (default)0
 matchAcrossLines = (default)false
@@ -13,7 +13,8 @@ fileExtensions = (default)all files
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpmultiline;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
@@ -21,7 +22,7 @@ import java.io.File;
  * Test case for detecting simple semantic violations.
  * @author Lars Kühne
  **/
-class InputRegexpMultilineSemantic
+class InputRegexpMultilineSemantic3
 {
     /* Boolean instantiation in a static initializer */
     static {
