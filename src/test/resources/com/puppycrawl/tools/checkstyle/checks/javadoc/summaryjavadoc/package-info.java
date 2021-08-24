@@ -1,5 +1,5 @@
 /*
-SummaryJavadocCheckTest
+SummaryJavadoc
 violateExecutionOnNonTightHtml = (default)false
 forbiddenSummaryFragments = (default)^$
 period = (default).

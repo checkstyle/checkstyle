@@ -1,5 +1,5 @@
 /*
-SummaryJavadocCheckTest
+SummaryJavadoc
 violateExecutionOnNonTightHtml = (default)false
 forbiddenSummaryFragments = (default)^$
 period = _
@@ -10,12 +10,12 @@ period = _
 package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
 
 public class InputSummaryJavadocPeriod
-{
-    /** // violation
+{   // violation below
+    /**
      * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}
      */
     void foo3() {}
-
+    // violation below
     /**
      * Blabla
      */
@@ -33,7 +33,7 @@ public class InputSummaryJavadocPeriod
      * {@summary An especially short bit of Javadoc_}
      */
     void foo7(){}
-
+    // violation below
     /**
      * {@summary An especially short bit of Javadoc}
      */
