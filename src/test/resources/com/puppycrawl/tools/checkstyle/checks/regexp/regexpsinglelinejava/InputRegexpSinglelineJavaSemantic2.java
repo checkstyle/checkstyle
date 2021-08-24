@@ -1,7 +1,7 @@
 /*
 RegexpSinglelineJava
 format = System\.(out)|(err)\.print(ln)?\(
-message = (default)(null)
+message = Bad line :(
 ignoreCase = (default)false
 minimum = (default)0
 maximum = (default)0
@@ -12,7 +12,8 @@ ignoreComments = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsinglelinejava;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
@@ -20,7 +21,7 @@ import java.io.File;
  * Test case for detecting simple semantic violations.
  * @author Lars Kühne
  **/
-class InputRegexpSinglelineJavaSemantic
+class InputRegexpSinglelineJavaSemantic2
 {
     /* Boolean instantiation in a static initializer */
     static {
