@@ -132,12 +132,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="regexp[\\/]regexponfilename[\\/]InputRegexpOnFilenameSemantic.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="regexp[\\/]regexpsinglelinejava[\\/]InputRegexpSinglelineJavaSemantic.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="regexp[\\/]regexpsinglelinejava[\\/]InputRegexpSinglelineJavaTrailingComment.java"/>
-
   <!-- until https://github.com/checkstyle/checkstyle/issues/10469 -->
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorBlockCommentSeparatedFromPackage.java"/>
@@ -321,12 +315,6 @@
 
   <suppress id="StyleValidationCommentInInputs"
             files="regexp[\\/]regexponfilename[\\/]InputRegexpOnFilenameSemantic.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="regexp[\\/]regexpsinglelinejava[\\/]InputRegexpSinglelineJavaSemantic.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="regexp[\\/]regexpsinglelinejava[\\/]InputRegexpSinglelineJavaTrailingComment.java"/>
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/10469 -->
   <suppress id="StyleValidationCommentInInputs"

@@ -1,6 +1,6 @@
 /*
 RegexpSinglelineJava
-format = don't use trailing comments
+format = long ms
 message = (default)(null)
 ignoreCase = (default)false
 minimum = (default)0
@@ -12,7 +12,7 @@ ignoreComments = true
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsinglelinejava;
 
-public class InputRegexpSinglelineJavaTrailingComment { // ok
+public class InputRegexpSinglelineJavaTrailingComment10 { // ok
     int i; // don't use trailing comments :)
     // it fine to have comment w/o any statement
     /* good c-style comment. */

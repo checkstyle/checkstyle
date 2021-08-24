@@ -1,6 +1,6 @@
 /*
 RegexpSinglelineJava
-format = System\.(out)|(err)\.print(ln)?\(
+format = SYSTEM\.(OUT)|(ERR)\.PRINT(LN)?\(
 message = (default)(null)
 ignoreCase = (default)false
 minimum = (default)0
@@ -12,7 +12,8 @@ ignoreComments = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsinglelinejava;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
@@ -20,7 +21,7 @@ import java.io.File;
  * Test case for detecting simple semantic violations.
  * @author Lars Kühne
  **/
-class InputRegexpSinglelineJavaSemantic
+class InputRegexpSinglelineJavaSemantic4 // ok
 {
     /* Boolean instantiation in a static initializer */
     static {
@@ -73,7 +74,7 @@ class InputRegexpSinglelineJavaSemantic
             }
             // can never happen, empty compound statement is another workaround
         }
-        catch (UnsupportedOperationException handledException) { // violation below
+        catch (UnsupportedOperationException handledException) {
             System.out.println(handledException.getMessage());
         }
         catch (SecurityException ex) { /* hello */ }
