@@ -1,6 +1,6 @@
 /*
 EmptyLineSeparator
-allowNoEmptyLineBetweenFields = (default)false
+allowNoEmptyLineBetweenFields = true
 allowMultipleEmptyLines = (default)true
 allowMultipleEmptyLinesInsideClassMembers = (default)true
 tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, ENUM_DEF, \
@@ -47,7 +47,7 @@ import javax.swing.AbstractAction; /* no violation: no trailing comment
 
 import org.apache.commons.beanutils.locale.converters.ByteLocaleConverter;
 import org.apache.commons.beanutils.BasicDynaBean;
-class InputEmptyLineSeparator
+class InputEmptyLineSeparator2
 {
     public static final double FOO_PI = 3.1415;
     private boolean flag = true;
@@ -69,7 +69,7 @@ class InputEmptyLineSeparator
      *
      *
      */
-    private InputEmptyLineSeparator()
+    private InputEmptyLineSeparator2()
     {
         //empty
     }
@@ -148,7 +148,7 @@ class InputEmptyLineSeparator
     }
 }
 
-class Class2{
+class Class22{
     public int compareTo(InputEmptyLineSeparator aObject) //ok
     {
         int number = 0;
@@ -164,6 +164,6 @@ class Class2{
     };
 }
 
-class Class3 {
+class Class32 {
     int field;
 }
