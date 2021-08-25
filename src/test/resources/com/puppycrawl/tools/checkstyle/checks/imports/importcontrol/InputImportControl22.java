@@ -1,7 +1,7 @@
 /*
 ImportControl
-file = InputImportControlOne.xml
-path = [\\/]InputImportControl22\.java
+file = (file)(resource)InputImportControlOne.xml
+path = [\\\\/]InputImportControl22\\.java
 
 
 */

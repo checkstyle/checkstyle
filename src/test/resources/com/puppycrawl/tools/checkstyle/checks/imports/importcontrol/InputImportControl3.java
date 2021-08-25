@@ -1,6 +1,6 @@
 /*
 ImportControl
-file = InputImportControlWrong.xml
+file = (file)InputImportControlWrong.xml
 path = (default).*
 
 
