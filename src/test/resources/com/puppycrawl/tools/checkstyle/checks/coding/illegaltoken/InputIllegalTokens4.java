@@ -1,4 +1,4 @@
-/*
+/* // violation
 IllegalToken
 tokens = COMMENT_CONTENT
 
@@ -35,11 +35,11 @@ public class InputIllegalTokens4
     public void methodWithLabels() {
         label:
         {
-            anotherLabel: // some comment href
+            anotherLabel: // some comment href // violation
             do {
                 continue anotherLabel;
             } while (false);
-            break label; // some a href
+            break label; // some a href // violation
         }
     }
 }
