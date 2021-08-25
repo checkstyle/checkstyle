@@ -1,6 +1,6 @@
 /*
 Regexp
-format = (?i)SYSTEM\.(OUT)|(ERR)\.PRINT(LN)?\(
+format = (?i)SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(
 message = (default)null
 illegalPattern = true
 duplicateLimit = (default)0

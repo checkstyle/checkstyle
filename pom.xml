@@ -1703,7 +1703,6 @@
                 <exclude>**/BeforeExecutionExclusionFileFilterTest.class</exclude>
 
 
-                <exclude>**/RegexpSinglelineCheckTest.class</exclude>
 
 
                 <exclude>**/SuppressWithPlainTextCommentFilterTest.class</exclude>
@@ -1748,7 +1747,6 @@
 
 
 
-                <exclude>**/RegexpSinglelineJavaCheckTest.class</exclude>
 
 
 

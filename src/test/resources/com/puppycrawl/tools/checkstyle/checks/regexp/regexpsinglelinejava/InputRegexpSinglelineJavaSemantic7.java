@@ -1,6 +1,6 @@
 /* // violation
 RegexpSinglelineJava
-format = This\stext is not in the file
+format = This\\stext is not in the file
 message = (default)(null)
 ignoreCase = (default)false
 minimum = 1

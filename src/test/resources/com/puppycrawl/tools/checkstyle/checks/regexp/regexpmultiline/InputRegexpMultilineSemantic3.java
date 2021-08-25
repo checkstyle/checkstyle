@@ -1,6 +1,6 @@
 /*
 RegexpMultiline
-format = SYSTEM\.(OUT)|(ERR)\.PRINT(LN)?\(
+format = SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(
 message = (default)(null)
 ignoreCase = true
 minimum = (default)0

@@ -1,6 +1,6 @@
 /*
 Regexp
-format = c-style 1
+format = c-style\\s1
 message = (default)null
 illegalPattern = true
 duplicateLimit = (default)0
