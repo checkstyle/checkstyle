@@ -1,6 +1,6 @@
 /*
 Regexp
-format = This\stext is not in the file
+format = This\\stext is not in the file
 message = (default)null
 illegalPattern = true
 duplicateLimit = (default)0

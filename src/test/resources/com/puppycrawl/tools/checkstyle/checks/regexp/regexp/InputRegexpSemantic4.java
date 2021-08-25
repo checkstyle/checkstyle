@@ -3,7 +3,7 @@ Regexp
 format = Test case file
 message = (default)null
 illegalPattern = (default)false
-duplicateLimit = (default)0
+duplicateLimit = -1
 errorLimit = (default)100
 ignoreComments = (default)false
 
