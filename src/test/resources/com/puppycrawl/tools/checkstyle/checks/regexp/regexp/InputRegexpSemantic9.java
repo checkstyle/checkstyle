@@ -1,6 +1,6 @@
 /*
 Regexp
-format = System\.(out)|(err)\.print(ln)?\(
+format = System\\.(out)|(err)\\.print(ln)?\\(
 message = Bad line :(
 illegalPattern = true
 duplicateLimit = (default)0

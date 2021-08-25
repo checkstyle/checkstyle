@@ -50,7 +50,8 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "77: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
-        verify(checkConfig, getPath("InputRegexpSinglelineSemantic.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputRegexpSinglelineSemantic.java"), expected);
     }
 
     @Test
@@ -62,7 +63,8 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "78: Bad line :(",
         };
-        verify(checkConfig, getPath("InputRegexpSinglelineSemantic2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputRegexpSinglelineSemantic2.java"), expected);
     }
 
     @Test
@@ -75,7 +77,8 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "78: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
-        verify(checkConfig, getPath("InputRegexpSinglelineSemantic3.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputRegexpSinglelineSemantic3.java"), expected);
     }
 
     @Test
@@ -84,7 +87,8 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("format", "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(");
         checkConfig.addProperty("ignoreCase", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputRegexpSinglelineSemantic4.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputRegexpSinglelineSemantic4.java"), expected);
     }
 
     @Test
@@ -96,7 +100,8 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
             "1: " + getCheckMessage(MSG_REGEXP_MINIMUM, "500", "\\r"),
         };
 
-        verify(checkConfig, getPath("InputRegexpSinglelineSemantic5.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputRegexpSinglelineSemantic5.java"), expected);
     }
 
     @Test
@@ -109,7 +114,8 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
             "1: someMessage",
         };
 
-        verify(checkConfig, getPath("InputRegexpSinglelineSemantic6.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputRegexpSinglelineSemantic6.java"), expected);
     }
 
     @Test
@@ -117,7 +123,8 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
         checkConfig.addProperty("format", "System\\.(out)|(err)\\.print(ln)?\\(");
         checkConfig.addProperty("maximum", "1");
-        verify(checkConfig, getPath("InputRegexpSinglelineSemantic7.java"), EMPTY);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputRegexpSinglelineSemantic7.java"), EMPTY);
     }
 
     /**

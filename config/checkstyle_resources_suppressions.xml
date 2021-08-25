@@ -90,6 +90,10 @@
     files="[\\/]InputJavadocParagraphCorrect\.java"/>
   <suppress id="noTrailingWhitespace"
     files="[\\/]InputJavadocTagContinuationIndentationGuavaFalsePositive\.java"/>
+  <suppress id="noTrailingWhitespace"
+    files="[\\/]InputRegexpTrailingComment10\.java"/>
+  <suppress id="noTrailingWhitespace"
+    files="[\\/]InputRegexpSinglelineJavaTrailingComment10\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="FileTabCharacter"

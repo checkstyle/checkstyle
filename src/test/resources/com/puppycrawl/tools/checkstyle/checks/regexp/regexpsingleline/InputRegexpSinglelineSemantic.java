@@ -1,6 +1,6 @@
 /*
 RegexpSingleline
-format = System\.(out)|(err)\.print(ln)?\(
+format = System\\.(out)|(err)\\.print(ln)?\\(
 message = (default)
 ignoreCase = (default)false
 minimum = (default)0

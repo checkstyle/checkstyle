@@ -1,6 +1,6 @@
 /*
 RegexpSinglelineJava
-format = c-style\s1
+format = c-style\\s1
 message = (default)(null)
 ignoreCase = (default)false
 minimum = (default)0

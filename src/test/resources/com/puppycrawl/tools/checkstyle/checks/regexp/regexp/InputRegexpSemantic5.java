@@ -3,7 +3,7 @@ Regexp
 format = Boolean x = new Boolean
 message = (default)null
 illegalPattern = (default)false
-duplicateLimit = (default)0
+duplicateLimit = 0
 errorLimit = (default)100
 ignoreComments = (default)false
 
@@ -23,13 +23,13 @@ import java.io.File;
 class InputRegexpSemantic5
 {
     /* Boolean instantiation in a static initializer */
-    static {
-        Boolean x = new Boolean(true); // violation
+    static { // violation below
+        Boolean x = new Boolean(true);
     }
 
     /* Boolean instantiation in a non-static initializer */
-    {
-        Boolean x = new Boolean(true); // violation
+    { // violation below
+        Boolean x = new Boolean(true);
         Boolean[] y = new Boolean[]{Boolean.TRUE, Boolean.FALSE};
     }
 

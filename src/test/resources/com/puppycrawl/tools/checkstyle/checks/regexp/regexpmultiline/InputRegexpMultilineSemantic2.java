@@ -1,6 +1,6 @@
 /*
 RegexpMultiline
-format = System\.(out)|(err)\.print(ln)?\(
+format = System\\.(out)|(err)\\.print(ln)?\\(
 message = Bad line :(
 ignoreCase = (default)false
 minimum = (default)0
