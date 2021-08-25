@@ -83,7 +83,7 @@ public final class InlineConfigParser {
         final TestInputConfiguration.Builder inputConfigBuilder =
                 new TestInputConfiguration.Builder();
         setCheckName(inputConfigBuilder, inputFilePath, lines);
-        setCheckProperties(inputConfigBuilder, lines);
+        setCheckProperties(inputConfigBuilder, inputFilePath, lines);
         setViolations(inputConfigBuilder, lines);
         return inputConfigBuilder.build();
     }
@@ -93,6 +93,13 @@ public final class InlineConfigParser {
         final int beginIndex = path.indexOf("com.puppycrawl");
         final int endIndex = path.lastIndexOf(checkName.toLowerCase(Locale.ROOT));
         return path.substring(beginIndex, endIndex) + checkName + "Check";
+    }
+
+    private static String getFilePath(String fileName, String inputFilePath) {
+        final int lastSlashIndex = Math.max(inputFilePath.lastIndexOf('\\'),
+                inputFilePath.lastIndexOf('/'));
+        final String root = inputFilePath.substring(0, lastSlashIndex + 1);
+        return root + fileName;
     }
 
     private static List<String> readFile(Path filePath) throws CheckstyleException {
@@ -116,6 +123,7 @@ public final class InlineConfigParser {
     }
 
     private static void setCheckProperties(TestInputConfiguration.Builder inputConfigBuilder,
+                                           String inputFilePath,
                                            List<String> lines)
                     throws Exception {
         final StringBuilder stringBuilder = new StringBuilder(128);
@@ -133,6 +141,11 @@ public final class InlineConfigParser {
             final String value = entry.getValue().toString();
             if (key.startsWith("message.")) {
                 inputConfigBuilder.addCheckMessage(key.substring(8), value);
+            }
+            else if (value.startsWith("(file)")) {
+                final String fileName = value.substring(value.indexOf(')') + 1);
+                final String filePath = getFilePath(fileName, inputFilePath);
+                inputConfigBuilder.addNonDefaultProperty(key, filePath);
             }
             else if (value.startsWith("(default)")) {
                 final String defaultValue = value.substring(value.indexOf(')') + 1);
