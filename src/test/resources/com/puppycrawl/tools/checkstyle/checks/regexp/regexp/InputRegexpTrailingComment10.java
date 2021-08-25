@@ -1,6 +1,6 @@
 /*
 Regexp
-format = long ms
+format = long ms  
 message = (default)null
 illegalPattern = true
 duplicateLimit = (default)0
