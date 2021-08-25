@@ -163,7 +163,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
         };
 
         createChecker(checkConfig);
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getPath("InputMultipleStringLiterals7.java"),
             expected);
     }
@@ -197,7 +197,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
             };
 
         createChecker(checkConfig);
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
             getNonCompilablePath("InputMultipleStringLiteralsTextBlocks.java"),
             expected);
     }

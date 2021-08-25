@@ -1,7 +1,7 @@
 /*
 MultipleStringLiterals
 allowedDuplicates = (default)1
-ignoreStringsRegexp =
+ignoreStringsRegexp = (null)
 ignoreOccurrenceContext = VARIABLE_DEF
 
 
