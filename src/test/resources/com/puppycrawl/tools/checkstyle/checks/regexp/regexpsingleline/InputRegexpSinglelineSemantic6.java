@@ -1,6 +1,6 @@
-/*
+/* // violation
 RegexpSingleline
-format = \r
+format = \\r
 message = someMessage
 ignoreCase = (default)false
 minimum = 500
@@ -21,7 +21,7 @@ import java.io.File;
  * Test case for detecting simple semantic violations.
  * @author Lars Kühne
  **/
-class InputRegexpSinglelineSemantic6 // violation
+class InputRegexpSinglelineSemantic6
 {
     /* Boolean instantiation in a static initializer */
     static {

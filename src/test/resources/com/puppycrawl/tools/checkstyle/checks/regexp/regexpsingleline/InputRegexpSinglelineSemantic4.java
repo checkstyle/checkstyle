@@ -1,6 +1,6 @@
 /*
 RegexpSingleline
-format = SYSTEM\.(OUT)|(ERR)\.PRINT(LN)?\(
+format = SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(
 message = (default)
 ignoreCase = (default)false
 minimum = (default)0

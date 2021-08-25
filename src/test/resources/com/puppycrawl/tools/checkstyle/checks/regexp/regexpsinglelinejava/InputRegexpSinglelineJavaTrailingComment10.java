@@ -1,6 +1,6 @@
 /*
 RegexpSinglelineJava
-format = long ms
+format = long ms  
 message = (default)(null)
 ignoreCase = (default)false
 minimum = (default)0
