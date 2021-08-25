@@ -1,6 +1,6 @@
 /*
 ImportControl
-file = (default)null
+file = (file)InputImportControlPkgRegExpInParent.xml
 path = (default).*
 
 

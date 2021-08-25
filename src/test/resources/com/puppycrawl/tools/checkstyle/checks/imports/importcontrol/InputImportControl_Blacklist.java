@@ -1,6 +1,6 @@
 /*
 ImportControl
-file = InputImportControlBlacklist.xml
+file = (file)InputImportControlBlacklist.xml
 path = (default).*
 
 

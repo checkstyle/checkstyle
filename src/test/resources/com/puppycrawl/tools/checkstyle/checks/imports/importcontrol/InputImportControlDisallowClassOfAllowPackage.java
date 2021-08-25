@@ -1,6 +1,6 @@
 /*
 ImportControl
-file = InputImportControlDisallowClassOfAllowPackage.xml
+file = (file)InputImportControlDisallowClassOfAllowPackage.xml
 path = (default).*
 
 
