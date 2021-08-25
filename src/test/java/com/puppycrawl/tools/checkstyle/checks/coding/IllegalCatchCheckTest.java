@@ -92,7 +92,7 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalCatchCheck.class);
         checkConfig.addProperty("illegalClassNames",
                                  "java.lang.Error, java.lang.Exception, NullPointerException,"
-                                + "OneMoreException, RuntimeException, SQLException");
+                                + " OneMoreException, RuntimeException, SQLException");
 
         final String[] expected = {
             "15:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
@@ -108,7 +108,8 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
             "24:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
         };
 
-        verify(checkConfig, getPath("InputIllegalCatch2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputIllegalCatch2.java"), expected);
     }
 
     @Test

@@ -17,9 +17,9 @@ public class InputIllegalTokenTextTextBlocksQuotes {
         final String refCase1 = "<A hReF=\""; // violation
 
         final String ref2 = """
-                <a href=\""""; // violation
+                <a href=\""""; // violation above
         final String refCase2 = """
-                <A hReF=\""""; // violation
+                <A hReF=\""""; // violation above
 
         String escape = """
                 <html>\u000D\u000A\n
@@ -27,20 +27,20 @@ public class InputIllegalTokenTextTextBlocksQuotes {
                         <p>Hello, world</p>\u000D\u000A\n
                     </body>\u000D\u000A\n
                 </html>\u000D\u000A
-                """;
+                """; // violation below
         String testMoreEscapes = """
                 fun with\n
                 whitespace\t\r
                 and other escapes \"""
-                """; // violation
+                """; // violation below
         String evenMoreEscapes = """
                 \b \f \\ \0 \1 \2 \r \r\n \\r\\n \\''
                 \\11 \\57 \n\\n\n\\\n\n \\ ""a "a
                 \\uffff \\' \\\' \'
-                """; // violation
+                """; // violation below
         String concat = """
                 The quick brown fox""" + "  \n" + """
                 jumps over the lazy dog
-                """; // violation
+                """;
     }
 }
