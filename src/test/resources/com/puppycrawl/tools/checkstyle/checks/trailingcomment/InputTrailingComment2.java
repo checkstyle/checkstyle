@@ -9,10 +9,13 @@ legalComment = ^NOI18N$
 package com.puppycrawl.tools.checkstyle.checks.trailingcomment;
 
 public class InputTrailingComment2 {
+    // violation below
     int i; // don't use trailing comments :)
     // it fine to have comment w/o any statement
     /* good c-style comment. */
+    // violation below
     int j; /* bad c-style comment. */
+    // violation below
     void method1() { /* some c-style multi-line
                         comment*/
         Runnable r = (new Runnable() {
@@ -23,7 +26,9 @@ public class InputTrailingComment2 {
     /*
       Let's check multi-line comments.
     */
+    // violation below
     /* c-style */ // cpp-style
+    // violation below
     /* c-style 1 */ /*c-style 2 */
 
     /* package */ void method2(long ms /* we should ignore this */) {
@@ -36,6 +41,7 @@ public class InputTrailingComment2 {
      */
     final static public String NAME="Some Name"; // NOI18N
     final static public String NAME2="Some Name"; /*NOI18N*/
+    // violation below
     String NAME3="Some Name"; /*NOI18N
 */
     /* package */ void method3() {
@@ -49,7 +55,7 @@ public class InputTrailingComment2 {
     }
 
     /**
-     * violation above this line. // violation
+     * violation above this line.
      **/
     /* package */ void addError() {
     }
