@@ -1,4 +1,4 @@
-/*
+/* // violation
 IllegalToken
 tokens = BLOCK_COMMENT_BEGIN
 

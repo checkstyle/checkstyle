@@ -1527,76 +1527,30 @@
                 <exclude>**/XdocsPagesTest.class</exclude>
                 <!-- Needed for testing deprecated API. -->
                 <exclude>**/DefaultConfigurationTest.class</exclude>
-                <!-- untill https://github.com/checkstyle/checkstyle/issues/10390 -->
-
-
-
+                <!-- Inline Config cannot be supported. -->
                 <exclude>**/UniquePropertiesCheckTest.class</exclude>
-
-
-
 
                 <exclude>**/NPathComplexityCheckTest.class</exclude>
 
-
-
                 <exclude>**/EmbeddedNullCharTest.class</exclude>
-
 
                 <exclude>**/MultiDimensionalArraysInGenericsTest.class</exclude>
 
-
-
-
-
-
-
-
-                <!-- permanent suppression -->
                 <exclude>**/LineLengthCheckTest.class</exclude>
-
-
 
                 <exclude>**/Java9TryWithResourcesTest.class</exclude>
 
-
                 <exclude>**/RegexpCheckTest.class</exclude>
-
 
                 <exclude>**/Java7NumericalLiteralsTest.class</exclude>
 
-
                 <exclude>**/SuppressionSingleFilterTest.class</exclude>
-
-
-
-
-
-
-
-
-
 
                 <exclude>**/AllSinglelineCommentsTest.class</exclude>
 
-
-
                 <exclude>**/FileSetCheckTest.class</exclude>
 
-
-
-
-
-
-
-
-
-
                 <exclude>**/AbstractFileSetCheckTest.class</exclude>
-
-
-
-
 
                 <exclude>**/OrderedPropertiesCheckTest.class</exclude>
 
@@ -1604,214 +1558,89 @@
 
                 <exclude>**/Java7TryWithResourcesTest.class</exclude>
 
-
-
-
                 <exclude>**/Java7StringSwitchTest.class</exclude>
-
-
-
 
                 <exclude>**/RegexpMultilineCheckTest.class</exclude>
 
-
-
-
-
                 <exclude>**/EmptyLineSeparatorCheckTest.class</exclude>
-
-                <!-- permanent suppression -->
-                <exclude>**/AvoidEscapedUnicodeCharactersCheckTest.class</exclude>
-
 
                 <exclude>**/IndentationCheckTest.class</exclude>
 
                 <exclude>**/NoCodeInFileCheckTest.class</exclude>
 
-
                 <exclude>**/HexFloatsTest.class</exclude>
-
-
-                <exclude>**/EqualsAvoidNullCheckTest.class</exclude>
-
-
 
                 <exclude>**/TreeWalkerTest.class</exclude>
 
                 <exclude>**/UnicodeEscapeTest.class</exclude>
 
-
-
-
                 <exclude>**/RegexpOnFilenameCheckTest.class</exclude>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 <exclude>**/GeneratedJava14LexerTest.class</exclude>
 
                 <exclude>**/Java7MultiCatchTest.class</exclude>
 
-
                 <exclude>**/CheckerTest.class</exclude>
-
-
-
-
 
                 <exclude>**/HeaderCheckTest.class</exclude>
 
-
-
-
-
                 <exclude>**/SuppressWarningsFilterTest.class</exclude>
-
-
-
-                <exclude>**/VisibilityModifierCheckTest.class</exclude>
-
-
-
-
-
 
                 <exclude>**/SuppressWarningsHolderTest.class</exclude>
 
-
                 <exclude>**/LineCommentAtTheEndOfFileTest.class</exclude>
-
 
                 <exclude>**/ImportControlCheckTest.class</exclude>
 
-
                 <exclude>**/BeforeExecutionExclusionFileFilterTest.class</exclude>
 
-
-
-
                 <exclude>**/SuppressWithPlainTextCommentFilterTest.class</exclude>
-
-
-                <exclude>**/MultipleStringLiteralsCheckTest.class</exclude>
 
                 <exclude>**/VarargTest.class</exclude>
 
                 <exclude>**/AbstractCheckTest.class</exclude>
 
-
-
-
-
-
-
-
                 <exclude>**/RegexpHeaderCheckTest.class</exclude>
 
-
                 <exclude>**/ImportOrderCheckTest.class</exclude>
-
-
-
-
 
                 <exclude>**/DetailAstImplTest.class</exclude>
 
                 <exclude>**/SuppressWithNearbyCommentFilterTest.class</exclude>
 
-
                 <exclude>**/Java14RecordsTest.class</exclude>
-
-
 
                 <exclude>**/PackageDeclarationCheckTest.class</exclude>
 
-
-
-
-
-
-
-
-
-
-
-
                 <exclude>**/AbstractModuleTestSupport.class</exclude>
 
-                <exclude>**/IllegalCatchCheckTest.class</exclude>
-
-
                 <exclude>**/CommentsIndentationCheckTest.class</exclude>
-
-
-                <exclude>**/IllegalTokenCheckTest.class</exclude>
-
 
                 <exclude>**/SuppressionFilterTest.class</exclude>
 
                 <exclude>**/Java7DiamondTest.class</exclude>
 
-                <exclude>**/IllegalTokenTextCheckTest.class</exclude>
-
                 <exclude>**/AllBlockCommentsTest.class</exclude>
-
-
-
 
                 <exclude>**/TypeUseAnnotationsOnQualifiedTypesTest.class</exclude>
 
-
-
                 <exclude>**/MethodReferencesTest.class</exclude>
-
-
-
 
                 <exclude>**/AnnotationsOnArrayTest.class</exclude>
 
-
                 <exclude>**/NonEmptyAtclauseDescriptionCheckTest.class</exclude>
-
 
                 <exclude>**/WriteTagCheckTest.class</exclude>
 
-
-
-
                 <exclude>**/DefaultMethodsTest.class</exclude>
-
-
-
-
 
                 <exclude>**/ReceiverParameterTest.class</exclude>
 
-
                 <exclude>**/AnnotationTest.class</exclude>
-
-                <exclude>**/AtclauseOrderCheckTest.class</exclude>
 
                 <exclude>**/LambdaTest.class</exclude>
 
-
                 <exclude>**/AbstractJavadocCheckTest.class</exclude>
-
-
               </excludes>
             </configuration>
           </execution>
