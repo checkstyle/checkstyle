@@ -1,6 +1,6 @@
 /*
 ImportControl
-file = InputImportControlOneRegExp.xml
+file = (file)InputImportControlOneRegExp.xml
 path = (default).*
 
 

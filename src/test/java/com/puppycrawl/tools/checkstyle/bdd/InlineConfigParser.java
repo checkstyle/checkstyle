@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.bdd;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
@@ -83,7 +84,7 @@ public final class InlineConfigParser {
         final TestInputConfiguration.Builder inputConfigBuilder =
                 new TestInputConfiguration.Builder();
         setCheckName(inputConfigBuilder, inputFilePath, lines);
-        setCheckProperties(inputConfigBuilder, lines);
+        setCheckProperties(inputConfigBuilder, inputFilePath, lines);
         setViolations(inputConfigBuilder, lines);
         return inputConfigBuilder.build();
     }
@@ -93,6 +94,42 @@ public final class InlineConfigParser {
         final int beginIndex = path.indexOf("com.puppycrawl");
         final int endIndex = path.lastIndexOf(checkName.toLowerCase(Locale.ROOT));
         return path.substring(beginIndex, endIndex) + checkName + "Check";
+    }
+
+    private static String getFilePath(String fileName, String inputFilePath) {
+        final int lastSlashIndex = Math.max(inputFilePath.lastIndexOf('\\'),
+                inputFilePath.lastIndexOf('/'));
+        final String root = inputFilePath.substring(0, lastSlashIndex + 1);
+        return root + fileName;
+    }
+
+    private static String getResourcePath(String fileName, String inputFilePath) {
+        final String filePath = getUriPath(fileName, inputFilePath);
+        final int lastSlashIndex = filePath.lastIndexOf('/');
+        final String root = filePath.substring(filePath.indexOf("puppycrawl") - 5,
+                lastSlashIndex + 1);
+        return root + fileName;
+    }
+
+    private static String getUriPath(String fileName, String inputFilePath) {
+        return new File(getFilePath(fileName, inputFilePath)).toURI().toString();
+    }
+
+    private static String getResolvedPath(String fileValue, String inputFilePath) {
+        final String resolvedFilePath;
+        if (fileValue.startsWith("(resource)")) {
+            resolvedFilePath =
+                    getResourcePath(fileValue.substring(fileValue.indexOf(')') + 1),
+                            inputFilePath);
+        }
+        else if (fileValue.startsWith("(uri)")) {
+            resolvedFilePath =
+                    getUriPath(fileValue.substring(fileValue.indexOf(')') + 1), inputFilePath);
+        }
+        else {
+            resolvedFilePath = getFilePath(fileValue, inputFilePath);
+        }
+        return resolvedFilePath;
     }
 
     private static List<String> readFile(Path filePath) throws CheckstyleException {
@@ -116,6 +153,7 @@ public final class InlineConfigParser {
     }
 
     private static void setCheckProperties(TestInputConfiguration.Builder inputConfigBuilder,
+                                           String inputFilePath,
                                            List<String> lines)
                     throws Exception {
         final StringBuilder stringBuilder = new StringBuilder(128);
@@ -133,6 +171,11 @@ public final class InlineConfigParser {
             final String value = entry.getValue().toString();
             if (key.startsWith("message.")) {
                 inputConfigBuilder.addCheckMessage(key.substring(8), value);
+            }
+            else if (value.startsWith("(file)")) {
+                final String fileName = value.substring(value.indexOf(')') + 1);
+                final String filePath = getResolvedPath(fileName, inputFilePath);
+                inputConfigBuilder.addNonDefaultProperty(key, filePath);
             }
             else if (value.startsWith("(default)")) {
                 final String defaultValue = value.substring(value.indexOf(')') + 1);

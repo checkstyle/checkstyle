@@ -1,6 +1,6 @@
 /*
 ImportControl
-file = InputImportControlStrategyOnMismatchOne.xml
+file = (file)InputImportControlStrategyOnMismatchOne.xml
 path = (default).*
 
 

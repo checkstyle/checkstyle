@@ -1,6 +1,6 @@
 /*
 ImportControl
-file = InputImportControlStrategyOnMismatchThree.xml
+file = (file)InputImportControlStrategyOnMismatchThree.xml
 path = (default).*
 
 

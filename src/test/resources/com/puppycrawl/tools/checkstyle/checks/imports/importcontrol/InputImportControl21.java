@@ -1,7 +1,7 @@
 /*
 ImportControl
-file = InputImportControlOne.xml
-path = ^.*[\\/]src[\\/]test[\\/].*$
+file = (file)(resource)InputImportControlOne.xml
+path = ^.*[\\\\/]src[\\\\/]test[\\\\/].*$
 
 
 */

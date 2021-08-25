@@ -1,6 +1,6 @@
 /*
 ImportControl
-file = InputImportControlOne.xml
+file = (file)(resource)InputImportControlOne.xml
 path = (default).*
 
 

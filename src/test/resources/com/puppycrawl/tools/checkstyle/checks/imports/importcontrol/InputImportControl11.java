@@ -1,6 +1,6 @@
 /*
 ImportControl
-file = InputImportControlNotRegExpNoMatch.xml
+file = (file)InputImportControlNotRegExpNoMatch.xml
 path = (default).*
 
 
