@@ -1,6 +1,6 @@
 /* // violation
 NewlineAtEndOfFile
-lineSeparator = (default)LF_CR_CRLF
+lineSeparator = LF
 fileExtensions = (default)all files
 
 
