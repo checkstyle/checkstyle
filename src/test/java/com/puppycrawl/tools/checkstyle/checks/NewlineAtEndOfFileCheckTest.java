@@ -58,8 +58,8 @@ public class NewlineAtEndOfFileCheckTest
             createModuleConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(
-            createChecker(checkConfig),
+        verifyWithInlineConfigParser(
+            checkConfig,
             getPath("InputNewlineAtEndOfFileLf.java"),
             expected);
     }
@@ -72,8 +72,8 @@ public class NewlineAtEndOfFileCheckTest
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING),
         };
-        verify(
-            createChecker(checkConfig),
+        verifyWithInlineConfigParser(
+            checkConfig,
             getPath("InputNewlineAtEndOfFileCrlf.java"),
             expected);
     }
@@ -84,8 +84,8 @@ public class NewlineAtEndOfFileCheckTest
             createModuleConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addProperty("lineSeparator", LineSeparatorOption.CRLF.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(
-            createChecker(checkConfig),
+        verifyWithInlineConfigParser(
+            checkConfig,
             getPath("InputNewlineAtEndOfFileCrlf3.java"),
             expected);
     }
@@ -96,8 +96,8 @@ public class NewlineAtEndOfFileCheckTest
             createModuleConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addProperty("lineSeparator", LineSeparatorOption.CR.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(
-            createChecker(checkConfig),
+        verifyWithInlineConfigParser(
+            checkConfig,
             getPath("InputNewlineAtEndOfFileCr.java"),
             expected);
     }
@@ -108,16 +108,16 @@ public class NewlineAtEndOfFileCheckTest
             createModuleConfig(NewlineAtEndOfFileCheck.class);
         checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF_CR_CRLF.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(
-            createChecker(checkConfig),
+        verifyWithInlineConfigParser(
+            checkConfig,
             getPath("InputNewlineAtEndOfFileCrlf2.java"),
             expected);
-        verify(
-            createChecker(checkConfig),
+        verifyWithInlineConfigParser(
+            checkConfig,
             getPath("InputNewlineAtEndOfFileLf2.java"),
             expected);
-        verify(
-            createChecker(checkConfig),
+        verifyWithInlineConfigParser(
+            checkConfig,
             getPath("InputNewlineAtEndOfFileCr2.java"),
             expected);
     }
@@ -130,8 +130,8 @@ public class NewlineAtEndOfFileCheckTest
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
         };
-        verify(
-            createChecker(checkConfig),
+        verifyWithInlineConfigParser(
+            checkConfig,
             getPath("InputNewlineAtEndOfFileNoNewline.java"),
             expected);
     }
@@ -144,8 +144,8 @@ public class NewlineAtEndOfFileCheckTest
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
         };
-        verify(
-            createChecker(checkConfig),
+        verifyWithInlineConfigParser(
+            checkConfig,
             getPath("InputNewlineAtEndOfFileNoNewline2.java"),
             expected);
     }

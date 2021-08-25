@@ -1685,7 +1685,6 @@
 
                 <exclude>**/VisibilityModifierCheckTest.class</exclude>
 
-                <exclude>**/TrailingCommentCheckTest.class</exclude>
 
 
 
