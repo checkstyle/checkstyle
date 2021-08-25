@@ -47,15 +47,15 @@ import javax.swing.AbstractAction; /* no violation: no trailing comment
 
 import org.apache.commons.beanutils.locale.converters.ByteLocaleConverter;
 import org.apache.commons.beanutils.BasicDynaBean;
-class InputEmptyLineSeparator
+class InputEmptyLineSeparator // violation
 {
     public static final double FOO_PI = 3.1415;
-    private boolean flag = true;
-    static {
+    private boolean flag = true; // violation
+    static { // violation
         //empty static initializer
     }
     // no blank line - fail
-    {
+    { // violation
         //empty instance initializer
     }
 
@@ -69,12 +69,12 @@ class InputEmptyLineSeparator
      *
      *
      */
-    private InputEmptyLineSeparator()
+    private InputEmptyLineSeparator() // violation
     {
         //empty
     }
     //separator blank line
-    public int compareTo(Object aObject)
+    public int compareTo(Object aObject) // violation
     {
         int number = 0;
         return 0;
@@ -91,7 +91,7 @@ class InputEmptyLineSeparator
      * @param result
      * @return
      */
-    public static <T> Callable<T> callable(Runnable task, T result)
+    public static <T> Callable<T> callable(Runnable task, T result) // violation
     {
         return null;
     }
@@ -122,7 +122,7 @@ class InputEmptyLineSeparator
     {
         return 666;
     }
-    interface IntEnum {
+    interface IntEnum { // violation
     }
 
     class InnerClass {

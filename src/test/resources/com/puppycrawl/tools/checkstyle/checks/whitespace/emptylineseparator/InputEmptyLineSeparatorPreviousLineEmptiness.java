@@ -23,7 +23,7 @@ public class InputEmptyLineSeparatorPreviousLineEmptiness {
 
     }
 
-    {
+    { // violation
 
 
         base = 33;
