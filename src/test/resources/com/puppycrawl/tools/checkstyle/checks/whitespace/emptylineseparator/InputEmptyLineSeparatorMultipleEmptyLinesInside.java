@@ -46,27 +46,27 @@ public abstract class InputEmptyLineSeparatorMultipleEmptyLinesInside
     abstract int generateSrc(String s);
 
     static {
-        // empty lines below should cause a violation
+        // violation
 
 
     }
 
     {
-        // empty lines below should cause a violation
+        // violation
 
 
     }
 
-    private static void foo() {
+    private static void foo() { // violation
 
 
         // 1 empty line above should cause a violation
 
-        // 1 empty line above should not cause a violation
+        // violation
 
 
 
         // 2 empty lines above should cause violations
     }
 }
-class SecondClassReturnWithVeryVeryVeryLongName{}
+class SecondClassReturnWithVeryVeryVeryLongName{} // violation

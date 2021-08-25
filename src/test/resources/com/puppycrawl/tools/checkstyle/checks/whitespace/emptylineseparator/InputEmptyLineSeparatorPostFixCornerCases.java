@@ -16,7 +16,7 @@ public class InputEmptyLineSeparatorPostFixCornerCases {
 
     protected void foo1() throws Exception {
         int a = 25;
-        // violation
+        // violation above
 
 
         foo(a);
@@ -30,7 +30,7 @@ public class InputEmptyLineSeparatorPostFixCornerCases {
 
         Object[] defaults = new Object[] {
                 "String One",
-                // violation
+                // violation above
 
 
                 "String Two",
@@ -39,7 +39,7 @@ public class InputEmptyLineSeparatorPostFixCornerCases {
     }
 
     protected void foo2() {
-        Object[] defaults = new Object[] {
+        Object[] defaults = new Object[] { // violation below
             "String One", 13,
 
 

@@ -34,7 +34,7 @@ public class InputEmptyLineSeparatorNewMethodDef {
         }.add("String Four");
     }
 
-    static { // violation at line below
+    static { // violation below
         MULTIPLICATOR = 5;
 
 

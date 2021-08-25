@@ -46,14 +46,14 @@ import java.lang.StringBuilder;
 
 public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments { // ok
 
-    public int testNoViolation1 = 1; // violation
+    public int testNoViolation1 = 1; // ok
 
     public int testNoViolation2 = 2; // no violation
 
     // Should
     // not
     // have
-    // violations
+    // oks
     public int testNoViolation3 = 3;
 
     /*
@@ -75,7 +75,7 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments { // ok
     } // no violation
 
     // Should not have
-    // violation
+    // ok
     public void testNoViolationMethod3() {
 
 
@@ -144,7 +144,7 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments { // ok
     public static class Class1 { } // no violation
 
 
-    public static class Class2 { } // violation
+    public static class Class2 { } // ok
 
     // no violation
 
@@ -331,7 +331,7 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments { // ok
 
     public
 
-    // violation
+    // ok
     static
 
     enum Enum6 { }
@@ -365,7 +365,7 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments { // ok
 
     /* no violation */
 
-    // violation
+    // ok
     {
         int i = 1;
     }
@@ -387,7 +387,7 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments { // ok
 
 
         // no
-        // violation
+        // ok
     }
 
     // no violation

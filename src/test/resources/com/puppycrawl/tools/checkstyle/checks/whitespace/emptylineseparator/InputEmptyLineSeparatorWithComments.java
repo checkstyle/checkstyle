@@ -49,7 +49,7 @@ import java.lang.Long;
 
 
 /*
- * violation
+ * // violation above
  */
 import java.lang.Float;
 
@@ -60,7 +60,7 @@ import java.lang.Double;
 
 
 /**
- * violation
+ * // violation above
  */
 import java.lang.Character;
 
@@ -88,11 +88,11 @@ import java.lang.Short;
 
 
 /* violation */
-// .
+// violation above
 import java.lang.Number;
 
 
-import java.lang.Runnable;
+import java.lang.Runnable; // violation
 import java.lang.Thread;
 
 // no violation
@@ -103,7 +103,7 @@ import java.lang.StringBuilder;
 
 
 /*
- * violation
+ * // violation above
  */
 import static java.lang.Math.abs;
 
@@ -115,7 +115,7 @@ public class InputEmptyLineSeparatorWithComments {
     public int testNoViolationWithoutComment = 2; // no violation
 
 
-    // Should have violation
+    // violation
     public int testViolationWithSingleLineComment = 3;
 
     // Should not have violations
@@ -123,7 +123,7 @@ public class InputEmptyLineSeparatorWithComments {
 
 
     /*
-     * Should have
+     * Should have // violation above
      * violation
      */
     public int testViolationWithMultilineComment = 5;
@@ -136,7 +136,7 @@ public class InputEmptyLineSeparatorWithComments {
 
 
     /**
-     * Should have
+     * Should have // violation above
      * violation
      */
     public int testViolationWithJavadoc = 7;
@@ -149,24 +149,24 @@ public class InputEmptyLineSeparatorWithComments {
 
 
     public void testViolationWithoutComment() {
-    } // violation
+    } // violation above
 
     public void testNoViolationWithoutComment() {
     } // no violation
 
 
-    // Should have violation
+    // violation
     public void testViolationWithSingleLineComment() {
     }
 
     // Should not have
-    // violation
+    // a violation
     public void testNoViolationWithSingleLineComment() {
     }
 
 
     /*
-     * Should have
+     * Should have // violation above
      * violation
      */
     public void testViolationWithMultilineComment() {
@@ -181,7 +181,7 @@ public class InputEmptyLineSeparatorWithComments {
 
 
     /**
-     * Should have
+     * Should have // violation above
      * violation
      */
     public void testViolationWithJavadoc() {
@@ -226,7 +226,7 @@ public class InputEmptyLineSeparatorWithComments {
 
 
     /*
-     * Should have
+     * Should have // violation above
      * violation
      */
     public static class Class8 { }
@@ -239,7 +239,7 @@ public class InputEmptyLineSeparatorWithComments {
 
 
     /**
-     * Should have
+     * Should have // violation above
      * violation
      */
     public static class Class10 {
@@ -254,13 +254,14 @@ public class InputEmptyLineSeparatorWithComments {
 
     // violation
     public interface Interface2 { }
-    // violation
-    public // violation
+    // violation below
+    public
     // .
     interface Interface3 { }
 
 
-    /* violation */
+    /* // violation
+     */
     /* . */
     /* . */
     /* . */
