@@ -32,7 +32,7 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
     private static final String MESSAGE = getCheckMessage(RegexpSinglelineCheck.class,
         "regexp.exceeded", FORMAT);
     private static final String[] VIOLATION = {
-        "4: " + MESSAGE,
+        "17: " + MESSAGE,
     };
 
     @Override
@@ -44,7 +44,7 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
     public void testDefault() throws Exception {
         final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
 
-        verifySuppressed(config, getPath("InputSuppressionSingleFilter.java"), null,
+        verifySuppressed(config, getPath("InputSuppressionSingleFilter2.java"), null,
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 
@@ -140,7 +140,10 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkerConfig = createRootConfig(regexpConfig);
         checkerConfig.addChild(config);
 
+        verify(regexpConfig, fileName, VIOLATION);
         verify(checkerConfig, fileName, expectedViolations);
+        verifyFilterWithInlineConfigParser(regexpConfig,
+                config, fileName, VIOLATION, expectedViolations);
     }
 
 }
