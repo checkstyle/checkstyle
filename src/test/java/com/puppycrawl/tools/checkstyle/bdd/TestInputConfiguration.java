@@ -106,7 +106,7 @@ public final class TestInputConfiguration {
 
         private String checkName;
 
-        public void setCheckName(String checkName) {
+        public void setModuleName(String checkName) {
             this.checkName = checkName;
         }
 
