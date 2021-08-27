@@ -216,6 +216,27 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 .toString();
     }
 
+    protected final void verifyFilterWithInlineConfigParser(Configuration aConfig,
+                                             Configuration filterConfig,
+                                             String filePath, String[] expectedUnfiltered,
+                                             String... expectedFiltered)
+            throws Exception {
+        final TestInputConfiguration checkTestInputConfiguration =
+                InlineConfigParser.parseWithFilteredViolations(filePath);
+        final Configuration parsedCheckConfig = checkTestInputConfiguration.createConfiguration();
+        verifyConfig(aConfig, parsedCheckConfig, checkTestInputConfiguration);
+        verifyViolations(parsedCheckConfig, filePath, checkTestInputConfiguration);
+        verify(parsedCheckConfig, filePath, expectedUnfiltered);
+        final TestInputConfiguration filterTestInputConfiguration =
+                InlineConfigParser.parseFilter(filePath);
+        final Configuration parsedFilterConfig = filterTestInputConfiguration.createConfiguration();
+        verifyConfig(filterConfig, parsedFilterConfig, filterTestInputConfiguration);
+        final DefaultConfiguration rootConfig = createRootConfig(parsedCheckConfig);
+        rootConfig.addChild(parsedFilterConfig);
+        verifyViolations(rootConfig, filePath, filterTestInputConfiguration);
+        verify(rootConfig, filePath, expectedFiltered);
+    }
+
     /**
      * Performs verification of the file with the given file path using specified configuration
      * and the array expected messages. Also performs verification of the config specified in
@@ -229,7 +250,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     protected final void verifyWithInlineConfigParser(Configuration aConfig,
                                              String filePath, String... expected)
             throws Exception {
-        final TestInputConfiguration testInputConfiguration = InlineConfigParser.parse(filePath);
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parse(filePath);
         final Configuration parsedConfig = testInputConfiguration.createConfiguration();
         verifyConfig(aConfig, parsedConfig, testInputConfiguration);
         verifyViolations(parsedConfig, filePath, testInputConfiguration);
@@ -432,6 +454,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     private List<String> getActualViolationsForFile(Configuration config,
                                                     String file) throws Exception {
+        stream.flush();
+        stream.reset();
         final List<File> files = Collections.singletonList(new File(file));
         final Checker checker = createChecker(config);
         final Map<String, List<String>> actualViolations =

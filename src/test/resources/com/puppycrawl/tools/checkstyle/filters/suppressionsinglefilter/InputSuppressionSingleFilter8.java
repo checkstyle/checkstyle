@@ -10,8 +10,8 @@ fileExtensions = (default)all files
 
 SuppressionSingleFilter
 files = (default)(null)
-checks = (default)(null)
-message = (TODO)
+checks = BAD
+message = (default)(null)
 id = (default)(null)
 lines = (default)(null)
 columns = (default)(null)
@@ -21,6 +21,6 @@ columns = (default)(null)
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 
-public class InputSuppressionSingleFilter { // filtered violation below
+public class InputSuppressionSingleFilter8 { // violation below
     // TODO
 }
