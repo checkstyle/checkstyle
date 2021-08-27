@@ -65,6 +65,18 @@ public final class InlineConfigParser {
     private static final Pattern MULTIPLE_VIOLATIONS_BELOW_PATTERN = Pattern
             .compile(".*//\\s*(\\d+) violations below$");
 
+    /** A pattern to find the string: "// filtered violation". */
+    private static final Pattern FILTERED_VIOLATION_PATTERN = Pattern
+            .compile(".*//\\s*filtered violation(?:\\W+'(.*)')?$");
+
+    /** A pattern to find the string: "// filtered violation above". */
+    private static final Pattern FILTERED_VIOLATION_ABOVE_PATTERN = Pattern
+            .compile(".*//\\s*filtered violation above(?:\\W+'(.*)')?$");
+
+    /** A pattern to find the string: "// filtered violation below". */
+    private static final Pattern FILTERED_VIOLATION_BELOW_PATTERN = Pattern
+            .compile(".*//\\s*filtered violation below(?:\\W+'(.*)')?$");
+
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
 
@@ -72,28 +84,67 @@ public final class InlineConfigParser {
     private InlineConfigParser() {
     }
 
+    public static TestInputConfiguration parse(String inputFilePath) throws Exception {
+        return parse(inputFilePath, false);
+    }
+
+    public static TestInputConfiguration parseWithFilteredViolations(String inputFilePath) throws Exception {
+        return parse(inputFilePath, true);
+    }
+
     /**
      * Parses the input file provided.
      *
      * @param inputFilePath the input file path.
+     * @param setFilteredViolations flag to set filtered violations.
      * @throws Exception if unable to read file or file not formatted properly.
      */
-    public static TestInputConfiguration parse(String inputFilePath) throws Exception {
+    private static TestInputConfiguration parse(String inputFilePath,
+                                               boolean setFilteredViolations) throws Exception {
         final Path filePath = Paths.get(inputFilePath);
         final List<String> lines = readFile(filePath);
         final TestInputConfiguration.Builder inputConfigBuilder =
                 new TestInputConfiguration.Builder();
         setCheckName(inputConfigBuilder, inputFilePath, lines);
-        setCheckProperties(inputConfigBuilder, inputFilePath, lines);
-        setViolations(inputConfigBuilder, lines);
+        setProperties(inputConfigBuilder, inputFilePath, lines, 2);
+        setViolations(inputConfigBuilder, lines, setFilteredViolations);
+        return inputConfigBuilder.build();
+    }
+
+    /**
+     * Parses the filter input file provided.
+     *
+     * @param inputFilePath the input file path.
+     * @throws Exception if unable to read file or file not formatted properly.
+     */
+    public static TestInputConfiguration parseFilter(String inputFilePath)
+            throws Exception {
+        final Path filePath = Paths.get(inputFilePath);
+        final List<String> lines = readFile(filePath);
+        final TestInputConfiguration.Builder inputConfigBuilder =
+                new TestInputConfiguration.Builder();
+        int lineNo = getFilterConfigLineNo(lines);
+        setFilterName(inputConfigBuilder, inputFilePath, lines, lineNo);
+        setProperties(inputConfigBuilder, inputFilePath, lines, lineNo + 1);
+        setViolations(inputConfigBuilder, lines, false);
         return inputConfigBuilder.build();
     }
 
     private static String getFullyQualifiedClassName(String filePath, String checkName) {
-        final String path = SLASH_PATTERN.matcher(filePath).replaceAll("\\.");
-        final int beginIndex = path.indexOf("com.puppycrawl");
-        final int endIndex = path.lastIndexOf(checkName.toLowerCase(Locale.ROOT));
-        return path.substring(beginIndex, endIndex) + checkName + "Check";
+        String fullyQualifiedClassName;
+        if (checkName.startsWith("com.")) {
+            fullyQualifiedClassName = checkName;
+        }
+        else {
+            final String path = SLASH_PATTERN.matcher(filePath).replaceAll("\\.");
+            final int beginIndex = path.indexOf("com.puppycrawl");
+            final int endIndex = path.lastIndexOf(checkName.toLowerCase(Locale.ROOT));
+            fullyQualifiedClassName = path.substring(beginIndex, endIndex) + checkName;
+        }
+        if (!fullyQualifiedClassName.endsWith("Filter")) {
+            fullyQualifiedClassName += "Check";
+        }
+        return fullyQualifiedClassName;
     }
 
     private static String getFilePath(String fileName, String inputFilePath) {
@@ -149,16 +200,36 @@ public final class InlineConfigParser {
         }
         final String checkName = lines.get(1);
         final String fullyQualifiedClassName = getFullyQualifiedClassName(filePath, checkName);
-        inputConfigBuilder.setCheckName(fullyQualifiedClassName);
+        inputConfigBuilder.setModuleName(fullyQualifiedClassName);
     }
 
-    private static void setCheckProperties(TestInputConfiguration.Builder inputConfigBuilder,
-                                           String inputFilePath,
-                                           List<String> lines)
+    private static int getFilterConfigLineNo(List<String> lines) {
+        int lineNo = 1;
+        while (!lines.get(lineNo - 1).isEmpty() || lines.get(lineNo).isEmpty()) {
+            lineNo++;
+        }
+        return lineNo;
+    }
+
+    private static void setFilterName(TestInputConfiguration.Builder inputConfigBuilder,
+                                      String filePath, List<String> lines, int lineNo)
+            throws CheckstyleException {
+        final String filterName = lines.get(lineNo);
+        if (!filterName.endsWith("Filter")) {
+            throw new CheckstyleException("Filter not specified in " + filePath);
+        }
+        final String fullyQualifiedClassName = getFullyQualifiedClassName(filePath, filterName);
+        inputConfigBuilder.setModuleName(fullyQualifiedClassName);
+    }
+
+    private static void setProperties(TestInputConfiguration.Builder inputConfigBuilder,
+                                      String inputFilePath,
+                                      List<String> lines,
+                                      int beginLineNo)
                     throws Exception {
         final StringBuilder stringBuilder = new StringBuilder(128);
-        int lineNo = 2;
-        for (String line = lines.get(lineNo); !line.contains("*/");
+        int lineNo = beginLineNo;
+        for (String line = lines.get(lineNo); !line.isEmpty() && !"*/".equals(line);
                 ++lineNo, line = lines.get(lineNo)) {
             stringBuilder.append(line).append('\n');
         }
@@ -198,7 +269,7 @@ public final class InlineConfigParser {
     }
 
     private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
-                                      List<String> lines) {
+                                      List<String> lines, boolean setFilteredViolations) {
         for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
             final Matcher violationMatcher =
                     VIOLATION_PATTERN.matcher(lines.get(lineNo));
@@ -214,35 +285,51 @@ public final class InlineConfigParser {
                     MULTIPLE_VIOLATIONS_BELOW_PATTERN.matcher(lines.get(lineNo));
             if (violationMatcher.matches()) {
                 inputConfigBuilder.addViolation(lineNo + 1, violationMatcher.group(1));
-            }
-            else if (violationAboveMatcher.matches()) {
+            } else if (violationAboveMatcher.matches()) {
                 inputConfigBuilder.addViolation(lineNo, violationAboveMatcher.group(1));
-            }
-            else if (violationBelowMatcher.matches()) {
+            } else if (violationBelowMatcher.matches()) {
                 inputConfigBuilder.addViolation(lineNo + 2, violationBelowMatcher.group(1));
-            }
-            else if (multipleViolationsMatcher.matches()) {
+            } else if (multipleViolationsMatcher.matches()) {
                 Collections
                         .nCopies(Integer.parseInt(multipleViolationsMatcher.group(1)), lineNo + 1)
                         .forEach(actualLineNumber -> {
                             inputConfigBuilder.addViolation(actualLineNumber, null);
                         });
-            }
-            else if (multipleViolationsAboveMatcher.matches()) {
+            } else if (multipleViolationsAboveMatcher.matches()) {
                 Collections
                         .nCopies(Integer.parseInt(multipleViolationsAboveMatcher.group(1)), lineNo)
                         .forEach(actualLineNumber -> {
                             inputConfigBuilder.addViolation(actualLineNumber, null);
                         });
-            }
-            else if (multipleViolationsBelowMatcher.matches()) {
+            } else if (multipleViolationsBelowMatcher.matches()) {
                 Collections
                         .nCopies(Integer.parseInt(multipleViolationsBelowMatcher.group(1)),
                                 lineNo + 2)
                         .forEach(actualLineNumber -> {
                             inputConfigBuilder.addViolation(actualLineNumber, null);
                         });
+            } else if (setFilteredViolations) {
+                setFilteredViolation(inputConfigBuilder, lineNo + 1, lines.get(lineNo));
             }
+        }
+    }
+
+    private static void setFilteredViolation(TestInputConfiguration.Builder inputConfigBuilder,
+                                             int lineNo, String line) {
+        final Matcher violationMatcher =
+                FILTERED_VIOLATION_PATTERN.matcher(line);
+        final Matcher violationAboveMatcher =
+                FILTERED_VIOLATION_ABOVE_PATTERN.matcher(line);
+        final Matcher violationBelowMatcher =
+                FILTERED_VIOLATION_BELOW_PATTERN.matcher(line);
+        if (violationMatcher.matches()) {
+            inputConfigBuilder.addViolation(lineNo, violationMatcher.group(1));
+        }
+        else if (violationAboveMatcher.matches()) {
+            inputConfigBuilder.addViolation(lineNo - 1, violationAboveMatcher.group(1));
+        }
+        else if (violationBelowMatcher.matches()) {
+            inputConfigBuilder.addViolation(lineNo + 1, violationBelowMatcher.group(1));
         }
     }
 }
