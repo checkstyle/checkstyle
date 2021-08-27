@@ -40,7 +40,7 @@ public class MultiDimensionalArraysInGenericsTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
+        verifyWithInlineConfigParser(checkConfig,
                 getPath("InputMultiDimensionalArraysInGenerics.java"),
                 expected);
     }
