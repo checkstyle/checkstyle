@@ -180,8 +180,8 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
                 MissingJavadocMethodCheck.class);
         checkConfig.addProperty("scope", Scope.PUBLIC.getName());
         final String[] expected = {
-            "20:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "28:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "22:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "30:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(checkConfig,
                 getPath("InputMissingJavadocMethodInterfaceMemberScopeIsPublic.java"),
@@ -194,7 +194,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
                 MissingJavadocMethodCheck.class);
         checkConfig.addProperty("scope", Scope.PACKAGE.getName());
         final String[] expected = {
-            "24:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "26:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(checkConfig,
                 getPath("InputMissingJavadocMethodEnumCtorScopeIsPrivate.java"),
