@@ -1,3 +1,14 @@
+/*
+com.puppycrawl.tools.checkstyle.checks.naming.MemberName
+format = (default)^[a-z][a-zA-Z0-9]*$
+applyToPublic = (default)true
+applyToProtected = (default)true
+applyToPackage = (default)true
+applyToPrivate = (default)true
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.grammar.java14;
 
@@ -16,7 +27,7 @@ import org.w3c.dom.Node;
 /**
  * Input for Java 14 records.
  */
-public class InputJava14Records
+public class InputJava14Records // ok
 {
     public static int getRecord() {
         return record;

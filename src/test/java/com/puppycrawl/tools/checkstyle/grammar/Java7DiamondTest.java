@@ -43,7 +43,8 @@ public class Java7DiamondTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputJava7Diamond.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputJava7Diamond.java"), expected);
     }
 
 }

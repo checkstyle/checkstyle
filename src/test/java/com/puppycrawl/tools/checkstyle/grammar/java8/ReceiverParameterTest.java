@@ -39,7 +39,8 @@ public class ReceiverParameterTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputReceiverParameter.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputReceiverParameter.java"), expected);
     }
 
 }
