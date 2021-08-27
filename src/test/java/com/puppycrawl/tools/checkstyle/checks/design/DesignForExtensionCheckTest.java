@@ -175,7 +175,7 @@ public class DesignForExtensionCheckTest
     public void testInterfaceMemberScopeIsPublic() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
         final String[] expected = {
-            "13:9: " + getCheckMessage(MSG_KEY, "Inner", "getProperty"),
+            "15:9: " + getCheckMessage(MSG_KEY, "Inner", "getProperty"),
         };
         verifyWithInlineConfigParser(checkConfig,
                 getPath("InputDesignForExtensionInterfaceMemberScopeIsPublic.java"),

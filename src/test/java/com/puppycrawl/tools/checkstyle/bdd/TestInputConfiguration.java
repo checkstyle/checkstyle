@@ -104,10 +104,10 @@ public final class TestInputConfiguration {
 
         private final List<TestInputViolation> violations = new ArrayList<>();
 
-        private String checkName;
+        private String moduleName;
 
-        public void setCheckName(String checkName) {
-            this.checkName = checkName;
+        public void setModuleName(String moduleName) {
+            this.moduleName = moduleName;
         }
 
         public void addDefaultProperty(String propertyName, String defaultPropertyValue) {
@@ -128,7 +128,7 @@ public final class TestInputConfiguration {
 
         public TestInputConfiguration build() {
             return new TestInputConfiguration(
-                    checkName,
+                    moduleName,
                     defaultProperties,
                     nonDefaultProperties,
                     checkMessages,
