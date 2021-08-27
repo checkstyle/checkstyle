@@ -50,47 +50,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="packageobjectfactory[\\/].*.java"/>
 
-  <!-- until https://github.com/checkstyle/checkstyle/issues/10653 -->
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilter.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilterSuppressById.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="filters[\\/]suppressionxpathfilter[\\/]InputSuppressionXpathFilter.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="filters[\\/]suppressionxpathsinglefilter[\\/]InputSuppressionXpathSingleFilter.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="filters[\\/]suppresswarningsfilter[\\/]InputSuppressWarningsFilterById.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="filters[\\/]suppresswarningsfilter[\\/]InputSuppressWarningsFilter.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="filters[\\/]suppresswithnearbycommentfilter[\\/]InputSuppressWithNearbyCommentFilterById.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="filters[\\/]suppresswithnearbycommentfilter[\\/]InputSuppressWithNearbyCommentFilter.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="filters[\\/]suppresswithplaintextcommentfilter[\\/]InputSuppressWithPlainTextCommentFilterCustomMessageFormat.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="filters[\\/]suppresswithplaintextcommentfilter[\\/]InputSuppressWithPlainTextCommentFilterSuppressById.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="filters[\\/]suppresswithplaintextcommentfilter[\\/]InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="filters[\\/]suppresswithplaintextcommentfilter[\\/]InputSuppressWithPlainTextCommentFilterWithDefaultCfg.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="filters[\\/]xpathfilterelement[\\/]InputXpathFilterElementSuppressByXpath.java"/>
-
   <!-- until https://github.com/checkstyle/checkstyle/issues/10663 -->
   <suppress id="ConfigCommentOnTopInputs"
             files="indentation[\\/]indentation[\\/].*.java"/>
