@@ -1,7 +1,18 @@
+/*
+com.puppycrawl.tools.checkstyle.checks.naming.MemberName
+format = (default)^[a-z][a-zA-Z0-9]*$
+applyToPublic = (default)true
+applyToProtected = (default)true
+applyToPackage = (default)true
+applyToPrivate = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.grammar.java8;
 import java.util.function.Supplier;
 
-public class InputMethodReferences3
+public class InputMethodReferences3 // ok
 {
   public static class SomeClass {
     public static class Nested<V> {
