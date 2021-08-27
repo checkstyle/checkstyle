@@ -1530,8 +1530,6 @@
                 <!-- Inline Config cannot be supported. -->
                 <exclude>**/UniquePropertiesCheckTest.class</exclude>
 
-                <exclude>**/NPathComplexityCheckTest.class</exclude>
-
                 <exclude>**/EmbeddedNullCharTest.class</exclude>
 
                 <exclude>**/MultiDimensionalArraysInGenericsTest.class</exclude>
