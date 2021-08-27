@@ -1636,7 +1636,6 @@
 
                 <exclude>**/ReceiverParameterTest.class</exclude>
 
-                <exclude>**/AnnotationTest.class</exclude>
 
                 <exclude>**/LambdaTest.class</exclude>
 

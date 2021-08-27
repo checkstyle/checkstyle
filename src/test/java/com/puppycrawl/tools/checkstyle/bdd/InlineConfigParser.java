@@ -148,7 +148,13 @@ public final class InlineConfigParser {
             throw new CheckstyleException("Config not specified in " + filePath);
         }
         final String checkName = lines.get(1);
-        final String fullyQualifiedClassName = getFullyQualifiedClassName(filePath, checkName);
+        final String fullyQualifiedClassName;
+        if (checkName.startsWith("com.")) {
+            fullyQualifiedClassName = checkName + "Check";
+        }
+        else {
+            fullyQualifiedClassName = getFullyQualifiedClassName(filePath, checkName);
+        }
         inputConfigBuilder.setCheckName(fullyQualifiedClassName);
     }
 
