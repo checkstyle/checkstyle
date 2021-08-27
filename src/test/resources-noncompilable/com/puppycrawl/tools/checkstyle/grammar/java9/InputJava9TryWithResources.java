@@ -1,10 +1,21 @@
+/*
+com.puppycrawl.tools.checkstyle.checks.naming.MemberName
+format = (default)^[a-z][a-zA-Z0-9]*$
+applyToPublic = (default)true
+applyToProtected = (default)true
+applyToPackage = (default)true
+applyToPrivate = (default)true
+
+
+*/
+
 //non-compiled with javac: Compilable with Java9
 package com.puppycrawl.tools.checkstyle.grammar.java9;
 
 /**
  * Input for Java 9 try-with-resources.
  */
-public class InputJava9TryWithResources
+public class InputJava9TryWithResources // ok
 {
     public static class MyResource implements AutoCloseable {
         @Override

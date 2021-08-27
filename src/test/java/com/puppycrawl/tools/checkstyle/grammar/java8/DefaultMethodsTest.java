@@ -39,7 +39,8 @@ public class DefaultMethodsTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputDefaultMethods.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputDefaultMethods.java"), expected);
     }
 
     @Test
@@ -48,7 +49,8 @@ public class DefaultMethodsTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputDefaultMethods2.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputDefaultMethods2.java"), expected);
     }
 
 }

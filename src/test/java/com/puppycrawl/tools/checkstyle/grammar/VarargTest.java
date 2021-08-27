@@ -43,7 +43,7 @@ public class VarargTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputVararg.java"), expected);
+        verifyWithInlineConfigParser(checkConfig, getPath("InputVararg.java"), expected);
     }
 
 }
