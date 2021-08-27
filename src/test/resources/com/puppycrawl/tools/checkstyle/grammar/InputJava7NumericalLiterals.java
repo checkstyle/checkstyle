@@ -1,9 +1,20 @@
+/*
+com.puppycrawl.tools.checkstyle.checks.naming.MemberName
+format = (default)^[a-z][a-zA-Z0-9]*$
+applyToPublic = (default)true
+applyToProtected = (default)true
+applyToPackage = (default)true
+applyToPrivate = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.grammar;
 
 /**
  * Input for Java 7 numerical literals.
  */
-public class InputJava7NumericalLiterals
+public class InputJava7NumericalLiterals // ok
 {
     int i1 = 0b00011110;
     int i2 = 0B00011110;

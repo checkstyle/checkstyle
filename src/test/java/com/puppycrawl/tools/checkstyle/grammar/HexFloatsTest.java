@@ -43,7 +43,7 @@ public class HexFloatsTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputHexFloat.java"), expected);
+        verifyWithInlineConfigParser(checkConfig, getPath("InputHexFloat.java"), expected);
     }
 
 }
