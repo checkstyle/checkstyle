@@ -43,7 +43,8 @@ public class EmbeddedNullCharTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputEmbeddedNullChar.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputEmbeddedNullChar.java"), expected);
     }
 
 }

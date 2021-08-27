@@ -1,9 +1,20 @@
+/*
+com.puppycrawl.tools.checkstyle.checks.naming.MemberName
+format = (default)^[a-z][a-zA-Z0-9]*$
+applyToPublic = (default)true
+applyToProtected = (default)true
+applyToPackage = (default)true
+applyToPrivate = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.grammar;
 
 /**
  * Input for unicode escapes.
  */
-public class InputUnicodeEscape
+public class InputUnicodeEscape // ok
 {
     char a = '\u005cr';
     char b = '\u005cn';

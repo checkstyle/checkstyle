@@ -41,7 +41,8 @@ public class Java9TryWithResourcesTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getNonCompilablePath("InputJava9TryWithResources.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getNonCompilablePath("InputJava9TryWithResources.java"), expected);
     }
 
 }

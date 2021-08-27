@@ -43,7 +43,8 @@ public class Java7NumericalLiteralsTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputJava7NumericalLiterals.java"), expected);
+        verifyWithInlineConfigParser(checkConfig,
+                getPath("InputJava7NumericalLiterals.java"), expected);
     }
 
 }
