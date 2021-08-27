@@ -59,9 +59,6 @@
             files="filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilterSuppressById.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
-            files="filters[\\/]suppressionsinglefilter[\\/]InputSuppressionSingleFilter.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
             files="filters[\\/]suppressionxpathfilter[\\/]InputSuppressionXpathFilter.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
@@ -162,9 +159,6 @@
 
   <suppress id="StyleValidationCommentInInputs"
             files="filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilterSuppressById.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="filters[\\/]suppressionsinglefilter[\\/]InputSuppressionSingleFilter.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="filters[\\/]suppressionxpathfilter[\\/]InputSuppressionXpathFilter.java"/>
