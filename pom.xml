@@ -1634,7 +1634,6 @@
 
                 <exclude>**/ReceiverParameterTest.class</exclude>
 
-                <exclude>**/AnnotationTest.class</exclude>
 
                 <exclude>**/AbstractJavadocCheckTest.class</exclude>
               </excludes>
