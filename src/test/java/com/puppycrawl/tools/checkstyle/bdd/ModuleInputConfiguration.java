@@ -27,10 +27,10 @@ import java.util.Map;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
-public final class TestInputConfiguration {
+public final class ModuleInputConfiguration {
 
-    /** The check name. */
-    private final String checkName;
+    /** The module name. */
+    private final String moduleName;
 
     /** Map of default properties. */
     private final Map<String, String> defaultProperties;
@@ -38,26 +38,26 @@ public final class TestInputConfiguration {
     /** Map of non default properties. */
     private final Map<String, String> nonDefaultProperties;
 
-    /** Map of check messages. */
-    private final Map<String, String> checkMessages;
+    /** Map of module messages. */
+    private final Map<String, String> moduleMessages;
 
     /** List of parsed violations. */
     private final List<TestInputViolation> violations;
 
-    private TestInputConfiguration(String checkName,
-                               Map<String, String> defaultProperties,
-                               Map<String, String> nonDefaultProperties,
-                               Map<String, String> checkMessages,
-                               List<TestInputViolation> violations) {
-        this.checkName = checkName;
+    private ModuleInputConfiguration(String moduleName,
+                                     Map<String, String> defaultProperties,
+                                     Map<String, String> nonDefaultProperties,
+                                     Map<String, String> moduleMessages,
+                                     List<TestInputViolation> violations) {
+        this.moduleName = moduleName;
         this.defaultProperties = defaultProperties;
         this.nonDefaultProperties = nonDefaultProperties;
-        this.checkMessages = checkMessages;
+        this.moduleMessages = moduleMessages;
         this.violations = violations;
     }
 
-    public String getCheckName() {
-        return checkName;
+    public String getModuleName() {
+        return moduleName;
     }
 
     public Map<String, String> getAllProperties() {
@@ -75,8 +75,8 @@ public final class TestInputConfiguration {
         return Collections.unmodifiableMap(nonDefaultProperties);
     }
 
-    public Map<String, String> getCheckMessages() {
-        return Collections.unmodifiableMap(checkMessages);
+    public Map<String, String> getModuleMessages() {
+        return Collections.unmodifiableMap(moduleMessages);
     }
 
     public List<TestInputViolation> getViolations() {
@@ -84,9 +84,9 @@ public final class TestInputConfiguration {
     }
 
     public DefaultConfiguration createConfiguration() {
-        final DefaultConfiguration parsedConfig = new DefaultConfiguration(checkName);
+        final DefaultConfiguration parsedConfig = new DefaultConfiguration(moduleName);
         nonDefaultProperties.forEach(parsedConfig::addProperty);
-        checkMessages.forEach(parsedConfig::addMessage);
+        moduleMessages.forEach(parsedConfig::addMessage);
         return parsedConfig;
     }
 
@@ -100,7 +100,7 @@ public final class TestInputConfiguration {
 
         private final Map<String, String> nonDefaultProperties = new HashMap<>();
 
-        private final Map<String, String> checkMessages = new HashMap<>();
+        private final Map<String, String> moduleMessages = new HashMap<>();
 
         private final List<TestInputViolation> violations = new ArrayList<>();
 
@@ -118,20 +118,20 @@ public final class TestInputConfiguration {
             nonDefaultProperties.put(propertyName, nonDefaultPropertyValue);
         }
 
-        public void addCheckMessage(String messageKey, String messageString) {
-            checkMessages.put(messageKey, messageString);
+        public void addModulekMessage(String messageKey, String messageString) {
+            moduleMessages.put(messageKey, messageString);
         }
 
         public void addViolation(int violationLine, String violationMessage) {
             violations.add(new TestInputViolation(violationLine, violationMessage));
         }
 
-        public TestInputConfiguration build() {
-            return new TestInputConfiguration(
+        public ModuleInputConfiguration build() {
+            return new ModuleInputConfiguration(
                     moduleName,
                     defaultProperties,
                     nonDefaultProperties,
-                    checkMessages,
+                    moduleMessages,
                     violations
             );
         }

@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
-import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
+import com.puppycrawl.tools.checkstyle.bdd.ModuleInputConfiguration;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
@@ -221,19 +221,19 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                                              String filePath, String[] expectedUnfiltered,
                                              String... expectedFiltered)
             throws Exception {
-        final TestInputConfiguration checkTestInputConfiguration =
+        final ModuleInputConfiguration checkModuleInputConfiguration =
                 InlineConfigParser.parseWithFilteredViolations(filePath);
-        final Configuration parsedCheckConfig = checkTestInputConfiguration.createConfiguration();
-        verifyConfig(aConfig, parsedCheckConfig, checkTestInputConfiguration);
-        verifyViolations(parsedCheckConfig, filePath, checkTestInputConfiguration);
+        final Configuration parsedCheckConfig = checkModuleInputConfiguration.createConfiguration();
+        verifyConfig(aConfig, parsedCheckConfig, checkModuleInputConfiguration);
+        verifyViolations(parsedCheckConfig, filePath, checkModuleInputConfiguration);
         verify(parsedCheckConfig, filePath, expectedUnfiltered);
-        final TestInputConfiguration filterTestInputConfiguration =
+        final ModuleInputConfiguration filterModuleInputConfiguration =
                 InlineConfigParser.parseFilter(filePath);
-        final Configuration parsedFilterConfig = filterTestInputConfiguration.createConfiguration();
-        verifyConfig(filterConfig, parsedFilterConfig, filterTestInputConfiguration);
+        final Configuration parsedFilterConfig = filterModuleInputConfiguration.createConfiguration();
+        verifyConfig(filterConfig, parsedFilterConfig, filterModuleInputConfiguration);
         final DefaultConfiguration rootConfig = createRootConfig(parsedCheckConfig);
         rootConfig.addChild(parsedFilterConfig);
-        verifyViolations(rootConfig, filePath, filterTestInputConfiguration);
+        verifyViolations(rootConfig, filePath, filterModuleInputConfiguration);
         verify(rootConfig, filePath, expectedFiltered);
     }
 
@@ -250,11 +250,11 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     protected final void verifyWithInlineConfigParser(Configuration aConfig,
                                              String filePath, String... expected)
             throws Exception {
-        final TestInputConfiguration testInputConfiguration =
+        final ModuleInputConfiguration moduleInputConfiguration =
                 InlineConfigParser.parse(filePath);
-        final Configuration parsedConfig = testInputConfiguration.createConfiguration();
-        verifyConfig(aConfig, parsedConfig, testInputConfiguration);
-        verifyViolations(parsedConfig, filePath, testInputConfiguration);
+        final Configuration parsedConfig = moduleInputConfiguration.createConfiguration();
+        verifyConfig(aConfig, parsedConfig, moduleInputConfiguration);
+        verifyViolations(parsedConfig, filePath, moduleInputConfiguration);
         verify(parsedConfig, filePath, expected);
     }
 
@@ -396,12 +396,12 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      *
      * @param testConfig hardcoded test config.
      * @param parsedConfig parsed config from input file.
-     * @param testInputConfiguration TestInputConfiguration object.
+     * @param moduleInputConfiguration ModuleInputConfiguration object.
      * @throws CheckstyleException if property keys not found.
      */
     private static void verifyConfig(Configuration testConfig,
                                      Configuration parsedConfig,
-                                     TestInputConfiguration testInputConfiguration)
+                                     ModuleInputConfiguration moduleInputConfiguration)
             throws CheckstyleException {
         assertWithMessage("Check name differs from expected.")
                 .that(testConfig.getName())
@@ -416,7 +416,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         testProperties.removeAll(Arrays.asList(parsedConfig.getPropertyNames()));
         for (String property : testProperties) {
             assertWithMessage("Property value for key %s differs from expected.", property)
-                    .that(testInputConfiguration.getDefaultPropertyValue(property))
+                    .that(moduleInputConfiguration.getDefaultPropertyValue(property))
                     .isEqualTo(testConfig.getProperty(property));
         }
     }
@@ -426,14 +426,14 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      *
      * @param config parsed config.
      * @param file file path.
-     * @param testInputConfiguration TestInputConfiguration object.
+     * @param moduleInputConfiguration ModuleInputConfiguration object.
      * @throws Exception if exception occurs during verification process.
      */
     private void verifyViolations(Configuration config,
                                   String file,
-                                  TestInputConfiguration testInputConfiguration) throws Exception {
+                                  ModuleInputConfiguration moduleInputConfiguration) throws Exception {
         final List<String> actualViolations = getActualViolationsForFile(config, file);
-        final List<TestInputViolation> testInputViolations = testInputConfiguration.getViolations();
+        final List<TestInputViolation> testInputViolations = moduleInputConfiguration.getViolations();
         assertWithMessage("Number of actual and expected violations differ.")
                 .that(actualViolations)
                 .hasSize(testInputViolations.size());

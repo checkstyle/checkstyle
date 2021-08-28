@@ -84,7 +84,7 @@ public final class InlineConfigParser {
     private InlineConfigParser() {
     }
 
-    public static TestInputConfiguration parse(String inputFilePath) throws Exception {
+    public static ModuleInputConfiguration parse(String inputFilePath) throws Exception {
         return parse(inputFilePath, false);
     }
 
@@ -95,19 +95,19 @@ public final class InlineConfigParser {
      * @param setFilteredViolations flag to set filtered violations.
      * @throws Exception if unable to read file or file not formatted properly.
      */
-    private static TestInputConfiguration parse(String inputFilePath,
-                                               boolean setFilteredViolations) throws Exception {
+    private static ModuleInputConfiguration parse(String inputFilePath,
+                                                  boolean setFilteredViolations) throws Exception {
         final Path filePath = Paths.get(inputFilePath);
         final List<String> lines = readFile(filePath);
-        final TestInputConfiguration.Builder inputConfigBuilder =
-                new TestInputConfiguration.Builder();
-        setCheckName(inputConfigBuilder, inputFilePath, lines);
+        final ModuleInputConfiguration.Builder inputConfigBuilder =
+                new ModuleInputConfiguration.Builder();
+        setModuleName(inputConfigBuilder, inputFilePath, lines);
         setProperties(inputConfigBuilder, inputFilePath, lines, 2);
         setViolations(inputConfigBuilder, lines, setFilteredViolations);
         return inputConfigBuilder.build();
     }
 
-    public static TestInputConfiguration parseWithFilteredViolations(String inputFilePath)
+    public static ModuleInputConfiguration parseWithFilteredViolations(String inputFilePath)
             throws Exception {
         return parse(inputFilePath, true);
     }
@@ -118,12 +118,12 @@ public final class InlineConfigParser {
      * @param inputFilePath the input file path.
      * @throws Exception if unable to read file or file not formatted properly.
      */
-    public static TestInputConfiguration parseFilter(String inputFilePath)
+    public static ModuleInputConfiguration parseFilter(String inputFilePath)
             throws Exception {
         final Path filePath = Paths.get(inputFilePath);
         final List<String> lines = readFile(filePath);
-        final TestInputConfiguration.Builder inputConfigBuilder =
-                new TestInputConfiguration.Builder();
+        final ModuleInputConfiguration.Builder inputConfigBuilder =
+                new ModuleInputConfiguration.Builder();
         final int lineNo = getFilterConfigLineNo(lines);
         setFilterName(inputConfigBuilder, inputFilePath, lines, lineNo);
         setProperties(inputConfigBuilder, inputFilePath, lines, lineNo + 1);
@@ -193,14 +193,14 @@ public final class InlineConfigParser {
         }
     }
 
-    private static void setCheckName(TestInputConfiguration.Builder inputConfigBuilder,
-                                     String filePath, List<String> lines)
+    private static void setModuleName(ModuleInputConfiguration.Builder inputConfigBuilder,
+                                      String filePath, List<String> lines)
                     throws CheckstyleException {
         if (lines.size() < 2) {
             throw new CheckstyleException("Config not specified in " + filePath);
         }
-        final String checkName = lines.get(1);
-        final String fullyQualifiedClassName = getFullyQualifiedClassName(filePath, checkName);
+        final String moduleName = lines.get(1);
+        final String fullyQualifiedClassName = getFullyQualifiedClassName(filePath, moduleName);
         inputConfigBuilder.setModuleName(fullyQualifiedClassName);
     }
 
@@ -212,7 +212,7 @@ public final class InlineConfigParser {
         return lineNo;
     }
 
-    private static void setFilterName(TestInputConfiguration.Builder inputConfigBuilder,
+    private static void setFilterName(ModuleInputConfiguration.Builder inputConfigBuilder,
                                       String filePath, List<String> lines, int lineNo)
             throws CheckstyleException {
         final String filterName = lines.get(lineNo);
@@ -223,7 +223,7 @@ public final class InlineConfigParser {
         inputConfigBuilder.setModuleName(fullyQualifiedClassName);
     }
 
-    private static void setProperties(TestInputConfiguration.Builder inputConfigBuilder,
+    private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
                                       String inputFilePath,
                                       List<String> lines,
                                       int beginLineNo)
@@ -242,7 +242,7 @@ public final class InlineConfigParser {
             final String key = entry.getKey().toString();
             final String value = entry.getValue().toString();
             if (key.startsWith("message.")) {
-                inputConfigBuilder.addCheckMessage(key.substring(8), value);
+                inputConfigBuilder.addModulekMessage(key.substring(8), value);
             }
             else if (value.startsWith("(file)")) {
                 final String fileName = value.substring(value.indexOf(')') + 1);
@@ -269,7 +269,7 @@ public final class InlineConfigParser {
         }
     }
 
-    private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
+    private static void setViolations(ModuleInputConfiguration.Builder inputConfigBuilder,
                                       List<String> lines, boolean useFilteredViolations) {
         for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
             final Matcher violationMatcher =
@@ -321,7 +321,7 @@ public final class InlineConfigParser {
         }
     }
 
-    private static void setFilteredViolation(TestInputConfiguration.Builder inputConfigBuilder,
+    private static void setFilteredViolation(ModuleInputConfiguration.Builder inputConfigBuilder,
                                              int lineNo, String line) {
         final Matcher violationMatcher =
                 FILTERED_VIOLATION_PATTERN.matcher(line);
