@@ -56,7 +56,7 @@ public class EmptyForInitializerPadCheckTest
         final String[] expected = {
             "51:15: " + getCheckMessage(MSG_PRECEDED, ";"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputEmptyForInitializerPadDefaultConfig.java"), expected);
     }
 
@@ -68,7 +68,7 @@ public class EmptyForInitializerPadCheckTest
         final String[] expected = {
             "54:14: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputEmptyForInitializerPad.java"), expected);
     }
 

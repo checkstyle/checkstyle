@@ -60,7 +60,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "77: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaSemantic.java"), expected);
     }
 
@@ -74,7 +74,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "78: " + "Bad line :(",
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaSemantic2.java"), expected);
     }
 
@@ -87,7 +87,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "78: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaSemantic3.java"), expected);
     }
 
@@ -98,7 +98,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("format", "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(");
         checkConfig.addProperty("ignoreCase", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaSemantic4.java"), expected);
     }
 
@@ -110,7 +110,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("format", "don't use trailing comments");
         checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment.java"), expected);
     }
 
@@ -124,7 +124,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "don't\\suse trailing comments"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment2.java"), expected);
     }
 
@@ -136,7 +136,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("format", "c-style 1");
         checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment3.java"), expected);
     }
 
@@ -149,7 +149,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "31: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "c-style\\s1"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment4.java"), expected);
     }
 
@@ -161,7 +161,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("format", "c-style 2");
         checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment5.java"), expected);
     }
 
@@ -172,7 +172,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("format", "Let's check multi-line comments");
         checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment6.java"), expected);
     }
 
@@ -183,7 +183,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("format", "long ms /");
         checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment7.java"), expected);
     }
 
@@ -196,7 +196,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "34: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "int z"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment8.java"), expected);
     }
 
@@ -209,7 +209,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "35: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "int y"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment9.java"), expected);
     }
 
@@ -221,7 +221,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("format", "long ms  ");
         checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment10.java"), expected);
     }
 
@@ -233,7 +233,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("format", "\\s+$");
         checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment11.java"), expected);
     }
 
@@ -245,7 +245,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("minimum", "1");
         checkConfig.addProperty("maximum", "1000");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaSemantic5.java"), expected);
     }
 
@@ -257,7 +257,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("minimum", "1");
         checkConfig.addProperty("maximum", "1000");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaSemantic6.java"), expected);
     }
 
@@ -271,7 +271,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_REGEXP_MINIMUM, 1, "This\\stext is not in the file"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaSemantic7.java"), expected);
     }
 

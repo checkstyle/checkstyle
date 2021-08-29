@@ -39,7 +39,7 @@ public class TypeUseAnnotationsOnQualifiedTypesTest extends AbstractModuleTestSu
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputTypeUseAnnotationsOnQualifiedTypes.java"),
                 expected);
     }

@@ -61,7 +61,7 @@ public class GeneratedJava14LexerTest
             "18:9: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN,
                     new String(new char[] {0xC3, 0x042F}), "^[a-z][a-zA-Z0-9]*$"),
         };
-        verifyWithInlineConfigParser(checkConfig, getPath("InputGrammar.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputGrammar.java"), expected);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class GeneratedJava14LexerTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputSemicolonBetweenImports.java"), expected);
     }
 

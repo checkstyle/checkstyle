@@ -55,7 +55,7 @@ public class IllegalTokenTextCheckTest
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextTokens.java"), expected);
     }
 
@@ -71,7 +71,7 @@ public class IllegalTokenTextCheckTest
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
             "35:32: " + getCheckMessage(MSG_KEY, "a href"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextTokens2.java"), expected);
     }
 
@@ -87,7 +87,7 @@ public class IllegalTokenTextCheckTest
         final String[] expected = {
             "34:28: " + "My custom message",
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextTokens3.java"), expected);
     }
 
@@ -103,7 +103,7 @@ public class IllegalTokenTextCheckTest
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextTokens4.java"), expected);
     }
 
@@ -121,8 +121,8 @@ public class IllegalTokenTextCheckTest
             "36:37: " + getCheckMessage(MSG_KEY, "a href"),
             "42:54: " + getCheckMessage(MSG_KEY, "a href"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputIllegalTokenTextTextBlocks.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalTokenTextTextBlocks.java"), expected);
     }
 
     @Test
@@ -141,8 +141,8 @@ public class IllegalTokenTextCheckTest
             "36:37: " + getCheckMessage(MSG_KEY, "\""),
             "42:42: " + getCheckMessage(MSG_KEY, "\""),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputIllegalTokenTextTextBlocksQuotes.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalTokenTextTextBlocksQuotes.java"), expected);
     }
 
     @Test
@@ -167,7 +167,7 @@ public class IllegalTokenTextCheckTest
             "1:3: " + getCheckMessage(MSG_KEY, "a href"),
             "45:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextTokens5.java"), expected);
     }
 

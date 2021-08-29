@@ -44,7 +44,7 @@ public class StringLiteralEqualityCheckTest
             "22:20: " + getCheckMessage(MSG_KEY, "=="),
             "27:22: " + getCheckMessage(MSG_KEY, "=="),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputStringLiteralEquality.java"), expected);
     }
 
@@ -58,8 +58,8 @@ public class StringLiteralEqualityCheckTest
             "25:24: " + getCheckMessage(MSG_KEY, "!="),
             "28:34: " + getCheckMessage(MSG_KEY, "=="),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputStringLiteralEqualityCheckTextBlocks.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputStringLiteralEqualityCheckTextBlocks.java"),
             expected);
     }
 

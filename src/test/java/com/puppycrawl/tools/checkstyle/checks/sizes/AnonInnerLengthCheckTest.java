@@ -63,7 +63,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "53:35: " + getCheckMessage(MSG_KEY, 21, 20),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnonInnerLength.java"), expected);
     }
 
@@ -76,7 +76,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
             "54:35: " + getCheckMessage(MSG_KEY, 21, 6),
             "79:35: " + getCheckMessage(MSG_KEY, 20, 6),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnonInnerLength2.java"), expected);
     }
 

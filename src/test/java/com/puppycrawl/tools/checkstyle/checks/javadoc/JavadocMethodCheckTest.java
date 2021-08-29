@@ -69,7 +69,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
         config.addProperty("allowedAnnotations", "MyAnnotation, Override");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(config,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodExtendAnnotation.java"), expected);
     }
 
@@ -78,7 +78,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
         config.addProperty("allowedAnnotations", "Override,ThisIsOk, \t\n\t ThisIsOkToo");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(config,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodAllowedAnnotations.java"), expected);
     }
 
@@ -116,7 +116,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "149:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
                     "RuntimeException"),
         };
-        verifyWithInlineConfigParser(config,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodThrowsDetection.java"), expected);
     }
 
@@ -132,7 +132,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
                     "java.lang.IllegalArgumentException"),
             "132:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "FileNotFoundException"),
         };
-        verifyWithInlineConfigParser(config,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodExtraThrows.java"), expected);
     }
 
@@ -147,7 +147,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "137:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
             "193:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
         };
-        verifyWithInlineConfigParser(config,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodIgnoreThrows.java"), expected);
     }
 
@@ -179,7 +179,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "395:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodTags.java"), expected);
     }
 
@@ -193,7 +193,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "92:37: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
             "102:32: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodPublicOnly.java"), expected);
     }
 
@@ -202,7 +202,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
         checkConfig.addProperty("accessModifiers", "");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodPublicOnly1.java"), expected);
     }
 
@@ -215,7 +215,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "87:41: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
             "92:37: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodProtectedScopeJavadoc.java"), expected);
     }
 
@@ -224,7 +224,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
         checkConfig.addProperty("accessModifiers", "public");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodScopeInnerInterfaces.java"), expected);
     }
 
@@ -233,7 +233,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
         checkConfig.addProperty("accessModifiers", "public, protected, package, private");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodScopeAnonInner.java"), expected);
     }
 
@@ -246,7 +246,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "31: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
             "33: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodNoJavadocDefault.java"), expected);
     }
 
@@ -258,7 +258,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "27: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
             "29: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodNoJavadocProtectedScope.java"), expected);
     }
 
@@ -271,7 +271,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "31: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
             "33: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodNoJavadocOnlyPrivateScope.java"), expected);
     }
 
@@ -281,7 +281,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("allowMissingParamTags", "true");
         checkConfig.addProperty("allowMissingReturnTag", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodMissingJavadocNoMissingTags.java"),
                 expected);
     }
@@ -291,7 +291,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
         checkConfig.addProperty("accessModifiers", "private");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodSurroundingAccessModifier.java"), expected);
     }
 
@@ -305,7 +305,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "73: " + getCheckMessage(MSG_RETURN_EXPECTED),
             "84: " + getCheckMessage(MSG_RETURN_EXPECTED),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodMissingJavadocTagsDefault.java"), expected);
     }
 
@@ -313,7 +313,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     public void testSetterGetter() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodSetterGetter.java"), expected);
     }
 
@@ -326,7 +326,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "64:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<Z"),
             "66:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<Z>"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodTypeParamsTags.java"), expected);
     }
 
@@ -343,7 +343,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "72:7: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
             "73:34: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "y"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodParamsTags.java"), expected);
     }
 
@@ -351,7 +351,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     public void test11684081() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethod_01.java"), expected);
     }
 
@@ -359,7 +359,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     public void test11684082() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethod_02.java"), expected);
     }
 
@@ -367,7 +367,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     public void test11684083() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethod_03.java"), expected);
     }
 
@@ -381,7 +381,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "55:38: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "RuntimeException"),
             "56:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "java.lang.RuntimeException"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodGenerics.java"), expected);
     }
 
@@ -389,7 +389,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     public void test1379666() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethod_1379666.java"), expected);
     }
 
@@ -404,7 +404,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "53:5: " + getCheckMessage(MSG_INVALID_INHERIT_DOC),
             "58:5: " + getCheckMessage(MSG_INVALID_INHERIT_DOC),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodInheritDoc.java"), expected);
     }
 
@@ -416,7 +416,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "19:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "BAD"),
             "29:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "BAD"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodsNotSkipWritten.java"), expected);
     }
 
@@ -424,7 +424,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     public void testJava8ReceiverParameter() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodReceiverParameter.java"), expected);
     }
 
@@ -432,7 +432,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     public void testJavadocInMethod() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodJavadocInMethod.java"), expected);
     }
 
@@ -443,7 +443,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "20:49: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
             "22:50: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodConstructor.java"), expected);
     }
 
@@ -466,8 +466,8 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "88:35: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "myInt"),
             "92:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputJavadocMethodRecordsAndCompactCtors.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavadocMethodRecordsAndCompactCtors.java"), expected);
     }
 
     @Test
@@ -498,7 +498,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithoutLogErrors() throws Exception {
         final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
-        verifyWithInlineConfigParser(config,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodLoadErrors.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
@@ -507,7 +507,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     public void testCompilationUnit() throws Exception {
         final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
         config.addProperty("validateThrows", "true");
-        verifyWithInlineConfigParser(config,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputJavadocMethodCompilationUnit.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
     }

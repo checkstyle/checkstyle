@@ -48,7 +48,7 @@ public class CyclomaticComplexityCheckTest
             "14:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCyclomaticComplexitySwitchBlocks.java"), expected);
     }
 
@@ -63,7 +63,7 @@ public class CyclomaticComplexityCheckTest
             "14:5: " + getCheckMessage(MSG_KEY, 5, 0),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCyclomaticComplexitySwitchBlocks2.java"), expected);
     }
 
@@ -75,7 +75,7 @@ public class CyclomaticComplexityCheckTest
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCyclomaticComplexitySwitchBlocks3.java"), expected);
     }
 
@@ -99,7 +99,7 @@ public class CyclomaticComplexityCheckTest
             "114:13: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCyclomaticComplexity.java"), expected);
     }
 
@@ -120,7 +120,7 @@ public class CyclomaticComplexityCheckTest
             "148:5: " + getCheckMessage(MSG_KEY, 11, max),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputCyclomaticComplexityRecords.java"), expected);
     }
 
@@ -171,7 +171,7 @@ public class CyclomaticComplexityCheckTest
         checkConfig.addProperty("max", "100");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCyclomaticComplexitySwitchBlocks4.java"), expected);
     }
 

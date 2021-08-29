@@ -39,7 +39,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodReferences.java"), expected);
     }
 
@@ -49,7 +49,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodReferences2.java"), expected);
     }
 
@@ -59,7 +59,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodReferences3.java"), expected);
     }
 
@@ -68,7 +68,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodReferences4.java"), expected);
     }
 
@@ -77,7 +77,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodReferences5.java"), expected);
     }
 
@@ -86,7 +86,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodReferences6.java"), expected);
     }
 
@@ -96,7 +96,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodReferences7.java"), expected);
     }
 

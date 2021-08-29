@@ -60,7 +60,7 @@ public class ArrayTypeStyleCheckTest
             "55:27: " + getCheckMessage(MSG_KEY),
             "55:29: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputArrayTypeStyle.java"), expected);
     }
 
@@ -81,7 +81,7 @@ public class ArrayTypeStyleCheckTest
             "55:27: " + getCheckMessage(MSG_KEY),
             "55:29: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputArrayTypeStyleOff.java"), expected);
     }
 
@@ -96,7 +96,7 @@ public class ArrayTypeStyleCheckTest
             "24:76: " + getCheckMessage(MSG_KEY),
             "31:16: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputArrayTypeStyleNestedGenerics.java"), expected);
     }
 

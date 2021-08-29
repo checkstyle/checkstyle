@@ -54,7 +54,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
                 pattern),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbstractClassName.java"), expected);
     }
 
@@ -76,7 +76,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
                 "^NonAbstract.+$"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbstractClassNameCustom.java"), expected);
     }
 
@@ -91,7 +91,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
             "27:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClassTypes"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbstractClassNameType.java"), expected);
     }
 
@@ -115,7 +115,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
             "31:5: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClassVa"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbstractClassNameVariants.java"), expected);
     }
 
@@ -134,7 +134,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
             "31:5: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClassFP"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbstractClassNameFormerFalsePositive.java"), expected);
     }
 

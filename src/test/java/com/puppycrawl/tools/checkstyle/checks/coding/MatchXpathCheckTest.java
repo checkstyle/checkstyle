@@ -44,7 +44,7 @@ public class MatchXpathCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MatchXpathCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMatchXpath.java"), expected);
     }
 
@@ -55,7 +55,7 @@ public class MatchXpathCheckTest
                 createModuleConfig(MatchXpathCheck.class);
         checkConfig.addProperty("query", "//STRING_LITERAL[not(@text='')]");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMatchXpathNoStackoverflowError.java"), expected);
     }
 
@@ -66,7 +66,7 @@ public class MatchXpathCheckTest
                 createModuleConfig(MatchXpathCheck.class);
         checkConfig.addProperty("query", "");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMatchXpath2.java"), expected);
     }
 
@@ -80,7 +80,7 @@ public class MatchXpathCheckTest
             "11:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
             "13:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMatchXpath3.java"), expected);
     }
 
@@ -92,7 +92,7 @@ public class MatchXpathCheckTest
         checkConfig.addProperty("query", "//METHOD_DEF[./IDENT[@text='wrongName' or "
                 + "@text='nonExistingMethod']]");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMatchXpath4.java"), expected);
     }
 
@@ -106,7 +106,7 @@ public class MatchXpathCheckTest
             "13:25: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
             "14:27: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMatchXpathSingleLineComments.java"), expected);
     }
 
@@ -121,7 +121,7 @@ public class MatchXpathCheckTest
             "12:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
             "14:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMatchXpathBlockComments.java"), expected);
     }
 
@@ -136,7 +136,7 @@ public class MatchXpathCheckTest
             "14:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
             "20:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMatchXpathMultilineComments.java"), expected);
     }
 
@@ -157,7 +157,7 @@ public class MatchXpathCheckTest
         final String[] expected = {
             "18:35: Do not use double-brace initialization",
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMatchXpathDoubleBrace.java"), expected);
     }
 
@@ -174,7 +174,7 @@ public class MatchXpathCheckTest
             "15:25: Illegal throws statement",
             "16:25: Illegal throws statement",
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMatchXpathIllegalThrows.java"), expected);
     }
 
@@ -189,7 +189,7 @@ public class MatchXpathCheckTest
         final String[] expected = {
             "25:5: Executable number of statements exceed threshold",
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMatchXpathExecutableStatementCount.java"), expected);
     }
 
@@ -204,7 +204,7 @@ public class MatchXpathCheckTest
         final String[] expected = {
             "18:27: printStackTrace() method calls are forbidden",
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMatchXpathForbidPrintStackTrace.java"), expected);
     }
 
@@ -219,7 +219,7 @@ public class MatchXpathCheckTest
             "13:5: Parameterized constructors are not allowed",
             "15:5: Parameterized constructors are not allowed",
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMatchXpathForbidParameterizedConstructor.java"),
                 expected);
     }
@@ -234,7 +234,7 @@ public class MatchXpathCheckTest
         final String[] expected = {
             "13:9: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMatchXpathAvoidInstanceCreationWithoutVar.java"),
                 expected);
     }

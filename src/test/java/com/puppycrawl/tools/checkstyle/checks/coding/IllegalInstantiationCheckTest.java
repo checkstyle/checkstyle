@@ -52,7 +52,7 @@ public class IllegalInstantiationCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(IllegalInstantiationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalInstantiationSemantic.java"), expected);
     }
 
@@ -77,7 +77,7 @@ public class IllegalInstantiationCheckTest
             "46:18: " + getCheckMessage(MSG_KEY, "java.io.File"),
             "49:21: " + getCheckMessage(MSG_KEY, "java.awt.Color"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalInstantiationSemantic2.java"), expected);
     }
 
@@ -89,7 +89,7 @@ public class IllegalInstantiationCheckTest
             "classes",
             "java.lang.InputTest");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalInstantiationSameClassNameJavaLang.java"),
                 expected);
     }
@@ -99,7 +99,7 @@ public class IllegalInstantiationCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(IllegalInstantiationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalInstantiation.java"),
                 expected);
     }
@@ -114,7 +114,7 @@ public class IllegalInstantiationCheckTest
         final String[] expected = {
             "10:20: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalInstantiationNoPackage.java"), expected);
     }
 
@@ -129,7 +129,7 @@ public class IllegalInstantiationCheckTest
             "13:19: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
             "21:20: " + getCheckMessage(MSG_KEY, "java.lang.String"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputIllegalInstantiationLang.java"),
                 expected);
     }
@@ -142,7 +142,7 @@ public class IllegalInstantiationCheckTest
                 "classes",
                 "jjva.lang.Boolean,java.lang*Boolean");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputIllegalInstantiationLang2.java"),
                 expected);
     }

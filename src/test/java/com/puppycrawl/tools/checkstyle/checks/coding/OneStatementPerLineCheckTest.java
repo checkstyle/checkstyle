@@ -48,8 +48,8 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
             "181:59: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputOneStatementPerLineSingleLine.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineSingleLine.java"),
             expected);
     }
 
@@ -76,8 +76,8 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
             "184:47: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputOneStatementPerLineMultiline.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineMultiline.java"),
             expected);
     }
 
@@ -93,7 +93,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
             "50:85: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputOneStatementPerLine.java"), expected);
     }
 
@@ -108,7 +108,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
             "46:46: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputOneStatementPerLineTryWithResources.java"),
                 expected);
     }
@@ -117,7 +117,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     public void testResourcesIgnored() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OneStatementPerLineCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputOneStatementPerLineTryWithResourcesIgnore.java"),
                 expected);
     }
