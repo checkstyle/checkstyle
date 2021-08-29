@@ -221,6 +221,7 @@
     <pitest.junit5.plugin.version>0.14</pitest.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
     <junit.version>5.7.2</junit.version>
+    <forbiddenapis.version>3.1</forbiddenapis.version>
   </properties>
 
   <dependencies>
@@ -356,6 +357,12 @@
       <artifactId>org.jacoco.agent</artifactId>
       <version>${maven.jacoco.plugin.version}</version>
       <classifier>runtime</classifier>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>de.thetaphi</groupId>
+      <artifactId>forbiddenapis</artifactId>
+      <version>${forbiddenapis.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -1473,7 +1480,7 @@
       <plugin>
         <groupId>de.thetaphi</groupId>
         <artifactId>forbiddenapis</artifactId>
-        <version>3.1</version>
+        <version>${forbiddenapis.version}</version>
         <configuration>
           <targetVersion>${java.version}</targetVersion>
           <failOnUnsupportedJava>false</failOnUnsupportedJava>
@@ -1581,8 +1588,6 @@
                 <exclude>**/DetailAstImplTest.class</exclude>
 
                 <exclude>**/SuppressWithNearbyCommentFilterTest.class</exclude>
-
-                <exclude>**/PackageDeclarationCheckTest.class</exclude>
 
                 <exclude>**/AbstractModuleTestSupport.class</exclude>
 
