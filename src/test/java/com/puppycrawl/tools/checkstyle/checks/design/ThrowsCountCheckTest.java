@@ -50,7 +50,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
             "63:43: " + getCheckMessage(MSG_KEY, 5, 4),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputThrowsCount.java"), expected);
     }
 
@@ -63,7 +63,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
             "35:20: " + getCheckMessage(MSG_KEY, 6, 5),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputThrowsCount2.java"), expected);
     }
 
@@ -107,7 +107,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
             "43:28: " + getCheckMessage(MSG_KEY, 5, 4),
             "63:43: " + getCheckMessage(MSG_KEY, 5, 4),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputThrowsCount3.java"), expected);
     }
 
@@ -117,7 +117,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "26:26: " + getCheckMessage(MSG_KEY, 5, 4),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputThrowsCountMethodWithAnnotation.java"), expected);
     }
 

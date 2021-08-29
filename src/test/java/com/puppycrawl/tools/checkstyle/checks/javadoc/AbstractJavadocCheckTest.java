@@ -144,7 +144,9 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
         final DefaultConfiguration checkerConfig = createRootConfig(checksConfig);
 
-        verify(checkerConfig, getPath("InputAbstractJavadocCorrectParagraph.java"));
+        verifyWithInlineConfigParser(
+                getPath("InputAbstractJavadocCorrectParagraph.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test

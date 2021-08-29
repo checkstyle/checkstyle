@@ -65,7 +65,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "76:5: " + getCheckMessage(MSG_KEY, 20, 19, "longMethod"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodLengthSimple.java"), expected);
     }
 
@@ -76,7 +76,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("max", "19");
         checkConfig.addProperty("countEmpty", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodLengthCountEmptyIsFalse.java"), expected);
     }
 
@@ -89,7 +89,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "34:5: " + getCheckMessage(MSG_KEY, 8, 7, "visit"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodLengthComments.java"), expected);
     }
 
@@ -98,7 +98,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MethodLengthCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodLengthModifier.java"), expected);
     }
 
@@ -120,7 +120,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
             "66:17: " + getCheckMessage(MSG_KEY, 8, max, "R76"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMethodLengthRecordsAndCompactCtors.java"),
                 expected);
     }

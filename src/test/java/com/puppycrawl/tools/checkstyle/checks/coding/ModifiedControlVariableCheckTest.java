@@ -63,7 +63,7 @@ public class ModifiedControlVariableCheckTest
             "71:15: " + getCheckMessage(MSG_KEY, "k"),
             "81:15: " + getCheckMessage(MSG_KEY, "v"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputModifiedControlVariableBothForLoops.java"), expected);
     }
 
@@ -74,7 +74,7 @@ public class ModifiedControlVariableCheckTest
         checkConfig.addProperty("skipEnhancedForLoopVariable", "true");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputModifiedControlVariableEnhancedForLoopVariable.java"),
                 expected);
     }
@@ -87,7 +87,7 @@ public class ModifiedControlVariableCheckTest
         final String[] expected = {
             "16:18: " + getCheckMessage(MSG_KEY, "line"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputModifiedControlVariableEnhancedForLoopVariable3.java"),
                 expected);
     }
@@ -101,7 +101,7 @@ public class ModifiedControlVariableCheckTest
         final String[] expected = {
             "21:18: " + getCheckMessage(MSG_KEY, "i"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputModifiedControlVariableEnhancedForLoopVariable2.java"),
                 expected);
     }

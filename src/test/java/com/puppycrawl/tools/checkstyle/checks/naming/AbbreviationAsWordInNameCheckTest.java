@@ -51,7 +51,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "73:20: " + getWarningMessage("serialNUMBER", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbbreviationAsWordInNameType.java"), expected);
     }
 
@@ -72,7 +72,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "50:11: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbbreviationAsWordInNameType2.java"), expected);
     }
 
@@ -90,7 +90,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "45:11: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbbreviationAsWordInNameType3.java"), expected);
     }
 
@@ -108,7 +108,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "50:11: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbbreviationAsWordInNameType4.java"), expected);
     }
 
@@ -133,7 +133,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "54:17: " + getWarningMessage("MARAZMATICVariableName", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbbreviationAsWordInNameType5.java"), expected);
     }
 
@@ -166,7 +166,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "146:24: " + getWarningMessage("InnerClassThreeVIOLATION", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbbreviationAsWordInNameNoIgnore.java"), expected);
     }
 
@@ -195,7 +195,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "146:24: " + getWarningMessage("InnerClassThreeVIOLATION", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbbreviationAsWordInNameIgnore.java"), expected);
     }
 
@@ -226,7 +226,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
                     expectedCapitalCount), // no ignore for static
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath(
                 "InputAbbreviationAsWordInNameIgnoreFinal.java"), expected);
     }
@@ -258,7 +258,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
                 + getWarningMessage("s1erialNUMBER", expectedCapitalCount), // no ignore for final
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath(
                 "InputAbbreviationAsWordInNameIgnoreStatic.java"), expected);
     }
@@ -292,7 +292,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
                     expectedCapitalCount), // no ignore for static
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath(
                 "InputAbbreviationAsWordInNameIgnoreStaticFinal.java"), expected);
     }
@@ -343,7 +343,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "146:24: " + getWarningMessage("InnerClassThreeVIOLATION", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath(
                 "InputAbbreviationAsWordInNameIgnoreNonStaticFinal.java"), expected);
     }
@@ -386,7 +386,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
                     + getWarningMessage("VALUEEEE", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbbreviationAsWordInNameIgnoreFinalKeepStaticFinal.java"),
                 expected);
     }
@@ -429,7 +429,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
                     + getWarningMessage("VALUEEEE", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbbreviationAsWordInNameIgnoreStaticKeepStaticFinal.java"),
                 expected);
     }
@@ -449,7 +449,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "35:20: " + getWarningMessage("oveRRRRRrriddenMethod", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbbreviationAsWordInNameOverridableMethod.java"), expected);
     }
 
@@ -468,7 +468,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "49:20: " + getWarningMessage("oveRRRRRrriddenMethod", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbbreviationAsWordInNameOverridableMethod2.java"), expected);
     }
 
@@ -517,7 +517,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "129:18: " + getWarningMessage("VALUE", expectedCapitalCount),
             "133:25: " + getWarningMessage("VALUE", expectedCapitalCount),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbbreviationAsWordInNameType6.java"), expected);
     }
 
@@ -531,7 +531,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbbreviationAsWordInNameAbstractMultisetSetCount.java"),
                 expected);
     }
@@ -551,7 +551,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "38:35: " + getWarningMessage("XMLHTTP", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath(
                         "InputAbbreviationAsWordInNameCheckEnhancedInstanceof.java"),
                 expected);
@@ -575,7 +575,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "38:35: " + getWarningMessage("XMLHTTP", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath(
                         "InputAbbreviationAsWordInNameCheckEnhanced"
                                 + "InstanceofAllowXmlLength1.java"),
@@ -608,7 +608,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "54:57: " + getWarningMessage("NODES", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath(
                         "InputAbbreviationAsWordInNameCheckRecords.java"),
                 expected);
@@ -624,7 +624,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             createModuleConfig(AbbreviationAsWordInNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbbreviationAsWordInNameReceiver.java"),
                 expected);
     }

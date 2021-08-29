@@ -61,7 +61,7 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
             "84:5: " + getCheckMessage(MSG_KEY),
             "101:9: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputInnerTypeLastClass.java"), expected);
     }
 
@@ -70,7 +70,7 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(InnerTypeLastCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputInnerTypeLastClassRootClass.java"), expected);
     }
 
@@ -79,7 +79,7 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(InnerTypeLastCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputInnerTypeLastClassRootClass2.java"), expected);
     }
 
@@ -103,7 +103,7 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
             "22:5: " + getCheckMessage(MSG_KEY),
             "31:5: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputInnerTypeLastClassCtorsInitBlocks.java"), expected);
     }
 
@@ -121,7 +121,7 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
             "50:9: " + getCheckMessage(MSG_KEY),
             "52:9: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputInnerTypeLastRecords.java"), expected);
     }
 
@@ -135,7 +135,7 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
             "13:5: " + getCheckMessage(MSG_KEY),
             "14:5: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputInnerTypeLastArray.java"), expected);
     }
 

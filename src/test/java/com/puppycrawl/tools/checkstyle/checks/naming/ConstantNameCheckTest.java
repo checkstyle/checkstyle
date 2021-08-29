@@ -80,7 +80,7 @@ public class ConstantNameCheckTest
             "31:29: " + getCheckMessage(MSG_INVALID_PATTERN, "badConstant", pattern),
             "148:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputConstantNameSimple1.java"), expected);
     }
 
@@ -98,7 +98,7 @@ public class ConstantNameCheckTest
         final String[] expected = {
             "148:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputConstantNameSimple2.java"), expected);
     }
 
@@ -114,7 +114,7 @@ public class ConstantNameCheckTest
             "31:16: " + getCheckMessage(MSG_INVALID_PATTERN, "data", pattern),
             "71:16: " + getCheckMessage(MSG_INVALID_PATTERN, "data", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputConstantNameInner.java"), expected);
     }
 
@@ -124,7 +124,7 @@ public class ConstantNameCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(ConstantNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputConstantName.java"), expected);
     }
 
@@ -145,7 +145,7 @@ public class ConstantNameCheckTest
             "63:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
             "64:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputConstantNameMemberExtended.java"), expected);
     }
 
@@ -156,7 +156,7 @@ public class ConstantNameCheckTest
         checkConfig.addProperty("applyToPublic", "false");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputConstantNameInterfaceIgnorePublic.java"), expected);
     }
 
@@ -166,7 +166,7 @@ public class ConstantNameCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(ConstantNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputConstantNameStaticModifierInInterface.java"), expected);
     }
 

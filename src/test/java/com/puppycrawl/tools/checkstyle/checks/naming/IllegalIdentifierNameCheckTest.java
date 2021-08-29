@@ -92,7 +92,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
             "74:52: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
             "74:69: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputIllegalIdentifierName.java"), expected);
     }
 
@@ -121,8 +121,8 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
             "76:56: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
             "76:72: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputIllegalIdentifierNameOpenTransitive.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalIdentifierNameOpenTransitive.java"), expected);
     }
 
     @Test
@@ -132,8 +132,8 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputIllegalIdentifierNameParameterReceiver.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalIdentifierNameParameterReceiver.java"),
             expected);
     }
 
@@ -146,8 +146,8 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "18:12: " + getCheckMessage(MSG_INVALID_PATTERN, "_", format),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputIllegalIdentifierNameUnderscore.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalIdentifierNameUnderscore.java"), expected);
     }
 
     @Test
@@ -163,7 +163,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
             "35:9: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
             "42:47: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputIllegalIdentifierNameLambda.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalIdentifierNameLambda.java"), expected);
     }
 }

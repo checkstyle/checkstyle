@@ -57,7 +57,7 @@ public class MemberNameCheckTest
             "41:17: " + getCheckMessage(MSG_INVALID_PATTERN, "badMember", pattern),
             "230:17: " + getCheckMessage(MSG_INVALID_PATTERN, "someMember", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberNameSimple.java"), expected);
     }
 
@@ -72,7 +72,7 @@ public class MemberNameCheckTest
         final String[] expected = {
             "63:25: " + getCheckMessage(MSG_INVALID_PATTERN, "ABC", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberNameInner.java"), expected);
     }
 
@@ -89,7 +89,7 @@ public class MemberNameCheckTest
             "23:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
             "24:17: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberName.java"), expected);
     }
 
@@ -107,7 +107,7 @@ public class MemberNameCheckTest
             "18:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
             "19:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberName2.java"), expected);
     }
 
@@ -125,7 +125,7 @@ public class MemberNameCheckTest
         final String[] expected = {
             "16:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberName3.java"), expected);
     }
 
@@ -143,7 +143,7 @@ public class MemberNameCheckTest
         final String[] expected = {
             "17:19: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberName4.java"), expected);
     }
 
@@ -161,7 +161,7 @@ public class MemberNameCheckTest
         final String[] expected = {
             "18:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberName5.java"), expected);
     }
 
@@ -179,7 +179,7 @@ public class MemberNameCheckTest
         final String[] expected = {
             "19:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberName6.java"), expected);
     }
 
@@ -196,7 +196,7 @@ public class MemberNameCheckTest
             "22:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
             "23:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberName7.java"), expected);
     }
 
@@ -242,7 +242,7 @@ public class MemberNameCheckTest
             "81:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
             "82:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberNameExtended.java"), expected);
     }
 

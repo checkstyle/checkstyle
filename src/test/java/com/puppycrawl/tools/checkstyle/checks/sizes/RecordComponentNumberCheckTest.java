@@ -76,7 +76,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
             "132:5: " + getCheckMessage(MSG_KEY, 15, max),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRecordComponentNumber.java"), expected);
     }
 
@@ -91,7 +91,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
             "12:1: " + getCheckMessage(MSG_KEY, 15, max),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRecordComponentNumberTopLevel1.java"),
                 expected);
     }
@@ -103,7 +103,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRecordComponentNumberTopLevel2.java"),
                 expected);
     }
@@ -133,7 +133,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
             "125:5: " + getCheckMessage(MSG_KEY, 2, max),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRecordComponentNumberMax1.java"), expected);
     }
 
@@ -144,7 +144,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("max", "20");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRecordComponentNumberMax20.java"), expected);
     }
 
@@ -162,7 +162,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
             "122:5: " + getCheckMessage(MSG_KEY, 15, max),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputRecordComponentNumberPrivateModifier.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRecordComponentNumberPrivateModifier.java"), expected);
     }
 }

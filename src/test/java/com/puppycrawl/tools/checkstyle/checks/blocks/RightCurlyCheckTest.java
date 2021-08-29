@@ -59,7 +59,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "44:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
             "93:27: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 27),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyLeftTestDefault.java"), expected);
     }
 
@@ -80,7 +80,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "189:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "190:53: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 53),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyLeftTestSame.java"), expected);
     }
 
@@ -89,7 +89,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
         checkConfig.addProperty("option", RightCurlyOption.SAME.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSameOmitOneLiners.java"), expected);
     }
 
@@ -101,7 +101,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
                 + " INSTANCE_INIT, CLASS_DEF, METHOD_DEF, CTOR_DEF, ANNOTATION_DEF, ENUM_DEF,"
                 + " INTERFACE_DEF");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSame.java"), expected);
     }
 
@@ -123,7 +123,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "189:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "190:53: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 53),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyLeftTestAlone.java"), expected);
     }
 
@@ -151,7 +151,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "211:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "211:10: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 10),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyLeftTestNewLine.java"), expected);
     }
 
@@ -174,7 +174,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "211:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "211:10: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 10),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyLeftTestShouldStartLine2.java"), expected);
     }
 
@@ -191,7 +191,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "46:38: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 38),
             "50:25: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 25),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestForceLineBreakBefore.java"), expected);
     }
 
@@ -199,7 +199,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     public void testForceLineBreakBefore2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestForceLineBreakBefore2.java"), expected);
     }
 
@@ -211,7 +211,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             + "LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF, "
                 + "INTERFACE_DEF");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestNullPointerException.java"), expected);
     }
 
@@ -294,7 +294,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "272:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
             "274:61: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 61),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestWithAnnotations.java"), expected);
     }
 
@@ -346,7 +346,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "231:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
             "243:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestAloneOrSingleline.java"), expected);
     }
 
@@ -356,7 +356,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "19:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestWithoutFinally.java"), expected);
     }
 
@@ -368,7 +368,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "29:56: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 56),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSingleLineClass.java"), expected);
     }
 
@@ -380,8 +380,8 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verifyWithInlineConfigParser(checkConfig,
-                getPath("InputRightCurlyTestInvalidOption.java"), expected);
+            verifyWithInlineConfigParser(
+                    getPath("InputRightCurlyTestInvalidOption.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
@@ -403,7 +403,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "75:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
             "91:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSameAndLiteralDo.java"), expected);
     }
 
@@ -417,7 +417,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "43:15: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 15),
             "45:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestTryWithResourceSame.java"), expected);
     }
 
@@ -435,7 +435,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "44:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
             "46:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestTryWithResourceAlone.java"), expected);
     }
 
@@ -449,7 +449,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "44:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
             "46:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTryWithResourceAloneSingle.java"), expected);
     }
 
@@ -462,7 +462,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "15:45: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 45),
             "15:47: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 47),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSinglelineIfBlocks.java"), expected);
     }
 
@@ -471,7 +471,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
         checkConfig.addProperty("option", RightCurlyOption.ALONE.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestIsAloneLambda.java"), expected);
     }
 
@@ -481,8 +481,8 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("option",
             RightCurlyOption.ALONE_OR_SINGLELINE.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputRightCurlyTestIsAloneOrSinglelineLambda.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyTestIsAloneOrSinglelineLambda.java"), expected);
     }
 
     @Test
@@ -490,8 +490,8 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
         checkConfig.addProperty("option", RightCurlyOption.SAME.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputRightCurlyTestIsSameLambda.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyTestIsSameLambda.java"), expected);
     }
 
     @Test
@@ -524,7 +524,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "105:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "105:10: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 10),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestOptionAlone.java"),
                 expected);
     }
@@ -547,7 +547,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "86:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "86:10: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 10),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath(
                 "InputRightCurlyTestOptionAloneOrSingleLine.java"), expected);
     }
@@ -573,7 +573,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "74:11: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 11),
             "78:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestOptSameBlocksWithSemi.java"), expected);
     }
 
@@ -605,7 +605,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "71:11: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 11),
             "75:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestOptAloneBlocksWithSemi.java"), expected);
     }
 
@@ -631,7 +631,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "74:11: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 11),
             "78:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestOptAloneOrSingleLineBlocksWithSemi.java"), expected);
     }
 
@@ -645,7 +645,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "16:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
             "18:34: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 34),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestNewTokensAlone.java"), expected);
     }
 
@@ -658,7 +658,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "16:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyNewTokensAloneOrSingleLine.java"), expected);
     }
 
@@ -670,7 +670,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "16:20: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 20),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSameNewTokens.java"), expected);
     }
 
@@ -686,7 +686,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "14:1: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 1),
             "14:2: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 2),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestDoubleBrace.java"), expected);
     }
 
@@ -698,7 +698,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
                 + " INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF, RECORD_DEF,"
                 + " COMPACT_CTOR_DEF");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestEmptyOnSingleLine.java"), expected);
     }
 
@@ -712,7 +712,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "16:2: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 2),
             "16:3: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 3),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestEndOfFile.java"), expected);
     }
 
@@ -731,7 +731,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "34:43: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 43),
             "41:68: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 68),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputRightCurlyTestRecordsAndCompactCtors.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRightCurlyTestRecordsAndCompactCtors.java"), expected);
     }
 }

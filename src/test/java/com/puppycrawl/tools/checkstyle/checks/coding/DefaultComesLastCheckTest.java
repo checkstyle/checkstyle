@@ -51,7 +51,7 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
             "104:13: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDefaultComesLastSkipIfLastAndSharedWithCase.java"),
                 expected);
     }
@@ -75,8 +75,8 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
             "120:13: " + getCheckMessage(MSG_KEY),
             "131:13: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputDefaultComesLast.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputDefaultComesLast.java"),
                expected);
     }
 
@@ -85,7 +85,7 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(DefaultComesLastCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDefaultComesLastDefaultMethodsInInterface.java"),
                 expected);
     }
@@ -98,8 +98,8 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
             "32:13: " + getCheckMessage(MSG_KEY),
             "46:13: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputDefaultComesLastSwitchExpressions.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputDefaultComesLastSwitchExpressions.java"),
             expected);
     }
 
@@ -112,8 +112,8 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
             "33:13: " + getCheckMessage(MSG_KEY),
             "48:13: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputDefaultComesLastSwitchExpressionsSkipIfLast.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputDefaultComesLastSwitchExpressionsSkipIfLast.java"),
             expected);
     }
 

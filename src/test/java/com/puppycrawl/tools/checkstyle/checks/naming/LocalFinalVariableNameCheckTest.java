@@ -56,7 +56,7 @@ public class LocalFinalVariableNameCheckTest
         final String[] expected = {
             "126:19: " + getCheckMessage(MSG_INVALID_PATTERN, "CDE", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLocalFinalVariableName.java"), expected);
     }
 
@@ -72,7 +72,7 @@ public class LocalFinalVariableNameCheckTest
         final String[] expected = {
             "125:19: " + getCheckMessage(MSG_INVALID_PATTERN, "cde", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLocalFinalVariableName1.java"), expected);
     }
 
@@ -82,7 +82,7 @@ public class LocalFinalVariableNameCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(LocalFinalVariableNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLocalFinalVariableNameInnerClass.java"), expected);
     }
 
@@ -114,7 +114,7 @@ public class LocalFinalVariableNameCheckTest
             "79:30: " + getCheckMessage(MSG_INVALID_PATTERN, "fis8859_1", pattern),
             "82:32: " + getCheckMessage(MSG_INVALID_PATTERN, "isrutf8", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLocalFinalVariableNameTryResources.java"), expected);
     }
 
@@ -125,7 +125,7 @@ public class LocalFinalVariableNameCheckTest
         checkConfig.addProperty("format", "[a-z]+");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath(
             "InputLocalFinalVariableNameTryResourcesJava9.java"), expected);
     }

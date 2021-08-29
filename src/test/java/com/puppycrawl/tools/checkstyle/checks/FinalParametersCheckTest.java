@@ -51,7 +51,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "117:18: " + getCheckMessage(MSG_KEY, "args"),
             "120:18: " + getCheckMessage(MSG_KEY, "args"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalParameters.java"), expected);
     }
 
@@ -65,7 +65,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "43:27: " + getCheckMessage(MSG_KEY, "i"),
             "48:27: " + getCheckMessage(MSG_KEY, "s"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalParameters2.java"), expected);
     }
 
@@ -84,7 +84,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "118:18: " + getCheckMessage(MSG_KEY, "args"),
             "121:18: " + getCheckMessage(MSG_KEY, "args"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalParameters3.java"), expected);
     }
 
@@ -98,7 +98,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "136:16: " + getCheckMessage(MSG_KEY, "e"),
             "139:16: " + getCheckMessage(MSG_KEY, "e"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalParameters4.java"), expected);
     }
 
@@ -111,7 +111,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "157:13: " + getCheckMessage(MSG_KEY, "s"),
             "165:13: " + getCheckMessage(MSG_KEY, "s"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalParameters5.java"), expected);
     }
 
@@ -129,7 +129,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "18:22: " + getCheckMessage(MSG_KEY, "l"),
             "18:32: " + getCheckMessage(MSG_KEY, "s"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalParametersPrimitiveTypes.java"), expected);
     }
 
@@ -153,7 +153,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "18:22: " + getCheckMessage(MSG_KEY, "l"),
             "18:32: " + getCheckMessage(MSG_KEY, "s"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalParametersPrimitiveTypes2.java"), expected);
     }
 
@@ -162,7 +162,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(FinalParametersCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalParametersReceiver.java"), expected);
     }
 

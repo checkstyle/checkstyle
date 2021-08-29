@@ -50,7 +50,7 @@ public class SeparatorWrapCheckTest
         final String[] expected = {
             "39:10: " + getCheckMessage(MSG_LINE_NEW, "."),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSeparatorWrapForTestDot.java"), expected);
     }
 
@@ -62,7 +62,7 @@ public class SeparatorWrapCheckTest
         final String[] expected = {
             "47:17: " + getCheckMessage(MSG_LINE_PREVIOUS, ","),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSeparatorWrapForTestComma.java"), expected);
     }
 
@@ -74,7 +74,7 @@ public class SeparatorWrapCheckTest
         final String[] expected = {
             "25:56: " + getCheckMessage(MSG_LINE_NEW, "::"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSeparatorWrapForTestMethodRef.java"), expected);
     }
 
@@ -97,8 +97,8 @@ public class SeparatorWrapCheckTest
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verifyWithInlineConfigParser(checkConfig,
-                getPath("InputSeparatorWrapForInvalidOption.java"), expected);
+            verifyWithInlineConfigParser(
+                    getPath("InputSeparatorWrapForInvalidOption.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
@@ -118,7 +118,7 @@ public class SeparatorWrapCheckTest
         final String[] expected = {
             "19:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "..."),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSeparatorWrapForEllipsis.java"), expected);
     }
 
@@ -130,7 +130,7 @@ public class SeparatorWrapCheckTest
         final String[] expected = {
             "17:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "["),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSeparatorWrapForArrayDeclarator.java"), expected);
     }
 

@@ -43,8 +43,8 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
             "9:1: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputMissingCtor.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputMissingCtor.java"),
                expected);
     }
 
@@ -67,7 +67,7 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
             "11:9: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMissingCtor2.java"),
                 expected);
     }

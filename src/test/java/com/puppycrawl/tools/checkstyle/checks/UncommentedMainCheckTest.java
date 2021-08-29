@@ -53,7 +53,7 @@ public class UncommentedMainCheckTest
             "35:5: " + getCheckMessage(MSG_KEY),
             "99:5: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUncommentedMain.java"), expected);
     }
 
@@ -68,7 +68,7 @@ public class UncommentedMainCheckTest
             "35:5: " + getCheckMessage(MSG_KEY),
             "99:5: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUncommentedMain6.java"), expected);
     }
 
@@ -87,7 +87,7 @@ public class UncommentedMainCheckTest
     public void testDeepDepth() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUncommentedMain2.java"), expected);
     }
 
@@ -98,7 +98,7 @@ public class UncommentedMainCheckTest
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUncommentedMain5.java"), expected);
     }
 
@@ -106,7 +106,7 @@ public class UncommentedMainCheckTest
     public void testWrongName() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUncommentedMain3.java"), expected);
     }
 
@@ -114,7 +114,7 @@ public class UncommentedMainCheckTest
     public void testWrongArrayType() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUncommentedMain4.java"), expected);
     }
 
@@ -143,7 +143,7 @@ public class UncommentedMainCheckTest
             "25:13: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath(
                 "InputUncommentedMainRecords.java"), expected);
     }
