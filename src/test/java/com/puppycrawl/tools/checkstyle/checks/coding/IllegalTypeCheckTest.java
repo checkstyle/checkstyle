@@ -51,7 +51,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "50:12: " + getCheckMessage(MSG_KEY, "AbstractClass"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeTestAbstractClassNamesTrue.java"), expected);
     }
 
@@ -61,7 +61,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("validateAbstractClassNames", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeTestAbstractClassNamesFalse.java"), expected);
     }
 
@@ -75,7 +75,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "62:5: " + getCheckMessage(MSG_KEY, "HashMap"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeTestDefaults.java"), expected);
     }
 
@@ -91,7 +91,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "62:5: " + getCheckMessage(MSG_KEY, "HashMap"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeEmptyStringMemberModifiers.java"), expected);
     }
 
@@ -111,7 +111,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "62:5: " + getCheckMessage(MSG_KEY, "HashMap"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeTestIgnoreMethodNames.java"), expected);
     }
 
@@ -127,7 +127,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "62:5: " + getCheckMessage(MSG_KEY, "HashMap"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeTestFormat.java"), expected);
     }
 
@@ -147,7 +147,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "62:5: " + getCheckMessage(MSG_KEY, "HashMap"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeTestLegalAbstractClassNames.java"), expected);
     }
 
@@ -162,7 +162,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "43:5: " + getCheckMessage(MSG_KEY, "java.util.List"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeSameFileNameFalsePositive.java"), expected);
     }
 
@@ -181,7 +181,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "43:13: " + getCheckMessage(MSG_KEY, "ArrayList"),
             "44:13: " + getCheckMessage(MSG_KEY, "Boolean"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeTestSameFileNameGeneral.java"), expected);
     }
 
@@ -197,7 +197,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "29:12: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
             "30:9: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeArrays.java"), expected);
     }
 
@@ -212,7 +212,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "35:12: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
             "36:9: " + getCheckMessage(MSG_KEY, "Boolean[][]"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeTestPlainAndArraysTypes.java"), expected);
     }
 
@@ -241,7 +241,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "55:20: " + getCheckMessage(MSG_KEY, "Boolean"),
             "68:28: " + getCheckMessage(MSG_KEY, "Boolean"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeTestGenerics.java"), expected);
     }
 
@@ -262,7 +262,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "39:28: " + getCheckMessage(MSG_KEY, "Boolean"),
             "40:13: " + getCheckMessage(MSG_KEY, "Serializable"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeTestExtendsImplements.java"), expected);
     }
 
@@ -275,7 +275,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "25:5: " + getCheckMessage(MSG_KEY, "List"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeTestStarImports.java"), expected);
     }
 
@@ -290,7 +290,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "30:31: " + getCheckMessage(MSG_KEY, "SomeStaticClass"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeTestStaticImports.java"), expected);
     }
 
@@ -310,7 +310,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "49:15: " + getCheckMessage(MSG_KEY, "AbstractClass"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeTestMemberModifiers.java"), expected);
     }
 
@@ -320,7 +320,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("illegalClassNames", "com.PackageClass");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputIllegalTypePackageClassName.java"),
                 expected);
     }
@@ -352,7 +352,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "41:32: " + getCheckMessage(MSG_KEY, "TreeSet"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputIllegalTypeTestEnhancedInstanceof.java"),
                 expected);
     }
@@ -375,8 +375,8 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "48:13: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputIllegalTypeRecordsAndCompactCtors.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalTypeRecordsAndCompactCtors.java"),
             expected);
     }
 
@@ -389,8 +389,8 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "26:13: " + getCheckMessage(MSG_KEY, "HashMap"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputIllegalTypeNewArrayStructure.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTypeNewArrayStructure.java"),
             expected);
     }
 

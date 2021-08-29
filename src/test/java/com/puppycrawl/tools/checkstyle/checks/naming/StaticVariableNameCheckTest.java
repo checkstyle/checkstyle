@@ -57,7 +57,7 @@ public class StaticVariableNameCheckTest
         final String[] expected = {
             "36:24: " + getCheckMessage(MSG_INVALID_PATTERN, "badStatic", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputStaticVariableName1.java"), expected);
     }
 
@@ -72,7 +72,7 @@ public class StaticVariableNameCheckTest
         checkConfig.addProperty("applyToPrivate", "false");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputStaticVariableName2.java"), expected);
     }
 
@@ -82,7 +82,7 @@ public class StaticVariableNameCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(StaticVariableNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputStaticVariableName.java"), expected);
     }
 

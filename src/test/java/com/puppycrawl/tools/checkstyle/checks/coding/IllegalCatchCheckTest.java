@@ -47,7 +47,7 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
             "24:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalCatch.java"), expected);
     }
 
@@ -64,7 +64,7 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
             "23:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalCatch3.java"), expected);
     }
 
@@ -83,7 +83,7 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
             "23:11: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalCatch4.java"), expected);
     }
 
@@ -108,7 +108,7 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
             "24:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalCatch2.java"), expected);
     }
 

@@ -39,7 +39,7 @@ public class AnnotationTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputAnnotations1.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputAnnotations1.java"), expected);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class AnnotationTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputAnnotations2.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputAnnotations2.java"), expected);
     }
 
     @Test
@@ -57,7 +57,7 @@ public class AnnotationTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputAnnotations3.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputAnnotations3.java"), expected);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class AnnotationTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputAnnotations4.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputAnnotations4.java"), expected);
     }
 
     @Test
@@ -75,7 +75,7 @@ public class AnnotationTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputAnnotations5.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputAnnotations5.java"), expected);
     }
 
     @Test
@@ -84,7 +84,7 @@ public class AnnotationTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputAnnotations6.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputAnnotations6.java"), expected);
     }
 
     @Test
@@ -93,7 +93,7 @@ public class AnnotationTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputAnnotations7.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputAnnotations7.java"), expected);
     }
 
     @Test
@@ -102,7 +102,7 @@ public class AnnotationTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputAnnotations8.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputAnnotations8.java"), expected);
     }
 
     @Test
@@ -111,7 +111,7 @@ public class AnnotationTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputAnnotations9.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputAnnotations9.java"), expected);
     }
 
     @Test
@@ -120,7 +120,7 @@ public class AnnotationTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputAnnotations10.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputAnnotations10.java"), expected);
     }
 
     @Test
@@ -129,7 +129,7 @@ public class AnnotationTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputAnnotations11.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputAnnotations11.java"), expected);
     }
 
     @Test
@@ -138,7 +138,7 @@ public class AnnotationTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputAnnotations12.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputAnnotations12.java"), expected);
     }
 
 }

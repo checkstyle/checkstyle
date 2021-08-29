@@ -45,7 +45,7 @@ public class AvoidInlineConditionalsCheckTest
             "35:20: " + getCheckMessage(MSG_KEY),
             "48:34: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidInlineConditionals.java"), expected);
     }
 

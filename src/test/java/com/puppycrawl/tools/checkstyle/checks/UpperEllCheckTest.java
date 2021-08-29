@@ -53,7 +53,7 @@ public class UpperEllCheckTest
         final String[] expected = {
             "96:40: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUpperEllSemantic.java"), expected);
     }
 

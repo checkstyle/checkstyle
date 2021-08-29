@@ -49,7 +49,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationCorrect.java"), expected);
     }
 
@@ -82,7 +82,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "99:9: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation1"),
             "106:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_21", 0, 3),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationIncorrect.java"), expected);
     }
 
@@ -118,7 +118,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "99:9: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation_13"),
             "106:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_23", 0, 3),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationIncorrect3.java"), expected);
     }
 
@@ -147,7 +147,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     public void testWithoutAnnotations() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationEmpty.java"), expected);
     }
 
@@ -172,7 +172,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "96:11: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_22", 10, 8),
             "106:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_22", 0, 3),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationIncorrect2.java"), expected);
     }
 
@@ -185,7 +185,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "14:17: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation12"),
             "14:33: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation13"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationCustomAnnotationsDeclared.java"),
                 expected);
     }
@@ -196,7 +196,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, "
                 + "CTOR_DEF, VARIABLE_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationWithoutAnnotations.java"), expected);
     }
 
@@ -210,7 +210,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "22:7: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "AnnotationAnnotation", 6, 4),
             "23:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "AnnotationAnnotation"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationAnnotation.java"), expected);
     }
 
@@ -226,7 +226,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "26:7: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "ClassAnnotation", 6, 4),
             "27:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "ClassAnnotation"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationClass.java"), expected);
     }
 
@@ -240,7 +240,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "22:7: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "EnumAnnotation", 6, 4),
             "23:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "EnumAnnotation"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationEnum.java"), expected);
     }
 
@@ -254,7 +254,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "22:7: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "InterfaceAnnotation", 6, 4),
             "23:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "InterfaceAnnotation"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationInterface.java"), expected);
     }
 
@@ -266,7 +266,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "12:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "PackageAnnotation", 2, 0),
             "13:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "PackageAnnotation"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("inputs/package-info.java"), expected);
     }
 
@@ -279,7 +279,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("allowSamelineSingleParameterlessAnnotation", "false");
         checkConfig.addProperty("allowSamelineParameterizedAnnotation", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationDeprecatedAndCustom.java"), expected);
     }
 
@@ -290,7 +290,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("allowSamelineSingleParameterlessAnnotation", "false");
         checkConfig.addProperty("allowSamelineParameterizedAnnotation", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationMultiple.java"), expected);
     }
 
@@ -309,7 +309,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "26:33: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
             "28:21: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationParameterized.java"), expected);
     }
 
@@ -328,7 +328,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "30:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
             "30:21: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationSingleParameterless.java"), expected);
     }
 
@@ -344,8 +344,8 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "43:13: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
             "53:34: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputAnnotationLocationRecordsAndCompactCtors.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputAnnotationLocationRecordsAndCompactCtors.java"),
             expected);
     }
 

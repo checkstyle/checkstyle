@@ -56,7 +56,7 @@ public class TodoCommentCheckTest
             "165:7: " + getCheckMessage(MSG_KEY, "FIXME:"),
             "170:17: " + getCheckMessage(MSG_KEY, "FIXME:"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputTodoCommentSimple.java"), expected);
     }
 

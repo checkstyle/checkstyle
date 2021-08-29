@@ -60,7 +60,7 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
             "17:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
             "21:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocContentLocationDefault.java"), expected);
     }
 
@@ -73,7 +73,7 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
             "12:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
             "21:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocContentLocationFirstLine.java"), expected);
     }
 
@@ -85,7 +85,7 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("package-info.java"), expected);
     }
 
@@ -97,7 +97,7 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "10:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocContentLocationInterface.java"), expected);
     }
 
@@ -106,7 +106,7 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocContentLocationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocContentLocationTrailingSpace.java"), expected);
     }
 

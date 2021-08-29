@@ -101,7 +101,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
                 "com.puppycrawl.tools.checkstyle.DefaultConfiguration"),
             "47:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUnusedImports2.java"), expected);
     }
 
@@ -123,7 +123,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             "35:8: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
             "47:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUnusedImports.java"), expected);
     }
 
@@ -131,7 +131,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     public void testProcessJavadocWithLinkTag() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsWithValueTag.java"), expected);
     }
 
@@ -139,7 +139,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     public void testProcessJavadocWithBlockTagContainingMethodParameters() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsWithBlockMethodParameters.java"), expected);
     }
 
@@ -147,7 +147,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     public void testAnnotations() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputUnusedImportsAnnotations.java"), expected);
     }
 
@@ -155,7 +155,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     public void testBug() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsBug.java"), expected);
     }
 
@@ -163,7 +163,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     public void testNewlinesInsideTags() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsWithNewlinesInsideTags.java"), expected);
     }
 
@@ -232,8 +232,8 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             "12:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
             "13:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputUnusedImportsFileInUnnamedPackage.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputUnusedImportsFileInUnnamedPackage.java"),
             expected);
     }
 
@@ -253,7 +253,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             "19:8: " + getCheckMessage(MSG_KEY, "java.lang.Float"),
             "20:8: " + getCheckMessage(MSG_KEY, "java.lang.Short"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsFromJavaLang.java"), expected);
     }
 
@@ -263,7 +263,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "11:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsJavadocQualifiedName.java"), expected);
     }
 
@@ -273,7 +273,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "10:8: " + getCheckMessage(MSG_KEY, "module"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputUnusedImportsSingleWordPackage.java"),
                 expected);
     }
@@ -285,7 +285,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             "19:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToolBar"),
             "20:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToggleButton"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputUnusedImportsRecordsAndCompactCtors.java"),
                 expected);
     }
@@ -299,7 +299,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             "16:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "unusedimports.InputUnusedImportsShadowed"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsShadowed.java"), expected);
     }
 

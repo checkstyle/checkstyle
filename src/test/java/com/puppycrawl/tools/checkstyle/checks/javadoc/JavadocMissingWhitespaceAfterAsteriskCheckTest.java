@@ -68,7 +68,7 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
                 createModuleConfig(JavadocMissingWhitespaceAfterAsteriskCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMissingWhitespaceAfterAsteriskValid.java"), expected);
     }
 
@@ -78,7 +78,7 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
                 createModuleConfig(JavadocMissingWhitespaceAfterAsteriskCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMissingWhitespaceAfterAsteriskValidWithTab.java"), expected);
     }
 
@@ -101,7 +101,7 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
             "62:8: " + getCheckMessage(MSG_KEY),
             "65:10: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMissingWhitespaceAfterAsteriskInvalid.java"), expected);
     }
 

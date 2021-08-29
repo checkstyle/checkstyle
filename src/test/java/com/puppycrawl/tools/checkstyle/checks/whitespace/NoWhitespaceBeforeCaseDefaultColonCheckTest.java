@@ -56,7 +56,7 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
             "89:38: " + getCheckMessage(MSG_KEY, ":"),
             "92:35: " + getCheckMessage(MSG_KEY, ":"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceBeforeCaseDefaultColon.java"),
                 expected);
     }
@@ -75,7 +75,7 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
             "94:20: " + getCheckMessage(MSG_KEY, ":"),
             "97:21: " + getCheckMessage(MSG_KEY, ":"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings.java"),
                 expected);
     }

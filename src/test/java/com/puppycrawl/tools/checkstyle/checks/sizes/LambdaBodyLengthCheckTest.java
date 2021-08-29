@@ -66,7 +66,7 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
             "57:15: " + getCheckMessage(MSG_KEY, 11, 10),
             "68:34: " + getCheckMessage(MSG_KEY, 11, 10),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLambdaBodyLengthDefault.java"), expected);
     }
 
@@ -75,7 +75,7 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(LambdaBodyLengthCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputLambdaBodyLengthSwitchExps.java"), expected);
     }
 
@@ -90,7 +90,7 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
             "30:35: " + getCheckMessage(MSG_KEY, 5, 3),
             "36:34: " + getCheckMessage(MSG_KEY, 4, 3),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLambdaBodyLengthMax.java"), expected);
     }
 
