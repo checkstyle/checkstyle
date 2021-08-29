@@ -65,7 +65,7 @@ public class ParameterNumberCheckTest
         final String[] expected = {
             "198:10: " + getCheckMessage(MSG_KEY, 7, 9),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputParameterNumberSimple.java"), expected);
     }
 
@@ -79,7 +79,7 @@ public class ParameterNumberCheckTest
             "75:9: " + getCheckMessage(MSG_KEY, 2, 3),
             "198:10: " + getCheckMessage(MSG_KEY, 2, 9),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputParameterNumberSimple2.java"), expected);
     }
 
@@ -90,7 +90,7 @@ public class ParameterNumberCheckTest
                 createModuleConfig(ParameterNumberCheck.class);
         checkConfig.addProperty("max", "9");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputParameterNumberSimple3.java"), expected);
     }
 
@@ -103,7 +103,7 @@ public class ParameterNumberCheckTest
         final String[] expected = {
             "199:10: 7,9",
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputParameterNumberSimple4.java"), expected);
     }
 
@@ -117,7 +117,7 @@ public class ParameterNumberCheckTest
             "15:10: " + getCheckMessage(MSG_KEY, 7, 8),
             "20:10: " + getCheckMessage(MSG_KEY, 7, 8),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputParameterNumber.java"), expected);
     }
 
@@ -132,7 +132,7 @@ public class ParameterNumberCheckTest
             "28:10: " + getCheckMessage(MSG_KEY, 7, 8),
             "33:10: " + getCheckMessage(MSG_KEY, 7, 8),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputParameterNumber2.java"), expected);
     }
 

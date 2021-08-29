@@ -83,7 +83,7 @@ public class FinalLocalVariableCheckTest
             "429:21: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
             "449:33: " + getCheckMessage(MSG_KEY, "table"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariable.java"), expected);
     }
 
@@ -94,8 +94,8 @@ public class FinalLocalVariableCheckTest
         final String[] expected = {
             "20:17: " + getCheckMessage(MSG_KEY, "b"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputFinalLocalVariableCheckRecords.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalLocalVariableCheckRecords.java"), expected);
     }
 
     @Test
@@ -109,7 +109,7 @@ public class FinalLocalVariableCheckTest
             "157:36: " + getCheckMessage(MSG_KEY, "_o"),
             "162:37: " + getCheckMessage(MSG_KEY, "_o1"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariable2.java"), expected);
     }
 
@@ -120,7 +120,7 @@ public class FinalLocalVariableCheckTest
         checkConfig.addProperty("tokens", "PARAMETER_DEF");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableNativeMethods.java"), expected);
     }
 
@@ -131,7 +131,7 @@ public class FinalLocalVariableCheckTest
         checkConfig.addProperty("tokens", "VARIABLE_DEF, PARAMETER_DEF");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableFalsePositive.java"), expected);
     }
 
@@ -150,8 +150,8 @@ public class FinalLocalVariableCheckTest
             "46:20: " + getCheckMessage(MSG_KEY, "a"),
             "49:16: " + getCheckMessage(MSG_KEY, "a"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputFinalLocalVariableEnhancedForLoopVariable.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableEnhancedForLoopVariable.java"),
             expected);
     }
 
@@ -166,8 +166,8 @@ public class FinalLocalVariableCheckTest
             "30:32: " + getCheckMessage(MSG_KEY, "filteredSnippets"),
             "49:16: " + getCheckMessage(MSG_KEY, "a"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputFinalLocalVariableEnhancedForLoopVariable2.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableEnhancedForLoopVariable2.java"),
             expected);
     }
 
@@ -180,8 +180,8 @@ public class FinalLocalVariableCheckTest
         final String[] expected = {
             "40:16: " + getCheckMessage(MSG_KEY, "result"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputFinalLocalVariableNameLambda.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableNameLambda.java"),
             expected);
     }
 
@@ -196,7 +196,7 @@ public class FinalLocalVariableCheckTest
             "12:28: " + getCheckMessage(MSG_KEY, "text"),
             "25:13: " + getCheckMessage(MSG_KEY, "x"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableNameShadowing.java"), expected);
     }
 
@@ -228,7 +228,7 @@ public class FinalLocalVariableCheckTest
             "215:24: " + getCheckMessage(MSG_KEY, "m"),
             "417:17: " + getCheckMessage(MSG_KEY, "increment"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableAssignedMultipleTimes.java"), expected);
     }
 
@@ -238,8 +238,8 @@ public class FinalLocalVariableCheckTest
         final String[] expected = {
             "39:13: " + getCheckMessage(MSG_KEY, "b"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputFinalLocalVariableAssignedInsideAndOutsideSwitch.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableAssignedInsideAndOutsideSwitch.java"),
             expected);
     }
 
@@ -250,7 +250,7 @@ public class FinalLocalVariableCheckTest
             "352:16: " + getCheckMessage(MSG_KEY, "c2"),
             "2195:16: " + getCheckMessage(MSG_KEY, "b"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableFalsePositives.java"), expected);
     }
 
@@ -258,8 +258,8 @@ public class FinalLocalVariableCheckTest
     public void testMultipleAndNestedConditions() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(FinalLocalVariableCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputFinalLocalVariableMultipleAndNestedConditions.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableMultipleAndNestedConditions.java"),
             expected);
     }
 
@@ -268,7 +268,7 @@ public class FinalLocalVariableCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(FinalLocalVariableCheck.class);
         checkConfig.addProperty("tokens", "PARAMETER_DEF,VARIABLE_DEF");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableMultiCatch.java"),
                 expected);
     }
@@ -277,7 +277,7 @@ public class FinalLocalVariableCheckTest
     public void testLeavingSlistToken() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(FinalLocalVariableCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableLeavingSlistToken.java"), expected);
     }
 
@@ -287,7 +287,7 @@ public class FinalLocalVariableCheckTest
         final String[] expected = {
             "15:19: " + getCheckMessage(MSG_KEY, "e"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableBreak.java"), expected);
     }
 
@@ -297,7 +297,7 @@ public class FinalLocalVariableCheckTest
         final String[] expected = {
             "13:16: " + getCheckMessage(MSG_KEY, "testSupport"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableAnonymousClass.java"), expected);
     }
 
@@ -306,7 +306,7 @@ public class FinalLocalVariableCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(FinalLocalVariableCheck.class);
         checkConfig.addProperty("tokens", "PARAMETER_DEF,VARIABLE_DEF");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableReceiverParameter.java"), expected);
     }
 
@@ -319,8 +319,8 @@ public class FinalLocalVariableCheckTest
             "91:19: " + getCheckMessage(MSG_KEY, "e"),
             "125:19: " + getCheckMessage(MSG_KEY, "e"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressions.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressions.java"),
             expected);
     }
 
@@ -332,8 +332,8 @@ public class FinalLocalVariableCheckTest
             "44:13: " + getCheckMessage(MSG_KEY, "b"),
             "46:21: " + getCheckMessage(MSG_KEY, "x"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputFinalLocalVariableCheckSwitchAssignment.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalLocalVariableCheckSwitchAssignment.java"),
             expected);
     }
 

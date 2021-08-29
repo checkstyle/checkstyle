@@ -45,8 +45,7 @@ public class MissingSwitchDefaultCheckTest
             "46:17: " + getCheckMessage(MSG_KEY, "default"),
         };
         verifyWithInlineConfigParser(
-            checkConfig,
-            getPath("InputMissingSwitchDefault.java"),
+                getPath("InputMissingSwitchDefault.java"),
             expected);
     }
 
@@ -66,8 +65,7 @@ public class MissingSwitchDefaultCheckTest
             "14:9: " + getCheckMessage(MSG_KEY, "default"),
         };
         verifyWithInlineConfigParser(
-            checkConfig,
-            getNonCompilablePath("InputMissingSwitchDefaultCheckSwitchExpressions.java"),
+                getNonCompilablePath("InputMissingSwitchDefaultCheckSwitchExpressions.java"),
             expected);
     }
 
@@ -80,7 +78,6 @@ public class MissingSwitchDefaultCheckTest
             "26:9: " + getCheckMessage(MSG_KEY, "default"),
         };
         verifyWithInlineConfigParser(
-                checkConfig,
                 getNonCompilablePath("InputMissingSwitchDefaultCheckSwitchExpressionsTwo.java"),
                 expected);
     }

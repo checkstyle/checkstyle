@@ -59,8 +59,7 @@ public class NewlineAtEndOfFileCheckTest
         checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-            checkConfig,
-            getPath("InputNewlineAtEndOfFileLf.java"),
+                getPath("InputNewlineAtEndOfFileLf.java"),
             expected);
     }
 
@@ -73,8 +72,7 @@ public class NewlineAtEndOfFileCheckTest
             "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING),
         };
         verifyWithInlineConfigParser(
-            checkConfig,
-            getPath("InputNewlineAtEndOfFileCrlf.java"),
+                getPath("InputNewlineAtEndOfFileCrlf.java"),
             expected);
     }
 
@@ -85,8 +83,7 @@ public class NewlineAtEndOfFileCheckTest
         checkConfig.addProperty("lineSeparator", LineSeparatorOption.CRLF.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-            checkConfig,
-            getPath("InputNewlineAtEndOfFileCrlf3.java"),
+                getPath("InputNewlineAtEndOfFileCrlf3.java"),
             expected);
     }
 
@@ -97,8 +94,7 @@ public class NewlineAtEndOfFileCheckTest
         checkConfig.addProperty("lineSeparator", LineSeparatorOption.CR.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-            checkConfig,
-            getPath("InputNewlineAtEndOfFileCr.java"),
+                getPath("InputNewlineAtEndOfFileCr.java"),
             expected);
     }
 
@@ -109,16 +105,13 @@ public class NewlineAtEndOfFileCheckTest
         checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF_CR_CRLF.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-            checkConfig,
-            getPath("InputNewlineAtEndOfFileCrlf2.java"),
+                getPath("InputNewlineAtEndOfFileCrlf2.java"),
             expected);
         verifyWithInlineConfigParser(
-            checkConfig,
-            getPath("InputNewlineAtEndOfFileLf2.java"),
+                getPath("InputNewlineAtEndOfFileLf2.java"),
             expected);
         verifyWithInlineConfigParser(
-            checkConfig,
-            getPath("InputNewlineAtEndOfFileCr2.java"),
+                getPath("InputNewlineAtEndOfFileCr2.java"),
             expected);
     }
 
@@ -131,8 +124,7 @@ public class NewlineAtEndOfFileCheckTest
             "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
         };
         verifyWithInlineConfigParser(
-            checkConfig,
-            getPath("InputNewlineAtEndOfFileNoNewline.java"),
+                getPath("InputNewlineAtEndOfFileNoNewline.java"),
             expected);
     }
 
@@ -145,8 +137,7 @@ public class NewlineAtEndOfFileCheckTest
             "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
         };
         verifyWithInlineConfigParser(
-            checkConfig,
-            getPath("InputNewlineAtEndOfFileNoNewline2.java"),
+                getPath("InputNewlineAtEndOfFileNoNewline2.java"),
             expected);
     }
 

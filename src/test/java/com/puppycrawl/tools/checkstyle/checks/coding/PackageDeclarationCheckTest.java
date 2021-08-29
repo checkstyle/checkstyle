@@ -45,7 +45,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
             "8:1: " + getCheckMessage(MSG_KEY_MISSING),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputPackageDeclarationNoPackage.java"), expected);
     }
 
@@ -55,7 +55,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputPackageDeclarationPlain.java"), expected);
     }
 
@@ -65,7 +65,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputPackageDeclarationWithCommentOnly.java"), expected);
     }
 
@@ -77,7 +77,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
             "8:1: " + getCheckMessage(MSG_KEY_MISMATCH),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputPackageDeclarationDiffDirectory.java"), expected);
     }
 
@@ -89,7 +89,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
             "8:1: " + getCheckMessage(MSG_KEY_MISMATCH),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputPackageDeclarationDiffDirectoryAtParent.java"),
                 expected);
     }
@@ -102,7 +102,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
             "8:1: " + getCheckMessage(MSG_KEY_MISMATCH),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputPackageDeclarationDiffDirectoryAtSubpackage.java"),
                 expected);
     }
@@ -113,7 +113,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("matchDirectoryStructure", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputPackageDeclarationDiffDirectory2.java"),
                 expected);
     }
@@ -124,7 +124,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("matchDirectoryStructure", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputPackageDeclarationDiffDirectoryAtParent2.java"),
                 expected);
     }
@@ -135,7 +135,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("matchDirectoryStructure", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputPackageDeclarationDiffDirectoryAtSubpackage2.java"),
                 expected);
     }
@@ -147,7 +147,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
             "9:1: " + getCheckMessage(MSG_KEY_MISSING),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputPackageDeclarationNoPackage.java"),
                 expected);
     }

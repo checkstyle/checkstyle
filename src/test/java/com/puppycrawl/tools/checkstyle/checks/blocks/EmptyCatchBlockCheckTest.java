@@ -51,7 +51,7 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
             "25:31: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "32:83: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputEmptyCatchBlockDefault.java"), expected);
     }
 
@@ -71,7 +71,7 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
             "221:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "230:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputEmptyCatchBlockDefault2.java"), expected);
     }
 
@@ -94,8 +94,8 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
         final String originalLineSeparator = System.getProperty("line.separator");
         try {
             System.setProperty("line.separator", "\r\n");
-            verifyWithInlineConfigParser(checkConfig,
-                getPath("InputEmptyCatchBlockDefaultLF.java"), expected);
+            verifyWithInlineConfigParser(
+                    getPath("InputEmptyCatchBlockDefaultLF.java"), expected);
         }
         finally {
             System.setProperty("line.separator", originalLineSeparator);

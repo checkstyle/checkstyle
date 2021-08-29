@@ -61,7 +61,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             "59:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexity.java"), expected);
     }
 
@@ -79,8 +79,8 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             "29:1: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputClassFanOutComplexityExcludedPackagesDirectPackages.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputClassFanOutComplexityExcludedPackagesDirectPackages.java"), expected);
     }
 
     @Test
@@ -97,8 +97,8 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             "32:5: " + getCheckMessage(MSG_KEY, 2, 0),
             "38:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputClassFanOutComplexityExcludedPackagesCommonPackage.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputClassFanOutComplexityExcludedPackagesCommonPackage.java"), expected);
     }
 
     @Test
@@ -142,8 +142,8 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 + "com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inputs.c");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputClassFanOutComplexityExcludedPackagesAllIgnored.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputClassFanOutComplexityExcludedPackagesAllIgnored.java"), expected);
     }
 
     @Test
@@ -157,7 +157,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             "29:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexity15Extensions.java"), expected);
     }
 
@@ -168,7 +168,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
 
         createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexity2.java"), expected);
     }
 
@@ -209,7 +209,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             "76:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexity3.java"), expected);
     }
 
@@ -226,7 +226,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             "76:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexity4.java"), expected);
     }
 
@@ -237,7 +237,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
         moduleConfig.addProperty("max", "0");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(moduleConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityMultiDimensionalArray.java"), expected);
     }
 
@@ -248,7 +248,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
         moduleConfig.addProperty("max", "0");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(moduleConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityPackageName.java"), expected);
     }
 
@@ -260,7 +260,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "23:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityExtends.java"), expected);
     }
 
@@ -272,7 +272,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "23:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityImplements.java"), expected);
     }
 
@@ -290,7 +290,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             "99:1: " + getCheckMessage(MSG_KEY, 1, 0),
             "102:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityAnnotations.java"), expected);
     }
 
@@ -303,8 +303,8 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             "32:1: " + getCheckMessage(MSG_KEY, 4, 2),
             "53:1: " + getCheckMessage(MSG_KEY, 4, 2),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputClassFanOutComplexityRecords.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputClassFanOutComplexityRecords.java"), expected);
     }
 
     @Test
@@ -313,8 +313,8 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(ClassFanOutComplexityCheck.class);
         checkConfig.addProperty("max", "0");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputClassFanOutComplexityVar.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputClassFanOutComplexityVar.java"), expected);
     }
 
     @Test
@@ -323,7 +323,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(ClassFanOutComplexityCheck.class);
         checkConfig.addProperty("max", "24");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityRemoveIncorrectAnnotationToken.java"), expected);
     }
 
@@ -333,7 +333,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(ClassFanOutComplexityCheck.class);
         checkConfig.addProperty("max", "1");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityRemoveIncorrectTypeParameter.java"), expected);
     }
 
@@ -343,7 +343,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(ClassFanOutComplexityCheck.class);
         checkConfig.addProperty("max", "4");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityRemoveMultiCatchBitwiseOr.java"), expected);
     }
 

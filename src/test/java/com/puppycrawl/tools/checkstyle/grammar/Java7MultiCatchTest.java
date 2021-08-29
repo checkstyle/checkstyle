@@ -43,7 +43,7 @@ public class Java7MultiCatchTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJava7MultiCatch.java"), expected);
     }
 

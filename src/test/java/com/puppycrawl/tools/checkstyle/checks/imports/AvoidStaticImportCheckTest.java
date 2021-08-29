@@ -64,7 +64,7 @@ public class AvoidStaticImportCheckTest
                     + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.one"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidStaticImportDefault.java"), expected);
     }
 
@@ -86,7 +86,7 @@ public class AvoidStaticImportCheckTest
                     "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.one"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidStaticImportDefault2.java"), expected);
     }
 
@@ -109,7 +109,7 @@ public class AvoidStaticImportCheckTest
                     "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.one"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidStaticImportDefault3.java"), expected);
     }
 
@@ -139,7 +139,7 @@ public class AvoidStaticImportCheckTest
                     "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.one"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidStaticImportDefault4.java"), expected);
     }
 
@@ -166,7 +166,7 @@ public class AvoidStaticImportCheckTest
                     "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidStaticImportDefault5.java"), expected);
     }
 

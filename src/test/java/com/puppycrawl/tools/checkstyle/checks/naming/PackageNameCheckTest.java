@@ -58,7 +58,7 @@ public class PackageNameCheckTest
             "8:9: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks.naming.packagename", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputPackageNameSimple1.java"), expected);
     }
 
@@ -68,7 +68,7 @@ public class PackageNameCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(PackageNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputPackageNameSimple.java"), expected);
     }
 

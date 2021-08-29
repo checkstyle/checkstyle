@@ -66,7 +66,7 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
             "44:51: " + getCheckMessage(MSG_KEY),
             "46:31: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputTrailingComment.java"), expected);
     }
 
@@ -82,7 +82,7 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
             "32:21: " + getCheckMessage(MSG_KEY),
             "45:31: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputTrailingComment2.java"), expected);
     }
 
@@ -110,7 +110,7 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
             "43:9: " + getCheckMessage(MSG_KEY),
             "51:5: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputTrailingComment3.java"), expected);
     }
 }

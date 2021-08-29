@@ -47,7 +47,7 @@ public class RedundantModifierCheckTest
             "28:5: " + getCheckMessage(MSG_KEY, "public"),
             "34:5: " + getCheckMessage(MSG_KEY, "static"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierClassesInsideOfInterfaces.java"),
             expected);
     }
@@ -72,7 +72,7 @@ public class RedundantModifierCheckTest
             "123:5: " + getCheckMessage(MSG_KEY, "public"),
             "124:5: " + getCheckMessage(MSG_KEY, "abstract"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierIt.java"), expected);
     }
 
@@ -82,7 +82,7 @@ public class RedundantModifierCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(RedundantModifierCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierStaticMethodInInterface.java"),
             expected);
     }
@@ -95,7 +95,7 @@ public class RedundantModifierCheckTest
         final String[] expected = {
             "13:9: " + getCheckMessage(MSG_KEY, "final"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierFinalInInterface.java"), expected);
     }
 
@@ -106,7 +106,7 @@ public class RedundantModifierCheckTest
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY, "private"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierConstructorModifier.java"), expected);
     }
 
@@ -118,7 +118,7 @@ public class RedundantModifierCheckTest
             "12:5: " + getCheckMessage(MSG_KEY, "static"),
             "16:5: " + getCheckMessage(MSG_KEY, "static"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierStaticInInnerTypeOfInterface.java"),
             expected);
     }
@@ -131,7 +131,7 @@ public class RedundantModifierCheckTest
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_KEY, "public"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierPublicModifierInNotPublicClass.java"),
             expected);
     }
@@ -148,7 +148,7 @@ public class RedundantModifierCheckTest
             "45:17: " + getCheckMessage(MSG_KEY, "public"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
             getPath("InputRedundantModifierNestedClassInPublicInterfaceRedundantModifiers.java"),
             expected);
     }
@@ -187,7 +187,7 @@ public class RedundantModifierCheckTest
             "16:9: " + getCheckMessage(MSG_KEY, "static"),
             "20:9: " + getCheckMessage(MSG_KEY, "static"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierStaticModifierInNestedEnum.java"),
             expected);
     }
@@ -200,7 +200,7 @@ public class RedundantModifierCheckTest
         final String[] expected = {
             "22:20: " + getCheckMessage(MSG_KEY, "final"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierFinalInAnonymousClass.java"),
             expected);
     }
@@ -213,7 +213,7 @@ public class RedundantModifierCheckTest
             "35:14: " + getCheckMessage(MSG_KEY, "final"),
             "36:17: " + getCheckMessage(MSG_KEY, "final"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierFinalInTryWithResource.java"),
             expected);
     }
@@ -228,7 +228,7 @@ public class RedundantModifierCheckTest
             "24:24: " + getCheckMessage(MSG_KEY, "final"),
             "33:33: " + getCheckMessage(MSG_KEY, "final"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierFinalInAbstractMethods.java"),
             expected);
     }
@@ -240,7 +240,7 @@ public class RedundantModifierCheckTest
             "15:16: " + getCheckMessage(MSG_KEY, "final"),
             "30:16: " + getCheckMessage(MSG_KEY, "final"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierFinalInEnumMethods.java"), expected);
     }
 
@@ -250,8 +250,8 @@ public class RedundantModifierCheckTest
         final String[] expected = {
             "20:23: " + getCheckMessage(MSG_KEY, "final"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputRedundantModifierFinalInEnumStaticMethods.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputRedundantModifierFinalInEnumStaticMethods.java"), expected);
     }
 
     @Test
@@ -260,7 +260,7 @@ public class RedundantModifierCheckTest
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_KEY, "private"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierAnnotationOnEnumConstructor.java"),
                 expected);
     }
@@ -271,7 +271,7 @@ public class RedundantModifierCheckTest
         final String[] expected = {
             "13:17: " + getCheckMessage(MSG_KEY, "final"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierPrivateMethodInPrivateClass.java"),
                 expected);
     }
@@ -282,7 +282,7 @@ public class RedundantModifierCheckTest
         final String[] expected = {
             "18:19: " + getCheckMessage(MSG_KEY, "final"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRedundantModifierTryWithResources.java"),
                 expected);
     }

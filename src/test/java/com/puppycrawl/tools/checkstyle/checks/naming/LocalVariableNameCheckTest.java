@@ -60,7 +60,7 @@ public class LocalVariableNameCheckTest
             "135:20: " + getCheckMessage(MSG_INVALID_PATTERN, "InnerBlockVariable", pattern),
             "210:21: " + getCheckMessage(MSG_INVALID_PATTERN, "O", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLocalVariableName.java"), expected);
     }
 
@@ -70,7 +70,7 @@ public class LocalVariableNameCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(LocalVariableNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLocalVariableNameInnerClass.java"), expected);
     }
 
@@ -92,7 +92,7 @@ public class LocalVariableNameCheckTest
             "47:32: " + getCheckMessage(MSG_INVALID_PATTERN, "a", pattern),
             "50:32: " + getCheckMessage(MSG_INVALID_PATTERN, "B", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLocalVariableNameOneCharInitVarName.java"), expected);
     }
 

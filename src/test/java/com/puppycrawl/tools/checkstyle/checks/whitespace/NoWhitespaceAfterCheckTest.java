@@ -63,7 +63,7 @@ public class NoWhitespaceAfterCheckTest
             "297:28: " + getCheckMessage(MSG_KEY, "int"),
             "309:5: " + getCheckMessage(MSG_KEY, "someStuff8"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestDefault.java"), expected);
     }
 
@@ -76,7 +76,7 @@ public class NoWhitespaceAfterCheckTest
             "129:23: " + getCheckMessage(MSG_KEY, "."),
             "136:11: " + getCheckMessage(MSG_KEY, "."),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestAllowLineBreaks.java"), expected);
     }
 
@@ -89,7 +89,7 @@ public class NoWhitespaceAfterCheckTest
             "89:13: " + getCheckMessage(MSG_KEY, ")"),
             "241:17: " + getCheckMessage(MSG_KEY, ")"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestTypecast.java"), expected);
     }
 
@@ -121,7 +121,7 @@ public class NoWhitespaceAfterCheckTest
             "59:36: " + getCheckMessage(MSG_KEY, "}"),
             "60:39: " + getCheckMessage(MSG_KEY, "]"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterArrayDeclarations.java"), expected);
     }
 
@@ -174,7 +174,7 @@ public class NoWhitespaceAfterCheckTest
             "108:45: " + getCheckMessage(MSG_KEY, "]"),
             "116:33: " + getCheckMessage(MSG_KEY, "Object"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterArrayDeclarations2.java"), expected);
     }
 
@@ -183,7 +183,7 @@ public class NoWhitespaceAfterCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
         checkConfig.addProperty("tokens", "ARRAY_DECLARATOR");
         checkConfig.addProperty("tokens", "INDEX_OP");
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterArrayDeclarations3.java"));
     }
 
@@ -194,14 +194,14 @@ public class NoWhitespaceAfterCheckTest
         final String[] expected = {
             "22:9: " + getCheckMessage(MSG_KEY, "synchronized"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestSynchronized.java"), expected);
     }
 
     @Test
     public void testNpe() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestNpe.java"));
     }
 
@@ -212,7 +212,7 @@ public class NoWhitespaceAfterCheckTest
             "17:41: " + getCheckMessage(MSG_KEY, "int"),
             "18:62: " + getCheckMessage(MSG_KEY, "String"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestMethodRef.java"), expected);
     }
 
@@ -224,7 +224,7 @@ public class NoWhitespaceAfterCheckTest
             "25:35: " + getCheckMessage(MSG_KEY, "::"),
             "26:64: " + getCheckMessage(MSG_KEY, "::"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestMethodRefAfter.java"), expected);
     }
 
@@ -235,7 +235,7 @@ public class NoWhitespaceAfterCheckTest
         final String[] expected = {
             "19:32: " + getCheckMessage(MSG_KEY, "Entry"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestArrayDeclarator.java"), expected);
     }
 
@@ -290,7 +290,7 @@ public class NoWhitespaceAfterCheckTest
             "301:18: " + getCheckMessage(MSG_KEY, ")"),
             "309:5: " + getCheckMessage(MSG_KEY, "someStuff8"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestAllTokens.java"), expected);
     }
 
@@ -301,7 +301,7 @@ public class NoWhitespaceAfterCheckTest
                 + "BNOT, LNOT, DOT, TYPECAST, ARRAY_DECLARATOR, INDEX_OP, LITERAL_SYNCHRONIZED, "
                 + "METHOD_REF");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterArrayDeclarationsAndAnno.java"), expected);
     }
 
@@ -339,7 +339,7 @@ public class NoWhitespaceAfterCheckTest
             "226:15: " + getCheckMessage(MSG_KEY, "synchronized"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterNewTypeStructure.java"), expected);
     }
 
@@ -366,7 +366,7 @@ public class NoWhitespaceAfterCheckTest
             "74:31: " + getCheckMessage(MSG_KEY, "AnotherInterface"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterNewGenericTypeArgument.java"), expected);
     }
 

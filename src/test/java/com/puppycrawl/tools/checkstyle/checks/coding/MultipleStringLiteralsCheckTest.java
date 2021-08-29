@@ -53,8 +53,8 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
             "19:23: " + getCheckMessage(MSG_KEY, "\", \"", 3),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputMultipleStringLiterals.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleStringLiterals.java"),
                expected);
     }
 
@@ -69,8 +69,8 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
             "19:23: " + getCheckMessage(MSG_KEY, "\", \"", 3),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputMultipleStringLiterals2.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleStringLiterals2.java"),
                expected);
     }
 
@@ -107,8 +107,8 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
             "14:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputMultipleStringLiterals4.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleStringLiterals4.java"),
                expected);
     }
 
@@ -123,8 +123,8 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
             "28:23: " + getCheckMessage(MSG_KEY, "\"unchecked\"", 4),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputMultipleStringLiterals5.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleStringLiterals5.java"),
                expected);
     }
 
@@ -147,8 +147,8 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
         };
 
         createChecker(checkConfig);
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputMultipleStringLiterals6.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleStringLiterals6.java"),
             expected);
     }
 
@@ -163,8 +163,8 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
         };
 
         createChecker(checkConfig);
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputMultipleStringLiterals7.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleStringLiterals7.java"),
             expected);
     }
 
@@ -197,8 +197,8 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
             };
 
         createChecker(checkConfig);
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputMultipleStringLiteralsTextBlocks.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMultipleStringLiteralsTextBlocks.java"),
             expected);
     }
 

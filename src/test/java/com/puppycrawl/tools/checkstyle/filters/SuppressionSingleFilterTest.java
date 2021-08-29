@@ -142,7 +142,7 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
 
         verify(checkerConfig, fileName, expectedViolations);
         verifyFilterWithInlineConfigParser(regexpConfig,
-                config, fileName, VIOLATION, expectedViolations);
+                fileName, VIOLATION, expectedViolations);
     }
 
 }
