@@ -19,10 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.bdd;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -41,19 +39,14 @@ public final class ModuleInputConfiguration {
     /** Map of module messages. */
     private final Map<String, String> moduleMessages;
 
-    /** List of parsed violations. */
-    private final List<TestInputViolation> violations;
-
     private ModuleInputConfiguration(String moduleName,
                                      Map<String, String> defaultProperties,
                                      Map<String, String> nonDefaultProperties,
-                                     Map<String, String> moduleMessages,
-                                     List<TestInputViolation> violations) {
+                                     Map<String, String> moduleMessages) {
         this.moduleName = moduleName;
         this.defaultProperties = defaultProperties;
         this.nonDefaultProperties = nonDefaultProperties;
         this.moduleMessages = moduleMessages;
-        this.violations = violations;
     }
 
     public String getModuleName() {
@@ -79,10 +72,6 @@ public final class ModuleInputConfiguration {
         return Collections.unmodifiableMap(moduleMessages);
     }
 
-    public List<TestInputViolation> getViolations() {
-        return Collections.unmodifiableList(violations);
-    }
-
     public DefaultConfiguration createConfiguration() {
         final DefaultConfiguration parsedConfig = new DefaultConfiguration(moduleName);
         nonDefaultProperties.forEach(parsedConfig::addProperty);
@@ -102,8 +91,6 @@ public final class ModuleInputConfiguration {
 
         private final Map<String, String> moduleMessages = new HashMap<>();
 
-        private final List<TestInputViolation> violations = new ArrayList<>();
-
         private String moduleName;
 
         public void setModuleName(String moduleName) {
@@ -122,17 +109,12 @@ public final class ModuleInputConfiguration {
             moduleMessages.put(messageKey, messageString);
         }
 
-        public void addViolation(int violationLine, String violationMessage) {
-            violations.add(new TestInputViolation(violationLine, violationMessage));
-        }
-
         public ModuleInputConfiguration build() {
             return new ModuleInputConfiguration(
                     moduleName,
                     defaultProperties,
                     nonDefaultProperties,
-                    moduleMessages,
-                    violations
+                    moduleMessages
             );
         }
     }
