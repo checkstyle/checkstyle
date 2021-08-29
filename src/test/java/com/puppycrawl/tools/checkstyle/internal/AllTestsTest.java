@@ -198,15 +198,7 @@ public class AllTestsTest {
 
     private static void verifyHasProductionFile(Map<String, List<String>> allTests, File file) {
         if (file.isFile()) {
-            final String fileName = file.getName().replace("Test.java", ".java");
-
-            if (!fileName.endsWith("TestSupport.java")
-                    // tests external utility XPathEvaluator
-                    && !"XpathMapper.java".equals(fileName)
-                    // JavadocMetadataScraper and related classes are temporarily hosted in test
-                    && !file.getPath().contains("meta")
-                    // InlineConfigParser is hosted in test
-                    && !file.getPath().contains("bdd")) {
+            if (isTarget(file)) {
                 final String path;
 
                 try {
@@ -228,6 +220,19 @@ public class AllTestsTest {
                 }
             }
         }
+    }
+
+    private static boolean isTarget(File file) {
+        final String fileName = file.getName().replace("Test.java", ".java");
+        return !fileName.endsWith("TestSupport.java")
+                // tests external utility XPathEvaluator
+                && !"XpathMapper.java".equals(fileName)
+                // JavadocMetadataScraper and related classes are temporarily hosted in test
+                && !file.getPath().contains("meta")
+                // InlineConfigParser is hosted in test
+                && !file.getPath().contains("bdd")
+                // Annotation to suppress invocation of forbidden apis
+                && !"SuppressForbiddenApi.java".equals(fileName);
     }
 
     private static boolean checkInputMatchCorrectFileStructure(List<String> classes,
