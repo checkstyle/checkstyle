@@ -205,8 +205,10 @@ public class AllTestsTest {
                     && !"XpathMapper.java".equals(fileName)
                     // JavadocMetadataScraper and related classes are temporarily hosted in test
                     && !file.getPath().contains("meta")
-                    // InlineConfigParser is hosted in test
-                    && !file.getPath().contains("bdd")) {
+                    // Inline Config Parser is hosted in test
+                    && !file.getPath().contains("bdd")
+                    // Annotation to suppress invocation of forbidden apis
+                    && !"SuppressForbiddenApi.java".equals(fileName)) {
                 final String path;
 
                 try {
