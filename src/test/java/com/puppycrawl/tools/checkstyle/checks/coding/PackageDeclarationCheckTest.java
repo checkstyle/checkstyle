@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import de.thetaphi.forbiddenapis.SuppressForbidden;
 
 public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
 
@@ -151,6 +152,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @SuppressForbidden
     @Test
     public void testEmptyFile() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
