@@ -19,13 +19,41 @@
 
 package com.puppycrawl.tools.checkstyle.bdd;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
 
 public final class TestInputConfiguration {
+
+    private static final String ROOT_MODULE_NAME = "root";
+
+    private static final Set<String> checkerChildren = new HashSet<>(Arrays.asList(
+            "com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter",
+            "com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter",
+            "com.puppycrawl.tools.checkstyle.filters.SuppressionFilter",
+            "com.puppycrawl.tools.checkstyle.filters.SuppressionSingleFilter",
+            "com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter",
+            "com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter",
+            "com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck",
+            "com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck",
+            "com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck",
+            "com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck",
+            "com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck",
+            "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck",
+            "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck",
+            "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck",
+            "com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck",
+            "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck"
+    ));
 
     private final List<ModuleInputConfiguration> childrenModules;
 
@@ -46,7 +74,23 @@ public final class TestInputConfiguration {
     }
 
     public DefaultConfiguration createConfiguration() {
-        return childrenModules.get(0).createConfiguration();
+        final DefaultConfiguration root = new DefaultConfiguration(ROOT_MODULE_NAME);
+        final DefaultConfiguration treeWalker =
+                new DefaultConfiguration(TreeWalker.class.getName());
+        root.addProperty("charset", StandardCharsets.UTF_8.name());
+        childrenModules
+                .stream()
+                .map(ModuleInputConfiguration::createConfiguration)
+                .forEach(moduleConfig -> {
+                    if (checkerChildren.contains(moduleConfig.getName())) {
+                        root.addChild(moduleConfig);
+                    }
+                    else {
+                        treeWalker.addChild(moduleConfig);
+                    }
+                });
+        root.addChild(treeWalker);
+        return root;
     }
 
     public static final class Builder {
