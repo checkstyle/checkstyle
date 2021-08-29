@@ -1515,6 +1515,9 @@
               <signaturesFiles>
                 <signaturesFile>${basedir}/config/signatures-test.txt</signaturesFile>
               </signaturesFiles>
+              <suppressAnnotations>
+                <suppressAnnotation>com.puppycrawl.tools.checkstyle.SuppressForbiddenApi</suppressAnnotation>
+              </suppressAnnotations>
               <excludes>
                 <exclude>**/Input*</exclude>
                 <!-- usage of system output by design -->
@@ -1581,8 +1584,6 @@
                 <exclude>**/DetailAstImplTest.class</exclude>
 
                 <exclude>**/SuppressWithNearbyCommentFilterTest.class</exclude>
-
-                <exclude>**/PackageDeclarationCheckTest.class</exclude>
 
                 <exclude>**/AbstractModuleTestSupport.class</exclude>
 
