@@ -22,6 +22,8 @@
     <properties>
       <!-- The PMD gives false positive for Builder patterns. Fixed in PMD 7. -->
       <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@SimpleName='TestInputConfiguration']"/>
+      <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='ModuleInputConfiguration']"/>
     </properties>
   </rule>
