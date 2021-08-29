@@ -224,21 +224,23 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             throws Exception {
         final TestInputConfiguration checkTestInputConfiguration =
                 InlineConfigParser.parseWithFilteredViolations(filePath);
-        final Configuration parsedCheckConfig = checkTestInputConfiguration.createConfiguration();
-        verifyConfig(aConfig, parsedCheckConfig,
-                checkTestInputConfiguration.getChildrenModules().get(0));
+        final DefaultConfiguration parsedCheckConfig =
+                checkTestInputConfiguration.createConfiguration();
+        final ModuleInputConfiguration checkModule =
+                checkTestInputConfiguration.getChildrenModules().get(0);
+        verifyConfig(aConfig, checkModule.createConfiguration(), checkModule);
         verifyViolations(parsedCheckConfig, filePath, checkTestInputConfiguration);
         verify(parsedCheckConfig, filePath, expectedUnfiltered);
         final TestInputConfiguration filterTestInputConfiguration =
                 InlineConfigParser.parseFilter(filePath);
-        final Configuration parsedFilterConfig =
+        final DefaultConfiguration parsedFilterConfig =
                 filterTestInputConfiguration.createConfiguration();
-        verifyConfig(filterConfig, parsedFilterConfig,
-                filterTestInputConfiguration.getChildrenModules().get(0));
-        final DefaultConfiguration rootConfig = createRootConfig(parsedCheckConfig);
-        rootConfig.addChild(parsedFilterConfig);
-        verifyViolations(rootConfig, filePath, filterTestInputConfiguration);
-        verify(rootConfig, filePath, expectedFiltered);
+        final ModuleInputConfiguration filterModule =
+                filterTestInputConfiguration.getChildrenModules().get(0);
+        verifyConfig(filterConfig, filterModule.createConfiguration(), filterModule);
+        parsedCheckConfig.addChild(filterModule.createConfiguration());
+        verifyViolations(parsedCheckConfig, filePath, filterTestInputConfiguration);
+        verify(parsedCheckConfig, filePath, expectedFiltered);
     }
 
     /**
@@ -257,7 +259,9 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final TestInputConfiguration testInputConfiguration =
                 InlineConfigParser.parse(filePath);
         final Configuration parsedConfig = testInputConfiguration.createConfiguration();
-        verifyConfig(aConfig, parsedConfig, testInputConfiguration.getChildrenModules().get(0));
+        final ModuleInputConfiguration checkModule =
+                testInputConfiguration.getChildrenModules().get(0);
+        verifyConfig(aConfig, checkModule.createConfiguration(), checkModule);
         verifyViolations(parsedConfig, filePath, testInputConfiguration);
         verify(parsedConfig, filePath, expected);
     }
