@@ -55,7 +55,7 @@ public class SuperCloneCheckTest
             "41:19: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
             "66:48: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSuperCloneInnerAndWithArguments.java"), expected);
     }
 
@@ -67,7 +67,7 @@ public class SuperCloneCheckTest
             "14:17: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
             "48:17: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSuperClonePlainAndSubclasses.java"), expected);
     }
 
@@ -76,7 +76,7 @@ public class SuperCloneCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(SuperCloneCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSuperCloneMethodReference.java"), expected);
     }
 

@@ -59,7 +59,7 @@ public class EmptyStatementCheckTest
             "86:10: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputEmptyStatement.java"), expected);
     }
 

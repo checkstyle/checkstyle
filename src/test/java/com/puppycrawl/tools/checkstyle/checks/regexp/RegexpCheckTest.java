@@ -57,7 +57,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(RegexpCheck.class);
         checkConfig.addProperty("format", "Test case file");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic.java"), expected);
     }
 
@@ -79,7 +79,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("format", "Test case file");
         checkConfig.addProperty("duplicateLimit", "0");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic3.java"), expected);
     }
 
@@ -89,7 +89,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("format", "Test case file");
         checkConfig.addProperty("duplicateLimit", "-1");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic4.java"), expected);
     }
 
@@ -103,7 +103,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
             "27: " + getCheckMessage(MSG_DUPLICATE_REGEXP, "Boolean x = new Boolean"),
             "32: " + getCheckMessage(MSG_DUPLICATE_REGEXP, "Boolean x = new Boolean"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic5.java"), expected);
     }
 
@@ -114,7 +114,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("format", "This\\stext is not in the file");
         checkConfig.addProperty("illegalPattern", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic6.java"), expected);
     }
 
@@ -126,7 +126,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("illegalPattern", "false");
         checkConfig.addProperty("duplicateLimit", "-1");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpCheckStopEarly.java"), expected);
     }
 
@@ -142,7 +142,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
             "16: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import"),
             "17: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic7.java"), expected);
     }
 
@@ -159,7 +159,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
             "15: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import"),
             "16: " + getCheckMessage(MSG_ILLEGAL_REGEXP, error + "^import"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic8.java"), expected);
     }
 
@@ -174,7 +174,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Bad line :("),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic9.java"), expected);
     }
 
@@ -189,7 +189,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic10.java"), expected);
     }
 
@@ -204,7 +204,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic11.java"), expected);
     }
 
@@ -218,7 +218,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
             "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP,
                     "(?i)SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic12.java"), expected);
     }
 
@@ -232,7 +232,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
             "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP,
                     "(?i)SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
-        verifyWithInlineConfigParser(checkConfigTrue,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic13.java"), expectedTrue);
 
         final DefaultConfiguration checkConfigFalse =
@@ -240,7 +240,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         checkConfigFalse.addProperty("format", "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(");
         checkConfigFalse.addProperty("illegalPattern", "true");
         final String[] expectedFalse = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfigFalse,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic14.java"), expectedFalse);
     }
 
@@ -253,7 +253,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("illegalPattern", "true");
         checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment.java"), expected);
     }
 
@@ -268,7 +268,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "don't\\suse trailing comments"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment2.java"), expected);
     }
 
@@ -281,7 +281,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("illegalPattern", "true");
         checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment3.java"), expected);
     }
 
@@ -295,7 +295,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "31: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "c-style\\s1"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment4.java"), expected);
     }
 
@@ -308,7 +308,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("illegalPattern", "true");
         checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment5.java"), expected);
     }
 
@@ -320,7 +320,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("illegalPattern", "true");
         checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment6.java"), expected);
     }
 
@@ -332,7 +332,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("illegalPattern", "true");
         checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment7.java"), expected);
     }
 
@@ -346,7 +346,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "34: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "int z"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment8.java"), expected);
     }
 
@@ -360,7 +360,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "35: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "int y"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment9.java"), expected);
     }
 
@@ -373,7 +373,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("illegalPattern", "true");
         checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment10.java"), expected);
     }
 

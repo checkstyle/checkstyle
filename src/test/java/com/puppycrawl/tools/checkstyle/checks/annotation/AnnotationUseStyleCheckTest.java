@@ -99,7 +99,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             "86:40: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationUseStyleDifferentStyles.java"), expected);
     }
 
@@ -122,7 +122,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             "90:31: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationUseStyleWithParens.java"), expected);
     }
 
@@ -143,7 +143,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             "86:40: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationUseStyleNoParens.java"), expected);
     }
 
@@ -166,7 +166,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             "84:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationUseStyleExpanded.java"), expected);
     }
 
@@ -184,7 +184,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             "86:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationUseStyleCompact.java"), expected);
     }
 
@@ -206,7 +206,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             "56:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationUseStyleCompactNoArray.java"), expected);
     }
 
@@ -232,7 +232,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             "41:41: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationUseStyleNoTrailingComma.java"), expected);
     }
 
@@ -247,7 +247,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             "15:65: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputAnnotationUseStyleNoTrailingComma.java"), expected);
     }
 
@@ -259,7 +259,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("trailingArrayComma", "ALWAYS");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationUseStyleWithTrailingComma.java"), expected);
     }
 
@@ -271,7 +271,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("trailingArrayComma", "ALWAYS");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputAnnotationUseStyleWithTrailingComma.java"), expected);
     }
 
@@ -286,7 +286,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             "39:9: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationUseStyleWithTrailingCommaIgnore.java"), expected);
     }
 
@@ -307,7 +307,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             "39:52: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationUseStyleWithTrailingCommaNever.java"), expected);
     }
 
@@ -319,7 +319,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("trailingArrayComma", "NEVER");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationUseStyleNoTrailingCommaNever.java"), expected);
     }
 
@@ -331,7 +331,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("trailingArrayComma", "ignore");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationUseStyleEverythingMixed.java"), expected);
     }
 
@@ -341,7 +341,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("closingParens", "never");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationUseStyleParams.java"), expected);
     }
 
@@ -376,7 +376,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("trailingArrayComma", "ignore");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationUseStyle.java"), expected);
     }
 

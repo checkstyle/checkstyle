@@ -43,7 +43,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(DescendantTokenCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenIllegalTokens.java"), expected);
     }
 
@@ -58,7 +58,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "32:12: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_NATIVE", "LITERAL_NATIVE"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenIllegalTokens2.java"), expected);
     }
 
@@ -74,7 +74,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "32:12: Using 'native' is not allowed.",
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenIllegalTokens3.java"), expected);
     }
 
@@ -89,7 +89,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "23:9: " + getCheckMessage(MSG_KEY_MIN, 1, 2, "LITERAL_SWITCH", "LITERAL_DEFAULT"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenIllegalTokens4.java"), expected);
     }
 
@@ -103,7 +103,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("maximumNumber", "0");
         checkConfig.addProperty("minimumDepth", "3");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenIllegalTokens5.java"), expected);
     }
 
@@ -117,7 +117,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("maximumNumber", "0");
         checkConfig.addProperty("maximumDepth", "1");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenIllegalTokens6.java"), expected);
     }
 
@@ -151,7 +151,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             "90:10: Empty statement.",
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenEmptyStatement.java"), expected);
     }
 
@@ -169,7 +169,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             "32:9: switch without \"default\" clause.",
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenMissingSwitchDefault.java"), expected);
     }
 
@@ -189,7 +189,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             "27:20: Literal Strings should be compared using equals(), not '=='.",
             "32:22: Literal Strings should be compared using equals(), not '=='.",
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenStringLiteralEquality.java"), expected);
     }
 
@@ -208,7 +208,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             "26:18: Using 'POST_DEC' is not allowed.",
             "27:18: Using 'POST_INC' is not allowed.",
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenIllegalTokens7.java"), expected);
     }
 
@@ -225,7 +225,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "32:12: Using 'LITERAL_NATIVE' is not allowed.",
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenIllegalTokens8.java"), expected);
     }
 
@@ -243,7 +243,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             "30:11: Return from catch is not allowed.",
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenReturnFromCatch.java"), expected);
     }
 
@@ -261,7 +261,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             "30:11: Return from finally is not allowed.",
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenReturnFromFinally.java"), expected);
     }
 
@@ -276,7 +276,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenReturnFromFinally2.java"), expected);
     }
 
@@ -297,7 +297,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             "38:51: this cannot be null.",
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenReturnFromFinally3.java"), expected);
     }
 
@@ -317,7 +317,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             "38:51: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "NOT_EQUAL"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenReturnFromFinally4.java"), expected);
     }
 
@@ -339,7 +339,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             "40:36: " + getCheckMessage(MSG_KEY_SUM_MIN, 1, 3, "EQUAL"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenReturnFromFinally5.java"), expected);
     }
 
@@ -362,7 +362,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             "40:36: custom message",
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenReturnFromFinally6.java"), expected);
     }
 
@@ -378,7 +378,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             "21:48: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "OBJBLOCK", "LCURLY"),
             "21:48: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "OBJBLOCK", "RCURLY"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenLastTokenType.java"), expected);
     }
 
@@ -394,7 +394,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             "21:49: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "OBJBLOCK", "LCURLY"),
             "21:49: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "OBJBLOCK", "RCURLY"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenLastTokenType2.java"), expected);
     }
 

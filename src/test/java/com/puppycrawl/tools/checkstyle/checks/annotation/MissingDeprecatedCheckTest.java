@@ -78,7 +78,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             "63: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMissingDeprecatedBadDeprecated.java"), expected);
     }
 
@@ -97,7 +97,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             "62: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMissingDeprecatedBadJavadoc.java"), expected);
     }
 
@@ -121,7 +121,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             "113: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMissingDeprecatedSpecialCase.java"), expected);
     }
 
@@ -134,7 +134,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMissingDeprecatedGood.java"), expected);
     }
 
@@ -147,7 +147,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             "19: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMissingDeprecatedClass.java"), expected);
     }
 
@@ -159,7 +159,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             "18: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMissingDeprecatedMethod.java"), expected);
     }
 
@@ -171,7 +171,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             "9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("package-info.java"), expected);
     }
 
@@ -183,7 +183,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             "14: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMissingDeprecatedAbovePackage.java"), expected);
     }
 
@@ -193,7 +193,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMissingDeprecatedSingleComment.java"), expected);
     }
 }

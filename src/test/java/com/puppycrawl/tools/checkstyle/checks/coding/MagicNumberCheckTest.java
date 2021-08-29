@@ -86,7 +86,7 @@ public class MagicNumberCheckTest
                     "0b1010000101000101101000010100010110100001010001011010000101000101L"),
             "236:21: " + getCheckMessage(MSG_KEY, "122"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMagicNumber_1.java"), expected);
     }
 
@@ -137,7 +137,7 @@ public class MagicNumberCheckTest
                     "0b1010000101000101101000010100010110100001010001011010000101000101L"),
             "239:21: " + getCheckMessage(MSG_KEY, "122"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMagicNumber_2.java"), expected);
     }
 
@@ -216,7 +216,7 @@ public class MagicNumberCheckTest
                     "0b1010000101000101101000010100010110100001010001011010000101000101L"),
             "245:21: " + getCheckMessage(MSG_KEY, "122"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMagicNumber_3.java"), expected);
     }
 
@@ -266,7 +266,7 @@ public class MagicNumberCheckTest
                     "0b1010000101000101101000010100010110100001010001011010000101000101L"),
             "239:21: " + getCheckMessage(MSG_KEY, "122"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMagicNumber_4.java"), expected);
     }
 
@@ -312,7 +312,7 @@ public class MagicNumberCheckTest
                     "0b1010000101000101101000010100010110100001010001011010000101000101L"),
             "239:21: " + getCheckMessage(MSG_KEY, "122"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMagicNumber_5.java"), expected);
     }
 
@@ -364,7 +364,7 @@ public class MagicNumberCheckTest
                     "0b1010000101000101101000010100010110100001010001011010000101000101L"),
             "239:21: " + getCheckMessage(MSG_KEY, "122"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMagicNumber_6.java"), expected);
     }
 
@@ -408,7 +408,7 @@ public class MagicNumberCheckTest
             "211:48: " + getCheckMessage(MSG_KEY, "-45"),
             "239:21: " + getCheckMessage(MSG_KEY, "122"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMagicNumber_7.java"), expected);
     }
 
@@ -472,7 +472,7 @@ public class MagicNumberCheckTest
                     "0b1010000101000101101000010100010110100001010001011010000101000101L"),
             "239:21: " + getCheckMessage(MSG_KEY, "122"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMagicNumber.java"), expected);
     }
 
@@ -488,7 +488,7 @@ public class MagicNumberCheckTest
             "29:29: " + getCheckMessage(MSG_KEY, "8"),
             "33:20: " + getCheckMessage(MSG_KEY, "10"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMagicNumberRecordsDefault.java"), expected);
     }
 
@@ -504,7 +504,7 @@ public class MagicNumberCheckTest
             "29:29: " + getCheckMessage(MSG_KEY, "8"),
             "33:20: " + getCheckMessage(MSG_KEY, "10"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMagicNumberIgnoreFieldDeclarationRecords.java"),
                 expected);
     }
@@ -518,7 +518,7 @@ public class MagicNumberCheckTest
             "18:29: " + getCheckMessage(MSG_KEY, "10"),
             "19:33: " + getCheckMessage(MSG_KEY, "11"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMagicNumberAnnotationElement.java"), expected);
     }
 }

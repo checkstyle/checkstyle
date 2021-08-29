@@ -50,7 +50,7 @@ public class OperatorWrapCheckTest
             "54:30: " + getCheckMessage(MSG_LINE_NEW, "&"),
             "67:31: " + getCheckMessage(MSG_LINE_NEW, "&"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOperatorWrap1.java"), expected);
     }
 
@@ -64,7 +64,7 @@ public class OperatorWrapCheckTest
             "30:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&&"),
             "35:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&&"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOperatorWrap2.java"), expected);
     }
 
@@ -76,7 +76,7 @@ public class OperatorWrapCheckTest
         final String[] expected = {
             "37:33: " + getCheckMessage(MSG_LINE_NEW, "::"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOperatorWrap3.java"), expected);
     }
 
@@ -90,7 +90,7 @@ public class OperatorWrapCheckTest
             "35:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "::"),
             "40:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "::"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOperatorWrap4.java"), expected);
     }
 
@@ -103,7 +103,7 @@ public class OperatorWrapCheckTest
         final String[] expected = {
             "46:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOperatorWrap5.java"), expected);
     }
 
@@ -128,7 +128,7 @@ public class OperatorWrapCheckTest
             "61:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "||"),
             "62:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "||"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOperatorWrapEol.java"), expected);
     }
 
@@ -152,7 +152,7 @@ public class OperatorWrapCheckTest
             "60:27: " + getCheckMessage(MSG_LINE_NEW, "&&"),
             "61:31: " + getCheckMessage(MSG_LINE_NEW, "&&"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOperatorWrapNl.java"), expected);
     }
 
@@ -164,8 +164,8 @@ public class OperatorWrapCheckTest
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verifyWithInlineConfigParser(checkConfig,
-                getPath("InputOperatorWrap6.java"), expected);
+            verifyWithInlineConfigParser(
+                    getPath("InputOperatorWrap6.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {

@@ -45,7 +45,7 @@ public class NestedIfDepthCheckTest extends AbstractModuleTestSupport {
             "52:17: " + getCheckMessage(MSG_KEY, 2, 1),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNestedIfDepthDefault.java"), expected);
     }
 
@@ -57,7 +57,7 @@ public class NestedIfDepthCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNestedIfDepthMax.java"), expected);
     }
 

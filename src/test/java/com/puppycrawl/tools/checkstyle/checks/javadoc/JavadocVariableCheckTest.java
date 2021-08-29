@@ -72,7 +72,7 @@ public class JavadocVariableCheckTest
             "318:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "337:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableTags.java"), expected);
     }
 
@@ -86,7 +86,7 @@ public class JavadocVariableCheckTest
             "30:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "36:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableInner.java"), expected);
     }
 
@@ -97,7 +97,7 @@ public class JavadocVariableCheckTest
             createModuleConfig(JavadocVariableCheck.class);
         checkConfig.addProperty("scope", Scope.PUBLIC.getName());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableInner2.java"), expected);
     }
 
@@ -115,7 +115,7 @@ public class JavadocVariableCheckTest
             "51:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "52:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocVariablePublicOnly.java"), expected);
     }
 
@@ -128,7 +128,7 @@ public class JavadocVariableCheckTest
         final String[] expected = {
             "52:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocVariablePublicOnly2.java"), expected);
     }
 
@@ -175,8 +175,8 @@ public class JavadocVariableCheckTest
             "113:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "123:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputJavadocVariableNoJavadoc.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocVariableNoJavadoc.java"),
                expected);
     }
 
@@ -191,8 +191,8 @@ public class JavadocVariableCheckTest
             "26:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "27:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputJavadocVariableNoJavadoc2.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocVariableNoJavadoc2.java"),
                expected);
     }
 
@@ -237,8 +237,8 @@ public class JavadocVariableCheckTest
             "113:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "123:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputJavadocVariableNoJavadoc3.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocVariableNoJavadoc3.java"),
                expected);
     }
 
@@ -286,7 +286,7 @@ public class JavadocVariableCheckTest
             "112:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "113:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableNoJavadoc4.java"),
                 expected);
     }
@@ -336,7 +336,7 @@ public class JavadocVariableCheckTest
             "113:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "123:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableNoJavadoc5.java"),
                 expected);
     }
@@ -347,7 +347,7 @@ public class JavadocVariableCheckTest
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableNoJavadocNeededInLambda.java"),
                 expected);
     }
@@ -362,7 +362,7 @@ public class JavadocVariableCheckTest
             "20:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "27:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableInterfaceMemberScopeIsPublic.java"),
                 expected);
     }

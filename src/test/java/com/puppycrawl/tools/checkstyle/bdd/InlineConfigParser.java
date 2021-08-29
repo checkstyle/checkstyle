@@ -101,12 +101,8 @@ public final class InlineConfigParser {
         final List<String> lines = readFile(filePath);
         final TestInputConfiguration.Builder testInputConfigBuilder =
                 new TestInputConfiguration.Builder();
-        final ModuleInputConfiguration.Builder moduleInputConfigBuilder =
-                new ModuleInputConfiguration.Builder();
-        setModuleName(moduleInputConfigBuilder, inputFilePath, lines);
-        setProperties(moduleInputConfigBuilder, inputFilePath, lines, 2);
+        setModules(testInputConfigBuilder, inputFilePath, lines);
         setViolations(testInputConfigBuilder, lines, setFilteredViolations);
-        testInputConfigBuilder.addChildModule(moduleInputConfigBuilder.build());
         return testInputConfigBuilder.build();
     }
 
@@ -115,26 +111,20 @@ public final class InlineConfigParser {
         return parse(inputFilePath, true);
     }
 
-    /**
-     * Parses the filter input file provided.
-     *
-     * @param inputFilePath the input file path.
-     * @throws Exception if unable to read file or file not formatted properly.
-     */
-    public static TestInputConfiguration parseFilter(String inputFilePath)
+    private static void setModules(TestInputConfiguration.Builder testInputConfigBuilder,
+                                   String inputFilePath, List<String> lines)
             throws Exception {
-        final Path filePath = Paths.get(inputFilePath);
-        final List<String> lines = readFile(filePath);
-        final TestInputConfiguration.Builder testInputConfigBuilder =
-                new TestInputConfiguration.Builder();
-        final ModuleInputConfiguration.Builder moduleInputConfigBuilder =
-                new ModuleInputConfiguration.Builder();
-        final int lineNo = getFilterConfigLineNo(lines);
-        setFilterName(moduleInputConfigBuilder, inputFilePath, lines, lineNo);
-        setProperties(moduleInputConfigBuilder, inputFilePath, lines, lineNo + 1);
-        setViolations(testInputConfigBuilder, lines, false);
-        testInputConfigBuilder.addChildModule(moduleInputConfigBuilder.build());
-        return testInputConfigBuilder.build();
+        int lineNo = 1;
+        do {
+            final ModuleInputConfiguration.Builder moduleInputConfigBuilder =
+                    new ModuleInputConfiguration.Builder();
+            setModuleName(moduleInputConfigBuilder, inputFilePath, lines.get(lineNo));
+            setProperties(moduleInputConfigBuilder, inputFilePath, lines, lineNo + 1);
+            testInputConfigBuilder.addChildModule(moduleInputConfigBuilder.build());
+            do {
+                lineNo++;
+            } while (lines.get(lineNo).isEmpty() || !lines.get(lineNo - 1).isEmpty());
+        } while (!lines.get(lineNo).startsWith("*/"));
     }
 
     private static String getFullyQualifiedClassName(String filePath, String moduleName) {
@@ -199,34 +189,10 @@ public final class InlineConfigParser {
         }
     }
 
-    private static void setModuleName(ModuleInputConfiguration.Builder inputConfigBuilder,
-                                      String filePath, List<String> lines)
-                    throws CheckstyleException {
-        if (lines.size() < 2) {
-            throw new CheckstyleException("Config not specified in " + filePath);
-        }
-        final String moduleName = lines.get(1);
+    private static void setModuleName(ModuleInputConfiguration.Builder moduleInputConfigBuilder,
+                                      String filePath, String moduleName) {
         final String fullyQualifiedClassName = getFullyQualifiedClassName(filePath, moduleName);
-        inputConfigBuilder.setModuleName(fullyQualifiedClassName);
-    }
-
-    private static int getFilterConfigLineNo(List<String> lines) {
-        int lineNo = 1;
-        while (!lines.get(lineNo - 1).isEmpty() || lines.get(lineNo).isEmpty()) {
-            lineNo++;
-        }
-        return lineNo;
-    }
-
-    private static void setFilterName(ModuleInputConfiguration.Builder inputConfigBuilder,
-                                      String filePath, List<String> lines, int lineNo)
-            throws CheckstyleException {
-        final String filterName = lines.get(lineNo);
-        if (!filterName.endsWith("Filter")) {
-            throw new CheckstyleException("Filter not specified in " + filePath);
-        }
-        final String fullyQualifiedClassName = getFullyQualifiedClassName(filePath, filterName);
-        inputConfigBuilder.setModuleName(fullyQualifiedClassName);
+        moduleInputConfigBuilder.setModuleName(fullyQualifiedClassName);
     }
 
     private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
@@ -336,13 +302,13 @@ public final class InlineConfigParser {
         final Matcher violationBelowMatcher =
                 FILTERED_VIOLATION_BELOW_PATTERN.matcher(line);
         if (violationMatcher.matches()) {
-            inputConfigBuilder.addViolation(lineNo, violationMatcher.group(1));
+            inputConfigBuilder.addFilteredViolation(lineNo, violationMatcher.group(1));
         }
         else if (violationAboveMatcher.matches()) {
-            inputConfigBuilder.addViolation(lineNo - 1, violationAboveMatcher.group(1));
+            inputConfigBuilder.addFilteredViolation(lineNo - 1, violationAboveMatcher.group(1));
         }
         else if (violationBelowMatcher.matches()) {
-            inputConfigBuilder.addViolation(lineNo + 1, violationBelowMatcher.group(1));
+            inputConfigBuilder.addFilteredViolation(lineNo + 1, violationBelowMatcher.group(1));
         }
     }
 }

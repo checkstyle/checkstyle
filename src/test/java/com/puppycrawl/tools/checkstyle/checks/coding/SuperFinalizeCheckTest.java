@@ -43,7 +43,7 @@ public class SuperFinalizeCheckTest
             "41:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
             "83:20: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSuperFinalizeVariations.java"), expected);
     }
 
@@ -54,7 +54,7 @@ public class SuperFinalizeCheckTest
         final String[] expected = {
             "23:20: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSuperFinalizeMethodReference.java"), expected);
     }
 

@@ -45,7 +45,7 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
             "25:22: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalThrowsTestDefault.java"), expected);
     }
 
@@ -64,7 +64,7 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
             "24:73: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalThrowsTestIllegalClassNames.java"), expected);
     }
 
@@ -81,7 +81,7 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
             "28:35: " + getCheckMessage(MSG_KEY, "Throwable"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalThrowsIgnoreMethodNames.java"), expected);
     }
 
@@ -100,7 +100,7 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
             "27:35: " + getCheckMessage(MSG_KEY, "Throwable"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalThrowsTestClassNames.java"), expected);
     }
 
@@ -115,7 +115,7 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalThrowsIgnoreOverriddenMethods.java"), expected);
     }
 
@@ -133,7 +133,7 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
             "22:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalThrowsNotIgnoreOverriddenMethod.java"), expected);
     }
 

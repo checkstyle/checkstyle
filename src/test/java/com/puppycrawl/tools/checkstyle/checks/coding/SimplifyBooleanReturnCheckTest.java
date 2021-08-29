@@ -43,7 +43,7 @@ public class SimplifyBooleanReturnCheckTest
             "22:9: " + getCheckMessage(MSG_KEY),
             "35:9: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSimplifyBooleanReturn.java"), expected);
     }
 

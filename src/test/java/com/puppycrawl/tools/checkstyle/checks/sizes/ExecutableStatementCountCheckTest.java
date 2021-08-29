@@ -78,7 +78,7 @@ public class ExecutableStatementCountCheckTest
             "98:29: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputExecutableStatementCountMaxZero.java"), expected);
     }
 
@@ -99,7 +99,7 @@ public class ExecutableStatementCountCheckTest
             "60:13: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputExecutableStatementCountMethodDef.java"), expected);
     }
 
@@ -116,7 +116,7 @@ public class ExecutableStatementCountCheckTest
             "22:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputExecutableStatementCountCtorDef.java"), expected);
     }
 
@@ -132,7 +132,7 @@ public class ExecutableStatementCountCheckTest
             "13:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputExecutableStatementCountStaticInit.java"), expected);
     }
 
@@ -148,7 +148,7 @@ public class ExecutableStatementCountCheckTest
             "13:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputExecutableStatementCountInstanceInit.java"), expected);
     }
 
@@ -190,7 +190,7 @@ public class ExecutableStatementCountCheckTest
             createModuleConfig(ExecutableStatementCountCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputExecutableStatementCountDefaultConfig.java"), expected);
     }
 
@@ -211,7 +211,7 @@ public class ExecutableStatementCountCheckTest
             "65:17: " + getCheckMessage(MSG_KEY, 6, max),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputExecutableStatementCountRecords.java"),
                 expected);
     }
@@ -232,7 +232,7 @@ public class ExecutableStatementCountCheckTest
             "30:26: " + getCheckMessage(MSG_KEY, 4, max),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputExecutableStatementCountLambdas.java"), expected);
     }
 

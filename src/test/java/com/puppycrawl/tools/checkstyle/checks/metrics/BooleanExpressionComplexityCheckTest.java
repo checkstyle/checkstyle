@@ -52,7 +52,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
             "56:34: " + getCheckMessage(MSG_KEY, 4, 3),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputBooleanExpressionComplexity.java"), expected);
     }
 
@@ -65,7 +65,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputBooleanExpressionComplexity2.java"), expected);
     }
 
@@ -76,7 +76,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputBooleanExpressionComplexityNPE.java"), expected);
     }
 
@@ -104,7 +104,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputBooleanExpressionComplexitySmall.java"), expected);
     }
 
@@ -123,7 +123,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
             "45:27: " + getCheckMessage(MSG_KEY, 4, max),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath(
                         "InputBooleanExpressionComplexityRecordsAndCompactCtors.java"),
                 expected);

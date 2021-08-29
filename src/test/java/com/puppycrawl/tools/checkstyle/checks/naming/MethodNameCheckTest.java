@@ -57,7 +57,7 @@ public class MethodNameCheckTest
         final String[] expected = {
             "144:10: " + getCheckMessage(MSG_INVALID_PATTERN, "ALL_UPPERCASE_METHOD", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodNameSimple.java"), expected);
     }
 
@@ -87,7 +87,7 @@ public class MethodNameCheckTest
             "65:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodNameEqualClassName.java"), expected);
     }
 
@@ -115,7 +115,7 @@ public class MethodNameCheckTest
             "65:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodNameEqualClassName2.java"), expected);
     }
 
@@ -144,7 +144,7 @@ public class MethodNameCheckTest
             "65:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodNameEqualClassName3.java"), expected);
     }
 
@@ -155,7 +155,7 @@ public class MethodNameCheckTest
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodNameExtra.java"), expected);
     }
 
@@ -171,7 +171,7 @@ public class MethodNameCheckTest
             "32:20: " + getCheckMessage(MSG_INVALID_PATTERN, "PROTECTEDfoo", pattern),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodNameOverriddenMethods.java"), expected);
     }
 
@@ -187,7 +187,7 @@ public class MethodNameCheckTest
             "20:25: " + getCheckMessage(MSG_INVALID_PATTERN, "PrivateMethod2", pattern),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMethodNamePublicMethodsInInterfaces.java"),
             expected);
     }
@@ -206,7 +206,7 @@ public class MethodNameCheckTest
             "30:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PublicMethod2", pattern),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMethodNamePrivateMethodsInInterfaces.java"),
             expected);
     }

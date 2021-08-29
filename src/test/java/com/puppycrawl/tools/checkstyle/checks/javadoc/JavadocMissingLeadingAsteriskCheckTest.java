@@ -52,7 +52,7 @@ public class JavadocMissingLeadingAsteriskCheckTest extends AbstractModuleTestSu
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocMissingLeadingAsteriskCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMissingLeadingAsteriskCorrect.java"), expected);
     }
 
@@ -74,7 +74,7 @@ public class JavadocMissingLeadingAsteriskCheckTest extends AbstractModuleTestSu
             "63: " + getCheckMessage(MSG_MISSING_ASTERISK),
             "64: " + getCheckMessage(MSG_MISSING_ASTERISK),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMissingLeadingAsteriskIncorrect.java"), expected);
     }
 

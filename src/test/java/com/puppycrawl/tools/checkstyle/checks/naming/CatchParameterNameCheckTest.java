@@ -53,7 +53,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
         final Configuration checkConfig = createModuleConfig(CatchParameterNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCatchParameterNameSimple.java"), expected);
     }
 
@@ -73,7 +73,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
             "53:32: " + getCheckMessage(MSG_INVALID_PATTERN, "t2", defaultFormat),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCatchParameterName.java"), expected);
     }
 
@@ -87,7 +87,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
             "31:28: " + getCheckMessage(MSG_INVALID_PATTERN, "t", "^[a-z][a-zA-Z0-9]+$"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCatchParameterName2.java"), expected);
     }
 
@@ -98,7 +98,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCatchParameterName3.java"), expected);
     }
 

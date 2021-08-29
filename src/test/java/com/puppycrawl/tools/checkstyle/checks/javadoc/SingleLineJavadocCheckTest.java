@@ -62,7 +62,7 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
             "53: " + getCheckMessage(MSG_KEY),
             "59: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSingleLineJavadoc.java"), expected);
     }
 
@@ -82,7 +82,7 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
             "56: " + getCheckMessage(MSG_KEY),
             "59: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSingleLineJavadocIgnoredTags.java"), expected);
     }
 

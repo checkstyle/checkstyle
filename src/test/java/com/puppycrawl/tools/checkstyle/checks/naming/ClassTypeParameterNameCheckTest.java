@@ -58,7 +58,7 @@ public class ClassTypeParameterNameCheckTest
             "20:14: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
             "34:24: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputClassTypeParameterName.java"), expected);
     }
 
@@ -75,7 +75,7 @@ public class ClassTypeParameterNameCheckTest
             "12:43: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
             "40:19: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputClassTypeParameterName1.java"), expected);
     }
 
