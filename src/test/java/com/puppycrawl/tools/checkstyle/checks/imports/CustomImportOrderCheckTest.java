@@ -95,7 +95,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "30:1: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.io.Reader"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrderDefault.java"), expected);
     }
 
@@ -126,7 +126,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                     "com.puppycrawl.tools.checkstyle.*"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrderDefault3.java"), expected);
     }
 
@@ -156,7 +156,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "35:1: " + getCheckMessage(MSG_LINE_SEPARATOR, "org.junit.*"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrderDefault4.java"), expected);
     }
 
@@ -169,7 +169,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "17:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.List"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrderEmptyRule.java"), expected);
     }
 
@@ -200,7 +200,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                     "com.puppycrawl.tools.checkstyle.checks.*"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrderDefault2.java"), expected);
     }
 
@@ -227,7 +227,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "24:1: " + getCheckMessage(MSG_LEX, "com.*", "java.util.StringTokenizer"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputCustomImportOrderSamePackage.java"),
             expected);
     }
@@ -256,7 +256,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "24:1: " + getCheckMessage(MSG_LEX, "com.*", "java.util.StringTokenizer"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputCustomImportOrderSamePackage2.java"),
             expected);
     }
@@ -276,7 +276,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 "com.puppycrawl.tools.checkstyle.checks.*"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrder_NoSeparator.java"), expected);
     }
 
@@ -291,7 +291,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 "STATIC###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrderNoValid.java"), expected);
     }
 
@@ -308,8 +308,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "17:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, THIRD, "org.w3c.dom.Node"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputCustomImportOrderPossibleIndexOutOfBoundsException.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputCustomImportOrderPossibleIndexOutOfBoundsException.java"), expected);
     }
 
     @Test
@@ -338,7 +338,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "35:1: " + getCheckMessage(MSG_LEX, "com.google.common.*", "com.puppycrawl.tools.*"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputCustomImportOrderDefaultPackage.java"),
             expected);
     }
@@ -353,8 +353,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 "SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE###STATIC");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputCustomImportOrderThirdPartyPackage.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputCustomImportOrderThirdPartyPackage.java"), expected);
     }
 
     @Test
@@ -369,8 +369,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 "com.google.common.collect.HashMultimap"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputCustomImportOrderThirdPartyAndSpecial.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputCustomImportOrderThirdPartyAndSpecial.java"), expected);
     }
 
     @Test
@@ -386,7 +386,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 "java.util.Map.Entry"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrderCompareImports.java"), expected);
     }
 
@@ -405,7 +405,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 "com.google.common.annotations.Beta"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrderFindBetterPatternMatch.java"), expected);
     }
 
@@ -438,7 +438,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                     "com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrderImportsContainingJava.java"), expected);
     }
 
@@ -491,7 +491,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "27:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.regex.Matcher"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputCustomImportOrderSamePackageDepth25.java"),
             expected);
     }
@@ -512,7 +512,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 "java.util.concurrent.locks.LockSupport"),
             };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputCustomImportOrderSamePackageDepth252.java"),
             expected);
     }
@@ -530,7 +530,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 "java.util.concurrent.locks.LockSupport"),
             };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputCustomImportOrderSamePackageDepth253.java"),
             expected);
     }
@@ -545,7 +545,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 "SAME_PACKAGE(5)");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputCustomImportOrderSamePackageDepth254.java"),
                 expected);
     }
@@ -562,8 +562,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verifyWithInlineConfigParser(checkConfig,
-                getPath("InputCustomImportOrderDefault5.java"), expected);
+            verifyWithInlineConfigParser(
+                    getPath("InputCustomImportOrderDefault5.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
@@ -591,8 +591,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verifyWithInlineConfigParser(checkConfig,
-                getPath("InputCustomImportOrderDefault6.java"), expected);
+            verifyWithInlineConfigParser(
+                    getPath("InputCustomImportOrderDefault6.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
@@ -619,8 +619,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verifyWithInlineConfigParser(checkConfig,
-                getPath("InputCustomImportOrderDefault7.java"), expected);
+            verifyWithInlineConfigParser(
+                    getPath("InputCustomImportOrderDefault7.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
@@ -646,8 +646,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verifyWithInlineConfigParser(checkConfig,
-                getPath("InputCustomImportOrderDefault8.java"), expected);
+            verifyWithInlineConfigParser(
+                    getPath("InputCustomImportOrderDefault8.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
@@ -670,7 +670,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("customImportOrderRules", "SAME_PACKAGE(3)");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrder_NoImports.java"), expected);
     }
 
@@ -685,7 +685,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "32:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.puppycrawl.tools.checkstyle.*"),
             "34:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.collect.*"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrderDefault9.java"), expected);
     }
 
@@ -717,7 +717,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             };
 
         createChecker(checkConfig);
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrder_OverlappingPatterns.java"), expected);
     }
 
@@ -732,7 +732,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
 
         createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrder_MultiplePatternMatches.java"),
             expected);
     }
@@ -748,7 +748,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
 
         createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrder_MultiplePatternMatches2.java"),
             expected);
     }
@@ -764,7 +764,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
 
         createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrder_MultiplePatternMatches3.java"),
             expected);
     }
@@ -782,8 +782,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STD, "org.junit.Test"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputCustomImportOrder_MultiplePatternMultipleImport.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputCustomImportOrder_MultiplePatternMultipleImport.java"),
             expected);
     }
 
@@ -803,7 +803,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "23:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "javax.net.ServerSocketFactory"),
             "26:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "javax.net.SocketFactory"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputCustomImportOrderNoPackage.java"),
             expected);
     }
@@ -825,7 +825,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "30:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP,
                 "org.apache.commons.beanutils.converters.ArrayConverter"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputCustomImportOrderNoPackage2.java"),
             expected);
     }
@@ -849,8 +849,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "29:1: " + getCheckMessage(MSG_LINE_SEPARATOR,
                 "antlr.*"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputCustomImportOrderNoPackage3.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputCustomImportOrderNoPackage3.java"),
             expected);
     }
 
@@ -876,7 +876,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "26:1: " + getCheckMessage(MSG_LINE_SEPARATOR,
                 "picocli.*"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrderSingleLine.java"),
             expected);
     }
@@ -894,7 +894,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "14:118: " + getCheckMessage(MSG_LINE_SEPARATOR,
                 "java.util.Map"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputCustomImportOrderSingleLine2.java"),
             expected);
     }
@@ -929,8 +929,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "53:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP,
                 "antlr.collections.AST"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputCustomImportOrderThirdPartyAndSpecial2.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputCustomImportOrderThirdPartyAndSpecial2.java"), expected);
     }
 
     @Test
@@ -953,7 +953,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "21:1: " + getCheckMessage(MSG_LEX, "java.net.Socket",
                 "java.util.*"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputCustomImportOrderViolationsSameLine.java"),
             expected);
     }
@@ -977,7 +977,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "58:1: " + getCheckMessage(MSG_LINE_SEPARATOR, "picocli.*"),
             "61:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "picocli.CommandLine"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrderSpanMultipleLines.java"), expected);
     }
 
@@ -1007,7 +1007,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                     "org.powermock.api.mockito.PowerMockito"),
             "34:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "sun.tools.java.ArrayType"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputCustomImportOrderEclipseDefaultPositive.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputCustomImportOrderEclipseDefaultPositive.java"),
+                expected);
     }
 }

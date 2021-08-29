@@ -46,7 +46,7 @@ public class ArrayTrailingCommaCheckTest
             "80:9: " + getCheckMessage(MSG_KEY),
             "82:12: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputArrayTrailingComma.java"), expected);
     }
 
@@ -75,8 +75,8 @@ public class ArrayTrailingCommaCheckTest
             "54:17: " + getCheckMessage(MSG_KEY),
             "56:13: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputArrayTrailingCommaAlwaysDemandTrailingComma.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputArrayTrailingCommaAlwaysDemandTrailingComma.java"), expected);
     }
 
 }

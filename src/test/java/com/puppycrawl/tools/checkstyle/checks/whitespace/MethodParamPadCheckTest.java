@@ -72,7 +72,7 @@ public class MethodParamPadCheckTest
             "84:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "89:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodParamPad.java"), expected);
     }
 
@@ -91,7 +91,7 @@ public class MethodParamPadCheckTest
             "71:36: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "84:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodParamPad2.java"), expected);
     }
 
@@ -123,7 +123,7 @@ public class MethodParamPadCheckTest
             "80:57: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
             "89:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodParamPad3.java"), expected);
     }
 
@@ -143,7 +143,7 @@ public class MethodParamPadCheckTest
             "51:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "57:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMethodParamPadRecords.java"), expected);
     }
 
@@ -152,7 +152,7 @@ public class MethodParamPadCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
         checkConfig.addProperty("option", PadOption.SPACE.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodParamPadWhitespaceAround.java"),
                expected);
     }

@@ -51,7 +51,7 @@ public class WhitespaceAfterCheckTest
             "45:39: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
             "74:29: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAfterDefaultConfig.java"),
                 expected);
     }
@@ -64,7 +64,7 @@ public class WhitespaceAfterCheckTest
         final String[] expected = {
             "91:20: " + getCheckMessage(MSG_WS_TYPECAST),
         };
-        verifyWithInlineConfigParser(configurationTestCast,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAfterTypeCast.java"),
                 expected);
     }
@@ -77,7 +77,7 @@ public class WhitespaceAfterCheckTest
         final String[] expected = {
             "14:23: " + getCheckMessage(MSG_WS_TYPECAST),
         };
-        verifyWithInlineConfigParser(configurationTestCast,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAfterMultilineCast.java"),
                 expected);
     }
@@ -92,7 +92,7 @@ public class WhitespaceAfterCheckTest
             "57:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
             "106:18: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
-        verifyWithInlineConfigParser(configurationTestSemi,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAfterBraces.java"),
                 expected);
     }
@@ -105,7 +105,7 @@ public class WhitespaceAfterCheckTest
         final String[] expected = {
             "46:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "while"),
         };
-        verifyWithInlineConfigParser(configurationTestLiteralWhile,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAfterLiteralWhile.java"),
                 expected);
     }
@@ -118,7 +118,7 @@ public class WhitespaceAfterCheckTest
         final String[] expected = {
             "25:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "if"),
         };
-        verifyWithInlineConfigParser(configurationTestLiteralIf,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAfterLiteralIf.java"),
                 expected);
     }
@@ -131,7 +131,7 @@ public class WhitespaceAfterCheckTest
         final String[] expected = {
             "34:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "else"),
         };
-        verifyWithInlineConfigParser(configurationTestLiteralElse,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAfterLiteralElse.java"),
                 expected);
     }
@@ -144,7 +144,7 @@ public class WhitespaceAfterCheckTest
         final String[] expected = {
             "58:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "for"),
         };
-        verifyWithInlineConfigParser(configurationTestLiteralFor,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAfterLiteralFor.java"),
                 expected);
     }
@@ -157,7 +157,7 @@ public class WhitespaceAfterCheckTest
         final String[] expected = {
             "70:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "do"),
         };
-        verifyWithInlineConfigParser(configurationTestLiteralDo,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAfterLiteralDo.java"),
                 expected);
     }
@@ -170,7 +170,7 @@ public class WhitespaceAfterCheckTest
         final String[] expected = {
             "25:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "while"),
         };
-        verifyWithInlineConfigParser(configurationTestDoWhile,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAfterDoWhile.java"),
                 expected);
     }
@@ -182,7 +182,7 @@ public class WhitespaceAfterCheckTest
             "18:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
             "21:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAfterFor.java"),
                 expected);
     }
@@ -195,7 +195,7 @@ public class WhitespaceAfterCheckTest
             "20:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
             "20:40: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAfterGenerics.java"),
                 expected);
     }
@@ -204,7 +204,7 @@ public class WhitespaceAfterCheckTest
     public void test1322879() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAfterCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAfterAround.java"),
                expected);
     }
@@ -215,7 +215,7 @@ public class WhitespaceAfterCheckTest
         final String[] expected = {
             "14:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAfterCountUnicodeCorrectly.java"), expected);
     }
 }

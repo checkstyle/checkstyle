@@ -74,7 +74,7 @@ public class VisibilityModifierCheckTest
             "94:20: " + getCheckMessage(MSG_KEY, "someValue"),
             "97:11: " + getCheckMessage(MSG_KEY, "fSerialVersionUID"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierInner.java"), expected);
     }
 
@@ -90,7 +90,7 @@ public class VisibilityModifierCheckTest
             "34:20: " + getCheckMessage(MSG_KEY, "fData"),
             "94:20: " + getCheckMessage(MSG_KEY, "someValue"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierInner1.java"), expected);
     }
 
@@ -107,7 +107,7 @@ public class VisibilityModifierCheckTest
             "66:9: " + getCheckMessage(MSG_KEY, "mTest1"),
             "68:16: " + getCheckMessage(MSG_KEY, "mTest2"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierSimple.java"), expected);
     }
 
@@ -121,7 +121,7 @@ public class VisibilityModifierCheckTest
             "50:19: " + getCheckMessage(MSG_KEY, "mDeer"),
             "51:16: " + getCheckMessage(MSG_KEY, "aFreddo"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierPublicOnly.java"), expected);
     }
 
@@ -139,7 +139,7 @@ public class VisibilityModifierCheckTest
             "58:31: " + getCheckMessage(MSG_KEY, "longValue"),
             "62:19: " + getCheckMessage(MSG_KEY, "C_D_E"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutable.java"), expected);
     }
 
@@ -166,7 +166,7 @@ public class VisibilityModifierCheckTest
             "53:21: " + getCheckMessage(MSG_KEY, "longValue"),
             "57:19: " + getCheckMessage(MSG_KEY, "C_D_E"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutable2.java"), expected);
     }
 
@@ -191,7 +191,7 @@ public class VisibilityModifierCheckTest
             "58:21: " + getCheckMessage(MSG_KEY, "longValue"),
             "62:19: " + getCheckMessage(MSG_KEY, "C_D_E"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutable3.java"), expected);
     }
 
@@ -205,7 +205,7 @@ public class VisibilityModifierCheckTest
             "57:24: " + getCheckMessage(MSG_KEY, "bValue"),
             "58:21: " + getCheckMessage(MSG_KEY, "longValue"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutable4.java"), expected);
     }
 
@@ -226,7 +226,7 @@ public class VisibilityModifierCheckTest
             "52:21: " + getCheckMessage(MSG_KEY, "longValue"),
             "56:19: " + getCheckMessage(MSG_KEY, "C_D_E"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutable5.java"), expected);
     }
 
@@ -244,7 +244,7 @@ public class VisibilityModifierCheckTest
             "23:46: " + getCheckMessage(MSG_KEY, "calendar"),
             "28:45: " + getCheckMessage(MSG_KEY, "adr"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutableSameTypeName.java"),
                 expected);
     }
@@ -260,7 +260,7 @@ public class VisibilityModifierCheckTest
             "30:59: " + getCheckMessage(MSG_KEY, "calendar3"),
             "31:36: " + getCheckMessage(MSG_KEY, "address"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutableSameTypeName2.java"),
                 expected);
     }
@@ -272,7 +272,7 @@ public class VisibilityModifierCheckTest
         checkConfig.addProperty("allowPublicImmutableFields", "true");
         checkConfig.addProperty("immutableClassCanonicalNames", "java.util.Arrays");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutableStarImport.java"), expected);
     }
 
@@ -284,7 +284,7 @@ public class VisibilityModifierCheckTest
         checkConfig.addProperty("immutableClassCanonicalNames",
             "java.lang.String, com.google.common.collect.ImmutableSet");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutableStarImport2.java"),
                 expected);
     }
@@ -301,7 +301,7 @@ public class VisibilityModifierCheckTest
             "70:12: " + getCheckMessage(MSG_KEY, "unannotatedPackage"),
             "71:22: " + getCheckMessage(MSG_KEY, "unannotatedProtected"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierAnnotated.java"), expected);
     }
 
@@ -327,7 +327,7 @@ public class VisibilityModifierCheckTest
             "80:35: " + getCheckMessage(MSG_KEY, "publicJUnitClassRule"),
             "83:35: " + getCheckMessage(MSG_KEY, "fqPublicJUnitClassRule"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierAnnotated2.java"), expected);
     }
 
@@ -354,7 +354,7 @@ public class VisibilityModifierCheckTest
             "79:35: " + getCheckMessage(MSG_KEY, "publicJUnitClassRule"),
             "82:35: " + getCheckMessage(MSG_KEY, "fqPublicJUnitClassRule"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierAnnotated3.java"), expected);
     }
 
@@ -366,7 +366,7 @@ public class VisibilityModifierCheckTest
             "32:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
             "35:28: " + getCheckMessage(MSG_KEY, "publicJUnitClassRule"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierAnnotatedSameTypeName.java"),
                 expected);
     }
@@ -393,7 +393,7 @@ public class VisibilityModifierCheckTest
             "34:29: " + getCheckMessage(MSG_KEY, "value"),
             "35:23: " + getCheckMessage(MSG_KEY, "list"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifiersPublicImmutable.java"), expected);
     }
 
@@ -408,7 +408,7 @@ public class VisibilityModifierCheckTest
             "34:29: " + getCheckMessage(MSG_KEY, "value"),
             "35:23: " + getCheckMessage(MSG_KEY, "list"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifiersPublicImmutable2.java"), expected);
     }
 
@@ -420,7 +420,7 @@ public class VisibilityModifierCheckTest
         checkConfig.addProperty("immutableClassCanonicalNames",
             "com.google.common.collect.ImmutableSet");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifiersPublicImmutable3.java"), expected);
     }
 
@@ -432,7 +432,7 @@ public class VisibilityModifierCheckTest
         final String[] expected = {
             "35:23: " + getCheckMessage(MSG_KEY, "hole"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifiersEnumIsSealed.java"), expected);
     }
 
@@ -459,7 +459,7 @@ public class VisibilityModifierCheckTest
         final String[] expected = {
             "32:50: " + getCheckMessage(MSG_KEY, "i"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifiersNullModifiers.java"), expected);
     }
 
@@ -494,7 +494,7 @@ public class VisibilityModifierCheckTest
             "51:48: " + getCheckMessage(MSG_KEY, "collection"),
             "54:73: " + getCheckMessage(MSG_KEY, "exceptions"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierGenerics.java"), expected);
     }
 
@@ -527,7 +527,7 @@ public class VisibilityModifierCheckTest
         checkConfig.addProperty("immutableClassCanonicalNames", "PackageClass");
         checkConfig.addProperty("allowPublicImmutableFields", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputVisibilityModifierPackageClassName.java"),
                 expected);
     }

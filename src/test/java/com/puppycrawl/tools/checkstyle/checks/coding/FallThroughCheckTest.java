@@ -64,8 +64,8 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "535:15: " + getCheckMessage(MSG_FALL_THROUGH),
             "537:15: " + getCheckMessage(MSG_FALL_THROUGH),
         };
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputFallThroughDefault.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughDefault.java"),
                expected);
     }
 
@@ -73,8 +73,8 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     public void testTryWithResources() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(FallThroughCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
-               getNonCompilablePath("InputFallThrough.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFallThrough.java"),
                expected);
     }
 
@@ -104,8 +104,8 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "491:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "492:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputFallThrough.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough.java"),
                expected);
     }
 
@@ -153,8 +153,8 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "491:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "492:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputFallThrough3.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough3.java"),
                expected);
     }
 
@@ -171,8 +171,8 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "70:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "77:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
-        verifyWithInlineConfigParser(checkConfig,
-               getNonCompilablePath("InputFallThrough2.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFallThrough2.java"),
                expected);
     }
 
@@ -198,8 +198,8 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "94:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "96:13: " + getCheckMessage(MSG_FALL_THROUGH),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputFallThrough2.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough2.java"),
             expected);
     }
 

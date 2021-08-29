@@ -91,7 +91,7 @@ public class WhitespaceAroundCheckTest
             "307:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "+"),
             "307:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "+"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundKeywordsAndOperators.java"), expected);
     }
 
@@ -107,7 +107,7 @@ public class WhitespaceAroundCheckTest
             "172:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
             "173:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundSimple.java"), expected);
     }
 
@@ -118,7 +118,7 @@ public class WhitespaceAroundCheckTest
         final String[] expected = {
             "25:2: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundStartOfTheLine.java"), expected);
     }
 
@@ -140,7 +140,7 @@ public class WhitespaceAroundCheckTest
             "134:17: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
             "134:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundBraces.java"), expected);
     }
 
@@ -158,7 +158,7 @@ public class WhitespaceAroundCheckTest
             "134:17: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
             "134:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundBraces2.java"), expected);
     }
 
@@ -177,7 +177,7 @@ public class WhitespaceAroundCheckTest
             "37:41: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
             "41:46: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundArrayInitialization.java"), expected);
     }
 
@@ -189,7 +189,7 @@ public class WhitespaceAroundCheckTest
             "27:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
             "27:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "&"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundGenerics.java"), expected);
     }
 
@@ -197,7 +197,7 @@ public class WhitespaceAroundCheckTest
     public void test1322879And1649038() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAroundCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAround1.java"),
                expected);
     }
@@ -213,7 +213,7 @@ public class WhitespaceAroundCheckTest
             "37:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "}"),
             "37:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundDoubleBraceInitialization.java"),
                 expected);
     }
@@ -225,7 +225,7 @@ public class WhitespaceAroundCheckTest
         final String[] expected = {
             "39:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ":"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAround2.java"),
                expected);
     }
@@ -242,7 +242,7 @@ public class WhitespaceAroundCheckTest
             "47:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
             "47:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundEmptyTypesAndCycles.java"),
                expected);
     }
@@ -263,7 +263,7 @@ public class WhitespaceAroundCheckTest
             "76:18: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
             "76:19: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundEmptyTypesAndCycles2.java"),
                expected);
     }
@@ -274,7 +274,7 @@ public class WhitespaceAroundCheckTest
         final String[] expected = {
             "26:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "switch"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundSwitch.java"), expected);
     }
 
@@ -284,7 +284,7 @@ public class WhitespaceAroundCheckTest
         final String[] expected = {
             "29:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "while"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundDoWhile.java"), expected);
     }
 
@@ -293,7 +293,7 @@ public class WhitespaceAroundCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAroundCheck.class);
         checkConfig.addProperty("allowEmptyMethods", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAround3.java"), expected);
     }
 
@@ -383,7 +383,7 @@ public class WhitespaceAroundCheckTest
             "51:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
             "51:13: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundAllowEmptyTypesAndNonEmptyClasses.java"),
             expected);
     }
@@ -405,7 +405,7 @@ public class WhitespaceAroundCheckTest
             "51:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
             "51:13: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundAllowEmptyTypesAndNonEmptyClasses2.java"),
             expected);
     }
@@ -421,7 +421,7 @@ public class WhitespaceAroundCheckTest
             "33:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
             "33:42: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundAllowEmptyLambdaExpressions.java"),
             expected);
     }
@@ -436,7 +436,7 @@ public class WhitespaceAroundCheckTest
             "33:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
             "33:42: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundAllowEmptyLambdaExpressions2.java"),
                 expected);
     }
@@ -448,7 +448,7 @@ public class WhitespaceAroundCheckTest
             "28:48: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "->"),
             "28:48: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundLambda.java"), expected);
     }
 
@@ -457,7 +457,7 @@ public class WhitespaceAroundCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAroundCheck.class);
         checkConfig.addProperty("allowEmptyCatches", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundCatch.java"),
                 expected);
     }
@@ -476,7 +476,7 @@ public class WhitespaceAroundCheckTest
             "24:39: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "..."),
             "24:39: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundVarargs.java"), expected);
     }
 
@@ -507,7 +507,7 @@ public class WhitespaceAroundCheckTest
             "74:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
             "74:29: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputWhitespaceAroundRecords.java"), expected);
     }
 
@@ -539,7 +539,7 @@ public class WhitespaceAroundCheckTest
             "84:40: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
             "89:23: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputWhitespaceAroundAllowEmptyCompactCtors.java"),
                 expected);
     }
@@ -550,7 +550,7 @@ public class WhitespaceAroundCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAroundCheck.class);
         checkConfig.addProperty("allowEmptyTypes", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputWhitespaceAroundRecordsAllowEmptyTypes.java"),
                 expected);
     }
@@ -580,7 +580,7 @@ public class WhitespaceAroundCheckTest
             "27:37: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ">"),
             "27:38: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ">"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundAllTokens.java"), expected);
     }
 

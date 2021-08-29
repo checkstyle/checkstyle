@@ -58,8 +58,8 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
             "18:14: " + getCheckMessage(MSG_KEY, "field"),
             "26:30: " + getCheckMessage(MSG_KEY, "field1"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputParameterAssignmentWithUnchecked.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputParameterAssignmentWithUnchecked.java"),
                expected);
     }
 
@@ -67,7 +67,7 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
     public void testReceiverParameter() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ParameterAssignmentCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputParameterAssignmentReceiver.java"), expected);
     }
 

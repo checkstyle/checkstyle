@@ -66,7 +66,7 @@ public class InterfaceTypeParameterNameCheckTest
         final String[] expected = {
             "55:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Input", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputInterfaceTypeParameterName.java"), expected);
     }
 
@@ -83,7 +83,7 @@ public class InterfaceTypeParameterNameCheckTest
             "55:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Input", pattern),
             "59:25: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputInterfaceTypeParameterName1.java"), expected);
     }
 

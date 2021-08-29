@@ -222,7 +222,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             "126:48: " + getCheckMessage(MSG_KEY),
             "127:57: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidEscapedUnicodeCharacters.java"), expected);
     }
 
@@ -277,7 +277,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             "126:48: " + getCheckMessage(MSG_KEY),
             "127:57: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidEscapedUnicodeCharacters1.java"), expected);
     }
 
@@ -316,7 +316,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             "137:46: " + getCheckMessage(MSG_KEY),
             "140:48: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidEscapedUnicodeCharacters2.java"), expected);
     }
 
@@ -353,7 +353,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             "126:48: " + getCheckMessage(MSG_KEY),
             "127:57: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidEscapedUnicodeCharacters3.java"), expected);
     }
 
@@ -396,7 +396,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             "126:48: " + getCheckMessage(MSG_KEY),
             "127:57: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidEscapedUnicodeCharacters4.java"), expected);
     }
 
@@ -415,8 +415,8 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             "36:33: " + getCheckMessage(MSG_KEY),
             "41:42: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath(
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
                 "InputAvoidEscapedUnicodeCharactersTextBlocksAllowByComment.java"),
             expected);
     }
@@ -435,8 +435,8 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             "28:33: " + getCheckMessage(MSG_KEY),
             "30:42: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputAvoidEscapedUnicodeCharactersTextBlocks.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputAvoidEscapedUnicodeCharactersTextBlocks.java"),
             expected);
     }
 
@@ -453,7 +453,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             "33:39: " + getCheckMessage(MSG_KEY),
             "36:22: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputAvoidEscapedUnicodeCharactersEscapedS.java"),
                 expected);
     }
@@ -483,7 +483,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
                 .filter(val -> !isControlCharacter(val))
                 .mapToObj(msg -> indexOfStartLineInInputFile + msg + ":54: " + message)
                 .toArray(String[]::new);
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java"),
                 expected);
     }

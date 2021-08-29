@@ -51,7 +51,7 @@ public class AvoidStarImportCheckTest
             "33:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidStarImportDefault.java"),
                 expected);
     }
@@ -69,7 +69,7 @@ public class AvoidStarImportCheckTest
                     + "tools.checkstyle.checks.imports.*"),
             "33:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidStarImportExcludes.java"),
                 expected2);
     }
@@ -83,7 +83,7 @@ public class AvoidStarImportCheckTest
             "30:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "31:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "33:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"), };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidStarImportAllowClass.java"), expected2);
     }
 
@@ -98,7 +98,7 @@ public class AvoidStarImportCheckTest
             "14:15: " + getCheckMessage(MSG_KEY, "java.io.*"),
             "15:17: " + getCheckMessage(MSG_KEY, "java.lang.*"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidStarImportAllowStaticMember.java"), expected2);
     }
 

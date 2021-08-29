@@ -46,7 +46,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
             "22: " + getCheckMessage(MSG_KEY, 80, 81),
             "149: " + getCheckMessage(MSG_KEY, 80, 83),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLineLengthSimple.java"), expected);
     }
 
@@ -62,7 +62,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
             "23: 80,81",
             "150: 80,83",
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLineLengthSimple1.java"), expected);
     }
 
@@ -74,7 +74,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "18: " + getCheckMessage(MSG_KEY, 80, 100),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLineLengthLongImportStatements.java"), expected);
     }
 
@@ -86,7 +86,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_KEY, 80, 101),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputLineLengthLongPackageStatement.java"),
                 expected);
     }
@@ -101,7 +101,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "13: " + getCheckMessage(MSG_KEY, 80, 111),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLineLengthLongLink.java"), expected);
     }
 
