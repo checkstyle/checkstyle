@@ -71,8 +71,6 @@ public class ConstantNameCheckTest
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ConstantNameCheck.class);
 
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
@@ -80,33 +78,26 @@ public class ConstantNameCheckTest
             "31:29: " + getCheckMessage(MSG_INVALID_PATTERN, "badConstant", pattern),
             "148:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputConstantNameSimple1.java"), expected);
     }
 
     @Test
     public void testAccessControlTuning()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ConstantNameCheck.class);
-        checkConfig.addProperty("applyToPublic", "false");
-        checkConfig.addProperty("applyToProtected", "false");
-        checkConfig.addProperty("applyToPackage", "false");
 
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
         final String[] expected = {
             "148:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputConstantNameSimple2.java"), expected);
     }
 
     @Test
     public void testInterfaceAndAnnotation()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ConstantNameCheck.class);
 
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
@@ -114,24 +105,20 @@ public class ConstantNameCheckTest
             "31:16: " + getCheckMessage(MSG_INVALID_PATTERN, "data", pattern),
             "71:16: " + getCheckMessage(MSG_INVALID_PATTERN, "data", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputConstantNameInner.java"), expected);
     }
 
     @Test
     public void testDefault1()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ConstantNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputConstantName.java"), expected);
     }
 
     @Test
     public void testIntoInterface() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ConstantNameCheck.class);
 
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
@@ -145,28 +132,23 @@ public class ConstantNameCheckTest
             "63:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
             "64:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputConstantNameMemberExtended.java"), expected);
     }
 
     @Test
     public void testIntoInterfaceExcludePublic() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ConstantNameCheck.class);
-        checkConfig.addProperty("applyToPublic", "false");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputConstantNameInterfaceIgnorePublic.java"), expected);
     }
 
     @Test
     public void testStaticMethodInInterface()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ConstantNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputConstantNameStaticModifierInInterface.java"), expected);
     }
 

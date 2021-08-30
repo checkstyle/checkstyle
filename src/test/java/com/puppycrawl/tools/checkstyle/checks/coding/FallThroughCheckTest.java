@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class FallThroughCheckTest extends AbstractModuleTestSupport {
@@ -38,7 +37,6 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(FallThroughCheck.class);
         final String[] expected = {
             "22:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "46:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -64,24 +62,21 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "535:15: " + getCheckMessage(MSG_FALL_THROUGH),
             "537:15: " + getCheckMessage(MSG_FALL_THROUGH),
         };
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputFallThroughDefault.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughDefault.java"),
                expected);
     }
 
     @Test
     public void testTryWithResources() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(FallThroughCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
-               getNonCompilablePath("InputFallThrough.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFallThrough.java"),
                expected);
     }
 
     @Test
     public void testLastCaseGroup() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(FallThroughCheck.class);
-        checkConfig.addProperty("checkLastCaseGroup", "true");
         final String[] expected = {
             "22:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "46:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -104,16 +99,13 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "491:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "492:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputFallThrough.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough.java"),
                expected);
     }
 
     @Test
     public void testOwnPattern() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(FallThroughCheck.class);
-        checkConfig.addProperty("reliefPattern", "Continue with next case");
 
         final String[] expected = {
             "22:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -153,16 +145,13 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "491:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "492:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputFallThrough3.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough3.java"),
                expected);
     }
 
     @Test
     public void testOwnPatternTryWithResources() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(FallThroughCheck.class);
-        checkConfig.addProperty("reliefPattern", "Continue with next case");
 
         final String[] expected = {
             "54:9: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -171,8 +160,8 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "70:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "77:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
-        verifyWithInlineConfigParser(checkConfig,
-               getNonCompilablePath("InputFallThrough2.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFallThrough2.java"),
                expected);
     }
 
@@ -186,7 +175,6 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFallThroughNoElse() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(FallThroughCheck.class);
         final String[] expected = {
             "28:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "43:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -198,8 +186,8 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "94:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "96:13: " + getCheckMessage(MSG_FALL_THROUGH),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputFallThrough2.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough2.java"),
             expected);
     }
 

@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -48,41 +47,34 @@ public class LocalFinalVariableNameCheckTest
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LocalFinalVariableNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
             "126:19: " + getCheckMessage(MSG_INVALID_PATTERN, "CDE", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLocalFinalVariableName.java"), expected);
     }
 
     @Test
     public void testSet()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LocalFinalVariableNameCheck.class);
-        checkConfig.addProperty("format", "[A-Z]+");
 
         final String pattern = "[A-Z]+";
 
         final String[] expected = {
             "125:19: " + getCheckMessage(MSG_INVALID_PATTERN, "cde", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLocalFinalVariableName1.java"), expected);
     }
 
     @Test
     public void testInnerClass()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LocalFinalVariableNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLocalFinalVariableNameInnerClass.java"), expected);
     }
 
@@ -101,9 +93,6 @@ public class LocalFinalVariableNameCheckTest
 
     @Test
     public void testTryWithResources() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LocalFinalVariableNameCheck.class);
-        checkConfig.addProperty("format", "[A-Z]+");
 
         final String pattern = "[A-Z]+";
 
@@ -114,18 +103,15 @@ public class LocalFinalVariableNameCheckTest
             "79:30: " + getCheckMessage(MSG_INVALID_PATTERN, "fis8859_1", pattern),
             "82:32: " + getCheckMessage(MSG_INVALID_PATTERN, "isrutf8", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLocalFinalVariableNameTryResources.java"), expected);
     }
 
     @Test
     public void testTryWithResourcesJava9() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LocalFinalVariableNameCheck.class);
-        checkConfig.addProperty("format", "[a-z]+");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath(
             "InputLocalFinalVariableNameTryResourcesJava9.java"), expected);
     }

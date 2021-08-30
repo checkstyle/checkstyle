@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -56,8 +55,6 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LambdaBodyLengthCheck.class);
         final String[] expected = {
             "16:27: " + getCheckMessage(MSG_KEY, 12, 10),
             "28:27: " + getCheckMessage(MSG_KEY, 12, 10),
@@ -66,31 +63,26 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
             "57:15: " + getCheckMessage(MSG_KEY, 11, 10),
             "68:34: " + getCheckMessage(MSG_KEY, 11, 10),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLambdaBodyLengthDefault.java"), expected);
     }
 
     @Test
     public void testDefaultSwitchExpressions() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LambdaBodyLengthCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputLambdaBodyLengthSwitchExps.java"), expected);
     }
 
     @Test
     public void testMaxLimitIsDifferent() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LambdaBodyLengthCheck.class);
-        checkConfig.addProperty("max", "3");
         final String[] expected = {
             "16:27: " + getCheckMessage(MSG_KEY, 4, 3),
             "20:27: " + getCheckMessage(MSG_KEY, 4, 3),
             "30:35: " + getCheckMessage(MSG_KEY, 5, 3),
             "36:34: " + getCheckMessage(MSG_KEY, 4, 3),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLambdaBodyLengthMax.java"), expected);
     }
 

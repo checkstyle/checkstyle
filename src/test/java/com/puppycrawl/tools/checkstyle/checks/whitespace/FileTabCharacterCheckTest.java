@@ -39,22 +39,16 @@ public class FileTabCharacterCheckTest
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(FileTabCharacterCheck.class);
-        checkConfig.addProperty("eachLine", "false");
         final String[] expected = {
             "22:25: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputFileTabCharacterSimple.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputFileTabCharacterSimple.java"),
             expected);
     }
 
     @Test
     public void testVerbose() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(FileTabCharacterCheck.class);
-        checkConfig.addProperty("eachLine", "true");
         final String[] expected = {
             "22:25: " + getCheckMessage(MSG_CONTAINS_TAB),
             "148:35: " + getCheckMessage(MSG_CONTAINS_TAB),
@@ -65,8 +59,8 @@ public class FileTabCharacterCheckTest
             "160:3: " + getCheckMessage(MSG_CONTAINS_TAB),
             "161:3: " + getCheckMessage(MSG_CONTAINS_TAB),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputFileTabCharacterSimple1.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputFileTabCharacterSimple1.java"),
             expected);
     }
 

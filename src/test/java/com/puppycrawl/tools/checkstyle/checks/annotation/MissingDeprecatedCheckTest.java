@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -64,7 +63,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testBadDeprecatedAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "14: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
@@ -78,7 +76,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             "63: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMissingDeprecatedBadDeprecated.java"), expected);
     }
 
@@ -87,7 +85,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testBadDeprecatedJavadoc() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "18: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
@@ -97,7 +94,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             "62: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMissingDeprecatedBadJavadoc.java"), expected);
     }
 
@@ -106,7 +103,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testSpecialCaseDeprecated() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "12: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
@@ -121,7 +117,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             "113: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMissingDeprecatedSpecialCase.java"), expected);
     }
 
@@ -130,70 +126,64 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testGoodDeprecated() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMissingDeprecatedGood.java"), expected);
     }
 
     @Test
     public void testTwoInJavadocWithoutAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "15: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
             "19: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMissingDeprecatedClass.java"), expected);
     }
 
     @Test
     public void testEmptyJavadocLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "18: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMissingDeprecatedMethod.java"), expected);
     }
 
     @Test
     public void testPackageInfo() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("package-info.java"), expected);
     }
 
     @Test
     public void testDepPackageInfoBelowComment() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "14: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMissingDeprecatedAbovePackage.java"), expected);
     }
 
     @Test
     public void testPackageInfoBelowComment() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMissingDeprecatedSingleComment.java"), expected);
     }
 }

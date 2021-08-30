@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -49,22 +48,18 @@ public class MethodNameCheckTest
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
             "144:10: " + getCheckMessage(MSG_INVALID_PATTERN, "ALL_UPPERCASE_METHOD", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodNameSimple.java"), expected);
     }
 
     @Test
     public void testMethodEqClass() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -87,18 +82,12 @@ public class MethodNameCheckTest
             "65:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodNameEqualClassName.java"), expected);
     }
 
     @Test
     public void testMethodEqClassAllow() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodNameCheck.class);
-
-        // allow method names and class names to equal
-        checkConfig.addProperty("allowClassName", "true");
-
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
@@ -115,21 +104,12 @@ public class MethodNameCheckTest
             "65:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodNameEqualClassName2.java"), expected);
     }
 
     @Test
     public void testAccessTuning() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodNameCheck.class);
-
-        // allow method names and class names to equal
-        checkConfig.addProperty("allowClassName", "true");
-
-        // allow method names and class names to equal
-        checkConfig.addProperty("applyToPrivate", "false");
-
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
@@ -144,25 +124,21 @@ public class MethodNameCheckTest
             "65:17: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodNameEqualClassName3.java"), expected);
     }
 
     @Test
     public void testForNpe() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodNameCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodNameExtra.java"), expected);
     }
 
     @Test
     public void testOverriddenMethods() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -171,15 +147,12 @@ public class MethodNameCheckTest
             "32:20: " + getCheckMessage(MSG_INVALID_PATTERN, "PROTECTEDfoo", pattern),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodNameOverriddenMethods.java"), expected);
     }
 
     @Test
     public void testInterfacesExcludePublic() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodNameCheck.class);
-        checkConfig.addProperty("applyToPublic", "false");
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
@@ -187,16 +160,13 @@ public class MethodNameCheckTest
             "20:25: " + getCheckMessage(MSG_INVALID_PATTERN, "PrivateMethod2", pattern),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMethodNamePublicMethodsInInterfaces.java"),
             expected);
     }
 
     @Test
     public void testInterfacesExcludePrivate() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodNameCheck.class);
-        checkConfig.addProperty("applyToPrivate", "false");
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
@@ -206,7 +176,7 @@ public class MethodNameCheckTest
             "30:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PublicMethod2", pattern),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMethodNamePrivateMethodsInInterfaces.java"),
             expected);
     }

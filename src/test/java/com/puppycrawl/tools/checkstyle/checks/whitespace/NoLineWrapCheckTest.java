@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck.
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NoLineWrapCheckTest
@@ -37,30 +36,25 @@ public class NoLineWrapCheckTest
 
     @Test
     public void testCaseWithoutLineWrapping() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoLineWrapCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoLineWrapGood.java"), expected);
     }
 
     @Test
     public void testDefaultTokensLineWrapping() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoLineWrapCheck.class);
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_KEY, "package"),
             "13:1: " + getCheckMessage(MSG_KEY, "import"),
             "17:1: " + getCheckMessage(MSG_KEY, "import"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoLineWrapBad.java"), expected);
     }
 
     @Test
     public void testCustomTokensLineWrapping()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoLineWrapCheck.class);
-        checkConfig.addProperty(
-                "tokens", "IMPORT, STATIC_IMPORT, CLASS_DEF, METHOD_DEF, ENUM_DEF");
         final String[] expected = {
             "13:1: " + getCheckMessage(MSG_KEY, "import"),
             "17:1: " + getCheckMessage(MSG_KEY, "import"),
@@ -68,16 +62,13 @@ public class NoLineWrapCheckTest
             "23:9: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
             "30:1: " + getCheckMessage(MSG_KEY, "ENUM_DEF"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoLineWrapBad2.java"), expected);
     }
 
     @Test
     public void testNoLineWrapRecordsAndCompactCtors()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoLineWrapCheck.class);
-        checkConfig.addProperty(
-                "tokens", "RECORD_DEF, CLASS_DEF, CTOR_DEF, COMPACT_CTOR_DEF");
 
         final String[] expected = {
             "13:9: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
@@ -90,7 +81,7 @@ public class NoLineWrapCheckTest
             "47:9: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
             "49:13: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputNoLineWrapRecordsAndCompactCtors.java"),
                 expected);
     }

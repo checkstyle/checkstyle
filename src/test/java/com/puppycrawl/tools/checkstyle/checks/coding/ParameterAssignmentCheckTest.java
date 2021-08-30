@@ -32,7 +32,6 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -50,24 +49,21 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ParameterAssignmentCheck.class);
         final String[] expected = {
             "15:15: " + getCheckMessage(MSG_KEY, "field"),
             "16:15: " + getCheckMessage(MSG_KEY, "field"),
             "18:14: " + getCheckMessage(MSG_KEY, "field"),
             "26:30: " + getCheckMessage(MSG_KEY, "field1"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputParameterAssignmentWithUnchecked.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputParameterAssignmentWithUnchecked.java"),
                expected);
     }
 
     @Test
     public void testReceiverParameter() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ParameterAssignmentCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputParameterAssignmentReceiver.java"), expected);
     }
 

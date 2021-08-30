@@ -49,7 +49,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -138,13 +137,9 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWithMultipleChecks() throws Exception {
-        final DefaultConfiguration checksConfig = createModuleConfig(TreeWalker.class);
-        checksConfig.addChild(createModuleConfig(AtclauseOrderCheck.class));
-        checksConfig.addChild(createModuleConfig(JavadocParagraphCheck.class));
-
-        final DefaultConfiguration checkerConfig = createRootConfig(checksConfig);
-
-        verify(checkerConfig, getPath("InputAbstractJavadocCorrectParagraph.java"));
+        verifyWithInlineConfigParser(
+                getPath("InputAbstractJavadocCorrectParagraph.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test

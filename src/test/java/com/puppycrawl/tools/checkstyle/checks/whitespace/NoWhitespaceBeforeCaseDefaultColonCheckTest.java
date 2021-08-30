@@ -25,7 +25,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBefo
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class NoWhitespaceBeforeCaseDefaultColonCheckTest
@@ -39,7 +38,7 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(
+        createModuleConfig(
                 NoWhitespaceBeforeCaseDefaultColonCheck.class);
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_KEY, ":"),
@@ -56,14 +55,14 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
             "89:38: " + getCheckMessage(MSG_KEY, ":"),
             "92:35: " + getCheckMessage(MSG_KEY, ":"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceBeforeCaseDefaultColon.java"),
                 expected);
     }
 
     @Test
     public void testDefaultNonCompilable() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(
+        createModuleConfig(
                 NoWhitespaceBeforeCaseDefaultColonCheck.class);
         final String[] expected = {
             "36:22: " + getCheckMessage(MSG_KEY, ":"),
@@ -75,7 +74,7 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
             "94:20: " + getCheckMessage(MSG_KEY, ":"),
             "97:21: " + getCheckMessage(MSG_KEY, ":"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings.java"),
                 expected);
     }

@@ -50,60 +50,47 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        checkConfig.addProperty("format", "System\\.(out)|(err)\\.print(ln)?\\(");
         final String[] expected = {
             "78: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpMultilineSemantic.java"), expected);
     }
 
     @Test
     public void testMessageProperty()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        checkConfig.addProperty("format", "System\\.(out)|(err)\\.print(ln)?\\(");
-        checkConfig.addProperty("message", "Bad line :(");
         final String[] expected = {
             "79: " + "Bad line :(",
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpMultilineSemantic2.java"), expected);
     }
 
     @Test
     public void testIgnoreCaseTrue() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        checkConfig.addProperty("format", "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(");
-        checkConfig.addProperty("ignoreCase", "true");
         final String[] expected = {
             "79: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpMultilineSemantic3.java"), expected);
     }
 
     @Test
     public void testIgnoreCaseFalse() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        checkConfig.addProperty("format", "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(");
-        checkConfig.addProperty("ignoreCase", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpMultilineSemantic4.java"), expected);
     }
 
     @Test
     public void testIllegalFailBelowErrorLimit() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        checkConfig.addProperty("format", "^import");
         final String[] expected = {
             "16: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "^import"),
             "17: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "^import"),
             "18: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "^import"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpMultilineSemantic5.java"), expected);
     }
 
@@ -167,31 +154,26 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpMultilineSemantic6.java"), expected);
     }
 
     @Test
     public void testNullFormat() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        checkConfig.addProperty("format", null);
         final String[] expected = {
             "1: " + getCheckMessage(MSG_EMPTY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpMultilineSemantic7.java"), expected);
     }
 
     @Test
     public void testEmptyFormat() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        checkConfig.addProperty("format", "");
         final String[] expected = {
             "1: " + getCheckMessage(MSG_EMPTY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpMultilineSemantic8.java"), expected);
     }
 
@@ -255,36 +237,27 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testGoodLimit() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        checkConfig.addProperty("format", "^import");
-        checkConfig.addProperty("maximum", "5000");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpMultilineSemantic9.java"), expected);
     }
 
     @Test
     public void testMultilineSupport() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        checkConfig.addProperty("format", "(a)bc.*def");
-        checkConfig.addProperty("matchAcrossLines", "true");
         final String[] expected = {
             "22: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "(a)bc.*def"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpMultilineMultilineSupport.java"), expected);
     }
 
     @Test
     public void testMultilineSupportNotGreedy() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
-        checkConfig.addProperty("format", "(a)bc.*?def");
-        checkConfig.addProperty("matchAcrossLines", "true");
         final String[] expected = {
             "22: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "(a)bc.*?def"),
             "24: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "(a)bc.*?def"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpMultilineMultilineSupport2.java"), expected);
     }
 

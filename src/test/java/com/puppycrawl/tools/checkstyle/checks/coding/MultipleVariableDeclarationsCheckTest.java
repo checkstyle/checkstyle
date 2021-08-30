@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class MultipleVariableDeclarationsCheckTest extends AbstractModuleTestSupport {
 
@@ -37,8 +36,6 @@ public class MultipleVariableDeclarationsCheckTest extends AbstractModuleTestSup
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MultipleVariableDeclarationsCheck.class);
 
         final String[] expected = {
             "11:5: " + getCheckMessage(MSG_MULTIPLE_COMMA),
@@ -52,8 +49,8 @@ public class MultipleVariableDeclarationsCheckTest extends AbstractModuleTestSup
             "42:44: " + getCheckMessage(MSG_MULTIPLE),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputMultipleVariableDeclarations.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleVariableDeclarations.java"),
                expected);
     }
 

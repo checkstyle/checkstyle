@@ -28,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertNotSame;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -50,8 +49,6 @@ public class ModifierOrderCheckTest
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = {
             "15:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "final"),
             "19:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
@@ -61,18 +58,16 @@ public class ModifierOrderCheckTest
             "50:35: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation4"),
             "158:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "default"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputModifierOrderIt.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputModifierOrderIt.java"), expected);
     }
 
     @Test
     public void testDefaultMethods()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputModifierOrderDefaultMethods.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputModifierOrderDefaultMethods.java"), expected);
     }
 
     @Test
@@ -110,28 +105,25 @@ public class ModifierOrderCheckTest
 
     @Test
     public void testSkipTypeAnnotations() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = {
             "110:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputModifierOrderTypeAnnotations.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputModifierOrderTypeAnnotations.java"),
             expected);
     }
 
     @Test
     public void testAnnotationOnAnnotationDeclaration() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = {
             "9:8: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@InterfaceAnnotation"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputModifierOrderAnnotationDeclaration.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputModifierOrderAnnotationDeclaration.java"), expected);
     }
 
     @Test
     public void testModifierOrderSealedAndNonSealed() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = {
             "10:8: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
             "26:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
@@ -140,16 +132,16 @@ public class ModifierOrderCheckTest
             "53:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "static"),
             "58:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "non-sealed"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputModifierOrderSealedAndNonSealed.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputModifierOrderSealedAndNonSealed.java"), expected);
     }
 
     @Test
     public void testModifierOrderSealedAndNonSealedNoViolation() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputModifierOrderSealedAndNonSealedNoViolation.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputModifierOrderSealedAndNonSealedNoViolation.java"),
+                expected);
     }
 
 }

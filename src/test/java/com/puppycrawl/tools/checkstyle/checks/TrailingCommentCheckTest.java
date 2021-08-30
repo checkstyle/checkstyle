@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
@@ -55,7 +54,6 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaults() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(TrailingCommentCheck.class);
         final String[] expected = {
             "13:12: " + getCheckMessage(MSG_KEY),
             "17:12: " + getCheckMessage(MSG_KEY),
@@ -66,14 +64,12 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
             "44:51: " + getCheckMessage(MSG_KEY),
             "46:31: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputTrailingComment.java"), expected);
     }
 
     @Test
     public void testLegalComment() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(TrailingCommentCheck.class);
-        checkConfig.addProperty("legalComment", "^NOI18N$");
         final String[] expected = {
             "13:12: " + getCheckMessage(MSG_KEY),
             "17:12: " + getCheckMessage(MSG_KEY),
@@ -82,14 +78,12 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
             "32:21: " + getCheckMessage(MSG_KEY),
             "45:31: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputTrailingComment2.java"), expected);
     }
 
     @Test
     public void testFormat() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(TrailingCommentCheck.class);
-        checkConfig.addProperty("format", "NOT MATCH");
         final String[] expected = {
             "1:1: " + getCheckMessage(MSG_KEY),
             "12:12: " + getCheckMessage(MSG_KEY),
@@ -110,7 +104,7 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
             "43:9: " + getCheckMessage(MSG_KEY),
             "51:5: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputTrailingComment3.java"), expected);
     }
 }

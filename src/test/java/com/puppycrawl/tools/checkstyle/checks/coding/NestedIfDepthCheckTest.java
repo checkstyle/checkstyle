@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NestedIfDepthCheckTest extends AbstractModuleTestSupport {
@@ -37,27 +36,22 @@ public class NestedIfDepthCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NestedIfDepthCheck.class);
 
         final String[] expected = {
             "26:17: " + getCheckMessage(MSG_KEY, 2, 1),
             "52:17: " + getCheckMessage(MSG_KEY, 2, 1),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNestedIfDepthDefault.java"), expected);
     }
 
     @Test
     public void testCustomizedDepth() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NestedIfDepthCheck.class);
-        checkConfig.addProperty("max", "2");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNestedIfDepthMax.java"), expected);
     }
 

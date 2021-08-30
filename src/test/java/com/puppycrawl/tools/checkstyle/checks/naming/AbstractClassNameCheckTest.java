@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
@@ -38,10 +37,6 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIllegalAbstractClassName() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(AbstractClassNameCheck.class);
-        checkConfig.addProperty("ignoreName", "false");
-        checkConfig.addProperty("ignoreModifier", "true");
 
         final String pattern = "^Abstract.+$";
 
@@ -54,17 +49,12 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
                 pattern),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbstractClassName.java"), expected);
     }
 
     @Test
     public void testCustomFormat() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(AbstractClassNameCheck.class);
-        checkConfig.addProperty("ignoreName", "false");
-        checkConfig.addProperty("ignoreModifier", "true");
-        checkConfig.addProperty("format", "^NonAbstract.+$");
 
         final String[] expected = {
             "12:1: "
@@ -76,30 +66,24 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
                 "^NonAbstract.+$"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbstractClassNameCustom.java"), expected);
     }
 
     @Test
     public void testIllegalClassType() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(AbstractClassNameCheck.class);
-        checkConfig.addProperty("ignoreName", "true");
-        checkConfig.addProperty("ignoreModifier", "false");
 
         final String[] expected = {
             "18:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClassType"),
             "27:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClassTypes"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbstractClassNameType.java"), expected);
     }
 
     @Test
     public void testAllVariants() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(AbstractClassNameCheck.class);
-        checkConfig.addProperty("ignoreName", "false");
-        checkConfig.addProperty("ignoreModifier", "false");
 
         final String pattern = "^Abstract.+$";
 
@@ -115,13 +99,12 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
             "31:5: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClassVa"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbstractClassNameVariants.java"), expected);
     }
 
     @Test
     public void testFalsePositive() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(AbstractClassNameCheck.class);
         final String pattern = "^Abstract.+$";
         final String[] expected = {
             "12:1: "
@@ -134,7 +117,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
             "31:5: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClassFP"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAbstractClassNameFormerFalsePositive.java"), expected);
     }
 

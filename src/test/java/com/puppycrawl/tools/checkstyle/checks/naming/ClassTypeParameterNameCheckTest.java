@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ClassTypeParameterNameCheckTest
@@ -48,8 +47,6 @@ public class ClassTypeParameterNameCheckTest
     @Test
     public void testClassDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ClassTypeParameterNameCheck.class);
 
         final String pattern = "^[A-Z]$";
 
@@ -58,16 +55,13 @@ public class ClassTypeParameterNameCheckTest
             "20:14: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
             "34:24: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputClassTypeParameterName.java"), expected);
     }
 
     @Test
     public void testClassFooName()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ClassTypeParameterNameCheck.class);
-        checkConfig.addProperty("format", "^foo$");
 
         final String pattern = "^foo$";
 
@@ -75,7 +69,7 @@ public class ClassTypeParameterNameCheckTest
             "12:43: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
             "40:19: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputClassTypeParameterName1.java"), expected);
     }
 

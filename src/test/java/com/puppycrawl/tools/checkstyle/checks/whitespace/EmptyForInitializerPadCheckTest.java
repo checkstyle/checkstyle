@@ -51,24 +51,19 @@ public class EmptyForInitializerPadCheckTest
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(EmptyForInitializerPadCheck.class);
         final String[] expected = {
             "51:15: " + getCheckMessage(MSG_PRECEDED, ";"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputEmptyForInitializerPadDefaultConfig.java"), expected);
     }
 
     @Test
     public void testSpaceOption() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(EmptyForInitializerPadCheck.class);
-        checkConfig.addProperty("option", PadOption.SPACE.toString());
         final String[] expected = {
             "54:14: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputEmptyForInitializerPad.java"), expected);
     }
 
