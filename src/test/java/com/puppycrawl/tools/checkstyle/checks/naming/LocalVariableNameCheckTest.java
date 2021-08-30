@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -49,8 +48,6 @@ public class LocalVariableNameCheckTest
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LocalVariableNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -60,27 +57,21 @@ public class LocalVariableNameCheckTest
             "135:20: " + getCheckMessage(MSG_INVALID_PATTERN, "InnerBlockVariable", pattern),
             "210:21: " + getCheckMessage(MSG_INVALID_PATTERN, "O", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLocalVariableName.java"), expected);
     }
 
     @Test
     public void testInnerClass()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LocalVariableNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLocalVariableNameInnerClass.java"), expected);
     }
 
     @Test
     public void testLoopVariables()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LocalVariableNameCheck.class);
-        checkConfig.addProperty("format", "^[a-z]{2,}[a-zA-Z0-9]*$");
-        checkConfig.addProperty("allowOneCharVarInForLoop", "true");
 
         final String pattern = "^[a-z]{2,}[a-zA-Z0-9]*$";
 
@@ -92,7 +83,7 @@ public class LocalVariableNameCheckTest
             "47:32: " + getCheckMessage(MSG_INVALID_PATTERN, "a", pattern),
             "50:32: " + getCheckMessage(MSG_INVALID_PATTERN, "B", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLocalVariableNameOneCharInitVarName.java"), expected);
     }
 

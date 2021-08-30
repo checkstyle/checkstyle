@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -58,25 +57,20 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(AnonInnerLengthCheck.class);
         final String[] expected = {
             "53:35: " + getCheckMessage(MSG_KEY, 21, 20),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnonInnerLength.java"), expected);
     }
 
     @Test
     public void testNonDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(AnonInnerLengthCheck.class);
-        checkConfig.addProperty("max", "6");
         final String[] expected = {
             "54:35: " + getCheckMessage(MSG_KEY, 21, 6),
             "79:35: " + getCheckMessage(MSG_KEY, 20, 6),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAnonInnerLength2.java"), expected);
     }
 

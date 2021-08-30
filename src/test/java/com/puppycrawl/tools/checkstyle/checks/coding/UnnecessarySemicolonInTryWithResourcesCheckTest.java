@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class UnnecessarySemicolonInTryWithResourcesCheckTest extends AbstractModuleTestSupport {
@@ -38,32 +37,27 @@ public class UnnecessarySemicolonInTryWithResourcesCheckTest extends AbstractMod
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
 
         final String[] expected = {
             "17:42: " + getCheckMessage(MSG_SEMI),
             "18:72: " + getCheckMessage(MSG_SEMI),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputUnnecessarySemicolonInTryWithResourcesDefault.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessarySemicolonInTryWithResourcesDefault.java"),
             expected);
     }
 
     @Test
     public void testNoBraceAfterAllowed() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
-        checkConfig.addProperty("allowWhenNoBraceAfterSemicolon", "false");
         final String[] expected = {
             "16:42: " + getCheckMessage(MSG_SEMI),
             "19:13: " + getCheckMessage(MSG_SEMI),
             "22:36: " + getCheckMessage(MSG_SEMI),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputUnnecessarySemicolonInTryWithResourcesNoBraceAfterAllowed.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessarySemicolonInTryWithResourcesNoBraceAfterAllowed.java"),
             expected);
     }
 

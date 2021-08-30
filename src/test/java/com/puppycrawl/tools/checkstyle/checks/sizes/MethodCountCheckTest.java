@@ -29,7 +29,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -68,24 +67,15 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaults() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodCountCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodCount.java"), expected);
     }
 
     @Test
     public void testThrees() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodCountCheck.class);
-        checkConfig.addProperty("maxPrivate", "3");
-        checkConfig.addProperty("maxPackage", "3");
-        checkConfig.addProperty("maxProtected", "3");
-        checkConfig.addProperty("maxPublic", "3");
-        checkConfig.addProperty("maxTotal", "3");
 
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_PACKAGE_METHODS, 5, 3),
@@ -99,110 +89,88 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
             "57:3: " + getCheckMessage(MSG_MANY_METHODS, 5, 3),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodCount1.java"), expected);
     }
 
     @Test
     public void testEnum() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodCountCheck.class);
-        checkConfig.addProperty("maxPrivate", "0");
-        checkConfig.addProperty("maxTotal", "2");
 
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_PRIVATE_METHODS, 1, 0),
             "21:5: " + getCheckMessage(MSG_MANY_METHODS, 3, 2),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodCount2.java"), expected);
     }
 
     @Test
     public void testWithPackageModifier() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MethodCountCheck.class);
-        checkConfig.addProperty("maxPrivate", "0");
-        checkConfig.addProperty("maxTotal", "2");
 
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_MANY_METHODS, 5, 2),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodCount3.java"), expected);
     }
 
     @Test
     public void testOnInterfaceDefinitionWithField() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MethodCountCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodCount4.java"), expected);
     }
 
     @Test
     public void testWithInterfaceDefinitionInClass() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MethodCountCheck.class);
-        checkConfig.addProperty("maxTotal", "1");
 
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodCount5.java"), expected);
     }
 
     @Test
     public void testPartialTokens() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MethodCountCheck.class);
-        checkConfig.addProperty("maxTotal", "1");
-        checkConfig.addProperty("tokens", "ENUM_DEF");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodCount6.java"), expected);
     }
 
     @Test
     public void testCountMethodToCorrectDefinition() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MethodCountCheck.class);
-        checkConfig.addProperty("maxTotal", "1");
-        checkConfig.addProperty("tokens", "ENUM_DEF");
 
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodCount7.java"), expected);
     }
 
     @Test
     public void testInterfaceMemberScopeIsPublic() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MethodCountCheck.class);
-        checkConfig.addProperty("maxPublic", "1");
-        checkConfig.addProperty("tokens", "ENUM_DEF, CLASS_DEF");
 
         final String[] expected = {
             "17:5: " + getCheckMessage(MSG_PUBLIC_METHODS, 2, 1),
             "27:5: " + getCheckMessage(MSG_PUBLIC_METHODS, 2, 1),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodCountInterfaceMemberScopeIsPublic.java"),
                 expected);
     }
 
     @Test
     public void testMethodCountRecords() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MethodCountCheck.class);
-        checkConfig.addProperty("maxTotal", "2");
         final int max = 2;
 
         final String[] expected = {
@@ -214,7 +182,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
             "99:21: " + getCheckMessage(MSG_MANY_METHODS, 3, max),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMethodCountRecords.java"), expected);
     }
 

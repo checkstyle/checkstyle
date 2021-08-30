@@ -45,32 +45,26 @@ public class EqualsHashCodeCheckTest
 
     @Test
     public void testSemantic() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(EqualsHashCodeCheck.class);
         final String[] expected = {
             "96:13: " + getCheckMessage(MSG_KEY_HASHCODE),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputEqualsHashCodeSemantic.java"), expected);
     }
 
     @Test
     public void testNoEquals() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(EqualsHashCodeCheck.class);
         final String[] expected = {
             "10:5: " + getCheckMessage(MSG_KEY_EQUALS),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputEqualsHashCodeNoEquals.java"), expected);
     }
 
     @Test
     public void testBooleanMethods() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(EqualsHashCodeCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputEqualsHashCode.java"), expected);
     }
 
@@ -107,8 +101,6 @@ public class EqualsHashCodeCheckTest
 
     @Test
     public void testEqualsParameter() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(EqualsHashCodeCheck.class);
         final String[] expected = {
             "16:9: " + getCheckMessage(MSG_KEY_EQUALS),
             "24:9: " + getCheckMessage(MSG_KEY_HASHCODE),
@@ -120,7 +112,7 @@ public class EqualsHashCodeCheckTest
             "88:9: " + getCheckMessage(MSG_KEY_HASHCODE),
             "103:9: " + getCheckMessage(MSG_KEY_EQUALS),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputEqualsHashCodeEqualsParameter.java"), expected);
     }
 

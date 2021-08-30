@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class SimplifyBooleanExpressionCheckTest
     extends AbstractModuleTestSupport {
@@ -37,8 +36,6 @@ public class SimplifyBooleanExpressionCheckTest
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(SimplifyBooleanExpressionCheck.class);
         final String[] expected = {
             "22:18: " + getCheckMessage(MSG_KEY),
             "43:36: " + getCheckMessage(MSG_KEY),
@@ -46,7 +43,7 @@ public class SimplifyBooleanExpressionCheckTest
             "45:16: " + getCheckMessage(MSG_KEY),
             "45:32: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSimplifyBooleanExpression.java"), expected);
     }
 

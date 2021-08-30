@@ -54,99 +54,69 @@ public class NewlineAtEndOfFileCheckTest
 
     @Test
     public void testNewlineLfAtEndOfFile() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NewlineAtEndOfFileCheck.class);
-        checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-            checkConfig,
-            getPath("InputNewlineAtEndOfFileLf.java"),
+                getPath("InputNewlineAtEndOfFileLf.java"),
             expected);
     }
 
     @Test
     public void testNewlineLfAtEndOfFileLfNotOverlapWithCrLf() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NewlineAtEndOfFileCheck.class);
-        checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF.toString());
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING),
         };
         verifyWithInlineConfigParser(
-            checkConfig,
-            getPath("InputNewlineAtEndOfFileCrlf.java"),
+                getPath("InputNewlineAtEndOfFileCrlf.java"),
             expected);
     }
 
     @Test
     public void testNewlineCrlfAtEndOfFile() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NewlineAtEndOfFileCheck.class);
-        checkConfig.addProperty("lineSeparator", LineSeparatorOption.CRLF.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-            checkConfig,
-            getPath("InputNewlineAtEndOfFileCrlf3.java"),
+                getPath("InputNewlineAtEndOfFileCrlf3.java"),
             expected);
     }
 
     @Test
     public void testNewlineCrAtEndOfFile() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NewlineAtEndOfFileCheck.class);
-        checkConfig.addProperty("lineSeparator", LineSeparatorOption.CR.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-            checkConfig,
-            getPath("InputNewlineAtEndOfFileCr.java"),
+                getPath("InputNewlineAtEndOfFileCr.java"),
             expected);
     }
 
     @Test
     public void testAnyNewlineAtEndOfFile() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NewlineAtEndOfFileCheck.class);
-        checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF_CR_CRLF.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-            checkConfig,
-            getPath("InputNewlineAtEndOfFileCrlf2.java"),
+                getPath("InputNewlineAtEndOfFileCrlf2.java"),
             expected);
         verifyWithInlineConfigParser(
-            checkConfig,
-            getPath("InputNewlineAtEndOfFileLf2.java"),
+                getPath("InputNewlineAtEndOfFileLf2.java"),
             expected);
         verifyWithInlineConfigParser(
-            checkConfig,
-            getPath("InputNewlineAtEndOfFileCr2.java"),
+                getPath("InputNewlineAtEndOfFileCr2.java"),
             expected);
     }
 
     @Test
     public void testNoNewlineLfAtEndOfFile() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NewlineAtEndOfFileCheck.class);
-        checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF.toString());
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
         };
         verifyWithInlineConfigParser(
-            checkConfig,
-            getPath("InputNewlineAtEndOfFileNoNewline.java"),
+                getPath("InputNewlineAtEndOfFileNoNewline.java"),
             expected);
     }
 
     @Test
     public void testNoNewlineAtEndOfFile() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NewlineAtEndOfFileCheck.class);
-        checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF_CR_CRLF.toString());
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
         };
         verifyWithInlineConfigParser(
-            checkConfig,
-            getPath("InputNewlineAtEndOfFileNoNewline2.java"),
+                getPath("InputNewlineAtEndOfFileNoNewline2.java"),
             expected);
     }
 

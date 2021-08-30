@@ -22,8 +22,6 @@ package com.puppycrawl.tools.checkstyle.grammar.java8;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class LambdaTest extends AbstractModuleTestSupport {
@@ -36,163 +34,127 @@ public class LambdaTest extends AbstractModuleTestSupport {
     @Test
     public void testLambdaInVariableInitialization()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputLambda1.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputLambda1.java"), expected);
     }
 
     @Test
     public void testWithoutArgsOneLineLambdaBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputLambda2.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputLambda2.java"), expected);
     }
 
     @Test
     public void testWithoutArgsFullLambdaBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputLambda3.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputLambda3.java"), expected);
     }
 
     @Test
     public void testWithOneArgWithOneLineBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputLambda4.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputLambda4.java"), expected);
     }
 
     @Test
     public void testWithOneArgWithFullBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputLambda5.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputLambda5.java"), expected);
     }
 
     @Test
     public void testWithOneArgWithoutTypeOneLineBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputLambda6.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputLambda6.java"), expected);
     }
 
     @Test
     public void testWithOneArgWithoutTypeFullBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputLambda7.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputLambda7.java"), expected);
     }
 
     @Test
     public void testWithFewArgsWithoutTypeOneLineBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputLambda8.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputLambda8.java"), expected);
     }
 
     @Test
     public void testWithFewArgsWithoutTypeFullBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputLambda9.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputLambda9.java"), expected);
     }
 
     @Test
     public void testWithOneArgWithoutParenthesesWithoutTypeOneLineBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputLambda10.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputLambda10.java"), expected);
     }
 
     @Test
     public void testWithOneArgWithoutParenthesesWithoutTypeFullBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputLambda11.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputLambda11.java"), expected);
     }
 
     @Test
     public void testWithFewArgWithTypeOneLine()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputLambda12.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputLambda12.java"), expected);
     }
 
     @Test
     public void testWithFewArgWithTypeFullBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputLambda13.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputLambda13.java"), expected);
     }
 
     @Test
     public void testWithMultilineBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputLambda14.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputLambda14.java"), expected);
     }
 
     @Test
     public void testCasesFromSpec()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputLambda15.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputLambda15.java"), expected);
     }
 
     @Test
     public void testWithTypecast()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputLambda16.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputLambda16.java"), expected);
     }
 
     @Test
     public void testInAssignment()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputLambda17.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputLambda17.java"), expected);
     }
 
     @Test
     public void testInTernary()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig, getPath("InputLambda18.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputLambda18.java"), expected);
     }
 
 }

@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AvoidDoubleBraceInitializationCheckTest extends AbstractModuleTestSupport {
@@ -37,8 +36,6 @@ public class AvoidDoubleBraceInitializationCheckTest extends AbstractModuleTestS
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(AvoidDoubleBraceInitializationCheck.class);
         final String[] expected = {
             "14:53: " + getCheckMessage(MSG_KEY),
             "19:40: " + getCheckMessage(MSG_KEY),
@@ -54,7 +51,7 @@ public class AvoidDoubleBraceInitializationCheckTest extends AbstractModuleTestS
             "76:33: " + getCheckMessage(MSG_KEY),
             "77:33: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidDoubleBraceInitialization.java"),
                 expected);
     }

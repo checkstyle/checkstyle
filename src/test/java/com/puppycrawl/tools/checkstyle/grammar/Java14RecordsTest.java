@@ -22,8 +22,6 @@ package com.puppycrawl.tools.checkstyle.grammar;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class Java14RecordsTest extends AbstractModuleTestSupport {
@@ -36,10 +34,8 @@ public class Java14RecordsTest extends AbstractModuleTestSupport {
     @Test
     public void testJava14Records()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputJava14Records.java"),
                 expected);
     }

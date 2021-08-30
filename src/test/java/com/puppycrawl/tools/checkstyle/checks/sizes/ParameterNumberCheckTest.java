@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -60,79 +59,63 @@ public class ParameterNumberCheckTest
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ParameterNumberCheck.class);
         final String[] expected = {
             "198:10: " + getCheckMessage(MSG_KEY, 7, 9),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputParameterNumberSimple.java"), expected);
     }
 
     @Test
     public void testNum()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ParameterNumberCheck.class);
-        checkConfig.addProperty("max", "2");
         final String[] expected = {
             "75:9: " + getCheckMessage(MSG_KEY, 2, 3),
             "198:10: " + getCheckMessage(MSG_KEY, 2, 9),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputParameterNumberSimple2.java"), expected);
     }
 
     @Test
     public void testMaxParam()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ParameterNumberCheck.class);
-        checkConfig.addProperty("max", "9");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputParameterNumberSimple3.java"), expected);
     }
 
     @Test
     public void shouldLogActualParameterNumber()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ParameterNumberCheck.class);
-        checkConfig.addMessage("maxParam", "{0},{1}");
         final String[] expected = {
             "199:10: 7,9",
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputParameterNumberSimple4.java"), expected);
     }
 
     @Test
     public void testIgnoreOverriddenMethods()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ParameterNumberCheck.class);
-        checkConfig.addProperty("ignoreOverriddenMethods", "true");
         final String[] expected = {
             "15:10: " + getCheckMessage(MSG_KEY, 7, 8),
             "20:10: " + getCheckMessage(MSG_KEY, 7, 8),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputParameterNumber.java"), expected);
     }
 
     @Test
     public void testIgnoreOverriddenMethodsFalse()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ParameterNumberCheck.class);
         final String[] expected = {
             "15:10: " + getCheckMessage(MSG_KEY, 7, 8),
             "20:10: " + getCheckMessage(MSG_KEY, 7, 8),
             "28:10: " + getCheckMessage(MSG_KEY, 7, 8),
             "33:10: " + getCheckMessage(MSG_KEY, 7, 8),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputParameterNumber2.java"), expected);
     }
 

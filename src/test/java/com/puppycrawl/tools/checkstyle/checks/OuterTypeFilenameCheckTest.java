@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -52,19 +51,15 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testGood1() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(OuterTypeFilenameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOuterTypeFilenameIllegalTokens.java"), expected);
     }
 
     @Test
     public void testGood2() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(OuterTypeFilenameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOuterTypeFilename15Extensions.java"), expected);
     }
 
@@ -84,96 +79,86 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNestedClass() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOuterTypeFilename1.java"), expected);
     }
 
     @Test
     public void testNestedClass2() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOuterTypeFilename1a.java"), expected);
     }
 
     @Test
     public void testFinePublic() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOuterTypeFilename2.java"), expected);
     }
 
     @Test
     public void testPublicClassIsNotFirst() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOuterTypeFilenameCheckPublic.java"), expected);
     }
 
     @Test
     public void testNoPublicClasses() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOuterTypeFilenameNoPublic.java"), expected);
     }
 
     @Test
     public void testFineDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOuterTypeFilename3.java"), expected);
     }
 
     @Test
     public void testWrongDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
         final String[] expected = {
             "10:2: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOuterTypeFilename5.java"), expected);
     }
 
     @Test
     public void testPackageAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("package-info.java"), expected);
     }
 
     @Test
     public void testOuterTypeFilenameRecords() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
 
         final String[] expected = {
             "10:1: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputOuterTypeFilenameRecordMethodRecordDef.java"),
                 expected);
     }
 
     @Test
     public void testOuterTypeFilenameRecordsMethodRecordDef() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
 
         final String[] expected = {
             "10:1: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputOuterTypeFilenameRecord.java"), expected);
     }
 

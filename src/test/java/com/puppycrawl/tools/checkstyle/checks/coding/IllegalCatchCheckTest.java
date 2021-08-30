@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
 
@@ -36,7 +35,6 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(IllegalCatchCheck.class);
 
         final String[] expected = {
             "14:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
@@ -47,16 +45,12 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
             "24:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalCatch.java"), expected);
     }
 
     @Test
     public void testIllegalClassNames() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(IllegalCatchCheck.class);
-        checkConfig.addProperty("illegalClassNames",
-                                 "java.lang.Error, java.lang.Exception, java.lang.Throwable");
-
         final String[] expected = {
             "14:11: " + getCheckMessage(MSG_KEY, "Exception"),
             "15:11: " + getCheckMessage(MSG_KEY, "Throwable"),
@@ -64,36 +58,24 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
             "23:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalCatch3.java"), expected);
     }
 
     @Test
     public void testIllegalClassNamesBad() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(IllegalCatchCheck.class);
-        checkConfig.addProperty("illegalClassNames",
-                                 "java.lang.Error, java.lang.Exception, NullPointerException");
-
         // check that incorrect names don't break the Check
-        checkConfig.addProperty("illegalClassNames",
-                "java.lang.IOException.");
-
         final String[] expected = {
             "15:11: " + getCheckMessage(MSG_KEY, "Exception"),
             "23:11: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalCatch4.java"), expected);
     }
 
     @Test
     public void testMultipleTypes() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(IllegalCatchCheck.class);
-        checkConfig.addProperty("illegalClassNames",
-                                 "java.lang.Error, java.lang.Exception, NullPointerException,"
-                                + " OneMoreException, RuntimeException, SQLException");
-
         final String[] expected = {
             "15:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
             "15:11: " + getCheckMessage(MSG_KEY, "SQLException"),
@@ -108,7 +90,7 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
             "24:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalCatch2.java"), expected);
     }
 

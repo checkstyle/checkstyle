@@ -22,8 +22,6 @@ package com.puppycrawl.tools.checkstyle.grammar.java8;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class DefaultMethodsTest extends AbstractModuleTestSupport {
@@ -36,20 +34,16 @@ public class DefaultMethodsTest extends AbstractModuleTestSupport {
     @Test
     public void testCanParse()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDefaultMethods.java"), expected);
     }
 
     @Test
     public void testSwitch()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDefaultMethods2.java"), expected);
     }
 

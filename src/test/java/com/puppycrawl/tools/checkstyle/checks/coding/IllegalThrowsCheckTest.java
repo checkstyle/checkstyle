@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
@@ -37,7 +36,6 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(IllegalThrowsCheck.class);
 
         final String[] expected = {
             "19:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
@@ -45,26 +43,19 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
             "25:22: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalThrowsTestDefault.java"), expected);
     }
 
     @Test
     public void testIllegalClassNames() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(IllegalThrowsCheck.class);
-        checkConfig.addProperty("illegalClassNames",
-                                 "java.lang.Error, java.lang.Exception, NullPointerException");
-
         // check that incorrect names don't break the Check
-        checkConfig.addProperty("illegalClassNames",
-                "java.lang.IOException.");
-
         final String[] expected = {
             "15:33: " + getCheckMessage(MSG_KEY, "NullPointerException"),
             "24:73: " + getCheckMessage(MSG_KEY, "java.lang.Error"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalThrowsTestIllegalClassNames.java"), expected);
     }
 
@@ -73,15 +64,13 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testIgnoreMethodNames() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(IllegalThrowsCheck.class);
-        checkConfig.addProperty("ignoredMethodNames", "methodTwo");
 
         final String[] expected = {
             "19:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
             "28:35: " + getCheckMessage(MSG_KEY, "Throwable"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalThrowsIgnoreMethodNames.java"), expected);
     }
 
@@ -90,17 +79,12 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testIllegalClassNamesWithIgnoreMethodNames() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(IllegalThrowsCheck.class);
-        checkConfig.addProperty("illegalClassNames",
-            "java.lang.Error, java.lang.Exception, NullPointerException, Throwable");
-        checkConfig.addProperty("ignoredMethodNames", "methodTwo");
-
         final String[] expected = {
             "14:33: " + getCheckMessage(MSG_KEY, "NullPointerException"),
             "27:35: " + getCheckMessage(MSG_KEY, "Throwable"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalThrowsTestClassNames.java"), expected);
     }
 
@@ -110,12 +94,10 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testIgnoreOverriddenMethods() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(IllegalThrowsCheck.class);
-        checkConfig.addProperty("ignoreOverriddenMethods", "true");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalThrowsIgnoreOverriddenMethods.java"), expected);
     }
 
@@ -125,15 +107,13 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testNotIgnoreOverriddenMethods() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(IllegalThrowsCheck.class);
-        checkConfig.addProperty("ignoreOverriddenMethods", "false");
 
         final String[] expected = {
             "17:36: " + getCheckMessage(MSG_KEY, "RuntimeException"),
             "22:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalThrowsNotIgnoreOverriddenMethod.java"), expected);
     }
 
