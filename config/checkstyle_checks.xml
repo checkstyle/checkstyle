@@ -224,6 +224,7 @@
     <property name="tabWidth" value="4"/>
 
     <!-- Annotations -->
+    <module name="AdjacentAnnotation"/>
     <module name="AnnotationLocation">
       <property name="tokens" value="ANNOTATION_DEF"/>
       <property name="tokens" value="ANNOTATION_FIELD_DEF"/>

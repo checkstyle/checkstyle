@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck"
+             name="AnnotationLocation"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks location of annotation on language elements.
+ This check ensures that all annotations are adjacent to their siblings. This means that if there
+are blank lines between any annotations, or annotations and their targets (what they're annotating such
+as a field, constructor, etc.) then the check will fail. Javadoc comments are also invalid in this check and
+will also raise an error.
+
+ &lt;p&gt;
+ Attention: Annotations among modifiers are ignored (looks like false-negative)
+ as there might be a problem with annotations for return types:
+ &lt;/p&gt;
+</description>
+         <properties>
+            <property default-value="CLASS_DEF,INTERFACE_DEF,PACKAGE_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,METHOD_DEF,CTOR_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="annotation.not.adjacent"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
