@@ -587,7 +587,26 @@
       </plugins>
     </pluginManagement>
     <plugins>
-
+      <plugin>
+        <groupId>org.gaul</groupId>
+        <artifactId>modernizer-maven-plugin</artifactId>
+        <version>2.3.0</version>
+        <configuration>
+          <javaVersion>8</javaVersion>
+          <ignoreClassNamePatterns>
+            .*.Input.*,.*Test,.*BadCommas
+          </ignoreClassNamePatterns>
+        </configuration>
+        <executions>
+          <execution>
+            <id>modernizer</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>modernizer</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
