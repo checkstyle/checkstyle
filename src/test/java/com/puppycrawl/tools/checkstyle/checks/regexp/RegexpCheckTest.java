@@ -53,11 +53,8 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRequiredPass() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "Test case file");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic.java"), expected);
     }
 
@@ -74,306 +71,199 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRequiredNoDuplicatesPass() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "Test case file");
-        checkConfig.addProperty("duplicateLimit", "0");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic3.java"), expected);
     }
 
     @Test
     public void testSetDuplicatesTrue() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "Test case file");
-        checkConfig.addProperty("duplicateLimit", "-1");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic4.java"), expected);
     }
 
     @Test
     public void testRequiredNoDuplicatesFail() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "Boolean x = new Boolean");
-        checkConfig.addProperty("duplicateLimit", "0");
         final String[] expected = {
             "27: " + getCheckMessage(MSG_DUPLICATE_REGEXP, "Boolean x = new Boolean"),
             "32: " + getCheckMessage(MSG_DUPLICATE_REGEXP, "Boolean x = new Boolean"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic5.java"), expected);
     }
 
     @Test
     public void testIllegalPass() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "This\\stext is not in the file");
-        checkConfig.addProperty("illegalPattern", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic6.java"), expected);
     }
 
     @Test
     public void testStopEarly() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "a");
-        checkConfig.addProperty("illegalPattern", "false");
-        checkConfig.addProperty("duplicateLimit", "-1");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpCheckStopEarly.java"), expected);
     }
 
     @Test
     public void testIllegalFailBelowErrorLimit() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "^import");
-        checkConfig.addProperty("illegalPattern", "true");
-        checkConfig.addProperty("errorLimit", "4");
         final String[] expected = {
             "15: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import"),
             "16: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import"),
             "17: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic7.java"), expected);
     }
 
     @Test
     public void testIllegalFailAboveErrorLimit() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "^import");
-        checkConfig.addProperty("illegalPattern", "true");
-        checkConfig.addProperty("errorLimit", "2");
         final String error = "The error limit has been exceeded, "
                 + "the check is aborting, there may be more unreported errors.";
         final String[] expected = {
             "15: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import"),
             "16: " + getCheckMessage(MSG_ILLEGAL_REGEXP, error + "^import"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic8.java"), expected);
     }
 
     @Test
     public void testMessagePropertyGood()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "System\\.(out)|(err)\\.print(ln)?\\(");
-        checkConfig.addProperty("illegalPattern", "true");
-        checkConfig.addProperty("message", "Bad line :(");
         final String[] expected = {
             "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Bad line :("),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic9.java"), expected);
     }
 
     @Test
     public void testMessagePropertyBad()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "System\\.(out)|(err)\\.print(ln)?\\(");
-        checkConfig.addProperty("illegalPattern", "true");
-        checkConfig.addProperty("message", null);
         final String[] expected = {
             "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic10.java"), expected);
     }
 
     @Test
     public void testMessagePropertyBad2()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "System\\.(out)|(err)\\.print(ln)?\\(");
-        checkConfig.addProperty("illegalPattern", "true");
-        checkConfig.addProperty("message", "");
         final String[] expected = {
             "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic11.java"), expected);
     }
 
     @Test
     public void testIgnoreCaseTrue() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "(?i)SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(");
-        checkConfig.addProperty("illegalPattern", "true");
         final String[] expected = {
             "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP,
                     "(?i)SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic12.java"), expected);
     }
 
     @Test
     public void testIgnoreCaseFalse() throws Exception {
-        final DefaultConfiguration checkConfigTrue =
-            createModuleConfig(RegexpCheck.class);
-        checkConfigTrue.addProperty("format", "(?i)SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(");
-        checkConfigTrue.addProperty("illegalPattern", "true");
         final String[] expectedTrue = {
             "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP,
                     "(?i)SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
-        verifyWithInlineConfigParser(checkConfigTrue,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic13.java"), expectedTrue);
 
-        final DefaultConfiguration checkConfigFalse =
-            createModuleConfig(RegexpCheck.class);
-        checkConfigFalse.addProperty("format", "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(");
-        checkConfigFalse.addProperty("illegalPattern", "true");
         final String[] expectedFalse = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfigFalse,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic14.java"), expectedFalse);
     }
 
     @Test
     public void testIgnoreCommentsCppStyle() throws Exception {
         // See if the comment is removed properly
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "don't use trailing comments");
-        checkConfig.addProperty("illegalPattern", "true");
-        checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsFalseCppStyle() throws Exception {
         // See if the comment is removed properly
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "don't\\suse trailing comments");
-        checkConfig.addProperty("illegalPattern", "true");
-        checkConfig.addProperty("ignoreComments", "false");
         final String[] expected = {
             "16: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "don't\\suse trailing comments"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment2.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsBlockStyle() throws Exception {
         // See if the comment is removed properly
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "c-style 1");
-        checkConfig.addProperty("illegalPattern", "true");
-        checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment3.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsFalseBlockStyle() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "c-style\\s1");
-        checkConfig.addProperty("illegalPattern", "true");
-        checkConfig.addProperty("ignoreComments", "false");
         final String[] expected = {
             "31: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "c-style\\s1"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment4.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsMultipleBlockStyle() throws Exception {
         // See if a second comment on the same line is removed properly
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "c-style 2");
-        checkConfig.addProperty("illegalPattern", "true");
-        checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment5.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsMultiLine() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "Let's check multi-line comments");
-        checkConfig.addProperty("illegalPattern", "true");
-        checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment6.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsInlineStart() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "long ms /");
-        checkConfig.addProperty("illegalPattern", "true");
-        checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment7.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsInlineEnd() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "int z");
-        checkConfig.addProperty("illegalPattern", "true");
-        checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = {
             "34: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "int z"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment8.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsInlineMiddle() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "int y");
-        checkConfig.addProperty("illegalPattern", "true");
-        checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = {
             "35: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "int y"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment9.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsNoSpaces() throws Exception {
         // make sure the comment is not turned into spaces
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "long ms  ");
-        checkConfig.addProperty("illegalPattern", "true");
-        checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRegexpTrailingComment10.java"), expected);
     }
 

@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -42,8 +41,6 @@ public class UnnecessarySemicolonInEnumerationCheckTest extends AbstractModuleTe
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(UnnecessarySemicolonInEnumerationCheck.class);
 
         final String[] expected = {
             "30:12: " + getCheckMessage(MSG_SEMI),
@@ -59,7 +56,7 @@ public class UnnecessarySemicolonInEnumerationCheckTest extends AbstractModuleTe
             "64:10: " + getCheckMessage(MSG_SEMI),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUnnecessarySemicolonInEnumeration.java"), expected);
     }
 

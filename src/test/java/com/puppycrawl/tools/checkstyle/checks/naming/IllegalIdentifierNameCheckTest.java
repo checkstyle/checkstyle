@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -72,8 +71,6 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIllegalIdentifierNameDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalIdentifierNameCheck.class);
 
         final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
 
@@ -92,17 +89,12 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
             "74:52: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
             "74:69: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputIllegalIdentifierName.java"), expected);
     }
 
     @Test
     public void testIllegalIdentifierNameOpenTransitive() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalIdentifierNameCheck.class);
-        checkConfig.addProperty("format",
-            "(?i)^(?!(record|yield|var|permits|sealed|open|transitive)$).+$");
-
         final String format = "(?i)^(?!(record|yield|var|permits|sealed|open|transitive)$).+$";
 
         final String[] expected = {
@@ -121,39 +113,33 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
             "76:56: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
             "76:72: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputIllegalIdentifierNameOpenTransitive.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalIdentifierNameOpenTransitive.java"), expected);
     }
 
     @Test
     public void testIllegalIdentifierNameParameterReceiver() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalIdentifierNameCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputIllegalIdentifierNameParameterReceiver.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalIdentifierNameParameterReceiver.java"),
             expected);
     }
 
     @Test
     public void testIllegalIdentifierNameUnderscore() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalIdentifierNameCheck.class);
         final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
 
         final String[] expected = {
             "18:12: " + getCheckMessage(MSG_INVALID_PATTERN, "_", format),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputIllegalIdentifierNameUnderscore.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalIdentifierNameUnderscore.java"), expected);
     }
 
     @Test
     public void testIllegalIdentifierNameLambda() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalIdentifierNameCheck.class);
         final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
 
         final String[] expected = {
@@ -163,7 +149,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
             "35:9: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
             "42:47: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputIllegalIdentifierNameLambda.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalIdentifierNameLambda.java"), expected);
     }
 }

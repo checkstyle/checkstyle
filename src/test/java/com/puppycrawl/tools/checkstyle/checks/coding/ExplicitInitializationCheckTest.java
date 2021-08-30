@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class ExplicitInitializationCheckTest extends AbstractModuleTestSupport {
 
@@ -36,8 +35,6 @@ public class ExplicitInitializationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ExplicitInitializationCheck.class);
         final String[] expected = {
             "11:17: " + getCheckMessage(MSG_KEY, "x", 0),
             "12:20: " + getCheckMessage(MSG_KEY, "bar", "null"),
@@ -61,8 +58,8 @@ public class ExplicitInitializationCheckTest extends AbstractModuleTestSupport {
             "96:19: " + getCheckMessage(MSG_KEY, "shortVariable", "0"),
             "97:18: " + getCheckMessage(MSG_KEY, "bite", "0"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputExplicitInitialization.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputExplicitInitialization.java"),
                expected);
     }
 
@@ -76,9 +73,6 @@ public class ExplicitInitializationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOnlyObjectReferences() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ExplicitInitializationCheck.class);
-        checkConfig.addProperty("onlyObjectReferences", "true");
         final String[] expected = {
             "12:20: " + getCheckMessage(MSG_KEY, "bar", "null"),
             "21:22: " + getCheckMessage(MSG_KEY, "str1", "null"),
@@ -91,7 +85,7 @@ public class ExplicitInitializationCheckTest extends AbstractModuleTestSupport {
             "60:25: " + getCheckMessage(MSG_KEY, "bar", "null"),
             "61:27: " + getCheckMessage(MSG_KEY, "barArray", "null"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputExplicitInitializationOnlyObjectReference.java"),
                 expected);
     }

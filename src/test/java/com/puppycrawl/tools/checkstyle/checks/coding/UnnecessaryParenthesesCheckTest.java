@@ -31,7 +31,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 /**
  * Test fixture for the UnnecessaryParenthesesCheck.
@@ -46,8 +45,6 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(UnnecessaryParenthesesCheck.class);
 
         final String[] expected = {
             "18:22: " + getCheckMessage(MSG_ASSIGN),
@@ -98,27 +95,22 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "106:14: " + getCheckMessage(MSG_STRING, "\"12345678901234567890123\""),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUnnecessaryParenthesesOperatorsAndCasts.java"), expected);
     }
 
     @Test
     public void test15Extensions() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(UnnecessaryParenthesesCheck.class);
         final String[] expected = {
             "28:23: " + getCheckMessage(MSG_EXPR),
             "28:51: " + getCheckMessage(MSG_LITERAL, "1"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUnnecessaryParentheses15Extensions.java"), expected);
     }
 
     @Test
     public void testLambdas() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(UnnecessaryParenthesesCheck.class);
-        checkConfig.addProperty("tokens", "LAMBDA");
         final String[] expected = {
             "17:35: " + getCheckMessage(MSG_LAMBDA),
             "18:35: " + getCheckMessage(MSG_LAMBDA),
@@ -129,14 +121,12 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "48:25: " + getCheckMessage(MSG_LAMBDA),
             "51:31: " + getCheckMessage(MSG_LAMBDA),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUnnecessaryParenthesesLambdas.java"), expected);
     }
 
     @Test
     public void testUnnecessaryParenthesesSwitchExpression() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(UnnecessaryParenthesesCheck.class);
         final String[] expected = {
             "21:50: " + getCheckMessage(MSG_ASSIGN),
             "24:19: " + getCheckMessage(MSG_LITERAL, 2),
@@ -150,7 +140,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "53:28: " + getCheckMessage(MSG_ASSIGN),
             "58:28: " + getCheckMessage(MSG_ASSIGN),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath(
                         "InputUnnecessaryParenthesesCheckSwitchExpression.java"),
                 expected);
@@ -158,8 +148,6 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testUnnecessaryParenthesesTextBlocks() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(UnnecessaryParenthesesCheck.class);
         final String[] expected = {
             "19:27: " + getCheckMessage(MSG_STRING, "\"this\""),
             "19:38: " + getCheckMessage(MSG_STRING, "\"that\""),
@@ -173,8 +161,8 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "27:27: " + getCheckMessage(MSG_STRING, "\"\\n                this i...\""),
             "28:40: " + getCheckMessage(MSG_STRING, "\"\\n                and an...\""),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath(
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
                 "InputUnnecessaryParenthesesCheckTextBlocks.java"),
             expected);
     }
@@ -189,8 +177,6 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIfStatement() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(UnnecessaryParenthesesCheck.class);
 
         final String[] expected = {
             "20:20: " + getCheckMessage(MSG_EXPR),
@@ -226,7 +212,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "145:20: " + getCheckMessage(MSG_EXPR),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputUnnecessaryParenthesesIfStatement.java"), expected);
     }
 

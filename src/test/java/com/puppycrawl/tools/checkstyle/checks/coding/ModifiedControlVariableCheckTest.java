@@ -32,7 +32,6 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -50,8 +49,6 @@ public class ModifiedControlVariableCheckTest
 
     @Test
     public void testModifiedControlVariable() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ModifiedControlVariableCheck.class);
         final String[] expected = {
             "17:14: " + getCheckMessage(MSG_KEY, "i"),
             "20:15: " + getCheckMessage(MSG_KEY, "i"),
@@ -63,45 +60,37 @@ public class ModifiedControlVariableCheckTest
             "71:15: " + getCheckMessage(MSG_KEY, "k"),
             "81:15: " + getCheckMessage(MSG_KEY, "v"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputModifiedControlVariableBothForLoops.java"), expected);
     }
 
     @Test
     public void testEnhancedForLoopVariableTrue() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ModifiedControlVariableCheck.class);
-        checkConfig.addProperty("skipEnhancedForLoopVariable", "true");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputModifiedControlVariableEnhancedForLoopVariable.java"),
                 expected);
     }
 
     @Test
     public void testEnhancedForLoopVariableFalse() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ModifiedControlVariableCheck.class);
 
         final String[] expected = {
             "16:18: " + getCheckMessage(MSG_KEY, "line"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputModifiedControlVariableEnhancedForLoopVariable3.java"),
                 expected);
     }
 
     @Test
     public void testEnhancedForLoopVariable2() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ModifiedControlVariableCheck.class);
-        checkConfig.addProperty("skipEnhancedForLoopVariable", "true");
 
         final String[] expected = {
             "21:18: " + getCheckMessage(MSG_KEY, "i"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputModifiedControlVariableEnhancedForLoopVariable2.java"),
                 expected);
     }

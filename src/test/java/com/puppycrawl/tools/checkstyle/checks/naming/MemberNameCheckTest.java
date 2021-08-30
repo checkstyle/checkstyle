@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MemberNameCheckTest
@@ -47,9 +46,6 @@ public class MemberNameCheckTest
     @Test
     public void testSpecified()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
-        checkConfig.addProperty("format", "^m[A-Z][a-zA-Z0-9]*$");
 
         final String pattern = "^m[A-Z][a-zA-Z0-9]*$";
 
@@ -57,29 +53,25 @@ public class MemberNameCheckTest
             "41:17: " + getCheckMessage(MSG_INVALID_PATTERN, "badMember", pattern),
             "230:17: " + getCheckMessage(MSG_INVALID_PATTERN, "someMember", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberNameSimple.java"), expected);
     }
 
     @Test
     public void testInnerClass()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
             "63:25: " + getCheckMessage(MSG_INVALID_PATTERN, "ABC", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberNameInner.java"), expected);
     }
 
     @Test
     public void testDefaults() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -89,15 +81,12 @@ public class MemberNameCheckTest
             "23:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
             "24:17: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberName.java"), expected);
     }
 
     @Test
     public void testUnderlined() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
-        checkConfig.addProperty("format", "^_[a-z]*$");
 
         final String pattern = "^_[a-z]*$";
 
@@ -107,87 +96,60 @@ public class MemberNameCheckTest
             "18:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
             "19:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberName2.java"), expected);
     }
 
     @Test
     public void testPublicOnly() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
-        checkConfig.addProperty("format", "^_[a-z]*$");
-        checkConfig.addProperty("applyToProtected", "false");
-        checkConfig.addProperty("applyToPackage", "false");
-        checkConfig.addProperty("applyToPrivate", "false");
 
         final String pattern = "^_[a-z]*$";
 
         final String[] expected = {
             "16:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberName3.java"), expected);
     }
 
     @Test
     public void testProtectedOnly() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
-        checkConfig.addProperty("format", "^_[a-z]*$");
-        checkConfig.addProperty("applyToPublic", "false");
-        checkConfig.addProperty("applyToPackage", "false");
-        checkConfig.addProperty("applyToPrivate", "false");
 
         final String pattern = "^_[a-z]*$";
 
         final String[] expected = {
             "17:19: " + getCheckMessage(MSG_INVALID_PATTERN, "mProtected", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberName4.java"), expected);
     }
 
     @Test
     public void testPackageOnly() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
-        checkConfig.addProperty("format", "^_[a-z]*$");
-        checkConfig.addProperty("applyToPublic", "false");
-        checkConfig.addProperty("applyToProtected", "false");
-        checkConfig.addProperty("applyToPrivate", "false");
 
         final String pattern = "^_[a-z]*$";
 
         final String[] expected = {
             "18:9: " + getCheckMessage(MSG_INVALID_PATTERN, "mPackage", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberName5.java"), expected);
     }
 
     @Test
     public void testPrivateOnly() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
-        checkConfig.addProperty("format", "^_[a-z]*$");
-        checkConfig.addProperty("applyToPublic", "false");
-        checkConfig.addProperty("applyToProtected", "false");
-        checkConfig.addProperty("applyToPackage", "false");
 
         final String pattern = "^_[a-z]*$";
 
         final String[] expected = {
             "19:17: " + getCheckMessage(MSG_INVALID_PATTERN, "mPrivate", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberName6.java"), expected);
     }
 
     @Test
     public void testNotPrivate() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
-        checkConfig.addProperty("applyToPrivate", "false");
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -196,15 +158,12 @@ public class MemberNameCheckTest
             "22:19: " + getCheckMessage(MSG_INVALID_PATTERN, "_protected", pattern),
             "23:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberName7.java"), expected);
     }
 
     @Test
     public void memberNameExtended() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
-        checkConfig.addProperty("format", "^[a-z][a-z0-9][a-zA-Z0-9]*$");
 
         final String pattern = "^[a-z][a-z0-9][a-zA-Z0-9]*$";
 
@@ -242,7 +201,7 @@ public class MemberNameCheckTest
             "81:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_package", pattern),
             "82:9: " + getCheckMessage(MSG_INVALID_PATTERN, "_private", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMemberNameExtended.java"), expected);
     }
 

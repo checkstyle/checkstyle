@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
@@ -59,10 +58,6 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testParametersInLambda() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(LambdaParameterNameCheck.class);
-
-        checkConfig.addProperty("format", "^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$");
 
         final String pattern = "^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$";
 
@@ -73,14 +68,12 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
             "22:65: " + getCheckMessage(MSG_INVALID_PATTERN, "s2", pattern),
             "25:21: " + getCheckMessage(MSG_INVALID_PATTERN, "s", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputLambdaParameterName.java"), expected);
     }
 
     @Test
     public void testLambdaParameterNameSwitchExpression() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LambdaParameterNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -92,8 +85,8 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
             "57:35: " + getCheckMessage(MSG_INVALID_PATTERN, "Word", pattern),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputLambdaParameterNameSwitchExpression.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputLambdaParameterNameSwitchExpression.java"),
             expected);
     }
 

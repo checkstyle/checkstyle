@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -71,54 +70,42 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCheck() throws Exception {
-        final DefaultConfiguration config = createModuleConfig(AnnotationOnSameLineCheck.class);
         final String[] expected = {
             "17:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
             "18:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
             "19:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Deprecated"),
             "24:18: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
         };
-        verifyWithInlineConfigParser(config,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationOnSameLineCheck.java"), expected);
     }
 
     @Test
     public void testCheckAcceptableTokens() throws Exception {
-        final DefaultConfiguration config = createModuleConfig(AnnotationOnSameLineCheck.class);
-        config.addProperty("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, "
-                + "CTOR_DEF, VARIABLE_DEF, PARAMETER_DEF, ANNOTATION_DEF, TYPECAST, "
-                + "LITERAL_THROWS, IMPLEMENTS_CLAUSE, TYPE_ARGUMENT, LITERAL_NEW, DOT, "
-                + "ANNOTATION_FIELD_DEF");
         final String[] expected = {
             "18:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation3"),
             "19:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
             "20:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Deprecated"),
             "25:18: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation3"),
         };
-        verifyWithInlineConfigParser(config,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationOnSameLineCheck3.java"), expected);
     }
 
     @Test
     public void testCheck2() throws Exception {
-        final DefaultConfiguration config = createModuleConfig(AnnotationOnSameLineCheck.class);
         final String[] expected = {
             "19:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
             "24:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
             "27:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
             "28:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
         };
-        verifyWithInlineConfigParser(config,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationOnSameLineCheck2.java"), expected);
     }
 
     @Test
     public void testCheckOnDifferentTokens() throws Exception {
-        final DefaultConfiguration config = createModuleConfig(AnnotationOnSameLineCheck.class);
-        config.addProperty("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, "
-                + "CTOR_DEF, VARIABLE_DEF, PARAMETER_DEF, ANNOTATION_DEF, TYPECAST, "
-                + "LITERAL_THROWS, IMPLEMENTS_CLAUSE, TYPE_ARGUMENT, LITERAL_NEW, DOT, "
-                + "ANNOTATION_FIELD_DEF");
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
             "17:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
@@ -137,16 +124,12 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             "59:1: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
             "62:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
         };
-        verifyWithInlineConfigParser(config,
+        verifyWithInlineConfigParser(
                 getPath("InputAnnotationOnSameLineCheckOnDifferentTokens.java"), expected);
     }
 
     @Test
     public void testAnnotationOnSameLineRecordsAndCompactCtors() throws Exception {
-        final DefaultConfiguration config = createModuleConfig(AnnotationOnSameLineCheck.class);
-        config.addProperty("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF,"
-            + " CTOR_DEF, VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF");
-
         final String[] expected = {
             "13:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "NonNull1"),
             "17:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
@@ -157,8 +140,8 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             "44:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
             "50:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
         };
-        verifyWithInlineConfigParser(config,
-            getNonCompilablePath("InputAnnotationOnSameLineRecordsAndCompactCtors.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputAnnotationOnSameLineRecordsAndCompactCtors.java"),
             expected);
     }
 

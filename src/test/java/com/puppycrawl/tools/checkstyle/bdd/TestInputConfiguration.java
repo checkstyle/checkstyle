@@ -59,18 +59,26 @@ public final class TestInputConfiguration {
 
     private final List<TestInputViolation> violations;
 
+    private final List<TestInputViolation> filteredViolations;
+
     private TestInputConfiguration(List<ModuleInputConfiguration> childrenModules,
-                                   List<TestInputViolation> violations) {
+                                   List<TestInputViolation> violations,
+                                   List<TestInputViolation> filteredViolations) {
         this.childrenModules = childrenModules;
         this.violations = violations;
+        this.filteredViolations = filteredViolations;
+    }
+
+    public List<ModuleInputConfiguration> getChildrenModules() {
+        return Collections.unmodifiableList(childrenModules);
     }
 
     public List<TestInputViolation> getViolations() {
         return Collections.unmodifiableList(violations);
     }
 
-    public List<ModuleInputConfiguration> getChildrenModules() {
-        return Collections.unmodifiableList(childrenModules);
+    public List<TestInputViolation> getFilteredViolations() {
+        return Collections.unmodifiableList(filteredViolations);
     }
 
     public DefaultConfiguration createConfiguration() {
@@ -93,24 +101,52 @@ public final class TestInputConfiguration {
         return root;
     }
 
+    public DefaultConfiguration createConfigurationWithoutFilters() {
+        final DefaultConfiguration root = new DefaultConfiguration(ROOT_MODULE_NAME);
+        final DefaultConfiguration treeWalker =
+                new DefaultConfiguration(TreeWalker.class.getName());
+        root.addProperty("charset", StandardCharsets.UTF_8.name());
+        childrenModules
+                .stream()
+                .map(ModuleInputConfiguration::createConfiguration)
+                .filter(moduleConfig -> !moduleConfig.getName().endsWith("Filter"))
+                .forEach(moduleConfig -> {
+                    if (CHECKER_CHILDREN.contains(moduleConfig.getName())) {
+                        root.addChild(moduleConfig);
+                    }
+                    else {
+                        treeWalker.addChild(moduleConfig);
+                    }
+                });
+        root.addChild(treeWalker);
+        return root;
+    }
+
     public static final class Builder {
 
         private final List<ModuleInputConfiguration> childrenModules = new ArrayList<>();
 
         private final List<TestInputViolation> violations = new ArrayList<>();
 
-        public void addViolation(int violationLine, String violationMessage) {
-            violations.add(new TestInputViolation(violationLine, violationMessage));
-        }
+        private final List<TestInputViolation> filteredViolations = new ArrayList<>();
 
         public void addChildModule(ModuleInputConfiguration childModule) {
             childrenModules.add(childModule);
         }
 
+        public void addViolation(int violationLine, String violationMessage) {
+            violations.add(new TestInputViolation(violationLine, violationMessage));
+        }
+
+        public void addFilteredViolation(int violationLine, String violationMessage) {
+            filteredViolations.add(new TestInputViolation(violationLine, violationMessage));
+        }
+
         public TestInputConfiguration build() {
             return new TestInputConfiguration(
                     childrenModules,
-                    violations
+                    violations,
+                    filteredViolations
             );
         }
     }

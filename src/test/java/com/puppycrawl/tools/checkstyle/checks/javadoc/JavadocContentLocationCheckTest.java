@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -54,59 +53,46 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocContentLocationCheck.class);
         final String[] expected = {
             "17:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
             "21:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocContentLocationDefault.java"), expected);
     }
 
     @Test
     public void testFirstLine() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocContentLocationCheck.class);
-        checkConfig.addProperty("location", "FIRST_LINE");
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
             "21:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocContentLocationFirstLine.java"), expected);
     }
 
     @Test
     public void testPackage() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocContentLocationCheck.class);
-        checkConfig.addProperty("location", "SECOND_LINE");
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("package-info.java"), expected);
     }
 
     @Test
     public void testInterface() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocContentLocationCheck.class);
-        checkConfig.addProperty("location", "FIRST_LINE");
         final String[] expected = {
             "10:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocContentLocationInterface.java"), expected);
     }
 
     @Test
     public void testOptionalSpacesAndAsterisks() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocContentLocationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocContentLocationTrailingSpace.java"), expected);
     }
 

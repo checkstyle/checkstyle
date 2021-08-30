@@ -28,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -49,29 +48,22 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCorrect() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
-        checkConfig.addProperty("forbiddenSummaryFragments",
-                "^@return the *|^This method returns *|^A [{]@code [a-zA-Z0-9]+[}]( is a )");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocCorrect.java"), expected);
     }
 
     @Test
     public void testInlineCorrect() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocInlineCorrect.java"), expected);
     }
 
     @Test
     public void testIncorrect() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
-        checkConfig.addProperty("forbiddenSummaryFragments",
-                "^@return the *|^This method returns |^A [{]@code [a-zA-Z0-9]+[}]( is a )");
         final String[] expected = {
             "24: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "42: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
@@ -89,15 +81,12 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "147: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "150: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocIncorrect.java"), expected);
     }
 
     @Test
     public void testInlineForbidden() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
-        checkConfig.addProperty("forbiddenSummaryFragments",
-                "@return the *|This method returns");
         final String[] expected = {
             "26: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "32: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
@@ -111,37 +100,32 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "114: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "120: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocInlineForbidden.java"), expected);
     }
 
     @Test
     public void testPeriod() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
-        checkConfig.addProperty("period", "_");
         final String[] expected = {
             "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "19: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "37: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocPeriod.java"), expected);
     }
 
     @Test
     public void testNoPeriod() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
-        checkConfig.addProperty("period", "");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocNoPeriod.java"), expected);
     }
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
         final String[] expected = {
             "23: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "41: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
@@ -158,15 +142,12 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "149: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
         };
 
-        createChecker(checkConfig);
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocIncorrect2.java"), expected);
     }
 
     @Test
     public void testInlineDefaultConfiguration() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
-        createChecker(checkConfig);
         final String[] expected = {
             "22: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "27: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
@@ -184,14 +165,12 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "186: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocInlineDefault.java"), expected);
     }
 
     @Test
     public void testPeriodAtEnd() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
-        checkConfig.addProperty("period", ".");
         final String[] expected = {
             "19: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "26: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
@@ -200,42 +179,39 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "60: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocPeriodAtEnd.java"), expected);
     }
 
     @Test
     public void testHtmlFormatSummary() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
         final String[] expected = {
             "22: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "37: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "42: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocHtmlFormat.java"), expected);
     }
 
     @Test
     public void testPackageInfo() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
         final String[] expected = {
             "10: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("package-info.java"), expected);
     }
 
     @Test
     public void testPackageInfoWithAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
         final String[] expected = {
             "10: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("inputs/package-info.java"), expected);
     }
 

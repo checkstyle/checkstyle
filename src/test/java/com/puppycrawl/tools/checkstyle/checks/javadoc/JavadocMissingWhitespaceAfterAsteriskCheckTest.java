@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -64,28 +63,22 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
 
     @Test
     public void testValid() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocMissingWhitespaceAfterAsteriskCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMissingWhitespaceAfterAsteriskValid.java"), expected);
     }
 
     @Test
     public void testValidWithTabCharacter() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocMissingWhitespaceAfterAsteriskCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMissingWhitespaceAfterAsteriskValidWithTab.java"), expected);
     }
 
     @Test
     public void testInvalid() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocMissingWhitespaceAfterAsteriskCheck.class);
         final String[] expected = {
             "10:4: " + getCheckMessage(MSG_KEY),
             "16:7: " + getCheckMessage(MSG_KEY),
@@ -101,7 +94,7 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
             "62:8: " + getCheckMessage(MSG_KEY),
             "65:10: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocMissingWhitespaceAfterAsteriskInvalid.java"), expected);
     }
 

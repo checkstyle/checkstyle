@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
@@ -45,22 +44,16 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(EmptyCatchBlockCheck.class);
         final String[] expected = {
             "25:31: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "32:83: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputEmptyCatchBlockDefault.java"), expected);
     }
 
     @Test
     public void testWithUserSetValues() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(EmptyCatchBlockCheck.class);
-        checkConfig.addProperty("exceptionVariableName", "expected|ignore|myException");
-        checkConfig.addProperty("commentFormat", "This is expected");
         final String[] expected = {
             "26:31: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "54:78: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
@@ -71,16 +64,12 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
             "221:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "230:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputEmptyCatchBlockDefault2.java"), expected);
     }
 
     @Test
     public void testLinesAreProperlySplitSystemIndependently() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(EmptyCatchBlockCheck.class);
-        checkConfig.addProperty("exceptionVariableName", "expected|ignore|myException");
-        checkConfig.addProperty("commentFormat", "This is expected");
         final String[] expected = {
             "25:31: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "53:78: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
@@ -94,8 +83,8 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
         final String originalLineSeparator = System.getProperty("line.separator");
         try {
             System.setProperty("line.separator", "\r\n");
-            verifyWithInlineConfigParser(checkConfig,
-                getPath("InputEmptyCatchBlockDefaultLF.java"), expected);
+            verifyWithInlineConfigParser(
+                    getPath("InputEmptyCatchBlockDefaultLF.java"), expected);
         }
         finally {
             System.setProperty("line.separator", originalLineSeparator);

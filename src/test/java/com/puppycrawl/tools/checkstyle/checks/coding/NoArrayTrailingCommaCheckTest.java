@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class NoArrayTrailingCommaCheckTest extends AbstractModuleTestSupport {
 
@@ -36,8 +35,6 @@ public class NoArrayTrailingCommaCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(NoArrayTrailingCommaCheck.class);
         final String[] expected = {
             "20:14: " + getCheckMessage(MSG_KEY),
             "25:32: " + getCheckMessage(MSG_KEY),
@@ -47,7 +44,7 @@ public class NoArrayTrailingCommaCheckTest extends AbstractModuleTestSupport {
             "53:14: " + getCheckMessage(MSG_KEY),
             "67:29: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoArrayTrailingComma.java"), expected);
     }
 
