@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -64,8 +63,6 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
 
     @Test
     public void testValid() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocMissingWhitespaceAfterAsteriskCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -74,8 +71,6 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
 
     @Test
     public void testValidWithTabCharacter() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocMissingWhitespaceAfterAsteriskCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -84,8 +79,6 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
 
     @Test
     public void testInvalid() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocMissingWhitespaceAfterAsteriskCheck.class);
         final String[] expected = {
             "10:4: " + getCheckMessage(MSG_KEY),
             "16:7: " + getCheckMessage(MSG_KEY),

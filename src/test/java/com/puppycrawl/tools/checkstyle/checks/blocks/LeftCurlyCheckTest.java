@@ -29,7 +29,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -60,7 +59,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "19:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -74,8 +72,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNl() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
-        checkConfig.addProperty("option", LeftCurlyOption.NL.toString());
         final String[] expected = {
             "36:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 14),
             "40:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 14),
@@ -94,8 +90,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNlow() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
-        checkConfig.addProperty("option", LeftCurlyOption.NLOW.toString());
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "19:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -116,7 +110,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault2() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "22:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -140,8 +133,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNewline2() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
-        checkConfig.addProperty("option", LeftCurlyOption.NL.toString());
         final String[] expected = {
             "19:44: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 44),
             "26:20: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 20),
@@ -158,7 +149,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault3() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "20:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -193,8 +183,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNewline3() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
-        checkConfig.addProperty("option", LeftCurlyOption.NL.toString());
         final String[] expected = {
             "31:33: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 33),
             "96:19: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 19),
@@ -209,7 +197,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMissingBraces() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "20:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -225,7 +212,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultWithAnnotations() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
         final String[] expected = {
             "23:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "27:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -240,8 +226,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNlWithAnnotations() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
-        checkConfig.addProperty("option", LeftCurlyOption.NL.toString());
         final String[] expected = {
             "48:55: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 55),
             "51:41: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 41),
@@ -254,8 +238,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNlowWithAnnotations() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
-        checkConfig.addProperty("option", LeftCurlyOption.NLOW.toString());
         final String[] expected = {
             "23:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "27:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -270,8 +252,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testLineBreakAfter() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
-        checkConfig.addProperty("option", LeftCurlyOption.EOL.toString());
         final String[] expected = {
             "22:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "25:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -296,9 +276,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIgnoreEnumsOptionTrue() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
-        checkConfig.addProperty("option", LeftCurlyOption.EOL.toString());
-        checkConfig.addProperty("ignoreEnums", "true");
         final String[] expectedWhileTrue = {
             "21:44: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 44),
         };
@@ -308,9 +285,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIgnoreEnumsOptionFalse() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
-        checkConfig.addProperty("option", LeftCurlyOption.EOL.toString());
-        checkConfig.addProperty("ignoreEnums", "false");
         final String[] expectedWhileFalse = {
             "17:17: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 17),
             "21:44: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 44),
@@ -321,7 +295,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultLambda() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "24:32: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 32),
@@ -334,8 +307,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNewLineOptionWithLambda() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
-        checkConfig.addProperty("option", LeftCurlyOption.NL.toString());
         final String[] expected = {
             "18:32: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 32),
             "24:32: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 32),
@@ -347,8 +318,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testEolSwitch() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
-        checkConfig.addProperty("option", LeftCurlyOption.EOL.toString());
         final String[] expected = {
             "22:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
             "26:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
@@ -362,8 +331,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNlSwitch() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
-        checkConfig.addProperty("option", LeftCurlyOption.NL.toString());
         final String[] expected = {
             "24:21: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 21),
             "56:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 14),
@@ -374,8 +341,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNlowSwitch() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
-        checkConfig.addProperty("option", LeftCurlyOption.NLOW.toString());
         final String[] expected = {
             "22:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
         };
@@ -385,7 +350,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testLeftCurlySwitchExpressions() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
         final String[] expected = {
             "20:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
             "22:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 17),
@@ -404,8 +368,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testLeftCurlySwitchExpressionsNewLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
-        checkConfig.addProperty("option", LeftCurlyOption.NL.toString());
 
         final String[] expected = {
             "17:57: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 57),
@@ -453,8 +415,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFirstLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
-        checkConfig.addProperty("option", LeftCurlyOption.EOL.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputLeftCurlyTestFirstLine.java"), expected);
@@ -462,8 +422,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCoverageIncrease() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
-        checkConfig.addProperty("option", LeftCurlyOption.NLOW.toString());
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "30:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -481,8 +439,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testLeftCurlyRecordsAndCompactCtors() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
-        checkConfig.addProperty("option", LeftCurlyOption.NLOW.toString());
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "24:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
@@ -497,8 +453,6 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testInvalidOption() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
-        checkConfig.addProperty("option", "invalid_option");
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;

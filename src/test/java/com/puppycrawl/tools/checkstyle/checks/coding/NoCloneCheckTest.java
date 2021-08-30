@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class NoCloneCheckTest
     extends AbstractModuleTestSupport {
@@ -38,8 +37,6 @@ public class NoCloneCheckTest
     @Test
     public void testHasClone()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NoCloneCheck.class);
         final String[] expected = {
             "17:5: " + getCheckMessage(MSG_KEY),
             "34:5: " + getCheckMessage(MSG_KEY),

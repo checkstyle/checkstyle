@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -68,8 +67,6 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(OuterTypeNumberCheck.class);
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_KEY, 3, 1),
         };
@@ -79,9 +76,6 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMax30() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(OuterTypeNumberCheck.class);
-        checkConfig.addProperty("max", "30");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputOuterTypeNumberSimple1.java"), expected);
@@ -89,9 +83,6 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWithInnerClass() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(OuterTypeNumberCheck.class);
-        checkConfig.addProperty("max", "1");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputOuterTypeNumberEmptyInner.java"), expected);
@@ -99,9 +90,6 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWithRecords() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OuterTypeNumberCheck.class);
-        checkConfig.addProperty("max", "1");
 
         final int max = 1;
 

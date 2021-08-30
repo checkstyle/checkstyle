@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -49,8 +48,6 @@ public class JavadocMissingLeadingAsteriskCheckTest extends AbstractModuleTestSu
 
     @Test
     public void testCorrect() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocMissingLeadingAsteriskCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMissingLeadingAsteriskCorrect.java"), expected);
@@ -58,8 +55,6 @@ public class JavadocMissingLeadingAsteriskCheckTest extends AbstractModuleTestSu
 
     @Test
     public void testIncorrect() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocMissingLeadingAsteriskCheck.class);
         final String[] expected = {
             "13: " + getCheckMessage(MSG_MISSING_ASTERISK),
             "18: " + getCheckMessage(MSG_MISSING_ASTERISK),

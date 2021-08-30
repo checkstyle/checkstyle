@@ -22,8 +22,6 @@ package com.puppycrawl.tools.checkstyle.grammar.java8;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class LambdaTest extends AbstractModuleTestSupport {
@@ -36,8 +34,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
     @Test
     public void testLambdaInVariableInitialization()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda1.java"), expected);
     }
@@ -45,8 +41,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
     @Test
     public void testWithoutArgsOneLineLambdaBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda2.java"), expected);
     }
@@ -54,8 +48,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
     @Test
     public void testWithoutArgsFullLambdaBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda3.java"), expected);
     }
@@ -63,8 +55,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
     @Test
     public void testWithOneArgWithOneLineBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda4.java"), expected);
     }
@@ -72,8 +62,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
     @Test
     public void testWithOneArgWithFullBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda5.java"), expected);
     }
@@ -81,8 +69,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
     @Test
     public void testWithOneArgWithoutTypeOneLineBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda6.java"), expected);
     }
@@ -90,8 +76,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
     @Test
     public void testWithOneArgWithoutTypeFullBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda7.java"), expected);
     }
@@ -99,8 +83,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
     @Test
     public void testWithFewArgsWithoutTypeOneLineBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda8.java"), expected);
     }
@@ -108,8 +90,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
     @Test
     public void testWithFewArgsWithoutTypeFullBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda9.java"), expected);
     }
@@ -117,8 +97,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
     @Test
     public void testWithOneArgWithoutParenthesesWithoutTypeOneLineBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda10.java"), expected);
     }
@@ -126,8 +104,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
     @Test
     public void testWithOneArgWithoutParenthesesWithoutTypeFullBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda11.java"), expected);
     }
@@ -135,8 +111,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
     @Test
     public void testWithFewArgWithTypeOneLine()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda12.java"), expected);
     }
@@ -144,8 +118,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
     @Test
     public void testWithFewArgWithTypeFullBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda13.java"), expected);
     }
@@ -153,8 +125,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
     @Test
     public void testWithMultilineBody()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda14.java"), expected);
     }
@@ -162,8 +132,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
     @Test
     public void testCasesFromSpec()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda15.java"), expected);
     }
@@ -171,8 +139,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
     @Test
     public void testWithTypecast()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda16.java"), expected);
     }
@@ -180,8 +146,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
     @Test
     public void testInAssignment()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda17.java"), expected);
     }
@@ -189,8 +153,6 @@ public class LambdaTest extends AbstractModuleTestSupport {
     @Test
     public void testInTernary()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda18.java"), expected);
     }

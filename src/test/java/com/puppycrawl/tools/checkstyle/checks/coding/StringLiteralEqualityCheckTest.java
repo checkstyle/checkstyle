@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class StringLiteralEqualityCheckTest
         extends AbstractModuleTestSupport {
@@ -37,8 +36,6 @@ public class StringLiteralEqualityCheckTest
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expected = {
             "17:18: " + getCheckMessage(MSG_KEY, "=="),
             "22:20: " + getCheckMessage(MSG_KEY, "=="),
@@ -50,8 +47,6 @@ public class StringLiteralEqualityCheckTest
 
     @Test
     public void testStringLiteralEqualityTextBlocks() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expected = {
             "14:34: " + getCheckMessage(MSG_KEY, "=="),
             "22:21: " + getCheckMessage(MSG_KEY, "=="),

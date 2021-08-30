@@ -86,6 +86,6 @@ public final class TestInputViolation implements Comparable<TestInputViolation> 
 
     @Override
     public int compareTo(TestInputViolation testInputViolation) {
-        return lineNo - testInputViolation.lineNo;
+        return Integer.compare(lineNo, testInputViolation.lineNo);
     }
 }

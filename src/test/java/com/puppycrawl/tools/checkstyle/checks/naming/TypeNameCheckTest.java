@@ -25,7 +25,6 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck.DEFAUL
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class TypeNameCheckTest
     extends AbstractModuleTestSupport {
@@ -38,9 +37,6 @@ public class TypeNameCheckTest
     @Test
     public void testSpecified()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(TypeNameCheck.class);
-        checkConfig.addProperty("format", "^inputHe");
         final String[] expected = {
             "25:14: " + getCheckMessage(MSG_INVALID_PATTERN,
                         "InputTypeName", "^inputHe"),
@@ -52,8 +48,6 @@ public class TypeNameCheckTest
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(TypeNameCheck.class);
         final String[] expected = {
             "15:7: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderClass2", DEFAULT_PATTERN),
@@ -71,9 +65,6 @@ public class TypeNameCheckTest
     @Test
     public void testClassSpecific()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(TypeNameCheck.class);
-        checkConfig.addProperty("tokens", "CLASS_DEF");
         final String[] expected = {
             "15:7: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderClass3", DEFAULT_PATTERN),
@@ -85,9 +76,6 @@ public class TypeNameCheckTest
     @Test
     public void testInterfaceSpecific()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(TypeNameCheck.class);
-        checkConfig.addProperty("tokens", "INTERFACE_DEF");
         final String[] expected = {
             "17:22: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderInterface", DEFAULT_PATTERN),
@@ -99,9 +87,6 @@ public class TypeNameCheckTest
     @Test
     public void testEnumSpecific()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(TypeNameCheck.class);
-        checkConfig.addProperty("tokens", "ENUM_DEF");
         final String[] expected = {
             "19:17: " + getCheckMessage(MSG_INVALID_PATTERN,
                     "inputHeaderEnum", DEFAULT_PATTERN),
@@ -113,9 +98,6 @@ public class TypeNameCheckTest
     @Test
     public void testAnnotationSpecific()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(TypeNameCheck.class);
-        checkConfig.addProperty("tokens", "ANNOTATION_DEF");
         final String[] expected = {
             "21:23: " + getCheckMessage(MSG_INVALID_PATTERN,
                 "inputHeaderAnnotation", DEFAULT_PATTERN),
@@ -126,8 +108,6 @@ public class TypeNameCheckTest
 
     @Test
     public void testTypeNameRecords() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(TypeNameCheck.class);
 
         final String[] expected = {
             "23:10: " + getCheckMessage(MSG_INVALID_PATTERN, "Third_Name", DEFAULT_PATTERN),

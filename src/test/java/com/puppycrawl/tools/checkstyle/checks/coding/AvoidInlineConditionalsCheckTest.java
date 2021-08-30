@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class AvoidInlineConditionalsCheckTest
     extends AbstractModuleTestSupport {
@@ -38,8 +37,6 @@ public class AvoidInlineConditionalsCheckTest
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(AvoidInlineConditionalsCheck.class);
         final String[] expected = {
             "34:29: " + getCheckMessage(MSG_KEY),
             "35:20: " + getCheckMessage(MSG_KEY),

@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class UpperEllCheckTest
@@ -48,8 +47,6 @@ public class UpperEllCheckTest
     @Test
     public void testWithChecker()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(UpperEllCheck.class);
         final String[] expected = {
             "96:40: " + getCheckMessage(MSG_KEY),
         };
