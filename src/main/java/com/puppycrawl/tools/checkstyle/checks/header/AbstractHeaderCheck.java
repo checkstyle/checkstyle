@@ -113,7 +113,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     private void loadHeaderFile() throws CheckstyleException {
         checkHeaderNotInitialized();
         try (Reader headerReader = new InputStreamReader(new BufferedInputStream(
-                    headerFile.toURL().openStream()), charset)) {
+                    headerFile.toURL().openStream()), Charset.forName(charset))) {
             loadHeader(headerReader);
         }
         catch (final IOException ex) {
