@@ -23,6 +23,68 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
+/**
+ * Ensures that annotations have no blank lines between their sibling annotations and targets.
+ * <ul>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenSet}.
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+ * CLASS_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+ * INTERFACE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+ * ENUM_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+ * CTOR_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+ * VARIABLE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+ * RECORD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+ * COMPACT_CTOR_DEF</a>.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name="AdjacentAnnotation"/&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ *
+ * </pre>
+ * <p>
+ * To configure the check to check for annotations applied on interfaces, variables and constructors:
+ * </p>
+ * <pre>
+ * &lt;module name="AdjacentAnnotation"&gt; &lt;property name="tokens" value="INTERFACE_DEF, VARIABLE_DEF, CTOR_DEF"/&gt; &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ *
+ * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code annotation.not.adjacent}
+ * </li>
+ * </ul> @since null
+ */
 @StatelessCheck
 public class AdjacentAnnotationCheck extends AbstractAnnotationModifiersCheck {
 
@@ -32,7 +94,7 @@ public class AdjacentAnnotationCheck extends AbstractAnnotationModifiersCheck {
     public static final String MSG_KEY_ANNOTATION_NOT_ADJACENT = "annotation.not.adjacent";
 
     @Override
-    protected void checkModifiersNode( DetailAST modifiersNode ) {
+    public void processModifiersNode( DetailAST modifiersNode ) {
         for ( DetailAST annotationNode = modifiersNode.getFirstChild();
                 annotationNode != null;
                 annotationNode = annotationNode.getNextSibling() ) {

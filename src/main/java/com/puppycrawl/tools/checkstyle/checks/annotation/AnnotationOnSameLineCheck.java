@@ -20,10 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -150,7 +148,7 @@ public class AnnotationOnSameLineCheck extends AbstractAnnotationModifiersCheck 
     public static final String MSG_KEY_ANNOTATION_ON_SAME_LINE = "annotation.same.line";
 
     @Override
-    protected void checkModifiersNode( DetailAST modifiersNode ) {
+    public void processModifiersNode( DetailAST modifiersNode ) {
         for (DetailAST annotationNode = modifiersNode.getFirstChild();
                 annotationNode != null;
                 annotationNode = annotationNode.getNextSibling()) {

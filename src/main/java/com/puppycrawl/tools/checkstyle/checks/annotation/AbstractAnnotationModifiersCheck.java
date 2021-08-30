@@ -7,6 +7,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public abstract class AbstractAnnotationModifiersCheck extends AbstractCheck {
 
+    public abstract void processModifiersNode(DetailAST modifiersNode);
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
@@ -60,7 +62,7 @@ public abstract class AbstractAnnotationModifiersCheck extends AbstractCheck {
             modifiersNode = nodeWithAnnotations.findFirstToken(TokenTypes.ANNOTATIONS);
         }
         if (modifiersNode != null) {
-            checkModifiersNode( modifiersNode );
+            processModifiersNode( modifiersNode );
         }
     }
 
@@ -91,7 +93,5 @@ public abstract class AbstractAnnotationModifiersCheck extends AbstractCheck {
         }
         return identNode.getText();
     }
-
-    protected abstract void checkModifiersNode(DetailAST modifiersNode);
 
 }

@@ -426,7 +426,7 @@ public class PackageObjectFactory implements ModuleFactory {
      */
     private static void fillChecksFromAnnotationPackage() {
         NAME_TO_FULL_MODULE_NAME.put("AdjacentAnnotationCheck",
-                BASE_PACKAGE + ".checks.annotation.AdjacentAnnotation");
+                BASE_PACKAGE + ".checks.annotation.AdjacentAnnotationCheck");
         NAME_TO_FULL_MODULE_NAME.put("AnnotationLocationCheck",
                 BASE_PACKAGE + ".checks.annotation.AnnotationLocationCheck");
         NAME_TO_FULL_MODULE_NAME.put("AnnotationOnSameLineCheck",
