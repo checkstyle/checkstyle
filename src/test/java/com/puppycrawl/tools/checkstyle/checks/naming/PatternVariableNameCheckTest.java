@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class PatternVariableNameCheckTest
@@ -47,8 +46,6 @@ public class PatternVariableNameCheckTest
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(PatternVariableNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -71,9 +68,6 @@ public class PatternVariableNameCheckTest
 
     @Test
     public void testPatternVariableNameNoSingleChar() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(PatternVariableNameCheck.class);
-        checkConfig.addProperty("format", "^[a-z][a-zA-Z0-9]+$");
 
         final String pattern = "^[a-z][a-zA-Z0-9]+$";
 

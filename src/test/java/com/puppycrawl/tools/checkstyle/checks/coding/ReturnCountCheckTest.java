@@ -32,7 +32,6 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -49,8 +48,6 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ReturnCountCheck.class);
         final String[] expected = {
             "28:5: " + getCheckMessage(MSG_KEY_VOID, 7, 1),
             "40:5: " + getCheckMessage(MSG_KEY_VOID, 2, 1),
@@ -63,9 +60,6 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFormat() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ReturnCountCheck.class);
-        checkConfig.addProperty("format", "^$");
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_KEY, 7, 2),
             "28:5: " + getCheckMessage(MSG_KEY_VOID, 7, 1),
@@ -79,8 +73,6 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMethodsAndLambdas() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ReturnCountCheck.class);
-        checkConfig.addProperty("max", "1");
         final String[] expected = {
             "25:55: " + getCheckMessage(MSG_KEY, 2, 1),
             "37:49: " + getCheckMessage(MSG_KEY, 2, 1),
@@ -94,8 +86,6 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testLambdasOnly() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ReturnCountCheck.class);
-        checkConfig.addProperty("tokens", "LAMBDA");
         final String[] expected = {
             "43:42: " + getCheckMessage(MSG_KEY, 3, 2),
         };
@@ -105,8 +95,6 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMethodsOnly() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ReturnCountCheck.class);
-        checkConfig.addProperty("tokens", "METHOD_DEF");
         final String[] expected = {
             "35:5: " + getCheckMessage(MSG_KEY, 3, 2),
             "42:5: " + getCheckMessage(MSG_KEY, 4, 2),
@@ -119,8 +107,6 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWithReturnOnlyAsTokens() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ReturnCountCheck.class);
-        checkConfig.addProperty("tokens", "LITERAL_RETURN");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputReturnCountLambda4.java"), expected);
@@ -152,9 +138,6 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMaxForVoid() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ReturnCountCheck.class);
-        checkConfig.addProperty("max", "2");
-        checkConfig.addProperty("maxForVoid", "0");
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY_VOID, 1, 0),
             "18:5: " + getCheckMessage(MSG_KEY_VOID, 1, 0),

@@ -31,7 +31,6 @@ import java.util.SortedSet;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
@@ -46,8 +45,6 @@ public class DeclarationOrderCheckTest
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(DeclarationOrderCheck.class);
 
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_ACCESS),
@@ -78,10 +75,6 @@ public class DeclarationOrderCheckTest
 
     @Test
     public void testOnlyConstructors() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(DeclarationOrderCheck.class);
-        checkConfig.addProperty("ignoreConstructors", "false");
-        checkConfig.addProperty("ignoreModifiers", "true");
 
         final String[] expected = {
             "53:9: " + getCheckMessage(MSG_STATIC),
@@ -98,10 +91,6 @@ public class DeclarationOrderCheckTest
 
     @Test
     public void testOnlyModifiers() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(DeclarationOrderCheck.class);
-        checkConfig.addProperty("ignoreConstructors", "true");
-        checkConfig.addProperty("ignoreModifiers", "false");
 
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_ACCESS),
@@ -178,7 +167,6 @@ public class DeclarationOrderCheckTest
 
     @Test
     public void testForwardReference() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DeclarationOrderCheck.class);
         final String[] expected = {
             "20:5: " + getCheckMessage(MSG_ACCESS),
             "21:5: " + getCheckMessage(MSG_ACCESS),
@@ -196,7 +184,6 @@ public class DeclarationOrderCheckTest
 
     @Test
     public void testDeclarationOrderRecordsAndCompactCtors() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DeclarationOrderCheck.class);
         final String[] expected = {
             "21:9: " + getCheckMessage(MSG_CONSTRUCTOR),
             "24:9: " + getCheckMessage(MSG_STATIC),
@@ -211,7 +198,6 @@ public class DeclarationOrderCheckTest
 
     @Test
     public void testDeclarationOrderInterfaceMemberScopeIsPublic() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DeclarationOrderCheck.class);
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_STATIC),
         };
@@ -222,7 +208,6 @@ public class DeclarationOrderCheckTest
 
     @Test
     public void testVariableAccess() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DeclarationOrderCheck.class);
         final String[] expected = {
             "23:5: " + getCheckMessage(MSG_ACCESS),
         };
@@ -232,7 +217,6 @@ public class DeclarationOrderCheckTest
 
     @Test
     public void testAvoidDuplicatesForStaticFinalFields() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DeclarationOrderCheck.class);
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_STATIC),
         };

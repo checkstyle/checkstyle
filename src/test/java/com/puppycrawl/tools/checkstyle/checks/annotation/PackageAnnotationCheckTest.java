@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -41,7 +40,6 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testGoodPackageAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(PackageAnnotationCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -59,7 +57,6 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNoPackageAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(PackageAnnotationCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -69,7 +66,6 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBadPackageAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(PackageAnnotationCheck.class);
 
         final String[] expected = {
             "10:1: " + getCheckMessage(MSG_KEY),

@@ -25,8 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -50,7 +48,6 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultConfigurationOnCorrectFile() throws Exception {
-        final Configuration checkConfig = createModuleConfig(CatchParameterNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -59,7 +56,6 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultConfigurationOnFileWithViolations() throws Exception {
-        final Configuration checkConfig = createModuleConfig(CatchParameterNameCheck.class);
         final String defaultFormat = "^(e|t|ex|[a-z][a-z][a-zA-Z]+)$";
 
         final String[] expected = {
@@ -79,8 +75,6 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCustomFormatFromJavadoc() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(CatchParameterNameCheck.class);
-        checkConfig.addProperty("format", "^[a-z][a-zA-Z0-9]+$");
 
         final String[] expected = {
             "13:28: " + getCheckMessage(MSG_INVALID_PATTERN, "e", "^[a-z][a-zA-Z0-9]+$"),
@@ -93,8 +87,6 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCustomFormatWithNoAnchors() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(CatchParameterNameCheck.class);
-        checkConfig.addProperty("format", "[a-z]");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 

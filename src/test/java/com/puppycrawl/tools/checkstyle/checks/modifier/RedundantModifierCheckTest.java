@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -39,8 +38,6 @@ public class RedundantModifierCheckTest
 
     @Test
     public void testClassesInsideOfInterfaces() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RedundantModifierCheck.class);
         final String[] expected = {
             "19:5: " + getCheckMessage(MSG_KEY, "static"),
             "25:5: " + getCheckMessage(MSG_KEY, "public"),
@@ -54,8 +51,6 @@ public class RedundantModifierCheckTest
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RedundantModifierCheck.class);
         final String[] expected = {
             "57:12: " + getCheckMessage(MSG_KEY, "static"),
             "60:9: " + getCheckMessage(MSG_KEY, "public"),
@@ -79,8 +74,6 @@ public class RedundantModifierCheckTest
     @Test
     public void testStaticMethodInInterface()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RedundantModifierCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierStaticMethodInInterface.java"),
@@ -90,8 +83,6 @@ public class RedundantModifierCheckTest
     @Test
     public void testFinalInInterface()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RedundantModifierCheck.class);
         final String[] expected = {
             "13:9: " + getCheckMessage(MSG_KEY, "final"),
         };
@@ -101,8 +92,6 @@ public class RedundantModifierCheckTest
 
     @Test
     public void testEnumConstructorIsImplicitlyPrivate() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RedundantModifierCheck.class);
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY, "private"),
         };
@@ -112,8 +101,6 @@ public class RedundantModifierCheckTest
 
     @Test
     public void testInnerTypeInInterfaceIsImplicitlyStatic() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RedundantModifierCheck.class);
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_KEY, "static"),
             "16:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -125,8 +112,6 @@ public class RedundantModifierCheckTest
 
     @Test
     public void testNotPublicClassConstructorHasNotPublicModifier() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RedundantModifierCheck.class);
 
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_KEY, "public"),
@@ -138,8 +123,6 @@ public class RedundantModifierCheckTest
 
     @Test
     public void testNestedClassConsInPublicInterfaceHasValidPublicModifier() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RedundantModifierCheck.class);
 
         final String[] expected = {
             "22:17: " + getCheckMessage(MSG_KEY, "public"),
@@ -180,8 +163,6 @@ public class RedundantModifierCheckTest
 
     @Test
     public void testNestedStaticEnum() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RedundantModifierCheck.class);
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_KEY, "static"),
             "16:9: " + getCheckMessage(MSG_KEY, "static"),
@@ -195,8 +176,6 @@ public class RedundantModifierCheckTest
     @Test
     public void testFinalInAnonymousClass()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RedundantModifierCheck.class);
         final String[] expected = {
             "22:20: " + getCheckMessage(MSG_KEY, "final"),
         };
@@ -207,7 +186,6 @@ public class RedundantModifierCheckTest
 
     @Test
     public void testFinalInTryWithResource() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RedundantModifierCheck.class);
         final String[] expected = {
             "30:14: " + getCheckMessage(MSG_KEY, "final"),
             "35:14: " + getCheckMessage(MSG_KEY, "final"),
@@ -220,7 +198,6 @@ public class RedundantModifierCheckTest
 
     @Test
     public void testFinalInAbstractMethods() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RedundantModifierCheck.class);
         final String[] expected = {
             "12:33: " + getCheckMessage(MSG_KEY, "final"),
             "16:49: " + getCheckMessage(MSG_KEY, "final"),
@@ -235,7 +212,6 @@ public class RedundantModifierCheckTest
 
     @Test
     public void testEnumMethods() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RedundantModifierCheck.class);
         final String[] expected = {
             "15:16: " + getCheckMessage(MSG_KEY, "final"),
             "30:16: " + getCheckMessage(MSG_KEY, "final"),
@@ -246,7 +222,6 @@ public class RedundantModifierCheckTest
 
     @Test
     public void testEnumStaticMethodsInPublicClass() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RedundantModifierCheck.class);
         final String[] expected = {
             "20:23: " + getCheckMessage(MSG_KEY, "final"),
         };
@@ -256,7 +231,6 @@ public class RedundantModifierCheckTest
 
     @Test
     public void testAnnotationOnEnumConstructor() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RedundantModifierCheck.class);
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_KEY, "private"),
         };
@@ -267,7 +241,6 @@ public class RedundantModifierCheckTest
 
     @Test
     public void testPrivateMethodInPrivateClass() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RedundantModifierCheck.class);
         final String[] expected = {
             "13:17: " + getCheckMessage(MSG_KEY, "final"),
         };
@@ -278,7 +251,6 @@ public class RedundantModifierCheckTest
 
     @Test
     public void testTryWithResourcesBlock() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RedundantModifierCheck.class);
         final String[] expected = {
             "18:19: " + getCheckMessage(MSG_KEY, "final"),
         };

@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ArrayTypeStyleCheckTest
@@ -48,8 +47,6 @@ public class ArrayTypeStyleCheckTest
     @Test
     public void testJavaStyleOn()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ArrayTypeStyleCheck.class);
         final String[] expected = {
             "13:23: " + getCheckMessage(MSG_KEY),
             "14:18: " + getCheckMessage(MSG_KEY),
@@ -67,9 +64,6 @@ public class ArrayTypeStyleCheckTest
     @Test
     public void testJavaStyleOff()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ArrayTypeStyleCheck.class);
-        checkConfig.addProperty("javaStyle", "false");
         final String[] expected = {
             "12:16: " + getCheckMessage(MSG_KEY),
             "16:39: " + getCheckMessage(MSG_KEY),
@@ -88,8 +82,6 @@ public class ArrayTypeStyleCheckTest
     @Test
     public void testNestedGenerics()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ArrayTypeStyleCheck.class);
         final String[] expected = {
             "22:45: " + getCheckMessage(MSG_KEY),
             "23:61: " + getCheckMessage(MSG_KEY),

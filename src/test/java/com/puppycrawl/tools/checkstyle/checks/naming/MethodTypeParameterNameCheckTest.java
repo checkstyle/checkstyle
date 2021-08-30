@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MethodTypeParameterNameCheckTest
@@ -58,8 +57,6 @@ public class MethodTypeParameterNameCheckTest
     @Test
     public void testMethodDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodTypeParameterNameCheck.class);
 
         final String pattern = "^[A-Z]$";
 
@@ -77,9 +74,6 @@ public class MethodTypeParameterNameCheckTest
     @Test
     public void testMethodFooName()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodTypeParameterNameCheck.class);
-        checkConfig.addProperty("format", "^foo$");
 
         final String pattern = "^foo$";
 

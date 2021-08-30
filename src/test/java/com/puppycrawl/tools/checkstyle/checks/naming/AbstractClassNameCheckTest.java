@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
@@ -38,10 +37,6 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIllegalAbstractClassName() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(AbstractClassNameCheck.class);
-        checkConfig.addProperty("ignoreName", "false");
-        checkConfig.addProperty("ignoreModifier", "true");
 
         final String pattern = "^Abstract.+$";
 
@@ -60,11 +55,6 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCustomFormat() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(AbstractClassNameCheck.class);
-        checkConfig.addProperty("ignoreName", "false");
-        checkConfig.addProperty("ignoreModifier", "true");
-        checkConfig.addProperty("format", "^NonAbstract.+$");
 
         final String[] expected = {
             "12:1: "
@@ -82,9 +72,6 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIllegalClassType() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(AbstractClassNameCheck.class);
-        checkConfig.addProperty("ignoreName", "true");
-        checkConfig.addProperty("ignoreModifier", "false");
 
         final String[] expected = {
             "18:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClassType"),
@@ -97,9 +84,6 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAllVariants() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(AbstractClassNameCheck.class);
-        checkConfig.addProperty("ignoreName", "false");
-        checkConfig.addProperty("ignoreModifier", "false");
 
         final String pattern = "^Abstract.+$";
 
@@ -121,7 +105,6 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFalsePositive() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(AbstractClassNameCheck.class);
         final String pattern = "^Abstract.+$";
         final String[] expected = {
             "12:1: "

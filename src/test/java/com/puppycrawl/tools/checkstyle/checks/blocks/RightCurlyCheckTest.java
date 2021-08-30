@@ -28,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -51,7 +50,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
         final String[] expected = {
             "25:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 17),
             "28:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 17),
@@ -65,11 +63,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSame() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.SAME.toString());
-        checkConfig.addProperty("tokens", "LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, "
-                + "LITERAL_IF, LITERAL_ELSE, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, "
-                + "ANNOTATION_DEF, ENUM_DEF");
         final String[] expected = {
             "26:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 17),
             "29:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 17),
@@ -86,8 +79,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSameOmitOneLiners() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.SAME.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSameOmitOneLiners.java"), expected);
@@ -95,11 +86,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSameDoesNotComplainForNonMultilineConstructs() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.SAME.toString());
-        checkConfig.addProperty("tokens", "LITERAL_DO, LITERAL_FOR, LITERAL_WHILE, STATIC_INIT,"
-                + " INSTANCE_INIT, CLASS_DEF, METHOD_DEF, CTOR_DEF, ANNOTATION_DEF, ENUM_DEF,"
-                + " INTERFACE_DEF");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSame.java"), expected);
@@ -107,10 +93,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAlone() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.ALONE.toString());
-        checkConfig.addProperty("tokens", "LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, "
-                + "LITERAL_IF, LITERAL_ELSE, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO");
         final String[] expected = {
             "57:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
             "94:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
@@ -129,10 +111,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNewLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.ALONE.toString());
-        checkConfig.addProperty("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF, "
-                + "ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF");
         final String[] expected = {
             "86:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
             "111:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
@@ -157,10 +135,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testShouldStartLine2() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.ALONE_OR_SINGLELINE.toString());
-        checkConfig.addProperty("tokens", "CLASS_DEF, METHOD_DEF, "
-                + "ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF");
         final String[] expected = {
             "86:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
             "111:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
@@ -180,10 +154,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testForceLineBreakBefore() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.ALONE.toString());
-        checkConfig.addProperty("tokens", "LITERAL_FOR,"
-                + " LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT");
         final String[] expected = {
             "38:43: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 43),
             "41:17: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 17),
@@ -197,7 +167,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testForceLineBreakBefore2() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestForceLineBreakBefore2.java"), expected);
@@ -205,11 +174,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNullPointerException() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.ALONE.toString());
-        checkConfig.addProperty("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, "
-            + "LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF, "
-                + "INTERFACE_DEF");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestNullPointerException.java"), expected);
@@ -217,11 +181,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWithAnnotations() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.ALONE.toString());
-        checkConfig.addProperty("tokens", "LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, "
-            + "LITERAL_IF, LITERAL_ELSE, CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, "
-            + "LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF");
         final String[] expected = {
             "18:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
             "21:65: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 65),
@@ -300,12 +259,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAloneOrSingleLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.ALONE_OR_SINGLELINE.toString());
-        checkConfig.addProperty("tokens", "LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, "
-            + "LITERAL_IF, LITERAL_ELSE, CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, "
-            + "LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF, "
-                + "INTERFACE_DEF");
         final String[] expected = {
             "70:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
             "84:42: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 42),
@@ -352,7 +305,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCatchWithoutFinally() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
         final String[] expected = {
             "19:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
         };
@@ -362,9 +314,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSingleLineClass() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.ALONE.toString());
-        checkConfig.addProperty("tokens", "CLASS_DEF");
         final String[] expected = {
             "29:56: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 56),
         };
@@ -374,8 +323,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testInvalidOption() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", "invalid_option");
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -395,9 +342,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRightCurlySameAndLiteralDo() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.SAME.toString());
-        checkConfig.addProperty("tokens", "LITERAL_DO");
         final String[] expected = {
             "70:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
             "75:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
@@ -409,8 +353,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTryWithResourceSame() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.SAME.toString());
         final String[] expected = {
             "19:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
             "32:67: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 67),
@@ -423,8 +365,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTryWithResourceAlone() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.ALONE.toString());
         final String[] expected = {
             "27:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "32:67: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 67),
@@ -441,8 +381,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTryWithResourceAloneSingle() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.ALONE_OR_SINGLELINE.toString());
         final String[] expected = {
             "27:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "36:64: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 64),
@@ -455,8 +393,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBracePolicyAloneAndSinglelineIfBlocks() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.ALONE.toString());
         final String[] expected = {
             "13:32: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 32),
             "15:45: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 45),
@@ -468,8 +404,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRightCurlyIsAloneLambda() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.ALONE.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestIsAloneLambda.java"), expected);
@@ -477,9 +411,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRightCurlyIsAloneOrSinglelineLambda() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option",
-            RightCurlyOption.ALONE_OR_SINGLELINE.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestIsAloneOrSinglelineLambda.java"), expected);
@@ -487,8 +418,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRightCurlyIsSameLambda() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.SAME.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestIsSameLambda.java"), expected);
@@ -496,11 +425,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOptionAlone() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.ALONE.toString());
-        checkConfig.addProperty("tokens", "CLASS_DEF, METHOD_DEF, LITERAL_IF, LITERAL_ELSE, "
-                + "LITERAL_DO, LITERAL_WHILE, LITERAL_FOR, STATIC_INIT, "
-                + "INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF");
         final String[] expected = {
             "16:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
             "17:21: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 21),
@@ -531,11 +455,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOptionAloneOrSingleLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.ALONE_OR_SINGLELINE.toString());
-        checkConfig.addProperty("tokens", "CLASS_DEF, METHOD_DEF, LITERAL_IF, LITERAL_ELSE, "
-                + "LITERAL_DO, LITERAL_WHILE, LITERAL_FOR, STATIC_INIT, "
-                + "INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF");
         final String[] expected = {
             "21:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
             "30:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
@@ -554,10 +473,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBlocksEndingWithSemiOptionSame() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.SAME.toString());
-        checkConfig.addProperty("tokens", "CLASS_DEF, METHOD_DEF, "
-                + "CTOR_DEF, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF");
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
             "21:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
@@ -579,10 +494,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBlocksEndingWithSemiOptionAlone() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.ALONE.toString());
-        checkConfig.addProperty("tokens", "CLASS_DEF, METHOD_DEF, "
-                + "CTOR_DEF, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF");
         final String[] expected = {
             "13:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
             "16:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
@@ -611,11 +522,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBlocksEndingWithSemiOptionAloneOrSingleLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option",
-                RightCurlyOption.ALONE_OR_SINGLELINE.toString());
-        checkConfig.addProperty("tokens", "CLASS_DEF, METHOD_DEF, "
-                + "CTOR_DEF, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF");
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
             "21:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
@@ -637,9 +543,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNewTokensAlone() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.ALONE.toString());
-        checkConfig.addProperty("tokens", "ENUM_DEF");
         final String[] expected = {
             "13:19: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 19),
             "16:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
@@ -651,10 +554,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNewTokensAloneOrSingleLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option",
-                RightCurlyOption.ALONE_OR_SINGLELINE.toString());
-        checkConfig.addProperty("tokens", "ENUM_DEF");
         final String[] expected = {
             "16:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
         };
@@ -664,9 +563,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNewTokensSame() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.SAME.toString());
-        checkConfig.addProperty("tokens", "ENUM_DEF");
         final String[] expected = {
             "16:20: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 20),
         };
@@ -676,12 +572,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRightCurlyDoubleBrace() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.ALONE.toString());
-        checkConfig.addProperty("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR,"
-                + " LITERAL_WHILE, STATIC_INIT,"
-                + " INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF, RECORD_DEF,"
-                + " COMPACT_CTOR_DEF");
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 1),
             "14:2: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 2),
@@ -692,11 +582,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRightCurlyEmptyOnSingleLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR,"
-                + " LITERAL_WHILE, STATIC_INIT,"
-                + " INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF, RECORD_DEF,"
-                + " COMPACT_CTOR_DEF");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestEmptyOnSingleLine.java"), expected);
@@ -704,10 +589,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRightCurlyEndOfFile() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.SAME.toString());
-        checkConfig.addProperty("tokens", "CLASS_DEF, METHOD_DEF, CTOR_DEF,"
-                + " LITERAL_FOR, LITERAL_WHILE, STATIC_INIT, INSTANCE_INIT");
         final String[] expected = {
             "16:2: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 2),
             "16:3: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 3),
@@ -718,11 +599,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRightCurlyRecordsAndCompactCtors() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
-        checkConfig.addProperty("option", RightCurlyOption.SAME.toString());
-        checkConfig.addProperty("tokens", "RECORD_DEF, COMPACT_CTOR_DEF,"
-            + " CTOR_DEF, METHOD_DEF");
-
         final String[] expected = {
             "23:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "23:11: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 11),

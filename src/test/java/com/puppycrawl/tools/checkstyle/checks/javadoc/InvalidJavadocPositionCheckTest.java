@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
@@ -59,7 +58,6 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final Configuration checkConfig = createModuleConfig(InvalidJavadocPositionCheck.class);
         final String[] expected = {
             "7:9: " + getCheckMessage(MSG_KEY),
             "10:1: " + getCheckMessage(MSG_KEY),
@@ -90,7 +88,6 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testPackageInfo() throws Exception {
-        final Configuration checkConfig = createModuleConfig(InvalidJavadocPositionCheck.class);
         final String[] expected = {
             "7:1: " + getCheckMessage(MSG_KEY),
         };
@@ -100,7 +97,6 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testPackageInfoComment() throws Exception {
-        final Configuration checkConfig = createModuleConfig(InvalidJavadocPositionCheck.class);
         final String[] expected = {
             "7:1: " + getCheckMessage(MSG_KEY),
         };

@@ -29,7 +29,6 @@ import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestLoggingReporter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -45,8 +44,6 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
-        checkConfig.addProperty("format", "System\\.(out)|(err)\\.print(ln)?\\(");
         final String[] expected = {
             "77: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
@@ -57,9 +54,6 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMessageProperty()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
-        checkConfig.addProperty("format", "System\\.(out)|(err)\\.print(ln)?\\(");
-        checkConfig.addProperty("message", "Bad line :(");
         final String[] expected = {
             "78: Bad line :(",
         };
@@ -69,10 +63,6 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIgnoreCaseTrue() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
-        checkConfig.addProperty("format", "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(");
-        checkConfig.addProperty("ignoreCase", "true");
-        checkConfig.addProperty("maximum", "0");
 
         final String[] expected = {
             "78: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
@@ -83,9 +73,6 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIgnoreCaseFalse() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
-        checkConfig.addProperty("format", "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\(");
-        checkConfig.addProperty("ignoreCase", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineSemantic4.java"), expected);
@@ -93,9 +80,6 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMinimum() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
-        checkConfig.addProperty("format", "\\r");
-        checkConfig.addProperty("minimum", "500");
         final String[] expected = {
             "1: " + getCheckMessage(MSG_REGEXP_MINIMUM, "500", "\\r"),
         };
@@ -106,10 +90,6 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSetMessage() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
-        checkConfig.addProperty("format", "\\r");
-        checkConfig.addProperty("minimum", "500");
-        checkConfig.addProperty("message", "someMessage");
         final String[] expected = {
             "1: someMessage",
         };
@@ -120,9 +100,6 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMaximum() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpSinglelineCheck.class);
-        checkConfig.addProperty("format", "System\\.(out)|(err)\\.print(ln)?\\(");
-        checkConfig.addProperty("maximum", "1");
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineSemantic7.java"), EMPTY);
     }

@@ -30,7 +30,6 @@ import org.junit.jupiter.api.Test;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -58,8 +57,6 @@ public class FinalClassCheckTest
 
     @Test
     public void testFinalClass() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(FinalClassCheck.class);
         final String[] expected = {
             "11:1: " + getCheckMessage(MSG_KEY, "InputFinalClass"),
             "19:4: " + getCheckMessage(MSG_KEY, "test4"),
@@ -73,8 +70,6 @@ public class FinalClassCheckTest
 
     @Test
     public void testClassWithPrivateCtorAndNestedExtendingSubclass() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(FinalClassCheck.class);
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_KEY, "C"),
         };
@@ -87,8 +82,6 @@ public class FinalClassCheckTest
     @Test
     public void testClassWithPrivateCtorAndNestedExtendingSubclassWithoutPackage()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(FinalClassCheck.class);
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY, "C"),
         };
@@ -100,8 +93,6 @@ public class FinalClassCheckTest
 
     @Test
     public void testFinalClassConstructorInRecord() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(FinalClassCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 

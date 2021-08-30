@@ -25,8 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -64,8 +62,6 @@ public class JavadocVariableCheckTest
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocVariableCheck.class);
         final String[] expected = {
             "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "311:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -79,8 +75,6 @@ public class JavadocVariableCheckTest
     @Test
     public void testAnother()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocVariableCheck.class);
         final String[] expected = {
             "23:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "30:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -93,9 +87,6 @@ public class JavadocVariableCheckTest
     @Test
     public void testAnother2()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocVariableCheck.class);
-        checkConfig.addProperty("scope", Scope.PUBLIC.getName());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableInner2.java"), expected);
@@ -104,8 +95,6 @@ public class JavadocVariableCheckTest
     @Test
     public void testAnother3()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocVariableCheck.class);
         final String[] expected = {
             "17:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "22:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -122,9 +111,6 @@ public class JavadocVariableCheckTest
     @Test
     public void testAnother4()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocVariableCheck.class);
-        checkConfig.addProperty("scope", Scope.PUBLIC.getName());
         final String[] expected = {
             "52:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
@@ -134,8 +120,6 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testScopes() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocVariableCheck.class);
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -182,9 +166,6 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testScopes2() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocVariableCheck.class);
-        checkConfig.addProperty("scope", Scope.PROTECTED.getName());
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -198,10 +179,6 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testExcludeScope() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocVariableCheck.class);
-        checkConfig.addProperty("scope", Scope.PRIVATE.getName());
-        checkConfig.addProperty("excludeScope", Scope.PROTECTED.getName());
         final String[] expected = {
             "17:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -245,9 +222,6 @@ public class JavadocVariableCheckTest
     @Test
     public void testIgnoredVariableNames()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocVariableCheck.class);
-        checkConfig.addProperty("ignoreNamePattern", "log|logger");
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -294,9 +268,6 @@ public class JavadocVariableCheckTest
     @Test
     public void testDoNotIgnoreAnythingWhenIgnoreNamePatternIsEmpty()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocVariableCheck.class);
-        checkConfig.addProperty("ignoreNamePattern", "");
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -343,7 +314,6 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testLambdaLocalVariablesDoNotNeedJavadoc() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavadocVariableCheck.class);
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
@@ -354,9 +324,6 @@ public class JavadocVariableCheckTest
 
     @Test
     public void testInterfaceMemberScopeIsPublic() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavadocVariableCheck.class);
-        checkConfig.addProperty("scope", Scope.PUBLIC.getName());
-        checkConfig.addProperty("tokens", "ENUM_CONSTANT_DEF, VARIABLE_DEF");
         final String[] expected = {
             "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "20:5: " + getCheckMessage(MSG_JAVADOC_MISSING),

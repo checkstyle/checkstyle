@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarnings
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
@@ -39,7 +38,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testSingleDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
 
         final String[] expected = {
             "18:23: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
@@ -62,8 +60,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testSingleAll() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", ".*");
 
         final String[] expected = {
             "15:19: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -105,8 +101,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testSingleNoUnchecked() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*");
 
         final String[] expected = {
             "15:19: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -130,9 +124,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testSingleNoUncheckedTokens() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*");
-        checkConfig.addProperty("tokens", "CLASS_DEF,METHOD_DEF");
 
         final String[] expected = {
             "13:19: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -153,8 +144,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testSingleNoUnWildcard() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", ".*un.*");
 
         final String[] expected = {
             "15:19: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -187,8 +176,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testSingleNoUncheckedUnused() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*|^unused$");
 
         final String[] expected = {
             "15:19: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -218,8 +205,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testSingleNoUncheckedUnusedAll() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*|^unused$*|.*");
 
         final String[] expected = {
             "15:19: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -261,7 +246,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testCompactDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
 
         final String[] expected = {
             "18:24: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
@@ -276,7 +260,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCompactDefaultNonConstant() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
 
         final String[] expected = {
             "18:24: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
@@ -306,8 +289,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testCompactAll() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", ".*");
 
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -335,8 +316,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCompactAllNonConstant() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", ".*");
 
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -397,8 +376,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testCompactNoUnchecked() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*");
 
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -417,9 +394,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testCompactNoUncheckedTokens() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*");
-        checkConfig.addProperty("tokens", "CLASS_DEF");
 
         final String[] expected = {
             "13:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -431,9 +405,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCompactNoUncheckedTokensNonConstant() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*");
-        checkConfig.addProperty("tokens", "CLASS_DEF");
 
         final String[] expected = {
             "13:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -451,8 +422,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testCompactNoUnWildcard() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "un.*");
 
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -473,8 +442,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCompactNoUnWildcardNonConstant() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "un.*");
 
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -516,8 +483,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testCompactNoUncheckedUnused() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*|^unused$");
 
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -537,8 +502,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCompactNoUncheckedUnusedNonConstant() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*|^unused$");
 
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -574,8 +537,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testCompactNoUncheckedUnusedAll() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*|^unused$*|.*");
 
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -603,8 +564,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCompactNoUncheckedUnusedAllNonConstant() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*|^unused$*|.*");
 
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -665,7 +624,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testExpandedDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
 
         final String[] expected = {
             "18:30: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
@@ -680,7 +638,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testExpandedDefaultNonConstant() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
 
         final String[] expected = {
             "18:30: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
@@ -708,8 +665,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testExpandedAll() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", ".*");
 
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -737,8 +692,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testExpandedAllNonConstant() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", ".*");
 
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -795,8 +748,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testExpandedNoUnchecked() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*");
 
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -812,8 +763,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testExpandedNoUncheckedNonConstant() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*");
 
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -841,9 +790,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testExpandedNoUncheckedTokens() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*");
-        checkConfig.addProperty("tokens", "CLASS_DEF");
 
         final String[] expected = {
             "13:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -855,9 +801,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testExpandedNoUncheckedTokensNonConstant() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*");
-        checkConfig.addProperty("tokens", "CLASS_DEF");
 
         final String[] expected = {
             "13:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -875,8 +818,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testExpandedNoUnWildcard() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "un.*");
 
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -897,8 +838,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testExpandedNoUnWildcardNonConstant() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "un.*");
 
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -936,8 +875,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testExpandedNoUncheckedUnused() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*|^unused$");
 
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -957,8 +894,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testExpandedNoUncheckedUnusedNonConstant() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*|^unused$");
 
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -995,8 +930,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testExpandedNoUncheckedUnusedAll() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*|^unused$*|.*");
 
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -1024,8 +957,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testExpandedNoUncheckedUnusedAllNonConstant() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*|^unused$*|.*");
 
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -1079,7 +1010,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testUncheckedInConstant() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -1089,7 +1019,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testValuePairAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -1099,7 +1028,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWorkingProperlyOnComplexAnnotations() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
 
         final String[] expected = {
             "30:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
@@ -1113,7 +1041,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWorkingProperlyOnComplexAnnotationsNonConstant() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
 
         final String[] expected = {
             "30:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
@@ -1128,8 +1055,6 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSuppressWarningsRecords() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SuppressWarningsCheck.class);
-        checkConfig.addProperty("format", "^unchecked$*|^unused$*|.*");
 
         final String[] expected = {
             "24:28: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
