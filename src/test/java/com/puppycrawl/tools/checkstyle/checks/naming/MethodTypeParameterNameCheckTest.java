@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MethodTypeParameterNameCheckTest
@@ -58,8 +57,6 @@ public class MethodTypeParameterNameCheckTest
     @Test
     public void testMethodDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodTypeParameterNameCheck.class);
 
         final String pattern = "^[A-Z]$";
 
@@ -70,16 +67,13 @@ public class MethodTypeParameterNameCheckTest
             "30:6: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
             "35:10: " + getCheckMessage(MSG_INVALID_PATTERN, "_fo", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodTypeParameterName.java"), expected);
     }
 
     @Test
     public void testMethodFooName()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodTypeParameterNameCheck.class);
-        checkConfig.addProperty("format", "^foo$");
 
         final String pattern = "^foo$";
 
@@ -91,7 +85,7 @@ public class MethodTypeParameterNameCheckTest
             "42:6: " + getCheckMessage(MSG_INVALID_PATTERN, "E", pattern),
             "44:14: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMethodTypeParameterName1.java"), expected);
     }
 

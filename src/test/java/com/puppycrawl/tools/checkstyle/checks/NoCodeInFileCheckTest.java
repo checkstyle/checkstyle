@@ -71,29 +71,26 @@ public class NoCodeInFileCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMultiLineComment() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoCodeInFileCheck.class);
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_NO_CODE),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoCodeInFile3.java"), expected);
     }
 
     @Test
     public void testFileContainingCode() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoCodeInFileCheck.class);
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoCodeInFile4.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
     public void testBothSingleLineAndMultiLineComment() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoCodeInFileCheck.class);
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_NO_CODE),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputNoCodeInFile5.java"), expected);
     }
 }

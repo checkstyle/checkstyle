@@ -141,8 +141,8 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
         checkerConfig.addChild(config);
 
         verify(checkerConfig, fileName, expectedViolations);
-        verifyFilterWithInlineConfigParser(regexpConfig,
-                config, fileName, VIOLATION, expectedViolations);
+        verifyFilterWithInlineConfigParser(
+                fileName, VIOLATION, expectedViolations);
     }
 
 }

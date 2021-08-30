@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -40,8 +39,6 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(UnnecessarySemicolonAfterTypeMemberDeclarationCheck.class);
 
         final String[] expected = {
             "13:5: " + getCheckMessage(MSG_SEMI),
@@ -60,15 +57,13 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
             "52:20: " + getCheckMessage(MSG_SEMI),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputUnnecessarySemicolonAfterTypeMemberDeclaration.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessarySemicolonAfterTypeMemberDeclaration.java"),
             expected);
     }
 
     @Test
     public void testUnnecessarySemicolonAfterTypeMemberDeclarationRecords() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(UnnecessarySemicolonAfterTypeMemberDeclarationCheck.class);
 
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_SEMI),
@@ -80,8 +75,9 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
             "40:5: " + getCheckMessage(MSG_SEMI),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputUnnecessarySemicolonAfterTypeMemberDeclarationRecords.java"),
+        verifyWithInlineConfigParser(
+            getNonCompilablePath(
+                    "InputUnnecessarySemicolonAfterTypeMemberDeclarationRecords.java"),
             expected);
     }
 

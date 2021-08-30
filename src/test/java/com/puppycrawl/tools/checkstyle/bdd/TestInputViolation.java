@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.bdd;
 
 import java.util.regex.Pattern;
 
-public final class TestInputViolation {
+public final class TestInputViolation implements Comparable<TestInputViolation> {
 
     /** Pattern to match the symbol: "{". */
     private static final Pattern OPEN_CURLY_PATTERN = Pattern.compile("\\{");
@@ -82,5 +82,10 @@ public final class TestInputViolation {
             regex += rawMessage;
         }
         return regex;
+    }
+
+    @Override
+    public int compareTo(TestInputViolation testInputViolation) {
+        return Integer.compare(lineNo, testInputViolation.lineNo);
     }
 }

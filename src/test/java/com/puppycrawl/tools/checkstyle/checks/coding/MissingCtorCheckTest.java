@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class MissingCtorCheckTest extends AbstractModuleTestSupport {
 
@@ -36,15 +35,13 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMissingSwitchDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MissingCtorCheck.class);
 
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputMissingCtor.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputMissingCtor.java"),
                expected);
     }
 
@@ -58,8 +55,6 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMissingCtorClassOnOneLine() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MissingCtorCheck.class);
 
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY),
@@ -67,7 +62,7 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
             "11:9: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputMissingCtor2.java"),
                 expected);
     }

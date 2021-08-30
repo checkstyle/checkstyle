@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport {
@@ -47,8 +46,6 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
     @Test
     public void testRecordDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RecordTypeParameterNameCheck.class);
 
         final String pattern = "^[A-Z]$";
 
@@ -57,16 +54,13 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
             "23:15: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
             "38:25: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRecordTypeParameterName.java"), expected);
     }
 
     @Test
     public void testClassFooName()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RecordTypeParameterNameCheck.class);
-        checkConfig.addProperty("format", "^foo$");
 
         final String pattern = "^foo$";
 
@@ -75,7 +69,7 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
             "23:15: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
             "44:19: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRecordTypeParameterNameFoo.java"), expected);
     }
 

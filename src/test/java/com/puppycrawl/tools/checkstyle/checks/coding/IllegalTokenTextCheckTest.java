@@ -31,7 +31,6 @@ import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -47,72 +46,48 @@ public class IllegalTokenTextCheckTest
     @Test
     public void testCaseSensitive()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addProperty("tokens", "STRING_LITERAL");
-        checkConfig.addProperty("format", "a href");
-        checkConfig.addProperty("ignoreCase", "false");
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextTokens.java"), expected);
     }
 
     @Test
     public void testCaseInSensitive()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addProperty("tokens", "STRING_LITERAL");
-        checkConfig.addProperty("format", "a href");
-        checkConfig.addProperty("ignoreCase", "true");
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
             "35:32: " + getCheckMessage(MSG_KEY, "a href"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextTokens2.java"), expected);
     }
 
     @Test
     public void testCustomMessage()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addProperty("tokens", "STRING_LITERAL");
-        checkConfig.addProperty("format", "a href");
 
-        checkConfig.addProperty("message", "My custom message");
         final String[] expected = {
             "34:28: " + "My custom message",
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextTokens3.java"), expected);
     }
 
     @Test
     public void testNullCustomMessage()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addProperty("tokens", "STRING_LITERAL");
-        checkConfig.addProperty("format", "a href");
 
-        checkConfig.addProperty("message", null);
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextTokens4.java"), expected);
     }
 
     @Test
     public void testIllegalTokenTextTextBlocks() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addProperty("tokens", "STRING_LITERAL, TEXT_BLOCK_CONTENT");
-        checkConfig.addProperty("format", "a href");
 
         final String[] expected = {
             "16:28: " + getCheckMessage(MSG_KEY, "a href"),
@@ -121,16 +96,12 @@ public class IllegalTokenTextCheckTest
             "36:37: " + getCheckMessage(MSG_KEY, "a href"),
             "42:54: " + getCheckMessage(MSG_KEY, "a href"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputIllegalTokenTextTextBlocks.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalTokenTextTextBlocks.java"), expected);
     }
 
     @Test
     public void testIllegalTokenTextTextBlocksQuotes() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addProperty("tokens", "STRING_LITERAL, TEXT_BLOCK_CONTENT");
-        checkConfig.addProperty("format", "\"");
 
         final String[] expected = {
             "16:28: " + getCheckMessage(MSG_KEY, "\""),
@@ -141,8 +112,8 @@ public class IllegalTokenTextCheckTest
             "36:37: " + getCheckMessage(MSG_KEY, "\""),
             "42:42: " + getCheckMessage(MSG_KEY, "\""),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputIllegalTokenTextTextBlocksQuotes.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalTokenTextTextBlocksQuotes.java"), expected);
     }
 
     @Test
@@ -157,17 +128,12 @@ public class IllegalTokenTextCheckTest
     @Test
     public void testCommentToken()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addProperty("tokens", "COMMENT_CONTENT");
-        checkConfig.addProperty("format", "a href");
 
-        checkConfig.addProperty("message", null);
         final String[] expected = {
             "1:3: " + getCheckMessage(MSG_KEY, "a href"),
             "45:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextTokens5.java"), expected);
     }
 

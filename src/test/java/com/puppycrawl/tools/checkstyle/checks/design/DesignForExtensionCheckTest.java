@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -47,13 +46,11 @@ public class DesignForExtensionCheckTest
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(DesignForExtensionCheck.class);
         final String[] expected = {
             "50:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtension", "doh"),
             "104:9: " + getCheckMessage(MSG_KEY, "anotherNonFinalClass", "someMethod"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDesignForExtension.java"), expected);
     }
 
@@ -67,7 +64,6 @@ public class DesignForExtensionCheckTest
 
     @Test
     public void testOverridableMethods() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
         final String[] expected = {
             "14:9: " + getCheckMessage(MSG_KEY, "A", "foo1"),
             "38:9: " + getCheckMessage(MSG_KEY, "A", "foo8"),
@@ -89,14 +85,12 @@ public class DesignForExtensionCheckTest
             "198:9: " + getCheckMessage(MSG_KEY, "A", "foo39"),
             "205:9: " + getCheckMessage(MSG_KEY, "A", "foo41"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDesignForExtensionOverridableMethods.java"), expected);
     }
 
     @Test
     public void testIgnoredAnnotationsOption() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
-        checkConfig.addProperty("ignoredAnnotations", "Override, Deprecated, MyAnnotation");
         final String[] expected = {
             "39:5: "
                 + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "foo1"),
@@ -107,46 +101,38 @@ public class DesignForExtensionCheckTest
             "169:5: "
                 + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "foo24"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDesignForExtensionIgnoredAnnotations.java"), expected);
     }
 
     @Test
     public void testIgnoreAnnotationsOptionWithMultipleAnnotations() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
-        checkConfig.addProperty("ignoredAnnotations",
-            "Override, Deprecated, Before, After, BeforeClass, AfterClass");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDesignForExtensionMultipleAnnotations.java"), expected);
     }
 
     @Test
     public void testNativeMethods() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
-        checkConfig.addProperty("ignoredAnnotations", "Deprecated");
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtensionNativeMethods", "foo1"),
             "32:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtensionNativeMethods", "foo6"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDesignForExtensionNativeMethods.java"), expected);
     }
 
     @Test
     public void testDesignForExtensionRecords() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputDesignForExtensionRecords.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputDesignForExtensionRecords.java"), expected);
     }
 
     @Test
     public void testRequiredJavadocPhrase() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
-        checkConfig.addProperty("requiredJavadocPhrase", "This implementation");
         final String className = "InputDesignForExtensionRequiredJavadocPhrase";
         final String[] expected = {
             "41:5: " + getCheckMessage(MSG_KEY, className, "foo5"),
@@ -154,30 +140,27 @@ public class DesignForExtensionCheckTest
             "51:5: " + getCheckMessage(MSG_KEY, className, "foo9"),
             "67:5: " + getCheckMessage(MSG_KEY, className, "foo12"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDesignForExtensionRequiredJavadocPhrase.java"), expected);
     }
 
     @Test
     public void testRequiredJavadocPhraseMultiLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
-        checkConfig.addProperty("requiredJavadocPhrase", "This[\\s\\S]*implementation");
         final String className = "InputDesignForExtensionRequiredJavadocPhraseMultiLine";
         final String[] expected = {
             "23:5: " + getCheckMessage(MSG_KEY, className, "foo2"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDesignForExtensionRequiredJavadocPhraseMultiLine.java"),
             expected);
     }
 
     @Test
     public void testInterfaceMemberScopeIsPublic() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
         final String[] expected = {
             "15:9: " + getCheckMessage(MSG_KEY, "Inner", "getProperty"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputDesignForExtensionInterfaceMemberScopeIsPublic.java"),
             expected);
     }

@@ -39,115 +39,102 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultNoPackage() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
 
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_KEY_MISSING),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputPackageDeclarationNoPackage.java"), expected);
     }
 
     @Test
     public void testDefaultWithPackage() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputPackageDeclarationPlain.java"), expected);
     }
 
     @Test
     public void testOnFileWithCommentOnly() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputPackageDeclarationWithCommentOnly.java"), expected);
     }
 
     @Test
     public void testFileForDiffDirectoryMismatch() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
 
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_KEY_MISMATCH),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputPackageDeclarationDiffDirectory.java"), expected);
     }
 
     @Test
     public void testFileForDirectoryMismatchAtParent() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
 
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_KEY_MISMATCH),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputPackageDeclarationDiffDirectoryAtParent.java"),
                 expected);
     }
 
     @Test
     public void testFileForDirectoryMismatchAtSubpackage() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
 
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_KEY_MISMATCH),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputPackageDeclarationDiffDirectoryAtSubpackage.java"),
                 expected);
     }
 
     @Test
     public void testFileIgnoreDiffDirectoryMismatch() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
-        checkConfig.addProperty("matchDirectoryStructure", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputPackageDeclarationDiffDirectory2.java"),
                 expected);
     }
 
     @Test
     public void testFileIgnoreDirectoryMismatchAtParent() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
-        checkConfig.addProperty("matchDirectoryStructure", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputPackageDeclarationDiffDirectoryAtParent2.java"),
                 expected);
     }
 
     @Test
     public void testFileIgnoreDirectoryMismatchAtSubpackage() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
-        checkConfig.addProperty("matchDirectoryStructure", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputPackageDeclarationDiffDirectoryAtSubpackage2.java"),
                 expected);
     }
 
     @Test
     public void testNoPackage() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY_MISSING),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputPackageDeclarationNoPackage.java"),
                 expected);
     }

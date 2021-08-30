@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -48,18 +47,14 @@ public class JavadocTagContinuationIndentationCheckTest
 
     @Test
     public void testFp() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocTagContinuationIndentationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
-               getPath("InputJavadocTagContinuationIndentationGuavaFalsePositive.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTagContinuationIndentationGuavaFalsePositive.java"),
                expected);
     }
 
     @Test
     public void testCheck() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocTagContinuationIndentationCheck.class);
         final String[] expected = {
             "55: " + getCheckMessage(MSG_KEY, 4),
             "117: " + getCheckMessage(MSG_KEY, 4),
@@ -76,29 +71,24 @@ public class JavadocTagContinuationIndentationCheckTest
             "332: " + getCheckMessage(MSG_KEY, 4),
             "350: " + getCheckMessage(MSG_KEY, 4),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocTagContinuationIndentation.java"),
                 expected);
     }
 
     @Test
     public void testCheckWithOffset3() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocTagContinuationIndentationCheck.class);
-        checkConfig.addProperty("offset", "3");
         final String[] expected = {
             "15: " + getCheckMessage(MSG_KEY, 3),
             "27: " + getCheckMessage(MSG_KEY, 3),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocTagContinuationIndentationOffset3.java"),
                 expected);
     }
 
     @Test
     public void testCheckWithDescription() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocTagContinuationIndentationCheck.class);
         final String[] expected = {
             "16: " + getCheckMessage(MSG_KEY, 4),
             "17: " + getCheckMessage(MSG_KEY, 4),
@@ -107,16 +97,13 @@ public class JavadocTagContinuationIndentationCheckTest
             "49: " + getCheckMessage(MSG_KEY, 4),
             "50: " + getCheckMessage(MSG_KEY, 4),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocTagContinuationIndentationDescription.java"),
                 expected);
     }
 
     @Test
     public void testBlockTag() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocTagContinuationIndentationCheck.class);
-        checkConfig.addProperty("offset", "4");
         final String[] expected = {
             "21: " + getCheckMessage(MSG_KEY, 4),
             "32: " + getCheckMessage(MSG_KEY, 4),
@@ -143,7 +130,7 @@ public class JavadocTagContinuationIndentationCheckTest
             "104: " + getCheckMessage(MSG_KEY, 4),
             "105: " + getCheckMessage(MSG_KEY, 4),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocTagContinuationIndentationBlockTag.java"),
                 expected);
     }

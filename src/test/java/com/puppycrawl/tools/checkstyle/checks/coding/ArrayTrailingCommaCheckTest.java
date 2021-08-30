@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class ArrayTrailingCommaCheckTest
     extends AbstractModuleTestSupport {
@@ -38,15 +37,13 @@ public class ArrayTrailingCommaCheckTest
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ArrayTrailingCommaCheck.class);
         final String[] expected = {
             "23:9: " + getCheckMessage(MSG_KEY),
             "43:9: " + getCheckMessage(MSG_KEY),
             "80:9: " + getCheckMessage(MSG_KEY),
             "82:12: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputArrayTrailingComma.java"), expected);
     }
 
@@ -60,9 +57,6 @@ public class ArrayTrailingCommaCheckTest
 
     @Test
     public void testAlwaysDemandTrailingComma() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ArrayTrailingCommaCheck.class);
-        checkConfig.addProperty("alwaysDemandTrailingComma", "true");
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY),
             "22:29: " + getCheckMessage(MSG_KEY),
@@ -75,8 +69,8 @@ public class ArrayTrailingCommaCheckTest
             "54:17: " + getCheckMessage(MSG_KEY),
             "56:13: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getPath("InputArrayTrailingCommaAlwaysDemandTrailingComma.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputArrayTrailingCommaAlwaysDemandTrailingComma.java"), expected);
     }
 
 }

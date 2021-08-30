@@ -77,8 +77,6 @@ public class RedundantImportCheckTest
     @Test
     public void testWithChecker()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RedundantImportCheck.class);
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_SAME,
                 "com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.*"),
@@ -90,21 +88,19 @@ public class RedundantImportCheckTest
             "16:1: " + getCheckMessage(MSG_DUPLICATE, 15, "java.util.List"),
             "28:1: " + getCheckMessage(MSG_DUPLICATE, 27, "javax.swing.WindowConstants.*"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputRedundantImportWithChecker.java"), expected);
     }
 
     @Test
     public void testUnnamedPackage()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RedundantImportCheck.class);
         final String[] expected = {
             "10:1: " + getCheckMessage(MSG_DUPLICATE, 9, "java.util.List"),
             "12:1: " + getCheckMessage(MSG_LANG, "java.lang.String"),
         };
-        verifyWithInlineConfigParser(checkConfig,
-            getNonCompilablePath("InputRedundantImport_UnnamedPackage.java"),
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRedundantImport_UnnamedPackage.java"),
             expected);
     }
 

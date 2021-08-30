@@ -28,7 +28,6 @@ import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -54,22 +53,18 @@ public class GeneratedJava14LexerTest
         // Encoding problems will occur if default encoding is not UTF-8
         Assumptions.assumeTrue(IS_UTF8, "Problems with encoding may occur");
 
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
         // input is 'ÃЯ'
         final String[] expected = {
             "18:9: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN,
                     new String(new char[] {0xC3, 0x042F}), "^[a-z][a-zA-Z0-9]*$"),
         };
-        verifyWithInlineConfigParser(checkConfig, getPath("InputGrammar.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputGrammar.java"), expected);
     }
 
     @Test
     public void testSemicolonBetweenImports() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputSemicolonBetweenImports.java"), expected);
     }
 

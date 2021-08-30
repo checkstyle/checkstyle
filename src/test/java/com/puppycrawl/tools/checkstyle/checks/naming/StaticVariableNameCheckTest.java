@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -48,41 +47,29 @@ public class StaticVariableNameCheckTest
     @Test
     public void testSpecified()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(StaticVariableNameCheck.class);
-        checkConfig.addProperty("format", "^s[A-Z][a-zA-Z0-9]*$");
 
         final String pattern = "^s[A-Z][a-zA-Z0-9]*$";
 
         final String[] expected = {
             "36:24: " + getCheckMessage(MSG_INVALID_PATTERN, "badStatic", pattern),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputStaticVariableName1.java"), expected);
     }
 
     @Test
     public void testAccessTuning()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(StaticVariableNameCheck.class);
-        checkConfig.addProperty("format", "^s[A-Z][a-zA-Z0-9]*$");
-
-        // allow method names and class names to equal
-        checkConfig.addProperty("applyToPrivate", "false");
-
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputStaticVariableName2.java"), expected);
     }
 
     @Test
     public void testInterfaceOrAnnotationBlock()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(StaticVariableNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputStaticVariableName.java"), expected);
     }
 
