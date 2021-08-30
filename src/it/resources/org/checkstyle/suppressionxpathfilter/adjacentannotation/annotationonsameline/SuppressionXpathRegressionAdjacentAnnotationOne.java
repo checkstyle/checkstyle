@@ -1,6 +1,6 @@
-package org.checkstyle.suppressionxpathfilter.annotationonsameline;
+package org.checkstyle.suppressionxpathfilter.adjacentannotation.annotationonsameline;
 
-public class SuppressionXpathRegressionAnnotationOnSameLineOne {
+public class SuppressionXpathRegressionAdjacentAnnotationOne {
     @Deprecated int x;
 
     @Deprecated //warn

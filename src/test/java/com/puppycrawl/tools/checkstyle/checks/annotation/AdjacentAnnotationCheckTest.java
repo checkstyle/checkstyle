@@ -73,9 +73,10 @@ public class AdjacentAnnotationCheckTest extends AbstractModuleTestSupport {
     public void testCheck() throws Exception {
         final DefaultConfiguration config = createModuleConfig(AdjacentAnnotationCheck.class);
         config.addAttribute("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, "
-                                              + "CTOR_DEF, VARIABLE_DEF, PARAMETER_DEF, ANNOTATION_DEF, TYPECAST, "
-                                              + "LITERAL_THROWS, IMPLEMENTS_CLAUSE, TYPE_ARGUMENT, LITERAL_NEW, DOT, "
-                                              + "ANNOTATION_FIELD_DEF");
+                                              + "CTOR_DEF, VARIABLE_DEF, PARAMETER_DEF, "
+                                              + "ANNOTATION_DEF, TYPECAST, LITERAL_THROWS, "
+                                              + "IMPLEMENTS_CLAUSE, TYPE_ARGUMENT, "
+                                              + "LITERAL_NEW, DOT, ANNOTATION_FIELD_DEF");
         final String[] expected = {
                 "12:1: " + getCheckMessage(MSG_KEY_ANNOTATION_NOT_ADJACENT, "Bar", 14),
                 "17:5: " + getCheckMessage(MSG_KEY_ANNOTATION_NOT_ADJACENT, "Bar", 19),

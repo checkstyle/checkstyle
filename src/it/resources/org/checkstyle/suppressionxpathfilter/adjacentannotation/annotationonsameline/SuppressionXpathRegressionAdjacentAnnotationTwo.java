@@ -1,9 +1,9 @@
-package org.checkstyle.suppressionxpathfilter.annotationonsameline;
+package org.checkstyle.suppressionxpathfilter.adjacentannotation.annotationonsameline;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SuppressionXpathRegressionAnnotationOnSameLineTwo {
+public class SuppressionXpathRegressionAdjacentAnnotationTwo {
     @Deprecated //warn
     private List<String> names = new ArrayList<>();
 }
