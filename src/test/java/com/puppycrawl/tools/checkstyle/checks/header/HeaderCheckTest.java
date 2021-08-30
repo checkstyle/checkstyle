@@ -114,7 +114,7 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
                     + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
                     + " - Cannot set property 'charset' to 'XSO-8859-1'",
                     ex.getMessage(), "Invalid exception message");
-            assertEquals("unsupported charset: 'XSO-8859-1'",
+            assertEquals("XSO-8859-1",
                     ex.getCause().getCause().getCause().getMessage(), "Invalid exception message");
         }
     }
