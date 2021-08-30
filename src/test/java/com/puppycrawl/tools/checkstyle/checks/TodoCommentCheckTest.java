@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class TodoCommentCheckTest
@@ -47,9 +46,6 @@ public class TodoCommentCheckTest
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(TodoCommentCheck.class);
-        checkConfig.addProperty("format", "FIXME:");
         final String[] expected = {
             "1:3: " + getCheckMessage(MSG_KEY, "FIXME:"),
             "164:7: " + getCheckMessage(MSG_KEY, "FIXME:"),

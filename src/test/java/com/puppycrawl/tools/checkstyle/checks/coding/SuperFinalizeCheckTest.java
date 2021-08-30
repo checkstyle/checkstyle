@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck.M
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class SuperFinalizeCheckTest
     extends AbstractModuleTestSupport {
@@ -36,8 +35,6 @@ public class SuperFinalizeCheckTest
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(SuperFinalizeCheck.class);
         final String[] expected = {
             "34:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
             "41:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
@@ -49,8 +46,6 @@ public class SuperFinalizeCheckTest
 
     @Test
     public void testMethodReference() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(SuperFinalizeCheck.class);
         final String[] expected = {
             "23:20: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
         };

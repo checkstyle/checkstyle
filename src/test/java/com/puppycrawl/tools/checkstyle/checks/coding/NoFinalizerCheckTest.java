@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -54,8 +53,6 @@ public class NoFinalizerCheckTest
     @Test
     public void testHasFinalizer()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NoFinalizerCheck.class);
         final String[] expected = {
             "11:5: " + getCheckMessage(MSG_KEY),
         };
@@ -66,8 +63,6 @@ public class NoFinalizerCheckTest
     @Test
     public void testHasNoFinalizer()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NoFinalizerCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputNoFinalizerFallThrough.java"), expected);
@@ -76,8 +71,6 @@ public class NoFinalizerCheckTest
     @Test
     public void testHasNoFinalizerTryWithResource()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NoFinalizerCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputNoFinalizerFallThrough.java"), expected);

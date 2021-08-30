@@ -214,8 +214,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 .toString();
     }
 
-    protected final void verifyFilterWithInlineConfigParser(Configuration aConfig,
-                                                            String filePath,
+    protected final void verifyFilterWithInlineConfigParser(String filePath,
                                                             String[] expectedUnfiltered,
                                                             String... expectedFiltered)
             throws Exception {

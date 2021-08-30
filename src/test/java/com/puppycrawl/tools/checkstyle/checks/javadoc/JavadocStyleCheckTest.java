@@ -33,8 +33,6 @@ import java.io.File;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -72,8 +70,6 @@ public class JavadocStyleCheckTest
     @Test
     public void testDefaultSettings()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocStyleCheck.class);
         final String[] expected = {
             "23: " + getCheckMessage(MSG_NO_PERIOD),
             "48: " + getCheckMessage(MSG_NO_PERIOD),
@@ -112,10 +108,6 @@ public class JavadocStyleCheckTest
 
     @Test
     public void testFirstSentence() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocStyleCheck.class);
-        checkConfig.addProperty("checkFirstSentence", "true");
-        checkConfig.addProperty("checkHtml", "false");
         final String[] expected = {
             "23: " + getCheckMessage(MSG_NO_PERIOD),
             "48: " + getCheckMessage(MSG_NO_PERIOD),
@@ -138,12 +130,6 @@ public class JavadocStyleCheckTest
 
     @Test
     public void testFirstSentenceFormat() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocStyleCheck.class);
-        checkConfig.addProperty("checkFirstSentence", "true");
-        checkConfig.addProperty("checkHtml", "false");
-        checkConfig.addProperty("endOfSentenceFormat",
-                "([.][ \t\n\r\f<])|([.]$)");
         final String[] expected = {
             "23: " + getCheckMessage(MSG_NO_PERIOD),
             "33: " + getCheckMessage(MSG_NO_PERIOD),
@@ -168,9 +154,6 @@ public class JavadocStyleCheckTest
 
     @Test
     public void testHtml() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavadocStyleCheck.class);
-        checkConfig.addProperty("checkFirstSentence", "false");
-        checkConfig.addProperty("checkHtml", "true");
         final String[] expected = {
             "56:11: " + getCheckMessage(MSG_UNCLOSED_HTML,
                     "<b>This guy is missing end of bold tag // violation"),
@@ -196,9 +179,6 @@ public class JavadocStyleCheckTest
 
     @Test
     public void testHtmlComment() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavadocStyleCheck.class);
-        checkConfig.addProperty("checkFirstSentence", "false");
-        checkConfig.addProperty("checkHtml", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -207,7 +187,6 @@ public class JavadocStyleCheckTest
 
     @Test
     public void testOnInputWithNoJavadoc() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavadocStyleCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -217,12 +196,6 @@ public class JavadocStyleCheckTest
     @Test
     public void testScopePublic()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocStyleCheck.class);
-        checkConfig.addProperty("checkFirstSentence", "true");
-        checkConfig.addProperty("checkHtml", "true");
-        checkConfig.addProperty("checkEmptyJavadoc", "true");
-        checkConfig.addProperty("scope", "public");
         final String[] expected = {
             "75: " + getCheckMessage(MSG_NO_PERIOD),
             "76:31: " + getCheckMessage(MSG_EXTRA_HTML, "</code> // violation"),
@@ -243,12 +216,6 @@ public class JavadocStyleCheckTest
     @Test
     public void testScopeProtected()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocStyleCheck.class);
-        checkConfig.addProperty("checkFirstSentence", "true");
-        checkConfig.addProperty("checkHtml", "true");
-        checkConfig.addProperty("checkEmptyJavadoc", "true");
-        checkConfig.addProperty("scope", "protected");
         final String[] expected = {
             "65: " + getCheckMessage(MSG_NO_PERIOD),
             "66:23: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>should fail // violation"),
@@ -272,12 +239,6 @@ public class JavadocStyleCheckTest
     @Test
     public void testScopePackage()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocStyleCheck.class);
-        checkConfig.addProperty("checkFirstSentence", "true");
-        checkConfig.addProperty("checkHtml", "true");
-        checkConfig.addProperty("checkEmptyJavadoc", "true");
-        checkConfig.addProperty("scope", "package");
         final String[] expected = {
             "65: " + getCheckMessage(MSG_NO_PERIOD),
             "66:24: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>should fail // violation"),
@@ -305,10 +266,6 @@ public class JavadocStyleCheckTest
 
     @Test
     public void testEmptyJavadoc() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavadocStyleCheck.class);
-        checkConfig.addProperty("checkFirstSentence", "false");
-        checkConfig.addProperty("checkHtml", "false");
-        checkConfig.addProperty("checkEmptyJavadoc", "true");
         final String[] expected = {
             "175: " + getCheckMessage(MSG_EMPTY),
             "179: " + getCheckMessage(MSG_EMPTY),
@@ -324,10 +281,6 @@ public class JavadocStyleCheckTest
     @Test
     public void testExcludeScope()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocStyleCheck.class);
-        checkConfig.addProperty("scope", "private");
-        checkConfig.addProperty("excludeScope", "protected");
         final String[] expected = {
             "23: " + getCheckMessage(MSG_NO_PERIOD),
             "48: " + getCheckMessage(MSG_NO_PERIOD),
@@ -356,8 +309,6 @@ public class JavadocStyleCheckTest
 
     @Test
     public void packageInfoInheritDoc() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocStyleCheck.class);
         final String[] expected = {
             "16: " + getCheckMessage(MSG_NO_PERIOD),
         };
@@ -370,8 +321,6 @@ public class JavadocStyleCheckTest
 
     @Test
     public void packageInfoInvalid() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocStyleCheck.class);
         final String[] expected = {
             "16: " + getCheckMessage(MSG_NO_PERIOD),
         };
@@ -384,8 +333,6 @@ public class JavadocStyleCheckTest
 
     @Test
     public void packageInfoAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocStyleCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -396,8 +343,6 @@ public class JavadocStyleCheckTest
 
     @Test
     public void packageInfoMissing() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocStyleCheck.class);
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
@@ -409,8 +354,6 @@ public class JavadocStyleCheckTest
 
     @Test
     public void packageInfoValid() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocStyleCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -422,12 +365,6 @@ public class JavadocStyleCheckTest
     @Test
     public void testRestrictedTokenSet()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavadocStyleCheck.class);
-        checkConfig.addProperty("tokens", "METHOD_DEF");
-        checkConfig.addProperty("scope", "public");
-        checkConfig.addProperty("checkFirstSentence", "true");
-        checkConfig.addProperty("checkEmptyJavadoc", "false");
-        checkConfig.addProperty("checkHtml", "false");
         final String[] expected = {
             "73: " + getCheckMessage(MSG_NO_PERIOD),
             "336: " + getCheckMessage(MSG_NO_PERIOD),
@@ -439,8 +376,6 @@ public class JavadocStyleCheckTest
 
     @Test
     public void testJavadocStyleRecordsAndCompactCtors() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(JavadocStyleCheck.class);
         final String[] expected = {
             "23: " + getCheckMessage(MSG_NO_PERIOD),
             "43: " + getCheckMessage(MSG_NO_PERIOD),
@@ -472,7 +407,6 @@ public class JavadocStyleCheckTest
 
     @Test
     public void testNeverEndingXmlCommentInsideJavadoc() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavadocStyleCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -482,10 +416,6 @@ public class JavadocStyleCheckTest
     @Test
     public void testInterfaceMemberScopeIsPublic()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocStyleCheck.class);
-        checkConfig.addProperty("scope", Scope.PUBLIC.getName());
-        checkConfig.addProperty("checkEmptyJavadoc", "true");
         final String[] expected = {
             "20: " + getCheckMessage(MSG_EMPTY),
             "23: " + getCheckMessage(MSG_EMPTY),
@@ -499,10 +429,6 @@ public class JavadocStyleCheckTest
     @Test
     public void testEnumCtorScopeIsPrivate()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocStyleCheck.class);
-        checkConfig.addProperty("scope", Scope.PACKAGE.getName());
-        checkConfig.addProperty("checkEmptyJavadoc", "true");
         final String[] expected = {
             "20: " + getCheckMessage(MSG_EMPTY),
             "23: " + getCheckMessage(MSG_EMPTY),

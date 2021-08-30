@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class FallThroughCheckTest extends AbstractModuleTestSupport {
@@ -38,7 +37,6 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(FallThroughCheck.class);
         final String[] expected = {
             "22:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "46:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -71,7 +69,6 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTryWithResources() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(FallThroughCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputFallThrough.java"),
@@ -80,8 +77,6 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testLastCaseGroup() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(FallThroughCheck.class);
-        checkConfig.addProperty("checkLastCaseGroup", "true");
         final String[] expected = {
             "22:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "46:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -111,9 +106,6 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOwnPattern() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(FallThroughCheck.class);
-        checkConfig.addProperty("reliefPattern", "Continue with next case");
 
         final String[] expected = {
             "22:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -160,9 +152,6 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOwnPatternTryWithResources() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(FallThroughCheck.class);
-        checkConfig.addProperty("reliefPattern", "Continue with next case");
 
         final String[] expected = {
             "54:9: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -186,7 +175,6 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFallThroughNoElse() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(FallThroughCheck.class);
         final String[] expected = {
             "28:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "43:13: " + getCheckMessage(MSG_FALL_THROUGH),

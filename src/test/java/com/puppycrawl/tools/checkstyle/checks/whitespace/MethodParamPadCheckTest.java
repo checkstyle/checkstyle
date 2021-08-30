@@ -51,7 +51,6 @@ public class MethodParamPadCheckTest
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
         final String[] expected = {
             "21:32: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "23:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
@@ -78,8 +77,6 @@ public class MethodParamPadCheckTest
 
     @Test
     public void testAllowLineBreaks() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
-        checkConfig.addProperty("allowLineBreaks", "true");
         final String[] expected = {
             "21:33: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "23:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
@@ -97,8 +94,6 @@ public class MethodParamPadCheckTest
 
     @Test
     public void testSpaceOption() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
-        checkConfig.addProperty("option", "space");
         final String[] expected = {
             "16:32: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
             "18:14: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
@@ -129,8 +124,6 @@ public class MethodParamPadCheckTest
 
     @Test
     public void testMethodParamPadRecords() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
-        checkConfig.addProperty("allowLineBreaks", "true");
         final String[] expected = {
             "19:25: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "20:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
@@ -149,8 +142,6 @@ public class MethodParamPadCheckTest
 
     @Test
     public void test1322879() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
-        checkConfig.addProperty("option", PadOption.SPACE.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMethodParamPadWhitespaceAround.java"),

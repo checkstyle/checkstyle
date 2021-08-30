@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -48,8 +47,6 @@ public class LocalFinalVariableNameCheckTest
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LocalFinalVariableNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -63,9 +60,6 @@ public class LocalFinalVariableNameCheckTest
     @Test
     public void testSet()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LocalFinalVariableNameCheck.class);
-        checkConfig.addProperty("format", "[A-Z]+");
 
         final String pattern = "[A-Z]+";
 
@@ -79,8 +73,6 @@ public class LocalFinalVariableNameCheckTest
     @Test
     public void testInnerClass()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LocalFinalVariableNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputLocalFinalVariableNameInnerClass.java"), expected);
@@ -101,9 +93,6 @@ public class LocalFinalVariableNameCheckTest
 
     @Test
     public void testTryWithResources() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LocalFinalVariableNameCheck.class);
-        checkConfig.addProperty("format", "[A-Z]+");
 
         final String pattern = "[A-Z]+";
 
@@ -120,9 +109,6 @@ public class LocalFinalVariableNameCheckTest
 
     @Test
     public void testTryWithResourcesJava9() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LocalFinalVariableNameCheck.class);
-        checkConfig.addProperty("format", "[a-z]+");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(

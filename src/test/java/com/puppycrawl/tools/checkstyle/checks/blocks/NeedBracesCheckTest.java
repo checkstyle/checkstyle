@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck.MSG_
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NeedBracesCheckTest extends AbstractModuleTestSupport {
@@ -36,8 +35,6 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NeedBracesCheck.class);
         final String[] expected = {
             "30:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
             "42:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
@@ -69,12 +66,6 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testItWithAllowsOn() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NeedBracesCheck.class);
-        checkConfig.addProperty("allowSingleLineStatement", "true");
-        checkConfig.addProperty("allowEmptyLoopBody", "true");
-        checkConfig.addProperty("tokens", "LITERAL_DO, LITERAL_ELSE, LITERAL_FOR, LITERAL_IF, "
-            + "LITERAL_WHILE, LITERAL_CASE, LITERAL_DEFAULT, LAMBDA");
         final String[] expected = {
             "44:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
             "47:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
@@ -101,9 +92,6 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSingleLineStatements() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NeedBracesCheck.class);
-        checkConfig.addProperty("allowSingleLineStatement", "true");
         final String[] expected = {
             "32:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
             "38:43: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
@@ -123,10 +111,6 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSingleLineLambda() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NeedBracesCheck.class);
-        checkConfig.addProperty("tokens", "LAMBDA");
-        checkConfig.addProperty("allowSingleLineStatement", "true");
         final String[] expected = {
             "16:29: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
             "19:22: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
@@ -139,9 +123,6 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDoNotAllowSingleLineLambda() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NeedBracesCheck.class);
-        checkConfig.addProperty("tokens", "LAMBDA");
         final String[] expected = {
             "14:28: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
             "15:29: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
@@ -156,10 +137,6 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSingleLineCaseDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NeedBracesCheck.class);
-        checkConfig.addProperty("tokens", "LITERAL_CASE, LITERAL_DEFAULT");
-        checkConfig.addProperty("allowSingleLineStatement", "true");
         final String[] expected = {
             "81:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "84:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
@@ -172,10 +149,6 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSingleLineCaseDefault2() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(NeedBracesCheck.class);
-        checkConfig.addProperty("tokens", "LITERAL_CASE, LITERAL_DEFAULT");
-        checkConfig.addProperty("allowSingleLineStatement", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputNeedBracesTestSingleLineCaseDefault2.java"), expected);
@@ -183,9 +156,6 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSingleLineCaseDefaultNoSingleLine() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(NeedBracesCheck.class);
-        checkConfig.addProperty("tokens", "LITERAL_CASE, LITERAL_DEFAULT");
         final String[] expected = {
             "18:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "19:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
@@ -200,9 +170,6 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCycles() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NeedBracesCheck.class);
-        checkConfig.addProperty("tokens", "LITERAL_WHILE, LITERAL_DO, LITERAL_FOR");
-        checkConfig.addProperty("allowSingleLineStatement", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputNeedBracesTestCycles.java"), expected);
@@ -210,9 +177,6 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testConditions() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NeedBracesCheck.class);
-        checkConfig.addProperty("tokens", "LITERAL_ELSE, LITERAL_CASE, LITERAL_DEFAULT");
-        checkConfig.addProperty("allowSingleLineStatement", "true");
         final String[] expected = {
             "50:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "53:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
@@ -224,9 +188,6 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAllowEmptyLoopBodyTrue() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NeedBracesCheck.class);
-        checkConfig.addProperty("allowEmptyLoopBody", "true");
         final String[] expected = {
             "106:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
         };
@@ -236,8 +197,6 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAllowEmptyLoopBodyFalse() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NeedBracesCheck.class);
         final String[] expected = {
             "19:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
             "23:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
@@ -263,9 +222,6 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testEmptySingleLineDefaultStmt() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NeedBracesCheck.class);
-        checkConfig.addProperty("tokens", "LITERAL_DEFAULT");
-        checkConfig.addProperty("allowSingleLineStatement", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputNeedBracesEmptySingleLineDefaultStmt.java"), expected);
@@ -273,11 +229,6 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNeedBracesSwitchExpressionNoSingleLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NeedBracesCheck.class);
-        checkConfig.addProperty("tokens",
-            "LITERAL_CASE, LITERAL_DEFAULT, LAMBDA");
-        checkConfig.addProperty("allowSingleLineStatement", "false");
-
         final String[] expected = {
             "16:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "18:47: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
@@ -303,11 +254,6 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNeedBracesSwitchExpression() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NeedBracesCheck.class);
-        checkConfig.addProperty("tokens",
-            "LITERAL_CASE, LITERAL_DEFAULT, LAMBDA");
-        checkConfig.addProperty("allowSingleLineStatement", "true");
-
         final String[] expected = {
             "16:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "18:47: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),

@@ -71,8 +71,6 @@ public class ConstantNameCheckTest
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ConstantNameCheck.class);
 
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
@@ -87,11 +85,6 @@ public class ConstantNameCheckTest
     @Test
     public void testAccessControlTuning()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ConstantNameCheck.class);
-        checkConfig.addProperty("applyToPublic", "false");
-        checkConfig.addProperty("applyToProtected", "false");
-        checkConfig.addProperty("applyToPackage", "false");
 
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
@@ -105,8 +98,6 @@ public class ConstantNameCheckTest
     @Test
     public void testInterfaceAndAnnotation()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ConstantNameCheck.class);
 
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
@@ -121,8 +112,6 @@ public class ConstantNameCheckTest
     @Test
     public void testDefault1()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ConstantNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputConstantName.java"), expected);
@@ -130,8 +119,6 @@ public class ConstantNameCheckTest
 
     @Test
     public void testIntoInterface() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ConstantNameCheck.class);
 
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
@@ -151,9 +138,6 @@ public class ConstantNameCheckTest
 
     @Test
     public void testIntoInterfaceExcludePublic() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ConstantNameCheck.class);
-        checkConfig.addProperty("applyToPublic", "false");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -163,8 +147,6 @@ public class ConstantNameCheckTest
     @Test
     public void testStaticMethodInInterface()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ConstantNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputConstantNameStaticModifierInInterface.java"), expected);

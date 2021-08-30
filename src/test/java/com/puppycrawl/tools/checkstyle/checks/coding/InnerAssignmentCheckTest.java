@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class InnerAssignmentCheckTest
@@ -38,8 +37,6 @@ public class InnerAssignmentCheckTest
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InnerAssignmentCheck.class);
         final String[] expected = {
             "22:15: " + getCheckMessage(MSG_KEY),
             "22:19: " + getCheckMessage(MSG_KEY),
@@ -67,8 +64,6 @@ public class InnerAssignmentCheckTest
 
     @Test
     public void testLambdaExpression() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InnerAssignmentCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputInnerAssignmentLambdaExpressions.java"),

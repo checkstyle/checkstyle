@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AvoidNestedBlocksCheckTest
@@ -47,8 +46,6 @@ public class AvoidNestedBlocksCheckTest
     @Test
     public void testStrictSettings()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(AvoidNestedBlocksCheck.class);
         final String[] expected = {
             "25:9: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
             "47:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
@@ -62,9 +59,6 @@ public class AvoidNestedBlocksCheckTest
     @Test
     public void testAllowSwitchInCase()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(AvoidNestedBlocksCheck.class);
-        checkConfig.addProperty("allowInSwitchCase", "true");
 
         final String[] expected = {
             "21:9: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),

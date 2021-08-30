@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
@@ -53,8 +52,6 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void simpleTest() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(SingleLineJavadocCheck.class);
         final String[] expected = {
             "22: " + getCheckMessage(MSG_KEY),
             "38: " + getCheckMessage(MSG_KEY),
@@ -68,12 +65,6 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIgnoredTags() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(SingleLineJavadocCheck.class);
-        checkConfig.addProperty("ignoredTags", "@inheritDoc, @throws, "
-            + "@ignoredCustomTag");
-        checkConfig.addProperty("ignoreInlineTags", "false");
-
         final String[] expected = {
             "14: " + getCheckMessage(MSG_KEY),
             "44: " + getCheckMessage(MSG_KEY),

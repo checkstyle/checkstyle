@@ -31,7 +31,6 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -49,8 +48,6 @@ public class IllegalInstantiationCheckTest
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalInstantiationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputIllegalInstantiationSemantic.java"), expected);
@@ -58,15 +55,6 @@ public class IllegalInstantiationCheckTest
 
     @Test
     public void testClasses() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalInstantiationCheck.class);
-        checkConfig.addProperty(
-            "classes",
-            "java.lang.Boolean,"
-                + "com.puppycrawl.tools.checkstyle.checks.coding."
-                + "illegalinstantiation.InputModifier,"
-                + "java.io.File,"
-                + "java.awt.Color");
         final String[] expected = {
             "24:21: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
             "29:21: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
@@ -83,11 +71,6 @@ public class IllegalInstantiationCheckTest
 
     @Test
     public void testSameClassNameAsJavaLang() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalInstantiationCheck.class);
-        checkConfig.addProperty(
-            "classes",
-            "java.lang.InputTest");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputIllegalInstantiationSameClassNameJavaLang.java"),
@@ -96,8 +79,6 @@ public class IllegalInstantiationCheckTest
 
     @Test
     public void testJava8() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(IllegalInstantiationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputIllegalInstantiation.java"),
@@ -106,11 +87,6 @@ public class IllegalInstantiationCheckTest
 
     @Test
     public void testNoPackage() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(IllegalInstantiationCheck.class);
-        checkConfig.addProperty(
-                "classes",
-                "java.lang.Boolean");
         final String[] expected = {
             "10:20: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
         };
@@ -120,11 +96,6 @@ public class IllegalInstantiationCheckTest
 
     @Test
     public void testJavaLangPackage() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(IllegalInstantiationCheck.class);
-        checkConfig.addProperty(
-                "classes",
-                "java.lang.Boolean,java.lang.String");
         final String[] expected = {
             "13:19: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
             "21:20: " + getCheckMessage(MSG_KEY, "java.lang.String"),
@@ -136,11 +107,6 @@ public class IllegalInstantiationCheckTest
 
     @Test
     public void testWrongPackage() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(IllegalInstantiationCheck.class);
-        checkConfig.addProperty(
-                "classes",
-                "jjva.lang.Boolean,java.lang*Boolean");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputIllegalInstantiationLang2.java"),

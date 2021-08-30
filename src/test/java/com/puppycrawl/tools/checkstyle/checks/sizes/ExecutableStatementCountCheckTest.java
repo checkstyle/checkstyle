@@ -30,7 +30,6 @@ import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -59,10 +58,6 @@ public class ExecutableStatementCountCheckTest
 
     @Test
     public void testMaxZero() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ExecutableStatementCountCheck.class);
-
-        checkConfig.addProperty("max", "0");
 
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_KEY, 3, 0),
@@ -84,11 +79,6 @@ public class ExecutableStatementCountCheckTest
 
     @Test
     public void testMethodDef() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ExecutableStatementCountCheck.class);
-
-        checkConfig.addProperty("max", "0");
-        checkConfig.addProperty("tokens", "METHOD_DEF");
 
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_KEY, 3, 0),
@@ -105,11 +95,6 @@ public class ExecutableStatementCountCheckTest
 
     @Test
     public void testCtorDef() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ExecutableStatementCountCheck.class);
-
-        checkConfig.addProperty("max", "0");
-        checkConfig.addProperty("tokens", "CTOR_DEF");
 
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -122,11 +107,6 @@ public class ExecutableStatementCountCheckTest
 
     @Test
     public void testStaticInit() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ExecutableStatementCountCheck.class);
-
-        checkConfig.addProperty("max", "0");
-        checkConfig.addProperty("tokens", "STATIC_INIT");
 
         final String[] expected = {
             "13:5: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -138,11 +118,6 @@ public class ExecutableStatementCountCheckTest
 
     @Test
     public void testInstanceInit() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ExecutableStatementCountCheck.class);
-
-        checkConfig.addProperty("max", "0");
-        checkConfig.addProperty("tokens", "INSTANCE_INIT");
 
         final String[] expected = {
             "13:5: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -186,8 +161,6 @@ public class ExecutableStatementCountCheckTest
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ExecutableStatementCountCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -196,9 +169,6 @@ public class ExecutableStatementCountCheckTest
 
     @Test
     public void testExecutableStatementCountRecords() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ExecutableStatementCountCheck.class);
-        checkConfig.addProperty("max", "1");
 
         final int max = 1;
 
@@ -218,10 +188,6 @@ public class ExecutableStatementCountCheckTest
 
     @Test
     public void testExecutableStatementCountLambdas() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ExecutableStatementCountCheck.class);
-        checkConfig.addProperty("max", "1");
-        checkConfig.addProperty("tokens", "LAMBDA");
 
         final int max = 1;
 

@@ -28,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -44,9 +43,6 @@ public class SeparatorWrapCheckTest
     @Test
     public void testDot()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SeparatorWrapCheck.class);
-        checkConfig.addProperty("option", "NL");
-        checkConfig.addProperty("tokens", "DOT");
         final String[] expected = {
             "39:10: " + getCheckMessage(MSG_LINE_NEW, "."),
         };
@@ -56,9 +52,6 @@ public class SeparatorWrapCheckTest
 
     @Test
     public void testComma() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SeparatorWrapCheck.class);
-        checkConfig.addProperty("option", "EOL");
-        checkConfig.addProperty("tokens", "COMMA");
         final String[] expected = {
             "47:17: " + getCheckMessage(MSG_LINE_PREVIOUS, ","),
         };
@@ -68,9 +61,6 @@ public class SeparatorWrapCheckTest
 
     @Test
     public void testMethodRef() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SeparatorWrapCheck.class);
-        checkConfig.addProperty("option", "NL");
-        checkConfig.addProperty("tokens", "METHOD_REF");
         final String[] expected = {
             "25:56: " + getCheckMessage(MSG_LINE_NEW, "::"),
         };
@@ -91,8 +81,6 @@ public class SeparatorWrapCheckTest
 
     @Test
     public void testInvalidOption() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SeparatorWrapCheck.class);
-        checkConfig.addProperty("option", "invalid_option");
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -112,9 +100,6 @@ public class SeparatorWrapCheckTest
 
     @Test
     public void testEllipsis() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SeparatorWrapCheck.class);
-        checkConfig.addProperty("option", "EOL");
-        checkConfig.addProperty("tokens", "ELLIPSIS");
         final String[] expected = {
             "19:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "..."),
         };
@@ -124,9 +109,6 @@ public class SeparatorWrapCheckTest
 
     @Test
     public void testArrayDeclarator() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(SeparatorWrapCheck.class);
-        checkConfig.addProperty("option", "EOL");
-        checkConfig.addProperty("tokens", "ARRAY_DECLARATOR");
         final String[] expected = {
             "17:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "["),
         };
