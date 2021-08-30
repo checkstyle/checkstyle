@@ -196,6 +196,12 @@ versions)
   fi
   ;;
 
+restore-maven-cache)
+  curl -o cache.tar -Ss https://sourceforge.net/projects/checkstyle/files/drone-io/drone-io-m2-repository.tar/download
+  tar -xf cache.tar -C /
+  rm cache.tar
+  ;;
+
 assembly-run-all-jar)
   mvn -e --no-transfer-progress clean package -Passembly
   CS_POM_VERSION="$(getCheckstylePomVersion)"
