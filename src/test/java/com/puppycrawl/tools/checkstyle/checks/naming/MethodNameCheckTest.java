@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -49,8 +48,6 @@ public class MethodNameCheckTest
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -63,8 +60,6 @@ public class MethodNameCheckTest
 
     @Test
     public void testMethodEqClass() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -93,12 +88,6 @@ public class MethodNameCheckTest
 
     @Test
     public void testMethodEqClassAllow() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodNameCheck.class);
-
-        // allow method names and class names to equal
-        checkConfig.addProperty("allowClassName", "true");
-
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
@@ -121,15 +110,6 @@ public class MethodNameCheckTest
 
     @Test
     public void testAccessTuning() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodNameCheck.class);
-
-        // allow method names and class names to equal
-        checkConfig.addProperty("allowClassName", "true");
-
-        // allow method names and class names to equal
-        checkConfig.addProperty("applyToPrivate", "false");
-
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
@@ -150,8 +130,6 @@ public class MethodNameCheckTest
 
     @Test
     public void testForNpe() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodNameCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -161,8 +139,6 @@ public class MethodNameCheckTest
 
     @Test
     public void testOverriddenMethods() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -177,9 +153,6 @@ public class MethodNameCheckTest
 
     @Test
     public void testInterfacesExcludePublic() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodNameCheck.class);
-        checkConfig.addProperty("applyToPublic", "false");
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
@@ -194,9 +167,6 @@ public class MethodNameCheckTest
 
     @Test
     public void testInterfacesExcludePrivate() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodNameCheck.class);
-        checkConfig.addProperty("applyToPrivate", "false");
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {

@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class NoEnumTrailingCommaCheckTest extends AbstractModuleTestSupport {
 
@@ -36,8 +35,6 @@ public class NoEnumTrailingCommaCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(NoEnumTrailingCommaCheck.class);
         final String[] expected = {
             "23:12: " + getCheckMessage(MSG_KEY),
             "28:12: " + getCheckMessage(MSG_KEY),

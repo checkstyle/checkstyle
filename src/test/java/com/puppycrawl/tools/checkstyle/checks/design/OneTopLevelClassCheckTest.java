@@ -85,8 +85,6 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileWithOneTopLevelClass() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClass.java"), expected);
@@ -94,8 +92,6 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileWithOneTopLevelInterface() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassInterface.java"), expected);
@@ -103,8 +99,6 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileWithOneTopLevelEnum() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassEnum.java"), expected);
@@ -112,8 +106,6 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileWithOneTopLevelAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassAnnotation.java"), expected);
@@ -121,8 +113,6 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileWithNoPublicTopLevelClass() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassNoPublic2"),
         };
@@ -132,8 +122,6 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileWithThreeTopLevelInterface() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface3inner1"),
             "17:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface3inner2"),
@@ -144,8 +132,6 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileWithThreeTopLevelEnum() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassEnum2inner1"),
             "17:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassEnum2inner2"),
@@ -156,8 +142,6 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileWithThreeTopLevelAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassAnnotation2A"),
             "20:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassAnnotation2B"),
@@ -168,8 +152,6 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileWithFewTopLevelClasses() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "31:1: " + getCheckMessage(MSG_KEY, "NoSuperClone"),
             "35:1: " + getCheckMessage(MSG_KEY, "InnerClone"),
@@ -185,8 +167,6 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileWithSecondEnumTopLevelClass() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderEnum2"),
             "26:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderAnnotation2"),
@@ -197,7 +177,6 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testPackageInfoWithNoTypesDeclared() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("package-info.java"), expected);
@@ -205,8 +184,6 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileWithMultipleSameLine() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "9:47: " + getCheckMessage(MSG_KEY, "ViolatingSecondType"),
         };
@@ -216,8 +193,6 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileWithIndentation() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "13:2: " + getCheckMessage(MSG_KEY, "ViolatingIndentedClass1"),
             "17:5: " + getCheckMessage(MSG_KEY, "ViolatingIndentedClass2"),
@@ -229,8 +204,6 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOneTopLevelClassRecords() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "13:1: " + getCheckMessage(MSG_KEY, "TestRecord1"),
             "17:1: " + getCheckMessage(MSG_KEY, "TestRecord2"),
@@ -241,8 +214,6 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOneTopLevelClassEmpty() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputOneTopLevelClassEmpty.java"), expected);

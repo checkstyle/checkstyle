@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class InterfaceIsTypeCheckTest
@@ -39,8 +38,6 @@ public class InterfaceIsTypeCheckTest
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceIsTypeCheck.class);
         final String[] expected = {
             "28:5: " + getCheckMessage(MSG_KEY),
         };
@@ -51,9 +48,6 @@ public class InterfaceIsTypeCheckTest
     @Test
     public void testAllowMarker()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceIsTypeCheck.class);
-        checkConfig.addProperty("allowMarkerInterfaces", "false");
         final String[] expected = {
             "23:5: " + getCheckMessage(MSG_KEY),
             "28:5: " + getCheckMessage(MSG_KEY),

@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AvoidStaticImportCheckTest
@@ -47,8 +46,6 @@ public class AvoidStaticImportCheckTest
     @Test
     public void testDefaultOperation()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(AvoidStaticImportCheck.class);
         final String[] expected = {
             "26:27: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
             "28:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
@@ -71,9 +68,6 @@ public class AvoidStaticImportCheckTest
     @Test
     public void testStarExcludes()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(AvoidStaticImportCheck.class);
-        checkConfig.addProperty("excludes", "java.io.File.*, sun.net.ftpclient.FtpClient.*");
         // allow the "java.io.File.*" AND "sun.net.ftpclient.FtpClient.*" star imports
         final String[] expected = {
             "28:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
@@ -93,9 +87,6 @@ public class AvoidStaticImportCheckTest
     @Test
     public void testMemberExcludes()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(AvoidStaticImportCheck.class);
-        checkConfig.addProperty("excludes", "java.io.File.listRoots, java.lang.Math.E");
         // allow the java.io.File.listRoots and java.lang.Math.E member imports
         final String[] expected = {
             "28:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
@@ -116,15 +107,7 @@ public class AvoidStaticImportCheckTest
     @Test
     public void testBogusMemberExcludes()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(AvoidStaticImportCheck.class);
-
         // should NOT mask anything
-        checkConfig.addProperty(
-            "excludes",
-            "java.io.File.listRoots.listRoots, javax.swing.WindowConstants, javax.swing.*,"
-            + " sun.net.ftpclient.FtpClient.*FtpClient, sun.net.ftpclient.FtpClientjunk,"
-            + " java.io.File.listRootsmorejunk");
         final String[] expected = {
             "28:27: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
             "30:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
@@ -146,15 +129,8 @@ public class AvoidStaticImportCheckTest
     @Test
     public void testInnerClassMemberExcludesStar()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(AvoidStaticImportCheck.class);
-
         // should mask com.puppycrawl.tools.checkstyle.imports.avoidstaticimport.
         // InputAvoidStaticImportNestedClass.InnerClass.one
-        checkConfig.addProperty(
-            "excludes",
-            "com.puppycrawl.tools.checkstyle.checks.imports."
-                + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.*");
         final String[] expected = {
             "27:27: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
             "29:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),

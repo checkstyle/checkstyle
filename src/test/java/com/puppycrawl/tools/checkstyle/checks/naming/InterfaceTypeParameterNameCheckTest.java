@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class InterfaceTypeParameterNameCheckTest
@@ -58,8 +57,6 @@ public class InterfaceTypeParameterNameCheckTest
     @Test
     public void testInterfaceDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceTypeParameterNameCheck.class);
 
         final String pattern = "^[A-Z]$";
 
@@ -73,9 +70,6 @@ public class InterfaceTypeParameterNameCheckTest
     @Test
     public void testInterfaceFooName()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceTypeParameterNameCheck.class);
-        checkConfig.addProperty("format", "^foo$");
 
         final String pattern = "^foo$";
 

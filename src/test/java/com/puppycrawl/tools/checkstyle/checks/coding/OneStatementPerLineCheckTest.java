@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
@@ -37,7 +36,6 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMultiCaseClass() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OneStatementPerLineCheck.class);
         final String[] expected = {
             "13:59: " + getCheckMessage(MSG_KEY),
             "93:21: " + getCheckMessage(MSG_KEY),
@@ -63,8 +61,6 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWithMultilineStatements() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OneStatementPerLineCheck.class);
-        checkConfig.addProperty("treatTryResourcesAsStatement", "true");
         final String[] expected = {
             "49:21: " + getCheckMessage(MSG_KEY),
             "66:17: " + getCheckMessage(MSG_KEY),
@@ -83,7 +79,6 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void oneStatementNonCompilableInputTest() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OneStatementPerLineCheck.class);
         final String[] expected = {
             "39:6: " + getCheckMessage(MSG_KEY),
             "44:58: " + getCheckMessage(MSG_KEY),
@@ -99,8 +94,6 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testResourceReferenceVariableIgnored() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OneStatementPerLineCheck.class);
-        checkConfig.addProperty("treatTryResourcesAsStatement", "true");
         final String[] expected = {
             "32:42: " + getCheckMessage(MSG_KEY),
             "36:43: " + getCheckMessage(MSG_KEY),
@@ -115,7 +108,6 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testResourcesIgnored() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OneStatementPerLineCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputOneStatementPerLineTryWithResourcesIgnore.java"),

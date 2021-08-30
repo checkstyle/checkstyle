@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class EmptyStatementCheckTest
     extends AbstractModuleTestSupport {
@@ -38,8 +37,6 @@ public class EmptyStatementCheckTest
     @Test
     public void testEmptyStatements()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(EmptyStatementCheck.class);
         final String[] expected = {
             "18:7: " + getCheckMessage(MSG_KEY),
             "23:7: " + getCheckMessage(MSG_KEY),

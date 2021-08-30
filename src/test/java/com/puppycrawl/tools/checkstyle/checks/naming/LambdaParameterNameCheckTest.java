@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
@@ -59,10 +58,6 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testParametersInLambda() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(LambdaParameterNameCheck.class);
-
-        checkConfig.addProperty("format", "^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$");
 
         final String pattern = "^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$";
 
@@ -79,8 +74,6 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testLambdaParameterNameSwitchExpression() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LambdaParameterNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 

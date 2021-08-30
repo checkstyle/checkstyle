@@ -38,10 +38,6 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSimple()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LineLengthCheck.class);
-        checkConfig.addProperty("max", "80");
-        checkConfig.addProperty("ignorePattern", "^.*is OK.*regexp.*$");
         final String[] expected = {
             "22: " + getCheckMessage(MSG_KEY, 80, 81),
             "149: " + getCheckMessage(MSG_KEY, 80, 83),
@@ -53,11 +49,6 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void shouldLogActualLineLength()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LineLengthCheck.class);
-        checkConfig.addProperty("max", "80");
-        checkConfig.addProperty("ignorePattern", "^.*is OK.*regexp.*$");
-        checkConfig.addMessage("maxLineLen", "{0},{1}");
         final String[] expected = {
             "23: 80,81",
             "150: 80,83",
@@ -68,9 +59,6 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void shouldNotLogLongImportStatements() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LineLengthCheck.class);
-        checkConfig.addProperty("max", "80");
         final String[] expected = {
             "18: " + getCheckMessage(MSG_KEY, 80, 100),
         };
@@ -80,9 +68,6 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void shouldNotLogLongPackageStatements() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LineLengthCheck.class);
-        checkConfig.addProperty("max", "80");
         final String[] expected = {
             "16: " + getCheckMessage(MSG_KEY, 80, 101),
         };
@@ -93,11 +78,6 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void shouldNotLogLongLinks() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LineLengthCheck.class);
-        checkConfig.addProperty("max", "80");
-        checkConfig.addProperty("ignorePattern",
-            "^ *\\* *([^ ]+|\\{@code .*|<a href=\"[^\"]+\">)$");
         final String[] expected = {
             "13: " + getCheckMessage(MSG_KEY, 80, 111),
         };

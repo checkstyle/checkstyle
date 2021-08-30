@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class SimplifyBooleanReturnCheckTest
     extends AbstractModuleTestSupport {
@@ -37,8 +36,6 @@ public class SimplifyBooleanReturnCheckTest
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(SimplifyBooleanReturnCheck.class);
         final String[] expected = {
             "22:9: " + getCheckMessage(MSG_KEY),
             "35:9: " + getCheckMessage(MSG_KEY),
