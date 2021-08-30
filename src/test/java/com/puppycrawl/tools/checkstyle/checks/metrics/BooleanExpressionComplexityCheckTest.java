@@ -27,7 +27,6 @@ import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -41,8 +40,6 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
     @Test
     public void test() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(BooleanExpressionComplexityCheck.class);
 
         final String[] expected = {
             "21:9: " + getCheckMessage(MSG_KEY, 4, 3),
@@ -58,10 +55,6 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
     @Test
     public void testNoBitwise() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(BooleanExpressionComplexityCheck.class);
-        checkConfig.addProperty("max", "5");
-        checkConfig.addProperty("tokens", "BXOR,LAND,LOR");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -71,8 +64,6 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
     @Test
     public void testNullPointerException() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(BooleanExpressionComplexityCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -98,9 +89,6 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
     @Test
     public void testSmall() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(BooleanExpressionComplexityCheck.class);
-        checkConfig.addProperty("max", "1");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -110,9 +98,6 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
     @Test
     public void testBooleanExpressionComplexityRecordsAndCompactCtors() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(BooleanExpressionComplexityCheck.class);
-        checkConfig.addProperty("max", "3");
 
         final int max = 3;
 

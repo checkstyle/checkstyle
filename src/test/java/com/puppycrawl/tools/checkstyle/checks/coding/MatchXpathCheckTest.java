@@ -25,7 +25,6 @@ import static org.junit.Assert.fail;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -41,8 +40,6 @@ public class MatchXpathCheckTest
     @Test
     public void testCheckWithEmptyQuery()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MatchXpathCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMatchXpath.java"), expected);
@@ -51,9 +48,6 @@ public class MatchXpathCheckTest
     @Test
     public void testNoStackoverflowError()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MatchXpathCheck.class);
-        checkConfig.addProperty("query", "//STRING_LITERAL[not(@text='')]");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMatchXpathNoStackoverflowError.java"), expected);
@@ -62,9 +56,6 @@ public class MatchXpathCheckTest
     @Test
     public void testCheckWithImplicitEmptyQuery()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MatchXpathCheck.class);
-        checkConfig.addProperty("query", "");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMatchXpath2.java"), expected);
@@ -73,9 +64,6 @@ public class MatchXpathCheckTest
     @Test
     public void testCheckWithMatchingMethodNames()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MatchXpathCheck.class);
-        checkConfig.addProperty("query", "//METHOD_DEF[./IDENT[@text='test' or @text='foo']]");
         final String[] expected = {
             "11:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
             "13:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
@@ -87,10 +75,6 @@ public class MatchXpathCheckTest
     @Test
     public void testCheckWithNoMatchingMethodName()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MatchXpathCheck.class);
-        checkConfig.addProperty("query", "//METHOD_DEF[./IDENT[@text='wrongName' or "
-                + "@text='nonExistingMethod']]");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMatchXpath4.java"), expected);
@@ -98,10 +82,6 @@ public class MatchXpathCheckTest
 
     @Test
     public void testCheckWithSingleLineCommentsStartsWithSpace() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MatchXpathCheck.class);
-        checkConfig.addProperty("query", "//SINGLE_LINE_COMMENT"
-                + "[./COMMENT_CONTENT[not(starts-with(@text, ' '))]]");
         final String[] expected = {
             "13:25: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
             "14:27: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
@@ -112,11 +92,6 @@ public class MatchXpathCheckTest
 
     @Test
     public void testCheckWithBlockComments() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MatchXpathCheck.class);
-        checkConfig.addProperty("query", "//BLOCK_COMMENT_BEGIN"
-                + "[./COMMENT_CONTENT[contains(@text, '{') "
-                + "and not(starts-with(@text, '\\nMatchXpath'))]]");
         final String[] expected = {
             "12:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
             "14:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
@@ -127,11 +102,6 @@ public class MatchXpathCheckTest
 
     @Test
     public void testCheckWithMultilineComments() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MatchXpathCheck.class);
-        checkConfig.addProperty("query", "//BLOCK_COMMENT_BEGIN"
-                + "[./COMMENT_CONTENT[contains(@text, '\\n    Forbidden comment\\n') "
-                + "and not(starts-with(@text, '\\nMatchXpath'))]]");
         final String[] expected = {
             "14:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
             "20:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
@@ -143,17 +113,6 @@ public class MatchXpathCheckTest
     @Test
     public void testCheckWithDoubleBraceInitialization()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MatchXpathCheck.class);
-
-        checkConfig.addProperty("query", "//INSTANCE_INIT[not(../*[not(\n"
-                + "                    self::LCURLY or\n"
-                + "                    self::INSTANCE_INIT or\n"
-                + "                    self::RCURLY or\n"
-                + "                    self::SINGLE_LINE_COMMENT or\n"
-                + "                    self::BLOCK_COMMENT_BEGIN\n"
-                + "                )])]");
-        checkConfig.addMessage("matchxpath.match", "Do not use double-brace initialization");
         final String[] expected = {
             "18:35: Do not use double-brace initialization",
         };
@@ -164,11 +123,6 @@ public class MatchXpathCheckTest
     @Test
     public void testImitateIllegalThrowsCheck()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MatchXpathCheck.class);
-        checkConfig.addProperty("query", "//LITERAL_THROWS[./IDENT[@text='Throwable' or "
-                + "@text='RuntimeException' or ends-with(@text, 'Error')]]");
-        checkConfig.addMessage("matchxpath.match", "Illegal throws statement");
         final String[] expected = {
             "13:25: Illegal throws statement",
             "15:25: Illegal throws statement",
@@ -181,11 +135,6 @@ public class MatchXpathCheckTest
     @Test
     public void testImitateExecutableStatementCountCheck()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MatchXpathCheck.class);
-        checkConfig.addProperty("query", "//METHOD_DEF[count(./SLIST/*) > 2]");
-        checkConfig.addMessage("matchxpath.match", "Executable number of statements "
-                + "exceed threshold");
         final String[] expected = {
             "25:5: Executable number of statements exceed threshold",
         };
@@ -196,11 +145,6 @@ public class MatchXpathCheckTest
     @Test
     public void testForbidPrintStackTrace()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MatchXpathCheck.class);
-        checkConfig.addProperty("query", "//LITERAL_CATCH"
-                + "//METHOD_CALL[.//IDENT[@text = 'printStackTrace']]/..");
-        checkConfig.addMessage("matchxpath.match", "printStackTrace() method calls are forbidden");
         final String[] expected = {
             "18:27: printStackTrace() method calls are forbidden",
         };
@@ -211,10 +155,6 @@ public class MatchXpathCheckTest
     @Test
     public void testForbidParameterizedConstructor()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MatchXpathCheck.class);
-        checkConfig.addProperty("query", "//CTOR_DEF[count(./PARAMETERS/*) > 0]");
-        checkConfig.addMessage("matchxpath.match", "Parameterized constructors are not allowed");
         final String[] expected = {
             "13:5: Parameterized constructors are not allowed",
             "15:5: Parameterized constructors are not allowed",
@@ -227,10 +167,6 @@ public class MatchXpathCheckTest
     @Test
     public void testAvoidInstanceCreationWithoutVar()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MatchXpathCheck.class);
-        checkConfig.addProperty("query", "//VARIABLE_DEF[./ASSIGN/EXPR/LITERAL_NEW "
-                + "and not(./TYPE/IDENT[@text='var'])]");
         final String[] expected = {
             "13:9: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
         };

@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -48,7 +47,7 @@ public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModule
 
     @Test
     public void testCorrect() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(
+        createModuleConfig(
                 RequireEmptyLineBeforeBlockTagGroupCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -59,8 +58,6 @@ public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModule
 
     @Test
     public void testIncorrect() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RequireEmptyLineBeforeBlockTagGroupCheck.class);
         final String[] expected = {
             "14: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@since"),
             "20: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@param"),

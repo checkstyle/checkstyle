@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -40,8 +39,6 @@ public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(UnnecessarySemicolonAfterOuterTypeDeclarationCheck.class);
 
         final String[] expected = {
             "28:2: " + getCheckMessage(MSG_SEMI),
@@ -57,8 +54,6 @@ public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
 
     @Test
     public void testUnnecessarySemicolonAfterOuterTypeDeclarationRecords() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(UnnecessarySemicolonAfterOuterTypeDeclarationCheck.class);
 
         final String[] expected = {
             "17:2: " + getCheckMessage(MSG_SEMI),

@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class MemberNameCheckTest
@@ -47,9 +46,6 @@ public class MemberNameCheckTest
     @Test
     public void testSpecified()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
-        checkConfig.addProperty("format", "^m[A-Z][a-zA-Z0-9]*$");
 
         final String pattern = "^m[A-Z][a-zA-Z0-9]*$";
 
@@ -64,8 +60,6 @@ public class MemberNameCheckTest
     @Test
     public void testInnerClass()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -78,8 +72,6 @@ public class MemberNameCheckTest
 
     @Test
     public void testDefaults() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -95,9 +87,6 @@ public class MemberNameCheckTest
 
     @Test
     public void testUnderlined() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
-        checkConfig.addProperty("format", "^_[a-z]*$");
 
         final String pattern = "^_[a-z]*$";
 
@@ -113,12 +102,6 @@ public class MemberNameCheckTest
 
     @Test
     public void testPublicOnly() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
-        checkConfig.addProperty("format", "^_[a-z]*$");
-        checkConfig.addProperty("applyToProtected", "false");
-        checkConfig.addProperty("applyToPackage", "false");
-        checkConfig.addProperty("applyToPrivate", "false");
 
         final String pattern = "^_[a-z]*$";
 
@@ -131,12 +114,6 @@ public class MemberNameCheckTest
 
     @Test
     public void testProtectedOnly() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
-        checkConfig.addProperty("format", "^_[a-z]*$");
-        checkConfig.addProperty("applyToPublic", "false");
-        checkConfig.addProperty("applyToPackage", "false");
-        checkConfig.addProperty("applyToPrivate", "false");
 
         final String pattern = "^_[a-z]*$";
 
@@ -149,12 +126,6 @@ public class MemberNameCheckTest
 
     @Test
     public void testPackageOnly() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
-        checkConfig.addProperty("format", "^_[a-z]*$");
-        checkConfig.addProperty("applyToPublic", "false");
-        checkConfig.addProperty("applyToProtected", "false");
-        checkConfig.addProperty("applyToPrivate", "false");
 
         final String pattern = "^_[a-z]*$";
 
@@ -167,12 +138,6 @@ public class MemberNameCheckTest
 
     @Test
     public void testPrivateOnly() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
-        checkConfig.addProperty("format", "^_[a-z]*$");
-        checkConfig.addProperty("applyToPublic", "false");
-        checkConfig.addProperty("applyToProtected", "false");
-        checkConfig.addProperty("applyToPackage", "false");
 
         final String pattern = "^_[a-z]*$";
 
@@ -185,9 +150,6 @@ public class MemberNameCheckTest
 
     @Test
     public void testNotPrivate() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
-        checkConfig.addProperty("applyToPrivate", "false");
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -202,9 +164,6 @@ public class MemberNameCheckTest
 
     @Test
     public void memberNameExtended() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MemberNameCheck.class);
-        checkConfig.addProperty("format", "^[a-z][a-z0-9][a-zA-Z0-9]*$");
 
         final String pattern = "^[a-z][a-z0-9][a-zA-Z0-9]*$";
 

@@ -29,7 +29,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -47,11 +46,6 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void test() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavaNCSSCheck.class);
-
-        checkConfig.addProperty("methodMaximum", "0");
-        checkConfig.addProperty("classMaximum", "1");
-        checkConfig.addProperty("fileMaximum", "2");
 
         final String[] expected = {
             "12:1: " + getCheckMessage(MSG_FILE, 39, 2),
@@ -75,11 +69,6 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testEqualToMax() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavaNCSSCheck.class);
-
-        checkConfig.addProperty("methodMaximum", "12");
-        checkConfig.addProperty("classMaximum", "22");
-        checkConfig.addProperty("fileMaximum", "39");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -89,9 +78,6 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavaNCSSCheck.class);
-
-        createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputJavaNCSS3.java"), expected);
@@ -99,12 +85,6 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRecordsAndCompactCtors() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavaNCSSCheck.class);
-
-        checkConfig.addProperty("methodMaximum", "7");
-        checkConfig.addProperty("classMaximum", "3");
-        checkConfig.addProperty("fileMaximum", "2");
-        checkConfig.addProperty("recordMaximum", "4");
 
         final String[] expected = {
             "12:1: " + getCheckMessage(MSG_FILE, 89, 2),

@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -59,9 +58,6 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodLengthCheck.class);
-        checkConfig.addProperty("max", "19");
         final String[] expected = {
             "76:5: " + getCheckMessage(MSG_KEY, 20, 19, "longMethod"),
         };
@@ -71,10 +67,6 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCountEmptyIsFalse() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodLengthCheck.class);
-        checkConfig.addProperty("max", "19");
-        checkConfig.addProperty("countEmpty", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMethodLengthCountEmptyIsFalse.java"), expected);
@@ -82,10 +74,6 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWithComments() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MethodLengthCheck.class);
-        checkConfig.addProperty("max", "7");
-        checkConfig.addProperty("countEmpty", "false");
         final String[] expected = {
             "34:5: " + getCheckMessage(MSG_KEY, 8, 7, "visit"),
         };
@@ -95,8 +83,6 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAbstract() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodLengthCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMethodLengthModifier.java"), expected);
@@ -104,11 +90,6 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRecordsAndCompactCtors() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MethodLengthCheck.class);
-        checkConfig.addProperty("max", "2");
-        checkConfig.addProperty("tokens",
-                "METHOD_DEF, CTOR_DEF, COMPACT_CTOR_DEF");
 
         final int max = 2;
 

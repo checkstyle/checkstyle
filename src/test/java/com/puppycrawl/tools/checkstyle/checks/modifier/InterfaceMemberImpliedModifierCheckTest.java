@@ -27,7 +27,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -42,8 +41,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testMethodsOnInterfaceNoImpliedPublicAbstract() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_KEY, "public"),
             "27:5: " + getCheckMessage(MSG_KEY, "public"),
@@ -73,9 +70,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testMethodsOnInterfaceNoImpliedAbstractAllowImpliedPublic() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addProperty("violateImpliedPublicMethod", "false");
         final String[] expected = {
             "36:5: " + getCheckMessage(MSG_KEY, "abstract"),
             "38:5: " + getCheckMessage(MSG_KEY, "abstract"),
@@ -87,9 +81,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testMethodsOnInterfaceNoImpliedPublicAllowImpliedAbstract() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addProperty("violateImpliedAbstractMethod", "false");
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_KEY, "public"),
             "27:5: " + getCheckMessage(MSG_KEY, "public"),
@@ -103,10 +94,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testMethodsOnInterfaceAllowImpliedPublicAbstract() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addProperty("violateImpliedPublicMethod", "false");
-        checkConfig.addProperty("violateImpliedAbstractMethod", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierMethodsOnInterface4.java"),
@@ -115,8 +102,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testMethodsOnClassIgnored() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierMethodsOnClass.java"),
@@ -125,8 +110,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testMethodsOnInterfaceNestedNoImpliedPublicAbstract() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
         final String[] expected = {
             "23:9: " + getCheckMessage(MSG_KEY, "public"),
             "29:9: " + getCheckMessage(MSG_KEY, "public"),
@@ -142,8 +125,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testMethodsOnClassNestedNoImpliedPublicAbstract() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
         final String[] expected = {
             "23:9: " + getCheckMessage(MSG_KEY, "public"),
             "29:9: " + getCheckMessage(MSG_KEY, "public"),
@@ -159,8 +140,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testFieldsOnInterfaceNoImpliedPublicStaticFinal() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
         final String[] expected = {
             "20:5: " + getCheckMessage(MSG_KEY, "final"),
             "22:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -182,9 +161,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testFieldsOnInterfaceNoImpliedPublicStaticAllowImpliedFinal() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addProperty("violateImpliedFinalField", "false");
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_KEY, "static"),
             "24:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -202,9 +178,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testFieldsOnInterfaceNoImpliedPublicFinalAllowImpliedStatic() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addProperty("violateImpliedStaticField", "false");
         final String[] expected = {
             "20:5: " + getCheckMessage(MSG_KEY, "final"),
             "24:5: " + getCheckMessage(MSG_KEY, "final"),
@@ -222,9 +195,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testFieldsOnInterfaceNoImpliedStaticFinalAllowImpliedPublic() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addProperty("violateImpliedPublicField", "false");
         final String[] expected = {
             "20:5: " + getCheckMessage(MSG_KEY, "final"),
             "22:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -242,11 +212,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testFieldsOnInterfaceAllowImpliedPublicStaticFinal() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addProperty("violateImpliedPublicField", "false");
-        checkConfig.addProperty("violateImpliedStaticField", "false");
-        checkConfig.addProperty("violateImpliedFinalField", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierFieldsOnInterface5.java"),
@@ -255,8 +220,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testFieldsOnClassIgnored() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierFieldsOnClass.java"),
@@ -265,8 +228,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testNestedOnInterfaceNoImpliedPublicStatic() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_KEY, "static"),
             "24:5: " + getCheckMessage(MSG_KEY, "public"),
@@ -288,9 +249,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testNestedOnInterfaceNoImpliedStaticAllowImpliedPublic() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addProperty("violateImpliedPublicNested", "false");
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_KEY, "static"),
             "27:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -306,9 +264,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testNestedOnInterfaceNoImpliedPublicAllowImpliedStatic() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addProperty("violateImpliedStaticNested", "false");
         final String[] expected = {
             "24:5: " + getCheckMessage(MSG_KEY, "public"),
             "27:5: " + getCheckMessage(MSG_KEY, "public"),
@@ -324,10 +279,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testNestedOnInterfaceAllowImpliedPublicStatic() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addProperty("violateImpliedPublicNested", "false");
-        checkConfig.addProperty("violateImpliedStaticNested", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierNestedOnInterface4.java"),
@@ -336,8 +287,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testNestedOnClassIgnored() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierNestedOnClass.java"),
@@ -346,8 +295,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testNestedOnInterfaceNestedNoImpliedPublicStatic() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
         final String[] expected = {
             "20:9: " + getCheckMessage(MSG_KEY, "public"),
             "20:9: " + getCheckMessage(MSG_KEY, "static"),
@@ -363,8 +310,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testNestedOnClassNestedNoImpliedPublicStatic() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
         final String[] expected = {
             "20:9: " + getCheckMessage(MSG_KEY, "public"),
             "20:9: " + getCheckMessage(MSG_KEY, "static"),
@@ -380,8 +325,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testPackageScopeInterface() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
         final String[] expected = {
             "20:5: " + getCheckMessage(MSG_KEY, "final"),
             "22:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -413,8 +356,6 @@ public class InterfaceMemberImpliedModifierCheckTest
 
     @Test
     public void testPrivateMethodsOnInterface() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputInterfaceMemberImpliedModifierPrivateMethods.java"),

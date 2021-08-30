@@ -27,7 +27,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -42,8 +41,6 @@ public class ClassMemberImpliedModifierCheckTest
 
     @Test
     public void testMethodsOnClass() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ClassMemberImpliedModifierCheck.class);
         final String[] expected = {
             "51:9: " + getCheckMessage(MSG_KEY, "static"),
             "58:9: " + getCheckMessage(MSG_KEY, "static"),
@@ -71,9 +68,6 @@ public class ClassMemberImpliedModifierCheckTest
 
     @Test
     public void testMethodsOnClassNoImpliedStaticEnum() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ClassMemberImpliedModifierCheck.class);
-        checkConfig.addProperty("violateImpliedStaticOnNestedEnum", "false");
         final String[] expected = {
             "59:9: " + getCheckMessage(MSG_KEY, "static"),
             "77:9: " + getCheckMessage(MSG_KEY, "static"),
@@ -86,9 +80,6 @@ public class ClassMemberImpliedModifierCheckTest
 
     @Test
     public void testMethodsOnClassNoImpliedStaticInterface() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ClassMemberImpliedModifierCheck.class);
-        checkConfig.addProperty("violateImpliedStaticOnNestedInterface", "false");
         final String[] expected = {
             "52:9: " + getCheckMessage(MSG_KEY, "static"),
             "63:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -101,10 +92,6 @@ public class ClassMemberImpliedModifierCheckTest
 
     @Test
     public void testMethodsOnClassNoViolationsChecked() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ClassMemberImpliedModifierCheck.class);
-        checkConfig.addProperty("violateImpliedStaticOnNestedEnum", "false");
-        checkConfig.addProperty("violateImpliedStaticOnNestedInterface", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputClassMemberImpliedModifierOnClassNoViolations.java"),
@@ -113,8 +100,6 @@ public class ClassMemberImpliedModifierCheckTest
 
     @Test
     public void testMethodsOnInterface() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ClassMemberImpliedModifierCheck.class);
         final String[] expected = {
             "60:13: " + getCheckMessage(MSG_KEY, "static"),
             "67:13: " + getCheckMessage(MSG_KEY, "static"),
@@ -130,8 +115,6 @@ public class ClassMemberImpliedModifierCheckTest
 
     @Test
     public void testClassMemberImpliedModifierRecords() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ClassMemberImpliedModifierCheck.class);
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_KEY, "static"),
             "20:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -147,9 +130,6 @@ public class ClassMemberImpliedModifierCheckTest
 
     @Test
     public void testClassMemberImpliedModifierNoViolationRecords() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ClassMemberImpliedModifierCheck.class);
-        checkConfig.addProperty("violateImpliedStaticOnNestedRecord", "false");
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_KEY, "static"),
             "20:5: " + getCheckMessage(MSG_KEY, "static"),

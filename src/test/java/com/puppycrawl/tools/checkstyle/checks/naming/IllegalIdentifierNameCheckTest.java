@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -72,8 +71,6 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIllegalIdentifierNameDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalIdentifierNameCheck.class);
 
         final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
 
@@ -98,11 +95,6 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIllegalIdentifierNameOpenTransitive() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalIdentifierNameCheck.class);
-        checkConfig.addProperty("format",
-            "(?i)^(?!(record|yield|var|permits|sealed|open|transitive)$).+$");
-
         final String format = "(?i)^(?!(record|yield|var|permits|sealed|open|transitive)$).+$";
 
         final String[] expected = {
@@ -127,8 +119,6 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIllegalIdentifierNameParameterReceiver() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalIdentifierNameCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -139,8 +129,6 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIllegalIdentifierNameUnderscore() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalIdentifierNameCheck.class);
         final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
 
         final String[] expected = {
@@ -152,8 +140,6 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIllegalIdentifierNameLambda() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalIdentifierNameCheck.class);
         final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
 
         final String[] expected = {

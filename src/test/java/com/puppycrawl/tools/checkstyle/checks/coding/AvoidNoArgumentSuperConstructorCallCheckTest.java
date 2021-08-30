@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AvoidNoArgumentSuperConstructorCallCheckTest
@@ -38,8 +37,6 @@ public class AvoidNoArgumentSuperConstructorCallCheckTest
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(AvoidNoArgumentSuperConstructorCallCheck.class);
 
         final String[] expected = {
             "12:9: " + getCheckMessage(MSG_CTOR),

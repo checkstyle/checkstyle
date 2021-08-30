@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck.MSG
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class MagicNumberCheckTest
     extends AbstractModuleTestSupport {
@@ -37,8 +36,6 @@ public class MagicNumberCheckTest
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MagicNumberCheck.class);
         final String[] expected = {
             "54:26: " + getCheckMessage(MSG_KEY, "3_000"),
             "55:32: " + getCheckMessage(MSG_KEY, "1.5_0"),
@@ -93,10 +90,6 @@ public class MagicNumberCheckTest
     @Test
     public void testIgnoreSome()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MagicNumberCheck.class);
-        checkConfig.addProperty("ignoreNumbers", "0, 1, 3.0, 8, 16, 3000");
-        checkConfig.addProperty("ignoreAnnotation", "true");
         final String[] expected = {
             "36:25: " + getCheckMessage(MSG_KEY, "2"),
             "42:35: " + getCheckMessage(MSG_KEY, "2"),
@@ -144,10 +137,6 @@ public class MagicNumberCheckTest
     @Test
     public void testIgnoreNone()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MagicNumberCheck.class);
-        checkConfig.addProperty("ignoreNumbers", "");
-        checkConfig.addProperty("ignoreAnnotation", "true");
         final String[] expected = {
             "41:24: " + getCheckMessage(MSG_KEY, "1"),
             "42:25: " + getCheckMessage(MSG_KEY, "2"),
@@ -223,10 +212,6 @@ public class MagicNumberCheckTest
     @Test
     public void testIntegersOnly()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MagicNumberCheck.class);
-        checkConfig.addProperty("tokens", "NUM_INT, NUM_LONG");
-        checkConfig.addProperty("ignoreAnnotation", "true");
         final String[] expected = {
             "55:26: " + getCheckMessage(MSG_KEY, "3_000"),
             "57:27: " + getCheckMessage(MSG_KEY, "3"),
@@ -272,12 +257,6 @@ public class MagicNumberCheckTest
 
     @Test
     public void testIgnoreNegativeOctalHex() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MagicNumberCheck.class);
-        checkConfig.addProperty("ignoreNumbers",
-            "-9223372036854775808, -2147483648, -1, 0, 1, 2, -2");
-        checkConfig.addProperty("tokens", "NUM_INT, NUM_LONG");
-        checkConfig.addProperty("ignoreAnnotation", "true");
         final String[] expected = {
             "55:26: " + getCheckMessage(MSG_KEY, "3_000"),
             "57:27: " + getCheckMessage(MSG_KEY, "3"),
@@ -318,10 +297,6 @@ public class MagicNumberCheckTest
 
     @Test
     public void testIgnoreHashCodeMethod() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MagicNumberCheck.class);
-        checkConfig.addProperty("ignoreHashCodeMethod", "true");
-        checkConfig.addProperty("ignoreAnnotation", "true");
         final String[] expected = {
             "55:26: " + getCheckMessage(MSG_KEY, "3_000"),
             "56:32: " + getCheckMessage(MSG_KEY, "1.5_0"),
@@ -371,9 +346,6 @@ public class MagicNumberCheckTest
     @Test
     public void testIgnoreFieldDeclaration()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MagicNumberCheck.class);
-        checkConfig.addProperty("ignoreFieldDeclaration", "true");
         final String[] expected = {
             "55:26: " + getCheckMessage(MSG_KEY, "3_000"),
             "56:32: " + getCheckMessage(MSG_KEY, "1.5_0"),
@@ -415,10 +387,6 @@ public class MagicNumberCheckTest
     @Test
     public void testWaiverParentToken()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MagicNumberCheck.class);
-        checkConfig.addProperty("constantWaiverParentToken", "ASSIGN, ARRAY_INIT,"
-                + " EXPR, UNARY_PLUS, UNARY_MINUS, TYPECAST, ELIST, STAR, DIV, PLUS, MINUS");
         final String[] expected = {
             "55:26: " + getCheckMessage(MSG_KEY, "3_000"),
             "56:32: " + getCheckMessage(MSG_KEY, "1.5_0"),
@@ -479,8 +447,6 @@ public class MagicNumberCheckTest
     @Test
     public void testMagicNumberRecordsDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MagicNumberCheck.class);
         final String[] expected = {
             "19:11: " + getCheckMessage(MSG_KEY, "6"),
             "21:36: " + getCheckMessage(MSG_KEY, "7"),
@@ -495,9 +461,6 @@ public class MagicNumberCheckTest
     @Test
     public void testMagicNumberIgnoreFieldDeclarationRecords()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MagicNumberCheck.class);
-        checkConfig.addProperty("ignoreFieldDeclaration", "true");
         final String[] expected = {
             "19:11: " + getCheckMessage(MSG_KEY, "6"),
             "25:29: " + getCheckMessage(MSG_KEY, "8"),
@@ -511,9 +474,6 @@ public class MagicNumberCheckTest
 
     @Test
     public void testIgnoreInAnnotationElementDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MagicNumberCheck.class);
-        checkConfig.addProperty("ignoreAnnotationElementDefaults", "false");
         final String[] expected = {
             "18:29: " + getCheckMessage(MSG_KEY, "10"),
             "19:33: " + getCheckMessage(MSG_KEY, "11"),

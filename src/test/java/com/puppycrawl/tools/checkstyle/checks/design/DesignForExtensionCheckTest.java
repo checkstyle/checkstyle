@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -47,8 +46,6 @@ public class DesignForExtensionCheckTest
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(DesignForExtensionCheck.class);
         final String[] expected = {
             "50:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtension", "doh"),
             "104:9: " + getCheckMessage(MSG_KEY, "anotherNonFinalClass", "someMethod"),
@@ -67,7 +64,6 @@ public class DesignForExtensionCheckTest
 
     @Test
     public void testOverridableMethods() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
         final String[] expected = {
             "14:9: " + getCheckMessage(MSG_KEY, "A", "foo1"),
             "38:9: " + getCheckMessage(MSG_KEY, "A", "foo8"),
@@ -95,8 +91,6 @@ public class DesignForExtensionCheckTest
 
     @Test
     public void testIgnoredAnnotationsOption() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
-        checkConfig.addProperty("ignoredAnnotations", "Override, Deprecated, MyAnnotation");
         final String[] expected = {
             "39:5: "
                 + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "foo1"),
@@ -113,9 +107,6 @@ public class DesignForExtensionCheckTest
 
     @Test
     public void testIgnoreAnnotationsOptionWithMultipleAnnotations() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
-        checkConfig.addProperty("ignoredAnnotations",
-            "Override, Deprecated, Before, After, BeforeClass, AfterClass");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputDesignForExtensionMultipleAnnotations.java"), expected);
@@ -123,8 +114,6 @@ public class DesignForExtensionCheckTest
 
     @Test
     public void testNativeMethods() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
-        checkConfig.addProperty("ignoredAnnotations", "Deprecated");
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtensionNativeMethods", "foo1"),
             "32:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtensionNativeMethods", "foo6"),
@@ -135,7 +124,6 @@ public class DesignForExtensionCheckTest
 
     @Test
     public void testDesignForExtensionRecords() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -145,8 +133,6 @@ public class DesignForExtensionCheckTest
 
     @Test
     public void testRequiredJavadocPhrase() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
-        checkConfig.addProperty("requiredJavadocPhrase", "This implementation");
         final String className = "InputDesignForExtensionRequiredJavadocPhrase";
         final String[] expected = {
             "41:5: " + getCheckMessage(MSG_KEY, className, "foo5"),
@@ -160,8 +146,6 @@ public class DesignForExtensionCheckTest
 
     @Test
     public void testRequiredJavadocPhraseMultiLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
-        checkConfig.addProperty("requiredJavadocPhrase", "This[\\s\\S]*implementation");
         final String className = "InputDesignForExtensionRequiredJavadocPhraseMultiLine";
         final String[] expected = {
             "23:5: " + getCheckMessage(MSG_KEY, className, "foo2"),
@@ -173,7 +157,6 @@ public class DesignForExtensionCheckTest
 
     @Test
     public void testInterfaceMemberScopeIsPublic() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
         final String[] expected = {
             "15:9: " + getCheckMessage(MSG_KEY, "Inner", "getProperty"),
         };

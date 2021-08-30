@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck.
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NoLineWrapCheckTest
@@ -37,7 +36,6 @@ public class NoLineWrapCheckTest
 
     @Test
     public void testCaseWithoutLineWrapping() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoLineWrapCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputNoLineWrapGood.java"), expected);
@@ -45,7 +43,6 @@ public class NoLineWrapCheckTest
 
     @Test
     public void testDefaultTokensLineWrapping() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoLineWrapCheck.class);
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_KEY, "package"),
             "13:1: " + getCheckMessage(MSG_KEY, "import"),
@@ -58,9 +55,6 @@ public class NoLineWrapCheckTest
     @Test
     public void testCustomTokensLineWrapping()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoLineWrapCheck.class);
-        checkConfig.addProperty(
-                "tokens", "IMPORT, STATIC_IMPORT, CLASS_DEF, METHOD_DEF, ENUM_DEF");
         final String[] expected = {
             "13:1: " + getCheckMessage(MSG_KEY, "import"),
             "17:1: " + getCheckMessage(MSG_KEY, "import"),
@@ -75,9 +69,6 @@ public class NoLineWrapCheckTest
     @Test
     public void testNoLineWrapRecordsAndCompactCtors()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoLineWrapCheck.class);
-        checkConfig.addProperty(
-                "tokens", "RECORD_DEF, CLASS_DEF, CTOR_DEF, COMPACT_CTOR_DEF");
 
         final String[] expected = {
             "13:9: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),

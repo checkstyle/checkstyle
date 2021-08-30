@@ -26,7 +26,6 @@ import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
@@ -41,8 +40,6 @@ public class IllegalTokenCheckTest
     @Test
     public void testCheckWithDefaultSettings()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalTokenCheck.class);
         final String[] expected = {
             "36:14: " + getCheckMessage(MSG_KEY, "label:"),
             "38:25: " + getCheckMessage(MSG_KEY, "anotherLabel:"),
@@ -54,9 +51,6 @@ public class IllegalTokenCheckTest
     @Test
     public void testPreviouslyIllegalTokens()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalTokenCheck.class);
-        checkConfig.addProperty("tokens", "LITERAL_SWITCH,POST_INC,POST_DEC");
         final String[] expected = {
             "18:9: " + getCheckMessage(MSG_KEY, "switch"),
             "21:18: " + getCheckMessage(MSG_KEY, "--"),
@@ -68,9 +62,6 @@ public class IllegalTokenCheckTest
 
     @Test
     public void testNative() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalTokenCheck.class);
-        checkConfig.addProperty("tokens", "LITERAL_NATIVE");
         final String[] expected = {
             "27:12: " + getCheckMessage(MSG_KEY, "native"),
         };
@@ -81,9 +72,6 @@ public class IllegalTokenCheckTest
     @Test
     public void testCommentContentToken()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(IllegalTokenCheck.class);
-        checkConfig.addProperty("tokens", "COMMENT_CONTENT");
 
         final String path = getPath("InputIllegalTokens4.java");
         final String lineSeparator =
@@ -114,9 +102,6 @@ public class IllegalTokenCheckTest
     @Test
     public void testBlockCommentBeginToken()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(IllegalTokenCheck.class);
-        checkConfig.addProperty("tokens", "BLOCK_COMMENT_BEGIN");
 
         final String[] expected = {
             "1:1: " + getCheckMessage(MSG_KEY, "/*"),
@@ -129,9 +114,6 @@ public class IllegalTokenCheckTest
     @Test
     public void testBlockCommentEndToken()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(IllegalTokenCheck.class);
-        checkConfig.addProperty("tokens", "BLOCK_COMMENT_END");
 
         final String[] expected = {
             "6:1: " + getCheckMessage(MSG_KEY, "*/"),
@@ -144,9 +126,6 @@ public class IllegalTokenCheckTest
     @Test
     public void testSingleLineCommentToken()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(IllegalTokenCheck.class);
-        checkConfig.addProperty("tokens", "SINGLE_LINE_COMMENT");
 
         final String[] expected = {
             "38:27: " + getCheckMessage(MSG_KEY, "//"),

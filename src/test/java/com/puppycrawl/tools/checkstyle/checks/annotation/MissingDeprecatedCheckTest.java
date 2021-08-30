@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -64,7 +63,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testBadDeprecatedAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "14: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
@@ -87,7 +85,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testBadDeprecatedJavadoc() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "18: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
@@ -106,7 +103,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testSpecialCaseDeprecated() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "12: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
@@ -130,7 +126,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testGoodDeprecated() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -140,7 +135,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTwoInJavadocWithoutAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "15: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
@@ -153,7 +147,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testEmptyJavadocLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "18: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
@@ -165,7 +158,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testPackageInfo() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
@@ -177,7 +169,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDepPackageInfoBelowComment() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
             "14: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
@@ -189,7 +180,6 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testPackageInfoBelowComment() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 

@@ -31,7 +31,6 @@ import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -47,11 +46,6 @@ public class IllegalTokenTextCheckTest
     @Test
     public void testCaseSensitive()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addProperty("tokens", "STRING_LITERAL");
-        checkConfig.addProperty("format", "a href");
-        checkConfig.addProperty("ignoreCase", "false");
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
@@ -62,11 +56,6 @@ public class IllegalTokenTextCheckTest
     @Test
     public void testCaseInSensitive()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addProperty("tokens", "STRING_LITERAL");
-        checkConfig.addProperty("format", "a href");
-        checkConfig.addProperty("ignoreCase", "true");
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
             "35:32: " + getCheckMessage(MSG_KEY, "a href"),
@@ -78,12 +67,7 @@ public class IllegalTokenTextCheckTest
     @Test
     public void testCustomMessage()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addProperty("tokens", "STRING_LITERAL");
-        checkConfig.addProperty("format", "a href");
 
-        checkConfig.addProperty("message", "My custom message");
         final String[] expected = {
             "34:28: " + "My custom message",
         };
@@ -94,12 +78,7 @@ public class IllegalTokenTextCheckTest
     @Test
     public void testNullCustomMessage()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addProperty("tokens", "STRING_LITERAL");
-        checkConfig.addProperty("format", "a href");
 
-        checkConfig.addProperty("message", null);
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
@@ -109,10 +88,6 @@ public class IllegalTokenTextCheckTest
 
     @Test
     public void testIllegalTokenTextTextBlocks() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addProperty("tokens", "STRING_LITERAL, TEXT_BLOCK_CONTENT");
-        checkConfig.addProperty("format", "a href");
 
         final String[] expected = {
             "16:28: " + getCheckMessage(MSG_KEY, "a href"),
@@ -127,10 +102,6 @@ public class IllegalTokenTextCheckTest
 
     @Test
     public void testIllegalTokenTextTextBlocksQuotes() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addProperty("tokens", "STRING_LITERAL, TEXT_BLOCK_CONTENT");
-        checkConfig.addProperty("format", "\"");
 
         final String[] expected = {
             "16:28: " + getCheckMessage(MSG_KEY, "\""),
@@ -157,12 +128,7 @@ public class IllegalTokenTextCheckTest
     @Test
     public void testCommentToken()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addProperty("tokens", "COMMENT_CONTENT");
-        checkConfig.addProperty("format", "a href");
 
-        checkConfig.addProperty("message", null);
         final String[] expected = {
             "1:3: " + getCheckMessage(MSG_KEY, "a href"),
             "45:28: " + getCheckMessage(MSG_KEY, "a href"),

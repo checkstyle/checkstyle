@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -39,10 +38,6 @@ public class CyclomaticComplexityCheckTest
 
     @Test
     public void testSwitchBlockAsSingleDecisionPointSetToTrue() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(CyclomaticComplexityCheck.class);
-        checkConfig.addProperty("max", "0");
-        checkConfig.addProperty("switchBlockAsSingleDecisionPoint", "true");
 
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -54,10 +49,6 @@ public class CyclomaticComplexityCheckTest
 
     @Test
     public void testSwitchBlockAsSingleDecisionPointSetToFalse() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(CyclomaticComplexityCheck.class);
-        checkConfig.addProperty("max", "0");
-        checkConfig.addProperty("switchBlockAsSingleDecisionPoint", "false");
 
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY, 5, 0),
@@ -69,9 +60,6 @@ public class CyclomaticComplexityCheckTest
 
     @Test
     public void testEqualsMaxComplexity() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(CyclomaticComplexityCheck.class);
-        checkConfig.addProperty("max", "5");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -81,10 +69,6 @@ public class CyclomaticComplexityCheckTest
 
     @Test
     public void test() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(CyclomaticComplexityCheck.class);
-
-        checkConfig.addProperty("max", "0");
 
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -105,10 +89,6 @@ public class CyclomaticComplexityCheckTest
 
     @Test
     public void testCyclomaticComplexityRecords() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(CyclomaticComplexityCheck.class);
-
-        checkConfig.addProperty("max", "0");
 
         final int max = 0;
 
@@ -166,9 +146,6 @@ public class CyclomaticComplexityCheckTest
 
     @Test
     public void testHighMax() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(CyclomaticComplexityCheck.class);
-        checkConfig.addProperty("max", "100");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(

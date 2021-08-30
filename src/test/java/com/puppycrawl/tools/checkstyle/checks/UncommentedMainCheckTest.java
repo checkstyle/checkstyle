@@ -29,7 +29,6 @@ import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -45,8 +44,6 @@ public class UncommentedMainCheckTest
     @Test
     public void testDefaults()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(UncommentedMainCheck.class);
         final String[] expected = {
             "17:5: " + getCheckMessage(MSG_KEY),
             "26:5: " + getCheckMessage(MSG_KEY),
@@ -60,9 +57,6 @@ public class UncommentedMainCheckTest
     @Test
     public void testExcludedClasses()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(UncommentedMainCheck.class);
-        checkConfig.addProperty("excludedClasses", "\\.Main.*$");
         final String[] expected = {
             "17:5: " + getCheckMessage(MSG_KEY),
             "35:5: " + getCheckMessage(MSG_KEY),
@@ -85,7 +79,6 @@ public class UncommentedMainCheckTest
 
     @Test
     public void testDeepDepth() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputUncommentedMain2.java"), expected);
@@ -93,8 +86,6 @@ public class UncommentedMainCheckTest
 
     @Test
     public void testVisitPackage() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
-        checkConfig.addProperty("excludedClasses", "uncommentedmain\\.InputUncommentedMain5");
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_KEY),
         };
@@ -104,7 +95,6 @@ public class UncommentedMainCheckTest
 
     @Test
     public void testWrongName() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputUncommentedMain3.java"), expected);
@@ -112,7 +102,6 @@ public class UncommentedMainCheckTest
 
     @Test
     public void testWrongArrayType() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputUncommentedMain4.java"), expected);
@@ -135,7 +124,6 @@ public class UncommentedMainCheckTest
     @Test
     public void testRecords()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
 
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_KEY),

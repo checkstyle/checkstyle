@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -49,8 +48,6 @@ public class LocalVariableNameCheckTest
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LocalVariableNameCheck.class);
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -67,8 +64,6 @@ public class LocalVariableNameCheckTest
     @Test
     public void testInnerClass()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LocalVariableNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputLocalVariableNameInnerClass.java"), expected);
@@ -77,10 +72,6 @@ public class LocalVariableNameCheckTest
     @Test
     public void testLoopVariables()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(LocalVariableNameCheck.class);
-        checkConfig.addProperty("format", "^[a-z]{2,}[a-zA-Z0-9]*$");
-        checkConfig.addProperty("allowOneCharVarInForLoop", "true");
 
         final String pattern = "^[a-z]{2,}[a-zA-Z0-9]*$";
 

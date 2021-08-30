@@ -34,7 +34,6 @@ import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.Context;
@@ -54,10 +53,6 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCalculation() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NPathComplexityCheck.class);
-
-        checkConfig.addProperty("max", "0");
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_KEY, 2, 0),
             "17:17: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -81,10 +76,6 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCalculation2() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NPathComplexityCheck.class);
-
-        checkConfig.addProperty("max", "0");
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_KEY, 5, 0),
             "18:5: " + getCheckMessage(MSG_KEY, 5, 0),
@@ -108,10 +99,6 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCalculation3() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NPathComplexityCheck.class);
-
-        checkConfig.addProperty("max", "0");
         final String[] expected = {
             "11:5: " + getCheckMessage(MSG_KEY, 64, 0),
         };
@@ -122,10 +109,6 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIntegerOverflow() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NPathComplexityCheck.class);
-
-        checkConfig.addProperty("max", "0");
 
         final long largerThanMaxInt = 3_486_784_401L;
 
@@ -199,10 +182,6 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(NPathComplexityCheck.class);
-
-        createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputNPathComplexityDefault2.java"), expected);
@@ -210,9 +189,6 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNpathComplexityRecords() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NPathComplexityCheck.class);
-        checkConfig.addProperty("max", "1");
-
         final int max = 1;
 
         final String[] expected = {
@@ -228,8 +204,6 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNpathComplexitySwitchExpression() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NPathComplexityCheck.class);
-        checkConfig.addProperty("max", "1");
 
         final int max = 1;
 

@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.bdd;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public final class TestInputViolation implements Comparable<TestInputViolation> {
@@ -86,6 +87,16 @@ public final class TestInputViolation implements Comparable<TestInputViolation> 
 
     @Override
     public int compareTo(TestInputViolation testInputViolation) {
-        return lineNo - testInputViolation.lineNo;
+        return Integer.compare(lineNo, testInputViolation.lineNo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lineNo);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        return getClass() == object.getClass() && compareTo((TestInputViolation) object) == 0;
     }
 }

@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class VariableDeclarationUsageDistanceCheckTest extends
@@ -39,12 +38,6 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testGeneralLogic() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
-        checkConfig.addProperty("allowedDistance", "1");
-        checkConfig.addProperty("ignoreVariablePattern", "");
-        checkConfig.addProperty("validateBetweenScopes", "true");
-        checkConfig.addProperty("ignoreFinal", "false");
         final String[] expected = {
             "42:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
             "50:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
@@ -89,12 +82,6 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testDistance() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
-        checkConfig.addProperty("allowedDistance", "3");
-        checkConfig.addProperty("ignoreVariablePattern", "");
-        checkConfig.addProperty("validateBetweenScopes", "true");
-        checkConfig.addProperty("ignoreFinal", "false");
         final String[] expected = {
             "83:9: " + getCheckMessage(MSG_KEY, "count", 4, 3),
             "231:9: " + getCheckMessage(MSG_KEY, "t", 5, 3),
@@ -112,13 +99,6 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testVariableRegExp() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
-        checkConfig.addProperty("allowedDistance", "1");
-        checkConfig.addProperty("ignoreVariablePattern",
-                "a|b|c|d|block|dist|t|m");
-        checkConfig.addProperty("validateBetweenScopes", "true");
-        checkConfig.addProperty("ignoreFinal", "false");
         final String[] expected = {
             "50:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
             "56:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
@@ -152,12 +132,6 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testValidateBetweenScopesOption() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
-        checkConfig.addProperty("allowedDistance", "1");
-        checkConfig.addProperty("ignoreVariablePattern", "");
-        checkConfig.addProperty("validateBetweenScopes", "false");
-        checkConfig.addProperty("ignoreFinal", "false");
         final String[] expected = {
             "42:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
             "50:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
@@ -190,12 +164,6 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testIgnoreFinalOption() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
-        checkConfig.addProperty("allowedDistance", "1");
-        checkConfig.addProperty("ignoreVariablePattern", "");
-        checkConfig.addProperty("validateBetweenScopes", "true");
-        checkConfig.addProperty("ignoreFinal", "true");
         final String[] expected = {
             "42:9: " + getCheckMessage(MSG_KEY_EXT, "a", 2, 1),
             "50:9: " + getCheckMessage(MSG_KEY_EXT, "temp", 2, 1),
@@ -247,8 +215,6 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
         final String[] expected = {
             "83:9: " + getCheckMessage(MSG_KEY_EXT, "count", 4, 3),
             "231:9: " + getCheckMessage(MSG_KEY_EXT, "t", 5, 3),
@@ -265,8 +231,6 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testAnonymousClass() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
         final String[] expected = {
             "19:9: " + getCheckMessage(MSG_KEY_EXT, "prefs", 4, 3),
         };
@@ -278,8 +242,6 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testLabels() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -288,12 +250,6 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testVariableDeclarationUsageDistanceSwitchExpressions() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
-        checkConfig.addProperty("allowedDistance", "1");
-        checkConfig.addProperty("ignoreVariablePattern", "");
-        checkConfig.addProperty("validateBetweenScopes", "true");
-        checkConfig.addProperty("ignoreFinal", "false");
 
         final int maxDistance = 1;
         final String[] expected = {

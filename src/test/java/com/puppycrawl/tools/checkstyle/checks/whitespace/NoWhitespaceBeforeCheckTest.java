@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBefo
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NoWhitespaceBeforeCheckTest
@@ -37,7 +36,6 @@ public class NoWhitespaceBeforeCheckTest
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
         final String[] expected = {
             "34:15: " + getCheckMessage(MSG_KEY, "++"),
             "34:22: " + getCheckMessage(MSG_KEY, "--"),
@@ -59,8 +57,6 @@ public class NoWhitespaceBeforeCheckTest
 
     @Test
     public void testDot() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
-        checkConfig.addProperty("tokens", "DOT");
         final String[] expected = {
             "9:13: " + getCheckMessage(MSG_KEY, "."),
             "10:5: " + getCheckMessage(MSG_KEY, "."),
@@ -75,9 +71,6 @@ public class NoWhitespaceBeforeCheckTest
 
     @Test
     public void testDotAllowLineBreaks() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
-        checkConfig.addProperty("tokens", "DOT");
-        checkConfig.addProperty("allowLineBreaks", "yes");
         final String[] expected = {
             "9:13: " + getCheckMessage(MSG_KEY, "."),
             "133:18: " + getCheckMessage(MSG_KEY, "."),
@@ -89,8 +82,6 @@ public class NoWhitespaceBeforeCheckTest
 
     @Test
     public void testMethodReference() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
-        checkConfig.addProperty("tokens", "METHOD_REF");
         final String[] expected = {
             "25:32: " + getCheckMessage(MSG_KEY, "::"),
             "26:61: " + getCheckMessage(MSG_KEY, "::"),
@@ -101,8 +92,6 @@ public class NoWhitespaceBeforeCheckTest
 
     @Test
     public void testDotAtTheStartOfTheLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
-        checkConfig.addProperty("tokens", "DOT");
         final String[] expected = {
             "10:1: " + getCheckMessage(MSG_KEY, "."),
         };
@@ -112,9 +101,6 @@ public class NoWhitespaceBeforeCheckTest
 
     @Test
     public void testMethodRefAtTheStartOfTheLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
-        checkConfig.addProperty("tokens", "METHOD_REF");
-        checkConfig.addProperty("allowLineBreaks", "yes");
         final String[] expected = {
             "22:3: " + getCheckMessage(MSG_KEY, "::"),
         };
@@ -124,9 +110,6 @@ public class NoWhitespaceBeforeCheckTest
 
     @Test
     public void testEmptyForLoop() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
-        checkConfig.addProperty("tokens", "SEMI");
-        checkConfig.addProperty("allowLineBreaks", "yes");
         final String[] expected = {
             "20:24: " + getCheckMessage(MSG_KEY, ";"),
             "26:32: " + getCheckMessage(MSG_KEY, ";"),
@@ -137,7 +120,6 @@ public class NoWhitespaceBeforeCheckTest
 
     @Test
     public void testNoWhitespaceBeforeTextBlocksWithTabIndent() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
