@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class MissingSwitchDefaultCheckTest
     extends AbstractModuleTestSupport {
@@ -37,8 +36,6 @@ public class MissingSwitchDefaultCheckTest
 
     @Test
     public void testMissingSwitchDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MissingSwitchDefaultCheck.class);
         final String[] expected = {
             "23:9: " + getCheckMessage(MSG_KEY, "default"),
             "35:17: " + getCheckMessage(MSG_KEY, "default"),
@@ -59,8 +56,6 @@ public class MissingSwitchDefaultCheckTest
 
     @Test
     public void testMissingSwitchDefaultSwitchExpressions() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(MissingSwitchDefaultCheck.class);
         final String[] expected = {
             "14:9: " + getCheckMessage(MSG_KEY, "default"),
         };
@@ -71,8 +66,6 @@ public class MissingSwitchDefaultCheckTest
 
     @Test
     public void testMissingSwitchDefaultSwitchExpressionsTwo() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MissingSwitchDefaultCheck.class);
         final String[] expected = {
             "14:9: " + getCheckMessage(MSG_KEY, "default"),
             "26:9: " + getCheckMessage(MSG_KEY, "default"),

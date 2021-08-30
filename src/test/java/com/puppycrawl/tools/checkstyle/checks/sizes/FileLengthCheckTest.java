@@ -40,9 +40,6 @@ public class FileLengthCheckTest
 
     @Test
     public void testAlarm() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(FileLengthCheck.class);
-        checkConfig.addProperty("max", "20");
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY, 228, 20),
         };
@@ -52,9 +49,6 @@ public class FileLengthCheckTest
 
     @Test
     public void testFileLengthEqualToMaxLength() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(FileLengthCheck.class);
-        checkConfig.addProperty("max", "225");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFileLength2.java"), expected);
@@ -62,9 +56,6 @@ public class FileLengthCheckTest
 
     @Test
     public void testOk() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(FileLengthCheck.class);
-        checkConfig.addProperty("max", "1000");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFileLength3.java"), expected);
@@ -89,9 +80,6 @@ public class FileLengthCheckTest
 
     @Test
     public void testNoAlarmByExtension() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(FileLengthCheck.class);
-        checkConfig.addProperty("fileExtensions", "txt");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(

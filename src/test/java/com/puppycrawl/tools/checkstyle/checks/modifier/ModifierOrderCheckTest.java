@@ -28,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertNotSame;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -50,8 +49,6 @@ public class ModifierOrderCheckTest
 
     @Test
     public void testIt() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = {
             "15:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "final"),
             "19:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
@@ -68,8 +65,6 @@ public class ModifierOrderCheckTest
     @Test
     public void testDefaultMethods()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputModifierOrderDefaultMethods.java"), expected);
@@ -110,7 +105,6 @@ public class ModifierOrderCheckTest
 
     @Test
     public void testSkipTypeAnnotations() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = {
             "110:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
         };
@@ -121,7 +115,6 @@ public class ModifierOrderCheckTest
 
     @Test
     public void testAnnotationOnAnnotationDeclaration() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = {
             "9:8: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@InterfaceAnnotation"),
         };
@@ -131,7 +124,6 @@ public class ModifierOrderCheckTest
 
     @Test
     public void testModifierOrderSealedAndNonSealed() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = {
             "10:8: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
             "26:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
@@ -146,7 +138,6 @@ public class ModifierOrderCheckTest
 
     @Test
     public void testModifierOrderSealedAndNonSealedNoViolation() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ModifierOrderCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputModifierOrderSealedAndNonSealedNoViolation.java"),

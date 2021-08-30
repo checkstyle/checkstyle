@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
@@ -55,7 +54,6 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaults() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(TrailingCommentCheck.class);
         final String[] expected = {
             "13:12: " + getCheckMessage(MSG_KEY),
             "17:12: " + getCheckMessage(MSG_KEY),
@@ -72,8 +70,6 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testLegalComment() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(TrailingCommentCheck.class);
-        checkConfig.addProperty("legalComment", "^NOI18N$");
         final String[] expected = {
             "13:12: " + getCheckMessage(MSG_KEY),
             "17:12: " + getCheckMessage(MSG_KEY),
@@ -88,8 +84,6 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFormat() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(TrailingCommentCheck.class);
-        checkConfig.addProperty("format", "NOT MATCH");
         final String[] expected = {
             "1:1: " + getCheckMessage(MSG_KEY),
             "12:12: " + getCheckMessage(MSG_KEY),

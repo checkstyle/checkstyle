@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
@@ -38,8 +37,6 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSkipIfLastAndSharedWithCase() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DefaultComesLastCheck.class);
-        checkConfig.addProperty("skipIfLastAndSharedWithCase", "true");
         final String[] expected = {
             "23:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
             "31:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
@@ -58,7 +55,6 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DefaultComesLastCheck.class);
         final String[] expected = {
             "31:9: " + getCheckMessage(MSG_KEY),
             "38:24: " + getCheckMessage(MSG_KEY),
@@ -83,7 +79,6 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultMethodsInJava8()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DefaultComesLastCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputDefaultComesLastDefaultMethodsInInterface.java"),
@@ -92,7 +87,6 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultComesLastSwitchExpressions() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DefaultComesLastCheck.class);
         final String[] expected = {
             "16:13: " + getCheckMessage(MSG_KEY),
             "32:13: " + getCheckMessage(MSG_KEY),
@@ -105,8 +99,6 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultComesLastSwitchExpressionsSkipIfLast() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(DefaultComesLastCheck.class);
-        checkConfig.addProperty("skipIfLastAndSharedWithCase", "true");
 
         final String[] expected = {
             "33:13: " + getCheckMessage(MSG_KEY),

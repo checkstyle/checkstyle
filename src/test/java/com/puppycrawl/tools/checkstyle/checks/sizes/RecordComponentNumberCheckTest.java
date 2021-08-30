@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -61,8 +60,6 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RecordComponentNumberCheck.class);
 
         final int max = 8;
 
@@ -82,8 +79,6 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRecordComponentNumberTopLevel1() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RecordComponentNumberCheck.class);
 
         final int max = 8;
 
@@ -98,8 +93,6 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRecordComponentNumberTopLevel2() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RecordComponentNumberCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -110,9 +103,6 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRecordComponentNumberMax1() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RecordComponentNumberCheck.class);
-        checkConfig.addProperty("max", "1");
 
         final int max = 1;
 
@@ -139,9 +129,6 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRecordComponentNumberMax20() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RecordComponentNumberCheck.class);
-        checkConfig.addProperty("max", "20");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -150,9 +137,6 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRecordComponentNumberPrivateModifier() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RecordComponentNumberCheck.class);
-        checkConfig.addProperty("accessModifiers", "private");
 
         final int max = 8;
 

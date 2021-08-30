@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport {
@@ -47,8 +46,6 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
     @Test
     public void testRecordDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RecordTypeParameterNameCheck.class);
 
         final String pattern = "^[A-Z]$";
 
@@ -64,9 +61,6 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
     @Test
     public void testClassFooName()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RecordTypeParameterNameCheck.class);
-        checkConfig.addProperty("format", "^foo$");
 
         final String pattern = "^foo$";
 

@@ -28,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -49,7 +48,6 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCorrect() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavadocParagraphCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -58,7 +56,6 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIncorrect() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavadocParagraphCheck.class);
         final String[] expected = {
             "13: " + getCheckMessage(MSG_MISPLACED_TAG),
             "13: " + getCheckMessage(MSG_LINE_BEFORE),
@@ -103,8 +100,6 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAllowNewlineParagraph() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavadocParagraphCheck.class);
-        checkConfig.addProperty("allowNewlineParagraph", "false");
         final String[] expected = {
             "13: " + getCheckMessage(MSG_LINE_BEFORE),
             "14: " + getCheckMessage(MSG_LINE_BEFORE),

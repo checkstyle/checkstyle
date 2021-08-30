@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck.MSG_KE
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class FinalParametersCheckTest extends AbstractModuleTestSupport {
@@ -36,8 +35,6 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultTokens() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(FinalParametersCheck.class);
         final String[] expected = {
             "27:26: " + getCheckMessage(MSG_KEY, "s"),
             "42:26: " + getCheckMessage(MSG_KEY, "i"),
@@ -57,9 +54,6 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCtorToken() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(FinalParametersCheck.class);
-        checkConfig.addProperty("tokens", "CTOR_DEF");
         final String[] expected = {
             "28:27: " + getCheckMessage(MSG_KEY, "s"),
             "43:27: " + getCheckMessage(MSG_KEY, "i"),
@@ -71,9 +65,6 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMethodToken() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(FinalParametersCheck.class);
-        checkConfig.addProperty("tokens", "METHOD_DEF");
         final String[] expected = {
             "58:17: " + getCheckMessage(MSG_KEY, "s"),
             "74:17: " + getCheckMessage(MSG_KEY, "s"),
@@ -90,9 +81,6 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCatchToken() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(FinalParametersCheck.class);
-        checkConfig.addProperty("tokens", "LITERAL_CATCH");
         final String[] expected = {
             "130:16: " + getCheckMessage(MSG_KEY, "npe"),
             "136:16: " + getCheckMessage(MSG_KEY, "e"),
@@ -104,9 +92,6 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testForEachClauseToken() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(FinalParametersCheck.class);
-        checkConfig.addProperty("tokens", "FOR_EACH_CLAUSE");
         final String[] expected = {
             "157:13: " + getCheckMessage(MSG_KEY, "s"),
             "165:13: " + getCheckMessage(MSG_KEY, "s"),
@@ -117,9 +102,6 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIgnorePrimitiveTypesParameters() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(FinalParametersCheck.class);
-        checkConfig.addProperty("ignorePrimitiveTypes", "true");
         final String[] expected = {
             "14:22: " + getCheckMessage(MSG_KEY, "k"),
             "15:15: " + getCheckMessage(MSG_KEY, "s"),
@@ -135,8 +117,6 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testPrimitiveTypesParameters() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(FinalParametersCheck.class);
         final String[] expected = {
             "13:14: " + getCheckMessage(MSG_KEY, "i"),
             "14:15: " + getCheckMessage(MSG_KEY, "i"),
@@ -159,8 +139,6 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testReceiverParameters() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(FinalParametersCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFinalParametersReceiver.java"), expected);

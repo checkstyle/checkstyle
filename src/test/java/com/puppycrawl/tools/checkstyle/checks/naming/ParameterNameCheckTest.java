@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -48,9 +47,6 @@ public class ParameterNameCheckTest
     @Test
     public void testCatch()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ParameterNameCheck.class);
-        checkConfig.addProperty("format", "^NO_WAY_MATEY$");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameCatchOnly.java"), expected);
@@ -59,9 +55,6 @@ public class ParameterNameCheckTest
     @Test
     public void testSpecified()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ParameterNameCheck.class);
-        checkConfig.addProperty("format", "^a[A-Z][a-zA-Z0-9]*$");
 
         final String pattern = "^a[A-Z][a-zA-Z0-9]*$";
 
@@ -77,8 +70,6 @@ public class ParameterNameCheckTest
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ParameterNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterName.java"), expected);
@@ -97,10 +88,6 @@ public class ParameterNameCheckTest
     @Test
     public void testSkipMethodsWithOverrideAnnotationTrue()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ParameterNameCheck.class);
-        checkConfig.addProperty("format", "^h$");
-        checkConfig.addProperty("ignoreOverridden", "true");
 
         final String pattern = "^h$";
 
@@ -120,10 +107,6 @@ public class ParameterNameCheckTest
     @Test
     public void testSkipMethodsWithOverrideAnnotationFalse()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ParameterNameCheck.class);
-        checkConfig.addProperty("format", "^h$");
-        checkConfig.addProperty("ignoreOverridden", "false");
 
         final String pattern = "^h$";
 
@@ -144,10 +127,6 @@ public class ParameterNameCheckTest
     @Test
     public void testPublicAccessModifier()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ParameterNameCheck.class);
-        checkConfig.addProperty("format", "^h$");
-        checkConfig.addProperty("accessModifiers", AccessModifierOption.PUBLIC.toString());
 
         final String pattern = "^h$";
 
@@ -166,9 +145,6 @@ public class ParameterNameCheckTest
     @Test
     public void testIsOverriddenNoNullPointerException()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ParameterNameCheck.class);
-        checkConfig.addProperty("format", "^[a-z][a-zA-Z0-9]*$");
-        checkConfig.addProperty("ignoreOverridden", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameOverrideAnnotationNoNPE.java"), expected);
@@ -176,7 +152,6 @@ public class ParameterNameCheckTest
 
     @Test
     public void testReceiverParameter() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ParameterNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameReceiver.java"), expected);
@@ -184,7 +159,6 @@ public class ParameterNameCheckTest
 
     @Test
     public void testLambdaParameterNoViolationAtAll() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ParameterNameCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameLambda.java"), expected);

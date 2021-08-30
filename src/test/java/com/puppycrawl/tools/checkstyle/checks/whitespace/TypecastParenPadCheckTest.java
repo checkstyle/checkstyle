@@ -28,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -43,8 +42,6 @@ public class TypecastParenPadCheckTest
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(TypecastParenPadCheck.class);
         final String[] expected = {
             "86:13: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "86:22: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
@@ -56,9 +53,6 @@ public class TypecastParenPadCheckTest
     @Test
     public void testSpace()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(TypecastParenPadCheck.class);
-        checkConfig.addProperty("option", PadOption.SPACE.toString());
         final String[] expected = {
             "84:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "84:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
@@ -75,9 +69,6 @@ public class TypecastParenPadCheckTest
 
     @Test
     public void test1322879() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(TypecastParenPadCheck.class);
-        checkConfig.addProperty("option", PadOption.SPACE.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputTypecastParenPadWhitespaceAround.java"),

@@ -55,11 +55,6 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
     @Test
     public void test() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ClassDataAbstractionCouplingCheck.class);
-
-        checkConfig.addProperty("max", "0");
-        checkConfig.addProperty("excludedClasses", "InnerClass");
 
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
@@ -73,15 +68,6 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
     @Test
     public void testExcludedPackageDirectPackages() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ClassDataAbstractionCouplingCheck.class);
-
-        checkConfig.addProperty("max", "0");
-        checkConfig.addProperty("excludedPackages",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.c,"
-                + " com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling."
-                + "inputs.b");
-
         final String[] expected = {
             "30:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AAClass, ABClass]"),
         };
@@ -93,13 +79,6 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
     @Test
     public void testExcludedPackageCommonPackages() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ClassDataAbstractionCouplingCheck.class);
-
-        checkConfig.addProperty("max", "0");
-        checkConfig.addProperty("excludedPackages",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a");
-
         final String[] expected = {
             "28:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AAClass, ABClass]"),
             "32:5: " + getCheckMessage(MSG_KEY, 2, 0, "[BClass, CClass]"),
@@ -139,20 +118,6 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
     @Test
     public void testExcludedPackageCommonPackagesAllIgnored() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ClassDataAbstractionCouplingCheck.class);
-
-        checkConfig.addProperty("max", "0");
-        checkConfig.addProperty("excludedPackages",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs."
-                    + "a.aa, "
-                + "com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling."
-                    + "inputs.a.ab, "
-                + "com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling."
-                    + "inputs.b, "
-                + "com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling."
-                    + "inputs.c");
-
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputClassDataAbstractionCouplingExcludedPackagesAllIgnored.java"),
@@ -161,10 +126,6 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ClassDataAbstractionCouplingCheck.class);
-
-        createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputClassDataAbstractionCoupling2.java"), expected);
@@ -187,12 +148,6 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
     @Test
     public void testRegularExpression() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ClassDataAbstractionCouplingCheck.class);
-
-        checkConfig.addProperty("max", "0");
-        checkConfig.addProperty("excludedClasses", "InnerClass");
-        checkConfig.addProperty("excludeClassesRegexps", "^Hash.*");
 
         final String[] expected = {
             "22:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AnotherInnerClass, int]"),
@@ -205,12 +160,6 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
     @Test
     public void testEmptyRegularExpression() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ClassDataAbstractionCouplingCheck.class);
-
-        checkConfig.addProperty("max", "0");
-        checkConfig.addProperty("excludedClasses", "InnerClass");
-        checkConfig.addProperty("excludeClassesRegexps", "");
 
         final String[] expected = {
             "22:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
@@ -224,10 +173,6 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
     @Test
     public void testClassDataAbstractionCouplingRecords() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(ClassDataAbstractionCouplingCheck.class);
-
-        checkConfig.addProperty("max", "1");
 
         final int maxAbstraction = 1;
         final String[] expected = {

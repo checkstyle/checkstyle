@@ -67,8 +67,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWithoutProcessJavadoc() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
-        checkConfig.addProperty("processJavadoc", "false");
         final String[] expected = {
             "11:16: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks."
@@ -107,7 +105,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testProcessJavadoc() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = {
             "11:16: " + getCheckMessage(MSG_KEY,
                     "com.puppycrawl.tools.checkstyle.checks."
@@ -129,7 +126,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testProcessJavadocWithLinkTag() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsWithValueTag.java"), expected);
@@ -137,7 +133,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testProcessJavadocWithBlockTagContainingMethodParameters() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsWithBlockMethodParameters.java"), expected);
@@ -145,7 +140,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAnnotations() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputUnusedImportsAnnotations.java"), expected);
@@ -153,7 +147,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBug() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsBug.java"), expected);
@@ -161,7 +154,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNewlinesInsideTags() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsWithNewlinesInsideTags.java"), expected);
@@ -227,7 +219,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileInUnnamedPackage() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = {
             "12:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
             "13:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
@@ -239,7 +230,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testImportsFromJavaLang() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = {
             "10:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
             "11:8: " + getCheckMessage(MSG_KEY, "java.lang.Math"),
@@ -259,7 +249,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testImportsJavadocQualifiedName() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = {
             "11:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
         };
@@ -269,7 +258,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSingleWordPackage() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = {
             "10:8: " + getCheckMessage(MSG_KEY, "module"),
         };
@@ -280,7 +268,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRecordsAndCompactCtors() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = {
             "19:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToolBar"),
             "20:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToggleButton"),
@@ -292,7 +279,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testShadowedImports() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String[] expected = {
             "12:8: " + getCheckMessage(MSG_KEY, "java.util.Map"),
             "13:8: " + getCheckMessage(MSG_KEY, "java.util.Set"),

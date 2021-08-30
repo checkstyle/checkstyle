@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class CovariantEqualsCheckTest
     extends AbstractModuleTestSupport {
@@ -38,8 +37,6 @@ public class CovariantEqualsCheckTest
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(CovariantEqualsCheck.class);
         final String[] expected = {
             "17:24: " + getCheckMessage(MSG_KEY),
             "36:20: " + getCheckMessage(MSG_KEY),
@@ -55,8 +52,6 @@ public class CovariantEqualsCheckTest
     @Test
     public void testCovariantEqualsRecords()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(CovariantEqualsCheck.class);
         final String[] expected = {
             "13:24: " + getCheckMessage(MSG_KEY),
             "29:28: " + getCheckMessage(MSG_KEY),
