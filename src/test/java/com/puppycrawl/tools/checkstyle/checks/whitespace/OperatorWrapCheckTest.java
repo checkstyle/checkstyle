@@ -27,7 +27,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -42,7 +41,6 @@ public class OperatorWrapCheckTest
     @Test
     public void testDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
         final String[] expected = {
             "23:19: " + getCheckMessage(MSG_LINE_NEW, "+"),
             "24:15: " + getCheckMessage(MSG_LINE_NEW, "-"),
@@ -50,73 +48,55 @@ public class OperatorWrapCheckTest
             "54:30: " + getCheckMessage(MSG_LINE_NEW, "&"),
             "67:31: " + getCheckMessage(MSG_LINE_NEW, "&"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOperatorWrap1.java"), expected);
     }
 
     @Test
     public void testOpWrapEol()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
-        checkConfig.addProperty("option", WrapOption.EOL.toString());
         final String[] expected = {
             "26:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "-"),
             "30:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&&"),
             "35:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&&"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOperatorWrap2.java"), expected);
     }
 
     @Test
     public void testNonDefOpsDefault()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
-        checkConfig.addProperty("tokens", "METHOD_REF");
         final String[] expected = {
             "37:33: " + getCheckMessage(MSG_LINE_NEW, "::"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOperatorWrap3.java"), expected);
     }
 
     @Test
     public void testNonDefOpsWrapEol()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
-        checkConfig.addProperty("tokens", "METHOD_REF");
-        checkConfig.addProperty("option", WrapOption.EOL.toString());
         final String[] expected = {
             "35:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "::"),
             "40:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "::"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOperatorWrap4.java"), expected);
     }
 
     @Test
     public void testAssignEol()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
-        checkConfig.addProperty("tokens", "ASSIGN");
-        checkConfig.addProperty("option", WrapOption.EOL.toString());
         final String[] expected = {
             "46:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOperatorWrap5.java"), expected);
     }
 
     @Test
     public void testEol() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
-        checkConfig.addProperty("tokens", "ASSIGN");
-        checkConfig.addProperty("tokens", "COLON");
-        checkConfig.addProperty("tokens", "LAND");
-        checkConfig.addProperty("tokens", "LOR");
-        checkConfig.addProperty("tokens", "STAR");
-        checkConfig.addProperty("tokens", "QUESTION");
-        checkConfig.addProperty("option", WrapOption.EOL.toString());
         final String[] expected = {
             "21:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
             "22:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "*"),
@@ -128,20 +108,12 @@ public class OperatorWrapCheckTest
             "61:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "||"),
             "62:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "||"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOperatorWrapEol.java"), expected);
     }
 
     @Test
     public void testNl() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
-        checkConfig.addProperty("tokens", "ASSIGN");
-        checkConfig.addProperty("tokens", "COLON");
-        checkConfig.addProperty("tokens", "LAND");
-        checkConfig.addProperty("tokens", "LOR");
-        checkConfig.addProperty("tokens", "STAR");
-        checkConfig.addProperty("tokens", "QUESTION");
-        checkConfig.addProperty("option", WrapOption.NL.toString());
         final String[] expected = {
             "20:16: " + getCheckMessage(MSG_LINE_NEW, "="),
             "21:19: " + getCheckMessage(MSG_LINE_NEW, "*"),
@@ -152,20 +124,18 @@ public class OperatorWrapCheckTest
             "60:27: " + getCheckMessage(MSG_LINE_NEW, "&&"),
             "61:31: " + getCheckMessage(MSG_LINE_NEW, "&&"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOperatorWrapNl.java"), expected);
     }
 
     @Test
     public void testInvalidOption() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
-        checkConfig.addProperty("option", "invalid_option");
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verifyWithInlineConfigParser(checkConfig,
-                getPath("InputOperatorWrap6.java"), expected);
+            verifyWithInlineConfigParser(
+                    getPath("InputOperatorWrap6.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {

@@ -85,91 +85,73 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileWithOneTopLevelClass() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClass.java"), expected);
     }
 
     @Test
     public void testFileWithOneTopLevelInterface() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassInterface.java"), expected);
     }
 
     @Test
     public void testFileWithOneTopLevelEnum() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassEnum.java"), expected);
     }
 
     @Test
     public void testFileWithOneTopLevelAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassAnnotation.java"), expected);
     }
 
     @Test
     public void testFileWithNoPublicTopLevelClass() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassNoPublic2"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassNoPublic.java"), expected);
     }
 
     @Test
     public void testFileWithThreeTopLevelInterface() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface3inner1"),
             "17:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface3inner2"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassInterface3.java"), expected);
     }
 
     @Test
     public void testFileWithThreeTopLevelEnum() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassEnum2inner1"),
             "17:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassEnum2inner2"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassEnum2.java"), expected);
     }
 
     @Test
     public void testFileWithThreeTopLevelAnnotation() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassAnnotation2A"),
             "20:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassAnnotation2B"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassAnnotation2.java"), expected);
     }
 
     @Test
     public void testFileWithFewTopLevelClasses() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "31:1: " + getCheckMessage(MSG_KEY, "NoSuperClone"),
             "35:1: " + getCheckMessage(MSG_KEY, "InnerClone"),
@@ -179,72 +161,61 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
             "51:1: " + getCheckMessage(MSG_KEY, "AnotherClass"),
             "54:1: " + getCheckMessage(MSG_KEY, "NativeTest"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassClone.java"), expected);
     }
 
     @Test
     public void testFileWithSecondEnumTopLevelClass() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderEnum2"),
             "26:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderAnnotation2"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassDeclarationOrder2.java"), expected);
     }
 
     @Test
     public void testPackageInfoWithNoTypesDeclared() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("package-info.java"), expected);
     }
 
     @Test
     public void testFileWithMultipleSameLine() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "9:47: " + getCheckMessage(MSG_KEY, "ViolatingSecondType"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassSameLine.java"), expected);
     }
 
     @Test
     public void testFileWithIndentation() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "13:2: " + getCheckMessage(MSG_KEY, "ViolatingIndentedClass1"),
             "17:5: " + getCheckMessage(MSG_KEY, "ViolatingIndentedClass2"),
             "21:1: " + getCheckMessage(MSG_KEY, "ViolatingNonIndentedInterface"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassIndentation.java"), expected);
     }
 
     @Test
     public void testOneTopLevelClassRecords() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "13:1: " + getCheckMessage(MSG_KEY, "TestRecord1"),
             "17:1: " + getCheckMessage(MSG_KEY, "TestRecord2"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputOneTopLevelClassRecords.java"), expected);
     }
 
     @Test
     public void testOneTopLevelClassEmpty() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputOneTopLevelClassEmpty.java"), expected);
     }
 }

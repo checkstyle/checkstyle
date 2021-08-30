@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AvoidStarImportCheckTest
@@ -39,8 +38,6 @@ public class AvoidStarImportCheckTest
     @Test
     public void testDefaultOperation()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(AvoidStarImportCheck.class);
         final String[] expected = {
             "12:54: " + getCheckMessage(MSG_KEY, "com.puppycrawl."
                     + "tools.checkstyle.checks.imports.*"),
@@ -51,7 +48,7 @@ public class AvoidStarImportCheckTest
             "33:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidStarImportDefault.java"),
                 expected);
     }
@@ -59,38 +56,30 @@ public class AvoidStarImportCheckTest
     @Test
     public void testExcludes()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(AvoidStarImportCheck.class);
-        checkConfig.addProperty("excludes",
-            "java.io, java.lang, javax.swing.WindowConstants.*");
         // allow the java.io/java.lang,javax.swing.WindowConstants star imports
         final String[] expected2 = {
             "12:54: " + getCheckMessage(MSG_KEY, "com.puppycrawl."
                     + "tools.checkstyle.checks.imports.*"),
             "33:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidStarImportExcludes.java"),
                 expected2);
     }
 
     @Test
     public void testAllowClassImports() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(AvoidStarImportCheck.class);
-        checkConfig.addProperty("allowClassImports", "true");
         // allow all class star imports
         final String[] expected2 = {
             "30:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "31:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
             "33:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"), };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidStarImportAllowClass.java"), expected2);
     }
 
     @Test
     public void testAllowStaticMemberImports() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(AvoidStarImportCheck.class);
-        checkConfig.addProperty("allowStaticMemberImports", "true");
         // allow all static star imports
         final String[] expected2 = {
             "12:54: " + getCheckMessage(MSG_KEY, "com.puppycrawl."
@@ -98,7 +87,7 @@ public class AvoidStarImportCheckTest
             "14:15: " + getCheckMessage(MSG_KEY, "java.io.*"),
             "15:17: " + getCheckMessage(MSG_KEY, "java.lang.*"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputAvoidStarImportAllowStaticMember.java"), expected2);
     }
 

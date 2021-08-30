@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -48,11 +47,9 @@ public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport 
 
     @Test
     public void testCorrect() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocBlockTagLocationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocBlockTagLocationCorrect.java"), expected);
     }
 
@@ -67,18 +64,14 @@ public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport 
      */
     @Test
     public void testMultilineCodeBlock() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocBlockTagLocationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocBlockTagLocationMultilineCodeBlock.java"), expected);
     }
 
     @Test
     public void testIncorrect() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocBlockTagLocationCheck.class);
         final String[] expected = {
             "15: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "author"),
             "16: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "since"),
@@ -88,16 +81,12 @@ public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport 
             "21: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "return"),
             "21: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "throws"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocBlockTagLocationIncorrect.java"), expected);
     }
 
     @Test
     public void testCustomTags() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocBlockTagLocationCheck.class);
-        checkConfig.addProperty("tags", "apiNote");
-        checkConfig.addProperty("tags", "implSpec, implNote");
         final String[] expected = {
             "14: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "apiNote"),
             "14: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "implNote"),
@@ -106,7 +95,7 @@ public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport 
             "17: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "implNote"),
             "18: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "implSpec"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputJavadocBlockTagLocationCustomTags.java"), expected);
     }
 

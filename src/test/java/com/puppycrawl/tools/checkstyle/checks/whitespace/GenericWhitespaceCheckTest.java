@@ -31,7 +31,6 @@ import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -57,7 +56,6 @@ public class GenericWhitespaceCheckTest
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = {
             "22:14: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
             "22:14: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
@@ -94,70 +92,63 @@ public class GenericWhitespaceCheckTest
             "94:35: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
             "94:42: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputGenericWhitespaceDefault.java"), expected);
     }
 
     @Test
     public void testAtTheStartOfTheLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = {
             "16:2: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
             "18:2: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputGenericWhitespaceAtStartOfTheLine.java"), expected);
     }
 
     @Test
     public void testNestedGeneric() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputGenericWhitespaceNested.java"), expected);
     }
 
     @Test
     public void testList() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputGenericWhitespaceList.java"), expected);
     }
 
     @Test
     public void testInnerClass() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputGenericWhitespaceInnerClass.java"), expected);
     }
 
     @Test
     public void testMethodReferences() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputGenericWhitespaceMethodRef1.java"), expected);
     }
 
     @Test
     public void testMethodReferences2() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = {
             "16:69: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputGenericWhitespaceMethodRef2.java"), expected);
     }
 
     @Test
     public void testGenericEndsTheLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(GenericWhitespaceCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputGenericWhitespaceEndsTheLine.java"), expected);
     }
 

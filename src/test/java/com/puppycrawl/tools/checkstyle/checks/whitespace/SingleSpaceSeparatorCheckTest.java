@@ -37,9 +37,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNoSpaceErrors() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(SingleSpaceSeparatorCheck.class);
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSingleSpaceSeparatorNoErrors.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
@@ -63,9 +61,6 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSpaceErrors() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(SingleSpaceSeparatorCheck.class);
-        checkConfig.addProperty("validateComments", "true");
         final String[] expected = {
             "8:10: " + getCheckMessage(MSG_KEY),
             "8:28: " + getCheckMessage(MSG_KEY),
@@ -101,15 +96,12 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
             "38:8: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSingleSpaceSeparatorErrors.java"), expected);
     }
 
     @Test
     public void testSpaceErrorsAroundComments() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(SingleSpaceSeparatorCheck.class);
-        checkConfig.addProperty("validateComments", "true");
         final String[] expected = {
             "12:11: " + getCheckMessage(MSG_KEY),
             "12:43: " + getCheckMessage(MSG_KEY),
@@ -119,66 +111,55 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
             "21:8: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSingleSpaceSeparatorComments.java"), expected);
     }
 
     @Test
     public void testSpaceErrorsInChildNodes() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(SingleSpaceSeparatorCheck.class);
         final String[] expected = {
             "12:16: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSingleSpaceSeparatorChildNodes.java"), expected);
     }
 
     @Test
     public void testMinColumnNo() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(SingleSpaceSeparatorCheck.class);
-        checkConfig.addProperty("validateComments", "true");
         final String[] expected = {
             "12:4: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSingleSpaceSeparatorMinColumnNo.java"), expected);
     }
 
     @Test
     public void testWhitespaceInStartOfTheLine() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(SingleSpaceSeparatorCheck.class);
         final String[] expected = {
             "12:7: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSingleSpaceSeparatorStartOfTheLine.java"), expected);
     }
 
     @Test
     public void testSpaceErrorsIfCommentsIgnored() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(SingleSpaceSeparatorCheck.class);
         final String[] expected = {
             "20:14: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSingleSpaceSeparatorComments2.java"), expected);
     }
 
     @Test
     public void testEmpty() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(SingleSpaceSeparatorCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputSingleSpaceSeparatorEmpty.java"), expected);
     }
 }

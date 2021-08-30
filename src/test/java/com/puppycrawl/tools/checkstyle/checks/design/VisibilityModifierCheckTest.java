@@ -33,7 +33,6 @@ import org.junit.jupiter.api.Test;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -62,9 +61,6 @@ public class VisibilityModifierCheckTest
     @Test
     public void testInner()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addProperty("publicMemberPattern", "^f[A-Z][a-zA-Z0-9]*$");
         final String[] expected = {
             "47:24: " + getCheckMessage(MSG_KEY, "rData"),
             "50:27: " + getCheckMessage(MSG_KEY, "protectedVariable"),
@@ -74,31 +70,23 @@ public class VisibilityModifierCheckTest
             "94:20: " + getCheckMessage(MSG_KEY, "someValue"),
             "97:11: " + getCheckMessage(MSG_KEY, "fSerialVersionUID"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierInner.java"), expected);
     }
 
     @Test
     public void testIgnoreAccess()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addProperty("publicMemberPattern", "^r[A-Z]");
-        checkConfig.addProperty("protectedAllowed", "true");
-        checkConfig.addProperty("packageAllowed", "true");
         final String[] expected = {
             "34:20: " + getCheckMessage(MSG_KEY, "fData"),
             "94:20: " + getCheckMessage(MSG_KEY, "someValue"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierInner1.java"), expected);
     }
 
     @Test
     public void testSimple() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addProperty("publicMemberPattern", "^f[A-Z][a-zA-Z0-9]*$");
         final String[] expected = {
             "49:19: " + getCheckMessage(MSG_KEY, "mNumCreated2"),
             "59:23: " + getCheckMessage(MSG_KEY, "sTest1"),
@@ -107,29 +95,23 @@ public class VisibilityModifierCheckTest
             "66:9: " + getCheckMessage(MSG_KEY, "mTest1"),
             "68:16: " + getCheckMessage(MSG_KEY, "mTest2"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierSimple.java"), expected);
     }
 
     @Test
     public void testStrictJavadoc() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addProperty("publicMemberPattern", "^f[A-Z][a-zA-Z0-9]*$");
         final String[] expected = {
             "49:9: " + getCheckMessage(MSG_KEY, "mLen"),
             "50:19: " + getCheckMessage(MSG_KEY, "mDeer"),
             "51:16: " + getCheckMessage(MSG_KEY, "aFreddo"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierPublicOnly.java"), expected);
     }
 
     @Test
     public void testAllowPublicFinalFieldsInImmutableClass() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addProperty("allowPublicImmutableFields", "true");
         final String[] expected = {
             "33:39: " + getCheckMessage(MSG_KEY, "includes"),
             "34:39: " + getCheckMessage(MSG_KEY, "excludes"),
@@ -139,20 +121,13 @@ public class VisibilityModifierCheckTest
             "58:31: " + getCheckMessage(MSG_KEY, "longValue"),
             "62:19: " + getCheckMessage(MSG_KEY, "C_D_E"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutable.java"), expected);
     }
 
     @Test
     public void testAllowPublicFinalFieldsInImmutableClassWithNonCanonicalClasses()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addProperty("allowPublicImmutableFields", "true");
-        checkConfig.addProperty("immutableClassCanonicalNames", "String, Integer, Byte, "
-                + "Character, Short, Boolean, Long, Double, Float, StackTraceElement, BigInteger, "
-                + "BigDecimal, File, Locale, UUID, URL, URI, Inet4Address, Inet6Address, "
-                + "InetSocketAddress");
         final String[] expected = {
             "28:39: " + getCheckMessage(MSG_KEY, "includes"),
             "29:39: " + getCheckMessage(MSG_KEY, "excludes"),
@@ -166,14 +141,12 @@ public class VisibilityModifierCheckTest
             "53:21: " + getCheckMessage(MSG_KEY, "longValue"),
             "57:19: " + getCheckMessage(MSG_KEY, "C_D_E"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutable2.java"), expected);
     }
 
     @Test
     public void testDisAllowPublicFinalAndImmutableFieldsInImmutableClass() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VisibilityModifierCheck.class);
         final String[] expected = {
             "32:22: " + getCheckMessage(MSG_KEY, "someIntValue"),
             "33:39: " + getCheckMessage(MSG_KEY, "includes"),
@@ -191,31 +164,23 @@ public class VisibilityModifierCheckTest
             "58:21: " + getCheckMessage(MSG_KEY, "longValue"),
             "62:19: " + getCheckMessage(MSG_KEY, "C_D_E"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutable3.java"), expected);
     }
 
     @Test
     public void testAllowPublicFinalFieldsInNonFinalClass() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addProperty("allowPublicFinalFields", "true");
         final String[] expected = {
             "55:20: " + getCheckMessage(MSG_KEY, "value"),
             "57:24: " + getCheckMessage(MSG_KEY, "bValue"),
             "58:21: " + getCheckMessage(MSG_KEY, "longValue"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutable4.java"), expected);
     }
 
     @Test
     public void testUserSpecifiedImmutableClassesList() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addProperty("allowPublicImmutableFields", "true");
-        checkConfig.addProperty("immutableClassCanonicalNames", "java.util.List, "
-                + "com.google.common.collect.ImmutableSet, java.lang.String");
         final String[] expected = {
             "30:29: " + getCheckMessage(MSG_KEY, "money"),
             "47:35: " + getCheckMessage(MSG_KEY, "uri"),
@@ -226,73 +191,51 @@ public class VisibilityModifierCheckTest
             "52:21: " + getCheckMessage(MSG_KEY, "longValue"),
             "56:19: " + getCheckMessage(MSG_KEY, "C_D_E"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutable5.java"), expected);
     }
 
     @Test
     public void testImmutableSpecifiedSameTypeName() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addProperty("allowPublicImmutableFields", "true");
-        checkConfig.addProperty("immutableClassCanonicalNames",
-                 "com.puppycrawl.tools.checkstyle.checks.design."
-                         + "visibilitymodifier.InputVisibilityModifierGregorianCalendar, "
-                 + "com.puppycrawl.tools.checkstyle.checks.design."
-                         + "visibilitymodifier.inputs.InetSocketAddress");
         final String[] expected = {
             "23:46: " + getCheckMessage(MSG_KEY, "calendar"),
             "28:45: " + getCheckMessage(MSG_KEY, "adr"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutableSameTypeName.java"),
                 expected);
     }
 
     @Test
     public void testImmutableValueSameTypeName() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addProperty("allowPublicImmutableFields", "true");
         final String[] expected = {
             "28:46: " + getCheckMessage(MSG_KEY, "calendar"),
             "29:59: " + getCheckMessage(MSG_KEY, "calendar2"),
             "30:59: " + getCheckMessage(MSG_KEY, "calendar3"),
             "31:36: " + getCheckMessage(MSG_KEY, "address"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutableSameTypeName2.java"),
                 expected);
     }
 
     @Test
     public void testImmutableStarImportFalseNegative() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addProperty("allowPublicImmutableFields", "true");
-        checkConfig.addProperty("immutableClassCanonicalNames", "java.util.Arrays");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutableStarImport.java"), expected);
     }
 
     @Test
     public void testImmutableStarImportNoWarn() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addProperty("allowPublicImmutableFields", "true");
-        checkConfig.addProperty("immutableClassCanonicalNames",
-            "java.lang.String, com.google.common.collect.ImmutableSet");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierImmutableStarImport2.java"),
                 expected);
     }
 
     @Test
     public void testDefaultAnnotationPatterns() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VisibilityModifierCheck.class);
         final String[] expected = {
             "61:19: " + getCheckMessage(MSG_KEY, "customAnnotatedPublic"),
             "64:12: " + getCheckMessage(MSG_KEY, "customAnnotatedPackage"),
@@ -301,17 +244,12 @@ public class VisibilityModifierCheckTest
             "70:12: " + getCheckMessage(MSG_KEY, "unannotatedPackage"),
             "71:22: " + getCheckMessage(MSG_KEY, "unannotatedProtected"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierAnnotated.java"), expected);
     }
 
     @Test
     public void testCustomAnnotationPatterns() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addProperty("ignoreAnnotationCanonicalNames",
-                "com.puppycrawl.tools.checkstyle.checks.design."
-                    + "InputVisibilityModifierAnnotated.CustomAnnotation");
         final String[] expected = {
             "37:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
             "40:28: " + getCheckMessage(MSG_KEY, "fqPublicJUnitRule"),
@@ -327,15 +265,12 @@ public class VisibilityModifierCheckTest
             "80:35: " + getCheckMessage(MSG_KEY, "publicJUnitClassRule"),
             "83:35: " + getCheckMessage(MSG_KEY, "fqPublicJUnitClassRule"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierAnnotated2.java"), expected);
     }
 
     @Test
     public void testIgnoreAnnotationNoPattern() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addProperty("ignoreAnnotationCanonicalNames", "");
         final String[] expected = {
             "36:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
             "39:28: " + getCheckMessage(MSG_KEY, "fqPublicJUnitRule"),
@@ -354,19 +289,17 @@ public class VisibilityModifierCheckTest
             "79:35: " + getCheckMessage(MSG_KEY, "publicJUnitClassRule"),
             "82:35: " + getCheckMessage(MSG_KEY, "fqPublicJUnitClassRule"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierAnnotated3.java"), expected);
     }
 
     @Test
     public void testIgnoreAnnotationSameName() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VisibilityModifierCheck.class);
         final String[] expected = {
             "32:28: " + getCheckMessage(MSG_KEY, "publicJUnitRule"),
             "35:28: " + getCheckMessage(MSG_KEY, "publicJUnitClassRule"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierAnnotatedSameTypeName.java"),
                 expected);
     }
@@ -384,8 +317,6 @@ public class VisibilityModifierCheckTest
 
     @Test
     public void testPublicImmutableFieldsNotAllowed() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VisibilityModifierCheck.class);
         final String[] expected = {
             "31:22: " + getCheckMessage(MSG_KEY, "someIntValue"),
             "32:39: " + getCheckMessage(MSG_KEY, "includes"),
@@ -393,14 +324,12 @@ public class VisibilityModifierCheckTest
             "34:29: " + getCheckMessage(MSG_KEY, "value"),
             "35:23: " + getCheckMessage(MSG_KEY, "list"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifiersPublicImmutable.java"), expected);
     }
 
     @Test
     public void testPublicFinalFieldsNotAllowed() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VisibilityModifierCheck.class);
         final String[] expected = {
             "31:22: " + getCheckMessage(MSG_KEY, "someIntValue"),
             "32:39: " + getCheckMessage(MSG_KEY, "includes"),
@@ -408,31 +337,23 @@ public class VisibilityModifierCheckTest
             "34:29: " + getCheckMessage(MSG_KEY, "value"),
             "35:23: " + getCheckMessage(MSG_KEY, "list"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifiersPublicImmutable2.java"), expected);
     }
 
     @Test
     public void testPublicFinalFieldsAllowed() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addProperty("allowPublicFinalFields", "true");
-        checkConfig.addProperty("immutableClassCanonicalNames",
-            "com.google.common.collect.ImmutableSet");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifiersPublicImmutable3.java"), expected);
     }
 
     @Test
     public void testPublicFinalFieldInEnum() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addProperty("allowPublicImmutableFields", "true");
         final String[] expected = {
             "35:23: " + getCheckMessage(MSG_KEY, "hole"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifiersEnumIsSealed.java"), expected);
     }
 
@@ -453,26 +374,15 @@ public class VisibilityModifierCheckTest
 
     @Test
     public void testNullModifiers() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addProperty("allowPublicImmutableFields", "true");
         final String[] expected = {
             "32:50: " + getCheckMessage(MSG_KEY, "i"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifiersNullModifiers.java"), expected);
     }
 
     @Test
     public void testVisibilityModifiersOfGenericFields() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addProperty("allowPublicImmutableFields", "true");
-        checkConfig.addProperty("immutableClassCanonicalNames",
-            "com.google.common.collect.ImmutableMap, "
-            + "java.lang.String, "
-            + "java.util.Optional, "
-            + "java.math.BigDecimal");
         final String[] expected = {
             "31:56: " + getCheckMessage(MSG_KEY, "perfSeries"),
             "32:66: " + getCheckMessage(MSG_KEY, "peopleMap"),
@@ -494,7 +404,7 @@ public class VisibilityModifierCheckTest
             "51:48: " + getCheckMessage(MSG_KEY, "collection"),
             "54:73: " + getCheckMessage(MSG_KEY, "exceptions"),
         };
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierGenerics.java"), expected);
     }
 
@@ -522,12 +432,8 @@ public class VisibilityModifierCheckTest
 
     @Test
     public void testPackageClassName() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VisibilityModifierCheck.class);
-        checkConfig.addProperty("immutableClassCanonicalNames", "PackageClass");
-        checkConfig.addProperty("allowPublicImmutableFields", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputVisibilityModifierPackageClassName.java"),
                 expected);
     }
