@@ -33,7 +33,6 @@ import org.junit.jupiter.api.Test;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -448,9 +447,8 @@ public class ParenPadCheckTest
     @Test
     public void testNoStackoverflowError()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ParenPadCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithLimitedResources(checkConfig, getPath("InputParenPadNoStackoverflowError.java"),
+        verifyWithLimitedResources(getPath("InputParenPadNoStackoverflowError.java"),
                 expected);
     }
 

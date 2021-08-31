@@ -368,13 +368,11 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     /**
      * Runs 'verifyWithInlineConfigParser' with limited stack size and time duration.
      *
-     * @param aConfig configuration.
      * @param fileName file name to verify.
      * @param expected an array of expected messages.
      * @throws Exception if exception occurs during verification process.
      */
-    protected final void verifyWithLimitedResources(Configuration aConfig,
-                                                    String fileName, String... expected)
+    protected final void verifyWithLimitedResources(String fileName, String... expected)
             throws Exception {
         // We return null here, which gives us a result to make an assertion about
         final Void result = TestUtil.getResultWithLimitedResources(() -> {
