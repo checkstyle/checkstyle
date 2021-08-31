@@ -181,8 +181,9 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
             final String filePath = getFileContents().getFileName();
             String moduleName = getModuleSimpleName();
             final String checkModuleExtension = "Check";
-            if (moduleName.contains(checkModuleExtension)) {
-                moduleName = moduleName.substring(0, moduleName.indexOf(checkModuleExtension));
+            if (moduleName.endsWith(checkModuleExtension)) {
+                moduleName = moduleName
+                        .substring(0, moduleName.length() - checkModuleExtension.length());
             }
             moduleDetails.setName(moduleName);
             moduleDetails.setFullQualifiedName(getPackageName(filePath));
