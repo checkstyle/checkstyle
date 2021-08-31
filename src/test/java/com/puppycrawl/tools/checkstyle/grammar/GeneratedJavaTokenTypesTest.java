@@ -275,11 +275,11 @@ public class GeneratedJavaTokenTypesTest {
         assertEquals(211, JavaLanguageLexer.LITERAL_PERMITS, message);
         assertEquals(212, JavaLanguageLexer.PERMITS_CLAUSE, message);
 
-        // Read JavaDoc before changing
         final int tokenCount = (int) Arrays.stream(JavaLanguageLexer.class.getDeclaredFields())
                 .filter(GeneratedJavaTokenTypesTest::isPublicStaticFinalInt)
                 .count();
 
+        // Read JavaDoc before changing count below
         assertEquals(224, tokenCount,
                 "all tokens must be added to list in"
                         + " 'GeneratedJavaTokenTypesTest' and verified"
