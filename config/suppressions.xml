@@ -62,6 +62,8 @@
   <suppress checks="MethodCount" files="[\\/]VisibilityModifierCheck.java$"/>
   <!-- RequireThisCheck has a hierarchy of nested classes which contains a lot of methods. -->
   <suppress checks="MethodCount" files="[\\/]RequireThisCheck.java$"/>
+  <!-- parse method needs catching Exceptions to print context of execution -->
+  <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]InlineConfigParser\.java"/>
 
   <!-- we need that set of converters -->
   <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>
