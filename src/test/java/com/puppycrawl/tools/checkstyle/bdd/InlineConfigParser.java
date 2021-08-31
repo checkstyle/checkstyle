@@ -101,7 +101,13 @@ public final class InlineConfigParser {
         final List<String> lines = readFile(filePath);
         final TestInputConfiguration.Builder testInputConfigBuilder =
                 new TestInputConfiguration.Builder();
-        setModules(testInputConfigBuilder, inputFilePath, lines);
+        try {
+            setModules(testInputConfigBuilder, inputFilePath, lines);
+        }
+        catch (CheckstyleException ex) {
+            throw new CheckstyleException("Config comment not specified properly in "
+                    + inputFilePath, ex);
+        }
         setViolations(testInputConfigBuilder, lines, setFilteredViolations);
         return testInputConfigBuilder.build();
     }
@@ -113,7 +119,10 @@ public final class InlineConfigParser {
 
     private static void setModules(TestInputConfiguration.Builder testInputConfigBuilder,
                                    String inputFilePath, List<String> lines)
-            throws Exception {
+            throws CheckstyleException {
+        if (!lines.get(0).startsWith("/*")) {
+            throw new CheckstyleException("Config not specified on top.");
+        }
         int lineNo = 1;
         do {
             final ModuleInputConfiguration.Builder moduleInputConfigBuilder =
@@ -127,15 +136,20 @@ public final class InlineConfigParser {
         } while (!lines.get(lineNo).startsWith("*/"));
     }
 
-    private static String getFullyQualifiedClassName(String filePath, String moduleName) {
+    private static String getFullyQualifiedClassName(String filePath, String moduleName)
+            throws CheckstyleException {
         String fullyQualifiedClassName;
         if (moduleName.startsWith("com.")) {
             fullyQualifiedClassName = moduleName;
         }
         else {
             final String path = SLASH_PATTERN.matcher(filePath).replaceAll("\\.");
-            final int beginIndex = path.indexOf("com.puppycrawl");
             final int endIndex = path.lastIndexOf(moduleName.toLowerCase(Locale.ROOT));
+            if (endIndex == -1) {
+                throw new CheckstyleException("Unable to resolve module name: " + moduleName
+                + ". Please check for spelling errors or specify fully qualified class name.");
+            }
+            final int beginIndex = path.indexOf("com.puppycrawl");
             fullyQualifiedClassName = path.substring(beginIndex, endIndex) + moduleName;
         }
         if (!fullyQualifiedClassName.endsWith("Filter")) {
@@ -190,7 +204,8 @@ public final class InlineConfigParser {
     }
 
     private static void setModuleName(ModuleInputConfiguration.Builder moduleInputConfigBuilder,
-                                      String filePath, String moduleName) {
+                                      String filePath, String moduleName)
+            throws CheckstyleException {
         final String fullyQualifiedClassName = getFullyQualifiedClassName(filePath, moduleName);
         moduleInputConfigBuilder.setModuleName(fullyQualifiedClassName);
     }
@@ -199,7 +214,7 @@ public final class InlineConfigParser {
                                       String inputFilePath,
                                       List<String> lines,
                                       int beginLineNo)
-                    throws Exception {
+                    throws CheckstyleException {
         final StringBuilder stringBuilder = new StringBuilder(128);
         int lineNo = beginLineNo;
         for (String line = lines.get(lineNo); !line.isEmpty() && !"*/".equals(line);
@@ -209,6 +224,9 @@ public final class InlineConfigParser {
         final Properties properties = new Properties();
         try (Reader reader = new StringReader(stringBuilder.toString())) {
             properties.load(reader);
+        }
+        catch (IOException ex) {
+            throw new CheckstyleException("Unable to parse input file " + inputFilePath, ex);
         }
         for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
             final String key = entry.getKey().toString();
