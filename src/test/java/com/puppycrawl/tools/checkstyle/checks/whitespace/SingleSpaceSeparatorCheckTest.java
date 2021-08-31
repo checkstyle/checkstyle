@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
@@ -44,10 +43,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNoStackoverflowError() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(SingleSpaceSeparatorCheck.class);
-        verifyWithLimitedResources(checkConfig,
-                getPath("InputSingleSpaceSeparatorNoStackoverflowError.java"),
+        verifyWithLimitedResources(getPath("InputSingleSpaceSeparatorNoStackoverflowError.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 
