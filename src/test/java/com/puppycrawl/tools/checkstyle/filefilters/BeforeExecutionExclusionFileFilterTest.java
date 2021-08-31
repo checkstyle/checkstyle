@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.filefilters;
 
+import static com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,8 +28,6 @@ import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -67,21 +66,17 @@ public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testRejectBadFile() throws Exception {
-        final DefaultConfiguration filterConfig =
-                createModuleConfig(BeforeExecutionExclusionFileFilter.class);
-        filterConfig.addProperty("fileNamePattern", "IncorrectClass\\.java");
+    public void testFileExculsion() throws Exception {
+        final String[] filteredViolations = CommonUtil.EMPTY_STRING_ARRAY;
 
-        final DefaultConfiguration checkConfig = createModuleConfig(FinalLocalVariableCheck.class);
-        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(checkConfig);
-        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-        checkerConfig.addChild(filterConfig);
+        final String[] unfilteredViolations = {
+            "17:13: " + getCheckMessage(FinalLocalVariableCheck.class, MSG_KEY, "i"),
+        };
 
-        final String[] violations = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkerConfig,
-                getNonCompilablePath("InputBeforeExecutionExclusionFileFilterIncorrectClass.java"),
-                violations);
+        verifyFilterWithInlineConfigParser(
+                getPath("InputBeforeExecutionExclusionFileFilter.java"),
+                unfilteredViolations, filteredViolations
+        );
     }
 
     private static BeforeExecutionExclusionFileFilter
