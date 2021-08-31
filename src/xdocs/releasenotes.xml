@@ -10,6 +10,235 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 9.0">
+      <div class="releaseDate">31.08.2021</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Add COMPILATION_UNIT token in Ast Tree, remove EOF token.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/3095">#3095</a>
+          </li>
+          <li>
+            Upgrade Java Grammar from ANTLR2 to ANTLR4.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/10272">#10272</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Checkstyle fails with unusual annotations.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8652">#8652</a>
+          </li>
+          <li>
+            annotation array initialization indentation issue.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/10020">#10020</a>
+          </li>
+          <li>
+            Checkstyle fails on nested type parameters.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8945">#8945</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Refactor Inline Parsing and add support for inputs with multiple modules.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10745">#10745</a>
+          </li>
+          <li>
+            Add ability to suppress forbidden API by annotation.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/10751">#10751</a>
+          </li>
+          <li>
+            Migrate to Inline Config Parser for tests using MemberNameCheck.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10736">#10736</a>
+          </li>
+          <li>
+            Inlined config for Filters Inputs.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10653">#10653</a>
+          </li>
+          <li>
+            Migrate to new verify method for inlined configs  .
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10390">#10390</a>
+          </li>
+          <li>
+            Add support for file path in Inline Config Parser.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10725">#10725</a>
+          </li>
+          <li>
+            Migrate to Inline Config Parser in Regexp Check Tests.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10720">#10720</a>
+          </li>
+          <li>
+            Migrate to Inline Config Parser in Whitespace Check Tests.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10689">#10689</a>
+          </li>
+          <li>
+            Migrate to Inline Config Parser in Miscellaneous Check Tests.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10693">#10693</a>
+          </li>
+          <li>
+            Migrate to Inline Config Parser in Javadoc Check Tests.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10692">#10692</a>
+          </li>
+          <li>
+            Migrate to Inline Config Parser in Coding Check Tests.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10548">#10548</a>
+          </li>
+          <li>
+            Unit tests that involve `StackOverflow` should use limited stack size.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/10605">#10605</a>
+          </li>
+          <li>
+            Migrate to Inline Config Parser in Sizes Check Tests.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10676">#10676</a>
+          </li>
+          <li>
+            Github actions for pitest does not safe artifacts in master builds for all executions.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/10684">#10684</a>
+          </li>
+          <li>
+            Migrate to Inline Config Parser in Naming Check Tests.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10688">#10688</a>
+          </li>
+          <li>
+            Migrate to Inline Config Parser in Imports Check Tests.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10671">#10671</a>
+          </li>
+          <li>
+            Migrate to Inline Config Parser in Modifier Check Tests.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10675">#10675</a>
+          </li>
+          <li>
+            Migrate to Inline Config Parser in Block Check Tests.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10659">#10659</a>
+          </li>
+          <li>
+            Migrate to Inline Config Parser in Metric Check Tests.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10672">#10672</a>
+          </li>
+          <li>
+            Migrate to Inline Config Parser in Design Check Tests.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10667">#10667</a>
+          </li>
+          <li>
+            Add support for multiple violations on adjacent lines in Input Parser.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10665">#10665</a>
+          </li>
+          <li>
+            Permanent suppression section at checkstyle_input_suppressions.xml.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10652">#10652</a>
+          </li>
+          <li>
+            Migrate to Inline Config Parser in Annotation Check Tests.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10649">#10649</a>
+          </li>
+          <li>
+            Add support for messages in inlined config.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10545">#10545</a>
+          </li>
+          <li>
+            doc: update jooq link.
+            Author: Nick Mancuso
+          </li>
+          <li>
+            How to define null in inlined config.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10527">#10527</a>
+          </li>
+          <li>
+            doc: fix writingchecks.xml docs.
+            Author: Nick Mancuso
+          </li>
+          <li>
+            Add support for multiple violations on same line in Input Parser.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10190">#10190</a>
+          </li>
+          <li>
+            Some Inputs can not have comment on line with violation.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10378">#10378</a>
+          </li>
+          <li>
+            Enforce line limit 100 on all Input files..
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10624">#10624</a>
+          </li>
+          <li>
+            support non-ASCII characters in identifiers.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8050">#8050</a>
+          </li>
+          <li>
+            Checkstyle freezes on deeply nested lambdas.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8291">#8291</a>
+          </li>
+          <li>
+            Checkstyle fails to parse local enum and interface declarations.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/10464">#10464</a>
+          </li>
+          <li>
+            Checkstyle fails to parse local record with `final` modifier.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/10516">#10516</a>
+          </li>
+          <li>
+            Checkstyle fails to parse single comma in annotation array initialization.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/10515">#10515</a>
+          </li>
+          <li>
+            Checkstyle fails to parse qualified constructor parameter.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/10424">#10424</a>
+          </li>
+          <li>
+            Consider moving pitest from CircleCI to another CI.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/10188">#10188</a>
+          </li>
+          <li>
+            doc: fix broken scm manager install link.
+            Author: Nick Mancuso
+          </li>
+          <li>
+            Migrate to Inline Config Parser in Tests.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10548">#10548</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.45.1">
       <div class="releaseDate">08.08.2021</div>
       <p>Bug fixes:</p>
