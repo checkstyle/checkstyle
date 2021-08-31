@@ -152,7 +152,7 @@
   <suppress id="StyleValidationCommentInInputs"
             files="packageobjectfactory[\\/].*.java"/>
 
-  <!-- until https://github.com/checkstyle/checkstyle/issues/10653 -->
+  <!-- until https://github.com/checkstyle/checkstyle/issues/10737 -->
 
   <suppress id="StyleValidationCommentInInputs"
             files="filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilter.java"/>
