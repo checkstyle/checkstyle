@@ -38,7 +38,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/styleguides/google-java-style-20180523/javaguide.html#s4.8.6.1-block-comment-style">
  * here</a>
  * </p>
- * </pre>
  * <ul>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -227,6 +226,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * 12     // Why do we catch exception here? - violation (not the same indentation as line 11)
  * 13     } catch (Exception e) { ... }
  * 14  }
+ * </pre>
  * <p>
  * To configure the Check:
  * </p>
