@@ -98,7 +98,7 @@ public class JavaAstVisitorTest {
                 .collect(Collectors.toSet());
 
         // remove overridden 'visit' method from ParseTreeVisitor interface in JavaAstVisitor
-        filteredVisitMethodNames.removeIf(name -> name.matches("visit"));
+        filteredVisitMethodNames.remove("visit");
 
         final String message = "Visit methods in 'JavaLanguageParserBaseVisitor' generated from "
                 + "production rules and labeled alternatives in 'JavaLanguageParser.g4' should "
@@ -132,7 +132,7 @@ public class JavaAstVisitorTest {
         orderedBaseVisitorMethodNames.removeAll(VISIT_METHODS_NOT_OVERRIDDEN);
 
         // remove overridden 'visit' method from ParseTreeVisitor interface in JavaAstVisitor
-        orderedVisitorMethodNames.removeIf(name -> name.matches("visit"));
+        orderedVisitorMethodNames.remove("visit");
 
         assertWithMessage("Visit methods in 'JavaAstVisitor' should appear in same order as "
                 + "production rules and labeled alternatives in 'JavaLanguageParser.g4'.")
