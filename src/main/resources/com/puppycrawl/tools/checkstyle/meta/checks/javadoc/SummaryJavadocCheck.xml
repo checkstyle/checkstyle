@@ -9,6 +9,7 @@
  &lt;a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#firstsentence"&gt;
  Javadoc summary sentence&lt;/a&gt; does not contain phrases that are not recommended to use.
  Summaries that contain only the {@code {@inheritDoc}} tag are skipped.
+ Summaries that contain a non-empty {@code {@return}} are allowed.
  Check also violate Javadoc that does not contain first sentence.
  &lt;/p&gt;</description>
          <properties>
