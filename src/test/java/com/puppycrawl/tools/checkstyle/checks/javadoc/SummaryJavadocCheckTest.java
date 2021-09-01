@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.MSG_INLINERETURN_JAVADOC;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.MSG_SUMMARY_FIRST_SENTENCE;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.MSG_SUMMARY_JAVADOC;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.MSG_SUMMARY_JAVADOC_MISSING;
@@ -91,14 +92,17 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "26: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "32: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "38: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "44: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-            "49: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "54: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "64: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-            "86: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "99: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "114: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "120: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "44: " + getCheckMessage(MSG_INLINERETURN_JAVADOC),
+            "51: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "51: " + getCheckMessage(MSG_INLINERETURN_JAVADOC),
+            "58: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "63: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "68: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "78: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "100: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "113: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "128: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "134: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
         };
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocInlineForbidden.java"), expected);
@@ -154,15 +158,16 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "32: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "42: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "47: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "60: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "65: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "122: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "127: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "132: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "143: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "161: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "166: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "186: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "56: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "68: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "73: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "130: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "135: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "140: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "151: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "169: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "174: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "194: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
         };
 
         verifyWithInlineConfigParser(
