@@ -52,6 +52,14 @@ class InputSummaryJavadocInlineDefault {
     /** {@summary An especially short bit of Javadoc.} */
     void foo13() {} // ok
 
+    // violation below
+    /**
+     * {@return}
+     */
+    int returnNothing() {
+        return 0;
+    }
+
     /**
      * {@summary Some Javadoc.}
      */
