@@ -345,6 +345,42 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
           <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.6.1-block-comment-style">
           here</a>
         </p>
+      </subsection>
+      <subsection name="Properties" id="CommentsIndentation_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>
+                subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">
+                  SINGLE_LINE_COMMENT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
+                  BLOCK_COMMENT_BEGIN</a>
+                  .
+              </td>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">
+                  SINGLE_LINE_COMMENT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
+                  BLOCK_COMMENT_BEGIN</a>
+                  .
+              </td>
+              <td>6.10</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="CommentsIndentation_Examples">
         <p>Please take a look at the following examples to understand how the check works:</p>
 
         <p>Example #1: Block comments.</p>
@@ -505,42 +541,6 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
 13     } catch (Exception e) { ... }
 14  }
         </source>
-      </subsection>
-      <subsection name="Properties" id="CommentsIndentation_Properties">
-        <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>tokens</td>
-              <td>tokens to check</td>
-              <td>
-                subset of tokens
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">
-                  SINGLE_LINE_COMMENT</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
-                  BLOCK_COMMENT_BEGIN</a>
-                  .
-              </td>
-              <td>
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">
-                  SINGLE_LINE_COMMENT</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
-                  BLOCK_COMMENT_BEGIN</a>
-                  .
-              </td>
-              <td>6.10</td>
-            </tr>
-          </table>
-        </div>
-      </subsection>
-
-      <subsection name="Examples" id="CommentsIndentation_Examples">
         <p>
           To configure the Check:
         </p>
