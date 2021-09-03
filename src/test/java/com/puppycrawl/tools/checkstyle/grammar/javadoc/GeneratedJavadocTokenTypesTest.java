@@ -21,6 +21,10 @@ package com.puppycrawl.tools.checkstyle.grammar.javadoc;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 /**
@@ -133,6 +137,9 @@ public class GeneratedJavadocTokenTypesTest {
         assertEquals(86, JavadocParser.PARAM_HTML_TAG_NAME, MSG);
         assertEquals(87, JavadocParser.EMBED_HTML_TAG_NAME, MSG);
         assertEquals(88, JavadocParser.KEYGEN_HTML_TAG_NAME, MSG);
+        assertEquals(89, JavadocParser.ATTR_VALUE, MSG);
+        assertEquals(90, JavadocParser.Char12, MSG);
+        assertEquals(91, JavadocParser.HTML_COMMENT_END, MSG);
         assertEquals(92, JavadocParser.SOURCE_HTML_TAG_NAME, MSG);
         assertEquals(93, JavadocParser.TRACK_HTML_TAG_NAME, MSG);
         assertEquals(94, JavadocParser.WBR_HTML_TAG_NAME, MSG);
@@ -143,9 +150,17 @@ public class GeneratedJavadocTokenTypesTest {
         assertEquals(99, JavadocParser.RP_HTML_TAG_NAME, MSG);
         assertEquals(100, JavadocParser.HTML_TAG_NAME, MSG);
         assertEquals(101, JavadocParser.Char11, MSG);
-        assertEquals(89, JavadocParser.ATTR_VALUE, MSG);
-        assertEquals(90, JavadocParser.Char12, MSG);
-        assertEquals(91, JavadocParser.HTML_COMMENT_END, MSG);
+
+        final int tokenCount = (int) Arrays.stream(JavadocParser.class.getDeclaredFields())
+                .filter(GeneratedJavadocTokenTypesTest::isPublicStaticFinalInt)
+                .filter(field -> !isRule(field))
+                .count();
+
+        // Read JavaDoc before changing count below
+        assertEquals(101, tokenCount,
+                "all tokens must be added to list in"
+                        + " 'GeneratedJavadocTokenTypesTest' and verified"
+                        + " that their old numbering didn't change");
     }
 
     /**
@@ -255,6 +270,42 @@ public class GeneratedJavadocTokenTypesTest {
         assertEquals(92, JavadocParser.RULE_rpTagStart, MSG);
         assertEquals(93, JavadocParser.RULE_rpTagEnd, MSG);
         assertEquals(94, JavadocParser.RULE_rp, MSG);
+
+        final int tokenCount = (int) Arrays.stream(JavadocParser.class.getDeclaredFields())
+                .filter(GeneratedJavadocTokenTypesTest::isPublicStaticFinalInt)
+                .filter(GeneratedJavadocTokenTypesTest::isRule)
+                .count();
+
+        // Read JavaDoc before changing count below
+        assertEquals(95, tokenCount,
+                "all rules must be added to list in"
+                        + " 'GeneratedJavadocTokenTypesTest' and verified"
+                        + " that their old numbering didn't change");
+    }
+
+    /**
+     * Checks that a given field is named 'RULE_'.
+     *
+     * @param field field to verify the name of
+     * @return true if field is named 'RULE_'
+     */
+    private static boolean isRule(Field field) {
+        return field.getName().startsWith("RULE_");
+    }
+
+    /**
+     * Checks that a given field is 'public static final int'.
+     *
+     * @param field field to verify type and visibility of
+     * @return true if field is declared as 'public static final int'
+     */
+    private static boolean isPublicStaticFinalInt(Field field) {
+        final Class<?> fieldType = field.getType();
+        final int mods = field.getModifiers();
+        return fieldType.equals(Integer.TYPE)
+                && Modifier.isPublic(mods)
+                && Modifier.isStatic(mods)
+                && Modifier.isFinal(mods);
     }
 
 }
