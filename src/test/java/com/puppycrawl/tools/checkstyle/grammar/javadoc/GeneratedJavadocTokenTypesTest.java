@@ -137,6 +137,9 @@ public class GeneratedJavadocTokenTypesTest {
         assertEquals(86, JavadocParser.PARAM_HTML_TAG_NAME, MSG);
         assertEquals(87, JavadocParser.EMBED_HTML_TAG_NAME, MSG);
         assertEquals(88, JavadocParser.KEYGEN_HTML_TAG_NAME, MSG);
+        assertEquals(89, JavadocParser.ATTR_VALUE, MSG);
+        assertEquals(90, JavadocParser.Char12, MSG);
+        assertEquals(91, JavadocParser.HTML_COMMENT_END, MSG);
         assertEquals(92, JavadocParser.SOURCE_HTML_TAG_NAME, MSG);
         assertEquals(93, JavadocParser.TRACK_HTML_TAG_NAME, MSG);
         assertEquals(94, JavadocParser.WBR_HTML_TAG_NAME, MSG);
@@ -147,9 +150,6 @@ public class GeneratedJavadocTokenTypesTest {
         assertEquals(99, JavadocParser.RP_HTML_TAG_NAME, MSG);
         assertEquals(100, JavadocParser.HTML_TAG_NAME, MSG);
         assertEquals(101, JavadocParser.Char11, MSG);
-        assertEquals(89, JavadocParser.ATTR_VALUE, MSG);
-        assertEquals(90, JavadocParser.Char12, MSG);
-        assertEquals(91, JavadocParser.HTML_COMMENT_END, MSG);
 
         final int tokenCount = (int) Arrays.stream(JavadocParser.class.getDeclaredFields())
                 .filter(GeneratedJavadocTokenTypesTest::isPublicStaticFinalInt)
