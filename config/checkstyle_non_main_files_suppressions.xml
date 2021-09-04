@@ -81,7 +81,9 @@
 
   <!-- content is generated -->
   <suppress id="lineLength"
-         files="src[\\/]xdocs[\\/]releasenotes_old.xml"/>
+         files="src[\\/]xdocs[\\/]releasenotes_old_6\-0_7\-8\.xml"/>
+  <suppress id="lineLength"
+         files="src[\\/]xdocs[\\/]releasenotes_old_1\-0_5\-9\.xml"/>
   <suppress id="lineLength"
          files="src[\\/]xdocs[\\/]releasenotes.xml"/>
   <!-- it contains list of html text, no way to wrap -->

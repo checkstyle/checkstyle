@@ -1420,7 +1420,7 @@
                 <exclude>src/test/resources/**</exclude>
                 <!-- Generated files -->
                 <exclude>src/xdocs/releasenotes.xml</exclude>
-                <exclude>src/xdocs/releasenotes_old.xml</exclude>
+                <exclude>src/xdocs/releasenotes_old*.xml</exclude>
                 <exclude>src/main/resources/com/puppycrawl/tools/checkstyle/meta/**</exclude>
               </excludes>
             </formatFileSet>

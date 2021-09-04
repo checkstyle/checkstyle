@@ -422,9 +422,9 @@ public class MethodLimitCheck extends AbstractCheck
     <section name="Comment Tokens in AST">
 
       <p>
-        Before <a href="releasenotes.html#Release_6.0">Checkstyle 6.0</a>, there was no comments
-        in AST tree as comments are not a code and ignored by compiler, so it was not a primary
-        focus of Checkstyle.
+        Before <a href="releasenotes_old_6-0_7-8.html#Release_6.0">Checkstyle 6.0</a>,
+        there was no comments in AST tree as comments are not a code and ignored by compiler,
+        so it was not a primary focus of Checkstyle.
         But more and more requests appear to do validation of code vs javadoc or comments.
         So there was a simple solution to receive plain text of file in Check, do own parsing and
         searching for required comments in file.
