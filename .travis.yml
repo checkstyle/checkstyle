@@ -1,6 +1,13 @@
+os: linux
+arch:
+  - arm64
+  - ppc64le
+  - s390x
+# Above is required as is for Partner Queue Solution.
+# DO NOT MODIFY!
+
 version: ~> 1.0
 dist: xenial
-os: linux
 language: java
 
 cache:
