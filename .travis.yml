@@ -1,8 +1,6 @@
 os: linux
 arch:
-  - arm64
   - ppc64le
-  - s390x
 # Above is required as is for Partner Queue Solution.
 # DO NOT MODIFY!
 
