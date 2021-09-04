@@ -1,6 +1,11 @@
+os: linux
+arch:
+  - ppc64le
+# Above is required as is for Partner Queue Solution.
+# DO NOT MODIFY!
+
 version: ~> 1.0
 dist: xenial
-os: linux
 language: java
 
 cache:
