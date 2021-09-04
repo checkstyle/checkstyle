@@ -75,7 +75,8 @@ tar -xzvf htdocs-archive/htdocs-$PREV_RELEASE.tar.gz -C htdocs-version/ --same-o
 --exclude="jdepend-report.html" --exclude="failsafe-report.html" \
 --exclude="surefire-report.html" \
 --exclude="linkcheck.html" --exclude="findbugs.html" --exclude="taglist.html" \
---exclude="releasenotes_old.html" --exclude="dependencies.html"
+--exclude="releasenotes_old.html" --exclude="releasenotes_old_1-0_5-9.html" \
+--exclude="dependencies.html"
 
 echo "Make a link to make it accessible from web"
 ln -f -s \$(pwd)/htdocs-version/htdocs-$PREV_RELEASE \$(pwd)/htdocs/version/$PREV_RELEASE
