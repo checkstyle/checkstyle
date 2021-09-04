@@ -5,10 +5,232 @@
   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 
   <head>
-    <title>Old Release Notes</title>
+    <title>Old Release Notes 2</title>
   </head>
 
   <body>
+    <section name="Release 5.9">
+      <p>New features:</p>
+      <ul>
+        <li>
+          Support of Java8 syntax. Author: Ilja Dubinin. <a href="https://github.com/checkstyle/checkstyle/issues/10">#10</a>
+        </li>
+      </ul>
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          Enormous update on Indentation Check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/294">#294</a>
+        </li>
+        <li>
+          Fixed IllegalInstantiationCheck, so it won't recognize a constructor reference (Java8)
+          as instantiation. Author: Ryszard Wisniewski.
+        </li>
+        <li>
+          Since Java 8 we can have methods body in interfaces. Author: Ilja Dubinin. <a href="https://github.com/checkstyle/checkstyle/issues/282">#282</a>
+        </li>
+        <li>
+          Default modifier has been added to modifier list. Author: Ilja Dubinin. <a href="https://github.com/checkstyle/checkstyle/issues/284">#284</a>
+        </li>
+        <li>
+          Fixed bug in DefaultComesLast check. Now it supports java 8 default methods. Author: Ilja Dubinin. <a href="https://github.com/checkstyle/checkstyle/issues/297">#297</a>
+        </li>
+        <li>
+          Fixed IndexOutOfBoundsException in CustomImportOrderCheck. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/296">#296</a>
+        </li>
+      </ul>
+      <p>Notes:</p>
+      <ul>
+        <li>
+          Correct OverloadMethodsDeclarationOrder name in documentation. Author: Andrew Gaul.
+        </li>
+      </ul>
+    </section>
+
+      <section name="Release 5.8">
+      <p>New features:</p>
+      <ul>
+        <li>
+          Google Java Style <a href="google_style.html">xml configuration</a> was added. Author: Max Vetrenko.
+        </li>
+        <li>
+          New: AbbreviationAsWordInName check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/212">#212</a>
+        </li>
+        <li>
+          Added enum processing to TypeNameCheck. Author: Pavel Baranchikov
+        </li>
+        <li>
+          Added method to clear cache to LocalizedMessage. Author: Joni Salmi. <a href="https://github.com/checkstyle/checkstyle/pull/156">#156</a>
+        </li>
+        <li>
+          New: AvoidEscapedUnicodeCharacters check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/194">#194</a>
+        </li>
+        <li>
+          New: CustomImportOrder check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/194">#194</a>
+        </li>
+        <li>
+          New: EmptyLineSeparator check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/186">#186</a>
+        </li>
+        <li> Enable array initialisation indentation settings. Author: Vaclav Chalupa. </li>
+        <li> Enhance WhitespaceAroundCheck to ignore Annotation Array Initialization curlies as it
+        does for Array Initialization outside of annotations.. Author: Jacob Tomaw </li>
+        <li>
+          ignore option to the JavadocVariable check. Author: Yuriy Chulovskyy. <a href="https://github.com/checkstyle/checkstyle/issues/98">#98</a>
+        </li>
+        <li>
+          New: InterfaceTypeParameterName check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/202">#202</a>
+        </li>
+        <li>
+          New grammar rule was added only for catch types. IllegalCatchCheck has been
+          extended to use catch with few exception types..
+          Author: Ilja Dubinin <a href="https://github.com/checkstyle/checkstyle/issues/165">#165</a>
+        </li>
+        <li>
+          LocalVariableName. Allowed one char variables in initialization expressions in FOR loop. Author: Max Vetrenko <a href="https://github.com/checkstyle/checkstyle/issues/192">#192</a>
+        </li>
+        <li>
+          New: NoLineWrap check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/173">#173</a>
+        </li>
+        <li>
+          New: OneTopLevelClass check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/172">#173</a>
+        </li>
+        <li>
+          New: OverloadMethodsDeclarationOrder check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/pull/32">#32</a>
+        </li>
+        <li>
+          New option to allow no empty line between fields at EmptyLineSeparatorCheck check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/227">#227</a>
+        </li>
+        <li>
+          New option to allow that force overload methods are grouped together at DeclarationOrder check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/pull/163">#163</a>
+        </li>
+        <li>
+          New option to allow empty classes, enums and interfaces, empty loops are allowed at WhitespaceAround check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/pull/163">#163</a>
+        </li>
+        <li>
+          New: VariableDeclarationUsageDistance check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/223">#223</a>
+        </li>
+      </ul>
+      <p>Bug fixes:</p>
+      <ul>
+        <li>
+          Update for EmptyBlock to allow empty loops. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/190">#190</a>
+        </li>
+        <li>
+          EmptyLineSeparatorCheck was updated to validate empty line after header. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/218">#218</a>
+        </li>
+        <li>
+          LeftCurly Check was updated to force line break. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/247">#247</a>
+        </li>
+        <li>
+          update for OuterTypeFilename Check to check top level type are the public type or the first type in file if public is missed. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/248">#248</a>
+        </li>
+        <li>
+          update for RightCurly Check, new option to check line break after the closing brace if that brace terminates a statement or the body of a method, constructor or named class. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/182">#182</a>
+        </li>
+        <li>
+          Added test and fix for the case if there is a semicolon between import statements.
+          Author: Ryszard Wisniewski
+        </li>
+        <li>
+          Adding ANNOTATION_DEF to the valid list of parentASTs for the SuppressWarningsHolder.
+          Without this, any @SuppressWarnings (checkstyle or not) present on an annotation
+          definition class will fail. Author: Dominic Jones
+        </li>
+        <li>
+          Adding u HTML tag to list of allowed tags in JavaDoc. Author: Ilja Gubins. <a href="https://github.com/checkstyle/checkstyle/issues/58">#58</a>
+        </li>
+        <li>
+          update for WhitespaceAround. Allowed empty anonymous classes. Was updated allowEmptyTypes property. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/197">#197</a>
+        </li>
+        <li>
+          Fixed AbstractTypeAwareCheck for generics in interfaces. Author: Tobias Baum. <a href="https://github.com/checkstyle/checkstyle/pull/177">#177</a>
+        </li>
+        <li>
+          Fixed RightCurlyCheck for empty methods. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/213">#213</a>
+        </li>
+        <li>
+          Fixed WhitespaceAroundCheck. fix for anonymous inner class. Author: Yuriy Chulovskyy. <a href="https://github.com/checkstyle/checkstyle/issues/213">#105</a>
+        </li>
+        <li>
+          Fixed RedundantModifier. Abstract Interface Should not be Allowed.
+      . Author: Yuriy Chulovskyy. <a href="https://github.com/checkstyle/checkstyle/pull/209">#209</a>
+        </li>
+        <li>
+          Fixed EmptyBlock. need to handle switch block.
+      . Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/235">#235</a>
+        </li>
+        <li>
+          Fixed WhitespaceAround. Fix false positive with ANNOTATION_DEF.
+      . Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/237">#237</a>
+        </li>
+        <li>
+          Fixed GenericWhitespace. Fix false positive with Array.
+      . Author: Inav Sopov. <a href="https://github.com/checkstyle/checkstyle/issues/47">#47</a>
+        </li>
+        <li>
+          Fixed JavadocStyleCheck. HTML comments break the Javadoc style HTML check.
+      . Author: theqaguy. <a href="https://github.com/checkstyle/checkstyle/issues/119">#119</a>
+        </li>
+        <li>
+          Fixed Java grammar. Now it can parse 'return (byte[].class);'
+      . Author: Ilja Dubinin. <a href="https://github.com/checkstyle/checkstyle/issues/130">#130</a>
+        </li>
+        <li>
+          Exception thrown when parsing numeric constant "3.14_15F".
+      . Author: Yuriy Chulovskyy<a href="https://github.com/checkstyle/checkstyle/issues/134">#134</a>
+        </li>
+        <li>
+          RequireThis triggers for static interface fields Fixed.
+      . Author: Sergiu Dumitriu <a href="https://github.com/checkstyle/checkstyle/issues/155">#155</a>
+        </li>
+        <li>
+          Javadoc in GenericWhitespaceCheck was updated.
+      . Author: Max Vetrenko <a href="https://github.com/checkstyle/checkstyle/issues/254">#254</a>
+        </li>
+        <li>
+          MemberNameCheck should not validate interface constants, that's ConstantNameCheck's role.
+          Author: Sergiu Dumitriu
+        </li>
+        <li>
+          RightCurly. Force line break before '}' in case SAME option.
+      . Author: Max Vetrenko <a href="https://github.com/checkstyle/checkstyle/issues/250">#250</a>
+        </li>
+        <li>
+          SeparatorWrapCheck. Covers separators like ',', '.' .
+      . Author: Max Vetrenko <a href="https://github.com/checkstyle/checkstyle/issues/179">#179</a>
+        </li>
+        <li>
+          Support annotations in TypeNameCheck. Author: Thomas Jensen
+        </li>
+        <li>
+          Update UnusedImportsCheck to correctly detect classes in parameters and
+          inline tags nested within block tags. fixing checkstyle issues Fixing even
+          more checkstyle issues. Author: James Gorman
+        </li>
+        <li>
+          Use a thread-safe map implementation to keep the compiled patterns.
+          Author: Christoph Kutzinski
+        </li>
+        <li>
+          WhitespaceAround with allowEmptyMethods complains on annotation's empty method
+      . Author: Max Vetrenko <a href="https://github.com/checkstyle/checkstyle/issues/21">#21</a>
+        </li>
+      </ul>
+      <p>Notes:</p>
+      <ul>
+        <li>
+          dsm-maven-plugin is used to show dsm/index.html dependency structure of project on site.
+          Author: Ilja Dubinin.
+        </li>
+        <li>
+          Added and updated documentation/messages for number of Checks. Authors: Max Vetrenko,
+          Thomas Jensen, Yuriy Chulovskyy, Jarmo Isotalo, Peter O, Ryszard Wisniewski, Ilja Gubins,
+          Baratali Izmailov, Jan Schafer, Niklas Walter, Andrew Gaul.
+        </li>
+        <li>
+          Moving to standard directory layout. Author: Ivan Sopov.
+        </li>
+      </ul>
+    </section>
     <section name="Release 5.7">
       <p>New features:</p>
       <ul>
