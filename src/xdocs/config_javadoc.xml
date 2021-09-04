@@ -3619,8 +3619,9 @@ public int foobar() {
           Checks that
           <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#firstsentence">
           Javadoc summary sentence</a> does not contain phrases that are not recommended to use.
-          Summaries that contain only the <code>{@inheritDoc}</code> tag are skipped. Check also
-          violate Javadoc that does not contain first sentence.
+          Summaries that contain only the <code>{@inheritDoc}</code> tag are skipped. Summaries
+          that contain a non-empty {@code {@return}} are allowed. Check also violate Javadoc that
+          does not contain first sentence.
         </p>
       </subsection>
 
@@ -3658,6 +3659,13 @@ public int foobar() {
               <td><a href="property_types.html#String">String</a></td>
               <td><code>"."</code></td>
               <td>6.2</td>
+            </tr>
+            <tr>
+              <td>allowInlineReturn</td>
+              <td>Specify if <code>{@return}</code> should be accepted.</td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>9.1</td>
             </tr>
           </table>
         </div>
@@ -3787,6 +3795,23 @@ public class Test {
   }
 }
         </source>
+        <p>
+          Example of allowInlineReturn property for inline return javadoc.
+        </p>
+        <source>
+public class TestClass {
+ /**
+  * {@return}
+  */
+  public void invalidJavaDocMethod() { // violation
+  }
+ /**
+  * {@return This is valid if property is true}
+  */
+  public void validJavaDocMethod() { // ok
+  }
+}
+        </source>
       </subsection>
       <subsection name="Example of Usage" id="SummaryJavadoc_Example_of_Usage">
         <ul>
@@ -3803,6 +3828,14 @@ public class Test {
 
       <subsection name="Violation Messages" id="SummaryJavadoc_Violation_Messages">
         <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22inlineReturn.javaDoc%22">
+            inlineReturn.javaDoc</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22inlineReturn.javaDoc.wrongMemberType%22">
+            inlineReturn.javaDoc.wrongMemberType</a>
+          </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
             javadoc.missed.html.close</a>
