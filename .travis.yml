@@ -1,6 +1,9 @@
 version: ~> 1.0
-dist: xenial
+dist: focal
 os: linux
+# this arch is required as is for Partner Queue Solution - DO NOT MODIFY
+arch: s390x
+
 language: java
 
 cache:
@@ -13,6 +16,7 @@ addons:
       - xsltproc
       - xmlstarlet
       - ruby
+      - maven
 
 branches:
   only:
