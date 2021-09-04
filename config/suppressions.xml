@@ -32,14 +32,6 @@
                     |NestedIfDepth|MethodLength"
              files="[\\/]XdocsPagesTest\.java"/>
 
-  <!-- till https://github.com/checkstyle/checkstyle/issues/6336 -->
-  <suppress checks="JavadocMethod" files=".*AbstractIndentationTestSupport\.java"/>
-  <suppress checks="JavadocMethod" files=".*AbstractModuleTestSupport\.java"/>
-  <suppress checks="JavadocMethod" files=".*AbstractXpathTestSupport\.java"/>
-  <suppress checks="JavadocMethod" files=".*AbstractModuleTestSupport\.java"/>
-  <suppress checks="JavadocMethod" files=".*AbstractPathTestSupport\.java"/>
-  <suppress checks="JavadocMethod" files=".*AbstractXmlTestSupport\.java"/>
-
   <!-- The Check generates too many violations, fixing them will make code unmanageable. -->
   <suppress checks="MagicNumber" files="(ParseTreeTablePresentation|MainFrame)\.java"/>
 
