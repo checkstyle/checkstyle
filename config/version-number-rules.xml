@@ -16,12 +16,6 @@
         <ignoreVersion type="regex">.*-android</ignoreVersion>
       </ignoreVersions>
     </rule>
-    <rule groupId="antlr" artifactId="antlr">
-      <ignoreVersions>
-        <!-- this is really old version before versioning become semantic -->
-        <ignoreVersion type="regex">20030911</ignoreVersion>
-      </ignoreVersions>
-    </rule>
     <rule groupId="org.apache.maven.plugins" artifactId="maven-release-plugin">
       <ignoreVersions>
         <!-- we use 2.1 version that is defined at our parent
