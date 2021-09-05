@@ -203,7 +203,3 @@ steps:
     path: /.m2
   commands:
   - ./.ci/travis/travis.sh no-error-test-sbe
-
-volumes:
-- name: m2-cache
-  temp: {}
