@@ -22,11 +22,10 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck.MSG_JAVADOC_MISSING;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import org.junit.jupiter.api.Test;
-
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import org.junit.jupiter.api.Test;
 
 public class JavadocVariableCheckTest
     extends AbstractModuleTestSupport {
@@ -119,7 +118,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testScopes() throws Exception {
+    public void testAccessModifiersAll() throws Exception {
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -165,7 +164,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testScopes2() throws Exception {
+    public void testAccessModifiersPublicProtected() throws Exception {
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -178,7 +177,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testExcludeScope() throws Exception {
+    public void testAccessModifiersPrivatePackage() throws Exception {
         final String[] expected = {
             "17:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
