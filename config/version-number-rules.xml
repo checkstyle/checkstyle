@@ -32,5 +32,11 @@
         <ignoreVersion type="regex">.*</ignoreVersion>
       </ignoreVersions>
     </rule>
+    <rule groupId="com.github.spotbugs" artifactId="spotbugs-maven-plugin">
+      <ignoreVersions>
+        <!-- util https://github.com/spotbugs/spotbugs/issues/1601 -->
+        <ignoreVersion type="regex">.*</ignoreVersion>
+      </ignoreVersions>
+    </rule>
   </rules>
 </ruleset>
