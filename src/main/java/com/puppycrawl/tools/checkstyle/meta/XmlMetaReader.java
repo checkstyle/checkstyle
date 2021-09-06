@@ -33,6 +33,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.reflections.Reflections;
+import org.reflections.ReflectionsException;
 import org.reflections.scanners.ResourcesScanner;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -77,10 +78,21 @@ public final class XmlMetaReader {
                         new ResourcesScanner()).getResources(Pattern.compile(".*\\.xml"));
         final Set<String> allMetadataSources = new HashSet<>(standardModuleFileNames);
         for (String packageName : thirdPartyPackages) {
-            final Set<String> thirdPartyModuleFileNames =
-                    new Reflections(packageName, new ResourcesScanner())
-                            .getResources(Pattern.compile(".*checkstylemeta-.*\\.xml"));
-            allMetadataSources.addAll(thirdPartyModuleFileNames);
+            try {
+                final Set<String> thirdPartyModuleFileNames =
+                        new Reflections(packageName, new ResourcesScanner())
+                                .getResources(Pattern.compile(".*checkstylemeta-.*\\.xml"));
+                allMetadataSources.addAll(thirdPartyModuleFileNames);
+            }
+            catch (ReflectionsException ex) {
+                // Suppress exception that matches the following because the reflections library
+                // throws this exception wrongly on valid packages with no resources to be found.
+                // Packages may be only checks with no resources or checks with resources.
+                // until https://github.com/ronmamo/reflections/issues/273
+                if (!"Scanner ResourcesScanner was not configured".equals(ex.getMessage())) {
+                    throw ex;
+                }
+            }
         }
 
         final List<ModuleDetails> result = new ArrayList<>();
