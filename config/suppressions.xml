@@ -9,6 +9,8 @@
   <suppress id="lineLengthXml" files="google_checks\.xml" lines="56,126"/>
   <!-- don't validate generated files -->
   <suppress id="lineLengthXml" files="releasenotes\.xml"/>
+  <suppress id="lineLengthXml" files="releasenotes_old_6\-0_7\-8\.xml"/>
+  <suppress id="lineLengthXml" files="releasenotes_old_1\-0_5\-9\.xml"/>
   <suppress id="lineLengthXml" files="[\\/]meta[\\/]"/>
 
   <suppress checks="FileLength"

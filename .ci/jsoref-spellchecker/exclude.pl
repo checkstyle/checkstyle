@@ -10,7 +10,7 @@ my @excludes=qw(
   ^src/site/resources/styleguides/
   ^src/test/resources-noncompilable/
   /messages.*_..\.properties$
-  /releasenotes_old\.xml$
+  /releasenotes_old.*\.xml$
   /releasenotes\.xml$
   /.*_..\.translation[^/]*$
   /jdk14-test-excluded-files\.list$
