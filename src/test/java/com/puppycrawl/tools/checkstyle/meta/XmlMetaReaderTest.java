@@ -51,6 +51,12 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testBadPackage() {
+        assertThat(XmlMetaReader.readAllModulesIncludingThirdPartyIfAny("DOES.NOT.EXIST").size())
+                .isEqualTo(198);
+    }
+
+    @Test
     public void testReadXmlMetaCheckWithProperties() throws Exception {
         final String path = getPath("InputXmlMetaReaderCheckWithProps.xml");
         try (InputStream is = Files.newInputStream(Paths.get(path))) {
