@@ -20,9 +20,11 @@
 package com.puppycrawl.tools.checkstyle.meta;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -80,19 +82,24 @@ public final class MetadataGeneratorUtil {
             validFiles.add(new File(path));
         }
         else {
-            final List<String> moduleFolders = Arrays.asList("checks", "filters", "filefilters");
-            for (String folder : moduleFolders) {
-                try (Stream<Path> files = Files.walk(Paths.get(path
-                        + "/" + folder))) {
-                    validFiles.addAll(
-                            files.map(Path::toFile)
-                            .filter(file -> {
-                                return file.getName().endsWith("SuppressWarningsHolder.java")
-                                        || file.getName().endsWith("Check.java")
-                                        || file.getName().endsWith("Filter.java");
-                            })
-                            .collect(Collectors.toList()));
+            try {
+                final List<String> moduleFolders = Arrays.asList("checks", "filters", "filefilters");
+                for (String folder : moduleFolders) {
+                    try (Stream<Path> files = Files.walk(Paths.get(path
+                             + folder))) {
+                        validFiles.addAll(
+                                files.map(Path::toFile)
+                                        .filter(file -> {
+                                            return file.getName().endsWith("SuppressWarningsHolder.java")
+                                                    || file.getName().endsWith("Check.java")
+                                                    || file.getName().endsWith("Filter.java");
+                                        })
+                                        .collect(Collectors.toList()));
+                    }
                 }
+            }catch (NoSuchFileException e){
+                System.out.println("Folders not present: "+e.getFile());
+
             }
         }
 
