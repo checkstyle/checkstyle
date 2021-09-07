@@ -98,7 +98,7 @@ public final class MetadataGeneratorUtil {
                     }
                 }
             }catch (NoSuchFileException e){
-                System.out.println("Folders not present: "+e.getFile())
+                System.out.println("Folders not present: "+e.getFile());
 
             }
         }
