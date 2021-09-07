@@ -24,6 +24,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -85,7 +86,7 @@ public final class MetadataGeneratorUtil {
                 final List<String> moduleFolders = Arrays.asList("checks", "filters", "filefilters");
                 for (String folder : moduleFolders) {
                     try (Stream<Path> files = Files.walk(Paths.get(path
-                            + "/" + folder))) {
+                             + folder))) {
                         validFiles.addAll(
                                 files.map(Path::toFile)
                                         .filter(file -> {
@@ -96,8 +97,9 @@ public final class MetadataGeneratorUtil {
                                         .collect(Collectors.toList()));
                     }
                 }
-            }catch (FileNotFoundException e){
-                System.out.println("Folders not present");
+            }catch (NoSuchFileException e){
+                System.out.println("Folders not present: "+e.getFile())
+
             }
         }
 
