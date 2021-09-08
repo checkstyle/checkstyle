@@ -80,8 +80,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     /**
      * Find the module creation option to use for the module name.
      *
-     * @param moduleName The module name.
-     * @return The module creation option.
+     * @param moduleName the module name.
+     * @return the module creation option.
      */
     protected abstract ModuleCreationOption findModuleCreationOption(String moduleName);
 
@@ -276,7 +276,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * Gets the check message 'as is' from appropriate 'messages.properties'
      * file.
      *
-     * @param aClass The package the message is located in.
+     * @param aClass the package the message is located in.
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments  the arguments of message in 'messages.properties' file.
      * @return The message of the check with the arguments applied.
@@ -294,7 +294,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     /**
      * Gets the check message 'as is' from appropriate 'messages.properties' file.
      *
-     * @param messages The map of messages to scan.
+     * @param messages the map of messages to scan.
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments the arguments of message in 'messages.properties' file.
      * @return The message of the check with the arguments applied.
