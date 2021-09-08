@@ -224,6 +224,27 @@
     <property name="tabWidth" value="4"/>
 
     <!-- Annotations -->
+    <module name="AdjacentAnnotation">
+      <!-- we can not use it as it conflicts with AnnotationLocation -->
+      <property name="severity" value="ignore"/>
+      <property name="tokens" value="METHOD_DEF"/>
+      <property name="tokens" value="CTOR_DEF"/>
+      <property name="tokens" value="TYPECAST"/>
+      <property name="tokens" value="DOT"/>
+      <property name="tokens" value="CLASS_DEF"/>
+      <property name="tokens" value="ENUM_DEF"/>
+      <property name="tokens" value="INTERFACE_DEF"/>
+      <property name="tokens" value="TYPE_ARGUMENT"/>
+      <property name="tokens" value="ANNOTATION_DEF"/>
+      <property name="tokens" value="LITERAL_NEW"/>
+      <property name="tokens" value="LITERAL_THROWS"/>
+      <property name="tokens" value="VARIABLE_DEF"/>
+      <property name="tokens" value="PARAMETER_DEF"/>
+      <property name="tokens" value="IMPLEMENTS_CLAUSE"/>
+      <property name="tokens" value="ANNOTATION_FIELD_DEF"/>
+      <property name="tokens" value="RECORD_DEF"/>
+      <property name="tokens" value="COMPACT_CTOR_DEF"/>
+    </module>
     <module name="AnnotationLocation">
       <property name="tokens" value="ANNOTATION_DEF"/>
       <property name="tokens" value="ANNOTATION_FIELD_DEF"/>
