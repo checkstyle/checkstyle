@@ -44,18 +44,18 @@ public class XpathRegressionAdjacentAnnotationTest extends AbstractXpathTestSupp
                         "SuppressionXpathRegressionAdjacentAnnotationOne.java"));
 
         final DefaultConfiguration moduleConfig =
-                createModuleConfig( AdjacentAnnotationCheck.class);
+                createModuleConfig(AdjacentAnnotationCheck.class);
 
         moduleConfig.addProperty("tokens",
                 "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, "
-                + "CTOR_DEF, VARIABLE_DEF, PARAMETER_DEF, ANNOTATION_DEF, TYPECAST, "
-                + "LITERAL_THROWS, IMPLEMENTS_CLAUSE, TYPE_ARGUMENT, LITERAL_NEW, DOT, "
-                + "ANNOTATION_FIELD_DEF");
+                        + "CTOR_DEF, VARIABLE_DEF, PARAMETER_DEF, ANNOTATION_DEF, TYPECAST, "
+                        + "LITERAL_THROWS, IMPLEMENTS_CLAUSE, TYPE_ARGUMENT, LITERAL_NEW, DOT, "
+                        + "ANNOTATION_FIELD_DEF");
 
         final String[] expectedViolation = {
             "6:5: " + getCheckMessage(AdjacentAnnotationCheck.class,
-                    AdjacentAnnotationCheck.MSG_KEY_ANNOTATION_NOT_ADJACENT,
-                     "Deprecated"),
+                AdjacentAnnotationCheck.MSG_KEY_ANNOTATION_NOT_ADJACENT,
+                "Deprecated", 8),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -91,8 +91,8 @@ public class XpathRegressionAdjacentAnnotationTest extends AbstractXpathTestSupp
         final String[] expectedViolation = {
             "7:5: " + getCheckMessage(AdjacentAnnotationCheck.class,
                     AdjacentAnnotationCheck.MSG_KEY_ANNOTATION_NOT_ADJACENT,
-                    "Deprecated"),
-        };
+                    "Deprecated", 9),
+            };
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
@@ -123,16 +123,17 @@ public class XpathRegressionAdjacentAnnotationTest extends AbstractXpathTestSupp
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AdjacentAnnotationCheck.class);
-        moduleConfig.addProperty("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, "
-                + "CTOR_DEF, VARIABLE_DEF, PARAMETER_DEF, ANNOTATION_DEF, TYPECAST, "
-                + "LITERAL_THROWS, IMPLEMENTS_CLAUSE, TYPE_ARGUMENT, LITERAL_NEW, DOT, "
-                + "ANNOTATION_FIELD_DEF");
+        moduleConfig.addProperty("tokens",
+                "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, "
+                        + "CTOR_DEF, VARIABLE_DEF, PARAMETER_DEF, ANNOTATION_DEF, TYPECAST, "
+                        + "LITERAL_THROWS, IMPLEMENTS_CLAUSE, TYPE_ARGUMENT, LITERAL_NEW, DOT, "
+                        + "ANNOTATION_FIELD_DEF");
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(AdjacentAnnotationCheck.class,
                     AdjacentAnnotationCheck.MSG_KEY_ANNOTATION_NOT_ADJACENT,
-                    "Deprecated"),
-        };
+                    "Deprecated", 5),
+            };
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/INTERFACE_DEF["

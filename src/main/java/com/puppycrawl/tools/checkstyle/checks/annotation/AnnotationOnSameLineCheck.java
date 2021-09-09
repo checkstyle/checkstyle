@@ -148,7 +148,7 @@ public class AnnotationOnSameLineCheck extends AbstractAnnotationModifiersCheck 
     public static final String MSG_KEY_ANNOTATION_ON_SAME_LINE = "annotation.same.line";
 
     @Override
-    public void processModifiersNode( DetailAST modifiersNode ) {
+    public void processModifiersNode(DetailAST modifiersNode) {
         for (DetailAST annotationNode = modifiersNode.getFirstChild();
                 annotationNode != null;
                 annotationNode = annotationNode.getNextSibling()) {

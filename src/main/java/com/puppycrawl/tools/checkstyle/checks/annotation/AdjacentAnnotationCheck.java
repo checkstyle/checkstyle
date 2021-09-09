@@ -59,19 +59,21 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Example:
  * </p>
  * <pre>
- *
+ * //insert source here
  * </pre>
  * <p>
- * To configure the check to check for annotations applied on interfaces, variables and constructors:
+ * To configure the check to check for annotations applied on interfaces, variables and
+ * constructors:
  * </p>
  * <pre>
- * &lt;module name="AdjacentAnnotation"&gt; &lt;property name="tokens" value="INTERFACE_DEF, VARIABLE_DEF, CTOR_DEF"/&gt; &lt;/module&gt;
+ * &lt;module name="AdjacentAnnotation"&gt; &lt;property name="tokens" value="INTERFACE_DEF,
+ * VARIABLE_DEF, CTOR_DEF"/&gt; &lt;/module&gt;
  * </pre>
  * <p>
  * Example:
  * </p>
  * <pre>
- *
+ * //insert source here
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -83,7 +85,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>
  * {@code annotation.not.adjacent}
  * </li>
- * </ul> @since null
+ * </ul>
+ *
+ * @since null
  */
 @StatelessCheck
 public class AdjacentAnnotationCheck extends AbstractAnnotationModifiersCheck {
@@ -94,15 +98,15 @@ public class AdjacentAnnotationCheck extends AbstractAnnotationModifiersCheck {
     public static final String MSG_KEY_ANNOTATION_NOT_ADJACENT = "annotation.not.adjacent";
 
     @Override
-    public void processModifiersNode( DetailAST modifiersNode ) {
-        for ( DetailAST annotationNode = modifiersNode.getFirstChild();
+    public void processModifiersNode(DetailAST modifiersNode) {
+        for (DetailAST annotationNode = modifiersNode.getFirstChild();
                 annotationNode != null;
-                annotationNode = annotationNode.getNextSibling() ) {
-            if ( annotationNode.getType() == TokenTypes.ANNOTATION ) {
-                DetailAST sibling = getNextNode( annotationNode );
-                if ( annotationNode.getLastChild().getLineNo() + 1 < sibling.getLineNo() ) {
-                    log( annotationNode, MSG_KEY_ANNOTATION_NOT_ADJACENT, getAnnotationName( annotationNode ),
-                            sibling.getLineNo() );
+                annotationNode = annotationNode.getNextSibling()) {
+            if (annotationNode.getType() == TokenTypes.ANNOTATION) {
+                final DetailAST sibling = getNextNode(annotationNode);
+                if (annotationNode.getLastChild().getLineNo() + 1 < sibling.getLineNo()) {
+                    log(annotationNode, MSG_KEY_ANNOTATION_NOT_ADJACENT,
+                            getAnnotationName(annotationNode), sibling.getLineNo());
                 }
             }
         }
