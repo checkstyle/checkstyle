@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
+import java.lang.System;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
@@ -80,10 +81,11 @@ public final class MetadataGeneratorUtil {
             validFiles.add(new File(path));
         }
         else {
+
             final List<String> moduleFolders = Arrays.asList("checks", "filters", "filefilters");
             for (String folder : moduleFolders) {
                 try (Stream<Path> files = Files.walk(Paths.get(path
-                        + "/" + folder))) {
+                           + folder))) {
                     validFiles.addAll(
                             files.map(Path::toFile)
                             .filter(file -> {
@@ -92,7 +94,10 @@ public final class MetadataGeneratorUtil {
                                         || file.getName().endsWith("Filter.java");
                             })
                             .collect(Collectors.toList()));
+                }catch (NoSuchFileException e){
+                    System.out.println("Folders are not present"+e.getFile());
                 }
+
             }
         }
 
