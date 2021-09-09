@@ -24,7 +24,9 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
+ * <p>
  * Ensures that annotations have no blank lines between their sibling annotations and targets.
+ * </p>
  * <ul>
  * <li>
  * Property {@code tokens} - tokens to check

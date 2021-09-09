@@ -4,7 +4,9 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.AdjacentAnnotationCheck"
              name="AdjacentAnnotation"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>Ensures that annotations have no blank lines between their sibling annotations and targets.</description>
+         <description>&lt;p&gt;
+ Ensures that annotations have no blank lines between their sibling annotations and targets.
+ &lt;/p&gt;</description>
          <properties>
             <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,METHOD_DEF,CTOR_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF"
                       name="tokens"
