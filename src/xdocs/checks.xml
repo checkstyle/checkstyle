@@ -41,6 +41,11 @@
             </td>
           </tr>
           <tr>
+            <td><a href="config_annotation.html#AdjacentAnnotation">AdjacentAnnotation</a></td>
+            <td>Ensures that annotations have no blank lines between their sibling annotations
+              and targets.</td>
+          </tr>
+          <tr>
             <td><a href="config_annotation.html#AnnotationLocation">AnnotationLocation</a></td>
             <td>Checks location of annotation on language elements.</td>
           </tr>
