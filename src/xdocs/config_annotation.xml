@@ -18,7 +18,9 @@
 
     <section name="AdjacentAnnotation">
       <subsection name="Description" id="AdjacentAnnotation_Description">
-        Ensures that annotations have no blank lines between their sibling annotations and targets.
+          <p>
+              Ensures that annotations have no blank lines between their sibling annotations and targets.
+          </p>
       </subsection>
       <subsection name="Properties" id="AdjacentAnnotation_Properties">
         <div class="wrapper">
