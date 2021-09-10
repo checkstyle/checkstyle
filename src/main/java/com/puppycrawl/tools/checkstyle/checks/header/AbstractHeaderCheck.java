@@ -25,7 +25,6 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.Reader;
 import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -57,7 +56,8 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     private URI headerFile;
 
     /** Specify the character encoding to use when reading the headerFile. */
-    private String charset = System.getProperty("file.encoding", StandardCharsets.UTF_8.name());
+    private Charset charset = createCharset(System.getProperty("file.encoding",
+        StandardCharsets.UTF_8.name()));
 
     /**
      * Hook method for post processing header lines.
@@ -76,17 +76,12 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     }
 
     /**
-     * Setter to specify the character encoding to use when reading the headerFile.
+     * Setter to specify the charset to use when reading the headerFile.
      *
-     * @param charset the charset to use for loading the header from a file
-     * @throws UnsupportedEncodingException if charset is unsupported
+     * @param charset the charset name to use for loading the header from a file
      */
-    public void setCharset(String charset) throws UnsupportedEncodingException {
-        if (!Charset.isSupported(charset)) {
-            final String message = "unsupported charset: '" + charset + "'";
-            throw new UnsupportedEncodingException(message);
-        }
-        this.charset = charset;
+    public void setCharset(String charset) {
+        this.charset = createCharset(charset);
     }
 
     /**
@@ -133,6 +128,16 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
                     "header has already been set - "
                     + "set either header or headerFile, not both");
         }
+    }
+
+    /**
+     * Creates charset by name.
+     *
+     * @param name charset name
+     * @return created charset
+     */
+    private static Charset createCharset(String name) {
+        return Charset.forName(name);
     }
 
     /**
