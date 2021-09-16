@@ -13,6 +13,10 @@
     <property name="file"
              value="${project.basedir}/config/checkstyle_non_main_files_suppressions.xml"/>
   </module>
+  <!-- Do not check archives -->
+  <module name="BeforeExecutionExclusionFileFilter">
+    <property name="fileNamePattern" value=".*\.(tar|zip)$" />
+  </module>
   <!-- Miscellaneous -->
   <module name="NewlineAtEndOfFile" />
   <module name="RegexpSingleline">
