@@ -49,7 +49,7 @@ no-error-pgjdbc)
   ./gradlew --no-parallel --no-daemon checkstyleAll \
             -PenableMavenLocal -Pcheckstyle.version=${CS_POM_VERSION}
   cd ../
- removeFolderWithProtectedFiles pgjdbc
+  removeFolderWithProtectedFiles pgjdbc
   ;;
 
 no-error-orekit)
