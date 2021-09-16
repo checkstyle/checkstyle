@@ -6,9 +6,11 @@ source ./.ci/util.sh
 case $1 in
 
 restore-maven-cache)
-  curl -o cache.tar -SsL https://sourceforge.net/projects/checkstyle/files/drone-io/drone-io-m2-repository.tar/download
-  tar -xf cache.tar -C /
-  rm cache.tar
+  mkdir -p .ci-temp
+  curl -o .ci-temp/cache.tar -SsL \
+    https://sourceforge.net/projects/checkstyle/files/drone-io/drone-io-m2-repository.tar/download
+  tar -xf .ci-temp/cache.tar -C /
+  rm .ci-temp/cache.tar
   ;;
 
 *)
