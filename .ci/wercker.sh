@@ -45,11 +45,11 @@ no-error-pgjdbc)
   checkout_from https://github.com/pgjdbc/pgjdbc.git
   cd .ci-temp/pgjdbc
   # pgjdbc easily damage build, we should use stable versions
-  git checkout "ab0d7c64d619f2b4f5692f1b2d041204ed676333"
+  git checkout "3a2bb""d77969903f8a4ce721d45905c72bd1688d6"
   ./gradlew --no-parallel --no-daemon checkstyleAll \
             -PenableMavenLocal -Pcheckstyle.version=${CS_POM_VERSION}
   cd ../
- removeFolderWithProtectedFiles pgjdbc
+  removeFolderWithProtectedFiles pgjdbc
   ;;
 
 no-error-orekit)
