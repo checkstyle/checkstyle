@@ -3,21 +3,22 @@ set -e
 
 if [ -z "$1" ]; then
     echo "No parameters supplied!"
-    echo "      The classpath of the project and it's libraries to compile must be supplied."
+    echo "Usage %0 <CLASSPATH> [RELEASE]"
+    echo "    CLASSPATH:  The classpath of the project and it's libraries to compile (required)."
+    echo "    RELEASE:    The optional Java release. Default is 1.8."
     exit 1
 fi
 
 JAVA_RELEASE=${2:-1.8}
 
-# Eclipse releases every 13 weeks: https://wiki.eclipse.org/SimRel/Simultaneous_Release_Cycle_FAQ
-# After that these variables should be updated.
-ECJ_MAVEN_VERSION="R-4.20-202106111600"
-ECJ_JAR="ecj-4.20.jar"
+ECLIPSE_URL="http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/eclipse/downloads/drops4"
+ECJ_MAVEN_VERSION=$(wget --quiet -O- "$ECLIPSE_URL/?C=M;O=D" | grep -o "R-[^/]*" | head -n1)
+echo "Latest eclipse release is $ECJ_MAVEN_VERSION"
+ECJ_JAR=$(wget --quiet -O- "$ECLIPSE_URL/$ECJ_MAVEN_VERSION/" | grep -o "ecj-[^\"]*" | head -n1)
 ECJ_PATH=~/.m2/repository/$ECJ_MAVEN_VERSION/$ECJ_JAR
 
 if [ ! -f $ECJ_PATH ]; then
     echo "$ECJ_PATH is not found, downloading ..."
-    ECLIPSE_URL="http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/eclipse/downloads/drops4"
     cd target
     wget $ECLIPSE_URL/$ECJ_MAVEN_VERSION/$ECJ_JAR
     echo "test jar after download:"
