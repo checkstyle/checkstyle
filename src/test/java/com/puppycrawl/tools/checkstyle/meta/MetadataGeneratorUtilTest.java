@@ -54,6 +54,9 @@ public final class MetadataGeneratorUtilTest {
                         + "/tools/checkstyle/meta"))) {
             metaFiles = fileStream
                     .filter(Files::isRegularFile)
+                    .map(Path::toString)
+                    .filter(path -> !path.endsWith(".properties"))
+                    .map(Paths::get)
                     .map(MetadataGeneratorUtilTest::getMetaFileName)
                     .sorted()
                     .collect(Collectors.toCollection(LinkedHashSet::new));
