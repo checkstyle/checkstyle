@@ -108,6 +108,9 @@
  }
  &lt;/pre&gt;</description>
          <properties>
+            <property default-value="" name="strictfpRedundant" type="boolean">
+               <description>Control whether to enforce strictfp as redundant.</description>
+            </property>
             <property default-value="METHOD_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,INTERFACE_DEF,CTOR_DEF,CLASS_DEF,ENUM_DEF,RESOURCE"
                       name="tokens"
                       type="java.lang.String[]"

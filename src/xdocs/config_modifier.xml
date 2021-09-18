@@ -669,6 +669,13 @@ public class ClassExtending extends ClassExample {
               <th>since</th>
             </tr>
             <tr>
+              <td>strictfpRedundant</td>
+              <td>Control whether to enforce strictfp as redundant.</td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td>false</td>
+              <td>9.1</td>
+            </tr>
+            <tr>
               <td>tokens</td>
               <td>tokens to check</td>
               <td>
@@ -689,6 +696,8 @@ public class ClassExtending extends ClassExample {
                   ENUM_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE">
                   RESOURCE</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRICTFP">
+                  STRICTFP</a>
                 .
               </td>
               <td>
