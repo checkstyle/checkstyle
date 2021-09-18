@@ -51,6 +51,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 @FileStatefulCheck
 public class JavadocMetadataScraper extends AbstractJavadocCheck {
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String DESC_MISSING = "javadoc.description.missing";
+
     /** Module details store used for testing. */
     private static final Map<String, ModuleDetails> MODULE_DETAILS_STORE = new HashMap<>();
 
@@ -218,7 +224,12 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
             }
             else {
                 try {
-                    XmlMetaWriter.write(moduleDetails);
+                    if (moduleDetails.getDescription().isEmpty()) {
+                        log(rootAst.getLineNumber(), DESC_MISSING, moduleDetails.getName());
+                    }
+                    else {
+                        XmlMetaWriter.write(moduleDetails);
+                    }
                 }
                 catch (TransformerException | ParserConfigurationException ex) {
                     throw new IllegalStateException("Failed to write metadata into XML file for "
