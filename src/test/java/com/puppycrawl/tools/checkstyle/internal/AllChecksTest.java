@@ -531,7 +531,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
             final Set<Field> messages = CheckUtil.getCheckMessages(module, false);
 
             // No messages in just module
-            if ("SuppressWarningsHolder".equals(name) || "JavadocMetadataScraper".equals(name)) {
+            if ("SuppressWarningsHolder".equals(name)) {
                 assertTrue(messages.isEmpty(),
                         name + " should not have any 'MSG_*' fields for error messages");
             }
