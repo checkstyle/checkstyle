@@ -696,3 +696,4 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
                 .orElse(false);
     }
 }
+
