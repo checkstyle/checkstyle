@@ -21,6 +21,12 @@ package com.puppycrawl.tools.checkstyle.meta;
 
 import java.io.File;
 import java.util.Locale;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Formatter;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import javax.xml.XMLConstants;
@@ -55,10 +61,32 @@ public final class XmlMetaWriter {
     /** Default(UNIX) file separator. */
     private static final String DEFAULT_FILE_SEPARATOR = "/";
 
+    /** Logger for logging violations. */
+    private static final Logger LOG = Logger.getLogger(XmlMetaWriter.class.getName());
+
+    /** Boolean variable which prevents Logger to set up more than once.  */
+    private static boolean loggerSetUp;
+
     /**
      * Do no allow {@code XmlMetaWriter} instances to be created.
      */
     private XmlMetaWriter() {
+    }
+
+    private static void setUpLogger() {
+        if(!loggerSetUp) {
+            LogManager.getLogManager().reset();
+            LOG.setLevel(Level.INFO);
+            final ConsoleHandler consoleHandler = new ConsoleHandler();
+            LOG.addHandler(consoleHandler);
+            consoleHandler.setFormatter(new Formatter() {
+                @Override
+                public String format(LogRecord logRecord) {
+                    return logRecord.getLevel() + ": " + logRecord.getMessage() + "\n";
+                }
+            });
+            loggerSetUp = true;
+        }
     }
 
     /**
@@ -176,7 +204,11 @@ public final class XmlMetaWriter {
             }
             modifiedPath = rootOutputPath + "/checkstylemeta-" + moduleName + xmlExtension;
         }
-        if (!moduleDetails.getDescription().isEmpty()) {
+        if (moduleDetails.getDescription().isEmpty()) {
+            setUpLogger();
+            LOG.info("No javadoc description found - " + moduleDetails.getFullQualifiedName());
+        }
+        else {
             final TransformerFactory transformerFactory = TransformerFactory.newInstance();
             final Transformer transformer = transformerFactory.newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
