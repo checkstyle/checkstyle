@@ -136,6 +136,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <ul>
  * <li>
+ * Property {@code strictfpRedundant} - Control whether to enforce strictfp as redundant.
+ * Type is {@code boolean}.
+ * Default value is false.
+ * </li>
+ * <li>
  * Property {@code tokens} - tokens to check
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenSet}.
@@ -204,9 +209,33 @@ public class RedundantModifierCheck
         TokenTypes.ABSTRACT,
     };
 
+    /**
+     * Control whether to enforce strictfp as redundant.
+     */
+    private boolean strictfpRedundant;
+
+    /**
+     * Setter to control whether to enforce strictfp as redundant.
+     *
+     * @param isStrictfpRedundant
+     *        True to perform the check, false to turn the check off.
+     */
+    public void setStrictfpRedundant(boolean isStrictfpRedundant) {
+        strictfpRedundant = isStrictfpRedundant;
+    }
+
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return new int[] {
+            TokenTypes.METHOD_DEF,
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.RESOURCE,
+        };
     }
 
     @Override
@@ -225,11 +254,15 @@ public class RedundantModifierCheck
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.RESOURCE,
+            TokenTypes.STRICTFP,
         };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
+        if (strictfpRedundant && ast.getType() == TokenTypes.STRICTFP) {
+            log(ast, MSG_KEY, ast.getText());
+        }
         if (ast.getType() == TokenTypes.INTERFACE_DEF) {
             checkInterfaceModifiers(ast);
         }
@@ -256,6 +289,7 @@ public class RedundantModifierCheck
                 processInterfaceOrAnnotation(ast);
             }
         }
+
     }
 
     /**
