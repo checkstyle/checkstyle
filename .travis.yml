@@ -1,6 +1,11 @@
-version: ~> 1.0
-dist: xenial
 os: linux
+arch:
+  - s390x
+# Above is required as is for Partner Queue Solution.
+# DO NOT MODIFY!
+
+version: ~> 1.0
+dist: focal
 language: java
 
 cache:
@@ -17,6 +22,9 @@ addons:
 branches:
   only:
     - master
+
+before_install:
+  - sudo apt-get -yq install maven
 
 install:
   - gem install chef-utils:16.6.14 mdl
