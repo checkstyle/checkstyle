@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.meta;
 
 import static com.google.common.truth.Truth.assertThat;
+import static com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper.MSG_DESC_MISSING;
 import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -190,6 +191,18 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
         assertEquals(readFile(getPath("ExpectedJavadocMetadataScraperWriteTagCheck.txt")),
                 convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
                 "expected correct parse");
+    }
+
+    @Test
+    public void testEmptyDescription() throws Exception {
+        JavadocMetadataScraper.resetModuleDetailsStore();
+
+        final String[] expected = {
+            "19: " + getCheckMessage(MSG_DESC_MISSING,
+                    "InputJavadocMetadataScraperAbstractSuper"),
+        };
+        verifyWithInlineConfigParser(getPath(
+                "InputJavadocMetadataScraperAbstractSuperCheck.java"), expected);
     }
 
     private static String convertToString(Map<String, ModuleDetails> moduleDetailsStore) {
