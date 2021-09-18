@@ -24,6 +24,7 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -190,6 +191,21 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
         assertEquals(readFile(getPath("ExpectedJavadocMetadataScraperWriteTagCheck.txt")),
                 convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
                 "expected correct parse");
+    }
+
+    @Test
+    public void testViolationsEmptyDescriptionModule() throws Exception {
+        final Class<MetadataGeneratorUtil> metadataGeneratorUtilClass = MetadataGeneratorUtil.class;
+        final String path = System.getProperty("user.dir")
+                + "/src/main/java/com/puppycrawl/tools/checkstyle";
+        final String methodName = "setPrintToConsole";
+        final Method privateMethod = metadataGeneratorUtilClass.getDeclaredMethod(
+                methodName, Boolean.TYPE);
+        privateMethod.setAccessible(true);
+        privateMethod.invoke(metadataGeneratorUtilClass, true);
+        final int actual = MetadataGeneratorUtil.generate(path);
+        final int expected = 7;
+        assertEquals(expected, actual, "Actual and expected violations do not match");
     }
 
     private static String convertToString(Map<String, ModuleDetails> moduleDetailsStore) {
