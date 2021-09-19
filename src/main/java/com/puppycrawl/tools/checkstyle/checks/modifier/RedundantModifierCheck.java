@@ -134,6 +134,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   ProtectedInnerClass pc = new ProtectedInnerClass();
  * }
  * </pre>
+ * <p>
+ * Starting from Java 17, all floating point operations remains consistently strict,
+ * see <a href="https://openjdk.java.net/jeps/306">JEP 306</a>. Hence,
+ * <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRICTFP">
+ * STRICTFP</a> as been added to the list acceptable tokens, and when add in check
+ * configuration shows all strictfp tokens as violations.
+ * </p>
  * <ul>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -206,7 +213,16 @@ public class RedundantModifierCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
+        return new int[] {
+            TokenTypes.METHOD_DEF,
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.RESOURCE,
+        };
     }
 
     @Override
@@ -225,11 +241,15 @@ public class RedundantModifierCheck
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.RESOURCE,
+            TokenTypes.STRICTFP,
         };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
+        if (ast.getType() == TokenTypes.STRICTFP) {
+            log(ast, MSG_KEY, ast.getText());
+        }
         if (ast.getType() == TokenTypes.INTERFACE_DEF) {
             checkInterfaceModifiers(ast);
         }
