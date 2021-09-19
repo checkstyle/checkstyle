@@ -149,6 +149,7 @@ public class RedundantModifierCheckTest
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.RESOURCE,
+            TokenTypes.STRICTFP,
         };
         assertArrayEquals(expected, actual, "Invalid acceptable tokens");
     }
@@ -257,6 +258,13 @@ public class RedundantModifierCheckTest
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRedundantModifierTryWithResources.java"),
                 expected);
+    }
+
+    @Test
+    public void testStrictFpAsRedundant() throws Exception {
+        final String[] expected = {"11:5: " + getCheckMessage(MSG_KEY, "strictfp")};
+        verifyWithInlineConfigParser(getPath(
+                "InputRedundantModifierWithStrictfpAsRedundant.java"), expected);
     }
 
 }
