@@ -324,7 +324,6 @@ public class RedundantModifierCheck
                 || type == TokenTypes.FINAL
                         && ast.getType() != TokenTypes.CLASS_DEF) {
                 log(modifier, MSG_KEY, modifier.getText());
-                break;
             }
 
             modifier = modifier.getNextSibling();

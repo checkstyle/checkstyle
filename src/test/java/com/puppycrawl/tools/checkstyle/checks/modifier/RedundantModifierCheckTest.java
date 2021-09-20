@@ -259,4 +259,20 @@ public class RedundantModifierCheckTest
                 expected);
     }
 
+    @Test
+    public void testNestedDef() throws Exception {
+        final String[] expected = {
+            "10:5: " + getCheckMessage(MSG_KEY, "public"),
+            "11:5: " + getCheckMessage(MSG_KEY, "static"),
+            "12:5: " + getCheckMessage(MSG_KEY, "public"),
+            "12:12: " + getCheckMessage(MSG_KEY, "static"),
+            "13:5: " + getCheckMessage(MSG_KEY, "static"),
+            "13:12: " + getCheckMessage(MSG_KEY, "public"),
+            "16:9: " + getCheckMessage(MSG_KEY, "public"),
+        };
+        verifyWithInlineConfigParser(getPath(
+                "InputRedundantModifierNestedDef.java"), expected);
+    }
+
+
 }
