@@ -108,7 +108,7 @@ public class ViolationTest {
             final Violation violation = createSampleViolation();
 
             // Changing the default locale shouldn't autotranslate the violation.
-            // I.E. Changing the default locale shouldsn't change anything in the
+            // I.E. Changing the default locale shouldn't change anything in the
             // already produced violations. So, we change it to ensure that.
             Violation.setDefaultLocale(locales[(i + 1) % locales.length]);
 

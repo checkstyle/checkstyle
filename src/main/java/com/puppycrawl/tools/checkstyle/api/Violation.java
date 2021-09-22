@@ -51,7 +51,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Also, it is important to note that the {@link Locale} and the message are defined
  * in actual messages just when an instance is created. Although It could be useful
  * to just set the template message during the instantiation and then reading it in
- * whatever {@link Locale} needed afterwards, this could pottentially offend the
+ * whatever {@link Locale} needed afterwards, this could potentially offend the
  * class' immutability and might have the side-effect of subtly and unexpectedly
  * breaking {@link #equals(Object)}, {@link #compareTo(Violation)} and
  * {@link hashCode()}. Although that might be fixable, it is a too small benefit in
@@ -395,7 +395,7 @@ public final class Violation
 
     /**
      * Creates a new {@code Violation} instance with all the details about its location
-     * setted to be empty. This is intended for general level messages rather than one
+     * set to be empty. This is intended for general level messages rather than one
      * in some specific line of some source file.
      *
      * @param bundle resource bundle name
@@ -426,7 +426,7 @@ public final class Violation
     }
 
     /**
-     * Creates a new {@code Violation} instance with its location setted to a particular
+     * Creates a new {@code Violation} instance with its location set to a particular
      * line, but without column information.
      *
      * @param lineNo line number associated with the violation
