@@ -91,7 +91,7 @@ public final class DetailNodeTreeStringPrinter {
      * @return error violation
      */
     private static String getParseErrorMessage(ParseErrorMessage parseErrorMessage) {
-        final Violation lmessage = new Violation(
+        final Violation lmessage = Violation.createLineViolation(
                 parseErrorMessage.getLineNumber(),
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
                 parseErrorMessage.getMessageKey(),

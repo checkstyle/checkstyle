@@ -50,7 +50,7 @@ public class InputDeclarationOrderOnlyConstructors
 
         // member variables should be before methods or ctors
         // public before private
-        public static final int INNER_FOO3 = 2; // violation 'Static variable definition in wrong order.'
+        public static final int INNER_FOO3 = 2; // violation
     }
 
     public int getFoo1()
@@ -59,7 +59,7 @@ public class InputDeclarationOrderOnlyConstructors
     }
 
     //  ctors before methods
-    public InputDeclarationOrderOnlyConstructors() // violation 'Constructor definition in wrong order.'
+    public InputDeclarationOrderOnlyConstructors() // violation
     {
         String foo = ERROR;
         foo += ERROR1;
@@ -85,7 +85,7 @@ public class InputDeclarationOrderOnlyConstructors
     }
 
     // member variables should be before methods or ctors
-    private int mFoo = 0; // violation 'Instance variable definition in wrong order.'
+    private int mFoo = 0; // violation
 }
 
 enum InputDeclarationOrderEnum2
@@ -104,7 +104,7 @@ enum InputDeclarationOrderEnum2
 
         // member variables should be before methods or ctors
         // public before private
-        public static final int INNER_FOO3 = 2; // violation 'Static variable definition in wrong order.'
+        public static final int INNER_FOO3 = 2; // violation
     };
 
     static final int FOO2 = 3;
@@ -140,7 +140,7 @@ enum InputDeclarationOrderEnum2
 
         // member variables should be before methods or ctors
         // public before private
-        public static final int INNER_FOO3 = 2; // violation 'Static variable definition in wrong order.'
+        public static final int INNER_FOO3 = 2; // violation
     }
 
     public int getFoo1()
@@ -149,7 +149,7 @@ enum InputDeclarationOrderEnum2
     }
 
     //  ctors before methods
-    InputDeclarationOrderEnum2() // violation 'Constructor definition in wrong order.'
+    InputDeclarationOrderEnum2() // violation
     {
         String foo = ERROR;
         foo += ERROR1;
@@ -175,7 +175,7 @@ enum InputDeclarationOrderEnum2
     }
 
     // member variables should be before methods or ctors
-    private int mFoo = 0; // violation 'Instance variable definition in wrong order.'
+    private int mFoo = 0; // violation
 
     class AsyncProcess {
         private final int startLogErrorsCnt = 0;

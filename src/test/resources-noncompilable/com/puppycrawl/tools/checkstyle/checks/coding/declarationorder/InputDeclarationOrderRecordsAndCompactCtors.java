@@ -18,10 +18,10 @@ public class InputDeclarationOrderRecordsAndCompactCtors {
         void m() {
         }
 
-        public MyRecord1() { // violation 'Constructor definition in wrong order.'
+        public MyRecord1() { // violation
         }
 
-        private static int b; // violation 'Static variable definition in wrong order.'
+        private static int b; // violation
     }
 
     public record MyRecord2() {
@@ -30,16 +30,16 @@ public class InputDeclarationOrderRecordsAndCompactCtors {
         void m() {
         }
 
-        public MyRecord2 { // violation 'Constructor definition in wrong order.'
+        public MyRecord2 { // violation
         }
 
-        private static int b; // violation 'Static variable definition in wrong order.'
+        private static int b; // violation
     }
 
     public record MyRecord3(String myString, Integer number) {
         record MyInnerRecord(int z){}
         static int x = 43;
         public MyRecord3{}
-        private static final HashMap<String, Integer> hashMap = new HashMap<>(); // violation 'Static variable definition in wrong order.'
+        private static final HashMap<String, Integer> hashMap = new HashMap<>(); // violation
     }
 }
