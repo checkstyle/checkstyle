@@ -20,7 +20,7 @@ public class InputDefaultComesLastSkipIfLastAndSharedWithCase
 
         switch (i) {
             case 1:
-            default: // violation 'Default should be last label in the case group.'
+            default: // violation
             case 2:
                 break;
             case 3:
@@ -28,7 +28,7 @@ public class InputDefaultComesLastSkipIfLastAndSharedWithCase
         }
 
         switch (i) {
-            default: // violation 'Default should be last label in the case group.'
+            default: // violation
             case 1:
                 break;
             case 2:
@@ -36,11 +36,11 @@ public class InputDefaultComesLastSkipIfLastAndSharedWithCase
         }
 
         switch (i) {
-            case 0: default: case 1: break; case 2: break;  // violation 'Default should be last label in the case group.'
+            case 0: default: case 1: break; case 2: break;  // violation
         }
 
         switch (i) {
-            default: case 1: break; case 2: break;  // violation 'Default should be last label in the case group.'
+            default: case 1: break; case 2: break;  // violation
         }
 
         switch (i) {
@@ -60,7 +60,7 @@ public class InputDefaultComesLastSkipIfLastAndSharedWithCase
         switch (i) {
             case 1:
                 break;
-            default:  // violation 'Default should be last label in the case group.'
+            default:  // violation
             case 2:
                 break;
             case 3:
@@ -80,7 +80,7 @@ public class InputDefaultComesLastSkipIfLastAndSharedWithCase
         switch (i) {
             case 1:
                 break;
-            default: // violation 'Default should be last label in the case group.'
+            default: // violation
             case 3:
                 break;
             case 4:
@@ -92,7 +92,7 @@ public class InputDefaultComesLastSkipIfLastAndSharedWithCase
                 break;
             case 2:
                 break;
-            default: // violation 'Default should be last label in the case group.'
+            default: // violation
             case 5:
             case 6:
                 break;
@@ -101,7 +101,7 @@ public class InputDefaultComesLastSkipIfLastAndSharedWithCase
         switch (i) {
             case 1:
                 break;
-            default: // violation 'Default should be last label in the switch.'
+            default: // violation
                 break;
             case 2:
                 break;
