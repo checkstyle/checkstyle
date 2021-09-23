@@ -665,18 +665,38 @@ public class TranslationCheck extends AbstractFileSetCheck {
             files = new HashSet<>();
         }
 
+        /**
+         * Returns the bundle base name
+         *
+         * @return the bundle base name
+         */
         public String getBaseName() {
             return baseName;
         }
 
+        /**
+         * Returns the common path of files which are included in the resource bundle.
+         *
+         * @return the common path of files
+         */
         public String getPath() {
             return path;
         }
 
+        /**
+         * Returns the common extension of files which are included in the resource bundle.
+         *
+         * @return the common extension of files
+         */
         public String getExtension() {
             return extension;
         }
 
+        /**
+         * Returns the set of files which are included in the resource bundle.
+         *
+         * @return the set of files
+         */
         public Set<File> getFiles() {
             return Collections.unmodifiableSet(files);
         }
