@@ -381,8 +381,8 @@ public final class MethodCountCheck extends AbstractCheck {
         /** Maintains the counts. */
         private final Map<Scope, Integer> counts = new EnumMap<>(Scope.class);
         /**
-         * The surrounding scope definition (class, enum, etc.) which the method counts are connect
-         * to.
+         * The surrounding scope definition (class, enum, etc.) which the method counts are
+         * connected to.
          */
         private final DetailAST scopeDefinition;
         /** Tracks the total. */
@@ -423,6 +423,12 @@ public final class MethodCountCheck extends AbstractCheck {
             return value;
         }
 
+        /**
+         * Returns the surrounding scope definition (class, enum, etc.) which the method counts
+         * are connected to.
+         *
+         * @return the surrounding scope definition
+         */
         private DetailAST getScopeDefinition() {
             return scopeDefinition;
         }

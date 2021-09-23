@@ -2127,6 +2127,11 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
             }
         }
 
+        /**
+         * Returns the root node.
+         *
+         * @return the root node
+         */
         private DetailAstImpl getRoot() {
             return root;
         }
