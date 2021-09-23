@@ -986,12 +986,12 @@ public class ImportOrderCheck
      * We first compare the container of the static import, container being the type enclosing
      * the static element being imported. When this returns 0, we compare the qualified
      * import name. For e.g. this is what is considered to be container names:
-     * <p>
-     * import static HttpConstants.COLON     => HttpConstants
-     * import static HttpHeaders.addHeader   => HttpHeaders
-     * import static HttpHeaders.setHeader   => HttpHeaders
-     * import static HttpHeaders.Names.DATE  => HttpHeaders.Names
-     * </p>
+     * <pre>
+     * import static HttpConstants.COLON     =&gt; HttpConstants
+     * import static HttpHeaders.addHeader   =&gt; HttpHeaders
+     * import static HttpHeaders.setHeader   =&gt; HttpHeaders
+     * import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
+     * </pre>
      * <p>
      * According to this logic, HttpHeaders.Names would come after HttpHeaders.
      *
@@ -1033,12 +1033,12 @@ public class ImportOrderCheck
      * Extracts import container name from fully qualified import name.
      * An import container name is the type which encloses the static element being imported.
      * For example, HttpConstants, HttpHeaders, HttpHeaders.Names are import container names:
-     * <p>
-     * import static HttpConstants.COLON     => HttpConstants
-     * import static HttpHeaders.addHeader   => HttpHeaders
-     * import static HttpHeaders.setHeader   => HttpHeaders
-     * import static HttpHeaders.Names.DATE  => HttpHeaders.Names
-     * </p>
+     * <pre>
+     * import static HttpConstants.COLON     =&gt; HttpConstants
+     * import static HttpHeaders.addHeader   =&gt; HttpHeaders
+     * import static HttpHeaders.setHeader   =&gt; HttpHeaders
+     * import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
+     * </pre>
      *
      * @param qualifiedImportName fully qualified import name.
      * @return import container name.

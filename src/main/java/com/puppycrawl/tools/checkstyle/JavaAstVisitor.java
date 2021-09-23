@@ -1990,7 +1990,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     /**
      * Create a DetailAstImpl from a given token and token type. This method
-     * should be used for imaginary nodes only, i.e. 'OBJBLOCK -> OBJBLOCK',
+     * should be used for imaginary nodes only, i.e. 'OBJBLOCK -&gt; OBJBLOCK',
      * where the text on the RHS matches the text on the LHS.
      *
      * @param tokenType  the token type of this DetailAstImpl
@@ -2005,7 +2005,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     /**
      * Create a DetailAstImpl from a given token and token type. This method
-     * should be used for literal nodes only, i.e. 'PACKAGE_DEF -> package'.
+     * should be used for literal nodes only, i.e. 'PACKAGE_DEF -&gt; package'.
      *
      * @param tokenType the token type of this DetailAstImpl
      * @param startToken the first token that appears in this DetailAstImpl.
@@ -2127,6 +2127,11 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
             }
         }
 
+        /**
+         * Returns the root node.
+         *
+         * @return the root node
+         */
         private DetailAstImpl getRoot() {
             return root;
         }

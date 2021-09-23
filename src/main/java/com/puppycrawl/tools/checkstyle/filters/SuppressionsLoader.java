@@ -151,8 +151,8 @@ public final class SuppressionsLoader
     /**
      * Returns the suppress element, initialized from given attributes.
      *
-     * @param attributes the attributes of xml-tag "<suppress></suppress>", specified inside
-     *                   suppression file.
+     * @param attributes the attributes of xml-tag "&lt;suppress&gt;&lt;/suppress&gt;",
+     *                   specified inside suppression file.
      * @return the suppress element
      * @throws SAXException if an error occurs.
      */
@@ -182,7 +182,7 @@ public final class SuppressionsLoader
     /**
      * Returns the xpath filter, initialized from given attributes.
      *
-     * @param attributes the attributes of xml-tag "<suppress-xpath></suppress-xpath>",
+     * @param attributes the attributes of xml-tag "&lt;suppress-xpath&gt;&lt;/suppress-xpath&gt;",
      *                   specified inside suppression file.
      * @return the xpath filter
      * @throws SAXException if an error occurs.
