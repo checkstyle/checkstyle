@@ -451,7 +451,7 @@
               com.puppycrawl.tools.checkstyle.grammar.javadoc:
             </excludePackageNames>
             <source>${java.version}</source>
-            <show>package</show>
+            <show>private</show>
             <failOnError>true</failOnError>
             <failOnWarnings>true</failOnWarnings>
             <linksource>true</linksource>
