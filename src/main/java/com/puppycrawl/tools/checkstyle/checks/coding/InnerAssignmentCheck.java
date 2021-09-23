@@ -240,16 +240,13 @@ public class InnerAssignmentCheck
     /**
      * Determines if ast is in the body of a flow control statement without
      * braces. An example of such a statement would be
-     * <p>
      * <pre>
-     * if (y < 0)
+     * if (y &lt; 0)
      *     x = y;
      * </pre>
-     * </p>
      * <p>
      * This leads to the following AST structure:
      * </p>
-     * <p>
      * <pre>
      * LITERAL_IF
      *     LPAREN
@@ -258,7 +255,6 @@ public class InnerAssignmentCheck
      *     EXPR // body
      *     SEMI
      * </pre>
-     * </p>
      * <p>
      * We need to ensure that ast is in the body and not in the test.
      * </p>

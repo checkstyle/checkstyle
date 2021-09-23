@@ -1307,14 +1307,29 @@ public class RequireThisCheck extends AbstractCheck {
             varIdents.add(identToAdd);
         }
 
+        /**
+         * Returns the parent frame.
+         *
+         * @return the parent frame
+         */
         protected AbstractFrame getParent() {
             return parent;
         }
 
+        /**
+         * Returns the name identifier text.
+         *
+         * @return the name identifier text
+         */
         protected String getFrameName() {
             return frameNameIdent.getText();
         }
 
+        /**
+         * Returns the name identifier token.
+         *
+         * @return the name identifier token
+         */
         public DetailAST getFrameNameIdent() {
             return frameNameIdent;
         }

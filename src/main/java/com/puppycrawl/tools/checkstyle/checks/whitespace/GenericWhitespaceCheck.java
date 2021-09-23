@@ -287,11 +287,11 @@ public class GenericWhitespaceCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current generic end ('>') is located after
+     * Checks if current generic end ('&gt;') is located after
      * {@link TokenTypes#METHOD_REF method reference operator}.
      *
      * @param genericEnd {@link TokenTypes#GENERIC_END}
-     * @return true if '>' follows after method reference.
+     * @return true if '&gt;' follows after method reference.
      */
     private static boolean isAfterMethodReference(DetailAST genericEnd) {
         return genericEnd.getParent().getParent().getType() == TokenTypes.METHOD_REF;

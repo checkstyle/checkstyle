@@ -92,7 +92,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     /** Specify user-configured regular expressions to ignore classes. */
     private final List<Pattern> excludeClassesRegexps = new ArrayList<>();
 
-    /** A map of (imported class name -> class name with package) pairs. */
+    /** A map of (imported class name -&gt; class name with package) pairs. */
     private final Map<String, String> importedClassPackages = new HashMap<>();
 
     /** Stack of class contexts. */
