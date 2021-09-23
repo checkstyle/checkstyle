@@ -534,7 +534,7 @@ public class JavadocStyleCheck
 
     /**
      * Finds the index of the first non-whitespace character ignoring the
-     * Javadoc comment start and end strings (&#47** and *&#47) as well as any
+     * Javadoc comment start and end strings (&#47;** and *&#47;) as well as any
      * leading asterisk.
      *
      * @param line the Javadoc comment line of text to scan.

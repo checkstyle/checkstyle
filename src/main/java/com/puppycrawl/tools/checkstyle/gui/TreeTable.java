@@ -57,6 +57,7 @@ import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
  */
 public final class TreeTable extends JTable {
 
+    /** A unique serial version identifier. */
     private static final long serialVersionUID = -8493693409423365387L;
     /** A subclass of JTree. */
     private final TreeTableCellRenderer tree;
