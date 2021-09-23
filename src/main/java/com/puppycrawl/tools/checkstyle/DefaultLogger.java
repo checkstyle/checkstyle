@@ -254,8 +254,10 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
             // the GlobalProperties object. This is because the class loader in
             // the GlobalProperties is specified by the user for resolving
             // custom classes.
-            final ResourceBundle resourceBundle = BundleCache
-                    .getBundle(Definitions.CHECKSTYLE_BUNDLE, Violation.getDefaultLocale(), LocalizedMessage.class.getClassLoader());
+            final ResourceBundle resourceBundle = BundleCache.getBundle(
+                    Definitions.CHECKSTYLE_BUNDLE,
+                    Violation.getDefaultLocale(),
+                    LocalizedMessage.class.getClassLoader());
             final String pattern = resourceBundle.getString(key);
             final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
 

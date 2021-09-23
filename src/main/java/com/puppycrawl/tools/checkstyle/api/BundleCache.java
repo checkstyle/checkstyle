@@ -65,8 +65,8 @@ public final class BundleCache {
      * @return a {@link ResourceBundle}
      */
     public static ResourceBundle getBundle(String bundleName, Locale locale, ClassLoader loader) {
-        return BUNDLE_CACHE
-                .computeIfAbsent(bundleName, name -> ResourceBundle.getBundle(name, locale, loader, UTF8_CONTROL));
+        return BUNDLE_CACHE.computeIfAbsent(bundleName,
+                name -> ResourceBundle.getBundle(name, locale, loader, UTF8_CONTROL));
     }
 
     /**
