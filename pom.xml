@@ -445,8 +445,14 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>3.3.1</version>
           <configuration>
+            <!-- Exclude generated sources. -->
+            <excludePackageNames>
+              com.puppycrawl.tools.checkstyle.grammar.java:
+              com.puppycrawl.tools.checkstyle.grammar.javadoc:
+            </excludePackageNames>
             <source>${java.version}</source>
             <failOnError>true</failOnError>
+            <failOnWarnings>true</failOnWarnings>
             <linksource>true</linksource>
             <tags>
               <tag>
