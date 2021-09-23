@@ -217,6 +217,7 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
      */
     private static class SequencedProperties extends Properties {
 
+        /** A unique serial version identifier. */
         private static final long serialVersionUID = 1L;
 
         /**
