@@ -88,17 +88,18 @@ public class ViolationTest {
 
     @Test
     public void testMessageInManyLanguages() {
-        // It is part of the maintainers' work to keep these updated when some new translations are added.
+        // It is part of the maintainers' work to keep these updated when some new translations
+        // are added.
         final Locale[] locales = {
             Locale.ROOT, Locale.FRENCH, new Locale("PT"), new Locale("ES"), Locale.GERMAN,
             new Locale("FI"), Locale.JAPANESE, new Locale("TR"), Locale.CHINESE
         };
 
-        // It is part of the maintainers' work to keep these updated when some of the translation changes
-        // or when new translations are added.
+        // It is part of the maintainers' work to keep these updated when some of the translation
+        // changes or when new translations are added.
         final String[] messages = {
-            "Empty statement.", "Instruction vide.", "Instrução vazia.", "Sentencia vacía.", "Leere Anweisung.",
-            "Tyhjä lausunto.", "空の文です。", "Boş ifade.", "避免空行。"
+            "Empty statement.", "Instruction vide.", "Instrução vazia.", "Sentencia vacía.",
+            "Leere Anweisung.", "Tyhjä lausunto.", "空の文です。", "Boş ifade.", "避免空行。"
         };
 
         for (int i = 0; i < locales.length; i++) {
@@ -288,12 +289,12 @@ public class ViolationTest {
 
     @Test
     public void testTokenType() {
-        final Violation violation1 = Violation.createDetailedViolation(1, 1, 1, TokenTypes.CLASS_DEF,
-                "messages.properties", "key", EMPTY_STRING_ARRAY, SeverityLevel.ERROR, null,
-                getClass(), null);
-        final Violation violation2 = Violation.createDetailedViolation(1, 1, 1, TokenTypes.OBJBLOCK,
-                "messages.properties", "key", EMPTY_STRING_ARRAY, SeverityLevel.ERROR, null,
-                getClass(), null);
+        final Violation violation1 = Violation.createDetailedViolation(1, 1, 1,
+                TokenTypes.CLASS_DEF, "messages.properties", "key", EMPTY_STRING_ARRAY,
+                SeverityLevel.ERROR, null, getClass(), null);
+        final Violation violation2 = Violation.createDetailedViolation(1, 1, 1,
+                TokenTypes.OBJBLOCK, "messages.properties", "key", EMPTY_STRING_ARRAY,
+                SeverityLevel.ERROR, null, getClass(), null);
 
         assertEquals(TokenTypes.CLASS_DEF, violation1.getTokenType(), "Invalid token type");
         assertEquals(TokenTypes.OBJBLOCK, violation2.getTokenType(), "Invalid token type");
@@ -302,8 +303,8 @@ public class ViolationTest {
     @Test
     public void testGetColumnCharIndex() {
         final Violation violation1 = Violation.createDetailedViolation(1, 1, 123,
-                TokenTypes.CLASS_DEF, "messages.properties", "key", EMPTY_STRING_ARRAY, SeverityLevel.ERROR,
-                null, getClass(), null);
+                TokenTypes.CLASS_DEF, "messages.properties", "key", EMPTY_STRING_ARRAY,
+                SeverityLevel.ERROR, null, getClass(), null);
 
         assertEquals(123, violation1.getColumnCharIndex(), "Invalid column char index");
     }
@@ -348,12 +349,14 @@ public class ViolationTest {
     }
 
     private static Violation createSampleViolationWithId(String id) {
-        return Violation.createLineViolation(1, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
+        return Violation.createLineViolation(1,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 "empty.statement", EMPTY_STRING_ARRAY, id, Violation.class, null);
     }
 
     private static Violation createSampleViolationWithLine(int line) {
-        return Violation.createLineViolation(line, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
+        return Violation.createLineViolation(line,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 "empty.statement", EMPTY_STRING_ARRAY, "module", Violation.class, null);
     }
 

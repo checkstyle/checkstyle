@@ -353,7 +353,9 @@ public abstract class AbstractViolationReporter
         private FileContents fileContents;
 
         public String getFileName() {
-            if (fileContents == null) return "";
+            if (fileContents == null) {
+                return "";
+            }
             return fileContents.getFileName();
         }
     }

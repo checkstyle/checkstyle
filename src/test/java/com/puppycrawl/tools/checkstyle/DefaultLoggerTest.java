@@ -65,7 +65,8 @@ public class DefaultLoggerTest {
                 .newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE, new String[] {"myfile"});
         final Object returnValue = getMessageMethod().invoke(addExceptionMessage);
         assertTrue(output.contains(returnValue.toString()), "Invalid exception");
-        assertTrue(output.contains("java.lang.IllegalStateException: upsss"), "Invalid exception class");
+        assertTrue(output.contains("java.lang.IllegalStateException: upsss"),
+                "Invalid exception class");
     }
 
     @Test
@@ -106,7 +107,8 @@ public class DefaultLoggerTest {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
             final DefaultLogger logger = new DefaultLogger(outputStream, null);
-            // assert required to calm down eclipse's 'The allocated object is never used' violation
+            // assert required to calm down eclipse's
+            // 'The allocated object is never used' violation
             assertNotNull(logger, "Null instance");
             fail("Exception was expected");
         }
@@ -122,7 +124,8 @@ public class DefaultLoggerTest {
         try {
             final DefaultLogger logger = new DefaultLogger(outputStream,
                 AutomaticBean.OutputStreamOptions.CLOSE, outputStream, null);
-            // assert required to calm down eclipse's 'The allocated object is never used' violation
+            // assert required to calm down eclipse's
+            // 'The allocated object is never used' violation
             assertNotNull(logger, "Null instance");
             fail("Exception was expected");
         }
@@ -145,11 +148,12 @@ public class DefaultLoggerTest {
         dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, "bundle", "key",
                 null, null, getClass(), "customViolation")));
         dl.auditFinished(null);
-        final String message = messageMethod.invoke(getAuditStartMessage()) + System.lineSeparator()
+        final String message =
+                messageMethod.invoke(getAuditStartMessage()) + System.lineSeparator()
                 + messageMethod.invoke(getAuditFinishMessage()) + System.lineSeparator();
         assertEquals(message, infoStream.toString(), "expected output");
-        assertEquals("[ERROR] fileName:1:2: customViolation [DefaultLoggerTest]" + System.lineSeparator(),
-                errorStream.toString(), "expected output");
+        assertEquals("[ERROR] fileName:1:2: customViolation [DefaultLoggerTest]"
+                + System.lineSeparator(), errorStream.toString(), "expected output");
     }
 
     @Test
@@ -164,7 +168,8 @@ public class DefaultLoggerTest {
         dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, "bundle", "key",
                 null, "moduleId", getClass(), "customViolation")));
         dl.auditFinished(null);
-        final String message = messageMethod.invoke(getAuditStartMessage()) + System.lineSeparator()
+        final String message =
+                messageMethod.invoke(getAuditStartMessage()) + System.lineSeparator()
                 + messageMethod.invoke(getAuditFinishMessage()) + System.lineSeparator();
         assertEquals(message, infoStream.toString(), "expected output");
         assertEquals("[ERROR] fileName:1:2: customViolation [moduleId]" + System.lineSeparator(),
@@ -174,7 +179,8 @@ public class DefaultLoggerTest {
     @Test
     public void testFinishLocalSetup() {
         final OutputStream infoStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream, AutomaticBean.OutputStreamOptions.CLOSE);
+        final DefaultLogger dl = new DefaultLogger(
+                infoStream, AutomaticBean.OutputStreamOptions.CLOSE);
         dl.finishLocalSetup();
         dl.auditStarted(null);
         dl.auditFinished(null);
@@ -201,7 +207,8 @@ public class DefaultLoggerTest {
         final Constructor<?> cons = getConstructor();
         final Method messageMethod = getMessageMethod();
 
-        final Object messageMyFile = cons.newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE, new String[] {"myfile"});
+        final Object messageMyFile = cons.newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE,
+                new String[] {"myfile"});
         final String output = (String) messageMethod.invoke(messageMyFile);
         final String messageText = AbstractModuleTestSupport
                 .getCheckMessage(DefaultLogger.class, DefaultLogger.ADD_EXCEPTION_MESSAGE, "myfile");
@@ -221,7 +228,8 @@ public class DefaultLoggerTest {
     }
 
     private static Constructor<?> getConstructor() throws Exception {
-        final Constructor<?> cons = getLocalizedMessageClass().getDeclaredConstructor(String.class, String[].class);
+        final Constructor<?> cons = getLocalizedMessageClass()
+                .getDeclaredConstructor(String.class, String[].class);
         cons.setAccessible(true);
         return cons;
     }

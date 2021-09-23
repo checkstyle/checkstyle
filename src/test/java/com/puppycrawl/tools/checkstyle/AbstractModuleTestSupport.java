@@ -371,7 +371,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final int errs = checker.process(theFiles);
 
         // process each of the lines
-        final Map<String, List<String>> actualViolations = getActualViolations(expectedViolations.keySet(), errs);
+        final Map<String, List<String>> actualViolations =
+                getActualViolations(expectedViolations.keySet(), errs);
         final Map<String, List<String>> realExpectedViolations =
                 Maps.filterValues(expectedViolations, input -> !input.isEmpty());
 
@@ -468,8 +469,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     {
         final String auditFinished = auditFinishedString();
         // process each of the lines
-        try (ByteArrayInputStream inputStream =
-                new ByteArrayInputStream(stream.toByteArray());
+        try (ByteArrayInputStream inputStream = new ByteArrayInputStream(stream.toByteArray());
             LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             final Map<String, List<String>> actualViolations = new HashMap<>();
@@ -482,22 +482,20 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                     continue;
                 }
 
-                // Have at least 2 characters before the splitting colon,
-                // to not split after the drive letter on windows.
+                // Have at least 2 characters before the splitting colon, to not split after the
+                // drive letter on windows. Split the file name and the actual message violation.
                 final String[] actualViolation = line.split("(?<=.{2}):", 2);
-
-                // Split the file name and the actual message violation.
                 final String actualViolationFileName = actualViolation[0];
                 final StringBuilder actualViolationMessage = new StringBuilder(actualViolation[1]);
 
-                // Messages can span multiple lines (like stacktraces).
-                // So, read the next line in advance and if it does not seems to be a new message,
-                // presume that it is the next line of the current one and append it to the
-                // actualViolationMessage. If it seems to be a new message, it will be used in
-                // the next for's iteration.
+                // Messages can span multiple lines (like stacktraces). So, read the next line in
+                // advance and if it does not seems to be a new message, presume that it is the
+                // next line of the current one and append it to the actualViolationMessage. If it
+                // seems to be a new message, it will be used in the next for's iteration.
                 line = lnr.readLine();
                 boolean hasStackTrace = false;
-                while (line != null && !isLikeMessageHeader(line, auditFinished, expectedFileNames)) {
+                while (line != null &&
+                        !isLikeMessageHeader(line, auditFinished, expectedFileNames)) {
                     if (!isStackTraceElement(line)) {
                         if (!line.trim().isEmpty()) {
                             actualViolationMessage.append('\n').append(line);
@@ -527,8 +525,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     private static String auditFinishedString() {
-        final ResourceBundle resourceBundle = BundleCache
-                .getBundle(Definitions.CHECKSTYLE_BUNDLE, Violation.getDefaultLocale(), BundleCache.class.getClassLoader());
+        final ResourceBundle resourceBundle = BundleCache.getBundle(
+                Definitions.CHECKSTYLE_BUNDLE,
+                Violation.getDefaultLocale(),
+                BundleCache.class.getClassLoader());
         final String pattern = resourceBundle.getString(DefaultLogger.AUDIT_FINISHED_MESSAGE);
         final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
 
@@ -539,7 +539,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         return line.startsWith("\tat") || line.startsWith("Caused by: ");
     }
 
-    private static boolean isLikeMessageHeader(String line, String auditFinished, Set<String> expectedFileNames) {
+    private static boolean isLikeMessageHeader(
+            String line,
+            String auditFinished,
+            Set<String> expectedFileNames) {
         if (line.equals(auditFinished)) return true;
 
         // Have at least 2 characters before the splitting colon,
@@ -548,7 +551,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         return parts.length == 2
                 && !parts[0].contains("\t")
                 && !parts[0].equals("Caused by")
-                && (parts[0].contains("/") || parts[0].contains("\\") || expectedFileNames.contains(parts[0]));
+                && (parts[0].contains("/") || parts[0].contains("\\")
+                        || expectedFileNames.contains(parts[0]));
     }
 
     /**

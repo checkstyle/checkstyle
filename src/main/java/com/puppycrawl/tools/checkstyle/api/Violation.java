@@ -22,10 +22,7 @@ package com.puppycrawl.tools.checkstyle.api;
 import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -107,63 +104,7 @@ public final class Violation
     private final Object[] args; // Change to String[] in the future.
 
     /** Class name of the source for this Violation. */
-    private final String sourceClassName;
-
-    /**
-     * Creates a new {@code Violation} instance.
-     *
-     * @param locale The locale associated with the violation.
-     * @param lineNo The line number associated with the violation.
-     * @param columnNo The column number associated with the violation.
-     * @param columnCharIndex The column char index associated with the violation.
-     * @param tokenType The token type of the event associated with violation. See {@link TokenTypes}.
-     * @param bundle The resource bundle name. Can be {@code null} if the {@code customMessage} isn't.
-     * @param key The key to locate the translation.
-     * @param args The arguments for the translation.
-     * @param severityLevel The severity level for the violation.
-     * @param moduleId The id of the module the violation is associated with. Can be {@code null}.
-     * @param sourceClass The {@link Class} that is the source of the violation.
-     * @param customMessage Optional custom violation overriding the default.
-     *     Can be {@code null} if the {@code bundle} isn't.
-     * @throws IllegalArgumentException If {@code locale}, {@code key}, {@code args},
-     *     {@code severityLevel} or {@code sourceClass} are {@code null} or if {@code bundle} and
-     *     {@code customMessage} are both {@code null}.
-     * @noinspection ConstructorWithTooManyParameters
-     */
-    // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
-    private Violation(
-            Locale locale,
-            int lineNo,
-            int columnNo,
-            int columnCharIndex,
-            int tokenType,
-            String bundle,
-            String key,
-            Object[] args, // Change to String[] in the future.
-            SeverityLevel severityLevel,
-            String moduleId,
-            Class<?> sourceClass,
-            String customMessage)
-    {
-        if (locale == null) throw new IllegalArgumentException("Misusing the Violation class - locale");
-        if (key == null) throw new IllegalArgumentException("Misusing the Violation class - key");
-        if (args == null) throw new IllegalArgumentException("Misusing the Violation class - args");
-        if (sourceClass == null) throw new IllegalArgumentException("Misusing the Violation class - sourceClass");
-        if (severityLevel == null) throw new IllegalArgumentException("Misusing the Violation class - severityLevel");
-        if (bundle == null && customMessage == null) throw new IllegalArgumentException("Misusing the Violation class - bundle and customMessage");
-
-        this.locale = locale;
-        this.lineNo = lineNo;
-        this.columnNo = columnNo;
-        this.columnCharIndex = columnCharIndex;
-        this.tokenType = tokenType;
-        this.key = key;
-        this.args = Arrays.copyOf(args, args.length);
-        this.severityLevel = severityLevel;
-        this.moduleId = moduleId;
-        this.sourceClassName = sourceClass.getName();
-        this.violationText = prepareViolationText(bundle, locale, sourceClass, key, args, customMessage);
-    }
+    private final String sourceName;
 
     /**
      * Creates a new {@code Violation} instance.
@@ -184,17 +125,18 @@ public final class Violation
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     @Deprecated // FOR REMOVAL!
-    public Violation(int lineNo,
-                            int columnNo,
-                            int columnCharIndex,
-                            int tokenType,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            SeverityLevel severityLevel,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            String customMessage) {
+    public Violation(
+            int lineNo,
+            int columnNo,
+            int columnCharIndex,
+            int tokenType,
+            String bundle,
+            String key,
+            Object[] args,
+            SeverityLevel severityLevel,
+            String moduleId,
+            Class<?> sourceClass,
+            String customMessage) {
         this(sLocale.get(), lineNo, columnNo, columnCharIndex, tokenType,
 
                 // This mess is temporary. We should refactor tests that set to null things that
@@ -227,16 +169,17 @@ public final class Violation
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     @Deprecated // FOR REMOVAL!
-    public Violation(int lineNo,
-                            int columnNo,
-                            int tokenType,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            SeverityLevel severityLevel,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            String customMessage) {
+    public Violation(
+            int lineNo,
+            int columnNo,
+            int tokenType,
+            String bundle,
+            String key,
+            Object[] args,
+            SeverityLevel severityLevel,
+            String moduleId,
+            Class<?> sourceClass,
+            String customMessage) {
         this(sLocale.get(), lineNo, columnNo, columnNo, tokenType,
 
                 // This mess is temporary. We should refactor tests that set to null things that
@@ -268,15 +211,16 @@ public final class Violation
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     @Deprecated // FOR REMOVAL!
-    public Violation(int lineNo,
-                            int columnNo,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            SeverityLevel severityLevel,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            String customMessage) {
+    public Violation(
+            int lineNo,
+            int columnNo,
+            String bundle,
+            String key,
+            Object[] args,
+            SeverityLevel severityLevel,
+            String moduleId,
+            Class<?> sourceClass,
+            String customMessage) {
         this(sLocale.get(), lineNo, columnNo, columnNo, 0,
 
                 // This mess is temporary. We should refactor tests that set to null things that
@@ -307,14 +251,15 @@ public final class Violation
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     @Deprecated // FOR REMOVAL!
-    public Violation(int lineNo,
-                            int columnNo,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            String customMessage) {
+    public Violation(
+            int lineNo,
+            int columnNo,
+            String bundle,
+            String key,
+            Object[] args,
+            String moduleId,
+            Class<?> sourceClass,
+            String customMessage) {
         this(sLocale.get(), lineNo, columnNo, columnNo, 0,
 
                 // This mess is temporary. We should refactor tests that set to null things that
@@ -345,14 +290,15 @@ public final class Violation
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     @Deprecated // FOR REMOVAL!
-    public Violation(int lineNo,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            SeverityLevel severityLevel,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            String customMessage) {
+    public Violation(
+            int lineNo,
+            String bundle,
+            String key,
+            Object[] args,
+            SeverityLevel severityLevel,
+            String moduleId,
+            Class<?> sourceClass,
+            String customMessage) {
         this(sLocale.get(), lineNo, 0, 0, 0, bundle, key, args, severityLevel, moduleId,
                 sourceClass, customMessage);
     }
@@ -372,13 +318,13 @@ public final class Violation
      */
     @Deprecated
     public Violation(
-        int lineNo,
-        String bundle,
-        String key,
-        Object[] args,
-        String moduleId,
-        Class<?> sourceClass,
-        String customMessage) {
+            int lineNo,
+            String bundle,
+            String key,
+            Object[] args,
+            String moduleId,
+            Class<?> sourceClass,
+            String customMessage) {
         this(sLocale.get(), lineNo, 0, 0, 0,
 
                 // This mess is temporary. We should refactor tests that set to null things that
@@ -391,6 +337,79 @@ public final class Violation
                 moduleId,
                 sourceClass == null ? Violation.class : sourceClass,
                 (bundle == null && customMessage == null) ? "" : customMessage);
+    }
+
+    /**
+     * Creates a new {@code Violation} instance.
+     *
+     * @param locale The locale associated with the violation.
+     * @param lineNo The line number associated with the violation.
+     * @param columnNo The column number associated with the violation.
+     * @param columnCharIndex The column char index associated with the violation.
+     * @param tokenType The token type of the event associated with violation. See
+     *     {@link TokenTypes}.
+     * @param bundle The resource bundle name.
+     *     Can be {@code null} if the {@code customMessage} isn't {@code null}.
+     * @param key The key to locate the translation.
+     * @param args The arguments for the translation.
+     * @param severityLevel The severity level for the violation.
+     * @param moduleId The id of the module the violation is associated with. Can be {@code null}.
+     * @param sourceClass The {@link Class} that is the source of the violation.
+     * @param customMessage Optional custom violation overriding the default.
+     *     Can be {@code null} if the {@code bundle} isn't {@code null}.
+     * @throws IllegalArgumentException If {@code locale}, {@code key}, {@code args},
+     *     {@code severityLevel} or {@code sourceClass} are {@code null} or if {@code bundle} and
+     *     {@code customMessage} are both {@code null}.
+     * @noinspection ConstructorWithTooManyParameters
+     */
+    // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
+    private Violation(
+            Locale locale,
+            int lineNo,
+            int columnNo,
+            int columnCharIndex,
+            int tokenType,
+            String bundle,
+            String key,
+            Object[] args, // Change to String[] in the future.
+            SeverityLevel severityLevel,
+            String moduleId,
+            Class<?> sourceClass,
+            String customMessage) {
+        if (locale == null) {
+            throw new IllegalArgumentException("Misusing the Violation class - locale is null");
+        }
+        if (key == null) {
+            throw new IllegalArgumentException("Misusing the Violation class - key is null");
+        }
+        if (args == null) {
+            throw new IllegalArgumentException("Misusing the Violation class - args is null");
+        }
+        if (sourceClass == null) {
+            throw new IllegalArgumentException(
+                    "Misusing the Violation class - sourceClass is null");
+        }
+        if (severityLevel == null) {
+            throw new IllegalArgumentException(
+                    "Misusing the Violation class - severityLevel is null");
+        }
+        if (bundle == null && customMessage == null) {
+            throw new IllegalArgumentException(
+                    "Misusing the Violation class - bundle and customMessage ae null");
+        }
+
+        this.locale = locale;
+        this.lineNo = lineNo;
+        this.columnNo = columnNo;
+        this.columnCharIndex = columnCharIndex;
+        this.tokenType = tokenType;
+        this.key = key;
+        this.args = Arrays.copyOf(args, args.length);
+        this.severityLevel = severityLevel;
+        this.moduleId = moduleId;
+        this.sourceName = sourceClass.getName();
+        this.violationText = prepareViolationText(
+                bundle, locale, sourceClass, key, args, customMessage);
     }
 
     /**
@@ -412,8 +431,7 @@ public final class Violation
             String[] args,
             String moduleId,
             Class<?> sourceClass,
-            String customMessage)
-    {
+            String customMessage) {
         return new Violation(
                 sLocale.get(),
                 0, // lineNo
@@ -445,8 +463,7 @@ public final class Violation
             Object[] args, // Change to String[] in the future.
             String moduleId,
             Class<?> sourceClass,
-            String customMessage)
-    {
+            String customMessage) {
         return new Violation(
                 sLocale.get(),
                 lineNo,
@@ -472,8 +489,8 @@ public final class Violation
      * @param moduleId the id of the module the violation is associated with
      * @param sourceClass the Class that is the source of the violation
      * @param customMessage optional custom violation overriding the default
-     * @throws IllegalArgumentException If locale or fileName are {@code null}.
      * @return An instance of a {@code Violation}.
+     * @throws IllegalArgumentException If locale or fileName are {@code null}.
      */
     public static Violation createDetailedViolation(
             int lineNo,
@@ -486,8 +503,7 @@ public final class Violation
             SeverityLevel severityLevel,
             String moduleId,
             Class<?> sourceClass,
-            String customMessage)
-    {
+            String customMessage) {
         return new Violation(sLocale.get(), lineNo, columnNo, columnCharIndex, tokenType,
                 bundle, key, args, severityLevel, moduleId, sourceClass, customMessage);
     }
@@ -571,7 +587,7 @@ public final class Violation
      * @return the name of the source for this Violation
      */
     public String getSourceName() {
-        return sourceClassName;
+        return sourceName;
     }
 
     /**
@@ -591,7 +607,9 @@ public final class Violation
      * @param locale the locale to use for localization
      */
     public static void setDefaultLocale(Locale locale) {
-        if (locale == null) throw new IllegalArgumentException();
+        if (locale == null) {
+            throw new IllegalArgumentException("Locale can't be null");
+        }
         BundleCache.clear();
         if (Locale.ENGLISH.getLanguage().equals(locale.getLanguage())) {
             sLocale.set(Locale.ROOT);
@@ -636,15 +654,15 @@ public final class Violation
                 && Objects.equals(severityLevel, violation.severityLevel)
                 && Objects.equals(moduleId, violation.moduleId)
                 && Objects.equals(key, violation.key)
-                && Objects.equals(sourceClassName, violation.sourceClassName)
+                && Objects.equals(sourceName, violation.sourceName)
                 && Objects.equals(violationText, violation.violationText)
                 && Arrays.equals(args, violation.args);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(locale, lineNo, columnNo, columnCharIndex, tokenType, severityLevel, moduleId,
-                key, sourceClassName, violationText, Arrays.hashCode(args));
+        return Objects.hash(locale, lineNo, columnNo, columnCharIndex, tokenType, severityLevel,
+                moduleId, key, sourceName, violationText, Arrays.hashCode(args));
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -659,12 +677,24 @@ public final class Violation
     @Override
     public int compareTo(Violation other) {
         final int result1 = locale.toString().compareTo(other.locale.toString());
-        if (result1 != 0) return result1;
-        if (lineNo != other.lineNo) return Integer.compare(lineNo, other.lineNo);
-        if (columnNo != other.columnNo) return Integer.compare(columnNo, other.columnNo);
         final int result2 = nonNull(moduleId).compareTo(nonNull(other.moduleId));
-        if (result2 != 0) return result2;
-        return violationText.compareTo(other.violationText);
+        final int toReturn;
+        if (result1 != 0) {
+            toReturn = result1;
+        }
+        else if (lineNo != other.lineNo) {
+            toReturn = Integer.compare(lineNo, other.lineNo);
+        }
+        else if (columnNo != other.columnNo) {
+            toReturn = Integer.compare(columnNo, other.columnNo);
+        }
+        else if (result2 != 0) {
+            toReturn = result2;
+        }
+        else {
+            toReturn = violationText.compareTo(other.violationText);
+        }
+        return toReturn;
     }
 
     /**
@@ -679,6 +709,12 @@ public final class Violation
     /**
      * Gets the translated violation.
      *
+     * @param bundle resource bundle name
+     * @param locale The locale associated with the violation
+     * @param sourceClass the Class that is the source of the violation
+     * @param key the key to locate the translation
+     * @param args arguments for the translation
+     * @param customMessage optional custom violation overriding the default
      * @return the translated violation
      */
     private static String prepareViolationText(
@@ -687,8 +723,7 @@ public final class Violation
             Class<?> sourceClass,
             String key,
             Object[] args,
-            String customMessage)
-    {
+            String customMessage) {
         String violation;
         if (customMessage != null) {
             final MessageFormat formatter = new MessageFormat(customMessage, Locale.ROOT);

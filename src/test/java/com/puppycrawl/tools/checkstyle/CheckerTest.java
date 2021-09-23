@@ -1218,7 +1218,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final String filePath = getPath("InputChecker.java");
         final String[] expected = {
-            "0: " + getCheckMessage(EXCEPTION_MSG, exception.getMessage(), exception.toString() + "\nSTACKTRACE")
+            "0: " + getCheckMessage(
+                    EXCEPTION_MSG,
+                    exception.getMessage(),
+                    exception.toString() + "\nSTACKTRACE")
         };
 
         verify(checkerConfig, filePath, expected);

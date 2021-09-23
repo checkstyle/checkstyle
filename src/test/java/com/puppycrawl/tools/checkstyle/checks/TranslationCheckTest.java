@@ -257,7 +257,8 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         assertEquals(1, dispatcher.savedErrors.size(), "expected number of errors to fire");
         final Violation violation = Violation.createGeneralMessage(
                 Definitions.CHECKSTYLE_BUNDLE, Checker.EXCEPTION_MSG,
-                new String[] {exception.getMessage(), CommonUtil.getStackTrace(exception)}, null, getClass(), null);
+                new String[] {exception.getMessage(), CommonUtil.getStackTrace(exception)},
+                null, getClass(), null);
         assertEquals(violation.getViolation(),
                 dispatcher.savedErrors.iterator().next().getViolation(), "Invalid violation");
     }

@@ -38,9 +38,6 @@ import java.util.ResourceBundle.Control;
  */
 public final class BundleCache {
 
-    private BundleCache() {
-    }
-
     /**
      * Custom {@link ResourceBundle.Control} implementation which allows explicitly read
      * the properties files as UTF-8.
@@ -54,6 +51,9 @@ public final class BundleCache {
     private static final Map<String, ResourceBundle> BUNDLE_CACHE =
             Collections.synchronizedMap(new HashMap<>());
 
+    private BundleCache() {
+    }
+
     /**
      * Find a {@link ResourceBundle} for a given bundle name. Uses the classloader
      * of the class emitting this violation, to be sure to get the correct
@@ -65,8 +65,8 @@ public final class BundleCache {
      * @return a {@link ResourceBundle}
      */
     public static ResourceBundle getBundle(String bundleName, Locale locale, ClassLoader loader) {
-        return BUNDLE_CACHE
-                .computeIfAbsent(bundleName, name -> ResourceBundle.getBundle(name, locale, loader, UTF8_CONTROL));
+        return BUNDLE_CACHE.computeIfAbsent(bundleName,
+                name -> ResourceBundle.getBundle(name, locale, loader, UTF8_CONTROL));
     }
 
     /**

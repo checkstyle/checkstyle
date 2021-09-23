@@ -406,8 +406,8 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 EMPTY_STRING_ARRAY, null,
                 getClass(), null);
 
-        final String messageText = AbstractModuleTestSupport
-                .getCheckMessage(WriteTagCheck.class, WriteTagCheck.MSG_WRITE_TAG, "@incomplete", "Some javadoc");
+        final String messageText = AbstractModuleTestSupport.getCheckMessage(
+                WriteTagCheck.class, WriteTagCheck.MSG_WRITE_TAG, "@incomplete", "Some javadoc");
 
         final List<String> output = FileUtils.readLines(outputFile, StandardCharsets.UTF_8);
         final String errorMessage = "Content of file with violations differs from expected";
@@ -416,7 +416,8 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 .isEqualTo(auditStartedMessage.getViolation());
         assertWithMessage(errorMessage)
                 .that(output.get(1))
-                .matches("^\\[WARN].*InputCheckstyleAntTaskError.java:4: .*" + messageText + " \\[WriteTag]");
+                .matches("^\\[WARN].*InputCheckstyleAntTaskError.java:4: .*"
+                        + messageText + " \\[WriteTag]");
         assertWithMessage(errorMessage)
                 .that(output.get(2))
                 .matches("^\\[ERROR].*InputCheckstyleAntTaskError.java:7: "

@@ -70,7 +70,8 @@ public class FileTabCharacterCheckTest
         checkConfig.addProperty("eachLine", "false");
 
         final String path = getPath("Claira");
-        final Exception exception = new FileNotFoundException(path + " (No such file or directory)");
+        final Exception exception =
+                new FileNotFoundException(path + " (No such file or directory)");
         final String[] expected = {
             "0: " + getCheckMessage(
                     Checker.class,

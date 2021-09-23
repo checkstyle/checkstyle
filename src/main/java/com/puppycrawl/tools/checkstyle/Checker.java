@@ -316,7 +316,6 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * @param file a file to process.
      * @return a sorted set of violations to be logged.
      * @throws CheckstyleException if error condition within Checkstyle occurs.
-     * @return The set of violations found
      * @noinspection ProhibitedExceptionThrown
      */
     private SortedSet<Violation> processFile(File file) throws CheckstyleException {
@@ -331,7 +330,8 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
             log.debug("IOException occurred.", ioe);
             fileMessages.add(Violation.createGeneralMessage(
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
-                    new String[] {ioe.getMessage(), CommonUtil.getStackTrace(ioe)}, null, getClass(), null));
+                    new String[] {ioe.getMessage(), CommonUtil.getStackTrace(ioe)},
+                    null, getClass(), null));
         }
         // -@cs[IllegalCatch] There is no other way to obey haltOnException field
         catch (final Throwable ex) {
