@@ -43,6 +43,11 @@ public enum AccessModifierOption {
         return getName();
     }
 
+    /**
+     * Returns the access modifier name.
+     *
+     * @return the access modifier name
+     */
     private String getName() {
         return name().toLowerCase(Locale.ENGLISH);
     }
