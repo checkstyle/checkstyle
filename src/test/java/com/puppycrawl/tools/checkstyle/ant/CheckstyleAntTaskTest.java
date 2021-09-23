@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.ant;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,11 +41,13 @@ import org.apache.tools.ant.types.resources.FileResource;
 import org.junit.jupiter.api.Test;
 import org.powermock.reflect.Whitebox;
 
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
 
 public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
@@ -394,14 +397,17 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.addFormatter(formatter);
         antTask.execute();
 
-        final Violation auditStartedMessage = new Violation(1,
-                Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditStarted",
-                null, null,
+        final Violation auditStartedMessage = Violation.createGeneralMessage(
+                Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.AUDIT_STARTED_MESSAGE,
+                EMPTY_STRING_ARRAY, null,
                 getClass(), null);
-        final Violation auditFinishedMessage = new Violation(1,
-                Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditFinished",
-                null, null,
+        final Violation auditFinishedMessage = Violation.createGeneralMessage(
+                Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.AUDIT_FINISHED_MESSAGE,
+                EMPTY_STRING_ARRAY, null,
                 getClass(), null);
+
+        final String messageText = AbstractModuleTestSupport
+                .getCheckMessage(WriteTagCheck.class, WriteTagCheck.MSG_WRITE_TAG, "@incomplete", "Some javadoc");
 
         final List<String> output = FileUtils.readLines(outputFile, StandardCharsets.UTF_8);
         final String errorMessage = "Content of file with violations differs from expected";
@@ -410,8 +416,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 .isEqualTo(auditStartedMessage.getViolation());
         assertWithMessage(errorMessage)
                 .that(output.get(1))
-                .matches("^\\[WARN].*InputCheckstyleAntTaskError.java:4: .*"
-                        + "@incomplete=Some javadoc \\[WriteTag]");
+                .matches("^\\[WARN].*InputCheckstyleAntTaskError.java:4: .*" + messageText + " \\[WriteTag]");
         assertWithMessage(errorMessage)
                 .that(output.get(2))
                 .matches("^\\[ERROR].*InputCheckstyleAntTaskError.java:7: "
