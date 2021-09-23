@@ -503,6 +503,7 @@ public final class Main {
      * @return output stream
      * @throws IOException might happen
      * @noinspection UseOfSystemOutOrSystemErr
+     * @return output stream
      */
     @SuppressWarnings("resource")
     private static OutputStream getOutputStream(Path outputPath) throws IOException {
