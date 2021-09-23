@@ -1077,7 +1077,6 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * Checks if comment and next code statement
      * (or previous code stmt like <b>case</b> in switch block) are indented at the same level,
      * e.g.:
-     * <p>
      * <pre>
      * {@code
      * // some comment - same indentation level
@@ -1090,7 +1089,6 @@ public class CommentsIndentationCheck extends AbstractCheck {
      *  boolean bool = true; - same indentation level
      * }
      * </pre>
-     * </p>
      *
      * @param comment {@link TokenTypes#SINGLE_LINE_COMMENT single line comment}.
      * @param prevStmt previous code statement.

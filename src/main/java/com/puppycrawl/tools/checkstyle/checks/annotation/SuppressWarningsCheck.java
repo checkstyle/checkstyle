@@ -329,10 +329,10 @@ public class SuppressWarningsCheck extends AbstractCheck {
     /**
      * Strips a single double quote from the front and back of a string.
      *
-     * <p>For example:
-     * <br/>
+     * <p>For example:</p>
+     * <pre>
      * Input String = "unchecked"
-     * <br/>
+     * </pre>
      * Output String = unchecked
      *
      * @param warning the warning string
