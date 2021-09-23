@@ -497,9 +497,11 @@ public final class IllegalTypeCheck extends AbstractCheck {
     private boolean isVerifiable(DetailAST methodOrVariableDef) {
         boolean result = true;
         if (!memberModifiers.isEmpty()) {
-            final DetailAST modifiersAst = methodOrVariableDef
-                    .findFirstToken(TokenTypes.MODIFIERS);
-            result = isContainVerifiableType(modifiersAst);
+            if (methodOrVariableDef.getType() != TokenTypes.RECORD_COMPONENT_DEF) {
+                final DetailAST modifiersAst = methodOrVariableDef
+                        .findFirstToken(TokenTypes.MODIFIERS);
+                result = isContainVerifiableType(modifiersAst);
+            }
         }
         return result;
     }
