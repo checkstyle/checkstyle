@@ -41,17 +41,17 @@ public class InputEqualsAvoidNull {
     public void flagForEqualsIgnoreCase() {
         String s = "pizza";
 
-        s.equalsIgnoreCase("hot pizza"); // violation '.* left .* of .* equalsIgnoreCase .*.'
+        s.equalsIgnoreCase("hot pizza"); // violation
 
-        s.equalsIgnoreCase(s = "cold pizza"); // violation '.* left .* of .* equalsIgnoreCase .*.'
+        s.equalsIgnoreCase(s = "cold pizza"); // violation
 
-        s.equalsIgnoreCase(((s = "cold pizza"))); // violation '.* left .* of .* equalsIgnoreCase .*.'
+        s.equalsIgnoreCase(((s = "cold pizza"))); // violation
 
-        s.equalsIgnoreCase("cheese" + "ham" + "sauce"); // violation '.* left .* of .* equalsIgnoreCase .*.'
+        s.equalsIgnoreCase("cheese" + "ham" + "sauce"); // violation
 
-        s.equalsIgnoreCase(("cheese" + "ham") + "sauce"); // violation '.* left .* of .* equalsIgnoreCase .*.'
+        s.equalsIgnoreCase(("cheese" + "ham") + "sauce"); // violation
 
-        s.equalsIgnoreCase((("cheese" + "ham")) + "sauce"); // violation '.* left .* of .* equalsIgnoreCase .*.'
+        s.equalsIgnoreCase((("cheese" + "ham")) + "sauce"); // violation
     }
 
     /**
@@ -73,17 +73,17 @@ public class InputEqualsAvoidNull {
 
         o.equals((("cheese" + "ham")) + "sauce");
 
-        s.equalsIgnoreCase("hot pizza"); // violation '.* left .* of .* equalsIgnoreCase .*.'
+        s.equalsIgnoreCase("hot pizza"); // violation
 
-        s.equalsIgnoreCase(s = "cold pizza"); // violation '.* left .* of .* equalsIgnoreCase .*.'
+        s.equalsIgnoreCase(s = "cold pizza"); // violation
 
-        s.equalsIgnoreCase(((s = "cold pizza"))); // violation '.* left .* of .* equalsIgnoreCase .*.'
+        s.equalsIgnoreCase(((s = "cold pizza"))); // violation
 
-        s.equalsIgnoreCase("cheese" + "ham" + "sauce"); // violation '.* left .* of .* equalsIgnoreCase .*.'
+        s.equalsIgnoreCase("cheese" + "ham" + "sauce"); // violation
 
-        s.equalsIgnoreCase(("cheese" + "ham") + "sauce"); // violation '.* left .* of .* equalsIgnoreCase .*.'
+        s.equalsIgnoreCase(("cheese" + "ham") + "sauce"); // violation
 
-        s.equalsIgnoreCase((("cheese" + "ham")) + "sauce"); // violation '.* left .* of .* equalsIgnoreCase .*.'
+        s.equalsIgnoreCase((("cheese" + "ham")) + "sauce"); // violation
     }
 
 
@@ -242,20 +242,20 @@ class NewTest {
     NewTest testObj = new NewTest("");
 
     NewTest(String param) {
-        param.equals(""); // violation '.* left .* of .* equals .*.'
+        param.equals(""); // violation
     }
 
     public void method(String param) {
         final String localVar = "";
 
-        localVar.equals(""); // violation '.* left .* of .* equals .*.'
-        param.equals(""); // violation '.* left .* of .* equals .*.'
+        localVar.equals(""); // violation
+        param.equals(""); // violation
 
-        classVar.equals(""); // violation '.* left .* of .* equals .*.'
-        instanceVar.equals(""); // violation '.* left .* of .* equals .*.'
-        NewTest.classVar.equals(""); // violation '.* left .* of .* equals .*.'
-        this.classVar.equals(""); // violation '.* left .* of .* equals .*.'
-        this.instanceVar.equals(""); // violation '.* left .* of .* equals .*.'
+        classVar.equals(""); // violation
+        instanceVar.equals(""); // violation
+        NewTest.classVar.equals(""); // violation
+        this.classVar.equals(""); // violation
+        this.instanceVar.equals(""); // violation
 
         NewTest testObj = new NewTest("");
         this.testObj.instanceVar.equals(""); // not violated, too confusing
@@ -272,13 +272,13 @@ class NewTest {
             String instanceVarInner;
 
             public void main() {
-                classVar.equals(""); // violation '.* left .* of .* equals .*.'
-                instanceVar.equals(""); // violation '.* left .* of .* equals .*.'
-                NewTest.classVar.equals(""); // violation '.* left .* of .* equals .*.'
+                classVar.equals(""); // violation
+                instanceVar.equals(""); // violation
+                NewTest.classVar.equals(""); // violation
 
-                instanceVarInner.equals(""); // violation '.* left .* of .* equals .*.'
-                this.instanceVarInner.equals(""); // violation '.* left .* of .* equals .*.'
-                localVar.equals(""); // violation '.* left .* of .* equals .*.'
+                instanceVarInner.equals(""); // violation
+                this.instanceVarInner.equals(""); // violation
+                localVar.equals(""); // violation
 
                 NewTest testObj = new NewTest("");
                 testObj.instanceVar.equals(""); // not violated
@@ -299,34 +299,34 @@ class NewTest {
     }
     static {
         final String s = "";
-        s.equals(""); // violation '.* left .* of .* equals .*.'
+        s.equals(""); // violation
         {
             final String x = "";
             class A {
                 void foo() {
-                    s.equals(""); // violation '.* left .* of .* equals .*.'
-                    x.equals(""); // violation '.* left .* of .* equals .*.'
+                    s.equals(""); // violation
+                    x.equals(""); // violation
                 }
             }
         }
     }
     void foo(String param) {
         try {
-            param.equals(""); // violation '.* left .* of .* equals .*.'
+            param.equals(""); // violation
             do {
                 String s = "";
-                s.equals(""); // violation '.* left .* of .* equals .*.'
-            } while (param.equals("")); // violation '.* left .* of .* equals .*.'
+                s.equals(""); // violation
+            } while (param.equals("")); // violation
         } catch (Exception e) {
-            while (param.equals("")) { // violation '.* left .* of .* equals .*.'
-                for (String s = ""; s.equals(""); ){ // violation '.* left .* of .* equals .*.'
-                    if (s.equals("")) { // violation '.* left .* of .* equals .*.'
+            while (param.equals("")) { // violation
+                for (String s = ""; s.equals(""); ){ // violation
+                    if (s.equals("")) { // violation
                         synchronized (this) {
                             switch (s) {
-                                case "1": String str = ""; str.equals(""); // violation '.* left .* of .* equals .*.'
-                                case "2": s.equals(""); str = ""; // violation '.* left .* of .* equals .*.'
-                                str.equals(""); // violation '.* left .* of .* equals .*.'
-                                case "3": param.equals(""); // violation '.* left .* of .* equals .*.'
+                                case "1": String str = ""; str.equals(""); // violation
+                                case "2": s.equals(""); str = ""; // violation
+                                str.equals(""); // violation
+                                case "3": param.equals(""); // violation
                                     break;
                             }
                         }
@@ -339,18 +339,18 @@ class NewTest {
         static String nestedClassVar;
         String nestedInstanceVar;
         public void method() {
-            classVar.equals(""); // violation '.* left .* of .* equals .*.'
-            NewTest.classVar.equals(""); // violation '.* left .* of .* equals .*.'
-            this.nestedInstanceVar.equals(""); // violation '.* left .* of .* equals .*.'
-            nestedClassVar.equals(""); // violation '.* left .* of .* equals .*.'
-            nestedInstanceVar.equals(""); // violation '.* left .* of .* equals .*.'
+            classVar.equals(""); // violation
+            NewTest.classVar.equals(""); // violation
+            this.nestedInstanceVar.equals(""); // violation
+            nestedClassVar.equals(""); // violation
+            nestedInstanceVar.equals(""); // violation
 
             class Inner {
                 public void method() {
-                    classVar.equals(""); // violation '.* left .* of .* equals .*.'
-                    NewTest.classVar.equals(""); // violation '.* left .* of .* equals .*.'
-                    nestedClassVar.equals(""); // violation '.* left .* of .* equals .*.'
-                    nestedInstanceVar.equals(""); // violation '.* left .* of .* equals .*.'
+                    classVar.equals(""); // violation
+                    NewTest.classVar.equals(""); // violation
+                    nestedClassVar.equals(""); // violation
+                    nestedInstanceVar.equals(""); // violation
                 }
             }
         }
@@ -361,7 +361,7 @@ class NewTest {
         C(1212) {
             String constDefVar;
             public void doSomething() {
-                constDefVar.equals(""); // violation '.* left .* of .* equals .*.'
+                constDefVar.equals(""); // violation
             }
         };
 
@@ -372,7 +372,7 @@ class NewTest {
         }
 
         public static void doSomethingStatic() {
-            enumStatic.equals(""); // violation '.* left .* of .* equals .*.'
+            enumStatic.equals(""); // violation
             enumStatic.equals(null);
         }
         static String enumStatic;
@@ -398,7 +398,7 @@ class Anonymous {
         Runnable anonym = new Runnable() {
             String nullableStr = null;
             public void run() {
-                nullableStr.equals("Null"); // violation '.* left .* of .* equals .*.'
+                nullableStr.equals("Null"); // violation
             };
         };
         Object nullableStr = new Object();
@@ -419,13 +419,13 @@ class TestConcatenations {
     String s = null;
 
     void foo() {
-        s.equals(s + s); // violation '.* left .* of .* equals .*.'
-        s.equals("a" + "b"); // violation '.* left .* of .* equals .*.'
-        s.equals(getInt() + s); // violation '.* left .* of .* equals .*.'
+        s.equals(s + s); // violation
+        s.equals("a" + "b"); // violation
+        s.equals(getInt() + s); // violation
         s.equals(getInt() + getInt());
         s.endsWith("a");
         String s = "";
-        if (!s.equals("Hello[EOL]" + System.getProperty("line.separator"))) // violation '.* left .* of .* equals .*.'
+        if (!s.equals("Hello[EOL]" + System.getProperty("line.separator"))) // violation
             foo();
     }
 

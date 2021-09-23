@@ -22,8 +22,6 @@ package com.puppycrawl.tools.checkstyle.api;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -36,18 +34,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  */
 public abstract class AbstractCheck extends AbstractViolationReporter {
 
-    /**
-     * The check context.
-     *
-     * @noinspection ThreadLocalNotStaticFinal
-     */
-    private final ThreadLocal<FileContext> context = ThreadLocal.withInitial(FileContext::new);
-
     /** The tokens the check is interested in. */
     private final Set<String> tokens = new HashSet<>();
-
-    /** The tab width for column reporting. */
-    private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;
 
     /**
      * Returns the default token a check is interested in. Only used if the
@@ -106,34 +94,11 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     }
 
     /**
-     * Returns the sorted set of {@link Violation}.
-     *
-     * @return the sorted set of {@link Violation}.
-     */
-    public SortedSet<Violation> getViolations() {
-        return new TreeSet<>(context.get().violations);
-    }
-
-    /**
-     * Clears the sorted set of {@link Violation} of the check.
-     */
-    public final void clearViolations() {
-        context.get().violations.clear();
-    }
-
-    /**
      * Initialize the check. This is the time to verify that the check has
      * everything required to perform it job.
      */
     public void init() {
         // No code by default, should be overridden only by demand at subclasses
-    }
-
-    /**
-     * Destroy the check. It is being retired from service.
-     */
-    public void destroy() {
-        context.remove();
     }
 
     /**
@@ -175,75 +140,6 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     }
 
     /**
-     * Set the file contents associated with the tree.
-     *
-     * @param contents the manager
-     */
-    public final void setFileContents(FileContents contents) {
-        context.get().fileContents = contents;
-    }
-
-    /**
-     * Returns the file contents associated with the tree.
-     *
-     * @return the file contents
-     * @noinspection WeakerAccess
-     */
-    public final FileContents getFileContents() {
-        return context.get().fileContents;
-    }
-
-    /**
-     * Get tab width to report audit events with.
-     *
-     * @return the tab width to audit events with
-     */
-    protected final int getTabWidth() {
-        return tabWidth;
-    }
-
-    /**
-     * Set the tab width to report audit events with.
-     *
-     * @param tabWidth an {@code int} value
-     */
-    public final void setTabWidth(int tabWidth) {
-        this.tabWidth = tabWidth;
-    }
-
-    @Override
-    public final void log(int line, String key, Object... args) {
-        context.get().violations.add(
-            new Violation(
-                line,
-                getMessageBundle(),
-                key,
-                args,
-                getSeverityLevel(),
-                getId(),
-                getClass(),
-                getCustomMessages().get(key)));
-    }
-
-    @Override
-    public final void log(int lineNo, int colNo, String key,
-            Object... args) {
-        final int col = 1 + CommonUtil.lengthExpandedTabs(
-            getLines()[lineNo - 1], colNo, tabWidth);
-        context.get().violations.add(
-            new Violation(
-                lineNo,
-                col,
-                getMessageBundle(),
-                key,
-                args,
-                getSeverityLevel(),
-                getId(),
-                getClass(),
-                getCustomMessages().get(key)));
-    }
-
-    /**
      * Helper method to log a Violation.
      *
      * @param ast a node to get line id column numbers associated
@@ -259,9 +155,9 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
         // is increased by one.
 
         final int col = 1 + CommonUtil.lengthExpandedTabs(
-                getLines()[ast.getLineNo() - 1], ast.getColumnNo(), tabWidth);
-        context.get().violations.add(
-                new Violation(
+                getLines()[ast.getLineNo() - 1], ast.getColumnNo(), getTabWidth());
+        addViolation(
+                Violation.createDetailedViolation(
                         ast.getLineNo(),
                         col,
                         ast.getColumnNo(),
@@ -273,38 +169,6 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
                         getId(),
                         getClass(),
                         getCustomMessages().get(key)));
-    }
-
-    /**
-     * Returns the lines associated with the tree.
-     *
-     * @return the file contents
-     */
-    public final String[] getLines() {
-        return context.get().fileContents.getLines();
-    }
-
-    /**
-     * Returns the line associated with the tree.
-     *
-     * @param index index of the line
-     * @return the line from the file contents
-     */
-    public final String getLine(int index) {
-        return context.get().fileContents.getLine(index);
-    }
-
-    /**
-     * The actual context holder.
-     */
-    private static class FileContext {
-
-        /** The sorted set for collecting violations. */
-        private final SortedSet<Violation> violations = new TreeSet<>();
-
-        /** The current file contents. */
-        private FileContents fileContents;
-
     }
 
 }

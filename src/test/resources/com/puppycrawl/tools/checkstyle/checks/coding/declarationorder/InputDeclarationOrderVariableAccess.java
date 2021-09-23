@@ -20,7 +20,7 @@ public class InputDeclarationOrderVariableAccess {
 
     private static final Map<String, String> BUCKETS_MAP = Collections.emptyMap();
 
-    public static final InputDeclarationOrderVariableAccess.Stream STREAM = // violation 'Variable access definition in wrong order.'
+    public static final InputDeclarationOrderVariableAccess.Stream STREAM = // violation
             new InputDeclarationOrderVariableAccess.Stream() {
         @Override
         public InputDeclarationOrderVariableAccess readResult(InputStream in) throws IOException {
