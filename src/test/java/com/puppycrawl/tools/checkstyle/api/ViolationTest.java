@@ -20,6 +20,8 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck;
 import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -95,12 +97,13 @@ public class ViolationTest {
             new Locale("FI"), Locale.JAPANESE, new Locale("TR"), Locale.CHINESE
         };
 
-        // It is part of the maintainers' work to keep these updated when some of the translation
-        // changes or when new translations are added.
-        final String[] messages = {
-            "Empty statement.", "Instruction vide.", "Instrução vazia.", "Sentencia vacía.",
-            "Leere Anweisung.", "Tyhjä lausunto.", "空の文です。", "Boş ifade.", "避免空行。"
-        };
+        final String[] messages = new String[locales.length];
+
+        for (int i = 0; i < locales.length; i++) {
+            Violation.setDefaultLocale(locales[i]);
+            messages[i] = AbstractModuleTestSupport
+                    .getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY);
+        }
 
         for (int i = 0; i < locales.length; i++) {
 
