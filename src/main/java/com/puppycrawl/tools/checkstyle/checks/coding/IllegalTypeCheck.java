@@ -495,6 +495,10 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @return true if member is verifiable according to <b>memberModifiers</b> option.
      */
     private boolean isVerifiable(DetailAST methodOrVariableDef) {
+        if (methodOrVariableDef.getType() == TokenTypes.RECORD_COMPONENT_DEF) {
+            return true; // Record component visibility cannot be changed and it's always accessible from the outside
+        }
+
         boolean result = true;
         if (!memberModifiers.isEmpty()) {
             final DetailAST modifiersAst = methodOrVariableDef
