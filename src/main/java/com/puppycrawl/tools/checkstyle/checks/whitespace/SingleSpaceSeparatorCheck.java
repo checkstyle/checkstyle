@@ -207,14 +207,16 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
     /**
      * Checks if characters in {@code line} at and around {@code columnNo} has
      * the correct number of spaces. to return {@code true} the following
-     * conditions must be met:<br />
-     * - the character at {@code columnNo} is the first in the line.<br />
-     * - the character at {@code columnNo} is not separated by whitespaces from
-     * the previous non-whitespace character. <br />
-     * - the character at {@code columnNo} is separated by only one whitespace
-     * from the previous non-whitespace character.<br />
-     * - {@link #validateComments} is disabled and the previous text is the
-     * end of a block comment.
+     * conditions must be met:
+     * <ul>
+     * <li> the character at {@code columnNo} is the first in the line. </li>
+     * <li> the character at {@code columnNo} is not separated by whitespaces from
+     * the previous non-whitespace character. </li>
+     * <li> the character at {@code columnNo} is separated by only one whitespace
+     * from the previous non-whitespace character. </li>
+     * <li> {@link #validateComments} is disabled and the previous text is the
+     * end of a block comment. </li>
+     *</ul>
      *
      * @param line The line in the file to examine.
      * @param columnNo The column position in the {@code line} to examine.

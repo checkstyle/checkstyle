@@ -809,9 +809,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     /**
      * Tests if a given {@code DetailAST} is part of an empty block.
      * An example empty block might look like the following
-     * <p>
      * <pre>   public void myMethod(int val) {}</pre>
-     * </p>
      * In the above, the method body is an empty block ("{}").
      *
      * @param ast the {@code DetailAST} to test.
@@ -964,9 +962,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     /**
      * Test if the given {@code DetailAST} is part of an empty block.
      * An example empty block might look like the following
-     * <p>
      * <pre>   class Foo {}</pre>
-     * </p>
      *
      * @param ast ast the {@code DetailAST} to test.
      * @return {@code true} if {@code ast} makes up part of an

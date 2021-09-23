@@ -170,12 +170,10 @@ public class SimplifyBooleanReturnCheck
      * or a compound statement that contains only such a return statement.
      *
      * <p>Returns {@code true} iff ast represents
-     * <br/>
      * <pre>
      * return true/false;
      * </pre>
      * or
-     * <br/>
      * <pre>
      * {
      *   return true/false;
@@ -198,7 +196,6 @@ public class SimplifyBooleanReturnCheck
      * Returns if an AST is a return statement with a boolean literal.
      *
      * <p>Returns {@code true} iff ast represents
-     * <br/>
      * <pre>
      * return true/false;
      * </pre>
