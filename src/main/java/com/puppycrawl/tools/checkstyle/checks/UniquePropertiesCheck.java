@@ -201,6 +201,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
      */
     private static class UniqueProperties extends Properties {
 
+        /** A unique serial version identifier. */
         private static final long serialVersionUID = 1L;
         /**
          * Map, holding duplicated keys and their count. Keys are added here only if they

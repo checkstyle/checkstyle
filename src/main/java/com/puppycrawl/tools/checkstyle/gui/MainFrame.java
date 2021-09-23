@@ -54,6 +54,7 @@ import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
  */
 public class MainFrame extends JFrame {
 
+    /** A unique serial version identifier. */
     private static final long serialVersionUID = 7970053543351871890L;
 
     /** Checkstyle frame model. */
@@ -202,6 +203,7 @@ public class MainFrame extends JFrame {
      */
     private class FileSelectionAction extends AbstractAction {
 
+        /** A unique serial version identifier. */
         private static final long serialVersionUID = 1762396148873280589L;
 
         @Override
@@ -224,6 +226,7 @@ public class MainFrame extends JFrame {
      */
     private class ReloadAction extends AbstractAction {
 
+        /** A unique serial version identifier. */
         private static final long serialVersionUID = -890320994114628011L;
 
         @Override
@@ -238,6 +241,7 @@ public class MainFrame extends JFrame {
      */
     private class ExpandCollapseAction extends AbstractAction {
 
+        /** A unique serial version identifier. */
         private static final long serialVersionUID = -890320994114628011L;
 
         @Override
@@ -252,6 +256,7 @@ public class MainFrame extends JFrame {
      */
     private class FindNodeByXpathAction extends AbstractAction {
 
+        /** A unique serial version identifier. */
         private static final long serialVersionUID = -890320994114628011L;
 
         @Override
