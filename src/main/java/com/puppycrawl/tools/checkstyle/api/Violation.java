@@ -48,6 +48,7 @@ import java.util.ResourceBundle.Control;
 public final class Violation
     implements Comparable<Violation>, Serializable {
 
+    /** A unique serial version identifier. */
     private static final long serialVersionUID = 5675176836184862150L;
 
     /**
