@@ -42,7 +42,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -138,7 +137,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.process(Collections.singletonList(tempFile));
         final SortedSet<Violation> violations = new TreeSet<>();
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
-                new Object[] {"arg"}, null, getClass(), null));
+                new String[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
 
         assertFalse(auditAdapter.wasCalled(), "Checker.destroy() doesn't remove listeners.");
@@ -176,7 +175,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         auditAdapter.resetListener();
         final SortedSet<Violation> violations = new TreeSet<>();
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
-                new Object[] {"arg"}, null, getClass(), null));
+                new String[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
         assertTrue(auditAdapter.wasCalled(), "Checker.fireErrors() doesn't call listener");
         assertTrue(auditAdapter.wasEventPassed(), "Checker.fireErrors() doesn't pass event");
@@ -218,7 +217,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         aa2.resetListener();
         final SortedSet<Violation> violations = new TreeSet<>();
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
-                new Object[] {"arg"}, null, getClass(), null));
+                new String[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
         assertTrue(aa2.wasCalled(), "Checker.fireErrors() doesn't call listener");
         assertFalse(auditAdapter.wasCalled(), "Checker.fireErrors() does call removed listener");
@@ -261,7 +260,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         filter.resetFilter();
         final SortedSet<Violation> violations = new TreeSet<>();
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
-                new Object[] {"arg"}, null, getClass(), null));
+                new String[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
         assertTrue(filter.wasCalled(), "Checker.fireErrors() doesn't call filter");
     }
@@ -278,7 +277,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         f2.resetFilter();
         final SortedSet<Violation> violations = new TreeSet<>();
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
-                new Object[] {"arg"}, null, getClass(), null));
+                new String[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
         assertTrue(f2.wasCalled(), "Checker.fireErrors() doesn't call filter");
         assertFalse(filter.wasCalled(), "Checker.fireErrors() does call removed filter");
@@ -421,10 +420,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertEquals("error", context.get("severity"), "Severity is set to unexpected value");
         assertEquals("testBaseDir", context.get("basedir"), "Basedir is set to unexpected value");
 
-        final Field sLocale = Violation.class.getDeclaredField("sLocale");
-        sLocale.setAccessible(true);
-        final Locale locale = (Locale) sLocale.get(null);
-        assertEquals(Locale.ITALY, locale, "Locale is set to unexpected value");
+        final Locale sLocale = Violation.getDefaultLocale();
+        assertEquals(Locale.ITALY, sLocale, "Locale is set to unexpected value");
     }
 
     @Test
@@ -1206,6 +1203,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testHaltOnExceptionOff() throws Exception {
+        final Exception exception = new IndexOutOfBoundsException("test");
+
         final DefaultConfiguration checkConfig =
             createModuleConfig(CheckWhichThrowsError.class);
 
@@ -1219,7 +1218,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final String filePath = getPath("InputChecker.java");
         final String[] expected = {
-            "1: " + getCheckMessage(EXCEPTION_MSG, "java.lang.IndexOutOfBoundsException: test"),
+            "0: " + getCheckMessage(
+                    EXCEPTION_MSG,
+                    exception.getMessage(),
+                    exception.toString() + "\nSTACKTRACE")
         };
 
         verify(checkerConfig, filePath, expected);

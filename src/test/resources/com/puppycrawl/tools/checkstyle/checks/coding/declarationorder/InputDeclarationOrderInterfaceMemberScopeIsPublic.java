@@ -18,6 +18,6 @@ public interface InputDeclarationOrderInterfaceMemberScopeIsPublic {
 
     void method();
 
-    static final int implicitPublicField2 = 0; // violation 'Static variable definition in wrong order.'
+    static final int implicitPublicField2 = 0; // violation
 
 }

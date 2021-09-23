@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.AbstractPathTestSupport.addEndOfLine;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
+import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.itsallcode.junit.sysextensions.AssertExit.assertExitWithStatus;
@@ -539,8 +540,8 @@ public class MainTest {
                     getPath("InputMain1.java"));
         });
         final Violation errorCounterTwoMessage = new Violation(1,
-                Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
-                new String[] {String.valueOf(1)}, null, getClass(), null);
+                Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER_1,
+                EMPTY_STRING_ARRAY, null, getClass(), null);
         final Violation invalidPatternMessageMain = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
                 "name.invalidPattern", new String[] {"InputMain1", "^[a-z0-9]*$"},
@@ -563,8 +564,8 @@ public class MainTest {
             invokeMain("-c", "/sun_checks.xml", getPath("InputMain1.java"));
         });
         final Violation errorCounterTwoMessage = new Violation(1,
-                Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
-                new String[] {String.valueOf(1)}, null, getClass(), null);
+                Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER_1,
+                EMPTY_STRING_ARRAY, null, getClass(), null);
         final Violation message = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
                 "javadoc.packageInfo", new String[] {},

@@ -19,9 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.io.File;
-import java.util.regex.Pattern;
-
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -92,9 +89,6 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "type.file.mismatch";
 
-    /** Pattern matching any file extension with dot included. */
-    private static final Pattern FILE_EXTENSION_PATTERN = Pattern.compile("\\.[^.]*$");
-
     /** Indicates whether the first token has been seen in the file. */
     private boolean seenFirstToken;
 
@@ -130,7 +124,7 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        fileName = getFileName();
+        fileName = getSimpleFileName();
         seenFirstToken = false;
         hasPublic = false;
         wrongType = null;
@@ -160,18 +154,6 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
         if (!hasPublic && wrongType != null) {
             log(wrongType, MSG_KEY);
         }
-    }
-
-    /**
-     * Get source file name.
-     *
-     * @return source file name.
-     */
-    private String getFileName() {
-        String name = getFileContents().getFileName();
-        name = name.substring(name.lastIndexOf(File.separatorChar) + 1);
-        name = FILE_EXTENSION_PATTERN.matcher(name).replaceAll("");
-        return name;
     }
 
 }
