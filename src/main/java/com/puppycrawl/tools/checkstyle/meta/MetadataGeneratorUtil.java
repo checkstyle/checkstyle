@@ -62,19 +62,18 @@ public final class MetadataGeneratorUtil {
         defaultConfiguration.addChild(treeWalkerConfig);
         treeWalkerConfig.addChild(scraperCheckConfig);
         checker.configure(defaultConfiguration);
-        dumpMetadata(checker, args[0]);
+        final List<File> validFiles = extractValidFiles(args[0]);
+        checker.process(validFiles);
     }
 
     /**
-     * Process files using the checker passed and write to corresponding XML files.
+     * Extracts valid files using the path passed.
      *
-     * @param checker checker
      * @param path rootPath
-     * @throws CheckstyleException checkstyleException
+     * @return a list of valid files
      * @throws IOException ioException
      */
-    private static void dumpMetadata(Checker checker, String path) throws CheckstyleException,
-            IOException {
+    public static List<File> extractValidFiles(String path) throws IOException {
         final List<File> validFiles = new ArrayList<>();
         if (path.endsWith(".java")) {
             validFiles.add(new File(path));
@@ -95,7 +94,6 @@ public final class MetadataGeneratorUtil {
                 }
             }
         }
-
-        checker.process(validFiles);
+        return validFiles;
     }
 }
