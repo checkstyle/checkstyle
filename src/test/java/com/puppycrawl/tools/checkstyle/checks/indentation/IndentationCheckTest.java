@@ -2900,6 +2900,28 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testIndentationLongConcatenatedString() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWarns(checkConfig, getPath("InputIndentationLongConcatenatedString.java"),
+                expected);
+    }
+
+    @Test
+    public void testIndentationLineBreakVariableDeclaration()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+
+        final String fileName = getPath("InputIndentationLineBreakVariableDeclaration.java");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
     private static final class IndentAudit implements AuditListener {
 
         private final IndentComment[] comments;
