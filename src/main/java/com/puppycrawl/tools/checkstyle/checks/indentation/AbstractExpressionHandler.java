@@ -425,34 +425,34 @@ public abstract class AbstractExpressionHandler {
      * @return            the first ast of the expression
      */
     protected static DetailAST getFirstAstNode(DetailAST ast) {
-        return getFirstAst(ast, ast);
+        return getFirstAst(ast);
     }
 
     /**
      * Get the first ast for given expression.
      *
-     * @param ast         the current ast that may have minimum line number
-     * @param tree        the expression to find the first line for
+     * @param ast        the expression to find the first line for
      *
      * @return the first ast of the expression
      */
-    private static DetailAST getFirstAst(DetailAST ast, DetailAST tree) {
+    private static DetailAST getFirstAst(DetailAST ast) {
+
+        DetailAST curNode = ast.getFirstChild();
         DetailAST realStart = ast;
-
-        if (tree.getLineNo() < realStart.getLineNo()
-            || tree.getLineNo() == realStart.getLineNo()
-            && tree.getColumnNo() < realStart.getColumnNo()
-        ) {
-            realStart = tree;
+        DetailAST toVisit = curNode;
+        while (curNode != null) {
+            if (toVisit.getLineNo() < realStart.getLineNo()
+                    || toVisit.getLineNo() == realStart.getLineNo()
+                    && toVisit.getColumnNo() < realStart.getColumnNo()) {
+                realStart = toVisit;
+            }
+            toVisit = curNode.getFirstChild();
+            while (curNode != ast && toVisit == null) {
+                toVisit = curNode.getNextSibling();
+                curNode = curNode.getParent();
+            }
+            curNode = toVisit;
         }
-
-        // check children
-        for (DetailAST node = tree.getFirstChild();
-            node != null;
-            node = node.getNextSibling()) {
-            realStart = getFirstAst(realStart, node);
-        }
-
         return realStart;
     }
 
