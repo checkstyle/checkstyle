@@ -39,6 +39,18 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void test() {
+        assertThat(XmlMetaReader.readAllModulesIncludingThirdPartyIfAny().size()).isEqualTo(198);
+    }
+
+    @Test
+    public void testDuplicatePackage() {
+        assertThat(XmlMetaReader
+                .readAllModulesIncludingThirdPartyIfAny("com.puppycrawl.tools.checkstyle.meta")
+                .size()).isEqualTo(198);
+    }
+
+    @Test
     public void testReadXmlMetaCheckWithProperties() throws Exception {
         final String path = getPath("InputXmlMetaReaderCheckWithProps.xml");
         try (InputStream is = Files.newInputStream(Paths.get(path))) {
