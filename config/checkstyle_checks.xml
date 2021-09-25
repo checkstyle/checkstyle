@@ -612,7 +612,6 @@
     </module>
     <module name="JavadocVariable"/>
     <module name="MissingJavadocMethod">
-      <property name="allowMissingPropertyJavadoc" value="true"/>
       <property name="scope" value="private"/>
     </module>
     <module name="MissingJavadocPackage"/>
