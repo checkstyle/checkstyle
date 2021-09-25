@@ -183,16 +183,6 @@ public final class ModuleDetails {
     }
 
     /**
-     * Get a module property object by supplying its name as key.
-     *
-     * @param key module property name
-     * @return module property object
-     */
-    public ModulePropertyDetails getModulePropertyByKey(String key) {
-        return modulePropertyKeyMap.get(key);
-    }
-
-    /**
      * Get module type.
      *
      * @return module type
