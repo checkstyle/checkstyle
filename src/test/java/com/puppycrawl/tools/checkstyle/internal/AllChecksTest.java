@@ -528,14 +528,17 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     public void testAllCheckstyleChecksHaveMessage() throws Exception {
         for (Class<?> module : CheckUtil.getCheckstyleChecks()) {
             final String name = module.getSimpleName();
+            final Set<Field> messages = CheckUtil.getCheckMessages(module, false);
 
             // No messages in just module
-            if ("SuppressWarningsHolder".equals(name)) {
-                continue;
+            if ("SuppressWarningsHolder".equals(name) || "JavadocMetadataScraper".equals(name)) {
+                assertTrue(messages.isEmpty(),
+                        name + " should not have any 'MSG_*' fields for error messages");
             }
-
-            assertFalse(CheckUtil.getCheckMessages(module).isEmpty(),
-                    name + " should have at least one 'MSG_*' field for error messages");
+            else {
+                assertFalse(messages.isEmpty(),
+                        name + " should have at least one 'MSG_*' field for error messages");
+            }
         }
     }
 
@@ -545,7 +548,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
         // test validity of messages from modules
         for (Class<?> module : CheckUtil.getCheckstyleModules()) {
-            for (Field message : CheckUtil.getCheckMessages(module)) {
+            for (Field message : CheckUtil.getCheckMessages(module, true)) {
                 assertEquals(Modifier.PUBLIC | Modifier.STATIC | Modifier.FINAL,
                         message.getModifiers(),
                         module.getSimpleName() + "." + message.getName()
