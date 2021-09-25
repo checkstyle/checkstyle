@@ -437,22 +437,23 @@ public abstract class AbstractExpressionHandler {
      * @return the first ast of the expression
      */
     private static DetailAST getFirstAst(DetailAST ast, DetailAST tree) {
+
+        DetailAST curNode = ast;
         DetailAST realStart = ast;
-
-        if (tree.getLineNo() < realStart.getLineNo()
-            || tree.getLineNo() == realStart.getLineNo()
-            && tree.getColumnNo() < realStart.getColumnNo()
-        ) {
-            realStart = tree;
+        DetailAST toVisit = tree;
+        while (curNode != null) {
+            if (toVisit.getLineNo() < realStart.getLineNo()
+                    || toVisit.getLineNo() == realStart.getLineNo()
+                    && toVisit.getColumnNo() < realStart.getColumnNo()) {
+                realStart = toVisit;
+            }
+            toVisit = curNode.getFirstChild();
+            while (curNode != null && toVisit == null) {
+                toVisit = curNode.getNextSibling();
+                curNode = curNode.getParent();
+            }
+            curNode = toVisit;
         }
-
-        // check children
-        for (DetailAST node = tree.getFirstChild();
-            node != null;
-            node = node.getNextSibling()) {
-            realStart = getFirstAst(realStart, node);
-        }
-
         return realStart;
     }
 
