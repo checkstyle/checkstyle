@@ -1062,7 +1062,7 @@
                     <limit>
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.93</minimum>
+                      <minimum>0.91</minimum>
                     </limit>
                     <limit>
                       <counter>BRANCH</counter>
@@ -1082,27 +1082,12 @@
                     <limit>
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.74</minimum>
+                      <minimum>0.96</minimum>
                     </limit>
                     <limit>
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.71</minimum>
-                    </limit>
-                  </limits>
-                </rule>
-                <rule>
-                  <element>CLASS</element>
-                  <includes>
-                    <include>
-                       com.puppycrawl.tools.checkstyle.meta.ModuleDetails
-                    </include>
-                  </includes>
-                  <limits>
-                    <limit>
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.76</minimum>
+                      <minimum>1.00</minimum>
                     </limit>
                   </limits>
                 </rule>
