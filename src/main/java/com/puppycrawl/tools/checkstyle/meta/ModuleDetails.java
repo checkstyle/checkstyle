@@ -21,18 +21,13 @@ package com.puppycrawl.tools.checkstyle.meta;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /** Simple POJO class for module details. */
 public final class ModuleDetails {
 
     /** List of properties of the module. */
     private final List<ModulePropertyDetails> properties = new ArrayList<>();
-
-    /** Properties of the module arranged in a map where key is property name. */
-    private final Map<String, ModulePropertyDetails> modulePropertyKeyMap = new HashMap<>();
 
     /** List of violation message keys of the module. */
     private final List<String> violationMessageKeys = new ArrayList<>();
@@ -140,7 +135,6 @@ public final class ModuleDetails {
      */
     public void addToProperties(ModulePropertyDetails property) {
         properties.add(property);
-        modulePropertyKeyMap.put(property.getName(), property);
     }
 
     /**
@@ -150,9 +144,6 @@ public final class ModuleDetails {
      */
     public void addToProperties(List<ModulePropertyDetails> modulePropertyDetailsList) {
         properties.addAll(modulePropertyDetailsList);
-        modulePropertyDetailsList.forEach(modulePropertyDetails -> {
-            modulePropertyKeyMap.put(modulePropertyDetails.getName(), modulePropertyDetails);
-        });
     }
 
     /**
@@ -180,16 +171,6 @@ public final class ModuleDetails {
      */
     public void addToViolationMessages(List<String> msgList) {
         violationMessageKeys.addAll(msgList);
-    }
-
-    /**
-     * Get a module property object by supplying its name as key.
-     *
-     * @param key module property name
-     * @return module property object
-     */
-    public ModulePropertyDetails getModulePropertyByKey(String key) {
-        return modulePropertyKeyMap.get(key);
     }
 
     /**
