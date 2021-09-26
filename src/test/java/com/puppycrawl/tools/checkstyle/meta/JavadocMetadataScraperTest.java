@@ -19,34 +19,225 @@
 
 package com.puppycrawl.tools.checkstyle.meta;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Map;
+import java.util.Map.Entry;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-public class JavadocMetadataScraperTest {
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-    private static final String CHECK_PACKAGE_BASE =
-            "com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.checks.";
+public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
 
-    private static Map<String, ModuleDetails> moduleDetailsStore;
-
-    @BeforeAll
-    public static void fillModuleDetailsStore() throws Exception {
-        MetadataGeneratorUtil.generate(System.getProperty("user.dir")
-                + "/src/test/resources/com/puppycrawl/tools/checkstyle"
-                + "/meta/javadocmetadatascraper");
-        moduleDetailsStore = JavadocMetadataScraper.getModuleDetailsStore();
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/meta/javadocmetadatascraper";
     }
 
     @Test
-    public void testPropertyNameWithNoCodeTag() {
-        final String testCheck = "custom.InputJavadocMetadataScraperPropertyWithNoCodeTagCheck";
-        final ModuleDetails testCheckMeta = moduleDetailsStore.get(CHECK_PACKAGE_BASE + testCheck);
+    public void testAtclauseOrderCheck() throws Exception {
+        JavadocMetadataScraper.resetModuleDetailsStore();
+        verifyWithInlineConfigParser(getPath("InputJavadocMetadataScraperAtclauseOrderCheck.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+        assertEquals(readFile(getPath("ExpectedJavadocMetadataScraperAtclauseOrderCheck.txt")),
+                convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
+                "expected correct parse");
+    }
 
-        assertNull(testCheckMeta.getProperties().get(0).getName(),
-                "Check with no property name {@code } tag should have null property name");
+    @Test
+    public void testAnnotationUseStyleCheck() throws Exception {
+        JavadocMetadataScraper.resetModuleDetailsStore();
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMetadataScraperAnnotationUseStyleCheck.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+        assertEquals(readFile(getPath("ExpectedJavadocMetadataScraperAnnotationUseStyleCheck.txt")),
+                convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
+                "expected correct parse");
+    }
+
+    @Test
+    public void testBeforeExecutionExclusionFileFilter() throws Exception {
+        JavadocMetadataScraper.resetModuleDetailsStore();
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMetadataScraperBeforeExecutionExclusionFileFilter.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+        assertEquals(
+                readFile(getPath(
+                        "ExpectedJavadocMetadataScraperBeforeExecutionExclusionFileFilter.txt")),
+                convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
+                "expected correct parse");
+    }
+
+    @Test
+    public void testNoCodeInFileCheck() throws Exception {
+        JavadocMetadataScraper.resetModuleDetailsStore();
+        verifyWithInlineConfigParser(getPath("InputJavadocMetadataScraperNoCodeInFileCheck.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+        assertEquals(readFile(getPath("ExpectedJavadocMetadataScraperNoCodeInFileCheck.txt")),
+                convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
+                "expected correct parse");
+    }
+
+    @Test
+    public void testPropertyMisplacedDefaultValueCheck() {
+        JavadocMetadataScraper.resetModuleDetailsStore();
+        final CheckstyleException exc = assertThrows(CheckstyleException.class, () -> {
+            verifyWithInlineConfigParser(
+                    getPath("InputJavadocMetadataScraperPropertyMisplacedDefaultValueCheck.java"),
+                    CommonUtil.EMPTY_STRING_ARRAY);
+        });
+        assertThat(exc.getCause()).isInstanceOf(MetadataGenerationException.class);
+        assertThat(exc.getCause().getMessage())
+                .isEqualTo("Default value for property 'misplacedDefaultValue' is missing");
+    }
+
+    @Test
+    public void testPropertyMisplacedTypeCheck() {
+        JavadocMetadataScraper.resetModuleDetailsStore();
+        final CheckstyleException exc = assertThrows(CheckstyleException.class, () -> {
+            verifyWithInlineConfigParser(
+                    getPath("InputJavadocMetadataScraperPropertyMisplacedTypeCheck.java"),
+                    CommonUtil.EMPTY_STRING_ARRAY);
+            fail("Exception expected");
+        });
+        assertThat(exc.getCause()).isInstanceOf(MetadataGenerationException.class);
+        assertThat(exc.getCause().getMessage())
+                .isEqualTo("Type for property 'misplacedType' is missing");
+    }
+
+    @Test
+    public void testPropertyMissingDefaultValueCheck() {
+        JavadocMetadataScraper.resetModuleDetailsStore();
+        final CheckstyleException exc = assertThrows(CheckstyleException.class, () -> {
+            verifyWithInlineConfigParser(
+                    getPath("InputJavadocMetadataScraperPropertyMissingDefaultValueCheck.java"),
+                    CommonUtil.EMPTY_STRING_ARRAY);
+            fail("Exception expected");
+        });
+        assertThat(exc.getCause()).isInstanceOf(MetadataGenerationException.class);
+        assertThat(exc.getCause().getMessage())
+                .isEqualTo("Default value for property 'missingDefaultValue' is missing");
+    }
+
+    @Test
+    public void testPropertyMissingTypeCheck() {
+        JavadocMetadataScraper.resetModuleDetailsStore();
+        final CheckstyleException exc = assertThrows(CheckstyleException.class, () -> {
+            verifyWithInlineConfigParser(
+                    getPath("InputJavadocMetadataScraperPropertyMissingTypeCheck.java"),
+                    CommonUtil.EMPTY_STRING_ARRAY);
+            fail("Exception expected");
+        });
+        assertThat(exc.getCause()).isInstanceOf(MetadataGenerationException.class);
+        assertThat(exc.getCause().getMessage())
+                .isEqualTo("Type for property 'missingType' is missing");
+    }
+
+    @Test
+    public void testPropertyWithNoCodeTagCheck() throws Exception {
+        JavadocMetadataScraper.resetModuleDetailsStore();
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMetadataScraperPropertyWithNoCodeTagCheck.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+        assertEquals(
+                readFile(getPath("ExpectedJavadocMetadataScraperPropertyWithNoCodeTagCheck.txt")),
+                convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
+                "expected correct parse");
+    }
+
+    @Test
+    public void testRightCurlyCheck() throws Exception {
+        JavadocMetadataScraper.resetModuleDetailsStore();
+        verifyWithInlineConfigParser(getPath("InputJavadocMetadataScraperRightCurlyCheck.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+        assertEquals(readFile(getPath("ExpectedJavadocMetadataScraperRightCurlyCheck.txt")),
+                convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
+                "expected correct parse");
+    }
+
+    @Test
+    public void testSummaryJavadocCheck() throws Exception {
+        JavadocMetadataScraper.resetModuleDetailsStore();
+        verifyWithInlineConfigParser(getPath("InputJavadocMetadataScraperSummaryJavadocCheck.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+        assertEquals(readFile(getPath("ExpectedJavadocMetadataScraperSummaryJavadocCheck.txt")),
+                convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
+                "expected correct parse");
+    }
+
+    @Test
+    public void testSuppressWarningsFilter() throws Exception {
+        JavadocMetadataScraper.resetModuleDetailsStore();
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMetadataScraperSuppressWarningsFilter.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+        assertEquals(readFile(getPath("ExpectedJavadocMetadataScraperSuppressWarningsFilter.txt")),
+                convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
+                "expected correct parse");
+    }
+
+    @Test
+    public void testWriteTagCheck() throws Exception {
+        JavadocMetadataScraper.resetModuleDetailsStore();
+        verifyWithInlineConfigParser(getPath("InputJavadocMetadataScraperWriteTagCheck.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+        assertEquals(readFile(getPath("ExpectedJavadocMetadataScraperWriteTagCheck.txt")),
+                convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
+                "expected correct parse");
+    }
+
+    private static String convertToString(Map<String, ModuleDetails> moduleDetailsStore) {
+        final StringBuilder builder = new StringBuilder(128);
+        for (Entry<String, ModuleDetails> entry : moduleDetailsStore.entrySet()) {
+            final ModuleDetails details = entry.getValue();
+
+            append(builder, "Key: ", split(entry.getKey(), 70));
+            append(builder, "Name: ", details.getName());
+            append(builder, "FullQualifiedName: ", split(details.getFullQualifiedName(), 70));
+            append(builder, "Parent: ", details.getParent());
+            append(builder, "Description: ", details.getDescription());
+            append(builder, "ModuleType: ", details.getModuleType());
+
+            for (ModulePropertyDetails property : details.getProperties()) {
+                append(builder, "Property Type: ", split(property.getType(), 70));
+                append(builder, "Property DefaultValue: ", split(property.getDefaultValue(), 70));
+                append(builder, "Property ValidationType: ", property.getValidationType());
+                append(builder, "Property Description: ", property.getDescription());
+            }
+
+            for (String key : details.getViolationMessageKeys()) {
+                append(builder, "ViolationMessageKey: ", key);
+            }
+        }
+        return builder.toString();
+    }
+
+    private static void append(StringBuilder builder, String title, Object object) {
+        builder.append(title).append(object).append('\n');
+    }
+
+    private static String split(String text, int size) {
+        final StringBuilder builder = new StringBuilder(80);
+        if (text == null) {
+            builder.append("null");
+        }
+        else {
+            final int length = text.length();
+            int position = 0;
+            while (position < length) {
+                if (position != 0) {
+                    builder.append("<split>\n");
+                }
+                builder.append(text, position, Math.min(length, position + size));
+                position += size;
+            }
+        }
+        return builder.toString();
     }
 }

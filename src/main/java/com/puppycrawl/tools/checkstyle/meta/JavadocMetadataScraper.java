@@ -153,6 +153,20 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      */
     private int parentSectionStartIdx;
 
+    /**
+     * Control whether to write XML output or not.
+     */
+    private boolean writeXmlOutput = true;
+
+    /**
+     * Setter to control whether to write XML output or not.
+     *
+     * @param writeXmlOutput whether to write XML output or not.
+     */
+    public final void setWriteXmlOutput(boolean writeXmlOutput) {
+        this.writeXmlOutput = writeXmlOutput;
+    }
+
     @Override
     public int[] getDefaultJavadocTokens() {
         return new int[] {
@@ -213,10 +227,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
     public void finishJavadocTree(DetailNode rootAst) {
         moduleDetails.setDescription(getDescriptionText());
         if (isTopLevelClassJavadoc()) {
-            if (getFileContents().getFileName().contains("test")) {
-                MODULE_DETAILS_STORE.put(moduleDetails.getFullQualifiedName(), moduleDetails);
-            }
-            else {
+            if (writeXmlOutput) {
                 try {
                     XmlMetaWriter.write(moduleDetails);
                 }
@@ -224,6 +235,9 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
                     throw new IllegalStateException("Failed to write metadata into XML file for "
                             + "module: " + getModuleSimpleName(), ex);
                 }
+            }
+            else {
+                MODULE_DETAILS_STORE.put(moduleDetails.getFullQualifiedName(), moduleDetails);
             }
         }
     }
@@ -234,7 +248,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      *
      * @param ast javadoc ast
      */
-    public void scrapeContent(DetailNode ast) {
+    private void scrapeContent(DetailNode ast) {
         if (ast.getType() == JavadocTokenTypes.PARAGRAPH) {
             if (isParentText(ast)) {
                 parentSectionStartIdx = getParentIndexOf(ast);
@@ -603,13 +617,18 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
         return Collections.unmodifiableMap(MODULE_DETAILS_STORE);
     }
 
+    /** Reset the module detail store of any previous information. */
+    public static void resetModuleDetailsStore() {
+        MODULE_DETAILS_STORE.clear();
+    }
+
     /**
      * Check if the current javadoc block comment AST corresponds to the top-level class as we
      * only want to scrape top-level class javadoc.
      *
      * @return true if the current AST corresponds to top level class
      */
-    public boolean isTopLevelClassJavadoc() {
+    private boolean isTopLevelClassJavadoc() {
         final DetailAST parent = getParent(getBlockCommentAst());
         final Optional<DetailAST> className = TokenUtil
                 .findFirstTokenByPredicate(parent, child -> {
