@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.BeanPropertyType;
+import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -163,6 +165,7 @@ public class IllegalTokenTextCheck
     private String formatString = "^$";
 
     /** Define the RegExp for illegal pattern. */
+    @BeanPropertyType(PropertyType.REGEXP)
     private Pattern format = Pattern.compile(formatString);
 
     /** Control whether to ignore case when matching. */
