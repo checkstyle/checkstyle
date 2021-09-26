@@ -1,0 +1,35 @@
+Key: com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.InputJavad<split>
+ocMetadataScraperAtclauseOrderCheck
+Name: InputJavadocMetadataScraperAtclauseOrder
+FullQualifiedName: com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.InputJavad<split>
+ocMetadataScraperAtclauseOrderCheck
+Parent: com.puppycrawl.tools.checkstyle.TreeWalker
+Description: <p>
+ Checks the order of
+ <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+ javadoc block-tags or javadoc tags</a>.
+ </p>
+ <p>
+ Note: Google used the term "at-clauses" for block tags in their guide till 2017-02-28.
+ </p>
+ModuleType: CHECK
+Property Type: boolean
+Property DefaultValue: false
+Property ValidationType: null
+Property Description: Control when to print violations if the
+ Javadoc being examined by this check violates the tight html rules defined at
+ <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+Property Type: java.lang.String[]
+Property DefaultValue: CLASS_DEF,INTERFACE_DEF,ENUM_DEF,METHOD_DEF,CTOR_DEF,VARIABLE_DEF,RECO<split>
+RD_DEF,COMPACT_CTOR_DEF
+Property ValidationType: tokenSet
+Property Description: Specify the list of block tags targeted.
+Property Type: java.lang.String[]
+Property DefaultValue: @author, @deprecated, @exception, @param, @return, @see, @serial, @ser<split>
+ialData, @serialField, @since, @throws, @version
+Property ValidationType: null
+Property Description: Specify the order by tags.
+ViolationMessageKey: at.clause.order
+ViolationMessageKey: javadoc.missed.html.close
+ViolationMessageKey: javadoc.parse.rule.error
+ViolationMessageKey: javadoc.wrong.singleton.html.tag

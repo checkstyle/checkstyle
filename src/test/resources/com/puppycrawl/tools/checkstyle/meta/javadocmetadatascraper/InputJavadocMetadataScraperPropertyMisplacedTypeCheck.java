@@ -1,4 +1,11 @@
-package com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.invalid_metadata;
+/*
+com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper
+writeXmlOutput = false
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper;
 
 /**
  * <p>
@@ -18,12 +25,13 @@ package com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.invalid_meta
  * <p>
  * <ul>
  * <li>
- * Property {@code missingType} - Some description.
+ * Property {@code misplacedType} - Some long wrapped
+ * description. Type is {@code java.lang.String}.
  * Default value is {@code ""}.
  * </li>
  * </ul>
  *
  * @since 8.33
  */
-public class InputJavadocMetadataScraperPropertyMissingTypeCheck {
+public class InputJavadocMetadataScraperPropertyMisplacedTypeCheck {
 }
