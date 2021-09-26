@@ -1,4 +1,11 @@
-package com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.checks.custom;
+/*
+com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper
+writeXmlOutput = false
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper;
 
 /**
  * <p>
@@ -18,12 +25,12 @@ package com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.checks.custo
  * <p>
  * <ul>
  * <li>
- * Property
- * sampleProperty - Here the property name doesnt have a code tag around its name.
+ * Property {@code missingType} - Some description.
+ * Default value is {@code ""}.
  * </li>
  * </ul>
  *
  * @since 8.33
  */
-public class InputJavadocMetadataScraperPropertyWithNoCodeTagCheck {
+public class InputJavadocMetadataScraperPropertyMissingTypeCheck {
 }
