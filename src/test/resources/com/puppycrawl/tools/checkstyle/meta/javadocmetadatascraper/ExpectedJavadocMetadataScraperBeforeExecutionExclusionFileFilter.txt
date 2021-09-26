@@ -1,0 +1,31 @@
+Key: com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.InputJavad<split>
+ocMetadataScraperBeforeExecutionExclusionFileFilter
+Name: InputJavadocMetadataScraperBeforeExecutionExclusionFileFilter
+FullQualifiedName: com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.InputJavad<split>
+ocMetadataScraperBeforeExecutionExclusionFileFilter
+Parent: com.puppycrawl.tools.checkstyle.Checker
+Description: <p>
+ File filter {@code BeforeExecutionExclusionFileFilter} decides which files should be
+ excluded from being processed by the utility.
+ </p>
+
+ <p>
+ By default Checkstyle includes all files and sub-directories in a directory to be processed and
+ checked for violations. Users could have files that are in these sub-directories that shouldn't
+ be processed with their checkstyle configuration for various reasons, one of which is a valid
+ Java file that won't pass Checkstyle's parser. When Checkstyle tries to parse a Java file and
+ fails, it will throw an {@code Exception} and halt parsing any more files for violations.
+ An example of a valid Java file Checkstyle can't parse is JDK 9's {@code module-info.java}.
+ This file filter will exclude these problem files from being parsed, allowing the rest of the
+ files to run normal and be validated.
+ </p>
+
+ <p>
+ <b>Note:</b> When a file is excluded from the utility, it is excluded from all Checks and no
+ testing for violations will be performed on them.
+ </p>
+ModuleType: FILEFILTER
+Property Type: java.util.regex.Pattern
+Property DefaultValue: null
+Property ValidationType: null
+Property Description: Define regular expression to match the file name against.

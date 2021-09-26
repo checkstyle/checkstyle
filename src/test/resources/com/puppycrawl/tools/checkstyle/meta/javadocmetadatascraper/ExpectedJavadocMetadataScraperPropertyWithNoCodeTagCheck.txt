@@ -1,0 +1,26 @@
+Key: com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.InputJavad<split>
+ocMetadataScraperPropertyWithNoCodeTagCheck
+Name: InputJavadocMetadataScraperPropertyWithNoCodeTag
+FullQualifiedName: com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.InputJavad<split>
+ocMetadataScraperPropertyWithNoCodeTagCheck
+Parent: null
+Description: <p>
+ Checks whether file contains code. Files which are considered to have no code:
+ </p>
+ <ul>
+ <li>
+ File with no text
+ </li>
+ <li>
+ File with single line comment(s)
+ </li>
+ <li>
+ File with a multi line comment(s).
+ </li>
+ </ul>
+ <p>
+ModuleType: CHECK
+Property Type: null
+Property DefaultValue: null
+Property ValidationType: null
+Property Description: null
