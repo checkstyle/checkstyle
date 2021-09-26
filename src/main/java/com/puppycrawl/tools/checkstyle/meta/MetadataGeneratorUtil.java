@@ -51,6 +51,8 @@ public final class MetadataGeneratorUtil {
      * @throws CheckstyleException checkstyleException
      */
     public static void generate(String... args) throws IOException, CheckstyleException {
+        JavadocMetadataScraper.resetModuleDetailsStore();
+
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Checker.class.getClassLoader());
         final DefaultConfiguration scraperCheckConfig =
