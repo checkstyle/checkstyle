@@ -1,0 +1,31 @@
+Key: com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.InputJavad<split>
+ocMetadataScraperWriteTagCheck
+Name: InputJavadocMetadataScraperWriteTag
+FullQualifiedName: com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.InputJavad<split>
+ocMetadataScraperWriteTagCheck
+Parent: com.puppycrawl.tools.checkstyle.TreeWalker
+Description: <p>
+ Requires user defined Javadoc tag to be present in Javadoc comment with defined format.
+ To define the format for a tag, set property tagFormat to a regular expression.
+ Property tagSeverity is used for severity of events when the tag exists.
+ </p>
+ModuleType: CHECK
+Property Type: java.lang.String
+Property DefaultValue: null
+Property ValidationType: null
+Property Description: Specify the name of tag.
+Property Type: java.util.regex.Pattern
+Property DefaultValue: null
+Property ValidationType: null
+Property Description: Specify the regexp to match tag content.
+Property Type: com.puppycrawl.tools.checkstyle.api.SeverityLevel
+Property DefaultValue: info
+Property ValidationType: null
+Property Description: Specify the severity level when tag is found and printed.
+Property Type: java.lang.String[]
+Property DefaultValue: INTERFACE_DEF,CLASS_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF
+Property ValidationType: tokenSet
+Property Description: tokens to check
+ViolationMessageKey: javadoc.writeTag
+ViolationMessageKey: type.missingTag
+ViolationMessageKey: type.tagFormat
