@@ -78,23 +78,18 @@ public final class MetadataGeneratorUtil {
     private static void dumpMetadata(Checker checker, String path) throws CheckstyleException,
             IOException {
         final List<File> validFiles = new ArrayList<>();
-        if (path.endsWith(".java")) {
-            validFiles.add(new File(path));
-        }
-        else {
-            final List<String> moduleFolders = Arrays.asList("checks", "filters", "filefilters");
-            for (String folder : moduleFolders) {
-                try (Stream<Path> files = Files.walk(Paths.get(path
-                        + "/" + folder))) {
-                    validFiles.addAll(
-                            files.map(Path::toFile)
-                            .filter(file -> {
-                                return file.getName().endsWith("SuppressWarningsHolder.java")
-                                        || file.getName().endsWith("Check.java")
-                                        || file.getName().endsWith("Filter.java");
-                            })
-                            .collect(Collectors.toList()));
-                }
+        final List<String> moduleFolders = Arrays.asList("checks", "filters", "filefilters");
+        for (String folder : moduleFolders) {
+            try (Stream<Path> files = Files.walk(Paths.get(path
+                    + "/" + folder))) {
+                validFiles.addAll(
+                        files.map(Path::toFile)
+                        .filter(file -> {
+                            return file.getName().endsWith("SuppressWarningsHolder.java")
+                                    || file.getName().endsWith("Check.java")
+                                    || file.getName().endsWith("Filter.java");
+                        })
+                        .collect(Collectors.toList()));
             }
         }
 
