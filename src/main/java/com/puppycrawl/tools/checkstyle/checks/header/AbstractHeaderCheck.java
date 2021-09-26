@@ -35,6 +35,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.PropertyType;
+import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
@@ -57,6 +59,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     private URI headerFile;
 
     /** Specify the character encoding to use when reading the headerFile. */
+    @XdocsPropertyType(PropertyType.STRING)
     private Charset charset = createCharset(System.getProperty("file.encoding",
         StandardCharsets.UTF_8.name()));
 
