@@ -1,5 +1,5 @@
 /*
-com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSingleline
+com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck
 format = TODO$
 message = (default)(null)
 ignoreCase = (default)false

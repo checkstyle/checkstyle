@@ -3,7 +3,7 @@ BeforeExecutionExclusionFileFilter
 fileNamePattern = FileFilter\\.java
 
 
-com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariable
+com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck
 validateEnhancedForLoopVariable = (default)false
 tokens = (default)VARIABLE_DEF
 
