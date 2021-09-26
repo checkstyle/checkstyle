@@ -28,8 +28,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
+import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
@@ -286,12 +288,15 @@ public class SuppressWithNearbyCommentFilter
     private Pattern commentFormat = Pattern.compile(DEFAULT_COMMENT_FORMAT);
 
     /** Specify check pattern to suppress. */
+    @XdocsPropertyType(PropertyType.PATTERN)
     private String checkFormat = DEFAULT_CHECK_FORMAT;
 
     /** Define message pattern to suppress. */
+    @XdocsPropertyType(PropertyType.PATTERN)
     private String messageFormat;
 
     /** Specify check ID pattern to suppress. */
+    @XdocsPropertyType(PropertyType.PATTERN)
     private String idFormat;
 
     /**
