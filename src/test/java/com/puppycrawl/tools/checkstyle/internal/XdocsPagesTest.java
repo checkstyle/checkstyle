@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.internal;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static java.lang.Integer.parseInt;
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.beans.PropertyDescriptor;
 import java.io.File;
@@ -31,7 +32,6 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.net.URI;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -47,6 +47,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
 import java.util.TreeSet;
@@ -68,11 +69,12 @@ import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader.IgnoredModulesOptions;
 import com.puppycrawl.tools.checkstyle.ModuleFactory;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
+import com.puppycrawl.tools.checkstyle.PropertyType;
+import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
@@ -887,13 +889,23 @@ public class XdocsPagesTest {
                         .isNotEmpty();
 
         final Field field = getField(instance.getClass(), propertyName);
-        final Class<?> fieldClss = getFieldClass(fileName, sectionName, instance, field,
+        final Class<?> fieldClass = getFieldClass(fileName, sectionName, instance, field,
                 propertyName);
 
-        final String expectedTypeName = getModulePropertyExpectedTypeName(sectionName, fieldClss,
-                instance, propertyName);
+        final String expectedTypeName;
+        // SuppressWarningsHolder#aliasList is backed by a static (upper case) property.
+        if ("SuppressWarningsHolder".equals(sectionName) && "aliasList".equals(propertyName)) {
+            expectedTypeName = "String[] in a format of comma separated attribute=value entries. "
+                + "The attribute is the fully qualified name of the Check and value is its alias.";
+        }
+        else {
+            expectedTypeName = Optional.ofNullable(field)
+                .map(nonNullField -> nonNullField.getAnnotation(XdocsPropertyType.class))
+                .map(propertyType -> propertyType.value().getDescription())
+                .orElse(fieldClass.getSimpleName());
+        }
         final String expectedValue = getModulePropertyExpectedValue(sectionName, propertyName,
-                field, fieldClss, instance);
+                field, fieldClass, instance);
 
         assertWithMessage(fileName + " section '" + sectionName
                         + "' should have the type for " + propertyName)
@@ -1009,170 +1021,6 @@ public class XdocsPagesTest {
     }
 
     /**
-     * Get's the name of the bean property's type for the class.
-     *
-     * @param sectionName The name of the section/module being worked on.
-     * @param fieldClass The bean property's type.
-     * @param instance The class instance to work with.
-     * @param propertyName The property name to work with.
-     * @return String form of property's type.
-     * @noinspection IfStatementWithTooManyBranches
-     */
-    private static String getModulePropertyExpectedTypeName(String sectionName, Class<?> fieldClass,
-            Object instance, String propertyName) {
-        final String instanceName = instance.getClass().getSimpleName();
-        String result = null;
-        if (isDynamicCustomExpression(sectionName, propertyName)) {
-            // dynamic custom expression
-            result = "Pattern";
-        }
-        else if (fieldClass == int[].class) {
-            result = getPropertyTypeNameForIntArray(sectionName, propertyName);
-        }
-        else if (fieldClass == String.class || fieldClass == Charset.class) {
-            result = getPropertyTypeNameForString(sectionName, propertyName);
-        }
-        else if (fieldClass == String[].class) {
-            result = getPropertyTypeNameForStringArray(propertyName, instanceName);
-        }
-        else if (fieldClass == Pattern.class) {
-            result = "Pattern";
-        }
-        else if (fieldClass == Pattern[].class) {
-            result = "Pattern[]";
-        }
-        else if (fieldClass == Scope.class) {
-            result = "Scope";
-        }
-        else if ("PropertyCacheFile".equals(fieldClass.getSimpleName())) {
-            result = "File";
-        }
-        else if (fieldClass.isEnum()) {
-            result = fieldClass.getSimpleName();
-        }
-        else if (isKnownPropertyType(fieldClass)) {
-            result = fieldClass.getSimpleName();
-        }
-        else {
-            assertWithMessage("Unknown property type: " + fieldClass.getSimpleName()).fail();
-        }
-
-        if ("SuppressWarningsHolder".equals(instanceName)) {
-            result = result + " in a format of comma separated attribute=value entries. The "
-                    + "attribute is the fully qualified name of the Check and value is its alias.";
-        }
-
-        return result;
-    }
-
-    /**
-     * Checks whether property is a dynamic custom expression.
-     *
-     * @param sectionName the name of the section/module being worked on.
-     * @param propertyName the property name to work with.
-     * @return true if it is a dynamic custom expression.
-     */
-    private static boolean isDynamicCustomExpression(String sectionName, String propertyName) {
-        return isSuppressionFilter(sectionName)
-                && ("checkFormat".equals(propertyName)
-                || "messageFormat".equals(propertyName)
-                || "idFormat".equals(propertyName))
-                || isRegexpCheck(sectionName)
-                && "format".equals(propertyName);
-    }
-
-    /**
-     * Checks Whether the section is a type of suppression filter.
-     *
-     * @param sectionName the name of the section/module being worked on.
-     * @return true if it is a type of suppression filter.
-     */
-    private static boolean isSuppressionFilter(String sectionName) {
-        return "SuppressionCommentFilter".equals(sectionName)
-                || "SuppressWithNearbyCommentFilter".equals(sectionName)
-                || "SuppressWithPlainTextCommentFilter".equals(sectionName);
-    }
-
-    /**
-     * Checks whether the section is a RegexpCheck.
-     *
-     * @param sectionName the name of the section/module being worked on.
-     * @return true if the section is a RegexpCheck.
-     */
-    private static boolean isRegexpCheck(String sectionName) {
-        return "RegexpMultiline".equals(sectionName)
-                || "RegexpSingleline".equals(sectionName)
-                || "RegexpSinglelineJava".equals(sectionName);
-    }
-
-    /**
-     * Get's the name of the bean property's type for the Int[] class.
-     *
-     * @param sectionName the name of the section/module being worked on.
-     * @param propertyName the property name to work with.
-     * @return String form of property's type.
-     */
-    private static String getPropertyTypeNameForIntArray(String sectionName, String propertyName) {
-        String result = "int[]";
-        if (isPropertyTokenType(sectionName, propertyName)) {
-            result = "subset of tokens TokenTypes";
-        }
-        return result;
-    }
-
-    /**
-     * Get's the name of the bean property's type for the String class.
-     *
-     * @param sectionName the name of the section/module being worked on.
-     * @param propertyName the property name to work with.
-     * @return String form of property's type.
-     */
-    private static String getPropertyTypeNameForString(String sectionName, String propertyName) {
-        String result = "String";
-
-        if ("Checker".equals(sectionName) && "localeCountry".equals(propertyName)) {
-            result += " (either the empty string or an uppercase ISO 3166 2-letter code)";
-        }
-        else if ("Checker".equals(sectionName) && "localeLanguage".equals(propertyName)) {
-            result += " (either the empty string or a lowercase ISO 639 code)";
-        }
-        return result;
-    }
-
-    /**
-     * Get's the name of the bean property's type for the String[] class.
-     *
-     * @param propertyName the property name to work with.
-     * @param instanceName the simple name of class instance to work with.
-     * @return String form of property's type.
-     */
-    private static String getPropertyTypeNameForStringArray(
-            String propertyName, String instanceName) {
-        String result = "String[]";
-        if (propertyName.endsWith("Tokens") || propertyName.endsWith("Token")
-                || "AtclauseOrderCheck".equals(instanceName) && "target".equals(propertyName)
-                || "MultipleStringLiteralsCheck".equals(instanceName)
-                && "ignoreOccurrenceContext".equals(propertyName)) {
-            result = "subset of tokens TokenTypes";
-        }
-        return result;
-    }
-
-    /**
-     * Checks whether given property is a known property type.
-     *
-     * @param propertyType the bean property's type.
-     * @return true if given property type matches with one of the known property type.
-     */
-    private static boolean isKnownPropertyType(Class<?> propertyType) {
-        return propertyType == int.class
-                || propertyType == boolean.class
-                || propertyType == double[].class
-                || propertyType == URI.class
-                || propertyType == AccessModifierOption[].class;
-    }
-
-    /**
      * Get's the name of the bean property's default value for the class.
      *
      * @param sectionName The name of the section/module being worked on.
@@ -1181,14 +1029,13 @@ public class XdocsPagesTest {
      * @param fieldClass The bean property's type.
      * @param instance The class instance to work with.
      * @return String form of property's default value.
-     * @noinspection OverlyNestedMethod
      */
     private static String getModulePropertyExpectedValue(String sectionName, String propertyName,
             Field field, Class<?> fieldClass, Object instance) throws Exception {
         String result = null;
 
         if (field != null) {
-            Object value = field.get(instance);
+            final Object value = field.get(instance);
 
             // noinspection IfStatementWithTooManyBranches
             if ("Checker".equals(sectionName) && "localeCountry".equals(propertyName)) {
@@ -1210,73 +1057,10 @@ public class XdocsPagesTest {
                 result = value.toString();
             }
             else if (fieldClass == int.class) {
-                if (value.equals(Integer.MAX_VALUE)) {
-                    result = "2147483647";
-                }
-                else {
-                    result = value.toString();
-                }
+                result = value.toString();
             }
             else if (fieldClass == int[].class) {
-                if (value instanceof Collection) {
-                    final Collection<?> collection = (Collection<?>) value;
-                    final int[] newArray = new int[collection.size()];
-                    final Iterator<?> iterator = collection.iterator();
-                    int index = 0;
-
-                    while (iterator.hasNext()) {
-                        newArray[index] = (Integer) iterator.next();
-                        index++;
-                    }
-
-                    value = newArray;
-                }
-
-                if (isPropertyTokenType(sectionName, propertyName)) {
-                    boolean first = true;
-
-                    if (value instanceof BitSet) {
-                        final BitSet list = (BitSet) value;
-                        final StringBuilder sb = new StringBuilder(20);
-
-                        for (int i = 0; i < list.size(); i++) {
-                            if (list.get(i)) {
-                                if (first) {
-                                    first = false;
-                                }
-                                else {
-                                    sb.append(", ");
-                                }
-
-                                sb.append(TokenUtil.getTokenName(i));
-                            }
-                        }
-
-                        result = sb.toString();
-                    }
-                    else {
-                        final StringBuilder sb = new StringBuilder(20);
-
-                        for (int i = 0; i < Array.getLength(value); i++) {
-                            if (first) {
-                                first = false;
-                            }
-                            else {
-                                sb.append(", ");
-                            }
-
-                            sb.append(TokenUtil.getTokenName((int) Array.get(value, i)));
-                        }
-
-                        result = sb.toString();
-                    }
-                }
-                else {
-                    result = Arrays.toString((int[]) value).replace("[", "").replace("]", "");
-                }
-                if (result.isEmpty()) {
-                    result = "{}";
-                }
+                result = getIntArrayPropertyValue(field, value);
             }
             else if (fieldClass == double[].class) {
                 result = Arrays.toString((double[]) value).replace("[", "").replace("]", "")
@@ -1286,33 +1070,7 @@ public class XdocsPagesTest {
                 }
             }
             else if (fieldClass == String[].class) {
-                if (value == null) {
-                    result = "";
-                }
-                else {
-                    final Stream<?> valuesStream;
-                    if (value instanceof Collection) {
-                        final Collection<?> collection = (Collection<?>) value;
-                        valuesStream = collection.stream();
-                    }
-                    else {
-                        final Object[] array = (Object[]) value;
-                        valuesStream = Arrays.stream(array);
-                    }
-                    result = valuesStream
-                        .map(String.class::cast)
-                        .sorted()
-                        .collect(Collectors.joining(", "));
-                }
-
-                if (result.isEmpty()) {
-                    if ("fileExtensions".equals(propertyName)) {
-                        result = "all files";
-                    }
-                    else {
-                        result = "{}";
-                    }
-                }
+                result = getStringArrayPropertyValue(propertyName, value);
             }
             else if (fieldClass == URI.class || fieldClass == String.class) {
                 if (value != null) {
@@ -1326,38 +1084,7 @@ public class XdocsPagesTest {
                 }
             }
             else if (fieldClass == Pattern[].class) {
-                if (value instanceof Collection) {
-                    final Collection<?> collection = (Collection<?>) value;
-                    final Pattern[] newArray = new Pattern[collection.size()];
-                    final Iterator<?> iterator = collection.iterator();
-                    int index = 0;
-
-                    while (iterator.hasNext()) {
-                        final Object next = iterator.next();
-                        newArray[index] = (Pattern) next;
-                        index++;
-                    }
-
-                    value = newArray;
-                }
-
-                if (value != null && Array.getLength(value) > 0) {
-                    final String[] newArray = new String[Array.getLength(value)];
-
-                    for (int i = 0; i < newArray.length; i++) {
-                        newArray[i] = ((Pattern) Array.get(value, i)).pattern();
-                    }
-
-                    result = Arrays.toString(newArray).replace("[", "")
-                            .replace("]", "");
-                }
-                else {
-                    result = "";
-                }
-
-                if (result.isEmpty()) {
-                    result = "{}";
-                }
+                result = getPatternArrayPropertyValue(value);
             }
             else if (fieldClass.isEnum()) {
                 if (value != null) {
@@ -1380,33 +1107,189 @@ public class XdocsPagesTest {
     }
 
     /**
-     * Checks if the given property is takes token names as a type.
+     * Get's the name of the bean property's default value for the Pattern array class.
      *
-     * @param sectionName The name of the section/module being worked on.
-     * @param propertyName The property name to work with.
-     * @return {@code true} if the property is takes token names as a type.
-     * @noinspection OverlyComplexBooleanExpression
+     * @param fieldValue The bean property's value.
+     * @return String form of property's default value.
      */
-    private static boolean isPropertyTokenType(String sectionName, String propertyName) {
-        return "AtclauseOrder".equals(sectionName) && "target".equals(propertyName)
-            || "IllegalType".equals(sectionName) && "memberModifiers".equals(propertyName)
-            || "MagicNumber".equals(sectionName)
-                    && "constantWaiverParentToken".equals(propertyName)
-            || "MultipleStringLiterals".equals(sectionName)
-                    && "ignoreOccurrenceContext".equals(propertyName)
-            || "DescendantToken".equals(sectionName) && "limitedTokens".equals(propertyName);
+    private static String getPatternArrayPropertyValue(Object fieldValue) {
+        Object value = fieldValue;
+        String result;
+        if (value instanceof Collection) {
+            final Collection<?> collection = (Collection<?>) value;
+            final Pattern[] newArray = new Pattern[collection.size()];
+            final Iterator<?> iterator = collection.iterator();
+            int index = 0;
+
+            while (iterator.hasNext()) {
+                final Object next = iterator.next();
+                newArray[index] = (Pattern) next;
+                index++;
+            }
+
+            value = newArray;
+        }
+
+        if (value != null && Array.getLength(value) > 0) {
+            final String[] newArray = new String[Array.getLength(value)];
+
+            for (int i = 0; i < newArray.length; i++) {
+                newArray[i] = ((Pattern) Array.get(value, i)).pattern();
+            }
+
+            result = Arrays.toString(newArray).replace("[", "").replace("]", "");
+        }
+        else {
+            result = "";
+        }
+
+        if (result.isEmpty()) {
+            result = "{}";
+        }
+        return result;
     }
 
-    private static Field getField(Class<?> clss, String propertyName) {
-        Field result = null;
+    /**
+     * Get's the name of the bean property's default value for the string array class.
+     *
+     * @param propertyName The bean property's name.
+     * @param value The bean property's value.
+     * @return String form of property's default value.
+     */
+    private static String getStringArrayPropertyValue(String propertyName, Object value) {
+        String result;
+        if (value == null) {
+            result = "";
+        }
+        else {
+            final Stream<?> valuesStream;
+            if (value instanceof Collection) {
+                final Collection<?> collection = (Collection<?>) value;
+                valuesStream = collection.stream();
+            }
+            else {
+                final Object[] array = (Object[]) value;
+                valuesStream = Arrays.stream(array);
+            }
+            result = valuesStream
+                .map(String.class::cast)
+                .sorted()
+                .collect(Collectors.joining(", "));
+        }
 
-        if (clss != null) {
+        if (result.isEmpty()) {
+            if ("fileExtensions".equals(propertyName)) {
+                result = "all files";
+            }
+            else {
+                result = "{}";
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Returns the name of the bean property's default value for the int array class.
+     *
+     * @param field The bean property's field.
+     * @param fieldValue The bean property's value.
+     * @return String form of property's default value.
+     */
+    private static String getIntArrayPropertyValue(Field field, Object fieldValue) {
+        Object value = fieldValue;
+        String result;
+        if (value instanceof Collection) {
+            final Collection<?> collection = (Collection<?>) value;
+            final int[] newArray = new int[collection.size()];
+            final Iterator<?> iterator = collection.iterator();
+            int index = 0;
+
+            while (iterator.hasNext()) {
+                newArray[index] = (Integer) iterator.next();
+                index++;
+            }
+
+            value = newArray;
+        }
+
+        if (isPropertyTokenType(field)) {
+            boolean first = true;
+
+            if (value instanceof BitSet) {
+                final BitSet list = (BitSet) value;
+                final StringBuilder sb = new StringBuilder(20);
+
+                for (int i = 0; i < list.size(); i++) {
+                    if (list.get(i)) {
+                        if (first) {
+                            first = false;
+                        }
+                        else {
+                            sb.append(", ");
+                        }
+
+                        sb.append(TokenUtil.getTokenName(i));
+                    }
+                }
+
+                result = sb.toString();
+            }
+            else {
+                final StringBuilder sb = new StringBuilder(20);
+
+                for (int i = 0; i < Array.getLength(value); i++) {
+                    if (first) {
+                        first = false;
+                    }
+                    else {
+                        sb.append(", ");
+                    }
+
+                    sb.append(TokenUtil.getTokenName((int) Array.get(value, i)));
+                }
+
+                result = sb.toString();
+            }
+        }
+        else {
+            result = Arrays.toString((int[]) value).replace("[", "").replace("]", "");
+        }
+        if (result.isEmpty()) {
+            result = "{}";
+        }
+        return result;
+    }
+
+    /**
+     * Checks if the given property is takes token names as a type.
+     *
+     * @param field The backed field of the section/module being worked on.
+     * @return {@code true} if the property is takes token names as a type.
+     */
+    private static boolean isPropertyTokenType(Field field) {
+        final XdocsPropertyType propertyType = field.getDeclaredAnnotation(XdocsPropertyType.class);
+        return propertyType != null && propertyType.value() == PropertyType.TOKEN_ARRAY;
+    }
+
+    /**
+     * Returns the bean property's field.
+     *
+     * @param fieldClass The bean property's type
+     * @param propertyName The bean property's name
+     * @return the bean property's field
+     */
+    private static Field getField(Class<?> fieldClass, String propertyName) {
+        Field result = null;
+        Class<?> currentClass = fieldClass;
+
+        while (!Object.class.equals(currentClass)) {
             try {
-                result = clss.getDeclaredField(propertyName);
+                result = currentClass.getDeclaredField(propertyName);
                 result.setAccessible(true);
+                break;
             }
             catch (NoSuchFieldException ignored) {
-                result = getField(clss.getSuperclass(), propertyName);
+                currentClass = currentClass.getSuperclass();
             }
         }
 
