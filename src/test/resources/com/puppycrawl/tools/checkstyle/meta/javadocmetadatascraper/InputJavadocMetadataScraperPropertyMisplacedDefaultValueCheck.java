@@ -1,4 +1,11 @@
-package com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.invalid_metadata;
+/*
+com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper
+writeXmlOutput = false
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper;
 
 /**
  * <p>

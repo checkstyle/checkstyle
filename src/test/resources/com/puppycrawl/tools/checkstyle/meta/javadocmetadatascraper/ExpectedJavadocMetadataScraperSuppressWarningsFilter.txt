@@ -1,0 +1,31 @@
+Key: com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.InputJavad<split>
+ocMetadataScraperSuppressWarningsFilter
+Name: InputJavadocMetadataScraperSuppressWarningsFilter
+FullQualifiedName: com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.InputJavad<split>
+ocMetadataScraperSuppressWarningsFilter
+Parent: com.puppycrawl.tools.checkstyle.Checker
+Description: <p>
+ Filter {@code SuppressWarningsFilter} uses annotation
+ {@code SuppressWarnings} to suppress audit events.
+ </p>
+ <p>
+ Rationale: Same as for {@code SuppressionCommentFilter}. In the contrary to it here,
+ comments are not used comments but the builtin syntax of {@code @SuppressWarnings}.
+ This can be perceived as a more elegant solution than using comments.
+ Also this approach maybe supported by various IDE.
+ </p>
+ <p>
+ Usage: This filter only works in conjunction with a
+ <a href="https://checkstyle.org/config_annotation.html#SuppressWarningsHolder">
+ SuppressWarningsHolder</a>,
+ since that check finds the annotations in the Java files and makes them available for the filter.
+ Because of that, a configuration that includes this filter must also include
+ {@code SuppressWarningsHolder} as a child module of the {@code TreeWalker}.
+ Name of check in annotation is case-insensitive and should be written with
+ any dotted prefix or "Check" suffix removed.
+ </p>
+ <p>
+ SuppressWarningsFilter can suppress Checks that have Treewalker or
+ Checker as parent module.
+ </p>
+ModuleType: FILTER

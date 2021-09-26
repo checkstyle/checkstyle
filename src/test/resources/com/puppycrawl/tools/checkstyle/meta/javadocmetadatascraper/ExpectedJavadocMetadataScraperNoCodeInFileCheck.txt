@@ -1,0 +1,22 @@
+Key: com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.InputJavad<split>
+ocMetadataScraperNoCodeInFileCheck
+Name: InputJavadocMetadataScraperNoCodeInFile
+FullQualifiedName: com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.InputJavad<split>
+ocMetadataScraperNoCodeInFileCheck
+Parent: com.puppycrawl.tools.checkstyle.TreeWalker
+Description: <p>
+ Checks whether file contains code. Files which are considered to have no code:
+ </p>
+ <ul>
+ <li>
+ File with no text
+ </li>
+ <li>
+ File with single line comment(s)
+ </li>
+ <li>
+ File with a multi line comment(s).
+ </li>
+ </ul>
+ModuleType: CHECK
+ViolationMessageKey: nocode.in.file
