@@ -127,6 +127,8 @@
     <allow class="java.nio.file.NoSuchFileException" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.Definitions" local-only="true"/>
 
+    <allow class="com.puppycrawl.tools.checkstyle.XdocsPropertyType"/>
+    <allow class="com.puppycrawl.tools.checkstyle.PropertyType"/>
     <allow class="com.puppycrawl.tools.checkstyle.StatelessCheck"/>
     <allow class="com.puppycrawl.tools.checkstyle.FileStatefulCheck"/>
     <allow class="com.puppycrawl.tools.checkstyle.GlobalStatefulCheck"/>
@@ -165,6 +167,8 @@
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerFilter" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.XmlLoader" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.XdocsPropertyType" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.PropertyType" local-only="true"/>
     <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
     <allow pkg="com.puppycrawl.tools.checkstyle.xpath"/>
     <allow class="java.nio.charset.StandardCharsets" local-only="true"/>

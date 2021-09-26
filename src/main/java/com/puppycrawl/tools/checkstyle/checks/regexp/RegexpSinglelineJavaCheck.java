@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
+import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
+import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -210,6 +212,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class RegexpSinglelineJavaCheck extends AbstractCheck {
 
     /** Specify the format of the regular expression to match. */
+    @XdocsPropertyType(PropertyType.REGEXP)
     private String format = "$.";
     /**
      * Specify the message which is used to notify about violations,
