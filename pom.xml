@@ -2880,6 +2880,8 @@
                 <param>com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator</param>
                 <!-- interfaces -->
                 <param>com.puppycrawl.tools.checkstyle.AuditEventFormatter</param>
+                <param>com.puppycrawl.tools.checkstyle.BeanPropertyType</param>
+                <param>com.puppycrawl.tools.checkstyle.PropertyType</param>
                 <param>com.puppycrawl.tools.checkstyle.FileStatefulCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.ModuleFactory</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertyResolver</param>
