@@ -67,16 +67,12 @@
            GeneratedJavadocTokenTypesTest#testTokenNumbers.
            JavadocTokenTypesTest.TokenValues contains several asserts as it checks each
              token explicitly.
-           XdocsPagesTest.getModulePropertyExpectedTypeName is a complicated list of
-             different checks.
            IndentationCheckTest has a lot of cases. -->
       <property name="violationSuppressXPath"
               value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenValues']
                    | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenNumbering']
-                   | //ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
-                       //MethodDeclaration[@Name='getModulePropertyExpectedTypeName']
                    | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenNumbers']
                    | //ClassOrInterfaceDeclaration[@SimpleName='IndentationCheckTest']"/>
@@ -90,8 +86,6 @@
            ParenPadCheckTest.testNospaceWithComplexInput is intended to keep all in one method.
            JavadocTokenTypesTest.TokenValues contains several asserts as it checks each
              token explicitly.
-           XdocsPagesTest.getModulePropertyExpectedTypeName is a complicated list of
-             different checks.
           MainTest.testGenerateXpathSuppressionOptionOne requires a very long 'expected' string
       -->
       <property name="violationSuppressXPath"
@@ -103,8 +97,6 @@
                         //MethodDeclaration[@Name='testMethodParen']
                     | //ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenValues']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
-                        //MethodDeclaration[@Name='getModulePropertyExpectedTypeName']
                     | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenNumbers']
                     | //ClassOrInterfaceDeclaration[@SimpleName='MainTest']
