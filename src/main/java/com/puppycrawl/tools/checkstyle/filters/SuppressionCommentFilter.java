@@ -29,6 +29,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import com.puppycrawl.tools.checkstyle.BeanPropertyType;
+import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -373,12 +375,15 @@ public class SuppressionCommentFilter
     private Pattern onCommentFormat = Pattern.compile(DEFAULT_ON_FORMAT);
 
     /** Specify check pattern to suppress. */
+    @BeanPropertyType(PropertyType.REGEXP)
     private String checkFormat = DEFAULT_CHECK_FORMAT;
 
     /** Specify message pattern to suppress. */
+    @BeanPropertyType(PropertyType.REGEXP)
     private String messageFormat;
 
     /** Specify check ID pattern to suppress. */
+    @BeanPropertyType(PropertyType.REGEXP)
     private String idFormat;
 
     /**

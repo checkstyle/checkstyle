@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.puppycrawl.tools.checkstyle.BeanPropertyType;
+import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -170,6 +172,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
     /**
      * Specify the list of block tags targeted.
      */
+    @BeanPropertyType(PropertyType.TOKEN_ARRAY)
     private List<Integer> target = Arrays.asList(
         TokenTypes.CLASS_DEF,
         TokenTypes.INTERFACE_DEF,

@@ -27,7 +27,9 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.puppycrawl.tools.checkstyle.BeanPropertyType;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -382,6 +384,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * Control whether to check only methods and fields with any of the specified modifiers.
      * This property does not affect method calls nor method references.
      */
+    @BeanPropertyType(PropertyType.TOKEN_ARRAY)
     private List<Integer> memberModifiers = Collections.emptyList();
 
     /** Specify RegExp for illegal abstract class names. */
