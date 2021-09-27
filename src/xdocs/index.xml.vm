@@ -126,6 +126,43 @@
       </p>
     </section>
 
+    <section name="Additional Checks">
+      <p>
+        There are other projects that provide additional checks
+      </p>
+      <div class="wrapper">
+        <table>
+          <tr>
+            <th>Project name</th>
+            <th>Link</th>
+            <th>Remarks</th>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://checkstyle-addons.thomasjensen.com/">Checkstyle addons</a>
+            </td>
+            <td>
+              <a href="https://github.com/checkstyle-addons/checkstyle-addons/releases/latest">
+                checkstyle-addons
+              </a>
+            </td>
+            <td/>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://sevntu-checkstyle.github.io/sevntu.checkstyle/">SevNTU checkstyle</a>
+            </td>
+            <td>
+              <a href="https://github.com/sevntu-checkstyle/sevntu.checkstyle/releases">
+                sevntu-checkstyle
+              </a>
+            </td>
+            <td/>
+          </tr>
+        </table>
+      </div>
+    </section>
+
     <section name="Related Tools">
       <p>
         Checkstyle is most useful if you integrate it into your build process or
