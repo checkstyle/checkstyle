@@ -14,6 +14,8 @@
       a test that is expected behavior and we like it as it follow fail-fast and helps
       to avoid extra catch blocks -->
     <exclude name="SignatureDeclareThrowsException"/>
+    <!-- We need reflection in the tests to access some internal state. -->
+    <exclude name="AvoidAccessibilityAlteration"/>
     <!-- it madness to move all string values to common variables,
       it will be hard to read test code -->
     <exclude name="AvoidDuplicateLiterals"/>
