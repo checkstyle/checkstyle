@@ -23,6 +23,8 @@ import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -33,6 +35,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.puppycrawl.tools.checkstyle.Checker;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -52,14 +55,18 @@ public final class MetadataGeneratorUtilTest {
 
     @Test
     public void testMetadataFilesGenerationAllFiles() throws Exception {
-        MetadataGeneratorUtil.generate(System.getProperty("user.dir")
+        Pair<Checker, List<File>> pair = MetadataGeneratorUtil.generate(System.getProperty("user.dir")
                 + "/src/main/java/com/puppycrawl/tools/checkstyle");
+        pair.getLeft().process(pair.getRight());
         final Set<String> metaFiles;
 
         try (Stream<Path> fileStream = Files.walk(
                 Paths.get(System.getProperty("user.dir") + "/src/main/resources/com/puppycrawl"
                         + "/tools/checkstyle/meta"))) {
             metaFiles = fileStream
+                    .map(Path::toString)
+                    .filter(fileName -> !fileName.endsWith(".properties"))
+                    .map(Paths::get)
                     .filter(Files::isRegularFile)
                     .map(MetadataGeneratorUtilTest::getMetaFileName)
                     .sorted()
@@ -76,10 +83,14 @@ public final class MetadataGeneratorUtilTest {
     }
 
     @Test
-    public void testMetadataFileGenerationDefaultValueMisplaced() {
-        final CheckstyleException exc = assertThrows(CheckstyleException.class, () -> {
-            MetadataGeneratorUtil.generate(invalidMetadataPackage
+    public void testMetadataFileGenerationDefaultValueMisplaced() throws CheckstyleException,
+            IOException {
+
+        Pair<Checker, List<File>> pair = MetadataGeneratorUtil.generate(invalidMetadataPackage
                 + "/InputJavadocMetadataScraperPropertyMisplacedDefaultValueCheck.java");
+
+        final CheckstyleException exc = assertThrows(CheckstyleException.class, () -> {
+            pair.getLeft().process(pair.getRight());
         });
         assertThat(exc.getCause()).isInstanceOf(MetadataGenerationException.class);
         assertThat(exc.getCause().getMessage()).isEqualTo(
@@ -87,10 +98,14 @@ public final class MetadataGeneratorUtilTest {
     }
 
     @Test
-    public void testMetadataFileGenerationTypeMisplaced() {
-        final CheckstyleException exc = assertThrows(CheckstyleException.class, () -> {
-            MetadataGeneratorUtil.generate(invalidMetadataPackage
+    public void testMetadataFileGenerationTypeMisplaced() throws CheckstyleException,
+            IOException {
+
+        Pair<Checker, List<File>> pair = MetadataGeneratorUtil.generate(invalidMetadataPackage
                 + "/InputJavadocMetadataScraperPropertyMisplacedTypeCheck.java");
+
+        final CheckstyleException exc = assertThrows(CheckstyleException.class, () -> {
+            pair.getLeft().process(pair.getRight());
         });
         assertThat(exc.getCause()).isInstanceOf(MetadataGenerationException.class);
         assertThat(exc.getCause().getMessage()).isEqualTo(
@@ -98,10 +113,14 @@ public final class MetadataGeneratorUtilTest {
     }
 
     @Test
-    public void testMetadataFileGenerationTypeMissing() {
-        final CheckstyleException exc = assertThrows(CheckstyleException.class, () -> {
-            MetadataGeneratorUtil.generate(invalidMetadataPackage
+    public void testMetadataFileGenerationTypeMissing() throws CheckstyleException,
+            IOException {
+
+        Pair<Checker, List<File>> pair = MetadataGeneratorUtil.generate(invalidMetadataPackage
                 + "/InputJavadocMetadataScraperPropertyMissingTypeCheck.java");
+
+        final CheckstyleException exc = assertThrows(CheckstyleException.class, () -> {
+            pair.getLeft().process(pair.getRight());
         });
         assertThat(exc.getCause()).isInstanceOf(MetadataGenerationException.class);
         assertThat(exc.getCause().getMessage()).isEqualTo(
@@ -109,10 +128,14 @@ public final class MetadataGeneratorUtilTest {
     }
 
     @Test
-    public void testMetadataFileGenerationDefaultValueMissing() {
-        final CheckstyleException exc = assertThrows(CheckstyleException.class, () -> {
-            MetadataGeneratorUtil.generate(invalidMetadataPackage
+    public void testMetadataFileGenerationDefaultValueMissing() throws CheckstyleException,
+            IOException {
+
+        Pair<Checker, List<File>> pair =  MetadataGeneratorUtil.generate(invalidMetadataPackage
                 + "/InputJavadocMetadataScraperPropertyMissingDefaultValueCheck.java");
+
+        final CheckstyleException exc = assertThrows(CheckstyleException.class, () -> {
+            pair.getLeft().process(pair.getRight());
         });
         assertThat(exc.getCause()).isInstanceOf(MetadataGenerationException.class);
         assertThat(exc.getCause().getMessage()).isEqualTo(
@@ -137,3 +160,4 @@ public final class MetadataGeneratorUtilTest {
         return fileName.substring(0, fileName.length() - lengthToOmit);
     }
 }
+

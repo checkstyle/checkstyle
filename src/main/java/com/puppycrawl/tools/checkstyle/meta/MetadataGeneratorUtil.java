@@ -47,10 +47,11 @@ public final class MetadataGeneratorUtil {
      * Generate metadata from the module source files available in the input argument path.
      *
      * @param args arguments
+     * @return a pair of Checker with a list of validFiles.
      * @throws IOException ioException
      * @throws CheckstyleException checkstyleException
      */
-    public static void generate(String... args) throws IOException, CheckstyleException {
+    public static Pair<Checker, List<File>> generate(String... args) throws IOException, CheckstyleException {
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Checker.class.getClassLoader());
         final DefaultConfiguration scraperCheckConfig =
@@ -58,23 +59,22 @@ public final class MetadataGeneratorUtil {
         final DefaultConfiguration defaultConfiguration = new DefaultConfiguration("configuration");
         final DefaultConfiguration treeWalkerConfig =
                 new DefaultConfiguration(TreeWalker.class.getName());
+
         defaultConfiguration.addProperty("charset", StandardCharsets.UTF_8.name());
         defaultConfiguration.addChild(treeWalkerConfig);
         treeWalkerConfig.addChild(scraperCheckConfig);
         checker.configure(defaultConfiguration);
-        dumpMetadata(checker, args[0]);
+
+        return new Pair<>(checker, extractValidFiles(args[0]));
     }
 
     /**
      * Process files using the checker passed and write to corresponding XML files.
      *
-     * @param checker checker
      * @param path rootPath
-     * @throws CheckstyleException checkstyleException
      * @throws IOException ioException
      */
-    private static void dumpMetadata(Checker checker, String path) throws CheckstyleException,
-            IOException {
+    private static List<File> extractValidFiles(String path) throws IOException {
         final List<File> validFiles = new ArrayList<>();
         if (path.endsWith(".java")) {
             validFiles.add(new File(path));
@@ -96,6 +96,6 @@ public final class MetadataGeneratorUtil {
             }
         }
 
-        checker.process(validFiles);
+        return validFiles;
     }
 }
