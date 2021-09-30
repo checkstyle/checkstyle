@@ -532,4 +532,27 @@ public class WhitespaceAroundCheckTest
                 getPath("InputWhitespaceAroundAllTokens.java"), expected);
     }
 
+    @Test
+    public void testWhitespaceAroundAfterEmoji() throws Exception {
+        final String[] expected = {
+            "25:22: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "+"),
+            "26:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "+"),
+            "27:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "+"),
+            "27:22: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "+"),
+            "29:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "+"),
+            "29:19: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "+"),
+            "29:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "+"),
+            "29:23: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "+"),
+            "29:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "+"),
+            "29:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "+"),
+            "29:32: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "+"),
+            "29:32: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "+"),
+            "29:36: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "+"),
+            "29:36: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "+"),
+            "29:40: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "+"),
+            "29:40: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "+"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputWhitespaceAroundAfterEmoji.java"), expected);
+    }
 }
