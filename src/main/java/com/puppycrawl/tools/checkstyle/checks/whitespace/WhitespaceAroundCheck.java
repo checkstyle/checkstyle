@@ -690,17 +690,18 @@ public class WhitespaceAroundCheck extends AbstractCheck {
             final String line = getLine(ast.getLineNo() - 1);
             final int before = ast.getColumnNo() - 1;
             final int after = ast.getColumnNo() + ast.getText().length();
+            final int[] codePoints = line.codePoints().toArray();
 
             if (before >= 0) {
-                final char prevChar = line.charAt(before);
+                final char prevChar = Character.toChars(codePoints[before])[0];
                 if (shouldCheckSeparationFromPreviousToken(ast)
                         && !Character.isWhitespace(prevChar)) {
                     log(ast, MSG_WS_NOT_PRECEDED, ast.getText());
                 }
             }
 
-            if (after < line.length()) {
-                final char nextChar = line.charAt(after);
+            if (after < codePoints.length) {
+                final char nextChar = Character.toChars(codePoints[after])[0];
                 if (shouldCheckSeparationFromNextToken(ast, nextChar)
                         && !Character.isWhitespace(nextChar)) {
                     log(ast, MSG_WS_NOT_FOLLOWED, ast.getText());
