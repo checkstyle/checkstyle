@@ -72,3 +72,18 @@ public class InputCheckUtilTest<V, C> {
         void method();
     }
 }
+
+enum DAY {
+
+    SOME_CONSTANT(1) {
+        int someMethod() {
+            return 0;
+        }
+    };
+
+    DAY(int i) {
+    }
+
+    void testMethod() {
+    }
+}
