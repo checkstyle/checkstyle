@@ -19,12 +19,21 @@
 
 package com.puppycrawl.tools.checkstyle.meta;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.DefaultLogger;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class JavadocMetadataScraperTest {
 
@@ -35,9 +44,12 @@ public class JavadocMetadataScraperTest {
 
     @BeforeAll
     public static void fillModuleDetailsStore() throws Exception {
-        MetadataGeneratorUtil.generate(System.getProperty("user.dir")
+        final ImmutablePair<Checker, List<File>> immutablePair = MetadataGeneratorUtil.generate(
+                System.getProperty("user.dir")
                 + "/src/test/resources/com/puppycrawl/tools/checkstyle"
                 + "/meta/javadocmetadatascraper");
+        immutablePair.getLeft().process(immutablePair.getRight());
+
         moduleDetailsStore = JavadocMetadataScraper.getModuleDetailsStore();
     }
 
@@ -48,5 +60,18 @@ public class JavadocMetadataScraperTest {
 
         assertNull(testCheckMeta.getProperties().get(0).getName(),
                 "Check with no property name {@code } tag should have null property name");
+    }
+
+    @Test
+    public void testMetaDataFileGenerationErrors() throws IOException, CheckstyleException {
+        final ImmutablePair<Checker, List<File>> immutablePair = MetadataGeneratorUtil.generate(
+                System.getProperty("user.dir")
+                + "/src/main/java/com/puppycrawl/tools/checkstyle");
+        immutablePair.getLeft().addListener(new DefaultLogger(
+                System.out, AutomaticBean.OutputStreamOptions.NONE));
+
+        final int errors = immutablePair.getLeft().process(immutablePair.getRight());
+        final int expectedErrors = 7;
+        assertEquals("No. of errors do not match", expectedErrors, errors);
     }
 }
