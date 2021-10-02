@@ -123,9 +123,12 @@
                value=".+\.checkstyle\.api.*|.+\.checkstyle\.utils.*"/>
       <property name="forbiddenImportsRegexp" value=".+\.checks\..+"/>
       <!-- AccessModifier is in util package (should be moved to api package) to disallow
-      its usage by API clients till https://github.com/checkstyle/checkstyle/issues/3511 -->
+      its usage by API clients till https://github.com/checkstyle/checkstyle/issues/3511,
+      'ParameterNameCheck' and 'JavadocMethodCheck' are required to be imported in 'CheckUtilTest.java' -->
       <property name="forbiddenImportsExcludesRegexp"
-               value="^com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption$"/>
+                value="com\.puppycrawl\.tools\.checkstyle\.checks\.naming\.AccessModifierOption|
+                com\.puppycrawl\.tools\.checkstyle\.checks\.naming\.ParameterNameCheck|
+                com\.puppycrawl\.tools\.checkstyle\.checks\.javadoc\.JavadocMethodCheck"/>
     </module>
     <module name="LineLengthExtended">
       <property name="max" value="100"/>
