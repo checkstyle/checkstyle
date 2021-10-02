@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -467,7 +468,9 @@ public final class CheckUtil {
         }
 
         // default access modifier
-        AccessModifierOption accessModifier = AccessModifierOption.PACKAGE;
+        final String scope = ScopeUtil.getScopeFromMods(modifiersToken).toString();
+        AccessModifierOption accessModifier = AccessModifierOption.valueOf(
+                scope.toUpperCase(Locale.ENGLISH));
         for (DetailAST token = modifiersToken.getFirstChild(); token != null;
              token = token.getNextSibling()) {
             final int tokenType = token.getType();

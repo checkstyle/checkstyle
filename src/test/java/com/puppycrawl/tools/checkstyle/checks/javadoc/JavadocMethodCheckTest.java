@@ -456,4 +456,14 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 
+    @Test
+    public void testDefaultAccessModifier() throws Exception {
+        final String[] expected = {
+            "21:32: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "a"),
+            "26:43: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "b"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodDefaultAccessModifier.java"), expected);
+    }
+
 }
