@@ -264,7 +264,10 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testClassFanOutComplexityRemoveMultiCatchBitwiseOr() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "27:1: " + getCheckMessage(MSG_KEY, 5, 4),
+        };
+
         verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityRemoveMultiCatchBitwiseOr.java"), expected);
     }
