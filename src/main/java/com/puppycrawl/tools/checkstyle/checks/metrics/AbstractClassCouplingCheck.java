@@ -38,7 +38,6 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -376,10 +375,16 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
          * @param ast type to process.
          */
         public void visitType(DetailAST ast) {
-            final String fullTypeName = CheckUtil.createFullType(ast).getText();
-            final String trimmed = BRACKET_PATTERN
-                    .matcher(fullTypeName).replaceAll("");
-            addReferencedClassName(trimmed);
+            DetailAST child = ast.getFirstChild();
+            while (child != null) {
+                if (TokenUtil.isOfType(child, TokenTypes.IDENT, TokenTypes.DOT)) {
+                    final String fullTypeName = FullIdent.createFullIdent(child).getText();
+                    final String trimmed = BRACKET_PATTERN
+                            .matcher(fullTypeName).replaceAll("");
+                    addReferencedClassName(trimmed);
+                }
+                child = child.getNextSibling();
+            }
         }
 
         /**
