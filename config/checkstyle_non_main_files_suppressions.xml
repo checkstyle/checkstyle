@@ -71,6 +71,9 @@
   <!-- 'fileNamePattern' property requires long paths due to multiple files with the same name -->
   <suppress id="lineLength" files=".ci[\\/]openjdk14-excluded\.files"/>
 
+  <!-- 'forbiddenImportsExcludesRegexp' property requires long input due to multiple files -->
+  <suppress id="lineLength" files="config[\\/]checkstyle_sevntu_checks.xml"/>
+
   <!-- we can not change expected as it will require change of main class logic -->
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/].*ExpectedXMLLogger.*\.xml"/>
