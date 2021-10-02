@@ -28,7 +28,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 
@@ -74,16 +73,6 @@ public final class CheckUtil {
 
     /** Prevent instances. */
     private CheckUtil() {
-    }
-
-    /**
-     * Creates {@code FullIdent} for given type node.
-     *
-     * @param typeAST a type node.
-     * @return {@code FullIdent} for given type.
-     */
-    public static FullIdent createFullType(final DetailAST typeAST) {
-        return FullIdent.createFullIdent(typeAST.getFirstChild());
     }
 
     /**
