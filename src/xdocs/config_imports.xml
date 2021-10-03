@@ -1802,7 +1802,7 @@ import java.util.stream.IntStream;
                 Thus, the empty list of type groups (the default value) means
                 one group for all type imports.
               </td>
-              <td><a href="property_types.html#RegularExpression">Regular Expressions</a></td>
+              <td><a href="property_types.html#Pattern.5B.5D">Pattern[]</a></td>
               <td><code>{}</code></td>
               <td>3.2</td>
             </tr>
@@ -1861,7 +1861,7 @@ import java.util.stream.IntStream;
                 the property <code>option</code> is set to <code>top</code> or
                 <code>bottom</code>.
               </td>
-              <td><a href="property_types.html#RegularExpression">Regular Expressions</a></td>
+              <td><a href="property_types.html#Pattern.5B.5D">Pattern[]</a></td>
               <td><code>{}</code></td>
               <td>8.12</td>
             </tr>
