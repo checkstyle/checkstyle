@@ -645,6 +645,7 @@ javassist
 javastrangefolder
 javax
 Jax
+jaxp
 jayway
 JB
 JBoss
@@ -1395,7 +1396,7 @@ xargs
 xcode
 xdoc
 xdocspagetitle
-Xerces
+xerces
 xf
 xfeff
 xfff
