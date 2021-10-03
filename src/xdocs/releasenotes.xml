@@ -10,6 +10,105 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 9.0.1">
+      <div class="releaseDate">03.10.2021</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Fix up messages - mojibake, lone apostrophes and accidental apostrophes substitutes.
+            Author: Victor Williams Stafusa da Silva
+            <a href="https://github.com/checkstyle/checkstyle/issues/10828">#10828</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Add example of AST for TokenTypes.AT.
+            Author: vinayak-gaikwad
+            <a href="https://github.com/checkstyle/checkstyle/issues/9396">#9396</a>
+          </li>
+          <li>
+            Add links to projects with additional checkstyle checks to site.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/10057">#10057</a>
+          </li>
+          <li>
+            JavadocMetadataScrapperTest and InlineConfigParser fixes.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/10827">#10827</a>
+          </li>
+          <li>
+            XmlMetaReader fails if package given to it has no expected resource files listed.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/10773">#10773</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Joshua Kuan, kthirano
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Javadoc everything.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/10818">#10818</a>
+          </li>
+          <li>
+            The build shoul fail on Javadoc linter warnings.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/10815">#10815</a>
+          </li>
+          <li>
+            minor: fix drone build by excluding archives from line length check.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/10800">#10800</a>
+          </li>
+          <li>
+            provide javadocs for Support clases in tests.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/6336">#6336</a>
+          </li>
+          <li>
+            doc: splits up the release notes more and moves off older items.
+            Author: rnveach
+          </li>
+          <li>
+            config: bump spotbugs to new version.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/10781">#10781</a>
+          </li>
+          <li>
+            Travis Build Failures.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/10778">#10778</a>
+          </li>
+          <li>
+            Use cache for maven dependencies to speed up drone io builds.
+            Author: Vadym
+            <a href="https://github.com/checkstyle/checkstyle/issues/10065">#10065</a>
+          </li>
+          <li>
+            JavadocMetadataScraper doesn&#39;t identify &quot;CheckstyleTestMakeupCheck&quot;
+            name correctly.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/10756">#10756</a>
+          </li>
+          <li>
+            Update Doc of CommentIndentation.
+            Author: Abhinav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9935">#9935</a>
+          </li>
+          <li>
+            survived line in pitest.sh pitest-java-ast-visitor.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/10755">#10755</a>
+          </li>
+          <li>
+            Migrate to Inline Config Parser for filters.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10737">#10737</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 9.0">
       <div class="releaseDate">31.08.2021</div>
       <p>Breaking backward compatibility:</p>
