@@ -1868,6 +1868,8 @@
             <excludedLink>https://freedomsponsors.org/*</excludedLink>
             <!-- site works fine in browser but for plugin always return 500  -->
             <excludedLink>https://liberapay.com/checkstyle/</excludedLink>
+            <!-- CertPathValidatorException: validity check failed  -->
+            <excludedLink>https://www.jarchitect.com</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
