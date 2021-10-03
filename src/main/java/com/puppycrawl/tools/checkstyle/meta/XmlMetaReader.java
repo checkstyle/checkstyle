@@ -146,7 +146,9 @@ public final class XmlMetaReader {
             throws ParserConfigurationException, IOException, SAXException {
         ModuleDetails result = null;
         if (moduleType != null) {
-            final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance(
+                    "com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl",
+                    null);
             factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
             factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
             final DocumentBuilder builder = factory.newDocumentBuilder();
