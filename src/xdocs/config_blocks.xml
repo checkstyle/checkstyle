@@ -1223,8 +1223,8 @@ allowedFuture.addCallback(result -> {
       <subsection name="Description" id="RightCurly_Description">
         <p>
           Checks the placement of right curly braces (<code>'}'</code>) for code blocks.
-          This check supports if-else, try-catch-finally blocks, while-loops, for-loops,
-          method definitions, class definitions, constructor definitions,
+          This check supports if-else, try-catch-finally blocks, switch-case statements,
+          while-loops, for-loops, method definitions, class definitions, constructor definitions,
           instance, static initialization blocks, annotation definitions and enum definitions.
           For right curly brace of expression blocks of arrays, lambdas and class instances
           please follow issue
@@ -1291,6 +1291,8 @@ allowedFuture.addCallback(result -> {
                   RECORD_DEF</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
                   COMPACT_CTOR_DEF</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
+                  LITERAL_SWITCH</a>
                 .
               </td>
               <td>

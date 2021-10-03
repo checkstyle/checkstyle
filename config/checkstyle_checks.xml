@@ -310,6 +310,7 @@
       <property name="tokens" value="LITERAL_ELSE"/>
       <property name="tokens" value="LITERAL_FINALLY"/>
       <property name="tokens" value="LITERAL_IF"/>
+      <property name="tokens" value="LITERAL_SWITCH"/>
       <property name="tokens" value="LITERAL_TRY"/>
       <property name="tokens" value="ANNOTATION_DEF"/>
       <property name="tokens" value="ENUM_DEF"/>
