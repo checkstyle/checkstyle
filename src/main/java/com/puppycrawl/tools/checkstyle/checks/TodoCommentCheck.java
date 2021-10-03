@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Checks for {@code TODO:} comments. Actually it is a generic
  * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html">
- * regular expression</a> matcher on Java comments. To check for other patterns
+ * pattern</a> matcher on Java comments. To check for other patterns
  * in Java comments, set the {@code format} property.
  * </p>
  * <p>
