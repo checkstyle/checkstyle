@@ -747,9 +747,9 @@ public interface Test2 { // violation
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="MutableException_Description">
         <p>
-          Ensures that exception classes (classes with names conforming to some regular
-          expression and explicitly extending classes with names conforming to other
-          regular expression) are immutable, that is, that they have only final fields.
+          Ensures that exception classes (classes with names conforming to some pattern
+          and explicitly extending classes with names conforming to other
+          pattern) are immutable, that is, that they have only final fields.
         </p>
 
         <p>

@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * Checks the header of a source file against a header that contains a
  * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html">
- * regular expression</a> for each line of the source header.
+ * pattern</a> for each line of the source header.
  * </p>
  * <p>
  * Rationale: In some projects <a href="https://checkstyle.org/config_header.html#Header">

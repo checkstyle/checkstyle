@@ -36,7 +36,7 @@
           <tr>
             <td><a href="config_naming.html#AbstractClassName">AbstractClassName</a></td>
             <td>
-              Ensures that the names of abstract classes conforming to some regular expression and
+              Ensures that the names of abstract classes conforming to some pattern and
               check that <code>abstract</code> modifier exists.
             </td>
           </tr>
@@ -309,7 +309,7 @@
               <a href="config_naming.html#IllegalIdentifierName">IllegalIdentifierName</a>
             </td>
             <td>
-              Checks identifiers with a regular expression for a set of illegal names, such as those
+              Checks identifiers with a pattern for a set of illegal names, such as those
               that are restricted or contextual keywords.
             </td>
           </tr>
@@ -599,8 +599,8 @@
             <td><a href="config_design.html#MutableException">MutableException</a></td>
             <td>
               Ensures that exception classes (classes with names conforming to
-              some regular expression and explicitly extending classes with names
-              conforming to other regular expression) are immutable, that is,
+              some pattern and explicitly extending classes with names
+              conforming to other pattern) are immutable, that is,
               that they have only final fields.
             </td>
           </tr>
@@ -801,7 +801,7 @@
             <td><a href="config_header.html#RegexpHeader">RegexpHeader</a></td>
             <td>
               Checks the header of a source file against a header that contains
-              a regular expression for each line of the source header.
+              a pattern for each line of the source header.
             </td>
           </tr>
           <tr>

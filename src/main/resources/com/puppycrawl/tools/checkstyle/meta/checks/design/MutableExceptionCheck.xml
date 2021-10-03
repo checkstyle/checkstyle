@@ -5,9 +5,9 @@
              name="MutableException"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
- Ensures that exception classes (classes with names conforming to some regular
- expression and explicitly extending classes with names conforming to other
- regular expression) are immutable, that is, that they have only final fields.
+ Ensures that exception classes (classes with names conforming to some pattern
+ and explicitly extending classes with names conforming to other
+ pattern) are immutable, that is, that they have only final fields.
  &lt;/p&gt;
  &lt;p&gt;
  The current algorithm is very simple: it checks that all members of exception are final.
