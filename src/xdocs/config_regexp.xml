@@ -517,7 +517,7 @@ public static final int A_SETPOINT = 1;
             <tr>
               <td>format</td>
               <td>Specify the format of the regular expression to match.</td>
-              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;$.&quot;</code></td>
               <td>5.0</td>
             </tr>
@@ -1068,7 +1068,7 @@ src/main/main_class.java  //violation, file names should be in Camel Case
             <tr>
               <td>format</td>
               <td>Specify the format of the regular expression to match.</td>
-              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;$.&quot;</code></td>
               <td>5.0</td>
             </tr>
@@ -1293,7 +1293,7 @@ CREATE DATABASE MyDB;
             <tr>
               <td>format</td>
               <td>Specify the format of the regular expression to match.</td>
-              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;$.&quot;</code></td>
               <td>5.0</td>
             </tr>

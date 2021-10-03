@@ -160,21 +160,21 @@
             <tr>
               <td>checkFormat</td>
               <td>Specify check pattern to suppress.</td>
-              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>".*"</code></td>
               <td>3.5</td>
             </tr>
             <tr>
               <td>messageFormat</td>
               <td>Specify message pattern to suppress.</td>
-              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>3.5</td>
             </tr>
             <tr>
               <td>idFormat</td>
               <td>Specify check ID pattern to suppress.</td>
-              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.24</td>
             </tr>
@@ -733,7 +733,7 @@ files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
               <td>checks</td>
               <td>Define the RegExp for matching against the name of the check
                   associated with an audit event.</td>
-              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.23</td>
             </tr>
@@ -1411,7 +1411,7 @@ CLASS_DEF -> CLASS_DEF [1:0]
               <td>files</td>
               <td>Define a Regular Expression matched against the file name associated
                   with an audit event.</td>
-              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
@@ -1419,7 +1419,7 @@ CLASS_DEF -> CLASS_DEF [1:0]
               <td>checks</td>
               <td>Define a Regular Expression matched against the name of the check
                   associated with an audit event.</td>
-              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
@@ -1427,7 +1427,7 @@ CLASS_DEF -> CLASS_DEF [1:0]
               <td>message</td>
               <td>Define a Regular Expression matched against the message of the check associated
                   with an audit event.</td>
-              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
@@ -1995,21 +1995,21 @@ public static void foo() {
             <tr>
               <td>checkFormat</td>
               <td>Specify check pattern to suppress.</td>
-              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>".*"</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>messageFormat</td>
               <td>Define message pattern to suppress.</td>
-              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>idFormat</td>
               <td>Specify check ID pattern to suppress.</td>
-              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.24</td>
             </tr>
@@ -2017,7 +2017,7 @@ public static void foo() {
               <td>influenceFormat</td>
               <td>Specify negative/zero/positive value that defines the number of
                   lines preceding/at/following the suppression comment.</td>
-              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"0"</code></td>
               <td>5.0</td>
             </tr>
@@ -2278,24 +2278,21 @@ public class UserService {
             <tr>
               <td>checkFormat</td>
               <td>Specify check pattern to suppress.</td>
-              <td><a href="property_types.html#RegularExpression">
-                Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>".*"</code></td>
               <td>8.6</td>
             </tr>
             <tr>
               <td>messageFormat</td>
               <td>Specify message pattern to suppress.</td>
-              <td><a href="property_types.html#RegularExpression">
-                Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.6</td>
             </tr>
             <tr>
               <td>idFormat</td>
               <td>Specify check ID pattern to suppress.</td>
-              <td><a href="property_types.html#RegularExpression">
-                Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.24</td>
             </tr>
