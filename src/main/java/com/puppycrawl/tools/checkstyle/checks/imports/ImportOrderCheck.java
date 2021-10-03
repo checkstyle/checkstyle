@@ -73,8 +73,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * (e.g. {@code /regexp/}). All type imports, which does not match any group, falls into an
  * additional group, located at the end.
  * Thus, the empty list of type groups (the default value) means one group for all type imports.
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code java.util.regex.Pattern}.
+ * Type is {@code java.util.regex.Pattern[]}.
  * Default value is {@code ""}.
  * </li>
  * <li>
@@ -114,8 +113,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * an additional group, located at the end. Thus, the empty list of static groups (the default
  * value) means one group for all static imports. This property has effect only when the property
  * {@code option} is set to {@code top} or {@code bottom}.
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code java.util.regex.Pattern}.
+ * Type is {@code java.util.regex.Pattern[]}.
  * Default value is {@code ""}.
  * </li>
  * <li>
