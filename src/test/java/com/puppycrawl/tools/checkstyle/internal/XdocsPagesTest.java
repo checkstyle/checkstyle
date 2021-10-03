@@ -973,26 +973,24 @@ public class XdocsPagesTest {
             Object instance, String propertyName) {
         final String instanceName = instance.getClass().getSimpleName();
         String result = null;
-        final String checkProperty = sectionName + ":" + propertyName;
         if (isDynamicCustomExpression(sectionName, propertyName)) {
             // dynamic custom expression
-            result = "Regular Expression";
+            result = "Pattern";
         }
         else if (fieldClass == int[].class) {
             result = getPropertyTypeNameForIntArray(sectionName, propertyName);
         }
         else if (fieldClass == String.class || fieldClass == Charset.class) {
             result = getPropertyTypeNameForString(sectionName, propertyName);
-
         }
         else if (fieldClass == String[].class) {
             result = getPropertyTypeNameForStringArray(propertyName, instanceName);
         }
         else if (fieldClass == Pattern.class) {
-            result = getPropertyTypeNameForPattern(checkProperty);
+            result = "Pattern";
         }
         else if (fieldClass == Pattern[].class) {
-            result = getPropertyTypeNameForPatternArray(checkProperty);
+            result = "Pattern[]";
         }
         else if (fieldClass == Scope.class) {
             result = "Scope";
@@ -1029,8 +1027,7 @@ public class XdocsPagesTest {
         return isSuppressionFilter(sectionName)
                 && ("checkFormat".equals(propertyName)
                 || "messageFormat".equals(propertyName)
-                || "idFormat".equals(propertyName)
-                || "influenceFormat".equals(propertyName))
+                || "idFormat".equals(propertyName))
                 || isRegexpCheck(sectionName)
                 && "format".equals(propertyName);
     }
@@ -1108,41 +1105,6 @@ public class XdocsPagesTest {
                 || "MultipleStringLiteralsCheck".equals(instanceName)
                 && "ignoreOccurrenceContext".equals(propertyName)) {
             result = "subset of tokens TokenTypes";
-        }
-        return result;
-    }
-
-    /**
-     * Get's the name of the bean property's type for the Pattern class.
-     *
-     * @param checkProperty "sectionName:propertyName" of the current check under process.
-     * @return String form of property's type.
-     */
-    private static String getPropertyTypeNameForPattern(String checkProperty) {
-        String result = "Pattern";
-        if ("SuppressionSingleFilter:checks".equals(checkProperty)
-                || "SuppressionXpathSingleFilter:files".equals(checkProperty)
-                || "SuppressionXpathSingleFilter:checks".equals(checkProperty)
-                || "SuppressionXpathSingleFilter:message".equals(checkProperty)
-                || "IllegalTokenText:format".equals(checkProperty)) {
-            result = "Regular Expression";
-        }
-        return result;
-    }
-
-    /**
-     * Get's the name of the bean property's type for the Pattern[] class.
-     *
-     * @param checkProperty "sectionName:propertyName" of the current check under process.
-     * @return String form of property's type.
-     */
-    private static String getPropertyTypeNameForPatternArray(String checkProperty) {
-        String result = "Pattern[]";
-        if ("ImportOrder:groups".equals(checkProperty)
-                || "ImportOrder:staticGroups".equals(checkProperty)
-                || "ClassDataAbstractionCoupling:excludeClassesRegexps".equals(checkProperty)
-                || "ClassFanOutComplexity:excludeClassesRegexps".equals(checkProperty)) {
-            result = "Regular Expressions";
         }
         return result;
     }

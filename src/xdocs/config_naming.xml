@@ -22,7 +22,7 @@
         elements. Valid identifiers for a naming module are specified by its
         <code> format</code> property. The value of <code>format</code> is a <a
         href="https://docs.oracle.com/javase/1.5.0/docs/api/java/util/regex/Pattern.html">
-        regular expression</a> for valid identifiers.
+          pattern</a> for valid identifiers.
       </p>
     </section>
 
@@ -384,7 +384,7 @@ public class MyClass {
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="AbstractClassName_Description">
         <p>
-          Ensures that the names of abstract classes conforming to some regular expression and
+          Ensures that the names of abstract classes conforming to some pattern and
           check that <code>abstract</code> modifier exists.
         </p>
         <p>
@@ -970,13 +970,13 @@ class MyClass {
       <p>Since Checkstyle 8.36</p>
       <subsection name="Description" id="IllegalIdentifierName_Description">
         <p>
-          Checks identifiers with a regular expression for a set of illegal names, such as those
+          Checks identifiers with a pattern for a set of illegal names, such as those
           that are restricted or contextual keywords. Examples include "yield", "record",
           "_", and "var". Please read more at
           <a href="https://docs.oracle.com/javase/specs/jls/se14/html/jls-3.html#jls-3.9">
           Java Language Specification
           </a>to get to know more about restricted keywords. Since this check uses a
-          regular expression to specify valid identifiers, users can also prohibit the usage
+          pattern to specify valid identifiers, users can also prohibit the usage
           of certain symbols, such as "$", or any non-ascii character.
         </p>
       </subsection>

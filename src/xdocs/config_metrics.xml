@@ -311,7 +311,7 @@ public class Test
             <tr>
               <td>excludeClassesRegexps</td>
               <td>Specify user-configured regular expressions to ignore classes.</td>
-              <td><a href="property_types.html#RegularExpression">Regular Expressions</a></td>
+              <td><a href="property_types.html#Pattern.5B.5D">Pattern[]</a></td>
               <td><code>^$</code></td>
               <td>7.7</td>
             </tr>
@@ -695,7 +695,7 @@ class Foo {
             <tr>
               <td>excludeClassesRegexps</td>
               <td>Specify user-configured regular expressions to ignore classes.</td>
-              <td><a href="property_types.html#RegularExpression">Regular Expressions</a></td>
+              <td><a href="property_types.html#Pattern.5B.5D">Pattern[]</a></td>
               <td><code>^$</code></td>
               <td>7.7</td>
             </tr>

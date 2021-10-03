@@ -11,7 +11,7 @@
  scope to one of the {@code Scope} constants. To define the format for an author
  tag or a version tag, set property authorFormat or versionFormat respectively to a
  &lt;a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html"&gt;
- regular expression&lt;/a&gt;.
+ pattern&lt;/a&gt;.
  &lt;/p&gt;
  &lt;p&gt;
  Does not perform checks for author and version tags for inner classes,

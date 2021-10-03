@@ -64,17 +64,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * <li>
  * Property {@code checkFormat} - Specify check pattern to suppress.
- * Type is {@code java.lang.String}.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code ".*"}.
  * </li>
  * <li>
  * Property {@code messageFormat} - Define message pattern to suppress.
- * Type is {@code java.lang.String}.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code idFormat} - Specify check ID pattern to suppress.
- * Type is {@code java.lang.String}.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.
  * </li>
  * <li>
