@@ -241,3 +241,4 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
         return builder.toString();
     }
 }
+
