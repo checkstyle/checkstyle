@@ -86,8 +86,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             .put("double[]", double[].class)
             .put("String", String.class)
             .put("String[]", String[].class)
-            .put("Regular Expression", String.class)
-            .put("Regular Expressions", String[].class)
             .put("Pattern", Pattern.class)
             .put("Pattern[]", Pattern[].class)
             .put("AccessModifierOption[]", AccessModifierOption[].class)
@@ -107,19 +105,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             .put("URI", URI.class)
             .put("WrapOption", WrapOption.class)
             .put("PARAM_LITERAL", int[].class).build();
-
-    private static final Set<String> PATTERN_EXCEPTIONS = Collections.unmodifiableSet(
-        Arrays.stream(new String[] {
-            "ClassDataAbstractionCoupling - excludeClassesRegexps",
-            "ClassFanOutComplexity - excludeClassesRegexps",
-            "IllegalTokenText - format",
-            "ImportOrder - groups",
-            "ImportOrder - staticGroups",
-            "SuppressionSingleFilter - checks",
-            "SuppressionXpathSingleFilter - files",
-            "SuppressionXpathSingleFilter - checks",
-            "SuppressionXpathSingleFilter - message",
-        }).collect(Collectors.toSet()));
 
     private static final Set<String> NON_BASE_TOKEN_PROPERTIES = Collections.unmodifiableSet(
         Arrays.stream(new String[] {
@@ -383,9 +368,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         String result = null;
         if (NON_BASE_TOKEN_PROPERTIES.contains(checkName + " - " + propertyName)) {
             result = " Validation type is {@code tokenTypesSet}.";
-        }
-        else if (PATTERN_EXCEPTIONS.contains(checkName + " - " + propertyName)) {
-            result = " Validation type is {@code java.util.regex.Pattern}.";
         }
         else if (isPropertyTokenType) {
             result = " Validation type is {@code tokenSet}.";

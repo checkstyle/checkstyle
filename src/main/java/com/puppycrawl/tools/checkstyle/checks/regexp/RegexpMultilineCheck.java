@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * <ul>
  * <li>
  * Property {@code format} - Specify the format of the regular expression to match.
- * Type is {@code java.lang.String}.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "$."}.
  * </li>
  * <li>
