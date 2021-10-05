@@ -192,6 +192,18 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
                 "expected correct parse");
     }
 
+    @Test
+    public void testEmptyDescription() throws Exception {
+        JavadocMetadataScraper.resetModuleDetailsStore();
+
+        String[] expected = {
+                "19: " + getCheckMessage(JavadocMetadataScraper.MSG_DESC_MISSING,
+                "InputJavadocMetadataScraperAbstractSuper"),
+        };
+        verifyWithInlineConfigParser(getPath(
+                "InputJavadocMetadataScraperAbstractSuperCheck.java"), expected);
+    }
+
     private static String convertToString(Map<String, ModuleDetails> moduleDetailsStore) {
         final StringBuilder builder = new StringBuilder(128);
         for (Entry<String, ModuleDetails> entry : moduleDetailsStore.entrySet()) {

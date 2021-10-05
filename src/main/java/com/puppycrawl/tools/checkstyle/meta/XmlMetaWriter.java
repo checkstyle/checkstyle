@@ -176,16 +176,16 @@ public final class XmlMetaWriter {
             }
             modifiedPath = rootOutputPath + "/checkstylemeta-" + moduleName + xmlExtension;
         }
-        if (!moduleDetails.getDescription().isEmpty()) {
-            final TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            final Transformer transformer = transformerFactory.newTransformer();
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
 
-            final DOMSource source = new DOMSource(document);
-            final StreamResult result = new StreamResult(new File(modifiedPath));
-            transformer.transform(source, result);
-        }
+        final TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        final Transformer transformer = transformerFactory.newTransformer();
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+
+        final DOMSource source = new DOMSource(document);
+        final StreamResult result = new StreamResult(new File(modifiedPath));
+        transformer.transform(source, result);
+
     }
 }
 
