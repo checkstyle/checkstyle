@@ -5,8 +5,8 @@
              name="AbstractClassName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
- Ensures that the names of abstract classes conforming to some regular
- expression and check that {@code abstract} modifier exists.
+ Ensures that the names of abstract classes conforming to some pattern
+ and check that {@code abstract} modifier exists.
  &lt;/p&gt;
  &lt;p&gt;
  Rationale: Abstract classes are convenience base class implementations of
