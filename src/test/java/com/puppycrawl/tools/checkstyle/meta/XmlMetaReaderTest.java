@@ -27,11 +27,17 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 
 public class XmlMetaReaderTest extends AbstractPathTestSupport {
+
+    @BeforeAll
+    static void init() {
+        System.setProperty("org.slf4j.simpleLogger.log.org.reflections", "off");
+    }
 
     @Override
     protected String getPackageLocation() {
