@@ -261,7 +261,7 @@ public class SuppressWithNearbyCommentFilter
     extends AutomaticBean
     implements TreeWalkerFilter {
 
-    /** Format to turns checkstyle reporting off. */
+    /** Format to turn checkstyle reporting off. */
     private static final String DEFAULT_COMMENT_FORMAT =
         "SUPPRESS CHECKSTYLE (\\w+)";
 
@@ -579,7 +579,7 @@ public class SuppressWithNearbyCommentFilter
          * @param influenceFormat raw influence format
          * @param text            text of the suppression
          * @return parsed influence
-         * @throws IllegalArgumentException when unbale to parse int in format
+         * @throws IllegalArgumentException when unable to parse int in format
          */
         private static int parseInfluence(String format, String influenceFormat, String text) {
             try {
