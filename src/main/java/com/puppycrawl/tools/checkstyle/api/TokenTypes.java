@@ -1409,6 +1409,21 @@ public final class TokenTypes {
     /**
      * A super constructor call.
      *
+     * <p>For example:</p>
+     * <pre>
+     * super(1);
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * SUPER_CTOR_CALL -&gt; super
+     *  |--LPAREN -&gt; (
+     *  |--ELIST -&gt; ELIST
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--NUM_INT -&gt; 1
+     *  |--RPAREN -&gt; )
+     *  `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #ELIST
      * @see #RPAREN
      * @see #SEMI
