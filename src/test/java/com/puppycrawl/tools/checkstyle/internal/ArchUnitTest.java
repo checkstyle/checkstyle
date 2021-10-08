@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.methods;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.tngtech.archunit.core.domain.JavaClasses;
@@ -30,6 +31,12 @@ import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.lang.ArchRule;
 
 public class ArchUnitTest {
+
+    @BeforeAll
+    public static void init() {
+        System.setProperty("org.slf4j.simpleLogger.log.com.tngtech.archunit.core.PluginLoader", "off");
+    }
+
     /**
      * The goal is to ensure all classes of a specific name pattern have non-protected methods,
      * except for those which are annotated with {@code Override}. In the bytecode there is no
