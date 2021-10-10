@@ -528,7 +528,7 @@ public final class Violation
                 if (connection != null) {
                     connection.setUseCaches(!reload);
                     try (Reader streamReader = new InputStreamReader(connection.getInputStream(),
-                            StandardCharsets.UTF_8.name())) {
+                            StandardCharsets.UTF_8)) {
                         // Only this line is changed to make it read property files as UTF-8.
                         resourceBundle = new PropertyResourceBundle(streamReader);
                     }
