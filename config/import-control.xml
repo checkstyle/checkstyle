@@ -140,6 +140,7 @@
     <subpackage name="header">
       <allow class="java.nio.charset.Charset" local-only="true"/>
       <allow class="java.nio.charset.StandardCharsets" local-only="true" />
+      <allow class="java.nio.charset.UnsupportedCharsetException" local-only="true" />
     </subpackage>
     <subpackage name="javadoc">
       <allow pkg="com.puppycrawl.tools.checkstyle.grammar.javadoc"/>

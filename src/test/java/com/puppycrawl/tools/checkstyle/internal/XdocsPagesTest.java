@@ -41,6 +41,7 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.net.URI;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -1004,7 +1005,7 @@ public class XdocsPagesTest {
         else if (fieldClass == double[].class) {
             result = "double[]";
         }
-        else if (fieldClass == String.class) {
+        else if (fieldClass == String.class || fieldClass == Charset.class) {
             result = "String";
 
             if ("Checker".equals(sectionName) && "localeCountry".equals(propertyName)) {
