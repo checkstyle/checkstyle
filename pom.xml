@@ -595,7 +595,24 @@
       </plugins>
     </pluginManagement>
     <plugins>
-
+      <plugin>
+        <groupId>org.gaul</groupId>
+        <artifactId>modernizer-maven-plugin</artifactId>
+        <version>2.3.0</version>
+        <configuration>
+          <javaVersion>8</javaVersion>
+          <includeTestClasses>false</includeTestClasses>
+        </configuration>
+        <executions>
+          <execution>
+            <id>modernizer</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>modernizer</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
@@ -1907,6 +1924,7 @@
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <linkcheck.skip>true</linkcheck.skip>
         <jdepend.skip>true</jdepend.skip>
+        <modernizer.skip>true</modernizer.skip>
       </properties>
       <build>
         <plugins>
@@ -1941,6 +1959,7 @@
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <linkcheck.skip>true</linkcheck.skip>
         <jdepend.skip>true</jdepend.skip>
+        <modernizer.skip>true</modernizer.skip>
         <!-- difference from "no-validations" -->
         <maven.site.skip>true</maven.site.skip>
       </properties>
