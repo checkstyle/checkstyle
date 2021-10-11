@@ -274,9 +274,7 @@ public class UnusedImportsCheck extends AbstractCheck {
         final boolean isQualifiedIdent = parentType == TokenTypes.DOT
                 && ast.getNextSibling() != null;
 
-        final boolean isQualifiedNameArrayType = parent.getParent().getType() == TokenTypes.DOT
-                && ast.getNextSibling() != null
-                && ast.getNextSibling().getType() == TokenTypes.ARRAY_DECLARATOR;
+        final boolean isQualifiedNameArrayType = isQualifiedNameArrayType(ast);
 
         if (TokenUtil.isTypeDeclaration(parentType)) {
             currentFrame.addDeclaredType(ast.getText());
@@ -285,6 +283,22 @@ public class UnusedImportsCheck extends AbstractCheck {
                     && !isQualifiedNameArrayType) {
             currentFrame.addReferencedType(ast.getText());
         }
+    }
+
+    /**
+     * Checks if given ident is a qualified name array type.
+     *
+     * @param ast the IDENT node to check.
+     * @return true if an ident is a qualified name array type.
+     */
+    private static boolean isQualifiedNameArrayType(DetailAST ast) {
+        DetailAST parent = ast.getParent();
+        if (parent.getLastChild().getType() == TokenTypes.LITERAL_CLASS) {
+            parent = parent.getParent();
+        }
+        return parent.getParent().getType() == TokenTypes.DOT
+            && ast.getNextSibling() != null
+            && ast.getNextSibling().getType() == TokenTypes.ARRAY_DECLARATOR;
     }
 
     /**
