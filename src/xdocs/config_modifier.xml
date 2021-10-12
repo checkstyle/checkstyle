@@ -656,6 +656,13 @@ public class ClassExtending extends ClassExample {
   ProtectedInnerClass pc = new ProtectedInnerClass();
 }
         </source>
+        <p>
+          Starting from Java 17, all floating point operations remain consistently strict,
+          see <a href="https://openjdk.java.net/jeps/306">JEP 306</a>. Hence,
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRICTFP">
+          STRICTFP</a> as been added to the list of acceptable tokens, and when added into the
+          check configuration, it shows all <code>strictfp</code> tokens as violations.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="RedundantModifier_Properties">
@@ -689,6 +696,8 @@ public class ClassExtending extends ClassExample {
                   ENUM_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE">
                   RESOURCE</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRICTFP">
+                  STRICTFP</a>
                 .
               </td>
               <td>
