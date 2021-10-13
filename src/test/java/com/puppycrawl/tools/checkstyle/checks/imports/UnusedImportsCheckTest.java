@@ -146,6 +146,15 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testArrayRef() throws Exception {
+        final String[] expected = {
+            "13:8: " + getCheckMessage(MSG_KEY, "java.util.ArrayList"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsArrayRef.java"), expected);
+    }
+
+    @Test
     public void testBug() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
