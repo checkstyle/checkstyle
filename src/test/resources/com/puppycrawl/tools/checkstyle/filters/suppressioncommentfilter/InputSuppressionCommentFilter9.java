@@ -1,4 +1,14 @@
 /*
+SuppressionCommentFilter
+offCommentFormat = UNUSED OFF\\: (\\w+)
+onCommentFormat = UNUSED ON\\: (\\w+)
+checkFormat = Unused
+messageFormat = ^Unused \\w+ '$1'.$
+idFormat = (default)(null)
+checkCPP = (default)true
+checkC = (default)true
+
+
 com.puppycrawl.tools.checkstyle.checks.naming.MemberName
 id = ignore
 format = (default)^[a-z][a-zA-Z0-9]*$
@@ -30,7 +40,7 @@ package com.puppycrawl.tools.checkstyle.filters.suppressioncommentfilter;
  * Test input for using comments to suppress violations.
  * @author Rick Giles
  **/
-class InputSuppressionCommentFilter
+class InputSuppressionCommentFilter9
 {
     private int I; // violation
 
