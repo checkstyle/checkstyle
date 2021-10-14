@@ -1,4 +1,14 @@
 /*
+SuppressionCommentFilter
+offCommentFormat = CS_OFF
+onCommentFormat = CS_ON
+checkFormat = ConstantNameCheck
+messageFormat = (default)(null)
+idFormat = (default)(null)
+checkCPP = (default)true
+checkC = (default)true
+
+
 com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck
 id = ignore
 format = (default)^[a-z][a-zA-Z0-9]*$
@@ -30,7 +40,7 @@ package com.puppycrawl.tools.checkstyle.filters.suppressioncommentfilter;
  * Test input for using comments to suppress violations.
  * @author Rick Giles
  **/
-class InputSuppressionCommentFilter
+class InputSuppressionCommentFilter6
 {
     private int I; // violation
 
@@ -58,7 +68,7 @@ class InputSuppressionCommentFilter
 
     //CS_OFF: ConstantNameCheck
     private int R; // violation
-    private static final int s = 0; // violation
+    private static final int s = 0; // filtered violation
     //CS_ON
 
     //CHECKSTYLE:OFF
