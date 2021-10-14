@@ -222,6 +222,7 @@
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
     <junit.version>5.8.1</junit.version>
     <forbiddenapis.version>3.2</forbiddenapis.version>
+    <json-schema-validator.version>1.2.0</json-schema-validator.version>
   </properties>
 
   <dependencies>
@@ -1606,7 +1607,7 @@
       <plugin>
         <groupId>com.groupon.maven.plugin.json</groupId>
         <artifactId>json-schema-validator</artifactId>
-        <version>1.2.0</version>
+        <version>${json-schema-validator.version}</version>
         <executions>
           <execution>
             <phase>verify</phase>
@@ -1619,7 +1620,7 @@
           <validations>
             <validation>
               <directory>${basedir}/src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger</directory>
-              <jsonSchema>https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json</jsonSchema>
+              <jsonSchema>https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Documents/CommitteeSpecifications/2.1.0/sarif-schema-2.1.0.json</jsonSchema>
               <includes>
                 <include>**/*.sarif</include>
               </includes>
@@ -1907,6 +1908,21 @@
         <linkcheck.skip>true</linkcheck.skip>
         <jdepend.skip>true</jdepend.skip>
       </properties>
+      <build>
+        <plugins>
+          <!-- disable json validation plugin since it has no cli property for disable -->
+          <plugin>
+            <groupId>com.groupon.maven.plugin.json</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>${json-schema-validator.version}</version>
+            <executions>
+              <execution>
+                <phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
 
     <profile>
@@ -1997,6 +2013,18 @@
                 <goals>
                   <goal>single</goal>
                 </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <!-- disable json validation plugin since it has no cli property for disable -->
+          <plugin>
+            <groupId>com.groupon.maven.plugin.json</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>${json-schema-validator.version}</version>
+            <executions>
+              <execution>
+                <phase>none</phase>
               </execution>
             </executions>
           </plugin>
