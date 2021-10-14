@@ -1,4 +1,14 @@
 /*
+SuppressionCommentFilter
+offCommentFormat = IllegalCatchCheck OFF\\: (\\w+)
+onCommentFormat = IllegalCatchCheck ON\\: (\\w+)
+checkFormat = IllegalCatchCheck
+messageFormat = ^Catching '$1' is not allowed.*$
+idFormat = (default)(null)
+checkCPP = (default)true
+checkC = (default)true
+
+
 com.puppycrawl.tools.checkstyle.checks.naming.MemberName
 id = ignore
 format = (default)^[a-z][a-zA-Z0-9]*$
@@ -30,7 +40,7 @@ package com.puppycrawl.tools.checkstyle.filters.suppressioncommentfilter;
  * Test input for using comments to suppress violations.
  * @author Rick Giles
  **/
-class InputSuppressionCommentFilter
+class InputSuppressionCommentFilter7
 {
     private int I; // violation
 
@@ -97,7 +107,7 @@ class InputSuppressionCommentFilter
         try{
             //IllegalCatchCheck OFF: Exception
         } catch(RuntimeException ex){ // violation
-        } catch(Exception ex){ // violation
+        } catch(Exception ex){ // filtered violation
             //IllegalCatchCheck ON: Exception
         }
     }
