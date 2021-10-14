@@ -1,10 +1,10 @@
 /*
 SuppressionCommentFilter
-offCommentFormat = CSOFF (\\w+) \\(\\w+\\)
+offCommentFormat = CSOFF (\\w+) \\(allow (\\w+)\\)
 onCommentFormat = CSON (\\w+)
 checkFormat = MemberNameCheck
-messageFormat = (default)(null)
-idFormat = (default)(null)
+messageFormat = $2
+idFormat = $1
 checkCPP = (default)true
 checkC = (default)true
 
@@ -36,22 +36,22 @@ illegalClassNames = (default)Error, Exception, RuntimeException, Throwable, java
 
 package com.puppycrawl.tools.checkstyle.filters.suppressioncommentfilter;
 
-public class InputSuppressionCommentFilterSuppressById {
+public class InputSuppressionCommentFilterSuppressById4 {
 
     //CSOFF ignore (reason)
-    private int A1; // filtered violation
+    private int A1; // violation
 
     // @cs-: ignore (No NPE here)
     private static final int abc = 5; // violation
 
 
-    int line_length = 100; // filtered violation
+    int line_length = 100; // violation
     //CSON ignore
 
     private long ID = 1; // violation
 
     // CSOFF ignore (allow DEF)
-    private int DEF = 2; // violation
+    private int DEF = 2; // filtered violation
 
     // CSOFF ignore (allow xyz)
     private int XYZ = 3; // violation

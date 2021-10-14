@@ -1543,8 +1543,6 @@
 
                 <exclude>**/OrderedPropertiesCheckTest.class</exclude>
 
-                <exclude>**/SuppressionCommentFilterTest.class</exclude>
-
                 <exclude>**/RegexpMultilineCheckTest.class</exclude>
 
                 <exclude>**/EmptyLineSeparatorCheckTest.class</exclude>
