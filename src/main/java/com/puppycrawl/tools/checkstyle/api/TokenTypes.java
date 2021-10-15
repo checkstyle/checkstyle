@@ -2723,6 +2723,36 @@ public final class TokenTypes {
      * The {@code throw} keyword.  The first child is an
      * expression that evaluates to a {@code Throwable} instance.
      *
+     * <p>For example:</p>
+     * <pre>
+     * void throwException() {
+     *     throw new ArithmeticException(&quot;An exception occurred.&quot;);
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * METHOD_DEF -&gt; METHOD_DEF [3:2]
+     *  |--MODIFIERS -&gt; MODIFIERS [3:2]
+     *  |--TYPE -&gt; TYPE [3:2]
+     *  |   `--LITERAL_VOID -&gt; void [3:2]
+     *  |--IDENT -&gt; throwException [3:7]
+     *  |--LPAREN -&gt; ( [3:21]
+     *  |--PARAMETERS -&gt; PARAMETERS [3:22]
+     *  |--RPAREN -&gt; ) [3:22]
+     *  `--SLIST -&gt; { [3:24]
+     *      |--LITERAL_THROW -&gt; throw [4:4]
+     *      |   |--EXPR -&gt; EXPR [4:10]
+     *      |   |   `--LITERAL_NEW -&gt; new [4:10]
+     *      |   |       |--IDENT -&gt; ArithmeticException [4:14]
+     *      |   |       |--LPAREN -&gt; ( [4:33]
+     *      |   |       |--ELIST -&gt; ELIST [4:34]
+     *      |   |       |   `--EXPR -&gt; EXPR [4:34]
+     *      |   |       |       `--STRING_LITERAL -&gt; &quot;An exception occurred.&quot; [4:34]
+     *      |   |       `--RPAREN -&gt; ) [4:73]
+     *      |   `--SEMI -&gt; ; [4:74]
+     *      `--RCURLY -&gt; } [5:2]
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.17">Java
      * Language Specification, &sect;14.17</a>
