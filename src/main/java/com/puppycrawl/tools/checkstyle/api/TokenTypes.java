@@ -5113,6 +5113,32 @@ public final class TokenTypes {
 
     /**
      * A {@code <} symbol signifying the start of type arguments or type parameters.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * class Test&lt;T&gt; {}
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * CLASS_DEF -&gt; CLASS_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--LITERAL_CLASS -&gt; class
+     *  |--IDENT -&gt; Test
+     *  |--TYPE_PARAMETERS -&gt; TYPE_PARAMETERS
+     *  |   |--GENERIC_START -&gt; &lt;
+     *  |   |--TYPE_PARAMETER -&gt; TYPE_PARAMETER
+     *  |   |   `--IDENT -&gt; T
+     *  |   `--GENERIC_END -&gt; &gt;
+     *  `--OBJBLOCK -&gt; OBJBLOCK
+     *      |--LCURLY -&gt; {
+     *      `--RCURLY -&gt; }
+     * </pre>
+     *
+     * @see #MODIFIERS
+     * @see #IDENT
+     * @see #OBJBLOCK
+     * @see #TYPE_PARAMETERS
+     * @see #GENERIC_END
      */
     public static final int GENERIC_START =
         JavaLanguageLexer.GENERIC_START;
