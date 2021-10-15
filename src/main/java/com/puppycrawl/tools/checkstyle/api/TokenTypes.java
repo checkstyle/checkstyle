@@ -2723,6 +2723,24 @@ public final class TokenTypes {
      * The {@code throw} keyword.  The first child is an
      * expression that evaluates to a {@code Throwable} instance.
      *
+     * <p>For example:</p>
+     * <pre>
+     * throw new ArithmeticException(&quot;An exception occurred.&quot;);
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_THROW -&gt; throw
+     *  |--EXPR -&gt; EXPR
+     *  |   `--LITERAL_NEW -&gt; new
+     *  |       |--IDENT -&gt; ArithmeticException
+     *  |       |--LPAREN -&gt; (
+     *  |       |--ELIST -&gt; ELIST
+     *  |       |   `--EXPR -&gt; EXPR
+     *  |       |       `--STRING_LITERAL -&gt; &quot;An exception occurred.&quot;
+     *  |       `--RPAREN -&gt; )
+     *  `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.17">Java
      * Language Specification, &sect;14.17</a>
