@@ -406,6 +406,29 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertNull(ident.getDetailAst(), "'ident' should be null");
     }
 
+    @Test
+    public void testAccessModifier() throws Exception {
+        final DetailAST enumConstant = getNodeFromFile(TokenTypes.ENUM_CONSTANT_DEF);
+        final DetailAST enumConstructor = enumConstant.getNextSibling().getNextSibling();
+        final DetailAST enumMethod = enumConstructor.getNextSibling();
+
+        final AccessModifierOption enumConstructorAccessModExpected = AccessModifierOption.PRIVATE;
+
+        final AccessModifierOption enumConstructorAccessModActual = CheckUtil
+                .getAccessModifierFromModifiersToken(enumConstructor);
+
+        final AccessModifierOption enumMethodAccessModExpected = AccessModifierOption.PACKAGE;
+
+        final AccessModifierOption enumMethodAccessModActual = CheckUtil
+                .getAccessModifierFromModifiersToken(enumMethod);
+
+        assertEquals(enumConstructorAccessModExpected,
+                enumConstructorAccessModActual, "Result is not expected");
+
+        assertEquals(enumMethodAccessModExpected,
+                enumMethodAccessModActual, "Result is not expected");
+    }
+
     private DetailAST getNodeFromFile(int type) throws Exception {
         return getNode(JavaParser.parseFile(new File(getPath("InputCheckUtilTest.java")),
             JavaParser.Options.WITH_COMMENTS), type);
