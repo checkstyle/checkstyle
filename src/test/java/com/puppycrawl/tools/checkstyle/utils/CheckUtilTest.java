@@ -23,7 +23,6 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenI
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -40,7 +39,6 @@ import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 
@@ -153,23 +151,6 @@ public class CheckUtilTest extends AbstractPathTestSupport {
             final String actualExceptionMsg = exc.getMessage();
             assertEquals(expectedExceptionMsg, actualExceptionMsg, "Invalid exception message");
         }
-    }
-
-    @Test
-    public void testCreateFullType() throws Exception {
-        final DetailAST typeNode = getNodeFromFile(TokenTypes.TYPE);
-
-        assertEquals("Map[13x12]", CheckUtil.createFullType(typeNode).toString(),
-                "Invalid full type");
-    }
-
-    @Test
-    public void testCreateFullTypeOfArray() throws Exception {
-        final DetailAST arrayTypeNode = getNodeFromFile(TokenTypes.VARIABLE_DEF)
-                .getNextSibling().getFirstChild().getNextSibling();
-
-        assertEquals("int[][14x14]", CheckUtil.createFullType(arrayTypeNode).toString(),
-                "Invalid full type");
     }
 
     @Test
@@ -397,13 +378,6 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         expected.add("my.Class");
         expected.add("Class");
         assertEquals(expected, actual, "Result is not expected");
-    }
-
-    @Test
-    public void testNullChild() {
-        final DetailAstImpl root = new DetailAstImpl();
-        final FullIdent ident = CheckUtil.createFullType(root);
-        assertNull(ident.getDetailAst(), "'ident' should be null");
     }
 
     private DetailAST getNodeFromFile(int type) throws Exception {
