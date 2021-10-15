@@ -4448,6 +4448,29 @@ public final class TokenTypes {
     /**
      * The {@code enum} keyword.  This element appears
      * as part of an enum declaration.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * public enum Count {}
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * ENUM_DEF -&gt; ENUM_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |  `--LITERAL_PUBLIC -&gt; public
+     *  |--ENUM -&gt; enum
+     *  |--IDENT -&gt; Count
+     *  `--OBJBLOCK -&gt; OBJBLOCK
+     *      |--LCURLY -&gt; {
+     *      `--RCURLY -&gt; }
+     * </pre>
+     *
+     * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
+     * JSR201</a>
+     * @see #MODIFIERS
+     * @see #ENUM_DEF
+     * @see #IDENT
+     * @see #OBJBLOCK
      **/
     public static final int ENUM =
         JavaLanguageLexer.ENUM;
