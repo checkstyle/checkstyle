@@ -137,9 +137,11 @@ public final class InlineConfigParser {
             final int beginIndex = path.indexOf("com.puppycrawl");
             final int endIndex = path.lastIndexOf(moduleName.toLowerCase(Locale.ROOT));
             fullyQualifiedClassName = path.substring(beginIndex, endIndex) + moduleName;
-            if (!fullyQualifiedClassName.endsWith("Filter")) {
-                fullyQualifiedClassName += "Check";
-            }
+        }
+        if (!fullyQualifiedClassName.endsWith("Filter")
+                && !fullyQualifiedClassName.endsWith("Check")
+                && !fullyQualifiedClassName.endsWith("JavadocMetadataScraper")) {
+            fullyQualifiedClassName += "Check";
         }
         return fullyQualifiedClassName;
     }
