@@ -4304,21 +4304,14 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * assert(x==4);
-     * </pre>
-     * <p>parses as:</p>
-     * <pre>
-     * +--LITERAL_ASSERT (assert)
-     *     |
-     *     +--EXPR
-     *         |
-     *         +--LPAREN (()
-     *         +--EQUAL (==)
-     *             |
-     *             +--IDENT (x)
-     *             +--NUM_INT (4)
-     *         +--RPAREN ())
-     *     +--SEMI (;)
+     * --LITERAL_ASSERT -&gt; assert
+     *    |--EXPR -&gt; EXPR
+     *    |   |--LPAREN -&gt; (
+     *    |   |--EQUAL -&gt; ==
+     *    |   |   |--IDENT -&gt; x
+     *    |   |   `--NUM_INT -&gt; 4
+     *    |   `--RPAREN -&gt; )
+     *    `--SEMI -&gt; ;
      * </pre>
      **/
     public static final int LITERAL_ASSERT = JavaLanguageLexer.ASSERT;
