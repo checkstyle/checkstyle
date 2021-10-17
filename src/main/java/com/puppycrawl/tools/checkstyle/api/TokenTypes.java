@@ -4376,44 +4376,25 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--ENUM_DEF
-     *     |
-     *     +--MODIFIERS
-     *         |
-     *         +--LITERAL_PUBLIC (public)
-     *     +--ENUM (enum)
-     *     +--IDENT (MyEnum)
-     *     +--EXTENDS_CLAUSE
-     *     +--IMPLEMENTS_CLAUSE
-     *         |
-     *         +--IDENT (Serializable)
-     *     +--OBJBLOCK
-     *         |
-     *         +--LCURLY ({)
-     *         +--ENUM_CONSTANT_DEF
-     *             |
-     *             +--IDENT (FIRST_CONSTANT)
-     *         +--COMMA (,)
-     *         +--ENUM_CONSTANT_DEF
-     *             |
-     *             +--IDENT (SECOND_CONSTANT)
-     *         +--SEMI (;)
-     *         +--METHOD_DEF
-     *             |
-     *             +--MODIFIERS
-     *                 |
-     *                 +--LITERAL_PUBLIC (public)
-     *             +--TYPE
-     *                 |
-     *                 +--LITERAL_VOID (void)
-     *             +--IDENT (someMethod)
-     *             +--LPAREN (()
-     *             +--PARAMETERS
-     *             +--RPAREN ())
-     *             +--SLIST ({)
-     *                 |
-     *                 +--RCURLY (})
-     *         +--RCURLY (})
+     * --ENUM_CONSTANT_DEF -&gt; ENUM_CONSTANT_DEF
+     *    |--ANNOTATIONS -&gt; ANNOTATIONS
+     *    `--IDENT -&gt; FIRST_CONSTANT
+     * --COMMA -&gt; ,
+     * --ENUM_CONSTANT_DEF -&gt; ENUM_CONSTANT_DEF
+     *    |--ANNOTATIONS -&gt; ANNOTATIONS
+     *    `--IDENT -&gt; SECOND_CONSTANT
+     * --SEMI -&gt; ;
+     * --METHOD_DEF -&gt; METHOD_DEF
+     *    |--MODIFIERS -&gt; MODIFIERS
+     *    |   `--LITERAL_PUBLIC -&gt; public
+     *    |--TYPE -&gt; TYPE
+     *    |   `--LITERAL_VOID -&gt; void
+     *    |--IDENT -&gt; someMethod
+     *    |--LPAREN -&gt; (
+     *    |--PARAMETERS -&gt; PARAMETERS
+     *    |--RPAREN -&gt; )
+     *    `--SLIST -&gt; {
+     *        `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
