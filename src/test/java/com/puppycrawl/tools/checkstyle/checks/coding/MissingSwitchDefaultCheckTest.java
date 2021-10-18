@@ -75,4 +75,13 @@ public class MissingSwitchDefaultCheckTest
                 expected);
     }
 
+    @Test
+    public void testMissingSwitchDefaultSwitchExpressions10866() throws Exception {
+        final String[] expected = {
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMissingSwitchDefaultCheckSwitchExpressions10866.java"),
+                expected);
+    }
+
 }
