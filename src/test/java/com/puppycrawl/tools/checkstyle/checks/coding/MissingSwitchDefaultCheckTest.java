@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -72,6 +73,14 @@ public class MissingSwitchDefaultCheckTest
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMissingSwitchDefaultCheckSwitchExpressionsTwo.java"),
+                expected);
+    }
+
+    @Test
+    public void testMissingSwitchDefaultSwitchExpressions10866() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMissingSwitchDefaultCheckSwitchExpressions10866.java"),
                 expected);
     }
 
