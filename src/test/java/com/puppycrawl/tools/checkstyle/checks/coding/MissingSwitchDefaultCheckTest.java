@@ -25,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MissingSwitchDefaultCheckTest
     extends AbstractModuleTestSupport {
@@ -72,6 +73,14 @@ public class MissingSwitchDefaultCheckTest
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMissingSwitchDefaultCheckSwitchExpressionsTwo.java"),
+                expected);
+    }
+
+    @Test
+    public void testMissingSwitchDefaultSwitchExpressions10866() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMissingSwitchDefaultCheckSwitchExpressions10866.java"),
                 expected);
     }
 
