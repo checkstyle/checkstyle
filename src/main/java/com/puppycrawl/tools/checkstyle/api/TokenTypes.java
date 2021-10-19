@@ -3638,14 +3638,14 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * --LITERAL_IF -&gt; if
-     *    |--LPAREN -&gt; (
-     *    |--EXPR -&gt; EXPR
-     *    |   `--GE -&gt; >=
-     *    |       |--IDENT -&gt; abc
-     *    |       `--NUM_INT -&gt; 2
-     *    |--RPAREN -&gt; )
-     *    `--SLIST -&gt; {
+     * LITERAL_IF -&gt; if
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--GE -&gt; -ge;
+     *  |       |--IDENT -&gt; abc
+     *  |       `--NUM_INT -&gt; 2
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
      * </pre>
      *
      * @see #EXPR
