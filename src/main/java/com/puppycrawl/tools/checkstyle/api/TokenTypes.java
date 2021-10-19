@@ -4453,37 +4453,28 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--ENUM_CONSTANT_DEF
-     *     |
-     *     +--ANNOTATIONS
-     *     +--IDENT (SOME_CONSTANT)
-     *     +--LPAREN (()
-     *     +--ELIST
-     *         |
-     *         +--EXPR
-     *             |
-     *             +--NUM_INT (1)
-     *     +--RPAREN ())
-     *     +--OBJBLOCK
-     *         |
-     *         +--LCURLY ({)
-     *         |
-     *         +--METHOD_DEF
-     *             |
-     *             +--MODIFIERS
-     *                 |
-     *                 +--LITERAL_PUBLIC (public)
-     *             +--TYPE
-     *                 |
-     *                 +--LITERAL_VOID (void)
-     *             +--IDENT (someMethodOverriddenFromMainBody)
-     *             +--LPAREN (()
-     *             +--PARAMETERS
-     *             +--RPAREN ())
-     *             +--SLIST ({)
-     *                 |
-     *                 +--RCURLY (})
-     *         +--RCURLY (})
+     * --ENUM_CONSTANT_DEF -&gt; ENUM_CONSTANT_DEF
+     *     |   |--ANNOTATIONS -&gt; ANNOTATIONS
+     *     |   |--IDENT -&gt; SOME_CONSTANT
+     *     |   |--LPAREN -&gt; (
+     *     |   |--ELIST -&gt; ELIST
+     *     |   |   `--EXPR -&gt; EXPR
+     *     |   |       `--NUM_INT -&gt; 1
+     *     |   |--RPAREN -&gt; )
+     *     |   `--OBJBLOCK -&gt; OBJBLOCK
+     *     |       |--LCURLY -&gt; {
+     *     |       |--METHOD_DEF -&gt; METHOD_DEF
+     *     |       |   |--MODIFIERS -&gt; MODIFIERS
+     *     |       |   |   `--LITERAL_PUBLIC -&gt; public
+     *     |       |   |--TYPE -&gt; TYPE
+     *     |       |   |   `--LITERAL_VOID -&gt; void
+     *     |       |   |--IDENT -&gt; someMethodOverriddenFromMainBody
+     *     |       |   |--LPAREN -&gt; (
+     *     |       |   |--PARAMETERS -&gt; PARAMETERS
+     *     |       |   |--RPAREN -&gt; )
+     *     |       |   `--SLIST -&gt; {
+     *     |       |       `--RCURLY -&gt; }
+     *     |       `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
