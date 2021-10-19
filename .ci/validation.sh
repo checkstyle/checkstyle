@@ -201,7 +201,7 @@ no-error-xwiki)
   cd ..
   checkout_from https://github.com/xwiki/xwiki-platform.git
   cd .ci-temp/xwiki-platform
-  git checkout "ec4cee44da""f56a76915f7445486f""bb502a""da791f"
+  git checkout "dc""f""b67ad6b5b78d7d506760c""e78d9a3d44b125af"
   # Validate xwiki-platform
   mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
   cd ..
