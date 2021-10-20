@@ -11,7 +11,7 @@
  Rationale: This check can be used to when the regular expression can be span multiple lines.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="$." name="format" type="java.lang.String">
+            <property default-value="$." name="format" type="java.util.regex.Pattern">
                <description>Specify the format of the regular expression to match.</description>
             </property>
             <property name="message" type="java.lang.String">

@@ -30,9 +30,7 @@
                <description>Define the RegExp for matching against the file name associated with
  an audit event.</description>
             </property>
-            <property name="checks"
-                      type="java.lang.String"
-                      validation-type="java.util.regex.Pattern">
+            <property name="checks" type="java.util.regex.Pattern">
                <description>Define the RegExp for matching against the name of the check
  associated with an audit event.</description>
             </property>

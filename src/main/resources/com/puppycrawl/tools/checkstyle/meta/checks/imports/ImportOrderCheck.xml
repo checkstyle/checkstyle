@@ -40,10 +40,7 @@
                <description>specify policy on the relative order between type imports and static
  imports.</description>
             </property>
-            <property default-value=""
-                      name="groups"
-                      type="java.lang.String[]"
-                      validation-type="java.util.regex.Pattern">
+            <property default-value="" name="groups" type="java.util.regex.Pattern[]">
                <description>specify list of &lt;b&gt;type import&lt;/b&gt; groups (every group identified
  either by a common prefix string, or by a regular expression enclosed in forward slashes
  (e.g. {@code /regexp/}). All type imports, which does not match any group, falls into an
@@ -74,8 +71,7 @@
             </property>
             <property default-value=""
                       name="staticGroups"
-                      type="java.lang.String[]"
-                      validation-type="java.util.regex.Pattern">
+                      type="java.util.regex.Pattern[]">
                <description>specify list of &lt;b&gt;static&lt;/b&gt; import groups (every group
  identified either by a common prefix string, or by a regular expression enclosed in forward
  slashes (e.g. {@code /regexp/}). All static imports, which does not match any group, falls into

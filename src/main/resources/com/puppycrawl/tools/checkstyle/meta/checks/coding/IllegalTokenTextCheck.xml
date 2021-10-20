@@ -9,10 +9,7 @@
  By default no tokens are specified.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="^$"
-                      name="format"
-                      type="java.lang.String"
-                      validation-type="java.util.regex.Pattern">
+            <property default-value="^$" name="format" type="java.util.regex.Pattern">
                <description>Define the RegExp for illegal pattern.</description>
             </property>
             <property default-value="false" name="ignoreCase" type="boolean">

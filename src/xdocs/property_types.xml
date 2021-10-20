@@ -677,14 +677,6 @@
       </p>
     </section>
 
-    <section name="RegularExpression">
-      <p>
-        This type represents a regular expression. The string representation is parsed using
-        <a href="https://docs.oracle.com/javase/8/docs/api/index.html?java/util/regex/package-summary.html">
-        java.util.regex package</a>.
-      </p>
-    </section>
-
     <section name="RightCurlyOption">
       <p>
         This type represents the policy for checking the placement of a
