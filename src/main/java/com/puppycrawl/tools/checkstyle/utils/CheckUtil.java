@@ -439,14 +439,17 @@ public final class CheckUtil {
      * @return the access modifier of the method/constructor.
      */
     public static AccessModifierOption getAccessModifierFromModifiersToken(DetailAST ast) {
-        final AccessModifierOption accessModifier;
+        final DetailAST modsToken = ast.findFirstToken(TokenTypes.MODIFIERS);
+        AccessModifierOption accessModifier =
+                getAccessModifierFromModifiersTokenDirectly(modsToken);
 
-        if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
-            accessModifier = AccessModifierOption.PUBLIC;
-        }
-        else {
-            final DetailAST modsToken = ast.findFirstToken(TokenTypes.MODIFIERS);
-            accessModifier = getAccessModifierFromModifiersTokenDirectly(modsToken);
+        if (accessModifier == AccessModifierOption.PACKAGE) {
+            if (ScopeUtil.isInEnumBlock(ast) && ast.getType() == TokenTypes.CTOR_DEF) {
+                accessModifier = AccessModifierOption.PRIVATE;
+            }
+            else if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
+                accessModifier = AccessModifierOption.PUBLIC;
+            }
         }
 
         return accessModifier;
@@ -466,7 +469,6 @@ public final class CheckUtil {
             throw new IllegalArgumentException("expected non-null AST-token with type 'MODIFIERS'");
         }
 
-        // default access modifier
         AccessModifierOption accessModifier = AccessModifierOption.PACKAGE;
         for (DetailAST token = modifiersToken.getFirstChild(); token != null;
              token = token.getNextSibling()) {
@@ -500,9 +502,7 @@ public final class CheckUtil {
                 || type == TokenTypes.INTERFACE_DEF
                 || type == TokenTypes.ANNOTATION_DEF
                 || type == TokenTypes.ENUM_DEF) {
-                final DetailAST mods =
-                    token.findFirstToken(TokenTypes.MODIFIERS);
-                returnValue = getAccessModifierFromModifiersTokenDirectly(mods);
+                returnValue = getAccessModifierFromModifiersToken(token);
             }
             else if (type == TokenTypes.LITERAL_NEW) {
                 break;
