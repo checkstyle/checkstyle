@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -113,7 +115,6 @@ public class FinalClassCheck
      * file.
      */
     public static final String MSG_KEY = "final.class";
-
     /**
      * Character separate package names in qualified name of java class.
      */
@@ -121,6 +122,12 @@ public class FinalClassCheck
 
     /** Keeps ClassDesc objects for stack of declared classes. */
     private Deque<ClassDesc> classes;
+
+    /**
+     * Keeps ClassDesc objects for stack of declared classes,
+     * pops the class out when all nested, inner, anonymous classes have been examined.
+     */
+    private Deque<ClassDesc> classesPoppedOutAfterExamination;
 
     /** Full qualified name of the package. */
     private String packageName;
@@ -147,6 +154,7 @@ public class FinalClassCheck
 
     @Override
     public void beginTree(DetailAST rootAST) {
+        classesPoppedOutAfterExamination = new ArrayDeque<>();
         classes = new ArrayDeque<>();
         packageName = "";
     }
@@ -161,38 +169,35 @@ public class FinalClassCheck
                 break;
 
             case TokenTypes.CLASS_DEF:
-                registerNestedSubclassToOuterSuperClasses(ast);
-
                 final boolean isFinal = modifiers.findFirstToken(TokenTypes.FINAL) != null;
                 final boolean isAbstract = modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;
 
                 final String qualifiedClassName = getQualifiedClassName(ast);
-                classes.push(new ClassDesc(qualifiedClassName, isFinal, isAbstract));
+                ClassDesc currClass = new ClassDesc(qualifiedClassName, isFinal, isAbstract, ast);
+                classesPoppedOutAfterExamination.push(currClass);
+                classes.push(currClass);
                 break;
 
             case TokenTypes.CTOR_DEF:
                 if (!ScopeUtil.isInEnumBlock(ast) && !ScopeUtil.isInRecordBlock(ast)) {
-                    final ClassDesc desc = classes.peek();
+                    final ClassDesc desc = classesPoppedOutAfterExamination.peek();
                     if (modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null) {
                         desc.registerNonPrivateCtor();
-                    }
-                    else {
+                    } else {
                         desc.registerPrivateCtor();
                     }
                 }
                 break;
-
             case TokenTypes.LITERAL_NEW:
                 if (ast.getFirstChild() != null
                         && ast.getLastChild().getType() == TokenTypes.OBJBLOCK) {
-                    for (ClassDesc classDesc : classes) {
+                    for (ClassDesc classDesc : classesPoppedOutAfterExamination) {
                         if (doesNameOfClassMatchAnonymousInnerClassName(ast, classDesc)) {
                             classDesc.registerAnonymousInnerClass();
                         }
                     }
                 }
                 break;
-
             default:
                 throw new IllegalStateException(ast.toString());
         }
@@ -201,19 +206,43 @@ public class FinalClassCheck
     @Override
     public void leaveToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.CLASS_DEF) {
-            final ClassDesc desc = classes.pop();
-            if (desc.isWithPrivateCtor()
-                && !(desc.isDeclaredAsAbstract()
-                    || desc.isWithAnonymousInnerClass())
-                && !desc.isDeclaredAsFinal()
-                && !desc.isWithNonPrivateCtor()
-                && !desc.isWithNestedSubclass()
-                && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
-                final String qualifiedName = desc.getQualifiedName();
-                final String className = getClassNameFromQualifiedName(qualifiedName);
-                log(ast, MSG_KEY, className);
+            classesPoppedOutAfterExamination.pop();
+            if (isTopLevelClass(ast)) {
+                classes.forEach(desc -> {
+                    final DetailAST classAst = desc.getClassAst();
+                    registerNestedSubclassToOuterSuperClasses(classAst, desc.getQualifiedName());
+                });
+                for (ClassDesc desc : classes) {
+                    final DetailAST classAst = desc.getClassAst();
+                    if (desc.isWithPrivateCtor()
+                            && !(desc.isDeclaredAsAbstract()
+                            || desc.isWithAnonymousInnerClass())
+                            && !desc.isDeclaredAsFinal()
+                            && !desc.isWithNonPrivateCtor()
+                            && !desc.isWithNestedSubclass()
+                            && !ScopeUtil.isInInterfaceOrAnnotationBlock(classAst)) {
+                        final String qualifiedName = desc.getQualifiedName();
+                        final String className = getClassNameFromQualifiedName(qualifiedName);
+                        log(classAst, MSG_KEY, className);
+                    }
+                }
+                classes.clear();
             }
         }
+    }
+
+    /**
+     * Checks if the current class is one of the outermost class.
+     *
+     * @param classAst classAst
+     * @return true if current class is one of the outermost class.
+     */
+    private boolean isTopLevelClass(DetailAST classAst) {
+        DetailAST grandParent = classAst.getParent().getParent();
+        if (grandParent != null) {
+            return grandParent.getType() != TokenTypes.CLASS_DEF;
+        }
+        return true;
     }
 
     /**
@@ -227,23 +256,96 @@ public class FinalClassCheck
     }
 
     /**
-     * Register to outer super classes of given classAst that
+     * Register to outer super class of given classAst that
      * given classAst is extending them.
      *
-     * @param classAst class which outer super classes will be
+     * @param classAst class which outer super class will be
      *                 informed about nesting subclass
+     * @param qualifiedClassName qualifies class name(with package) of the current class
      */
-    private void registerNestedSubclassToOuterSuperClasses(DetailAST classAst) {
+    private void registerNestedSubclassToOuterSuperClasses(DetailAST classAst, String qualifiedClassName) {
         final String currentAstSuperClassName = getSuperClassName(classAst);
-        if (currentAstSuperClassName != null) {
-            for (ClassDesc classDesc : classes) {
-                final String classDescQualifiedName = classDesc.getQualifiedName();
-                if (doesNameInExtendMatchSuperClassName(classDescQualifiedName,
-                        currentAstSuperClassName)) {
+        if (currentAstSuperClassName == null) {
+            return;
+        }
+        String classToBeRegisteredAsSuperClass = null;
+        List<ClassDesc> sameNamedClassList = classesWithSameName(currentAstSuperClassName);
+        if (sameNamedClassList.size() > 1) {
+            classToBeRegisteredAsSuperClass = getClassToBeRegisteredAsSuperClass(
+                    qualifiedClassName, sameNamedClassList);
+        }
+
+        boolean registeredNestedSubClass = false;
+        for (ClassDesc classDesc : classes) {
+            final String classDescQualifiedName = classDesc.getQualifiedName();
+            if (registeredNestedSubClass) {
+                break;
+            }
+            else if (classToBeRegisteredAsSuperClass != null) {
+                if (classDescQualifiedName.equals(classToBeRegisteredAsSuperClass)) {
                     classDesc.registerNestedSubclass();
+                    registeredNestedSubClass = true;
                 }
             }
+            else if (doesNameInExtendMatchSuperClassName(classDescQualifiedName,
+                    currentAstSuperClassName)) {
+                classDesc.registerNestedSubclass();
+                registeredNestedSubClass = true;
+            }
         }
+    }
+
+    /**
+     * Checks if there is a class with same name.
+     *
+     * @param className name of the class
+     * @return true if there is another class with same name.
+     */
+    private List<ClassDesc> classesWithSameName(String className) {
+        return classes.stream()
+                .filter(classDesc -> classDesc.getQualifiedName().endsWith(PACKAGE_SEPARATOR + className))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Get name of the class to be registered as super class.
+     *
+     * @param currentClassName    current class name
+     * @param classesWithSameName classes which same name as super class
+     * @return name of the class to be registered as super class
+     */
+    private static String getClassToBeRegisteredAsSuperClass(String currentClassName, List<ClassDesc> classesWithSameName) {
+        char[] currentClassArray = currentClassName.toCharArray();
+        int currentClassArrayLength = currentClassArray.length;
+        for (ClassDesc classes : classesWithSameName) {
+            String classWithSameName = classes.getQualifiedName();
+            char[] classWithSameNameArray = classWithSameName.toCharArray();
+            int minLength = Math.min(currentClassArrayLength, classWithSameNameArray.length);
+            int counter = 0;
+            for (int i = 0; i < minLength; i++) {
+                if (currentClassArray[i] == classWithSameNameArray[i]) {
+                    counter++;
+                } else {
+                    break;
+                }
+            }
+            classes.setClassNameMatchingCount(counter);
+        }
+        ClassDesc classToBeRegisteredAsSuperClass = classesWithSameName.get(0);
+        for (int i = 1; i < classesWithSameName.size(); i++) {
+            ClassDesc classWithSameName = classesWithSameName.get(i);
+            if (classToBeRegisteredAsSuperClass.getClassNameMatchingCount() <
+                    classWithSameName.getClassNameMatchingCount()) {
+                classToBeRegisteredAsSuperClass = classWithSameName;
+            } else if (classToBeRegisteredAsSuperClass.getClassNameMatchingCount() ==
+                    classWithSameName.getClassNameMatchingCount()
+                    && classToBeRegisteredAsSuperClass.getQualifiedName().length() >
+                    classWithSameName.getQualifiedName().length()) {
+                classToBeRegisteredAsSuperClass = classWithSameName;
+            }
+        }
+
+        return classToBeRegisteredAsSuperClass.getQualifiedName();
     }
 
     /**
@@ -269,8 +371,8 @@ public class FinalClassCheck
     private String getQualifiedClassName(DetailAST classAst) {
         final String className = classAst.findFirstToken(TokenTypes.IDENT).getText();
         String outerClassQualifiedName = null;
-        if (!classes.isEmpty()) {
-            outerClassQualifiedName = classes.peek().getQualifiedName();
+        if (!classesPoppedOutAfterExamination.isEmpty()) {
+            outerClassQualifiedName = classesPoppedOutAfterExamination.peek().getQualifiedName();
         }
         return getQualifiedClassName(packageName, outerClassQualifiedName, className);
     }
@@ -326,13 +428,23 @@ public class FinalClassCheck
      * @return true if given super class name in extend clause match super class qualified name,
      *         false otherwise
      */
-    private static boolean doesNameInExtendMatchSuperClassName(String superClassQualifiedName,
+    private boolean doesNameInExtendMatchSuperClassName(String superClassQualifiedName,
                                                                String superClassInExtendClause) {
         String superClassNormalizedName = superClassQualifiedName;
-        if (!superClassInExtendClause.contains(PACKAGE_SEPARATOR)) {
+        boolean result = superClassNormalizedName.equals(superClassInExtendClause);
+
+        if (!superClassInExtendClause.contains(packageName)) {
+            if (superClassInExtendClause.contains(PACKAGE_SEPARATOR)) {
+                result = superClassNormalizedName.endsWith(superClassInExtendClause);
+            } else {
+                superClassNormalizedName = getClassNameFromQualifiedName(superClassQualifiedName);
+                result = superClassNormalizedName.equals(superClassInExtendClause);
+            }
+        } else if (packageName.equals("")) {
             superClassNormalizedName = getClassNameFromQualifiedName(superClassQualifiedName);
+            result = superClassNormalizedName.equals(superClassInExtendClause);
         }
-        return superClassNormalizedName.equals(superClassInExtendClause);
+        return result;
     }
 
     /**
@@ -347,6 +459,9 @@ public class FinalClassCheck
 
     /** Maintains information about class' ctors. */
     private static final class ClassDesc {
+
+        /** Corresponding node. */
+        private final DetailAST classAst;
 
         /** Qualified class name(with package). */
         private final String qualifiedName;
@@ -370,6 +485,13 @@ public class FinalClassCheck
         private boolean withAnonymousInnerClass;
 
         /**
+         * Counts how much the class's qualified name
+         * is similar to a given class. Only required when
+         * there are multiple classes with same name.
+         */
+        private int classNameMatchingCount;
+
+        /**
          *  Create a new ClassDesc instance.
          *
          *  @param qualifiedName qualified class name(with package)
@@ -377,12 +499,14 @@ public class FinalClassCheck
          *         class declared as final
          *  @param declaredAsAbstract indicates if the
          *         class declared as abstract
+         *  @param classAst classAst node
          */
         /* package */ ClassDesc(String qualifiedName, boolean declaredAsFinal,
-                boolean declaredAsAbstract) {
+                                boolean declaredAsAbstract, DetailAST classAst) {
             this.qualifiedName = qualifiedName;
             this.declaredAsFinal = declaredAsFinal;
             this.declaredAsAbstract = declaredAsAbstract;
+            this.classAst = classAst;
         }
 
         /**
@@ -392,6 +516,15 @@ public class FinalClassCheck
          */
         private String getQualifiedName() {
             return qualifiedName;
+        }
+
+        /**
+         * Get the classAst node.
+         *
+         * @return classAst node
+         */
+        public DetailAST getClassAst() {
+            return classAst;
         }
 
         /** Adds private ctor. */
@@ -468,6 +601,22 @@ public class FinalClassCheck
             return withAnonymousInnerClass;
         }
 
-    }
+        /**
+         * Get the classNameMatchingCount.
+         *
+         * @return classNameMatchingCount
+         */
+        public int getClassNameMatchingCount() {
+            return classNameMatchingCount;
+        }
 
+        /**
+         * Set the classNameMatchingCount.
+         *
+         * @param classNameMatchingCount classNameMatchingCount
+         */
+        public void setClassNameMatchingCount(int classNameMatchingCount) {
+            this.classNameMatchingCount = classNameMatchingCount;
+        }
+    }
 }
