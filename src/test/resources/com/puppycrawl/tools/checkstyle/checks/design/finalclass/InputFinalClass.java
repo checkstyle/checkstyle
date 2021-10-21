@@ -127,7 +127,7 @@ interface TestInterface {
 }
 
 @interface SomeAnnotation {
-    class SomeClass {
+    class SomeClass { //violation
         private SomeClass() {}
     }
 }
