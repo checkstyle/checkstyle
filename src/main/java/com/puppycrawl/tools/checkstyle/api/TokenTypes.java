@@ -3634,14 +3634,14 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     *   if (abc >= 2)
+     *   if (abc &gt;= 2)
      * </pre>
      * <p>parses as:</p>
      * <pre>
      * LITERAL_IF -&gt; if
      *  |--LPAREN -&gt; (
      *  |--EXPR -&gt; EXPR
-     *  |   `--GE -&gt; -ge;
+     *  |   `--GE -&gt; -&gt;=
      *  |       |--IDENT -&gt; abc
      *  |       `--NUM_INT -&gt; 2
      *  |--RPAREN -&gt; )
@@ -4324,14 +4324,17 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * --LITERAL_ASSERT -&gt; assert
-     *    |--EXPR -&gt; EXPR
-     *    |   |--LPAREN -&gt; (
-     *    |   |--EQUAL -&gt; ==
-     *    |   |   |--IDENT -&gt; x
-     *    |   |   `--NUM_INT -&gt; 4
-     *    |   `--RPAREN -&gt; )
-     *    `--SEMI -&gt; ;
+     * +--LITERAL_ASSERT (assert)
+     *     |
+     *     +--EXPR
+     *         |
+     *         +--LPAREN (()
+     *         +--EQUAL (==)
+     *             |
+     *             +--IDENT (x)
+     *             +--NUM_INT (4)
+     *         +--RPAREN ())
+     *     +--SEMI (;)
      * </pre>
      **/
     public static final int LITERAL_ASSERT = JavaLanguageLexer.ASSERT;
