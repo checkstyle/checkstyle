@@ -16,51 +16,12 @@
       </macro>
     </section>
 
-    <section name="Caching Support">
+    <section name="Localization Support">
       <p>
-        The property <code>checkstyle.cache.file</code>
-        specifies the name of a file that can be used to cache details
-        of files that pass Checkstyle. This can <i>significantly</i>
-        increase the speed of checkstyle on successive runs. The
-        property type is <a href="property_types.html#String">String</a>
-        and defaults to an empty string (which means no caching is done).
-      </p>
-    </section>
-
-    <section name="Localisation Support">
-      <p>
-        Checkstyle supports a mechanism for localising the output
-        messages. If your language is not supported, please consider
+        Checkstyle supports localization of the output messages.
+        If your language is not supported, please consider
         translating the messages in the <code>messages.properties</code> file. Please let us
         know if you translate the file.
-      </p>
-
-      <p>
-        The property <code>checkstyle.locale.language</code> specifies the
-        language to use in localising the output messages. The property
-        type is <a href="property_types.html#String">String</a> and
-        defaults to the default system locale language.
-      </p>
-
-      <p>
-        The property <code>checkstyle.locale.country</code>
-        specifies the country to use in localising the output
-        messages. The property type is <a
-        href="property_types.html#String">String</a> and defaults to the
-        default system locale country.
-      </p>
-    </section>
-
-    <section name="Base directory support">
-      <p>
-        The property <code>checkstyle.basedir</code>
-        specifies a base directory which files are then reported
-        relative to. For example, if a base directory is specified as
-        <code>c:\projects\checkstyle</code>, then a violation
-        in the file <code>c:\projects\checkstyle\src\dir\subdir\File.java</code>
-        will be reported as <code>src\dir\subdir\File.java</code>. The property type
-        is <a href="property_types.html#String">String</a> and defaults
-        to an empty string.
       </p>
     </section>
 
