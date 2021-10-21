@@ -43,12 +43,14 @@ public class FinalClassCheckTest
     @Test
     public void testGetRequiredTokens() {
         final FinalClassCheck checkObj = new FinalClassCheck();
-        final int[] expected =
-            {TokenTypes.CLASS_DEF,
-             TokenTypes.CTOR_DEF,
-             TokenTypes.PACKAGE_DEF,
-             TokenTypes.LITERAL_NEW,
-            };
+        final int[] expected = {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.LITERAL_NEW,
+        };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }
@@ -92,7 +94,9 @@ public class FinalClassCheckTest
     @Test
     public void testFinalClassConstructorInRecord() throws Exception {
 
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "27:9: " + getCheckMessage(MSG_KEY, "F"),
+        };
 
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputFinalClassConstructorInRecord.java"),
@@ -117,12 +121,14 @@ public class FinalClassCheckTest
     @Test
     public void testGetAcceptableTokens() {
         final FinalClassCheck obj = new FinalClassCheck();
-        final int[] expected =
-            {TokenTypes.CLASS_DEF,
-             TokenTypes.CTOR_DEF,
-             TokenTypes.PACKAGE_DEF,
-             TokenTypes.LITERAL_NEW,
-            };
+        final int[] expected = {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.LITERAL_NEW,
+        };
         assertArrayEquals(expected, obj.getAcceptableTokens(),
                 "Default acceptable tokens are invalid");
     }
@@ -132,6 +138,39 @@ public class FinalClassCheckTest
         final String actual = TestUtil.invokeStaticMethod(FinalClassCheck.class,
                 "getQualifiedClassName", "", null, "ClassName");
         assertEquals("ClassName", actual, "unexpected result");
+    }
+
+    @Test
+    public void testFinalClassInnerAndNestedClasses() throws Exception {
+        final String[] expected = {
+            "19:5: " + getCheckMessage(MSG_KEY, "SameName"),
+            "45:9: " + getCheckMessage(MSG_KEY, "SameName"),
+            "69:13: " + getCheckMessage(MSG_KEY, "B"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalClassInnerAndNestedClass.java"), expected);
+    }
+
+    @Test
+    public void testFinalClassStaticNestedClasses() throws Exception {
+
+        final String[] expected = {
+            "14:17: " + getCheckMessage(MSG_KEY, "C"),
+            "32:9: " + getCheckMessage(MSG_KEY, "B"),
+            "43:9: " + getCheckMessage(MSG_KEY, "C"),
+            "60:13: " + getCheckMessage(MSG_KEY, "Q"),
+            "76:9: " + getCheckMessage(MSG_KEY, "F"),
+            "83:9: " + getCheckMessage(MSG_KEY, "c"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalClassNestedStaticClassInsideInnerClass.java"),
+                expected);
+    }
+
+    @Test
+    public void testFinalClassEnum() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputFinalClassEnum.java"), expected);
     }
 
 }
