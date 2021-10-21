@@ -3632,6 +3632,22 @@ public final class TokenTypes {
     /**
      * The {@code >=} (greater than or equal) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     *   if (abc &gt;= 2)
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * --LITERAL_IF -&gt; if
+     *    |--LPAREN -&gt; (
+     *    |--EXPR -&gt; EXPR
+     *    |   `--GE -&gt; &gt;=
+     *    |       |--IDENT -&gt; abc
+     *    |       `--NUM_INT -&gt; 2
+     *    |--RPAREN -&gt; )
+     *    `--SLIST -&gt; {
+     * </pre>
+     *
      * @see #EXPR
      **/
     public static final int GE = JavaLanguageLexer.GE;
