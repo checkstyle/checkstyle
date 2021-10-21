@@ -69,6 +69,15 @@
 
     </section>
 
+    <section name="Supported JREs">
+      <p>
+        Checkstyle currently is confirmed to be supported by all JREs from 8 through 17.
+        Future JREs may be supported. Please
+        <a href="https://checkstyle.org/report_issue.html">report an issue</a>
+        if there is any problems with future JREs.
+      </p>
+    </section>
+
     <section name="Previous Version Documentation">
       <p>
         Current site contains documentation only for latest, released version.
