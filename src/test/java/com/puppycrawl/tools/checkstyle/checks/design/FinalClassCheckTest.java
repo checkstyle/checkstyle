@@ -134,4 +134,30 @@ public class FinalClassCheckTest
         assertEquals("ClassName", actual, "unexpected result");
     }
 
+    @Test
+    public void testFinalClassInnerAndNestedClasses() throws Exception {
+        final String[] expected = {
+            "19:5: " + getCheckMessage(MSG_KEY, "SameName"),
+            "45:9: " + getCheckMessage(MSG_KEY, "SameName"),
+            "69:13: " + getCheckMessage(MSG_KEY, "B"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalClassInnerAndNestedClass.java"), expected);
+    }
+
+    @Test
+    public void testFinalClassStaticNestedClasses() throws Exception {
+
+        final String[] expected = {
+            "14:17: " + getCheckMessage(MSG_KEY, "C"),
+            "32:9: " + getCheckMessage(MSG_KEY, "B"),
+            "43:9: " + getCheckMessage(MSG_KEY, "C"),
+            "60:13: " + getCheckMessage(MSG_KEY, "Q"),
+            "76:9: " + getCheckMessage(MSG_KEY, "F"),
+            "83:9: " + getCheckMessage(MSG_KEY, "c"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalClassNestedStaticClassInsideInnerClass.java"),
+                expected);
+    }
 }
