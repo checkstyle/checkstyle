@@ -3634,18 +3634,21 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     *   if (abc &gt;= 2)
+     *   int a = 2;
+     *   boolean b = a >= 3;
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * LITERAL_IF -&gt; if
-     *  |--LPAREN -&gt; (
-     *  |--EXPR -&gt; EXPR
-     *  |   `--GE -&gt; &gt;=
-     *  |       |--IDENT -&gt; abc
-     *  |       `--NUM_INT -&gt; 2
-     *  |--RPAREN -&gt; )
-     *  `--SLIST -&gt; {
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_BOOLEAN -&gt; boolean
+     *  |--IDENT -&gt; b
+     *  `--ASSIGN -&gt; =
+     *      `--EXPR -&gt; EXPR
+     *          `--GE -&gt; &gt;=
+     *              |--IDENT -&gt; a
+     *              `--NUM_INT -&gt; 3
      * </pre>
      *
      * @see #EXPR
