@@ -3650,6 +3650,25 @@ public final class TokenTypes {
     /**
      * The {@code >=} (greater than or equal) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     *   int a = 2;
+     *   boolean b = a >= 3;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_BOOLEAN -&gt; boolean
+     *  |--IDENT -&gt; b
+     *  `--ASSIGN -&gt; =
+     *      `--EXPR -&gt; EXPR
+     *          `--GE -&gt; &gt;=
+     *              |--IDENT -&gt; a
+     *              `--NUM_INT -&gt; 3
+     * </pre>
+     *
      * @see #EXPR
      **/
     public static final int GE = JavaLanguageLexer.GE;
