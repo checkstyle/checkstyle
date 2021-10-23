@@ -38,7 +38,7 @@ steps:
 
 ---
 kind: pipeline
-name: site_dry-run
+name: site
 
 volumes:
 - name: m2-cache
@@ -64,6 +64,25 @@ steps:
   commands:
   - ./.ci/travis/travis.sh site
 
+
+---
+kind: pipeline
+name: dry-run_run-all
+
+volumes:
+- name: m2-cache
+  temp: {}
+
+steps:
+- name: restore-cache
+  image: maven:3.6.3-adoptopenjdk-8
+  failure: ignore
+  volumes:
+  - name: m2-cache
+    path: /.m2
+  commands:
+  - ./.ci/drone-io.sh restore-maven-cache
+
 - name: release-dry-run
   image: maven:3.6.3-adoptopenjdk-8
   environment:
@@ -74,9 +93,19 @@ steps:
   commands:
   - ./.ci/travis/travis.sh release-dry-run
 
+- name: assembly-run-all-jar
+  image: maven:3.6.3-adoptopenjdk-8
+  environment:
+    MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
+  volumes:
+  - name: m2-cache
+    path: /.m2
+  commands:
+  - ./.ci/travis/travis.sh assembly-run-all-jar
+
 ---
 kind: pipeline
-name: releasenotes_run-all
+name: releasenotes
 
 volumes:
 - name: m2-cache
@@ -103,16 +132,6 @@ steps:
     path: /.m2
   commands:
   - export PULL_REQUEST=$DRONE_PULL_REQUEST && ./.ci/travis/travis.sh releasenotes-gen
-
-- name: assembly-run-all-jar
-  image: maven:3.6.3-adoptopenjdk-8
-  environment:
-    MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
-  volumes:
-  - name: m2-cache
-    path: /.m2
-  commands:
-  - ./.ci/travis/travis.sh assembly-run-all-jar
 
 ---
 kind: pipeline
