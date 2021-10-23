@@ -34,6 +34,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.PropertyType;
+import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -90,6 +92,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     private static final Pattern BRACKET_PATTERN = Pattern.compile("\\[[^]]*]");
 
     /** Specify user-configured regular expressions to ignore classes. */
+    @XdocsPropertyType(PropertyType.REGEXP_ARRAY)
     private final List<Pattern> excludeClassesRegexps = new ArrayList<>();
 
     /** A map of (imported class name -&gt; class name with package) pairs. */
