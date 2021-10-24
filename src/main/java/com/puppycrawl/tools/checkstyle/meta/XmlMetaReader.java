@@ -33,8 +33,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.reflections.Reflections;
-import org.reflections.ReflectionsException;
-import org.reflections.scanners.ResourcesScanner;
+import org.reflections.scanners.Scanners;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -73,22 +72,15 @@ public final class XmlMetaReader {
      */
     public static List<ModuleDetails> readAllModulesIncludingThirdPartyIfAny(
             String... thirdPartyPackages) {
-        final Set<String> standardModuleFileNames =
-                new Reflections("com.puppycrawl.tools.checkstyle.meta",
-                        new ResourcesScanner()).getResources(Pattern.compile(".*\\.xml"));
+        final Set<String> standardModuleFileNames = new Reflections(
+                "com.puppycrawl.tools.checkstyle.meta", Scanners.Resources)
+                .getResources(Pattern.compile(".*\\.xml"));
         final Set<String> allMetadataSources = new HashSet<>(standardModuleFileNames);
         for (String packageName : thirdPartyPackages) {
-            try {
-                final Set<String> thirdPartyModuleFileNames =
-                        new Reflections(packageName, new ResourcesScanner())
-                                .getResources(Pattern.compile(".*checkstylemeta-.*\\.xml"));
-                allMetadataSources.addAll(thirdPartyModuleFileNames);
-            }
-            catch (ReflectionsException ex) {
-                if (propagateResourceScannerException(ex)) {
-                    throw ex;
-                }
-            }
+            final Set<String> thirdPartyModuleFileNames =
+                    new Reflections(packageName, Scanners.Resources)
+                            .getResources(Pattern.compile(".*checkstylemeta-.*\\.xml"));
+            allMetadataSources.addAll(thirdPartyModuleFileNames);
         }
 
         final List<ModuleDetails> result = new ArrayList<>();
@@ -116,20 +108,6 @@ public final class XmlMetaReader {
         }
 
         return result;
-    }
-
-    /**
-     * Checks if exception should be suppressed that matches the following
-     * because the reflections library throws this exception wrongly on valid
-     * packages with no resources to be found. Packages may be only checks with
-     * no resources or checks with resources. This issue is until
-     * https://github.com/ronmamo/reflections/issues/273.
-     *
-     * @param exception The exception to examine.
-     * @return {@code true} if the exception should be propagated.
-     */
-    private static boolean propagateResourceScannerException(ReflectionsException exception) {
-        return !"Scanner ResourcesScanner was not configured".equals(exception.getMessage());
     }
 
     /**
