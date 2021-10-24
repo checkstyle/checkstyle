@@ -2346,6 +2346,25 @@ public final class TokenTypes {
      * The {@code ::} (double colon) separator.
      * It is part of Java 8 syntax that is used for method reference.
      * The token does not appear in tree, {@link #METHOD_REF} should be used instead.
+     * <p>For example:</p>
+     * <pre>
+     * System.out::println
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * METHOD_CALL -&gt; (
+     *  |--DOT -&gt; .
+     *  |   |--IDENT -&gt; stream
+     *  |   `--IDENT -&gt; forEach
+     *  |--ELIST -&gt; ELIST
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--METHOD_REF -&gt; ::
+     *  |           |--DOT -&gt; .
+     *  |           |   |--IDENT -&gt; System
+     *  |           |   `--IDENT -&gt; out
+     *  |           `--IDENT -&gt; println
+     *  `--RPAREN -&gt; )
+     * </pre>
      *
      * @see #METHOD_REF
      */
