@@ -24,14 +24,12 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.lang.reflect.Method;
-
 import org.junit.jupiter.api.Test;
-import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class FinalClassCheckTest
@@ -131,10 +129,9 @@ public class FinalClassCheckTest
 
     @Test
     public void testQualifiedClassName() throws Exception {
-        final Method method = Whitebox.getMethod(FinalClassCheck.class, "getQualifiedClassName",
-                String.class, String.class, String.class);
-        assertEquals("ClassName", method.invoke(null, "", null, "ClassName"),
-                "unexpected result");
+        final String actual = TestUtil.invokeMethod(FinalClassCheck.class, "getQualifiedClassName",
+                "", null, "ClassName");
+        assertEquals("ClassName", actual, "unexpected result");
     }
 
 }
