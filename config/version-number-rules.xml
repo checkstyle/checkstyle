@@ -38,5 +38,11 @@
         <ignoreVersion type="regex">.*</ignoreVersion>
       </ignoreVersions>
     </rule>
+    <rule groupId="org.reflections" artifactId="reflections">
+      <ignoreVersions>
+        <!-- until https://github.com/spotbugs/spotbugs/issues/10901 -->
+        <ignoreVersion type="regex">.*</ignoreVersion>
+      </ignoreVersions>
+    </rule>
   </rules>
 </ruleset>
