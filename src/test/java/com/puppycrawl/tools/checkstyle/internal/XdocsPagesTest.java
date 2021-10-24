@@ -281,7 +281,8 @@ public class XdocsPagesTest {
                 assertWithMessage(
                     "The first sentence of the \"Description\" subsection for the check "
                         + checkName + " in the file \"" + fileName + "\" should end with a period")
-                    .that(matcher.find());
+                    .that(matcher.find())
+                    .isTrue();
                 final String firstSentence = XmlUtil.sanitizeXml(matcher.group(1));
                 assertWithMessage("The summary for check " + checkName
                         + " in the file \"" + AVAILABLE_CHECKS_PATH + "\""
