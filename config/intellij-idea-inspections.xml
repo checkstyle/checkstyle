@@ -2454,13 +2454,14 @@
                         ,java.lang.Math,.*, ,
                         ,java.lang.Object,equals|hashCode|toString, ,
                         ,java.lang.Short,.*, ,
-                        java.lang.StrictMath,.*, ,
-                        java.lang.String,.*, ,
-                        java.math.BigInteger,.*, ,
-                        java.math.BigDecimal,.*, ,
-                        java.net.InetAddress,.*, ,
-                        java.net.URI,.*, ,
-                        java.util.UUID,.*"/>
+                        ,java.lang.StrictMath,.*, ,
+                        ,java.lang.String,.*, ,
+                        ,java.math.BigInteger,.*, ,
+                        ,java.math.BigDecimal,.*, ,
+                        ,java.net.InetAddress,.*, ,
+                        ,java.net.URI,.*, ,
+                        ,java.util.UUID,.*, ,
+                        ,com.google.common.truth.StandardSubjectBuilder,.*"/>
   </inspection_tool>
   <inspection_tool class="IgnoreSyntaxEntry" enabled="true" level="WARNING"
                    enabled_by_default="true"/>
