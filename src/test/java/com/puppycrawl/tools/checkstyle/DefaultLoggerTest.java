@@ -206,7 +206,8 @@ public class DefaultLoggerTest {
         final String language = DEFAULT_LOCALE.getLanguage();
         if (!language.isEmpty()) {
             assertWithMessage("Invalid language")
-                    .that(Arrays.asList(Locale.getISOLanguages()).contains(language));
+                    .that(Arrays.asList(Locale.getISOLanguages()))
+                    .contains(language);
         }
     }
 
@@ -218,7 +219,8 @@ public class DefaultLoggerTest {
         final String country = DEFAULT_LOCALE.getCountry();
         if (!country.isEmpty()) {
             assertWithMessage("Invalid country")
-                    .that(Arrays.asList(Locale.getISOLanguages()).contains(country));
+                    .that(Arrays.asList(Locale.getISOCountries()))
+                    .contains(country);
         }
     }
 
