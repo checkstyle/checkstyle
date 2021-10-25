@@ -33,7 +33,9 @@ import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /** Class which handles all the metadata generation and writing calls. */
@@ -46,25 +48,33 @@ public final class MetadataGeneratorUtil {
     /**
      * Generate metadata from the module source files available in the input argument path.
      *
+     * @param shouldPrintToConsole whether violation messages should be printed to console or not
      * @param args arguments
+     * @return number of errors
      * @throws IOException ioException
      * @throws CheckstyleException checkstyleException
      */
-    public static void generate(String... args) throws IOException, CheckstyleException {
+    public static int generate(boolean shouldPrintToConsole, String... args)
+            throws IOException, CheckstyleException {
         JavadocMetadataScraper.resetModuleDetailsStore();
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Checker.class.getClassLoader());
         final DefaultConfiguration scraperCheckConfig =
                         new DefaultConfiguration(JavadocMetadataScraper.class.getName());
-        final DefaultConfiguration defaultConfiguration = new DefaultConfiguration("configuration");
+        final DefaultConfiguration defaultConfiguration =
+                new DefaultConfiguration("configuration");
         final DefaultConfiguration treeWalkerConfig =
                 new DefaultConfiguration(TreeWalker.class.getName());
         defaultConfiguration.addProperty("charset", StandardCharsets.UTF_8.name());
         defaultConfiguration.addChild(treeWalkerConfig);
         treeWalkerConfig.addChild(scraperCheckConfig);
         checker.configure(defaultConfiguration);
-        dumpMetadata(checker, args[0]);
+        if (shouldPrintToConsole) {
+            checker.addListener(new DefaultLogger(System.out,
+                    AutomaticBean.OutputStreamOptions.NONE));
+        }
+        return dumpMetadata(checker, args[0]);
     }
 
     /**
@@ -72,10 +82,11 @@ public final class MetadataGeneratorUtil {
      *
      * @param checker checker
      * @param path rootPath
+     * @return number of errors
      * @throws CheckstyleException checkstyleException
      * @throws IOException ioException
      */
-    private static void dumpMetadata(Checker checker, String path) throws CheckstyleException,
+    private static int dumpMetadata(Checker checker, String path) throws CheckstyleException,
             IOException {
         final List<File> validFiles = new ArrayList<>();
         final List<String> moduleFolders = Arrays.asList("checks", "filters", "filefilters");
@@ -92,7 +103,6 @@ public final class MetadataGeneratorUtil {
                         .collect(Collectors.toList()));
             }
         }
-
-        checker.process(validFiles);
+        return checker.process(validFiles);
     }
 }
