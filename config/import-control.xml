@@ -64,6 +64,10 @@
     <allow class="java.text.MessageFormat"/>
   </file>
 
+  <file name="MetadataGeneratorUtil">
+    <allow class="com.puppycrawl.tools.checkstyle.DefaultLogger"/>
+  </file>
+
   <subpackage name="utils">
 
     <allow pkg="java.lang.reflect" local-only="true" />
