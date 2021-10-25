@@ -22,15 +22,18 @@ package com.puppycrawl.tools.checkstyle.internal.utils;
 import java.io.OutputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
 import com.puppycrawl.tools.checkstyle.PackageObjectFactory;
@@ -85,47 +88,44 @@ public final class TestUtil {
     /**
      * Retrieves the specified field by it's name in the class or it's direct super.
      *
-     * @param clss The class to retrieve the field for.
-     * @param fieldName The name of the field to retrieve.
-     * @return The class' field.
-     * @throws NoSuchFieldException if the requested field cannot be found in the class.
+     * @param clss the class to retrieve the field for
+     * @param fieldName the name of the field to retrieve
+     * @return the class' field if found
      */
-    public static Field getClassDeclaredField(Class<?> clss, String fieldName)
-            throws NoSuchFieldException {
-        final Optional<Field> classField = Arrays.stream(clss.getDeclaredFields())
-                .filter(field -> fieldName.equals(field.getName())).findFirst();
-        final Field resultField;
-        if (classField.isPresent()) {
-            resultField = classField.get();
-        }
-        else {
-            resultField = clss.getSuperclass().getDeclaredField(fieldName);
-        }
-        resultField.setAccessible(true);
-        return resultField;
+    public static Field getClassDeclaredField(Class<?> clss, String fieldName) {
+        return Stream.<Class<?>>iterate(clss, Class::getSuperclass)
+            .flatMap(cls -> Arrays.stream(cls.getDeclaredFields()))
+            .filter(field -> fieldName.equals(field.getName()))
+            .peek(field -> field.setAccessible(true))
+            .findFirst()
+            .orElseThrow(() -> {
+                return new IllegalStateException(String.format(Locale.ROOT,
+                        "Field '%s' not found in '%s'", fieldName, clss.getCanonicalName()));
+            });
     }
 
     /**
      * Retrieves the specified method by it's name in the class or it's direct super.
      *
-     * @param clss The class to retrieve the field for.
-     * @param methodName The name of the method to retrieve.
-     * @return The class' field.
-     * @throws NoSuchMethodException if the requested method cannot be found in the class.
+     * @param clss the class to retrieve the method for
+     * @param methodName the name of the method to retrieve
+     * @param parameters the expected number of parameters
+     * @return the class' method
      */
-    public static Method getClassDeclaredMethod(Class<?> clss, String methodName)
-            throws NoSuchMethodException {
-        final Optional<Method> classMethod = Arrays.stream(clss.getDeclaredMethods())
-                .filter(method -> methodName.equals(method.getName())).findFirst();
-        final Method resultMethod;
-        if (classMethod.isPresent()) {
-            resultMethod = classMethod.get();
-        }
-        else {
-            resultMethod = clss.getSuperclass().getDeclaredMethod(methodName);
-        }
-        resultMethod.setAccessible(true);
-        return resultMethod;
+    public static Method getClassDeclaredMethod(Class<?> clss, String methodName, int parameters) {
+        return Stream.<Class<?>>iterate(clss, Class::getSuperclass)
+            .flatMap(cls -> Arrays.stream(cls.getDeclaredMethods()))
+            .filter(method -> {
+                return methodName.equals(method.getName())
+                    && parameters == method.getParameterCount();
+            })
+            .peek(method -> method.setAccessible(true))
+            .findFirst()
+            .orElseThrow(() -> {
+                return new IllegalStateException(String.format(Locale.ROOT,
+                        "Method '%s' with %d parameters not found in '%s'",
+                        methodName, parameters, clss.getCanonicalName()));
+            });
     }
 
     /**
@@ -136,20 +136,15 @@ public final class TestUtil {
      * @param fieldName  name of the field to be checked
      * @param isClear    function for checking field state
      * @return {@code true} if state of the field is cleared
-     * @throws NoSuchFieldException   if there is no field with the
-     *                                {@code fieldName} in the {@code check}
-     * @throws IllegalAccessException if the field is inaccessible
      */
     public static boolean isStatefulFieldClearedDuringBeginTree(AbstractCheck check,
                                                                 DetailAST astToVisit,
                                                                 String fieldName,
-                                                                Predicate<Object> isClear)
-            throws NoSuchFieldException, IllegalAccessException {
+                                                                Predicate<Object> isClear) {
         check.beginTree(astToVisit);
         check.visitToken(astToVisit);
         check.beginTree(null);
-        final Field resultField = getClassDeclaredField(check.getClass(), fieldName);
-        return isClear.test(resultField.get(check));
+        return isClear.test(getInternalState(check, fieldName));
     }
 
     /**
@@ -166,7 +161,7 @@ public final class TestUtil {
             TreeWalkerFilter filter, TreeWalkerAuditEvent event,
             String fieldName, Predicate<Object> isClear) throws Exception {
         filter.accept(event);
-        getClassDeclaredMethod(filter.getClass(), "finishLocalSetup").invoke(filter);
+        invokeMethod(filter, "finishLocalSetup");
         final Field resultField = getClassDeclaredField(filter.getClass(), fieldName);
         return isClear.test(resultField.get(filter));
     }
@@ -268,4 +263,132 @@ public final class TestUtil {
         thread.start();
         return futureTask.get(10, TimeUnit.SECONDS);
     }
+
+    /**
+     * Reads the value of a field using reflection. This method will traverse the
+     * super class hierarchy until a field with name {@code fieldName} is found.
+     *
+     * @param instance the instance to read
+     * @param fieldName the name of the field
+     * @throws RuntimeException if the field  can't be read
+     * @noinspection unchecked
+     */
+    public static <T> T getInternalState(Object instance, String fieldName) {
+        try {
+            final Field field = getClassDeclaredField(instance.getClass(), fieldName);
+            return (T) field.get(instance);
+        }
+        catch (ReflectiveOperationException ex) {
+            final String message = String.format(Locale.ROOT,
+                    "Failed to get field '%s' for instance of class '%s'",
+                    fieldName, instance.getClass().getSimpleName());
+            throw new IllegalStateException(message, ex);
+        }
+    }
+
+    /**
+     * Reads the value of a static field using reflection. This method will traverse the
+     * super class hierarchy until a field with name {@code fieldName} is found.
+     *
+     * @param clss the class of the field
+     * @param fieldName the name of the field
+     * @throws RuntimeException if the field  can't be read
+     * @noinspection unchecked
+     */
+    public static <T> T getInternalStaticState(Class<?> clss, String fieldName) {
+        try {
+            final Field field = getClassDeclaredField(clss, fieldName);
+            return (T) field.get(null);
+        }
+        catch (ReflectiveOperationException ex) {
+            final String message = String.format(Locale.ROOT,
+                    "Failed to get static field '%s' for class '%s'",
+                    fieldName, clss);
+            throw new IllegalStateException(message, ex);
+        }
+    }
+
+    /**
+     * Writes the value of a field using reflection. This method will traverse the
+     * super class hierarchy until a field with name {@code fieldName} is found.
+     *
+     * @param instance the instance whose field to modify
+     * @param fieldName the name of the field
+     * @param value the new value of the field
+     * @throws RuntimeException if the field  can't be changed
+     */
+    public static void setInternalState(Object instance, String fieldName, Object value) {
+        try {
+            final Field field = getClassDeclaredField(instance.getClass(), fieldName);
+            field.set(instance, value);
+        }
+        catch (ReflectiveOperationException ex) {
+            final String message = String.format(Locale.ROOT,
+                    "Failed to set field '%s' for instance of class '%s'",
+                    fieldName, instance.getClass().getSimpleName());
+            throw new IllegalStateException(message, ex);
+        }
+    }
+
+    /**
+     * Invokes a private method for an instance.
+     *
+     * @param instance the instance whose method to invoke
+     * @param methodToExecute the name of the method to invoke
+     * @param arguments the optional arguments
+     * @param <T> the type of the result
+     * @return the method's result
+     * @throws Exception if the method failed
+     * @noinspection ProhibitedExceptionThrown, ThrowInsideCatchBlockWhichIgnoresCaughtException,
+     *               unchecked
+     */
+    public static <T> T invokeMethod(Object instance,
+            String methodToExecute, Object... arguments) throws Exception {
+        final Class<?> clss = instance.getClass();
+        final Method method = getClassDeclaredMethod(clss, methodToExecute, arguments.length);
+        try {
+            return (T) method.invoke(instance, arguments);
+        }
+        catch (InvocationTargetException ex) {
+            throw (Exception) ex.getCause();
+        }
+    }
+
+    /**
+     * Invokes a static private method for a class.
+     *
+     * @param clss the class whose static method to invoke
+     * @param methodToExecute the name of the method to invoke
+     * @param arguments the optional arguments
+     * @param <T> the type of the result
+     * @return the method's result
+     * @throws Exception if the method failed
+     * @noinspection ProhibitedExceptionThrown, ThrowInsideCatchBlockWhichIgnoresCaughtException,
+     *               unchecked
+     */
+    public static <T> T invokeStaticMethod(Class<?> clss,
+            String methodToExecute, Object... arguments) throws Exception {
+        final Method method = getClassDeclaredMethod(clss, methodToExecute, arguments.length);
+        try {
+            return (T) method.invoke(null, arguments);
+        }
+        catch (InvocationTargetException ex) {
+            throw (Exception) ex.getCause();
+        }
+    }
+
+    /**
+     * Returns the inner class type by its name.
+     *
+     * @param declaringClass the class in which the inner class is declared
+     * @param name the unqualified name (simple name) of the inner class
+     * @return the inner class type
+     * @throws ClassNotFoundException if the class not found
+     * @noinspection unchecked
+     */
+    public static <T> Class<T> getInnerClassType(Class<?> declaringClass, String name)
+            throws ClassNotFoundException {
+        return (Class<T>) Class.forName(declaringClass.getName() + "$" + name);
+    }
+
 }
