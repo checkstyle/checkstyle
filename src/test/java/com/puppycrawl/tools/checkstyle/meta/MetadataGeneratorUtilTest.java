@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.meta;
 
-import static org.junit.Assert.assertEquals;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -31,6 +30,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
@@ -45,8 +46,11 @@ public final class MetadataGeneratorUtilTest {
 
     @Test
     public void testMetadataFilesGenerationAllFiles() throws Exception {
-        MetadataGeneratorUtil.generate(System.getProperty("user.dir")
+        final int actualErrors = MetadataGeneratorUtil
+                .generate(true, System.getProperty("user.dir")
                 + "/src/main/java/com/puppycrawl/tools/checkstyle");
+
+        final int expectedErrors = 7;
         final Set<String> metaFiles;
 
         try (Stream<Path> fileStream = Files.walk(
@@ -65,8 +69,13 @@ public final class MetadataGeneratorUtilTest {
                 .sorted()
                 .collect(Collectors.toCollection(LinkedHashSet::new));
         checkstyleModules.removeAll(modulesContainingNoMetadataFile);
-        assertEquals("Number of generated metadata files dont match with number of checkstyle "
-                        + "module", checkstyleModules, metaFiles);
+        Assertions.assertEquals(checkstyleModules, metaFiles,
+                "Number of generated metadata files dont match with number of checkstyle module");
+
+        Assertions.assertEquals(expectedErrors, actualErrors,
+                "Expected and actual errors fo not match");
+
+
     }
 
     /**
