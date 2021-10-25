@@ -4265,6 +4265,14 @@ switch (i) {
   default: // OK
     break;
 }
+return switch (option) { // OK, the compiler requires switch expression to be exhaustive
+  case ONE:
+    yield 1;
+  case TWO:
+    yield 2;
+  case THREE:
+    yield 3;
+}
         </source>
       </subsection>
 
