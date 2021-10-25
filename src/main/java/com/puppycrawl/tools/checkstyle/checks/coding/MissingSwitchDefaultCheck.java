@@ -65,6 +65,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  default: // OK
  *    break;
  * }
+ * return switch (option) { // OK, the compiler requires switch expression to be exhaustive
+ *  case ONE:
+ *    yield 1;
+ *  case TWO:
+ *    yield 2;
+ *  case THREE:
+ *    yield 3;
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -156,7 +164,8 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
      * @return true if part of a switch expression
      */
     private static boolean isSwitchExpression(DetailAST ast) {
-        return ast.getParent().getType() == TokenTypes.EXPR;
+        return ast.getParent().getType() == TokenTypes.EXPR
+                || ast.getParent().getParent().getType() == TokenTypes.EXPR;
     }
 
 }
