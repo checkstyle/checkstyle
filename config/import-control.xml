@@ -108,6 +108,8 @@
     <allow class="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption"
            local-only="true"/>
 
+    <allow class="com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtil"/>
+
     <allow class="com.puppycrawl.tools.checkstyle.Checker" local-only="true"/>
     <!-- allowed till https://github.com/checkstyle/checkstyle/issues/3817 -->
     <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
