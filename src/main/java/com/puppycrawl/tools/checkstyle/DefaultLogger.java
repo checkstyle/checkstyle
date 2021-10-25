@@ -143,6 +143,24 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
         formatter = messageFormatter;
     }
 
+    /**
+     * Gets the info writer.
+     *
+     * @return infoWriter
+     */
+    protected PrintWriter getInfoWriter() {
+        return infoWriter;
+    }
+
+    /**
+     * Gets the error writer.
+     *
+     * @return errorWriter
+     */
+    protected PrintWriter getErrorWriter() {
+        return errorWriter;
+    }
+
     @Override
     protected void finishLocalSetup() {
         // No code by default
