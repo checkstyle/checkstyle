@@ -62,6 +62,7 @@
 
   <file name="DefaultLogger">
     <allow class="java.text.MessageFormat"/>
+    <allow class="com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtil"/>
   </file>
 
   <subpackage name="utils">
