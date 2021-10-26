@@ -2348,22 +2348,29 @@ public final class TokenTypes {
      * The token does not appear in tree, {@link #METHOD_REF} should be used instead.
      * <p>For example:</p>
      * <pre>
-     * System.out::println
+     * Function&lt;Double, Double&gt; square = MyClass::square;
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * METHOD_CALL -&gt; (
-     *  |--DOT -&gt; .
-     *  |   |--IDENT -&gt; stream
-     *  |   `--IDENT -&gt; forEach
-     *  |--ELIST -&gt; ELIST
-     *  |   `--EXPR -&gt; EXPR
-     *  |       `--METHOD_REF -&gt; ::
-     *  |           |--DOT -&gt; .
-     *  |           |   |--IDENT -&gt; System
-     *  |           |   `--IDENT -&gt; out
-     *  |           `--IDENT -&gt; println
-     *  `--RPAREN -&gt; )
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   |--IDENT -&gt; Function
+     *  |   |   `--TYPE_ARGUMENTS -&gt; TYPE_ARGUMENTS
+     *  |   |       |--GENERIC_START -&gt; &lt;
+     *  |   |       |--TYPE_ARGUMENT -&gt; TYPE_ARGUMENT
+     *  |   |       |   `--IDENT -&gt; Double
+     *  |   |       |--COMMA -&gt; ,
+     *  |   |       |--TYPE_ARGUMENT -&gt; TYPE_ARGUMENT
+     *  |   |       |   `--IDENT -&gt; Double
+     *  |   |       `--GENERIC_END -&gt; &gt;
+     *  |   |--IDENT -&gt; square
+     *  |   |--ASSIGN -&gt; =
+     *  |   |   `--EXPR -&gt; EXPR
+     *  |   |       `--METHOD_REF -&gt; ::
+     *  |   |           |--IDENT -&gt; MyClass
+     *  |   |           `--IDENT -&gt; square
+     *  |   `--SEMI -&gt; ;
      * </pre>
      *
      * @see #METHOD_REF
