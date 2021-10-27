@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenInAstByPredicate;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -36,15 +38,17 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
+import com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck;
 
-public class CheckUtilTest extends AbstractPathTestSupport {
+public class CheckUtilTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -404,6 +408,27 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         final DetailAstImpl root = new DetailAstImpl();
         final FullIdent ident = CheckUtil.createFullType(root);
         assertNull(ident.getDetailAst(), "'ident' should be null");
+    }
+
+    @Test
+    public void testAccessModifierJavadocMethod() throws Exception {
+        final String[] expected = {
+            "27:17: " + getCheckMessage(JavadocMethodCheck.class, MSG_EXPECTED_TAG, "@param", "i"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputCheckUtilAccessModifierJavadocMethod.java"), expected);
+    }
+
+    @Test
+    public void testAccessModifierParameterName() throws Exception {
+        final String pattern = "^a[A-Z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "19:17: " + getCheckMessage(ParameterNameCheck.class, MSG_INVALID_PATTERN,
+                    "badFormat", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputCheckUtilAccessModifierParameterName.java"), expected);
     }
 
     private DetailAST getNodeFromFile(int type) throws Exception {
