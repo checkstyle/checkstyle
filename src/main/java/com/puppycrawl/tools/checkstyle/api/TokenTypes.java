@@ -2347,6 +2347,33 @@ public final class TokenTypes {
      * It is part of Java 8 syntax that is used for method reference.
      * The token does not appear in tree, {@link #METHOD_REF} should be used instead.
      *
+     * <p>For example:</p>
+     * <pre>
+     * Function&lt;Double, Double&gt; square = MyClass::square;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   |--IDENT -&gt; Function
+     *  |   |   `--TYPE_ARGUMENTS -&gt; TYPE_ARGUMENTS
+     *  |   |       |--GENERIC_START -&gt; &lt;
+     *  |   |       |--TYPE_ARGUMENT -&gt; TYPE_ARGUMENT
+     *  |   |       |   `--IDENT -&gt; Double
+     *  |   |       |--COMMA -&gt; ,
+     *  |   |       |--TYPE_ARGUMENT -&gt; TYPE_ARGUMENT
+     *  |   |       |   `--IDENT -&gt; Double
+     *  |   |       `--GENERIC_END -&gt; &gt;
+     *  |   |--IDENT -&gt; square
+     *  |   |--ASSIGN -&gt; =
+     *  |   |   `--EXPR -&gt; EXPR
+     *  |   |       `--METHOD_REF -&gt; ::
+     *  |   |           |--IDENT -&gt; MyClass
+     *  |   |           `--IDENT -&gt; square
+     *  |   `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #METHOD_REF
      */
     public static final int DOUBLE_COLON = JavaLanguageLexer.DOUBLE_COLON;
