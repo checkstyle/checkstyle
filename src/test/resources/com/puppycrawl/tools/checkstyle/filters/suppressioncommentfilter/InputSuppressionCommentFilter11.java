@@ -1,5 +1,15 @@
 /*
-com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck
+SuppressionCommentFilter
+offCommentFormat = (default)CHECKSTYLE:OFF
+onCommentFormat = (default)CHECKSTYLE:ON
+checkFormat = (default).*
+messageFormat = e[l
+idFormat = (default)(null)
+checkCPP = (default)true
+checkC = (default)true
+
+
+com.puppycrawl.tools.checkstyle.checks.naming.MemberName
 id = ignore
 format = (default)^[a-z][a-zA-Z0-9]*$
 applyToPublic = (default)true
@@ -8,7 +18,7 @@ applyToPackage = (default)true
 applyToPrivate = (default)true
 
 
-com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck
+com.puppycrawl.tools.checkstyle.checks.naming.ConstantName
 id = (null)
 format = (default)^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$
 applyToPublic = (default)true
@@ -17,7 +27,7 @@ applyToPackage = (default)true
 applyToPrivate = (default)true
 
 
-com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck
+com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatch
 illegalClassNames = (default)Error, Exception, RuntimeException, Throwable, java.lang.Error, \
                     java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable
 
@@ -30,7 +40,7 @@ package com.puppycrawl.tools.checkstyle.filters.suppressioncommentfilter;
  * Test input for using comments to suppress violations.
  * @author Rick Giles
  **/
-class InputSuppressionCommentFilter
+class InputSuppressionCommentFilter11
 {
     private int I; // violation
 
@@ -42,7 +52,7 @@ class InputSuppressionCommentFilter
 
     //CSOFF: MemberNameCheck|ConstantNameCheck
     private int L; // violation
-    private static final int m = 0; // violation
+    private static final int m = 0;
     /*
      * CSON: MemberNameCheck|ConstantNameCheck
      */
