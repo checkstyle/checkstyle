@@ -10,6 +10,146 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 9.1">
+      <div class="releaseDate">31.10.2021</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Change type &quot;Regular Expression&quot; to &quot;Pattern&quot; in docs.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/10842">#10842</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            False positive for switch expressions in MissingSwitchDefault.
+            Author: Hyeonmin Park
+            <a href="https://github.com/checkstyle/checkstyle/issues/10866">#10866</a>
+          </li>
+          <li>
+            UnusedImports error if there are only array references to a given class.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/10855">#10855</a>
+          </li>
+          <li>
+            StackOverflow Error in IndentationCheck on deeply concatenated strings.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/10810">#10810</a>
+          </li>
+          <li>
+            RedundantModifierCheck only reports first instance of redundant modifier.
+            Author: Akash Mondal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10806">#10806</a>
+          </li>
+          <li>
+            WhitespaceAround misrecognizes white spaces after emojis.
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/10837">#10837</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            create example of AST for TokenTypes.DOUBLE_COLON.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/9419">#9419</a>
+          </li>
+          <li>
+            doc: fix broken scm manager install link.
+            Author: Anirvan Sarkar
+          </li>
+          <li>
+            Make violations diff readable.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/10872">#10872</a>
+          </li>
+          <li>
+            Update org.reflections:reflections dependency to new version 0.10.X.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/10901">#10901</a>
+          </li>
+          <li>
+            JavadocMetadataScraper fails silently if it can&#39;t write the XML files.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/10747">#10747</a>
+          </li>
+          <li>
+            create example of AST for TokenTypes.ENUM.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/9423">#9423</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.GENERIC_START.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/9448">#9448</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.GENERIC_END.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/9447">#9447</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.ENUM_DEF.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/9425">#9425</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.GE.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/9446">#9446</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_THROW.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/9499">#9499</a>
+          </li>
+          <li>
+            Fix PMD violation CognitiveComplexity.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/10064">#10064</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_ASSERT.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/9462">#9462</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.ENUM_CONSTANT_DEF.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/9424">#9424</a>
+          </li>
+          <li>
+            Add maven modernizer plugin.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/10760">#10760</a>
+          </li>
+          <li>
+            Fix sarif validation schema link and no-validations profile.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/10863">#10863</a>
+          </li>
+          <li>
+            UT output should be silent.
+            Author: Amar Prakash Pandey
+            <a href="https://github.com/checkstyle/checkstyle/issues/10844">#10844</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.SUPER_CTOR_CALL.
+            Author: Shubhojeet Banerjee
+            <a href="https://github.com/checkstyle/checkstyle/issues/9579">#9579</a>
+          </li>
+          <li>
+            spelling: fix mistypes in SuppressWithNearbyCommentFilter.
+            Author: pbludov
+          </li>
+          <li>
+            investigate localization service  crowdin.com.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/6191">#6191</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 9.0.1">
       <div class="releaseDate">03.10.2021</div>
       <p>Bug fixes:</p>
