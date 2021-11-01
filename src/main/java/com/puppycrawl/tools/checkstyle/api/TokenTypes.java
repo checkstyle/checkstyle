@@ -681,20 +681,20 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * |--PARAMETERS -> PARAMETERS [8:18]
-        |   |   |--PARAMETER_DEF -> PARAMETER_DEF [8:18]
-        |   |   |   |--MODIFIERS -> MODIFIERS [8:18]
-        |   |   |   |--TYPE -> TYPE [8:18]
-        |   |   |   |   `--LITERAL_INT -> int [8:18]
-        |   |   |   `--IDENT -> num1 [8:22]
-        |   |   |--COMMA -> , [8:26]
-        |   |   `--PARAMETER_DEF -> PARAMETER_DEF [8:28]
-        |   |       |--MODIFIERS -> MODIFIERS [8:28]
-        |   |       |--TYPE -> TYPE [8:28]
-        |   |       |   `--LITERAL_INT -> int [8:28]
-        |   |       |--ELLIPSIS -> ... [8:31]
-        |   |       `--IDENT -> nums [8:35]
-        |   |--RPAREN -> ) [8:39]
+     * |--PARAMETERS -> PARAMETERS
+        |   |   |--PARAMETER_DEF -> PARAMETER_DEF
+        |   |   |   |--MODIFIERS -> MODIFIERS
+        |   |   |   |--TYPE -> TYPE
+        |   |   |   |   `--LITERAL_INT -> int
+        |   |   |   `--IDENT -> num1
+        |   |   |--COMMA -> ,
+        |   |   `--PARAMETER_DEF -> PARAMETER_DEF
+        |   |       |--MODIFIERS -> MODIFIERS
+        |   |       |--TYPE -> TYPE
+        |   |       |   `--LITERAL_INT -> int
+        |   |       |--ELLIPSIS -> ... 
+        |   |       `--IDENT -> nums 
+        |   |--RPAREN -> )
      * </pre>
      *
      * @see #MODIFIERS
