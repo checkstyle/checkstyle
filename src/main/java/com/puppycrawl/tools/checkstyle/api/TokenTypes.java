@@ -681,28 +681,20 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * METHOD_DEF -&gt; METHOD_DEF
-     *     |--MODIFIERS -&gt; MODIFIERS
-     *     |--TYPE -&gt; TYPE
-     *     |   `--LITERAL_VOID -&gt; void
-     *     |--IDENT -&gt; foo
-     *     |--LPAREN -&gt; (
-     *     |--PARAMETERS -&gt; PARAMETERS
-     *     |   |--PARAMETER_DEF -&gt; PARAMETER_DEF
-     *     |   |   |--MODIFIERS -&gt; MODIFIERS
-     *     |   |   |--TYPE -&gt; TYPE
-     *     |   |   |   `--LITERAL_INT -&gt; int
-     *     |   |   `--IDENT -&gt; firstParameter
-     *     |   |--COMMA -&gt; ,
-     *     |   `--PARAMETER_DEF -&gt; PARAMETER_DEF
-     *     |       |--MODIFIERS -&gt; MODIFIERS
-     *     |       |--TYPE -&gt; TYPE
-     *     |       |   `--LITERAL_INT -&gt; int
-     *     |       |--ELLIPSIS -&gt; ...
-     *     |       `--IDENT -&gt; secondParameter
-     *     |--RPAREN -&gt; )
-     *      `--SLIST -&gt; {
-     *          `--RCURLY -&gt; }
+     * |--PARAMETERS -> PARAMETERS [8:18]
+        |   |   |--PARAMETER_DEF -> PARAMETER_DEF [8:18]
+        |   |   |   |--MODIFIERS -> MODIFIERS [8:18]
+        |   |   |   |--TYPE -> TYPE [8:18]
+        |   |   |   |   `--LITERAL_INT -> int [8:18]
+        |   |   |   `--IDENT -> num1 [8:22]
+        |   |   |--COMMA -> , [8:26]
+        |   |   `--PARAMETER_DEF -> PARAMETER_DEF [8:28]
+        |   |       |--MODIFIERS -> MODIFIERS [8:28]
+        |   |       |--TYPE -> TYPE [8:28]
+        |   |       |   `--LITERAL_INT -> int [8:28]
+        |   |       |--ELLIPSIS -> ... [8:31]
+        |   |       `--IDENT -> nums [8:35]
+        |   |--RPAREN -> ) [8:39]
      * </pre>
      *
      * @see #MODIFIERS
