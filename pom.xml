@@ -897,6 +897,7 @@
                     <exclude>com.puppycrawl.tools.checkstyle.meta.ModuleDetails*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.XmlMeta*</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</exclude>
                   </excludes>
                   <limits>
                     <limit>
@@ -1106,6 +1107,26 @@
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>0.93</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>
+                      com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck
+                    </include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.99</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.98</minimum>
                     </limit>
                   </limits>
                 </rule>
