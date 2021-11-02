@@ -1,6 +1,7 @@
 version: ~> 1.0
-dist: xenial
-os: linux
+dist: focal
+# this arch is required as is for Partner Queue Solution - DO NOT MODIFY
+arch: ppc64le
 language: java
 
 cache:
@@ -195,15 +196,13 @@ after_success:
       fi
   - |
     set -e
-    fail=0
     mkdir -p .ci-temp
     if [ -z "$(ls -A .ci-temp)" ]; then
         echo "Folder .ci-temp/ is empty."
     else
         echo "Folder .ci-temp/ is not empty. Verification failed."
         echo "Contents of .ci-temp/:"
-        fail=1
+        ls -A .ci-temp
+        sleep 5s
+        exit 1
     fi
-    ls -A .ci-temp
-    sleep 5s
-    exit $fail
