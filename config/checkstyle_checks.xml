@@ -498,6 +498,7 @@
     <module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/>
     <module name="UnnecessarySemicolonInEnumeration"/>
     <module name="UnnecessarySemicolonInTryWithResources"/>
+    <module name="UnusedLocalVariable"/>
     <module name="VariableDeclarationUsageDistance"/>
 
     <!-- Filters -->
