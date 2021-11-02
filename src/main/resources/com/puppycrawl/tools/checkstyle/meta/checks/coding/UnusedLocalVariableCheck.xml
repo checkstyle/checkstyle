@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck"
+             name="UnusedLocalVariable"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that a local variable is declared and/or assigned, but not used.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="unused.local.var"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
