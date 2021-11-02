@@ -38,7 +38,6 @@ pitest-annotation|pitest-design \
 |pitest-packagenamesloader \
 |pitest-common-2|pitest-misc|pitest-xpath \
 |pitest-filters \
-|pitest-coding \
 |pitest-regexp \
 |pitest-meta \
 |pitest-java-ast-visitor)
@@ -185,6 +184,16 @@ pitest-utils)
 #   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
 #   # post validation is skipped, we do not test gui throughly
 #   ;;
+
+pitest-coding)
+  mvn --no-transfer-progress -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+  "UnusedLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (identLine &#60; scopeOfPatternVariableIncludingLineAndColumn[</span></pre></td></tr>"
+  "UnusedLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (scopeOfPatternVariableIncludingLineAndColumn[</span></pre></td></tr>"
+  "UnusedLocalVariableCheck.java.html:<td class='uncovered'><pre><span  class=''>    private static class PatternVariableScope {</span></pre></td></tr>"
+  );
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
 
 *)
   echo "Unexpected argument: $1"
