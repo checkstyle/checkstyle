@@ -211,13 +211,14 @@ public class NoWhitespaceBeforeCheck
     public void visitToken(DetailAST ast) {
         final String line = getLine(ast.getLineNo() - 1);
         final int before = ast.getColumnNo() - 1;
+        final int[] codePoints = line.codePoints().toArray();
 
-        if ((before == -1 || Character.isWhitespace(line.charAt(before)))
+        if ((before == -1 || isCodePointWhitespace(codePoints, before))
                 && !isInEmptyForInitializerOrCondition(ast)) {
             boolean flag = !allowLineBreaks;
             // verify all characters before '.' are whitespace
             for (int i = 0; i <= before - 1; i++) {
-                if (!Character.isWhitespace(line.charAt(i))) {
+                if (!isCodePointWhitespace(codePoints, i)) {
                     flag = true;
                     break;
                 }
@@ -226,6 +227,23 @@ public class NoWhitespaceBeforeCheck
                 log(ast, MSG_KEY, ast.getText());
             }
         }
+    }
+
+    /**
+     * Converts the Unicode code point at index {@code stringArrayIndex} to it's UTF-16
+     * representation, then checks if the character is whitespace. Note that the given
+     * index {@code stringArrayIndex} should correspond to the location of the character
+     * to check in the string, not in code points.
+     *
+     * @param codePoints the array of Unicode code points
+     * @param stringArrayIndex the index of the character to check
+     * @return true if charater at {@code stringArrayIndex} is whitespace
+     */
+    private static boolean isCodePointWhitespace(int[] codePoints, int stringArrayIndex) {
+        //  We only need to check the first member of a surrogate pair to verify that
+        //  it is not whitespace.
+        final char character = Character.toChars(codePoints[stringArrayIndex])[0];
+        return Character.isWhitespace(character);
     }
 
     /**
