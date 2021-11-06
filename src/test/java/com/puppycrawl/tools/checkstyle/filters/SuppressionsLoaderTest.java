@@ -19,24 +19,26 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
-import org.powermock.reflect.Whitebox;
 import org.xml.sax.InputSource;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 /**
  * Tests SuppressionsLoader.
@@ -225,13 +227,16 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String sourceName = "InputSuppressionsLoaderNone.xml";
 
         try {
-            Whitebox.invokeMethod(SuppressionsLoader.class, "loadSuppressions",
+            TestUtil.invokeStaticMethod(SuppressionsLoader.class, "loadSuppressions",
                     new InputSource(sourceName), sourceName);
-            fail("CheckstyleException is expected");
+            fail("InvocationTargetException is expected");
         }
-        catch (CheckstyleException ex) {
-            assertEquals("Unable to find: " + sourceName,
-                    ex.getMessage(), "Invalid exception message");
+        catch (InvocationTargetException ex) {
+            assertWithMessage("Invalid exception cause message")
+                .that(ex)
+                    .hasCauseThat()
+                        .hasMessageThat()
+                        .isEqualTo("Unable to find: " + sourceName);
         }
     }
 
@@ -240,13 +245,16 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String sourceName = "InputSuppressionsLoaderNone.xml";
 
         try {
-            Whitebox.invokeMethod(SuppressionsLoader.class, "loadSuppressions",
+            TestUtil.invokeStaticMethod(SuppressionsLoader.class, "loadSuppressions",
                     new InputSource(), sourceName);
-            fail("CheckstyleException is expected");
+            fail("InvocationTargetException is expected");
         }
-        catch (CheckstyleException ex) {
-            assertEquals("Unable to read " + sourceName,
-                    ex.getMessage(), "Invalid exception message");
+        catch (InvocationTargetException ex) {
+            assertWithMessage("Invalid exception cause message")
+                .that(ex)
+                    .hasCauseThat()
+                        .hasMessageThat()
+                        .isEqualTo("Unable to read " + sourceName);
         }
     }
 
@@ -301,7 +309,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final SuppressFilterElement suppressElement = (SuppressFilterElement) fc.getFilters()
                 .toArray()[0];
 
-        final String id = Whitebox.getInternalState(suppressElement, "moduleId");
+        final String id = TestUtil.getInternalState(suppressElement, "moduleId");
         assertEquals("someId", id, "Id has to be defined");
     }
 

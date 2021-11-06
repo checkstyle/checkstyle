@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG
 import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG_VARIABLE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
@@ -439,10 +440,10 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         constructor.setAccessible(true);
         final Object o = constructor.newInstance(null, ident);
 
-        final Object actual = TestUtil.getClassDeclaredMethod(cls, "getFrameNameIdent").invoke(o);
-        assertEquals(ident, actual, "expected ident token");
+        final DetailAstImpl actual = TestUtil.invokeMethod(o, "getFrameNameIdent");
+        assertSame(ident, actual, "expected ident token");
         assertEquals("CATCH_FRAME",
-            TestUtil.getClassDeclaredMethod(cls, "getType").invoke(o).toString(),
+            TestUtil.invokeMethod(o, "getType").toString(),
                 "expected catch frame type");
     }
 
