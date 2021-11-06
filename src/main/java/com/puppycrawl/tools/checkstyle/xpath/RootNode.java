@@ -24,6 +24,7 @@ import java.util.List;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
+import com.puppycrawl.tools.checkstyle.xpath.iterators.DescendantIterator;
 import net.sf.saxon.Configuration;
 import net.sf.saxon.om.AxisInfo;
 import net.sf.saxon.om.GenericTreeInfo;
@@ -32,7 +33,6 @@ import net.sf.saxon.tree.iter.ArrayIterator;
 import net.sf.saxon.tree.iter.AxisIterator;
 import net.sf.saxon.tree.iter.EmptyIterator;
 import net.sf.saxon.tree.iter.SingleNodeIterator;
-import net.sf.saxon.tree.util.Navigator;
 import net.sf.saxon.type.Type;
 
 /**
@@ -182,14 +182,14 @@ public class RootNode extends AbstractNode {
                 break;
             case AxisInfo.DESCENDANT:
                 if (hasChildNodes()) {
-                    result = new Navigator.DescendantEnumeration(this, false, true);
+                    result = new DescendantIterator(this, DescendantIterator.StartWith.CHILDREN);
                 }
                 else {
                     result = EmptyIterator.ofNodes();
                 }
                 break;
             case AxisInfo.DESCENDANT_OR_SELF:
-                result = new Navigator.DescendantEnumeration(this, true, true);
+                result = new DescendantIterator(this, DescendantIterator.StartWith.CURRENT_NODE);
                 break;
             default:
                 throw throwUnsupportedOperationException();
