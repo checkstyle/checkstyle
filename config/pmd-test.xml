@@ -58,6 +58,14 @@
     <exclude name="JUnit5TestShouldBePackagePrivate"/>
   </rule>
 
+  <rule ref="category/java/design.xml/AvoidThrowingRawExceptionTypes">
+    <properties>
+      <!-- TestUtil uses reflection to invoke methods. They may throw any exception. -->
+      <property name="violationSuppressXPath"
+               value="//ClassOrInterfaceDeclaration[@SimpleName='TestUtil']"/>
+    </properties>
+  </rule>
+
   <rule ref="category/java/design.xml/NcssCount">
     <properties>
       <!-- We want to keep it all in one place. -->
