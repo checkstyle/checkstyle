@@ -125,7 +125,7 @@
       <!-- AccessModifier is in util package (should be moved to api package) to disallow
       its usage by API clients till https://github.com/checkstyle/checkstyle/issues/3511 -->
       <property name="forbiddenImportsExcludesRegexp"
-               value="^com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption$"/>
+                value="com\.puppycrawl\.tools\.checkstyle\.checks\.naming\.AccessModifierOption"/>
     </module>
     <module name="LineLengthExtended">
       <property name="max" value="100"/>
