@@ -138,14 +138,13 @@ public class IllegalTokenTextCheckTest
     }
 
     @Test
-    public void testOrderOfProperties() throws Exception {
+    public void testOrderOfProperties() {
         // pure class must be used as configuration doesn't guarantee order of
         // attributes
         final IllegalTokenTextCheck check = new IllegalTokenTextCheck();
         check.setFormat("test");
         check.setIgnoreCase(true);
-        final Pattern actual = (Pattern) TestUtil.getClassDeclaredField(
-                IllegalTokenTextCheck.class, "format").get(check);
+        final Pattern actual = TestUtil.getInternalState(check, "format");
         assertEquals(Pattern.CASE_INSENSITIVE, actual.flags(), "should match");
         assertEquals("test", actual.pattern(), "should match");
     }

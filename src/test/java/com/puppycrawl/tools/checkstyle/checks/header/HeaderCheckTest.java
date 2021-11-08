@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISSING;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,16 +27,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class HeaderCheckTest extends AbstractModuleTestSupport {
@@ -196,12 +198,15 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         check.setHeaderFile(new URI("test://bad"));
 
         try {
-            Whitebox.invokeMethod(check, "loadHeaderFile");
-            fail("Exception expected");
+            TestUtil.invokeMethod(check, "loadHeaderFile");
+            fail("InvocationTargetException expected");
         }
-        catch (CheckstyleException ex) {
-            assertTrue(ex.getMessage().startsWith("unable to load header file "),
-                    "Invalid exception cause message");
+        catch (InvocationTargetException ex) {
+            assertWithMessage("Invalid exception cause message")
+                .that(ex)
+                    .hasCauseThat()
+                        .hasMessageThat()
+                        .startsWith("unable to load header file ");
         }
     }
 
@@ -253,13 +258,16 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         final HeaderCheck check = new HeaderCheck();
         check.setHeader("Header");
         try {
-            Whitebox.invokeMethod(check, "loadHeaderFile");
-            fail("ConversionException is expected");
+            TestUtil.invokeMethod(check, "loadHeaderFile");
+            fail("InvocationTargetException is expected");
         }
-        catch (IllegalArgumentException ex) {
-            assertEquals("header has already been set - "
-                    + "set either header or headerFile, not both", ex.getMessage(),
-                    "Invalid exception message");
+        catch (InvocationTargetException ex) {
+            assertWithMessage("Invalid exception cause message")
+                .that(ex)
+                    .hasCauseThat()
+                        .hasMessageThat()
+                        .isEqualTo("header has already been set - "
+                                + "set either header or headerFile, not both");
         }
     }
 
