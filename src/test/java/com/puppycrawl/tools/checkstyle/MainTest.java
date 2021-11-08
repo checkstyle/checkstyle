@@ -31,11 +31,18 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.CALLS_REAL_METHODS;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.spy;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
@@ -59,8 +66,11 @@ import org.itsallcode.junit.sysextensions.SystemOutGuard;
 import org.itsallcode.junit.sysextensions.SystemOutGuard.SysOut;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledForJreRange;
+import org.junit.jupiter.api.condition.JRE;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
+import org.mockito.MockedStatic;
 
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -249,7 +259,7 @@ public class MainTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertTrue(
-                isUtilsClassHasPrivateConstructor(Main.class, false), "Constructor is not private");
+                isUtilsClassHasPrivateConstructor(Main.class), "Constructor is not private");
     }
 
     @Test
@@ -391,25 +401,61 @@ public class MainTest {
     }
 
     /**
-     * This test method is created only to cover
-     * pitest mutation survival at Main#getOutputStreamOptions.
-     * No ability to test it by out general tests because
-     * Main does not produce any output to System.out after report is generated,
-     * System.out and System.err should be non-closed streams
+     * This test is a workaround for the Jacoco limitations. A call to {@link System#exit(int)}
+     * will never return, so Jacoco coverage probe will be missing. By mocking the {@code System}
+     * class we turn {@code System.exit()} to noop and the Jacoco coverage probe should succeed.
      *
+     * @throws Exception if error occurs
+     * @see <a href="https://github.com/jacoco/jacoco/issues/117">Jacoco issue 117</a>
+     */
+    @EnabledForJreRange(max = JRE.JAVA_15)
+    @Test
+    public void testJacocoWorkaround(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) throws Exception {
+        final Runtime mock = spy(Runtime.getRuntime());
+        doNothing().when(mock).exit(anyInt());
+        try (MockedStatic<Runtime> runtime = mockStatic(Runtime.class, CALLS_REAL_METHODS)) {
+            runtime.when(Runtime::getRuntime).thenReturn(mock);
+            Main.main();
+        }
+        final String expected = "Missing required parameter: '<files>'" + EOL + SHORT_USAGE;
+        assertWithMessage("Unexpected output log")
+                .that(systemErr.getCapturedData())
+                .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+                .that(systemOut.getCapturedData())
+                .isEmpty();
+    }
+
+    /**
+     * This test method is created only to cover
+     * pitest mutation survival at {@code Main#getOutputStreamOptions}.
+     * Parameters {@code systemErr} and {@code systemOut} are used to restore
+     * the original system streams.
+     *
+     * @param systemErr the system error stream
+     * @param systemOut the system output stream
      * @throws Exception if there is an error.
      * @noinspection UseOfSystemOutOrSystemErr
      */
     @Test
-    public void testNonClosedSystemStreams() throws Exception {
-        Main.main("-c", getPath("InputMainConfig-classname.xml"), "-f", "xml",
-                getPath("InputMain.java"));
-        final Boolean closedOut = (Boolean) TestUtil
-                .getClassDeclaredField(System.out.getClass(), "closing").get(System.out);
-        assertThat("System.out stream should not be closed", closedOut, is(false));
-        final Boolean closedErr = (Boolean) TestUtil
-                .getClassDeclaredField(System.err.getClass(), "closing").get(System.err);
-        assertThat("System.err stream should not be closed", closedErr, is(false));
+    public void testNonClosedSystemStreams(@SysErr Capturable systemErr,
+           @SysOut Capturable systemOut) throws Exception {
+        try (ShouldNotBeClosedStream stream = new ShouldNotBeClosedStream()) {
+            System.setOut(stream);
+            System.setErr(stream);
+            Main.main("-c", getPath("InputMainConfig-classname.xml"), "-f", "xml",
+                    getPath("InputMain.java"));
+            assertWithMessage("stream should not be closed")
+                .that(stream.isClosed)
+                .isFalse();
+            assertWithMessage("System.err should be not used")
+                    .that(systemErr.getCapturedData())
+                    .isEmpty();
+            assertWithMessage("System.out should be not used")
+                    .that(systemOut.getCapturedData())
+                    .isEmpty();
+        }
     }
 
     /**
@@ -1638,6 +1684,26 @@ public class MainTest {
         catch (IOException exception) {
             fail("Unexpected exception: " + exception);
         }
+    }
+
+    /**
+     * Print stream that shouldn't be closed. The purpose of this class is to ensure that
+     * {@code System.out} and {@code System.err} are not closed by Checkstyle.
+     */
+    private static class ShouldNotBeClosedStream extends PrintStream {
+
+        private boolean isClosed;
+
+        /* package */ ShouldNotBeClosedStream() throws UnsupportedEncodingException {
+            super(new ByteArrayOutputStream(), false, StandardCharsets.UTF_8.name());
+        }
+
+        @Override
+        public void close() {
+            isClosed = true;
+            super.close();
+        }
+
     }
 
 }
