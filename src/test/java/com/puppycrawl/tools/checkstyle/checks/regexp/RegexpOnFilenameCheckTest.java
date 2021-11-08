@@ -23,6 +23,8 @@ import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameChec
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck.MSG_MISMATCH;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.util.Collections;
@@ -252,6 +254,25 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
             assertEquals("unable to create canonical path names for " + file.getAbsolutePath(),
                 ex.getMessage(), "Invalid exception message");
         }
+    }
+
+    /**
+     * Test require readable file with no parent to be used.
+     * Usage of Mockito.spy() is the only way to satisfy these requirements
+     * without the need to create new file in current working directory.
+     *
+     * @throws Exception if error occurs
+     */
+    @Test
+    public void testWithFileWithoutParent() throws Exception {
+        final DefaultConfiguration moduleConfig = createModuleConfig(RegexpOnFilenameCheck.class);
+        final File fileWithoutParent = spy(new File(getPath("package-info.java")));
+        when(fileWithoutParent.getParent()).thenReturn(null);
+        when(fileWithoutParent.getParentFile()).thenReturn(null);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(createChecker(moduleConfig),
+                new File[] {fileWithoutParent},
+                getPath("package-info.java"), expected);
     }
 
 }
