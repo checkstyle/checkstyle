@@ -88,7 +88,7 @@ public class TokenTypesTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(TokenTypes.class, true),
+        assertTrue(isUtilsClassHasPrivateConstructor(TokenTypes.class),
                 "Constructor is not private");
     }
 

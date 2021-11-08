@@ -32,7 +32,7 @@ public class ParserUtilTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(ParserUtil.class, true),
+        assertTrue(isUtilsClassHasPrivateConstructor(ParserUtil.class),
             "Constructor is not private");
     }
 
