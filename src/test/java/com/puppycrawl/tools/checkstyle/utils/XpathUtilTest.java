@@ -54,7 +54,7 @@ public class XpathUtilTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(XpathUtil.class, true),
+        assertTrue(isUtilsClassHasPrivateConstructor(XpathUtil.class),
                 "Constructor is not private");
     }
 
