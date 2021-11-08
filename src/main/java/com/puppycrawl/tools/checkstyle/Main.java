@@ -59,6 +59,8 @@ import picocli.CommandLine.ParameterException;
 import picocli.CommandLine.Parameters;
 import picocli.CommandLine.ParseResult;
 
+import javax.annotation.processing.Generated;
+
 /**
  * Wrapper command line program for the Checker.
  */
@@ -148,9 +150,21 @@ public final class Main {
                 // output stream might be used by validation report content
                 System.err.println(errorCounterViolation.getViolation());
             }
-            if (exitStatus != 0) {
-                System.exit(exitStatus);
-            }
+            exit(exitStatus);
+        }
+    }
+
+    /**
+     * Terminates the program.
+     * This method is annotated with {@code @Generated} annotation to bypass Jacoco coverage.
+     *
+     * @param exitCode the program return code
+     * @see <a href="https://github.com/jacoco/jacoco/issues/117">Jacoco isssue</a>
+     */
+    @Generated("Workaround for https://github.com/jacoco/jacoco/issues/117")
+    private static void exit(int exitCode) {
+        if (exitCode != 0) {
+            System.exit(exitCode);
         }
     }
 
