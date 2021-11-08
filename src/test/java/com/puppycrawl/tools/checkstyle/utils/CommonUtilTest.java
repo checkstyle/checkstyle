@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
@@ -31,12 +32,18 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.CALLS_REAL_METHODS;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.when;
 
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Dictionary;
 import java.util.Properties;
@@ -44,10 +51,12 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class CommonUtilTest extends AbstractPathTestSupport {
@@ -62,7 +71,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(CommonUtil.class, true),
+        assertTrue(isUtilsClassHasPrivateConstructor(CommonUtil.class),
                 "Constructor is not private");
     }
 
@@ -487,6 +496,32 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final Configuration config = ConfigurationLoader.loadConfiguration(uri.toString(),
             new PropertiesExpander(properties));
         assertEquals("Checker", config.getName(), "Unexpected config name!");
+    }
+
+    @Test
+    public void testLoadSuppressionsUriSyntaxException() throws Exception {
+        final URL configUrl = mock(URL.class);
+        when(configUrl.toURI()).thenThrow(URISyntaxException.class);
+        try (MockedStatic<CommonUtil> utilities =
+                     mockStatic(CommonUtil.class, CALLS_REAL_METHODS)) {
+            final String fileName = "/suppressions_none.xml";
+            utilities.when(() -> CommonUtil.getCheckstyleResource(fileName)).thenReturn(configUrl);
+
+            try {
+                CommonUtil.getUriByFilename(fileName);
+                fail("Exception is expected");
+            }
+            catch (CheckstyleException ex) {
+                assertWithMessage("Invalid exception cause")
+                    .that(ex)
+                        .hasCauseThat()
+                        .isInstanceOf(URISyntaxException.class);
+                assertWithMessage("Invalid exception message")
+                    .that(ex)
+                        .hasMessageThat()
+                        .isEqualTo("Unable to find: " + fileName);
+            }
+        }
     }
 
     private static class TestCloseable implements Closeable {

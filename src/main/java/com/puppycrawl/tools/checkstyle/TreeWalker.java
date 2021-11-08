@@ -177,7 +177,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      * @param rootAST root AST element {@link DetailAST} of the file
      * @return filtered set of violations
      */
-    private SortedSet<Violation> getFilteredViolations(
+    /* package */ SortedSet<Violation> getFilteredViolations(
             String fileName, FileContents fileContents, DetailAST rootAST) {
         final SortedSet<Violation> result = new TreeSet<>(violations);
         for (Violation element : violations) {
@@ -267,7 +267,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      * @param contents the contents of the file the AST was generated from.
      * @param astState state of AST.
      */
-    private void walk(DetailAST ast, FileContents contents,
+    /* package */ void walk(DetailAST ast, FileContents contents,
             AstState astState) {
         notifyBegin(ast, contents, astState);
         processIter(ast, astState);
@@ -431,8 +431,11 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     /**
      * State of AST.
      * Indicates whether tree contains certain nodes.
+     *
+     * @noinspection PackageVisibleInnerClass
      */
-    private enum AstState {
+    /* package */
+    enum AstState {
 
         /**
          * Ordinary tree.
