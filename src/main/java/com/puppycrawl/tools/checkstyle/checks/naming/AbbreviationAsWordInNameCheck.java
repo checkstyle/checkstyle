@@ -213,6 +213,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   String firstURL; // OK, URL abbreviation is allowed
  *   final int TOTAL = 5; // OK, final is ignored
  *   static final int LIMIT = 10; // OK, static final is ignored
+ *   String XMLparsed; // violation, split occurs as 'XM', 'Lparsed' and not as 'XML', 'parsed'.
+ *                     // beginIndex = 0, endIndex = 2,The character at endIndex is only included in the abbreviation if
+ *                     //  it is the last character in the string.
+ *   String parsedXML; // OK, beginIndex = 6, endIndex = 8, character at endIndex is last character, hence included in abbreviation
+ *                     // split occurs as 'parsed', 'XML'
  * }
  * </pre>
  * <p>
