@@ -29,6 +29,10 @@
  &lt;li&gt;
  Nested {@code enum} definitions that are declared as {@code static}.
  &lt;/li&gt;
+ &lt;li&gt;
+ All {@code strictfp} modifiers are reported as violation when {@code TokenTypes.STRICTFP}
+ is included in configurations.
+ &lt;/li&gt;
  &lt;/ol&gt;
  &lt;p&gt;
  Interfaces by definition are abstract so the {@code abstract}
@@ -106,7 +110,14 @@
  public class ClassExtending extends ClassExample {
    ProtectedInnerClass pc = new ProtectedInnerClass();
  }
- &lt;/pre&gt;</description>
+ &lt;/pre&gt;
+ &lt;p&gt;
+ Starting from Java 17, all floating point operations remain consistently strict,
+ see &lt;a href="https://openjdk.java.net/jeps/306"&gt;JEP 306&lt;/a&gt;. Hence,
+ &lt;a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRICTFP"&gt;
+ STRICTFP&lt;/a&gt; as been added to the list of acceptable tokens, and when added into the
+ check configuration, it shows all {@code strictfp} tokens as violations.
+ &lt;/p&gt;</description>
          <properties>
             <property default-value="METHOD_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,INTERFACE_DEF,CTOR_DEF,CLASS_DEF,ENUM_DEF,RESOURCE"
                       name="tokens"
