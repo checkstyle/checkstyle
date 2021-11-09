@@ -185,6 +185,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 "ELLIPSIS",
                 // these are covered by GenericWhitespaceCheck
                 "WILDCARD_TYPE", "GENERIC_END", "GENERIC_START").collect(Collectors.toSet()));
+        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("RedundantModifier", Stream.of(
+                // required only for java 17 and above
+                "STRICTFP").collect(Collectors.toSet()));
 
         // google
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation", Stream.of(
