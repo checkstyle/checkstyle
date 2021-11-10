@@ -239,15 +239,12 @@ public class CommitValidationTest {
             final RevCommit headCommit = revWalk.parseCommit(headId);
 
             if (isMergeCommit(headCommit)) {
-                final RevCommit firstParent = headCommit.getParent(0);
-                final RevCommit secondParent = headCommit.getParent(1);
-                first = git.log().add(firstParent).call().iterator();
-                second = git.log().add(secondParent).call().iterator();
+                throw new IllegalStateException("Merge commits are not allowed in this project"
+                        + " and should not be used: " + headCommit.getAuthorIdent());
             }
-            else {
-                first = git.log().call().iterator();
-                second = Collections.emptyIterator();
-            }
+
+            first = git.log().call().iterator();
+            second = Collections.emptyIterator();
 
             revCommitIteratorPair =
                     new RevCommitsPair(new OmitMergeCommitsIterator(first),
