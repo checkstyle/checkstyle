@@ -26,7 +26,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -46,11 +45,13 @@ public final class MetadataGeneratorUtil {
     /**
      * Generate metadata from the module source files available in the input argument path.
      *
-     * @param args arguments
+     * @param path arguments
+     * @param moduleFolders List of folders to check
      * @throws IOException ioException
      * @throws CheckstyleException checkstyleException
      */
-    public static void generate(String... args) throws IOException, CheckstyleException {
+    public static void generate(List<String> moduleFolders, String path)
+            throws IOException, CheckstyleException {
         JavadocMetadataScraper.resetModuleDetailsStore();
 
         final Checker checker = new Checker();
@@ -64,21 +65,22 @@ public final class MetadataGeneratorUtil {
         defaultConfiguration.addChild(treeWalkerConfig);
         treeWalkerConfig.addChild(scraperCheckConfig);
         checker.configure(defaultConfiguration);
-        dumpMetadata(checker, args[0]);
+        dumpMetadata(moduleFolders, checker, path);
     }
 
     /**
      * Process files using the checker passed and write to corresponding XML files.
      *
+     * @param moduleFolders List of folders to check
      * @param checker checker
      * @param path rootPath
      * @throws CheckstyleException checkstyleException
      * @throws IOException ioException
      */
-    private static void dumpMetadata(Checker checker, String path) throws CheckstyleException,
+    private static void dumpMetadata(List<String> moduleFolders, Checker checker, String path)
+            throws CheckstyleException,
             IOException {
         final List<File> validFiles = new ArrayList<>();
-        final List<String> moduleFolders = Arrays.asList("checks", "filters", "filefilters");
         for (String folder : moduleFolders) {
             try (Stream<Path> files = Files.walk(Paths.get(path
                     + "/" + folder))) {
