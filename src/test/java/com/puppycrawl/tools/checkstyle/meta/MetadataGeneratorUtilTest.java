@@ -45,7 +45,8 @@ public final class MetadataGeneratorUtilTest {
 
     @Test
     public void testMetadataFilesGenerationAllFiles() throws Exception {
-        MetadataGeneratorUtil.generate(System.getProperty("user.dir")
+        final List<String> moduleFolders = Arrays.asList("checks", "filters", "filefilters");
+        MetadataGeneratorUtil.generate(moduleFolders, System.getProperty("user.dir")
                 + "/src/main/java/com/puppycrawl/tools/checkstyle");
         final Set<String> metaFiles;
 
