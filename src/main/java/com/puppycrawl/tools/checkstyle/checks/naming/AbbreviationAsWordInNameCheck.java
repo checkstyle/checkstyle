@@ -198,7 +198,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="tokens" value="VARIABLE_DEF,CLASS_DEF"/&gt;
  *   &lt;property name="ignoreStatic" value="false"/&gt;
  *   &lt;property name="allowedAbbreviationLength" value="0"/&gt;
- *   &lt;property name="allowedAbbreviations" value="XML,URL"/&gt;
+ *   &lt;property name="allowedAbbreviations" value="XML,URL,O"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Example:</p>
@@ -213,6 +213,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   String firstURL; // OK, URL abbreviation is allowed
  *   final int TOTAL = 5; // OK, final is ignored
  *   static final int LIMIT = 10; // OK, static final is ignored
+ *   void newOAuth2Client() {} // OK, O abbreviation is allowed
+ *   void OAuth2() {} // OK, O abbreviation is allowed
+ *   void OAUth2() {} // violation, OA abbreviation is not allowed
+ *                    // split occurs as 'OA', 'Uth2'
+ *
  * }
  * </pre>
  * <p>
