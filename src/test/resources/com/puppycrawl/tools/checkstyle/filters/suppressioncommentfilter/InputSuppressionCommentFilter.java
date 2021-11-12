@@ -1,6 +1,28 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-////////////////////////////////////////////////////////////////////////////////
+/*
+com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck
+id = ignore
+format = (default)^[a-z][a-zA-Z0-9]*$
+applyToPublic = (default)true
+applyToProtected = (default)true
+applyToPackage = (default)true
+applyToPrivate = (default)true
+
+
+com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck
+id = (null)
+format = (default)^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$
+applyToPublic = (default)true
+applyToProtected = (default)true
+applyToPackage = (default)true
+applyToPrivate = (default)true
+
+
+com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck
+illegalClassNames = (default)Error, Exception, RuntimeException, Throwable, java.lang.Error, \
+                    java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable
+
+
+*/
 
 package com.puppycrawl.tools.checkstyle.filters.suppressioncommentfilter;
 
@@ -10,37 +32,37 @@ package com.puppycrawl.tools.checkstyle.filters.suppressioncommentfilter;
  **/
 class InputSuppressionCommentFilter
 {
-    private int I;
+    private int I; // violation
 
     /* CHECKSTYLE:OFF */
-    private int J;
+    private int J; // violation
     /* CHECKSTYLE:ON */
 
-    private int K;
+    private int K; // violation
 
     //CSOFF: MemberNameCheck|ConstantNameCheck
-    private int L;
-    private static final int m = 0;
+    private int L; // violation
+    private static final int m = 0; // violation
     /*
      * CSON: MemberNameCheck|ConstantNameCheck
      */
-    private int M2;//CSOFF: ConstantNameCheck
-    private static final int n = 0;
+    private int M2;//CSOFF: ConstantNameCheck // violation
+    private static final int n = 0; // violation
     //CSON: ConstantNameCheck
 
     //CS_OFF
-    private int P;
+    private int P; // violation
     //CS_ON
 
-    private int Q;
+    private int Q; // violation
 
     //CS_OFF: ConstantNameCheck
-    private int R;
-    private static final int s = 0;
+    private int R; // violation
+    private static final int s = 0; // violation
     //CS_ON
 
     //CHECKSTYLE:OFF
-    private int T;
+    private int T; // violation
     //CHECKSTYLE:ON
 
     //UNUSED OFF: aInt
@@ -61,21 +83,21 @@ class InputSuppressionCommentFilter
                 while(true) {
                     try {
                         //CHECKSTYLE:OFF
-                    } catch(Exception e) {
+                    } catch(Exception e) { // violation
                        //CHECKSTYLE:ON
                     }
                 }
                 // code omitted
             }
             //CHECKSTYLE:OFF
-        } catch(Exception ex) {
+        } catch(Exception ex) { // violation
             //CHECKSTYLE:ON
         }
 
         try{
             //IllegalCatchCheck OFF: Exception
-        } catch(RuntimeException ex){
-        } catch(Exception ex){
+        } catch(RuntimeException ex){ // violation
+        } catch(Exception ex){ // violation
             //IllegalCatchCheck ON: Exception
         }
     }
@@ -83,7 +105,7 @@ class InputSuppressionCommentFilter
     public void doit4() {
         try {
 
-        /* CHECKSTYLE:OFF */} catch(Exception e) {/* CHECKSTYLE:ON */
+        /* CHECKSTYLE:OFF */} catch(Exception e) {/* CHECKSTYLE:ON */ // violation
 
         }
     }

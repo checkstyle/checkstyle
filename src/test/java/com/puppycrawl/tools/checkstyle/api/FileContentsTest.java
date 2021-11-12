@@ -29,7 +29,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
-import org.powermock.reflect.Whitebox;
+
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class FileContentsTest {
 
@@ -282,7 +283,7 @@ public class FileContentsTest {
                 new FileText(new File("filename"), Collections.singletonList("    ")));
         final Map<Integer, TextBlock> javadoc = new HashMap<>();
         javadoc.put(0, new Comment(new String[] {"// "}, 2, 1, 2));
-        Whitebox.setInternalState(fileContents, "javadocComments", javadoc);
+        TestUtil.setInternalState(fileContents, "javadocComments", javadoc);
         final TextBlock javadocBefore = fileContents.getJavadocBefore(2);
 
         assertWithMessage("Invalid before javadoc")
@@ -309,14 +310,14 @@ public class FileContentsTest {
     public void testHasIntersectionEarlyOut() throws Exception {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.emptyList()));
-        final Map<Integer, List<TextBlock>> clangComments = Whitebox.getInternalState(fileContents,
+        final Map<Integer, List<TextBlock>> clangComments = TestUtil.getInternalState(fileContents,
                 "clangComments");
         final TextBlock textBlock = new Comment(new String[] {""}, 1, 1, 1);
         clangComments.put(1, Collections.singletonList(textBlock));
         clangComments.put(2, Collections.emptyList());
 
         assertWithMessage("Invalid results")
-                .that((Boolean) Whitebox.invokeMethod(fileContents,
+                .that(TestUtil.<Boolean>invokeMethod(fileContents,
                         "hasIntersectionWithBlockComment", 1, 1, 1, 1))
                 .isTrue();
     }

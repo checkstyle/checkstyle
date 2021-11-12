@@ -21,14 +21,12 @@ package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.lang.reflect.Method;
-
 import org.junit.jupiter.api.Test;
-import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class AuditEventDefaultFormatterTest {
 
@@ -72,15 +70,12 @@ public class AuditEventDefaultFormatterTest {
 
     @Test
     public void testCalculateBufferLength() throws Exception {
-        final Method calculateBufferLengthMethod =
-                Whitebox.getMethod(AuditEventDefaultFormatter.class,
-                        "calculateBufferLength", AuditEvent.class, int.class);
         final Violation violation = new Violation(1, 1,
                 "messages.properties", "key", null, SeverityLevel.ERROR, null,
                 getClass(), null);
         final AuditEvent auditEvent = new AuditEvent(new Object(), "fileName", violation);
-        final int result = (int) calculateBufferLengthMethod.invoke(null,
-                auditEvent, SeverityLevel.ERROR.ordinal());
+        final int result = TestUtil.invokeStaticMethod(AuditEventDefaultFormatter.class,
+                "calculateBufferLength", auditEvent, SeverityLevel.ERROR.ordinal());
 
         assertEquals(54, result, "Buffer length is not expected");
     }

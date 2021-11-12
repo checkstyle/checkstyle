@@ -26,17 +26,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
-import java.lang.reflect.Method;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
-import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class VisibilityModifierCheckTest
@@ -423,10 +422,9 @@ public class VisibilityModifierCheckTest
             new File(getPath("InputVisibilityModifierIsStarImport.java")),
             JavaParser.Options.WITHOUT_COMMENTS).getFirstChild().getNextSibling();
         final VisibilityModifierCheck check = new VisibilityModifierCheck();
-        final Method method = Whitebox.getMethod(VisibilityModifierCheck.class,
-            "isStarImport", DetailAST.class);
+        final boolean actual = TestUtil.invokeMethod(check, "isStarImport", importAst);
 
-        assertTrue((boolean) method.invoke(check, importAst),
+        assertTrue(actual,
                 "Should return true when star import is passed");
     }
 
