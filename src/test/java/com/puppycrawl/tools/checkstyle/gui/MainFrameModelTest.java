@@ -19,28 +19,40 @@
 
 package com.puppycrawl.tools.checkstyle.gui;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Locale;
 
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.condition.JRE;
+import org.mockito.MockedStatic;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class MainFrameModelTest extends AbstractModuleTestSupport {
 
     private static final String FILE_NAME_TEST_DATA = "InputMainFrameModel.java";
     private static final String FILE_NAME_NON_EXISTENT = "non-existent.file";
+    private static final String FILE_NAME_NON_JAVA = "NotJavaFile.notjava";
     private static final String FILE_NAME_NON_COMPILABLE = "InputMainFrameModelIncorrectClass.java";
 
     private MainFrameModel model;
@@ -181,6 +193,73 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
                 "Invalid model last directory");
 
         assertNotNull(model.getParseTreeTableModel(), "ParseTree table model should not be null");
+    }
+
+    @Test
+    public void testShouldAcceptFile() throws IOException {
+        final File directory = mock(File.class);
+        when(directory.isDirectory()).thenReturn(true);
+        assertWithMessage("MainFrame should accept directory")
+                .that(MainFrameModel.shouldAcceptFile(directory))
+                .isTrue();
+
+        final File javaFile = new File(getPath(FILE_NAME_TEST_DATA));
+        assertWithMessage("MainFrame should accept java file")
+                .that(MainFrameModel.shouldAcceptFile(javaFile))
+                .isTrue();
+
+        final File nonJavaFile = mock(File.class);
+        when(nonJavaFile.isDirectory()).thenReturn(false);
+        when(nonJavaFile.getName()).thenReturn(FILE_NAME_NON_JAVA);
+        assertWithMessage("MainFrame should not accept nonJava file")
+                .that(MainFrameModel.shouldAcceptFile(nonJavaFile))
+                .isFalse();
+
+        final File nonExistentFile = new File(getPath(FILE_NAME_NON_EXISTENT));
+        assertWithMessage("MainFrame should not accept nonexistent file")
+                .that(MainFrameModel.shouldAcceptFile(nonExistentFile))
+                .isFalse();
+    }
+
+    /**
+     * This test should be executed before any other tests to avoid caching results
+     * of {@code ParseMode.values()} by JVM.
+     *
+     * @throws CheckstyleException if test is broken
+     */
+    @Order(0)
+    @Test
+    public void testOpenFileWithUnknownParseMode() throws CheckstyleException {
+        final ParseMode unknownParseMode = mock(ParseMode.class);
+        when(unknownParseMode.toString()).thenReturn("Unknown parse mode");
+        if (JRE.JAVA_8.isCurrentVersion()) {
+            TestUtil.setInternalState(unknownParseMode, "ordinal", 3);
+        }
+        else {
+            when(unknownParseMode.ordinal()).thenReturn(3);
+        }
+
+        try (MockedStatic<ParseMode> parseMode = mockStatic(ParseMode.class)) {
+            parseMode.when(ParseMode::values).thenReturn(
+                    new ParseMode[] {
+                        ParseMode.PLAIN_JAVA,
+                        ParseMode.JAVA_WITH_COMMENTS,
+                        ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS,
+                        unknownParseMode,
+                    });
+
+            model.setParseMode(unknownParseMode);
+            try {
+                model.openFile(testData);
+                fail("Expected IllegalArgumentException is not thrown.");
+            }
+            catch (IllegalArgumentException ex) {
+                assertWithMessage("Invalid exception message")
+                        .that(ex)
+                        .hasMessageThat()
+                        .isEqualTo("Unknown mode: Unknown parse mode");
+            }
+        }
     }
 
 }

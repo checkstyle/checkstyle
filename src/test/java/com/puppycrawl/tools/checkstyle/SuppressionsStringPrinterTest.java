@@ -43,7 +43,7 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertTrue(
-                isUtilsClassHasPrivateConstructor(SuppressionsStringPrinter.class, true),
+                isUtilsClassHasPrivateConstructor(SuppressionsStringPrinter.class),
                 "Constructor is not private");
     }
 

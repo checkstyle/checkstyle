@@ -48,7 +48,7 @@ public class XmlLoaderTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertTrue(isUtilsClassHasPrivateConstructor(
-                XmlLoader.LoadExternalDtdFeatureProvider.class, true),
+                XmlLoader.LoadExternalDtdFeatureProvider.class),
                 "Constructor is not private");
     }
 
