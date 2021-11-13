@@ -6,6 +6,74 @@ source ./.ci/util.sh
 
 case $1 in
 
+init-m2-repo)
+  if [[ $RUN_JOB == 1 ]]; then
+    MVN_SETTINGS=${TRAVIS_HOME}/.m2/settings.xml
+    if [[ -f ${MVN_SETTINGS} ]]; then
+      if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+        sed -i'' -e "/<mirrors>/,/<\/mirrors>/ d" $MVN_SETTINGS
+      else
+        xmlstarlet ed --inplace -d "//mirrors" $MVN_SETTINGS
+      fi
+    fi
+    if [[ $USE_MAVEN_REPO == 'true' && ! -d "~/.m2" ]]; then
+     echo "Maven local repo cache is not found, initializing it ..."
+     mvn -e --no-transfer-progress -B install -Pno-validations;
+     mvn -e --no-transfer-progress clean;
+    fi
+  else
+    echo "$1 is skipped";
+  fi
+  ;;
+
+deploy-snapshot)
+  SKIP_DEPLOY=false
+  if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ];
+    then
+      SKIP_DEPLOY=false;
+    else
+      SKIP_DEPLOY=true;
+  fi;
+  if [[ $TRAVIS_REPO_SLUG == 'checkstyle/checkstyle'
+          && $TRAVIS_BRANCH == 'master'
+          && $TRAVIS_PULL_REQUEST == 'false'
+          && $DEPLOY == 'true'
+          && $RUN_JOB == 1
+          && $SKIP_DEPLOY == 'false'
+     ]];
+  then
+      mvn -e --no-transfer-progress -s config/deploy-settings.xml -Pno-validations deploy;
+      echo "deploy to maven snapshot repository is finished";
+  fi
+  sleep 5s
+  ;;
+
+git-diff)
+  if [ "$(git status | grep 'Changes not staged\|Untracked files')" ]; then
+    printf "Please clean up or update .gitattributes file.\nGit status output:\n"
+    git status
+    printf "Top 300 lines of diff:\n"
+    git diff | head -n 300
+    sleep 5s
+    false
+  fi
+  ;;
+
+ci-temp-check)
+    fail=0
+    mkdir -p .ci-temp
+    if [ -z "$(ls -A .ci-temp)" ]; then
+        echo "Folder .ci-temp/ is empty."
+    else
+        echo "Folder .ci-temp/ is not empty. Verification failed."
+        echo "Contents of .ci-temp/:"
+        fail=1
+    fi
+    ls -A .ci-temp
+    sleep 5s
+    exit $fail
+  ;;
+
 checkstyle-and-sevntu)
   export MAVEN_OPTS='-Xmx2000m'
   mvn -e --no-transfer-progress clean verify -DskipTests -DskipITs --no-transfer-progress \
