@@ -5256,6 +5256,40 @@ public final class TokenTypes {
 
     /**
      * Special lambda symbol {@code ->}.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * numbers.forEach((n) -&gt; System.out.println(n));
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * METHOD_CALL -&gt; (
+     *  |--DOT -&gt; .
+     *  |   |--IDENT -&gt; numbers
+     *  |   `--IDENT -&gt; forEach
+     *  |--ELIST -&gt; ELIST
+     *  |   `--LAMBDA -&gt; -&gt;
+     *  |       |--LPAREN -&gt; (
+     *  |       |--PARAMETERS -&gt; PARAMETERS
+     *  |       |   `--PARAMETER_DEF -&gt; PARAMETER_DEF
+     *  |       |       |--MODIFIERS -&gt; MODIFIERS
+     *  |       |       |--TYPE -&gt; TYPE
+     *  |       |       `--IDENT -&gt; n
+     *  |       |--RPAREN -&gt; )
+     *  |       `--EXPR -&gt; EXPR
+     *  |           `--METHOD_CALL -&gt; (
+     *  |               |--DOT -&gt; .
+     *  |               |   |--DOT -&gt; .
+     *  |               |   |   |--IDENT -&gt; System
+     *  |               |   |   `--IDENT -&gt; out
+     *  |               |   `--IDENT -&gt; println
+     *  |               |--ELIST -&gt; ELIST
+     *  |               |   `--EXPR -&gt; EXPR
+     *  |               |       `--IDENT -&gt; n
+     *  |               `--RPAREN -&gt; )
+     *  `--RPAREN -&gt; )
+     * </pre>
+     *
      */
     public static final int LAMBDA = JavaLanguageLexer.LAMBDA;
 

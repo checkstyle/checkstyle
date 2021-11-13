@@ -27,15 +27,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.lang.reflect.Method;
-
 import org.junit.jupiter.api.Test;
-import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -507,15 +504,13 @@ public class ParenPadCheckTest
     @Test
     public void testIsAcceptableToken() throws Exception {
         final ParenPadCheck check = new ParenPadCheck();
-        final Method method = Whitebox.getMethod(ParenPadCheck.class,
-            "isAcceptableToken", DetailAST.class);
         final DetailAstImpl ast = new DetailAstImpl();
         final String message = "Expected that all acceptable tokens will pass isAcceptableToken "
             + "method, but some token don't: ";
 
         for (int token : check.getAcceptableTokens()) {
             ast.setType(token);
-            assertTrue((boolean) method.invoke(check, ast),
+            assertTrue(TestUtil.<Boolean>invokeMethod(check, "isAcceptableToken", ast),
                     message + TokenUtil.getTokenName(token));
         }
     }

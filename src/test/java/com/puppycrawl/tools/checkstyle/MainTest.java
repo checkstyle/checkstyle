@@ -61,7 +61,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
-import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -405,7 +404,6 @@ public class MainTest {
     public void testNonClosedSystemStreams() throws Exception {
         Main.main("-c", getPath("InputMainConfig-classname.xml"), "-f", "xml",
                 getPath("InputMain.java"));
-
         final Boolean closedOut = (Boolean) TestUtil
                 .getClassDeclaredField(System.out.getClass(), "closing").get(System.out);
         assertThat("System.out stream should not be closed", closedOut, is(false));
@@ -427,9 +425,7 @@ public class MainTest {
     public void testGetOutputStreamOptionsMethod() throws Exception {
         final Path path = new File(getPath("InputMain.java")).toPath();
         final AutomaticBean.OutputStreamOptions option =
-                (AutomaticBean.OutputStreamOptions) TestUtil
-                    .getClassDeclaredMethod(Main.class, "getOutputStreamOptions")
-                    .invoke(null, path);
+                TestUtil.invokeStaticMethod(Main.class, "getOutputStreamOptions", path);
         assertThat("Main.getOutputStreamOptions return CLOSE on not null Path",
                 option, is(AutomaticBean.OutputStreamOptions.CLOSE));
     }
@@ -794,7 +790,7 @@ public class MainTest {
             }
         };
 
-        final List<File> result = Whitebox.invokeMethod(Main.class, "listFiles",
+        final List<File> result = TestUtil.invokeStaticMethod(Main.class, "listFiles",
                 fileMock, new ArrayList<Pattern>());
         assertEquals(0, result.size(), "Invalid result size");
     }
@@ -826,7 +822,7 @@ public class MainTest {
             }
         };
 
-        final List<File> result = Whitebox.invokeMethod(Main.class, "listFiles",
+        final List<File> result = TestUtil.invokeStaticMethod(Main.class, "listFiles",
                 fileMock, new ArrayList<Pattern>());
         assertEquals(0, result.size(), "Invalid result size");
     }
