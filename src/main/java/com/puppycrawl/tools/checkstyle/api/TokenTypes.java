@@ -4701,16 +4701,13 @@ public final class TokenTypes {
      * <p>parses as:</p>
      *
      * <pre>
-     * +--PACKAGE_DEF (package)
-     *     |
-     *     +--ANNOTATIONS
-     *         |
-     *         +--ANNOTATION
-     *             |
-     *             +--AT (&#064;)
-     *             +--IDENT (MyAnnotation)
-     *     +--IDENT (blah)
-     *     +--SEMI (;)
+     * `--PACKAGE_DEF -> package
+     *     |--ANNOTATIONS -> ANNOTATIONS
+     *     |   `--ANNOTATION -> ANNOTATION
+     *     |       |--AT -> @
+     *     |       `--IDENT -> MyAnnotation
+     *     |--IDENT -> blah
+     *     `--SEMI -> ;
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
