@@ -65,7 +65,7 @@ public final class MetadataGeneratorUtil {
         defaultConfiguration.addChild(treeWalkerConfig);
         treeWalkerConfig.addChild(scraperCheckConfig);
         checker.configure(defaultConfiguration);
-        dumpMetadata(moduleFolders, checker, path);
+        dumpMetadata(checker, path, moduleFolders);
     }
 
     /**
@@ -77,7 +77,7 @@ public final class MetadataGeneratorUtil {
      * @throws CheckstyleException checkstyleException
      * @throws IOException ioException
      */
-    private static void dumpMetadata(String[] moduleFolders, Checker checker, String path)
+    private static void dumpMetadata(Checker checker, String path, String... moduleFolders)
             throws CheckstyleException,
             IOException {
         final List<File> validFiles = new ArrayList<>();
