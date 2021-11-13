@@ -127,4 +127,17 @@ public class NoWhitespaceBeforeCheckTest
                 getNonCompilablePath("InputNoWhitespaceBeforeTextBlocksTabIndent.java"), expected);
     }
 
+    @Test
+    public void testNoWhitespaceBeforeWithEmoji() throws Exception {
+        final String[] expected = {
+            "13:15: " + getCheckMessage(MSG_KEY, ","),
+            "14:17: " + getCheckMessage(MSG_KEY, ","),
+            "20:37: " + getCheckMessage(MSG_KEY, ";"),
+            "21:37: " + getCheckMessage(MSG_KEY, ";"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceBeforeWithEmoji.java"), expected);
+    }
+
 }

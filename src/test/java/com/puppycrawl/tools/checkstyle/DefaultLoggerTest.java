@@ -38,12 +38,12 @@ import java.util.ResourceBundle;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
-import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class DefaultLoggerTest {
 
@@ -53,7 +53,7 @@ public class DefaultLoggerTest {
     public void tearDown() throws Exception {
         final Constructor<?> cons = getConstructor();
         final Map<String, ResourceBundle> bundleCache =
-                Whitebox.getInternalState(cons.getDeclaringClass(), "BUNDLE_CACHE");
+                TestUtil.getInternalStaticState(cons.getDeclaringClass(), "BUNDLE_CACHE");
         bundleCache.clear();
     }
 
@@ -252,7 +252,7 @@ public class DefaultLoggerTest {
         final Method message = messageClass.getClass().getDeclaredMethod("getMessage");
         message.setAccessible(true);
         final Map<String, ResourceBundle> bundleCache =
-                Whitebox.getInternalState(message.getDeclaringClass(), "BUNDLE_CACHE");
+                TestUtil.getInternalStaticState(message.getDeclaringClass(), "BUNDLE_CACHE");
         assertEquals("Une erreur est survenue {0}", message.invoke(messageClass),
                 "Invalid message");
         assertEquals(1, bundleCache.size(), "Invalid bundle cache size");

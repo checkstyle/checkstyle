@@ -43,7 +43,6 @@ import java.util.TreeSet;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import org.powermock.reflect.Whitebox;
 import org.w3c.dom.Node;
 
 import com.google.common.collect.ImmutableMap;
@@ -57,6 +56,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -228,7 +228,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         check.configure(checkConfig);
         check.setMessageDispatcher(dispatcher);
 
-        final Set<String> keys = Whitebox.invokeMethod(check, "getTranslationKeys",
+        final Set<String> keys = TestUtil.invokeMethod(check, "getTranslationKeys",
                 new File(".no.such.file"));
         assertTrue(keys.isEmpty(), "Translation keys should be empty when File is not found");
 
@@ -252,7 +252,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         check.setMessageDispatcher(dispatcher);
 
         final Exception exception = new IOException("test exception");
-        Whitebox.invokeMethod(check, "logException", exception, new File(""));
+        TestUtil.invokeMethod(check, "logException", exception, new File(""));
 
         assertEquals(1, dispatcher.savedErrors.size(), "expected number of errors to fire");
         final Violation violation = new Violation(1,
