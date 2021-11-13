@@ -31,7 +31,7 @@ function checkPitestReport() {
 
 case $1 in
 
-pitest-annotation|pitest-design \
+pitest-annotation \
 |pitest-metrics|pitest-modifier|pitest-naming \
 |pitest-sizes|pitest-whitespace \
 |pitest-api|pitest-blocks \
@@ -185,6 +185,14 @@ pitest-utils)
 #   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
 #   # post validation is skipped, we do not test gui throughly
 #   ;;
+
+pitest-design)
+  mvn --no-transfer-progress -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+  "FinalClassCheck.java.html:<td class='covered'><pre><span  class='survived'>                        .count();</span></pre></td></tr>"
+  );
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
 
 *)
   echo "Unexpected argument: $1"
