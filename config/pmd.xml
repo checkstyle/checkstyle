@@ -100,13 +100,15 @@
       <!-- Definitions and XmlLoader.LoadExternalDtdFeatureProvider aren't utility classes.
            AutomaticBean is part of API, we can not change a name.
            JavadocTokenTypes and TokenTypes aren't utility classes. They are
-             token definition classes. Also, they are part of the API. -->
+             token definition classes. PatternVariableScope is not a utility class, it
+             contains values for array indexes. Also, they are part of the API. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='Definitions'
                            or @SimpleName='LoadExternalDtdFeatureProvider'
                            or @SimpleName='JavadocTokenTypes'
                            or @SimpleName='TokenTypes'
-                           or @SimpleName='AutomaticBean']"/>
+                           or @SimpleName='AutomaticBean'
+                           or @SimpleName='PatternVariableScope']"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/ConfusingTernary">
