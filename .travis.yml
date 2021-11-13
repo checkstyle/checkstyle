@@ -1,6 +1,7 @@
 version: ~> 1.0
-dist: xenial
-os: linux
+dist: focal
+# this arch is required as is for Partner Queue Solution - DO NOT MODIFY
+arch: ppc64le
 language: java
 
 cache:
