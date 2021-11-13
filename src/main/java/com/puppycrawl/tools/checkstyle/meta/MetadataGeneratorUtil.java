@@ -50,7 +50,7 @@ public final class MetadataGeneratorUtil {
      * @throws IOException ioException
      * @throws CheckstyleException checkstyleException
      */
-    public static void generate(List<String> moduleFolders, String path)
+    public static void generate(String path, String... moduleFolders)
             throws IOException, CheckstyleException {
         JavadocMetadataScraper.resetModuleDetailsStore();
 
@@ -77,7 +77,7 @@ public final class MetadataGeneratorUtil {
      * @throws CheckstyleException checkstyleException
      * @throws IOException ioException
      */
-    private static void dumpMetadata(List<String> moduleFolders, Checker checker, String path)
+    private static void dumpMetadata(String[] moduleFolders, Checker checker, String path)
             throws CheckstyleException,
             IOException {
         final List<File> validFiles = new ArrayList<>();
