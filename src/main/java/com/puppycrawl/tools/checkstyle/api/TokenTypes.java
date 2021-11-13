@@ -682,27 +682,58 @@ public final class TokenTypes {
      * <p>parses as:</p>
      * <pre>
      * METHOD_DEF -&gt; METHOD_DEF
-     *     |--MODIFIERS -&gt; MODIFIERS
-     *     |--TYPE -&gt; TYPE
-     *     |   `--LITERAL_VOID -&gt; void
-     *     |--IDENT -&gt; foo
-     *     |--LPAREN -&gt; (
-     *     |--PARAMETERS -&gt; PARAMETERS
-     *     |   |--PARAMETER_DEF -&gt; PARAMETER_DEF
-     *     |   |   |--MODIFIERS -&gt; MODIFIERS
-     *     |   |   |--TYPE -&gt; TYPE
-     *     |   |   |   `--LITERAL_INT -&gt; int
-     *     |   |   `--IDENT -&gt; firstParameter
-     *     |   |--COMMA -&gt; ,
-     *     |   `--PARAMETER_DEF -&gt; PARAMETER_DEF
-     *     |       |--MODIFIERS -&gt; MODIFIERS
-     *     |       |--TYPE -&gt; TYPE
-     *     |       |   `--LITERAL_INT -&gt; int
-     *     |       |--ELLIPSIS -&gt; ...
-     *     |       `--IDENT -&gt; secondParameter
-     *     |--RPAREN -&gt; )
-     *      `--SLIST -&gt; {
-     *          `--RCURLY -&gt; }
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PUBLIC -&gt; public
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_VOID -&gt; void
+     *  |--IDENT -&gt; sum
+     *  |--LPAREN -&gt; (
+     *  |--PARAMETERS -&gt; PARAMETERS
+     *  |   |--PARAMETER_DEF -&gt; PARAMETER_DEF
+     *  |   |   |--MODIFIERS -&gt; MODIFIERS
+     *  |   |   |--TYPE -&gt; TYPE
+     *  |   |   |   `--LITERAL_INT -&gt; int
+     *  |   |   `--IDENT -&gt; num1
+     *  |   |--COMMA -&gt; ,
+     *  |   `--PARAMETER_DEF -&gt; PARAMETER_DEF
+     *  |       |--MODIFIERS -&gt; MODIFIERS
+     *  |       |--TYPE -&gt; TYPE
+     *  |       |   `--LITERAL_INT -&gt; int
+     *  |       |--ELLIPSIS -&gt; ...
+     *  |       `--IDENT -&gt; nums
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *      |   |--MODIFIERS -&gt; MODIFIERS
+     *      |   |--TYPE -&gt; TYPE
+     *      |   |   `--LITERAL_INT -&gt; int
+     *      |   |--IDENT -&gt; sum
+     *      |   `--ASSIGN -&gt; =
+     *      |       `--EXPR -&gt; EXPR
+     *      |           `--IDENT -&gt; num1
+     *      |--SEMI -&gt; ;
+     *      |--LITERAL_FOR -&gt; for
+     *      |   |--LPAREN -&gt; (
+     *      |   |--FOR_EACH_CLAUSE -&gt; FOR_EACH_CLAUSE
+     *      |   |   |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *      |   |   |   |--MODIFIERS -&gt; MODIFIERS
+     *      |   |   |   |--TYPE -&gt; TYPE
+     *      |   |   |   |   `--LITERAL_INT -&gt; int
+     *      |   |   |   `--IDENT -&gt; i
+     *      |   |   |--COLON -&gt; :
+     *      |   |   `--EXPR -&gt; EXPR
+     *      |   |       `--IDENT -&gt; nums
+     *      |   |--RPAREN -&gt; )
+     *      |   `--SLIST -&gt; {
+     *      |       |--EXPR -&gt; EXPR
+     *      |       |   `--ASSIGN -&gt; =
+     *      |       |       |--IDENT -&gt; sum
+     *      |       |       `--PLUS -&gt; +
+     *      |       |           |--IDENT -&gt; sum
+     *      |       |           `--IDENT -&gt; i
+     *      |       |--SEMI -&gt; ;
+     *      |       `--RCURLY -&gt; }
+     *      `--RCURLY -&gt; }
      * </pre>
      *
      * @see #MODIFIERS
