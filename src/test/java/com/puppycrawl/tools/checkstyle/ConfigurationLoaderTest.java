@@ -22,8 +22,11 @@ package com.puppycrawl.tools.checkstyle;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.mockConstruction;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
@@ -36,6 +39,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedConstruction;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -616,6 +620,31 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         final Configuration[] children = configuration1.getChildren();
         final int length = children[0].getChildren().length;
         assertEquals(1, length, "Unexpected children size");
+    }
+
+    @Test
+    public void testConfigWithIgnoreExceptionalAttributes() {
+        try (MockedConstruction<DefaultConfiguration> mocked = mockConstruction(
+                DefaultConfiguration.class, (mock, context) -> {
+                    when(mock.getPropertyNames()).thenReturn(new String[] {"severity"});
+                    when(mock.getName()).thenReturn("MemberName");
+                    when(mock.getProperty("severity")).thenThrow(CheckstyleException.class);
+                })) {
+            final CheckstyleException ex = assertThrows(CheckstyleException.class,
+                () -> {
+                    ConfigurationLoader.loadConfiguration(
+                            getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"),
+                            new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
+                },
+                "CheckstyleException is expected");
+            final String expectedMessage =
+                "Problem during accessing 'severity' attribute for MemberName";
+            assertWithMessage("Invalid exception cause message")
+                .that(ex)
+                .hasCauseThat()
+                    .hasMessageThat()
+                    .isEqualTo(expectedMessage);
+        }
     }
 
 }
