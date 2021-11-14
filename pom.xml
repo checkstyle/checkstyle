@@ -881,6 +881,8 @@
                     <exclude>
                       com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.RegularClass
                     </exclude>
+                    <!-- JaCaCo limitation: https://github.com/jacoco/jacoco/issues/117 -->
+                    <exclude>com.puppycrawl.tools.checkstyle.Main</exclude>
                     <!-- Swing related classes -->
                     <exclude>com.puppycrawl.tools.checkstyle.gui.BaseCellEditor*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.CodeSelector</exclude>
@@ -903,6 +905,26 @@
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>1.00</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>1.00</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>
+                      com.puppycrawl.tools.checkstyle.Main
+                    </include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.99</minimum>
                     </limit>
                     <limit>
                       <counter>BRANCH</counter>
