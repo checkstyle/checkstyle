@@ -31,7 +31,7 @@ import javax.swing.JTable; // ok
 import sun.tools.java.ArrayType; // ok
 
 import org.junit.Test; // violation
-import org.powermock.api.mockito.PowerMockito; // ok
+import org.mockito.Mock; // ok
 
 import com.some.api.DetailClass; // ok
 
