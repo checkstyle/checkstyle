@@ -204,12 +204,12 @@
       <property name="allowCommentedBlocks" value="true"/>
     </properties>
   </rule>
-  <rule ref="category/java/errorprone.xml/DoNotCallSystemExit">
+  <rule ref="category/java/errorprone.xml/DoNotTerminateVM">
     <properties>
       <!-- There is no alternative to using System.exit in the CLI class
            to report the return code. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='Main']"/>
+                value="//ClassOrInterfaceDeclaration[@SimpleName='ExitHelper']"/>
     </properties>
   </rule>
 
