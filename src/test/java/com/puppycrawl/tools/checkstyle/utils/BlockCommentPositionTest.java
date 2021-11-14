@@ -39,7 +39,7 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
 
     @Test
     public void testPrivateConstr() throws Exception {
-        assertTrue(TestUtil.isUtilsClassHasPrivateConstructor(BlockCommentPosition.class, true),
+        assertTrue(TestUtil.isUtilsClassHasPrivateConstructor(BlockCommentPosition.class),
                 "Constructor is not private");
     }
 

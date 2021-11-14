@@ -24,6 +24,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -44,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class DefaultLoggerTest {
 
@@ -310,4 +314,46 @@ public class DefaultLoggerTest {
     private static Class<?> getDefaultLoggerClass() throws Exception {
         return Class.forName("com.puppycrawl.tools.checkstyle.DefaultLogger");
     }
+
+    @Test
+    public void testNewCtor() throws Exception {
+        final OutputStream infoStream = spy(new ByteArrayOutputStream());
+        final ByteArrayOutputStream errorStream = spy(new ByteArrayOutputStream());
+        final DefaultLogger dl = new DefaultLogger(infoStream,
+                AutomaticBean.OutputStreamOptions.CLOSE, errorStream,
+                AutomaticBean.OutputStreamOptions.CLOSE);
+        dl.auditStarted(null);
+        dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
+        dl.auditFinished(new AuditEvent(6000, "myfile"));
+        final String output = errorStream.toString(StandardCharsets.UTF_8.name());
+        final Violation addExceptionMessage = new Violation(1,
+                Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.ADD_EXCEPTION_MESSAGE,
+                new String[] {"myfile"}, null,
+                getClass(), null);
+        final Violation startMessage = new Violation(1,
+                Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.AUDIT_STARTED_MESSAGE,
+                CommonUtil.EMPTY_STRING_ARRAY, null,
+                getClass(), null);
+        final Violation finishMessage = new Violation(1,
+                Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.AUDIT_FINISHED_MESSAGE,
+                CommonUtil.EMPTY_STRING_ARRAY, null,
+                getClass(), null);
+
+        verify(infoStream, times(1)).close();
+        verify(errorStream, times(1)).close();
+        final String infoOutput = infoStream.toString();
+        assertWithMessage("Expected startMessage")
+                .that(infoOutput)
+                .contains(startMessage.getViolation());
+        assertWithMessage("Expected finishMessage")
+                .that(infoOutput)
+                .contains(finishMessage.getViolation());
+        assertWithMessage("Expected addExceptionMessage")
+                .that(output)
+                .contains(addExceptionMessage.getViolation());
+        assertWithMessage("Expected IllegalStateException")
+                .that(output)
+                .contains("java.lang.IllegalStateException: upsss");
+    }
+
 }

@@ -33,7 +33,7 @@ public class InlineTagUtilTest {
 
     @Test
     public void testHasPrivateConstructor() throws Exception {
-        assertTrue(TestUtil.isUtilsClassHasPrivateConstructor(InlineTagUtil.class, true),
+        assertTrue(TestUtil.isUtilsClassHasPrivateConstructor(InlineTagUtil.class),
                 "Constructor is not private");
     }
 

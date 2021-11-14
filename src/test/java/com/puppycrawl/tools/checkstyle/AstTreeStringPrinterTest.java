@@ -48,7 +48,7 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(AstTreeStringPrinter.class, true),
+        assertTrue(isUtilsClassHasPrivateConstructor(AstTreeStringPrinter.class),
                 "Constructor is not private");
     }
 
