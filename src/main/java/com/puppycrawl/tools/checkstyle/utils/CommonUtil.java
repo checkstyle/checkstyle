@@ -447,7 +447,7 @@ public final class CommonUtil {
     public static URI getResourceFromClassPath(String filename) throws CheckstyleException {
         final URL configUrl;
         if (filename.charAt(0) == '/') {
-            configUrl = CommonUtil.class.getResource(filename);
+            configUrl = getCheckstyleResource(filename);
         }
         else {
             configUrl = ClassLoader.getSystemResource(filename);
@@ -466,6 +466,17 @@ public final class CommonUtil {
         }
 
         return uri;
+    }
+
+    /**
+     * Finds a resource with a given name in the Checkstyle resource bundle.
+     * This method is intended only for internal use in Checkstyle and tests.
+     *
+     * @param name name of the desired resource
+     * @return URI of the resource
+     */
+    /* package */ static URL getCheckstyleResource(String name) {
+        return CommonUtil.class.getResource(name);
     }
 
     /**
