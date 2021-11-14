@@ -62,24 +62,19 @@ public final class TestUtil {
      * Verifies that utils class has private constructor and invokes it to satisfy code coverage.
      *
      * @param utilClass class to test for c-tor
-     * @param checkConstructorIsPrivate flag to skip check for private visibility, it is useful
-     *                                  for Classes that are mocked by PowerMockRunner that make
-     *                                  private c-tors as public
      * @return true if constructor is expected.
-     * @noinspection BooleanParameter
      */
-    public static boolean isUtilsClassHasPrivateConstructor(final Class<?> utilClass,
-                                                             boolean checkConstructorIsPrivate)
+    public static boolean isUtilsClassHasPrivateConstructor(final Class<?> utilClass)
             throws ReflectiveOperationException {
         final Constructor<?> constructor = utilClass.getDeclaredConstructor();
         final boolean result;
-        if (checkConstructorIsPrivate && !Modifier.isPrivate(constructor.getModifiers())) {
-            result = false;
-        }
-        else {
+        if (Modifier.isPrivate(constructor.getModifiers())) {
             constructor.setAccessible(true);
             constructor.newInstance();
             result = true;
+        }
+        else {
+            result = false;
         }
         return result;
     }

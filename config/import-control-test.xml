@@ -11,17 +11,9 @@
         |org\.checkstyle.*)"
         regex="true">
 
-  <!-- Disallow obsolete Junit API -->
-  <disallow pkg="org.junit" exact-match="true"/>
-  <disallow pkg="junit.framework" />
   <!-- until https://github.com/checkstyle/checkstyle/issues/9142 -->
   <disallow pkg="org.junit.jupiter.api.Assertions"/>
 
-  <!-- Conflicts with normal tests and pitest.
-       See examples in https://github.com/checkstyle/checkstyle/issues/6439 -->
-  <allow class="org.mockito.internal.util.Checks" />
-  <disallow pkg="org\.powermock.*" regex="true" />
-  <disallow pkg="org\.mockito.*" regex="true" />
   <!-- Reflection shouldn't be used in tests. -->
   <disallow pkg="java\.lang\.reflect\.*" regex="true" />
 
@@ -35,11 +27,6 @@
 
   </subpackage>
   <subpackage name="internal">
-    <!-- Till https://github.com/checkstyle/checkstyle/issues/7368 -->
-    <subpackage name="powermock">
-      <allow pkg="java.lang.reflect" />
-      <allow pkg="org.junit" local-only="true"/>
-    </subpackage>
     <subpackage name="utils">
       <file name="CheckUtil">
         <!-- Uses reflection to collect violation messages. -->
