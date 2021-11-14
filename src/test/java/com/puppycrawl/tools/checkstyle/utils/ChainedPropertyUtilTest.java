@@ -45,7 +45,7 @@ public class ChainedPropertyUtilTest extends AbstractModuleTestSupport {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private.")
-            .that(isUtilsClassHasPrivateConstructor(ChainedPropertyUtil.class, true))
+            .that(isUtilsClassHasPrivateConstructor(ChainedPropertyUtil.class))
             .isTrue();
     }
 

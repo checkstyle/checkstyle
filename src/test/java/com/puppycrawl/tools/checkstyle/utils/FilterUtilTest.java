@@ -35,7 +35,7 @@ public class FilterUtilTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(FilterUtil.class, true),
+        assertTrue(isUtilsClassHasPrivateConstructor(FilterUtil.class),
                 "Constructor is not private");
     }
 
