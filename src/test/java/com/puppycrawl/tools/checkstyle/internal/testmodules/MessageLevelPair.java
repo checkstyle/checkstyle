@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.internal.powermock.testmodules;
+package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
 public final class MessageLevelPair {
 

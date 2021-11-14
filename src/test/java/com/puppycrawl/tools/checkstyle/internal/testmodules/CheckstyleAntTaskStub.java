@@ -17,15 +17,14 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.internal.powermock.testmodules;
+package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.powermock.api.mockito.PowerMockito;
 
 import com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask;
 
@@ -33,7 +32,7 @@ public class CheckstyleAntTaskStub extends CheckstyleAntTask {
 
     @Override
     protected List<File> scanFileSets() {
-        final File mock = PowerMockito.mock(File.class);
+        final File mock = mock(File.class);
         // Assume that I/O error is happened when we try to invoke 'lastModified()' method.
         final Exception expectedError = new RuntimeException("");
         when(mock.lastModified()).thenThrow(expectedError);
