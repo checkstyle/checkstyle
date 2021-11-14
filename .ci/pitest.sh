@@ -41,6 +41,8 @@ pitest-annotation|pitest-design \
 |pitest-coding \
 |pitest-regexp \
 |pitest-meta \
+|pitest-tree-walker \
+|pitest-utils \
 |pitest-java-ast-visitor)
   mvn --no-transfer-progress -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
@@ -59,8 +61,6 @@ pitest-main)
 pitest-header)
   mvn --no-transfer-progress -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
-  "AbstractHeaderCheck.java.html:<td class='uncovered'><pre><span  class=''>            catch (final IOException ex) {</span></pre></td></tr>"
-  "AbstractHeaderCheck.java.html:<td class='uncovered'><pre><span  class='survived'>                throw new IllegalArgumentException(&#34;unable to load header&#34;, ex);</span></pre></td></tr>"
   "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>                    isMatch = headerLineNo == headerSize</span></pre></td></tr>"
   "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>                            || isMatch(line, headerLineNo);</span></pre></td></tr>"
   );
@@ -86,18 +86,9 @@ pitest-common)
   "DefaultLogger.java.html:<td class='covered'><pre><span  class='survived'>        if (closeError) {</span></pre></td></tr>"
   "DefaultLogger.java.html:<td class='covered'><pre><span  class='survived'>        if (closeInfo) {</span></pre></td></tr>"
   "DefaultLogger.java.html:<td class='covered'><pre><span  class='survived'>        if (severityLevel != SeverityLevel.IGNORE) {</span></pre></td></tr>"
-  "ConfigurationLoader.java.html:<td class='uncovered'><pre><span  class=''>                    catch (final CheckstyleException ex) {</span></pre></td></tr>"
-  "ConfigurationLoader.java.html:<td class='uncovered'><pre><span  class='survived'>                                        + recentModule.getName(), ex);</span></pre></td></tr>"
-  "ConfigurationLoader.java.html:<td class='uncovered'><pre><span  class='survived'>                        throw new SAXException(</span></pre></td></tr>"
   "PackageObjectFactory.java.html:<td class='covered'><pre><span  class='survived'>        if (instance == null</span></pre></td></tr>"
   "PackageObjectFactory.java.html:<td class='covered'><pre><span  class='survived'>        if (!name.contains(PACKAGE_SEPARATOR)) {</span></pre></td></tr>"
   "PackageObjectFactory.java.html:<td class='covered'><pre><span  class='survived'>                if (thirdPartyNameToFullModuleNames == null) {</span></pre></td></tr>"
-  "PackageObjectFactory.java.html:<td class='uncovered'><pre><span  class=''>            returnValue = Collections.emptyMap();</span></pre></td></tr>"
-  "PackageObjectFactory.java.html:<td class='uncovered'><pre><span  class=''>        catch (IOException ignore) {</span></pre></td></tr>"
-  "PropertyCacheFile.java.html:<td class='covered'><pre><span  class='survived'>                if (!cachedHashSum.equals(contentHashSum)) {</span></pre></td></tr>"
-  "PropertyCacheFile.java.html:<td class='uncovered'><pre><span  class=''>                    changed = true;</span></pre></td></tr>"
-  "PropertyCacheFile.java.html:<td class='uncovered'><pre><span  class=''>        catch (final IOException | NoSuchAlgorithmException ex) {</span></pre></td></tr>"
-  "PropertyCacheFile.java.html:<td class='uncovered'><pre><span  class='survived'>            throw new IllegalStateException(&#34;Unable to calculate hashcode.&#34;, ex);</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
   ;;
@@ -151,25 +142,6 @@ pitest-javadoc)
   "AbstractJavadocCheck.java.html:<td class='covered'><pre><span  class='survived'>        beginJavadocTree(root);</span></pre></td></tr>"
   "AbstractJavadocCheck.java.html:<td class='covered'><pre><span  class='survived'>        finishJavadocTree(root);</span></pre></td></tr>"
   "TagParser.java.html:<td class='covered'><pre><span  class='survived'>                while (column &#60; currentLine.length()</span></pre></td></tr>"
-  );
-  checkPitestReport "${ignoredItems[@]}"
-  ;;
-
-pitest-tree-walker)
-  mvn --no-transfer-progress -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  declare -a ignoredItems=(
-  "TreeWalker.java.html:<td class='covered'><pre><span  class='survived'>            if (!commentChecks.isEmpty()) {</span></pre></td></tr>"
-  "TreeWalker.java.html:<td class='covered'><pre><span  class='survived'>            if (!ordinaryChecks.isEmpty()) {</span></pre></td></tr>"
-  "TreeWalker.java.html:<td class='covered'><pre><span  class='survived'>            if (filters.isEmpty()) {</span></pre></td></tr>"
-  );
-  checkPitestReport "${ignoredItems[@]}"
-  ;;
-
-pitest-utils)
-  mvn --no-transfer-progress -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  declare -a ignoredItems=(
-  "CommonUtil.java.html:<td class='uncovered'><pre><span  class=''>                catch (final URISyntaxException ex) {</span></pre></td></tr>"
-  "CommonUtil.java.html:<td class='uncovered'><pre><span  class='survived'>                    throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename, ex);</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
   ;;
