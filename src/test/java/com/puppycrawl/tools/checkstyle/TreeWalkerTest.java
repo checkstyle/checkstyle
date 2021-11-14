@@ -23,6 +23,10 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MS
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.CALLS_REAL_METHODS;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
 
 import java.io.File;
 import java.io.Writer;
@@ -39,18 +43,23 @@ import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.mockito.MockedConstruction;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 import org.mockito.internal.util.Checks;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+import com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck;
 import com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
@@ -94,6 +103,90 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                     MSG_INVALID_PATTERN, "k", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
         };
         verify(checkConfig, file.getPath(), expected1);
+    }
+
+    /**
+     * This test is needed for 100% coverage.
+     * The Pitest reports some conditions as redundant, for example:
+     * <pre>
+     *     if (!collection.isEmpty()) { // This may me omitted.
+     *         Object value = doSomeHardJob();
+     *         for (Item item : collection) {
+     *             item.accept(value);
+     *         }
+     *     }
+     * </pre>
+     * But we really want to avoid calls to {@code doSomeHardJob} method.
+     * To make this condition mandatory, we need to broke one branch.
+     * In this case, mocking {@code TreeWalkerAuditEvent} will cause
+     * {@code getFilteredViolations} to fail. This prevents the condition
+     * <pre>
+     *     if (filters.isEmpty())
+     * </pre>
+     * in {@link TreeWalker#processFiltered(File, FileText)} to survive with Pitest mutations.
+     *
+     * @throws Exception if an error occurs
+     */
+    @Test
+    public void testNoAuditEventsWithoutFilters() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OneTopLevelClassCheck.class);
+        final String[] expected = {
+            "5:1: " + getCheckMessage(OneTopLevelClassCheck.class,
+                    OneTopLevelClassCheck.MSG_KEY, "InputTreeWalkerInner"),
+        };
+        try (MockedConstruction<TreeWalkerAuditEvent> mocked =
+                 Mockito.mockConstruction(TreeWalkerAuditEvent.class, (mock, context) -> {
+                     throw new CheckstyleException("No audit events expected");
+                 })) {
+            verify(checkConfig, getPath("InputTreeWalker.java"), expected);
+        }
+    }
+
+    /**
+     * This test is needed for 100% coverage. The method {@link Mockito#mockStatic} is used to
+     * ensure that the {@code if (!ordinaryChecks.isEmpty())} condition cannot be removed.
+     */
+    @Test
+    public void testConditionRequiredWithoutOrdinaryChecks() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocParagraphCheck.class);
+        final String[] expected = {
+            "3: " + getCheckMessage(JavadocParagraphCheck.class,
+                    JavadocParagraphCheck.MSG_REDUNDANT_PARAGRAPH),
+        };
+        final String path = getPath("InputTreeWalkerJavadoc.java");
+        final DetailAST mockAst = mock(DetailAST.class);
+        final DetailAST realAst = JavaParser.parseFile(new File(path),
+                JavaParser.Options.WITH_COMMENTS);
+        // Ensure that there is no calls to walk(..., AstState.ORDINARY)
+        doThrow(IllegalStateException.class).when(mockAst).getFirstChild();
+        try (MockedStatic<JavaParser> parser = Mockito.mockStatic(JavaParser.class)) {
+            parser.when(() -> JavaParser.parse(any(FileContents.class))).thenReturn(mockAst);
+            // This will re-enable walk(..., AstState.WITH_COMMENTS)
+            parser.when(() -> JavaParser.appendHiddenCommentNodes(mockAst)).thenReturn(realAst);
+
+            verify(checkConfig, path, expected);
+        }
+    }
+
+    /**
+     * This test is needed for 100% coverage. The method {@link Mockito#mockStatic} is used to
+     * ensure that the {@code if (!commentChecks.isEmpty())} condition cannot be removed.
+     */
+    @Test
+    public void testConditionRequiredWithoutCommentChecks() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OneTopLevelClassCheck.class);
+        final String[] expected = {
+            "5:1: " + getCheckMessage(OneTopLevelClassCheck.class,
+                    OneTopLevelClassCheck.MSG_KEY, "InputTreeWalkerInner"),
+        };
+        try (MockedStatic<JavaParser> parser =
+                     Mockito.mockStatic(JavaParser.class, CALLS_REAL_METHODS)) {
+            // Ensure that there is no calls to walk(..., AstState.WITH_COMMENTS)
+            parser.when(() -> JavaParser.appendHiddenCommentNodes(any(DetailAST.class)))
+                    .thenThrow(IllegalStateException.class);
+
+            verify(checkConfig, getPath("InputTreeWalker.java"), expected);
+        }
     }
 
     @Test
