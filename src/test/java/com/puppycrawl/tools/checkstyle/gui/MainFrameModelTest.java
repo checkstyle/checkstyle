@@ -19,12 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.gui;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,6 +44,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
 
     private static final String FILE_NAME_TEST_DATA = "InputMainFrameModel.java";
     private static final String FILE_NAME_NON_EXISTENT = "non-existent.file";
+    private static final String FILE_NAME_NON_JAVA = "NotJavaFile.notjava";
     private static final String FILE_NAME_NON_COMPILABLE = "InputMainFrameModelIncorrectClass.java";
 
     private MainFrameModel model;
@@ -181,6 +185,32 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
                 "Invalid model last directory");
 
         assertNotNull(model.getParseTreeTableModel(), "ParseTree table model should not be null");
+    }
+
+    @Test
+    public void testShouldAcceptFile() throws IOException {
+        final File directory = mock(File.class);
+        when(directory.isDirectory()).thenReturn(true);
+        assertWithMessage("MainFrame should accept directory")
+                .that(MainFrameModel.shouldAcceptFile(directory))
+                .isTrue();
+
+        final File javaFile = new File(getPath(FILE_NAME_TEST_DATA));
+        assertWithMessage("MainFrame should accept java file")
+                .that(MainFrameModel.shouldAcceptFile(javaFile))
+                .isTrue();
+
+        final File nonJavaFile = mock(File.class);
+        when(nonJavaFile.isDirectory()).thenReturn(false);
+        when(nonJavaFile.getName()).thenReturn(FILE_NAME_NON_JAVA);
+        assertWithMessage("MainFrame should not accept nonJava file")
+                .that(MainFrameModel.shouldAcceptFile(nonJavaFile))
+                .isFalse();
+
+        final File nonExistentFile = new File(getPath(FILE_NAME_NON_EXISTENT));
+        assertWithMessage("MainFrame should not accept nonexistent file")
+                .that(MainFrameModel.shouldAcceptFile(nonExistentFile))
+                .isFalse();
     }
 
 }
