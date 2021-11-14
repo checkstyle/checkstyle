@@ -36,6 +36,8 @@ import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
@@ -392,24 +394,32 @@ public class MainTest {
 
     /**
      * This test method is created only to cover
-     * pitest mutation survival at Main#getOutputStreamOptions.
-     * No ability to test it by out general tests because
-     * Main does not produce any output to System.out after report is generated,
-     * System.out and System.err should be non-closed streams
+     * pitest mutation survival at {@code Main#getOutputStreamOptions}.
+     * Parameters {@code systemErr} and {@code systemOut} are used to restore
+     * the original system streams.
      *
+     * @param systemErr the system error stream
+     * @param systemOut the system output stream
      * @throws Exception if there is an error.
-     * @noinspection UseOfSystemOutOrSystemErr
      */
     @Test
-    public void testNonClosedSystemStreams() throws Exception {
-        Main.main("-c", getPath("InputMainConfig-classname.xml"), "-f", "xml",
-                getPath("InputMain.java"));
-        final Boolean closedOut = (Boolean) TestUtil
-                .getClassDeclaredField(System.out.getClass(), "closing").get(System.out);
-        assertThat("System.out stream should not be closed", closedOut, is(false));
-        final Boolean closedErr = (Boolean) TestUtil
-                .getClassDeclaredField(System.err.getClass(), "closing").get(System.err);
-        assertThat("System.err stream should not be closed", closedErr, is(false));
+    public void testNonClosedSystemStreams(@SysErr Capturable systemErr,
+           @SysOut Capturable systemOut) throws Exception {
+        try (ShouldNotBeClosedStream stream = new ShouldNotBeClosedStream()) {
+            System.setOut(stream);
+            System.setErr(stream);
+            Main.main("-c", getPath("InputMainConfig-classname.xml"), "-f", "xml",
+                    getPath("InputMain.java"));
+            assertWithMessage("stream should not be closed")
+                .that(stream.isClosed)
+                .isFalse();
+            assertWithMessage("System.err should be not used")
+                .that(systemErr.getCapturedData())
+                .isEmpty();
+            assertWithMessage("System.out should be not used")
+                .that(systemOut.getCapturedData())
+                .isEmpty();
+        }
     }
 
     /**
@@ -1638,6 +1648,26 @@ public class MainTest {
         catch (IOException exception) {
             fail("Unexpected exception: " + exception);
         }
+    }
+
+    /**
+     * Print stream that shouldn't be closed. The purpose of this class is to ensure that
+     * {@code System.out} and {@code System.err} are not closed by Checkstyle.
+     */
+    private static class ShouldNotBeClosedStream extends PrintStream {
+
+        private boolean isClosed;
+
+        /* package */ ShouldNotBeClosedStream() throws UnsupportedEncodingException {
+            super(new ByteArrayOutputStream(), false, StandardCharsets.UTF_8.name());
+        }
+
+        @Override
+        public void close() {
+            isClosed = true;
+            super.close();
+        }
+
     }
 
 }
