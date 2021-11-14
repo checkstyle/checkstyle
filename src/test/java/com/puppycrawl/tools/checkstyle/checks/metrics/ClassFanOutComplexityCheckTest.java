@@ -232,6 +232,15 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testImplementsAndNestedCount() throws Exception {
+        final String[] expected = {
+            "26:1: " + getCheckMessage(MSG_KEY, 3, 0),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputClassFanOutComplexityImplementsAndNestedCount.java"), expected);
+    }
+
+    @Test
     public void testClassFanOutComplexityRecords() throws Exception {
         final String[] expected = {
             "32:1: " + getCheckMessage(MSG_KEY, 4, 2),
@@ -263,10 +272,13 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testClassFanOutComplexityRemoveMultiCatchBitwiseOr() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+    public void testClassFanOutComplexityMultiCatchBitwiseOr() throws Exception {
+        final String[] expected = {
+            "27:1: " + getCheckMessage(MSG_KEY, 5, 4),
+        };
+
         verifyWithInlineConfigParser(
-                getPath("InputClassFanOutComplexityRemoveMultiCatchBitwiseOr.java"), expected);
+                getPath("InputClassFanOutComplexityMultiCatchBitwiseOr.java"), expected);
     }
 
     /**
