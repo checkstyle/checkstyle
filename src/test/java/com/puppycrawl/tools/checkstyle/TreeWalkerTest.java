@@ -23,6 +23,9 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MS
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
 
 import java.io.File;
 import java.io.Writer;
@@ -39,12 +42,14 @@ import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.mockito.Mockito;
 import org.mockito.internal.util.Checks;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -526,6 +531,46 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkerConfig, filePath, expected);
+    }
+
+    @Test
+    public void testBehaviourWithOnlyOrdinaryChecks() throws Exception {
+        final TreeWalker treeWalkerSpy = spy(new TreeWalker());
+        final PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
+        treeWalkerSpy.configure(createModuleConfig(TypeNameCheck.class));
+        treeWalkerSpy.setModuleFactory(factory);
+        treeWalkerSpy.setupChild(createModuleConfig(TypeNameCheck.class));
+        final File file = File.createTempFile("file", ".java", temporaryFolder);
+        final List<String> lines = new ArrayList<>();
+        lines.add("class Test {}");
+        final FileText fileText = new FileText(file, lines);
+        treeWalkerSpy.setFileContents(new FileContents(fileText));
+        TestUtil.invokeMethod(treeWalkerSpy, "processFiltered", file, fileText);
+        Mockito.verify(treeWalkerSpy, times(1)).walk(
+                any(DetailAST.class), any(FileContents.class), any(TreeWalker.AstState.class));
+        Mockito.verify(treeWalkerSpy, times(0)).getFilteredViolations(
+                any(String.class), any(FileContents.class), any(DetailAST.class));
+    }
+
+    @Test
+    public void testBehaviourWithOnlyCommentChecks() throws Exception {
+        final TreeWalker treeWalkerSpy = spy(new TreeWalker());
+        final PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
+        treeWalkerSpy.configure(createModuleConfig(CommentsIndentationCheck.class));
+        treeWalkerSpy.setModuleFactory(factory);
+        treeWalkerSpy.setupChild(createModuleConfig(CommentsIndentationCheck.class));
+        final File file = File.createTempFile("file", ".java", temporaryFolder);
+        final List<String> lines = new ArrayList<>();
+        lines.add("class Test {}");
+        final FileText fileText = new FileText(file, lines);
+        treeWalkerSpy.setFileContents(new FileContents(fileText));
+        TestUtil.invokeMethod(treeWalkerSpy, "processFiltered", file, fileText);
+        Mockito.verify(treeWalkerSpy, times(1)).walk(
+                any(DetailAST.class), any(FileContents.class), any(TreeWalker.AstState.class));
+        Mockito.verify(treeWalkerSpy, times(0)).getFilteredViolations(
+                any(String.class), any(FileContents.class), any(DetailAST.class));
     }
 
     public static class BadJavaDocCheck extends AbstractCheck {
