@@ -35,7 +35,7 @@ public class ScopeUtilTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(ScopeUtil.class, true),
+        assertTrue(isUtilsClassHasPrivateConstructor(ScopeUtil.class),
                 "Constructor is not private");
     }
 
