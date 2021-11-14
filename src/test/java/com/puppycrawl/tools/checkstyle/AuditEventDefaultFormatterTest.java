@@ -19,7 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 
@@ -78,6 +81,48 @@ public class AuditEventDefaultFormatterTest {
                 "calculateBufferLength", auditEvent, SeverityLevel.ERROR.ordinal());
 
         assertEquals(54, result, "Buffer length is not expected");
+    }
+
+    /**
+     * This test mocks {@code AuditEvent} to emulate an event from a top level class
+     * to gain 100% coverage.
+     */
+    @Test
+    public void testFormatTopLevelModuleNameContainsCheckSuffix() {
+        final AuditEvent mock = mock(AuditEvent.class);
+        when(mock.getSourceName()).thenReturn("TestModuleCheck");
+        when(mock.getSeverityLevel()).thenReturn(SeverityLevel.WARNING);
+        when(mock.getLine()).thenReturn(1);
+        when(mock.getColumn()).thenReturn(1);
+        when(mock.getMessage()).thenReturn("Mocked message.");
+        when(mock.getFileName()).thenReturn("InputMockFile.java");
+        final AuditEventFormatter formatter = new AuditEventDefaultFormatter();
+
+        final String expected = "[WARN] InputMockFile.java:1:1: Mocked message. [TestModule]";
+        assertWithMessage("Invalid format")
+                .that(formatter.format(mock))
+                .isEqualTo(expected);
+    }
+
+    /**
+     * This test mocks {@code AuditEvent} to emulate an event from a top level class
+     * to gain 100% coverage.
+     */
+    @Test
+    public void testFormatTopLevelModuleNameDoesNotContainCheckSuffix() {
+        final AuditEvent mock = mock(AuditEvent.class);
+        when(mock.getSourceName()).thenReturn("TestModule");
+        when(mock.getSeverityLevel()).thenReturn(SeverityLevel.WARNING);
+        when(mock.getLine()).thenReturn(1);
+        when(mock.getColumn()).thenReturn(1);
+        when(mock.getMessage()).thenReturn("Mocked message.");
+        when(mock.getFileName()).thenReturn("InputMockFile.java");
+        final AuditEventFormatter formatter = new AuditEventDefaultFormatter();
+
+        final String expected = "[WARN] InputMockFile.java:1:1: Mocked message. [TestModule]";
+        assertWithMessage("Invalid format")
+                .that(formatter.format(mock))
+                .isEqualTo(expected);
     }
 
     private static class TestModuleCheck {
