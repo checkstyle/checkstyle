@@ -4,7 +4,7 @@ offCommentFormat = CSOFF (\\w+) \\(\\w+\\)
 onCommentFormat = CSON (\\w+)
 checkFormat = FileTabCharacterCheck
 messageFormat = (default)(null)
-idFormat = (default)(null)
+idFormat = $1
 
 
 com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck
@@ -27,14 +27,14 @@ fileExtensions = (default)
 
 package com.puppycrawl.tools.checkstyle.filters.suppresswithplaintextcommentfilter;
 
-public class InputSuppressWithPlainTextCommentFilterSuppressById {
+public class InputSuppressWithPlainTextCommentFilterSuppressById4 { // violation 'illegal pattern'
 
     //CSOFF ignore (reason)
     private int A1; // violation 'illegal pattern'
 
     // @cs-: ignore (reason)
-	private static final int a1 = 5; // filtered violation 'contains a tab'
-    // violation above 'illegal pattern'
+	private static final int a1 = 5; // violation 'illegal pattern'
+    // violation above 'contains a tab'
     int a2 = 100; // violation 'illegal pattern'
     //CSON ignore
 
