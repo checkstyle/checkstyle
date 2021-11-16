@@ -2,8 +2,8 @@ files:
   - source: /**/messages.properties
     translation: /**/messages_%two_letters_code%.properties
     update_option: update_without_changes
-    # Escape single quote with another single quote
-    escape_quotes: 1
+    # Do not escape single quote
+    escape_quotes: 0
     # Avoid escape of colons, exclamation marks, etc.
     escape_special_characters: 0
 commit_message: 'doc: new translations: %original_file_name% (%language%)'
