@@ -1875,6 +1875,46 @@ public final class TokenTypes {
     /**
      * The {@code native} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     * native void equal(int a, int b)
+     * {
+     *   a=b;
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--LCURLY -&gt; {
+     * |--METHOD_DEF -&gt; METHOD_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |   `--LITERAL_NATIVE -&gt; native
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--LITERAL_VOID -&gt; void
+     * |   |--IDENT -&gt; equal
+     * |   |--LPAREN -&gt; (
+     * |   |--PARAMETERS -&gt; PARAMETERS
+     * |   |   |--PARAMETER_DEF -&gt; PARAMETER_DEF
+     * |   |   |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |   |   |--TYPE -&gt; TYPE
+     * |   |   |   |   `--LITERAL_INT -&gt; int
+     * |   |   |   `--IDENT -&gt; a
+     * |   |   |--COMMA -&gt; ,
+     * |   |   `--PARAMETER_DEF -&gt; PARAMETER_DEF
+     * |   |       |--MODIFIERS -&gt; MODIFIERS
+     * |   |       |--TYPE -&gt; TYPE
+     * |   |       |   `--LITERAL_INT -&gt; int
+     * |   |       `--IDENT -&gt; b
+     * |   |--RPAREN -&gt; )
+     * |   `--SLIST -&gt; {
+     * |       |--EXPR -&gt; EXPR
+     * |       |   `--ASSIGN -&gt; =
+     * |       |       |--IDENT -&gt; a
+     * |       |       `--IDENT -&gt; b
+     * |       |--SEMI -&gt; ;
+     * |       `--RCURLY -&gt; }
+     * `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #MODIFIERS
      **/
     public static final int LITERAL_NATIVE =
