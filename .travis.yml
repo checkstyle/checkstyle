@@ -13,14 +13,13 @@ addons:
     packages:
       - xsltproc
       - xmlstarlet
-      - ruby
 
 branches:
   only:
     - master
 
 install:
-  - gem install chef-utils:16.6.14 mdl
+  -
 
 jobs:
   fast_finish: true
@@ -60,14 +59,13 @@ jobs:
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
-    # until https://github.com/checkstyle/checkstyle/issues/10778
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="NoErrorTest - Hibernate Search"
-    #     - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-    #     - CMD2="./.ci/wercker.sh no-error-hibernate-search"
-    #     - CMD="$CMD1 && $CMD2"
-    #     - USE_MAVEN_REPO="true"
+    - jdk: openjdk8
+      env:
+        - DESC="NoErrorTest - Hibernate Search"
+        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+        - CMD2="./.ci/wercker.sh no-error-hibernate-search"
+        - CMD="$CMD1 && $CMD2"
+        - USE_MAVEN_REPO="true"
 
     # until https://github.com/sevntu-checkstyle/sevntu.checkstyle/pull/858
     # - jdk: openjdk8
@@ -119,40 +117,18 @@ jobs:
         - USE_MAVEN_REPO="true"
 
 script:
-  - SKIP_FILES1=".github|codeship-*|appveyor.yml|circleci"
-  - SKIP_FILES2="|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr"
-  - SKIP_FILES3="|wercker.yml|wercker.sh|intellij-idea-inspections.xml"
-  - SKIP_FILES4="|Jenkinsfile"
-  - SKIP_FILES=$SKIP_FILES1$SKIP_FILES2$SKIP_FILES3$SKIP_FILES4
   - export RUN_JOB=1
+  - ./.ci/travis/travis.sh init-m2-repo
   - |
-    set -e
     if [[ $RUN_JOB == 1 ]]; then
-      MVN_SETTINGS=${TRAVIS_HOME}/.m2/settings.xml
-      if [[ -f ${MVN_SETTINGS} ]]; then
-        if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
-          sed -i'' -e "/<mirrors>/,/<\/mirrors>/ d" $MVN_SETTINGS
-        else
-          xmlstarlet ed --inplace -d "//mirrors" $MVN_SETTINGS
-        fi
-      fi
-      if [[ $USE_MAVEN_REPO == 'true' && ! -d "~/.m2" ]]; then
-       echo "Maven local repo cache is not found, initializing it ..."
-       mvn -e --no-transfer-progress -B install -Pno-validations;
-       mvn -e --no-transfer-progress clean;
-      fi
       echo "eval of CMD is starting";
       echo "CMD=$CMD";
       eval $CMD;
       echo "eval of CMD is completed";
-    else
-      echo "CI is skipped";
     fi
-    sleep 5s
 
 after_success:
   - |
-    set -e
     if [[ -n $CMD_AFTER_SUCCESS
           && $RUN_JOB == 1
        ]];
@@ -161,49 +137,7 @@ after_success:
         eval $CMD_AFTER_SUCCESS;
         echo "CMD_AFTER_SUCCESS is finished";
     fi
-    sleep 5s
 
-  - |
-    set -e
-    SKIP_DEPLOY=false
-    if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ];
-      then
-        SKIP_DEPLOY=false;
-      else
-        SKIP_DEPLOY=true;
-    fi;
-    if [[ $TRAVIS_REPO_SLUG == 'checkstyle/checkstyle'
-            && $TRAVIS_BRANCH == 'master'
-            && $TRAVIS_PULL_REQUEST == 'false'
-            && $DEPLOY == 'true'
-            && $RUN_JOB == 1
-            && $SKIP_DEPLOY == 'false'
-       ]];
-    then
-        mvn -e --no-transfer-progress -s config/deploy-settings.xml -Pno-validations deploy;
-        echo "deploy to maven snapshot repository is finished";
-    fi
-    sleep 5s
-  - |
-    set -e
-      if [ "$(git status | grep 'Changes not staged\|Untracked files')" ]; then
-        printf "Please clean up or update .gitattributes file.\nGit status output:\n"
-        git status
-        printf "Top 300 lines of diff:\n"
-        git diff | head -n 300
-        sleep 5s
-        false
-      fi
-  - |
-    set -e
-    mkdir -p .ci-temp
-    if [ -z "$(ls -A .ci-temp)" ]; then
-        echo "Folder .ci-temp/ is empty."
-    else
-        echo "Folder .ci-temp/ is not empty. Verification failed."
-        echo "Contents of .ci-temp/:"
-        ls -A .ci-temp
-        sleep 5s
-        exit 1
-    fi
-    sleep 5s
+  - ./.ci/travis/travis.sh deploy-snapshot
+  - ./.ci/travis/travis.sh git-diff
+  - ./.ci/travis/travis.sh ci-temp-check

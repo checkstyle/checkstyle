@@ -122,7 +122,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
     @Test
     @SuppressWarnings("unchecked")
-    public void testStatefulFieldsClearedOnBeginTree1() throws Exception {
+    public void testStatefulFieldsClearedOnBeginTree1() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(TokenTypes.LITERAL_ELSE);
 
@@ -139,7 +139,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
     @Test
     @SuppressWarnings("unchecked")
-    public void testStatefulFieldsClearedOnBeginTree2() throws Exception {
+    public void testStatefulFieldsClearedOnBeginTree2() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(TokenTypes.LITERAL_RETURN);
         ast.setLineNo(5);
@@ -170,13 +170,9 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
                 question.get(),
                 "processingTokenEnd",
                 processingTokenEnd -> {
-                    try {
-                        return getFieldValue(processingTokenEnd, "endLineNo") == 0
-                            && getFieldValue(processingTokenEnd, "endColumnNo") == 0;
-                    }
-                    catch (IllegalAccessException | NoSuchFieldException ex) {
-                        throw new IllegalStateException(ex);
-                    }
+                    return TestUtil.<Integer>getInternalState(processingTokenEnd, "endLineNo") == 0
+                        && TestUtil.<Integer>getInternalState(
+                                processingTokenEnd, "endColumnNo") == 0;
                 }), "State is not cleared on beginTree");
     }
 
@@ -307,15 +303,14 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTokenEndIsAfterSameLineColumn() throws Exception {
         final NPathComplexityCheck check = new NPathComplexityCheck();
-        final Object tokenEnd = TestUtil.getClassDeclaredField(NPathComplexityCheck.class,
-                "processingTokenEnd").get(check);
+        final Object tokenEnd = TestUtil.getInternalState(check, "processingTokenEnd");
         final DetailAstImpl token = new DetailAstImpl();
         token.setLineNo(0);
         token.setColumnNo(0);
 
         assertTrue(
-            (Boolean) TestUtil.getClassDeclaredMethod(tokenEnd.getClass(), "isAfter")
-                .invoke(tokenEnd, token), "isAfter must be true for same line/column");
+            TestUtil.<Boolean>invokeMethod(tokenEnd, "isAfter", token),
+                "isAfter must be true for same line/column");
     }
 
     @Test
@@ -367,18 +362,6 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         final DetailAstImpl astSemi = new DetailAstImpl();
         astSemi.initialize(tokenImportSemi);
         return astSemi;
-    }
-
-    /**
-     * Get int value of provided field in object.
-     *
-     * @param object object to get field from
-     * @param fieldName field name
-     * @return int value of field
-     */
-    private static Integer getFieldValue(Object object, String fieldName)
-            throws IllegalAccessException, NoSuchFieldException {
-        return (Integer) TestUtil.getClassDeclaredField(object.getClass(), fieldName).get(object);
     }
 
 }

@@ -30,11 +30,11 @@ import java.util.Locale;
 import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
-import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -57,7 +57,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         // recreate for each test because multiple invocations fail
         final String header = null;
         instance.setHeader(header);
-        final List<Pattern> headerRegexps = Whitebox.getInternalState(instance, "headerRegexps");
+        final List<Pattern> headerRegexps = TestUtil.getInternalState(instance, "headerRegexps");
 
         assertTrue(headerRegexps.isEmpty(), "When header is null regexps should not be set");
     }
@@ -72,7 +72,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         // check empty string passes
         final String header = "";
         instance.setHeader(header);
-        final List<Pattern> headerRegexps = Whitebox.getInternalState(instance, "headerRegexps");
+        final List<Pattern> headerRegexps = TestUtil.getInternalState(instance, "headerRegexps");
 
         assertTrue(headerRegexps.isEmpty(), "When header is empty regexps should not be set");
     }
@@ -86,7 +86,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         // check valid header passes
         final String header = "abc.*";
         instance.setHeader(header);
-        final List<Pattern> headerRegexps = Whitebox.getInternalState(instance, "headerRegexps");
+        final List<Pattern> headerRegexps = TestUtil.getInternalState(instance, "headerRegexps");
         assertEquals(1, headerRegexps.size(), "Expected one pattern");
         assertEquals(header, headerRegexps.get(0).pattern(), "Invalid header regexp");
     }

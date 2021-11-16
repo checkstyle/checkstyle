@@ -60,7 +60,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
@@ -310,7 +309,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         // comparing to 1 as there is only one legal file in input
         final int numLegalFiles = 1;
-        final PropertyCacheFile cache = Whitebox.getInternalState(checker, "cacheFile");
+        final PropertyCacheFile cache = TestUtil.getInternalState(checker, "cacheFile");
         assertEquals(numLegalFiles, counter, "There were more legal files than expected");
         assertEquals(numLegalFiles, auditAdapter.getNumFilesStarted(),
                 "Audit was started on larger amount of files than expected");
@@ -396,7 +395,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         checker.setModuleClassLoader(classLoader);
         checker.finishLocalSetup();
-        final Context actualCtx = Whitebox.getInternalState(checker, "childContext");
+        final Context actualCtx = TestUtil.getInternalState(checker, "childContext");
 
         assertNotNull(actualCtx.get("moduleFactory"),
                 "Default module factory should be created when it is not specified");
@@ -415,7 +414,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setLocaleCountry("IT");
         checker.finishLocalSetup();
 
-        final Context context = Whitebox.getInternalState(checker, "childContext");
+        final Context context = TestUtil.getInternalState(checker, "childContext");
         final String encoding = StandardCharsets.UTF_8.name();
         assertEquals(encoding, context.get("charset"), "Charset was different than expected");
         assertEquals("error", context.get("severity"), "Severity is set to unexpected value");
@@ -473,7 +472,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             DebugAuditAdapter.class.getCanonicalName());
         checker.setupChild(config);
 
-        final List<AuditListener> listeners = Whitebox.getInternalState(checker, "listeners");
+        final List<AuditListener> listeners = TestUtil.getInternalState(checker, "listeners");
         assertTrue(listeners.get(listeners.size() - 1) instanceof DebugAuditAdapter,
                 "Invalid child listener class");
     }
@@ -636,7 +635,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.process(Collections.singletonList(new File("dummy.java")));
         checker.clearCache();
         // invoke destroy to persist cache
-        final PropertyCacheFile cache = Whitebox.getInternalState(checker, "cacheFile");
+        final PropertyCacheFile cache = TestUtil.getInternalState(checker, "cacheFile");
         cache.persist();
 
         final Properties cacheAfterClear = new Properties();
@@ -651,7 +650,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void setFileExtension() {
         final Checker checker = new Checker();
         checker.setFileExtensions(".test1", "test2");
-        final String[] actual = Whitebox.getInternalState(checker, "fileExtensions");
+        final String[] actual = TestUtil.getInternalState(checker, "fileExtensions");
         assertArrayEquals(new String[] {".test1", ".test2"}, actual,
                 "Extensions are not expected");
     }
@@ -662,7 +661,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // the invocation of clearCache method does not throw an exception.
         final Checker checker = new Checker();
         checker.clearCache();
-        assertNull(Whitebox.getInternalState(checker, "cacheFile"),
+        assertNull(TestUtil.getInternalState(checker, "cacheFile"),
                 "If cache file is not set the cache should default to null");
     }
 
@@ -1407,7 +1406,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.configure(root);
         // BriefUtLogger does not print the module name or id postfix,
         // so we need to set logger manually
-        final ByteArrayOutputStream out = Whitebox.getInternalState(this, "stream");
+        final ByteArrayOutputStream out = TestUtil.getInternalState(this, "stream");
         final DefaultLogger logger = new DefaultLogger(out, OutputStreamOptions.CLOSE, out,
                 OutputStreamOptions.NONE, new AuditEventDefaultFormatter());
         checker.addListener(logger);

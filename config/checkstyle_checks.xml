@@ -660,7 +660,8 @@
                        FileNotFoundException, TestException, Log, Sets, Multimap,
                        TokenStreamRecognitionException, RecognitionException,
                        TokenStreamException, IOException, Override, Deprecated, SafeVarargs,
-                       SuppressWarnings, FunctionalInterface"/>
+                       SuppressWarnings, FunctionalInterface, NoSuchMethodException,
+                       InvocationTargetException, IllegalAccessException"/>
     </module>
     <module name="CyclomaticComplexity">
       <property name="switchBlockAsSingleDecisionPoint" value="true"/>
