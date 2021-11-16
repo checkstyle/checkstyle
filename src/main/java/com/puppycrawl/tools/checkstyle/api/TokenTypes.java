@@ -1884,35 +1884,35 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * |--LCURLY -&gt {
-     * |--METHOD_DEF -&gt METHOD_DEF
-     * |   |--MODIFIERS -&gt MODIFIERS
-     * |   |   `--LITERAL_NATIVE -&gt native
-     * |   |--TYPE -&gt TYPE
-     * |   |   `--LITERAL_VOID -&gt void
-     * |   |--IDENT -&gt equal
-     * |   |--LPAREN -&gt (
-     * |   |--PARAMETERS -&gt PARAMETERS
-     * |   |   |--PARAMETER_DEF -&gt PARAMETER_DEF
-     * |   |   |   |--MODIFIERS -&gt MODIFIERS
-     * |   |   |   |--TYPE -&gt TYPE
-     * |   |   |   |   `--LITERAL_INT -&gt int
-     * |   |   |   `--IDENT -&gt a
-     * |   |   |--COMMA -&gt ,
-     * |   |   `--PARAMETER_DEF -&gt PARAMETER_DEF
-     * |   |       |--MODIFIERS -&gt MODIFIERS
-     * |   |       |--TYPE -&gt TYPE
-     * |   |       |   `--LITERAL_INT -&gt int
-     * |   |       `--IDENT -&gt b
-     * |   |--RPAREN -&gt )
-     * |   `--SLIST -&gt {
-     * |       |--EXPR -&gt EXPR
-     * |       |   `--ASSIGN -&gt =
-     * |       |       |--IDENT -&gt a
-     * |       |       `--IDENT -&gt b
-     * |       |--SEMI -&gt ;
-     * |       `--RCURLY -&gt }
-     * `--RCURLY -&gt }
+     * |--LCURLY -&gt; {
+     * |--METHOD_DEF -&gt; METHOD_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |   `--LITERAL_NATIVE -&gt; native
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--LITERAL_VOID -&gt; void
+     * |   |--IDENT -&gt; equal
+     * |   |--LPAREN -&gt; (
+     * |   |--PARAMETERS -&gt; PARAMETERS
+     * |   |   |--PARAMETER_DEF -&gt; PARAMETER_DEF
+     * |   |   |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |   |   |--TYPE -&gt; TYPE
+     * |   |   |   |   `--LITERAL_INT -&gt; int
+     * |   |   |   `--IDENT -&gt; a
+     * |   |   |--COMMA -&gt; ,
+     * |   |   `--PARAMETER_DEF -&gt; PARAMETER_DEF
+     * |   |       |--MODIFIERS -&gt; MODIFIERS
+     * |   |       |--TYPE -&gt; TYPE
+     * |   |       |   `--LITERAL_INT -&gt; int
+     * |   |       `--IDENT -&gt; b
+     * |   |--RPAREN -&gt; )
+     * |   `--SLIST -&gt; {
+     * |       |--EXPR -&gt; EXPR
+     * |       |   `--ASSIGN -&gt; =
+     * |       |       |--IDENT -&gt; a
+     * |       |       `--IDENT -&gt; b
+     * |       |--SEMI -&gt; ;
+     * |       `--RCURLY -&gt; }
+     * `--RCURLY -&gt; }
      * </pre>
      *
      * @see #MODIFIERS
