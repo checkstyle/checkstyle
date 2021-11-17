@@ -111,7 +111,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Property {@code memberModifiers} - Control whether to check only methods and fields with any
  * of the specified modifiers.
- * This property does not affect method calls nor method references.
+ * This property does not affect method calls nor method references nor record components.
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenTypesSet}.
  * Default value is {@code ""}.
@@ -380,7 +380,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
     private final Set<String> ignoredMethodNames = new HashSet<>();
     /**
      * Control whether to check only methods and fields with any of the specified modifiers.
-     * This property does not affect method calls nor method references.
+     * This property does not affect method calls nor method references nor record components.
      */
     private List<Integer> memberModifiers = Collections.emptyList();
 
@@ -473,8 +473,10 @@ public final class IllegalTypeCheck extends AbstractCheck {
             case TokenTypes.VARIABLE_DEF:
             case TokenTypes.ANNOTATION_FIELD_DEF:
             case TokenTypes.PATTERN_VARIABLE_DEF:
-            case TokenTypes.RECORD_COMPONENT_DEF:
                 visitVariableDef(ast);
+                break;
+            case TokenTypes.RECORD_COMPONENT_DEF:
+                visitRecordComponentDef(ast);
                 break;
             case TokenTypes.PARAMETER_DEF:
                 visitParameterDef(ast);
@@ -523,6 +525,18 @@ public final class IllegalTypeCheck extends AbstractCheck {
             }
         }
         return result;
+    }
+
+    /**
+     * Checks a record component definition. Record components are private
+     * final fields, so we do not consider memberModifiers field.
+     *
+     * @param recordComponentDef the record component definition to check.
+     */
+    public void visitRecordComponentDef(DetailAST recordComponentDef) {
+        if (recordComponentDef.getType() == TokenTypes.RECORD_COMPONENT_DEF) {
+            checkClassName(recordComponentDef);
+        }
     }
 
     /**
@@ -852,7 +866,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
     /**
      * Setter to control whether to check only methods and fields with any of
      * the specified modifiers.
-     * This property does not affect method calls nor method references.
+     * This property does not affect method calls nor method references nor record components.
      *
      * @param modifiers String contains modifiers.
      */

@@ -3166,7 +3166,9 @@ public void myTest() {
               <td>memberModifiers</td>
               <td>
                 Control whether to check only methods and fields with any of the specified
-                modifiers. This property does not affect method calls nor method references.
+                modifiers.
+                This property does not affect method calls nor method references nor
+                record components.
               </td>
               <td>subset of tokens
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
