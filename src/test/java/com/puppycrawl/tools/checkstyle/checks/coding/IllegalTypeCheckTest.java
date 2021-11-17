@@ -318,7 +318,6 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "31:52: " + getCheckMessage(MSG_KEY, "Cloneable"),
             "32:16: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
             "35:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
-            "39:38: " + getCheckMessage(MSG_KEY, "TreeSet"),
             "40:18: " + getCheckMessage(MSG_KEY, "HashMap"),
             "48:13: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
         };
@@ -330,7 +329,6 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIllegalTypeNewArrayStructure() throws Exception {
-
         final String[] expected = {
             "26:13: " + getCheckMessage(MSG_KEY, "HashMap"),
         };
@@ -338,6 +336,56 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeNewArrayStructure.java"),
             expected);
+    }
+
+    @Test
+    public void testRecordComponentsDefault() throws Exception {
+        final String[] expected = {
+            "45:9: " + getCheckMessage(MSG_KEY, "HashSet"),
+            "53:23: " + getCheckMessage(MSG_KEY, "HashSet"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputIllegalTypeRecordsWithMemberModifiersDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordComponentsFinal() throws Exception {
+        final String[] expected = {
+            "45:9: " + getCheckMessage(MSG_KEY, "HashSet"),
+            "53:23: " + getCheckMessage(MSG_KEY, "HashSet"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputIllegalTypeRecordsWithMemberModifiersFinal.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordComponentsPrivateFinal() throws Exception {
+        final String[] expected = {
+            "45:9: " + getCheckMessage(MSG_KEY, "HashSet"),
+            "53:23: " + getCheckMessage(MSG_KEY, "HashSet"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputIllegalTypeRecordsWithMemberModifiersPrivateFinal.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordComponentsPublicProtectedStatic() throws Exception {
+        final String[] expected = {
+            "45:9: " + getCheckMessage(MSG_KEY, "HashSet")};
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputIllegalTypeRecordsWithMemberModifiersPublicProtectedStatic.java"),
+                expected);
     }
 
     @Test
