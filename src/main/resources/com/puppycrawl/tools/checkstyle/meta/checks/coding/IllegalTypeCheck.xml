@@ -80,7 +80,7 @@
                       validation-type="tokenTypesSet">
                <description>Control whether to check only methods and fields with any
  of the specified modifiers.
- This property does not affect method calls nor method references.</description>
+ This property does not affect method calls nor method references nor record components.</description>
             </property>
             <property default-value="ANNOTATION_FIELD_DEF,CLASS_DEF,INTERFACE_DEF,METHOD_CALL,METHOD_DEF,METHOD_REF,PARAMETER_DEF,VARIABLE_DEF,PATTERN_VARIABLE_DEF,RECORD_DEF,RECORD_COMPONENT_DEF"
                       name="tokens"
