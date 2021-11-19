@@ -179,6 +179,16 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testEqualsSuperClass() throws Exception {
+
+        final String[] expected = {
+            "23:35: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEqualsAvoidNullSuperClass.java"), expected);
+    }
+
+    @Test
     public void testInputEqualsAvoidNullEnhancedInstanceof() throws Exception {
 
         final String[] expected = {

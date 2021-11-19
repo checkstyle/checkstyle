@@ -478,7 +478,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
     private boolean isStringFieldOrVariableFromThisInstance(DetailAST objCalledOn) {
         final String name = objCalledOn.getText();
         final DetailAST field = getObjectFrame(currentFrame).findField(name);
-        return STRING.equals(getFieldType(field));
+        return field != null && STRING.equals(getFieldType(field));
     }
 
     /**
