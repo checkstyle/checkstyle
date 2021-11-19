@@ -18,8 +18,7 @@ branches:
   only:
     - master
 
-install:
-  -
+install: true
 
 jobs:
   fast_finish: true

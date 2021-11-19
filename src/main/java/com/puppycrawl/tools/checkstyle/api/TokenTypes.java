@@ -1890,6 +1890,25 @@ public final class TokenTypes {
     /**
      * The {@code native} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     * native void foo(){}
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * METHOD_DEF -&gt; METHOD_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_NATIVE -&gt; native
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_VOID -&gt; void
+     *  |--IDENT -&gt; foo
+     *  |--LPAREN -&gt; (
+     *  |--PARAMETERS -&gt; PARAMETERS
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #MODIFIERS
      **/
     public static final int LITERAL_NATIVE =
