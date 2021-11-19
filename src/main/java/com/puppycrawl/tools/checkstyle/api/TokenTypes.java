@@ -4793,6 +4793,24 @@ public final class TokenTypes {
      * Its children are the name of the member, the assignment literal
      * and the (compile-time constant conditional expression) value.
      *
+     * <p>For example:</p>
+     * <pre>
+     * &#064;MyAnnotation(someField1 = "Hello")
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * ANNOTATION
+     *  |--AT (&#064;)
+     *  |--IDENT (MyAnnotation)
+     *  |--LPAREN (()
+     *  |--ANNOTATION_MEMBER_VALUE_PAIR
+     *  |   |--IDENT (someField1)
+     *  |   `--ASSIGN (=)
+     *  |       `--EXPR
+     *  |           `--STRING_LITERAL ("Hello")
+     *  |--RPAREN ())
+     * </pre>
+     *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      * @see #ANNOTATION
