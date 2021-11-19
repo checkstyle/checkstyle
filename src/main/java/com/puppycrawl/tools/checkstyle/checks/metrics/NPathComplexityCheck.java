@@ -664,13 +664,9 @@ public final class NPathComplexityCheck extends AbstractCheck {
         public boolean isAfter(DetailAST ast) {
             final int lineNo = ast.getLineNo();
             final int columnNo = ast.getColumnNo();
-            boolean isAfter = true;
-            if (lineNo > endLineNo
-                    || lineNo == endLineNo
-                    && columnNo > endColumnNo) {
-                isAfter = false;
-            }
-            return isAfter;
+            return lineNo <= endLineNo
+                && (lineNo != endLineNo
+                || columnNo <= endColumnNo);
         }
 
     }

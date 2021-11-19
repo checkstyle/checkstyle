@@ -629,13 +629,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true if the token has not allowed multiple empty lines before.
      */
     private boolean hasMultipleLinesBefore(DetailAST ast) {
-        boolean result = false;
-        if ((ast.getType() != TokenTypes.VARIABLE_DEF
-            || isTypeField(ast))
-                && hasNotAllowedTwoEmptyLinesBefore(ast)) {
-            result = true;
-        }
-        return result;
+        return (ast.getType() != TokenTypes.VARIABLE_DEF || isTypeField(ast))
+                && hasNotAllowedTwoEmptyLinesBefore(ast);
     }
 
     /**

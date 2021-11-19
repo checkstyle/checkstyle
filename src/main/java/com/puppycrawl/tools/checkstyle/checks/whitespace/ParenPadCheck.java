@@ -369,11 +369,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
      * @return true if the ast is in AcceptableTokens.
      */
     private boolean isAcceptableToken(DetailAST ast) {
-        boolean result = false;
-        if (Arrays.binarySearch(acceptableTokens, ast.getType()) >= 0) {
-            result = true;
-        }
-        return result;
+        return Arrays.binarySearch(acceptableTokens, ast.getType()) >= 0;
     }
 
     /**
