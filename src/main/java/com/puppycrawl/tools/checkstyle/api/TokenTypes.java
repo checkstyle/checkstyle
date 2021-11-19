@@ -4799,18 +4799,16 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     *  |--ANNOTATION
-     *  |   |
-     *  |   |--AT (&#064;)
-     *  |   |--IDENT (MyAnnotation)
-     *  |   |--LPAREN (()
-     *  |   |--ANNOTATION_MEMBER_VALUE_PAIR
-     *  |   |   |
-     *  |   |   |--IDENT (someField1)
-     *  |   |   `--ASSIGN (=)
-     *  |   |       `--EXPR
-     *  |   |           `--STRING_LITERAL ("Hello")
-     *  |   |--RPAREN ())
+     * ANNOTATION
+     *  |--AT (&#064;)
+     *  |--IDENT (MyAnnotation)
+     *  |--LPAREN (()
+     *  |--ANNOTATION_MEMBER_VALUE_PAIR
+     *  |   |--IDENT (someField1)
+     *  |   `--ASSIGN (=)
+     *  |       `--EXPR
+     *  |           `--STRING_LITERAL ("Hello")
+     *  |--RPAREN ())
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
