@@ -5138,6 +5138,34 @@ public final class TokenTypes {
      * A triple dot for variable-length parameters. This token only ever occurs
      * in a parameter declaration immediately after the type of the parameter.
      *
+     * <p>For example:</p>
+     * <pre>
+     *  public void myShape(int... dimension) {
+     *
+     *  }
+     * </pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * METHOD_DEF -&gt; METHOD_DEF
+     *   |--MODIFIERS -&gt; MODIFIERS
+     *   |   `--LITERAL_PUBLIC -&gt; public
+     *   |--TYPE -&gt; TYPE
+     *   |   `--LITERAL_VOID -&gt; void
+     *   |--IDENT -&gt; myShape
+     *   |--LPAREN -&gt; (
+     *   |--PARAMETERS -&gt; PARAMETERS
+     *   |   `--PARAMETER_DEF -&gt; PARAMETER_DEF
+     *   |       |--MODIFIERS -&gt; MODIFIERS
+     *   |       |--TYPE -&gt; TYPE
+     *   |       |   `--LITERAL_INT -&gt; int
+     *   |       |--ELLIPSIS -&gt; ...
+     *   |       `--IDENT -&gt; dimension
+     *   |--RPAREN -&gt; )
+     *   `--SLIST -&gt; {
+     *       `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
      * JSR201</a>
      */
