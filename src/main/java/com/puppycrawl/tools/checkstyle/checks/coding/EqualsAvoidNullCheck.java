@@ -460,7 +460,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
             final DetailAST field = frame.findField(name);
             if (field != null
                     && (frame.isClassOrEnumOrRecordDef()
-                            || checkLineNo(field, objCalledOn))) {
+                            || CheckUtil.isBeforeInSource(field, objCalledOn))) {
                 result = STRING.equals(getFieldType(field));
                 break;
             }
@@ -516,22 +516,6 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
             objectFrame = objectFrame.getParent();
         }
         return objectFrame;
-    }
-
-    /**
-     * Check whether the field is declared before the method call in case of
-     * methods and initialization blocks.
-     *
-     * @param field field to check.
-     * @param objCalledOn object equals method called on.
-     * @return true if the field is declared before the method call.
-     */
-    private static boolean checkLineNo(DetailAST field, DetailAST objCalledOn) {
-        boolean result = false;
-        if (CheckUtil.isBeforeInSource(field, objCalledOn)) {
-            result = true;
-        }
-        return result;
     }
 
     /**
