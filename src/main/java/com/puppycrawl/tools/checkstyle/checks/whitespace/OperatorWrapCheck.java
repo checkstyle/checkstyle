@@ -423,12 +423,7 @@ public class OperatorWrapCheck
             result = adjustParens(rightNode, DetailAST::getPreviousSibling);
         }
 
-        // The ARRAY_INIT AST is confusing. It should be
-        // ARRAY_INIT
-        // |--LCURLY (first child)
-        // `--RCURLY (last child)
-        // but there is no LCURLY for ARRAY_INIT
-        if (result.getType() != TokenTypes.ARRAY_INIT) {
+        if (!TokenUtil.isOfType(result, TokenTypes.ARRAY_INIT, TokenTypes.ANNOTATION_ARRAY_INIT)) {
             while (result.getFirstChild() != null) {
                 result = result.getFirstChild();
             }
