@@ -129,6 +129,17 @@ public class OperatorWrapCheckTest
     }
 
     @Test
+    public void testArraysAssign() throws Exception {
+        final String[] expected = {
+            "18:22: " + getCheckMessage(MSG_LINE_NEW, "="),
+            "36:28: " + getCheckMessage(MSG_LINE_NEW, "="),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputOperatorWrapArrayAssign.java"), expected);
+    }
+
+    @Test
     public void testInvalidOption() throws Exception {
 
         try {
