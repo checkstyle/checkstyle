@@ -14,4 +14,20 @@ public record InputFinalClassConstructorInRecord(String string) { // ok
     public InputFinalClassConstructorInRecord(int x) {
         this(String.valueOf(x));
     }
+
+    class F {
+        private F() {
+        }
+    }
+
+    class K extends F {
+    }
+
+    class X {
+        class F { // violation
+            private F() {
+            }
+        }
+    }
+
 }
