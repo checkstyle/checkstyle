@@ -106,7 +106,7 @@
                            or @SimpleName='LoadExternalDtdFeatureProvider'
                            or @SimpleName='JavadocTokenTypes'
                            or @SimpleName='TokenTypes'
-                           or @SimpleName='AutomaticBean']"/>
+                           or @SimpleName='AutomaticBean'"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/ConfusingTernary">
