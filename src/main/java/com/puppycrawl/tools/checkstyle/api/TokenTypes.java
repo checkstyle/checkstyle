@@ -2598,6 +2598,28 @@ public final class TokenTypes {
      * The {@code break} keyword.  The first child is an optional
      * identifier and the last child is a semicolon.
      *
+     * <p>For example:</p>
+     * <pre>
+     * for (;;) {
+     *     break;
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_FOR -&gt; for
+     *  |--LPAREN -&gt; (
+     *  |--FOR_INIT -&gt; FOR_INIT
+     *  |--SEMI -&gt; ;
+     *  |--FOR_CONDITION -&gt; FOR_CONDITION
+     *  |--SEMI -&gt; ;
+     *  |--FOR_ITERATOR -&gt; FOR_ITERATOR
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      |--LITERAL_BREAK -&gt; break
+     *      |   `--SEMI -&gt; ;
+     *      `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #IDENT
      * @see #SEMI
      * @see #SLIST
