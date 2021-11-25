@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.meta;
 
-import static org.junit.Assert.assertEquals;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,10 +29,15 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.itsallcode.io.Capturable;
+import org.itsallcode.junit.sysextensions.SystemOutGuard;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+@ExtendWith({SystemOutGuard.class})
 public final class MetadataGeneratorUtilTest {
 
     private final List<String> modulesContainingNoMetadataFile = Arrays.asList(
@@ -44,11 +47,14 @@ public final class MetadataGeneratorUtilTest {
     );
 
     @Test
-    public void testMetadataFilesGenerationAllFiles() throws Exception {
+    public void testMetadataFilesGenerationAllFiles(@SystemOutGuard.SysOut Capturable systemOut)
+            throws Exception {
 
-        MetadataGeneratorUtil.generate(System.getProperty("user.dir")
+        systemOut.captureMuted();
+        MetadataGeneratorUtil.generate(true,System.getProperty("user.dir")
                         + "/src/main/java/com/puppycrawl/tools/checkstyle",
                 "checks", "filters", "filefilters");
+
         final Set<String> metaFiles;
 
         try (Stream<Path> fileStream = Files.walk(
@@ -67,8 +73,30 @@ public final class MetadataGeneratorUtilTest {
                 .sorted()
                 .collect(Collectors.toCollection(LinkedHashSet::new));
         checkstyleModules.removeAll(modulesContainingNoMetadataFile);
-        assertEquals("Number of generated metadata files dont match with number of checkstyle "
-                        + "module", checkstyleModules, metaFiles);
+
+        Assertions.assertEquals(checkstyleModules, metaFiles,
+                "Number of generated metadata files dont match with number of checkstyle module");
+
+        final String[] expectedErrorMessages = {
+            "31: Description for 'AbstractSuper' is missing. [JavadocMetadataScraper]",
+            "41: Description for 'AbstractJavadoc' is missing. [JavadocMetadataScraper]",
+            "26: Description for 'AbstractAccessControlName' is missing. [JavadocMetadataScraper]",
+            "30: Description for 'AbstractName' is missing. [JavadocMetadataScraper]",
+            "43: Description for 'AbstractHeader' is missing. [JavadocMetadataScraper]",
+            "29: Description for 'AbstractParenPad' is missing. [JavadocMetadataScraper]",
+            "44: Description for 'AbstractClassCoupling' is missing. [JavadocMetadataScraper]",
+        };
+
+        final String[] actualViolations = systemOut.getCapturedData().split("\\n");
+        final String[] extractedViolations = new String[actualViolations.length];
+        for (int i = 0; i < actualViolations.length; i++) {
+            String violation = actualViolations[i];
+            extractedViolations[i] = violation.split("(?<=.):", 2)[1];
+        }
+        Arrays.stream(extractedViolations).forEach(System.out::println);
+
+        Assertions.assertArrayEquals(expectedErrorMessages, extractedViolations,
+                "Expected and actual errors do not match");
     }
 
     /**
