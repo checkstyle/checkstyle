@@ -191,4 +191,17 @@ public class MethodNameCheckTest
         assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }
 
+    @Test
+    public void testRecordInInterfaceBody() throws Exception {
+
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "24:14: " + getCheckMessage(MSG_INVALID_PATTERN, "VIOLATION", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMethodNameRecordInInterfaceBody.java"), expected);
+    }
+
 }
