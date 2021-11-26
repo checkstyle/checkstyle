@@ -27,6 +27,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.isWhitespace;
+
 /**
  * <p>
  * Checks that there is no whitespace after a token.
@@ -276,9 +278,9 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         int whitespaceColumnNo, int whitespaceLineNo) {
         final boolean result;
         final int astLineNo = ast.getLineNo();
-        final String line = getLine(astLineNo - 1);
-        if (astLineNo == whitespaceLineNo && whitespaceColumnNo < line.length()) {
-            result = Character.isWhitespace(line.charAt(whitespaceColumnNo));
+        final int[] codePoints = getCodePoints(astLineNo - 1);
+        if (astLineNo == whitespaceLineNo && whitespaceColumnNo < codePoints.length) {
+            result = isWhitespace(codePoints, whitespaceColumnNo);
         }
         else {
             result = !allowLineBreaks;

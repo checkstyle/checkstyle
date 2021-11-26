@@ -1145,9 +1145,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @return true if current single line comment is trailing comment.
      */
     private boolean isTrailingSingleLineComment(DetailAST singleLineComment) {
-        final String targetSourceLine = getLine(singleLineComment.getLineNo() - 1);
+        final int[] codePoints = getCodePoints(singleLineComment.getLineNo() - 1);
         final int commentColumnNo = singleLineComment.getColumnNo();
-        return !CommonUtil.hasWhitespaceBefore(commentColumnNo, targetSourceLine);
+        return !CommonUtil.hasWhitespaceBefore(codePoints, commentColumnNo);
     }
 
     /**
@@ -1163,10 +1163,10 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @return true if current comment block is trailing comment.
      */
     private boolean isTrailingBlockComment(DetailAST blockComment) {
-        final String commentLine = getLine(blockComment.getLineNo() - 1);
+        final int[] codePoints = getCodePoints(blockComment.getLineNo() - 1);
         final int commentColumnNo = blockComment.getColumnNo();
         final DetailAST nextSibling = blockComment.getNextSibling();
-        return !CommonUtil.hasWhitespaceBefore(commentColumnNo, commentLine)
+        return !CommonUtil.hasWhitespaceBefore(codePoints, commentColumnNo)
             || nextSibling != null && TokenUtil.areOnSameLine(nextSibling, blockComment);
     }
 
