@@ -447,28 +447,66 @@ public class LeftCurlyCheck
         // Check for being told to ignore, or have '{}' which is a special case
         if (braceLine.length() <= brace.getColumnNo() + 1
                 || braceLine.charAt(brace.getColumnNo() + 1) != '}') {
+            final int[] codePoints = getCodePoints(braceLine);
             if (option == LeftCurlyOption.NL) {
-                if (!CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+                if (!hasWhitespaceBefore(codePoints, brace.getColumnNo())) {
                     log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
                 }
             }
             else if (option == LeftCurlyOption.EOL) {
-                validateEol(brace, braceLine);
+                validateEol(codePoints, brace);
             }
             else if (!TokenUtil.areOnSameLine(startToken, brace)) {
-                validateNewLinePosition(brace, startToken, braceLine);
+                validateNewLinePosition(codePoints, brace, startToken);
             }
         }
+    }
+
+    /**
+     * Returns whether the specified string contains only whitespace up to the specified index.
+     *
+     * @param codePoints
+     *            array of Unicode code point
+     * @param index
+     *            index to check up to
+     * @return whether there is only whitespace
+     */
+    public static boolean hasWhitespaceBefore(int[] codePoints, int index) {
+        boolean result = true;
+        for (int i = 0; i < index; i++) {
+            if (!isWhitespace(codePoints, i)) {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Converts the Unicode code point at index {@code index} to it's UTF-16
+     * representation, then checks if the character is whitespace. Note that the given
+     * index {@code index} should correspond to the location of the character
+     * to check in the string, not in code points.
+     *
+     * @param codePoints the array of Unicode code points
+     * @param index the index of the character to check
+     * @return true if character at {@code index} is whitespace
+     */
+    private static boolean isWhitespace(int[] codePoints, int index) {
+        //  We only need to check the first member of a surrogate pair to verify that
+        //  it is not whitespace.
+        final char character = Character.toChars(codePoints[index])[0];
+        return Character.isWhitespace(character);
     }
 
     /**
      * Validate EOL case.
      *
      * @param brace brace AST
-     * @param braceLine line content
+     * @param codePoints the array of Unicode code points
      */
-    private void validateEol(DetailAST brace, String braceLine) {
-        if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+    private void validateEol(int[] codePoints, DetailAST brace) {
+        if (hasWhitespaceBefore(codePoints, brace.getColumnNo())) {
             log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
         if (!hasLineBreakAfter(brace)) {
@@ -481,19 +519,19 @@ public class LeftCurlyCheck
      *
      * @param brace brace AST
      * @param startToken start Token
-     * @param braceLine content of line with Brace
+     * @param codePoints the array of Unicode code points
      */
-    private void validateNewLinePosition(DetailAST brace, DetailAST startToken, String braceLine) {
+    private void validateNewLinePosition(int[] codePoints, DetailAST brace, DetailAST startToken) {
         // not on the same line
         if (startToken.getLineNo() + 1 == brace.getLineNo()) {
-            if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+            if (hasWhitespaceBefore(codePoints, brace.getColumnNo())) {
                 log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
             }
             else {
                 log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
             }
         }
-        else if (!CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+        else if (!hasWhitespaceBefore(codePoints, brace.getColumnNo())) {
             log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
     }

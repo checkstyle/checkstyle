@@ -211,7 +211,7 @@ public class NoWhitespaceBeforeCheck
     public void visitToken(DetailAST ast) {
         final String line = getLine(ast.getLineNo() - 1);
         final int before = ast.getColumnNo() - 1;
-        final int[] codePoints = line.codePoints().toArray();
+        final int[] codePoints = getCodePoints(line);
 
         if ((before == -1 || isWhitespace(codePoints, before))
                 && !isInEmptyForInitializerOrCondition(ast)) {

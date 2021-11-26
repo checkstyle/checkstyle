@@ -295,6 +295,16 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     }
 
     /**
+     * Returns the line associated with the tree.
+     *
+     * @param line Unicode code points of required line
+     * @return the array of Unicode code points
+     */
+    public static final int[] getCodePoints(String line) {
+        return line.codePoints().toArray();
+    }
+
+    /**
      * The actual context holder.
      */
     private static class FileContext {

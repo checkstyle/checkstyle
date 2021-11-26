@@ -224,8 +224,10 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      *         correctly from the previous token.
      */
     private boolean isTextSeparatedCorrectlyFromPrevious(String line, int columnNo) {
+
+        final int[] codePoints = getCodePoints(line);
         return isSingleSpace(line, columnNo)
-                || !isWhitespace(line, columnNo)
+                || !isWhitespace(codePoints, columnNo)
                 || isFirstInLine(line, columnNo)
                 || !validateComments && isBlockCommentEnd(line, columnNo);
     }
@@ -240,7 +242,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      *         not preceded by another space.
      */
     private static boolean isSingleSpace(String line, int columnNo) {
-        return isSpace(line, columnNo) && !Character.isWhitespace(line.charAt(columnNo - 1));
+        return isSpace(line, columnNo) && !isWhitespace(getCodePoints(line), columnNo - 1);
     }
 
     /**
@@ -255,15 +257,20 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if the {@code line} at {@code columnNo} is a whitespace character.
+     * Converts the Unicode code point at index {@code index} to it's UTF-16
+     * representation, then checks if the character is whitespace. Note that the given
+     * index {@code index} should correspond to the location of the character
+     * to check in the string, not in code points.
      *
-     * @param line The line in the file to examine.
-     * @param columnNo The column position in the {@code line} to examine.
-     * @return {@code true} if the character at {@code columnNo} is a
-     *         whitespace.
+     * @param codePoints the array of Unicode code points
+     * @param index the index of the character to check
+     * @return true if character at {@code index} is whitespace
      */
-    private static boolean isWhitespace(String line, int columnNo) {
-        return Character.isWhitespace(line.charAt(columnNo));
+    private static boolean isWhitespace(int[] codePoints, int index) {
+        //  We only need to check the first member of a surrogate pair to verify that
+        //  it is not whitespace.
+        final char character = Character.toChars(codePoints[index])[0];
+        return Character.isWhitespace(character);
     }
 
     /**

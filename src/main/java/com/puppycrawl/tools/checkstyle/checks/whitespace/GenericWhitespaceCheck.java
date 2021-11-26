@@ -23,7 +23,6 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -194,32 +193,50 @@ public class GenericWhitespaceCheck extends AbstractCheck {
         final String line = getLine(ast.getLineNo() - 1);
         final int before = ast.getColumnNo() - 1;
         final int after = ast.getColumnNo() + 1;
-
-        if (before >= 0 && Character.isWhitespace(line.charAt(before))
-                && !containsWhitespaceBefore(before, line)) {
+        final int[] codePoints = getCodePoints(line);
+        if (before >= 0 && isWhitespace(codePoints, before)
+                && !containsWhitespaceBefore(codePoints, before)) {
             log(ast, MSG_WS_PRECEDED, CLOSE_ANGLE_BRACKET);
         }
 
-        if (after < line.length()) {
+        if (after < codePoints.length) {
             // Check if the last Generic, in which case must be a whitespace
             // or a '(),[.'.
             if (depth == 1) {
-                processSingleGeneric(ast, line, after);
+                processSingleGeneric(ast, codePoints, after);
             }
             else {
-                processNestedGenerics(ast, line, after);
+                processNestedGenerics(ast, codePoints, line, after);
             }
         }
+    }
+
+    /**
+     * Converts the Unicode code point at index {@code index} to it's UTF-16
+     * representation, then checks if the character is whitespace. Note that the given
+     * index {@code index} should correspond to the location of the character
+     * to check in the string, not in code points.
+     *
+     * @param codePoints the array of Unicode code points
+     * @param index the index of the character to check
+     * @return true if character at {@code index} is whitespace
+     */
+    private static boolean isWhitespace(int[] codePoints, int index) {
+        //  We only need to check the first member of a surrogate pair to verify that
+        //  it is not whitespace.
+        final char character = Character.toChars(codePoints[index])[0];
+        return Character.isWhitespace(character);
     }
 
     /**
      * Process Nested generics.
      *
      * @param ast token
+     * @param codePoints the array of Unicode code points
      * @param line line content
      * @param after position after
      */
-    private void processNestedGenerics(DetailAST ast, String line, int after) {
+    private void processNestedGenerics(DetailAST ast, int[] codePoints, String line, int after) {
         // In a nested Generic type, so can only be a '>' or ',' or '&'
 
         // In case of several extends definitions:
@@ -230,7 +247,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
         //
         final int indexOfAmp = line.indexOf('&', after);
         if (indexOfAmp >= 1
-            && containsWhitespaceBetween(after, indexOfAmp, line)) {
+            && containsWhitespaceBetween(codePoints, after, indexOfAmp)) {
             if (indexOfAmp - after == 0) {
                 log(ast, MSG_WS_NOT_PRECEDED, "&");
             }
@@ -247,13 +264,13 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      * Process Single-generic.
      *
      * @param ast token
-     * @param line line content
+     * @param codePoints the array of Unicode code points
      * @param after position after
      */
-    private void processSingleGeneric(DetailAST ast, String line, int after) {
-        final char charAfter = line.charAt(after);
+    private void processSingleGeneric(DetailAST ast, int[] codePoints, int after) {
+        final char charAfter = Character.toChars(codePoints[after])[0];
         if (isGenericBeforeMethod(ast) || isGenericBeforeCtor(ast)) {
-            if (Character.isWhitespace(charAfter)) {
+            if (isWhitespace(codePoints, after)) {
                 log(ast, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
             }
         }
@@ -304,6 +321,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      */
     private void processStart(DetailAST ast) {
         final String line = getLine(ast.getLineNo() - 1);
+        final int[] codePoints = getCodePoints(line);
         final int before = ast.getColumnNo() - 1;
         final int after = ast.getColumnNo() + 1;
 
@@ -321,19 +339,19 @@ public class GenericWhitespaceCheck extends AbstractCheck {
                     || grandparent.getType() == TokenTypes.METHOD_DEF
                     || isGenericBeforeCtor(ast)) {
                 // Require whitespace
-                if (!Character.isWhitespace(line.charAt(before))) {
+                if (!isWhitespace(codePoints, before)) {
                     log(ast, MSG_WS_NOT_PRECEDED, OPEN_ANGLE_BRACKET);
                 }
             }
             // Whitespace not required
-            else if (Character.isWhitespace(line.charAt(before))
-                && !containsWhitespaceBefore(before, line)) {
+            else if (isWhitespace(codePoints, before)
+                && !containsWhitespaceBefore(codePoints, before)) {
                 log(ast, MSG_WS_PRECEDED, OPEN_ANGLE_BRACKET);
             }
         }
 
-        if (after < line.length()
-                && Character.isWhitespace(line.charAt(after))) {
+        if (after < codePoints.length
+                && isWhitespace(codePoints, after)) {
             log(ast, MSG_WS_FOLLOWED, OPEN_ANGLE_BRACKET);
         }
     }
@@ -342,15 +360,15 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      * Returns whether the specified string contains only whitespace between
      * specified indices.
      *
+     * @param codePoints the array of Unicode code points
      * @param fromIndex the index to start the search from. Inclusive
      * @param toIndex the index to finish the search. Exclusive
-     * @param line the line to check
      * @return whether there are only whitespaces (or nothing)
      */
-    private static boolean containsWhitespaceBetween(int fromIndex, int toIndex, String line) {
+    private static boolean containsWhitespaceBetween(int[] codePoints, int fromIndex, int toIndex) {
         boolean result = true;
         for (int i = fromIndex; i < toIndex; i++) {
-            if (!Character.isWhitespace(line.charAt(i))) {
+            if (!isWhitespace(codePoints, i)) {
                 result = false;
                 break;
             }
@@ -362,12 +380,32 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      * Returns whether the specified string contains only whitespace up to specified index.
      *
      * @param before the index to start the search from. Inclusive
-     * @param line   the index to finish the search. Exclusive
+     * @param codePoints the array of Unicode code points
      * @return {@code true} if there are only whitespaces,
      *     false if there is nothing before or some other characters
      */
-    private static boolean containsWhitespaceBefore(int before, String line) {
-        return before != 0 && CommonUtil.hasWhitespaceBefore(before, line);
+    private static boolean containsWhitespaceBefore(int[] codePoints, int before) {
+        return before != 0 && hasWhitespaceBefore(codePoints, before);
+    }
+
+    /**
+     * Returns whether the specified string contains only whitespace up to the specified index.
+     *
+     * @param codePoints
+     *              the array of Unicode code points
+     * @param index
+     *            index to check up to
+     * @return whether there is only whitespace
+     */
+    public static boolean hasWhitespaceBefore(int[] codePoints, int index) {
+        boolean result = true;
+        for (int i = 0; i < index; i++) {
+            if (!isWhitespace(codePoints, i)) {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 
     /**

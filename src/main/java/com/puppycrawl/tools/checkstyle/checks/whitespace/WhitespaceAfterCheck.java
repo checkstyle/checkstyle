@@ -187,14 +187,13 @@ public class WhitespaceAfterCheck
         final int after =
             targetAST.getColumnNo() + targetAST.getText().length();
         boolean followedByWhitespace = true;
+        final int[] codePoints = getCodePoints(line);
+        if (after < codePoints.length) {
+            final char character = Character.toChars(codePoints[after])[0];
 
-        if (after < line.codePointCount(0, line.length())) {
-            final int[] codePoints = line.codePoints().toArray();
-            final int codePoint = codePoints[after];
-
-            followedByWhitespace = codePoint == ';'
-                || codePoint == ')'
-                || Character.isWhitespace(codePoint);
+            followedByWhitespace = character == ';'
+                || character == ')'
+                || Character.isWhitespace(character);
         }
         return followedByWhitespace;
     }

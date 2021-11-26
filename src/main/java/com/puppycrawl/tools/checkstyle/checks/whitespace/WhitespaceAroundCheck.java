@@ -688,9 +688,9 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         final int currentType = ast.getType();
         if (!isNotRelevantSituation(ast, currentType)) {
             final String line = getLine(ast.getLineNo() - 1);
+            final int[]codePoints = getCodePoints(line);
             final int before = ast.getColumnNo() - 1;
             final int after = ast.getColumnNo() + ast.getText().length();
-            final int[] codePoints = line.codePoints().toArray();
 
             if (before >= 0) {
                 final char prevChar = Character.toChars(codePoints[before])[0];
