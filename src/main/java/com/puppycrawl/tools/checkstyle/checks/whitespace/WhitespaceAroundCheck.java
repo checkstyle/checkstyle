@@ -687,10 +687,9 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final int currentType = ast.getType();
         if (!isNotRelevantSituation(ast, currentType)) {
-            final String line = getLine(ast.getLineNo() - 1);
+            final int[]codePoints = getLineCodePoints(ast.getLineNo() - 1);
             final int before = ast.getColumnNo() - 1;
             final int after = ast.getColumnNo() + ast.getText().length();
-            final int[] codePoints = line.codePoints().toArray();
 
             if (before >= 0) {
                 final char prevChar = Character.toChars(codePoints[before])[0];
