@@ -162,14 +162,14 @@ public class WhitespaceAfterCheck
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.TYPECAST) {
             final DetailAST targetAST = ast.findFirstToken(TokenTypes.RPAREN);
-            final String line = getLine(targetAST.getLineNo() - 1);
-            if (!isFollowedByWhitespace(targetAST, line)) {
+            final int[] codePoints = getLineCodePoints(targetAST.getLineNo() - 1);
+            if (!isFollowedByWhitespace(codePoints, targetAST)) {
                 log(targetAST, MSG_WS_TYPECAST);
             }
         }
         else {
-            final String line = getLine(ast.getLineNo() - 1);
-            if (!isFollowedByWhitespace(ast, line)) {
+            final int[] codePoints = getLineCodePoints(ast.getLineNo() - 1);
+            if (!isFollowedByWhitespace(codePoints, ast)) {
                 final Object[] message = {ast.getText()};
                 log(ast, MSG_WS_NOT_FOLLOWED, message);
             }
@@ -180,21 +180,19 @@ public class WhitespaceAfterCheck
      * Checks whether token is followed by a whitespace.
      *
      * @param targetAST Ast token.
-     * @param line The line associated with the ast token.
+     * @param codePoints the array of Unicode code points
      * @return true if ast token is followed by a whitespace.
      */
-    private static boolean isFollowedByWhitespace(DetailAST targetAST, String line) {
+    private static boolean isFollowedByWhitespace(int[] codePoints, DetailAST targetAST) {
         final int after =
             targetAST.getColumnNo() + targetAST.getText().length();
         boolean followedByWhitespace = true;
+        if (after < codePoints.length) {
+            final char character = Character.toChars(codePoints[after])[0];
 
-        if (after < line.codePointCount(0, line.length())) {
-            final int[] codePoints = line.codePoints().toArray();
-            final int codePoint = codePoints[after];
-
-            followedByWhitespace = codePoint == ';'
-                || codePoint == ')'
-                || Character.isWhitespace(codePoint);
+            followedByWhitespace = character == ';'
+                || character == ')'
+                || Character.isWhitespace(character);
         }
         return followedByWhitespace;
     }
