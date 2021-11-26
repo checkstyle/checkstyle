@@ -1180,11 +1180,11 @@ public class CustomImportOrderCheck extends AbstractCheck {
      */
     private int getCountOfEmptyLinesBetween(int fromLineNo, int toLineNo) {
         int result = 0;
-        final String[] lines = getLines();
 
         for (int i = fromLineNo + 1; i <= toLineNo - 1; i++) {
+            final int[] codePoints = getLineCodePoints(i - 1);
             // "- 1" because the numbering is one-based
-            if (CommonUtil.isBlank(lines[i - 1])) {
+            if (CommonUtil.isBlank(codePoints)) {
                 result++;
             }
         }
