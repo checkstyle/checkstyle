@@ -365,6 +365,12 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testIsBlankCodePoint() {
+        assertFalse(CommonUtil.isBlank(new int[] {115, 116, 114, 105, 110, 103}),
+                "Should return false when array is empty");
+    }
+
+    @Test
     public void testIsBlankAheadWhitespace() {
         assertFalse(CommonUtil.isBlank("  string"), "Should return false when string is not empty");
     }
@@ -389,7 +395,12 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testIsBlankNullString() {
-        assertTrue(CommonUtil.isBlank(null), "Should return true when string is null");
+        assertTrue(CommonUtil.isBlank((String) null), "Should return true when string is null");
+    }
+
+    @Test
+    public void testIsBlankNullArray() {
+        assertTrue(CommonUtil.isBlank(new int[] {}), "Should return true when array is empty");
     }
 
     @Test
