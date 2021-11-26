@@ -23,7 +23,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 import java.io.Serializable;
 import java.util.RandomAccess;
 
-public class InputClassFanOutComplexityImplementsAndNestedCount // violation '.* Complexity is 3 .*'
+public class InputClassFanOutComplexityImplementsAndNestedCount // violation 'Complexity is 3'
     extends Outer.Nested implements Serializable, RandomAccess {
 
 }

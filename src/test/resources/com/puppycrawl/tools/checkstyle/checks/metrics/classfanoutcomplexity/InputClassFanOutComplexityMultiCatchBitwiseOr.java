@@ -24,7 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class InputClassFanOutComplexityMultiCatchBitwiseOr { // violation '.* Complexity is 5 .*'
+public class InputClassFanOutComplexityMultiCatchBitwiseOr { // violation 'Complexity is 5'
     public static void main(String[] args) {
         try {
             System.out.println(args[7]);
