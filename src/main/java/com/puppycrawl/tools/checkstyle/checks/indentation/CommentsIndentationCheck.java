@@ -1146,8 +1146,46 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private boolean isTrailingSingleLineComment(DetailAST singleLineComment) {
         final String targetSourceLine = getLine(singleLineComment.getLineNo() - 1);
+        final int[] codePoints = getCodePoints(targetSourceLine);
         final int commentColumnNo = singleLineComment.getColumnNo();
-        return !CommonUtil.hasWhitespaceBefore(commentColumnNo, targetSourceLine);
+        return !hasWhitespaceBefore(codePoints, commentColumnNo);
+    }
+
+    /**
+     * Converts the Unicode code point at index {@code index} to it's UTF-16
+     * representation, then checks if the character is whitespace. Note that the given
+     * index {@code index} should correspond to the location of the character
+     * to check in the string, not in code points.
+     *
+     * @param codePoints the array of Unicode code points
+     * @param index the index of the character to check
+     * @return true if character at {@code index} is whitespace
+     */
+    private static boolean isWhitespace(int[] codePoints, int index) {
+        //  We only need to check the first member of a surrogate pair to verify that
+        //  it is not whitespace.
+        final char character = Character.toChars(codePoints[index])[0];
+        return Character.isWhitespace(character);
+    }
+
+    /**
+     * Returns whether the specified string contains only whitespace up to the specified index.
+     *
+     * @param codePoints
+     *            array of Unicode code point
+     * @param index
+     *            index to check up to
+     * @return whether there is only whitespace
+     */
+    public static boolean hasWhitespaceBefore(int[] codePoints, int index) {
+        boolean result = true;
+        for (int i = 0; i < index; i++) {
+            if (!isWhitespace(codePoints, i)) {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 
     /**
@@ -1164,9 +1202,10 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private boolean isTrailingBlockComment(DetailAST blockComment) {
         final String commentLine = getLine(blockComment.getLineNo() - 1);
+        final int[] codePoints = getCodePoints(commentLine);
         final int commentColumnNo = blockComment.getColumnNo();
         final DetailAST nextSibling = blockComment.getNextSibling();
-        return !CommonUtil.hasWhitespaceBefore(commentColumnNo, commentLine)
+        return !hasWhitespaceBefore(codePoints, commentColumnNo)
             || nextSibling != null && TokenUtil.areOnSameLine(nextSibling, blockComment);
     }
 
