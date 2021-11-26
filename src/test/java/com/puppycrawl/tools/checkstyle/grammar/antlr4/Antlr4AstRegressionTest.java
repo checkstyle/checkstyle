@@ -304,4 +304,10 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
         verifyAst(getPath("InputAntlr4AstRegressionUnusualAnnotation.txt"),
                 getPath("InputAntlr4AstRegressionUnusualAnnotation.java"));
     }
+
+    @Test
+    public void testInterfaceMemberAlternativePrecedence() throws Exception {
+        verifyAst(getPath("InputAntlr4AstRegressionInterfaceRecordDef.txt"),
+                getNonCompilablePath("InputAntlr4AstRegressionInterfaceRecordDef.java"));
+    }
 }

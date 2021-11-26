@@ -259,11 +259,11 @@ interfaceBodyDeclaration
 
 interfaceMemberDeclaration[List<ModifierContext> mods]
     : fieldDeclaration[mods]
+    | recordDeclaration[mods]
     | interfaceMethodDeclaration[mods]
     | interfaceDeclaration[mods]
     | annotationTypeDeclaration[mods]
     | classDeclaration[mods]
-    | recordDeclaration[mods]
     | enumDeclaration[mods]
     ;
 
