@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.StringUtil;
 
 /**
  * <p>
@@ -220,18 +221,19 @@ public class SeparatorWrapCheck
         final String text = ast.getText();
         final int colNo = ast.getColumnNo();
         final int lineNo = ast.getLineNo();
-        final String currentLine = getLines()[lineNo - 1];
-        final String substringAfterToken =
-                currentLine.substring(colNo + text.length()).trim();
-        final String substringBeforeToken =
-                currentLine.substring(0, colNo).trim();
+        final int[] codePoints = getLineCodePoints(lineNo - 1);
+        final int[] subarrayAfterToken = StringUtil.trim(StringUtil.subArray(codePoints,
+                colNo + text.length(),
+                codePoints.length));
+        final int[] subarrayBeforeToken =
+                StringUtil.trim(StringUtil.subArray(codePoints, 0, colNo));
 
         if (option == WrapOption.EOL
-                && substringBeforeToken.isEmpty()) {
+                && subarrayBeforeToken.length == 0) {
             log(ast, MSG_LINE_PREVIOUS, text);
         }
         else if (option == WrapOption.NL
-                 && substringAfterToken.isEmpty()) {
+                 && subarrayAfterToken.length == 0) {
             log(ast, MSG_LINE_NEW, text);
         }
     }
