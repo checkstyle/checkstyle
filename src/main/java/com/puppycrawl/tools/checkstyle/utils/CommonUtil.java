@@ -162,6 +162,26 @@ public final class CommonUtil {
     }
 
     /**
+     * Returns whether the specified string contains only whitespace up to the specified index.
+     *
+     * @param codePoints
+     *            array of Unicode code point
+     * @param index
+     *            index to check up to
+     * @return whether there is only whitespace
+     */
+    public static boolean hasWhitespaceBefore(int index, int...codePoints) {
+        boolean result = true;
+        for (int i = 0; i < index; i++) {
+            if (!isCodePointWhitespace(codePoints, i)) {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+
+    /**
      * Returns the length of a string ignoring all trailing whitespace.
      * It is a pity that there is not a trim() like
      * method that only removed the trailing whitespace.
@@ -597,6 +617,18 @@ public final class CommonUtil {
     }
 
     /**
+     * Checks if the value arg is blank by either being empty,
+     * or contains only whitespace characters.
+     *
+     * @param codePoints Array to check.
+     * @return true if the arg is blank.
+     */
+    public static boolean isBlank(int...codePoints) {
+        return codePoints.length == 0
+                || indexOfNonWhitespace(codePoints) >= codePoints.length;
+    }
+
+    /**
      * Method to find the index of the first non-whitespace character in a string.
      *
      * @param value the string to find the first index of a non-whitespace character for.
@@ -607,6 +639,25 @@ public final class CommonUtil {
         int left = 0;
         while (left < length) {
             final int codePointAt = value.codePointAt(left);
+            if (!Character.isWhitespace(codePointAt)) {
+                break;
+            }
+            left += Character.charCount(codePointAt);
+        }
+        return left;
+    }
+
+    /**
+     * Method to find the index of the first non-whitespace character.
+     *
+     * @param codePoints  the array to find the first index of a non-whitespace character for.
+     * @return the index of the first non-whitespace character.
+     */
+    public static int indexOfNonWhitespace(int...codePoints) {
+        final int length = CodePointUtil.getNoOfCodeUnits(codePoints);
+        int left = 0;
+        while (left < length) {
+            final int codePointAt = codePoints[left];
             if (!Character.isWhitespace(codePointAt)) {
                 break;
             }

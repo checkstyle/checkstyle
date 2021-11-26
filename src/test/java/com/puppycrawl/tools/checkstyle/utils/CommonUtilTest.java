@@ -159,6 +159,11 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         assertTrue(CommonUtil.hasWhitespaceBefore(0, "a"), "Invalid result");
         assertTrue(CommonUtil.hasWhitespaceBefore(4, "    a"), "Invalid result");
         assertFalse(CommonUtil.hasWhitespaceBefore(5, "    a"), "Invalid result");
+        final int[] input1 = "a".codePoints().toArray();
+        assertTrue(CommonUtil.hasWhitespaceBefore(0, input1), "Invalid result");
+        final int[] input2 = "    a".codePoints().toArray();
+        assertTrue(CommonUtil.hasWhitespaceBefore(4, input2), "Invalid result");
+        assertFalse(CommonUtil.hasWhitespaceBefore(5, input2), "Invalid result");
     }
 
     @Test
@@ -365,45 +370,64 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     @Test
     public void testIsBlank() {
         assertFalse(CommonUtil.isBlank("string"), "Should return false when string is not empty");
+        final int[] input = "string".codePoints().toArray();
+        assertFalse(CommonUtil.isBlank(input),
+                "Should return false when array is empty");
     }
 
     @Test
     public void testIsBlankAheadWhitespace() {
         assertFalse(CommonUtil.isBlank("  string"), "Should return false when string is not empty");
+        final int[] input = "  string".codePoints().toArray();
+        assertFalse(CommonUtil.isBlank(input), "Should return false when array is not empty");
     }
 
     @Test
     public void testIsBlankBehindWhitespace() {
         assertFalse(CommonUtil.isBlank("string    "),
                 "Should return false when string is not empty");
+        final int[] input = "string    ".codePoints().toArray();
+        assertFalse(CommonUtil.isBlank(input),
+                "Should return false when array is not empty");
     }
 
     @Test
     public void testIsBlankWithWhitespacesAround() {
         assertFalse(CommonUtil.isBlank("    string    "),
                 "Should return false when string is not empty");
+        final int[] input = "    string    ".codePoints().toArray();
+        assertFalse(CommonUtil.isBlank(input),
+                "Should return false when array is not empty");
     }
 
     @Test
     public void testIsBlankWhitespaceInside() {
         assertFalse(CommonUtil.isBlank("str    ing"),
                 "Should return false when string is not empty");
+        final int[] input = "str    ing".codePoints().toArray();
+        assertFalse(CommonUtil.isBlank(input),
+                "Should return false when array is not empty");
     }
 
     @Test
-    public void testIsBlankNullString() {
-        assertTrue(CommonUtil.isBlank(null), "Should return true when string is null");
+    public void testIsBlankNull() {
+        assertTrue(CommonUtil.isBlank((String) null), "Should return true when string is null");
     }
 
     @Test
     public void testIsBlankWithEmptyString() {
         assertTrue(CommonUtil.isBlank(""), "Should return true when string is empty");
+        final int[] input = "".codePoints().toArray();
+        assertTrue(CommonUtil.isBlank(input), "Should return true when array is empty");
     }
 
     @Test
     public void testIsBlankWithWhitespacesOnly() {
         assertTrue(CommonUtil.isBlank("   "),
                 "Should return true when string contains only spaces");
+        final int[] input = "   ".codePoints().toArray();
+        assertTrue(CommonUtil.isBlank(input),
+                "Should return true when array contains only spaces");
     }
 
     @Test

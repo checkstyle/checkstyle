@@ -128,16 +128,16 @@ public class EmptyForInitializerPadCheck
             // empty for initializer. test pad before semi.
             final DetailAST semi = ast.getNextSibling();
             final int semiLineIdx = semi.getLineNo() - 1;
-            final String line = getLines()[semiLineIdx];
+            final int[] codePoints = getLineCodePoints(semiLineIdx);
             final int before = semi.getColumnNo() - 1;
             // don't check if semi at beginning of line
-            if (!CommonUtil.hasWhitespaceBefore(before, line)) {
+            if (!CommonUtil.hasWhitespaceBefore(before, codePoints)) {
                 if (option == PadOption.NOSPACE
-                    && Character.isWhitespace(line.charAt(before))) {
+                    && CommonUtil.isCodePointWhitespace(codePoints, before)) {
                     log(ast, MSG_PRECEDED, SEMICOLON);
                 }
                 else if (option == PadOption.SPACE
-                         && !Character.isWhitespace(line.charAt(before))) {
+                         && !CommonUtil.isCodePointWhitespace(codePoints, before)) {
                     log(ast, MSG_NOT_PRECEDED, SEMICOLON);
                 }
             }
