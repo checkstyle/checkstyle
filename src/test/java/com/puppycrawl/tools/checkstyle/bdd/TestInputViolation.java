@@ -80,7 +80,7 @@ public final class TestInputViolation implements Comparable<TestInputViolation> 
             rawMessage = OPEN_CURLY_PATTERN.matcher(rawMessage).replaceAll("\\\\{");
             rawMessage = OPEN_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\(");
             rawMessage = CLOSE_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\)");
-            regex += rawMessage;
+            regex += rawMessage + ".*";
         }
         return regex;
     }
