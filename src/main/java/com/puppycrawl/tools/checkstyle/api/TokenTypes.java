@@ -1512,6 +1512,7 @@ public final class TokenTypes {
      * @see #ARRAY_DECLARATOR
      **/
     public static final int RBRACK = JavaLanguageLexer.RBRACK;
+    
     /**
      * The {@code void} keyword.
      *
