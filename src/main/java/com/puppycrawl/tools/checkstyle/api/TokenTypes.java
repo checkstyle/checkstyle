@@ -1720,6 +1720,24 @@ public final class TokenTypes {
     /**
      * An identifier.  These can be names of types, subpackages,
      * fields, methods, parameters, and local variables.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * int a = 10;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_INT -&gt; int
+     *  |--IDENT -&gt; a
+     *  |   `--ASSIGN -&gt; =
+     *  |       `--EXPR -&gt; EXPR
+     *  |           `--NUM_INT -&gt; 10
+     *  `--SEMI -&gt; ;
+     * </pre>
+     *
      **/
     public static final int IDENT = JavaLanguageLexer.IDENT;
     /**
