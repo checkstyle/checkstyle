@@ -5420,12 +5420,17 @@ public final class TokenTypes {
     /**
      * End of block comment: '&#42;/'.
      *
+     * <p>For example:</p>
      * <pre>
-     * +--BLOCK_COMMENT_BEGIN
-     *         |
-     *         +--COMMENT_CONTENT
-     *         +--BLOCK_COMMENT_END
+     * /&#42;comment&#42;/
      * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * BLOCK_COMMENT_BEGIN -&gt; /&#42;
+     *  |--COMMENT_CONTENT -&gt; comment
+     *  `--BLOCK_COMMENT_END -&gt; &#42;/
+     * </pre>
+     *
      */
     public static final int BLOCK_COMMENT_END =
             JavaLanguageLexer.BLOCK_COMMENT_END;
