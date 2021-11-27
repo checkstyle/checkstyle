@@ -1536,6 +1536,21 @@ public final class TokenTypes {
     /**
      * The {@code boolean} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     * public boolean flag;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PUBLIC -&gt; public
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_BOOLEAN -&gt; boolean
+     *  |--IDENT -&gt; flag
+     *  `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #TYPE
      **/
     public static final int LITERAL_BOOLEAN =
