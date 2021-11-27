@@ -1444,10 +1444,10 @@ public final class TokenTypes {
      * CTOR_CALL -&gt; this
      *  |--LPAREN -&gt; (
      *  |--ELIST -&gt; ELIST
-     *      |--EXPR -&gt; EXPR
-     *          |--NUM_INT -&gt; 1
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--NUM_INT -&gt; 1
      *  |--RPAREN -&gt; )
-     *  |--SEMI -&gt; ;
+     *  `--SEMI -&gt; ;
      * </pre>
      *
      * @see #ELIST
