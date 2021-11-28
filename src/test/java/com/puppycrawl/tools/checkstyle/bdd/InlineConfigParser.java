@@ -76,6 +76,14 @@ public final class InlineConfigParser {
     private static final Pattern FILTERED_VIOLATION_BELOW_PATTERN = Pattern
             .compile(".*//\\s*filtered violation below(?:\\W+'(.*)')?$");
 
+    /** A pattern to find the string: "// violation X lines above". */
+    private static final Pattern VIOLATION_N_LINES_ABOVE_PATTERN = Pattern
+            .compile(".*//\\s*violation (\\d+) lines above(?:\\W+'(.*)')?$");
+
+    /** A pattern to find the string: "// violation X lines below". */
+    private static final Pattern VIOLATION_N_LINES_BELOW_PATTERN = Pattern
+            .compile(".*//\\s*violation (\\d+) lines below(?:\\W+'(.*)')?$");
+
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
 
@@ -269,6 +277,10 @@ public final class InlineConfigParser {
                     MULTIPLE_VIOLATIONS_ABOVE_PATTERN.matcher(lines.get(lineNo));
             final Matcher multipleViolationsBelowMatcher =
                     MULTIPLE_VIOLATIONS_BELOW_PATTERN.matcher(lines.get(lineNo));
+            final Matcher violationNLinesAboveMatcher =
+                    VIOLATION_N_LINES_ABOVE_PATTERN.matcher(lines.get(lineNo));
+            final Matcher violationNLinesBelowMatcher =
+                    VIOLATION_N_LINES_BELOW_PATTERN.matcher(lines.get(lineNo));
             if (violationMatcher.matches()) {
                 inputConfigBuilder.addViolation(lineNo + 1, violationMatcher.group(1));
             }
@@ -277,6 +289,16 @@ public final class InlineConfigParser {
             }
             else if (violationBelowMatcher.matches()) {
                 inputConfigBuilder.addViolation(lineNo + 2, violationBelowMatcher.group(1));
+            }
+            else if (violationNLinesAboveMatcher.matches()) {
+                final int linesAbove = Integer.parseInt(violationNLinesAboveMatcher.group(1)) - 1;
+                inputConfigBuilder.addViolation(lineNo - linesAbove,
+                        violationNLinesAboveMatcher.group(2));
+            }
+            else if (violationNLinesBelowMatcher.matches()) {
+                final int linesBelow = Integer.parseInt(violationNLinesBelowMatcher.group(1)) + 1;
+                inputConfigBuilder.addViolation(lineNo + linesBelow,
+                        violationNLinesBelowMatcher.group(2));
             }
             else if (multipleViolationsMatcher.matches()) {
                 Collections
