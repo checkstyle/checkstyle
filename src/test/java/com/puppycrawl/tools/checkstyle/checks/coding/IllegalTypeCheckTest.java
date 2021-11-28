@@ -62,6 +62,25 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testValidateRecordsWithConfiguredMemberModifiersPass() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalTypeRecordsWithMemberModifiersSpecified.java"),
+                expected);
+    }
+
+    @Test
+    public void testValidateRecordsWithConfiguredMemberModifiersPassTwo() throws Exception {
+        final String[] expected = {
+            "25:10: " + getCheckMessage(MSG_KEY, "HashSet")};
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalTypeRecordsWithMemberModifiersSpecifiedTwo.java"),
+                expected);
+    }
+
+    @Test
     public void testDefaults() throws Exception {
         final String[] expected = {
             "34:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
