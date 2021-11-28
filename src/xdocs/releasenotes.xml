@@ -10,6 +10,148 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 9.2">
+      <div class="releaseDate">28.11.2021</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Record inside interface is treated as method.
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/10978">#10978</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            OperatorWrap with token ASSIGN too strict for annotations.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/10945">#10945</a>
+          </li>
+          <li>
+            NPE in EqualsAvoidNull check when accessing string from base class
+            with &#39;this&#39; qualifier.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/10962">#10962</a>
+          </li>
+          <li>
+            ClassFanOutComplexity fails to count all classes in multicatch and implements clause.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/10144">#10144</a>
+          </li>
+          <li>
+            Version 9.x reports NoWhitespaceBefore error on semicolon or comma
+            after string with emoji.
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/10920">#10920</a>
+          </li>
+          <li>
+            JavadocMethod accessModifiers incorrectly interpreted for interface class.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/10835">#10835</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            update example of AST for TokenTypes.CTOR_CALL.
+            Author: Abhinav Rajput
+            <a href="https://github.com/checkstyle/checkstyle/issues/9412">#9412</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.IDENT.
+            Author: Binita Kumari
+            <a href="https://github.com/checkstyle/checkstyle/issues/9450">#9450</a>
+          </li>
+          <li>
+            Message validation in our Inputs should not have trailing and leading &#39;.*&#39;.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/10943">#10943</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_BOOLEAN.
+            Author: Venkatesh-24
+            <a href="https://github.com/checkstyle/checkstyle/issues/9463">#9463</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_BREAK.
+            Author: Abhinav Rajput
+            <a href="https://github.com/checkstyle/checkstyle/issues/9464">#9464</a>
+          </li>
+          <li>
+            Checkstyle&#39;s special system properties about localisation does not work.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/9072">#9072</a>
+          </li>
+          <li>
+            Add example of AST for TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR.
+            Author: Abhinav Rajput
+            <a href="https://github.com/checkstyle/checkstyle/issues/9372">#9372</a>
+          </li>
+          <li>
+            create example of AST for TokenTypes.ELLIPSIS.
+            Author: MUzairS15
+            <a href="https://github.com/checkstyle/checkstyle/issues/9421">#9421</a>
+          </li>
+          <li>
+            Travis - arch ppc64le: execution of some unexpected command.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/10959">#10959</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_NATIVE.
+            Author: Abhinav Rajput
+            <a href="https://github.com/checkstyle/checkstyle/issues/9485">#9485</a>
+          </li>
+          <li>
+            Travis Build Failures: not enough credits.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/10778">#10778</a>
+          </li>
+          <li>
+            MetadataGeneratorUtil should take the module folders as inputs.
+            Author: MUzairS15
+            <a href="https://github.com/checkstyle/checkstyle/issues/10749">#10749</a>
+          </li>
+          <li>
+            Inline Config Parser throws complex exception without config in input file.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10764">#10764</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.PARAMETERS.
+            Author: Venkatesh-24
+            <a href="https://github.com/checkstyle/checkstyle/issues/9551">#9551</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LAMBDA.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/9458">#9458</a>
+          </li>
+          <li>
+            Make powermock tests compatible with JDK17+.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7368">#7368</a>
+          </li>
+          <li>
+            Migrate to Inline Config Parser for filters.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10737">#10737</a>
+          </li>
+          <li>
+            Remove curly braces usage for javadoc tags in translations.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/10910">#10910</a>
+          </li>
+          <li>
+            doc: new translations for various properties by crowdin.
+            Author: rnveach
+          </li>
+          <li>
+            doc: new translations for various properties.
+            Author: rnveach
+          </li>
+        </ul>
+    </section>
     <section name="Release 9.1">
       <div class="releaseDate">31.10.2021</div>
       <p>Breaking backward compatibility:</p>
