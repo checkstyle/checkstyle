@@ -200,16 +200,19 @@ no-error-spring-integration)
   ;;
 
 no-error-spring-cloud-gcp)
-  set -e
-  CS_POM_VERSION="$(getCheckstylePomVersion)"
-  echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/googlecloudplatform/spring-cloud-gcp
-  cd .ci-temp/spring-cloud-gcp
-  mvn -e --no-transfer-progress checkstyle:check@checkstyle-validation \
-   -Dmaven-checkstyle-plugin.version=3.1.1 \
-   -Dpuppycrawl-tools-checkstyle.version=${CS_POM_VERSION}
-  cd ..
-  removeFolderWithProtectedFiles spring-cloud-gcp
+  # disabled until https://github.com/spring-io/spring-javaformat/pull/274 is merged, because of
+  # a breaking change (https://github.com/checkstyle/checkstyle/pull/9277) in checkstyle.
+
+  #set -e
+  # CS_POM_VERSION="$(getCheckstylePomVersion)"
+  # echo CS_version: ${CS_POM_VERSION}
+  # checkout_from https://github.com/googlecloudplatform/spring-cloud-gcp
+  # cd .ci-temp/spring-cloud-gcp
+  # mvn -e --no-transfer-progress checkstyle:check@checkstyle-validation \
+  #  -Dmaven-checkstyle-plugin.version=3.1.1 \
+  #  -Dpuppycrawl-tools-checkstyle.version=${CS_POM_VERSION}
+  # cd ..
+  # removeFolderWithProtectedFiles spring-cloud-gcp
   ;;
 
 no-exception-struts)
