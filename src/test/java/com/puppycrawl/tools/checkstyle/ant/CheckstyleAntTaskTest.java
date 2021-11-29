@@ -26,8 +26,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +36,7 @@ import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.Path;
 import org.apache.tools.ant.types.Reference;
 import org.apache.tools.ant.types.resources.FileResource;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
@@ -44,6 +44,9 @@ import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckstyleAntTaskLogStub;
+import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckstyleAntTaskStub;
+import com.puppycrawl.tools.checkstyle.internal.testmodules.MessageLevelPair;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
@@ -136,21 +139,21 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.execute();
 
         // then
-        final List<String> loggedMessages = antTask.getLoggedMessages();
+        final List<MessageLevelPair> loggedMessages = antTask.getLoggedMessages();
 
         assertWithMessage("Scanning path was not logged")
                 .that(loggedMessages.stream().filter(
-                        msg -> msg.startsWith("1) Scanning path")).count())
+                        msg -> msg.getMsg().startsWith("1) Scanning path")).count())
                 .isEqualTo(1);
 
         assertWithMessage("Scanning path was not logged")
                 .that(loggedMessages.stream().filter(
-                        msg -> msg.startsWith("1) Adding 1 files from path")).count())
+                        msg -> msg.getMsg().startsWith("1) Adding 1 files from path")).count())
                 .isEqualTo(1);
 
         assertWithMessage("Scanning empty was logged")
                 .that(loggedMessages.stream().filter(
-                        msg -> msg.startsWith("2) Adding 0 files from path ")).count())
+                        msg -> msg.getMsg().startsWith("2) Adding 0 files from path ")).count())
                 .isEqualTo(0);
 
         assertWithMessage("Checker is not processed")
@@ -767,27 +770,75 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 .isTrue();
     }
 
+    @Test
+    public final void testExecuteLogOutput() throws Exception {
+        final CheckstyleAntTaskLogStub antTask = new CheckstyleAntTaskLogStub();
+        final URL url = new File(getPath(CONFIG_FILE)).toURI().toURL();
+        antTask.setProject(new Project());
+        antTask.setConfig(url.toString());
+        antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
+
+        antTask.execute();
+
+        final Violation auditStartedMessage = new Violation(1,
+                Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditStarted",
+                null, null,
+                getClass(), null);
+        final Violation auditFinishedMessage = new Violation(1,
+                Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditFinished",
+                null, null,
+                getClass(), null);
+
+        final List<MessageLevelPair> expectedList = Arrays.asList(
+                new MessageLevelPair("checkstyle version .*", Project.MSG_VERBOSE),
+                new MessageLevelPair("Adding standalone file for audit", Project.MSG_VERBOSE),
+                new MessageLevelPair("To locate the files took \\d+ ms.", Project.MSG_VERBOSE),
+                new MessageLevelPair("Running Checkstyle  on 1 files", Project.MSG_INFO),
+                new MessageLevelPair("Using configuration file:.*", Project.MSG_VERBOSE),
+                new MessageLevelPair(auditStartedMessage.getViolation(), Project.MSG_DEBUG),
+                new MessageLevelPair(auditFinishedMessage.getViolation(), Project.MSG_DEBUG),
+                new MessageLevelPair("To process the files took \\d+ ms.", Project.MSG_VERBOSE),
+                new MessageLevelPair("Total execution took \\d+ ms.", Project.MSG_VERBOSE)
+        );
+
+        final List<MessageLevelPair> loggedMessages = antTask.getLoggedMessages();
+
+        assertWithMessage("Amount of log messages is unexpected")
+                .that(loggedMessages)
+                .hasSize(expectedList.size());
+
+        for (int i = 0; i < expectedList.size(); i++) {
+            final MessageLevelPair expected = expectedList.get(i);
+            final MessageLevelPair actual = loggedMessages.get(i);
+            assertWithMessage("Log messages should match")
+                    .that(actual.getMsg())
+                    .matches(expected.getMsg());
+            assertWithMessage("Log levels should be equal")
+                    .that(actual.getLevel())
+                    .isEqualTo(expected.getLevel());
+        }
+    }
+
+    @Test
+    public void testCheckerException() throws IOException {
+        final CheckstyleAntTask antTask = new CheckstyleAntTaskStub();
+        antTask.setConfig(getPath(CONFIG_FILE));
+        antTask.setProject(new Project());
+        antTask.setFile(new File(""));
+        try {
+            antTask.execute();
+            Assertions.fail("Exception is expected");
+        }
+        catch (BuildException ex) {
+            assertWithMessage("Error message is unexpected")
+                    .that(ex)
+                    .hasMessageThat()
+                            .startsWith("Unable to process files:");
+        }
+    }
+
     private static List<String> readWholeFile(File outputFile) throws IOException {
         return Files.readAllLines(outputFile.toPath(), StandardCharsets.UTF_8);
     }
 
-    private static class CheckstyleAntTaskLogStub extends CheckstyleAntTask {
-
-        private final List<String> loggedMessages = new ArrayList<>();
-
-        @Override
-        public void log(String msg, int msgLevel) {
-            loggedMessages.add(msg);
-        }
-
-        @Override
-        public void log(String msg, Throwable t, int msgLevel) {
-            loggedMessages.add(msg);
-        }
-
-        public List<String> getLoggedMessages() {
-            return Collections.unmodifiableList(loggedMessages);
-        }
-
-    }
 }

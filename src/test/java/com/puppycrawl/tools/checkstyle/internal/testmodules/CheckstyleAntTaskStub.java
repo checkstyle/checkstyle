@@ -17,23 +17,36 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.internal.powermock.testmodules;
+package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
-public final class MessageLevelPair {
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
 
-    private final String msg;
-    private final int level;
+import com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask;
 
-    public MessageLevelPair(String msg, int level) {
-        this.msg = msg;
-        this.level = level;
+public class CheckstyleAntTaskStub extends CheckstyleAntTask {
+
+    @Override
+    protected List<File> scanFileSets() {
+        return Collections.singletonList(new MockFile());
     }
 
-    public String getMsg() {
-        return msg;
+    private static class MockFile extends File {
+
+        /** A unique serial version identifier. */
+        private static final long serialVersionUID = -2903929010510199407L;
+
+        /* package */ MockFile() {
+            super("mock");
+        }
+
+        /** This method is overridden to simulate an exception. */
+        @Override
+        public long lastModified() {
+            throw new SecurityException("mock");
+        }
+
     }
 
-    public int getLevel() {
-        return level;
-    }
 }
