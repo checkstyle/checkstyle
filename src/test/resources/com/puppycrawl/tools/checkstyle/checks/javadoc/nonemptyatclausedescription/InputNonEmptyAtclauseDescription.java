@@ -31,23 +31,27 @@ class InputNonEmptyAtclauseDescription
 
         }
 
+        // violation 3 lines below
         /**
          * Some javadoc.
          * @param a
          * @param b
          * @param c
-         */
+         */ // violation 2 lines above
+        // violation 2 lines above
         public InputNonEmptyAtclauseDescription(String a, int b, double c)
         {
 
         }
 
+        // violation 3 lines below
         /**
          *
          * @param a
          * @param e
          * @deprecated
-         */
+         */ // violation 2 lines above
+        // violation 2 lines above
         public InputNonEmptyAtclauseDescription(String a, boolean e)
         {
 
@@ -80,6 +84,9 @@ class InputNonEmptyAtclauseDescription
                 return 1;
         }
 
+        // violation 5 lines below
+        // violation 5 lines below
+        // violation 5 lines below
         /**
          *
          * @param a
@@ -88,12 +95,16 @@ class InputNonEmptyAtclauseDescription
          * @deprecated
          * @throws Exception
          * @deprecated
-         */ // violation above
+         */ // violation 3 lines above
+        // violation 3 lines above
+        // violation 3 lines above
         public int foo3(String a, int b, double c) throws Exception
         {
                 return 1;
         }
 
+        // violation 4 lines below
+        // violation 4 lines below
         /**
          *
          * @param a
@@ -101,7 +112,9 @@ class InputNonEmptyAtclauseDescription
          * @param c
          * @deprecated
          * @throws Exception
-         */
+         */ // violation 3 lines above
+        // violation 3 lines above
+        // violation 3 lines above
         public int foo4(String a, int b, double c) throws Exception
         {
                 return 1;
@@ -128,7 +141,7 @@ class InputNonEmptyAtclauseDescription
          * @param c Some javadoc
          * @return Some javadoc
          * @exception Exception
-         */
+         */ // violation above
         public int foo6(String a, int b, double c) throws Exception
         {
                 return 1;
@@ -137,7 +150,7 @@ class InputNonEmptyAtclauseDescription
         /**
          * @param a xxx
          * @return
-         */     // ^ violation
+         */ // violation above
         int foo(int a) {
                 return a;
         }
