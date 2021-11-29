@@ -1605,8 +1605,6 @@
 
                 <exclude>**/AllBlockCommentsTest.class</exclude>
 
-                <exclude>**/NonEmptyAtclauseDescriptionCheckTest.class</exclude>
-
                 <exclude>**/WriteTagCheckTest.class</exclude>
 
                 <exclude>**/AbstractJavadocCheckTest.class</exclude>
