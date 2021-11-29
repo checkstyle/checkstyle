@@ -17,23 +17,30 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.internal.powermock.testmodules;
+package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
-public final class MessageLevelPair {
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-    private final String msg;
-    private final int level;
+import com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask;
 
-    public MessageLevelPair(String msg, int level) {
-        this.msg = msg;
-        this.level = level;
+public final class CheckstyleAntTaskLogStub extends CheckstyleAntTask {
+
+    private final List<MessageLevelPair> loggedMessages = new ArrayList<>();
+
+    @Override
+    public void log(String msg, int msgLevel) {
+        loggedMessages.add(new MessageLevelPair(msg, msgLevel));
     }
 
-    public String getMsg() {
-        return msg;
+    @Override
+    public void log(String msg, Throwable t, int msgLevel) {
+        loggedMessages.add(new MessageLevelPair(msg, msgLevel));
     }
 
-    public int getLevel() {
-        return level;
+    public List<MessageLevelPair> getLoggedMessages() {
+        return Collections.unmodifiableList(loggedMessages);
     }
+
 }
