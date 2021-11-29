@@ -93,9 +93,6 @@
   <!-- HandlerFactory crosses allowed limit for executable statements -->
   <suppress checks="ExecutableStatementCount" files="HandlerFactory\.java"/>
 
-  <suppress id="ImportControlTest" files="[\\/]powermock[\\/]"
-       message=".* - org\.(powermock|mockito).*" />
-
   <suppress id="noSourceforgeNetLinks" files="[\\/]releasenotes.xml"/>
   <suppress id="noSourceforgeIoLinks" files="[\\/]google_style.xml" lines="31"/>
   <suppress id="noSourceforgeIoLinks" files="[\\/]sun_style.xml" lines="31"/>
@@ -270,6 +267,8 @@
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]IllegalTypeCheckTest.java"/>
   <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]InnerAssignmentCheckTest.java"/>
+  <suppress id="ImportControlTest"
+            files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]MatchXpathCheckTest.java"/>
   <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]MissingCtorCheckTest.java"/>
   <suppress id="ImportControlTest"
