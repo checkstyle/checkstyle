@@ -4815,34 +4815,29 @@ public final class TokenTypes {
      * Annotation values may also be annotations themselves.
      *
      * <p>For example:</p>
-     *
      * <pre>
      *     &#064;MyAnnotation(someField1 = "Hello",
      *                    someField2 = &#064;SomeOtherAnnotation)
      * </pre>
-     *
      * <p>parses as:</p>
-     *
      * <pre>
-     * +--ANNOTATION
-     *     |
-     *     +--AT (&#064;)
-     *     +--IDENT (MyAnnotation)
-     *     +--LPAREN (()
-     *     +--ANNOTATION_MEMBER_VALUE_PAIR
-     *         |
-     *         +--IDENT (someField1)
-     *         +--ASSIGN (=)
-     *         +--ANNOTATION
-     *             |
-     *             +--AT (&#064;)
-     *             +--IDENT (SomeOtherAnnotation)
-     *     +--ANNOTATION_MEMBER_VALUE_PAIR
-     *         |
-     *         +--IDENT (someField2)
-     *         +--ASSIGN (=)
-     *         +--STRING_LITERAL ("Hello")
-     *     +--RPAREN ())
+     * ANNOTATION -&gt; ANNOTATION
+     *  |--AT -&gt; @
+     *  |--IDENT -&gt; MyAnnotation
+     *  |--LPAREN -&gt; (
+     *  |--ANNOTATION_MEMBER_VALUE_PAIR -&gt; ANNOTATION_MEMBER_VALUE_PAIR
+     *  |   |--IDENT -&gt; someField1
+     *  |   |--ASSIGN -&gt; =
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--STRING_LITERAL -&gt; "Hello"
+     *  |--COMMA -&gt; ,
+     *  |--ANNOTATION_MEMBER_VALUE_PAIR -&gt; ANNOTATION_MEMBER_VALUE_PAIR
+     *  |   |--IDENT -&gt; someField2
+     *  |   |--ASSIGN -&gt; =
+     *  |   `--ANNOTATION -&gt; ANNOTATION
+     *  |       |--AT -&gt; @
+     *  |       `--IDENT -&gt; SomeOtherAnnotation
+     *  `--RPAREN -&gt; )
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
