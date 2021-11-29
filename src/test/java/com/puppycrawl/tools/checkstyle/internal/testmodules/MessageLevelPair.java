@@ -17,29 +17,23 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.internal.powermock.testmodules;
+package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
-import static org.mockito.Mockito.when;
+public final class MessageLevelPair {
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+    private final String msg;
+    private final int level;
 
-import org.powermock.api.mockito.PowerMockito;
-
-import com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask;
-
-public class CheckstyleAntTaskStub extends CheckstyleAntTask {
-
-    @Override
-    protected List<File> scanFileSets() {
-        final File mock = PowerMockito.mock(File.class);
-        // Assume that I/O error is happened when we try to invoke 'lastModified()' method.
-        final Exception expectedError = new RuntimeException("");
-        when(mock.lastModified()).thenThrow(expectedError);
-        final List<File> list = new ArrayList<>();
-        list.add(mock);
-        return list;
+    public MessageLevelPair(String msg, int level) {
+        this.msg = msg;
+        this.level = level;
     }
 
+    public String getMsg() {
+        return msg;
+    }
+
+    public int getLevel() {
+        return level;
+    }
 }
