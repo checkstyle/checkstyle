@@ -491,13 +491,13 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * Checks if current method's return type or variable's type is verifiable
      * according to <b>memberModifiers</b> option.
      *
-     * @param methodOrVariableDef METHOD_DEF or VARIABLE_DEF ast node.
+     * @param ast METHOD_DEF or VARIABLE_DEF ast node.
      * @return true if member is verifiable according to <b>memberModifiers</b> option.
      */
-    private boolean isVerifiable(DetailAST methodOrVariableDef) {
+    private boolean isVerifiable(DetailAST ast) {
         boolean result = true;
-        if (!memberModifiers.isEmpty()) {
-            final DetailAST modifiersAst = methodOrVariableDef
+        if (!memberModifiers.isEmpty() && ast.getType() != TokenTypes.RECORD_COMPONENT_DEF) {
+            final DetailAST modifiersAst = ast
                     .findFirstToken(TokenTypes.MODIFIERS);
             result = isContainVerifiableType(modifiersAst);
         }
