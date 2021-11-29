@@ -1327,6 +1327,20 @@ public final class TokenTypes {
      * {@code SLIST} for a {@code for} or {@code while}
      * loop body.
      *
+     * <p>For example:</p>
+     * <pre>
+     * while(true);
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_WHILE -&gt; while
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--LITERAL_TRUE -&gt; true
+     *  |--RPAREN -&gt; )
+     *  `--EMPTY_STAT -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.6">Java
      * Language Specification, &sect;14.6</a>
