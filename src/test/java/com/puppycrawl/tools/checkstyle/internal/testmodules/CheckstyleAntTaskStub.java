@@ -17,30 +17,32 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.internal.powermock.testmodules;
+package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask;
 
-public final class CheckstyleAntTaskLogStub extends CheckstyleAntTask {
-
-    private final List<MessageLevelPair> loggedMessages = new ArrayList<>();
+public class CheckstyleAntTaskStub extends CheckstyleAntTask {
 
     @Override
-    public void log(String msg, int msgLevel) {
-        loggedMessages.add(new MessageLevelPair(msg, msgLevel));
-    }
+    protected List<File> scanFileSets() {
+        final File mock = new File("mock") {
+            /** A unique serial version identifier. */
+            private static final long serialVersionUID = -2903929010510199407L;
 
-    @Override
-    public void log(String msg, Throwable t, int msgLevel) {
-        loggedMessages.add(new MessageLevelPair(msg, msgLevel));
-    }
+            /** This method is overridden to simulate an exception. */
+            @Override
+            public long lastModified() {
+                throw new SecurityException("mock");
+            }
+        };
 
-    public List<MessageLevelPair> getLoggedMessages() {
-        return Collections.unmodifiableList(loggedMessages);
+        final List<File> list = new ArrayList<>();
+        list.add(mock);
+        return list;
     }
 
 }
