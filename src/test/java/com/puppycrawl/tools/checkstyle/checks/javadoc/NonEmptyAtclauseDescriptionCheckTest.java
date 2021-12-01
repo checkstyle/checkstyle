@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class NonEmptyAtclauseDescriptionCheckTest
@@ -55,38 +54,35 @@ public class NonEmptyAtclauseDescriptionCheckTest
     }
 
     @Test
-    public void testCheck()
-            throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(NonEmptyAtclauseDescriptionCheck.class);
+    public void testCheck() throws Exception {
         final String[] expected = {
-            // this is a case with description that is sequences of spaces
-            "36: " + getCheckMessage(MSG_KEY),
             // this is a case with description that is sequences of spaces
             "37: " + getCheckMessage(MSG_KEY),
             // this is a case with description that is sequences of spaces
             "38: " + getCheckMessage(MSG_KEY),
             // this is a case with description that is sequences of spaces
-            "47: " + getCheckMessage(MSG_KEY),
+            "39: " + getCheckMessage(MSG_KEY),
             // this is a case with description that is sequences of spaces
-            "48: " + getCheckMessage(MSG_KEY),
+            "50: " + getCheckMessage(MSG_KEY),
             // this is a case with description that is sequences of spaces
-            "49: " + getCheckMessage(MSG_KEY),
-            "85: " + getCheckMessage(MSG_KEY),
-            "86: " + getCheckMessage(MSG_KEY),
-            "87: " + getCheckMessage(MSG_KEY),
-            "88: " + getCheckMessage(MSG_KEY),
-            "89: " + getCheckMessage(MSG_KEY),
-            "90: " + getCheckMessage(MSG_KEY),
-            "99: " + getCheckMessage(MSG_KEY),
-            "100: " + getCheckMessage(MSG_KEY),
-            "101: " + getCheckMessage(MSG_KEY),
-            "102: " + getCheckMessage(MSG_KEY),
-            "103: " + getCheckMessage(MSG_KEY),
-            "130: " + getCheckMessage(MSG_KEY),
-            "139: " + getCheckMessage(MSG_KEY),
+            "51: " + getCheckMessage(MSG_KEY),
+            // this is a case with description that is sequences of spaces
+            "52: " + getCheckMessage(MSG_KEY),
+            "92: " + getCheckMessage(MSG_KEY),
+            "93: " + getCheckMessage(MSG_KEY),
+            "94: " + getCheckMessage(MSG_KEY),
+            "95: " + getCheckMessage(MSG_KEY),
+            "96: " + getCheckMessage(MSG_KEY),
+            "97: " + getCheckMessage(MSG_KEY),
+            "110: " + getCheckMessage(MSG_KEY),
+            "111: " + getCheckMessage(MSG_KEY),
+            "112: " + getCheckMessage(MSG_KEY),
+            "113: " + getCheckMessage(MSG_KEY),
+            "114: " + getCheckMessage(MSG_KEY),
+            "143: " + getCheckMessage(MSG_KEY),
+            "152: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputNonEmptyAtclauseDescription.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputNonEmptyAtclauseDescription.java"), expected);
     }
 
 }
