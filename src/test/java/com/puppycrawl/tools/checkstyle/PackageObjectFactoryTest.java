@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.BASE_PACKAGE;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.CHECK_SUFFIX;
@@ -31,8 +32,10 @@ import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.UNABLE_TO_INS
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.mockStatic;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -45,6 +48,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -52,6 +57,8 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
 /**
  * Enter a description of class PackageObjectFactoryTest.java.
@@ -391,6 +398,51 @@ public class PackageObjectFactoryTest {
 
         assertEquals(fullName, PackageObjectFactory.getShortFromFullModuleNames(fullName),
                 "Invalid simple check name");
+    }
+
+    /**
+     * This method is for testing the case of an exception caught inside
+     * {@code PackageObjectFactory.generateThirdPartyNameToFullModuleName}, a private method used
+     * to initialize private field {@code PackageObjectFactory.thirdPartyNameToFullModuleNames}.
+     * Since the method and the field both are private, the {@link TestUtil} is required to ensure
+     * that the field is changed. Also, the expected exception should be thrown from the static
+     * method {@link ModuleReflectionUtil#getCheckstyleModules}, so {@link Mockito#mockStatic}
+     * is required to mock this exception.
+     *
+     * @throws Exception when the code tested throws an exception
+     */
+    @Test
+    public void testGenerateThirdPartyNameToFullModuleNameWithException() throws Exception {
+        final String name = "String";
+        final String packageName = "java.lang";
+        final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        final Set<String> packages = Collections.singleton(packageName);
+        final PackageObjectFactory objectFactory = new PackageObjectFactory(packages, classLoader,
+                TRY_IN_ALL_REGISTERED_PACKAGES);
+
+        try (MockedStatic<ModuleReflectionUtil> utilities =
+                     mockStatic(ModuleReflectionUtil.class)) {
+            utilities.when(() -> ModuleReflectionUtil.getCheckstyleModules(packages, classLoader))
+                    .thenThrow(new IOException("mock exception"));
+
+            final String internalFieldName = "thirdPartyNameToFullModuleNames";
+            final Map<String, String> nullMap = TestUtil.getInternalState(objectFactory,
+                    internalFieldName);
+            assertWithMessage("Expected uninitialized field")
+                    .that(nullMap)
+                    .isNull();
+
+            final Object instance = objectFactory.createModule(name);
+            assertWithMessage("Expected empty string")
+                    .that(instance)
+                    .isEqualTo("");
+
+            final Map<String, String> emptyMap = TestUtil.getInternalState(objectFactory,
+                    internalFieldName);
+            assertWithMessage("Expected empty map")
+                    .that(emptyMap)
+                    .isEmpty();
+        }
     }
 
     private static final class FailConstructorFileSet extends AbstractFileSetCheck {
