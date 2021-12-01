@@ -104,10 +104,12 @@ public class CliOptionsXdocsSyncTest {
                         .filter(names -> names.length() != 2)
                         .collect(Collectors.toSet());
 
-        assertEquals("Short parameters in Main.java and cmdline"
-                        + ".xml.vm should match", shortParamsXdoc, shortParamsMain);
-        assertEquals("Long parameters in Main.java and cmdline"
-                        + ".xml.vm should match", longParamsXdoc, longParamsMain);
+        assertWithMessage("Short parameters in Main.java and cmdline.xml.vm should match")
+                .that(shortParamsXdoc)
+                .isEqualTo(shortParamsMain);
+        assertWithMessage("Long parameters in Main.java and cmdline.xml.vm should match")
+                .that(longParamsXdoc)
+                .isEqualTo(longParamsMain);
     }
 
     private static Set<String> getParameters(String text, String regex) {

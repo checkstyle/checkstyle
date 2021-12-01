@@ -25,8 +25,13 @@ import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISS
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.spy;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.Reader;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.util.Set;
@@ -294,4 +299,26 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         assertEquals(1, results.size(), "Invalid result size");
         assertEquals(uri.toString(), results.iterator().next(), "Invalid resource location");
     }
+
+    @Test
+    public void testIoExceptionWhenLoadingHeader() throws Exception {
+        final HeaderCheck check = spy(new HeaderCheck());
+        doThrow(new IOException("expected exception")).when(check).loadHeader(any(Reader.class));
+
+        try {
+            check.setHeader("header");
+            fail("Exception expected");
+        }
+        catch (IllegalArgumentException ex) {
+            assertWithMessage("Invalid exception cause")
+                .that(ex)
+                    .hasCauseThat()
+                    .isInstanceOf(IOException.class);
+            assertWithMessage("Invalid exception message")
+                .that(ex)
+                    .hasMessageThat()
+                    .isEqualTo("unable to load header");
+        }
+    }
+
 }
