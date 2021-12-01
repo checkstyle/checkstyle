@@ -76,6 +76,14 @@ public final class InlineConfigParser {
     private static final Pattern FILTERED_VIOLATION_BELOW_PATTERN = Pattern
             .compile(".*//\\s*filtered violation below(?:\\W+'(.*)')?$");
 
+    /** A pattern to find the string: "// violation X lines above". */
+    private static final Pattern VIOLATION_SOME_LINES_ABOVE_PATTERN = Pattern
+            .compile(".*//\\s*violation (\\d+) lines above(?:\\W+'(.*)')?$");
+
+    /** A pattern to find the string: "// violation X lines below". */
+    private static final Pattern VIOLATION_SOME_LINES_BELOW_PATTERN = Pattern
+            .compile(".*//\\s*violation (\\d+) lines below(?:\\W+'(.*)')?$");
+
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
 
@@ -257,52 +265,81 @@ public final class InlineConfigParser {
     private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
                                       List<String> lines, boolean useFilteredViolations) {
         for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
-            final Matcher violationMatcher =
-                    VIOLATION_PATTERN.matcher(lines.get(lineNo));
-            final Matcher violationAboveMatcher =
-                    VIOLATION_ABOVE_PATTERN.matcher(lines.get(lineNo));
-            final Matcher violationBelowMatcher =
-                    VIOLATION_BELOW_PATTERN.matcher(lines.get(lineNo));
-            final Matcher multipleViolationsMatcher =
-                    MULTIPLE_VIOLATIONS_PATTERN.matcher(lines.get(lineNo));
-            final Matcher multipleViolationsAboveMatcher =
-                    MULTIPLE_VIOLATIONS_ABOVE_PATTERN.matcher(lines.get(lineNo));
-            final Matcher multipleViolationsBelowMatcher =
-                    MULTIPLE_VIOLATIONS_BELOW_PATTERN.matcher(lines.get(lineNo));
-            if (violationMatcher.matches()) {
-                inputConfigBuilder.addViolation(lineNo + 1, violationMatcher.group(1));
-            }
-            else if (violationAboveMatcher.matches()) {
-                inputConfigBuilder.addViolation(lineNo, violationAboveMatcher.group(1));
-            }
-            else if (violationBelowMatcher.matches()) {
-                inputConfigBuilder.addViolation(lineNo + 2, violationBelowMatcher.group(1));
-            }
-            else if (multipleViolationsMatcher.matches()) {
-                Collections
-                        .nCopies(Integer.parseInt(multipleViolationsMatcher.group(1)), lineNo + 1)
-                        .forEach(actualLineNumber -> {
-                            inputConfigBuilder.addViolation(actualLineNumber, null);
-                        });
-            }
-            else if (multipleViolationsAboveMatcher.matches()) {
-                Collections
-                        .nCopies(Integer.parseInt(multipleViolationsAboveMatcher.group(1)), lineNo)
-                        .forEach(actualLineNumber -> {
-                            inputConfigBuilder.addViolation(actualLineNumber, null);
-                        });
-            }
-            else if (multipleViolationsBelowMatcher.matches()) {
-                Collections
-                        .nCopies(Integer.parseInt(multipleViolationsBelowMatcher.group(1)),
-                                lineNo + 2)
-                        .forEach(actualLineNumber -> {
-                            inputConfigBuilder.addViolation(actualLineNumber, null);
-                        });
-            }
-            else if (useFilteredViolations) {
-                setFilteredViolation(inputConfigBuilder, lineNo + 1, lines.get(lineNo));
-            }
+            setViolations(inputConfigBuilder, lines, useFilteredViolations, lineNo);
+        }
+    }
+
+    /**
+     * Sets the violations.
+     *
+     * @param inputConfigBuilder the input file path.
+     * @param lines all the lines in the file.
+     * @param useFilteredViolations flag to set filtered violations.
+     * @param lineNo current line.
+     * @noinspection IfStatementWithTooManyBranches
+     */
+    private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
+                                      List<String> lines, boolean useFilteredViolations,
+                                      int lineNo) {
+        final Matcher violationMatcher =
+                VIOLATION_PATTERN.matcher(lines.get(lineNo));
+        final Matcher violationAboveMatcher =
+                VIOLATION_ABOVE_PATTERN.matcher(lines.get(lineNo));
+        final Matcher violationBelowMatcher =
+                VIOLATION_BELOW_PATTERN.matcher(lines.get(lineNo));
+        final Matcher multipleViolationsMatcher =
+                MULTIPLE_VIOLATIONS_PATTERN.matcher(lines.get(lineNo));
+        final Matcher multipleViolationsAboveMatcher =
+                MULTIPLE_VIOLATIONS_ABOVE_PATTERN.matcher(lines.get(lineNo));
+        final Matcher multipleViolationsBelowMatcher =
+                MULTIPLE_VIOLATIONS_BELOW_PATTERN.matcher(lines.get(lineNo));
+        final Matcher violationSomeLinesAboveMatcher =
+                VIOLATION_SOME_LINES_ABOVE_PATTERN.matcher(lines.get(lineNo));
+        final Matcher violationSomeLinesBelowMatcher =
+                VIOLATION_SOME_LINES_BELOW_PATTERN.matcher(lines.get(lineNo));
+        if (violationMatcher.matches()) {
+            inputConfigBuilder.addViolation(lineNo + 1, violationMatcher.group(1));
+        }
+        else if (violationAboveMatcher.matches()) {
+            inputConfigBuilder.addViolation(lineNo, violationAboveMatcher.group(1));
+        }
+        else if (violationBelowMatcher.matches()) {
+            inputConfigBuilder.addViolation(lineNo + 2, violationBelowMatcher.group(1));
+        }
+        else if (violationSomeLinesAboveMatcher.matches()) {
+            final int linesAbove = Integer.parseInt(violationSomeLinesAboveMatcher.group(1)) - 1;
+            inputConfigBuilder.addViolation(lineNo - linesAbove,
+                    violationSomeLinesAboveMatcher.group(2));
+        }
+        else if (violationSomeLinesBelowMatcher.matches()) {
+            final int linesBelow = Integer.parseInt(violationSomeLinesBelowMatcher.group(1)) + 1;
+            inputConfigBuilder.addViolation(lineNo + linesBelow,
+                    violationSomeLinesBelowMatcher.group(2));
+        }
+        else if (multipleViolationsMatcher.matches()) {
+            Collections
+                    .nCopies(Integer.parseInt(multipleViolationsMatcher.group(1)), lineNo + 1)
+                    .forEach(actualLineNumber -> {
+                        inputConfigBuilder.addViolation(actualLineNumber, null);
+                    });
+        }
+        else if (multipleViolationsAboveMatcher.matches()) {
+            Collections
+                    .nCopies(Integer.parseInt(multipleViolationsAboveMatcher.group(1)), lineNo)
+                    .forEach(actualLineNumber -> {
+                        inputConfigBuilder.addViolation(actualLineNumber, null);
+                    });
+        }
+        else if (multipleViolationsBelowMatcher.matches()) {
+            Collections
+                    .nCopies(Integer.parseInt(multipleViolationsBelowMatcher.group(1)),
+                            lineNo + 2)
+                    .forEach(actualLineNumber -> {
+                        inputConfigBuilder.addViolation(actualLineNumber, null);
+                    });
+        }
+        else if (useFilteredViolations) {
+            setFilteredViolation(inputConfigBuilder, lineNo + 1, lines.get(lineNo));
         }
     }
 
