@@ -162,6 +162,43 @@ public final class CommonUtil {
     }
 
     /**
+     * Returns whether the specified string contains only whitespace up to the specified index.
+     *
+     * @param codePoints
+     *            array of Unicode code point
+     * @param index
+     *            index to check up to
+     * @return whether there is only whitespace
+     */
+    public static boolean hasWhitespaceBefore(int[] codePoints, int index) {
+        boolean result = true;
+        for (int i = 0; i < index; i++) {
+            if (!isWhitespace(codePoints, i)) {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Converts the Unicode code point at index {@code index} to it's UTF-16
+     * representation, then checks if the character is whitespace. Note that the given
+     * index {@code index} should correspond to the location of the character
+     * to check in the string, not in code points.
+     *
+     * @param codePoints the array of Unicode code points
+     * @param index the index of the character to check
+     * @return true if character at {@code index} is whitespace
+     */
+    public static boolean isWhitespace(int[] codePoints, int index) {
+        //  We only need to check the first member of a surrogate pair to verify that
+        //  it is not whitespace.
+        final char character = Character.toChars(codePoints[index])[0];
+        return Character.isWhitespace(character);
+    }
+
+    /**
      * Returns the length of a string ignoring all trailing whitespace.
      * It is a pity that there is not a trim() like
      * method that only removed the trailing whitespace.
@@ -624,6 +661,22 @@ public final class CommonUtil {
             }
         }
         return isInt;
+    }
+
+
+    /**
+     * Computes no. of code units in string represented,
+     * as array of Unicode code points.
+     *
+     * @param codePoints the array of Unicode code points
+     * @return length of string
+     */
+    public static int getNoOfCodeUnits(int[] codePoints) {
+        int length = 0;
+        for(int index = 0; index < codePoints.length; index++) {
+            length += Character.charCount(codePoints[index]);
+        }
+        return length;
     }
 
 }
