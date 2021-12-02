@@ -30,7 +30,7 @@ import javax.swing.JComponent; // ok
 import javax.swing.JTable; // ok
 
 import org.junit.Test; // ok
-import org.powermock.api.mockito.PowerMockito; // ok
+import org.mockito.Mock; // ok
 
 import com.some.api.DetailClass; // ok
 
