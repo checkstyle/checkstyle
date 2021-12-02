@@ -171,11 +171,12 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 
     /**
      * Load header to check against from a Reader into readerLines.
+     * This method has package access modifier because it is used in tests.
      *
      * @param headerReader delivers the header to check against
      * @throws IOException if
      */
-    private void loadHeader(final Reader headerReader) throws IOException {
+    /* package */ void loadHeader(final Reader headerReader) throws IOException {
         try (LineNumberReader lnr = new LineNumberReader(headerReader)) {
             String line;
             do {
