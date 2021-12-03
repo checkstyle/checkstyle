@@ -62,8 +62,7 @@
             </property>
             <property name="legalComment" type="java.util.regex.Pattern">
                <description>Define pattern for text allowed in trailing comments.
- (This pattern will not be applied to multiline comments and the text of
- the comment will be trimmed before matching.)</description>
+ This pattern will not be applied to multiline comments.</description>
             </property>
          </properties>
          <message-keys>
