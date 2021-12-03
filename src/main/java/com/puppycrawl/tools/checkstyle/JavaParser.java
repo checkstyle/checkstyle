@@ -34,12 +34,16 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.atn.LexerATNSimulator;
+import org.antlr.v4.runtime.atn.ParserATNSimulator;
+import org.antlr.v4.runtime.atn.PredictionContextCache;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
 import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
@@ -92,6 +96,13 @@ public final class JavaParser {
         parser.setErrorHandler(new CheckstyleParserErrorStrategy());
         parser.removeErrorListeners();
         parser.addErrorListener(new CheckstyleErrorListener());
+
+        parser.getInterpreter().clearDFA();
+        lexer.getInterpreter().clearDFA();
+        lexer.setInterpreter(new CrAwareLexerSimulator(lexer, lexer.getATN(),
+                lexer.getInterpreter().decisionToDFA, new PredictionContextCache()));
+        parser.setInterpreter(new ParserATNSimulator(parser, parser.getATN(),
+                parser.getInterpreter().decisionToDFA, new PredictionContextCache()));
 
         final JavaLanguageParser.CompilationUnitContext compilationUnit;
         try {
