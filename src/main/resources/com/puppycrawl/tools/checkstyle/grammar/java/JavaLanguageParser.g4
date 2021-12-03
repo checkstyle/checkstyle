@@ -39,6 +39,19 @@ options { tokenVocab=JavaLanguageLexer; }
     private boolean isYieldStatement() {
         return _input.LT(1).getType() == JavaLanguageLexer.LITERAL_YIELD && switchBlockDepth > 0;
     }
+
+    /**
+     * We need to create a different constructor in order to clear
+     * ANTLR data from memory.
+     *
+     * @param input the character stream to tokenize
+     * @param isReducedMemory dummy parameter
+     */
+    public JavaLanguageParser(TokenStream input, boolean isReducedMemory) {
+      super(input);
+      _interp = new ParserATNSimulator(this, _ATN, _decisionToDFA, new PredictionContextCache());
+      _interp.clearDFA();
+    }
 }
 
 compilationUnit
