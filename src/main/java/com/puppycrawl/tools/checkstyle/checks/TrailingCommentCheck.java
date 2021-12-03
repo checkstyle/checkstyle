@@ -89,8 +89,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * <li>
  * Property {@code legalComment} - Define pattern for text allowed in trailing comments.
- * (This pattern will not be applied to multiline comments and the text of
- * the comment will be trimmed before matching.)
+ * This pattern will not be applied to multiline comments.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.
  * </li>
@@ -177,8 +176,7 @@ public class TrailingCommentCheck extends AbstractCheck {
 
     /**
      * Define pattern for text allowed in trailing comments.
-     * (This pattern will not be applied to multiline comments and the text
-     * of the comment will be trimmed before matching.)
+     * This pattern will not be applied to multiline comments.
      */
     private Pattern legalComment;
 
@@ -187,8 +185,7 @@ public class TrailingCommentCheck extends AbstractCheck {
 
     /**
      * Setter to define pattern for text allowed in trailing comments.
-     * (This pattern will not be applied to multiline comments and the text
-     * of the comment will be trimmed before matching.)
+     * This pattern will not be applied to multiline comments.
      *
      * @param legalComment pattern to set.
      */
@@ -289,18 +286,9 @@ public class TrailingCommentCheck extends AbstractCheck {
      * @return true if the comment if legal.
      */
     private boolean isLegalBlockComment(DetailAST ast, String comment) {
-        final boolean legal;
-
-        // multi-line comment can not be legal
-        if (legalComment == null
-                || !TokenUtil.areOnSameLine(ast.getFirstChild(), ast.getLastChild())) {
-            legal = false;
-        }
-        else {
-            final String commentText = comment.trim();
-            legal = legalComment.matcher(commentText).find();
-        }
-        return legal;
+        return legalComment != null
+                && TokenUtil.areOnSameLine(ast.getFirstChild(), ast.getLastChild())
+                && legalComment.matcher(comment).find();
     }
 
     /**
@@ -311,15 +299,6 @@ public class TrailingCommentCheck extends AbstractCheck {
      * @return true if the comment if legal.
      */
     private boolean isLegalSingleLineComment(String comment) {
-        final boolean legal;
-        if (legalComment == null) {
-            legal = false;
-        }
-        else {
-            // remove chars which start comment
-            final String commentText = comment.substring(1).trim();
-            legal = legalComment.matcher(commentText).find();
-        }
-        return legal;
+        return legalComment != null && legalComment.matcher(comment).find();
     }
 }
