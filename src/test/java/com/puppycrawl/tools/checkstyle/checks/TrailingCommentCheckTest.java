@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
 
@@ -106,5 +107,13 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputTrailingComment3.java"), expected);
+    }
+
+    @Test
+    public void testLegalCommentWithNoPrecedingWhitespace() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputTrailingCommentWithNoPrecedingWhitespace.java"), expected);
     }
 }
