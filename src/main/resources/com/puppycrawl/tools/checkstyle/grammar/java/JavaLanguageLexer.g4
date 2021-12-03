@@ -120,15 +120,17 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
 @lexer::members {
     /**
      * We need to create a different constructor in order to use our
-     * own implementation of the LexerATNSimulator. This is the
-     * reason for the unused 'crAwareConstructor' argument.
+     * own implementation of the LexerATNSimulator, and to clear ANTLR
+     * data from memory. This is the reason for the unused
+     * 'crAwareConstructor' argument.
      *
      * @param input the character stream to tokenize
      * @param crAwareConstructor dummy parameter
      */
     public JavaLanguageLexer(CharStream input, boolean crAwareConstructor) {
       super(input);
-      _interp = new CrAwareLexerSimulator(this, _ATN, _decisionToDFA, _sharedContextCache);
+      _interp = new CrAwareLexerSimulator(this, _ATN, _decisionToDFA, new PredictionContextCache());
+      _interp.clearDFA();
     }
 
     private CommentListener commentListener = null;
