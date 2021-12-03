@@ -317,7 +317,7 @@ public class TrailingCommentCheck extends AbstractCheck {
         }
         else {
             // remove chars which start comment
-            final String commentText = comment.substring(1).trim();
+            final String commentText = comment.trim();
             legal = legalComment.matcher(commentText).find();
         }
         return legal;
