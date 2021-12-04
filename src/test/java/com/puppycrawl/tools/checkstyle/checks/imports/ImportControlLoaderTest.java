@@ -19,22 +19,30 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.AttributesImpl;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -121,6 +129,31 @@ public class ImportControlLoaderTest {
                     "Invalid exception class");
             assertTrue(ex.getCause().getMessage().startsWith("unable to read"),
                     "Invalid exception message: " + ex.getCause().getMessage());
+        }
+    }
+
+    @Test
+    public void testInputStreamFailsOnRead() throws Exception {
+        try (InputStream inputStream = mock(InputStream.class)) {
+            final int available = Mockito.doThrow(IOException.class).when(inputStream).available();
+
+            final URL url = mock(URL.class);
+            when(url.openStream()).thenReturn(inputStream);
+
+            final URI uri = mock(URI.class);
+            when(uri.toURL()).thenReturn(url);
+
+            try {
+                ImportControlLoader.load(uri);
+                // Using available to bypass 'ignored result' warning
+                fail("exception expected " + available);
+            }
+            catch (CheckstyleException ex) {
+                assertWithMessage("Invalid exception class")
+                        .that(ex)
+                        .hasCauseThat()
+                        .isInstanceOf(SAXParseException.class);
+            }
         }
     }
 
