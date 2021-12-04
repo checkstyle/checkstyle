@@ -492,6 +492,21 @@ public class ParenPadCheckTest
                 getNonCompilablePath("InputParenPadCheckRecordsSpace.java"), expected);
     }
 
+    @Test
+    public void testParenPadCheckEmoji() throws Exception {
+
+        final String[] expected = {
+            "25:45: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "29:49: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "33:26: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "37:26: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "41:26: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "41:78: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParenPadCheckEmoji.java"), expected);
+    }
+
     /**
      * Pitest requires us to specify more concrete lower bound for condition for
      * ParenPadCheck#isAcceptableToken as nodes of first several types like CTOR_DEF,

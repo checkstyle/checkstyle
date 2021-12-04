@@ -626,4 +626,21 @@ public final class CommonUtil {
         return isInt;
     }
 
+    /**
+     * Converts the Unicode code point at index {@code index} to it's UTF-16
+     * representation, then checks if the character is whitespace. Note that the given
+     * index {@code index} should correspond to the location of the character
+     * to check in the string, not in code points.
+     *
+     * @param codePoints the array of Unicode code points
+     * @param index the index of the character to check
+     * @return true if character at {@code index} is whitespace
+     */
+    public static boolean isCodePointWhitespace(int[] codePoints, int index) {
+        //  We only need to check the first member of a surrogate pair to verify that
+        //  it is not whitespace.
+        final char character = Character.toChars(codePoints[index])[0];
+        return Character.isWhitespace(character);
+    }
+
 }
