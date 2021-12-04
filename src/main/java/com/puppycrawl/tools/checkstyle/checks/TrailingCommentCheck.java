@@ -311,15 +311,6 @@ public class TrailingCommentCheck extends AbstractCheck {
      * @return true if the comment if legal.
      */
     private boolean isLegalSingleLineComment(String comment) {
-        final boolean legal;
-        if (legalComment == null) {
-            legal = false;
-        }
-        else {
-            // remove chars which start comment
-            final String commentText = comment.substring(1).trim();
-            legal = legalComment.matcher(commentText).find();
-        }
-        return legal;
+        return legalComment != null && legalComment.matcher(comment).find();
     }
 }
