@@ -86,14 +86,15 @@ public abstract class AbstractParenPadCheck
      */
     protected void processLeft(DetailAST ast) {
         final String line = getLines()[ast.getLineNo() - 1];
+        final int[] codePoints = line.codePoints().toArray();
         final int after = ast.getColumnNo() + 1;
-        if (after < line.length()) {
+        if (after < codePoints.length) {
             if (option == PadOption.NOSPACE
-                && Character.isWhitespace(line.charAt(after))) {
+                && CommonUtil.isCodePointWhitespace(codePoints, after)) {
                 log(ast, MSG_WS_FOLLOWED, OPEN_PARENTHESIS);
             }
             else if (option == PadOption.SPACE
-                     && !Character.isWhitespace(line.charAt(after))
+                     && !CommonUtil.isCodePointWhitespace(codePoints, after)
                      && line.charAt(after) != CLOSE_PARENTHESIS) {
                 log(ast, MSG_WS_NOT_FOLLOWED, OPEN_PARENTHESIS);
             }
@@ -109,13 +110,14 @@ public abstract class AbstractParenPadCheck
         final int before = ast.getColumnNo() - 1;
         if (before >= 0) {
             final String line = getLines()[ast.getLineNo() - 1];
+            final int[] codePoints = line.codePoints().toArray();
             if (option == PadOption.NOSPACE
-                && Character.isWhitespace(line.charAt(before))
+                && CommonUtil.isCodePointWhitespace(codePoints, before)
                 && !CommonUtil.hasWhitespaceBefore(before, line)) {
                 log(ast, MSG_WS_PRECEDED, CLOSE_PARENTHESIS);
             }
             else if (option == PadOption.SPACE
-                && !Character.isWhitespace(line.charAt(before))
+                && !CommonUtil.isCodePointWhitespace(codePoints, before)
                 && line.charAt(before) != OPEN_PARENTHESIS) {
                 log(ast, MSG_WS_NOT_PRECEDED, CLOSE_PARENTHESIS);
             }
