@@ -731,7 +731,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "27:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SPECIAL, "javax.swing.JTable"),
             "29:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, THIRD, "org.junit.Test"),
             "30:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, THIRD,
-                    "org.powermock.api.mockito.PowerMockito"),
+                    "org.mockito.Mock"),
             "34:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "sun.tools.java.ArrayType"),
         };
         verifyWithInlineConfigParser(
