@@ -86,14 +86,16 @@ public abstract class AbstractParenPadCheck
      */
     protected void processLeft(DetailAST ast) {
         final String line = getLines()[ast.getLineNo() - 1];
+        final int[] codePoints = line.codePoints().toArray();
         final int after = ast.getColumnNo() + 1;
-        if (after < line.length()) {
-            if (option == PadOption.NOSPACE
-                && Character.isWhitespace(line.charAt(after))) {
+
+        if (after < codePoints.length) {
+            final boolean hasWhitespaceAfter =
+                    CommonUtil.isCodePointWhitespace(codePoints, after);
+            if (option == PadOption.NOSPACE && hasWhitespaceAfter) {
                 log(ast, MSG_WS_FOLLOWED, OPEN_PARENTHESIS);
             }
-            else if (option == PadOption.SPACE
-                     && !Character.isWhitespace(line.charAt(after))
+            else if (option == PadOption.SPACE && !hasWhitespaceAfter
                      && line.charAt(after) != CLOSE_PARENTHESIS) {
                 log(ast, MSG_WS_NOT_FOLLOWED, OPEN_PARENTHESIS);
             }
@@ -109,13 +111,15 @@ public abstract class AbstractParenPadCheck
         final int before = ast.getColumnNo() - 1;
         if (before >= 0) {
             final String line = getLines()[ast.getLineNo() - 1];
-            if (option == PadOption.NOSPACE
-                && Character.isWhitespace(line.charAt(before))
+            final int[] codePoints = line.codePoints().toArray();
+            final boolean hasPrecedingWhitespace =
+                    CommonUtil.isCodePointWhitespace(codePoints, before);
+
+            if (option == PadOption.NOSPACE && hasPrecedingWhitespace
                 && !CommonUtil.hasWhitespaceBefore(before, line)) {
                 log(ast, MSG_WS_PRECEDED, CLOSE_PARENTHESIS);
             }
-            else if (option == PadOption.SPACE
-                && !Character.isWhitespace(line.charAt(before))
+            else if (option == PadOption.SPACE && !hasPrecedingWhitespace
                 && line.charAt(before) != OPEN_PARENTHESIS) {
                 log(ast, MSG_WS_NOT_PRECEDED, CLOSE_PARENTHESIS);
             }
