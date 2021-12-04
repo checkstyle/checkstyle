@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import static com.google.common.truth.Truth.assertThat;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
@@ -487,6 +488,15 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final Configuration config = ConfigurationLoader.loadConfiguration(uri.toString(),
             new PropertiesExpander(properties));
         assertEquals("Checker", config.getName(), "Unexpected config name!");
+    }
+
+    @Test
+    public void testIsCodePointWhitespace() {
+        final int[] codePoints = " 123".codePoints().toArray();
+        assertThat(CommonUtil.isCodePointWhitespace(codePoints, 0))
+                .isTrue();
+        assertThat(CommonUtil.isCodePointWhitespace(codePoints, 1))
+                .isFalse();
     }
 
     private static class TestCloseable implements Closeable {
