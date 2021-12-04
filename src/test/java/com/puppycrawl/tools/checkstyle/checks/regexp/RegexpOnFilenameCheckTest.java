@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck.MSG_MATCH;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck.MSG_MISMATCH;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
 import java.util.Collections;
@@ -242,16 +242,41 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     public void testException() throws Exception {
         // escape character needed for testing IOException from File.getCanonicalPath on all OSes
         final File file = new File(getPath("") + "\u0000" + File.separatorChar + "Test");
-        try {
-            final RegexpOnFilenameCheck check = new RegexpOnFilenameCheck();
-            check.setFileNamePattern(Pattern.compile("BAD"));
-            check.process(file, new FileText(file, Collections.emptyList()));
-            fail("CheckstyleException expected");
+        final RegexpOnFilenameCheck check = new RegexpOnFilenameCheck();
+        check.setFileNamePattern(Pattern.compile("BAD"));
+        final CheckstyleException ex = assertThrows(CheckstyleException.class,
+                () -> check.process(file, new FileText(file, Collections.emptyList())),
+                "CheckstyleException expected");
+        assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasMessageThat()
+                        .isEqualTo("unable to create canonical path names for " + file);
+    }
+
+    @Test
+    public void testWithFileWithoutParent() throws Exception {
+        final DefaultConfiguration moduleConfig = createModuleConfig(RegexpOnFilenameCheck.class);
+        final String path = getPath("package-info.java");
+        final File fileWithoutParent = new MockFile(path);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(createChecker(moduleConfig), new File[] {fileWithoutParent}, path, expected);
+    }
+
+    private static class MockFile extends File {
+
+        /** A unique serial version identifier. */
+        private static final long serialVersionUID = 8361197804062781531L;
+
+        /* package */ MockFile(String path) {
+            super(path);
         }
-        catch (CheckstyleException ex) {
-            assertEquals("unable to create canonical path names for " + file.getAbsolutePath(),
-                ex.getMessage(), "Invalid exception message");
+
+        /** This method is overridden to emulate a file without parent. */
+        @Override
+        public String getParent() {
+            return null;
         }
+
     }
 
 }
