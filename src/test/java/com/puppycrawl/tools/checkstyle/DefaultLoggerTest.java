@@ -22,14 +22,16 @@ package com.puppycrawl.tools.checkstyle;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
+import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Map;
@@ -114,32 +116,28 @@ public class DefaultLoggerTest {
     @Test
     public void testNullInfoStreamOptions() {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        try {
-            final DefaultLogger logger = new DefaultLogger(outputStream, null);
-            // assert required to calm down eclipse's 'The allocated object is never used' violation
-            assertNotNull(logger, "Null instance");
-            fail("Exception was expected");
-        }
-        catch (IllegalArgumentException exception) {
-            assertEquals("Parameter infoStreamOptions can not be null",
-                    exception.getMessage(), "Invalid error message");
-        }
+        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
+                () -> new DefaultLogger(outputStream, null),
+                "IllegalArgumentException expected");
+        assertWithMessage("Invalid error message")
+                .that(ex)
+                .hasMessageThat()
+                        .isEqualTo("Parameter infoStreamOptions can not be null");
     }
 
     @Test
     public void testNullErrorStreamOptions() {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        try {
-            final DefaultLogger logger = new DefaultLogger(outputStream,
-                AutomaticBean.OutputStreamOptions.CLOSE, outputStream, null);
-            // assert required to calm down eclipse's 'The allocated object is never used' violation
-            assertNotNull(logger, "Null instance");
-            fail("Exception was expected");
-        }
-        catch (IllegalArgumentException exception) {
-            assertEquals("Parameter errorStreamOptions can not be null",
-                    exception.getMessage(), "Invalid error message");
-        }
+        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
+                () -> {
+                    new DefaultLogger(outputStream,
+                            AutomaticBean.OutputStreamOptions.CLOSE, outputStream, null);
+                },
+                "IllegalArgumentException expected");
+        assertWithMessage("Invalid error message")
+                .that(ex)
+                .hasMessageThat()
+                        .isEqualTo("Parameter errorStreamOptions can not be null");
     }
 
     @Test
@@ -278,6 +276,50 @@ public class DefaultLoggerTest {
                 "Violation should contain exception info, but was " + outputForNullArgs);
     }
 
+    @Test
+    public void testNewCtor() throws Exception {
+        final ResourceBundle bundle = ResourceBundle.getBundle(
+                Definitions.CHECKSTYLE_BUNDLE, Locale.ROOT);
+        final String auditStartedMessage = bundle.getString(DefaultLogger.AUDIT_STARTED_MESSAGE);
+        final String auditFinishedMessage = bundle.getString(DefaultLogger.AUDIT_FINISHED_MESSAGE);
+        final String addExceptionMessage = new MessageFormat(bundle.getString(
+                DefaultLogger.ADD_EXCEPTION_MESSAGE), Locale.ROOT).format(new String[] {"myfile"});
+        final String infoOutput;
+        final String errorOutput;
+        try (MockByteArrayOutputStream infoStream = new MockByteArrayOutputStream()) {
+            try (MockByteArrayOutputStream errorStream = new MockByteArrayOutputStream()) {
+                final DefaultLogger dl = new DefaultLogger(
+                        infoStream, OutputStreamOptions.CLOSE,
+                        errorStream, OutputStreamOptions.CLOSE);
+                dl.auditStarted(null);
+                dl.addException(new AuditEvent(5000, "myfile"),
+                        new IllegalStateException("upsss"));
+                dl.auditFinished(new AuditEvent(6000, "myfile"));
+                infoOutput = infoStream.toString(StandardCharsets.UTF_8.name());
+                errorOutput = errorStream.toString(StandardCharsets.UTF_8.name());
+
+                assertWithMessage("Info stream should be closed")
+                        .that(infoStream.closedCount)
+                        .isGreaterThan(0);
+                assertWithMessage("Error stream should be closed")
+                        .that(errorStream.closedCount)
+                        .isGreaterThan(0);
+            }
+        }
+        assertWithMessage("Violation should contain message `audit started`")
+                .that(infoOutput)
+                .contains(auditStartedMessage);
+        assertWithMessage("Violation should contain message `audit finished`")
+                .that(infoOutput)
+                .contains(auditFinishedMessage);
+        assertWithMessage("Violation should contain exception info")
+                .that(errorOutput)
+                .contains(addExceptionMessage);
+        assertWithMessage("Violation should contain exception message")
+                .that(errorOutput)
+                .contains("java.lang.IllegalStateException: upsss");
+    }
+
     private static Constructor<?> getConstructor() throws Exception {
         final Class<?> message = getDefaultLoggerClass().getDeclaredClasses()[0];
         return message.getDeclaredConstructor(String.class, String[].class);
@@ -310,4 +352,17 @@ public class DefaultLoggerTest {
     private static Class<?> getDefaultLoggerClass() throws Exception {
         return Class.forName("com.puppycrawl.tools.checkstyle.DefaultLogger");
     }
+
+    private static class MockByteArrayOutputStream extends ByteArrayOutputStream {
+
+        private int closedCount;
+
+        @Override
+        public void close() throws IOException {
+            super.close();
+            ++closedCount;
+        }
+
+    }
+
 }
