@@ -27,7 +27,7 @@ import javax.swing.JComponent; // violation
 import javax.swing.JTable; // violation
 
 import org.junit.Test; // violation
-import org.powermock.api.mockito.PowerMockito; // violation
+import org.mockito.Mock; // violation
 
 import com.some.api.DetailClass;
 
