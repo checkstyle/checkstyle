@@ -161,4 +161,30 @@ public class JavadocPackageCheckTest
             expected);
     }
 
+    @Test
+    public void testWithFileWithoutParent() throws Exception {
+        final DefaultConfiguration moduleConfig = createModuleConfig(JavadocPackageCheck.class);
+        final String path = getPath("annotation" + File.separator + "package-info.java");
+        final File fileWithoutParent = new MockFile(path);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(createChecker(moduleConfig), new File[] {fileWithoutParent}, path, expected);
+    }
+
+    private static class MockFile extends File {
+
+        /** A unique serial version identifier. */
+        private static final long serialVersionUID = 7550724727327435271L;
+
+        /* package */ MockFile(String path) {
+            super(path);
+        }
+
+        /** This method is overridden to emulate a file without parent. */
+        @Override
+        public String getParent() {
+            return null;
+        }
+
+    }
+
 }
