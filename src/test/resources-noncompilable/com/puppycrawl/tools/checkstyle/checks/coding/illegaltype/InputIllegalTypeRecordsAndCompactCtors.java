@@ -24,7 +24,7 @@ import java.util.TreeSet;
 
 public class InputIllegalTypeRecordsAndCompactCtors {
     record MyTestRecord
-            (LinkedHashMap<Integer, Integer> linkedHashMap) { // violation
+            (LinkedHashMap<Integer, Integer> linkedHashMap) { // OK
 
     }
 
@@ -36,7 +36,7 @@ public class InputIllegalTypeRecordsAndCompactCtors {
         }
     }
 
-    record MyTestRecord3(String str, TreeSet treeSet) { // violation
+    record MyTestRecord3(String str, Set treeSet) { // OK
         void foo(HashMap<Integer, Integer> hashMap) { // violation
 
         }
