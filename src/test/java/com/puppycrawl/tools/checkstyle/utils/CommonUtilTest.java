@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import static com.google.common.truth.Truth.assertThat;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
@@ -29,6 +30,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -487,6 +489,27 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final Configuration config = ConfigurationLoader.loadConfiguration(uri.toString(),
             new PropertiesExpander(properties));
         assertEquals("Checker", config.getName(), "Unexpected config name!");
+    }
+
+    @Test
+    public void testIsCodePointWhitespaceTrue() {
+        final int[] codePoints = " 123".codePoints().toArray();
+        assertThat(CommonUtil.isCodePointWhitespace(codePoints, 0))
+                .isTrue();
+    }
+
+    @Test
+    public void testIsCodePointWhitespaceFalse() {
+        final int[] codePoints = " 123".codePoints().toArray();
+        assertThat(CommonUtil.isCodePointWhitespace(codePoints, 1))
+                .isFalse();
+    }
+
+    @Test
+    public void testIsCodePointWhitespaceOutOfBounds() {
+        final int[] codePoints = " 123".codePoints().toArray();
+        assertThrows(ArrayIndexOutOfBoundsException.class,
+                () -> CommonUtil.isCodePointWhitespace(codePoints, 4));
     }
 
     private static class TestCloseable implements Closeable {
