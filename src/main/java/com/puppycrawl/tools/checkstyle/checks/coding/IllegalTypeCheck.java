@@ -470,7 +470,6 @@ public final class IllegalTypeCheck extends AbstractCheck {
             case TokenTypes.METHOD_DEF:
                 visitMethodDef(ast);
                 break;
-            case TokenTypes.VARIABLE_DEF:
             case TokenTypes.ANNOTATION_FIELD_DEF:
             case TokenTypes.PATTERN_VARIABLE_DEF:
             case TokenTypes.RECORD_COMPONENT_DEF:
