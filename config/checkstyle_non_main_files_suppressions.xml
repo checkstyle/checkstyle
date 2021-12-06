@@ -112,12 +112,6 @@
          files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]InputDeclarationOrderRecordsAndCompactCtors.java"/>
 
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]InputEqualsAvoidNullEnhancedInstanceof.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]InputEqualsAvoidNullEnhancedInstanceof.java"/>
-
-  <suppress id="lineLength"
          files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]InputEqualsAvoidNullTextBlocks.java"/>
 
   <suppress id="lineLength"
