@@ -246,8 +246,7 @@ public class TrailingCommentCheck extends AbstractCheck {
         final String line = getLines()[lineNo - 1];
         final String lineBefore = line.substring(0, ast.getColumnNo());
 
-        if (!format.matcher(lineBefore).find()
-                && !isLegalSingleLineComment(comment)) {
+        if (!format.matcher(lineBefore).find() && !isLegalCommentContent(comment)) {
             log(ast, MSG_KEY);
         }
     }
@@ -259,46 +258,36 @@ public class TrailingCommentCheck extends AbstractCheck {
      */
     private void checkBlockComment(DetailAST ast) {
         final int lineNo = ast.getLineNo();
-        final String comment = ast.getFirstChild().getText();
+        final DetailAST firstChild = ast.getFirstChild();
+        final DetailAST lastChild = ast.getLastChild();
+        final String comment = firstChild.getText();
         String line = getLines()[lineNo - 1];
 
-        if (line.length() > ast.getLastChild().getColumnNo() + 1) {
-            line = line.substring(ast.getLastChild().getColumnNo() + 2);
+        if (line.length() > lastChild.getColumnNo() + 1) {
+            line = line.substring(lastChild.getColumnNo() + 2);
         }
 
         line = FORMAT_LINE.matcher(line).replaceAll("");
 
         final String lineBefore = getLines()[lineNo - 1].substring(0, ast.getColumnNo());
+        final boolean isCommentAtEndOfLine = ast.getLineNo() != lastChild.getLineNo()
+                || CommonUtil.isBlank(line);
+        final boolean islegalBlockComment = isLegalCommentContent(comment)
+                && TokenUtil.areOnSameLine(firstChild, lastChild)
+                || format.matcher(lineBefore).find();
 
-        // do not check comment which doesn't end line
-        if ((ast.getLineNo() != ast.getLastChild().getLineNo() || CommonUtil.isBlank(line))
-                && !format.matcher(lineBefore).find()
-                && !isLegalBlockComment(ast, comment)) {
+        if (isCommentAtEndOfLine && !islegalBlockComment) {
             log(ast, MSG_KEY);
         }
     }
 
     /**
-     * Checks if block comment is legal and matches to the pattern.
+     * Checks if given comment content is legal.
      *
-     * @param ast Detail ast element to be checked.
-     * @param comment comment to check.
-     * @return true if the comment if legal.
+     * @param commentContent comment content to check.
+     * @return true if the content is legal.
      */
-    private boolean isLegalBlockComment(DetailAST ast, String comment) {
-        return legalComment != null
-                && TokenUtil.areOnSameLine(ast.getFirstChild(), ast.getLastChild())
-                && legalComment.matcher(comment).find();
-    }
-
-    /**
-     * Checks if given single line comment is legal (single-line and matches to the
-     * pattern).
-     *
-     * @param comment comment to check.
-     * @return true if the comment if legal.
-     */
-    private boolean isLegalSingleLineComment(String comment) {
-        return legalComment != null && legalComment.matcher(comment).find();
+    private boolean isLegalCommentContent(String commentContent) {
+        return legalComment != null && legalComment.matcher(commentContent).find();
     }
 }
