@@ -1206,6 +1206,26 @@ public final class TokenTypes {
      * An expression list.  The children are a comma separated list of
      * expressions.
      *
+     * <p>For example:</p>
+     * <pre>
+     * new ArrayList(50);
+     * </pre>
+     * <p> parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     *     `--LITERAL_NEW -&gt; new
+     *         |--IDENT -&gt; ArrayList
+     *         |--TYPE_ARGUMENTS -&gt; TYPE_ARGUMENTS
+     *         |   |--GENERIC_START -&gt; &lt;
+     *         |   `--GENERIC_END -&gt; &gt;
+     *         |--LPAREN -&gt; (
+     *         |--ELIST -&gt; ELIST
+     *         |   `--EXPR -&gt; EXPR
+     *         |       `--NUM_INT -&gt; 50
+     *         `--RPAREN -&gt; )
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #LITERAL_NEW
      * @see #FOR_INIT
      * @see #FOR_ITERATOR
