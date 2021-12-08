@@ -58,8 +58,8 @@ jobs:
         echo "$ISSUE_BODY" > text
         echo "$USER_LOGIN" > user
         wget -q "$PULL_REQUEST_URL" -O info.json
-        jq .head.ref info.json > branch
-        jq .head.sha info.json > commit_sha
+        jq --raw-output .head.ref info.json > branch
+        jq --raw-output .head.sha info.json > commit_sha
 
      - name: Parsing content of PR description
        id: parse
@@ -88,7 +88,7 @@ jobs:
        id: branch
        run: |
         echo ::set-output name=ref::$(cat branch)
-        echo ::set-output name=commit_sha::$(cat commit_sha | xargs | cut -c 1-7)
+        echo ::set-output name=commit_sha::$(cat commit_sha | cut -c 1-7)
 
   make_report:
     runs-on: ubuntu-latest
