@@ -33,9 +33,8 @@ public class InputSummaryJavadocPeriod
      * {@summary An especially short bit of Javadoc_}
      */
     void foo7(){}
-    // violation below
     /**
      * {@summary An especially short bit of Javadoc}
-     */
+     */ // violation above
     void foo8() {}
 }
