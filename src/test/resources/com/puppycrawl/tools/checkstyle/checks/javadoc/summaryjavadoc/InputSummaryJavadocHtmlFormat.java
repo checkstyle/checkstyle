@@ -18,10 +18,9 @@ public class InputSummaryJavadocHtmlFormat {
      * <p><b>{@summary Normal Javadoc.}</b></p>
      */
     private void foo1() {} // ok
-    // violation below
     /**
      * <p><b><i>{@summary Normal Javadoc}</i></b></p>
-     */
+     */ // violation above
     private void foo2() {}
 
     /**
@@ -38,10 +37,9 @@ public class InputSummaryJavadocHtmlFormat {
      * <p>{@code Code.}</p>
      */
     private void foo6() {}
-    // violation below
     /**
      * <p>{@summary}</p>
-     */
+     */ // violation above
     private void foo11() {}
 
     /**
