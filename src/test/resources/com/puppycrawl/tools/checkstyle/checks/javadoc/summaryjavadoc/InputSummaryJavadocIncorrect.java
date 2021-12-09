@@ -149,4 +149,11 @@ class InputSummaryJavadocIncorrect {
     // violation below
     /** */
     String[] foo9() {return null;}
+
+    /**
+     * This is the summary.
+     * {@summary This is NOT summary according to javadoc tool}
+     */ // violation above
+    void testMethod() {
+    }
 }
