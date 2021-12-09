@@ -19,7 +19,7 @@ class InputSummaryJavadocIncorrect2 {
      * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}
      */
     void foo3() {}
-    // violation below
+    // violation below 'Summary javadoc is missing.'
     /**
      * @throws Exception if a problem occurs
      */
@@ -37,12 +37,12 @@ class InputSummaryJavadocIncorrect2 {
      * Some Javadoc.
      */
     public static final byte NUL = 0;
-    // violation below
+    // violation below 'Summary javadoc is missing.'
     /**
      * <a href="mailto:vlad@htmlbook.ru"/>
      */
      class InnerInputCorrectJavaDocParagraphCheck {
-    // violation below
+    // violation below 'First sentence .* missing an ending period.'
          /**
           * foooo@foooo
           */
@@ -58,12 +58,12 @@ class InputSummaryJavadocIncorrect2 {
          * returns some javadoc. Some javadoc.
          */
         boolean emulated() {return false;}
-    // violation below
+    // violation below 'Summary javadoc is missing.'
         /**
          * <a href="mailto:vlad@htmlbook.ru"/>
          */
         void foo2() {}
-    // violation below
+    // violation below 'Summary javadoc is missing.'
         /**
          * @return the
          * customer ID some javadoc.
@@ -74,7 +74,7 @@ class InputSummaryJavadocIncorrect2 {
          * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.
          */
         void foo3() {}
-    // violation below
+    // violation below 'Summary javadoc is missing.'
         /**
          * @throws Exception if a problem occurs
          */
@@ -108,7 +108,7 @@ class InputSummaryJavadocIncorrect2 {
          * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.
          */
         void foo3() {}
-    // violation below
+    // violation below 'Summary javadoc is missing.'
         /**
          * @throws Exception if a problem occurs
          */
@@ -121,31 +121,31 @@ class InputSummaryJavadocIncorrect2 {
          * An especially short bit of Javadoc.
          */
         void foo6() {}
-    // violation below
+    // violation below 'First sentence .* missing an ending period.'
          /**
           * mm{@inheritDoc}
           */
          void foo7() {}
-    // violation below
+    // violation below 'Summary javadoc is missing.'
          /**
           * {@link #setBounds(int,int,int,int)}
           */
          void foo8() {}
-    // violation below
+    // violation below 'Summary javadoc is missing.'
          /**
           *
           */
          void foo10() {}
     };
-    // violation below
+    // violation below 'First sentence .* missing an ending period.'
     /**
      * M m m m {@inheritDoc}
      */
     void foo7() {}
-    // violation below
+    // violation below 'Summary javadoc is missing.'
     /** */
     <T> T foo8(T t) {return null;}
-    // violation below
+    // violation below 'Summary javadoc is missing.'
     /** */
     String[] foo9() {return null;}
 }

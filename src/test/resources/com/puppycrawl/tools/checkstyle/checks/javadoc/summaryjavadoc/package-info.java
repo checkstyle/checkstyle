@@ -7,5 +7,5 @@ period = (default).
 
 */
 
-/** */ // violation
+/** */ // violation 'Summary javadoc is missing.'
 package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
