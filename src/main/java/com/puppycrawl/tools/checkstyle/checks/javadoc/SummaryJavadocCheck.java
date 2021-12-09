@@ -22,13 +22,10 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -253,10 +250,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private static final Pattern HTML_ELEMENTS =
             Pattern.compile("<[^>]*>");
 
-    /**
-     * This regexp is used to extract the content of a summary javadoc tag.
-     */
-    private static final Pattern SUMMARY_PATTERN = Pattern.compile("\\{@summary ([\\S\\s]+)}");
     /** Period literal. */
     private static final String PERIOD = ".";
 
@@ -282,6 +275,11 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private String period = PERIOD;
 
     /**
+     * Whether node of type {@link JavadocTokenTypes#JAVADOC} should be checked.
+     */
+    private boolean shouldCheckJavadocToken = true;
+
+    /**
      * Setter to specify the regexp for forbidden summary fragments.
      *
      * @param pattern a pattern.
@@ -303,6 +301,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     public int[] getDefaultJavadocTokens() {
         return new int[] {
             JavadocTokenTypes.JAVADOC,
+            JavadocTokenTypes.JAVADOC_INLINE_TAG,
         };
     }
 
@@ -313,97 +312,56 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        if (containsSummaryTag(ast)) {
+        if (ast.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG
+                && isSummaryTag(ast)) {
             validateSummaryTag(ast);
+            shouldCheckJavadocToken = false;
         }
-        else if (!startsWithInheritDoc(ast)) {
-            final String summaryDoc = getSummarySentence(ast);
-            if (summaryDoc.isEmpty()) {
-                log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
+    }
+
+    @Override
+    public void leaveJavadocToken(DetailNode ast) {
+        if (ast.getType() == JavadocTokenTypes.JAVADOC
+                && !startsWithInheritDoc(ast)) {
+            if (shouldCheckJavadocToken) {
+                checkJavadocToken(ast);
             }
-            else if (!period.isEmpty()) {
-                final String firstSentence = getFirstSentence(ast);
-                final int endOfSentence = firstSentence.lastIndexOf(period);
-                if (!summaryDoc.contains(period)) {
-                    log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
-                }
-                if (endOfSentence != -1
-                        && containsForbiddenFragment(firstSentence.substring(0, endOfSentence))) {
-                    log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
-                }
+            shouldCheckJavadocToken = true;
+        }
+    }
+
+    /**
+     * Check node of type {@link JavadocTokenTypes#JAVADOC}.
+     *
+     * @param ast ast
+     */
+    private void checkJavadocToken(DetailNode ast) {
+        final String summaryDoc = getSummarySentence(ast);
+        if (summaryDoc.isEmpty()) {
+            log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
+        }
+        else if (!period.isEmpty()) {
+            final String firstSentence = getFirstSentence(ast);
+            final int endOfSentence = firstSentence.lastIndexOf(period);
+            if (!summaryDoc.contains(period)) {
+                log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
+            }
+            if (endOfSentence != -1
+                    && containsForbiddenFragment(
+                            firstSentence.substring(0, endOfSentence))) {
+                log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
             }
         }
     }
 
     /**
-     * Checks if summary tag present.
+     * Checks if the inline tag is a summary tag i.e. {@code @summary}
      *
-     * @param javadoc javadoc root node.
-     * @return {@code true} if first sentence contains @summary tag.
-     */
-    private static boolean containsSummaryTag(DetailNode javadoc) {
-        final Optional<DetailNode> node = Arrays.stream(javadoc.getChildren())
-                .filter(SummaryJavadocCheck::isInlineTagPresent)
-                .findFirst()
-                .map(SummaryJavadocCheck::getInlineTagNodeWithinHtmlElement);
-
-        return node.isPresent() && isSummaryTag(node.get());
-    }
-
-    /**
-     * Checks if the inline tag node is present.
-     *
-     * @param ast ast node to check.
-     * @return true, if the inline tag node is present.
-     */
-    private static boolean isInlineTagPresent(DetailNode ast) {
-        return ast.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG
-                || ast.getType() == JavadocTokenTypes.HTML_ELEMENT
-                && getInlineTagNodeWithinHtmlElement(ast) != null;
-    }
-
-    /**
-     * Returns an inline javadoc tag node that is within a html tag.
-     *
-     * @param ast html tag node.
-     * @return inline summary javadoc tag node or null if no node is found.
-     */
-    private static DetailNode getInlineTagNodeWithinHtmlElement(DetailNode ast) {
-        DetailNode node = ast;
-        DetailNode result = null;
-        // node can never be null as this method is called when there is a HTML_ELEMENT
-        if (node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
-            result = node;
-        }
-        else if (node.getType() == JavadocTokenTypes.HTML_TAG) {
-            // HTML_TAG always has more than 2 children.
-            node = node.getChildren()[1];
-            result = getInlineTagNodeWithinHtmlElement(node);
-        }
-        else if (node.getType() == JavadocTokenTypes.HTML_ELEMENT
-                // Condition for SINGLETON html element which cannot contain summary node
-                && node.getChildren()[0].getChildren().length > 1) {
-            // Html elements have one tested tag before actual content inside it
-            node = node.getChildren()[0].getChildren()[1];
-            result = getInlineTagNodeWithinHtmlElement(node);
-        }
-        return result;
-    }
-
-    /**
-     * Checks if the first tag inside ast is summary tag.
-     *
-     * @param javadoc root node.
+     * @param inlineTag root node.
      * @return {@code true} if first tag is summary tag.
      */
-    private static boolean isSummaryTag(DetailNode javadoc) {
-        final DetailNode[] child = javadoc.getChildren();
-
-        // Checking size of ast is not required, since ast contains
-        // children of Inline Tag, as at least 2 children will be present which are
-        // RCURLY and LCURLY.
-        return child[1].getType() == JavadocTokenTypes.CUSTOM_NAME
-                && SUMMARY_TEXT.equals(child[1].getText());
+    private static boolean isSummaryTag(DetailNode inlineTag) {
+        return SUMMARY_TEXT.equals(inlineTag.getChildren()[1].getText());
     }
 
     /**
@@ -412,7 +370,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @param ast javadoc root node.
      */
     private void validateSummaryTag(DetailNode ast) {
-        final String inlineSummary = getInlineSummary();
+        final String inlineSummary = JavadocUtil.getContentOfInlineCustomTag(ast);
         final String summaryVisible = getVisibleContent(inlineSummary);
         if (summaryVisible.isEmpty()) {
             log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
@@ -425,24 +383,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
             }
         }
-    }
-
-    /**
-     * Gets entire content of summary tag.
-     *
-     * @return summary sentence of javadoc root node.
-     */
-    private String getInlineSummary() {
-        final DetailAST blockCommentAst = getBlockCommentAst();
-        final String javadocText = blockCommentAst.getFirstChild().getText();
-        final Matcher matcher = SUMMARY_PATTERN.matcher(javadocText);
-        String comment = "";
-        if (matcher.find()) {
-            comment = matcher.group(1);
-        }
-        comment = JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN.matcher(comment)
-                .replaceAll("");
-        return comment;
     }
 
     /**
