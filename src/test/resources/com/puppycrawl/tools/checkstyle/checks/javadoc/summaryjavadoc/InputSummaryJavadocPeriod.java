@@ -10,12 +10,12 @@ period = _
 package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
 
 public class InputSummaryJavadocPeriod
-{   // violation below
+{   // violation below 'First sentence .* missing an ending period.'
     /**
      * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}
      */
     void foo3() {}
-    // violation below
+    // violation below 'First sentence .* missing an ending period.'
     /**
      * Blabla
      */
@@ -33,9 +33,8 @@ public class InputSummaryJavadocPeriod
      * {@summary An especially short bit of Javadoc_}
      */
     void foo7(){}
-    // violation below
     /**
      * {@summary An especially short bit of Javadoc}
-     */
+     */ // violation above 'Summary .* missing an ending period.'
     void foo8() {}
 }
