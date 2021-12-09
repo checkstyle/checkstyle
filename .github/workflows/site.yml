@@ -111,8 +111,10 @@ jobs:
     if: failure() || success()
     steps:
       - name: Get message
+        env:
+          MSG: ${{needs.generate_site.outputs.message}}
         run: |
-          if [ -z  "${{needs.generate_site.outputs.message}}" ]; then
+          if [ -z  "$MSG" ]; then
             JOBS_LINK="https://github.com/checkstyle/checkstyle/actions/runs/${{github.run_id}}"
             API_LINK="https://api.github.com/repos/checkstyle/checkstyle/actions/runs/"
             API_LINK="${API_LINK}${{github.run_id}}/jobs"
@@ -124,7 +126,7 @@ jobs:
             echo "Site generation job failed on phase $(cat job_name)," > message
             echo "step $(cat step_name).<br>Link: $JOBS_LINK" >> message
           else
-            echo "${{needs.generate_site.outputs.message}}" > message
+            echo "$MSG" > message
           fi
 
       - name: Set message
