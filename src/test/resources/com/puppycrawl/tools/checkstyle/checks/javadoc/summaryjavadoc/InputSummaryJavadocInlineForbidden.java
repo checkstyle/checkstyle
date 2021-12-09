@@ -22,46 +22,39 @@ public class InputSummaryJavadocInlineForbidden {
      */
     void foo3() { // ok
     }
-    // violation below
     /**
      * {@summary This code is wrong }
-     */
+     */ // violation above
     void foo5() {
     }
-    // violation below
     /**
      * {@summary This code {@see Javadoc} is wrong }
-     */
+     */ // violation above
     void foo6() {
     }
-    // violation below
     /**
      * {@summary As of , replaced by {@link #setBounds(int, int, int, int)}}
-     */
+     */ // violation above
     void foo11() {
     }
-    // violation below
     /**
      * {@summary This method returns something.}
-     */
+     */ // violation above
     public static final byte NUL = 0;
-    // violation below
     /**
      * {@summary <a href="mailto:vlad@htmlbook.ru"/>}
-     */
+     */ // violation above
     class InnerInputCorrectJavaDocParagraphCheck {
-    // violation below
         /**
          * {@summary foooo@foooo}
-         */
+         */ // violation above
         public static final byte NUL = 0;
 
         /**
          * {@summary Some java@doc.}
          */
         public static final byte NUL_2 = 0; // ok
-    // violation below
-        /**
+        /** // violation below
          * {@summary @return the
          * customer ID some javadoc.}
          */
@@ -95,8 +88,7 @@ public class InputSummaryJavadocInlineForbidden {
                 void foo10() { // ok
                 }
             };
-    // violation below
-    /**
+    /** // violation below
      * {@summary first sentence is normally the summary.
      * Use of html tags:
      * {@throws error}
@@ -110,17 +102,15 @@ public class InputSummaryJavadocInlineForbidden {
     public void validInlineJavadoc()
     {
     }
-    // violation below
     /**
      * {@summary <p> </p>}
-     */
+     */ // violation above
     void foo12() {
     }
-    // violation below
     /**
      * Sentence starts as a plain text sentence
      * {@summary ... but ends in the summary tag}
-     */
+     */ // violation above
     public class TestClass {}
 
     /**
