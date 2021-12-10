@@ -87,4 +87,17 @@ public class InputSimplifyBooleanExpression
 
         return true;
     }
+
+    void testTernaryExpressions() {
+        boolean a = false;
+        boolean b = true;
+        int c = 13;
+        boolean m = c > 1 ? true : false; // violation
+        boolean e = (a == true) // violation
+                ? c > 1 : false; // violation
+        boolean f = a == b ? false : c > 1; // violation
+        boolean q = c > 1 ? (c < 15
+                ? false : b) // violation
+                : a != b;
+    }
 }
