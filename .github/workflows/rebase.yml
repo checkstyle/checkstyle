@@ -11,6 +11,11 @@ on:
   issue_comment:
     types: [created, edited]
 name: Automatic Rebase
+
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   rebase:
     name: Rebase PR
