@@ -58,7 +58,7 @@ jobs:
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
-    - jdk: openjdk8
+    - jdk: openjdk11
       env:
         - DESC="NoErrorTest - Hibernate Search"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
