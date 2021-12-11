@@ -232,10 +232,10 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     public void testEqualsAvoidNullTextBlocks() throws Exception {
 
         final String[] expected = {
-            "13:28: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "15:28: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "22:25: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "32:39: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+            "13:24: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "15:24: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "22:19: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "32:31: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
         };
 
         verifyWithInlineConfigParser(
