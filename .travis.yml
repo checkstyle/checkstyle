@@ -18,12 +18,8 @@ branches:
   only:
     - master
 
-before_install:
-  - sudo rm -rf /usr/local/maven*
-  - sudo apt-get update -qq
-  - sudo apt-get install maven
-
-install: true
+install:
+  - ./.ci/travis/travis.sh install-custom-mvn
 
 jobs:
   fast_finish: true
@@ -66,6 +62,7 @@ jobs:
     - jdk: openjdk11
       env:
         - DESC="NoErrorTest - Hibernate Search"
+        - CUSTOM_MVN_VERION="3.8.1"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
         - CMD2="./.ci/wercker.sh no-error-hibernate-search"
         - CMD="$CMD1 && $CMD2"

@@ -26,6 +26,17 @@ init-m2-repo)
   fi
   ;;
 
+install-custom-mvn)
+  if [[ -n "${CUSTOM_MVN_VERION}" ]]; then
+    echo "Download Maven ${CUSTOM_MVN_VERION}....";
+    wget https://archive.apache.org/dist/maven/maven-3/${CUSTOM_MVN_VERION}/binaries/apache-maven-${CUSTOM_MVN_VERION}-bin.zip || travis_terminate 1;
+    unzip -qq apache-maven-${CUSTOM_MVN_VERION}-bin.zip || travis_terminate 1;
+    export M2_HOME=$PWD/apache-maven-${CUSTOM_MVN_VERION};
+    export PATH=$M2_HOME/bin:$PATH;
+    mvn -version;
+  fi
+  ;;
+
 run-command)
   if [[ $RUN_JOB == 1 ]]; then
     echo "eval of CMD is starting";
