@@ -26,6 +26,37 @@ init-m2-repo)
   fi
   ;;
 
+install-custom-mvn)
+  if [[ -n "${CUSTOM_MVN_VERION}" ]]; then
+    echo "Download Maven ${CUSTOM_MVN_VERION}....";
+    wget https://archive.apache.org/dist/maven/maven-3/${CUSTOM_MVN_VERION}/binaries/apache-maven-${CUSTOM_MVN_VERION}-bin.zip || travis_terminate 1;
+    unzip -qq apache-maven-${CUSTOM_MVN_VERION}-bin.zip || travis_terminate 1;
+    export M2_HOME=$PWD/apache-maven-${CUSTOM_MVN_VERION};
+    export PATH=$M2_HOME/bin:$PATH;
+    mvn -version;
+  fi
+  ;;
+
+run-command)
+  if [[ $RUN_JOB == 1 ]]; then
+    echo "eval of CMD is starting";
+    echo "CMD=$2";
+    eval $2;
+    echo "eval of CMD is completed";
+  fi
+  ;;
+
+run-command-after-success)
+  if [[ -n $CMD_AFTER_SUCCESS
+        && $RUN_JOB == 1
+     ]];
+  then
+      echo "CMD_AFTER_SUCCESS is starting";
+      eval $CMD_AFTER_SUCCESS;
+      echo "CMD_AFTER_SUCCESS is finished";
+  fi
+  ;;
+
 deploy-snapshot)
   SKIP_DEPLOY=false
   if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ];
