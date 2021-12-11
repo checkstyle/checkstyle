@@ -4,6 +4,8 @@ set -e
 
 source ./.ci/util.sh
 
+export RUN_JOB=1
+
 case $1 in
 
 init-m2-repo)
@@ -23,6 +25,39 @@ init-m2-repo)
     fi
   else
     echo "$1 is skipped";
+  fi
+  ;;
+
+install-custom-mvn)
+  if [[ -n "${CUSTOM_MVN_VERION}" ]]; then
+    echo "Download Maven ${CUSTOM_MVN_VERION}....";
+    URL="https://archive.apache.org/dist/maven/maven-3/"
+    URL=$URL"${CUSTOM_MVN_VERION}/binaries/apache-maven-${CUSTOM_MVN_VERION}-bin.zip"
+    wget $URL
+    unzip -qq apache-maven-${CUSTOM_MVN_VERION}-bin.zip
+    export M2_HOME=$PWD/apache-maven-${CUSTOM_MVN_VERION};
+    export PATH=$M2_HOME/bin:$PATH;
+    mvn -version;
+  fi
+  ;;
+
+run-command)
+  if [[ $RUN_JOB == 1 ]]; then
+    echo "eval of CMD is starting";
+    echo "CMD=$2";
+    eval $2;
+    echo "eval of CMD is completed";
+  fi
+  ;;
+
+run-command-after-success)
+  if [[ -n $CMD_AFTER_SUCCESS
+        && $RUN_JOB == 1
+     ]];
+  then
+      echo "CMD_AFTER_SUCCESS is starting";
+      eval $CMD_AFTER_SUCCESS;
+      echo "CMD_AFTER_SUCCESS is finished";
   fi
   ;;
 
