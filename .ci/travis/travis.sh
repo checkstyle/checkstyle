@@ -26,6 +26,26 @@ init-m2-repo)
   fi
   ;;
 
+run-command)
+  if [[ $RUN_JOB == 1 ]]; then
+    echo "eval of CMD is starting";
+    echo "CMD=$2";
+    eval $2;
+    echo "eval of CMD is completed";
+  fi
+  ;;
+
+run-command-after-success)
+  if [[ -n $CMD_AFTER_SUCCESS
+        && $RUN_JOB == 1
+     ]];
+  then
+      echo "CMD_AFTER_SUCCESS is starting";
+      eval $CMD_AFTER_SUCCESS;
+      echo "CMD_AFTER_SUCCESS is finished";
+  fi
+  ;;
+
 deploy-snapshot)
   SKIP_DEPLOY=false
   if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ];
