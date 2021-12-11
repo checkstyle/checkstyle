@@ -58,7 +58,7 @@ jobs:
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
-    - jdk: openjdk8
+    - jdk: openjdk11
       env:
         - DESC="NoErrorTest - Hibernate Search"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
@@ -118,25 +118,10 @@ jobs:
 script:
   - export RUN_JOB=1
   - ./.ci/travis/travis.sh init-m2-repo
-  - |
-    if [[ $RUN_JOB == 1 ]]; then
-      echo "eval of CMD is starting";
-      echo "CMD=$CMD";
-      eval $CMD;
-      echo "eval of CMD is completed";
-    fi
+  - ./.ci/travis/travis.sh run-command "$CMD"
 
 after_success:
-  - |
-    if [[ -n $CMD_AFTER_SUCCESS
-          && $RUN_JOB == 1
-       ]];
-    then
-        echo "CMD_AFTER_SUCCESS is starting";
-        eval $CMD_AFTER_SUCCESS;
-        echo "CMD_AFTER_SUCCESS is finished";
-    fi
-
+  - ./.ci/travis/travis.sh run-command-after-success
   - ./.ci/travis/travis.sh deploy-snapshot
   - ./.ci/travis/travis.sh git-diff
   - ./.ci/travis/travis.sh ci-temp-check
