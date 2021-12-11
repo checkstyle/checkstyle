@@ -23,12 +23,13 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
  * Checks for over-complicated boolean expressions. Currently finds code like
  * {@code if (b == true)}, {@code b || true}, {@code !false},
- * etc.
+ * {@code boolean a = q > 12 ? true : false}, etc.
  * </p>
  * <p>
  * Rationale: Complex boolean logic makes code hard to understand and maintain.
@@ -48,18 +49,22 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     boolean a, b;
  *     Foo c, d, e;
  *
- *     if (!false) {}; // violation, can be simplified to true
+ *     if (!false) {};       // violation, can be simplified to true
  *
- *     if (a == true) {}; // violation, can be simplified to a
- *     if (a == b) {}; // OK
- *     if (a == false) {}; // violation, can be simplified to !a
+ *     if (a == true) {};    // violation, can be simplified to a
+ *     if (a == b) {};       // OK
+ *     if (a == false) {};   // violation, can be simplified to !a
  *     if (!(a != true)) {}; // violation, can be simplified to a
  *
  *     e = (a || b) ? c : d; // OK
- *     e = (a || false) ? c : d; // violation, can be simplified to a
+ *     e = (a || false) ? c : d;     // violation, can be simplified to a
  *     e = (a &amp;&amp; b) ? c : d; // OK
  *
- *  }
+ *     int s = 12;
+ *     boolean m = s > 1 ? true : false;   // violation, can be simplified to s > 1
+ *     boolean f = a == b
+ *             ? false : s > 1; // ok
+ *   }
  *
  * }
  * </pre>
@@ -87,6 +92,24 @@ public class SimplifyBooleanExpressionCheck
      */
     public static final String MSG_KEY = "simplify.expression";
 
+    /**
+     * Token types for unacceptable parent of node of type
+     * {@link TokenTypes#LITERAL_TRUE} or {@link TokenTypes#LITERAL_FALSE}.
+     */
+    private static final int[] UNACCEPTABLE_PARENT_OF_TRUE_OR_FALSE = {
+        TokenTypes.NOT_EQUAL,
+        TokenTypes.EQUAL,
+        TokenTypes.LNOT,
+        TokenTypes.LOR,
+        TokenTypes.LAND,
+    };
+
+    /** Token types for true and false token. */
+    private static final int[] TRUE_AND_FALSE_TOKEN = {
+        TokenTypes.LITERAL_TRUE,
+        TokenTypes.LITERAL_FALSE,
+    };
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -105,17 +128,54 @@ public class SimplifyBooleanExpressionCheck
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST parent = ast.getParent();
-        switch (parent.getType()) {
-            case TokenTypes.NOT_EQUAL:
-            case TokenTypes.EQUAL:
-            case TokenTypes.LNOT:
-            case TokenTypes.LOR:
-            case TokenTypes.LAND:
-                log(parent, MSG_KEY);
-                break;
-            default:
-                break;
+        if (TokenUtil.isOfType(parent, UNACCEPTABLE_PARENT_OF_TRUE_OR_FALSE)
+                || parent.getType() == TokenTypes.QUESTION
+                && canExprWithTernaryOperatorBeSimplified(ast, parent)) {
+            log(parent, MSG_KEY);
         }
     }
 
+    /**
+     * Whether the expression with ternary operator can be simplified.
+     *
+     * @param ast ast
+     * @param parentAst parentAst
+     * @return {@code true} if expression with ternary operator can be simplified
+     */
+    private static boolean canExprWithTernaryOperatorBeSimplified(
+            DetailAST ast, DetailAST parentAst) {
+        final DetailAST previousSibling = ast.getPreviousSibling();
+        final DetailAST nextSibling = ast.getNextSibling();
+
+        return TokenUtil.isOfType(parentAst.getFirstChild(), TRUE_AND_FALSE_TOKEN)
+                || isFirstResultantExprLiteralTrueOrFalse(previousSibling)
+                || isSecResultantExprLiteralTrueOrFalse(nextSibling);
+    }
+
+    /**
+     * Whether the first resultant operand of ternary operator i.e. expression to be executed
+     * when condition is true, is of type
+     * {@link SimplifyBooleanExpressionCheck#TRUE_AND_FALSE_TOKEN}.
+     *
+     * @param previousSibling previousSibling
+     * @return {@code true} if first resultant operand is of type
+     *         {@link SimplifyBooleanExpressionCheck#TRUE_AND_FALSE_TOKEN}
+     */
+    private static boolean isFirstResultantExprLiteralTrueOrFalse(DetailAST previousSibling) {
+        return TokenUtil.isOfType(previousSibling.getPreviousSibling(), TRUE_AND_FALSE_TOKEN);
+    }
+
+    /**
+     * Whether the second resultant operand of ternary operator i.e. expression to be executed
+     * when condition is false, is of type
+     * {@link SimplifyBooleanExpressionCheck#TRUE_AND_FALSE_TOKEN}.
+     *
+     * @param nextSibling nextSibling
+     * @return {@code true} if second resultant operand is of type
+     *         {@link SimplifyBooleanExpressionCheck#TRUE_AND_FALSE_TOKEN}
+     */
+    private static boolean isSecResultantExprLiteralTrueOrFalse(DetailAST nextSibling) {
+        return nextSibling != null
+                && TokenUtil.isOfType(nextSibling.getNextSibling(), TRUE_AND_FALSE_TOKEN);
+    }
 }
