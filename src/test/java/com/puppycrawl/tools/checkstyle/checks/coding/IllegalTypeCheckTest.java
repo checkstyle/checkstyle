@@ -341,6 +341,56 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testRecordComponentsDefault() throws Exception {
+        final String[] expected = {
+            "45:9: " + getCheckMessage(MSG_KEY, "HashSet"),
+            "53:23: " + getCheckMessage(MSG_KEY, "HashSet"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputIllegalTypeRecordsWithMemberModifiersDefault.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordComponentsFinal() throws Exception {
+        final String[] expected = {
+            "45:9: " + getCheckMessage(MSG_KEY, "HashSet"),
+            "53:23: " + getCheckMessage(MSG_KEY, "HashSet"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputIllegalTypeRecordsWithMemberModifiersFinal.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordComponentsPrivateFinal() throws Exception {
+        final String[] expected = {
+            "45:9: " + getCheckMessage(MSG_KEY, "HashSet"),
+            "53:23: " + getCheckMessage(MSG_KEY, "HashSet"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputIllegalTypeRecordsWithMemberModifiersPrivateFinal.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordComponentsPublicProtectedStatic() throws Exception {
+        final String[] expected = {
+            "45:9: " + getCheckMessage(MSG_KEY, "HashSet")};
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputIllegalTypeRecordsWithMemberModifiersPublicProtectedStatic.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final IllegalTypeCheck check = new IllegalTypeCheck();
         assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
