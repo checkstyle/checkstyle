@@ -82,22 +82,22 @@ strategy:
 
     # MacOS JDK8 verify
     'MacOS JDK8 verify':
-      image: 'macOS-10.14'
+      image: 'macOS-11'
       cmd: "export JAVA_HOME=$JAVA_HOME_8_X64 && mvn -e --no-transfer-progress verify"
 
     # MacOS JDK11 verify
     'MacOS JDK11 verify':
-      image: 'macOS-10.14'
+      image: 'macOS-11'
       cmd: "export JAVA_HOME=$JAVA_HOME_11_X64 && mvn -e --no-transfer-progress verify"
 
     # MacOS JDK13 verify
     'MacOS JDK13 verify':
-      image: 'macOS-10.14'
+      image: 'macOS-11'
       cmd: "export JAVA_HOME=$JAVA_HOME_13_X64 && mvn -e --no-transfer-progress verify"
 
     # MacOS JDK14 verify
     'MacOS JDK14 verify':
-      image: 'macOS-10.14'
+      image: 'macOS-11'
       cmd: "export JAVA_HOME=$JAVA_HOME_14_X64 && mvn -e --no-transfer-progress verify"
 
     # moved back to Travis till we find a way to keep secrets in azure
@@ -116,7 +116,7 @@ strategy:
 
     # lint for .md files, OSX is used because there is problem to install gem on linux
     'markdownlint':
-      image: 'macOS-10.14'
+      image: 'macOS-11'
       cmd: "./.ci/travis/travis.sh markdownlint"
       skipCache: true
       needMdl: true
