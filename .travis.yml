@@ -63,6 +63,8 @@ jobs:
       env:
         - DESC="NoErrorTest - Hibernate Search"
         - CUSTOM_MVN_VERION="3.8.1"
+        - M2_HOME="$PWD/apache-maven-${CUSTOM_MVN_VERION}"
+        - PATH="$M2_HOME/bin:$PATH"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
         - CMD2="./.ci/wercker.sh no-error-hibernate-search"
         - CMD="$CMD1 && $CMD2"
