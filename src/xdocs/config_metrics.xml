@@ -469,7 +469,7 @@ class InputClassCoupling {
 }
         </source>
 
-        <p>
+        <p> 
           The check results in a violation in the following:
         </p>
         <source>
@@ -1614,6 +1614,7 @@ class Test2 {
                     operators - 0</td></tr>
             <tr><td>continue</td><td>1</td></tr>
             <tr><td>return</td><td>1</td></tr>
+            <tr><td>return ([expr])</td><td>NP(expr) + 1</td></tr>
             <tr><td>Statement (even sequential statements)</td><td>1</td></tr>
             <tr><td>Empty block {}</td><td>1</td></tr>
             <tr><td>Function call</td><td>1</td></tr>
