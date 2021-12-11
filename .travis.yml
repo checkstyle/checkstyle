@@ -18,6 +18,12 @@ branches:
   only:
     - master
 
+before_install:
+  - sudo rm -rf /usr/local/maven*
+  - sudo sed -ie '/M2_HOME/d' /etc/mavenrc
+  - sudo apt-get update -qq
+  - sudo apt-get install maven
+
 install: true
 
 jobs:
