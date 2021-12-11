@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Checks for over-complicated boolean expressions. Currently finds code like
  * {@code if (b == true)}, {@code b || true}, {@code !false},
- * etc.
+ * {@code boolean a = q > 12 ? true : false}, etc.
  * </p>
  * <p>
  * Rationale: Complex boolean logic makes code hard to understand and maintain.
@@ -48,18 +48,21 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     boolean a, b;
  *     Foo c, d, e;
  *
- *     if (!false) {}; // violation, can be simplified to true
+ *     if (!false) {};       // violation, can be simplified to true
  *
- *     if (a == true) {}; // violation, can be simplified to a
- *     if (a == b) {}; // OK
- *     if (a == false) {}; // violation, can be simplified to !a
+ *     if (a == true) {};    // violation, can be simplified to a
+ *     if (a == b) {};       // OK
+ *     if (a == false) {};   // violation, can be simplified to !a
  *     if (!(a != true)) {}; // violation, can be simplified to a
  *
- *     e = (a || b) ? c : d; // OK
+ *     e = (a || b) ? c : d;     // OK
  *     e = (a || false) ? c : d; // violation, can be simplified to a
- *     e = (a &amp;&amp; b) ? c : d; // OK
+ *     e = (a &amp;&amp; b) ? c : d;     // OK
  *
- *  }
+ *     int s = 12;
+ *     boolean m = s &gt; 1 ? true : false; // violation, can be simplified to s &gt; 1
+ *     boolean f = c == null ? false : c.someMethod(); // OK
+ *   }
  *
  * }
  * </pre>
@@ -113,9 +116,28 @@ public class SimplifyBooleanExpressionCheck
             case TokenTypes.LAND:
                 log(parent, MSG_KEY);
                 break;
+            case TokenTypes.QUESTION:
+                DetailAST nextSibling = ast.getNextSibling();
+                if (isBooleanLiteralType(parent.getFirstChild().getType())
+                        || nextSibling != null
+                        && isBooleanLiteralType(nextSibling.getNextSibling().getType())) {
+                    log(parent, MSG_KEY);
+                }
+                break;
             default:
                 break;
         }
     }
 
+    /**
+     * Checks if a token type is a literal true or false.
+     *
+     * @param tokenType the TokenType
+     * @return true iff tokenType is LITERAL_TRUE or LITERAL_FALSE
+     */
+    private static boolean isBooleanLiteralType(final int tokenType) {
+        final boolean isTrue = tokenType == TokenTypes.LITERAL_TRUE;
+        final boolean isFalse = tokenType == TokenTypes.LITERAL_FALSE;
+        return isTrue || isFalse;
+    }
 }
