@@ -4,6 +4,8 @@ set -e
 
 source ./.ci/util.sh
 
+export RUN_JOB=1
+
 case $1 in
 
 init-m2-repo)
@@ -29,8 +31,10 @@ init-m2-repo)
 install-custom-mvn)
   if [[ -n "${CUSTOM_MVN_VERION}" ]]; then
     echo "Download Maven ${CUSTOM_MVN_VERION}....";
-    wget https://archive.apache.org/dist/maven/maven-3/${CUSTOM_MVN_VERION}/binaries/apache-maven-${CUSTOM_MVN_VERION}-bin.zip || travis_terminate 1;
-    unzip -qq apache-maven-${CUSTOM_MVN_VERION}-bin.zip || travis_terminate 1;
+    URL="https://archive.apache.org/dist/maven/maven-3/"
+    URL=$URL"${CUSTOM_MVN_VERION}/binaries/apache-maven-${CUSTOM_MVN_VERION}-bin.zip"
+    wget $URL
+    unzip -qq apache-maven-${CUSTOM_MVN_VERION}-bin.zip
     export M2_HOME=$PWD/apache-maven-${CUSTOM_MVN_VERION};
     export PATH=$M2_HOME/bin:$PATH;
     mvn -version;

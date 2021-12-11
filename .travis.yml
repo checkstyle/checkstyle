@@ -120,7 +120,6 @@ jobs:
         - USE_MAVEN_REPO="true"
 
 script:
-  - export RUN_JOB=1
   - ./.ci/travis/travis.sh init-m2-repo
   - ./.ci/travis/travis.sh run-command "$CMD"
 
