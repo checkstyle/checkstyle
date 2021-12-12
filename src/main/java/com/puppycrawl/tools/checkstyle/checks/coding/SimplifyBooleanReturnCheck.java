@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
  * <p>
@@ -211,22 +212,9 @@ public class SimplifyBooleanReturnCheck
 
             if (expr.getType() != TokenTypes.SEMI) {
                 final DetailAST value = expr.getFirstChild();
-                booleanReturnStatement = isBooleanLiteralType(value.getType());
+                booleanReturnStatement = CheckUtil.isBooleanLiteralType(value.getType());
             }
         }
         return booleanReturnStatement;
     }
-
-    /**
-     * Checks if a token type is a literal true or false.
-     *
-     * @param tokenType the TokenType
-     * @return true iff tokenType is LITERAL_TRUE or LITERAL_FALSE
-     */
-    private static boolean isBooleanLiteralType(final int tokenType) {
-        final boolean isTrue = tokenType == TokenTypes.LITERAL_TRUE;
-        final boolean isFalse = tokenType == TokenTypes.LITERAL_FALSE;
-        return isTrue || isFalse;
-    }
-
 }
