@@ -6397,6 +6397,7 @@ public class D {
         <p>
           Checks for over-complicated boolean expressions. Currently finds
           code like <code> if (b == true)</code>, <code>b || true</code>, <code>!false</code>,
+          <code>boolean a = q > 12 ? true : false</code>,
           etc.
         </p>
 
@@ -6433,6 +6434,9 @@ public class Test {
     e = (a || false) ? c : d; // violation, can be simplified to a
     e = (a &amp;&amp; b) ? c : d;     // OK
 
+    int s = 12;
+    boolean m = s &gt; 1 ? true : false; // violation, can be simplified to s &gt; 1
+    boolean f = c == null ? false : c.someMethod(); // OK
   }
 
 }
