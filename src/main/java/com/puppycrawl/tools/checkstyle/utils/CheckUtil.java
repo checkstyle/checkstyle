@@ -589,4 +589,16 @@ public final class CheckUtil {
         }
         return length;
     }
+
+    /**
+     * Checks if a token type is a literal true or false.
+     *
+     * @param tokenType the TokenType
+     * @return true if tokenType is LITERAL_TRUE or LITERAL_FALSE
+     */
+    public static boolean isBooleanLiteralType(final int tokenType) {
+        final boolean isTrue = tokenType == TokenTypes.LITERAL_TRUE;
+        final boolean isFalse = tokenType == TokenTypes.LITERAL_FALSE;
+        return isTrue || isFalse;
+    }
 }
