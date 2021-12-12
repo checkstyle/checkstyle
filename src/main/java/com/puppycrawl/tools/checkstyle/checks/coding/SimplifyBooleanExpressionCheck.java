@@ -23,11 +23,13 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
  * <p>
  * Checks for over-complicated boolean expressions. Currently finds code like
  * {@code if (b == true)}, {@code b || true}, {@code !false},
+ * {@code boolean a = q > 12 ? true : false},
  * etc.
  * </p>
  * <p>
@@ -59,6 +61,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     e = (a || false) ? c : d; // violation, can be simplified to a
  *     e = (a &amp;&amp; b) ? c : d;     // OK
  *
+ *     int s = 12;
+ *     boolean m = s &gt; 1 ? true : false; // violation, can be simplified to s &gt; 1
+ *     boolean f = c == null ? false : c.someMethod(); // OK
  *  }
  *
  * }
@@ -112,6 +117,15 @@ public class SimplifyBooleanExpressionCheck
             case TokenTypes.LOR:
             case TokenTypes.LAND:
                 log(parent, MSG_KEY);
+                break;
+            case TokenTypes.QUESTION:
+                final DetailAST nextSibling = ast.getNextSibling();
+                if (CheckUtil.isBooleanLiteralType(parent.getFirstChild().getType())
+                        || nextSibling != null
+                        && CheckUtil.isBooleanLiteralType(
+                        nextSibling.getNextSibling().getType())) {
+                    log(parent, MSG_KEY);
+                }
                 break;
             default:
                 break;
