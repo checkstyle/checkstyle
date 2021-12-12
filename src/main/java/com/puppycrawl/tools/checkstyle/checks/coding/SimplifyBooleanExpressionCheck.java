@@ -58,9 +58,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     e = (a || b) ? c : d; // OK
  *     e = (a || false) ? c : d; // violation, can be simplified to a
  *     e = (a &amp;&amp; b) ? c : d; // OK
- *
- *  }
- *
+ *   }
  * }
  * </pre>
  * <p>
