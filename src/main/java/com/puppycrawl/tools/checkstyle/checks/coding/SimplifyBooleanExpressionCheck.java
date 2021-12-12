@@ -24,6 +24,8 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
+import static com.puppycrawl.tools.checkstyle.utils.CheckUtil.isBooleanLiteralType;
+
 /**
  * <p>
  * Checks for over-complicated boolean expressions. Currently finds code like
@@ -48,14 +50,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     boolean a, b;
  *     Foo c, d, e;
  *
- *     if (!false) {}; // violation, can be simplified to true
+ *     if (!false) {};       // violation, can be simplified to true
  *
- *     if (a == true) {}; // violation, can be simplified to a
- *     if (a == b) {}; // OK
- *     if (a == false) {}; // violation, can be simplified to !a
+ *     if (a == true) {};    // violation, can be simplified to a
+ *     if (a == b) {};       // OK
+ *     if (a == false) {};   // violation, can be simplified to !a
  *     if (!(a != true)) {}; // violation, can be simplified to a
  *
- *     e = (a || b) ? c : d; // OK
+ *     e = (a || b) ? c : d;     // OK
  *     e = (a || false) ? c : d; // violation, can be simplified to a
  *     e = (a &amp;&amp; b) ? c : d; // OK
  *
@@ -113,9 +115,16 @@ public class SimplifyBooleanExpressionCheck
             case TokenTypes.LAND:
                 log(parent, MSG_KEY);
                 break;
+            case TokenTypes.QUESTION:
+                final DetailAST nextSibling = ast.getNextSibling();
+                if (isBooleanLiteralType(parent.getFirstChild().getType())
+                        || nextSibling != null
+                        && isBooleanLiteralType(nextSibling.getNextSibling().getType())) {
+                    log(parent, MSG_KEY);
+                }
+                break;
             default:
                 break;
         }
     }
-
 }
