@@ -9,6 +9,6 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent
 public class InputIndentationLineBreakVariableDeclaration { //indent:0 exp:0
     public void test() { //indent:4 exp:4
         java.lang //indent:8 exp:8
-            .String s = "Test"; //indent:12 exp:12
+            .String s = "Test"; //indent:12 exp:8 warn
     } //indent:4 exp:4
 } //indent:0 exp:0
