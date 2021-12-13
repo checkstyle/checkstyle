@@ -38,13 +38,13 @@ class WithAnonymousClass { //indent:0 exp:0
   InputIndentationAnonymousClasses foo() { //indent:2 exp:2
     return new InputIndentationAnonymousClasses( //indent:4 exp:4
         "Loooooooooooooooong", "SecondLoooooooooong") { //indent:8 exp:>=8
-          @Override public boolean foo() { //indent:10 exp:10
-            Obj2 obj2Intance = new Obj2("", ""); //indent:12 exp:12
-            obj2Intance.equals(new StrangeInstance(new Obj2("", "")) { //indent:12 exp:12
+          @Override public boolean foo() { //indent:10 exp:6,8 warn
+            Obj2 obj2Intance = new Obj2("", ""); //indent:12 exp:8,10 warn
+            obj2Intance.equals(new StrangeInstance(new Obj2("", "")) { //indent:12 exp:8,10 warn
               @Override void foo (String longString, String secondLongString) {} //indent:14 exp:14
             }); //indent:12 exp:12
-            return false; //indent:12 exp:12
-          } //indent:10 exp:10
+            return false; //indent:12 exp:8,10 warn
+          } //indent:10 exp:6,8 warn
         }; //indent:8 exp:8
   } //indent:2 exp:2
 } //indent:0 exp:0
