@@ -113,10 +113,10 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testBadAnnotationOverride() throws Exception {
         final String[] expected = {
-            "17:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "23:17: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "36:13: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "42:21: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "17:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "23:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "36:7: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "42:11: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
         verifyWithInlineConfigParser(
