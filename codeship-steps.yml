@@ -5,6 +5,6 @@
   # tag: master
   service: system
   steps:
-    # -  command: ./.ci/travis/travis.sh site
-    # -  command: ./.ci/travis/travis.sh nondex
+    # -  command: ./.ci/travis.sh site
+    # -  command: ./.ci/travis.sh nondex
     -  command: ls -la
