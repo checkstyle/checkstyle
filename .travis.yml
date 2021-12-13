@@ -19,7 +19,7 @@ branches:
     - master
 
 install:
-  - ./.ci/travis/travis.sh install-custom-mvn
+  - ./.ci/travis.sh install-custom-mvn
 
 jobs:
   fast_finish: true
@@ -40,7 +40,7 @@ jobs:
     # - env:
     #    - DESC="ensure that all modules are used in no exception configs"
     #    - CMD1="export PULL_REQUEST=$TRAVIS_PULL_REQUEST"
-    #    - CMD2="./.ci/travis/validation.sh verify-no-exception-configs"
+    #    - CMD2="./.ci/validation.sh verify-no-exception-configs"
     #    - CMD="$CMD1 && $CMD2"
 
     - jdk: openjdk8
@@ -120,11 +120,11 @@ jobs:
         - USE_MAVEN_REPO="true"
 
 script:
-  - ./.ci/travis/travis.sh init-m2-repo
-  - ./.ci/travis/travis.sh run-command "$CMD"
+  - ./.ci/travis.sh init-m2-repo
+  - ./.ci/travis.sh run-command "$CMD"
 
 after_success:
-  - ./.ci/travis/travis.sh run-command-after-success
-  - ./.ci/travis/travis.sh deploy-snapshot
-  - ./.ci/travis/travis.sh git-diff
-  - ./.ci/travis/travis.sh ci-temp-check
+  - ./.ci/travis.sh run-command-after-success
+  - ./.ci/travis.sh deploy-snapshot
+  - ./.ci/travis.sh git-diff
+  - ./.ci/travis.sh ci-temp-check

@@ -329,7 +329,7 @@ release-dry-run)
   ;;
 
 releasenotes-gen)
-  .ci/travis/xtr_releasenotes-gen.sh
+  .ci/releasenotes-gen.sh
   ;;
 
 pr-age)
@@ -357,7 +357,7 @@ pr-age)
   ;;
 
 check-chmod)
-  .ci/travis/checkchmod.sh
+  .ci/checkchmod.sh
   ;;
 
 no-error-test-sbe)
