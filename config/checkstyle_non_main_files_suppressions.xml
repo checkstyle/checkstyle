@@ -118,18 +118,6 @@
          files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]InputLineLengthLongPackageStatement.java"/>
 
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputMissingOverrideBadAnnotation.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputMissingOverrideBadAnnotation.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputMissingOverrideBadAnnotation.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputMissingOverrideBadAnnotation.java"/>
-
-  <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputMissingOverrideBadOverrideFromObject.java"/>
 
   <suppress id="lineLength"
