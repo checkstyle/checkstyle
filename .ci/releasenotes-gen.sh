@@ -2,7 +2,7 @@
 # Attention, there is no "-x" to avoid problem on Travis
 # to run on local:
 # export READ_ONLY_TOKEN=9ffd28f
-#  && export DRONE_PULL_REQUEST="master" && ./.ci/travis.sh releasenotes-gen
+#  && export DRONE_PULL_REQUEST="master" && ./.ci/validation.sh releasenotes-gen
 
 set -e
 
