@@ -48,6 +48,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;module name="RedundantImport"/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * package Test; // OK
+ * import static Test.MyClass.*; // OK, static import
+ * import static java.lang.Integer.MAX_VALUE; // OK, static import
+ *
+ * import Test.MyClass; // violation, imported from the same package as the current package
+ * import java.lang.String; // violation, the class imported is from the 'java.lang' package
+ * import java.util.Scanner; // OK
+ * import java.util.Scanner; // violation, it is a duplicate of another import
+ * public class MyClass{ };
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
