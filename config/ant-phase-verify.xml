@@ -30,6 +30,7 @@
                 failOnViolation="false"
                 failureProperty="checkstyle.failure.property"
                 executeIgnoredModules="true"
+                localeLanguage="en"
                 >
       <fileset dir="src"
                includes="**/*"
