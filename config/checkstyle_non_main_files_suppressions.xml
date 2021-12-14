@@ -163,15 +163,6 @@
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputMissingOverrideBadOverrideFromOther.java"/>
 
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputMissingOverrideNotOverride.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputMissingOverrideNotOverride.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputAvoidEscapedUnicodeCharacters1.java"/>
-
-  <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrder.java"/>
 
   <suppress id="lineLength"
@@ -230,9 +221,6 @@
 
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderForwardReference.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderInterfaceMemberScopeIsPublic.java"/>
 
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyConstructors.java"/>
