@@ -47,7 +47,7 @@ jobs:
       env:
         - DESC="NoErrorTest - Postgresql JDBC Driver"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/wercker.sh no-error-pgjdbc"
+        - CMD2="./.ci/validation.sh no-error-pgjdbc"
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
@@ -55,7 +55,7 @@ jobs:
       env:
         - DESC="NoErrorTest - Orekit"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/wercker.sh no-error-orekit"
+        - CMD2="./.ci/validation.sh no-error-orekit"
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
@@ -66,7 +66,7 @@ jobs:
         - M2_HOME="$PWD/apache-maven-${CUSTOM_MVN_VERSION}"
         - PATH="$M2_HOME/bin:$PATH"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/wercker.sh no-error-hibernate-search"
+        - CMD2="./.ci/validation.sh no-error-hibernate-search"
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
@@ -75,7 +75,7 @@ jobs:
     #   env:
     #     - DESC="NoErrorTest - checkstyle's sevntu"
     #     - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-    #     - CMD2="./.ci/wercker.sh no-error-checkstyles-sevntu"
+    #     - CMD2="./.ci/validation.sh no-error-checkstyles-sevntu"
     #     - CMD="$CMD1 && $CMD2"
     #     - USE_MAVEN_REPO="true"
 
@@ -83,7 +83,7 @@ jobs:
       env:
         - DESC="NoErrorTest - sevntu-checks"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/wercker.sh no-error-sevntu-checks"
+        - CMD2="./.ci/validation.sh no-error-sevntu-checks"
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
@@ -91,7 +91,7 @@ jobs:
       env:
         - DESC="NoErrorTest - contribution"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/wercker.sh no-error-contribution"
+        - CMD2="./.ci/validation.sh no-error-contribution"
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
@@ -99,7 +99,7 @@ jobs:
       env:
         - DESC="NoErrorTest - methods distance"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/wercker.sh no-error-methods-distance"
+        - CMD2="./.ci/validation.sh no-error-methods-distance"
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
@@ -107,7 +107,7 @@ jobs:
       env:
         - DESC="NoErrorTest - Spring Cloud GCP"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/wercker.sh no-error-spring-cloud-gcp"
+        - CMD2="./.ci/validation.sh no-error-spring-cloud-gcp"
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
@@ -115,7 +115,7 @@ jobs:
       env:
         - DESC="NoErrorTest - EqualsVerifier"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/wercker.sh no-error-equalsverifier"
+        - CMD2="./.ci/validation.sh no-error-equalsverifier"
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
