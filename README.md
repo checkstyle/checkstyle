@@ -89,10 +89,10 @@ The software uses the ANTLR package (https://www.antlr.org/). Its license terms
 are in the file named "RIGHTS.antlr" in this directory.
 
 This product includes software developed by
-The Apache Software Foundation (http://www.apache.org/).
+The Apache Software Foundation (https://www.apache.org/).
 
 The software uses the Logging and Beanutils packages from the
-Apache Commons project (http://commons.apache.org/). The license terms
+Apache Commons project (https://commons.apache.org/). The license terms
 of these packages are in the file named "LICENSE.apache20" in this
 directory.
 

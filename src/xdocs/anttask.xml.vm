@@ -65,8 +65,8 @@
         Or if you use Ant 1.6 and later and assuming that Checkstyle
         is in the library search path, then you may use antlib feature
         of Ant (see <a
-        href="http://ant.apache.org/manual/Types/antlib.html"
-        >http://ant.apache.org/manual/Types/antlib.html</a>
+        href="https://ant.apache.org/manual/Types/antlib.html"
+        >https://ant.apache.org/manual/Types/antlib.html</a>
         for more details).  For example:
       </p>
 
@@ -107,7 +107,7 @@
             <td>fileset</td>
             <td>
               A set of files to run checkstyle on. Nested attribute.
-              See <a href="http://ant.apache.org/manual/Types/fileset.html">fileset</a>
+              See <a href="https://ant.apache.org/manual/Types/fileset.html">fileset</a>
               ant documentation for details
             </td>
             <td>
@@ -120,7 +120,7 @@
             <td>path</td>
             <td>
               A set of path to run checkstyle on. Nested attribute.
-              See <a href="http://ant.apache.org/manual/using.html#path">path</a>
+              See <a href="https://ant.apache.org/manual/using.html#path">path</a>
               ant documentation for details
             </td>
             <td>
@@ -239,11 +239,11 @@
 
       <p>
         This task supports the nested elements <a
-        href="http://ant.apache.org/manual/Types/fileset.html">&lt;fileset&gt;</a>,
+        href="https://ant.apache.org/manual/Types/fileset.html">&lt;fileset&gt;</a>,
         <a
-        href="http://ant.apache.org/manual/using.html#path">&lt;classpath&gt;</a>,
+        href="https://ant.apache.org/manual/using.html#path">&lt;classpath&gt;</a>,
         <a
-        href="http://ant.apache.org/manual/using.html#path">&lt;path&gt;</a>,
+        href="https://ant.apache.org/manual/using.html#path">&lt;path&gt;</a>,
         <code>&lt;formatter&gt;</code>, and <code>&lt;property&gt;</code>.
       </p>
 

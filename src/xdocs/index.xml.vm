@@ -31,8 +31,8 @@
 
       <p>
         A good example of a report that can be produced using Checkstyle and
-        <a href="http://maven.apache.org/">Maven</a> can be <a
-        href="http://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle.html">seen here</a>
+        <a href="https://maven.apache.org/">Maven</a> can be <a
+        href="https://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle.html">seen here</a>
           .
       </p>
     </section>
@@ -345,10 +345,10 @@
               graphs.</td>
             </tr>
             <tr>
-              <td><a href="http://maven.apache.org/">Maven</a></td>
+              <td><a href="https://maven.apache.org/">Maven</a></td>
               <td>Vincent Massol</td>
               <td>Checkstyle supported out of the box</td>
-              <td><a href="http://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle.html">
+              <td><a href="https://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle.html">
                   example report</a></td>
             </tr>
             <tr>

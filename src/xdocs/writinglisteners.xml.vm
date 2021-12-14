@@ -231,10 +231,10 @@ Audit finished. Total errors: 1
     <section name="Examples">
       <p>
         This section describes two examples based on <a
-        href="http://ant.apache.org/">ANT</a> listeners. The first
+        href="https://ant.apache.org/">ANT</a> listeners. The first
         listener, <code> CommonsLoggingListener</code>,
         hands off events to the <a
-        href="http://commons.apache.org/proper/commons-logging/">Apache
+        href="https://commons.apache.org/proper/commons-logging/">Apache
         Commons Logging</a> facade and the second, <code>MailLogger</code>,
         sends a report of an audit via
         e-mail. The discussion of these examples and how to use them is
@@ -249,10 +249,10 @@ Audit finished. Total errors: 1
 
       <p>
         <a
-        href="http://commons.apache.org/proper/commons-logging/">Apache
+        href="https://commons.apache.org/proper/commons-logging/">Apache
         Commons Logging</a> provides a facade for logging tools
         <a
-        href="http://logging.apache.org/log4j/2.x/index.html">log4j</a>,
+        href="https://logging.apache.org/log4j/2.x/index.html">log4j</a>,
         J2SE 1.4, and others. Checkstyle listener <code>CommonsLoggingListener</code>
         responds to an AuditEvent by handing it off to the current Commons Logging Log.
       </p>
@@ -273,11 +273,11 @@ Audit finished. Total errors: 1
         in the classpath because that jar file contains all the Commons
         Logging classes.  The default Log under J2SE 1.4 is wrapper
         class <a
-        href="http://commons.apache.org/proper/commons-logging/apidocs/org/apache/commons/logging/impl/Jdk14Logger.html">
+        href="https://commons.apache.org/proper/commons-logging/apidocs/org/apache/commons/logging/impl/Jdk14Logger.html">
           Jdk14Logger</a>.
         Under earlier Java versions, the default Log is a simple wrapper
         class, <a
-        href="http://commons.apache.org/proper/commons-logging/apidocs/org/apache/commons/logging/impl/SimpleLog.html">
+        href="https://commons.apache.org/proper/commons-logging/apidocs/org/apache/commons/logging/impl/SimpleLog.html">
           SimpleLog</a>.
         Both default logging tools can be used directly from Commons
         Logging; if you need to use other tools such as log4j, then you
@@ -287,7 +287,7 @@ Audit finished. Total errors: 1
       <p>
         Logging configuration details for Jakarta Commons Logging are in
         the <a
-        href="http://commons.apache.org/proper/commons-logging/">documentation</a>.
+        href="https://commons.apache.org/proper/commons-logging/">documentation</a>.
         As a simple example, assume that <code>log4j.jar</code> is in the classpath and the
         following <code>log4j.properties</code> file is
         in the current directory:
