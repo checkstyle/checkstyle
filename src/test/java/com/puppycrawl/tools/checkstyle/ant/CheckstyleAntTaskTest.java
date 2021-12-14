@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.ant;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +30,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.apache.tools.ant.BuildException;
@@ -88,6 +90,17 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertWithMessage("Checker is not processed")
                 .that(TestRootModuleChecker.isProcessed())
                 .isTrue();
+    }
+
+    @Test
+    public final void testNonEnglishLocale() throws IOException {
+        TestRootModuleChecker.reset();
+        final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
+        antTask.setFile(new File(getPath(WARNING_INPUT)));
+        final String language = "zh";
+        antTask.setLocaleLanguage(language);
+        antTask.execute();
+        assertEquals(new Locale(language), Locale.getDefault(), "setLocaleLanguage not work!");
     }
 
     @Test

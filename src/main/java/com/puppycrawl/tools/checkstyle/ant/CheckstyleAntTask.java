@@ -116,6 +116,9 @@ public class CheckstyleAntTask extends Task {
      */
     private boolean executeIgnoredModules;
 
+    /** Locale language to report messages . **/
+    private String localeLanguage;
+
     ////////////////////////////////////////////////////////////////////////////
     // Setters for ANT specific attributes
     ////////////////////////////////////////////////////////////////////////////
@@ -138,6 +141,15 @@ public class CheckstyleAntTask extends Task {
      */
     public void setFailOnViolation(boolean fail) {
         failOnViolation = fail;
+    }
+
+    /**
+     * Sets locale language.
+     *
+     * @param localeLanguage the language to report messages
+     */
+    public void setLocaleLanguage(String localeLanguage) {
+        this.localeLanguage = localeLanguage;
     }
 
     /**
@@ -282,6 +294,10 @@ public class CheckstyleAntTask extends Task {
     @Override
     public void execute() {
         final long startTime = System.currentTimeMillis();
+
+        if (localeLanguage != null) {
+            Locale.setDefault(new Locale(localeLanguage));
+        }
 
         try {
             final String version = CheckstyleAntTask.class.getPackage().getImplementationVersion();
