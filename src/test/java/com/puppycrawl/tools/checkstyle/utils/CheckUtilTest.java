@@ -380,6 +380,16 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertEquals(expected, actual, "Result is not expected");
     }
 
+    @Test
+    public void testIsBooleanLiteralType() {
+        assertTrue(CheckUtil.isBooleanLiteralType(TokenTypes.LITERAL_TRUE),
+                   "Result is not expected");
+        assertTrue(CheckUtil.isBooleanLiteralType(TokenTypes.LITERAL_FALSE),
+                   "Result is not expected");
+        assertFalse(CheckUtil.isBooleanLiteralType(TokenTypes.LOR),
+                    "Result is not expected");
+    }
+
     private DetailAST getNodeFromFile(int type) throws Exception {
         return getNode(JavaParser.parseFile(new File(getPath("InputCheckUtilTest.java")),
             JavaParser.Options.WITH_COMMENTS), type);
