@@ -32,7 +32,10 @@ import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /** Class which handles all the metadata generation and writing calls. */
@@ -45,12 +48,14 @@ public final class MetadataGeneratorUtil {
     /**
      * Generate metadata from the module source files available in the input argument path.
      *
+     * @param shouldPrintToConsole whether violation messages should be printed to console or not
      * @param path arguments
      * @param moduleFolders folders to check
      * @throws IOException ioException
      * @throws CheckstyleException checkstyleException
+     * @noinspection UseOfSystemOutOrSystemErr
      */
-    public static void generate(String path, String... moduleFolders)
+    public static void generate(boolean shouldPrintToConsole, String path, String... moduleFolders)
             throws IOException, CheckstyleException {
         JavadocMetadataScraper.resetModuleDetailsStore();
 
@@ -65,6 +70,21 @@ public final class MetadataGeneratorUtil {
         defaultConfiguration.addChild(treeWalkerConfig);
         treeWalkerConfig.addChild(scraperCheckConfig);
         checker.configure(defaultConfiguration);
+        if (shouldPrintToConsole) {
+            checker.addListener(new DefaultLogger(System.out,
+                    AutomaticBean.OutputStreamOptions.NONE) {
+                @Override
+                public void auditStarted(AuditEvent event) {
+                    getInfoWriter().flush();
+                }
+
+                @Override
+                public void auditFinished(AuditEvent event) {
+                    getInfoWriter().flush();
+                    getErrorWriter().flush();
+                }
+            });
+        }
         dumpMetadata(checker, path, moduleFolders);
     }
 
