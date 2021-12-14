@@ -1888,6 +1888,12 @@
             <excludedLink>https://liberapay.com/checkstyle/</excludedLink>
             <!-- CertPathValidatorException: validity check failed  -->
             <excludedLink>https://www.jarchitect.com</excludedLink>
+            <!-- until new plugins are released to generate link with https -->
+            <excludedLink>http://maven.apache.org/plugins/maven-release-plugin/</excludedLink>
+            <excludedLink>http://maven.apache.org/plugins/maven-deploy-plugin/</excludedLink>
+            <excludedLink>http://maven.apache.org/plugins/maven-eclipse-plugin/</excludedLink>
+            <excludedLink>http://maven.apache.org/plugins/maven-install-plugin/</excludedLink>
+            <excludedLink>http://maven.apache.org/plugins/maven-linkcheck-plugin/</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
