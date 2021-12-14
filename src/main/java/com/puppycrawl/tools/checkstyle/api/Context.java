@@ -24,7 +24,7 @@ import java.util.Collection;
 /**
  * A context to be used in subcomponents. The general idea of
  * Context/Contextualizable was taken from <a target="_top"
- * href="http://avalon.apache.org/closed.html">Jakarta's Avalon framework</a>.
+ * href="https://avalon.apache.org/closed.html">Jakarta's Avalon framework</a>.
  *
  * @see Contextualizable
  */
