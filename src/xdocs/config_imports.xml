@@ -2359,6 +2359,20 @@ public class SomeClass { }
         <source>
 &lt;module name=&quot;RedundantImport&quot;/&gt;
         </source>
+        <p>
+            Example:
+        </p>
+        <source>
+package Test; // OK
+import static Test.MyClass.*; // OK, static import
+import static java.lang.Integer.MAX_VALUE; // OK, static import
+
+import Test.MyClass; // violation, imported from the same package as the current package
+import java.lang.String; // violation, the class imported is from the 'java.lang' package
+import java.util.Scanner; // OK
+import java.util.Scanner; // violation, it is a duplicate of another import
+public class MyClass{ };
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="RedundantImport_Example_of_Usage">
