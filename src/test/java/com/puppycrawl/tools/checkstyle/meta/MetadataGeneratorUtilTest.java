@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.meta;
 
-import static org.junit.Assert.assertEquals;
+import static com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper.MSG_DESC_MISSING;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -31,11 +31,17 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.itsallcode.io.Capturable;
+import org.itsallcode.junit.sysextensions.SystemOutGuard;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
-public final class MetadataGeneratorUtilTest {
+/*@ExtendWith(SystemOutGuard.class)*/
+public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
 
     private final List<String> modulesContainingNoMetadataFile = Arrays.asList(
             "Checker",
@@ -43,12 +49,20 @@ public final class MetadataGeneratorUtilTest {
             "JavadocMetadataScraper"
     );
 
-    @Test
-    public void testMetadataFilesGenerationAllFiles() throws Exception {
+    @Override
+    protected String getPackageLocation() {
+        return null;
+    }
 
-        MetadataGeneratorUtil.generate(System.getProperty("user.dir")
+    @Test
+    public void testMetadataFilesGenerationAllFiles(/*@SystemOutGuard.SysOut Capturable systemOut*/)
+            throws Exception {
+
+        /*systemOut.captureMuted();*/
+        MetadataGeneratorUtil.generate(true, System.getProperty("user.dir")
                         + "/src/main/java/com/puppycrawl/tools/checkstyle",
                 "checks", "filters", "filefilters");
+
         final Set<String> metaFiles;
 
         try (Stream<Path> fileStream = Files.walk(
@@ -67,8 +81,30 @@ public final class MetadataGeneratorUtilTest {
                 .sorted()
                 .collect(Collectors.toCollection(LinkedHashSet::new));
         checkstyleModules.removeAll(modulesContainingNoMetadataFile);
-        assertEquals("Number of generated metadata files dont match with number of checkstyle "
-                        + "module", checkstyleModules, metaFiles);
+
+        Assertions.assertEquals(checkstyleModules, metaFiles,
+                "Number of generated metadata files dont match with number of checkstyle module");
+
+/*        final String[] expectedErrorMessages = {
+            "41: " + getCheckMessage(MSG_DESC_MISSING, "AbstractJavadoc"),
+            "31: " + getCheckMessage(MSG_DESC_MISSING, "AbstractSuper"),
+            "29: " + getCheckMessage(MSG_DESC_MISSING, "AbstractParenPad"),
+            "44: " + getCheckMessage(MSG_DESC_MISSING, "AbstractClassCoupling"),
+            "43: " + getCheckMessage(MSG_DESC_MISSING, "AbstractHeader"),
+            "30: " + getCheckMessage(MSG_DESC_MISSING, "AbstractName"),
+            "26: " + getCheckMessage(MSG_DESC_MISSING, "AbstractAccessControlName"),
+        };
+
+        final String[] actualViolations = systemOut.getCapturedData().split("\\n");
+        final int javadocMetadataScraperLength = " [JavadocMetadataScraper]".length();
+        Arrays.setAll(actualViolations, id -> {
+            final String currString = actualViolations[id];
+            return currString.substring(currString.indexOf(':') + 1,
+                                        currString.length() - javadocMetadataScraperLength);
+        });
+
+        Assertions.assertArrayEquals(expectedErrorMessages, actualViolations,
+                "Expected and actual errors do not match");*/
     }
 
     /**
