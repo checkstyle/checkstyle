@@ -95,7 +95,7 @@ public class InputAvoidEscapedUnicodeCharacters1 {
 
         private String unitAbbrev5 = "\u03bcs";         // violation
         private String unitAbbrev6 = "\u03bcs";        // violation
-        private String unitAbbrev7 = "\u03bcs";        /* comment is separated by tab */ // violation
+        private String unitAbbrev7 = "\u03bcs";       /* comment is separated by tab */ // violation
         private String unitAbbrev8 = "\u03bcs"; /* comment // violation
                                                    has 2 lines */
         void foo() {
