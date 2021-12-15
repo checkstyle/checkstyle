@@ -50,10 +50,18 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
     public void testDefault()
             throws Exception {
         final String[] expected = {
-            "15:15: " + getCheckMessage(MSG_KEY, "field"),
-            "16:15: " + getCheckMessage(MSG_KEY, "field"),
-            "18:14: " + getCheckMessage(MSG_KEY, "field"),
-            "26:30: " + getCheckMessage(MSG_KEY, "field1"),
+            "17:15: " + getCheckMessage(MSG_KEY, "field"),
+            "18:15: " + getCheckMessage(MSG_KEY, "field"),
+            "20:14: " + getCheckMessage(MSG_KEY, "field"),
+            "28:30: " + getCheckMessage(MSG_KEY, "field1"),
+            "45:31: " + getCheckMessage(MSG_KEY, "q"),
+            "46:39: " + getCheckMessage(MSG_KEY, "q"),
+            "47:34: " + getCheckMessage(MSG_KEY, "w"),
+            "49:41: " + getCheckMessage(MSG_KEY, "w"),
+            "50:49: " + getCheckMessage(MSG_KEY, "a"),
+            "52:11: " + getCheckMessage(MSG_KEY, "c"),
+            "53:11: " + getCheckMessage(MSG_KEY, "d"),
+            "63:15: " + getCheckMessage(MSG_KEY, "d"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterAssignmentWithUnchecked.java"),
@@ -65,6 +73,17 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterAssignmentReceiver.java"), expected);
+    }
+
+    @Test
+    public void testEnhancedSwitch() throws Exception {
+        final String[] expected = {
+            "14:28: " + getCheckMessage(MSG_KEY, "a"),
+            "21:16: " + getCheckMessage(MSG_KEY, "result"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputParameterAssignmentWithEnhancedSwitch.java"),
+                expected);
     }
 
     @Test
