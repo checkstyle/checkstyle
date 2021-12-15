@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -70,6 +71,17 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  *     local -= 2;  // OK
  *     return local;
  *   }
+ *
+ *   IntPredicate obj = a -&gt; ++a == 12; // violation
+ *   IntBinaryOperator obj2 = (int a, int b) -&gt; {
+ *       a++;     // violation
+ *       b += 12; // violation
+ *       return a + b;
+ *   };
+ *   IntPredicate obj3 = a -&gt; {
+ *       int b = a; // ok
+ *       return ++b == 12;
+ *   };
  * }
  * </pre>
  * <p>
@@ -94,6 +106,30 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY = "parameter.assignment";
+
+    /** Token types for various assign tokens. */
+    private static final int[] ASSIGN_TOKENS = {
+        TokenTypes.ASSIGN,
+        TokenTypes.PLUS_ASSIGN,
+        TokenTypes.MINUS_ASSIGN,
+        TokenTypes.STAR_ASSIGN,
+        TokenTypes.DIV_ASSIGN,
+        TokenTypes.MOD_ASSIGN,
+        TokenTypes.SR_ASSIGN,
+        TokenTypes.BSR_ASSIGN,
+        TokenTypes.SL_ASSIGN,
+        TokenTypes.BAND_ASSIGN,
+        TokenTypes.BXOR_ASSIGN,
+        TokenTypes.BOR_ASSIGN,
+    };
+
+    /** Token types for increment and decrement tokens. */
+    private static final int[] INC_DEC_TOKENS = {
+        TokenTypes.INC,
+        TokenTypes.POST_INC,
+        TokenTypes.DEC,
+        TokenTypes.POST_DEC,
+    };
 
     /** Stack of methods' parameters. */
     private final Deque<Set<String>> parameterNamesStack = new ArrayDeque<>();
@@ -126,6 +162,7 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
             TokenTypes.POST_INC,
             TokenTypes.DEC,
             TokenTypes.POST_DEC,
+            TokenTypes.LAMBDA,
         };
     }
 
@@ -143,63 +180,40 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        switch (ast.getType()) {
-            case TokenTypes.CTOR_DEF:
-            case TokenTypes.METHOD_DEF:
-                visitMethodDef(ast);
-                break;
-            case TokenTypes.ASSIGN:
-            case TokenTypes.PLUS_ASSIGN:
-            case TokenTypes.MINUS_ASSIGN:
-            case TokenTypes.STAR_ASSIGN:
-            case TokenTypes.DIV_ASSIGN:
-            case TokenTypes.MOD_ASSIGN:
-            case TokenTypes.SR_ASSIGN:
-            case TokenTypes.BSR_ASSIGN:
-            case TokenTypes.SL_ASSIGN:
-            case TokenTypes.BAND_ASSIGN:
-            case TokenTypes.BXOR_ASSIGN:
-            case TokenTypes.BOR_ASSIGN:
-                visitAssign(ast);
-                break;
-            case TokenTypes.INC:
-            case TokenTypes.POST_INC:
-            case TokenTypes.DEC:
-            case TokenTypes.POST_DEC:
-                visitIncDec(ast);
-                break;
-            default:
-                throw new IllegalStateException(ast.toString());
+        final int type = ast.getType();
+        if (TokenUtil.isOfType(type, TokenTypes.CTOR_DEF, TokenTypes.METHOD_DEF)) {
+            visitMethodDef(ast);
+        }
+        else if (type == TokenTypes.LAMBDA) {
+            if (ast.getParent().getType() != TokenTypes.SWITCH_RULE) {
+                visitLambda(ast);
+            }
+        }
+        else if (TokenUtil.isOfType(type, ASSIGN_TOKENS)) {
+            visitAssign(ast);
+        }
+        else if (TokenUtil.isOfType(type, INC_DEC_TOKENS)) {
+            visitIncDec(ast);
+        }
+        else {
+            throw new IllegalStateException(ast.toString());
         }
     }
 
     @Override
     public void leaveToken(DetailAST ast) {
-        switch (ast.getType()) {
-            case TokenTypes.CTOR_DEF:
-            case TokenTypes.METHOD_DEF:
-                leaveMethodDef();
-                break;
-            case TokenTypes.ASSIGN:
-            case TokenTypes.PLUS_ASSIGN:
-            case TokenTypes.MINUS_ASSIGN:
-            case TokenTypes.STAR_ASSIGN:
-            case TokenTypes.DIV_ASSIGN:
-            case TokenTypes.MOD_ASSIGN:
-            case TokenTypes.SR_ASSIGN:
-            case TokenTypes.BSR_ASSIGN:
-            case TokenTypes.SL_ASSIGN:
-            case TokenTypes.BAND_ASSIGN:
-            case TokenTypes.BXOR_ASSIGN:
-            case TokenTypes.BOR_ASSIGN:
-            case TokenTypes.INC:
-            case TokenTypes.POST_INC:
-            case TokenTypes.DEC:
-            case TokenTypes.POST_DEC:
-                // Do nothing
-                break;
-            default:
-                throw new IllegalStateException(ast.toString());
+        final int type = ast.getType();
+        if (TokenUtil.isOfType(type, TokenTypes.CTOR_DEF, TokenTypes.METHOD_DEF)) {
+            popParameterNamesStack();
+        }
+        else if (type == TokenTypes.LAMBDA) {
+            if (ast.getParent().getType() != TokenTypes.SWITCH_RULE) {
+                popParameterNamesStack();
+            }
+        }
+        else if (!TokenUtil.isOfType(type, ASSIGN_TOKENS)
+                && !TokenUtil.isOfType(type, INC_DEC_TOKENS)) {
+            throw new IllegalStateException(ast.toString());
         }
     }
 
@@ -248,8 +262,24 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
         visitMethodParameters(ast.findFirstToken(TokenTypes.PARAMETERS));
     }
 
+    /**
+     * Creates new set of parameters and store old one in stack.
+     *
+     * @param lambdaAst node of type {@link TokenTypes#LAMBDA}.
+     */
+    private void visitLambda(DetailAST lambdaAst) {
+        parameterNamesStack.push(parameterNames);
+        parameterNames = new HashSet<>();
+
+        DetailAST parameterAst = lambdaAst.findFirstToken(TokenTypes.PARAMETERS);
+        if (parameterAst == null) {
+            parameterAst = lambdaAst.getFirstChild();
+        }
+        visitLambdaParameters(parameterAst);
+    }
+
     /** Restores old set of parameters. */
-    private void leaveMethodDef() {
+    private void popParameterNamesStack() {
         parameterNames = parameterNamesStack.pop();
     }
 
@@ -259,8 +289,31 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
      * @param ast a method for process.
      */
     private void visitMethodParameters(DetailAST ast) {
+        visitParameters(ast);
+    }
+
+    /**
+     * Creates new parameter set for given lambda expression.
+     *
+     * @param ast a lambda expression parameter to process
+     */
+    private void visitLambdaParameters(DetailAST ast) {
+        if (ast.getType() == TokenTypes.IDENT) {
+            parameterNames.add(ast.getText());
+        }
+        else {
+            visitParameters(ast);
+        }
+    }
+
+    /**
+     * Visits parameter list and adds parameter names to the set.
+     *
+     * @param parametersAst ast node of type {@link TokenTypes#PARAMETERS}.
+     */
+    private void visitParameters(DetailAST parametersAst) {
         DetailAST parameterDefAST =
-            ast.findFirstToken(TokenTypes.PARAMETER_DEF);
+            parametersAst.findFirstToken(TokenTypes.PARAMETER_DEF);
 
         while (parameterDefAST != null) {
             if (parameterDefAST.getType() == TokenTypes.PARAMETER_DEF
