@@ -54,6 +54,11 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
             "16:15: " + getCheckMessage(MSG_KEY, "field"),
             "18:14: " + getCheckMessage(MSG_KEY, "field"),
             "26:30: " + getCheckMessage(MSG_KEY, "field1"),
+            "43:31: " + getCheckMessage(MSG_KEY, "q"),
+            "44:39: " + getCheckMessage(MSG_KEY, "q"),
+            "45:34: " + getCheckMessage(MSG_KEY, "w"),
+            "47:41: " + getCheckMessage(MSG_KEY, "w"),
+            "56:15: " + getCheckMessage(MSG_KEY, "d"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterAssignmentWithUnchecked.java"),
