@@ -70,6 +70,13 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  *     local -= 2;  // OK
  *     return local;
  *   }
+ *
+ *   IntPredicate obj = a -&gt; ++a == 12; // violation
+ *   IntBinaryOperator obj2 = (int a, int b) -&gt; {
+ *       a++;     // violation
+ *       b += 12; // violation
+ *       return a + b;
+ *   };
  * }
  * </pre>
  * <p>
@@ -126,6 +133,7 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
             TokenTypes.POST_INC,
             TokenTypes.DEC,
             TokenTypes.POST_DEC,
+            TokenTypes.LAMBDA,
         };
     }
 
@@ -147,6 +155,9 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
             case TokenTypes.CTOR_DEF:
             case TokenTypes.METHOD_DEF:
                 visitMethodDef(ast);
+                break;
+            case TokenTypes.LAMBDA:
+                visitLambda(ast);
                 break;
             case TokenTypes.ASSIGN:
             case TokenTypes.PLUS_ASSIGN:
@@ -178,7 +189,8 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
         switch (ast.getType()) {
             case TokenTypes.CTOR_DEF:
             case TokenTypes.METHOD_DEF:
-                leaveMethodDef();
+            case TokenTypes.LAMBDA:
+                leaveMethodDefOrLambda();
                 break;
             case TokenTypes.ASSIGN:
             case TokenTypes.PLUS_ASSIGN:
@@ -248,8 +260,24 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
         visitMethodParameters(ast.findFirstToken(TokenTypes.PARAMETERS));
     }
 
+    /**
+     * Creates new set of parameters and store old one in stack.
+     *
+     * @param lambdaAst node of type {@link TokenTypes#LAMBDA}.
+     */
+    private void visitLambda(DetailAST lambdaAst) {
+        parameterNamesStack.push(parameterNames);
+        parameterNames = new HashSet<>();
+
+        DetailAST parameterAst = lambdaAst.findFirstToken(TokenTypes.PARAMETERS);
+        if (parameterAst == null) {
+            parameterAst = lambdaAst.getFirstChild();
+        }
+        visitLambdaParameters(parameterAst);
+    }
+
     /** Restores old set of parameters. */
-    private void leaveMethodDef() {
+    private void leaveMethodDefOrLambda() {
         parameterNames = parameterNamesStack.pop();
     }
 
@@ -259,8 +287,31 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
      * @param ast a method for process.
      */
     private void visitMethodParameters(DetailAST ast) {
+        visitParameters(ast);
+    }
+
+    /**
+     * Creates new parameter set for given lambda expression.
+     *
+     * @param ast a lambda expression parameter to process
+     */
+    private void visitLambdaParameters(DetailAST ast) {
+        if (ast.getType() == TokenTypes.IDENT) {
+            parameterNames.add(ast.getText());
+        }
+        else {
+            visitParameters(ast);
+        }
+    }
+
+    /**
+     * Visits parameter list and adds parameter names to the set.
+     *
+     * @param parametersAst ast node of type {@link TokenTypes#PARAMETERS}.
+     */
+    private void visitParameters(DetailAST parametersAst) {
         DetailAST parameterDefAST =
-            ast.findFirstToken(TokenTypes.PARAMETER_DEF);
+            parametersAst.findFirstToken(TokenTypes.PARAMETER_DEF);
 
         while (parameterDefAST != null) {
             if (parameterDefAST.getType() == TokenTypes.PARAMETER_DEF

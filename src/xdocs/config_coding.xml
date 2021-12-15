@@ -5891,6 +5891,13 @@ class MyClass {
     local -= 2;  // OK
     return local;
   }
+
+  IntPredicate obj = a -&gt; ++a == 12; // violation
+  IntBinaryOperator obj2 = (int a, int b) -&gt; {
+      a++;     // violation
+      b += 12; // violation
+      return a + b;
+  };
 }
         </source>
       </subsection>
