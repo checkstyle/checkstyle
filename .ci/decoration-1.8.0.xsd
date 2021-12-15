@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- copy from http://maven.apache.org/xsd/decoration-1.8.0.xsd ,
+<!-- copy from https://maven.apache.org/xsd/decoration-1.8.0.xsd ,
      just to make build stable in offline mode.
      source was a bit formatted to pass LineLength and NewlineAtEndOfFile and
      spelling validation
