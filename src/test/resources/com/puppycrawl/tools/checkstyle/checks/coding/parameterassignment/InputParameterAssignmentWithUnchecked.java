@@ -6,6 +6,8 @@ ParameterAssignment
 
 package com.puppycrawl.tools.checkstyle.checks.coding.parameterassignment;
 
+import javax.annotation.Nullable;
+
 public class InputParameterAssignmentWithUnchecked {
     int field;
     void foo1(int field) {
@@ -40,7 +42,37 @@ public class InputParameterAssignmentWithUnchecked {
         int i = EXPR;
     }
 
+    SomeInterface obj = q -> q++; // violation
+    SomeInterface obj2 = (int q) -> q += 12; // violation
+    SomeInterface obj3 = (w) -> w--; // violation
+    AnotherInterface obj4 = (int q, int w) -> obj.equals(obj2);
+    AnotherInterface obj5 = (q, w) -> w = 14; // violation
+    SomeInterface obj6 = (@Nullable int a) -> a += 12; // violation
+    AnotherInterface obj7 = (@Nullable int c, @Nullable int d) -> {
+        c += d; // violation
+        d += c; // violation
+    };
+
+    void method() {
+        int q = 12;
+        SomeInterface obj = (d) -> {
+            SomeInterface b = (c) -> obj2.equals(obj4);
+            int c = 12;
+            c++;
+            SomeInterface r = (field) -> this.field++;
+            d -= 10; // violation
+        };
+    }
+
     public static abstract class NestedClass {
         public abstract void test(String hidden);
+    }
+
+    public interface SomeInterface {
+        void method(int a);
+    }
+
+    public interface AnotherInterface {
+        void method(int a, int b);
     }
 }
