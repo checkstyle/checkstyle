@@ -199,7 +199,7 @@ public class DeclarationOrderCheckTest
     @Test
     public void testDeclarationOrderInterfaceMemberScopeIsPublic() throws Exception {
         final String[] expected = {
-            "21:5: " + getCheckMessage(MSG_STATIC),
+            "21:3: " + getCheckMessage(MSG_STATIC),
         };
         verifyWithInlineConfigParser(
                 getPath("InputDeclarationOrderInterfaceMemberScopeIsPublic.java"),
