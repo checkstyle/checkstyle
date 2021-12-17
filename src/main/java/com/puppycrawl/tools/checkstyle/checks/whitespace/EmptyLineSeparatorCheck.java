@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.StringUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -807,8 +808,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         // 3 is the number of the pre-previous line because the numbering starts from zero.
         final int number = 3;
         if (lineNo >= number) {
-            final String prePreviousLine = getLines()[lineNo - number];
-            result = CommonUtil.isBlank(prePreviousLine);
+            final int[] codePoints = getLineCodePoints(lineNo - number);
+            result = CommonUtil.isBlank(codePoints);
         }
         return result;
     }
@@ -883,8 +884,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         final int lineNo = token.getLineNo();
         if (lineNo != 1) {
             // [lineNo - 2] is the number of the previous line as the numbering starts from zero.
-            final String lineBefore = getLines()[lineNo - 2];
-            result = CommonUtil.isBlank(lineBefore);
+            final int[] codePoints = getLineCodePoints(lineNo - 2);
+            result = CommonUtil.isBlank(codePoints);
         }
         return result;
     }
@@ -900,8 +901,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         // from zero.
         boolean result = false;
         if (comment != null) {
-            final String lineWithComment = getLines()[comment.getLineNo() - 1].trim();
-            result = lineWithComment.startsWith("//") || lineWithComment.startsWith("/*");
+            final int[] codePoints = StringUtil.trim(getLineCodePoints(comment.getLineNo() - 1));
+            result = StringUtil.startsWith(codePoints, "//", 0)
+                     || StringUtil.startsWith(codePoints, "/*", 0);
         }
         return result;
     }
