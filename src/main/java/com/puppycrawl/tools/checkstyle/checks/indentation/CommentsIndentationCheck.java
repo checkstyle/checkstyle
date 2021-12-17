@@ -954,10 +954,10 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private int countEmptyLines(DetailAST startStatement, DetailAST endStatement) {
         int emptyLinesNumber = 0;
-        final String[] lines = getLines();
         final int endLineNo = endStatement.getLineNo();
         for (int lineNo = startStatement.getLineNo(); lineNo < endLineNo; lineNo++) {
-            if (CommonUtil.isBlank(lines[lineNo])) {
+            final int[] codePoints = getLineCodePoints(lineNo);
+            if (CommonUtil.isBlank(codePoints)) {
                 emptyLinesNumber++;
             }
         }
@@ -1108,9 +1108,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @return the column number where a code starts.
      */
     private int getLineStart(int lineNo) {
-        final char[] line = getLines()[lineNo - 1].toCharArray();
+        final int[] codePoints = getLineCodePoints(lineNo - 1);
         int lineStart = 0;
-        while (Character.isWhitespace(line[lineStart])) {
+        while (CommonUtil.isCodePointWhitespace(codePoints, lineStart)) {
             lineStart++;
         }
         return lineStart;
@@ -1145,9 +1145,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @return true if current single line comment is trailing comment.
      */
     private boolean isTrailingSingleLineComment(DetailAST singleLineComment) {
-        final String targetSourceLine = getLine(singleLineComment.getLineNo() - 1);
+        final int[] codePoints = getLineCodePoints(singleLineComment.getLineNo() - 1);
         final int commentColumnNo = singleLineComment.getColumnNo();
-        return !CommonUtil.hasWhitespaceBefore(commentColumnNo, targetSourceLine);
+        return !CommonUtil.hasWhitespaceBefore(codePoints, commentColumnNo);
     }
 
     /**
@@ -1163,10 +1163,10 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @return true if current comment block is trailing comment.
      */
     private boolean isTrailingBlockComment(DetailAST blockComment) {
-        final String commentLine = getLine(blockComment.getLineNo() - 1);
+        final int[] codePoints = getLineCodePoints(blockComment.getLineNo() - 1);
         final int commentColumnNo = blockComment.getColumnNo();
         final DetailAST nextSibling = blockComment.getNextSibling();
-        return !CommonUtil.hasWhitespaceBefore(commentColumnNo, commentLine)
+        return !CommonUtil.hasWhitespaceBefore(codePoints, commentColumnNo)
             || nextSibling != null && TokenUtil.areOnSameLine(nextSibling, blockComment);
     }
 

@@ -1,0 +1,187 @@
+////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001-2021 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.utils;
+
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.io.Closeable;
+import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.util.Arrays;
+import java.util.Dictionary;
+
+import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+
+public class StringUtilTest extends AbstractPathTestSupport {
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/utils/stringutil";
+    }
+
+    @Test
+    public void testIsProperUtilsClass() throws ReflectiveOperationException {
+        assertTrue(isUtilsClassHasPrivateConstructor(StringUtil.class, true),
+                "Constructor is not private");
+    }
+
+    @Test
+    public void testGetNoOfCodeUnits() {
+        final int[] codePoints = {128514, 129315, 129321};
+        assertEquals(6, StringUtil.getNoOfCodeUnits(codePoints),
+                "Invalid parameter provided");
+    }
+
+    @Test
+    public void testGetExistingConstructor() throws NoSuchMethodException {
+        final Constructor<?> constructor = StringUtil.getConstructor(String.class, String.class);
+
+        assertEquals(String.class.getConstructor(String.class), constructor, "Invalid constructor");
+    }
+
+    @Test
+    public void testGetNonExistentConstructor() {
+        try {
+            StringUtil.getConstructor(Math.class);
+            fail("IllegalStateException is expected");
+        }
+        catch (IllegalStateException expected) {
+            assertSame(NoSuchMethodException.class, expected.getCause().getClass(),
+                    "Invalid exception cause");
+        }
+    }
+
+    @Test
+    public void testInvokeConstructor() throws NoSuchMethodException {
+        final Constructor<String> constructor = String.class.getConstructor(String.class);
+
+        final String constructedString = StringUtil.invokeConstructor(constructor, "string");
+
+        assertEquals("string", constructedString, "Invalid construction result");
+    }
+
+    @Test
+    public void testInvokeConstructorThatFails() throws NoSuchMethodException {
+        final Constructor<Dictionary> constructor = Dictionary.class.getConstructor();
+
+        try {
+            StringUtil.invokeConstructor(constructor);
+            fail("IllegalStateException is expected");
+        }
+        catch (IllegalStateException expected) {
+            assertSame(InstantiationException.class,
+                    expected.getCause().getClass(), "Invalid exception cause");
+        }
+    }
+
+    @Test
+    public void testClose() {
+        final TestCloseable closeable = new TestCloseable();
+
+        StringUtil.close(null);
+        StringUtil.close(closeable);
+
+        assertTrue(closeable.closed, "Should be closed");
+    }
+
+    @Test
+    public void testCloseWithException() {
+        try {
+            StringUtil.close(() -> {
+                throw new IOException("Test IOException");
+            });
+            fail("exception expected");
+        }
+        catch (IllegalStateException ex) {
+            assertEquals("Cannot close the stream", ex.getMessage(), "Invalid exception message");
+        }
+    }
+
+    @Test
+    public void testSubArray() {
+        final int[] codePoints = {128514, 129315, 129321, 129320, 127876, 128579, 128526};
+        final int[] expected1 = {128514, 129315, 129321};
+        assertEquals(Arrays.toString(expected1),
+                Arrays.toString(StringUtil.subArray(codePoints, 0, 3)),
+                "Invalid begin and end index");
+        final int[] expected2 = {129320, 127876, 128579};
+        assertEquals(Arrays.toString(expected2),
+                Arrays.toString(StringUtil.subArray(codePoints, 3, 6)),
+                "Invalid begin and end index");
+        final int[] expected3 = {};
+        assertEquals(Arrays.toString(expected3),
+                Arrays.toString(StringUtil.subArray(codePoints, 0, 0)),
+                "Invalid begin and end index");
+    }
+
+    @Test
+    public void testTrim() {
+        final int[] whitespaceArray1 = {32, 32, 32, 116, 114, 105, 109};
+        final int[] expected1 = {116, 114, 105, 109};
+        assertEquals(Arrays.toString(expected1),
+                Arrays.toString(StringUtil.trim(whitespaceArray1)),
+                "Invalid array provided");
+        final int[] whitespaceArray2 = {32, 32, 32, 116, 114, 105, 109, 32, 32, 32};
+        final int[] expected2 = {116, 114, 105, 109};
+        assertEquals(Arrays.toString(expected2),
+                Arrays.toString(StringUtil.trim(whitespaceArray2)),
+                "Invalid array provided");
+    }
+
+    @Test
+    public void testIndexOfCharacter() {
+        final int[] input1 = {116, 32, 115, 116, 32, 99, 97, 115, 101};
+        assertEquals(4, StringUtil.indexOfCharacter(input1, 2, ' '),
+                "Invalid index provided");
+        final int[] input2 = {102, 105, 110, 100, 38, 97, 102, 116, 101, 114, 53};
+        assertEquals(-1, StringUtil.indexOfCharacter(input2, 5, '&'),
+                "Invalid index provided");
+    }
+
+    @Test
+    public void testStartsWith() {
+        final int[] input1 = {47, 47, 32, 99, 111, 109, 109, 101, 110, 116};
+        assertTrue(StringUtil.startsWith(input1, "/", 0),
+                "Should return true when elements from fromIndex matches prefix.");
+        assertFalse(StringUtil.startsWith(input1, "/*", 0),
+                "Should return false when elements from fromIndex doesn't matches prefix.");
+        assertFalse(StringUtil.startsWith(input1, "/", -1),
+                "Should return false when fromIndex is not a valid index");
+    }
+
+    private static class TestCloseable implements Closeable {
+
+        private boolean closed;
+
+        @Override
+        public void close() {
+            closed = true;
+        }
+
+    }
+
+}

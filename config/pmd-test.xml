@@ -208,6 +208,8 @@
                  | //ClassOrInterfaceDeclaration[@SimpleName='XpathFileGeneratorAuditListenerTest']
                      //MethodDeclaration[@Name='verifyOutput']
                  | //ClassOrInterfaceDeclaration[@SimpleName='CommonUtilTest']
+                     //MethodDeclaration[@Name='testClose']
+                 | //ClassOrInterfaceDeclaration[@SimpleName='StringUtilTest']
                      //MethodDeclaration[@Name='testClose']"/>
     </properties>
   </rule>
