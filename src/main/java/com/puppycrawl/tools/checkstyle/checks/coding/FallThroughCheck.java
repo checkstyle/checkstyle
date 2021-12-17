@@ -496,7 +496,7 @@ public class FallThroughCheck extends AbstractCheck {
             //    }
             final int startLineNo = currentCase.getLineNo();
             for (int i = endLineNo - 2; i > startLineNo - 1; i--) {
-                if (!CommonUtil.isBlank(lines[i])) {
+                if (!CommonUtil.isBlank(getLineCodePoints(i))) {
                     allThroughComment = matchesComment(reliefPattern, lines[i], i + 1);
                     break;
                 }
