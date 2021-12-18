@@ -335,4 +335,15 @@ public class TokenUtilTest {
         assertFalse(result3, "Token type should not match");
     }
 
+    @Test
+    public void testIsBooleanLiteralType() {
+        assertTrue(TokenUtil.isBooleanLiteralType(TokenTypes.LITERAL_TRUE),
+                   "Result is not expected");
+        assertTrue(TokenUtil.isBooleanLiteralType(TokenTypes.LITERAL_FALSE),
+                   "Result is not expected");
+        assertFalse(TokenUtil.isBooleanLiteralType(TokenTypes.LOR),
+                    "Result is not expected");
+    }
+
+
 }
