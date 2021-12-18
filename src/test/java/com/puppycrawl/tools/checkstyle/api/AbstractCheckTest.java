@@ -180,6 +180,34 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testGetLineCodePoints() throws Exception {
+        final AbstractCheck check = new AbstractCheck() {
+            @Override
+            public int[] getDefaultTokens() {
+                return CommonUtil.EMPTY_INT_ARRAY;
+            }
+
+            @Override
+            public int[] getAcceptableTokens() {
+                return getDefaultTokens();
+            }
+
+            @Override
+            public int[] getRequiredTokens() {
+                return getDefaultTokens();
+            }
+        };
+        check.setFileContents(new FileContents(new FileText(
+                new File(getPath("InputAbstractCheckTestFileContents.java")),
+                Charset.defaultCharset().name())));
+        final int[] expectedCodePoints = {32, 32, 32, 32, 112, 117, 98, 108, 105, 99, 32, 105, 110,
+            116, 32, 103, 101, 116, 86, 97, 114, 105, 97, 98, 108, 101, 40, 41, 32, 123};
+        assertWithMessage("Invalid line content")
+                .that(check.getLineCodePoints(12))
+                .isEqualTo(expectedCodePoints);
+    }
+
+    @Test
     public void testGetTabWidth() {
         final AbstractCheck check = new AbstractCheck() {
             @Override
