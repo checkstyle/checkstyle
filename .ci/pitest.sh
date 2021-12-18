@@ -38,7 +38,6 @@ pitest-annotation|pitest-design \
 |pitest-packagenamesloader \
 |pitest-common-2|pitest-misc|pitest-xpath \
 |pitest-filters \
-|pitest-coding \
 |pitest-regexp \
 |pitest-meta \
 |pitest-java-ast-visitor)
@@ -52,6 +51,15 @@ pitest-main)
   mvn --no-transfer-progress -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
   "Main.java.html:<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>"
+  );
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
+
+pitest-coding)
+  mvn --no-transfer-progress -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+  "RedundantThisCheck.java.html:<td class='uncovered'><pre><span  class='survived'>                    register(ast, frame);</span></pre></td></tr>"
+  "RequireThisCheck.java.html:<td class='uncovered'><pre><span  class='survived'>                    register(ast, frame);</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
   ;;
