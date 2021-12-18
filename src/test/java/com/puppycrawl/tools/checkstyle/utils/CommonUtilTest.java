@@ -150,9 +150,14 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testHasWhitespaceBefore() {
+        final int[] input1 = {97};
+        final int[] input2 = {32, 32, 32, 32, 97};
         assertTrue(CommonUtil.hasWhitespaceBefore(0, "a"), "Invalid result");
         assertTrue(CommonUtil.hasWhitespaceBefore(4, "    a"), "Invalid result");
         assertFalse(CommonUtil.hasWhitespaceBefore(5, "    a"), "Invalid result");
+        assertTrue(CommonUtil.hasWhitespaceBefore(input1, 0), "Invalid result");
+        assertTrue(CommonUtil.hasWhitespaceBefore(input2, 4), "Invalid result");
+        assertFalse(CommonUtil.hasWhitespaceBefore(input2, 5), "Invalid result");
     }
 
     @Test
@@ -365,6 +370,13 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testIsBlankCodePoint() {
+        final int[] input = {115, 116, 114, 105, 110, 103};
+        assertFalse(CommonUtil.isBlank(input),
+                "Should return false when array is empty");
+    }
+
+    @Test
     public void testIsBlankAheadWhitespace() {
         assertFalse(CommonUtil.isBlank("  string"), "Should return false when string is not empty");
     }
@@ -389,7 +401,13 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testIsBlankNullString() {
-        assertTrue(CommonUtil.isBlank(null), "Should return true when string is null");
+        assertTrue(CommonUtil.isBlank((String) null), "Should return true when string is null");
+    }
+
+    @Test
+    public void testIsBlankNullArray() {
+        final int[] input = new int[0];
+        assertTrue(CommonUtil.isBlank(input), "Should return true when array is empty");
     }
 
     @Test
