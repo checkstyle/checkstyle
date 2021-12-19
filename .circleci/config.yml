@@ -41,6 +41,14 @@ jobs:
       - run:
           command: |
             ./.ci/validation.sh no-error-xwiki
+  no-error-pmd:
+    docker:
+      - image: checkstyle/jdk-8-groovy-git-mvn:1.8.0_282-3.0.8-2.25.1-3.6.3
+    steps:
+      - checkout
+      - run:
+          command: |
+            ./.ci/validation.sh no-error-pmd
 workflows:
   version: 2
   no-exception-tests:
