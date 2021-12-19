@@ -13,9 +13,9 @@ on:
 name: Automatic Rebase
 
 # until https://github.com/checkstyle/checkstyle/issues/11052
-#permissions:
-#  contents: write
-#  pull-requests: write
+# permissions:
+#   contents: write
+#   pull-requests: write
 
 jobs:
   rebase:
