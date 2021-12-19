@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.RedundantThisCheck"
+             name="RedundantThis"
+             parent="">
+         <description>&lt;p&gt;&#xD;
+ Checks that references to instance variables and methods of the present&#xD;
+ object are not unnecessarily of the form "this.varName" or "this.methodName(args)".&#xD;
+ &lt;/p&gt;&#xD;
+ &lt;p&gt;Limitations: Currently nothing can be done with references of the form&#xD;
+ "ClassName.this.varName" or "ClassName.this.methodName(args)".&#xD;
+ This form is mostly likely used for good reasons (disambiguation).&#xD;
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="true" name="checkFields" type="boolean">
+               <description>Control whether to check references to fields.</description>
+            </property>
+            <property default-value="true" name="checkMethods" type="boolean">
+               <description>Control whether to check references to methods.</description>
+            </property>
+         </properties>
+      </check>
+   </module>
+</checkstyle-metadata>
