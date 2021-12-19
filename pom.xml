@@ -1894,6 +1894,8 @@
             <excludedLink>http://maven.apache.org/plugins/maven-eclipse-plugin/</excludedLink>
             <excludedLink>http://maven.apache.org/plugins/maven-install-plugin/</excludedLink>
             <excludedLink>http://maven.apache.org/plugins/maven-linkcheck-plugin/</excludedLink>
+            <!-- permanent 403 -->
+            <excludedLink>https://www.ej-technologies.com/*</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
