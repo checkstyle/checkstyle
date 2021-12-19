@@ -80,10 +80,6 @@ pitest-imports)
 pitest-common)
   mvn --no-transfer-progress -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
-  "AuditEventDefaultFormatter.java.html:<td class='covered'><pre><span  class='survived'>        if (lastDotIndex == -1) {</span></pre></td></tr>"
-  "AuditEventDefaultFormatter.java.html:<td class='uncovered'><pre><span  class=''>                checkShortName = checkFullName.substring(0, checkFullName.lastIndexOf(SUFFIX));</span></pre></td></tr>"
-  "AuditEventDefaultFormatter.java.html:<td class='uncovered'><pre><span  class=''>                checkShortName = checkFullName;</span></pre></td></tr>"
-  "AuditEventDefaultFormatter.java.html:<td class='uncovered'><pre><span  class='survived'>            if (checkFullName.endsWith(SUFFIX)) {</span></pre></td></tr>"
   "Checker.java.html:<td class='covered'><pre><span  class='survived'>                if (cacheFile != null &#38;&#38; cacheFile.isInCache(fileName, timestamp)</span></pre></td></tr>"
   "DefaultLogger.java.html:<td class='covered'><pre><span  class='survived'>        closeError = errorStreamOptions == OutputStreamOptions.CLOSE;</span></pre></td></tr>"
   "DefaultLogger.java.html:<td class='covered'><pre><span  class='survived'>        closeInfo = infoStreamOptions == OutputStreamOptions.CLOSE;</span></pre></td></tr>"
