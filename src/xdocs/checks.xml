@@ -757,6 +757,13 @@
             </td>
           </tr>
           <tr>
+            <td><a href="config_coding.html#RedundantThis">RedundantThis</a></td>
+            <td>
+              Checks that references to instance variables and methods of the present
+              object are not unnecessarily of the form "this.varName" or "this.methodName(args)".
+            </td>
+          </tr>
+          <tr>
             <td><a href="config_naming.html#PatternVariableName">PatternVariableName</a></td>
             <td>
               Checks that pattern variable names conform to a specified pattern.
