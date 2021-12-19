@@ -205,7 +205,7 @@ markdownlint)
 no-error-pmd)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
-  checkout_from "-b checkstyle-7417 https://github.com/checkstyle/build-tools.git"
+  checkout_from "https://github.com/pmd/build-tools.git"
   cd .ci-temp/build-tools/
   PMD_POM_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
     -Dexec.args='${project.version}' \
@@ -214,8 +214,6 @@ no-error-pmd)
   cd ..
   git clone https://github.com/pmd/pmd.git
   cd pmd
-  # Using specific commit so that build-tools dependencies match
-  git checkout 342dc1d03aaa1082e42f7496d6869d15859af321
   mvn -e --no-transfer-progress install checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION} \
     -Dpmd.build-tools.version=${PMD_POM_VERSION}
   cd ..
