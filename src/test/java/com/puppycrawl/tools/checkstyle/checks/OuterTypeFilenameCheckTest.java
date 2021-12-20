@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -45,8 +45,8 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.RECORD_DEF,
         };
-        assertArrayEquals(expected, checkObj.getRequiredTokens(),
-                "Required tokens array differs from expected");
+        assertWithMessage("Required tokens array differs from expected")
+                .that(checkObj.getRequiredTokens()).isEqualTo(expected);
     }
 
     @Test
@@ -74,7 +74,8 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.RECORD_DEF,
         };
-        assertArrayEquals(expected, actual, "Acceptable tokens array differs from expected");
+        assertWithMessage("Acceptable tokens array differs from expected").that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
