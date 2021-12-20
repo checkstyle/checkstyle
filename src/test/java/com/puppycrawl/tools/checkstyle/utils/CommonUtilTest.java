@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
@@ -29,15 +30,20 @@ import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.CALLS_REAL_METHODS;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.when;
 
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Dictionary;
 import java.util.Properties;
@@ -45,10 +51,12 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class CommonUtilTest extends AbstractPathTestSupport {
@@ -107,26 +115,24 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testBadRegex() {
-        try {
+        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> {
             CommonUtil.createPattern("[");
-            fail("exception expected");
-        }
-        catch (IllegalArgumentException ex) {
-            assertEquals("Failed to initialise regular expression [", ex.getMessage(),
-                    "Invalid exception message");
-        }
+        });
+        assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasMessageThat()
+                        .isEqualTo("Failed to initialise regular expression [");
     }
 
     @Test
     public void testBadRegex2() {
-        try {
+        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> {
             CommonUtil.createPattern("[", Pattern.MULTILINE);
-            fail("exception expected");
-        }
-        catch (IllegalArgumentException ex) {
-            assertEquals("Failed to initialise regular expression [", ex.getMessage(),
-                    "Invalid exception message");
-        }
+        });
+        assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasMessageThat()
+                        .isEqualTo("Failed to initialise regular expression [");
     }
 
     @Test
@@ -212,14 +218,13 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetNonExistentConstructor() {
-        try {
+        final IllegalStateException ex = assertThrows(IllegalStateException.class, () -> {
             CommonUtil.getConstructor(Math.class);
-            fail("IllegalStateException is expected");
-        }
-        catch (IllegalStateException expected) {
-            assertSame(NoSuchMethodException.class, expected.getCause().getClass(),
-                    "Invalid exception cause");
-        }
+        });
+        assertWithMessage("Invalid exception cause")
+                .that(ex)
+                .hasCauseThat()
+                        .isInstanceOf(NoSuchMethodException.class);
     }
 
     @Test
@@ -235,15 +240,13 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     @Test
     public void testInvokeConstructorThatFails() throws NoSuchMethodException {
         final Constructor<Dictionary> constructor = Dictionary.class.getConstructor();
-
-        try {
+        final IllegalStateException ex = assertThrows(IllegalStateException.class, () -> {
             CommonUtil.invokeConstructor(constructor);
-            fail("IllegalStateException is expected");
-        }
-        catch (IllegalStateException expected) {
-            assertSame(InstantiationException.class,
-                expected.getCause().getClass(), "Invalid exception cause");
-        }
+        });
+        assertWithMessage("Invalid exception cause")
+                .that(ex)
+                .hasCauseThat()
+                        .isInstanceOf(InstantiationException.class);
     }
 
     @Test
@@ -258,15 +261,15 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testCloseWithException() {
-        try {
+        final IllegalStateException ex = assertThrows(IllegalStateException.class, () -> {
             CommonUtil.close(() -> {
                 throw new IOException("Test IOException");
             });
-            fail("exception expected");
-        }
-        catch (IllegalStateException ex) {
-            assertEquals("Cannot close the stream", ex.getMessage(), "Invalid exception message");
-        }
+        });
+        assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasMessageThat()
+                        .isEqualTo("Cannot close the stream");
     }
 
     @Test
@@ -497,6 +500,30 @@ public class CommonUtilTest extends AbstractPathTestSupport {
                 .isTrue();
         assertThat(CommonUtil.isCodePointWhitespace(codePoints, 1))
                 .isFalse();
+    }
+
+    @Test
+    public void testLoadSuppressionsUriSyntaxException() throws Exception {
+        final URL configUrl = mock(URL.class);
+        when(configUrl.toURI()).thenThrow(URISyntaxException.class);
+        try (MockedStatic<CommonUtil> utilities =
+                     mockStatic(CommonUtil.class, CALLS_REAL_METHODS)) {
+            final String fileName = "/suppressions_none.xml";
+            utilities.when(() -> CommonUtil.getCheckstyleResource(fileName))
+                    .thenReturn(configUrl);
+
+            final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
+                CommonUtil.getUriByFilename(fileName);
+            });
+            assertWithMessage("Invalid exception cause")
+                    .that(ex)
+                    .hasCauseThat()
+                            .isInstanceOf(URISyntaxException.class);
+            assertWithMessage("Invalid exception message")
+                    .that(ex)
+                    .hasMessageThat()
+                            .isEqualTo("Unable to find: " + fileName);
+        }
     }
 
     private static class TestCloseable implements Closeable {
