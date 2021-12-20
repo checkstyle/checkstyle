@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck.MSG_IO_EXCEPTION_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
@@ -131,14 +131,14 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(file, Collections.emptyList());
         final SortedSet<Violation> violations =
                 check.process(file, fileText);
-        assertEquals(1, violations.size(), "Wrong violations count: " + violations.size());
+        assertWithMessage("Wrong violations count").that(violations).hasSize(1);
         final Violation violation = violations.iterator().next();
         final String retrievedMessage = violations.iterator().next().getKey();
-        assertEquals("unable.open.cause", retrievedMessage,
-                "violation key '" + retrievedMessage + "' is not valid");
-        assertEquals(violation.getViolation(),
-                getCheckMessage(MSG_IO_EXCEPTION_KEY, fileName, getFileNotFoundDetail(file)),
-                "violation '" + violation.getViolation() + "' is not valid");
+        assertWithMessage("violation key is not valid").that(retrievedMessage)
+                .isEqualTo("unable.open.cause");
+        assertWithMessage("violation is not valid")
+                .that(getCheckMessage(MSG_IO_EXCEPTION_KEY, fileName, getFileNotFoundDetail(file)))
+                .isEqualTo(violation.getViolation());
     }
 
     /**
@@ -163,14 +163,15 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(file, Collections.emptyList());
         final SortedSet<Violation> violations = check.process(file, fileText);
 
-        assertEquals(1, violations.size(), "Wrong violations count: " + violations.size());
+        assertWithMessage("Wrong violations count").that(violations).hasSize(1);
     }
 
     @Test
     public void testFileExtension() {
 
         final OrderedPropertiesCheck check = new OrderedPropertiesCheck();
-        assertEquals(".properties", check.getFileExtensions()[0], "File extension should be set");
+        assertWithMessage("File extension should be set").that(".properties")
+                .isEqualTo(check.getFileExtensions()[0]);
     }
 
     /**
