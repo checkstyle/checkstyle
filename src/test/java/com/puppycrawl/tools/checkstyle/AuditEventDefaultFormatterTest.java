@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +40,7 @@ public class AuditEventDefaultFormatterTest {
         final String expected = "[WARN] InputMockFile.java:1:1: Mocked violation. "
                 + "[AuditEventDefaultFormatterTest$TestModule]";
 
-        assertEquals(expected, formatter.format(event), "Invalid format");
+        assertWithMessage("Invalid format").that(formatter.format(event)).isEqualTo(expected);
     }
 
     @Test
@@ -53,7 +53,7 @@ public class AuditEventDefaultFormatterTest {
         final String expected = "[WARN] InputMockFile.java:1:1: Mocked violation. "
                 + "[AuditEventDefaultFormatterTest$TestModule]";
 
-        assertEquals(expected, formatter.format(event), "Invalid format");
+        assertWithMessage("Invalid format").that(formatter.format(event)).isEqualTo(expected);
     }
 
     @Test
@@ -65,7 +65,7 @@ public class AuditEventDefaultFormatterTest {
 
         final String expected = "[WARN] InputMockFile.java:1:1: Mocked violation. [ModuleId]";
 
-        assertEquals(expected, formatter.format(event), "Invalid format");
+        assertWithMessage("Invalid format").that(formatter.format(event)).isEqualTo(expected);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class AuditEventDefaultFormatterTest {
         final int result = TestUtil.invokeStaticMethod(AuditEventDefaultFormatter.class,
                 "calculateBufferLength", auditEvent, SeverityLevel.ERROR.ordinal());
 
-        assertEquals(54, result, "Buffer length is not expected");
+        assertWithMessage("Buffer length is not expected").that(result).isEqualTo(54);
     }
 
     private static class TestModuleCheck {
