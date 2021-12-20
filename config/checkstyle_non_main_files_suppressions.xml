@@ -422,7 +422,6 @@
 
   <!-- Until https://github.com/checkstyle/checkstyle/issues/9351 -->
   <suppress id="properMavenCommand" files=".*[\\/]pitest.sh"/>
-  <suppress id="properMavenCommand" files=".circleci[\\/]config.yml"/>
 
   <!-- Empty files that are used as input for UT -->
   <suppress id="noEmptyFile"
