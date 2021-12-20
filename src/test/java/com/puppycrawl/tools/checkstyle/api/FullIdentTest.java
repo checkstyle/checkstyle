@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -54,10 +53,11 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         parent.setFirstChild(ast);
 
         final FullIdent indent = FullIdent.createFullIdent(ast);
-        assertEquals("MyTest[15x14]", indent.toString(), "Invalid full indent");
-        assertEquals("MyTest", indent.getText(), "Invalid text");
-        assertEquals(15, indent.getLineNo(), "Invalid line");
-        assertEquals(14, indent.getColumnNo(), "Invalid column");
+        assertWithMessage("Invalid full indent").that(indent.toString())
+            .isEqualTo("MyTest[15x14]");
+        assertWithMessage("Invalid text").that(indent.getText()).isEqualTo("MyTest");
+        assertWithMessage("Invalid line").that(indent.getLineNo()).isEqualTo(15);
+        assertWithMessage("Invalid column").that(indent.getColumnNo()).isEqualTo(14);
     }
 
     @Test
@@ -65,7 +65,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         final DetailAST ast = new DetailAstImpl();
 
         final FullIdent indent = FullIdent.createFullIdentBelow(ast);
-        assertEquals("", indent.getText(), "Invalid full indent");
+        assertWithMessage("Invalid full indent").that(indent.getText()).isEqualTo("");
     }
 
     @Test
@@ -77,19 +77,22 @@ public class FullIdentTest extends AbstractModuleTestSupport {
                 JavaParser.parse(new FileContents(testFileText)).getFirstChild();
         final DetailAST packageName = packageDefinitionNode.getFirstChild().getNextSibling();
         final FullIdent ident = FullIdent.createFullIdent(packageName);
-        assertEquals("com[1x8]", ident.getDetailAst().toString(), "Invalid full indent");
+        assertWithMessage("Invalid full indent").that(ident.getDetailAst().toString())
+                .isEqualTo("com[1x8]");
     }
 
     @Test
     public void testNonValidCoordinatesWithNegative() {
         final FullIdent fullIdent = prepareFullIdentWithCoordinates(14, 15);
-        assertEquals("MyTest.MyTestik[15x14]", fullIdent.toString(), "Invalid full indent");
+        assertWithMessage("Invalid full indent").that(fullIdent.toString())
+                .isEqualTo("MyTest.MyTestik[15x14]");
     }
 
     @Test
     public void testNonValidCoordinatesWithZero() {
         final FullIdent fullIdent = prepareFullIdentWithCoordinates(0, 0);
-        assertEquals("MyTest.MyTestik[15x14]", fullIdent.toString(), "Invalid full indent");
+        assertWithMessage("Invalid full indent").that(fullIdent.toString())
+                .isEqualTo("MyTest.MyTestik[15x14]");
     }
 
     @Test
@@ -105,7 +108,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.TYPE)
                 .getFirstChild();
         final FullIdent ident = FullIdent.createFullIdent(arrayDeclarator);
-        assertEquals("int[][][5x12]", ident.toString(), "Invalid full indent");
+        assertWithMessage("Invalid full indent").that(ident.toString()).isEqualTo("int[][][5x12]");
     }
 
     @Test
@@ -130,7 +133,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
                 .getFirstChild();
 
         final FullIdent ident = FullIdent.createFullIdent(parameter);
-        assertEquals("char[][7x29]", ident.toString(), "Invalid full indent");
+        assertWithMessage("Invalid full indent").that(ident.toString()).isEqualTo("char[][7x29]");
     }
 
     @Test
@@ -152,7 +155,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
                 .getFirstChild();
 
         final FullIdent ident = FullIdent.createFullIdent(literalInt);
-        assertEquals("int[4x32]", ident.toString(), "Invalid full indent");
+        assertWithMessage("Invalid full indent").that(ident.toString()).isEqualTo("int[4x32]");
     }
 
     private static FullIdent prepareFullIdentWithCoordinates(int columnNo, int lineNo) {
