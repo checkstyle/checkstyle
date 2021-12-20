@@ -1890,17 +1890,6 @@
 
   <profiles>
 
-    <!-- Till https://github.com/powermock/powermock/issues/1094 -->
-    <profile>
-      <id>java16</id>
-      <activation>
-        <jdk>[16,)</jdk>
-      </activation>
-      <properties>
-        <surefire.options>--illegal-access=warn</surefire.options>
-      </properties>
-    </profile>
-
     <profile>
       <!-- To be used during development. Run the command -->
       <!-- mvn -Pno-validations site -->
