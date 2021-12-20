@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION_ALONE;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -39,8 +39,9 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final AnnotationLocationCheck checkObj = new AnnotationLocationCheck();
-        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens(),
-                "AnnotationLocationCheck#getRequiredTokens should return empty array by default");
+        assertWithMessage(
+                "AnnotationLocationCheck#getRequiredTokens should return empty array by default")
+                        .that(checkObj.getRequiredTokens()).isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
     }
 
     @Test
@@ -133,7 +134,8 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
         };
-        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid").that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
