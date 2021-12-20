@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck.MSG_KEY_ANNOTATION_MISSING_DEPRECATED;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck.MSG_KEY_JAVADOC_DUPLICATE_TAG;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -44,8 +44,8 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             JavadocTokenTypes.JAVADOC,
         };
 
-        assertArrayEquals(expected, missingDeprecatedCheck.getDefaultJavadocTokens(),
-                "Default javadoc tokens are invalid");
+        assertWithMessage("Default javadoc tokens are invalid")
+                .that(missingDeprecatedCheck.getDefaultJavadocTokens()).isEqualTo(expected);
     }
 
     @Test
@@ -54,8 +54,8 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
         final int[] expected = {
             JavadocTokenTypes.JAVADOC,
         };
-        assertArrayEquals(expected, checkObj.getRequiredJavadocTokens(),
-                "Default required javadoc tokens are invalid");
+        assertWithMessage("Default required javadoc tokens are invalid")
+                .that(checkObj.getRequiredJavadocTokens()).isEqualTo(expected);
     }
 
     /**

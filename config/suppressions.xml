@@ -183,8 +183,6 @@
   <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]TodoCommentCheckTest.java"/>
   <suppress id="ImportControlTest"
-            files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]TrailingCommentCheckTest.java"/>
-  <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]TranslationCheckTest.java"/>
   <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]UncommentedMainCheckTest.java"/>
@@ -193,17 +191,9 @@
   <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]UpperEllCheckTest.java"/>
   <suppress id="ImportControlTest"
-            files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]AnnotationLocationCheckTest.java"/>
-  <suppress id="ImportControlTest"
-            files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]AnnotationOnSameLineCheckTest.java"/>
-  <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]AnnotationUseStyleCheckTest.java"/>
   <suppress id="ImportControlTest"
-            files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]MissingDeprecatedCheckTest.java"/>
-  <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]MissingOverrideCheckTest.java"/>
-  <suppress id="ImportControlTest"
-            files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]PackageAnnotationCheckTest.java"/>
   <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]blocks[\\/]AvoidNestedBlocksCheckTest.java"/>
   <suppress id="ImportControlTest"

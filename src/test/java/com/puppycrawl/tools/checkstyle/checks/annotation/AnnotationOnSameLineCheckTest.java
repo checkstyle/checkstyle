@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationOnSameLineCheck.MSG_KEY_ANNOTATION_ON_SAME_LINE;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,8 +38,9 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final AnnotationOnSameLineCheck check = new AnnotationOnSameLineCheck();
-        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, check.getRequiredTokens(),
-                "AnnotationOnSameLineCheck#getRequiredTokens should return empty array by default");
+        assertWithMessage(
+                "AnnotationOnSameLineCheck#getRequiredTokens should return empty array by default")
+                        .that(check.getRequiredTokens()).isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
     }
 
     @Test
@@ -65,7 +66,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
         };
-        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid").that(actual).isEqualTo(expected);
     }
 
     @Test
