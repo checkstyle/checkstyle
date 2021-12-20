@@ -8,7 +8,6 @@
   <!-- can't split long messages between lines -->
   <suppress id="lineLengthXml" files="google_checks\.xml" lines="56,126"/>
   <!-- don't validate generated files -->
-  <suppress id="lineLengthXml" files="releasenotes\.xml"/>
   <suppress id="lineLengthXml" files="releasenotes_old_6\-0_7\-8\.xml"/>
   <suppress id="lineLengthXml" files="releasenotes_old_1\-0_5\-9\.xml"/>
   <suppress id="lineLengthXml" files="[\\/]meta[\\/]"/>
@@ -42,8 +41,6 @@
   <suppress checks="ExecutableStatementCount"
              files=".*(Generated)?Java(doc)?TokenTypesTest\.java"/>
   <suppress checks="JavaNCSS" files=".*(Generated)?Java(doc)?TokenTypesTest\.java"/>
-  <suppress checks="ExecutableStatementCount" files=".*IllegalInstantiationCheckTest\.java"/>
-  <suppress checks="ExecutableStatementCount" files=".*Main\.java"/>
 
   <!-- Till https://github.com/checkstyle/checkstyle/issues/1854 -->
   <suppress checks="TrailingComment"
@@ -51,7 +48,7 @@
               |AbbreviationAsWordInNameCheckTest\.java)"/>
 
   <!-- Fixing these cases will decrease code readability -->
-  <suppress checks="MultipleStringLiterals" files="JavadocStyleCheck\.java|XMLLogger\.java|SarifLogger\.java"/>
+  <suppress checks="MultipleStringLiterals" files="JavadocStyleCheck\.java|XMLLogger\.java"/>
 
   <!-- There are a lot of setters/getters in the Check.
      A small number of methods is left for Check's logic -->
@@ -72,14 +69,12 @@
              files="(Checker|Main|CheckstyleAntTask|JavadocDetailNodeParser)\.java"/>
   <suppress checks="ClassDataAbstractionCoupling"
              files="(CheckerTest|AbstractModuleTestSupport|AbstractItModuleTestSupport|
-                    |CheckstyleAntTaskTest|DefaultLoggerTest|
+                    |CheckstyleAntTaskTest|
                     |TranslationCheckTest|ViolationTest|AbstractFileSetCheckTest|
-                    |AbstractCheckTest|AutomaticBeanTest)\.java"/>
-  <suppress checks="ClassDataAbstractionCoupling" files="PropertyCacheFileTest\.java"/>
+                    |AbstractCheckTest)\.java"/>
   <suppress checks="ClassDataAbstractionCoupling"
              files="XpathFileGeneratorAuditListenerTest\.java"/>
   <suppress checks="ClassFanOutComplexity" files="[\\/]Main\.java"/>
-  <suppress checks="ClassFanOutComplexity" files="CheckstyleAntTask\.java"/>
   <suppress checks="ClassFanOutComplexity" files="CheckerTest\.java"/>
   <suppress checks="ClassFanOutComplexity" files="Checker\.java"/>
   <!-- a lot of GUI elements is OK -->
@@ -93,12 +88,7 @@
   <!-- HandlerFactory crosses allowed limit for executable statements -->
   <suppress checks="ExecutableStatementCount" files="HandlerFactory\.java"/>
 
-  <suppress id="ImportControlTest" files="[\\/]powermock[\\/]"
-       message=".* - org\.(powermock|mockito).*" />
-
   <suppress id="noSourceforgeNetLinks" files="[\\/]releasenotes.xml"/>
-  <suppress id="noSourceforgeIoLinks" files="[\\/]google_style.xml" lines="31"/>
-  <suppress id="noSourceforgeIoLinks" files="[\\/]sun_style.xml" lines="31"/>
   <suppress id="noSourceforgeIoLinks" files="[\\/]index.xml.vm"/>
 
   <!-- usage of div class="wrap-content" render even indented content properly -->
