@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.ParameterAssignmentCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.util.Collection;
@@ -108,12 +108,13 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
                 JavaParser.Options.WITHOUT_COMMENTS),
             ast -> ast.getType() == TokenTypes.METHOD_DEF);
 
-        assertTrue(methodDef.isPresent(), "Ast should contain METHOD_DEF");
-        assertTrue(
-            TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
+        assertWithMessage("Ast should contain METHOD_DEF")
+            .that(methodDef.isPresent()).isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+            .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
                 "parameterNamesStack",
-                parameterNamesStack -> ((Collection<Set<String>>) parameterNamesStack).isEmpty()),
-                "State is not cleared on beginTree");
+                parameterNamesStack -> ((Collection<Set<String>>) parameterNamesStack).isEmpty()))
+            .isTrue();
     }
 
 }

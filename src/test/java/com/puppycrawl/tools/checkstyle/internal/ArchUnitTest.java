@@ -63,7 +63,8 @@ public class ArchUnitTest {
                 .importPackages("com.puppycrawl.tools.checkstyle.checks");
 
         final ArchRule checkMethodsShouldNotBeProtectedRule =
-                methods().that()
+                methods()
+            .that()
                 .haveNameNotMatching(".*(" + ignoreMethodList + ")").and()
                 .areDeclaredInClassesThat()
                 .haveSimpleNameEndingWith("Check").and()

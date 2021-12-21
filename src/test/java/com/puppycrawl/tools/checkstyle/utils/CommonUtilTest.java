@@ -31,7 +31,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
@@ -71,8 +70,8 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(CommonUtil.class, true),
-                "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(isUtilsClassHasPrivateConstructor(CommonUtil.class, true)).isTrue();
     }
 
     /**
@@ -141,23 +140,29 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final File pdfFile = new File("file.pdf");
         assertFalse(CommonUtil.matchesFileExtension(pdfFile, fileExtensions),
                 "Invalid file extension");
-        assertTrue(CommonUtil.matchesFileExtension(pdfFile), "Invalid file extension");
-        assertTrue(CommonUtil.matchesFileExtension(pdfFile, (String[]) null),
-                "Invalid file extension");
+        assertWithMessage("Invalid file extension")
+            .that(CommonUtil.matchesFileExtension(pdfFile))
+                .isTrue();
+        assertWithMessage("Invalid file extension")
+                .that(CommonUtil.matchesFileExtension(pdfFile, (String[]) null)).isTrue();
         final File javaFile = new File("file.java");
-        assertTrue(CommonUtil.matchesFileExtension(javaFile, fileExtensions),
-                "Invalid file extension");
+        assertWithMessage("Invalid file extension")
+                .that(CommonUtil.matchesFileExtension(javaFile, fileExtensions)).isTrue();
         final File emptyExtensionFile = new File("file.");
-        assertTrue(CommonUtil.matchesFileExtension(emptyExtensionFile, ""),
-                "Invalid file extension");
+        assertWithMessage("Invalid file extension")
+                .that(CommonUtil.matchesFileExtension(emptyExtensionFile, "")).isTrue();
         assertFalse(CommonUtil.matchesFileExtension(pdfFile, ".noMatch"), "Invalid file extension");
-        assertTrue(CommonUtil.matchesFileExtension(pdfFile, ".pdf"), "Invalid file extension");
+        assertWithMessage("Invalid file extension")
+                .that(CommonUtil.matchesFileExtension(pdfFile, ".pdf")).isTrue();
     }
 
     @Test
     public void testHasWhitespaceBefore() {
-        assertTrue(CommonUtil.hasWhitespaceBefore(0, "a"), "Invalid result");
-        assertTrue(CommonUtil.hasWhitespaceBefore(4, "    a"), "Invalid result");
+        assertWithMessage("Invalid result")
+            .that(CommonUtil.hasWhitespaceBefore(0, "a")).isTrue();
+        assertWithMessage("Invalid result")
+            .that(CommonUtil.hasWhitespaceBefore(4, "    a"))
+                .isTrue();
         assertFalse(CommonUtil.hasWhitespaceBefore(5, "    a"), "Invalid result");
     }
 
@@ -200,7 +205,8 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     @Test
     public void testPattern() {
         final boolean result = CommonUtil.isPatternValid("someValidPattern");
-        assertTrue(result, "Should return true when pattern is valid");
+        assertWithMessage("Should return true when pattern is valid")
+            .that(result).isTrue();
     }
 
     @Test
@@ -256,7 +262,8 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         CommonUtil.close(null);
         CommonUtil.close(closeable);
 
-        assertTrue(closeable.closed, "Should be closed");
+        assertWithMessage("Should be closed")
+            .that(closeable.closed).isTrue();
     }
 
     @Test
@@ -306,8 +313,8 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testIsIdentifier() {
-        assertTrue(CommonUtil.isIdentifier("aValidIdentifier"),
-                "Should return true when valid identifier is passed");
+        assertWithMessage("Should return true when valid identifier is passed")
+                .that(CommonUtil.isIdentifier("aValidIdentifier")).isTrue();
     }
 
     @Test
@@ -329,8 +336,8 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testIsName() {
-        assertTrue(CommonUtil.isName("a.valid.Nam3"),
-                "Should return true when valid name is passed");
+        assertWithMessage("Should return true when valid name is passed")
+                .that(CommonUtil.isName("a.valid.Nam3")).isTrue();
     }
 
     @Test
@@ -392,23 +399,29 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testIsBlankNullString() {
-        assertTrue(CommonUtil.isBlank(null), "Should return true when string is null");
+        assertWithMessage("Should return true when string is null")
+            .that(CommonUtil.isBlank(null))
+                .isTrue();
     }
 
     @Test
     public void testIsBlankWithEmptyString() {
-        assertTrue(CommonUtil.isBlank(""), "Should return true when string is empty");
+        assertWithMessage("Should return true when string is empty")
+            .that(CommonUtil.isBlank(""))
+                .isTrue();
     }
 
     @Test
     public void testIsBlankWithWhitespacesOnly() {
-        assertTrue(CommonUtil.isBlank("   "),
-                "Should return true when string contains only spaces");
+        assertWithMessage("Should return true when string contains only spaces")
+                .that(CommonUtil.isBlank("   ")).isTrue();
     }
 
     @Test
     public void testIsIntValidString() {
-        assertTrue(CommonUtil.isInt("42"), "Should return true when string is null");
+        assertWithMessage("Should return true when string is null")
+            .that(CommonUtil.isInt("42"))
+                .isTrue();
     }
 
     @Test

@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG_KEY_VOID;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.util.Collection;
@@ -165,11 +164,13 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
                 JavaParser.Options.WITHOUT_COMMENTS),
             ast -> ast.getType() == TokenTypes.METHOD_DEF);
 
-        assertTrue(methodDef.isPresent(), "Ast should contain METHOD_DEF");
-        assertTrue(
-            TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(), "contextStack",
-                contextStack -> ((Collection<Set<String>>) contextStack).isEmpty()),
-                "State is not cleared on beginTree");
+        assertWithMessage("Ast should contain METHOD_DEF")
+            .that(methodDef.isPresent()).isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
+                        "contextStack",
+                        contextStack -> ((Collection<Set<String>>) contextStack).isEmpty()))
+                .isTrue();
     }
 
 }

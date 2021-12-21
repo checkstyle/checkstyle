@@ -24,7 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -127,8 +126,8 @@ public class ImportControlLoaderTest {
         catch (InvocationTargetException ex) {
             assertSame(CheckstyleException.class, ex.getCause().getClass(),
                     "Invalid exception class");
-            assertTrue(ex.getCause().getMessage().startsWith("unable to read"),
-                    "Invalid exception message: " + ex.getCause().getMessage());
+            assertWithMessage("Invalid exception message: " + ex.getCause().getMessage())
+                    .that(ex.getCause().getMessage().startsWith("unable to read")).isTrue();
         }
     }
 
