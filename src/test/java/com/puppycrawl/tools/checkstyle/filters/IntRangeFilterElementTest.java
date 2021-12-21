@@ -31,29 +31,55 @@ public class IntRangeFilterElementTest {
     @Test
     public void testDecide() {
         final IntFilterElement filter = new IntRangeFilterElement(0, 10);
-        assertWithMessage("less than").that(filter.accept(-1)).isFalse();
-        assertWithMessage("in range").that(filter.accept(0)).isTrue();
-        assertWithMessage("in range").that(filter.accept(5)).isTrue();
-        assertWithMessage("in range").that(filter.accept(10)).isTrue();
-        assertWithMessage("greater than").that(filter.accept(11)).isFalse();
+        assertWithMessage("less than")
+                .that(filter.accept(-1))
+                .isFalse();
+        assertWithMessage("in range")
+                .that(filter.accept(0))
+                .isTrue();
+        assertWithMessage("in range")
+                .that(filter.accept(5))
+                .isTrue();
+        assertWithMessage("in range")
+                .that(filter.accept(10))
+                .isTrue();
+        assertWithMessage("greater than")
+                .that(filter.accept(11))
+                .isFalse();
     }
 
     @Test
     public void testDecideSingle() {
         final IntFilterElement filter = new IntRangeFilterElement(0, 0);
-        assertWithMessage("less than").that(filter.accept(-1)).isFalse();
-        assertWithMessage("in range").that(filter.accept(0)).isTrue();
-        assertWithMessage("greater than").that(filter.accept(1)).isFalse();
+        assertWithMessage("less than")
+                .that(filter.accept(-1))
+                .isFalse();
+        assertWithMessage("in range")
+                .that(filter.accept(0))
+                .isTrue();
+        assertWithMessage("greater than")
+                .that(filter.accept(1))
+                .isFalse();
     }
 
     @Test
     public void testDecideEmpty() {
         final IntFilterElement filter = new IntRangeFilterElement(10, 0);
-        assertWithMessage("out").that(filter.accept(-1)).isFalse();
-        assertWithMessage("out").that(filter.accept(0)).isFalse();
-        assertWithMessage("out").that(filter.accept(5)).isFalse();
-        assertWithMessage("out").that(filter.accept(10)).isFalse();
-        assertWithMessage("out").that(filter.accept(11)).isFalse();
+        assertWithMessage("out")
+                .that(filter.accept(-1))
+                .isFalse();
+        assertWithMessage("out")
+                .that(filter.accept(0))
+                .isFalse();
+        assertWithMessage("out")
+                .that(filter.accept(5))
+                .isFalse();
+        assertWithMessage("out")
+                .that(filter.accept(10))
+                .isFalse();
+        assertWithMessage("out")
+                .that(filter.accept(11))
+                .isFalse();
     }
 
     @Test

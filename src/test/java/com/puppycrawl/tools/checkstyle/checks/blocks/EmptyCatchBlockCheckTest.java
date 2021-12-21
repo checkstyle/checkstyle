@@ -38,7 +38,8 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
     public void testGetRequiredTokens() {
         final EmptyCatchBlockCheck checkObj = new EmptyCatchBlockCheck();
         final int[] expected = {TokenTypes.LITERAL_CATCH};
-        assertWithMessage("Default required tokens are invalid").that(checkObj.getRequiredTokens())
+        assertWithMessage("Default required tokens are invalid")
+                .that(checkObj.getRequiredTokens())
                 .isEqualTo(expected);
     }
 
@@ -96,7 +97,9 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
         final EmptyCatchBlockCheck constantNameCheckObj = new EmptyCatchBlockCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
         final int[] expected = {TokenTypes.LITERAL_CATCH };
-        assertWithMessage("Default acceptable tokens are invalid").that(actual).isEqualTo(expected);
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
 }

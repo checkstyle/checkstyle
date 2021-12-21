@@ -40,8 +40,9 @@ public class ParameterNameCheckTest
     public void testGetRequiredTokens() {
         final ParameterNameCheck checkObj = new ParameterNameCheck();
         final int[] expected = {TokenTypes.PARAMETER_DEF};
-        assertWithMessage("Default required tokens are invalid").that(checkObj.getRequiredTokens())
-            .isEqualTo(expected);
+        assertWithMessage("Default required tokens are invalid")
+                .that(checkObj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test
@@ -82,7 +83,9 @@ public class ParameterNameCheckTest
         final int[] expected = {
             TokenTypes.PARAMETER_DEF,
         };
-        assertWithMessage("Default acceptable tokens are invalid").that(actual).isEqualTo(expected);
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test

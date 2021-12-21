@@ -39,7 +39,8 @@ public class AvoidNestedBlocksCheckTest
     public void testGetRequiredTokens() {
         final AvoidNestedBlocksCheck checkObj = new AvoidNestedBlocksCheck();
         final int[] expected = {TokenTypes.SLIST};
-        assertWithMessage("Default required tokens are invalid").that(checkObj.getRequiredTokens())
+        assertWithMessage("Default required tokens are invalid")
+                .that(checkObj.getRequiredTokens())
                 .isEqualTo(expected);
     }
 
@@ -74,8 +75,9 @@ public class AvoidNestedBlocksCheckTest
         final AvoidNestedBlocksCheck constantNameCheckObj = new AvoidNestedBlocksCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
         final int[] expected = {TokenTypes.SLIST };
-        assertWithMessage("Default acceptable tokens are invalid").that(actual)
-            .isEqualTo(expected);
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
 }
