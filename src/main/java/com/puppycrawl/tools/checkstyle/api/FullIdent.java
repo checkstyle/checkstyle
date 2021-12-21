@@ -92,12 +92,6 @@ public final class FullIdent {
                 extractFullIdent(full, firstChild.getNextSibling());
                 appendBrackets(full, ast);
             }
-            // support for new class().new class2();
-            else if (ast.getType() == TokenTypes.LITERAL_NEW
-                    && ast.hasChildren()) {
-                final DetailAST firstChild = ast.getFirstChild();
-                extractFullIdent(full, firstChild);
-            }
             else if (isArrayTypeDeclarationStart) {
                 full.append(ast);
                 appendBrackets(full, ast);
