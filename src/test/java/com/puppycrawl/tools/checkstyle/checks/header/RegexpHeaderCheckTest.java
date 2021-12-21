@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MSG_HEADER_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MSG_HEADER_MISSING;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Locale;
@@ -59,7 +58,8 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         instance.setHeader(header);
         final List<Pattern> headerRegexps = TestUtil.getInternalState(instance, "headerRegexps");
 
-        assertTrue(headerRegexps.isEmpty(), "When header is null regexps should not be set");
+        assertWithMessage("When header is null regexps should not be set")
+                .that(headerRegexps).isEmpty();
     }
 
     /**
@@ -74,7 +74,8 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         instance.setHeader(header);
         final List<Pattern> headerRegexps = TestUtil.getInternalState(instance, "headerRegexps");
 
-        assertTrue(headerRegexps.isEmpty(), "When header is empty regexps should not be set");
+        assertWithMessage("When header is empty regexps should not be set")
+                .that(headerRegexps).isEmpty();
     }
 
     /**

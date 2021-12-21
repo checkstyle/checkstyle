@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -101,7 +100,9 @@ public class AnnotationUtilTest {
         final DetailAstImpl ast3 = new DetailAstImpl();
         ast3.setType(TokenTypes.ANNOTATION);
         ast2.addChild(ast3);
-        assertTrue(AnnotationUtil.containsAnnotation(ast), "AnnotationUtil should contain " + ast);
+        assertWithMessage("AnnotationUtil should contain " + ast)
+                .that(AnnotationUtil.containsAnnotation(ast))
+                .isTrue();
     }
 
     @Test
@@ -222,7 +223,9 @@ public class AnnotationUtilTest {
         ast.addChild(modifiersAst);
         final List<String> annotations = Collections.singletonList("Override");
         final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);
-        assertTrue(result, "The dot-ident variation should also work");
+        assertWithMessage("The dot-ident variation should also work")
+                .that(result)
+                .isTrue();
     }
 
     @Test
@@ -266,8 +269,9 @@ public class AnnotationUtilTest {
         child.setNextSibling(annotations);
         astForTest.setFirstChild(child);
 
-        assertTrue(AnnotationUtil.containsAnnotation(astForTest, "Annotation"),
-                "Annotation should contain " + astForTest);
+        assertWithMessage("Annotation should contain " + astForTest)
+                .that(AnnotationUtil.containsAnnotation(astForTest, "Annotation"))
+                .isTrue();
     }
 
     @Test
@@ -317,8 +321,9 @@ public class AnnotationUtilTest {
         child.setNextSibling(annotations);
         astForTest.setFirstChild(child);
 
-        assertTrue(AnnotationUtil.containsAnnotation(astForTest, "Annotation"),
-                "Annotation should contain " + astForTest);
+        assertWithMessage("Annotation should contain " + astForTest)
+                .that(AnnotationUtil.containsAnnotation(astForTest, "Annotation"))
+                .isTrue();
     }
 
     private static DetailAstImpl create(int tokenType) {

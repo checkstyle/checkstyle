@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenInAstByPredicate;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
@@ -51,8 +51,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(CheckUtil.class, true),
-                "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(isUtilsClassHasPrivateConstructor(CheckUtil.class, true))
+                .isTrue();
     }
 
     @Test
@@ -94,7 +95,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         elseAst.setType(TokenTypes.LITERAL_ELSE);
 
         elseAst.setFirstChild(ifAst);
-        assertTrue(CheckUtil.isElseIf(ifAst), "Invalid elseIf check result");
+        assertWithMessage("Invalid elseIf check result")
+                .that(CheckUtil.isElseIf(ifAst))
+                .isTrue();
     }
 
     @Test
@@ -179,8 +182,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         final DetailAST equalsMethodNode = getNodeFromFile(TokenTypes.METHOD_DEF);
         final DetailAST someOtherMethod = equalsMethodNode.getNextSibling();
 
-        assertTrue(CheckUtil.isEqualsMethod(equalsMethodNode),
-                "Invalid result: AST provided is not equals method");
+        assertWithMessage("Invalid result: AST provided is not equals method")
+                .that(CheckUtil.isEqualsMethod(equalsMethodNode))
+                .isTrue();
         assertFalse(CheckUtil.isEqualsMethod(someOtherMethod),
                 "Invalid result: AST provided is equals method");
     }
@@ -195,10 +199,12 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         final DetailAST ifWithoutElse =
                 firstElseNode.getParent().getNextSibling().getNextSibling();
 
-        assertTrue(CheckUtil.isElseIf(ifElseWithCurlyBraces),
-                "Invalid result: AST provided is not else if with curly");
-        assertTrue(CheckUtil.isElseIf(ifElse),
-                "Invalid result: AST provided is not else if with curly");
+        assertWithMessage("Invalid result: AST provided is not else if with curly")
+                .that(CheckUtil.isElseIf(ifElseWithCurlyBraces))
+                .isTrue();
+        assertWithMessage("Invalid result: AST provided is not else if with curly")
+                .that(CheckUtil.isElseIf(ifElse))
+                .isTrue();
         assertFalse(CheckUtil.isElseIf(ifWithoutElse),
                 "Invalid result: AST provided is else if with curly");
     }
@@ -208,8 +214,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         final DetailAST nonVoidMethod = getNodeFromFile(TokenTypes.METHOD_DEF);
         final DetailAST voidMethod = nonVoidMethod.getNextSibling();
 
-        assertTrue(CheckUtil.isNonVoidMethod(nonVoidMethod),
-                "Invalid result: AST provided is void method");
+        assertWithMessage("Invalid result: AST provided is void method")
+                .that(CheckUtil.isNonVoidMethod(nonVoidMethod))
+                .isTrue();
         assertFalse(CheckUtil.isNonVoidMethod(voidMethod),
                 "Invalid result: AST provided is non void method");
     }
@@ -219,8 +226,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         final DetailAST notGetterMethod = getNodeFromFile(TokenTypes.METHOD_DEF);
         final DetailAST getterMethod = notGetterMethod.getNextSibling().getNextSibling();
 
-        assertTrue(CheckUtil.isGetterMethod(getterMethod),
-                "Invalid result: AST provided is getter method");
+        assertWithMessage("Invalid result: AST provided is getter method")
+                .that(CheckUtil.isGetterMethod(getterMethod))
+                .isTrue();
         assertFalse(CheckUtil.isGetterMethod(notGetterMethod),
                 "Invalid result: AST provided is not getter method");
     }
@@ -232,8 +240,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
                 firstClassMethod.getNextSibling().getNextSibling().getNextSibling();
         final DetailAST notSetterMethod = setterMethod.getNextSibling();
 
-        assertTrue(CheckUtil.isSetterMethod(setterMethod),
-                "Invalid result: AST provided is setter method");
+        assertWithMessage("Invalid result: AST provided is setter method")
+                .that(CheckUtil.isSetterMethod(setterMethod))
+                .isTrue();
         assertFalse(CheckUtil.isSetterMethod(notSetterMethod),
                 "Invalid result: AST provided is not setter method");
     }
@@ -319,8 +328,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         final DetailAST simpleParameter =
                 receiverParameter.getNextSibling().getNextSibling();
 
-        assertTrue(CheckUtil.isReceiverParameter(receiverParameter),
-                "Invalid result: parameter provided is receiver parameter");
+        assertWithMessage("Invalid result: parameter provided is receiver parameter")
+                .that(CheckUtil.isReceiverParameter(receiverParameter))
+                .isTrue();
         assertFalse(CheckUtil.isReceiverParameter(simpleParameter),
                 "Invalid result: parameter provided is not receiver parameter");
     }

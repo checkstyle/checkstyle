@@ -29,7 +29,8 @@ public class DefinitionsTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
-                .that(isUtilsClassHasPrivateConstructor(Definitions.class, true)).isTrue();
+                .that(isUtilsClassHasPrivateConstructor(Definitions.class, true))
+                .isTrue();
     }
 
 }

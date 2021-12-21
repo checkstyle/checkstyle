@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -196,8 +195,9 @@ public class JavadocUtilTest {
     @Test
     public void testEmptyJavadocComment() {
         final String emptyJavadocComment = "*";
-        assertTrue(JavadocUtil.isJavadocComment(emptyJavadocComment),
-                "Should return true when empty javadoc comment is passed");
+        assertWithMessage("Should return true when empty javadoc comment is passed")
+                .that(JavadocUtil.isJavadocComment(emptyJavadocComment))
+                .isTrue();
     }
 
     @Test
@@ -224,14 +224,16 @@ public class JavadocUtilTest {
         final DetailAstImpl aJavadocPosition = new DetailAstImpl();
         aJavadocPosition.setType(TokenTypes.METHOD_DEF);
         aJavadocPosition.setFirstChild(commentBeginParent);
-        assertTrue(JavadocUtil.isJavadocComment(commentBegin),
-                "Should return true when empty javadoc comment ast is passed");
+        assertWithMessage("Should return true when empty javadoc comment ast is passed")
+                .that(JavadocUtil.isJavadocComment(commentBegin))
+                .isTrue();
     }
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(JavadocUtil.class, true),
-                "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(isUtilsClassHasPrivateConstructor(JavadocUtil.class, true))
+                .isTrue();
     }
 
     @Test
@@ -254,8 +256,9 @@ public class JavadocUtilTest {
                 "Should return false when branch does not contain node passed");
 
         secondChild.setType(JavadocTokenTypes.AUTHOR_LITERAL);
-        assertTrue(JavadocUtil.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL),
-                "Should return true when branch contains node passed");
+        assertWithMessage("Should return true when branch contains node passed")
+                .that(JavadocUtil.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL))
+                .isTrue();
     }
 
     @Test
