@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.XpathUtil.getXpathI
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.util.List;
@@ -460,7 +459,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         try {
             getXpathItems(xpath, rootNode);
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertThat("Invalid exception", ex.getMessage(), equalTo("Operation is not supported"));
@@ -473,7 +472,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         try {
             getXpathItems(xpath, rootNode);
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertThat("Invalid exception", ex.getMessage(), equalTo("Operation is not supported"));
