@@ -20,8 +20,6 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,29 +31,29 @@ public class IntRangeFilterElementTest {
     @Test
     public void testDecide() {
         final IntFilterElement filter = new IntRangeFilterElement(0, 10);
-        assertFalse(filter.accept(-1), "less than");
-        assertTrue(filter.accept(0), "in range");
-        assertTrue(filter.accept(5), "in range");
-        assertTrue(filter.accept(10), "in range");
-        assertFalse(filter.accept(11), "greater than");
+        assertWithMessage("less than").that(filter.accept(-1)).isFalse();
+        assertWithMessage("in range").that(filter.accept(0)).isTrue();
+        assertWithMessage("in range").that(filter.accept(5)).isTrue();
+        assertWithMessage("in range").that(filter.accept(10)).isTrue();
+        assertWithMessage("greater than").that(filter.accept(11)).isFalse();
     }
 
     @Test
     public void testDecideSingle() {
         final IntFilterElement filter = new IntRangeFilterElement(0, 0);
-        assertFalse(filter.accept(-1), "less than");
-        assertTrue(filter.accept(0), "in range");
-        assertFalse(filter.accept(1), "greater than");
+        assertWithMessage("less than").that(filter.accept(-1)).isFalse();
+        assertWithMessage("in range").that(filter.accept(0)).isTrue();
+        assertWithMessage("greater than").that(filter.accept(1)).isFalse();
     }
 
     @Test
     public void testDecideEmpty() {
         final IntFilterElement filter = new IntRangeFilterElement(10, 0);
-        assertFalse(filter.accept(-1), "out");
-        assertFalse(filter.accept(0), "out");
-        assertFalse(filter.accept(5), "out");
-        assertFalse(filter.accept(10), "out");
-        assertFalse(filter.accept(11), "out");
+        assertWithMessage("out").that(filter.accept(-1)).isFalse();
+        assertWithMessage("out").that(filter.accept(0)).isFalse();
+        assertWithMessage("out").that(filter.accept(5)).isFalse();
+        assertWithMessage("out").that(filter.accept(10)).isFalse();
+        assertWithMessage("out").that(filter.accept(11)).isFalse();
     }
 
     @Test
