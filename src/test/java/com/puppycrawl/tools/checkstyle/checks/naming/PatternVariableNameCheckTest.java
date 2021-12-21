@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,8 +40,8 @@ public class PatternVariableNameCheckTest
         final PatternVariableNameCheck patternVariableNameCheck = new PatternVariableNameCheck();
         final int[] expected = {TokenTypes.PATTERN_VARIABLE_DEF};
 
-        assertArrayEquals(expected, patternVariableNameCheck.getAcceptableTokens(),
-                "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(patternVariableNameCheck.getAcceptableTokens()).isEqualTo(expected);
     }
 
     @Test
