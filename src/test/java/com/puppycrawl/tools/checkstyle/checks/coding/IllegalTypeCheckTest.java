@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 
@@ -407,7 +407,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
         try {
             check.visitToken(classDefAst);
-            fail("IllegalStateException is expected");
+            assertWithMessage("IllegalStateException is expected").fail();
         }
         catch (IllegalStateException ex) {
             // it is OK

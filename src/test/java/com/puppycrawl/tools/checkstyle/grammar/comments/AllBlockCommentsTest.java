@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.grammar.comments;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -98,7 +98,7 @@ public class AllBlockCommentsTest extends AbstractModuleTestSupport {
         public void visitToken(DetailAST ast) {
             final String commentContent = ast.getFirstChild().getText();
             if (!ALL_COMMENTS.remove(commentContent)) {
-                fail("Unexpected comment: " + commentContent);
+                assertWithMessage("Unexpected comment: " + commentContent).fail();
             }
         }
 

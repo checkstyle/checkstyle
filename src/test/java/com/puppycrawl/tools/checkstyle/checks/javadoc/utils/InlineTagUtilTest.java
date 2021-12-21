@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.utils;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 
@@ -100,7 +100,7 @@ public class InlineTagUtilTest {
     public void testBadInputExtractInlineTagsLineFeed() {
         try {
             InlineTagUtil.extractInlineTags("abc\ndef");
-            fail("IllegalArgumentException expected");
+            assertWithMessage("IllegalArgumentException expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertTrue(ex.getMessage().contains("newline"), "Unexpected error message");
@@ -111,7 +111,7 @@ public class InlineTagUtilTest {
     public void testBadInputExtractInlineTagsCarriageReturn() {
         try {
             InlineTagUtil.extractInlineTags("abc\rdef");
-            fail("IllegalArgumentException expected");
+            assertWithMessage("IllegalArgumentException expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertTrue(ex.getMessage().contains("newline"), "Invalid error message");

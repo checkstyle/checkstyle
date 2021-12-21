@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -138,7 +137,7 @@ public class XpathFileGeneratorAuditListenerTest {
 
         try {
             logger.addException(ev, null);
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
