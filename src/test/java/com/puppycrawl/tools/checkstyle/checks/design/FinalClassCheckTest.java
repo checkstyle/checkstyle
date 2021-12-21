@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class FinalClassCheckTest
     extends AbstractModuleTestSupport {
@@ -41,12 +40,16 @@ public class FinalClassCheckTest
     @Test
     public void testGetRequiredTokens() {
         final FinalClassCheck checkObj = new FinalClassCheck();
-        final int[] expected =
-            {TokenTypes.CLASS_DEF,
-             TokenTypes.CTOR_DEF,
-             TokenTypes.PACKAGE_DEF,
-             TokenTypes.LITERAL_NEW,
-            };
+        final int[] expected = {
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.LITERAL_NEW,
+        };
         assertWithMessage("Default required tokens are invalid")
             .that(checkObj.getRequiredTokens())
             .isEqualTo(expected);
@@ -58,6 +61,8 @@ public class FinalClassCheckTest
             "11:1: " + getCheckMessage(MSG_KEY, "InputFinalClass"),
             "19:4: " + getCheckMessage(MSG_KEY, "test4"),
             "117:5: " + getCheckMessage(MSG_KEY, "someinnerClass"),
+            "124:5: " + getCheckMessage(MSG_KEY, "SomeClass"),
+            "130:5: " + getCheckMessage(MSG_KEY, "SomeClass"),
             "151:1: " + getCheckMessage(MSG_KEY, "TestNewKeyword"),
             "184:5: " + getCheckMessage(MSG_KEY, "NestedClass"),
         };
@@ -91,7 +96,9 @@ public class FinalClassCheckTest
     @Test
     public void testFinalClassConstructorInRecord() throws Exception {
 
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "27:9: " + getCheckMessage(MSG_KEY, "F"),
+        };
 
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputFinalClassConstructorInRecord.java"),
@@ -116,12 +123,16 @@ public class FinalClassCheckTest
     @Test
     public void testGetAcceptableTokens() {
         final FinalClassCheck obj = new FinalClassCheck();
-        final int[] expected =
-            {TokenTypes.CLASS_DEF,
-             TokenTypes.CTOR_DEF,
-             TokenTypes.PACKAGE_DEF,
-             TokenTypes.LITERAL_NEW,
-            };
+        final int[] expected = {
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.LITERAL_NEW,
+        };
         assertWithMessage("Default acceptable tokens are invalid")
             .that(obj.getAcceptableTokens())
             .isEqualTo(expected);
@@ -134,6 +145,57 @@ public class FinalClassCheckTest
         assertWithMessage("unexpected result")
             .that(actual)
             .isEqualTo("ClassName");
+    }
+
+    @Test
+    public void testFinalClassInnerAndNestedClasses() throws Exception {
+        final String[] expected = {
+            "19:5: " + getCheckMessage(MSG_KEY, "SameName"),
+            "45:9: " + getCheckMessage(MSG_KEY, "SameName"),
+            "69:13: " + getCheckMessage(MSG_KEY, "B"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalClassInnerAndNestedClass.java"), expected);
+    }
+
+    @Test
+    public void testFinalClassStaticNestedClasses() throws Exception {
+
+        final String[] expected = {
+            "14:17: " + getCheckMessage(MSG_KEY, "C"),
+            "32:9: " + getCheckMessage(MSG_KEY, "B"),
+            "43:9: " + getCheckMessage(MSG_KEY, "C"),
+            "60:13: " + getCheckMessage(MSG_KEY, "Q"),
+            "76:9: " + getCheckMessage(MSG_KEY, "F"),
+            "83:9: " + getCheckMessage(MSG_KEY, "c"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalClassNestedStaticClassInsideInnerClass.java"),
+                expected);
+    }
+
+    @Test
+    public void testFinalClassEnum() throws Exception {
+        final String[] expected = {
+            "35:5: " + getCheckMessage(MSG_KEY, "DerivedClass"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalClassEnum.java"), expected);
+    }
+
+    @Test
+    public void testFinalClassAnnotation() throws Exception {
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_KEY, "DerivedClass"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalClassAnnotation.java"), expected);
+    }
+
+    @Test
+    public void testFinalClassInterface() throws Exception {
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_KEY, "DerivedClass"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalClassInterface.java"), expected);
     }
 
 }
