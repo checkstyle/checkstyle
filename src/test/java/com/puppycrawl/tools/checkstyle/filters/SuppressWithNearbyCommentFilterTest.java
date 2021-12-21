@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.filters;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.util.Arrays;
@@ -431,7 +430,8 @@ public class SuppressWithNearbyCommentFilterTest
         contents.reportSingleLineComment(1, 0);
         final TreeWalkerAuditEvent auditEvent =
                 new TreeWalkerAuditEvent(contents, null, null, null);
-        assertTrue(filter.accept(auditEvent), "Filter should accept null violation");
+        assertWithMessage("Filter should accept null violation").that(filter.accept(auditEvent))
+                .isTrue();
     }
 
     @Test
@@ -440,7 +440,8 @@ public class SuppressWithNearbyCommentFilterTest
         final FileContents contents = null;
         final TreeWalkerAuditEvent auditEvent = new TreeWalkerAuditEvent(contents, null,
                 new Violation(1, null, null, null, null, Object.class, null), null);
-        assertTrue(filter.accept(auditEvent), "Filter should accept audit event");
+        assertWithMessage("Filter should accept audit event").that(filter.accept(auditEvent))
+                .isTrue();
     }
 
     @Test

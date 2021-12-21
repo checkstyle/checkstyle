@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.grammar.comments;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashSet;
@@ -55,7 +54,7 @@ public class AllSinglelineCommentsTest extends AbstractModuleTestSupport {
         lineSeparator = CheckUtil.getLineSeparatorForFile(path, StandardCharsets.UTF_8);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, path, expected);
-        assertTrue(ALL_COMMENTS.isEmpty(), "All comments should be empty");
+        assertWithMessage("All comments should be empty").that(ALL_COMMENTS).isEmpty();
     }
 
     public static class SinglelineCommentListenerCheck extends AbstractCheck {

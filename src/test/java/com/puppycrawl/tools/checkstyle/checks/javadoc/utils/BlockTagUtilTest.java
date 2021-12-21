@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.utils;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -32,8 +32,9 @@ public class BlockTagUtilTest {
 
     @Test
     public void testHasPrivateConstructor() throws Exception {
-        assertTrue(TestUtil.isUtilsClassHasPrivateConstructor(BlockTagUtil.class, true),
-                "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(TestUtil.isUtilsClassHasPrivateConstructor(BlockTagUtil.class, true))
+                .isTrue();
     }
 
     @Test

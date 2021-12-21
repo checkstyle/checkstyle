@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,8 +35,8 @@ public class ScopeUtilTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(ScopeUtil.class, true),
-                "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(isUtilsClassHasPrivateConstructor(ScopeUtil.class, true)).isTrue();
     }
 
     @Test
@@ -45,8 +45,10 @@ public class ScopeUtilTest {
                 "Should return false when passed is not class");
         assertFalse(ScopeUtil.isInClassBlock(getNode(TokenTypes.LITERAL_NEW, TokenTypes.MODIFIERS)),
                 "Should return false when passed is not class");
-        assertTrue(ScopeUtil.isInClassBlock(getNode(TokenTypes.OBJBLOCK, TokenTypes.CLASS_DEF,
-                TokenTypes.MODIFIERS)), "Should return true when passed is class");
+        assertWithMessage("Should return true when passed is class")
+                .that(ScopeUtil.isInClassBlock(
+                        getNode(TokenTypes.OBJBLOCK, TokenTypes.CLASS_DEF, TokenTypes.MODIFIERS)))
+                .isTrue();
         assertFalse(ScopeUtil.isInClassBlock(getNode(TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF,
                 TokenTypes.MODIFIERS)), "Should return false when passed is not class");
         assertFalse(
@@ -66,8 +68,10 @@ public class ScopeUtilTest {
                 "Should return false when passed is not enum");
         assertFalse(ScopeUtil.isInEnumBlock(getNode(TokenTypes.LITERAL_NEW, TokenTypes.MODIFIERS)),
                 "Should return false when passed is not enum");
-        assertTrue(ScopeUtil.isInEnumBlock(getNode(TokenTypes.OBJBLOCK, TokenTypes.ENUM_DEF,
-                TokenTypes.MODIFIERS)), "Should return true when passed is enum");
+        assertWithMessage("Should return true when passed is enum")
+                .that(ScopeUtil.isInEnumBlock(
+                        getNode(TokenTypes.OBJBLOCK, TokenTypes.ENUM_DEF, TokenTypes.MODIFIERS)))
+                .isTrue();
         assertFalse(ScopeUtil.isInEnumBlock(getNode(TokenTypes.ENUM_DEF, TokenTypes.INTERFACE_DEF,
                 TokenTypes.MODIFIERS)), "Should return false when passed is not enum");
         assertFalse(ScopeUtil.isInEnumBlock(getNode(TokenTypes.ENUM_DEF, TokenTypes.ANNOTATION_DEF,
@@ -85,16 +89,22 @@ public class ScopeUtilTest {
         assertFalse(ScopeUtil.isInCodeBlock(getNode(TokenTypes.CLASS_DEF)), "invalid result");
         assertFalse(ScopeUtil.isInCodeBlock(getNode(TokenTypes.ASSIGN, TokenTypes.VARIABLE_DEF)),
                 "invalid result");
-        assertTrue(ScopeUtil.isInCodeBlock(getNode(TokenTypes.METHOD_DEF, TokenTypes.OBJBLOCK)),
-                "invalid result");
-        assertTrue(ScopeUtil.isInCodeBlock(getNode(TokenTypes.CTOR_DEF, TokenTypes.OBJBLOCK)),
-                "invalid result");
-        assertTrue(ScopeUtil.isInCodeBlock(getNode(TokenTypes.INSTANCE_INIT, TokenTypes.OBJBLOCK)),
-                "invalid result");
-        assertTrue(ScopeUtil.isInCodeBlock(getNode(TokenTypes.STATIC_INIT, TokenTypes.OBJBLOCK)),
-                "invalid result");
-        assertTrue(ScopeUtil.isInCodeBlock(getNode(TokenTypes.LAMBDA, TokenTypes.ASSIGN)),
-                "invalid result");
+        assertWithMessage("invalid result")
+                .that(ScopeUtil.isInCodeBlock(getNode(TokenTypes.METHOD_DEF, TokenTypes.OBJBLOCK)))
+                .isTrue();
+        assertWithMessage("invalid result")
+                .that(ScopeUtil.isInCodeBlock(getNode(TokenTypes.CTOR_DEF, TokenTypes.OBJBLOCK)))
+                .isTrue();
+        assertWithMessage("invalid result")
+                .that(ScopeUtil
+                        .isInCodeBlock(getNode(TokenTypes.INSTANCE_INIT, TokenTypes.OBJBLOCK)))
+                .isTrue();
+        assertWithMessage("invalid result")
+                .that(ScopeUtil.isInCodeBlock(getNode(TokenTypes.STATIC_INIT, TokenTypes.OBJBLOCK)))
+                .isTrue();
+        assertWithMessage("invalid result")
+                .that(ScopeUtil.isInCodeBlock(getNode(TokenTypes.LAMBDA, TokenTypes.ASSIGN)))
+                .isTrue();
     }
 
     @Test
@@ -103,8 +113,10 @@ public class ScopeUtilTest {
                 "Should return false when passed is not record");
         assertFalse(ScopeUtil.isInRecordBlock(getNode(TokenTypes.LITERAL_NEW,
                 TokenTypes.MODIFIERS)), "Should return false when passed is not record");
-        assertTrue(ScopeUtil.isInRecordBlock(getNode(TokenTypes.OBJBLOCK, TokenTypes.RECORD_DEF,
-                TokenTypes.MODIFIERS)), "Should return true when passed is record");
+        assertWithMessage("Should return true when passed is record")
+                .that(ScopeUtil.isInRecordBlock(
+                        getNode(TokenTypes.OBJBLOCK, TokenTypes.RECORD_DEF, TokenTypes.MODIFIERS)))
+                .isTrue();
         assertFalse(ScopeUtil.isInRecordBlock(getNode(TokenTypes.RECORD_DEF,
                 TokenTypes.INTERFACE_DEF, TokenTypes.MODIFIERS)),
                 "Should return false when passed is not record");
@@ -145,14 +157,16 @@ public class ScopeUtilTest {
 
     @Test
     public void testIsOuterMostTypePackageDef() {
-        assertTrue(ScopeUtil.isOuterMostType(getNode(TokenTypes.PACKAGE_DEF, TokenTypes.DOT)),
-                "Should return false when passed is not outer most type");
+        assertWithMessage("Should return false when passed is not outer most type")
+                .that(ScopeUtil.isOuterMostType(getNode(TokenTypes.PACKAGE_DEF, TokenTypes.DOT)))
+                .isTrue();
     }
 
     @Test
     public void testIsLocalVariableDefCatch() {
-        assertTrue(ScopeUtil.isLocalVariableDef(getNode(TokenTypes.LITERAL_CATCH,
-                TokenTypes.PARAMETER_DEF)), "Should return true when passed is variable def");
+        assertWithMessage("Should return true when passed is variable def").that(ScopeUtil
+                .isLocalVariableDef(getNode(TokenTypes.LITERAL_CATCH, TokenTypes.PARAMETER_DEF)))
+                .isTrue();
     }
 
     @Test
@@ -172,7 +186,7 @@ public class ScopeUtilTest {
         final DetailAstImpl ident = new DetailAstImpl();
         ident.setType(TokenTypes.IDENT);
         node.addChild(ident);
-        assertTrue(ScopeUtil.isLocalVariableDef(node), "invalid result");
+        assertWithMessage("invalid result").that(ScopeUtil.isLocalVariableDef(node)).isTrue();
         final DetailAstImpl resourceWithIdent = getNode(TokenTypes.RESOURCE);
         resourceWithIdent.addChild(ident);
         assertFalse(ScopeUtil.isLocalVariableDef(resourceWithIdent), "invalid result");
@@ -181,20 +195,27 @@ public class ScopeUtilTest {
 
     @Test
     public void testIsLocalVariableDefVariable() {
-        assertTrue(ScopeUtil.isLocalVariableDef(getNode(TokenTypes.SLIST, TokenTypes.VARIABLE_DEF)),
-                "invalid result");
-        assertTrue(ScopeUtil.isLocalVariableDef(getNode(TokenTypes.FOR_INIT,
-                TokenTypes.VARIABLE_DEF)), "invalid result");
-        assertTrue(ScopeUtil.isLocalVariableDef(getNode(
-                TokenTypes.FOR_EACH_CLAUSE, TokenTypes.VARIABLE_DEF)), "invalid result");
+        assertWithMessage("invalid result")
+                .that(ScopeUtil
+                        .isLocalVariableDef(getNode(TokenTypes.SLIST, TokenTypes.VARIABLE_DEF)))
+                .isTrue();
+        assertWithMessage("invalid result")
+                .that(ScopeUtil
+                        .isLocalVariableDef(getNode(TokenTypes.FOR_INIT, TokenTypes.VARIABLE_DEF)))
+                .isTrue();
+        assertWithMessage("invalid result").that(ScopeUtil
+                .isLocalVariableDef(getNode(TokenTypes.FOR_EACH_CLAUSE, TokenTypes.VARIABLE_DEF)))
+                .isTrue();
         assertFalse(ScopeUtil.isLocalVariableDef(getNode(TokenTypes.CLASS_DEF,
                 TokenTypes.VARIABLE_DEF)), "invalid result");
     }
 
     @Test
     public void testIsClassFieldDef() {
-        assertTrue(ScopeUtil.isClassFieldDef(getNode(TokenTypes.CLASS_DEF, TokenTypes.OBJBLOCK,
-            TokenTypes.VARIABLE_DEF)), "Should return true when passed is class field def");
+        assertWithMessage("Should return true when passed is class field def")
+                .that(ScopeUtil.isClassFieldDef(getNode(TokenTypes.CLASS_DEF, TokenTypes.OBJBLOCK,
+                        TokenTypes.VARIABLE_DEF)))
+                .isTrue();
         assertFalse(ScopeUtil.isClassFieldDef(getNode(TokenTypes.CLASS_DEF)),
             "Should return false when passed is unexpected");
         assertFalse(ScopeUtil.isClassFieldDef(getNode(TokenTypes.METHOD_DEF, TokenTypes.SLIST,
@@ -222,9 +243,10 @@ public class ScopeUtilTest {
 
     @Test
     public void testIsInScope() {
-        assertTrue(ScopeUtil.isInScope(getNodeWithParentScope(TokenTypes.LITERAL_PUBLIC,
-                "public", TokenTypes.ANNOTATION_DEF), Scope.PUBLIC),
-                "Should return true when node is in valid scope");
+        assertWithMessage("Should return true when node is in valid scope")
+                .that(ScopeUtil.isInScope(getNodeWithParentScope(TokenTypes.LITERAL_PUBLIC,
+                        "public", TokenTypes.ANNOTATION_DEF), Scope.PUBLIC))
+                .isTrue();
         assertFalse(ScopeUtil.isInScope(getNodeWithParentScope(TokenTypes.LITERAL_PROTECTED,
                 "protected", TokenTypes.INTERFACE_DEF), Scope.PRIVATE),
                 "Should return false when node is in invalid scope");
@@ -242,8 +264,8 @@ public class ScopeUtilTest {
         final DetailAST ast = getNode(TokenTypes.INTERFACE_DEF, TokenTypes.OBJBLOCK,
                 TokenTypes.CLASS_DEF, TokenTypes.MODIFIERS);
 
-        assertTrue(ScopeUtil.isInInterfaceBlock(ast.getParent()),
-                "Should return true when node is interface block");
+        assertWithMessage("Should return true when node is interface block")
+                .that(ScopeUtil.isInInterfaceBlock(ast.getParent())).isTrue();
         assertFalse(ScopeUtil.isInInterfaceBlock(ast),
                 "Should return false when node is not interface block");
     }
@@ -253,20 +275,22 @@ public class ScopeUtilTest {
         final DetailAST ast = getNode(TokenTypes.ANNOTATION_DEF, TokenTypes.OBJBLOCK,
                 TokenTypes.INTERFACE_DEF, TokenTypes.MODIFIERS);
 
-        assertTrue(ScopeUtil.isInAnnotationBlock(ast.getParent()),
-                "Should return true when node is annotation block");
+        assertWithMessage("Should return true when node is annotation block")
+                .that(ScopeUtil.isInAnnotationBlock(ast.getParent())).isTrue();
         assertFalse(ScopeUtil.isInAnnotationBlock(ast),
                 "Should return false when node is not annotation block");
     }
 
     @Test
     public void testisInInterfaceOrAnnotationBlock() {
-        assertTrue(ScopeUtil.isInInterfaceOrAnnotationBlock(
-                getNode(TokenTypes.ANNOTATION_DEF, TokenTypes.OBJBLOCK)),
-                "Should return true when node is in interface or annotation block");
-        assertTrue(ScopeUtil.isInInterfaceOrAnnotationBlock(
-                getNode(TokenTypes.INTERFACE_DEF, TokenTypes.OBJBLOCK)),
-                "Should return true when node is in interface or annotation block");
+        assertWithMessage("Should return true when node is in interface or annotation block")
+                .that(ScopeUtil.isInInterfaceOrAnnotationBlock(
+                        getNode(TokenTypes.ANNOTATION_DEF, TokenTypes.OBJBLOCK)))
+                .isTrue();
+        assertWithMessage("Should return true when node is in interface or annotation block")
+                .that(ScopeUtil.isInInterfaceOrAnnotationBlock(
+                        getNode(TokenTypes.INTERFACE_DEF, TokenTypes.OBJBLOCK)))
+                .isTrue();
         assertFalse(ScopeUtil.isInInterfaceOrAnnotationBlock(
                 getNode(TokenTypes.CLASS_DEF, TokenTypes.OBJBLOCK)),
                 "Should return false when node is not in interface or annotation block");

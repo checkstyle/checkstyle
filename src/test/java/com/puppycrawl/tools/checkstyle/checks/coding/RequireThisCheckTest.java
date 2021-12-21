@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG_METHOD;
 import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG_VARIABLE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
@@ -463,11 +463,11 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final Optional<DetailAST> classDef = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.CLASS_DEF);
 
-        assertTrue(classDef.isPresent(), "Ast should contain CLASS_DEF");
-        assertTrue(
-            TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(),
-                "current", current -> ((Collection<?>) current).isEmpty()),
-                "State is not cleared on beginTree");
+        assertWithMessage("Ast should contain CLASS_DEF").that(classDef.isPresent()).isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(),
+                        "current", current -> ((Collection<?>) current).isEmpty()))
+                .isTrue();
     }
 
 }
