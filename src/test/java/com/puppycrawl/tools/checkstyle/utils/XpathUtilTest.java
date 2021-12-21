@@ -28,7 +28,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
@@ -53,22 +52,28 @@ public class XpathUtilTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(XpathUtil.class, true),
-                "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(isUtilsClassHasPrivateConstructor(XpathUtil.class, true))
+                .isTrue();
     }
 
     @Test
     public void testSupportsTextAttribute() {
-        assertTrue(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.IDENT)),
-                "Should return true for supported token types");
-        assertTrue(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.NUM_INT)),
-                "Should return true for supported token types");
-        assertTrue(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.STRING_LITERAL)),
-                "Should return true for supported token types");
-        assertTrue(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.CHAR_LITERAL)),
-                "Should return true for supported token types");
-        assertTrue(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.NUM_DOUBLE)),
-                "Should return true for supported token types");
+        assertWithMessage("Should return true for supported token types")
+                .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.IDENT)))
+                .isTrue();
+        assertWithMessage("Should return true for supported token types")
+                .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.NUM_INT)))
+                .isTrue();
+        assertWithMessage("Should return true for supported token types")
+                .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.STRING_LITERAL)))
+                .isTrue();
+        assertWithMessage("Should return true for supported token types")
+                .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.CHAR_LITERAL)))
+                .isTrue();
+        assertWithMessage("Should return true for supported token types")
+                .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.NUM_DOUBLE)))
+                .isTrue();
         assertFalse(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.VARIABLE_DEF)),
                 "Should return false for unsupported token types");
         assertFalse(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.OBJBLOCK)),

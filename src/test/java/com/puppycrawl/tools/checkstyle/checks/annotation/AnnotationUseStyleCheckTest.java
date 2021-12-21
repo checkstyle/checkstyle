@@ -27,7 +27,6 @@ import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseSty
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -309,8 +308,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         catch (IllegalArgumentException ex) {
             final String messageStart = "unable to parse";
 
-            assertTrue(ex.getMessage().startsWith(messageStart),
-                    "Invalid exception message, should start with: " + messageStart);
+            assertWithMessage("Invalid exception message, should start with: " + messageStart)
+                    .that(ex.getMessage().startsWith(messageStart))
+                    .isTrue();
         }
     }
 

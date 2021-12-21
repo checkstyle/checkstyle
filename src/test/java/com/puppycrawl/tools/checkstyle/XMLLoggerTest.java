@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -97,8 +96,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             "&amp;",
         };
         for (String reference : references) {
-            assertTrue(
-                    XMLLogger.isReference(reference), "reference: " + reference);
+            assertWithMessage("reference: " + reference)
+                    .that(XMLLogger.isReference(reference))
+                    .isTrue();
         }
         final String[] noReferences = {
             "&",

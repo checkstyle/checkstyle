@@ -32,7 +32,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.util.LinkedHashMap;
@@ -285,8 +284,9 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             final String expected = "Javadoc Token "
                     + "\"RETURN_LITERAL\" was not found in "
                     + "Acceptable javadoc tokens list in check";
-            assertTrue(ex.getMessage().startsWith(expected),
-                    "Invalid exception, should start with: " + expected);
+            assertWithMessage("Invalid exception, should start with: " + expected)
+                    .that(ex.getMessage().startsWith(expected))
+                    .isTrue();
         }
     }
 
@@ -317,8 +317,9 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             final String expected = "Javadoc Token \""
                     + JavadocTokenTypes.RETURN_LITERAL + "\" from required"
                     + " javadoc tokens was not found in default javadoc tokens list in check";
-            assertTrue(ex.getMessage().startsWith(expected),
-                    "Invalid exception, should start with: " + expected);
+            assertWithMessage("Invalid exception, should start with: " + expected)
+                    .that(ex.getMessage().startsWith(expected))
+                    .isTrue();
         }
     }
 
@@ -329,8 +330,9 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocVisitLeaveCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAbstractJavadocLeaveToken.java"), expected);
-        assertTrue(JavadocVisitLeaveCheck.visitCount > 0,
-                "Javadoc visit count should be greater than zero");
+        assertWithMessage("Javadoc visit count should be greater than zero")
+                .that(JavadocVisitLeaveCheck.visitCount > 0)
+                .isTrue();
         assertEquals(JavadocVisitLeaveCheck.visitCount, JavadocVisitLeaveCheck.leaveCount,
                 "Javadoc visit and leave count should be equal");
     }

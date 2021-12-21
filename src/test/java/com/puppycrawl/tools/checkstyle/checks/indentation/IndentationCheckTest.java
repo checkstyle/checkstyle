@@ -26,7 +26,6 @@ import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationChec
 import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_ERROR_MULTI;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -2611,10 +2610,12 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                     .mapToInt(msg::indexOf)
                     .allMatch(index -> index >= indexOfArgumentZero);
         });
-        assertTrue(isInOrder,
-                "the argument 0 of error messages (indentation.error, indentation.child.error,"
+        assertWithMessage(
+                    "the argument 0 of error messages (indentation.error, indentation.child.error,"
                         + " indentation.error.multi, indentation.child.error.multi)"
-                        + " is required to be the first argument of them");
+                        + " is required to be the first argument of them")
+                .that(isInOrder)
+                .isTrue();
     }
 
     @Test
@@ -2971,9 +2972,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                     "input expected warning #%d at line %d to report one of the following: %s"
                             + "but got instead: %d: %s",
                     position, comment.getLineNumber(), possibleExceptedMessages, line, message);
-            assertTrue(line == comment.getLineNumber()
-                    && Arrays.stream(comment.getExpectedMessages()).anyMatch(message::endsWith),
-                    assertMessage);
+            assertWithMessage(assertMessage)
+                    .that(line == comment.getLineNumber() && Arrays
+                            .stream(comment.getExpectedMessages()).anyMatch(message::endsWith))
+                    .isTrue();
         }
 
         @Override
