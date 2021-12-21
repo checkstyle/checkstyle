@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
@@ -107,7 +107,7 @@ public class FinalClassCheckTest
         badAst.setType(unsupportedTokenByCheck);
         try {
             finalClassCheck.visitToken(badAst);
-            fail("IllegalStateException is expected");
+            assertWithMessage("IllegalStateException is expected").fail();
         }
         catch (IllegalStateException ex) {
             // it is OK

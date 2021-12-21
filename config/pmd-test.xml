@@ -166,7 +166,9 @@
                     | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenNumbering']
                     | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
-                        //MethodDeclaration[@Name='testTokenNumbers']"/>
+                        //MethodDeclaration[@Name='testTokenNumbers']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='ParseTreeTablePresentationTest']
+                        //MethodDeclaration[@Name='testGetValueAtDetailNode']"/>
     </properties>
   </rule>
 

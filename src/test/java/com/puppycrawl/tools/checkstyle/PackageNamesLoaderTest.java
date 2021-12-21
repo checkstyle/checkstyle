@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -151,7 +151,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
 
         try {
             PackageNamesLoader.getPackageNames(new TestUrlsClassLoader(enumeration));
-            fail("CheckstyleException is expected");
+            assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertTrue(ex.getCause() instanceof SAXException, "Invalid exception cause class");
@@ -182,7 +182,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
 
         try {
             PackageNamesLoader.getPackageNames(new TestUrlsClassLoader(enumeration));
-            fail("CheckstyleException is expected");
+            assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertTrue(ex.getCause() instanceof IOException, "Invalid exception cause class");
@@ -195,7 +195,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
     public void testPackagesWithIoExceptionGetResources() {
         try {
             PackageNamesLoader.getPackageNames(new TestIoExceptionClassLoader());
-            fail("CheckstyleException is expected");
+            assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertTrue(ex.getCause() instanceof IOException, "Invalid exception cause class");

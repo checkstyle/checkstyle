@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.util.Arrays;
@@ -391,7 +390,7 @@ public class SuppressionCommentFilterTest
         try {
             final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
             verifySuppressed(filterConfig, "InputSuppressionCommentFilter10.java", suppressed);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
@@ -409,7 +408,7 @@ public class SuppressionCommentFilterTest
         try {
             final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
             verifySuppressed(filterConfig, "InputSuppressionCommentFilter11.java", suppressed);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();

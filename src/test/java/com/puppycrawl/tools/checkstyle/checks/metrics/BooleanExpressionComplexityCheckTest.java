@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
@@ -79,7 +79,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
         ast.initialize(new CommonToken(TokenTypes.INTERFACE_DEF, "interface"));
         try {
             booleanExpressionComplexityCheckObj.visitToken(ast);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Unknown type: interface[0x-1]", ex.getMessage(),

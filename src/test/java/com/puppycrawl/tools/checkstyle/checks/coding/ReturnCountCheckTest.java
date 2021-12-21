@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG_KEY_VOID;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.util.Collection;
@@ -121,7 +121,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
 
         try {
             check.visitToken(classDefAst);
-            fail("IllegalStateException is expected");
+            assertWithMessage("IllegalStateException is expected").fail();
         }
         catch (IllegalStateException ex) {
             // it is OK
@@ -129,7 +129,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
 
         try {
             check.leaveToken(classDefAst);
-            fail("IllegalStateException is expected");
+            assertWithMessage("IllegalStateException is expected").fail();
         }
         catch (IllegalStateException ex) {
             // it is OK

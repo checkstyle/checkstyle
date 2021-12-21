@@ -31,7 +31,6 @@ import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.STRING_SEPARA
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.mockStatic;
 
 import java.io.File;
@@ -73,7 +72,7 @@ public class PackageObjectFactoryTest {
     public void testCtorNullLoaderException1() {
         try {
             final Object test = new PackageObjectFactory(new HashSet<>(), null);
-            fail("Exception is expected but got " + test);
+            assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals(NULL_LOADER_MESSAGE, ex.getMessage(), "Invalid exception message");
@@ -84,7 +83,7 @@ public class PackageObjectFactoryTest {
     public void testCtorNullLoaderException2() {
         try {
             final Object test = new PackageObjectFactory("test", null);
-            fail("Exception is expected but got " + test);
+            assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals(NULL_LOADER_MESSAGE, ex.getMessage(), "Invalid exception message");
@@ -96,7 +95,7 @@ public class PackageObjectFactoryTest {
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         try {
             final Object test = new PackageObjectFactory(Collections.singleton(null), classLoader);
-            fail("Exception is expected but got " + test);
+            assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals(NULL_PACKAGE_MESSAGE, ex.getMessage(), "Invalid exception message");
@@ -108,7 +107,7 @@ public class PackageObjectFactoryTest {
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         try {
             final Object test = new PackageObjectFactory((String) null, classLoader);
-            fail("Exception is expected but got " + test);
+            assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals(NULL_PACKAGE_MESSAGE, ex.getMessage(), "Invalid exception message");
@@ -121,7 +120,7 @@ public class PackageObjectFactoryTest {
         try {
             final Object test = new PackageObjectFactory(Collections.singleton(null), classLoader,
                     TRY_IN_ALL_REGISTERED_PACKAGES);
-            fail("Exception is expected but got " + test);
+            assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals(NULL_PACKAGE_MESSAGE, ex.getMessage(), "Invalid exception message");
@@ -142,7 +141,7 @@ public class PackageObjectFactoryTest {
         final String name = "com.puppycrawl.tools.checkstyle.checks.naming.ConstantName";
         try {
             factory.createModule(name);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             final Violation exceptionMessage = new Violation(1,
@@ -159,7 +158,7 @@ public class PackageObjectFactoryTest {
         for (String name : names) {
             try {
                 factory.createModule(name);
-                fail("Exception is expected");
+                assertWithMessage("Exception is expected").fail();
             }
             catch (CheckstyleException ex) {
                 final String attemptedNames = BASE_PACKAGE + PACKAGE_SEPARATOR + name
@@ -224,7 +223,7 @@ public class PackageObjectFactoryTest {
         final String name = "FooCheck";
         try {
             objectFactory.createModule(name);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             final String optionalNames = barPackage + PACKAGE_SEPARATOR + name
@@ -248,7 +247,7 @@ public class PackageObjectFactoryTest {
         final String checkName = name + CHECK_SUFFIX;
         try {
             objectFactory.createModule(name);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             final String attemptedNames = package1 + PACKAGE_SEPARATOR + name + STRING_SEPARATOR
@@ -276,7 +275,7 @@ public class PackageObjectFactoryTest {
         final String checkName = name + CHECK_SUFFIX;
         try {
             objectFactory.createModule(name);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             final String attemptedNames = package1 + PACKAGE_SEPARATOR + name + STRING_SEPARATOR
@@ -355,14 +354,14 @@ public class PackageObjectFactoryTest {
                             && !Definitions.INTERNAL_MODULES.contains(clazz.getName());
                 }).findFirst();
         if (optional1.isPresent()) {
-            fail("Invalid canonical name: " + optional1.get());
+            assertWithMessage("Invalid canonical name: " + optional1.get()).fail();
         }
         final Optional<String> optional2 = canonicalNames.stream().filter(canonicalName -> {
             return classes.stream().map(Class::getCanonicalName)
                     .noneMatch(clssCanonicalName -> clssCanonicalName.equals(canonicalName));
         }).findFirst();
         if (optional2.isPresent()) {
-            fail("Invalid class: " + optional2.get());
+            assertWithMessage("Invalid class: " + optional2.get()).fail();
         }
     }
 
@@ -370,7 +369,7 @@ public class PackageObjectFactoryTest {
     public void testConstructorFailure() {
         try {
             factory.createModule(FailConstructorFileSet.class.getName());
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("Unable to instantiate com.puppycrawl.tools.checkstyle."

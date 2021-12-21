@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mockStatic;
 
@@ -74,7 +73,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     public void testCtor() {
         try {
             final Object test = new PropertyCacheFile(null, "");
-            fail("exception expected but got " + test);
+            assertWithMessage("exception expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("config can not be null", ex.getMessage(), "Invalid exception message");
@@ -82,7 +81,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         final Configuration config = new DefaultConfiguration("myName");
         try {
             final Object test = new PropertyCacheFile(config, null);
-            fail("exception expected but got " + test);
+            assertWithMessage("exception expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("fileName can not be null", ex.getMessage(), "Invalid exception message");
