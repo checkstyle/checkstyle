@@ -43,45 +43,61 @@ public class MemberDefHandler extends AbstractExpressionHandler {
 
     @Override
     public void checkIndentation() {
-        final DetailAST modifiersNode = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiersNode.hasChildren()) {
-            checkModifiers();
+        final String subtype;
+        if (getMainAst().findFirstToken(TokenTypes.MODIFIERS).hasChildren()) {
+            subtype = "modifier";
         }
         else {
-            checkType();
+            subtype = "type";
         }
-        final DetailAST firstNode = getMainAst();
-        final DetailAST lastNode = getVarDefStatementSemicolon(firstNode);
+        final DetailAST firstNode = getFirstNode();
+        final DetailAST lastNode = getVarDefStatementSemicolon(getMainAst());
 
-        if (lastNode != null && !isArrayDeclaration(firstNode)) {
-            checkWrappingIndentation(firstNode, lastNode);
+        final int firstNodeColumnNo = expandedTabsColumnNo(firstNode);
+        final boolean indentationAcceptable = getIndent().isAcceptable(firstNodeColumnNo);
+        final int expectedFirstNodeIndent;
+        if (indentationAcceptable) {
+            expectedFirstNodeIndent = firstNodeColumnNo;
         }
+        else {
+            expectedFirstNodeIndent = getIndent().getFirstIndentLevel();
+        }
+        if (!indentationAcceptable && getLineStart(firstNode) == firstNodeColumnNo) {
+            logError(firstNode, subtype, firstNodeColumnNo);
+        }
+        if (lastNode != null && !isArrayDeclaration(getMainAst())) {
+            checkWrappingIndentation(getMainAst(), lastNode,
+                    getIndentCheck().getLineWrappingIndentation(),
+                    expectedFirstNodeIndent,
+                    true);
+        }
+    }
+
+    /**
+     * Searches in given sub-tree (including given node) for the token
+     * which represents first symbol for this sub-tree in file.
+     *
+     * @return a token which occurs first in the file.
+     */
+    private DetailAST getFirstNode() {
+        DetailAST type = getMainAst().findFirstToken(TokenTypes.TYPE);
+        final DetailAST result;
+        if (type.getFirstChild().getType() == TokenTypes.DOT) {
+            type = type.getFirstChild();
+            while (type.getFirstChild().getType() == TokenTypes.DOT) {
+                type = type.getFirstChild();
+            }
+            result = type.getFirstChild();
+        }
+        else {
+            result = getMainAst();
+        }
+        return result;
     }
 
     @Override
     public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
         return getIndent();
-    }
-
-    @Override
-    protected void checkModifiers() {
-        final DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
-        if (isOnStartOfLine(modifier)
-            && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
-            logError(modifier, "modifier", expandedTabsColumnNo(modifier));
-        }
-    }
-
-    /**
-     * Check the indentation of the method type.
-     */
-    private void checkType() {
-        final DetailAST type = getMainAst().findFirstToken(TokenTypes.TYPE);
-        final DetailAST ident = AbstractExpressionHandler.getFirstToken(type);
-        final int columnNo = expandedTabsColumnNo(ident);
-        if (isOnStartOfLine(ident) && !getIndent().isAcceptable(columnNo)) {
-            logError(ident, "type", columnNo);
-        }
     }
 
     /**
