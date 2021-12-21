@@ -20,9 +20,6 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,9 +31,9 @@ public class IntMatchFilterElementTest {
     @Test
     public void testDecide() {
         final IntFilterElement filter = new IntMatchFilterElement(0);
-        assertFalse(filter.accept(-1), "less than");
-        assertTrue(filter.accept(0), "equal");
-        assertFalse(filter.accept(1), "greater than");
+        assertWithMessage("less than").that(filter.accept(-1)).isFalse();
+        assertWithMessage("equal").that(filter.accept(0)).isTrue();
+        assertWithMessage("greater than").that(filter.accept(1)).isFalse();
     }
 
     @Test
@@ -51,7 +48,8 @@ public class IntMatchFilterElementTest {
     @Test
     public void testToString() {
         final IntFilterElement filter = new IntMatchFilterElement(6);
-        assertEquals("IntMatchFilterElement[6]", filter.toString(), "Invalid toString result");
+        assertWithMessage("Invalid toString result").that(filter.toString())
+                .isEqualTo("IntMatchFilterElement[6]");
     }
 
 }
