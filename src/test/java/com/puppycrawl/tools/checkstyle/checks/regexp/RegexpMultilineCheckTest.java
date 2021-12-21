@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_EMPTY;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_EXCEEDED;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_MINIMUM;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_STACKOVERFLOW;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -149,7 +149,8 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
 
         detector.processLines(new FileText(file, StandardCharsets.UTF_8.name()));
         detector.processLines(new FileText(file, StandardCharsets.UTF_8.name()));
-        assertEquals(2, reporter.getLogCount(), "Logged unexpected amount of issues");
+        assertWithMessage("Logged unexpected amount of issues").that(reporter.getLogCount())
+                .isEqualTo(2);
     }
 
     @Test
