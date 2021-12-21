@@ -30,7 +30,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -366,7 +365,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         try {
             checker.setCharset("UNKNOWN-CHARSET");
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (UnsupportedEncodingException ex) {
             assertEquals("unsupported charset: 'UNKNOWN-CHARSET'", ex.getMessage(),
@@ -380,7 +379,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         try {
             checker.finishLocalSetup();
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("if no custom moduleFactory is set, moduleClassLoader must be specified",
@@ -436,7 +435,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Configuration config = new DefaultConfiguration("java.lang.String");
         try {
             checker.setupChild(config);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("java.lang.String is not allowed as a child in Checker", ex.getMessage(),
@@ -450,7 +449,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("$$No such property", null);
         try {
             createChecker(checkConfig);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker"
@@ -490,7 +489,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setCacheFile(String.format(Locale.ENGLISH, "%0300d", 0));
         try {
             checker.destroy();
-            fail("Exception did not happen");
+            assertWithMessage("Exception did not happen").fail();
         }
         catch (IllegalStateException ex) {
             assertTrue(ex.getCause() instanceof IOException,
@@ -696,7 +695,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         filesToProcess.add(mock);
         try {
             checker.process(filesToProcess);
-            fail("IOError is expected!");
+            assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
         catch (Error error) {
@@ -745,7 +744,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         filesToProcess.add(mock);
         try {
             checker.process(filesToProcess);
-            fail("IOError is expected!");
+            assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
         catch (Error error) {
@@ -935,7 +934,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String filePath = getPath("InputChecker.java");
         try {
             verify(checkConfig, filePath);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("Exception was thrown while processing " + filePath, ex.getMessage(),
@@ -964,7 +963,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String filePath = getPath("InputChecker.java");
         try {
             checker.process(Collections.singletonList(new File(filePath)));
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("Exception was thrown while processing " + filePath, ex.getMessage(),
@@ -1026,7 +1025,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         filesToProcess.add(mock);
         try {
             checker.process(filesToProcess);
-            fail("IOError is expected!");
+            assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
         catch (Error error) {
@@ -1086,7 +1085,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         filesToProcess.add(mock);
         try {
             checker.process(filesToProcess);
-            fail("IOError is expected!");
+            assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
         catch (Error error) {
@@ -1136,7 +1135,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         filesToProcess.add(mock);
         try {
             checker.process(filesToProcess);
-            fail("SecurityException is expected!");
+            assertWithMessage("SecurityException is expected!").fail();
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Error cause differs from SecurityException")
@@ -1183,7 +1182,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         filesToProcess.add(mock);
         try {
             checker.process(filesToProcess);
-            fail("SecurityException is expected!");
+            assertWithMessage("SecurityException is expected!").fail();
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Error cause differs from SecurityException")

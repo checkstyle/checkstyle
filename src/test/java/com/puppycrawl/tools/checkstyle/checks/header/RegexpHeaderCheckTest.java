@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.header;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MSG_HEADER_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck.MSG_HEADER_MISSING;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 import java.util.Locale;
@@ -101,8 +101,8 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         try {
             final String header = "^/**\\n * Licensed to the Apache Software Foundation (ASF)";
             instance.setHeader(header);
-            fail(String.format(Locale.ROOT, "%s should have been thrown",
-                    IllegalArgumentException.class));
+            assertWithMessage(String.format(Locale.ROOT, "%s should have been thrown",
+                    IllegalArgumentException.class)).fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Unable to parse format: ^/**\\n *"
@@ -125,7 +125,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("headerFile", "");
         try {
             createChecker(checkConfig);
-            fail("Checker creation should not succeed with invalid headerFile");
+            assertWithMessage("Checker creation should not succeed with invalid headerFile").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("cannot initialize module"
@@ -175,7 +175,8 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("header", "^(.*\\n.*)");
         try {
             createChecker(checkConfig);
-            fail("Checker creation should not succeed when regexp spans multiple lines");
+            assertWithMessage(
+                    "Checker creation should not succeed when regexp spans multiple lines").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("cannot initialize module"
@@ -329,7 +330,7 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final String path = getPath("InputRegexpHeaderMulti52.java");
         try {
             verify(checkConfig, path, expected);
-            fail("IllegalArgumentException is expected");
+            assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("line 1 in header specification is not a regular expression",
