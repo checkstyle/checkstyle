@@ -47,7 +47,8 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final RegexpSinglelineJavaCheck checkObj = new RegexpSinglelineJavaCheck();
-        assertWithMessage("Default required tokens are invalid").that(checkObj.getRequiredTokens())
+        assertWithMessage("Default required tokens are invalid")
+                .that(checkObj.getRequiredTokens())
                 .isEmpty();
     }
 

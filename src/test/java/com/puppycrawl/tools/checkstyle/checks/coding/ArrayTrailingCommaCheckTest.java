@@ -50,10 +50,15 @@ public class ArrayTrailingCommaCheckTest
     @Test
     public void testTokensNotNull() {
         final ArrayTrailingCommaCheck check = new ArrayTrailingCommaCheck();
-        assertWithMessage("Invalid acceptable tokens").that(check.getAcceptableTokens())
+        assertWithMessage("Invalid acceptable tokens")
+                .that(check.getAcceptableTokens())
                 .isNotNull();
-        assertWithMessage("Invalid default tokens").that(check.getDefaultTokens()).isNotNull();
-        assertWithMessage("Invalid required tokens").that(check.getRequiredTokens()).isNotNull();
+        assertWithMessage("Invalid default tokens")
+                .that(check.getDefaultTokens())
+                .isNotNull();
+        assertWithMessage("Invalid required tokens")
+                .that(check.getRequiredTokens())
+                .isNotNull();
     }
 
     @Test

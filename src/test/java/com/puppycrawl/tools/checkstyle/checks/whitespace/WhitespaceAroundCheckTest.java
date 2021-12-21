@@ -337,8 +337,9 @@ public class WhitespaceAroundCheckTest
             TokenTypes.GENERIC_END,
             TokenTypes.ELLIPSIS,
         };
-        assertWithMessage("Default acceptable tokens are invalid").that(actual)
-            .isEqualTo(expected);
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test

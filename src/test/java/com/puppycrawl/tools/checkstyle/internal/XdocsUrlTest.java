@@ -122,22 +122,30 @@ public class XdocsUrlTest {
                     checkNameInAttribute, moduleName);
             if (COMMENTS_INDENTATION.equals(checkNameInAttribute)
                     || INDENTATION.equals(checkNameInAttribute)) {
-                assertWithMessage(checkNameModuleErrorMsg).that(moduleName).matches(MISC);
+                assertWithMessage(checkNameModuleErrorMsg)
+                        .that(moduleName)
+                        .matches(MISC);
             }
             else if (SUPPRESS_WARNINGS_HOLDER.equals(checkNameInAttribute)) {
-                assertWithMessage(checkNameModuleErrorMsg).that(moduleName).matches(ANNOTATION);
+                assertWithMessage(checkNameModuleErrorMsg)
+                        .that(moduleName)
+                        .matches(ANNOTATION);
             }
             else {
                 final List<String> moduleFileNames = checksNamesMap.get(moduleName);
                 final String moduleNameErrorMsg = String.format(Locale.ROOT,
                         "module name: '%s' does not exist in '%s'", moduleName, PACKAGE_NAME);
-                assertWithMessage(moduleNameErrorMsg).that(moduleFileNames).isNotNull();
+                assertWithMessage(moduleNameErrorMsg)
+                        .that(moduleFileNames)
+                        .isNotNull();
                 boolean match = false;
                 final String checkNameWithSuffix = checkNameInAttribute + SUFFIX_CHECK;
                 if (moduleFileNames.contains(checkNameWithSuffix)) {
                     match = true;
                 }
-                assertWithMessage(checkNameModuleErrorMsg).that(match).isTrue();
+                assertWithMessage(checkNameModuleErrorMsg)
+                        .that(match)
+                        .isTrue();
             }
         }
     }

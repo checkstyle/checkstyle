@@ -34,7 +34,8 @@ public class PropertiesExpanderTest {
             assertWithMessage("exception expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
-            assertWithMessage("Invalid exception message").that(ex.getMessage())
+            assertWithMessage("Invalid exception message")
+                    .that(ex.getMessage())
                     .isEqualTo("cannot pass null");
         }
     }
@@ -44,16 +45,20 @@ public class PropertiesExpanderTest {
         final Properties properties = new Properties(System.getProperties());
         properties.setProperty("test", "checkstyle");
         final String propertiesUserHome = properties.getProperty("user.home");
-        assertWithMessage("Invalid user.home property").that(propertiesUserHome)
+        assertWithMessage("Invalid user.home property")
+                .that(propertiesUserHome)
                 .isEqualTo(System.getProperty("user.home"));
-        assertWithMessage("Invalid checkstyle property").that(properties.getProperty("test"))
+        assertWithMessage("Invalid checkstyle property")
+                .that(properties.getProperty("test"))
                 .isEqualTo("checkstyle");
 
         final PropertiesExpander expander = new PropertiesExpander(properties);
         final String expanderUserHome = expander.resolve("user.home");
-        assertWithMessage("Invalid user.home property").that(expanderUserHome)
+        assertWithMessage("Invalid user.home property")
+                .that(expanderUserHome)
                 .isEqualTo(System.getProperty("user.home"));
-        assertWithMessage("Invalid checkstyle property").that(expander.resolve("test"))
+        assertWithMessage("Invalid checkstyle property")
+                .that(expander.resolve("test"))
                 .isEqualTo("checkstyle");
     }
 

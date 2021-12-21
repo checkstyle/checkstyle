@@ -57,10 +57,13 @@ public class AvoidNoArgumentSuperConstructorCallCheckTest
             TokenTypes.SUPER_CTOR_CALL,
         };
         assertWithMessage("Acceptable required tokens are invalid")
-                .that(check.getAcceptableTokens()).isEqualTo(expected);
-        assertWithMessage("Default required tokens are invalid").that(check.getDefaultTokens())
+                .that(check.getAcceptableTokens())
                 .isEqualTo(expected);
-        assertWithMessage("Required required tokens are invalid").that(check.getRequiredTokens())
+        assertWithMessage("Default required tokens are invalid")
+                .that(check.getDefaultTokens())
+                .isEqualTo(expected);
+        assertWithMessage("Required required tokens are invalid")
+                .that(check.getRequiredTokens())
                 .isEqualTo(expected);
     }
 }
