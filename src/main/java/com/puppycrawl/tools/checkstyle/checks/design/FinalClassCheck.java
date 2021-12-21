@@ -153,33 +153,17 @@ public class FinalClassCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-
         switch (ast.getType()) {
             case TokenTypes.PACKAGE_DEF:
                 packageName = extractQualifiedName(ast.getFirstChild().getNextSibling());
                 break;
 
             case TokenTypes.CLASS_DEF:
-                registerNestedSubclassToOuterSuperClasses(ast);
-
-                final boolean isFinal = modifiers.findFirstToken(TokenTypes.FINAL) != null;
-                final boolean isAbstract = modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;
-
-                final String qualifiedClassName = getQualifiedClassName(ast);
-                classes.push(new ClassDesc(qualifiedClassName, isFinal, isAbstract));
+                visitClass(ast);
                 break;
 
             case TokenTypes.CTOR_DEF:
-                if (!ScopeUtil.isInEnumBlock(ast) && !ScopeUtil.isInRecordBlock(ast)) {
-                    final ClassDesc desc = classes.peek();
-                    if (modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null) {
-                        desc.registerNonPrivateCtor();
-                    }
-                    else {
-                        desc.registerPrivateCtor();
-                    }
-                }
+                visitCtor(ast);
                 break;
 
             case TokenTypes.LITERAL_NEW:
@@ -195,6 +179,40 @@ public class FinalClassCheck
 
             default:
                 throw new IllegalStateException(ast.toString());
+        }
+    }
+
+    /**
+     * Called to process a type definition.
+     *
+     * @param ast the token to process
+     */
+    private void visitClass(DetailAST ast) {
+        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+        registerNestedSubclassToOuterSuperClasses(ast);
+
+        final boolean isFinal = modifiers.findFirstToken(TokenTypes.FINAL) != null;
+        final boolean isAbstract = modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;
+
+        final String qualifiedClassName = getQualifiedClassName(ast);
+        classes.push(new ClassDesc(qualifiedClassName, isFinal, isAbstract));
+    }
+
+    /**
+     * Called to process a constructor definition.
+     *
+     * @param ast the token to process
+     */
+    private void visitCtor(DetailAST ast) {
+        if (!ScopeUtil.isInEnumBlock(ast) && !ScopeUtil.isInRecordBlock(ast)) {
+            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+            final ClassDesc desc = classes.peek();
+            if (modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null) {
+                desc.registerNonPrivateCtor();
+            }
+            else {
+                desc.registerPrivateCtor();
+            }
         }
     }
 
