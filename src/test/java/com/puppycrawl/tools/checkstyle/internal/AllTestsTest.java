@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
@@ -146,8 +146,9 @@ public class AllTestsTest {
                 final boolean skipFileNaming = shouldSkipInputFileNameCheck(path, fileName);
 
                 if (!skipFileNaming) {
-                    assertTrue(fileName.startsWith("Input") || fileName.startsWith("Expected"),
-                            "Resource must start with 'Input' or 'Expected': " + path);
+                    assertWithMessage("Resource must start with 'Input' or 'Expected': " + path)
+                            .that(fileName.startsWith("Input") || fileName.startsWith("Expected"))
+                            .isTrue();
 
                     if (fileName.startsWith("Input")) {
                         fileName = fileName.substring(5);
@@ -191,9 +192,10 @@ public class AllTestsTest {
             }
         }
 
-        assertTrue(found, "Resource must be named after a Test like 'InputMyCustomCase.java' "
+        assertWithMessage("Resource must be named after a Test like 'InputMyCustomCase.java' "
                 + "and be in the sub-package of the test like 'mycustom' "
-                + "for test 'MyCustomCheckTest': " + path);
+                + "for test 'MyCustomCheckTest': " + path)
+            .that(found).isTrue();
     }
 
     private static void verifyHasProductionFile(Map<String, List<String>> allTests, File file) {
@@ -216,9 +218,9 @@ public class AllTestsTest {
                     final String packge = path.substring(0, slash);
                     final List<String> classes = allTests.get(packge);
 
-                    assertTrue(classes != null && classes.contains(fileName),
-                            "Test must be named after a production class "
-                            + "and must be in the same package of the production class: " + path);
+                    assertWithMessage("Test must be named after a production class "
+                            + "and must be in the same package of the production class: " + path)
+                                    .that(classes != null && classes.contains(fileName)).isTrue();
                 }
             }
         }

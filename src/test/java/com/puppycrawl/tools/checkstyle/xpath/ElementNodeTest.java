@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.XpathUtil.getXpathItems;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.util.List;
@@ -118,8 +118,8 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         assertEquals(1, nodes.size(), "Invalid number of nodes");
         final AbstractNode root = (AbstractNode) nodes.get(0).getRoot();
         assertEquals(TokenTypes.COMPILATION_UNIT, root.getTokenType(), "Invalid token type");
-        assertTrue(root instanceof RootNode,
-                "Should return true, because selected node is RootNode");
+        assertWithMessage("Should return true, because selected node is RootNode")
+                .that(root instanceof RootNode).isTrue();
     }
 
     @Test
@@ -200,10 +200,12 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         detailAST.setType(TokenTypes.METHOD_DEF);
         final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.CHILD)) {
-            assertTrue(iterator instanceof EmptyIterator, "Invalid iterator");
+            assertWithMessage("Invalid iterator")
+                .that(iterator instanceof EmptyIterator).isTrue();
         }
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.DESCENDANT)) {
-            assertTrue(iterator instanceof EmptyIterator, "Invalid iterator");
+            assertWithMessage("Invalid iterator")
+                .that(iterator instanceof EmptyIterator).isTrue();
         }
     }
 
@@ -216,10 +218,12 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         detailAST.addChild(childAst);
         final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.CHILD)) {
-            assertTrue(iterator instanceof ArrayIterator, "Invalid iterator");
+            assertWithMessage("Invalid iterator")
+                .that(iterator instanceof ArrayIterator).isTrue();
         }
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.DESCENDANT)) {
-            assertTrue(iterator instanceof Navigator.DescendantEnumeration, "Invalid iterator");
+            assertWithMessage("Invalid iterator")
+                    .that(iterator instanceof Navigator.DescendantEnumeration).isTrue();
         }
     }
 
@@ -235,10 +239,12 @@ public class ElementNodeTest extends AbstractPathTestSupport {
 
         final AbstractNode elementNode = parentNode.getChildren().get(0);
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.FOLLOWING_SIBLING)) {
-            assertTrue(iterator instanceof EmptyIterator, "Invalid iterator");
+            assertWithMessage("Invalid iterator")
+                .that(iterator instanceof EmptyIterator).isTrue();
         }
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.PRECEDING_SIBLING)) {
-            assertTrue(iterator instanceof EmptyIterator, "Invalid iterator");
+            assertWithMessage("Invalid iterator")
+                .that(iterator instanceof EmptyIterator).isTrue();
         }
     }
 }

@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
@@ -122,7 +122,9 @@ public class IllegalTokenTextCheckTest
         assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
         assertNotNull(check.getDefaultTokens(), "Default tokens should not be null");
         assertNotNull(check.getRequiredTokens(), "Required tokens should not be null");
-        assertTrue(check.isCommentNodesRequired(), "Comments are also TokenType token");
+        assertWithMessage("Comments are also TokenType token")
+            .that(check.isCommentNodesRequired())
+                .isTrue();
     }
 
     @Test
@@ -170,10 +172,10 @@ public class IllegalTokenTextCheckTest
             TokenTypes.TEXT_BLOCK_CONTENT
         );
         for (int tokenType : allowedTokens) {
-            assertTrue(tokenTypesWithMutableText.contains(tokenType),
-                TokenUtil.getTokenName(tokenType) + " should not be allowed"
-                + " in this check as its text is a constant (IllegalTokenCheck should be used for"
-                + " such cases).");
+            assertWithMessage(TokenUtil.getTokenName(tokenType) + " should not be allowed"
+                    + " in this check as its text is a constant"
+                    + " (IllegalTokenCheck should be used for such cases).")
+                            .that(tokenTypesWithMutableText.contains(tokenType)).isTrue();
         }
     }
 

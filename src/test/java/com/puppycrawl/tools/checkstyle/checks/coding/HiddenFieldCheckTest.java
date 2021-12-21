@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.util.Optional;
@@ -465,10 +465,12 @@ public class HiddenFieldCheckTest
         final Optional<DetailAST> classDef = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.CLASS_DEF);
 
-        assertTrue(classDef.isPresent(), "Ast should contain CLASS_DEF");
-        assertTrue(
+        assertWithMessage("Ast should contain CLASS_DEF")
+            .that(classDef.isPresent()).isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+            .that(
                 TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(), "frame",
-                        new CheckIfStatefulFieldCleared()), "State is not cleared on beginTree");
+                        new CheckIfStatefulFieldCleared())).isTrue();
     }
 
     private static class CheckIfStatefulFieldCleared implements Predicate<Object> {

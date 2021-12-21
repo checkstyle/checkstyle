@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.XpathUtil.getXpathItems;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.util.List;
@@ -75,8 +74,8 @@ public class RootNodeTest extends AbstractPathTestSupport {
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertEquals(1, nodes.size(), "Invalid number of nodes");
         final NodeInfo firstNode = nodes.get(0);
-        assertTrue(firstNode instanceof RootNode,
-                "Should return true, because selected node is RootNode");
+        assertWithMessage("Should return true, because selected node is RootNode")
+                .that(firstNode instanceof RootNode).isTrue();
         assertEquals(firstNode, rootNode, "Result node should have same reference as expected");
     }
 
@@ -417,8 +416,8 @@ public class RootNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testSameNodeInfo() {
-        assertTrue(rootNode.isSameNodeInfo(rootNode),
-                "Should return true, because object is being compared to itself");
+        assertWithMessage("Should return true, because object is being compared to itself")
+                .that(rootNode.isSameNodeInfo(rootNode)).isTrue();
         assertFalse(rootNode.isSameNodeInfo(null),
                 "Should return false, because object does not equal null");
     }

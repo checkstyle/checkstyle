@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.doThrow;
@@ -223,7 +222,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                     + " com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"));
 
             final Matcher errorMsgMatcher = expected.matcher(errorMsg);
-            assertTrue(errorMsgMatcher.matches(), "Failure for: " + errorMsg);
+            assertWithMessage("Failure for: " + errorMsg)
+                .that(errorMsgMatcher.matches()).isTrue();
         }
     }
 
@@ -248,8 +248,10 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException exception) {
-            assertTrue(exception.getMessage().contains("TreeWalker is not allowed as a parent of"),
-                    "Error message is unexpected");
+            assertWithMessage("Error message is unexpected")
+                .that(
+                    exception.getMessage().contains("TreeWalker is not allowed as a parent of"))
+                    .isTrue();
         }
     }
 
@@ -297,8 +299,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getMessage().contains("isCommentNodesRequired"),
-                    "Error message is unexpected");
+            assertWithMessage("Error message is unexpected")
+                    .that(ex.getMessage().contains("isCommentNodesRequired")).isTrue();
         }
     }
 
@@ -336,7 +338,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(file, StandardCharsets.ISO_8859_1.name());
         treeWalker.processFiltered(file, fileText);
         final Collection<Checks> checks = TestUtil.getInternalState(treeWalker, "ordinaryChecks");
-        assertTrue(checks.isEmpty(), "No checks -> No parsing");
+        assertWithMessage("No checks -> No parsing")
+            .that(checks).isEmpty();
     }
 
     @Test
@@ -370,8 +373,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException exception) {
-            assertTrue(exception.getMessage().contains("occurred while parsing file"),
-                    "Error message is unexpected");
+            assertWithMessage("Error message is unexpected")
+                    .that(exception.getMessage().contains("occurred while parsing file")).isTrue();
         }
     }
 
@@ -393,9 +396,10 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException exception) {
-            assertTrue(exception.getMessage().contains(
-                    "IllegalStateException occurred while parsing file"),
-                    "Error message is unexpected");
+            assertWithMessage("Error message is unexpected")
+                    .that(exception.getMessage()
+                            .contains("IllegalStateException occurred while parsing file"))
+                    .isTrue();
         }
     }
 
@@ -422,7 +426,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         treeWalker.processFiltered(file, fileText);
         final Collection<Checks> checks = TestUtil.getInternalState(treeWalker, "ordinaryChecks");
-        assertTrue(checks.isEmpty(), "No checks -> No parsing");
+        assertWithMessage("No checks -> No parsing")
+            .that(checks).isEmpty();
     }
 
     @Test
@@ -447,8 +452,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException exception) {
             final String message = "IllegalStateException occurred while parsing file";
-            assertTrue(exception.getMessage().contains(message),
-                    "Error message is unexpected");
+            assertWithMessage("Error message is unexpected")
+                    .that(exception.getMessage().contains(message)).isTrue();
         }
     }
 
@@ -533,7 +538,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final File file = File.createTempFile("file", ".pdf", temporaryFolder);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, file.getPath(), expected);
-        assertTrue(VerifyInitCheck.isInitWasCalled(), "Init was not called");
+        assertWithMessage("Init was not called")
+            .that(VerifyInitCheck.isInitWasCalled()).isTrue();
     }
 
     @Test
@@ -544,7 +550,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final File file = File.createTempFile("file", ".pdf", temporaryFolder);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, file.getPath(), expected);
-        assertTrue(VerifyDestroyCheck.isDestroyWasCalled(), "Destroy was not called");
+        assertWithMessage("Destroy was not called")
+            .that(VerifyDestroyCheck.isDestroyWasCalled())
+                .isTrue();
     }
 
     @Test
@@ -555,7 +563,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final File file = File.createTempFile("file", ".pdf", temporaryFolder);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, file.getPath(), expected);
-        assertTrue(VerifyDestroyCheck.isDestroyWasCalled(), "Destroy was not called");
+        assertWithMessage("Destroy was not called")
+            .that(VerifyDestroyCheck.isDestroyWasCalled())
+                .isTrue();
     }
 
     @Test
@@ -576,9 +586,10 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         // One more time to use cache.
         verify(checkerConfig, filePath, expected);
 
-        assertTrue(new String(Files.readAllBytes(cacheFile.toPath()), StandardCharsets.UTF_8)
-                        .contains("InputTreeWalkerSuppressionXpathFilter.xml"),
-                "External resource is not present in cache");
+        assertWithMessage("External resource is not present in cache")
+                .that(new String(Files.readAllBytes(cacheFile.toPath()), StandardCharsets.UTF_8)
+                        .contains("InputTreeWalkerSuppressionXpathFilter.xml"))
+                .isTrue();
     }
 
     @Test

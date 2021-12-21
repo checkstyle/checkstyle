@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,9 +47,9 @@ public class XmlLoaderTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(
-                XmlLoader.LoadExternalDtdFeatureProvider.class, true),
-                "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+            .that(isUtilsClassHasPrivateConstructor(
+                XmlLoader.LoadExternalDtdFeatureProvider.class, true)).isTrue();
     }
 
     @Test
