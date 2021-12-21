@@ -29,7 +29,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -161,7 +160,7 @@ public class XpathUtilTest {
                 + "//METHOD_DEF//VARIABLE_DEF//IDENT";
         try {
             XpathUtil.printXpathBranch(invalidXpath, file);
-            fail("Should end with exception");
+            assertWithMessage("Should end with exception").fail();
         }
         catch (CheckstyleException ex) {
             final String expectedMessage =

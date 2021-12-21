@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
@@ -163,7 +163,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
         try {
             holder.setAliasList("=SomeAlias");
-            fail("Exception expected");
+            assertWithMessage("Exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("'=' expected in alias list item: =SomeAlias", ex.getMessage(),
@@ -295,7 +295,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
         try {
             getAllAnnotationValues.invoke(holder, parent);
-            fail("Exception expected");
+            assertWithMessage("Exception expected").fail();
         }
         catch (InvocationTargetException ex) {
             assertTrue(ex.getCause() instanceof IllegalArgumentException,
@@ -320,7 +320,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
         try {
             getAllAnnotationValues.invoke(holder, methodDef);
-            fail("Exception expected");
+            assertWithMessage("Exception expected").fail();
         }
         catch (InvocationTargetException ex) {
             assertTrue(ex.getCause() instanceof IllegalArgumentException,
@@ -350,7 +350,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
         try {
             getAnnotationTarget.invoke(holder, methodDef);
-            fail("Exception expected");
+            assertWithMessage("Exception expected").fail();
         }
         catch (InvocationTargetException ex) {
             assertTrue(ex.getCause() instanceof IllegalArgumentException,
@@ -368,7 +368,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
         try {
             holder.visitToken(methodDef);
-            fail("Exception expected");
+            assertWithMessage("Exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Identifier AST expected, but get null.", ex.getMessage(),

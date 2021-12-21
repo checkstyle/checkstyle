@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.lang.reflect.Method;
 
@@ -386,7 +386,7 @@ public class JavadocTagInfoTest {
 
         try {
             JavadocTagInfo.fromName(null);
-            fail("IllegalArgumentException is expected");
+            assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("the name is null", ex.getMessage(),
@@ -395,7 +395,7 @@ public class JavadocTagInfoTest {
 
         try {
             JavadocTagInfo.fromName("myname");
-            fail("IllegalArgumentException is expected");
+            assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("the name [myname] is not a valid Javadoc tag name", ex.getMessage(),
@@ -404,7 +404,7 @@ public class JavadocTagInfoTest {
 
         try {
             JavadocTagInfo.fromText(null);
-            fail("IllegalArgumentException is expected");
+            assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("the text is null", ex.getMessage(), "Invalid exception message");
@@ -412,7 +412,7 @@ public class JavadocTagInfoTest {
 
         try {
             JavadocTagInfo.fromText("myname");
-            fail("IllegalArgumentException is expected");
+            assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals(

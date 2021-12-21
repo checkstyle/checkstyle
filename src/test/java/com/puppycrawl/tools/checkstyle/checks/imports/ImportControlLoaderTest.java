@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -68,7 +67,7 @@ public class ImportControlLoaderTest {
         try {
             ImportControlLoader.load(new URI("aaa://"
                     + getPath("InputImportControlLoaderComplete.xml")));
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
             assertSame(MalformedURLException.class, ex.getCause().getClass(),
@@ -101,7 +100,7 @@ public class ImportControlLoaderTest {
                 Attributes.class, String.class);
             privateMethod.setAccessible(true);
             privateMethod.invoke(null, attr, "you_cannot_find_me");
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (InvocationTargetException ex) {
             assertSame(SAXException.class, ex.getCause().getClass(), "Invalid exception class");
@@ -123,7 +122,7 @@ public class ImportControlLoaderTest {
             privateMethod.setAccessible(true);
             privateMethod.invoke(null, source,
                     new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (InvocationTargetException ex) {
             assertSame(CheckstyleException.class, ex.getCause().getClass(),

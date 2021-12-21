@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_CHILD_ERROR;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_CHILD_ERROR_MULTI;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_ERROR;
@@ -26,7 +27,6 @@ import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationChec
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -2957,8 +2957,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             final String message = event.getMessage();
 
             if (position >= comments.length) {
-                fail("found a warning when none was expected for #" + position + " at line " + line
-                        + " with message " + message);
+                assertWithMessage("found a warning when none was expected for #" + position
+                        + " at line " + line + " with message " + message).fail();
             }
 
             final IndentComment comment = comments[position];
