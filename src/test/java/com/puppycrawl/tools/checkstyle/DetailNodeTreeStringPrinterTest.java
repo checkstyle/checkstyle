@@ -25,7 +25,6 @@ import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADO
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_WRONG_SINGLETON_TAG;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 
@@ -44,8 +43,9 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(DetailNodeTreeStringPrinter.class, true),
-                "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(isUtilsClassHasPrivateConstructor(DetailNodeTreeStringPrinter.class, true))
+                .isTrue();
     }
 
     @Test

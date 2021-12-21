@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 
@@ -424,8 +423,8 @@ public class VisibilityModifierCheckTest
         final VisibilityModifierCheck check = new VisibilityModifierCheck();
         final boolean actual = TestUtil.invokeMethod(check, "isStarImport", importAst);
 
-        assertTrue(actual,
-                "Should return true when star import is passed");
+        assertWithMessage("Should return true when star import is passed")
+            .that(actual).isTrue();
     }
 
     @Test

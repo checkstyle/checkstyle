@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -44,7 +44,8 @@ public class SeverityMatchFilterTest {
             new Violation(1, 0, "", "", null,
                 errorLevel, null, getClass(), null);
         final AuditEvent ev2 = new AuditEvent(this, "ATest.java", errorMessage);
-        assertTrue(filter.accept(ev2), "level:" + errorLevel);
+        assertWithMessage("level:" + errorLevel)
+            .that(filter.accept(ev2)).isTrue();
         final SeverityLevel infoLevel = SeverityLevel.INFO;
         final Violation infoViolation =
                 new Violation(1, 0, "", "", null, infoLevel, null, getClass(), null);
@@ -57,7 +58,8 @@ public class SeverityMatchFilterTest {
         filter.setSeverity(SeverityLevel.INFO);
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         // event with no message has severity level INFO
-        assertTrue(filter.accept(ev), "no message");
+        assertWithMessage("no message")
+            .that(filter.accept(ev)).isTrue();
         final SeverityLevel errorLevel = SeverityLevel.ERROR;
         final Violation errorMessage =
             new Violation(1, 0, "", "", null,
@@ -68,7 +70,8 @@ public class SeverityMatchFilterTest {
         final Violation infoMessage =
                 new Violation(1, 0, "", "", null, infoLevel, null, getClass(), null);
         final AuditEvent ev3 = new AuditEvent(this, "ATest.java", infoMessage);
-        assertTrue(filter.accept(ev3), "level:" + infoLevel);
+        assertWithMessage("level:" + infoLevel)
+            .that(filter.accept(ev3)).isTrue();
     }
 
     @Test
@@ -83,7 +86,8 @@ public class SeverityMatchFilterTest {
             new Violation(1, 0, "", "", null,
                 errorLevel, null, getClass(), null);
         final AuditEvent ev2 = new AuditEvent(this, "ATest.java", errorViolation);
-        assertTrue(filter.accept(ev2), "level:" + errorLevel);
+        assertWithMessage("level:" + errorLevel)
+            .that(filter.accept(ev2)).isTrue();
         final SeverityLevel infoLevel = SeverityLevel.INFO;
         final Violation infoViolation = new Violation(1, 0, "", "", null, infoLevel,
             null, getClass(), null);

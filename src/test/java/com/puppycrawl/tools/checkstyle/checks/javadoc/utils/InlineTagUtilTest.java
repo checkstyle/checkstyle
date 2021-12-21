@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -33,8 +32,9 @@ public class InlineTagUtilTest {
 
     @Test
     public void testHasPrivateConstructor() throws Exception {
-        assertTrue(TestUtil.isUtilsClassHasPrivateConstructor(InlineTagUtil.class, true),
-                "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(TestUtil.isUtilsClassHasPrivateConstructor(InlineTagUtil.class, true))
+                .isTrue();
     }
 
     @Test
@@ -103,7 +103,9 @@ public class InlineTagUtilTest {
             assertWithMessage("IllegalArgumentException expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertTrue(ex.getMessage().contains("newline"), "Unexpected error message");
+            assertWithMessage("Unexpected error message")
+                .that(ex.getMessage().contains("newline"))
+                    .isTrue();
         }
     }
 
@@ -114,7 +116,9 @@ public class InlineTagUtilTest {
             assertWithMessage("IllegalArgumentException expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertTrue(ex.getMessage().contains("newline"), "Invalid error message");
+            assertWithMessage("Invalid error message")
+                .that(ex.getMessage().contains("newline"))
+                    .isTrue();
         }
     }
 

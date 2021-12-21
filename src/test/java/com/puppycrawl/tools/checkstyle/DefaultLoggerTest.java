@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -75,9 +74,11 @@ public class DefaultLoggerTest {
         final Method getMessage = addExceptionMessage.getClass().getDeclaredMethod("getMessage");
         getMessage.setAccessible(true);
         final Object returnValue = getMessage.invoke(addExceptionMessage);
-        assertTrue(output.contains(returnValue.toString()), "Invalid exception");
-        assertTrue(output.contains("java.lang.IllegalStateException: upsss"),
-                "Invalid exception class");
+        assertWithMessage("Invalid exception")
+            .that(output.contains(returnValue.toString()))
+                .isTrue();
+        assertWithMessage("Invalid exception class")
+                .that(output.contains("java.lang.IllegalStateException: upsss")).isTrue();
     }
 
     @Test
@@ -87,8 +88,8 @@ public class DefaultLoggerTest {
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
         final String output = infoStream.toString();
-        assertTrue(output.contains("java.lang.IllegalStateException: upsss"),
-                "Message should contain exception info, but was " + output);
+        assertWithMessage("Message should contain exception info, but was " + output)
+                .that(output.contains("java.lang.IllegalStateException: upsss")).isTrue();
     }
 
     @Test
@@ -98,8 +99,8 @@ public class DefaultLoggerTest {
         dl.addException(new AuditEvent(5000), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000));
         final String output = infoStream.toString();
-        assertTrue(output.contains("java.lang.IllegalStateException: upsss"),
-                "Message should contain exception info, but was " + output);
+        assertWithMessage("Message should contain exception info, but was " + output)
+                .that(output.contains("java.lang.IllegalStateException: upsss")).isTrue();
     }
 
     @Test
@@ -109,8 +110,9 @@ public class DefaultLoggerTest {
                 AutomaticBean.OutputStreamOptions.NONE);
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
-        assertTrue(infoStream.toString().contains("java.lang.IllegalStateException: upsss"),
-                "Message should contain exception info, but was " + infoStream);
+        assertWithMessage("Message should contain exception info, but was " + infoStream)
+                .that(infoStream.toString().contains("java.lang.IllegalStateException: upsss"))
+                .isTrue();
     }
 
     @Test
@@ -270,15 +272,15 @@ public class DefaultLoggerTest {
         final Method message = messageClass.getClass().getDeclaredMethod("getMessage");
         message.setAccessible(true);
         final String output = (String) message.invoke(messageClass);
-        assertTrue(output.contains("Error auditing myfile"),
-                "Violation should contain exception info, but was " + output);
+        assertWithMessage("Violation should contain exception info, but was " + output)
+                .that(output.contains("Error auditing myfile")).isTrue();
 
         final Object nullClass = cons.newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE, null);
         final Method nullMessage = nullClass.getClass().getDeclaredMethod("getMessage");
         nullMessage.setAccessible(true);
         final String outputForNullArgs = (String) nullMessage.invoke(nullClass);
-        assertTrue(outputForNullArgs.contains("Error auditing {0}"),
-                "Violation should contain exception info, but was " + outputForNullArgs);
+        assertWithMessage("Violation should contain exception info, but was " + outputForNullArgs)
+                .that(outputForNullArgs.contains("Error auditing {0}")).isTrue();
     }
 
     @Test
