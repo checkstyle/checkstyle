@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.filters;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -124,7 +123,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         try {
             final Object test = new XpathFilterElement(
                     ".*", "e[l", ".*", "moduleId", "query");
-            fail("Exception is expected but got " + test);
+            assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
             assertTrue(ex.getMessage().contains("Failed to initialise regular expression"),
@@ -138,7 +137,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         try {
             final Object test = new XpathFilterElement("InputXpathFilterElementSuppressByXpath",
                     "Test", null, null, xpath);
-            fail("Exception is expected but got " + test);
+            assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
             assertTrue(ex.getMessage().contains("Unexpected xpath query"),
@@ -293,7 +292,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
                 file.getName(), message, null);
         try {
             filter.accept(ev);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (IllegalStateException ex) {
             assertTrue(ex.getMessage().contains("Cannot initialize context and evaluate query"),

@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -95,7 +95,7 @@ public class DefaultConfigurationTest {
         final String propertyName = "NonExistent#$%";
         try {
             config.getProperty(propertyName);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException expected) {
             assertEquals(

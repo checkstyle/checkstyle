@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.doThrow;
@@ -212,7 +212,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
             verify(checkConfig, getPath("InputTreeWalker.java"), expected);
-            fail("CheckstyleException is expected");
+            assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException ex) {
             final String errorMsg = ex.getMessage();
@@ -245,7 +245,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
             verify(createChecker(checkConfig, ModuleCreationOption.IN_TREEWALKER),
                     File.createTempFile("junit", null, temporaryFolder).getPath(), expected);
-            fail("CheckstyleException is expected");
+            assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException exception) {
             assertTrue(exception.getMessage().contains("TreeWalker is not allowed as a parent of"),
@@ -263,7 +263,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final Configuration config = new DefaultConfiguration("java.lang.String");
         try {
             treeWalker.setupChild(config);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("TreeWalker is not allowed as a parent of java.lang.String Please review "
@@ -294,7 +294,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
             verify(checkConfig, pathToEmptyFile, expected);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertTrue(ex.getMessage().contains("isCommentNodesRequired"),
@@ -319,7 +319,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalker.setFileContents(new FileContents(fileText));
         try {
             treeWalker.processFiltered(file, fileText);
-            fail("Exception expected");
+            assertWithMessage("Exception expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("IllegalStateException occurred while parsing file input.java.",
@@ -367,7 +367,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalker.setFileContents(new FileContents(fileText));
         try {
             treeWalker.processFiltered(file, fileText);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException exception) {
             assertTrue(exception.getMessage().contains("occurred while parsing file"),
@@ -390,7 +390,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalker.setFileContents(new FileContents(fileText));
         try {
             treeWalker.processFiltered(file, fileText);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException exception) {
             assertTrue(exception.getMessage().contains(
@@ -443,7 +443,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         try {
             treeWalker.processFiltered(file, fileText);
-            fail("file is not compilable, exception is expected");
+            assertWithMessage("file is not compilable, exception is expected").fail();
         }
         catch (CheckstyleException exception) {
             final String message = "IllegalStateException occurred while parsing file";

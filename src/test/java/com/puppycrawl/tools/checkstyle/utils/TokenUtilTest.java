@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsCla
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -62,7 +61,7 @@ public class TokenUtilTest {
 
         try {
             TokenUtil.getIntFromField(field, 0);
-            fail("IllegalStateException is expected");
+            assertWithMessage("IllegalStateException is expected").fail();
         }
         catch (IllegalStateException expected) {
             // The exception message may vary depending on the version of the JDK.
@@ -126,7 +125,7 @@ public class TokenUtilTest {
         final int nextAfterMaxId = maxId + 1;
         try {
             TokenUtil.getTokenName(nextAfterMaxId);
-            fail("IllegalArgumentException is expected");
+            assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException expectedException) {
             assertEquals("unknown TokenTypes id '" + nextAfterMaxId + "'",
@@ -155,7 +154,7 @@ public class TokenUtilTest {
         final int id = 0;
         try {
             TokenUtil.getTokenName(id);
-            fail("IllegalArgumentException is expected");
+            assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException expected) {
             assertEquals("unknown TokenTypes id '" + id + "'", expected.getMessage(),
@@ -168,7 +167,7 @@ public class TokenUtilTest {
         final String id = "NON_EXISTENT_VALUE";
         try {
             TokenUtil.getTokenId(id);
-            fail("IllegalArgumentException is expected");
+            assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException expected) {
             assertEquals("unknown TokenTypes value '" + id + "'", expected.getMessage(),
@@ -181,7 +180,7 @@ public class TokenUtilTest {
         final String id = "NON_EXISTENT_VALUE";
         try {
             TokenUtil.getShortDescription(id);
-            fail("IllegalArgumentException is expected");
+            assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException expected) {
             assertEquals("unknown TokenTypes value '" + id + "'", expected.getMessage(),

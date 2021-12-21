@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -127,7 +127,7 @@ public class SuppressionXpathSingleFilterTest
             final Object test = createSuppressionXpathSingleFilter(
                     "InputSuppressionXpathSingleFilter", "Test",
                     null, null, xpath);
-            fail("Exception was expected but got " + test);
+            assertWithMessage("Exception was expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
             assertTrue(ex.getMessage().contains("Incorrect xpath query"),
@@ -172,7 +172,7 @@ public class SuppressionXpathSingleFilterTest
         final SuppressionXpathSingleFilter filter = new SuppressionXpathSingleFilter();
         try {
             filter.setFiles("e[l");
-            fail("PatternSyntaxException is expected");
+            assertWithMessage("PatternSyntaxException is expected").fail();
         }
         catch (PatternSyntaxException ex) {
             assertTrue(ex.getMessage().contains("Unclosed character class"),
@@ -185,7 +185,7 @@ public class SuppressionXpathSingleFilterTest
         final SuppressionXpathSingleFilter filter = new SuppressionXpathSingleFilter();
         try {
             filter.setChecks("e[l");
-            fail("PatternSyntaxException is expected");
+            assertWithMessage("PatternSyntaxException is expected").fail();
         }
         catch (PatternSyntaxException ex) {
             assertTrue(ex.getMessage().contains("Unclosed character class"),
@@ -299,7 +299,7 @@ public class SuppressionXpathSingleFilterTest
                 file.getName(), message, null);
         try {
             filter.accept(ev);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (IllegalStateException ex) {
             assertTrue(ex.getMessage().contains("Cannot initialize context and evaluate query"),

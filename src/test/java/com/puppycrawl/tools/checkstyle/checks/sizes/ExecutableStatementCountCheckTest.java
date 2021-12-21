@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Collection;
 
@@ -136,7 +136,7 @@ public class ExecutableStatementCountCheckTest
             new CommonToken(TokenTypes.ENUM, "ENUM"));
         try {
             checkObj.visitToken(ast);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (IllegalStateException ex) {
             assertEquals("ENUM[0x-1]", ex.getMessage(), "Invalid exception message");
@@ -152,7 +152,7 @@ public class ExecutableStatementCountCheckTest
             new CommonToken(TokenTypes.ENUM, "ENUM"));
         try {
             checkObj.leaveToken(ast);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (IllegalStateException ex) {
             assertEquals("ENUM[0x-1]", ex.getMessage(), "Invalid exception message");
