@@ -12,11 +12,6 @@ on:
     types: [created, edited]
 name: Automatic Rebase
 
-# until https://github.com/checkstyle/checkstyle/issues/11052
-# permissions:
-#   contents: write
-#   pull-requests: write
-
 jobs:
   rebase:
     name: Rebase PR
