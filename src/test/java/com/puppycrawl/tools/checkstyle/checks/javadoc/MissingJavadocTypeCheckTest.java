@@ -56,7 +56,9 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
             TokenTypes.RECORD_DEF,
         };
 
-        assertWithMessage("Default acceptable tokens are invalid").that(actual).isEqualTo(expected);
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test

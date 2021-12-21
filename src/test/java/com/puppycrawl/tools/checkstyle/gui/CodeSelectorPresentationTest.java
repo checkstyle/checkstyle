@@ -80,9 +80,11 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(tree,
                 linesToPosition);
         selector.findSelectionPositions();
-        assertWithMessage("Invalid selection start").that(selector.getSelectionStart())
+        assertWithMessage("Invalid selection start")
+                .that(selector.getSelectionStart())
                 .isEqualTo(94);
-        assertWithMessage("Invalid selection end").that(selector.getSelectionEnd()).isEqualTo(279);
+        assertWithMessage("Invalid selection end")
+                .that(selector.getSelectionEnd()).isEqualTo(279);
     }
 
     @Test
@@ -91,9 +93,12 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(leaf,
                 linesToPosition);
         selector.findSelectionPositions();
-        assertWithMessage("Invalid selection start").that(selector.getSelectionStart())
+        assertWithMessage("Invalid selection start")
+                .that(selector.getSelectionStart())
                 .isEqualTo(130);
-        assertWithMessage("Invalid selection end").that(selector.getSelectionEnd()).isEqualTo(131);
+        assertWithMessage("Invalid selection end")
+                .that(selector.getSelectionEnd())
+                .isEqualTo(131);
     }
 
     @Test
@@ -102,9 +107,12 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(leaf,
                 linesToPosition);
         selector.findSelectionPositions();
-        assertWithMessage("Invalid selection start").that(selector.getSelectionStart())
+        assertWithMessage("Invalid selection start")
+                .that(selector.getSelectionStart())
                 .isEqualTo(94);
-        assertWithMessage("Invalid selection end").that(selector.getSelectionEnd()).isEqualTo(94);
+        assertWithMessage("Invalid selection end")
+                .that(selector.getSelectionEnd())
+                .isEqualTo(94);
     }
 
     @Test
@@ -114,9 +122,12 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(javadoc,
                 linesToPosition);
         selector.findSelectionPositions();
-        assertWithMessage("Invalid selection start").that(selector.getSelectionStart())
+        assertWithMessage("Invalid selection start")
+                .that(selector.getSelectionStart())
                 .isEqualTo(74);
-        assertWithMessage("Invalid selection end").that(selector.getSelectionEnd()).isEqualTo(96);
+        assertWithMessage("Invalid selection end")
+                .that(selector.getSelectionEnd())
+                .isEqualTo(96);
     }
 
     @Test
@@ -127,9 +138,12 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(javadocLeaf,
                 linesToPosition);
         selector.findSelectionPositions();
-        assertWithMessage("Invalid selection start").that(selector.getSelectionStart())
+        assertWithMessage("Invalid selection start")
+                .that(selector.getSelectionStart())
                 .isEqualTo(76);
-        assertWithMessage("Invalid selection end").that(selector.getSelectionEnd()).isEqualTo(90);
+        assertWithMessage("Invalid selection end")
+                .that(selector.getSelectionEnd())
+                .isEqualTo(90);
     }
 
 }

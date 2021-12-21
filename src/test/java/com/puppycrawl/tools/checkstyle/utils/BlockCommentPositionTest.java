@@ -77,7 +77,8 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
             final DetailAST ast = JavaParser.parseFile(new File(getPath(metadata.getFileName())),
                 JavaParser.Options.WITH_COMMENTS);
             final int matches = getJavadocsCount(ast, metadata.getAssertion());
-            assertWithMessage("Invalid javadoc count").that(matches)
+            assertWithMessage("Invalid javadoc count")
+                    .that(matches)
                     .isEqualTo(metadata.getMatchesNum());
         }
     }
@@ -96,7 +97,8 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
                 new File(getNonCompilablePath(metadata.getFileName())),
                     JavaParser.Options.WITH_COMMENTS);
             final int matches = getJavadocsCount(ast, metadata.getAssertion());
-            assertWithMessage("Invalid javadoc count").that(matches)
+            assertWithMessage("Invalid javadoc count")
+                    .that(matches)
                     .isEqualTo(metadata.getMatchesNum());
         }
     }

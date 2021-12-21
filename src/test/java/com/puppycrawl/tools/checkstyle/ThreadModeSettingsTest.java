@@ -32,10 +32,12 @@ public class ThreadModeSettingsTest {
     @Test
     public void testProperties() {
         final ThreadModeSettings config = new ThreadModeSettings(1, 2);
-        assertWithMessage("Invalid checker threads number").that(config.getCheckerThreadsNumber())
+        assertWithMessage("Invalid checker threads number")
+                .that(config.getCheckerThreadsNumber())
                 .isEqualTo(1);
         assertWithMessage("Invalid treewalker threads number")
-                .that(config.getTreeWalkerThreadsNumber()).isEqualTo(2);
+                .that(config.getTreeWalkerThreadsNumber())
+                .isEqualTo(2);
     }
 
     @Test
@@ -47,7 +49,8 @@ public class ThreadModeSettingsTest {
             assertWithMessage("An exception is expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertWithMessage("Invalid exception message").that(ex.getMessage())
+            assertWithMessage("Invalid exception message")
+                    .that(ex.getMessage())
                     .isEqualTo("Multi thread mode for Checker module is not implemented");
         }
     }
@@ -57,7 +60,8 @@ public class ThreadModeSettingsTest {
         final ThreadModeSettings singleThreadMode = ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
 
         final String name = singleThreadMode.resolveName(ThreadModeSettings.CHECKER_MODULE_NAME);
-        assertWithMessage("Invalid name resolved").that(name)
+        assertWithMessage("Invalid name resolved")
+                .that(name)
                 .isEqualTo(ThreadModeSettings.CHECKER_MODULE_NAME);
     }
 
@@ -70,7 +74,8 @@ public class ThreadModeSettingsTest {
             assertWithMessage("Exception is expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertWithMessage("Invalid exception message").that(ex.getMessage())
+            assertWithMessage("Invalid exception message")
+                    .that(ex.getMessage())
                     .isEqualTo("Multi thread mode for TreeWalker module is not implemented");
         }
     }
@@ -80,7 +85,8 @@ public class ThreadModeSettingsTest {
         final ThreadModeSettings singleThreadMode = ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
         final String actual =
                 singleThreadMode.resolveName(ThreadModeSettings.TREE_WALKER_MODULE_NAME);
-        assertWithMessage("Invalid name resolved: " + actual).that(actual)
+        assertWithMessage("Invalid name resolved: " + actual)
+                .that(actual)
                 .isEqualTo(ThreadModeSettings.TREE_WALKER_MODULE_NAME);
     }
 
@@ -100,9 +106,11 @@ public class ThreadModeSettingsTest {
 
             final String moduleName = module.getSimpleName();
             assertWithMessage("Invalid name resolved")
-                    .that(singleThreadModeSettings.resolveName(moduleName)).isEqualTo(moduleName);
+                    .that(singleThreadModeSettings.resolveName(moduleName))
+                    .isEqualTo(moduleName);
             assertWithMessage("Invalid name resolved")
-                    .that(multiThreadModeSettings.resolveName(moduleName)).isEqualTo(moduleName);
+                    .that(multiThreadModeSettings.resolveName(moduleName))
+                    .isEqualTo(moduleName);
         }
     }
 

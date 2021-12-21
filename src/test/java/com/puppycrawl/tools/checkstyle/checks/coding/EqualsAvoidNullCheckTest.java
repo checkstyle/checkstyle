@@ -246,11 +246,14 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTokensNotNull() {
         final EqualsAvoidNullCheck check = new EqualsAvoidNullCheck();
-        assertWithMessage("Acceptable tokens should not be null").that(check.getAcceptableTokens())
+        assertWithMessage("Acceptable tokens should not be null")
+                .that(check.getAcceptableTokens())
                 .isNotNull();
-        assertWithMessage("Default tokens should not be null").that(check.getDefaultTokens())
+        assertWithMessage("Default tokens should not be null")
+                .that(check.getDefaultTokens())
                 .isNotNull();
-        assertWithMessage("Required tokens should not be null").that(check.getRequiredTokens())
+        assertWithMessage("Required tokens should not be null")
+                .that(check.getRequiredTokens())
                 .isNotNull();
     }
 

@@ -40,7 +40,8 @@ public class StaticVariableNameCheckTest
     public void testGetRequiredTokens() {
         final StaticVariableNameCheck checkObj = new StaticVariableNameCheck();
         final int[] expected = {TokenTypes.VARIABLE_DEF};
-        assertWithMessage("Default required tokens are invalid").that(checkObj.getRequiredTokens())
+        assertWithMessage("Default required tokens are invalid")
+                .that(checkObj.getRequiredTokens())
                 .isEqualTo(expected);
     }
 
@@ -80,8 +81,8 @@ public class StaticVariableNameCheckTest
         final int[] expected = {
             TokenTypes.VARIABLE_DEF,
         };
-        assertWithMessage("Default acceptable tokens are invalid").that(actual)
-            .isEqualTo(expected);
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(actual).isEqualTo(expected);
     }
 
 }

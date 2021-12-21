@@ -74,7 +74,8 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.RECORD_DEF,
         };
-        assertWithMessage("Acceptable tokens array differs from expected").that(actual)
+        assertWithMessage("Acceptable tokens array differs from expected")
+                .that(actual)
                 .isEqualTo(expected);
     }
 

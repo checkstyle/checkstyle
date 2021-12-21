@@ -39,7 +39,8 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
         final RecordTypeParameterNameCheck checkObj =
                 new RecordTypeParameterNameCheck();
         final int[] expected = {TokenTypes.TYPE_PARAMETER};
-        assertWithMessage("Default required tokens are invalid").that(checkObj.getRequiredTokens())
+        assertWithMessage("Default required tokens are invalid")
+                .that(checkObj.getRequiredTokens())
                 .isEqualTo(expected);
     }
 
@@ -81,6 +82,8 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
         final int[] expected = {
             TokenTypes.TYPE_PARAMETER,
         };
-        assertWithMessage("Default acceptable tokens are invalid").that(actual).isEqualTo(expected);
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(actual)
+                .isEqualTo(expected);
     }
 }

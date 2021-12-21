@@ -40,7 +40,9 @@ public class AuditEventDefaultFormatterTest {
         final String expected = "[WARN] InputMockFile.java:1:1: Mocked violation. "
                 + "[AuditEventDefaultFormatterTest$TestModule]";
 
-        assertWithMessage("Invalid format").that(formatter.format(event)).isEqualTo(expected);
+        assertWithMessage("Invalid format")
+                .that(formatter.format(event))
+                .isEqualTo(expected);
     }
 
     @Test
@@ -53,7 +55,9 @@ public class AuditEventDefaultFormatterTest {
         final String expected = "[WARN] InputMockFile.java:1:1: Mocked violation. "
                 + "[AuditEventDefaultFormatterTest$TestModule]";
 
-        assertWithMessage("Invalid format").that(formatter.format(event)).isEqualTo(expected);
+        assertWithMessage("Invalid format")
+                .that(formatter.format(event))
+                .isEqualTo(expected);
     }
 
     @Test
@@ -65,7 +69,9 @@ public class AuditEventDefaultFormatterTest {
 
         final String expected = "[WARN] InputMockFile.java:1:1: Mocked violation. [ModuleId]";
 
-        assertWithMessage("Invalid format").that(formatter.format(event)).isEqualTo(expected);
+        assertWithMessage("Invalid format")
+                .that(formatter.format(event))
+                .isEqualTo(expected);
     }
 
     @Test
@@ -77,7 +83,9 @@ public class AuditEventDefaultFormatterTest {
         final int result = TestUtil.invokeStaticMethod(AuditEventDefaultFormatter.class,
                 "calculateBufferLength", auditEvent, SeverityLevel.ERROR.ordinal());
 
-        assertWithMessage("Buffer length is not expected").that(result).isEqualTo(54);
+        assertWithMessage("Buffer length is not expected")
+                .that(result)
+                .isEqualTo(54);
     }
 
     private static class TestModuleCheck {
