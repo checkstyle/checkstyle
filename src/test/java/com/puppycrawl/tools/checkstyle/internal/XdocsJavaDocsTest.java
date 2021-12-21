@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.net.URI;
@@ -594,8 +594,9 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                         // ignore
                         break;
                     default:
-                        fail("Unknown token '" + TokenUtil.getTokenName(parentNode.getType())
-                                + "': " + ast.getLineNo());
+                        assertWithMessage(
+                                "Unknown token '" + TokenUtil.getTokenName(parentNode.getType())
+                                        + "': " + ast.getLineNo()).fail();
                         break;
                 }
             }
@@ -703,7 +704,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                         .replace("\r", "");
             }
             catch (ParserConfigurationException ex) {
-                fail("Exception: " + ex.getClass() + " - " + ex.getMessage());
+                assertWithMessage("Exception: " + ex.getClass() + " - " + ex.getMessage()).fail();
             }
 
             return result;

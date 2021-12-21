@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.filters;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -88,7 +87,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
     public void testLoadFromMalformedUrl() {
         try {
             SuppressionsLoader.loadSuppressions("http");
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("Unable to find: http", ex.getMessage(), "Invalid error message");
@@ -99,7 +98,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
     public void testLoadFromNonExistentUrl() {
         try {
             SuppressionsLoader.loadSuppressions("http://^%$^* %&% %^&");
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("Unable to find: http://^%$^* %&% %^&", ex.getMessage(),
@@ -137,7 +136,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String fn = getPath("InputSuppressionsLoaderNoFile.xml");
         try {
             SuppressionsLoader.loadSuppressions(fn);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             final String messageStart = "Unable to parse " + fn;
@@ -155,7 +154,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String fn = getPath("InputSuppressionsLoaderNoCheck.xml");
         try {
             SuppressionsLoader.loadSuppressions(fn);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             final String messageStart = "Unable to parse " + fn;
@@ -173,7 +172,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String fn = getPath("InputSuppressionsLoaderBadInt.xml");
         try {
             SuppressionsLoader.loadSuppressions(fn);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertTrue(ex.getMessage().startsWith("Number format exception " + fn + " - "),
@@ -229,7 +228,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         try {
             TestUtil.invokeStaticMethod(SuppressionsLoader.class, "loadSuppressions",
                     new InputSource(sourceName), sourceName);
-            fail("InvocationTargetException is expected");
+            assertWithMessage("InvocationTargetException is expected").fail();
         }
         catch (InvocationTargetException ex) {
             assertWithMessage("Invalid exception cause message")
@@ -247,7 +246,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         try {
             TestUtil.invokeStaticMethod(SuppressionsLoader.class, "loadSuppressions",
                     new InputSource(), sourceName);
-            fail("InvocationTargetException is expected");
+            assertWithMessage("InvocationTargetException is expected").fail();
         }
         catch (InvocationTargetException ex) {
             assertWithMessage("Invalid exception cause message")
@@ -263,7 +262,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String fn = getPath("InputSuppressionsLoaderNoCheckAndId.xml");
         try {
             SuppressionsLoader.loadSuppressions(fn);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals(
@@ -285,7 +284,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String fn = getPath("InputSuppressionsLoaderInvalidFile.xml");
         try {
             SuppressionsLoader.loadSuppressions(fn);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals(
@@ -334,7 +333,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String fn = getPath("InputSuppressionsLoaderXpathInvalidFile.xml");
         try {
             SuppressionsLoader.loadXpathSuppressions(fn);
-            fail("Exception should be thrown");
+            assertWithMessage("Exception should be thrown").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals(
@@ -350,7 +349,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
                 getPath("InputSuppressionsLoaderXpathNoCheckAndId.xml");
         try {
             SuppressionsLoader.loadXpathSuppressions(fn);
-            fail("Exception should be thrown");
+            assertWithMessage("Exception should be thrown").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals(

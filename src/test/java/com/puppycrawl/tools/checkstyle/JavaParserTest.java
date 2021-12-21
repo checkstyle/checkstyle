@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -151,7 +150,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         final File input = new File(getNonCompilablePath("InputJavaParser.java"));
         try {
             JavaParser.parseFile(input, JavaParser.Options.WITH_COMMENTS);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals(
