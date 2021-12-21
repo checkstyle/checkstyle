@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 
@@ -363,7 +363,7 @@ public class VisibilityModifierCheckTest
         ast.initialize(new CommonToken(TokenTypes.CLASS_DEF, "class"));
         try {
             obj.visitToken(ast);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Unexpected token type: class", ex.getMessage(),

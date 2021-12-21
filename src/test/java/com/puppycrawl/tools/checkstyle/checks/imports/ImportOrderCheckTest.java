@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_ORDERING;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_SEPARATED_IN_GROUP;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_SEPARATION;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
@@ -204,7 +204,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
 
             verifyWithInlineConfigParser(
                     getPath("InputImportOrder_Top1.java"), expected);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals(
@@ -520,7 +520,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
             verify(checkConfig, getPath("InputImportOrder5.java"), expected);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
@@ -578,7 +578,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         // expecting IllegalStateException
         try {
             mock.visitToken(astImport);
-            fail("An exception is expected");
+            assertWithMessage("An exception is expected").fail();
         }
         catch (IllegalStateException ex) {
             assertTrue(ex.getMessage().endsWith(": null"), "invalid exception message");
