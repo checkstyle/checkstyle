@@ -19,9 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.filefilters;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.regex.Pattern;
 
@@ -44,7 +43,8 @@ public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSu
         final BeforeExecutionExclusionFileFilter filter =
                 createExclusionBeforeExecutionFileFilter(fileName);
 
-        assertTrue(filter.accept("ATest.java"), "Should accept if file does not exist");
+        assertWithMessage("Should accept if file does not exist").that(filter.accept("ATest.java"))
+                .isTrue();
     }
 
     @Test
@@ -53,7 +53,8 @@ public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSu
         final BeforeExecutionExclusionFileFilter filter =
                 createExclusionBeforeExecutionFileFilter(fileName);
 
-        assertTrue(filter.accept("AnyJava.java"), "Should accept if file is null");
+        assertWithMessage("Should accept if file is null").that(filter.accept("AnyJava.java"))
+                .isTrue();
     }
 
     @Test
@@ -62,7 +63,8 @@ public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSu
         final BeforeExecutionExclusionFileFilter filter =
                 createExclusionBeforeExecutionFileFilter(fileName);
 
-        assertFalse(filter.accept("ATest.java"), "Should reject file, but did not");
+        assertWithMessage("Should reject file, but did not").that(filter.accept("ATest.java"))
+                .isFalse();
     }
 
     @Test
