@@ -45,7 +45,9 @@ public class TokenTypesTest {
             .filter(name -> name.charAt(0) != '$')
             .collect(Collectors.toSet());
         final Set<String> actual = bundle.keySet();
-        assertWithMessage("TokenTypes without description").that(actual).isEqualTo(expected);
+        assertWithMessage("TokenTypes without description")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -55,7 +57,8 @@ public class TokenTypesTest {
             .filter(name -> name.charAt(0) != '$')
             .map(TokenUtil::getShortDescription)
             .filter(desc -> desc.charAt(desc.length() - 1) != '.').collect(Collectors.toSet());
-        assertWithMessage("Malformed TokenType descriptions").that(badDescriptions)
+        assertWithMessage("Malformed TokenType descriptions")
+                .that(badDescriptions)
                 .isEqualTo(Collections.emptySet());
     }
 
@@ -65,7 +68,8 @@ public class TokenTypesTest {
                 .that(TokenUtil.getShortDescription("EQUAL"))
                 .isEqualTo("The <code>==</code> (equal) operator.");
 
-        assertWithMessage("short description for LAND").that(TokenUtil.getShortDescription("LAND"))
+        assertWithMessage("short description for LAND")
+                .that(TokenUtil.getShortDescription("LAND"))
                 .isEqualTo("The <code>&&</code> (conditional AND) operator.");
 
         assertWithMessage("short description for LCURLY")
@@ -76,17 +80,20 @@ public class TokenTypesTest {
                 .that(TokenUtil.getShortDescription("SR_ASSIGN"))
                 .isEqualTo("The <code>>>=</code> (signed right shift assignment) operator.");
 
-        assertWithMessage("short description for SL").that(TokenUtil.getShortDescription("SL"))
+        assertWithMessage("short description for SL")
+                .that(TokenUtil.getShortDescription("SL"))
                 .isEqualTo("The <code><<</code> (shift left) operator.");
 
-        assertWithMessage("short description for BSR").that(TokenUtil.getShortDescription("BSR"))
+        assertWithMessage("short description for BSR")
+                .that(TokenUtil.getShortDescription("BSR"))
                 .isEqualTo("The <code>>>></code> (unsigned shift right) operator.");
     }
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
-                .that(isUtilsClassHasPrivateConstructor(TokenTypes.class, true)).isTrue();
+                .that(isUtilsClassHasPrivateConstructor(TokenTypes.class, true))
+                .isTrue();
     }
 
 }

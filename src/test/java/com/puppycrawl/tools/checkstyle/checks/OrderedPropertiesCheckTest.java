@@ -131,10 +131,13 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(file, Collections.emptyList());
         final SortedSet<Violation> violations =
                 check.process(file, fileText);
-        assertWithMessage("Wrong violations count").that(violations).hasSize(1);
+        assertWithMessage("Wrong violations count")
+                .that(violations)
+                .hasSize(1);
         final Violation violation = violations.iterator().next();
         final String retrievedMessage = violations.iterator().next().getKey();
-        assertWithMessage("violation key is not valid").that(retrievedMessage)
+        assertWithMessage("violation key is not valid")
+                .that(retrievedMessage)
                 .isEqualTo("unable.open.cause");
         assertWithMessage("violation is not valid")
                 .that(getCheckMessage(MSG_IO_EXCEPTION_KEY, fileName, getFileNotFoundDetail(file)))
@@ -163,14 +166,17 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(file, Collections.emptyList());
         final SortedSet<Violation> violations = check.process(file, fileText);
 
-        assertWithMessage("Wrong violations count").that(violations).hasSize(1);
+        assertWithMessage("Wrong violations count")
+                .that(violations)
+                .hasSize(1);
     }
 
     @Test
     public void testFileExtension() {
 
         final OrderedPropertiesCheck check = new OrderedPropertiesCheck();
-        assertWithMessage("File extension should be set").that(".properties")
+        assertWithMessage("File extension should be set")
+                .that(".properties")
                 .isEqualTo(check.getFileExtensions()[0]);
     }
 

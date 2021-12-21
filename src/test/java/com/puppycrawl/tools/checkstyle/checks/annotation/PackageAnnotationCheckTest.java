@@ -52,7 +52,9 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
         final PackageAnnotationCheck constantNameCheckObj = new PackageAnnotationCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
         final int[] expected = {TokenTypes.PACKAGE_DEF};
-        assertWithMessage("Invalid acceptable tokens").that(actual).isEqualTo(expected);
+        assertWithMessage("Invalid acceptable tokens")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test

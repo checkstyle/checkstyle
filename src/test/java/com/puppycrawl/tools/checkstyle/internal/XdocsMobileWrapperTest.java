@@ -56,7 +56,9 @@ public class XdocsMobileWrapperTest {
             final String fileName = file.getName();
 
             final String input = new String(Files.readAllBytes(path), UTF_8);
-            assertWithMessage(fileName + ": input file cannot be empty").that(input).isNotEmpty();
+            assertWithMessage(fileName + ": input file cannot be empty")
+                    .that(input)
+                    .isNotEmpty();
             final Document document = XmlUtil.getRawXml(fileName, input, input);
             final NodeList sources = document.getElementsByTagName("section");
 
@@ -82,11 +84,16 @@ public class XdocsMobileWrapperTest {
                 assertWithMessage(wrapperMessage)
                         .that("div".equals(node.getNodeName()) || "span".equals(node.getNodeName()))
                         .isTrue();
-                assertWithMessage(wrapperMessage).that(node.hasAttributes()).isTrue();
-                assertWithMessage(wrapperMessage).that(node.getAttributes().getNamedItem("class"))
+                assertWithMessage(wrapperMessage)
+                        .that(node.hasAttributes())
+                        .isTrue();
+                assertWithMessage(wrapperMessage)
+                        .that(node.getAttributes().getNamedItem("class"))
                         .isNotNull();
-                assertWithMessage(wrapperMessage).that(node.getAttributes().getNamedItem("class")
-                        .getNodeValue().contains("wrapper")).isTrue();
+                assertWithMessage(wrapperMessage)
+                        .that(node.getAttributes().getNamedItem("class")
+                                .getNodeValue().contains("wrapper"))
+                        .isTrue();
 
                 if ("table".equals(child.getNodeName())) {
                     iterateNode(child, fileName, sectionName);
@@ -95,8 +102,9 @@ public class XdocsMobileWrapperTest {
                     final String dataImageInlineMessage = fileName + "/" + sectionName + ": img "
                             + "needs the additional class inline if it should be displayed inline "
                             + "or block if scrolling in mobile view should be enabled.";
-                    assertWithMessage(dataImageInlineMessage).that(node.getAttributes()
-                            .getNamedItem("class").getNodeValue().matches(".*(block|inline).*"))
+                    assertWithMessage(dataImageInlineMessage)
+                            .that(node.getAttributes().getNamedItem("class")
+                                    .getNodeValue().matches(".*(block|inline).*"))
                             .isTrue();
                 }
             }
