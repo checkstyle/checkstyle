@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 
@@ -104,7 +104,7 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
         try {
             SuppressionsStringPrinter.printSuppressions(input,
                     invalidLineAndColumnNumber, tabWidth);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (IllegalStateException ex) {
             assertEquals("abc-432 does not match valid format 'line:column'.",
@@ -120,7 +120,7 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
         try {
             SuppressionsStringPrinter.printSuppressions(input,
                     lineAndColumnNumber, tabWidth);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
             assertSame(IllegalStateException.class, ex.getCause().getClass(), "Invalid class");

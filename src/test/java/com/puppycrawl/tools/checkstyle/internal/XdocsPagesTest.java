@@ -31,7 +31,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.beans.PropertyDescriptor;
 import java.io.File;
@@ -241,8 +240,9 @@ public class XdocsPagesTest {
             .filter(checkName -> !"JavadocMetadataScraper".equals(checkName))
             .forEach(checkName -> {
                 if (!isPresent(availableChecks, checkName)) {
-                    fail(checkName + " is not correctly listed on Available Checks page"
-                        + " - add it to " + AVAILABLE_CHECKS_PATH);
+                    assertWithMessage(
+                            checkName + " is not correctly listed on Available Checks page"
+                                    + " - add it to " + AVAILABLE_CHECKS_PATH).fail();
                 }
             });
     }
@@ -1006,7 +1006,7 @@ public class XdocsPagesTest {
             result = fieldClass.getSimpleName();
         }
         else {
-            fail("Unknown property type: " + fieldClass.getSimpleName());
+            assertWithMessage("Unknown property type: " + fieldClass.getSimpleName()).fail();
         }
 
         if ("SuppressWarningsHolder".equals(instanceName)) {
@@ -1320,7 +1320,7 @@ public class XdocsPagesTest {
                 result = Arrays.toString((Object[]) value).replace("[", "").replace("]", "");
             }
             else {
-                fail("Unknown property type: " + fieldClass.getSimpleName());
+                assertWithMessage("Unknown property type: " + fieldClass.getSimpleName()).fail();
             }
 
             if (result == null) {
@@ -1397,7 +1397,8 @@ public class XdocsPagesTest {
                 result = Pattern[].class;
             }
             else {
-                fail("Unknown parameterized type: " + parameterClass.getSimpleName());
+                assertWithMessage("Unknown parameterized type: " + parameterClass.getSimpleName())
+                        .fail();
             }
         }
         else if (result == BitSet.class) {
@@ -1608,7 +1609,8 @@ public class XdocsPagesTest {
                     break;
 
                 default:
-                    fail("Missing modules list for style file '" + fileName + "'");
+                    assertWithMessage("Missing modules list for style file '" + fileName + "'")
+                            .fail();
                     styleChecks = null;
             }
 
@@ -1703,11 +1705,11 @@ public class XdocsPagesTest {
             }
             if (ruleNumberPartsAmount == partIndex && lastRuleNumberPartWasEqual) {
                 if (lastRuleNumberPartsAmount == partIndex) {
-                    fail(fileName + " rule '" + ruleName + "' and rule '"
-                            + lastRuleName + "' have the same rule number");
+                    assertWithMessage(fileName + " rule '" + ruleName + "' and rule '"
+                            + lastRuleName + "' have the same rule number").fail();
                 }
                 else {
-                    fail(outOfOrderReason);
+                    assertWithMessage(outOfOrderReason).fail();
                 }
             }
         }
@@ -1775,8 +1777,8 @@ public class XdocsPagesTest {
                     config = itrConfigs.next();
                 }
                 catch (NoSuchElementException ignore) {
-                    fail(styleName + "_style.xml rule '" + ruleName + "' module '"
-                            + moduleName + "' is missing the config link: " + configName);
+                    assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
+                            + moduleName + "' is missing the config link: " + configName).fail();
                 }
 
                 assertEquals(configName, config.getTextContent().trim(),

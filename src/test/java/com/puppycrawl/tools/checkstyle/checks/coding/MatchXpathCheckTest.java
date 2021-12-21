@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.Assert.fail;
 
 import org.junit.jupiter.api.Test;
 
@@ -181,7 +180,7 @@ public class MatchXpathCheckTest
 
         try {
             matchXpathCheck.setQuery("!@#%^");
-            fail("Exception was expected");
+            assertWithMessage("Exception was expected").fail();
         }
         catch (IllegalStateException ignored) {
             // it is OK
@@ -201,7 +200,7 @@ public class MatchXpathCheckTest
 
         try {
             matchXpathCheck.beginTree(detailAST);
-            fail("Exception was expected");
+            assertWithMessage("Exception was expected").fail();
         }
         catch (IllegalStateException ignored) {
             // it is OK

@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 
@@ -238,7 +237,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
 
         try {
             parseTree.getValueAt(node, parseTree.getColumnCount());
-            fail("IllegalStateException expected");
+            assertWithMessage("IllegalStateException expected").fail();
         }
         catch (IllegalStateException ex) {
             assertEquals("Unknown column", ex.getMessage(), "Invalid error message");
@@ -275,7 +274,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
 
         try {
             parseTree.getValueAt(child, parseTree.getColumnCount());
-            fail("IllegalStateException expected");
+            assertWithMessage("IllegalStateException expected").fail();
         }
         catch (IllegalStateException ex) {
             assertEquals("Unknown column", ex.getMessage(), "Invalid error message");
@@ -293,7 +292,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
 
         try {
             parseTree.getColumnClass(parseTree.getColumnCount());
-            fail("IllegalStateException expected");
+            assertWithMessage("IllegalStateException expected").fail();
         }
         catch (IllegalStateException ex) {
             assertEquals("Unknown column", ex.getMessage(), "Invalid error message");

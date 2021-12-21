@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.internal;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -167,7 +166,9 @@ public class CommitValidationTest {
             if (error != 0) {
                 final String commitId = commit.getId().getName();
 
-                fail(getInvalidCommitMessageFormattingError(commitId, commitMessage) + error);
+                assertWithMessage(
+                        getInvalidCommitMessageFormattingError(commitId, commitMessage) + error)
+                                .fail();
             }
         }
     }

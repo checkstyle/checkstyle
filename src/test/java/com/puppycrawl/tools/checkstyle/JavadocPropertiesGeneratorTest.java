@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -148,7 +148,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         try {
             JavadocPropertiesGenerator.main(
                 "--destfile", DESTFILE_ABSOLUTE_PATH, "NotExistent.java");
-            fail("Exception was expected");
+            assertWithMessage("Exception was expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals(
@@ -171,7 +171,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             // Passing a folder name will cause the FileNotFoundException.
             JavadocPropertiesGenerator.main("--destfile", "..",
                 getPath("InputJavadocPropertiesGeneratorCorrect.java"));
-            fail("Exception was expected");
+            assertWithMessage("Exception was expected").fail();
         }
         catch (CheckstyleException ex) {
             final String expectedError = "Failed to write javadoc properties of '"
@@ -240,7 +240,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         final String path = getPath("InputJavadocPropertiesGeneratorJavadocParseError.java");
         try {
             JavadocPropertiesGenerator.main(path, "--destfile", DESTFILE_ABSOLUTE_PATH);
-            fail("Exception was expected");
+            assertWithMessage("Exception was expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertTrue(ex.getMessage()
@@ -256,7 +256,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         final String path = getPath("InputJavadocPropertiesGeneratorNotImplementedTag.java");
         try {
             JavadocPropertiesGenerator.main(path, "--destfile", DESTFILE_ABSOLUTE_PATH);
-            fail("Exception was expected");
+            assertWithMessage("Exception was expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("Unsupported inline tag LINK_LITERAL",
@@ -271,7 +271,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         final String path = getNonCompilablePath("InputJavadocPropertiesGeneratorParseError.java");
         try {
             JavadocPropertiesGenerator.main(path, "--destfile", DESTFILE_ABSOLUTE_PATH);
-            fail("Exception was expected");
+            assertWithMessage("Exception was expected").fail();
         }
         catch (CheckstyleException ex) {
             assertTrue(ex.getMessage().contains("InputJavadocPropertiesGeneratorParseError.java"),

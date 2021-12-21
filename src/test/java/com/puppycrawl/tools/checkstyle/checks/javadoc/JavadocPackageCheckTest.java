@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck.MSG_LEGACY_PACKAGE_HTML;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck.MSG_PACKAGE_INFO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.util.Collections;
@@ -143,7 +143,7 @@ public class JavadocPackageCheckTest
                 "Exception while getting canonical path to file " + fileWithInvalidPath.getPath();
         try {
             check.processFiltered(fileWithInvalidPath, mockFileText);
-            fail("CheckstyleException expected to be thrown");
+            assertWithMessage("CheckstyleException expected to be thrown").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals(expectedExceptionMessage, ex.getMessage(),
