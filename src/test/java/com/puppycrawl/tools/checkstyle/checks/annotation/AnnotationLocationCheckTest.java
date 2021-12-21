@@ -134,8 +134,9 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
         };
-        assertWithMessage("Default acceptable tokens are invalid").that(actual)
-            .isEqualTo(expected);
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test

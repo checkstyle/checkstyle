@@ -40,8 +40,9 @@ public class PackageNameCheckTest
     public void testGetRequiredTokens() {
         final PackageNameCheck checkObj = new PackageNameCheck();
         final int[] expected = {TokenTypes.PACKAGE_DEF};
-        assertWithMessage("Default required tokens are invalid").that(checkObj.getRequiredTokens())
-            .isEqualTo(expected);
+        assertWithMessage("Default required tokens are invalid")
+                .that(checkObj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test
@@ -73,7 +74,9 @@ public class PackageNameCheckTest
         final int[] expected = {
             TokenTypes.PACKAGE_DEF,
         };
-        assertWithMessage("Default acceptable tokens are invalid").that(actual).isEqualTo(expected);
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
 }

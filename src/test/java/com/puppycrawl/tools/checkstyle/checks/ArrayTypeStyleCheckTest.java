@@ -96,9 +96,11 @@ public class ArrayTypeStyleCheckTest
         final int[] expected = {TokenTypes.ARRAY_DECLARATOR };
         final ArrayTypeStyleCheck check = new ArrayTypeStyleCheck();
         final int[] actual = check.getAcceptableTokens();
-        assertWithMessage("Amount of acceptable tokens differs from expected").that(actual)
+        assertWithMessage("Amount of acceptable tokens differs from expected")
+                .that(actual)
                 .hasLength(1);
-        assertWithMessage("Acceptable tokens differs from expected").that(actual)
+        assertWithMessage("Acceptable tokens differs from expected")
+                .that(actual)
                 .isEqualTo(expected);
     }
 

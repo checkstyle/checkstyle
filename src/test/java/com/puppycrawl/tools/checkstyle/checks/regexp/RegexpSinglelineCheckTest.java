@@ -125,7 +125,8 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
 
         detector.processLines(new FileText(file, StandardCharsets.UTF_8.name()));
         detector.processLines(new FileText(file, StandardCharsets.UTF_8.name()));
-        assertWithMessage("Logged unexpected amount of issues").that(reporter.getLogCount())
+        assertWithMessage("Logged unexpected amount of issues")
+                .that(reporter.getLogCount())
                 .isEqualTo(0);
     }
 
