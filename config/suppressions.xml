@@ -537,8 +537,6 @@
   <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]utils[\\/]CommonUtilTest.java"/>
   <suppress id="ImportControlTest"
-            files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]utils[\\/]FilterUtilTest.java"/>
-  <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]utils[\\/]JavadocUtilTest.java"/>
   <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]utils[\\/]ModuleReflectionUtilTest.java"/>
