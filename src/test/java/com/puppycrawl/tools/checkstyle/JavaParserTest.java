@@ -26,16 +26,25 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.dfa.DFA;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
+import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class JavaParserTest extends AbstractModuleTestSupport {
@@ -241,6 +250,51 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();
+    }
+
+    /**
+     * In order to test successful DFA clearing in lexer and parser, we take advantage
+     * of the fact that all instances of {@link JavaLanguageLexer} share one
+     * {@link org.antlr.v4.runtime.atn.LexerATNSimulator#decisionToDFA} and
+     * all instances of {@link JavaLanguageParser} share one
+     * {@link org.antlr.v4.runtime.atn.ParserATNSimulator#decisionToDFA}.
+     *
+     * @throws Exception if file doesn't exist
+     */
+    @Test
+    public void testClearAntlrDfa() throws Exception {
+        final File inputFile = new File(getPath("InputJavaParserClearAntlrDFA.java"));
+        final FileText fileText = new FileText(inputFile, StandardCharsets.UTF_8.name());
+        final FileContents fileContents = new FileContents(fileText);
+
+        // Instantiate antlr classes as we do in JavaParser,
+        // this allows us to have an instance of the lexer and parser
+        // so that we can access the DFA states.
+        final String fullText = fileContents.getText().getFullText().toString();
+        final CharStream codePointCharStream = CharStreams.fromString(fullText);
+        final JavaLanguageLexer lexer = new JavaLanguageLexer(codePointCharStream, true);
+        final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
+        final JavaLanguageParser parser = new JavaLanguageParser(tokenStream);
+
+        // Get initial DFA states, this is all we need to verify that
+        // DFA states are cleared in JavaParser#parse.
+        final DFA initialLexerDfa = lexer.getInterpreter().decisionToDFA[0];
+        final DFA initialParserDfa = parser.getInterpreter().decisionToDFA[0];
+
+        // Parse file, and clear DFA
+        JavaParser.parse(fileContents);
+
+        // Get final DFA states after parsing to make assertions about
+        final DFA finalLexerDfa = lexer.getInterpreter().decisionToDFA[0];
+        final DFA finalParserDfa = parser.getInterpreter().decisionToDFA[0];
+
+        assertWithMessage("DFA states should not be equal after invocation of 'getLexer'")
+                .that(initialLexerDfa)
+                .isNotEqualTo(finalLexerDfa);
+
+        assertWithMessage("DFA states should not be equal after invocation of 'getParser'")
+                .that(initialParserDfa)
+                .isNotEqualTo(finalParserDfa);
     }
 
     private static final class CountComments {
