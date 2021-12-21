@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_DUPLICATE_REGEXP;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_ILLEGAL_REGEXP;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_REQUIRED_REGEXP;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,15 +40,15 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetAcceptableTokens() {
         final RegexpCheck regexpCheck = new RegexpCheck();
-        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, regexpCheck.getAcceptableTokens(),
-                "RegexpCheck#getAcceptableTokens should return empty array by default");
+        assertWithMessage("RegexpCheck#getAcceptableTokens should return empty array by default")
+                .that(regexpCheck.getAcceptableTokens()).isEmpty();
     }
 
     @Test
     public void testGetRequiredTokens() {
         final RegexpCheck checkObj = new RegexpCheck();
-        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens(),
-                "RegexpCheck#getRequiredTokens should return empty array by default");
+        assertWithMessage("RegexpCheck#getRequiredTokens should return empty array by default")
+                .that(checkObj.getRequiredTokens()).isEmpty();
     }
 
     @Test
