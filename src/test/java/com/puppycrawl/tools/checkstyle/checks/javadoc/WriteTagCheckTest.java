@@ -19,11 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.MSG_MISSING_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.MSG_TAG_FORMAT;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.MSG_WRITE_TAG;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -258,10 +257,11 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
             for (int i = 0; i < expected.length; i++) {
                 final String expectedResult = messageFileName + ":" + expected[i];
                 final String actual = lnr.readLine();
-                assertEquals(expectedResult, actual, "error message " + i);
+                assertWithMessage("error message " + i).that(actual).isEqualTo(expectedResult);
             }
 
-            assertTrue(expected.length >= errs, "unexpected output: " + lnr.readLine());
+            assertWithMessage("unexpected output: " + lnr.readLine()).that(errs)
+                    .isAtLeast(expected.length);
         }
         checker.destroy();
     }
