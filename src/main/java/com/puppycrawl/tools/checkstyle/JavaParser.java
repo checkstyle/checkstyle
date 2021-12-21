@@ -34,12 +34,14 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.atn.ParserATNSimulator;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
 import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
@@ -103,6 +105,10 @@ public final class JavaParser {
                 ex.getClass().getSimpleName(), contents.getFileName());
             throw new CheckstyleException(exceptionMsg, ex);
         }
+
+        // Clear DFA after parsing to reduce memory usage
+        lexer.getInterpreter().clearDFA();
+        parser.getInterpreter().clearDFA();
 
         return new JavaAstVisitor(tokenStream).visit(compilationUnit);
     }
