@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -357,7 +357,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             final XMLLogger logger = new XMLLogger(outStream, null);
             // assert required to calm down eclipse's 'The allocated object is never used' violation
             assertNotNull(logger, "Null instance");
-            fail("Exception was expected");
+            assertWithMessage("Exception was expected").fail();
         }
         catch (IllegalArgumentException exception) {
             assertEquals("Parameter outputStreamOptions can not be null",

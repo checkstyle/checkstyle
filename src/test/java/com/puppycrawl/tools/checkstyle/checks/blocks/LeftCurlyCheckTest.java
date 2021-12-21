@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_KEY_LINE_BREAK_AFTER;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_KEY_LINE_NEW;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_KEY_LINE_PREVIOUS;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
@@ -459,7 +459,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
 
             verifyWithInlineConfigParser(
                     getPath("InputLeftCurlyTestInvalidOption.java"), expected);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "

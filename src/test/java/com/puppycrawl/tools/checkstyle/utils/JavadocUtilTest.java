@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 
@@ -268,7 +268,7 @@ public class JavadocUtilTest {
     public void testGetTokenNameForLargeId() {
         try {
             JavadocUtil.getTokenName(30073);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Unknown javadoc token id. Given id: 30073", ex.getMessage(),
@@ -280,7 +280,7 @@ public class JavadocUtilTest {
     public void testGetTokenNameForInvalidId() {
         try {
             JavadocUtil.getTokenName(110);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Unknown javadoc token id. Given id: 110", ex.getMessage(),
@@ -292,7 +292,7 @@ public class JavadocUtilTest {
     public void testGetTokenNameForLowerBoundInvalidId() {
         try {
             JavadocUtil.getTokenName(10095);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Unknown javadoc token id. Given id: 10095", ex.getMessage(),
@@ -304,7 +304,7 @@ public class JavadocUtilTest {
     public void testGetTokenIdThatIsUnknown() {
         try {
             JavadocUtil.getTokenId("");
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Unknown javadoc token name. Given name ", ex.getMessage(),

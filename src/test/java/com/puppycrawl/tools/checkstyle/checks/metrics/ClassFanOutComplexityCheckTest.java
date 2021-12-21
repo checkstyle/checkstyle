@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.util.Collection;
@@ -93,7 +93,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
 
         try {
             createChecker(checkConfig);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "

@@ -24,7 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -304,7 +303,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                     final String errorMessage = String.format(Locale.ROOT,
                             "%s's default tokens must be a subset"
                             + " of acceptable tokens.", check.getName());
-                    fail(errorMessage);
+                    assertWithMessage(errorMessage).fail();
                 }
             }
         }
@@ -323,7 +322,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                     final String errorMessage = String.format(Locale.ROOT,
                             "%s's required tokens must be a subset"
                             + " of acceptable tokens.", check.getName());
-                    fail(errorMessage);
+                    assertWithMessage(errorMessage).fail();
                 }
             }
         }
@@ -342,7 +341,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                     final String errorMessage = String.format(Locale.ROOT,
                             "%s's required tokens must be a subset"
                             + " of default tokens.", check.getName());
-                    fail(errorMessage);
+                    assertWithMessage(errorMessage).fail();
                 }
             }
         }
@@ -375,7 +374,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
             .forEach(check -> {
                 final String errorMessage = String.format(Locale.ROOT,
                     "%s is not referenced in checkstyle_checks.xml", check);
-                fail(errorMessage);
+                assertWithMessage(errorMessage).fail();
             });
     }
 
@@ -487,8 +486,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                     CheckUtil.getTokenNameSet(check.getDefaultTokens()));
         }
         else {
-            fail("All default tokens should be used in config for "
-                    + checkConfig.getName());
+            assertWithMessage("All default tokens should be used in config for "
+                    + checkConfig.getName()).fail();
         }
     }
 
@@ -509,7 +508,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 final String missingModuleMessage = String.format(Locale.ROOT,
                     "Module %s does not have xdoc documentation.",
                     moduleName);
-                fail(missingModuleMessage);
+                assertWithMessage(missingModuleMessage).fail();
             });
     }
 
@@ -601,9 +600,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
             }
             // -@cs[IllegalCatch] There is no other way to deliver filename that was used
             catch (Exception ex) {
-                fail(module.getSimpleName() + " with the message '" + messageString
+                assertWithMessage(module.getSimpleName() + " with the message '" + messageString
                         + "' in locale '" + locale.getLanguage() + "' failed with: "
-                        + ex.getClass().getSimpleName() + " - " + ex.getMessage());
+                        + ex.getClass().getSimpleName() + " - " + ex.getMessage()).fail();
             }
 
             assertNotNull(result, module.getSimpleName() + " should have text for the message '"

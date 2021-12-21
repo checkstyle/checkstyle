@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.util.Arrays;
@@ -361,7 +360,7 @@ public class SuppressWithNearbyCommentFilterTest
         try {
             final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
             verifySuppressed(filterConfig, suppressed);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
@@ -415,7 +414,7 @@ public class SuppressWithNearbyCommentFilterTest
         try {
             final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
             verifySuppressed(filterConfig, suppressed);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
