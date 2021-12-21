@@ -319,9 +319,8 @@ public class A {
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="FinalClass_Description">
         <p>
-          Checks that a class which has only private constructors is declared
-          as final. Doesn't check for classes nested in interfaces
-          or annotations, as they are always <code>final</code> there.
+          Checks that a class that has only private constructors and
+          has no descendant classes is declared as final.
         </p>
       </subsection>
 
@@ -354,21 +353,6 @@ class MyClass { // OK, since it has a public constructor
   public MyClass(String value) {
     this.field2 = value;
     this.field1 = 0;
-  }
-}
-
-interface CheckInterface
-{
-  class MyClass { // OK, nested class in interface is always final
-    private MyClass() {}
-  }
-}
-
-public @interface Test {
-  public boolean enabled()
-  default true;
-  class MyClass { // OK, class nested in an annotation is always final
-    private MyClass() { }
   }
 }
 
