@@ -85,18 +85,18 @@ public final class FullIdent {
                         || nextSibling.getType() == TokenTypes.ANNOTATIONS)
                     && isArrayTypeDeclaration(nextSibling);
 
-            if (ast.getType() == TokenTypes.DOT) {
+            // support for new class().new class2();
+            if (ast.getType() == TokenTypes.LITERAL_NEW
+                    && ast.hasChildren()) {
+                final DetailAST firstChild = ast.getFirstChild();
+                extractFullIdent(full, firstChild);
+            }
+            else if (ast.getType() == TokenTypes.DOT) {
                 final DetailAST firstChild = ast.getFirstChild();
                 extractFullIdent(full, firstChild);
                 full.append(".");
                 extractFullIdent(full, firstChild.getNextSibling());
                 appendBrackets(full, ast);
-            }
-            // support for new class().new class2();
-            else if (ast.getType() == TokenTypes.LITERAL_NEW
-                    && ast.hasChildren()) {
-                final DetailAST firstChild = ast.getFirstChild();
-                extractFullIdent(full, firstChild);
             }
             else if (isArrayTypeDeclarationStart) {
                 full.append(ast);
