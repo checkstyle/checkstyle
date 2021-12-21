@@ -29,7 +29,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -153,31 +152,41 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         // Let's try fire some events
         getFireAuditStartedMethod().invoke(checker);
-        assertTrue(auditAdapter.wasCalled(), "Checker.fireAuditStarted() doesn't call listener");
-        assertTrue(auditAdapter.wasEventPassed(), "Checker.fireAuditStarted() doesn't pass event");
+        assertWithMessage("Checker.fireAuditStarted() doesn't call listener")
+                .that(auditAdapter.wasCalled()).isTrue();
+        assertWithMessage("Checker.fireAuditStarted() doesn't pass event")
+                .that(auditAdapter.wasEventPassed()).isTrue();
 
         auditAdapter.resetListener();
         getFireAuditFinished().invoke(checker);
-        assertTrue(auditAdapter.wasCalled(), "Checker.fireAuditFinished() doesn't call listener");
-        assertTrue(auditAdapter.wasEventPassed(), "Checker.fireAuditFinished() doesn't pass event");
+        assertWithMessage("Checker.fireAuditFinished() doesn't call listener")
+                .that(auditAdapter.wasCalled()).isTrue();
+        assertWithMessage("Checker.fireAuditFinished() doesn't pass event")
+                .that(auditAdapter.wasEventPassed()).isTrue();
 
         auditAdapter.resetListener();
         checker.fireFileStarted("Some File Name");
-        assertTrue(auditAdapter.wasCalled(), "Checker.fireFileStarted() doesn't call listener");
-        assertTrue(auditAdapter.wasEventPassed(), "Checker.fireFileStarted() doesn't pass event");
+        assertWithMessage("Checker.fireFileStarted() doesn't call listener")
+                .that(auditAdapter.wasCalled()).isTrue();
+        assertWithMessage("Checker.fireFileStarted() doesn't pass event")
+                .that(auditAdapter.wasEventPassed()).isTrue();
 
         auditAdapter.resetListener();
         checker.fireFileFinished("Some File Name");
-        assertTrue(auditAdapter.wasCalled(), "Checker.fireFileFinished() doesn't call listener");
-        assertTrue(auditAdapter.wasEventPassed(), "Checker.fireFileFinished() doesn't pass event");
+        assertWithMessage("Checker.fireFileFinished() doesn't call listener")
+                .that(auditAdapter.wasCalled()).isTrue();
+        assertWithMessage("Checker.fireFileFinished() doesn't pass event")
+                .that(auditAdapter.wasEventPassed()).isTrue();
 
         auditAdapter.resetListener();
         final SortedSet<Violation> violations = new TreeSet<>();
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
-        assertTrue(auditAdapter.wasCalled(), "Checker.fireErrors() doesn't call listener");
-        assertTrue(auditAdapter.wasEventPassed(), "Checker.fireErrors() doesn't pass event");
+        assertWithMessage("Checker.fireErrors() doesn't call listener")
+                .that(auditAdapter.wasCalled()).isTrue();
+        assertWithMessage("Checker.fireErrors() doesn't pass event")
+                .that(auditAdapter.wasEventPassed()).isTrue();
     }
 
     @Test
@@ -191,25 +200,33 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         // Let's try fire some events
         getFireAuditStartedMethod().invoke(checker);
-        assertTrue(aa2.wasCalled(), "Checker.fireAuditStarted() doesn't call listener");
+        assertWithMessage("Checker.fireAuditStarted() doesn't call listener")
+            .that(aa2.wasCalled())
+                .isTrue();
         assertFalse(auditAdapter.wasCalled(),
                 "Checker.fireAuditStarted() does call removed listener");
 
         aa2.resetListener();
         getFireAuditFinished().invoke(checker);
-        assertTrue(aa2.wasCalled(), "Checker.fireAuditFinished() doesn't call listener");
+        assertWithMessage("Checker.fireAuditFinished() doesn't call listener")
+            .that(aa2.wasCalled())
+                .isTrue();
         assertFalse(auditAdapter.wasCalled(),
                 "Checker.fireAuditFinished() does call removed listener");
 
         aa2.resetListener();
         checker.fireFileStarted("Some File Name");
-        assertTrue(aa2.wasCalled(), "Checker.fireFileStarted() doesn't call listener");
+        assertWithMessage("Checker.fireFileStarted() doesn't call listener")
+            .that(aa2.wasCalled())
+                .isTrue();
         assertFalse(auditAdapter.wasCalled(),
                 "Checker.fireFileStarted() does call removed listener");
 
         aa2.resetListener();
         checker.fireFileFinished("Some File Name");
-        assertTrue(aa2.wasCalled(), "Checker.fireFileFinished() doesn't call listener");
+        assertWithMessage("Checker.fireFileFinished() doesn't call listener")
+            .that(aa2.wasCalled())
+                .isTrue();
         assertFalse(auditAdapter.wasCalled(),
                 "Checker.fireFileFinished() does call removed listener");
 
@@ -218,7 +235,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
-        assertTrue(aa2.wasCalled(), "Checker.fireErrors() doesn't call listener");
+        assertWithMessage("Checker.fireErrors() doesn't call listener")
+            .that(aa2.wasCalled())
+                .isTrue();
         assertFalse(auditAdapter.wasCalled(), "Checker.fireErrors() does call removed listener");
     }
 
@@ -231,7 +250,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         filter.resetFilter();
         checker.process(Collections.singletonList(new File("dummy.java")));
-        assertTrue(filter.wasCalled(), "Checker.acceptFileStarted() doesn't call filter");
+        assertWithMessage("Checker.acceptFileStarted() doesn't call filter")
+                .that(filter.wasCalled()).isTrue();
     }
 
     @Test
@@ -245,7 +265,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         f2.resetFilter();
         checker.process(Collections.singletonList(new File("dummy.java")));
-        assertTrue(f2.wasCalled(), "Checker.acceptFileStarted() doesn't call filter");
+        assertWithMessage("Checker.acceptFileStarted() doesn't call filter")
+            .that(f2.wasCalled())
+                .isTrue();
         assertFalse(filter.wasCalled(), "Checker.acceptFileStarted() does call removed filter");
     }
 
@@ -261,7 +283,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
-        assertTrue(filter.wasCalled(), "Checker.fireErrors() doesn't call filter");
+        assertWithMessage("Checker.fireErrors() doesn't call filter")
+            .that(filter.wasCalled())
+                .isTrue();
     }
 
     @Test
@@ -278,7 +302,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
-        assertTrue(f2.wasCalled(), "Checker.fireErrors() doesn't call filter");
+        assertWithMessage("Checker.fireErrors() doesn't call filter")
+            .that(f2.wasCalled()).isTrue();
         assertFalse(filter.wasCalled(), "Checker.fireErrors() does call removed filter");
     }
 
@@ -472,8 +497,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setupChild(config);
 
         final List<AuditListener> listeners = TestUtil.getInternalState(checker, "listeners");
-        assertTrue(listeners.get(listeners.size() - 1) instanceof DebugAuditAdapter,
-                "Invalid child listener class");
+        assertWithMessage("Invalid child listener class")
+                .that(listeners.get(listeners.size() - 1) instanceof DebugAuditAdapter).isTrue();
     }
 
     @Test
@@ -492,8 +517,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception did not happen").fail();
         }
         catch (IllegalStateException ex) {
-            assertTrue(ex.getCause() instanceof IOException,
-                    "Cause of exception differs from IOException");
+            assertWithMessage("Cause of exception differs from IOException")
+                    .that(ex.getCause() instanceof IOException).isTrue();
         }
     }
 
@@ -1289,7 +1314,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setupChild(createModuleConfig(DebugAuditAdapter.class));
         // Let's try fire some events
         checker.process(Collections.singletonList(new File("dummy.java")));
-        assertTrue(auditAdapter.wasCalled(), "Checker.fireAuditStarted() doesn't call listener");
+        assertWithMessage("Checker.fireAuditStarted() doesn't call listener")
+                .that(auditAdapter.wasCalled()).isTrue();
     }
 
     @Test
@@ -1310,7 +1336,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleFactory(factory);
         checker.setupChild(createModuleConfig(TestBeforeExecutionFileFilter.class));
         checker.process(Collections.singletonList(new File("dummy.java")));
-        assertTrue(fileFilter.wasCalled(), "Checker.acceptFileStarted() doesn't call listener");
+        assertWithMessage("Checker.acceptFileStarted() doesn't call listener")
+                .that(fileFilter.wasCalled()).isTrue();
     }
 
     @Test
@@ -1331,7 +1358,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleFactory(factory);
         checker.finishLocalSetup();
         checker.setupChild(createModuleConfig(DummyFileSet.class));
-        assertTrue(fileSet.isInitCalled(), "FileSetCheck.init() wasn't called");
+        assertWithMessage("FileSetCheck.init() wasn't called")
+            .that(fileSet.isInitCalled())
+                .isTrue();
     }
 
     // -@cs[CheckstyleTestMakeup] must use raw class to directly initialize DefaultLogger

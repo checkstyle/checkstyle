@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_MISSING_FILE;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_UNKNOWN_PKG;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -122,8 +121,8 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             final String message = getCheckstyleExceptionMessage(ex);
             final String messageStart = "Unable to find: ";
 
-            assertTrue(message.startsWith(message),
-                    "Invalid message, should start with: " + messageStart);
+            assertWithMessage("Invalid message, should start with: " + messageStart)
+                    .that(message.startsWith(message)).isTrue();
         }
     }
 
@@ -140,8 +139,8 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             final String message = getCheckstyleExceptionMessage(ex);
             final String messageStart = "Unable to load ";
 
-            assertTrue(message.startsWith(message),
-                    "Invalid message, should start with: " + messageStart);
+            assertWithMessage("Invalid message, should start with: " + messageStart)
+                    .that(message.startsWith(message)).isTrue();
         }
     }
 
@@ -289,8 +288,8 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             final String message = getCheckstyleExceptionMessage(ex);
             final String messageStart = "Unable to find: ";
 
-            assertTrue(message.startsWith(message),
-                    "Invalid message, should start with: " + messageStart);
+            assertWithMessage("Invalid message, should start with: " + messageStart)
+                    .that(message.startsWith(message)).isTrue();
         }
     }
 
@@ -315,8 +314,8 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             final String message = getCheckstyleExceptionMessage(ex);
             final String messageStart = "Unable to load ";
 
-            assertTrue(message.startsWith(message),
-                    "Invalid message, should start with: " + messageStart);
+            assertWithMessage("Invalid message, should start with: " + messageStart)
+                    .that(message.startsWith(message)).isTrue();
         }
     }
 
@@ -341,8 +340,8 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
 
         final String contents = new String(Files.readAllBytes(cacheFile.toPath()),
                 StandardCharsets.UTF_8);
-        assertTrue(contents.contains("InputImportControlOneRegExp.xml"),
-                "External resource is not present in cache");
+        assertWithMessage("External resource is not present in cache")
+                .that(contents.contains("InputImportControlOneRegExp.xml")).isTrue();
     }
 
     @Test

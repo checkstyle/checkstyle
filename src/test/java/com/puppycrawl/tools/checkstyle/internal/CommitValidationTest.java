@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -103,8 +102,8 @@ public class CommitValidationTest {
 
     @Test
     public void testHasCommits() {
-        assertTrue(lastCommits != null && !lastCommits.isEmpty(),
-                "must have at least one commit to validate");
+        assertWithMessage("must have at least one commit to validate")
+                .that(lastCommits != null && !lastCommits.isEmpty()).isTrue();
     }
 
     @Test

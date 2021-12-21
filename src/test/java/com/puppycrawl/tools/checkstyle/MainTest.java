@@ -28,7 +28,6 @@ import static org.itsallcode.junit.sysextensions.AssertExit.assertExitWithStatus
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.BufferedReader;
@@ -249,8 +248,8 @@ public class MainTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(
-                isUtilsClassHasPrivateConstructor(Main.class, false), "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(isUtilsClassHasPrivateConstructor(Main.class, false)).isTrue();
     }
 
     @Test
@@ -362,7 +361,8 @@ public class MainTest {
         });
         final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
                 + " cannot initialize module TreeWalker - ";
-        assertTrue(systemErr.getCapturedData().startsWith(cause), "Unexpected system error log");
+        assertWithMessage("Unexpected system error log")
+                .that(systemErr.getCapturedData().startsWith(cause)).isTrue();
     }
 
     @Test
@@ -597,7 +597,8 @@ public class MainTest {
             @SysOut Capturable systemOut) throws Exception {
         final String outputFile =
                 File.createTempFile("file", ".output", temporaryFolder).getCanonicalPath();
-        assertTrue(new File(outputFile).exists(), "File must exist");
+        assertWithMessage("File must exist")
+            .that(new File(outputFile).exists()).isTrue();
         Main.main("-c", getPath("InputMainConfig-classname.xml"), "-f", "plain",
                 "-o", outputFile, getPath("InputMain.java"));
         assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
@@ -610,7 +611,8 @@ public class MainTest {
         assertFalse(new File(outputFile).exists(), "File must not exist");
         Main.main("-c", getPath("InputMainConfig-classname.xml"), "-f", "plain",
                 "-o", outputFile, getPath("InputMain.java"));
-        assertTrue(new File(outputFile).exists(), "File must exist");
+        assertWithMessage("File must exist")
+            .that(new File(outputFile).exists()).isTrue();
     }
 
     @Test
@@ -675,8 +677,8 @@ public class MainTest {
         });
         final String errorOutput = "com.puppycrawl.tools.checkstyle.api."
             + "CheckstyleException: unable to parse configuration stream - ";
-        assertTrue(systemErr.getCapturedData().startsWith(errorOutput),
-                "Unexpected system error log");
+        assertWithMessage("Unexpected system error log")
+                .that(systemErr.getCapturedData().startsWith(errorOutput)).isTrue();
     }
 
     @Test
@@ -688,8 +690,8 @@ public class MainTest {
         final String errorOutput = "com.puppycrawl.tools.checkstyle.api."
                 + "CheckstyleException: cannot initialize module RegexpSingleline"
                 + " - RegexpSingleline is not allowed as a child in RegexpSingleline";
-        assertTrue(systemErr.getCapturedData().startsWith(errorOutput),
-                "Unexpected system error log");
+        assertWithMessage("Unexpected system error log")
+                .that(systemErr.getCapturedData().startsWith(errorOutput)).isTrue();
     }
 
     @Test
@@ -702,8 +704,8 @@ public class MainTest {
                 + "CheckstyleException: cannot initialize module TreeWalker - "
                 + "cannot initialize module JavadocMethod - "
                 + "JavadocVariable is not allowed as a child in JavadocMethod";
-        assertTrue(systemErr.getCapturedData().startsWith(errorOutput),
-                "Unexpected system error log");
+        assertWithMessage("Unexpected system error log")
+                .that(systemErr.getCapturedData().startsWith(errorOutput)).isTrue();
     }
 
     @Test
@@ -718,8 +720,9 @@ public class MainTest {
             assertWithMessage("Exception was expected").fail();
         }
         catch (InvocationTargetException ex) {
-            assertTrue(
-                    ex.getCause() instanceof CheckstyleException, "Invalid error cause");
+            assertWithMessage("Invalid error cause")
+            .that(
+                    ex.getCause() instanceof CheckstyleException).isTrue();
             // We do separate validation for message as in Windows
             // disk drive letter appear in message,
             // so we skip that drive letter for compatibility issues
@@ -735,8 +738,10 @@ public class MainTest {
                     causeMessage.substring(causeMessage.lastIndexOf(' '))
                     .equals(violation
                             .substring(violation.lastIndexOf(' ')));
-            assertTrue(samePrefix || sameSuffix, "Invalid violation");
-            assertTrue(causeMessage.contains(".'"), "Invalid violation");
+            assertWithMessage("Invalid violation")
+            .that(samePrefix || sameSuffix).isTrue();
+            assertWithMessage("Invalid violation")
+            .that(causeMessage.contains(".'")).isTrue();
         }
     }
 
@@ -846,8 +851,8 @@ public class MainTest {
         final String exceptionMessage = addEndOfLine("com.puppycrawl.tools.checkstyle.api."
                 + "CheckstyleException: Exception was thrown while processing "
                 + new File(getNonCompilablePath("InputMainIncorrectClass.java")).getPath());
-        assertTrue(systemErr.getCapturedData().contains(exceptionMessage),
-                "Unexpected system error log");
+        assertWithMessage("Unexpected system error log")
+                .that(systemErr.getCapturedData().contains(exceptionMessage)).isTrue();
     }
 
     @Test
@@ -1536,8 +1541,11 @@ public class MainTest {
                 getPath("InputMain.java"));
         assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
         assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
-        assertTrue(TestRootModuleChecker.isProcessed(), "Invalid Checker state");
-        assertTrue(TestRootModuleChecker.isDestroyed(), "RootModule should be destroyed");
+        assertWithMessage("Invalid Checker state")
+            .that(TestRootModuleChecker.isProcessed())
+                .isTrue();
+        assertWithMessage("RootModule should be destroyed")
+                .that(TestRootModuleChecker.isDestroyed()).isTrue();
     }
 
     @Test
@@ -1556,9 +1564,12 @@ public class MainTest {
                         + "TestRootModuleCheckerCheck, " + checkstylePackage
                         + "TestRootModuleCheckerCheck"},
                 null, getClass(), null);
-        assertTrue(systemErr.getCapturedData().startsWith(checkstylePackage
-                + "api.CheckstyleException: " + unableToInstantiateExceptionMessage.getViolation()),
-                "Unexpected system error log");
+        assertWithMessage(
+                "Unexpected system error log")
+                        .that(systemErr.getCapturedData()
+                                .startsWith(checkstylePackage + "api.CheckstyleException: "
+                                        + unableToInstantiateExceptionMessage.getViolation()))
+                        .isTrue();
         assertFalse(TestRootModuleChecker.isProcessed(), "Invalid checker state");
     }
 
@@ -1571,7 +1582,8 @@ public class MainTest {
         });
         final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
                 + " cannot initialize module TreeWalker - ";
-        assertTrue(systemErr.getCapturedData().startsWith(cause), "Unexpected system error log");
+        assertWithMessage("Unexpected system error log")
+                .that(systemErr.getCapturedData().startsWith(cause)).isTrue();
     }
 
     @Test
@@ -1584,9 +1596,10 @@ public class MainTest {
         final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
                 + " cannot initialize module TreeWalker - ";
         final String causeDetail = "it is not a boolean";
-        assertTrue(systemErr.getCapturedData().startsWith(cause), "Unexpected system error log");
-        assertTrue(systemErr.getCapturedData().contains(causeDetail),
-                "Unexpected system error log");
+        assertWithMessage("Unexpected system error log")
+                .that(systemErr.getCapturedData().startsWith(cause)).isTrue();
+        assertWithMessage("Unexpected system error log")
+                .that(systemErr.getCapturedData().contains(causeDetail)).isTrue();
     }
 
     @Test
@@ -1594,7 +1607,9 @@ public class MainTest {
             @SysErr Capturable systemErr) throws IOException {
         Main.main("-c", getPath("InputMainConfig-TypeName-bad-value.xml"),
                     "", getPath("InputMain.java"));
-        assertTrue(systemErr.getCapturedData().isEmpty(), "Unexpected system error log");
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+                .isEmpty();
     }
 
     @Test
@@ -1616,7 +1631,8 @@ public class MainTest {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         final AuditListener listener = Main.OutputFormat.XML.createListener(out,
                 AutomaticBean.OutputStreamOptions.CLOSE);
-        assertTrue(listener instanceof XMLLogger, "listener is XMLLogger");
+        assertWithMessage("listener is XMLLogger")
+            .that(listener instanceof XMLLogger).isTrue();
     }
 
     @Test
@@ -1624,7 +1640,8 @@ public class MainTest {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         final AuditListener listener = Main.OutputFormat.SARIF.createListener(out,
                 AutomaticBean.OutputStreamOptions.CLOSE);
-        assertTrue(listener instanceof SarifLogger, "listener is SarifLogger");
+        assertWithMessage("listener is SarifLogger")
+            .that(listener instanceof SarifLogger).isTrue();
     }
 
     @Test
@@ -1632,7 +1649,9 @@ public class MainTest {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         final AuditListener listener = Main.OutputFormat.PLAIN.createListener(out,
                 AutomaticBean.OutputStreamOptions.CLOSE);
-        assertTrue(listener instanceof DefaultLogger, "listener is DefaultLogger");
+        assertWithMessage("listener is DefaultLogger")
+            .that(listener instanceof DefaultLogger)
+                .isTrue();
     }
 
     /**

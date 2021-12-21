@@ -26,7 +26,6 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -151,8 +150,8 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         final Field field = check.getClass().getDeclaredField("filesToProcess");
         field.setAccessible(true);
 
-        assertTrue(((Collection<File>) field.get(check)).isEmpty(),
-                "Stateful field is not cleared on beginProcessing");
+        assertWithMessage("Stateful field is not cleared on beginProcessing")
+                .that((Collection<File>) field.get(check)).isEmpty();
     }
 
     @Test
@@ -230,7 +229,8 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
 
         final Set<String> keys = TestUtil.invokeMethod(check, "getTranslationKeys",
                 new File(".no.such.file"));
-        assertTrue(keys.isEmpty(), "Translation keys should be empty when File is not found");
+        assertWithMessage("Translation keys should be empty when File is not found")
+                .that(keys).isEmpty();
 
         assertEquals(1, dispatcher.savedErrors.size(), "expected number of errors to fire");
         final Violation violation = new Violation(1,

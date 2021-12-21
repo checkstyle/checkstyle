@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacter
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_FILE_CONTAINS_TAB;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -346,7 +345,9 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     public void testAcceptNullViolation() {
         final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
         final AuditEvent auditEvent = new AuditEvent(this);
-        assertTrue(filter.accept(auditEvent), "Filter should accept audit event");
+        assertWithMessage("Filter should accept audit event")
+            .that(filter.accept(auditEvent))
+                .isTrue();
         assertNull(auditEvent.getFileName(), "File name should not be null");
     }
 
@@ -541,7 +542,8 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
                     "Invalid exception message");
 
             final Throwable cause = ex.getCause();
-            assertTrue(cause instanceof FileNotFoundException, "Exception cause has invalid type");
+            assertWithMessage("Exception cause has invalid type")
+                    .that(cause instanceof FileNotFoundException).isTrue();
             assertEquals(fileName + " (No such file or directory)", cause.getMessage(),
                     "Invalid exception message");
         }
@@ -646,7 +648,8 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
                 "bundle", "key", null, SeverityLevel.ERROR, "moduleId", getClass(),
                 "customMessage"));
 
-        assertTrue(filter.accept(event), "filter should accept directory");
+        assertWithMessage("filter should accept directory")
+            .that(filter.accept(event)).isTrue();
     }
 
     private void verifySuppressed(String fileNameWithExtension, String[] violationMessages,

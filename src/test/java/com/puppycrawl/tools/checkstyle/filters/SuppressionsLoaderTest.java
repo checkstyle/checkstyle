@@ -140,12 +140,12 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException ex) {
             final String messageStart = "Unable to parse " + fn;
-            assertTrue(ex.getMessage().startsWith("Unable to parse " + fn),
-                    "Exception message should start with: " + messageStart);
-            assertTrue(ex.getMessage().contains("\"files\""),
-                    "Exception message should contain \"files\"");
-            assertTrue(ex.getMessage().contains("\"suppress\""),
-                    "Exception message should contain \"suppress\"");
+            assertWithMessage("Exception message should start with: " + messageStart)
+                    .that(ex.getMessage().startsWith("Unable to parse " + fn)).isTrue();
+            assertWithMessage("Exception message should contain \"files\"")
+                    .that(ex.getMessage().contains("\"files\"")).isTrue();
+            assertWithMessage("Exception message should contain \"suppress\"")
+                    .that(ex.getMessage().contains("\"suppress\"")).isTrue();
         }
     }
 
@@ -158,12 +158,12 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException ex) {
             final String messageStart = "Unable to parse " + fn;
-            assertTrue(ex.getMessage().startsWith(messageStart),
-                    "Exception message should start with: " + messageStart);
-            assertTrue(ex.getMessage().contains("\"checks\""),
-                    "Exception message should contain \"checks\"");
-            assertTrue(ex.getMessage().contains("\"suppress\""),
-                    "Exception message should contain \"suppress\"");
+            assertWithMessage("Exception message should start with: " + messageStart)
+                    .that(ex.getMessage().startsWith(messageStart)).isTrue();
+            assertWithMessage("Exception message should contain \"checks\"")
+                    .that(ex.getMessage().contains("\"checks\"")).isTrue();
+            assertWithMessage("Exception message should contain \"suppress\"")
+                    .that(ex.getMessage().contains("\"suppress\"")).isTrue();
         }
     }
 
