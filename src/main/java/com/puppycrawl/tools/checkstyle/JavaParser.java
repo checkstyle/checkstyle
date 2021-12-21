@@ -104,6 +104,10 @@ public final class JavaParser {
             throw new CheckstyleException(exceptionMsg, ex);
         }
 
+        // Clear DFA after parsing to reduce memory usage
+        lexer.getInterpreter().clearDFA();
+        parser.getInterpreter().clearDFA();
+
         return new JavaAstVisitor(tokenStream).visit(compilationUnit);
     }
 
