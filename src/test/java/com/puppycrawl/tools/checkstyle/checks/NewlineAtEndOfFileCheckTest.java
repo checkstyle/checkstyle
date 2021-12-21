@@ -23,8 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_UNABLE_OPEN;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_WRONG_ENDING;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -129,13 +127,13 @@ public class NewlineAtEndOfFileCheckTest
         checkConfig.addProperty("lineSeparator", "ct");
         try {
             createChecker(checkConfig);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle."
+            assertWithMessage("Error message is unexpected").that(ex.getMessage())
+                    .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle."
                             + "checks.NewlineAtEndOfFileCheck - "
-                            + "Cannot set property 'lineSeparator' to 'ct'",
-                    ex.getMessage(), "Error message is unexpected");
+                            + "Cannot set property 'lineSeparator' to 'ct'");
         }
     }
 
@@ -187,10 +185,11 @@ public class NewlineAtEndOfFileCheckTest
         final File impossibleFile = new File("");
         final FileText fileText = new FileText(impossibleFile, lines);
         final Set<Violation> violations = check.process(impossibleFile, fileText);
-        assertEquals(1, violations.size(), "Amount of violations is unexpected");
+        assertWithMessage("Amount of violations is unexpected").that(violations).hasSize(1);
         final Iterator<Violation> iterator = violations.iterator();
-        assertEquals(getCheckMessage(MSG_KEY_UNABLE_OPEN, ""), iterator.next().getViolation(),
-                "Violation message differs from expected");
+        assertWithMessage("Violation message differs from expected")
+                .that(iterator.next().getViolation())
+                .isEqualTo(getCheckMessage(MSG_KEY_UNABLE_OPEN, ""));
     }
 
     @Test
@@ -199,7 +198,7 @@ public class NewlineAtEndOfFileCheckTest
                      new ReadZeroRandomAccessFile(getPath("InputNewlineAtEndOfFileLf.java"), "r")) {
             TestUtil.invokeMethod(new NewlineAtEndOfFileCheck(), "endsWithNewline", file,
                 LineSeparatorOption.LF);
-            fail("InvocationTargetException is expected");
+            assertWithMessage("InvocationTargetException is expected").fail();
         }
         catch (InvocationTargetException ex) {
             assertWithMessage("Error message is unexpected")
