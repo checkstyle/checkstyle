@@ -19,11 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.meta;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.google.common.truth.Truth.assertThat;
 import static com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper.MSG_DESC_MISSING;
 import static org.junit.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -46,9 +45,9 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
         JavadocMetadataScraper.resetModuleDetailsStore();
         verifyWithInlineConfigParser(getPath("InputJavadocMetadataScraperAtclauseOrderCheck.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
-        assertEquals(readFile(getPath("ExpectedJavadocMetadataScraperAtclauseOrderCheck.txt")),
-                convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
-                "expected correct parse");
+        assertWithMessage("expected correct parse")
+                .that(convertToString(JavadocMetadataScraper.getModuleDetailsStore())).isEqualTo(
+                        readFile(getPath("ExpectedJavadocMetadataScraperAtclauseOrderCheck.txt")));
     }
 
     @Test
@@ -57,9 +56,10 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMetadataScraperAnnotationUseStyleCheck.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
-        assertEquals(readFile(getPath("ExpectedJavadocMetadataScraperAnnotationUseStyleCheck.txt")),
-                convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
-                "expected correct parse");
+        assertWithMessage("expected correct parse")
+                .that(convertToString(JavadocMetadataScraper.getModuleDetailsStore()))
+                .isEqualTo(readFile(
+                        getPath("ExpectedJavadocMetadataScraperAnnotationUseStyleCheck.txt")));
     }
 
     @Test
@@ -68,11 +68,10 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMetadataScraperBeforeExecutionExclusionFileFilter.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
-        assertEquals(
-                readFile(getPath(
-                        "ExpectedJavadocMetadataScraperBeforeExecutionExclusionFileFilter.txt")),
-                convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
-                "expected correct parse");
+        assertWithMessage("expected correct parse")
+                .that(convertToString(JavadocMetadataScraper.getModuleDetailsStore()))
+                .isEqualTo(readFile(getPath(
+                        "ExpectedJavadocMetadataScraperBeforeExecutionExclusionFileFilter.txt")));
     }
 
     @Test
@@ -80,9 +79,9 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
         JavadocMetadataScraper.resetModuleDetailsStore();
         verifyWithInlineConfigParser(getPath("InputJavadocMetadataScraperNoCodeInFileCheck.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
-        assertEquals(readFile(getPath("ExpectedJavadocMetadataScraperNoCodeInFileCheck.txt")),
-                convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
-                "expected correct parse");
+        assertWithMessage("expected correct parse")
+                .that(convertToString(JavadocMetadataScraper.getModuleDetailsStore())).isEqualTo(
+                        readFile(getPath("ExpectedJavadocMetadataScraperNoCodeInFileCheck.txt")));
     }
 
     @Test
@@ -105,7 +104,7 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
             verifyWithInlineConfigParser(
                     getPath("InputJavadocMetadataScraperPropertyMisplacedTypeCheck.java"),
                     CommonUtil.EMPTY_STRING_ARRAY);
-            fail("Exception expected");
+            assertWithMessage("Exception expected").fail();
         });
         assertThat(exc.getCause()).isInstanceOf(MetadataGenerationException.class);
         assertThat(exc.getCause().getMessage())
@@ -119,7 +118,7 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
             verifyWithInlineConfigParser(
                     getPath("InputJavadocMetadataScraperPropertyMissingDefaultValueCheck.java"),
                     CommonUtil.EMPTY_STRING_ARRAY);
-            fail("Exception expected");
+            assertWithMessage("Exception expected").fail();
         });
         assertThat(exc.getCause()).isInstanceOf(MetadataGenerationException.class);
         assertThat(exc.getCause().getMessage())
@@ -133,7 +132,7 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
             verifyWithInlineConfigParser(
                     getPath("InputJavadocMetadataScraperPropertyMissingTypeCheck.java"),
                     CommonUtil.EMPTY_STRING_ARRAY);
-            fail("Exception expected");
+            assertWithMessage("Exception expected").fail();
         });
         assertThat(exc.getCause()).isInstanceOf(MetadataGenerationException.class);
         assertThat(exc.getCause().getMessage())
@@ -146,10 +145,10 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMetadataScraperPropertyWithNoCodeTagCheck.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
-        assertEquals(
-                readFile(getPath("ExpectedJavadocMetadataScraperPropertyWithNoCodeTagCheck.txt")),
-                convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
-                "expected correct parse");
+        assertWithMessage("expected correct parse")
+                .that(convertToString(JavadocMetadataScraper.getModuleDetailsStore()))
+                .isEqualTo(readFile(
+                        getPath("ExpectedJavadocMetadataScraperPropertyWithNoCodeTagCheck.txt")));
     }
 
     @Test
@@ -157,9 +156,9 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
         JavadocMetadataScraper.resetModuleDetailsStore();
         verifyWithInlineConfigParser(getPath("InputJavadocMetadataScraperRightCurlyCheck.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
-        assertEquals(readFile(getPath("ExpectedJavadocMetadataScraperRightCurlyCheck.txt")),
-                convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
-                "expected correct parse");
+        assertWithMessage("expected correct parse")
+                .that(convertToString(JavadocMetadataScraper.getModuleDetailsStore()))
+                .isEqualTo(readFile(getPath("ExpectedJavadocMetadataScraperRightCurlyCheck.txt")));
     }
 
     @Test
@@ -167,9 +166,9 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
         JavadocMetadataScraper.resetModuleDetailsStore();
         verifyWithInlineConfigParser(getPath("InputJavadocMetadataScraperSummaryJavadocCheck.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
-        assertEquals(readFile(getPath("ExpectedJavadocMetadataScraperSummaryJavadocCheck.txt")),
-                convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
-                "expected correct parse");
+        assertWithMessage("expected correct parse")
+                .that(convertToString(JavadocMetadataScraper.getModuleDetailsStore())).isEqualTo(
+                        readFile(getPath("ExpectedJavadocMetadataScraperSummaryJavadocCheck.txt")));
     }
 
     @Test
@@ -178,9 +177,10 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMetadataScraperSuppressWarningsFilter.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
-        assertEquals(readFile(getPath("ExpectedJavadocMetadataScraperSuppressWarningsFilter.txt")),
-                convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
-                "expected correct parse");
+        assertWithMessage("expected correct parse")
+                .that(convertToString(JavadocMetadataScraper.getModuleDetailsStore()))
+                .isEqualTo(readFile(
+                        getPath("ExpectedJavadocMetadataScraperSuppressWarningsFilter.txt")));
     }
 
     @Test
@@ -188,9 +188,9 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
         JavadocMetadataScraper.resetModuleDetailsStore();
         verifyWithInlineConfigParser(getPath("InputJavadocMetadataScraperWriteTagCheck.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
-        assertEquals(readFile(getPath("ExpectedJavadocMetadataScraperWriteTagCheck.txt")),
-                convertToString(JavadocMetadataScraper.getModuleDetailsStore()),
-                "expected correct parse");
+        assertWithMessage("expected correct parse")
+                .that(convertToString(JavadocMetadataScraper.getModuleDetailsStore()))
+                .isEqualTo(readFile(getPath("ExpectedJavadocMetadataScraperWriteTagCheck.txt")));
     }
 
     @Test
