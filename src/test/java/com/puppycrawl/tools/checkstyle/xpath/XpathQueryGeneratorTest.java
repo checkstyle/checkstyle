@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.xpath;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -182,7 +181,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
-        assertTrue(actual.isEmpty(), "Result should be empty");
+        assertWithMessage("Result should be empty").that(actual).isEmpty();
     }
 
     @Test

@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -48,7 +48,7 @@ public class XpathFileGeneratorAstFilterTest {
         final TreeWalkerAuditEvent event = new TreeWalkerAuditEvent(null, null, violation, null);
         final XpathFileGeneratorAstFilter filter = new XpathFileGeneratorAstFilter();
 
-        assertTrue(filter.accept(event), "filter accepted");
+        assertWithMessage("filter accepted").that(filter.accept(event)).isTrue();
 
         final AuditEvent auditEvent = new AuditEvent(this, "Test.java", violation);
 
@@ -65,7 +65,7 @@ public class XpathFileGeneratorAstFilterTest {
                 "InputXpathFileGeneratorAstFilter.java", violation);
         final XpathFileGeneratorAstFilter filter = new XpathFileGeneratorAstFilter();
 
-        assertTrue(filter.accept(event), "filter accepted");
+        assertWithMessage("filter accepted").that(filter.accept(event)).isTrue();
 
         final AuditEvent auditEvent = new AuditEvent(this,
                 getPath("InputXpathFileGeneratorAstFilter.java"), violation);
@@ -86,7 +86,7 @@ public class XpathFileGeneratorAstFilterTest {
                 "InputXpathFileGeneratorAstFilter.java", violation);
         final XpathFileGeneratorAstFilter filter = new XpathFileGeneratorAstFilter();
 
-        assertTrue(filter.accept(event), "filter accepted");
+        assertWithMessage("filter accepted").that(filter.accept(event)).isTrue();
 
         final AuditEvent auditEvent = new AuditEvent(this,
                 getPath("InputXpathFileGeneratorAstFilter.java"), violation);
@@ -105,7 +105,7 @@ public class XpathFileGeneratorAstFilterTest {
         final XpathFileGeneratorAstFilter filter = new XpathFileGeneratorAstFilter();
         filter.setTabWidth(6);
 
-        assertTrue(filter.accept(event), "filter accepted");
+        assertWithMessage("filter accepted").that(filter.accept(event)).isTrue();
 
         final AuditEvent auditEvent = new AuditEvent(this,
                 getPath("InputXpathFileGeneratorAstFilter.java"), violation);
@@ -135,10 +135,11 @@ public class XpathFileGeneratorAstFilterTest {
 
         final XpathFileGeneratorAstFilter filter = new XpathFileGeneratorAstFilter();
 
-        assertTrue(TestUtil
-                .isStatefulFieldClearedDuringLocalSetup(filter, event, "MESSAGE_QUERY_MAP",
-                    variableStack -> ((Map<Violation, String>) variableStack).isEmpty()),
-                "State is not cleared on finishLocalSetup");
+        assertWithMessage("State is not cleared on finishLocalSetup")
+                .that(TestUtil.isStatefulFieldClearedDuringLocalSetup(filter, event,
+                        "MESSAGE_QUERY_MAP",
+                        variableStack -> ((Map<Violation, String>) variableStack).isEmpty()))
+                .isTrue();
     }
 
     private static TreeWalkerAuditEvent createTreeWalkerAuditEvent(String fileName,

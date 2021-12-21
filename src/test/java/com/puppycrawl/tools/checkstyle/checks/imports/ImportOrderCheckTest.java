@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MS
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_SEPARATED_IN_GROUP;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_SEPARATION;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
@@ -581,7 +580,8 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
             assertWithMessage("An exception is expected").fail();
         }
         catch (IllegalStateException ex) {
-            assertTrue(ex.getMessage().endsWith(": null"), "invalid exception message");
+            assertWithMessage("invalid exception message").that(ex.getMessage().endsWith(": null"))
+                    .isTrue();
         }
     }
 

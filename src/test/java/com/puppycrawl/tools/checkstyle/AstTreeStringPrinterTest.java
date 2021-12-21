@@ -25,7 +25,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -48,8 +47,8 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(AstTreeStringPrinter.class, true),
-                "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(isUtilsClassHasPrivateConstructor(AstTreeStringPrinter.class, true)).isTrue();
     }
 
     @Test

@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -357,10 +356,12 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 continue;
             }
 
-            assertTrue(module.isAnnotationPresent(GlobalStatefulCheck.class)
-                || module.isAnnotationPresent(FileStatefulCheck.class)
-                || module.isAnnotationPresent(StatelessCheck.class),
-                "module '" + module.getSimpleName() + "' must contain a multi-thread annotation");
+            assertWithMessage("module '" + module.getSimpleName()
+                    + "' must contain a multi-thread annotation")
+                            .that(module.isAnnotationPresent(GlobalStatefulCheck.class)
+                                    || module.isAnnotationPresent(FileStatefulCheck.class)
+                                    || module.isAnnotationPresent(StatelessCheck.class))
+                            .isTrue();
         }
     }
 
@@ -518,8 +519,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
         moduleNames.removeAll(INTERNAL_MODULES);
         for (String moduleName : moduleNames) {
-            assertTrue(configChecks.contains(moduleName),
-                    "checkstyle_checks.xml is missing module: " + moduleName);
+            assertWithMessage("checkstyle_checks.xml is missing module: " + moduleName)
+                    .that(configChecks.contains(moduleName)).isTrue();
         }
     }
 
@@ -531,8 +532,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
             // No messages in just module
             if ("SuppressWarningsHolder".equals(name)) {
-                assertTrue(messages.isEmpty(),
-                        name + " should not have any 'MSG_*' fields for error messages");
+                assertWithMessage(name + " should not have any 'MSG_*' fields for error messages")
+                        .that(messages).isEmpty();
             }
             else {
                 assertFalse(messages.isEmpty(),
@@ -576,9 +577,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                     continue;
                 }
 
-                assertTrue(entry.getValue().contains(key.toString()),
-                        "property '" + key + "' isn't used by any check in package '"
-                        + entry.getKey() + "'");
+                assertWithMessage("property '" + key + "' isn't used by any check in package '"
+                        + entry.getKey() + "'").that(entry.getValue().contains(key.toString()))
+                                .isTrue();
             }
         }
     }

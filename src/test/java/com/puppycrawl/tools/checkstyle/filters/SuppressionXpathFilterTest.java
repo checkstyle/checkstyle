@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.filters;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
@@ -57,8 +56,9 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
 
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null, "ATest.java", null, null);
 
-        assertTrue(filter.accept(ev),
-                "TreeWalker audit event should be accepted when there are no suppressions");
+        assertWithMessage(
+                "TreeWalker audit event should be accepted when there are no suppressions")
+                        .that(filter.accept(ev)).isTrue();
     }
 
     @Test
@@ -68,7 +68,8 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
                 getPath("InputSuppressionXpathFilterIdAndQuery.xml"), optional);
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null, "file1.java", null, null);
 
-        assertTrue(filter.accept(ev), "TreeWalker audit event should be accepted");
+        assertWithMessage("TreeWalker audit event should be accepted").that(filter.accept(ev))
+                .isTrue();
     }
 
     @Test
@@ -78,8 +79,8 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
         final SuppressionXpathFilter filter = createSuppressionXpathFilter(fileName, optional);
 
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null, "AnyJava.java", null, null);
-        assertTrue(filter.accept(ev),
-                "TreeWalker audit event on null file should be accepted, but was not");
+        assertWithMessage("TreeWalker audit event on null file should be accepted, but was not")
+                .that(filter.accept(ev)).isTrue();
     }
 
     @Test
@@ -119,7 +120,8 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
 
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null, "AnyJava.java", null, null);
 
-        assertTrue(filter.accept(ev), "Suppression file with true optional was not accepted");
+        assertWithMessage("Suppression file with true optional was not accepted")
+                .that(filter.accept(ev)).isTrue();
     }
 
     @Test
@@ -131,7 +133,8 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
 
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null, "AnyFile.java", null, null);
 
-        assertTrue(filter.accept(ev), "Should except event when suppression file does not exist");
+        assertWithMessage("Should except event when suppression file does not exist")
+                .that(filter.accept(ev)).isTrue();
     }
 
     @Test
