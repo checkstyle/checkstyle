@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck.MSG_KEY_BLOCK;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck.MSG_KEY_SINGLE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
@@ -216,7 +216,7 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
         methodDef.setText("methodStub");
         try {
             check.visitToken(methodDef);
-            fail("IllegalArgumentException should have been thrown!");
+            assertWithMessage("IllegalArgumentException should have been thrown!").fail();
         }
         catch (IllegalArgumentException ex) {
             final String msg = ex.getMessage();

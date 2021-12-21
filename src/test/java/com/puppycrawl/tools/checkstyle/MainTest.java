@@ -29,7 +29,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.BufferedReader;
@@ -716,7 +715,7 @@ public class MainTest {
         method.setAccessible(true);
         try {
             method.invoke(null, new File("."));
-            fail("Exception was expected");
+            assertWithMessage("Exception was expected").fail();
         }
         catch (InvocationTargetException ex) {
             assertTrue(
@@ -1646,7 +1645,7 @@ public class MainTest {
             Main.main(arguments);
         }
         catch (IOException exception) {
-            fail("Unexpected exception: " + exception);
+            assertWithMessage("Unexpected exception: " + exception).fail();
         }
     }
 

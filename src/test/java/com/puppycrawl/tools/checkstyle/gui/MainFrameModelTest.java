@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -78,7 +77,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
                             parseMode.toString(), "Invalid toString result");
                     break;
                 default:
-                    fail("Unexpected enum value");
+                    assertWithMessage("Unexpected enum value").fail();
             }
         }
     }
@@ -136,7 +135,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
         try {
             model.openFile(nonExistentFile);
 
-            fail("Expected CheckstyleException is not thrown.");
+            assertWithMessage("Expected CheckstyleException is not thrown.").fail();
         }
         catch (CheckstyleException ex) {
             final String expectedMsg = String.format(Locale.ROOT,
@@ -154,7 +153,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
         try {
             model.openFile(nonCompilableFile);
 
-            fail("Expected CheckstyleException is not thrown.");
+            assertWithMessage("Expected CheckstyleException is not thrown.").fail();
         }
         catch (CheckstyleException ex) {
             final String expectedMsg = String.format(Locale.ROOT,

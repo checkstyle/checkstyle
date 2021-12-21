@@ -25,7 +25,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacter
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -243,7 +242,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
                 removeSuppressed(violationMessages, suppressed),
                 filterCfg, checkCfg
             );
-            fail("CheckstyleException is expected");
+            assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
@@ -268,7 +267,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
                 "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
                 CommonUtil.EMPTY_STRING_ARRAY, filterCfg, checkCfg
             );
-            fail("CheckstyleException is expected");
+            assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
@@ -302,7 +301,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
                 removeSuppressed(violationMessages, suppressed),
                 filterCfg, checkCfg
             );
-            fail("CheckstyleException is expected");
+            assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
@@ -334,7 +333,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
                 removeSuppressed(violationMessages, suppressed),
                 filterCfg, checkCfg
             );
-            fail("CheckstyleException is expected");
+            assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
@@ -535,7 +534,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
         try {
             filter.accept(auditEvent);
-            fail(IllegalStateException.class.getSimpleName() + " is expected");
+            assertWithMessage(IllegalStateException.class.getSimpleName() + " is expected").fail();
         }
         catch (IllegalStateException ex) {
             assertEquals("Cannot read source file: " + fileName, ex.getMessage(),
