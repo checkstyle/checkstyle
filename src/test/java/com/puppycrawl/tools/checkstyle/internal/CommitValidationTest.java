@@ -138,23 +138,31 @@ public class CommitValidationTest {
 
     @Test
     public void testSupplementalPrefix() {
-        assertWithMessage("should accept commit message with supplemental prefix").that(0)
+        assertWithMessage("should accept commit message with supplemental prefix")
+                .that(0)
                 .isEqualTo(validateCommitMessage("supplemental: Test message for supplemental for"
                         + " Issue #XXXX"));
         assertWithMessage("should not accept commit message with periods on end")
-                .that(3).isEqualTo(validateCommitMessage("supplemental: Test. Test."));
+                .that(3)
+                .isEqualTo(validateCommitMessage("supplemental: Test. Test."));
         assertWithMessage("should not accept commit message with spaces on end")
-                .that(3).isEqualTo(validateCommitMessage("supplemental: Test. "));
+                .that(3)
+                .isEqualTo(validateCommitMessage("supplemental: Test. "));
         assertWithMessage("should not accept commit message with tabs on end")
-                .that(3).isEqualTo(validateCommitMessage("supplemental: Test.\t"));
+                .that(3)
+                .isEqualTo(validateCommitMessage("supplemental: Test.\t"));
         assertWithMessage("should not accept commit message with period on end, ignoring new line")
-                .that(3).isEqualTo(validateCommitMessage("supplemental: Test.\n"));
+                .that(3)
+                .isEqualTo(validateCommitMessage("supplemental: Test.\n"));
         assertWithMessage("should not accept commit message with multiple lines with text")
-                .that(2).isEqualTo(validateCommitMessage("supplemental: Test.\nTest"));
+                .that(2)
+                .isEqualTo(validateCommitMessage("supplemental: Test.\nTest"));
         assertWithMessage("should accept commit message with a new line on end")
-                .that(0).isEqualTo(validateCommitMessage("supplemental: Test\n"));
+                .that(0)
+                .isEqualTo(validateCommitMessage("supplemental: Test\n"));
         assertWithMessage("should accept commit message with multiple new lines on end")
-                .that(0).isEqualTo(validateCommitMessage("supplemental: Test\n\n"));
+                .that(0)
+                .isEqualTo(validateCommitMessage("supplemental: Test\n\n"));
     }
 
     @Test

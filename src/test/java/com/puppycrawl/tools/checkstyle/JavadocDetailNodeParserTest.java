@@ -50,7 +50,9 @@ public class JavadocDetailNodeParserTest extends AbstractModuleTestSupport {
         final String expected = toLfLineEnding(new String(Files.readAllBytes(Paths.get(
                 getPath("ExpectedJavadocDetailNodeParser.txt"))),
                 StandardCharsets.UTF_8));
-        assertWithMessage("Invalid parse result").that(actual).isEqualTo(expected);
+        assertWithMessage("Invalid parse result")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
 }

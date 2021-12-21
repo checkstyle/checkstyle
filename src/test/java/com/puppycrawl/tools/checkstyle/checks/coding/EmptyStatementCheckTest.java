@@ -63,11 +63,14 @@ public class EmptyStatementCheckTest
     @Test
     public void testTokensNotNull() {
         final EmptyStatementCheck check = new EmptyStatementCheck();
-        assertWithMessage("Acceptable tokens should not be null").that(check.getAcceptableTokens())
+        assertWithMessage("Acceptable tokens should not be null")
+                .that(check.getAcceptableTokens())
                 .isNotNull();
-        assertWithMessage("Default tokens should not be null").that(check.getDefaultTokens())
+        assertWithMessage("Default tokens should not be null")
+                .that(check.getDefaultTokens())
                 .isNotNull();
-        assertWithMessage("Required tokens should not be null").that(check.getRequiredTokens())
+        assertWithMessage("Required tokens should not be null")
+                .that(check.getRequiredTokens())
                 .isNotNull();
     }
 

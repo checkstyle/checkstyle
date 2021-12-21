@@ -83,7 +83,8 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
     public void testAcceptableTokenIsColon() {
         final NoWhitespaceBeforeCaseDefaultColonCheck check =
                 new NoWhitespaceBeforeCaseDefaultColonCheck();
-        assertWithMessage("Acceptable token should be colon").that(new int[] {TokenTypes.COLON})
+        assertWithMessage("Acceptable token should be colon")
+                .that(new int[] {TokenTypes.COLON})
                 .isEqualTo(check.getAcceptableTokens());
     }
 

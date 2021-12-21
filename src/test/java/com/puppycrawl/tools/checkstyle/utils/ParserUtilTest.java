@@ -39,23 +39,36 @@ public class ParserUtilTest {
     public void testCreationOfFakeCommentBlock() {
         final DetailAST testCommentBlock =
             ParserUtil.createBlockCommentNode("test_comment");
-        assertWithMessage("Invalid token type").that(testCommentBlock.getType())
+        assertWithMessage("Invalid token type")
+                .that(testCommentBlock.getType())
                 .isEqualTo(TokenTypes.BLOCK_COMMENT_BEGIN);
-        assertWithMessage("Invalid text").that(testCommentBlock.getText()).isEqualTo("/*");
-        assertWithMessage("Invalid line number").that(testCommentBlock.getLineNo()).isEqualTo(0);
+        assertWithMessage("Invalid text")
+                .that(testCommentBlock.getText())
+                .isEqualTo("/*");
+        assertWithMessage("Invalid line number")
+                .that(testCommentBlock.getLineNo())
+                .isEqualTo(0);
 
         final DetailAST contentCommentBlock = testCommentBlock.getFirstChild();
-        assertWithMessage("Invalid token type").that(contentCommentBlock.getType())
+        assertWithMessage("Invalid token type")
+                .that(contentCommentBlock.getType())
                 .isEqualTo(TokenTypes.COMMENT_CONTENT);
-        assertWithMessage("Invalid text").that(contentCommentBlock.getText())
+        assertWithMessage("Invalid text")
+                .that(contentCommentBlock.getText())
                 .isEqualTo("*test_comment");
-        assertWithMessage("Invalid line number").that(contentCommentBlock.getLineNo()).isEqualTo(0);
-        assertWithMessage("Invalid column number").that(contentCommentBlock.getColumnNo())
+        assertWithMessage("Invalid line number")
+                .that(contentCommentBlock.getLineNo())
+                .isEqualTo(0);
+        assertWithMessage("Invalid column number")
+                .that(contentCommentBlock.getColumnNo())
                 .isEqualTo(-1);
 
         final DetailAST endCommentBlock = contentCommentBlock.getNextSibling();
-        assertWithMessage("Invalid token type").that(endCommentBlock.getType())
+        assertWithMessage("Invalid token type")
+                .that(endCommentBlock.getType())
                 .isEqualTo(TokenTypes.BLOCK_COMMENT_END);
-        assertWithMessage("Invalid text").that(endCommentBlock.getText()).isEqualTo("*/");
+        assertWithMessage("Invalid text")
+                .that(endCommentBlock.getText())
+                .isEqualTo("*/");
     }
 }

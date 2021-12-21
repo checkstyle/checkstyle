@@ -218,7 +218,8 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         final Pattern pattern = Pattern.compile("^XpathRegression(.+)Test\\.java$");
         try (DirectoryStream<Path> javaPaths = Files.newDirectoryStream(javaDir)) {
             for (Path path : javaPaths) {
-                assertWithMessage(path + " is not a regular file").that(Files.isRegularFile(path))
+                assertWithMessage(path + " is not a regular file")
+                        .that(Files.isRegularFile(path))
                         .isTrue();
                 final String filename = path.toFile().getName();
                 if (filename.startsWith("Abstract")) {
@@ -227,22 +228,26 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
                 final Matcher matcher = pattern.matcher(filename);
                 assertWithMessage(
-                        "Invalid test file: " + filename + ", expected pattern: " + pattern)
-                                .that(matcher.matches()).isTrue();
+                            "Invalid test file: " + filename + ", expected pattern: " + pattern)
+                        .that(matcher.matches())
+                        .isTrue();
 
                 final String check = matcher.group(1);
                 assertWithMessage("Unknown check '" + check + "' in test file: " + filename)
-                        .that(simpleCheckNames.contains(check)).isTrue();
+                        .that(simpleCheckNames.contains(check))
+                        .isTrue();
 
                 assertWithMessage(
-                        "Check '" + check + "' is now tested. Please update the todo list in"
+                            "Check '" + check + "' is now tested. Please update the todo list in"
                                 + " XpathRegressionTest.MISSING_CHECK_NAMES")
-                                        .that(MISSING_CHECK_NAMES.contains(check)).isFalse();
+                        .that(MISSING_CHECK_NAMES.contains(check))
+                        .isFalse();
                 assertWithMessage(
-                        "Check '" + check + "' is now compatible with SuppressionXpathFilter."
+                            "Check '" + check + "' is now compatible with SuppressionXpathFilter."
                                 + " Please update the todo list in"
                                 + " XpathRegressionTest.INCOMPATIBLE_CHECK_NAMES")
-                                        .that(INCOMPATIBLE_CHECK_NAMES.contains(check)).isFalse();
+                        .that(INCOMPATIBLE_CHECK_NAMES.contains(check))
+                        .isFalse();
                 compatibleChecks.add(check);
             }
         }
@@ -267,18 +272,21 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         try (DirectoryStream<Path> dirs = Files.newDirectoryStream(inputDir)) {
             for (Path dir : dirs) {
                 // input directory must be named in lower case
-                assertWithMessage(dir + " is not a directory").that(Files.isDirectory(dir))
+                assertWithMessage(dir + " is not a directory")
+                        .that(Files.isDirectory(dir))
                         .isTrue();
                 final String dirName = dir.toFile().getName();
                 assertWithMessage("Invalid directory name: " + dirName)
-                        .that(allowedDirectoryAndChecks.containsKey(dirName)).isTrue();
+                        .that(allowedDirectoryAndChecks.containsKey(dirName))
+                        .isTrue();
 
                 // input directory must be connected to an existing test
                 final String check = allowedDirectoryAndChecks.get(dirName);
                 final Path javaPath = javaDir.resolve("XpathRegression" + check + "Test.java");
                 assertWithMessage("Input directory '" + dir
-                        + "' is not connected to Java test case: " + javaPath)
-                                .that(Files.exists(javaPath)).isTrue();
+                            + "' is not connected to Java test case: " + javaPath)
+                        .that(Files.exists(javaPath))
+                        .isTrue();
 
                 // input files should named correctly
                 validateInputDirectory(dir);

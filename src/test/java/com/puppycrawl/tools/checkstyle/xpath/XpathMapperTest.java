@@ -78,7 +78,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .getNextSibling()
                 .getNextSibling();
         final DetailAST[] expected = {expectedVariableDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -93,7 +95,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST);
         final DetailAST[] expected = {expectedVariableDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -109,7 +113,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.SLIST)
                 .findFirstToken(TokenTypes.RCURLY);
         final DetailAST[] expected = {expectedCurlyNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -126,7 +132,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final DetailAST expectedMethodDefNode2 = expectedMethodDefNode1.getNextSibling();
         final DetailAST[] expected = {expectedClassDefNode, expectedMethodDefNode1,
             expectedMethodDefNode2};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -140,7 +148,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final DetailAST expectedObjblockNode = expectedClassDefNode
                 .findFirstToken(TokenTypes.OBJBLOCK);
         final DetailAST[] expected = {expectedClassDefNode, expectedObjblockNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -154,7 +164,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final DetailAST expectedAnnotationsNode = expectedPackageDefNode
                 .findFirstToken(TokenTypes.ANNOTATIONS);
         final DetailAST[] expected = {expectedPackageDefNode, expectedAnnotationsNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -175,7 +187,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .getNextSibling();
         final DetailAST[] expected = {expectedClassDefNode, expectedObjblockNode,
             expectedMethodDefNode, expectedMethodDefNode2};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -192,7 +206,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
         final DetailAST[] expected = {expectedMethodDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -208,7 +224,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST[] expected = {expectedMethodDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -216,7 +234,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "//*[./IDENT[@text]]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
-        assertWithMessage("Invalid number of nodes").that(nodes).hasSize(18);
+        assertWithMessage("Invalid number of nodes")
+                .that(nodes)
+                .hasSize(18);
     }
 
     @Test
@@ -224,7 +244,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "(//VARIABLE_DEF)[1]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
-        assertWithMessage("Invalid number of nodes").that(actual).hasLength(1);
+        assertWithMessage("Invalid number of nodes")
+                .that(actual)
+                .hasLength(1);
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
                 TokenTypes.COMPILATION_UNIT)
                 .findFirstToken(TokenTypes.CLASS_DEF)
@@ -233,7 +255,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.SLIST)
                 .findFirstToken(TokenTypes.VARIABLE_DEF);
         final DetailAST[] expected = {expectedVariableDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -241,7 +265,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "//VARIABLE_DEF[./IDENT[@*]]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
-        assertWithMessage("Invalid number of nodes").that(nodes).hasSize(4);
+        assertWithMessage("Invalid number of nodes")
+                .that(nodes)
+                .hasSize(4);
     }
 
     @Test
@@ -249,7 +275,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "//VARIABLE_DEF[@qwe]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
-        assertWithMessage("Invalid number of nodes").that(nodes).hasSize(0);
+        assertWithMessage("Invalid number of nodes")
+                .that(nodes)
+                .hasSize(0);
     }
 
     @Test
@@ -257,11 +285,15 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String objectXpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]//OBJBLOCK";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> objectNodes = getXpathItems(objectXpath, rootNode);
-        assertWithMessage("Invalid number of nodes").that(objectNodes).hasSize(1);
+        assertWithMessage("Invalid number of nodes")
+                .that(objectNodes)
+                .hasSize(1);
         final AbstractNode objNode = (AbstractNode) objectNodes.get(0);
         final String methodsXpath = "METHOD_DEF";
         final List<NodeInfo> methodsNodes = getXpathItems(methodsXpath, objNode);
-        assertWithMessage("Invalid number of nodes").that(methodsNodes).hasSize(2);
+        assertWithMessage("Invalid number of nodes")
+                .that(methodsNodes)
+                .hasSize(2);
         final DetailAST[] actual = convertToArray(methodsNodes);
         final DetailAST expectedMethodDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
                 TokenTypes.COMPILATION_UNIT)
@@ -270,10 +302,14 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST[] expected = {expectedMethodDefNode,
             expectedMethodDefNode.getNextSibling()};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
-        assertWithMessage("Invalid token type").that(actual[0].getType())
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
+        assertWithMessage("Invalid token type")
+                .that(actual[0].getType())
                 .isEqualTo(TokenTypes.METHOD_DEF);
-        assertWithMessage("Invalid token type").that(actual[1].getType())
+        assertWithMessage("Invalid token type")
+                .that(actual[1].getType())
                 .isEqualTo(TokenTypes.METHOD_DEF);
     }
 
@@ -282,17 +318,24 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "/COMPILATION_UNIT/CLASS_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
-        assertWithMessage("Invalid number of nodes").that(nodes).hasSize(1);
+        assertWithMessage("Invalid number of nodes")
+                .that(nodes)
+                .hasSize(1);
         final AbstractNode classDefNode = (AbstractNode) nodes.get(0);
-        assertWithMessage("Invalid line number").that(classDefNode.getLineNumber()).isEqualTo(3);
-        assertWithMessage("Invalid column number").that(classDefNode.getColumnNumber())
+        assertWithMessage("Invalid line number")
+                .that(classDefNode.getLineNumber())
+                .isEqualTo(3);
+        assertWithMessage("Invalid column number")
+                .that(classDefNode.getColumnNumber())
                 .isEqualTo(0);
         final DetailAST[] actual = convertToArray(nodes);
         final DetailAST expectedClassDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
                 TokenTypes.COMPILATION_UNIT)
                 .findFirstToken(TokenTypes.CLASS_DEF);
         final DetailAST[] expected = {expectedClassDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -307,7 +350,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
         final DetailAST[] expected = {expectedMethodDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -323,10 +368,14 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST[] expected = {expectedMethodDefNode,
             expectedMethodDefNode.getNextSibling()};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
-        assertWithMessage("Invalid token type").that(actual[0].getType())
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
+        assertWithMessage("Invalid token type")
+                .that(actual[0].getType())
                 .isEqualTo(TokenTypes.METHOD_DEF);
-        assertWithMessage("Invalid token type").that(actual[1].getType())
+        assertWithMessage("Invalid token type")
+                .that(actual[1].getType())
                 .isEqualTo(TokenTypes.METHOD_DEF);
     }
 
@@ -343,7 +392,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
         final DetailAST[] expected = {expectedMethodDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -357,9 +408,12 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.CLASS_DEF);
         final DetailAST[] expected = {expectedClassDefNode};
         final ElementNode classDefNode = (ElementNode) nodes.get(0);
-        assertWithMessage("Invalid node name").that(classDefNode.getLocalPart())
+        assertWithMessage("Invalid node name")
+                .that(classDefNode.getLocalPart())
                 .isEqualTo("CLASS_DEF");
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -367,7 +421,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "/CLASS_DEF[@text='WrongName']";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
-        assertWithMessage("Should return true, because no item matches xpath").that(nodes)
+        assertWithMessage("Should return true, because no item matches xpath")
+                .that(nodes)
                 .isEmpty();
     }
 
@@ -376,7 +431,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "/WRONG_XPATH";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
-        assertWithMessage("Should return true, because no item matches xpath").that(nodes)
+        assertWithMessage("Should return true, because no item matches xpath")
+                .that(nodes)
                 .isEmpty();
     }
 
@@ -391,7 +447,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST[] expected = {expectedMethodDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -410,7 +468,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .getNextSibling()
                 .getNextSibling();
         final DetailAST[] expected = {expectedVariableDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -418,7 +478,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "//METHOD_DEF/descendant::EXPR";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
-        assertWithMessage("Invalid number of nodes").that(nodes).hasSize(6);
+        assertWithMessage("Invalid number of nodes")
+                .that(nodes)
+                .hasSize(6);
     }
 
     @Test
@@ -433,10 +495,14 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST[] expected = {expectedMethodDefNode,
             expectedMethodDefNode.getNextSibling()};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
-        assertWithMessage("Invalid token type").that(actual[0].getType())
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
+        assertWithMessage("Invalid token type")
+                .that(actual[0].getType())
                 .isEqualTo(TokenTypes.METHOD_DEF);
-        assertWithMessage("Invalid token type").that(actual[1].getType())
+        assertWithMessage("Invalid token type")
+                .that(actual[1].getType())
                 .isEqualTo(TokenTypes.METHOD_DEF);
     }
 
@@ -445,7 +511,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "//RCURLY/METHOD_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
-        assertWithMessage("Should return true, because no item matches xpath").that(nodes)
+        assertWithMessage("Should return true, because no item matches xpath")
+                .that(nodes)
                 .isEmpty();
     }
 
@@ -454,7 +521,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "//RCURLY/descendant::METHOD_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
-        assertWithMessage("Should return true, because no item matches xpath").that(nodes)
+        assertWithMessage("Should return true, because no item matches xpath")
+                .that(nodes)
                 .isEmpty();
     }
 
@@ -467,7 +535,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
-            assertWithMessage("Invalid exception").that(ex.getMessage())
+            assertWithMessage("Invalid exception")
+                    .that(ex.getMessage())
                     .isEqualTo("Operation is not supported");
         }
     }
@@ -481,7 +550,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
-            assertWithMessage("Invalid exception").that(ex.getMessage())
+            assertWithMessage("Invalid exception")
+                    .that(ex.getMessage())
                     .isEqualTo("Operation is not supported");
         }
     }
@@ -491,7 +561,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String objectXpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]//OBJBLOCK";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> objectNodes = getXpathItems(objectXpath, rootNode);
-        assertWithMessage("Invalid number of nodes").that(objectNodes).hasSize(1);
+        assertWithMessage("Invalid number of nodes")
+                .that(objectNodes).hasSize(1);
         final AbstractNode objNode = (AbstractNode) objectNodes.get(0);
         final String methodsXpath = "self::OBJBLOCK";
         final DetailAST[] actual = convertToArray(getXpathItems(methodsXpath, objNode));
@@ -500,7 +571,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK);
         final DetailAST[] expected = {expectedObjBlockNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -510,7 +583,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         final ElementNode classDefNode = (ElementNode) nodes.get(0);
         assertWithMessage("Not existing attribute should have null value")
-                .that(classDefNode.getAttributeValue("", "noneExistingAttribute")).isNull();
+                .that(classDefNode.getAttributeValue("", "noneExistingAttribute"))
+                .isNull();
     }
 
     @Test
@@ -518,7 +592,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "self::node()";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
-        assertWithMessage("Invalid number of nodes").that(nodes).hasSize(1);
+        assertWithMessage("Invalid number of nodes")
+                .that(nodes)
+                .hasSize(1);
     }
 
     @Test
@@ -532,7 +608,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.MODIFIERS)
                 .findFirstToken(TokenTypes.ANNOTATION);
         final DetailAST[] expected = {expectedAnnotationNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -540,7 +618,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "//ANNOTATION[@text='SpringBootApplication']";
         final RootNode rootNode = getRootNode("InputXpathMapperAnnotation.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
-        assertWithMessage("Invalid number of nodes").that(nodes).hasSize(0);
+        assertWithMessage("Invalid number of nodes")
+                .that(nodes)
+                .hasSize(0);
     }
 
     @Test
@@ -552,7 +632,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 TokenTypes.COMPILATION_UNIT)
                 .findFirstToken(TokenTypes.ENUM_DEF);
         final DetailAST[] expected = {expectedEnumDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -560,7 +642,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "/COMPILATION_UNIT/ENUM_DEF/OBJBLOCK/ENUM_CONSTANT_DEF";
         final RootNode enumRootNode = getRootNode("InputXpathMapperEnum.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, enumRootNode);
-        assertWithMessage("Invalid number of nodes").that(nodes).hasSize(3);
+        assertWithMessage("Invalid number of nodes")
+                .that(nodes)
+                .hasSize(3);
     }
 
     @Test
@@ -577,7 +661,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .getNextSibling()
                 .getNextSibling();
         final DetailAST[] expected = {expectedEnumConstantDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -590,7 +676,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 TokenTypes.COMPILATION_UNIT)
                 .findFirstToken(TokenTypes.INTERFACE_DEF);
         final DetailAST[] expected = {expectedInterfaceDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -598,7 +686,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "//INTERFACE_DEF/OBJBLOCK/METHOD_DEF";
         final RootNode interfaceRootNode = getRootNode("InputXpathMapperInterface.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, interfaceRootNode);
-        assertWithMessage("Invalid number of nodes").that(nodes).hasSize(4);
+        assertWithMessage("Invalid number of nodes")
+                .that(nodes)
+                .hasSize(4);
     }
 
     @Test
@@ -614,7 +704,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
         final DetailAST[] expected = {expectedMethodDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -629,7 +721,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.IDENT);
 
         final DetailAST[] expected = {expectedIdentNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -648,7 +742,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.IDENT)
                 .getNextSibling();
         final DetailAST[] expected = {expectedMethodDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -664,7 +760,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.SLIST)
                 .findFirstToken(TokenTypes.VARIABLE_DEF);
         final DetailAST[] expected = {expectedVariableDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -683,7 +781,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .getNextSibling()
                 .getNextSibling();
         final DetailAST[] expected = {expectedVariableDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -693,7 +793,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual1 = convertToArray(getXpathItems(xpath1, rootNode));
         final DetailAST[] actual2 = convertToArray(getXpathItems(xpath2, rootNode));
-        assertWithMessage("Result nodes differ from expected").that(actual2).isEqualTo(actual1);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual2)
+                .isEqualTo(actual1);
     }
 
     @Test
@@ -709,7 +811,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
         final DetailAST[] expected = {expectedAnnotationNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -721,7 +825,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 TokenTypes.COMPILATION_UNIT)
                 .findFirstToken(TokenTypes.IMPORT);
         final DetailAST[] expected = {expectedVariableDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -734,7 +840,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.IMPORT)
                 .getNextSibling();
         final DetailAST[] expected = {expectedVariableDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -748,7 +856,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .getNextSibling()
                 .getNextSibling();
         final DetailAST[] expected = {expectedVariableDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -768,7 +878,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .getNextSibling()
                 .getNextSibling();
         final DetailAST[] expected = {expectedVariableDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -787,7 +899,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.LITERAL_SWITCH)
                 .findFirstToken(TokenTypes.CASE_GROUP);
         final DetailAST[] expected = {expectedVariableDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -807,7 +921,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.CASE_GROUP)
                 .getNextSibling();
         final DetailAST[] expected = {expectedVariableDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -828,7 +944,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .getNextSibling()
                 .getNextSibling();
         final DetailAST[] expected = {expectedVariableDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -850,7 +968,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .getNextSibling()
                 .getNextSibling();
         final DetailAST[] expected = {expectedVariableDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -866,10 +986,14 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .getNextSibling();
         final DetailAST[] expected = {expectedMethodDefNode,
                 expectedMethodDefNode.getNextSibling()};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
-        assertWithMessage("Invalid token type").that(actual[0].getType())
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
+        assertWithMessage("Invalid token type")
+                .that(actual[0].getType())
                 .isEqualTo(TokenTypes.METHOD_DEF);
-        assertWithMessage("Invalid token type").that(actual[1].getType())
+        assertWithMessage("Invalid token type")
+                .that(actual[1].getType())
                 .isEqualTo(TokenTypes.RCURLY);
     }
 
@@ -878,7 +1002,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "//CLASS_DEF/following-sibling::*";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
-        assertWithMessage("Invalid number of nodes").that(actual).isEmpty();
+        assertWithMessage("Invalid number of nodes")
+                .that(actual)
+                .isEmpty();
     }
 
     @Test
@@ -893,7 +1019,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling().getNextSibling();
         final DetailAST[] expected = {expectedRightCurlyNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -915,7 +1043,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final DetailAST expectedExprNode = expectedAssignNode.getFirstChild();
         final DetailAST expectedNumIntNode = expectedExprNode.getFirstChild();
         final DetailAST[] expected = {expectedAssignNode, expectedExprNode, expectedNumIntNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -930,10 +1060,14 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST[] expected = {expectedMethodDefNode,
             expectedMethodDefNode.getNextSibling()};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
-        assertWithMessage("Invalid token type").that(actual[0].getType())
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
+        assertWithMessage("Invalid token type")
+                .that(actual[0].getType())
                 .isEqualTo(TokenTypes.METHOD_DEF);
-        assertWithMessage("Invalid token type").that(actual[1].getType())
+        assertWithMessage("Invalid token type")
+                .that(actual[1].getType())
                 .isEqualTo(TokenTypes.METHOD_DEF);
     }
 
@@ -942,7 +1076,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "//CLASS_DEF/following::*";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
-        assertWithMessage("Invalid number of nodes").that(actual).isEmpty();
+        assertWithMessage("Invalid number of nodes")
+                .that(actual)
+                .isEmpty();
     }
 
     @Test
@@ -962,7 +1098,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final DetailAST expectedSemiNode2 = expectedVariableDefNode2.getNextSibling();
         final DetailAST[] expected = {expectedVariableDefNode1, expectedSemiNode1,
             expectedVariableDefNode2, expectedSemiNode2};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -981,7 +1119,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final DetailAST expectedVariableDefNode2 = expectedVariableDefNode1.getNextSibling()
                 .getNextSibling();
         final DetailAST[] expected = {expectedVariableDefNode1, expectedVariableDefNode2};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -997,7 +1137,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.SLIST)
                 .findFirstToken(TokenTypes.VARIABLE_DEF);
         final DetailAST[] expected = {expectedVariableDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -1006,7 +1148,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperSingleTopClass.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath,
                 rootNode.createChildren().get(0)));
-        assertWithMessage("Invalid number of nodes").that(actual).hasLength(18);
+        assertWithMessage("Invalid number of nodes")
+                .that(actual)
+                .hasLength(18);
     }
 
     @Test
@@ -1023,7 +1167,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
             expectedPackageDefNode,
             expectedAnnotationsNode,
         };
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -1037,7 +1183,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .getFirstChild()
                 .getFirstChild();
         final DetailAST[] expected = {expectedLiteralPublicNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -1055,7 +1203,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.EXPR)
                 .findFirstToken(TokenTypes.TEXT_BLOCK_LITERAL_BEGIN);
         final DetailAST[] expected = {expectedVariableDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -1069,7 +1219,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.SINGLE_LINE_COMMENT);
         final DetailAST[] expected = {expectedVariableDefNode};
-        assertWithMessage("Result nodes differ from expected").that(actual).isEqualTo(expected);
+        assertWithMessage("Result nodes differ from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     private RootNode getRootNode(String fileName) throws Exception {

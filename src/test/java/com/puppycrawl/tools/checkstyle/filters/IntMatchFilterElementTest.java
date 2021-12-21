@@ -31,9 +31,15 @@ public class IntMatchFilterElementTest {
     @Test
     public void testDecide() {
         final IntFilterElement filter = new IntMatchFilterElement(0);
-        assertWithMessage("less than").that(filter.accept(-1)).isFalse();
-        assertWithMessage("equal").that(filter.accept(0)).isTrue();
-        assertWithMessage("greater than").that(filter.accept(1)).isFalse();
+        assertWithMessage("less than")
+                .that(filter.accept(-1))
+                .isFalse();
+        assertWithMessage("equal")
+                .that(filter.accept(0))
+                .isTrue();
+        assertWithMessage("greater than")
+                .that(filter.accept(1))
+                .isFalse();
     }
 
     @Test
@@ -48,7 +54,8 @@ public class IntMatchFilterElementTest {
     @Test
     public void testToString() {
         final IntFilterElement filter = new IntMatchFilterElement(6);
-        assertWithMessage("Invalid toString result").that(filter.toString())
+        assertWithMessage("Invalid toString result")
+                .that(filter.toString())
                 .isEqualTo("IntMatchFilterElement[6]");
     }
 

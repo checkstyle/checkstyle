@@ -41,8 +41,9 @@ public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModule
         final RequireEmptyLineBeforeBlockTagGroupCheck checkObj =
                 new RequireEmptyLineBeforeBlockTagGroupCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
-        assertWithMessage("Default required tokens are invalid").that(checkObj.getRequiredTokens())
-            .isEqualTo(expected);
+        assertWithMessage("Default required tokens are invalid")
+                .that(checkObj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test
