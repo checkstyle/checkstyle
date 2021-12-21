@@ -257,10 +257,13 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
             for (int i = 0; i < expected.length; i++) {
                 final String expectedResult = messageFileName + ":" + expected[i];
                 final String actual = lnr.readLine();
-                assertWithMessage("error message " + i).that(actual).isEqualTo(expectedResult);
+                assertWithMessage("error message " + i)
+                        .that(actual)
+                        .isEqualTo(expectedResult);
             }
 
-            assertWithMessage("unexpected output: " + lnr.readLine()).that(errs)
+            assertWithMessage("unexpected output: " + lnr.readLine())
+                    .that(errs)
                     .isAtMost(expected.length);
         }
         checker.destroy();

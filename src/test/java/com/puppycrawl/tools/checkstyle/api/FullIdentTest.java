@@ -53,11 +53,18 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         parent.setFirstChild(ast);
 
         final FullIdent indent = FullIdent.createFullIdent(ast);
-        assertWithMessage("Invalid full indent").that(indent.toString())
-            .isEqualTo("MyTest[15x14]");
-        assertWithMessage("Invalid text").that(indent.getText()).isEqualTo("MyTest");
-        assertWithMessage("Invalid line").that(indent.getLineNo()).isEqualTo(15);
-        assertWithMessage("Invalid column").that(indent.getColumnNo()).isEqualTo(14);
+        assertWithMessage("Invalid full indent")
+                .that(indent.toString())
+                .isEqualTo("MyTest[15x14]");
+        assertWithMessage("Invalid text")
+                .that(indent.getText())
+                .isEqualTo("MyTest");
+        assertWithMessage("Invalid line")
+                .that(indent.getLineNo())
+                .isEqualTo(15);
+        assertWithMessage("Invalid column")
+                .that(indent.getColumnNo())
+                .isEqualTo(14);
     }
 
     @Test
@@ -65,7 +72,9 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         final DetailAST ast = new DetailAstImpl();
 
         final FullIdent indent = FullIdent.createFullIdentBelow(ast);
-        assertWithMessage("Invalid full indent").that(indent.getText()).isEqualTo("");
+        assertWithMessage("Invalid full indent")
+                .that(indent.getText())
+                .isEqualTo("");
     }
 
     @Test
@@ -77,21 +86,24 @@ public class FullIdentTest extends AbstractModuleTestSupport {
                 JavaParser.parse(new FileContents(testFileText)).getFirstChild();
         final DetailAST packageName = packageDefinitionNode.getFirstChild().getNextSibling();
         final FullIdent ident = FullIdent.createFullIdent(packageName);
-        assertWithMessage("Invalid full indent").that(ident.getDetailAst().toString())
+        assertWithMessage("Invalid full indent")
+                .that(ident.getDetailAst().toString())
                 .isEqualTo("com[1x8]");
     }
 
     @Test
     public void testNonValidCoordinatesWithNegative() {
         final FullIdent fullIdent = prepareFullIdentWithCoordinates(14, 15);
-        assertWithMessage("Invalid full indent").that(fullIdent.toString())
+        assertWithMessage("Invalid full indent")
+                .that(fullIdent.toString())
                 .isEqualTo("MyTest.MyTestik[15x14]");
     }
 
     @Test
     public void testNonValidCoordinatesWithZero() {
         final FullIdent fullIdent = prepareFullIdentWithCoordinates(0, 0);
-        assertWithMessage("Invalid full indent").that(fullIdent.toString())
+        assertWithMessage("Invalid full indent")
+                .that(fullIdent.toString())
                 .isEqualTo("MyTest.MyTestik[15x14]");
     }
 
@@ -108,7 +120,9 @@ public class FullIdentTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.TYPE)
                 .getFirstChild();
         final FullIdent ident = FullIdent.createFullIdent(arrayDeclarator);
-        assertWithMessage("Invalid full indent").that(ident.toString()).isEqualTo("int[][][5x12]");
+        assertWithMessage("Invalid full indent")
+                .that(ident.toString())
+                .isEqualTo("int[][][5x12]");
     }
 
     @Test
@@ -133,7 +147,9 @@ public class FullIdentTest extends AbstractModuleTestSupport {
                 .getFirstChild();
 
         final FullIdent ident = FullIdent.createFullIdent(parameter);
-        assertWithMessage("Invalid full indent").that(ident.toString()).isEqualTo("char[][7x29]");
+        assertWithMessage("Invalid full indent")
+                .that(ident.toString())
+                .isEqualTo("char[][7x29]");
     }
 
     @Test
@@ -155,7 +171,9 @@ public class FullIdentTest extends AbstractModuleTestSupport {
                 .getFirstChild();
 
         final FullIdent ident = FullIdent.createFullIdent(literalInt);
-        assertWithMessage("Invalid full indent").that(ident.toString()).isEqualTo("int[4x32]");
+        assertWithMessage("Invalid full indent")
+                .that(ident.toString())
+                .isEqualTo("int[4x32]");
     }
 
     private static FullIdent prepareFullIdentWithCoordinates(int columnNo, int lineNo) {
@@ -200,7 +218,8 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         final DetailAST annotationNode = packageDefinitionNode.getFirstChild();
         final FullIdent ident = FullIdent.createFullIdent(annotationNode);
         assertWithMessage("Full ident text should be empty.")
-                .that(ident.getText()).isEmpty();
+                .that(ident.getText())
+                .isEmpty();
     }
 
     @Test

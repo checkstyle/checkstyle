@@ -129,7 +129,8 @@ public class NewlineAtEndOfFileCheckTest
             assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertWithMessage("Error message is unexpected").that(ex.getMessage())
+            assertWithMessage("Error message is unexpected")
+                    .that(ex.getMessage())
                     .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle."
                             + "checks.NewlineAtEndOfFileCheck - "
                             + "Cannot set property 'lineSeparator' to 'ct'");
@@ -184,7 +185,9 @@ public class NewlineAtEndOfFileCheckTest
         final File impossibleFile = new File("");
         final FileText fileText = new FileText(impossibleFile, lines);
         final Set<Violation> violations = check.process(impossibleFile, fileText);
-        assertWithMessage("Amount of violations is unexpected").that(violations).hasSize(1);
+        assertWithMessage("Amount of violations is unexpected")
+                .that(violations)
+                .hasSize(1);
         final Iterator<Violation> iterator = violations.iterator();
         assertWithMessage("Violation message differs from expected")
                 .that(iterator.next().getViolation())
