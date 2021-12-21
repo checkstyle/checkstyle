@@ -210,8 +210,8 @@ public class MethodParamPadCheck
         }
 
         if (parenAST != null) {
-            final String line = getLines()[parenAST.getLineNo() - 1];
-            if (CommonUtil.hasWhitespaceBefore(parenAST.getColumnNo(), line)) {
+            final int[] codePoints = getLineCodePoints(parenAST.getLineNo() - 1);
+            if (CommonUtil.hasWhitespaceBefore(parenAST.getColumnNo(), codePoints)) {
                 if (!allowLineBreaks) {
                     log(parenAST, MSG_LINE_PREVIOUS, parenAST.getText());
                 }
@@ -219,11 +219,11 @@ public class MethodParamPadCheck
             else {
                 final int before = parenAST.getColumnNo() - 1;
                 if (option == PadOption.NOSPACE
-                    && Character.isWhitespace(line.charAt(before))) {
+                    && CommonUtil.isCodePointWhitespace(codePoints, before)) {
                     log(parenAST, MSG_WS_PRECEDED, parenAST.getText());
                 }
                 else if (option == PadOption.SPACE
-                         && !Character.isWhitespace(line.charAt(before))) {
+                         && !CommonUtil.isCodePointWhitespace(codePoints, before)) {
                     log(parenAST, MSG_WS_NOT_PRECEDED, parenAST.getText());
                 }
             }

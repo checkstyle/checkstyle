@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -188,7 +189,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
 
             if (columnNo >= minSecondWhitespaceColumnNo
                     && !isTextSeparatedCorrectlyFromPrevious(
-                            getLine(currentNode.getLineNo() - 1),
+                            getLineCodePoints(currentNode.getLineNo() - 1),
                             columnNo)) {
                 log(currentNode, MSG_KEY);
             }
@@ -218,77 +219,71 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      * end of a block comment. </li>
      * </ul>
      *
-     * @param line The line in the file to examine.
+     * @param codePoints the array of Unicode code points
      * @param columnNo The column position in the {@code line} to examine.
      * @return {@code true} if the text at {@code columnNo} is separated
      *         correctly from the previous token.
      */
-    private boolean isTextSeparatedCorrectlyFromPrevious(String line, int columnNo) {
-        return isSingleSpace(line, columnNo)
-                || !isWhitespace(line, columnNo)
-                || isFirstInLine(line, columnNo)
-                || !validateComments && isBlockCommentEnd(line, columnNo);
+    private boolean isTextSeparatedCorrectlyFromPrevious(int[] codePoints, int columnNo) {
+
+        return isSingleSpace(codePoints, columnNo)
+                || !CommonUtil.isCodePointWhitespace(codePoints, columnNo)
+                || isFirstInLine(codePoints, columnNo)
+                || !validateComments && isBlockCommentEnd(codePoints, columnNo);
     }
 
     /**
      * Checks if the {@code line} at {@code columnNo} is a single space, and not
      * preceded by another space.
      *
-     * @param line The line in the file to examine.
+     * @param codePoints the array of Unicode code points
      * @param columnNo The column position in the {@code line} to examine.
      * @return {@code true} if the character at {@code columnNo} is a space, and
      *         not preceded by another space.
      */
-    private static boolean isSingleSpace(String line, int columnNo) {
-        return isSpace(line, columnNo) && !Character.isWhitespace(line.charAt(columnNo - 1));
+    private static boolean isSingleSpace(int[] codePoints, int columnNo) {
+        return isSpace(codePoints, columnNo)
+                && !CommonUtil.isCodePointWhitespace(codePoints, columnNo - 1);
     }
 
     /**
      * Checks if the {@code line} at {@code columnNo} is a space.
      *
-     * @param line The line in the file to examine.
+     * @param codePoints the array of Unicode code points
      * @param columnNo The column position in the {@code line} to examine.
      * @return {@code true} if the character at {@code columnNo} is a space.
      */
-    private static boolean isSpace(String line, int columnNo) {
-        return line.charAt(columnNo) == ' ';
-    }
-
-    /**
-     * Checks if the {@code line} at {@code columnNo} is a whitespace character.
-     *
-     * @param line The line in the file to examine.
-     * @param columnNo The column position in the {@code line} to examine.
-     * @return {@code true} if the character at {@code columnNo} is a
-     *         whitespace.
-     */
-    private static boolean isWhitespace(String line, int columnNo) {
-        return Character.isWhitespace(line.charAt(columnNo));
+    private static boolean isSpace(int[] codePoints, int columnNo) {
+        return codePoints[columnNo] == ' ';
     }
 
     /**
      * Checks if the {@code line} up to and including {@code columnNo} is all
      * non-whitespace text encountered.
      *
-     * @param line The line in the file to examine.
+     * @param codePoints the array of Unicode code points
      * @param columnNo The column position in the {@code line} to examine.
      * @return {@code true} if the column position is the first non-whitespace
      *         text on the {@code line}.
      */
-    private static boolean isFirstInLine(String line, int columnNo) {
-        return CommonUtil.isBlank(line.substring(0, columnNo));
+    private static boolean isFirstInLine(int[] codePoints, int columnNo) {
+        return CommonUtil.isBlank(CodePointUtil.subArray(codePoints, 0, columnNo));
     }
 
     /**
      * Checks if the {@code line} at {@code columnNo} is the end of a comment,
      * '*&#47;'.
      *
-     * @param line The line in the file to examine.
+     * @param codePoints the array of Unicode code points
      * @param columnNo The column position in the {@code line} to examine.
      * @return {@code true} if the previous text is a end comment block.
      */
-    private static boolean isBlockCommentEnd(String line, int columnNo) {
-        return line.substring(0, columnNo).trim().endsWith("*/");
+    private static boolean isBlockCommentEnd(int[] codePoints, int columnNo) {
+        int posOfWhitespace = columnNo - 1;
+        while (CommonUtil.isCodePointWhitespace(codePoints, posOfWhitespace)) {
+            posOfWhitespace--;
+        }
+        return CodePointUtil.startsWith(codePoints, "*/", posOfWhitespace - 1);
     }
 
 }
