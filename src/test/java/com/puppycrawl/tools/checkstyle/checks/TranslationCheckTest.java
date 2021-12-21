@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY_MISSING_TRANSLATION_FILE;
 import static org.hamcrest.CoreMatchers.containsString;
@@ -26,7 +27,6 @@ import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -596,7 +596,9 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         final TranslationCheck check = new TranslationCheck();
         try {
             check.setRequiredTranslations("11");
-            fail("IllegalArgumentException is expected. Specified language code is incorrect.");
+            assertWithMessage(
+                    "IllegalArgumentException is expected. Specified language code is incorrect.")
+                            .fail();
         }
         catch (IllegalArgumentException ex) {
             final String exceptionMessage = ex.getMessage();
