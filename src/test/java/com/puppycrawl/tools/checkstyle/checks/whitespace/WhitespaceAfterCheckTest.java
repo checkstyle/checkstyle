@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck.MSG_WS_NOT_FOLLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck.MSG_WS_TYPECAST;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -39,8 +39,9 @@ public class WhitespaceAfterCheckTest
     @Test
     public void testGetRequiredTokens() {
         final WhitespaceAfterCheck checkObj = new WhitespaceAfterCheck();
-        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens(),
-                "WhitespaceAfterCheck#getRequiredTokens should return empty array by default");
+        assertWithMessage(
+                "WhitespaceAfterCheck#getRequiredTokens should return empty array by default")
+                        .that(checkObj.getRequiredTokens()).isEmpty();
     }
 
     @Test
