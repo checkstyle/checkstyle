@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MS
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.util.Arrays;
@@ -373,10 +372,18 @@ public class SuppressionCommentFilterTest
                 getTagsAfterExecutionOnDefaultFilter("//CHECKSTYLE:ON");
         final Comparable<Object> tag4 = tags3.get(0);
 
-        assertTrue(tag1.compareTo(tag2) < 0, "Invalid comparing result");
-        assertTrue(tag2.compareTo(tag1) > 0, "Invalid comparing result");
-        assertTrue(tag1.compareTo(tag3) < 0, "Invalid comparing result");
-        assertTrue(tag3.compareTo(tag1) > 0, "Invalid comparing result");
+        assertWithMessage("Invalid comparing result")
+                .that(tag1.compareTo(tag2) < 0)
+                .isTrue();
+        assertWithMessage("Invalid comparing result")
+                .that(tag2.compareTo(tag1) > 0)
+                .isTrue();
+        assertWithMessage("Invalid comparing result")
+                .that(tag1.compareTo(tag3) < 0)
+                .isTrue();
+        assertWithMessage("Invalid comparing result")
+                .that(tag3.compareTo(tag1) > 0)
+                .isTrue();
         final int actual = tag1.compareTo(tag4);
         assertEquals(0, actual, "Invalid comparing result");
     }
@@ -425,7 +432,9 @@ public class SuppressionCommentFilterTest
         contents.reportSingleLineComment(1, 0);
         final TreeWalkerAuditEvent auditEvent =
                 new TreeWalkerAuditEvent(contents, null, null, null);
-        assertTrue(filter.accept(auditEvent), "Filter should accept audit event");
+        assertWithMessage("Filter should accept audit event")
+            .that(filter.accept(auditEvent))
+                .isTrue();
         assertNull(auditEvent.getFileName(), "File name should not be null");
     }
 
@@ -435,7 +444,9 @@ public class SuppressionCommentFilterTest
         final FileContents contents = null;
         final TreeWalkerAuditEvent auditEvent = new TreeWalkerAuditEvent(contents, null,
                 new Violation(1, null, null, null, null, Object.class, null), null);
-        assertTrue(filter.accept(auditEvent), "Filter should accept audit event");
+        assertWithMessage("Filter should accept audit event")
+                .that(filter.accept(auditEvent))
+                .isTrue();
     }
 
     @Test

@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mockStatic;
 
@@ -94,7 +93,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         final String filePath = File.createTempFile("junit", null, temporaryFolder).getPath();
         final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
         cache.put("myFile", 1);
-        assertTrue(cache.isInCache("myFile", 1), "Should return true when file is in cache");
+        assertWithMessage("Should return true when file is in cache")
+                .that(cache.isInCache("myFile", 1))
+                .isTrue();
         assertFalse(cache.isInCache("myFile", 2), "Should return false when file is not in cache");
         assertFalse(cache.isInCache("myFile1", 1), "Should return false when file is not in cache");
     }
@@ -194,8 +195,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         cache.put("myFile", 1);
         cache.putExternalResources(resources);
 
-        assertTrue(cache.isInCache("myFile", 1),
-                "Should return true in file is in cache");
+        assertWithMessage("Should return true in file is in cache")
+                .that(cache.isInCache("myFile", 1))
+                .isTrue();
     }
 
     @Test
@@ -236,7 +238,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         // no exception expected, cache directory should be created
         cache.persist();
 
-        assertTrue(new File(filePath).exists(), "cache exists in directory");
+        assertWithMessage("cache exists in directory")
+                .that(new File(filePath).exists())
+                .isTrue();
     }
 
     @Test
@@ -247,7 +251,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
 
         // no exception expected
         cache.persist();
-        assertTrue(Files.exists(Paths.get(filePath)), "Cache file does not exist");
+        assertWithMessage("Cache file does not exist")
+                .that(Files.exists(Paths.get(filePath)))
+                .isTrue();
         Files.delete(Paths.get(filePath));
     }
 

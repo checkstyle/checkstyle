@@ -304,13 +304,15 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                 if (filename.endsWith("java")) {
                     final Matcher matcher = pattern.matcher(filename);
                     assertWithMessage(
-                            "Invalid input file '" + inputPath + "', expected pattern:" + pattern)
-                                    .that(matcher.matches()).isTrue();
+                              "Invalid input file '" + inputPath + "', expected pattern:" + pattern)
+                            .that(matcher.matches())
+                            .isTrue();
 
                     final String remaining = matcher.group(1);
                     assertWithMessage("Check name '" + check
-                            + "' should be included in input file: " + inputPath)
-                                    .that(remaining.startsWith(check)).isTrue();
+                                + "' should be included in input file: " + inputPath)
+                            .that(remaining.startsWith(check))
+                            .isTrue();
                 }
             }
         }
