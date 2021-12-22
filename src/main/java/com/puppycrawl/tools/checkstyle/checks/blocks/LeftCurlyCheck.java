@@ -442,21 +442,21 @@ public class LeftCurlyCheck
      */
     private void verifyBrace(final DetailAST brace,
                              final DetailAST startToken) {
-        final String braceLine = getLine(brace.getLineNo() - 1);
+        final int[] codePoints = getLineCodePoints(brace.getLineNo() - 1);
 
         // Check for being told to ignore, or have '{}' which is a special case
-        if (braceLine.length() <= brace.getColumnNo() + 1
-                || braceLine.charAt(brace.getColumnNo() + 1) != '}') {
+        if (codePoints.length <= brace.getColumnNo() + 1
+                || codePoints[brace.getColumnNo() + 1] != '}') {
             if (option == LeftCurlyOption.NL) {
-                if (!CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+                if (!CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), codePoints)) {
                     log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
                 }
             }
             else if (option == LeftCurlyOption.EOL) {
-                validateEol(brace, braceLine);
+                validateEol(brace, codePoints);
             }
             else if (!TokenUtil.areOnSameLine(startToken, brace)) {
-                validateNewLinePosition(brace, startToken, braceLine);
+                validateNewLinePosition(brace, startToken, codePoints);
             }
         }
     }
@@ -465,10 +465,10 @@ public class LeftCurlyCheck
      * Validate EOL case.
      *
      * @param brace brace AST
-     * @param braceLine line content
+     * @param codePoints Unicode code points
      */
-    private void validateEol(DetailAST brace, String braceLine) {
-        if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+    private void validateEol(DetailAST brace, int...codePoints) {
+        if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), codePoints)) {
             log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
         if (!hasLineBreakAfter(brace)) {
@@ -481,19 +481,19 @@ public class LeftCurlyCheck
      *
      * @param brace brace AST
      * @param startToken start Token
-     * @param braceLine content of line with Brace
+     * @param codePoints Unicode code points
      */
-    private void validateNewLinePosition(DetailAST brace, DetailAST startToken, String braceLine) {
+    private void validateNewLinePosition(DetailAST brace, DetailAST startToken, int...codePoints) {
         // not on the same line
         if (startToken.getLineNo() + 1 == brace.getLineNo()) {
-            if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+            if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), codePoints)) {
                 log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
             }
             else {
                 log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
             }
         }
-        else if (!CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+        else if (!CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), codePoints)) {
             log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
     }
