@@ -31,6 +31,14 @@
             git clone git@github.com:you_user_name/checkstyle.git
         </source>
       </div>
+      <p>
+        4. Before opening project in IDEA do build in terminal by running in repository root folder
+      </p>
+      <div class="wrap-content">
+        <source>
+            mvn install
+        </source>
+      </div>
     </section>
 
     <section name="Starting Development">
