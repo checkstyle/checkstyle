@@ -1,0 +1,9 @@
+text-only
+     whitespace behind
+whitespace ahead        
+     whitespace around        
+whitespace inside
+empty line below
+
+whitespace only below
+              
