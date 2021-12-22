@@ -1,0 +1,63 @@
+////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001-2021 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.utils;
+
+/**
+ * Contains utility methods for code point.
+ *
+ */
+public final class CodePointUtil {
+
+    /** Stop instances being created. **/
+    private CodePointUtil() {
+    }
+
+    /**
+     * Method to find the index of the first non-whitespace character.
+     *
+     * @param codePoints  the array to find the first index of a non-whitespace character for.
+     * @return the index of the first non-whitespace character.
+     */
+    public static int indexOfNonWhitespace(int...codePoints) {
+        final int length = codePoints.length;
+        int index = 0;
+        while (index < length) {
+            final int codePointAt = codePoints[index];
+            if (!Character.isWhitespace(codePointAt)) {
+                break;
+            }
+            index += 1;
+        }
+        return index;
+    }
+
+    /**
+     * Checks if the value arg is blank by either being empty,
+     * or contains only whitespace characters.
+     *
+     * @param codePoints Array to check.
+     * @return true if the arg is blank.
+     */
+    public static boolean isBlank(int...codePoints) {
+        return codePoints.length == 0
+                || indexOfNonWhitespace(codePoints) >= codePoints.length;
+    }
+
+}
