@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -513,12 +513,14 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             if (!matcher.matches()) {
                 final String message = "Character '" + currentChar + "' (at position " + i
                         + ") doesn't match the pattern";
-                assertTrue(matcher.matches(), message);
+                assertWithMessage(message)
+                    .that(matcher.matches()).isTrue();
             }
             if (lastChar != null) {
                 final String message = "Character '" + lastChar + "' should be after '"
                         + currentChar + "', position: " + i;
-                assertTrue(lastChar.compareTo(currentChar) < 0, message);
+                assertWithMessage(message)
+                    .that(lastChar.compareTo(currentChar) < 0).isTrue();
             }
             lastChar = currentChar;
         }
