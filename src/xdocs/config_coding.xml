@@ -6965,6 +6965,8 @@ if (p == (q &lt;= r)) {}
                 TEXT_BLOCK_LITERAL_BEGIN</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
                 LAND</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">
+                LOR</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_INSTANCEOF">
                 LITERAL_INSTANCEOF</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GT">
@@ -7048,6 +7050,8 @@ if (p == (q &lt;= r)) {}
                   TEXT_BLOCK_LITERAL_BEGIN</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
                   LAND</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">
+                  LOR</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_INSTANCEOF">
                   LITERAL_INSTANCEOF</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GT">

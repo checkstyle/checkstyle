@@ -130,7 +130,7 @@ public class InputUnnecessaryParenthesesIfStatement {
         if (( // violation
                 a!=(b==c) && (a // violation
                         && (b==c))) // violation
-                 || (a || a!=(b<=c))     // ok
+                 || (a || a!=(b<=c))     // violation
                  || (a==(b!=d==(c==b) && a!=(b<=c)))) { // violation
                                                         // after '||'
             return;
@@ -154,6 +154,25 @@ public class InputUnnecessaryParenthesesIfStatement {
         if ((b==0) == (c==d) // ok
                 && (Integer.valueOf(d) instanceof Integer) == true) { // ok
             return;
+        }
+
+        boolean x = false, y = true, z = false;
+        boolean v = true, w = true, u = true;
+        boolean vy = x && y || (x || y || z) && v; // ok
+        if (a && !(v && w || (x || y) && z || u && x)) { // ok
+        }
+        if (a && !(v && w || x || y && z || u && x)) { // ok
+        }
+        if(v || (u || x || y)) { // violation
+        }
+        if((v || x) == // ok
+                (w || y)) {
+        }
+        if((v || x) | // ok
+                (w || y)) {
+        }
+        if((v || x) & // ok
+                (w || y)) {
         }
     }
 

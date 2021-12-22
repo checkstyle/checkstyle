@@ -122,6 +122,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * TEXT_BLOCK_LITERAL_BEGIN</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
  * LAND</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">
+ * LOR</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_INSTANCEOF">
  * LITERAL_INSTANCEOF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GT">
@@ -376,6 +378,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.LAMBDA,
             TokenTypes.TEXT_BLOCK_LITERAL_BEGIN,
             TokenTypes.LAND,
+            TokenTypes.LOR,
             TokenTypes.LITERAL_INSTANCEOF,
             TokenTypes.GT,
             TokenTypes.LT,
@@ -422,6 +425,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.LAMBDA,
             TokenTypes.TEXT_BLOCK_LITERAL_BEGIN,
             TokenTypes.LAND,
+            TokenTypes.LOR,
             TokenTypes.LITERAL_INSTANCEOF,
             TokenTypes.GT,
             TokenTypes.LT,
@@ -508,7 +512,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             else if (TokenUtil.isOfType(type, ASSIGNMENTS)) {
                 assignDepth--;
             }
-            else if (isSurrounded(ast) && checkAroundOperators(ast)) {
+            else if (isSurrounded(ast) && unnecessaryParenAroundOperators(ast)) {
                 log(ast.getPreviousSibling(), MSG_EXPR);
             }
         }
@@ -571,19 +575,22 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
 
     /**
      * Checks if conditional, relational, unary and postfix operators
-     * in expressions are surrounded by parentheses.
+     * in expressions are surrounded by unnecessary parentheses.
      *
      * @param ast the {@code DetailAST} to check if it is surrounded by
-     *        parentheses.
+     *        unnecessary parentheses.
      * @return {@code true} if the expression is surrounded by
-     *         parentheses.
+     *         unnecessary parentheses.
      */
-    private static boolean checkAroundOperators(DetailAST ast) {
+    private static boolean unnecessaryParenAroundOperators(DetailAST ast) {
         final int type = ast.getType();
         final int parentType = ast.getParent().getType();
         final boolean isConditional = TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL);
         boolean result = TokenUtil.isOfType(parentType, CONDITIONALS_AND_RELATIONAL);
         if (isConditional) {
+            if (type == TokenTypes.LOR) {
+                result = result && !TokenUtil.isOfType(parentType, TokenTypes.LAND);
+            }
             result = result && !TokenUtil.isOfType(parentType, TokenTypes.EQUAL,
                 TokenTypes.NOT_EQUAL);
         }
