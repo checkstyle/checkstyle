@@ -3294,6 +3294,9 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest
                 </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheckTest
+                </param>
                 <!-- 2% mutation in ScopeUtil -->
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheckTest
