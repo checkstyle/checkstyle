@@ -73,6 +73,8 @@
 
   <!-- intentional problem for testing -->
   <suppress id="noTrailingWhitespace"
+            files="[\\/]InputCodePointUtil_resource\.txt"/>
+  <suppress id="noTrailingWhitespace"
     files="[\\/]InputJavadocContentLocationTrailingSpace\.java"/>
   <suppress id="noTrailingWhitespace"
     files="[\\/]InputJavadocParagraphCorrect\.java"/>
