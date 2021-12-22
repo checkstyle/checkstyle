@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -49,8 +48,9 @@ public class JavaParserTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(TestUtil.isUtilsClassHasPrivateConstructor(
-            JavaParser.class, false), "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(TestUtil.isUtilsClassHasPrivateConstructor(JavaParser.class, false))
+                .isTrue();
     }
 
     @Test
@@ -67,7 +67,9 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         final Optional<DetailAST> blockComment = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN);
 
-        assertTrue(blockComment.isPresent(), "Block comment should be present");
+        assertWithMessage("Block comment should be present")
+                .that(blockComment.isPresent())
+                .isTrue();
 
         final DetailAST comment = blockComment.get();
 
@@ -92,7 +94,9 @@ public class JavaParserTest extends AbstractModuleTestSupport {
 
         final Optional<DetailAST> singleLineComment = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.SINGLE_LINE_COMMENT);
-        assertTrue(singleLineComment.isPresent(), "Single line comment should be present");
+        assertWithMessage("Single line comment should be present")
+                .that(singleLineComment.isPresent())
+                .isTrue();
 
         final DetailAST comment = singleLineComment.get();
 
@@ -105,8 +109,9 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         assertEquals(TokenTypes.COMMENT_CONTENT, commentContent.getType(), "Unexpected token type");
         assertEquals(13, commentContent.getLineNo(), "Unexpected line number");
         assertEquals(2, commentContent.getColumnNo(), "Unexpected column number");
-        assertTrue(commentContent.getText().startsWith(" inline comment"),
-                "Unexpected comment content");
+        assertWithMessage("Unexpected comment content")
+                .that(commentContent.getText().startsWith(" inline comment"))
+                .isTrue();
     }
 
     @Test
@@ -117,7 +122,9 @@ public class JavaParserTest extends AbstractModuleTestSupport {
 
         final Optional<DetailAST> singleLineComment = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.SINGLE_LINE_COMMENT);
-        assertTrue(singleLineComment.isPresent(), "Single line comment should be present");
+        assertWithMessage("Single line comment should be present")
+                .that(singleLineComment.isPresent())
+                .isTrue();
 
         final DetailAST comment = singleLineComment.get();
 
@@ -130,8 +137,9 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         assertEquals(TokenTypes.COMMENT_CONTENT, commentContent.getType(), "Unexpected token type");
         assertEquals(1, commentContent.getLineNo(), "Unexpected line number");
         assertEquals(6, commentContent.getColumnNo(), "Unexpected column number");
-        assertTrue(commentContent.getText().startsWith(" indented comment"),
-                "Unexpected comment content");
+        assertWithMessage("Unexpected comment content")
+                .that(commentContent.getText().startsWith(" indented comment"))
+                .isTrue();
     }
 
     @Test
@@ -190,7 +198,9 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         final Optional<DetailAST> textBlockContent = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.TEXT_BLOCK_CONTENT);
 
-        assertTrue(textBlockContent.isPresent(), "Text block content should be present");
+        assertWithMessage("Text block content should be present")
+                .that(textBlockContent.isPresent())
+                .isTrue();
 
         final DetailAST content = textBlockContent.get();
         final String expectedContents = "\n                 string";

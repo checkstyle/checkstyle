@@ -25,7 +25,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPad
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_PRECEDED;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -525,8 +524,9 @@ public class ParenPadCheckTest
 
         for (int token : check.getAcceptableTokens()) {
             ast.setType(token);
-            assertTrue(TestUtil.<Boolean>invokeMethod(check, "isAcceptableToken", ast),
-                    message + TokenUtil.getTokenName(token));
+            assertWithMessage(message + TokenUtil.getTokenName(token))
+                    .that(TestUtil.<Boolean>invokeMethod(check, "isAcceptableToken", ast))
+                    .isTrue();
         }
     }
 

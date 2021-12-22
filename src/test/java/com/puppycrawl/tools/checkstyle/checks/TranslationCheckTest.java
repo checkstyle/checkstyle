@@ -26,7 +26,6 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -35,7 +34,6 @@ import java.io.Writer;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
 import java.util.SortedSet;
@@ -138,7 +136,6 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
      * @throws Exception when code tested throws exception
      */
     @Test
-    @SuppressWarnings("unchecked")
     public void testStateIsCleared() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputTranslationCheckFireErrors_de.properties")
@@ -151,8 +148,9 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         final Field field = check.getClass().getDeclaredField("filesToProcess");
         field.setAccessible(true);
 
-        assertTrue(((Collection<File>) field.get(check)).isEmpty(),
-                "Stateful field is not cleared on beginProcessing");
+        assertWithMessage("Stateful field is not cleared on beginProcessing")
+                .that((Iterable<?>) field.get(check))
+                .isEmpty();
     }
 
     @Test
@@ -230,7 +228,8 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
 
         final Set<String> keys = TestUtil.invokeMethod(check, "getTranslationKeys",
                 new File(".no.such.file"));
-        assertTrue(keys.isEmpty(), "Translation keys should be empty when File is not found");
+        assertWithMessage("Translation keys should be empty when File is not found")
+                .that(keys).isEmpty();
 
         assertEquals(1, dispatcher.savedErrors.size(), "expected number of errors to fire");
         final Violation violation = new Violation(1,

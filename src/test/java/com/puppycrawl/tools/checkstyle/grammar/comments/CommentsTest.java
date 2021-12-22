@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.grammar.comments;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -79,9 +79,15 @@ public class CommentsTest extends AbstractTreeTestSupport {
             "// to simplify conditional logic"};
         final Comment comment = new Comment(commentText, 9, 89, 53);
 
-        assertTrue(comment.intersects(89, 9, 89, 41), "Invalid intersection result");
-        assertTrue(comment.intersects(89, 53, 90, 50), "Invalid intersection result");
-        assertTrue(comment.intersects(87, 7, 88, 9), "Invalid intersection result");
+        assertWithMessage("Invalid intersection result")
+                .that(comment.intersects(89, 9, 89, 41))
+                .isTrue();
+        assertWithMessage("Invalid intersection result")
+                .that(comment.intersects(89, 53, 90, 50))
+                .isTrue();
+        assertWithMessage("Invalid intersection result")
+                .that(comment.intersects(87, 7, 88, 9))
+                .isTrue();
         assertFalse(comment.intersects(90, 7, 91, 20), "Invalid intersection result");
         assertFalse(comment.intersects(89, 56, 89, 80), "Invalid intersection result");
     }

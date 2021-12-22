@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 
@@ -42,9 +41,9 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(
-                isUtilsClassHasPrivateConstructor(SuppressionsStringPrinter.class, true),
-                "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(isUtilsClassHasPrivateConstructor(SuppressionsStringPrinter.class, true))
+                .isTrue();
     }
 
     @Test

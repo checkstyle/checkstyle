@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertThat;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -70,12 +70,12 @@ public class JavadocTagTest {
 
     @Test
     public void testJavadocTagReferenceImports() {
-        assertTrue(new JavadocTag(0, 0, "see", null).canReferenceImports(), "");
-        assertTrue(new JavadocTag(0, 0, "link", null).canReferenceImports(), "");
-        assertTrue(new JavadocTag(0, 0, "value", null).canReferenceImports(), "");
-        assertTrue(new JavadocTag(0, 0, "linkplain", null).canReferenceImports(), "");
-        assertTrue(new JavadocTag(0, 0, "throws", null).canReferenceImports(), "");
-        assertTrue(new JavadocTag(0, 0, "exception", null).canReferenceImports(), "");
+        assertThat(new JavadocTag(0, 0, "see", null).canReferenceImports()).isTrue();
+        assertThat(new JavadocTag(0, 0, "link", null).canReferenceImports()).isTrue();
+        assertThat(new JavadocTag(0, 0, "value", null).canReferenceImports()).isTrue();
+        assertThat(new JavadocTag(0, 0, "linkplain", null).canReferenceImports()).isTrue();
+        assertThat(new JavadocTag(0, 0, "throws", null).canReferenceImports()).isTrue();
+        assertThat(new JavadocTag(0, 0, "exception", null).canReferenceImports()).isTrue();
     }
 
     @Test
