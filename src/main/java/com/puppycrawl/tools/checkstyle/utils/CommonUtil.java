@@ -162,6 +162,26 @@ public final class CommonUtil {
     }
 
     /**
+     * Returns whether the specified string contains only whitespace up to the specified index.
+     *
+     * @param codePoints
+     *            array of Unicode code point
+     * @param index
+     *            index to check up to
+     * @return whether there is only whitespace
+     */
+    public static boolean hasWhitespaceBefore(int index, int...codePoints) {
+        boolean result = true;
+        for (int i = 0; i < index; i++) {
+            if (!isCodePointWhitespace(codePoints, i)) {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+
+    /**
      * Returns the length of a string ignoring all trailing whitespace.
      * It is a pity that there is not a trim() like
      * method that only removed the trailing whitespace.

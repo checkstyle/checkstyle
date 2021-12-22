@@ -170,6 +170,15 @@ public class CommonUtilTest extends AbstractPathTestSupport {
                 .that(CommonUtil.hasWhitespaceBefore(4, "    a"))
                 .isTrue();
         assertFalse(CommonUtil.hasWhitespaceBefore(5, "    a"), "Invalid result");
+        final int[] input1 = "a".codePoints().toArray();
+        assertWithMessage("Invalid result")
+                .that(CommonUtil.hasWhitespaceBefore(0, input1))
+                .isTrue();
+        final int[] input2 = "    a".codePoints().toArray();
+        assertWithMessage("Invalid result")
+                .that(CommonUtil.hasWhitespaceBefore(4, input2))
+                        .isTrue();
+        assertFalse(CommonUtil.hasWhitespaceBefore(5, input2), "Invalid result");
     }
 
     @Test
