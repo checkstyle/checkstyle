@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -328,7 +329,8 @@ public class RightCurlyCheck extends AbstractCheck {
         else if (shouldBeOnSameLine(option, details)) {
             violation = MSG_KEY_LINE_SAME;
         }
-        else if (shouldBeAloneOnLine(option, details, getLine(details.rcurly.getLineNo() - 1))) {
+        else if (shouldBeAloneOnLine(option, details,
+                getLineCodePoints(details.rcurly.getLineNo() - 1))) {
             violation = MSG_KEY_LINE_ALONE;
         }
         return violation;
@@ -366,12 +368,12 @@ public class RightCurlyCheck extends AbstractCheck {
      *
      * @param bracePolicy option for placing the right curly brace
      * @param details Details for validation
-     * @param targetSrcLine A string with contents of rcurly's line
+     * @param targetSrcLine unicode code points array with contents of rcurly's line
      * @return true if a right curly should be alone on a line.
      */
     private static boolean shouldBeAloneOnLine(RightCurlyOption bracePolicy,
                                                Details details,
-                                               String targetSrcLine) {
+                                               int... targetSrcLine) {
         return bracePolicy == RightCurlyOption.ALONE
                     && shouldBeAloneOnLineWithAloneOption(details, targetSrcLine)
                 || (bracePolicy == RightCurlyOption.ALONE_OR_SINGLELINE
@@ -383,11 +385,11 @@ public class RightCurlyCheck extends AbstractCheck {
      * Whether right curly should be alone on line when ALONE option is used.
      *
      * @param details details for validation.
-     * @param targetSrcLine A string with contents of rcurly's line
+     * @param targetSrcLine unicode code points array with contents of rcurly's line
      * @return true, if right curly should be alone on line when ALONE option is used.
      */
     private static boolean shouldBeAloneOnLineWithAloneOption(Details details,
-                                                              String targetSrcLine) {
+                                                              int... targetSrcLine) {
         return !isAloneOnLine(details, targetSrcLine);
     }
 
@@ -395,12 +397,12 @@ public class RightCurlyCheck extends AbstractCheck {
      * Whether right curly should be alone on line when ALONE_OR_SINGLELINE or SAME option is used.
      *
      * @param details details for validation.
-     * @param targetSrcLine A string with contents of rcurly's line
+     * @param targetSrcLine unicode code points array with contents of rcurly's line
      * @return true, if right curly should be alone on line
      *         when ALONE_OR_SINGLELINE or SAME option is used.
      */
     private static boolean shouldBeAloneOnLineWithNotAloneOption(Details details,
-                                                                 String targetSrcLine) {
+                                                                 int... targetSrcLine) {
         return shouldBeAloneOnLineWithAloneOption(details, targetSrcLine)
                 && !isBlockAloneOnSingleLine(details);
     }
@@ -409,15 +411,15 @@ public class RightCurlyCheck extends AbstractCheck {
      * Checks whether right curly is alone on a line.
      *
      * @param details for validation.
-     * @param targetSrcLine A string with contents of rcurly's line
+     * @param targetSrcLine unicode code points array with contents of rcurly's line
      * @return true if right curly is alone on a line.
      */
-    private static boolean isAloneOnLine(Details details, String targetSrcLine) {
+    private static boolean isAloneOnLine(Details details, int... targetSrcLine) {
         final DetailAST rcurly = details.rcurly;
         final DetailAST nextToken = details.nextToken;
         return (nextToken == null || !TokenUtil.areOnSameLine(rcurly, nextToken)
             || skipDoubleBraceInstInit(details))
-            && CommonUtil.hasWhitespaceBefore(details.rcurly.getColumnNo(),
+            && CodePointUtil.hasWhitespaceBefore(details.rcurly.getColumnNo(),
                targetSrcLine);
     }
 
