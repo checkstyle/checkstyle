@@ -612,4 +612,31 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRightCurlyTestRecordsAndCompactCtors.java"), expected);
     }
+
+    @Test
+    public void testRightCurlyWithEmoji() throws Exception {
+        final String[] expected = {
+            "23:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
+            "26:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
+            "46:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
+            "64:55: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 55),
+            "73:44: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 44),
+            "78:41: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 41),
+
+        };
+        verifyWithInlineConfigParser(getPath("InputRightCurlyWithEmoji.java"), expected);
+    }
+
+    @Test
+    public void testRightCurlyWithEmojiAloneOrSingleLine() throws Exception {
+        final String[] expected = {
+            "24:38: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 38),
+            "30:55: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 55),
+            "40:45: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 45),
+            "51:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
+            "54:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyWithEmojiAloneOrSingleLine.java"), expected);
+    }
 }
