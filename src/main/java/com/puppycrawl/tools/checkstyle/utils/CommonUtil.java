@@ -597,6 +597,18 @@ public final class CommonUtil {
     }
 
     /**
+     * Checks if the value arg is blank by either being empty,
+     * or contains only whitespace characters.
+     *
+     * @param codePoints Array to check.
+     * @return true if the arg is blank.
+     */
+    public static boolean isBlank(int...codePoints) {
+        return codePoints.length == 0
+                || indexOfNonWhitespace(codePoints) >= codePoints.length;
+    }
+
+    /**
      * Method to find the index of the first non-whitespace character in a string.
      *
      * @param value the string to find the first index of a non-whitespace character for.
@@ -613,6 +625,25 @@ public final class CommonUtil {
             left += Character.charCount(codePointAt);
         }
         return left;
+    }
+
+    /**
+     * Method to find the index of the first non-whitespace character.
+     *
+     * @param codePoints  the array to find the first index of a non-whitespace character for.
+     * @return the index of the first non-whitespace character.
+     */
+    public static int indexOfNonWhitespace(int...codePoints) {
+        final int length = codePoints.length;
+        int index = 0;
+        while (index < length) {
+            final int codePointAt = codePoints[index];
+            if (!Character.isWhitespace(codePointAt)) {
+                break;
+            }
+            index += 1;
+        }
+        return index;
     }
 
     /**
