@@ -382,42 +382,60 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     @Test
     public void testIsBlank() {
         assertFalse(CommonUtil.isBlank("string"), "Should return false when string is not empty");
+        final int[] input = "string".codePoints().toArray();
+        assertFalse(CommonUtil.isBlank(input),
+                "Should return false when array is empty");
     }
 
     @Test
     public void testIsBlankAheadWhitespace() {
         assertFalse(CommonUtil.isBlank("  string"), "Should return false when string is not empty");
+        final int[] input = "  string".codePoints().toArray();
+        assertFalse(CommonUtil.isBlank(input), "Should return false when array is not empty");
     }
 
     @Test
     public void testIsBlankBehindWhitespace() {
         assertFalse(CommonUtil.isBlank("string    "),
                 "Should return false when string is not empty");
+        final int[] input = "string    ".codePoints().toArray();
+        assertFalse(CommonUtil.isBlank(input),
+                "Should return false when array is not empty");
     }
 
     @Test
     public void testIsBlankWithWhitespacesAround() {
         assertFalse(CommonUtil.isBlank("    string    "),
                 "Should return false when string is not empty");
+        final int[] input = "    string    ".codePoints().toArray();
+        assertFalse(CommonUtil.isBlank(input),
+                "Should return false when array is not empty");
     }
 
     @Test
     public void testIsBlankWhitespaceInside() {
         assertFalse(CommonUtil.isBlank("str    ing"),
                 "Should return false when string is not empty");
+        final int[] input = "str    ing".codePoints().toArray();
+        assertFalse(CommonUtil.isBlank(input),
+                "Should return false when array is not empty");
     }
 
     @Test
     public void testIsBlankNullString() {
         assertWithMessage("Should return true when string is null")
-                .that(CommonUtil.isBlank(null))
+                .that(CommonUtil.isBlank((String) null))
                 .isTrue();
     }
 
     @Test
-    public void testIsBlankWithEmptyString() {
+    public void testIsBlankWithEmpty() {
         assertWithMessage("Should return true when string is empty")
                 .that(CommonUtil.isBlank(""))
+                .isTrue();
+        final int[] input = "".codePoints().toArray();
+        assertWithMessage("Should return true when array is empty")
+                .that(CommonUtil.isBlank(input))
                 .isTrue();
     }
 
@@ -425,6 +443,10 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     public void testIsBlankWithWhitespacesOnly() {
         assertWithMessage("Should return true when string contains only spaces")
                 .that(CommonUtil.isBlank("   "))
+                .isTrue();
+        final int[] input = "   ".codePoints().toArray();
+        assertWithMessage("Should return true when array contains only spaces")
+                .that(CommonUtil.isBlank(input))
                 .isTrue();
     }
 

@@ -232,6 +232,7 @@ codeclimate
 codeconventions
 codecov
 codehaus
+codepointutil
 codeql
 codeselectorpresentation
 codeship
@@ -1204,6 +1205,7 @@ strkkk
 Studman
 Styleable
 styleguide
+subarray
 subdir
 subelements
 subext
