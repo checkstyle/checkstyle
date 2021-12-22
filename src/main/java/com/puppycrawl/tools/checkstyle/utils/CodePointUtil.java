@@ -51,7 +51,7 @@ public final class CodePointUtil {
      *            index to check up to (exclusive)
      * @return true if all code points preceding given index are whitespace
      */
-    public static boolean hasWhitespaceBefore(int index, int...codePoints) {
+    public static boolean hasWhitespaceBefore(int index, int... codePoints) {
         boolean result = true;
         for (int i = 0; i < index; i++) {
             if (!CommonUtil.isCodePointWhitespace(codePoints, i)) {
