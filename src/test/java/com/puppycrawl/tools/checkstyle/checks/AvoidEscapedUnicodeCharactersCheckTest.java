@@ -382,6 +382,21 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
+    public void testAllowByTailCommentWithEmoji() throws Exception {
+        final String[] expected = {
+            "15:24: " + getCheckMessage(MSG_KEY),
+            "18:24: " + getCheckMessage(MSG_KEY),
+            "22:30: " + getCheckMessage(MSG_KEY),
+            "32:18: " + getCheckMessage(MSG_KEY),
+            "35:18: " + getCheckMessage(MSG_KEY),
+            "37:18: " + getCheckMessage(MSG_KEY),
+            "40:18: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAvoidEscapedUnicodeCharacters5.java"), expected);
+    }
+
+    @Test
     public void testAvoidEscapedUnicodeCharactersTextBlocksAllowByComment() throws Exception {
         final String[] expected = {
             "18:30: " + getCheckMessage(MSG_KEY),

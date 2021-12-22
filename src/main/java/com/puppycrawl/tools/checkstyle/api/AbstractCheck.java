@@ -295,6 +295,16 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     }
 
     /**
+     * Returns code point representation of file text from given line number.
+     *
+     * @param index index of the line
+     * @return the array of Unicode code points
+     */
+    public final int[] getLineCodePoints(int index) {
+        return getLine(index).codePoints().toArray();
+    }
+
+    /**
      * The actual context holder.
      */
     private static class FileContext {
