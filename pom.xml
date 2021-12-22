@@ -2898,6 +2898,8 @@
                 <param>com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator</param>
                 <!-- interfaces -->
                 <param>com.puppycrawl.tools.checkstyle.AuditEventFormatter</param>
+                <param>com.puppycrawl.tools.checkstyle.XdocsPropertyType</param>
+                <param>com.puppycrawl.tools.checkstyle.PropertyType</param>
                 <param>com.puppycrawl.tools.checkstyle.FileStatefulCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.ModuleFactory</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertyResolver</param>
@@ -2908,6 +2910,7 @@
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.AuditEventDefaultFormatterTest</param>
+                <param>com.puppycrawl.tools.checkstyle.XdocsPropertyTypeTest</param>
                 <param>com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest</param>
                 <param>com.puppycrawl.tools.checkstyle.DefaultConfigurationTest</param>
                 <param>com.puppycrawl.tools.checkstyle.DefaultLoggerTest</param>
