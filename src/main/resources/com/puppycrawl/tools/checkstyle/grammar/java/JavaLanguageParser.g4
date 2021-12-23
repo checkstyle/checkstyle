@@ -604,6 +604,7 @@ switchLabel
 
 caseConstants
     : expression (COMMA expression)*
+      (COMMA LITERAL_DEFAULT)? // handle 'case null, default`
     ;
 
 forControl
@@ -639,7 +640,8 @@ expression
     ;
 
 expr
-    : primary                                                              #primaryExp
+    : pattern                                                              #patternExp
+    | primary                                                              #primaryExp
     | expr bop=DOT id                                                      #refOp
     | expr bop=DOT id LPAREN expressionList? RPAREN                        #methodCall
     | expr bop=DOT LITERAL_THIS                                            #thisExp
@@ -822,8 +824,18 @@ arguments
     : LPAREN expressionList? RPAREN
     ;
 
+pattern
+    : guardedPattern
+    | primaryPattern
+    ;
+
+guardedPattern
+    : primaryPattern LAND expr
+    ;
+
 primaryPattern
-    : patternVariableDefinition #typePattern
+    : patternVariableDefinition                                            #typePattern
+    | LPAREN pattern RPAREN                                                #parenPattern
     ;
 
 patternVariableDefinition

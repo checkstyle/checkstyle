@@ -68,6 +68,9 @@ public class JavaAstVisitorTest {
             "visitResource",
             "visitVariableInitializer",
             "visitLambdaBody",
+            "visitTypePattern",
+            "visitPattern",
+            "visitPatternExp",
 
             // AST built in parent rule
             "visitCreatedNameExtended",
