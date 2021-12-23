@@ -604,10 +604,12 @@ switchLabel
 
 caseConstants
     : caseConstant (COMMA caseConstant)*
+      (COMMA LITERAL_DEFAULT)? // handle 'case null, default`
     ;
 
 caseConstant
-    : expression
+    : pattern
+    | expression
     ;
 
 forControl
@@ -668,7 +670,7 @@ expr
     | expr bop=(PLUS|MINUS) expr                                           #binOp
     // handle bitwise shifts below, not in lexer
     | expr (LT LT | GT GT GT | GT GT) expr                                 #bitShift
-    | expr bop=LITERAL_INSTANCEOF (primaryPattern | typeType[true])     #instanceOfExp
+    | expr bop=LITERAL_INSTANCEOF (primaryPattern | typeType[true])        #instanceOfExp
     | expr bop=(LE | GE | GT | LT) expr                                    #binOp
     | expr bop=(EQUAL | NOT_EQUAL) expr                                    #binOp
     | expr bop=BAND expr                                                   #binOp
@@ -826,8 +828,18 @@ arguments
     : LPAREN expressionList? RPAREN
     ;
 
+pattern
+    : guardedPattern
+    | primaryPattern
+    ;
+
+guardedPattern
+    : primaryPattern LAND expr
+    ;
+
 primaryPattern
-    : patternVariableDefinition #typePattern
+    : patternVariableDefinition                                            #typePattern
+    | LPAREN pattern RPAREN                                                #parenPattern
     ;
 
 patternVariableDefinition
