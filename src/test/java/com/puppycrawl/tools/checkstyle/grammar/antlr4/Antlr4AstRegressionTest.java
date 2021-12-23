@@ -310,4 +310,10 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
         verifyAst(getPath("InputAntlr4AstRegressionInterfaceRecordDef.txt"),
                 getNonCompilablePath("InputAntlr4AstRegressionInterfaceRecordDef.java"));
     }
+
+    @Test
+    public void testPatternMatchingInSwitch() throws Exception {
+        verifyAst(getPath("InputAntlr4AstRegressionPatternMatchingInSwitch.txt"),
+                getNonCompilablePath("InputAntlr4AstRegressionPatternMatchingInSwitch.java"));
+    }
 }
