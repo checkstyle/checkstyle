@@ -1244,6 +1244,7 @@
             <include>com/google/**/*.java</include>
             <include>org/checkstyle/**/*.java</include>
           </includes>
+        <trimStackTrace>false</trimStackTrace>
         </configuration>
         <executions>
           <execution>
