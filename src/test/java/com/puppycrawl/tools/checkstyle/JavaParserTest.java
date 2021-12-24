@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
@@ -150,7 +149,9 @@ public class JavaParserTest extends AbstractModuleTestSupport {
 
         final Optional<DetailAST> singleLineComment = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.SINGLE_LINE_COMMENT);
-        assertFalse(singleLineComment.isPresent(), "Single line comment should be present");
+        assertWithMessage("Single line comment should be present")
+                .that(singleLineComment.isPresent())
+                .isFalse();
     }
 
     @Test

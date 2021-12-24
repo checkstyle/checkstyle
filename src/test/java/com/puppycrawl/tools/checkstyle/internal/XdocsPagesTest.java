@@ -26,7 +26,6 @@ import static org.hamcrest.CoreMatchers.describedAs;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -488,8 +487,10 @@ public class XdocsPagesTest {
                     continue;
                 }
 
-                assertFalse(sectionName.endsWith("Check"),
-                        fileName + " section '" + sectionName + "' shouldn't end with 'Check'");
+                assertWithMessage(
+                        fileName + " section '" + sectionName + "' shouldn't end with 'Check'")
+                                .that(sectionName.endsWith("Check"))
+                                .isFalse();
                 if (lastSectionName != null) {
                     assertWithMessage(fileName + " section '" + sectionName
                             + "' is out of order compared to '" + lastSectionName + "'")
@@ -684,8 +685,10 @@ public class XdocsPagesTest {
         fixCapturedProperties(sectionName, instance, clss, properties);
 
         if (subSection != null) {
-            assertFalse(properties.isEmpty(), fileName + " section '" + sectionName
-                    + "' should have no properties to show");
+            assertWithMessage(fileName + " section '" + sectionName
+                    + "' should have no properties to show")
+                .that(properties)
+                .isNotEmpty();
 
             final Set<Node> nodes = XmlUtil.getChildrenElements(subSection);
             assertEquals(1, nodes.size(), fileName + " section '" + sectionName
@@ -811,8 +814,10 @@ public class XdocsPagesTest {
                 continue;
             }
 
-            assertFalse(didTokens, fileName + " section '" + sectionName
-                    + "' should have token properties last");
+            assertWithMessage(fileName + " section '" + sectionName
+                        + "' should have token properties last")
+                    .that(didTokens)
+                    .isFalse();
 
             final String propertyName = columns.get(0).getTextContent();
             assertWithMessage(fileName + " section '" + sectionName
@@ -831,8 +836,10 @@ public class XdocsPagesTest {
                 didJavadocTokens = true;
             }
             else {
-                assertFalse(didJavadocTokens, fileName + " section '" + sectionName
-                            + "' should have javadoc token properties next to last, before tokens");
+                assertWithMessage(fileName + " section '" + sectionName
+                        + "' should have javadoc token properties next to last, before tokens")
+                                .that(didJavadocTokens)
+                                .isFalse();
 
                 validatePropertySectionPropertyEx(fileName, sectionName, instance, columns,
                         propertyName);
@@ -859,8 +866,10 @@ public class XdocsPagesTest {
         final String actualTypeName = columns.get(2).getTextContent().replace("\n", "")
                 .replace("\r", "").replaceAll(" +", " ").trim();
 
-        assertFalse(actualTypeName.isEmpty(),
-                fileName + " section '" + sectionName + "' should have a type for " + propertyName);
+        assertWithMessage(
+                fileName + " section '" + sectionName + "' should have a type for " + propertyName)
+                        .that(actualTypeName)
+                        .isNotEmpty();
 
         final Field field = getField(instance.getClass(), propertyName);
         final Class<?> fieldClss = getFieldClass(fileName, sectionName, instance, field,
@@ -905,9 +914,10 @@ public class XdocsPagesTest {
                         .replaceAll("\\s\\.", "."),
                 fileName + " section '" + sectionName
                         + "' should have all the acceptable tokens");
-        assertFalse(isInvalidTokenPunctuation(acceptableTokenText),
-                fileName + "'s acceptable token section: " + sectionName
-                        + "should have ',' & '.' at beginning of the next corresponding lines.");
+        assertWithMessage(fileName + "'s acceptable token section: " + sectionName
+                + "should have ',' & '.' at beginning of the next corresponding lines.")
+                        .that(isInvalidTokenPunctuation(acceptableTokenText))
+                        .isFalse();
 
         final String defaultTokenText = columns.get(3).getTextContent().trim();
         final String expectedDefaultTokenText = CheckUtil.getTokenText(check.getDefaultTokens(),
@@ -922,9 +932,10 @@ public class XdocsPagesTest {
                             .replaceAll("\\s,", ",")
                             .replaceAll("\\s\\.", "."),
                     fileName + " section '" + sectionName + "' should have all the default tokens");
-            assertFalse(isInvalidTokenPunctuation(defaultTokenText),
-                    fileName + "'s default token section: " + sectionName
-                          + "should have ',' or '.' at beginning of the next corresponding lines.");
+            assertWithMessage(fileName + "'s default token section: " + sectionName
+                    + "should have ',' or '.' at beginning of the next corresponding lines.")
+                            .that(isInvalidTokenPunctuation(defaultTokenText))
+                            .isFalse();
         }
 
     }
@@ -949,9 +960,10 @@ public class XdocsPagesTest {
                         .replaceAll("\\s\\.", "."),
                 fileName + " section '" + sectionName
                         + "' should have all the acceptable javadoc tokens");
-        assertFalse(isInvalidTokenPunctuation(acceptableTokenText),
-                fileName + "'s acceptable javadoc token section: " + sectionName
-                        + "should have ',' & '.' at beginning of the next corresponding lines.");
+        assertWithMessage(fileName + "'s acceptable javadoc token section: " + sectionName
+                + "should have ',' & '.' at beginning of the next corresponding lines.")
+                        .that(isInvalidTokenPunctuation(acceptableTokenText))
+                        .isFalse();
 
         final String defaultTokenText = columns.get(3).getTextContent().trim();
         assertEquals(CheckUtil.getJavadocTokenText(check.getDefaultJavadocTokens(),
@@ -962,9 +974,10 @@ public class XdocsPagesTest {
                         .replaceAll("\\s\\.", "."),
                 fileName + " section '" + sectionName
                         + "' should have all the default javadoc tokens");
-        assertFalse(isInvalidTokenPunctuation(defaultTokenText),
-                fileName + "'s default javadoc token section: " + sectionName
-                        + "should have ',' & '.' at beginning of the next corresponding lines.");
+        assertWithMessage(fileName + "'s default javadoc token section: " + sectionName
+                + "should have ',' & '.' at beginning of the next corresponding lines.")
+                        .that(isInvalidTokenPunctuation(defaultTokenText))
+                        .isFalse();
     }
 
     private static boolean isInvalidTokenPunctuation(String tokenText) {
@@ -1785,9 +1798,10 @@ public class XdocsPagesTest {
                 continue;
             }
 
-            assertFalse(moduleName.endsWith("Check"),
-                    styleName + "_style.xml rule '" + ruleName + "' module '" + moduleName
-                        + "' shouldn't end with 'Check'");
+            assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '" + moduleName
+                        + "' shouldn't end with 'Check'")
+                    .that(moduleName.endsWith("Check"))
+                    .isFalse();
 
             styleChecks.remove(moduleName);
 
@@ -1839,8 +1853,9 @@ public class XdocsPagesTest {
             }
         }
 
-        assertFalse(itrConfigs.hasNext(),
-                styleName + "_style.xml rule '" + ruleName + "' has too many configs");
+        assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' has too many configs")
+                .that(itrConfigs.hasNext())
+                .isFalse();
     }
 
 }

@@ -50,7 +50,8 @@ public class FilterUtilTest {
     @Test
     public void testNonExistentFile() {
         assertWithMessage("Suppression file does not exist")
-                .that(FilterUtil.isFileExists("non-existent.xml")).isFalse();
+                .that(FilterUtil.isFileExists("non-existent.xml"))
+                .isFalse();
     }
 
 }

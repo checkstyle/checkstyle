@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.utils;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -206,10 +205,12 @@ public class TokenUtilTest {
         assertWithMessage("Should return true when valid type passed")
                 .that(TokenUtil.isCommentType("COMMENT_CONTENT"))
                 .isTrue();
-        assertFalse(TokenUtil.isCommentType(TokenTypes.CLASS_DEF),
-                "Should return false when invalid type passed");
-        assertFalse(TokenUtil.isCommentType("CLASS_DEF"),
-                "Should return false when invalid type passed");
+        assertWithMessage("Should return false when invalid type passed")
+                .that(TokenUtil.isCommentType(TokenTypes.CLASS_DEF))
+                .isFalse();
+        assertWithMessage("Should return false when invalid type passed")
+                .that(TokenUtil.isCommentType("CLASS_DEF"))
+                .isFalse();
     }
 
     @Test
@@ -344,9 +345,15 @@ public class TokenUtilTest {
         final boolean result3 = TokenUtil.isOfType(astForTest2, TokenTypes.LITERAL_FOR,
                                 TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE);
 
-        assertFalse(result1, "Token type should not match");
-        assertFalse(result2, "Token type should not match");
-        assertFalse(result3, "Token type should not match");
+        assertWithMessage("Token type should not match")
+                .that(result1)
+                .isFalse();
+        assertWithMessage("Token type should not match")
+                .that(result2)
+                .isFalse();
+        assertWithMessage("Token type should not match")
+                .that(result3)
+                .isFalse();
     }
 
     @Test
@@ -357,8 +364,9 @@ public class TokenUtilTest {
         assertWithMessage("Result is not expected")
                 .that(TokenUtil.isBooleanLiteralType(TokenTypes.LITERAL_FALSE))
                 .isTrue();
-        assertFalse(TokenUtil.isBooleanLiteralType(TokenTypes.LOR),
-                    "Result is not expected");
+        assertWithMessage("Result is not expected")
+                .that(TokenUtil.isBooleanLiteralType(TokenTypes.LOR))
+                .isFalse();
     }
 
 }
