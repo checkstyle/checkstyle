@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.xpath;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.XpathUtil.getXpathItems;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.File;
 import java.util.List;
@@ -138,7 +137,9 @@ public class RootNodeTest extends AbstractPathTestSupport {
     @Test
     public void testRootWithNullDetailAst() {
         final RootNode emptyRootNode = new RootNode(null);
-        assertFalse(emptyRootNode.hasChildNodes(), "Empty node should not have children");
+        assertWithMessage("Empty node should not have children")
+                .that(emptyRootNode.hasChildNodes())
+                .isFalse();
 
         try (AxisIterator iterator = emptyRootNode.iterateAxis(AxisInfo.DESCENDANT)) {
             assertEquals(EmptyIterator.ofNodes(), iterator,
@@ -420,7 +421,8 @@ public class RootNodeTest extends AbstractPathTestSupport {
         assertWithMessage("Should return true, because object is being compared to itself")
                 .that(rootNode.isSameNodeInfo(rootNode))
                 .isTrue();
-        assertFalse(rootNode.isSameNodeInfo(null),
-                "Should return false, because object does not equal null");
+        assertWithMessage("Should return false, because object does not equal null")
+                .that(rootNode.isSameNodeInfo(null))
+                .isFalse();
     }
 }

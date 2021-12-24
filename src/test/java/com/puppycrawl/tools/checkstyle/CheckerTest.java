@@ -26,7 +26,6 @@ import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_STARTED_MESSAG
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -138,10 +137,18 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
 
-        assertFalse(auditAdapter.wasCalled(), "Checker.destroy() doesn't remove listeners.");
-        assertFalse(fileSet.wasCalled(), "Checker.destroy() doesn't remove file sets.");
-        assertFalse(filter.wasCalled(), "Checker.destroy() doesn't remove filters.");
-        assertFalse(fileFilter.wasCalled(), "Checker.destroy() doesn't remove file filters.");
+        assertWithMessage("Checker.destroy() doesn't remove listeners.")
+                .that(auditAdapter.wasCalled())
+                .isFalse();
+        assertWithMessage("Checker.destroy() doesn't remove file sets.")
+                .that(fileSet.wasCalled())
+                .isFalse();
+        assertWithMessage("Checker.destroy() doesn't remove filters.")
+                .that(filter.wasCalled())
+                .isFalse();
+        assertWithMessage("Checker.destroy() doesn't remove file filters.")
+                .that(fileFilter.wasCalled())
+                .isFalse();
     }
 
     @Test
@@ -213,32 +220,36 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("Checker.fireAuditStarted() doesn't call listener")
                 .that(aa2.wasCalled())
                 .isTrue();
-        assertFalse(auditAdapter.wasCalled(),
-                "Checker.fireAuditStarted() does call removed listener");
+        assertWithMessage("Checker.fireAuditStarted() does call removed listener")
+                .that(auditAdapter.wasCalled())
+                .isFalse();
 
         aa2.resetListener();
         getFireAuditFinished().invoke(checker);
         assertWithMessage("Checker.fireAuditFinished() doesn't call listener")
                 .that(aa2.wasCalled())
                 .isTrue();
-        assertFalse(auditAdapter.wasCalled(),
-                "Checker.fireAuditFinished() does call removed listener");
+        assertWithMessage("Checker.fireAuditFinished() does call removed listener")
+                .that(auditAdapter.wasCalled())
+                .isFalse();
 
         aa2.resetListener();
         checker.fireFileStarted("Some File Name");
         assertWithMessage("Checker.fireFileStarted() doesn't call listener")
                 .that(aa2.wasCalled())
                 .isTrue();
-        assertFalse(auditAdapter.wasCalled(),
-                "Checker.fireFileStarted() does call removed listener");
+        assertWithMessage("Checker.fireFileStarted() does call removed listener")
+                .that(auditAdapter.wasCalled())
+                .isFalse();
 
         aa2.resetListener();
         checker.fireFileFinished("Some File Name");
         assertWithMessage("Checker.fireFileFinished() doesn't call listener")
                 .that(aa2.wasCalled())
                 .isTrue();
-        assertFalse(auditAdapter.wasCalled(),
-                "Checker.fireFileFinished() does call removed listener");
+        assertWithMessage("Checker.fireFileFinished() does call removed listener")
+                .that(auditAdapter.wasCalled())
+                .isFalse();
 
         aa2.resetListener();
         final SortedSet<Violation> violations = new TreeSet<>();
@@ -248,7 +259,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("Checker.fireErrors() doesn't call listener")
                 .that(aa2.wasCalled())
                 .isTrue();
-        assertFalse(auditAdapter.wasCalled(), "Checker.fireErrors() does call removed listener");
+        assertWithMessage("Checker.fireErrors() does call removed listener")
+                .that(auditAdapter.wasCalled())
+                .isFalse();
     }
 
     @Test
@@ -279,7 +292,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("Checker.acceptFileStarted() doesn't call filter")
                 .that(f2.wasCalled())
                 .isTrue();
-        assertFalse(filter.wasCalled(), "Checker.acceptFileStarted() does call removed filter");
+        assertWithMessage("Checker.acceptFileStarted() does call removed filter")
+                .that(filter.wasCalled())
+                .isFalse();
     }
 
     @Test
@@ -316,7 +331,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("Checker.fireErrors() doesn't call filter")
                 .that(f2.wasCalled())
                 .isTrue();
-        assertFalse(filter.wasCalled(), "Checker.fireErrors() does call removed filter");
+        assertWithMessage("Checker.fireErrors() does call removed filter")
+                .that(filter.wasCalled())
+                .isFalse();
     }
 
     @Test
@@ -542,8 +559,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testCacheAndCheckWhichDoesNotImplementExternalResourceHolderInterface()
             throws Exception {
-        assertFalse(ExternalResourceHolder.class.isAssignableFrom(HiddenFieldCheck.class),
-                "ExternalResourceHolder has changed his parent");
+        assertWithMessage("ExternalResourceHolder has changed his parent")
+                .that(ExternalResourceHolder.class.isAssignableFrom(HiddenFieldCheck.class))
+                .isFalse();
         final DefaultConfiguration checkConfig = createModuleConfig(HiddenFieldCheck.class);
 
         final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
@@ -802,8 +820,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testCacheAndFilterWhichDoesNotImplementExternalResourceHolderInterface()
             throws Exception {
-        assertFalse(ExternalResourceHolder.class.isAssignableFrom(DummyFilter.class),
-                "ExternalResourceHolder has changed its parent");
+        assertWithMessage("ExternalResourceHolder has changed its parent")
+                .that(ExternalResourceHolder.class.isAssignableFrom(DummyFilter.class))
+                .isFalse();
         final DefaultConfiguration filterConfig = createModuleConfig(DummyFilter.class);
 
         final DefaultConfiguration checkerConfig = createRootConfig(filterConfig);

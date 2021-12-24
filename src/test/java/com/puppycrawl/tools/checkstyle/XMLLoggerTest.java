@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
@@ -112,7 +111,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             "ref",
         };
         for (String noReference : noReferences) {
-            assertFalse(XMLLogger.isReference(noReference), "no reference: " + noReference);
+            assertWithMessage("no reference: " + noReference)
+                    .that(XMLLogger.isReference(noReference))
+                    .isFalse();
         }
 
         outStream.close();
