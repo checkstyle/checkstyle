@@ -25,7 +25,6 @@ import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -191,7 +190,9 @@ public class ViolationTest {
                 "java.class", new TestUrlsClassLoader(url), true);
 
         assertNotNull(bundle, "Bundle should not be null when stream is not null");
-        assertFalse(urlConnection.getUseCaches(), "connection should not be using caches");
+        assertWithMessage("connection should not be using caches")
+                .that(urlConnection.getUseCaches())
+                .isFalse();
         assertWithMessage("connection should be closed")
                 .that(closed.get())
                 .isTrue();
