@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenInAstByPredicate;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
@@ -67,8 +66,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(TokenTypes.ASSIGN);
         ast.setText("ASSIGN");
-        assertFalse(CheckUtil.isElseIf(ast),
-                "Invalid elseIf check result 'ASSIGN' is not 'else if'");
+        assertWithMessage("Invalid elseIf check result 'ASSIGN' is not 'else if'")
+                .that(CheckUtil.isElseIf(ast))
+                .isFalse();
 
         final DetailAstImpl parentAst = new DetailAstImpl();
         parentAst.setType(TokenTypes.LCURLY);
@@ -79,8 +79,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         ifAst.setText("IF");
         parentAst.addChild(ifAst);
 
-        assertFalse(CheckUtil.isElseIf(ifAst),
-                "Invalid elseIf check result: 'IF' is not 'else if'");
+        assertWithMessage("Invalid elseIf check result: 'IF' is not 'else if'")
+                .that(CheckUtil.isElseIf(ifAst))
+                .isFalse();
 
         final DetailAstImpl parentAst2 = new DetailAstImpl();
         parentAst2.setType(TokenTypes.SLIST);
@@ -88,8 +89,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
 
         parentAst2.addChild(ifAst);
 
-        assertFalse(CheckUtil.isElseIf(ifAst),
-                "Invalid elseIf check result: 'SLIST' is not 'else if'");
+        assertWithMessage("Invalid elseIf check result: 'SLIST' is not 'else if'")
+                .that(CheckUtil.isElseIf(ifAst))
+                .isFalse();
 
         final DetailAstImpl elseAst = new DetailAstImpl();
         elseAst.setType(TokenTypes.LITERAL_ELSE);
@@ -113,7 +115,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         metDef.setType(TokenTypes.METHOD_DEF);
         metDef.addChild(modifiers);
 
-        assertFalse(CheckUtil.isEqualsMethod(metDef), "Invalid result: ast is not equals method");
+        assertWithMessage("Invalid result: ast is not equals method")
+                .that(CheckUtil.isEqualsMethod(metDef))
+                .isFalse();
 
         metDef.removeChildren();
 
@@ -137,7 +141,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         parameters.addChild(parameter1);
         metDef.addChild(parameters);
 
-        assertFalse(CheckUtil.isEqualsMethod(metDef), "Invalid result: ast is not equals method");
+        assertWithMessage("Invalid result: ast is not equals method")
+                .that(CheckUtil.isEqualsMethod(metDef))
+                .isFalse();
     }
 
     @Test
@@ -185,8 +191,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid result: AST provided is not equals method")
                 .that(CheckUtil.isEqualsMethod(equalsMethodNode))
                 .isTrue();
-        assertFalse(CheckUtil.isEqualsMethod(someOtherMethod),
-                "Invalid result: AST provided is equals method");
+        assertWithMessage("Invalid result: AST provided is equals method")
+                .that(CheckUtil.isEqualsMethod(someOtherMethod))
+                .isFalse();
     }
 
     @Test
@@ -205,8 +212,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid result: AST provided is not else if with curly")
                 .that(CheckUtil.isElseIf(ifElse))
                 .isTrue();
-        assertFalse(CheckUtil.isElseIf(ifWithoutElse),
-                "Invalid result: AST provided is else if with curly");
+        assertWithMessage("Invalid result: AST provided is else if with curly")
+                .that(CheckUtil.isElseIf(ifWithoutElse))
+                .isFalse();
     }
 
     @Test
@@ -217,8 +225,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid result: AST provided is void method")
                 .that(CheckUtil.isNonVoidMethod(nonVoidMethod))
                 .isTrue();
-        assertFalse(CheckUtil.isNonVoidMethod(voidMethod),
-                "Invalid result: AST provided is non void method");
+        assertWithMessage("Invalid result: AST provided is non void method")
+                .that(CheckUtil.isNonVoidMethod(voidMethod))
+                .isFalse();
     }
 
     @Test
@@ -229,8 +238,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid result: AST provided is getter method")
                 .that(CheckUtil.isGetterMethod(getterMethod))
                 .isTrue();
-        assertFalse(CheckUtil.isGetterMethod(notGetterMethod),
-                "Invalid result: AST provided is not getter method");
+        assertWithMessage("Invalid result: AST provided is not getter method")
+                .that(CheckUtil.isGetterMethod(notGetterMethod))
+                .isFalse();
     }
 
     @Test
@@ -243,8 +253,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid result: AST provided is setter method")
                 .that(CheckUtil.isSetterMethod(setterMethod))
                 .isTrue();
-        assertFalse(CheckUtil.isSetterMethod(notSetterMethod),
-                "Invalid result: AST provided is not setter method");
+        assertWithMessage("Invalid result: AST provided is not setter method")
+                .that(CheckUtil.isSetterMethod(notSetterMethod))
+                .isFalse();
     }
 
     @Test
@@ -331,8 +342,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid result: parameter provided is receiver parameter")
                 .that(CheckUtil.isReceiverParameter(receiverParameter))
                 .isTrue();
-        assertFalse(CheckUtil.isReceiverParameter(simpleParameter),
-                "Invalid result: parameter provided is not receiver parameter");
+        assertWithMessage("Invalid result: parameter provided is not receiver parameter")
+                .that(CheckUtil.isReceiverParameter(simpleParameter))
+                .isFalse();
     }
 
     @Test

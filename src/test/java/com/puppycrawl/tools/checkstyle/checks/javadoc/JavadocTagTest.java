@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
@@ -80,7 +79,8 @@ public class JavadocTagTest {
 
     @Test
     public void testJavadocTagReferenceImportsInvalid() {
-        assertFalse(new JavadocTag(0, 0, "author", null).canReferenceImports(), "");
+        assertThat(new JavadocTag(0, 0, "author", null).canReferenceImports())
+                .isFalse();
     }
 
 }
