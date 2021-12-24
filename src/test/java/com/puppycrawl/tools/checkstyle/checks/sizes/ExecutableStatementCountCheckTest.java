@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Collection;
 
@@ -138,7 +137,9 @@ public class ExecutableStatementCountCheckTest
             assertWithMessage("exception expected").fail();
         }
         catch (IllegalStateException ex) {
-            assertEquals("ENUM[0x-1]", ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("ENUM[0x-1]");
         }
     }
 
@@ -154,7 +155,9 @@ public class ExecutableStatementCountCheckTest
             assertWithMessage("exception expected").fail();
         }
         catch (IllegalStateException ex) {
-            assertEquals("ENUM[0x-1]", ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("ENUM[0x-1]");
         }
     }
 

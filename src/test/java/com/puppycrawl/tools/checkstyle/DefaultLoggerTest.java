@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -166,11 +165,16 @@ public class DefaultLoggerTest {
         dl.auditFinished(null);
         auditFinishMessage.setAccessible(true);
         auditStartMessage.setAccessible(true);
-        assertEquals(auditStartMessage.invoke(getAuditStartMessageClass()) + System.lineSeparator()
+        assertWithMessage("expected output")
+            .that(infoStream.toString())
+            .isEqualTo(auditStartMessage.invoke(getAuditStartMessageClass())
+                        + System.lineSeparator()
                         + auditFinishMessage.invoke(getAuditFinishMessageClass())
-                        + System.lineSeparator(), infoStream.toString(), "expected output");
-        assertEquals("[ERROR] fileName:1:2: customViolation [DefaultLoggerTest]"
-                + System.lineSeparator(), errorStream.toString(), "expected output");
+                        + System.lineSeparator());
+        assertWithMessage("expected output")
+            .that(errorStream.toString())
+            .isEqualTo("[ERROR] fileName:1:2: customViolation [DefaultLoggerTest]"
+                + System.lineSeparator());
     }
 
     @Test
@@ -188,11 +192,16 @@ public class DefaultLoggerTest {
         dl.auditFinished(null);
         auditFinishMessage.setAccessible(true);
         auditStartMessage.setAccessible(true);
-        assertEquals(auditStartMessage.invoke(getAuditStartMessageClass()) + System.lineSeparator()
+        assertWithMessage("expected output")
+            .that(infoStream.toString())
+            .isEqualTo(auditStartMessage.invoke(getAuditStartMessageClass())
+                        + System.lineSeparator()
                         + auditFinishMessage.invoke(getAuditFinishMessageClass())
-                        + System.lineSeparator(), infoStream.toString(), "expected output");
-        assertEquals("[ERROR] fileName:1:2: customViolation [moduleId]"
-                + System.lineSeparator(), errorStream.toString(), "expected output");
+                        + System.lineSeparator());
+        assertWithMessage("expected output")
+            .that(errorStream.toString())
+            .isEqualTo("[ERROR] fileName:1:2: customViolation [moduleId]"
+                + System.lineSeparator());
     }
 
     @Test
@@ -247,7 +256,8 @@ public class DefaultLoggerTest {
             final Object constructor = localizedMessage.getConstructor(String.class)
                     .newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE);
             assertWithMessage("Unsupported language: " + DEFAULT_LOCALE)
-                    .that(message.invoke(constructor)).isEqualTo("Error auditing {0}");
+                    .that(message.invoke(constructor))
+                    .isEqualTo("Error auditing {0}");
         }
     }
 
@@ -261,9 +271,12 @@ public class DefaultLoggerTest {
         message.setAccessible(true);
         final Map<String, ResourceBundle> bundleCache =
                 TestUtil.getInternalStaticState(message.getDeclaringClass(), "BUNDLE_CACHE");
-        assertEquals("Une erreur est survenue {0}", message.invoke(messageClass),
-                "Invalid message");
-        assertEquals(1, bundleCache.size(), "Invalid bundle cache size");
+        assertWithMessage("Invalid message")
+            .that(message.invoke(messageClass))
+            .isEqualTo("Une erreur est survenue {0}");
+        assertWithMessage("Invalid bundle cache size")
+            .that(bundleCache.size())
+            .isEqualTo(1);
     }
 
     @Test

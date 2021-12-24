@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.File;
@@ -74,11 +73,10 @@ public class XpathFileGeneratorAstFilterTest {
         final AuditEvent auditEvent = new AuditEvent(this,
                 getPath("InputXpathFileGeneratorAstFilter.java"), violation);
 
-        assertEquals(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathFileGeneratorAstFilter']]"
-                        + "/OBJBLOCK/LCURLY",
-                XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent),
-                "expected xpath");
+        assertWithMessage("expected xpath")
+            .that(XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent))
+            .isEqualTo("/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                    + "[@text='InputXpathFileGeneratorAstFilter']]/OBJBLOCK/LCURLY");
     }
 
     @Test
@@ -118,11 +116,11 @@ public class XpathFileGeneratorAstFilterTest {
         final AuditEvent auditEvent = new AuditEvent(this,
                 getPath("InputXpathFileGeneratorAstFilter.java"), violation);
 
-        assertEquals(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathFileGeneratorAstFilter']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='tabMethod']]/SLIST/LITERAL_RETURN",
-                XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent),
-                "expected xpath");
+        assertWithMessage("expected xpath")
+            .that(XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent))
+            .isEqualTo("/COMPILATION_UNIT"
+                        + "/CLASS_DEF[./IDENT[@text='InputXpathFileGeneratorAstFilter']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='tabMethod']]/SLIST/LITERAL_RETURN");
     }
 
     /**

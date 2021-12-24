@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.File;
@@ -95,16 +94,17 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                     + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
                     + "metrics.ClassFanOutComplexityCheck - "
                     + "Cannot set property 'excludedPackages' to "
-                    + "'com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.'",
-                ex.getMessage(), "Invalid exception message");
-            assertEquals("the following values are not valid identifiers: ["
-                            + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.]",
-                    ex.getCause().getCause().getCause().getCause().getMessage(),
-                    "Invalid exception message,");
+                    + "'com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.'");
+            assertWithMessage("Invalid exception message,")
+                .that(ex.getCause().getCause().getCause().getCause().getMessage())
+                .isEqualTo("the following values are not valid identifiers: ["
+                            + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.]");
         }
     }
 

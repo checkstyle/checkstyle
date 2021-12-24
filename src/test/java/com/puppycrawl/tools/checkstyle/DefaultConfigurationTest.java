@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -45,9 +44,13 @@ public class DefaultConfigurationTest {
     public void testAddPropertyAndGetProperty() throws CheckstyleException {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
         config.addProperty("property", "first");
-        assertEquals("first", config.getProperty("property"), "Invalid property value");
+        assertWithMessage("Invalid property value")
+            .that(config.getProperty("property"))
+            .isEqualTo("first");
         config.addProperty("property", "second");
-        assertEquals("first,second", config.getProperty("property"), "Invalid property value");
+        assertWithMessage("Invalid property value")
+            .that(config.getProperty("property"))
+            .isEqualTo("first,second");
     }
 
     @Test
@@ -57,26 +60,38 @@ public class DefaultConfigurationTest {
         final String[] actual = config.getAttributeNames();
         final String[] expected = {"attribute"};
         assertArrayEquals(expected, actual, "Invalid attribute names");
-        assertEquals("first", config.getAttribute("attribute"), "Invalid property value");
+        assertWithMessage("Invalid property value")
+            .that(config.getAttribute("attribute"))
+            .isEqualTo("first");
         config.addAttribute("attribute", "second");
-        assertEquals("first,second", config.getAttribute("attribute"), "Invalid property value");
+        assertWithMessage("Invalid property value")
+            .that(config.getAttribute("attribute"))
+            .isEqualTo("first,second");
     }
 
     @Test
     public void testGetName() {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
-        assertEquals("MyConfig", config.getName(), "Invalid configuration name");
+        assertWithMessage("Invalid configuration name")
+            .that(config.getName())
+            .isEqualTo("MyConfig");
     }
 
     @Test
     public void testRemoveChild() {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
         final DefaultConfiguration configChild = new DefaultConfiguration("childConfig");
-        assertEquals(0, config.getChildren().length, "Invalid children count");
+        assertWithMessage("Invalid children count")
+            .that(config.getChildren().length)
+            .isEqualTo(0);
         config.addChild(configChild);
-        assertEquals(1, config.getChildren().length, "Invalid children count");
+        assertWithMessage("Invalid children count")
+            .that(config.getChildren().length)
+            .isEqualTo(1);
         config.removeChild(configChild);
-        assertEquals(0, config.getChildren().length, "Invalid children count");
+        assertWithMessage("Invalid children count")
+            .that(config.getChildren().length)
+            .isEqualTo(0);
     }
 
     @Test
@@ -85,7 +100,9 @@ public class DefaultConfigurationTest {
         config.addMessage("key", "value");
         final Map<String, String> expected = new TreeMap<>();
         expected.put("key", "value");
-        assertEquals(expected, config.getMessages(), "Invalid message map");
+        assertWithMessage("Invalid message map")
+            .that(config.getMessages())
+            .isEqualTo(expected);
     }
 
     @Test
@@ -98,9 +115,9 @@ public class DefaultConfigurationTest {
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException expected) {
-            assertEquals(
-                    "missing key '" + propertyName + "' in " + name,
-                    expected.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(expected.getMessage())
+                .isEqualTo("missing key '" + propertyName + "' in " + name);
         }
     }
 
@@ -110,7 +127,9 @@ public class DefaultConfigurationTest {
         final DefaultConfiguration config = new DefaultConfiguration(name);
         final ThreadModeSettings singleThreadMode =
                 ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
-        assertEquals(singleThreadMode, config.getThreadModeSettings(), "Invalid thread mode");
+        assertWithMessage("Invalid thread mode")
+            .that(config.getThreadModeSettings())
+            .isEqualTo(singleThreadMode);
     }
 
     @Test
@@ -119,7 +138,9 @@ public class DefaultConfigurationTest {
         final ThreadModeSettings multiThreadMode =
                 new ThreadModeSettings(4, 2);
         final DefaultConfiguration config = new DefaultConfiguration(name, multiThreadMode);
-        assertEquals(multiThreadMode, config.getThreadModeSettings(), "Invalid thread mode");
+        assertWithMessage("Invalid thread mode")
+            .that(config.getThreadModeSettings())
+            .isEqualTo(multiThreadMode);
     }
 
 }

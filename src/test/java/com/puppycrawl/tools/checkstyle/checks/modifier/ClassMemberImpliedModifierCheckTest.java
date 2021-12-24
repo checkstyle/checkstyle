@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -159,7 +158,9 @@ public class ClassMemberImpliedModifierCheckTest
             assertWithMessage("IllegalStateException is expected").fail();
         }
         catch (IllegalStateException ex) {
-            assertEquals(init.toString(), ex.getMessage(), "Error message is unexpected");
+            assertWithMessage("Error message is unexpected")
+                .that(ex.getMessage())
+                .isEqualTo(init.toString());
         }
     }
 

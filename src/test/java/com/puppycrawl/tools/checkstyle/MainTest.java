@@ -25,7 +25,6 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsCla
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.itsallcode.junit.sysextensions.AssertExit.assertExitWithStatus;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
@@ -256,17 +255,24 @@ public class MainTest {
     public void testVersionPrint(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws IOException {
         Main.main("-V");
-        assertEquals("Checkstyle version: null" + System.lineSeparator(),
-                systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Checkstyle version: null" + System.lineSeparator());
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
     public void testUsageHelpPrint(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws IOException {
         Main.main("-h");
-        assertEquals(USAGE, systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(USAGE);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -276,8 +282,12 @@ public class MainTest {
         // picocli verifies required parameters before checking unknown options
         assertExitWithStatus(-1, () -> invokeMain("-q", "file"));
         final String usage = "Unknown option: '-q'" + EOL + SHORT_USAGE;
-        assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals(usage, systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo(usage);
     }
 
     @Test
@@ -287,16 +297,23 @@ public class MainTest {
         // files is defined as a required positional param;
         // picocli verifies required parameters before checking unknown options
         final String usage = "Missing required parameter: '<files>'" + EOL + SHORT_USAGE;
-        assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals(usage, systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo(usage);
     }
 
     @Test
     public void testNoConfigSpecified(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         assertExitWithStatus(-1, () -> invokeMain(getPath("InputMain.java")));
-        assertEquals("Must specify a config XML file." + System.lineSeparator(),
-                systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Must specify a config XML file." + System.lineSeparator());
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -305,9 +322,12 @@ public class MainTest {
         assertExitWithStatus(-1, () -> {
             invokeMain("-c", "/google_checks.xml", "NonExistentFile.java");
         });
-        assertEquals("Files to process must be specified, found 0."
-            + System.lineSeparator(), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Files to process must be specified, found 0." + System.lineSeparator());
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -323,9 +343,12 @@ public class MainTest {
         assertExitWithStatus(-1, () -> {
             invokeMain("-c", "/google_checks.xml", canonicalPath);
         });
-        assertEquals("Files to process must be specified, found 0."
-            + System.lineSeparator(), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Files to process must be specified, found 0." + System.lineSeparator());
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -335,10 +358,13 @@ public class MainTest {
             invokeMain("-c", "src/main/resources/non_existent_config.xml",
                     getPath("InputMain.java"));
         });
-        assertEquals(addEndOfLine("Could not find config XML file "
-                    + "'src/main/resources/non_existent_config.xml'."),
-                systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(addEndOfLine("Could not find config XML file "
+                    + "'src/main/resources/non_existent_config.xml'."));
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -347,10 +373,13 @@ public class MainTest {
         assertExitWithStatus(-1, () -> {
             invokeMain("-c", "/google_checks.xml", "-f", "xmlp", getPath("InputMain.java"));
         });
-        assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("Invalid value for option '-f': expected one of [XML, SARIF, PLAIN]"
-                    + " (case-insensitive) but was 'xmlp'" + EOL + SHORT_USAGE,
-                systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("Invalid value for option '-f': expected one of [XML, SARIF, PLAIN]"
+                    + " (case-insensitive) but was 'xmlp'" + EOL + SHORT_USAGE);
     }
 
     @Test
@@ -370,10 +399,13 @@ public class MainTest {
     public void testExistingTargetFile(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws IOException {
         Main.main("-c", getPath("InputMainConfig-classname.xml"), getPath("InputMain.java"));
-        assertEquals(addEndOfLine(auditStartMessage.getViolation(),
-                auditFinishMessage.getViolation()),
-                systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(addEndOfLine(auditStartMessage.getViolation(),
+                auditFinishMessage.getViolation()));
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -383,13 +415,17 @@ public class MainTest {
                 getPath("InputMain.java"));
         final String expectedPath = getFilePath("InputMain.java");
         final String version = Main.class.getPackage().getImplementationVersion();
-        assertEquals(addEndOfLine(
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(addEndOfLine(
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
                 "<checkstyle version=\"" + version + "\">",
                 "<file name=\"" + expectedPath + "\">",
                 "</file>",
-                "</checkstyle>"), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+                "</checkstyle>"));
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     /**
@@ -445,10 +481,13 @@ public class MainTest {
             @SysOut Capturable systemOut) throws IOException {
         Main.main("-c", getPath("InputMainConfig-classname.xml"), "-f", "plain",
                 getPath("InputMain.java"));
-        assertEquals(addEndOfLine(auditStartMessage.getViolation(),
-                auditFinishMessage.getViolation()),
-                systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(addEndOfLine(auditStartMessage.getViolation(),
+                auditFinishMessage.getViolation()));
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -464,17 +503,19 @@ public class MainTest {
                 "name.invalidPattern", new String[] {"InputMainInner", "^[a-z0-9]*$"},
                 null, getClass(), null);
         final String expectedPath = getFilePath("InputMain.java");
-        assertEquals(
-                addEndOfLine(auditStartMessage.getViolation(),
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(addEndOfLine(auditStartMessage.getViolation(),
                     "[WARN] " + expectedPath + ":3:14: "
                         + invalidPatternMessageMain.getViolation()
                         + " [TypeName]",
                     "[WARN] " + expectedPath + ":5:7: "
                         + invalidPatternMessageMainInner.getViolation()
                         + " [TypeName]",
-                    auditFinishMessage.getViolation()),
-                systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+                    auditFinishMessage.getViolation()));
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -518,16 +559,17 @@ public class MainTest {
                 "name.invalidPattern", new String[] {"InputMainInner", "^[a-z0-9]*$"},
                 null, getClass(), null);
         final String expectedPath = getFilePath("InputMain.java");
-        assertEquals(
-                addEndOfLine(auditStartMessage.getViolation(),
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(addEndOfLine(auditStartMessage.getViolation(),
                     "[ERROR] " + expectedPath + ":3:14: "
                         + invalidPatternMessageMain.getViolation() + " [TypeName]",
                     "[ERROR] " + expectedPath + ":5:7: "
                         + invalidPatternMessageMainInner.getViolation() + " [TypeName]",
-                    auditFinishMessage.getViolation()),
-                systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals(addEndOfLine(errorCounterTwoMessage.getViolation()),
-                systemErr.getCapturedData(), "Unexpected system error log");
+                    auditFinishMessage.getViolation()));
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo(addEndOfLine(errorCounterTwoMessage.getViolation()));
     }
 
     /**
@@ -552,14 +594,15 @@ public class MainTest {
                 "name.invalidPattern", new String[] {"InputMain1", "^[a-z0-9]*$"},
                 null, getClass(), null);
         final String expectedPath = getFilePath("InputMain1.java");
-        assertEquals(
-                addEndOfLine(auditStartMessage.getViolation(),
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(addEndOfLine(auditStartMessage.getViolation(),
                     "[ERROR] " + expectedPath + ":3:14: "
                         + invalidPatternMessageMain.getViolation() + " [TypeName]",
-                    auditFinishMessage.getViolation()),
-                systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals(addEndOfLine(errorCounterTwoMessage.getViolation()),
-                systemErr.getCapturedData(), "Unexpected system error log");
+                    auditFinishMessage.getViolation()));
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo(addEndOfLine(errorCounterTwoMessage.getViolation()));
     }
 
     @Test
@@ -576,12 +619,14 @@ public class MainTest {
                 "javadoc.packageInfo", new String[] {},
                 null, getClass(), null);
         final String expectedPath = getFilePath("InputMain1.java");
-        assertEquals(addEndOfLine(auditStartMessage.getViolation(),
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(addEndOfLine(auditStartMessage.getViolation(),
                 "[ERROR] " + expectedPath + ":1: " + message.getViolation() + " [JavadocPackage]",
-                auditFinishMessage.getViolation()),
-                systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals(addEndOfLine(errorCounterTwoMessage.getViolation()),
-                systemErr.getCapturedData(), "Unexpected system error log");
+                auditFinishMessage.getViolation()));
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo(addEndOfLine(errorCounterTwoMessage.getViolation()));
     }
 
     @Test
@@ -589,8 +634,12 @@ public class MainTest {
             @SysOut Capturable systemOut) throws IOException {
         Main.main("-c", getPath("InputMainConfig-classname.xml"), "-f", "plain",
                 "-o", temporaryFolder + "/output.txt", getPath("InputMain.java"));
-        assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -603,8 +652,12 @@ public class MainTest {
                 .isTrue();
         Main.main("-c", getPath("InputMainConfig-classname.xml"), "-f", "plain",
                 "-o", outputFile, getPath("InputMain.java"));
-        assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -625,10 +678,13 @@ public class MainTest {
             @SysOut Capturable systemOut) throws IOException {
         Main.main("-c", getPath("InputMainConfig-classname-prop.xml"),
                 "-p", getPath("InputMainMycheckstyle.properties"), getPath("InputMain.java"));
-        assertEquals(addEndOfLine(auditStartMessage.getViolation(),
-                auditFinishMessage.getViolation()),
-                systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(addEndOfLine(auditStartMessage.getViolation(),
+                auditFinishMessage.getViolation()));
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -670,9 +726,13 @@ public class MainTest {
             invokeMain("-c", getPath("InputMainConfig-classname-prop.xml"),
                     "-p", "nonexistent.properties", getPath("InputMain.java"));
         });
-        assertEquals("Could not find file 'nonexistent.properties'."
-                + System.lineSeparator(), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Could not find file 'nonexistent.properties'."
+                + System.lineSeparator());
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -784,8 +844,12 @@ public class MainTest {
         }
         sb.append(auditFinishMessage.getViolation())
                 .append(EOL);
-        assertEquals(sb.toString(), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(sb.toString());
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     /**
@@ -816,7 +880,9 @@ public class MainTest {
 
         final List<File> result = TestUtil.invokeStaticMethod(Main.class, "listFiles",
                 fileMock, new ArrayList<Pattern>());
-        assertEquals(0, result.size(), "Invalid result size");
+        assertWithMessage("Invalid result size")
+            .that(result.size())
+            .isEqualTo(0);
     }
 
     /**
@@ -848,7 +914,9 @@ public class MainTest {
 
         final List<File> result = TestUtil.invokeStaticMethod(Main.class, "listFiles",
                 fileMock, new ArrayList<Pattern>());
-        assertEquals(0, result.size(), "Invalid result size");
+        assertWithMessage("Invalid result size")
+            .that(result.size())
+            .isEqualTo(0);
     }
 
     @Test
@@ -898,9 +966,12 @@ public class MainTest {
     public void testPrintTreeOnMoreThanOneFile(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
         assertExitWithStatus(-1, () -> invokeMain("-t", getPath("")));
-        assertEquals("Printing AST is allowed for only one file."
-            + System.lineSeparator(), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Printing AST is allowed for only one file." + System.lineSeparator());
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -937,8 +1008,12 @@ public class MainTest {
             "        `--RCURLY -> } [6:0]");
 
         Main.main("-t", getPath("InputMain.java"));
-        assertEquals(expected, systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1073,8 +1148,12 @@ public class MainTest {
             "        `--RCURLY -> } [6:0]");
 
         Main.main("-T", getPath("InputMain.java"));
-        assertEquals(expected, systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1085,9 +1164,13 @@ public class MainTest {
             .replaceAll("\\\\r\\\\n", "\\\\n").replaceAll("\r\n", "\n");
 
         Main.main("-j", getPath("InputMainJavadocComment.javadoc"));
-        assertEquals(expected, systemOut.getCapturedData().replaceAll("\\\\r\\\\n", "\\\\n")
-                        .replaceAll("\r\n", "\n"), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData().replaceAll("\\\\r\\\\n", "\\\\n")
+                        .replaceAll("\r\n", "\n"))
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1101,8 +1184,12 @@ public class MainTest {
                         + "]/LITERAL_CLASS");
 
         Main.main(getPath("InputMainSuppressionsStringPrinter.java"), "-s", "3:1");
-        assertEquals(expected, systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1128,8 +1215,12 @@ public class MainTest {
 
         Main.main(getPath("InputMainSuppressionsStringPrinter.java"),
                 "-s", "7:9", "--tabWidth", "2");
-        assertEquals(expected, systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1138,9 +1229,13 @@ public class MainTest {
         assertExitWithStatus(-1, () -> {
             invokeMain("-c", "/google_checks.xml", getPath(""), "-s", "2:4");
         });
-        assertEquals("Option '-s' cannot be used with other options."
-                + System.lineSeparator(), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Option '-s' cannot be used with other options."
+                + System.lineSeparator());
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1149,18 +1244,26 @@ public class MainTest {
         assertExitWithStatus(-1, () -> {
             invokeMain("-p", getPath("InputMainMycheckstyle.properties"), "-s", "2:4", getPath(""));
         });
-        assertEquals("Option '-s' cannot be used with other options."
-                + System.lineSeparator(), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Option '-s' cannot be used with other options."
+                + System.lineSeparator());
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
     public void testPrintSuppressionConflictingOptionsTvsF(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
         assertExitWithStatus(-1, () -> invokeMain("-f", "plain", "-s", "2:4", getPath("")));
-        assertEquals("Option '-s' cannot be used with other options."
-                + System.lineSeparator(), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Option '-s' cannot be used with other options."
+                + System.lineSeparator());
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1169,18 +1272,26 @@ public class MainTest {
         final String outputPath = new File(temporaryFolder, "file.output").getCanonicalPath();
 
         assertExitWithStatus(-1, () -> invokeMain("-o", outputPath, "-s", "2:4", getPath("")));
-        assertEquals("Option '-s' cannot be used with other options."
-                + System.lineSeparator(), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Option '-s' cannot be used with other options."
+                + System.lineSeparator());
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
     public void testPrintSuppressionOnMoreThanOneFile(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
         assertExitWithStatus(-1, () -> invokeMain("-s", "2:4", getPath(""), getPath("")));
-        assertEquals("Printing xpath suppressions is allowed for only one file."
-                + System.lineSeparator(), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Printing xpath suppressions is allowed for only one file."
+                + System.lineSeparator());
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1289,8 +1400,12 @@ public class MainTest {
 
         Main.main("-c", "/google_checks.xml", "--generate-xpath-suppression",
                 getPath("InputMainComplexityOverflow.java"));
-        assertEquals(expected, systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1328,8 +1443,12 @@ public class MainTest {
         Main.main("-c", getPath("InputMainConfig-xpath-suppressions.xml"),
                 "--generate-xpath-suppression",
                 getPath("InputMainGenerateXpathSuppressions.java"));
-        assertEquals(expected, systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1339,8 +1458,12 @@ public class MainTest {
 
         Main.main("-c", getPath("InputMainConfig-empty.xml"), "--generate-xpath-suppression",
                 getPath("InputMainComplexityOverflow.java"));
-        assertEquals(expected, systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1366,8 +1489,12 @@ public class MainTest {
                 getPath("InputMainGenerateXpathSuppressionsTabWidth.java"));
         try (BufferedReader br = Files.newBufferedReader(file.toPath())) {
             final String fileContent = br.lines().collect(Collectors.joining(EOL, "", EOL));
-            assertEquals(expected, fileContent, "Unexpected output log");
-            assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+            assertWithMessage("Unexpected output log")
+                .that(fileContent)
+                .isEqualTo(expected);
+            assertWithMessage("Unexpected system error log")
+                .that(systemErr.getCapturedData())
+                .isEqualTo("");
         }
     }
 
@@ -1392,10 +1519,12 @@ public class MainTest {
         Main.main("-c", getPath("InputMainConfig-xpath-suppressions.xml"),
                 "--generate-xpath-suppression",
                 getPath("InputMainGenerateXpathSuppressionsTabWidth.java"));
-        assertEquals(
-                expected, systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals(
-                "", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1406,8 +1535,12 @@ public class MainTest {
         Main.main("-c", getPath("InputMainConfig-xpath-suppressions.xml"),
                 "--generate-xpath-suppression", "--tabWidth", "20",
                 getPath("InputMainGenerateXpathSuppressionsTabWidth.java"));
-        assertEquals(expected, systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1419,18 +1552,25 @@ public class MainTest {
                 .replaceAll("\r\n", "\n");
 
         Main.main("-J", getPath("InputMainAstTreeStringPrinterJavadoc.java"));
-        assertEquals(expected, systemOut.getCapturedData().replaceAll("\\\\r\\\\n", "\\\\n")
-                        .replaceAll("\r\n", "\n"), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData().replaceAll("\\\\r\\\\n", "\\\\n")
+                        .replaceAll("\r\n", "\n"))
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
     public void testConflictingOptionsTvsC(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
         assertExitWithStatus(-1, () -> invokeMain("-c", "/google_checks.xml", "-t", getPath("")));
-        assertEquals("Option '-t' cannot be used with other options."
-            + System.lineSeparator(), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Option '-t' cannot be used with other options." + System.lineSeparator());
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1439,18 +1579,24 @@ public class MainTest {
         assertExitWithStatus(-1, () -> {
             invokeMain("-p", getPath("InputMainMycheckstyle.properties"), "-t", getPath(""));
         });
-        assertEquals("Option '-t' cannot be used with other options."
-            + System.lineSeparator(), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Option '-t' cannot be used with other options." + System.lineSeparator());
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
     public void testConflictingOptionsTvsF(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
         assertExitWithStatus(-1, () -> invokeMain("-f", "plain", "-t", getPath("")));
-        assertEquals("Option '-t' cannot be used with other options."
-            + System.lineSeparator(), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Option '-t' cannot be used with other options." + System.lineSeparator());
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1459,9 +1605,12 @@ public class MainTest {
         final String outputPath = new File(temporaryFolder, "file.output").getCanonicalPath();
 
         assertExitWithStatus(-1, () -> invokeMain("-s", outputPath, "-t", getPath("")));
-        assertEquals("Option '-t' cannot be used with other options."
-                + System.lineSeparator(), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Option '-t' cannot be used with other options." + System.lineSeparator());
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1470,9 +1619,12 @@ public class MainTest {
         final String outputPath = new File(temporaryFolder, "file.output").getCanonicalPath();
 
         assertExitWithStatus(-1, () -> invokeMain("-o", outputPath, "-t", getPath("")));
-        assertEquals("Option '-t' cannot be used with other options."
-            + System.lineSeparator(), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Option '-t' cannot be used with other options." + System.lineSeparator());
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1488,9 +1640,12 @@ public class MainTest {
         assertExitWithStatus(-1, () -> {
             invokeMain("-c", "/google_checks.xml", filePath, "-e", filePath);
         });
-        assertEquals("Files to process must be specified, found 0."
-            + System.lineSeparator(), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Files to process must be specified, found 0." + System.lineSeparator());
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1500,9 +1655,12 @@ public class MainTest {
         assertExitWithStatus(-1, () -> {
             invokeMain("-c", "/google_checks.xml", filePath, "-e", filePath);
         });
-        assertEquals("Files to process must be specified, found 0."
-            + System.lineSeparator(), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Files to process must be specified, found 0." + System.lineSeparator());
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1512,9 +1670,12 @@ public class MainTest {
         assertExitWithStatus(-1, () -> {
             invokeMain("-c", "/google_checks.xml", filePath, "-x", ".");
         });
-        assertEquals("Files to process must be specified, found 0."
-            + System.lineSeparator(), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected output log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Files to process must be specified, found 0." + System.lineSeparator());
+        assertWithMessage("Unexpected output log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1524,9 +1685,12 @@ public class MainTest {
         assertExitWithStatus(-1, () -> {
             invokeMain("-c", "/google_checks.xml", filePath, "-x", ".");
         });
-        assertEquals("Files to process must be specified, found 0."
-            + System.lineSeparator(), systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected output log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("Files to process must be specified, found 0." + System.lineSeparator());
+        assertWithMessage("Unexpected output log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1550,8 +1714,12 @@ public class MainTest {
 
         Main.main("-c", getPath("InputMainConfig-custom-root-module.xml"),
                 getPath("InputMain.java"));
-        assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
         assertWithMessage("Invalid Checker state")
                 .that(TestRootModuleChecker.isProcessed())
                 .isTrue();
@@ -1633,14 +1801,22 @@ public class MainTest {
     public void testMissingFiles(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         assertExitWithStatus(-1, MainTest::invokeMain);
         final String usage = "Missing required parameter: '<files>'" + EOL + SHORT_USAGE;
-        assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals(usage, systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo(usage);
     }
 
     @Test
     public void testOutputFormatToStringLowercase() {
-        assertEquals("xml", Main.OutputFormat.XML.toString(), "expected xml");
-        assertEquals("plain", Main.OutputFormat.PLAIN.toString(), "expected plain");
+        assertWithMessage("expected xml")
+            .that(Main.OutputFormat.XML.toString())
+            .isEqualTo("xml");
+        assertWithMessage("expected plain")
+            .that(Main.OutputFormat.PLAIN.toString())
+            .isEqualTo("plain");
     }
 
     @Test

@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.grammar.comments;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -50,9 +49,10 @@ public class CommentsTest extends AbstractTreeTestSupport {
     @Test
     public void testToString() {
         final Comment comment = new Comment(new String[] {"value"}, 1, 2, 3);
-        assertEquals(
-                "Comment[text=[value], startLineNo=2, endLineNo=2, startColNo=1, endColNo=3]",
-                comment.toString(), "Invalid toString result");
+        assertWithMessage("Invalid toString result")
+            .that(comment.toString())
+            .isEqualTo("Comment[text=[value], startLineNo=2, endLineNo=2, "
+                    + "startColNo=1, endColNo=3]");
     }
 
     @Test
@@ -66,10 +66,18 @@ public class CommentsTest extends AbstractTreeTestSupport {
             "     */"};
         final Comment comment = new Comment(commentText, 5, 49, 66);
 
-        assertEquals(43, comment.getStartLineNo(), "Invalid comment start line number");
-        assertEquals(5, comment.getStartColNo(), "Invalid comment start column number");
-        assertEquals(49, comment.getEndLineNo(), "Invalid comment end line number");
-        assertEquals(66, comment.getEndColNo(), "Invalid comment end column number");
+        assertWithMessage("Invalid comment start line number")
+            .that(comment.getStartLineNo())
+            .isEqualTo(43);
+        assertWithMessage("Invalid comment start column number")
+            .that(comment.getStartColNo())
+            .isEqualTo(5);
+        assertWithMessage("Invalid comment end line number")
+            .that(comment.getEndLineNo())
+            .isEqualTo(49);
+        assertWithMessage("Invalid comment end column number")
+            .that(comment.getEndColNo())
+            .isEqualTo(66);
     }
 
     @Test

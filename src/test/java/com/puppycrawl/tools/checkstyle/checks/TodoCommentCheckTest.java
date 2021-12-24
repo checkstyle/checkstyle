@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -61,7 +61,9 @@ public class TodoCommentCheckTest
         final int[] expected = {TokenTypes.COMMENT_CONTENT };
         final TodoCommentCheck check = new TodoCommentCheck();
         final int[] actual = check.getAcceptableTokens();
-        assertEquals(1, actual.length, "Amount of acceptable tokens differs from expected");
+        assertWithMessage("Amount of acceptable tokens differs from expected")
+            .that(actual.length)
+            .isEqualTo(1);
         assertArrayEquals(expected, actual, "Acceptable tokens differs from expected");
     }
 

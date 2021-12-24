@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_ACCESS;
 import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_CONSTRUCTOR;
 import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_INSTANCE;
 import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_STATIC;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.SortedSet;
@@ -141,12 +141,16 @@ public class DeclarationOrderCheckTest
         check.visitToken(method);
         final SortedSet<Violation> violations1 = check.getViolations();
 
-        assertEquals(0, violations1.size(), "No exception violations expected");
+        assertWithMessage("No exception violations expected")
+            .that(violations1.size())
+            .isEqualTo(0);
 
         check.visitToken(ctor);
         final SortedSet<Violation> violations2 = check.getViolations();
 
-        assertEquals(0, violations2.size(), "No exception violations expected");
+        assertWithMessage("No exception violations expected")
+            .that(violations2.size())
+            .isEqualTo(0);
     }
 
     @Test
@@ -162,7 +166,9 @@ public class DeclarationOrderCheckTest
         check.visitToken(array);
         final SortedSet<Violation> violations = check.getViolations();
 
-        assertEquals(0, violations.size(), "No exception violations expected");
+        assertWithMessage("No exception violations expected")
+            .that(violations.size())
+            .isEqualTo(0);
     }
 
     @Test

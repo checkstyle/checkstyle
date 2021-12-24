@@ -25,7 +25,6 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsCla
 import static com.puppycrawl.tools.checkstyle.utils.XpathUtil.getTextAttributeValue;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.io.File;
@@ -86,14 +85,16 @@ public class XpathUtilTest {
 
     @Test
     public void testGetValue() {
-        assertEquals("HELLO WORLD", getTextAttributeValue(
-                createDetailAST(TokenTypes.STRING_LITERAL, "\"HELLO WORLD\"")),
-                "Returned value differs from expected");
-        assertEquals("123", getTextAttributeValue(createDetailAST(TokenTypes.NUM_INT, "123")),
-                "Returned value differs from expected");
-        assertEquals("HELLO WORLD",
-                getTextAttributeValue(createDetailAST(TokenTypes.IDENT, "HELLO WORLD")),
-                "Returned value differs from expected");
+        assertWithMessage("Returned value differs from expected")
+            .that(getTextAttributeValue(
+                createDetailAST(TokenTypes.STRING_LITERAL, "\"HELLO WORLD\"")))
+            .isEqualTo("HELLO WORLD");
+        assertWithMessage("Returned value differs from expected")
+            .that(getTextAttributeValue(createDetailAST(TokenTypes.NUM_INT, "123")))
+            .isEqualTo("123");
+        assertWithMessage("Returned value differs from expected")
+            .that(getTextAttributeValue(createDetailAST(TokenTypes.IDENT, "HELLO WORLD")))
+            .isEqualTo("HELLO WORLD");
         assertNotEquals("HELLO WORLD",
                 getTextAttributeValue(createDetailAST(TokenTypes.STRING_LITERAL, "HELLO WORLD")),
                 "Returned value differs from expected");

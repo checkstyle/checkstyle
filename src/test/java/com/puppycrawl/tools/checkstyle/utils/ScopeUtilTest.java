@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -285,19 +284,24 @@ public class ScopeUtilTest {
     public void testSurroundingScope() {
         final Scope publicScope = ScopeUtil.getSurroundingScope(getNodeWithParentScope(
                 TokenTypes.LITERAL_PUBLIC, "public", TokenTypes.ANNOTATION_DEF));
-        assertEquals(Scope.PUBLIC, publicScope,
-                "Invalid surrounding scope");
+        assertWithMessage("Invalid surrounding scope")
+            .that(publicScope)
+            .isEqualTo(Scope.PUBLIC);
         final Scope protectedScope = ScopeUtil.getSurroundingScope(getNodeWithParentScope(
                 TokenTypes.LITERAL_PROTECTED, "protected", TokenTypes.INTERFACE_DEF));
-        assertEquals(Scope.PROTECTED, protectedScope,
-                "Invalid surrounding scope");
+        assertWithMessage("Invalid surrounding scope")
+            .that(protectedScope)
+            .isEqualTo(Scope.PROTECTED);
         final Scope privateScope = ScopeUtil.getSurroundingScope(getNodeWithParentScope(
                 TokenTypes.LITERAL_PRIVATE, "private", TokenTypes.ENUM_DEF));
-        assertEquals(Scope.PRIVATE, privateScope,
-                "Invalid surrounding scope");
+        assertWithMessage("Invalid surrounding scope")
+            .that(privateScope)
+            .isEqualTo(Scope.PRIVATE);
         final Scope staticScope = ScopeUtil.getSurroundingScope(getNodeWithParentScope(
                 TokenTypes.LITERAL_STATIC, "static", TokenTypes.CLASS_DEF));
-        assertEquals(Scope.PACKAGE, staticScope, "Invalid surrounding scope");
+        assertWithMessage("Invalid surrounding scope")
+            .that(staticScope)
+            .isEqualTo(Scope.PACKAGE);
     }
 
     @Test
@@ -316,7 +320,9 @@ public class ScopeUtilTest {
     public void testSurroundingScopeOfNodeChildOfLiteralNewIsAnoninner() {
         final Scope scope =
                 ScopeUtil.getSurroundingScope(getNode(TokenTypes.LITERAL_NEW, TokenTypes.IDENT));
-        assertEquals(Scope.ANONINNER, scope, "Invalid surrounding scope");
+        assertWithMessage("Invalid surrounding scope")
+            .that(scope)
+            .isEqualTo(Scope.ANONINNER);
     }
 
     @Test

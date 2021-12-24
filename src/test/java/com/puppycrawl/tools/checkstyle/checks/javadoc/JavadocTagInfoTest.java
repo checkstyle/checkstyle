@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.lang.reflect.Method;
 
@@ -39,7 +38,9 @@ public class JavadocTagInfoTest {
     @Test
     public void testJavadocTagInfoValueOf() {
         final JavadocTagInfo tag = JavadocTagInfo.valueOf("AUTHOR");
-        assertEquals(JavadocTagInfo.AUTHOR, tag, "Invalid valueOf result");
+        assertWithMessage("Invalid valueOf result")
+            .that(tag)
+            .isEqualTo(JavadocTagInfo.AUTHOR);
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -49,7 +50,9 @@ public class JavadocTagInfoTest {
     @Test
     public void testTypeValueOf() {
         final JavadocTagInfo.Type type = JavadocTagInfo.Type.valueOf("BLOCK");
-        assertEquals(JavadocTagInfo.Type.BLOCK, type, "Invalid valueOf result");
+        assertWithMessage("Invalid valueOf result")
+            .that(type)
+            .isEqualTo(JavadocTagInfo.Type.BLOCK);
     }
 
     /* Additional test for jacoco, since values()
@@ -406,18 +409,22 @@ public class JavadocTagInfoTest {
 
     @Test
     public void testCoverage() {
-        assertEquals(JavadocTagInfo.Type.BLOCK, JavadocTagInfo.VERSION.getType(), "Invalid type");
+        assertWithMessage("Invalid type")
+            .that(JavadocTagInfo.VERSION.getType())
+            .isEqualTo(JavadocTagInfo.Type.BLOCK);
 
-        assertEquals("text [@version] name [version] type [BLOCK]",
-            JavadocTagInfo.VERSION.toString(), "Invalid toString result");
+        assertWithMessage("Invalid toString result")
+            .that(JavadocTagInfo.VERSION.toString())
+            .isEqualTo("text [@version] name [version] type [BLOCK]");
 
         try {
             JavadocTagInfo.fromName(null);
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("the name is null", ex.getMessage(),
-                    "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("the name is null");
         }
 
         try {
@@ -425,8 +432,9 @@ public class JavadocTagInfoTest {
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("the name [myname] is not a valid Javadoc tag name", ex.getMessage(),
-                    "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("the name [myname] is not a valid Javadoc tag name");
         }
 
         try {
@@ -434,7 +442,9 @@ public class JavadocTagInfoTest {
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("the text is null", ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("the text is null");
         }
 
         try {
@@ -442,13 +452,14 @@ public class JavadocTagInfoTest {
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals(
-                    "the text [myname] is not a valid Javadoc tag text", ex.getMessage(),
-                    "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("the text [myname] is not a valid Javadoc tag text");
         }
 
-        assertEquals(JavadocTagInfo.VERSION, JavadocTagInfo.fromText("@version"),
-                "Invalid fromText result");
+        assertWithMessage("Invalid fromText result")
+            .that(JavadocTagInfo.fromText("@version"))
+            .isEqualTo(JavadocTagInfo.VERSION);
     }
 
 }
