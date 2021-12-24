@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.utils;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.List;
 
@@ -167,8 +166,9 @@ public class JavadocUtilTest {
     @Test
     public void testEmptyBlockComment() {
         final String emptyComment = "";
-        assertFalse(JavadocUtil.isJavadocComment(emptyComment),
-                "Should return false when empty string is passed");
+        assertWithMessage("Should return false when empty string is passed")
+                .that(JavadocUtil.isJavadocComment(emptyComment))
+                .isFalse();
     }
 
     @Test
@@ -188,8 +188,9 @@ public class JavadocUtilTest {
         commentBegin.setFirstChild(commentContent);
         commentContent.setNextSibling(commentEnd);
 
-        assertFalse(JavadocUtil.isJavadocComment(commentBegin),
-                "Should return false when empty block comment is passed");
+        assertWithMessage("Should return false when empty block comment is passed")
+                .that(JavadocUtil.isJavadocComment(commentBegin))
+                .isFalse();
     }
 
     @Test
@@ -247,13 +248,15 @@ public class JavadocUtilTest {
         secondChild.setType(JavadocTokenTypes.CODE_LITERAL);
 
         node.setChildren(firstChild, secondChild);
-        assertFalse(JavadocUtil.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL),
-                "Should return true when branch contains node passed");
+        assertWithMessage("Should return true when branch contains node passed")
+                .that(JavadocUtil.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL))
+                .isFalse();
 
         firstChild.setParent(node);
         secondChild.setParent(node);
-        assertFalse(JavadocUtil.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL),
-                "Should return false when branch does not contain node passed");
+        assertWithMessage("Should return false when branch does not contain node passed")
+                .that(JavadocUtil.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL))
+                .isFalse();
 
         secondChild.setType(JavadocTokenTypes.AUTHOR_LITERAL);
         assertWithMessage("Should return true when branch contains node passed")

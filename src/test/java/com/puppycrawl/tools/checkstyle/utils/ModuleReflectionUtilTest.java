@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.utils;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.File;
@@ -83,15 +82,21 @@ public class ModuleReflectionUtilTest {
         assertWithMessage("Should return true when valid checkstyle class is passed")
                 .that(ModuleReflectionUtil.isValidCheckstyleClass(ValidCheckstyleClass.class))
                 .isTrue();
-        assertFalse(ModuleReflectionUtil.isValidCheckstyleClass(InvalidNonAutomaticBeanClass.class),
-            "Should return false when invalid class is passed");
-        assertFalse(ModuleReflectionUtil.isValidCheckstyleClass(AbstractInvalidClass.class),
-            "Should return false when invalid class is passed");
-        assertFalse(
-            ModuleReflectionUtil.isValidCheckstyleClass(InvalidNonDefaultConstructorClass.class),
-            "Should return false when invalid class is passed");
-        assertFalse(ModuleReflectionUtil.isValidCheckstyleClass(XpathFileGeneratorAstFilter.class),
-            "Should return false when forced invalid class is passed");
+        assertWithMessage("Should return false when invalid class is passed")
+                .that(
+                    ModuleReflectionUtil.isValidCheckstyleClass(InvalidNonAutomaticBeanClass.class))
+                .isFalse();
+        assertWithMessage("Should return false when invalid class is passed")
+                .that(ModuleReflectionUtil.isValidCheckstyleClass(AbstractInvalidClass.class))
+                .isFalse();
+        assertWithMessage("Should return false when invalid class is passed")
+                .that(ModuleReflectionUtil
+                    .isValidCheckstyleClass(InvalidNonDefaultConstructorClass.class))
+                .isFalse();
+        assertWithMessage("Should return false when forced invalid class is passed")
+                .that(
+                    ModuleReflectionUtil.isValidCheckstyleClass(XpathFileGeneratorAstFilter.class))
+                .isFalse();
     }
 
     @Test
@@ -99,8 +104,9 @@ public class ModuleReflectionUtilTest {
         assertWithMessage("Should return true when valid checkstyle check is passed")
                 .that(ModuleReflectionUtil.isCheckstyleTreeWalkerCheck(CheckClass.class))
                 .isTrue();
-        assertFalse(ModuleReflectionUtil.isCheckstyleTreeWalkerCheck(NotCheckstyleCheck.class),
-                "Should return false when invalid class is passed");
+        assertWithMessage("Should return false when invalid class is passed")
+                .that(ModuleReflectionUtil.isCheckstyleTreeWalkerCheck(NotCheckstyleCheck.class))
+                .isFalse();
     }
 
     @Test
@@ -108,8 +114,9 @@ public class ModuleReflectionUtilTest {
         assertWithMessage("Should return true when valid checkstyle file set module is passed")
                 .that(ModuleReflectionUtil.isFileSetModule(FileSetModuleClass.class))
                 .isTrue();
-        assertFalse(ModuleReflectionUtil.isFileSetModule(NotCheckstyleCheck.class),
-                "Should return false when invalid class is passed");
+        assertWithMessage("Should return false when invalid class is passed")
+                .that(ModuleReflectionUtil.isFileSetModule(NotCheckstyleCheck.class))
+                .isFalse();
     }
 
     @Test
@@ -117,8 +124,9 @@ public class ModuleReflectionUtilTest {
         assertWithMessage("Should return true when valid checkstyle filter module is passed")
                 .that(ModuleReflectionUtil.isFilterModule(FilterClass.class))
                 .isTrue();
-        assertFalse(ModuleReflectionUtil.isFilterModule(NotCheckstyleCheck.class),
-                "Should return false when invalid class is passed");
+        assertWithMessage("Should return false when invalid class is passed")
+                .that(ModuleReflectionUtil.isFilterModule(NotCheckstyleCheck.class))
+                .isFalse();
     }
 
     @Test
@@ -126,8 +134,9 @@ public class ModuleReflectionUtilTest {
         assertWithMessage("Should return true when valid checkstyle file filter module is passed")
                 .that(ModuleReflectionUtil.isFileFilterModule(FileFilterModuleClass.class))
                 .isTrue();
-        assertFalse(ModuleReflectionUtil.isFileFilterModule(NotCheckstyleCheck.class),
-                "Should return false when invalid class is passed");
+        assertWithMessage("Should return false when invalid class is passed")
+                .that(ModuleReflectionUtil.isFileFilterModule(NotCheckstyleCheck.class))
+                .isFalse();
     }
 
     @Test
@@ -136,8 +145,9 @@ public class ModuleReflectionUtilTest {
                     "Should return true when valid checkstyle TreeWalker filter module is passed")
                 .that(ModuleReflectionUtil.isTreeWalkerFilterModule(TreeWalkerFilterClass.class))
                 .isTrue();
-        assertFalse(ModuleReflectionUtil.isTreeWalkerFilterModule(NotCheckstyleCheck.class),
-                "Should return false when invalid class is passed");
+        assertWithMessage("Should return false when invalid class is passed")
+                .that(ModuleReflectionUtil.isTreeWalkerFilterModule(NotCheckstyleCheck.class))
+                .isFalse();
     }
 
     @Test
@@ -145,8 +155,9 @@ public class ModuleReflectionUtilTest {
         assertWithMessage("Should return true when valid checkstyle AuditListener module is passed")
                 .that(ModuleReflectionUtil.isAuditListener(DefaultLogger.class))
                 .isTrue();
-        assertFalse(ModuleReflectionUtil.isAuditListener(NotCheckstyleCheck.class),
-                "Should return false when invalid class is passed");
+        assertWithMessage("Should return false when invalid class is passed")
+                .that(ModuleReflectionUtil.isAuditListener(NotCheckstyleCheck.class))
+                .isFalse();
     }
 
     @Test
@@ -154,8 +165,9 @@ public class ModuleReflectionUtilTest {
         assertWithMessage("Should return true when valid checkstyle root module is passed")
                 .that(ModuleReflectionUtil.isRootModule(RootModuleClass.class))
                 .isTrue();
-        assertFalse(ModuleReflectionUtil.isRootModule(NotCheckstyleCheck.class),
-                "Should return false when invalid class is passed");
+        assertWithMessage("Should return false when invalid class is passed")
+                .that(ModuleReflectionUtil.isRootModule(NotCheckstyleCheck.class))
+                .isFalse();
     }
 
     @Test

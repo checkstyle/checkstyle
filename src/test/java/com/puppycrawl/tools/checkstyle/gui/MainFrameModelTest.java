@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.gui;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.mock;
@@ -123,7 +122,9 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
 
         assertNull(model.getText(), "Test is null");
         assertEquals("Checkstyle GUI", model.getTitle(), "Title is expected value");
-        assertFalse(model.isReloadActionEnabled(), "Reload action should be disabled");
+        assertWithMessage("Reload action should be disabled")
+                .that(model.isReloadActionEnabled())
+                .isFalse();
         assertNull(model.getCurrentFile(), "Current file is null");
     }
 

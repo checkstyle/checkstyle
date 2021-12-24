@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.File;
 import java.io.IOException;
@@ -73,8 +72,9 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
                 SeverityLevel.ERROR, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
 
-        assertFalse(filter.accept(ev),
-                "Audit event should be rejected when there is a matching suppression");
+        assertWithMessage("Audit event should be rejected when there is a matching suppression")
+                .that(filter.accept(ev))
+                .isFalse();
     }
 
     @Test
