@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.File;
 import java.io.IOException;
@@ -153,7 +152,9 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null, "file1.java",
                 message, JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
 
-        assertFalse(filter.accept(ev), "TreeWalker audit event should be rejected");
+        assertWithMessage("TreeWalker audit event should be rejected")
+                .that(filter.accept(ev))
+                .isFalse();
     }
 
     @Test
@@ -194,32 +195,41 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
                 getPath("InputSuppressionXpathFilterEscapeString.xml"), optional);
         final File file = new File(getPath("InputSuppressionXpathFilterEscapeString.java"));
 
-        assertFalse(filter.accept(createTreeWalkerAudit(8, 23, TokenTypes.STRING_LITERAL, file)),
-                "TreeWalker audit event should be rejected");
+        assertWithMessage("TreeWalker audit event should be rejected")
+                .that(filter.accept(createTreeWalkerAudit(8, 23, TokenTypes.STRING_LITERAL, file)))
+                .isFalse();
 
-        assertFalse(filter.accept(createTreeWalkerAudit(10, 22, TokenTypes.STRING_LITERAL, file)),
-                "TreeWalker audit event should be rejected");
+        assertWithMessage("TreeWalker audit event should be rejected")
+                .that(filter.accept(createTreeWalkerAudit(10, 22, TokenTypes.STRING_LITERAL, file)))
+                .isFalse();
 
-        assertFalse(filter.accept(createTreeWalkerAudit(12, 27, TokenTypes.STRING_LITERAL, file)),
-                "TreeWalker audit event should be rejected");
+        assertWithMessage("TreeWalker audit event should be rejected")
+                .that(filter.accept(createTreeWalkerAudit(12, 27, TokenTypes.STRING_LITERAL, file)))
+                .isFalse();
 
-        assertFalse(filter.accept(createTreeWalkerAudit(14, 25, TokenTypes.STRING_LITERAL, file)),
-                "TreeWalker audit event should be rejected");
+        assertWithMessage("TreeWalker audit event should be rejected")
+                .that(filter.accept(createTreeWalkerAudit(14, 25, TokenTypes.STRING_LITERAL, file)))
+                .isFalse();
 
-        assertFalse(filter.accept(createTreeWalkerAudit(16, 25, TokenTypes.STRING_LITERAL, file)),
-                "TreeWalker audit event should be rejected");
+        assertWithMessage("TreeWalker audit event should be rejected")
+                .that(filter.accept(createTreeWalkerAudit(16, 25, TokenTypes.STRING_LITERAL, file)))
+                .isFalse();
 
-        assertFalse(filter.accept(createTreeWalkerAudit(18, 25, TokenTypes.STRING_LITERAL, file)),
-                "TreeWalker audit event should be rejected");
+        assertWithMessage("TreeWalker audit event should be rejected")
+                .that(filter.accept(createTreeWalkerAudit(18, 25, TokenTypes.STRING_LITERAL, file)))
+                .isFalse();
 
-        assertFalse(filter.accept(createTreeWalkerAudit(20, 22, TokenTypes.STRING_LITERAL, file)),
-                "TreeWalker audit event should be rejected");
+        assertWithMessage("TreeWalker audit event should be rejected")
+                .that(filter.accept(createTreeWalkerAudit(20, 22, TokenTypes.STRING_LITERAL, file)))
+                .isFalse();
 
-        assertFalse(filter.accept(createTreeWalkerAudit(22, 28, TokenTypes.STRING_LITERAL, file)),
-                "TreeWalker audit event should be rejected");
+        assertWithMessage("TreeWalker audit event should be rejected")
+                .that(filter.accept(createTreeWalkerAudit(22, 28, TokenTypes.STRING_LITERAL, file)))
+                .isFalse();
 
-        assertFalse(filter.accept(createTreeWalkerAudit(24, 28, TokenTypes.STRING_LITERAL, file)),
-                "TreeWalker audit event should be rejected");
+        assertWithMessage("TreeWalker audit event should be rejected")
+                .that(filter.accept(createTreeWalkerAudit(24, 28, TokenTypes.STRING_LITERAL, file)))
+                .isFalse();
     }
 
     @Test
@@ -229,20 +239,25 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
                 getPath("InputSuppressionXpathFilterEscapeChar.xml"), optional);
         final File file = new File(getPath("InputSuppressionXpathFilterEscapeChar.java"));
 
-        assertFalse(filter.accept(createTreeWalkerAudit(8, 13, TokenTypes.CHAR_LITERAL, file)),
-                "TreeWalker audit event should be rejected");
+        assertWithMessage("TreeWalker audit event should be rejected")
+                .that(filter.accept(createTreeWalkerAudit(8, 13, TokenTypes.CHAR_LITERAL, file)))
+                .isFalse();
 
-        assertFalse(filter.accept(createTreeWalkerAudit(10, 13, TokenTypes.CHAR_LITERAL, file)),
-                "TreeWalker audit event should be rejected");
+        assertWithMessage("TreeWalker audit event should be rejected")
+                .that(filter.accept(createTreeWalkerAudit(10, 13, TokenTypes.CHAR_LITERAL, file)))
+                .isFalse();
 
-        assertFalse(filter.accept(createTreeWalkerAudit(12, 13, TokenTypes.CHAR_LITERAL, file)),
-                "TreeWalker audit event should be rejected");
+        assertWithMessage("TreeWalker audit event should be rejected")
+                .that(filter.accept(createTreeWalkerAudit(12, 13, TokenTypes.CHAR_LITERAL, file)))
+                .isFalse();
 
-        assertFalse(filter.accept(createTreeWalkerAudit(14, 13, TokenTypes.CHAR_LITERAL, file)),
-                "TreeWalker audit event should be rejected");
+        assertWithMessage("TreeWalker audit event should be rejected")
+                .that(filter.accept(createTreeWalkerAudit(14, 13, TokenTypes.CHAR_LITERAL, file)))
+                .isFalse();
 
-        assertFalse(filter.accept(createTreeWalkerAudit(16, 13, TokenTypes.CHAR_LITERAL, file)),
-                "TreeWalker audit event should be rejected");
+        assertWithMessage("TreeWalker audit event should be rejected")
+                .that(filter.accept(createTreeWalkerAudit(16, 13, TokenTypes.CHAR_LITERAL, file)))
+                .isFalse();
     }
 
     private static TreeWalkerAuditEvent createTreeWalkerAudit(int lineNo, int columnNo,

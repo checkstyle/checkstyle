@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -96,8 +95,12 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         assertWithMessage("Should return true when file is in cache")
                 .that(cache.isInCache("myFile", 1))
                 .isTrue();
-        assertFalse(cache.isInCache("myFile", 2), "Should return false when file is not in cache");
-        assertFalse(cache.isInCache("myFile1", 1), "Should return false when file is not in cache");
+        assertWithMessage("Should return false when file is not in cache")
+                .that(cache.isInCache("myFile", 2))
+                .isFalse();
+        assertWithMessage("Should return false when file is not in cache")
+                .that(cache.isInCache("myFile1", 1))
+                .isFalse();
     }
 
     @Test
@@ -167,8 +170,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
 
         assertEquals(hash, cache.get(PropertyCacheFile.CONFIG_HASH_KEY),
                 "Invalid config hash key");
-        assertFalse(cache.isInCache("myFile", 1),
-                "Should return false in file is not in cache");
+        assertWithMessage("Should return false in file is not in cache")
+                .that(cache.isInCache("myFile", 1))
+                .isFalse();
     }
 
     @Test

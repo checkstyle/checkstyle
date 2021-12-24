@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -282,7 +281,9 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         assertWithMessage("invalid result")
                 .that(root.branchContains(TokenTypes.LITERAL_PUBLIC))
                 .isTrue();
-        assertFalse(root.branchContains(TokenTypes.OBJBLOCK), "invalid result");
+        assertWithMessage("invalid result")
+                .that(root.branchContains(TokenTypes.OBJBLOCK))
+                .isFalse();
     }
 
     private static DetailAstImpl createToken(DetailAstImpl root, int type) {

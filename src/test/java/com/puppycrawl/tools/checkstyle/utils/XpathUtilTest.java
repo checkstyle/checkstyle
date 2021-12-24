@@ -26,7 +26,6 @@ import static com.puppycrawl.tools.checkstyle.utils.XpathUtil.getTextAttributeVa
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.io.File;
@@ -74,12 +73,15 @@ public class XpathUtilTest {
         assertWithMessage("Should return true for supported token types")
                 .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.NUM_DOUBLE)))
                 .isTrue();
-        assertFalse(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.VARIABLE_DEF)),
-                "Should return false for unsupported token types");
-        assertFalse(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.OBJBLOCK)),
-                "Should return false for unsupported token types");
-        assertFalse(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.LITERAL_CHAR)),
-                "Should return true for supported token types");
+        assertWithMessage("Should return false for unsupported token types")
+                .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.VARIABLE_DEF)))
+                .isFalse();
+        assertWithMessage("Should return false for unsupported token types")
+                .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.OBJBLOCK)))
+                .isFalse();
+        assertWithMessage("Should return true for supported token types")
+                .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.LITERAL_CHAR)))
+                .isFalse();
     }
 
     @Test

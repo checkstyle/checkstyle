@@ -26,7 +26,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.itsallcode.junit.sysextensions.AssertExit.assertExitWithStatus;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
@@ -611,7 +610,9 @@ public class MainTest {
     @Test
     public void testCreateNonExistentOutputFile() throws IOException {
         final String outputFile = new File(temporaryFolder, "nonexistent.out").getCanonicalPath();
-        assertFalse(new File(outputFile).exists(), "File must not exist");
+        assertWithMessage("File must not exist")
+                .that(new File(outputFile).exists())
+                .isFalse();
         Main.main("-c", getPath("InputMainConfig-classname.xml"), "-f", "plain",
                 "-o", outputFile, getPath("InputMain.java"));
         assertWithMessage("File must exist")
@@ -1581,7 +1582,9 @@ public class MainTest {
                                 .startsWith(checkstylePackage + "api.CheckstyleException: "
                                         + unableToInstantiateExceptionMessage.getViolation()))
                         .isTrue();
-        assertFalse(TestRootModuleChecker.isProcessed(), "Invalid checker state");
+        assertWithMessage("Invalid checker state")
+                .that(TestRootModuleChecker.isProcessed())
+                .isFalse();
     }
 
     @Test

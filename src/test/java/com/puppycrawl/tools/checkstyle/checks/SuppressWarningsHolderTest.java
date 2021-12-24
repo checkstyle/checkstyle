@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
@@ -175,7 +174,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         populateHolder("MockEntry", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 100, 10);
 
-        assertFalse(SuppressWarningsHolder.isSuppressed(event), "Event is not suppressed");
+        assertWithMessage("Event is not suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(event))
+                .isFalse();
     }
 
     @Test
@@ -205,7 +206,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         populateHolder("check", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 350, 352);
 
-        assertFalse(SuppressWarningsHolder.isSuppressed(event), "Event is not suppressed");
+        assertWithMessage("Event is not suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(event))
+                .isFalse();
     }
 
     @Test
@@ -213,7 +216,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         populateHolder("check", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 400, 10);
 
-        assertFalse(SuppressWarningsHolder.isSuppressed(event), "Event is not suppressed");
+        assertWithMessage("Event is not suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(event))
+                .isFalse();
     }
 
     @Test
@@ -245,7 +250,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
             new Violation(100, 10, null, null, null, "id", MemberNameCheck.class, "msg");
         final AuditEvent firstEventForTest =
             new AuditEvent(source, "fileName", firstViolationForTest);
-        assertFalse(SuppressWarningsHolder.isSuppressed(firstEventForTest), "Event is suppressed");
+        assertWithMessage("Event is suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(firstEventForTest))
+                .isFalse();
 
         final Violation secondViolationForTest =
             new Violation(100, 150, null, null, null, "id", MemberNameCheck.class, "msg");
