@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -42,7 +41,9 @@ public class XmlLoaderTest {
     public void testParserConfiguredSuccessfully() throws Exception {
         final DummyLoader dummyLoader = new DummyLoader(new HashMap<>(1));
         final XMLReader parser = TestUtil.getInternalState(dummyLoader, "parser");
-        assertEquals(dummyLoader, parser.getEntityResolver(), "Invalid entity resolver");
+        assertWithMessage("Invalid entity resolver")
+            .that(parser.getEntityResolver())
+            .isEqualTo(dummyLoader);
     }
 
     @Test

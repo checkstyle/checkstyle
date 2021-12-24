@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.grammar;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -271,7 +271,8 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
         final String actualContents = AstTreeStringPrinter.printAst(actualFileContents,
                 withComments);
 
-        assertEquals(expectedContents, actualContents,
-                "Generated AST from Java code should match pre-defined AST");
+        assertWithMessage("Generated AST from Java code should match pre-defined AST")
+            .that(actualContents)
+            .isEqualTo(expectedContents);
     }
 }

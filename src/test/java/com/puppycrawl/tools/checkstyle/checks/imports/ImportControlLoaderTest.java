@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -71,8 +70,9 @@ public class ImportControlLoaderTest {
         catch (CheckstyleException ex) {
             assertSame(MalformedURLException.class, ex.getCause().getClass(),
                     "Invalid exception class");
-            assertEquals("unknown protocol: aaa", ex.getCause().getMessage(),
-                    "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getCause().getMessage())
+                .isEqualTo("unknown protocol: aaa");
         }
     }
 
@@ -103,8 +103,9 @@ public class ImportControlLoaderTest {
         }
         catch (InvocationTargetException ex) {
             assertSame(SAXException.class, ex.getCause().getClass(), "Invalid exception class");
-            assertEquals("missing attribute you_cannot_find_me", ex.getCause().getMessage(),
-                    "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getCause().getMessage())
+                .isEqualTo("missing attribute you_cannot_find_me");
         }
     }
 

@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.Arrays;
@@ -147,16 +146,21 @@ public class IllegalTokenTextCheckTest
         check.setFormat("test");
         check.setIgnoreCase(true);
         final Pattern actual = TestUtil.getInternalState(check, "format");
-        assertEquals(Pattern.CASE_INSENSITIVE, actual.flags(), "should match");
-        assertEquals("test", actual.pattern(), "should match");
+        assertWithMessage("should match")
+            .that(actual.flags())
+            .isEqualTo(Pattern.CASE_INSENSITIVE);
+        assertWithMessage("should match")
+            .that(actual.pattern())
+            .isEqualTo("test");
     }
 
     @Test
     public void testAcceptableTokensMakeSense() {
         final int expectedTokenTypesTotalNumber = 184;
-        assertEquals(expectedTokenTypesTotalNumber, TokenUtil.getTokenTypesTotalNumber(),
-                "Total number of TokenTypes has changed, acceptable tokens in"
-                + " IllegalTokenTextCheck need to be reconsidered.");
+        assertWithMessage("Total number of TokenTypes has changed, acceptable tokens in"
+                + " IllegalTokenTextCheck need to be reconsidered.")
+            .that(TokenUtil.getTokenTypesTotalNumber())
+            .isEqualTo(expectedTokenTypesTotalNumber);
 
         final IllegalTokenTextCheck check = new IllegalTokenTextCheck();
         final int[] allowedTokens = check.getAcceptableTokens();

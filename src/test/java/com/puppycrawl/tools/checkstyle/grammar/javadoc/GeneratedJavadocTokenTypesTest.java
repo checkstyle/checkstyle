@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.grammar.javadoc;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -49,107 +49,309 @@ public class GeneratedJavadocTokenTypesTest {
      */
     @Test
     public void testTokenNumbers() {
-        assertEquals(1, JavadocParser.LEADING_ASTERISK, MSG);
-        assertEquals(2, JavadocParser.HTML_COMMENT_START, MSG);
-        assertEquals(3, JavadocParser.DEPRECATED_CDATA_DO_NOT_USE, MSG);
-        assertEquals(4, JavadocParser.WS, MSG);
-        assertEquals(5, JavadocParser.START, MSG);
-        assertEquals(6, JavadocParser.NEWLINE, MSG);
-        assertEquals(7, JavadocParser.AUTHOR_LITERAL, MSG);
-        assertEquals(8, JavadocParser.DEPRECATED_LITERAL, MSG);
-        assertEquals(9, JavadocParser.EXCEPTION_LITERAL, MSG);
-        assertEquals(10, JavadocParser.PARAM_LITERAL, MSG);
-        assertEquals(11, JavadocParser.RETURN_LITERAL, MSG);
-        assertEquals(12, JavadocParser.SEE_LITERAL, MSG);
-        assertEquals(13, JavadocParser.SERIAL_LITERAL, MSG);
-        assertEquals(14, JavadocParser.SERIAL_FIELD_LITERAL, MSG);
-        assertEquals(15, JavadocParser.SERIAL_DATA_LITERAL, MSG);
-        assertEquals(16, JavadocParser.SINCE_LITERAL, MSG);
-        assertEquals(17, JavadocParser.THROWS_LITERAL, MSG);
-        assertEquals(18, JavadocParser.VERSION_LITERAL, MSG);
-        assertEquals(19, JavadocParser.JAVADOC_INLINE_TAG_START, MSG);
-        assertEquals(20, JavadocParser.JAVADOC_INLINE_TAG_END, MSG);
-        assertEquals(21, JavadocParser.CUSTOM_NAME, MSG);
-        assertEquals(22, JavadocParser.LITERAL_INCLUDE, MSG);
-        assertEquals(23, JavadocParser.LITERAL_EXCLUDE, MSG);
-        assertEquals(24, JavadocParser.CHAR, MSG);
-        assertEquals(25, JavadocParser.PARAMETER_NAME, MSG);
-        assertEquals(26, JavadocParser.Char1, MSG);
-        assertEquals(27, JavadocParser.STRING, MSG);
-        assertEquals(28, JavadocParser.PACKAGE_CLASS, MSG);
-        assertEquals(29, JavadocParser.DOT, MSG);
-        assertEquals(30, JavadocParser.HASH, MSG);
-        assertEquals(31, JavadocParser.CLASS, MSG);
-        assertEquals(32, JavadocParser.Char2, MSG);
-        assertEquals(33, JavadocParser.MEMBER, MSG);
-        assertEquals(34, JavadocParser.LEFT_BRACE, MSG);
-        assertEquals(35, JavadocParser.RIGHT_BRACE, MSG);
-        assertEquals(36, JavadocParser.ARGUMENT, MSG);
-        assertEquals(37, JavadocParser.COMMA, MSG);
-        assertEquals(38, JavadocParser.Char20, MSG);
-        assertEquals(39, JavadocParser.FIELD_NAME, MSG);
-        assertEquals(40, JavadocParser.Char3, MSG);
-        assertEquals(41, JavadocParser.FIELD_TYPE, MSG);
-        assertEquals(42, JavadocParser.Char4, MSG);
-        assertEquals(43, JavadocParser.CLASS_NAME, MSG);
-        assertEquals(44, JavadocParser.Char5, MSG);
-        assertEquals(45, JavadocParser.CODE_LITERAL, MSG);
-        assertEquals(46, JavadocParser.DOC_ROOT_LITERAL, MSG);
-        assertEquals(47, JavadocParser.INHERIT_DOC_LITERAL, MSG);
-        assertEquals(48, JavadocParser.LINK_LITERAL, MSG);
-        assertEquals(49, JavadocParser.LINKPLAIN_LITERAL, MSG);
-        assertEquals(50, JavadocParser.LITERAL_LITERAL, MSG);
-        assertEquals(51, JavadocParser.VALUE_LITERAL, MSG);
-        assertEquals(52, JavadocParser.Char7, MSG);
-        assertEquals(53, JavadocParser.Char8, MSG);
-        assertEquals(54, JavadocParser.Char10, MSG);
-        assertEquals(55, JavadocParser.END, MSG);
-        assertEquals(56, JavadocParser.SLASH_END, MSG);
-        assertEquals(57, JavadocParser.SLASH, MSG);
-        assertEquals(58, JavadocParser.EQUALS, MSG);
-        assertEquals(59, JavadocParser.P_HTML_TAG_NAME, MSG);
-        assertEquals(60, JavadocParser.LI_HTML_TAG_NAME, MSG);
-        assertEquals(61, JavadocParser.TR_HTML_TAG_NAME, MSG);
-        assertEquals(62, JavadocParser.TD_HTML_TAG_NAME, MSG);
-        assertEquals(63, JavadocParser.TH_HTML_TAG_NAME, MSG);
-        assertEquals(64, JavadocParser.BODY_HTML_TAG_NAME, MSG);
-        assertEquals(65, JavadocParser.COLGROUP_HTML_TAG_NAME, MSG);
-        assertEquals(66, JavadocParser.DD_HTML_TAG_NAME, MSG);
-        assertEquals(67, JavadocParser.DT_HTML_TAG_NAME, MSG);
-        assertEquals(68, JavadocParser.HEAD_HTML_TAG_NAME, MSG);
-        assertEquals(69, JavadocParser.HTML_HTML_TAG_NAME, MSG);
-        assertEquals(70, JavadocParser.OPTION_HTML_TAG_NAME, MSG);
-        assertEquals(71, JavadocParser.TBODY_HTML_TAG_NAME, MSG);
-        assertEquals(72, JavadocParser.TFOOT_HTML_TAG_NAME, MSG);
-        assertEquals(73, JavadocParser.THEAD_HTML_TAG_NAME, MSG);
-        assertEquals(74, JavadocParser.AREA_HTML_TAG_NAME, MSG);
-        assertEquals(75, JavadocParser.BASE_HTML_TAG_NAME, MSG);
-        assertEquals(76, JavadocParser.BASEFONT_HTML_TAG_NAME, MSG);
-        assertEquals(77, JavadocParser.BR_HTML_TAG_NAME, MSG);
-        assertEquals(78, JavadocParser.COL_HTML_TAG_NAME, MSG);
-        assertEquals(79, JavadocParser.FRAME_HTML_TAG_NAME, MSG);
-        assertEquals(80, JavadocParser.HR_HTML_TAG_NAME, MSG);
-        assertEquals(81, JavadocParser.IMG_HTML_TAG_NAME, MSG);
-        assertEquals(82, JavadocParser.INPUT_HTML_TAG_NAME, MSG);
-        assertEquals(83, JavadocParser.ISINDEX_HTML_TAG_NAME, MSG);
-        assertEquals(84, JavadocParser.LINK_HTML_TAG_NAME, MSG);
-        assertEquals(85, JavadocParser.META_HTML_TAG_NAME, MSG);
-        assertEquals(86, JavadocParser.PARAM_HTML_TAG_NAME, MSG);
-        assertEquals(87, JavadocParser.EMBED_HTML_TAG_NAME, MSG);
-        assertEquals(88, JavadocParser.KEYGEN_HTML_TAG_NAME, MSG);
-        assertEquals(89, JavadocParser.ATTR_VALUE, MSG);
-        assertEquals(90, JavadocParser.Char12, MSG);
-        assertEquals(91, JavadocParser.HTML_COMMENT_END, MSG);
-        assertEquals(92, JavadocParser.SOURCE_HTML_TAG_NAME, MSG);
-        assertEquals(93, JavadocParser.TRACK_HTML_TAG_NAME, MSG);
-        assertEquals(94, JavadocParser.WBR_HTML_TAG_NAME, MSG);
-        assertEquals(95, JavadocParser.OPTGROUP_HTML_TAG_NAME, MSG);
-        assertEquals(96, JavadocParser.RB_HTML_TAG_NAME, MSG);
-        assertEquals(97, JavadocParser.RT_HTML_TAG_NAME, MSG);
-        assertEquals(98, JavadocParser.RTC_HTML_TAG_NAME, MSG);
-        assertEquals(99, JavadocParser.RP_HTML_TAG_NAME, MSG);
-        assertEquals(100, JavadocParser.HTML_TAG_NAME, MSG);
-        assertEquals(101, JavadocParser.Char11, MSG);
+        assertWithMessage(MSG)
+            .that(JavadocParser.LEADING_ASTERISK)
+            .isEqualTo(1);
+        assertWithMessage(MSG)
+            .that(JavadocParser.HTML_COMMENT_START)
+            .isEqualTo(2);
+        assertWithMessage(MSG)
+            .that(JavadocParser.DEPRECATED_CDATA_DO_NOT_USE)
+            .isEqualTo(3);
+        assertWithMessage(MSG)
+            .that(JavadocParser.WS)
+            .isEqualTo(4);
+        assertWithMessage(MSG)
+            .that(JavadocParser.START)
+            .isEqualTo(5);
+        assertWithMessage(MSG)
+            .that(JavadocParser.NEWLINE)
+            .isEqualTo(6);
+        assertWithMessage(MSG)
+            .that(JavadocParser.AUTHOR_LITERAL)
+            .isEqualTo(7);
+        assertWithMessage(MSG)
+            .that(JavadocParser.DEPRECATED_LITERAL)
+            .isEqualTo(8);
+        assertWithMessage(MSG)
+            .that(JavadocParser.EXCEPTION_LITERAL)
+            .isEqualTo(9);
+        assertWithMessage(MSG)
+            .that(JavadocParser.PARAM_LITERAL)
+            .isEqualTo(10);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RETURN_LITERAL)
+            .isEqualTo(11);
+        assertWithMessage(MSG)
+            .that(JavadocParser.SEE_LITERAL)
+            .isEqualTo(12);
+        assertWithMessage(MSG)
+            .that(JavadocParser.SERIAL_LITERAL)
+            .isEqualTo(13);
+        assertWithMessage(MSG)
+            .that(JavadocParser.SERIAL_FIELD_LITERAL)
+            .isEqualTo(14);
+        assertWithMessage(MSG)
+            .that(JavadocParser.SERIAL_DATA_LITERAL)
+            .isEqualTo(15);
+        assertWithMessage(MSG)
+            .that(JavadocParser.SINCE_LITERAL)
+            .isEqualTo(16);
+        assertWithMessage(MSG)
+            .that(JavadocParser.THROWS_LITERAL)
+            .isEqualTo(17);
+        assertWithMessage(MSG)
+            .that(JavadocParser.VERSION_LITERAL)
+            .isEqualTo(18);
+        assertWithMessage(MSG)
+            .that(JavadocParser.JAVADOC_INLINE_TAG_START)
+            .isEqualTo(19);
+        assertWithMessage(MSG)
+            .that(JavadocParser.JAVADOC_INLINE_TAG_END)
+            .isEqualTo(20);
+        assertWithMessage(MSG)
+            .that(JavadocParser.CUSTOM_NAME)
+            .isEqualTo(21);
+        assertWithMessage(MSG)
+            .that(JavadocParser.LITERAL_INCLUDE)
+            .isEqualTo(22);
+        assertWithMessage(MSG)
+            .that(JavadocParser.LITERAL_EXCLUDE)
+            .isEqualTo(23);
+        assertWithMessage(MSG)
+            .that(JavadocParser.CHAR)
+            .isEqualTo(24);
+        assertWithMessage(MSG)
+            .that(JavadocParser.PARAMETER_NAME)
+            .isEqualTo(25);
+        assertWithMessage(MSG)
+            .that(JavadocParser.Char1)
+            .isEqualTo(26);
+        assertWithMessage(MSG)
+            .that(JavadocParser.STRING)
+            .isEqualTo(27);
+        assertWithMessage(MSG)
+            .that(JavadocParser.PACKAGE_CLASS)
+            .isEqualTo(28);
+        assertWithMessage(MSG)
+            .that(JavadocParser.DOT)
+            .isEqualTo(29);
+        assertWithMessage(MSG)
+            .that(JavadocParser.HASH)
+            .isEqualTo(30);
+        assertWithMessage(MSG)
+            .that(JavadocParser.CLASS)
+            .isEqualTo(31);
+        assertWithMessage(MSG)
+            .that(JavadocParser.Char2)
+            .isEqualTo(32);
+        assertWithMessage(MSG)
+            .that(JavadocParser.MEMBER)
+            .isEqualTo(33);
+        assertWithMessage(MSG)
+            .that(JavadocParser.LEFT_BRACE)
+            .isEqualTo(34);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RIGHT_BRACE)
+            .isEqualTo(35);
+        assertWithMessage(MSG)
+            .that(JavadocParser.ARGUMENT)
+            .isEqualTo(36);
+        assertWithMessage(MSG)
+            .that(JavadocParser.COMMA)
+            .isEqualTo(37);
+        assertWithMessage(MSG)
+            .that(JavadocParser.Char20)
+            .isEqualTo(38);
+        assertWithMessage(MSG)
+            .that(JavadocParser.FIELD_NAME)
+            .isEqualTo(39);
+        assertWithMessage(MSG)
+            .that(JavadocParser.Char3)
+            .isEqualTo(40);
+        assertWithMessage(MSG)
+            .that(JavadocParser.FIELD_TYPE)
+            .isEqualTo(41);
+        assertWithMessage(MSG)
+            .that(JavadocParser.Char4)
+            .isEqualTo(42);
+        assertWithMessage(MSG)
+            .that(JavadocParser.CLASS_NAME)
+            .isEqualTo(43);
+        assertWithMessage(MSG)
+            .that(JavadocParser.Char5)
+            .isEqualTo(44);
+        assertWithMessage(MSG)
+            .that(JavadocParser.CODE_LITERAL)
+            .isEqualTo(45);
+        assertWithMessage(MSG)
+            .that(JavadocParser.DOC_ROOT_LITERAL)
+            .isEqualTo(46);
+        assertWithMessage(MSG)
+            .that(JavadocParser.INHERIT_DOC_LITERAL)
+            .isEqualTo(47);
+        assertWithMessage(MSG)
+            .that(JavadocParser.LINK_LITERAL)
+            .isEqualTo(48);
+        assertWithMessage(MSG)
+            .that(JavadocParser.LINKPLAIN_LITERAL)
+            .isEqualTo(49);
+        assertWithMessage(MSG)
+            .that(JavadocParser.LITERAL_LITERAL)
+            .isEqualTo(50);
+        assertWithMessage(MSG)
+            .that(JavadocParser.VALUE_LITERAL)
+            .isEqualTo(51);
+        assertWithMessage(MSG)
+            .that(JavadocParser.Char7)
+            .isEqualTo(52);
+        assertWithMessage(MSG)
+            .that(JavadocParser.Char8)
+            .isEqualTo(53);
+        assertWithMessage(MSG)
+            .that(JavadocParser.Char10)
+            .isEqualTo(54);
+        assertWithMessage(MSG)
+            .that(JavadocParser.END)
+            .isEqualTo(55);
+        assertWithMessage(MSG)
+            .that(JavadocParser.SLASH_END)
+            .isEqualTo(56);
+        assertWithMessage(MSG)
+            .that(JavadocParser.SLASH)
+            .isEqualTo(57);
+        assertWithMessage(MSG)
+            .that(JavadocParser.EQUALS)
+            .isEqualTo(58);
+        assertWithMessage(MSG)
+            .that(JavadocParser.P_HTML_TAG_NAME)
+            .isEqualTo(59);
+        assertWithMessage(MSG)
+            .that(JavadocParser.LI_HTML_TAG_NAME)
+            .isEqualTo(60);
+        assertWithMessage(MSG)
+            .that(JavadocParser.TR_HTML_TAG_NAME)
+            .isEqualTo(61);
+        assertWithMessage(MSG)
+            .that(JavadocParser.TD_HTML_TAG_NAME)
+            .isEqualTo(62);
+        assertWithMessage(MSG)
+            .that(JavadocParser.TH_HTML_TAG_NAME)
+            .isEqualTo(63);
+        assertWithMessage(MSG)
+            .that(JavadocParser.BODY_HTML_TAG_NAME)
+            .isEqualTo(64);
+        assertWithMessage(MSG)
+            .that(JavadocParser.COLGROUP_HTML_TAG_NAME)
+            .isEqualTo(65);
+        assertWithMessage(MSG)
+            .that(JavadocParser.DD_HTML_TAG_NAME)
+            .isEqualTo(66);
+        assertWithMessage(MSG)
+            .that(JavadocParser.DT_HTML_TAG_NAME)
+            .isEqualTo(67);
+        assertWithMessage(MSG)
+            .that(JavadocParser.HEAD_HTML_TAG_NAME)
+            .isEqualTo(68);
+        assertWithMessage(MSG)
+            .that(JavadocParser.HTML_HTML_TAG_NAME)
+            .isEqualTo(69);
+        assertWithMessage(MSG)
+            .that(JavadocParser.OPTION_HTML_TAG_NAME)
+            .isEqualTo(70);
+        assertWithMessage(MSG)
+            .that(JavadocParser.TBODY_HTML_TAG_NAME)
+            .isEqualTo(71);
+        assertWithMessage(MSG)
+            .that(JavadocParser.TFOOT_HTML_TAG_NAME)
+            .isEqualTo(72);
+        assertWithMessage(MSG)
+            .that(JavadocParser.THEAD_HTML_TAG_NAME)
+            .isEqualTo(73);
+        assertWithMessage(MSG)
+            .that(JavadocParser.AREA_HTML_TAG_NAME)
+            .isEqualTo(74);
+        assertWithMessage(MSG)
+            .that(JavadocParser.BASE_HTML_TAG_NAME)
+            .isEqualTo(75);
+        assertWithMessage(MSG)
+            .that(JavadocParser.BASEFONT_HTML_TAG_NAME)
+            .isEqualTo(76);
+        assertWithMessage(MSG)
+            .that(JavadocParser.BR_HTML_TAG_NAME)
+            .isEqualTo(77);
+        assertWithMessage(MSG)
+            .that(JavadocParser.COL_HTML_TAG_NAME)
+            .isEqualTo(78);
+        assertWithMessage(MSG)
+            .that(JavadocParser.FRAME_HTML_TAG_NAME)
+            .isEqualTo(79);
+        assertWithMessage(MSG)
+            .that(JavadocParser.HR_HTML_TAG_NAME)
+            .isEqualTo(80);
+        assertWithMessage(MSG)
+            .that(JavadocParser.IMG_HTML_TAG_NAME)
+            .isEqualTo(81);
+        assertWithMessage(MSG)
+            .that(JavadocParser.INPUT_HTML_TAG_NAME)
+            .isEqualTo(82);
+        assertWithMessage(MSG)
+            .that(JavadocParser.ISINDEX_HTML_TAG_NAME)
+            .isEqualTo(83);
+        assertWithMessage(MSG)
+            .that(JavadocParser.LINK_HTML_TAG_NAME)
+            .isEqualTo(84);
+        assertWithMessage(MSG)
+            .that(JavadocParser.META_HTML_TAG_NAME)
+            .isEqualTo(85);
+        assertWithMessage(MSG)
+            .that(JavadocParser.PARAM_HTML_TAG_NAME)
+            .isEqualTo(86);
+        assertWithMessage(MSG)
+            .that(JavadocParser.EMBED_HTML_TAG_NAME)
+            .isEqualTo(87);
+        assertWithMessage(MSG)
+            .that(JavadocParser.KEYGEN_HTML_TAG_NAME)
+            .isEqualTo(88);
+        assertWithMessage(MSG)
+            .that(JavadocParser.ATTR_VALUE)
+            .isEqualTo(89);
+        assertWithMessage(MSG)
+            .that(JavadocParser.Char12)
+            .isEqualTo(90);
+        assertWithMessage(MSG)
+            .that(JavadocParser.HTML_COMMENT_END)
+            .isEqualTo(91);
+        assertWithMessage(MSG)
+            .that(JavadocParser.SOURCE_HTML_TAG_NAME)
+            .isEqualTo(92);
+        assertWithMessage(MSG)
+            .that(JavadocParser.TRACK_HTML_TAG_NAME)
+            .isEqualTo(93);
+        assertWithMessage(MSG)
+            .that(JavadocParser.WBR_HTML_TAG_NAME)
+            .isEqualTo(94);
+        assertWithMessage(MSG)
+            .that(JavadocParser.OPTGROUP_HTML_TAG_NAME)
+            .isEqualTo(95);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RB_HTML_TAG_NAME)
+            .isEqualTo(96);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RT_HTML_TAG_NAME)
+            .isEqualTo(97);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RTC_HTML_TAG_NAME)
+            .isEqualTo(98);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RP_HTML_TAG_NAME)
+            .isEqualTo(99);
+        assertWithMessage(MSG)
+            .that(JavadocParser.HTML_TAG_NAME)
+            .isEqualTo(100);
+        assertWithMessage(MSG)
+            .that(JavadocParser.Char11)
+            .isEqualTo(101);
 
         final int tokenCount = (int) Arrays.stream(JavadocParser.class.getDeclaredFields())
                 .filter(GeneratedJavadocTokenTypesTest::isPublicStaticFinalInt)
@@ -157,10 +359,11 @@ public class GeneratedJavadocTokenTypesTest {
                 .count();
 
         // Read JavaDoc before changing count below
-        assertEquals(101, tokenCount,
-                "all tokens must be added to list in"
+        assertWithMessage("all tokens must be added to list in"
                         + " 'GeneratedJavadocTokenTypesTest' and verified"
-                        + " that their old numbering didn't change");
+                        + " that their old numbering didn't change")
+            .that(tokenCount)
+            .isEqualTo(101);
     }
 
     /**
@@ -175,101 +378,291 @@ public class GeneratedJavadocTokenTypesTest {
      */
     @Test
     public void testRuleNumbers() {
-        assertEquals(0, JavadocParser.RULE_javadoc, MSG);
-        assertEquals(1, JavadocParser.RULE_htmlElement, MSG);
-        assertEquals(2, JavadocParser.RULE_htmlElementStart, MSG);
-        assertEquals(3, JavadocParser.RULE_htmlElementEnd, MSG);
-        assertEquals(4, JavadocParser.RULE_attribute, MSG);
-        assertEquals(5, JavadocParser.RULE_htmlTag, MSG);
-        assertEquals(6, JavadocParser.RULE_pTagStart, MSG);
-        assertEquals(7, JavadocParser.RULE_pTagEnd, MSG);
-        assertEquals(8, JavadocParser.RULE_paragraph, MSG);
-        assertEquals(9, JavadocParser.RULE_liTagStart, MSG);
-        assertEquals(10, JavadocParser.RULE_liTagEnd, MSG);
-        assertEquals(11, JavadocParser.RULE_li, MSG);
-        assertEquals(12, JavadocParser.RULE_trTagStart, MSG);
-        assertEquals(13, JavadocParser.RULE_trTagEnd, MSG);
-        assertEquals(14, JavadocParser.RULE_tr, MSG);
-        assertEquals(15, JavadocParser.RULE_tdTagStart, MSG);
-        assertEquals(16, JavadocParser.RULE_tdTagEnd, MSG);
-        assertEquals(17, JavadocParser.RULE_td, MSG);
-        assertEquals(18, JavadocParser.RULE_thTagStart, MSG);
-        assertEquals(19, JavadocParser.RULE_thTagEnd, MSG);
-        assertEquals(20, JavadocParser.RULE_th, MSG);
-        assertEquals(21, JavadocParser.RULE_bodyTagStart, MSG);
-        assertEquals(22, JavadocParser.RULE_bodyTagEnd, MSG);
-        assertEquals(23, JavadocParser.RULE_body, MSG);
-        assertEquals(24, JavadocParser.RULE_colgroupTagStart, MSG);
-        assertEquals(25, JavadocParser.RULE_colgroupTagEnd, MSG);
-        assertEquals(26, JavadocParser.RULE_colgroup, MSG);
-        assertEquals(27, JavadocParser.RULE_ddTagStart, MSG);
-        assertEquals(28, JavadocParser.RULE_ddTagEnd, MSG);
-        assertEquals(29, JavadocParser.RULE_dd, MSG);
-        assertEquals(30, JavadocParser.RULE_dtTagStart, MSG);
-        assertEquals(31, JavadocParser.RULE_dtTagEnd, MSG);
-        assertEquals(32, JavadocParser.RULE_dt, MSG);
-        assertEquals(33, JavadocParser.RULE_headTagStart, MSG);
-        assertEquals(34, JavadocParser.RULE_headTagEnd, MSG);
-        assertEquals(35, JavadocParser.RULE_head, MSG);
-        assertEquals(36, JavadocParser.RULE_htmlTagStart, MSG);
-        assertEquals(37, JavadocParser.RULE_htmlTagEnd, MSG);
-        assertEquals(38, JavadocParser.RULE_html, MSG);
-        assertEquals(39, JavadocParser.RULE_optionTagStart, MSG);
-        assertEquals(40, JavadocParser.RULE_optionTagEnd, MSG);
-        assertEquals(41, JavadocParser.RULE_option, MSG);
-        assertEquals(42, JavadocParser.RULE_tbodyTagStart, MSG);
-        assertEquals(43, JavadocParser.RULE_tbodyTagEnd, MSG);
-        assertEquals(44, JavadocParser.RULE_tbody, MSG);
-        assertEquals(45, JavadocParser.RULE_tfootTagStart, MSG);
-        assertEquals(46, JavadocParser.RULE_tfootTagEnd, MSG);
-        assertEquals(47, JavadocParser.RULE_tfoot, MSG);
-        assertEquals(48, JavadocParser.RULE_theadTagStart, MSG);
-        assertEquals(49, JavadocParser.RULE_theadTagEnd, MSG);
-        assertEquals(50, JavadocParser.RULE_thead, MSG);
-        assertEquals(51, JavadocParser.RULE_singletonElement, MSG);
-        assertEquals(52, JavadocParser.RULE_emptyTag, MSG);
-        assertEquals(53, JavadocParser.RULE_areaTag, MSG);
-        assertEquals(54, JavadocParser.RULE_baseTag, MSG);
-        assertEquals(55, JavadocParser.RULE_basefontTag, MSG);
-        assertEquals(56, JavadocParser.RULE_brTag, MSG);
-        assertEquals(57, JavadocParser.RULE_colTag, MSG);
-        assertEquals(58, JavadocParser.RULE_frameTag, MSG);
-        assertEquals(59, JavadocParser.RULE_hrTag, MSG);
-        assertEquals(60, JavadocParser.RULE_imgTag, MSG);
-        assertEquals(61, JavadocParser.RULE_inputTag, MSG);
-        assertEquals(62, JavadocParser.RULE_isindexTag, MSG);
-        assertEquals(63, JavadocParser.RULE_linkTag, MSG);
-        assertEquals(64, JavadocParser.RULE_metaTag, MSG);
-        assertEquals(65, JavadocParser.RULE_paramTag, MSG);
-        assertEquals(66, JavadocParser.RULE_wrongSingletonTag, MSG);
-        assertEquals(67, JavadocParser.RULE_singletonTagName, MSG);
-        assertEquals(68, JavadocParser.RULE_description, MSG);
-        assertEquals(69, JavadocParser.RULE_reference, MSG);
-        assertEquals(70, JavadocParser.RULE_parameters, MSG);
-        assertEquals(71, JavadocParser.RULE_javadocTag, MSG);
-        assertEquals(72, JavadocParser.RULE_javadocInlineTag, MSG);
-        assertEquals(73, JavadocParser.RULE_htmlComment, MSG);
-        assertEquals(74, JavadocParser.RULE_text, MSG);
-        assertEquals(75, JavadocParser.RULE_embedTag, MSG);
-        assertEquals(76, JavadocParser.RULE_keygenTag, MSG);
-        assertEquals(77, JavadocParser.RULE_sourceTag, MSG);
-        assertEquals(78, JavadocParser.RULE_trackTag, MSG);
-        assertEquals(79, JavadocParser.RULE_wbrTag, MSG);
-        assertEquals(80, JavadocParser.RULE_optgroupTagStart, MSG);
-        assertEquals(81, JavadocParser.RULE_optgroupTagEnd, MSG);
-        assertEquals(82, JavadocParser.RULE_optgroup, MSG);
-        assertEquals(83, JavadocParser.RULE_rbTagStart, MSG);
-        assertEquals(84, JavadocParser.RULE_rbTagEnd, MSG);
-        assertEquals(85, JavadocParser.RULE_rb, MSG);
-        assertEquals(86, JavadocParser.RULE_rtTagStart, MSG);
-        assertEquals(87, JavadocParser.RULE_rtTagEnd, MSG);
-        assertEquals(88, JavadocParser.RULE_rt, MSG);
-        assertEquals(89, JavadocParser.RULE_rtcTagStart, MSG);
-        assertEquals(90, JavadocParser.RULE_rtcTagEnd, MSG);
-        assertEquals(91, JavadocParser.RULE_rtc, MSG);
-        assertEquals(92, JavadocParser.RULE_rpTagStart, MSG);
-        assertEquals(93, JavadocParser.RULE_rpTagEnd, MSG);
-        assertEquals(94, JavadocParser.RULE_rp, MSG);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_javadoc)
+            .isEqualTo(0);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_htmlElement)
+            .isEqualTo(1);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_htmlElementStart)
+            .isEqualTo(2);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_htmlElementEnd)
+            .isEqualTo(3);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_attribute)
+            .isEqualTo(4);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_htmlTag)
+            .isEqualTo(5);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_pTagStart)
+            .isEqualTo(6);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_pTagEnd)
+            .isEqualTo(7);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_paragraph)
+            .isEqualTo(8);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_liTagStart)
+            .isEqualTo(9);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_liTagEnd)
+            .isEqualTo(10);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_li)
+            .isEqualTo(11);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_trTagStart)
+            .isEqualTo(12);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_trTagEnd)
+            .isEqualTo(13);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_tr)
+            .isEqualTo(14);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_tdTagStart)
+            .isEqualTo(15);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_tdTagEnd)
+            .isEqualTo(16);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_td)
+            .isEqualTo(17);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_thTagStart)
+            .isEqualTo(18);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_thTagEnd)
+            .isEqualTo(19);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_th)
+            .isEqualTo(20);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_bodyTagStart)
+            .isEqualTo(21);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_bodyTagEnd)
+            .isEqualTo(22);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_body)
+            .isEqualTo(23);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_colgroupTagStart)
+            .isEqualTo(24);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_colgroupTagEnd)
+            .isEqualTo(25);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_colgroup)
+            .isEqualTo(26);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_ddTagStart)
+            .isEqualTo(27);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_ddTagEnd)
+            .isEqualTo(28);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_dd)
+            .isEqualTo(29);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_dtTagStart)
+            .isEqualTo(30);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_dtTagEnd)
+            .isEqualTo(31);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_dt)
+            .isEqualTo(32);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_headTagStart)
+            .isEqualTo(33);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_headTagEnd)
+            .isEqualTo(34);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_head)
+            .isEqualTo(35);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_htmlTagStart)
+            .isEqualTo(36);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_htmlTagEnd)
+            .isEqualTo(37);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_html)
+            .isEqualTo(38);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_optionTagStart)
+            .isEqualTo(39);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_optionTagEnd)
+            .isEqualTo(40);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_option)
+            .isEqualTo(41);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_tbodyTagStart)
+            .isEqualTo(42);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_tbodyTagEnd)
+            .isEqualTo(43);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_tbody)
+            .isEqualTo(44);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_tfootTagStart)
+            .isEqualTo(45);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_tfootTagEnd)
+            .isEqualTo(46);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_tfoot)
+            .isEqualTo(47);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_theadTagStart)
+            .isEqualTo(48);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_theadTagEnd)
+            .isEqualTo(49);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_thead)
+            .isEqualTo(50);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_singletonElement)
+            .isEqualTo(51);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_emptyTag)
+            .isEqualTo(52);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_areaTag)
+            .isEqualTo(53);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_baseTag)
+            .isEqualTo(54);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_basefontTag)
+            .isEqualTo(55);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_brTag)
+            .isEqualTo(56);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_colTag)
+            .isEqualTo(57);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_frameTag)
+            .isEqualTo(58);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_hrTag)
+            .isEqualTo(59);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_imgTag)
+            .isEqualTo(60);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_inputTag)
+            .isEqualTo(61);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_isindexTag)
+            .isEqualTo(62);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_linkTag)
+            .isEqualTo(63);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_metaTag)
+            .isEqualTo(64);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_paramTag)
+            .isEqualTo(65);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_wrongSingletonTag)
+            .isEqualTo(66);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_singletonTagName)
+            .isEqualTo(67);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_description)
+            .isEqualTo(68);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_reference)
+            .isEqualTo(69);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_parameters)
+            .isEqualTo(70);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_javadocTag)
+            .isEqualTo(71);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_javadocInlineTag)
+            .isEqualTo(72);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_htmlComment)
+            .isEqualTo(73);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_text)
+            .isEqualTo(74);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_embedTag)
+            .isEqualTo(75);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_keygenTag)
+            .isEqualTo(76);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_sourceTag)
+            .isEqualTo(77);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_trackTag)
+            .isEqualTo(78);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_wbrTag)
+            .isEqualTo(79);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_optgroupTagStart)
+            .isEqualTo(80);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_optgroupTagEnd)
+            .isEqualTo(81);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_optgroup)
+            .isEqualTo(82);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_rbTagStart)
+            .isEqualTo(83);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_rbTagEnd)
+            .isEqualTo(84);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_rb)
+            .isEqualTo(85);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_rtTagStart)
+            .isEqualTo(86);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_rtTagEnd)
+            .isEqualTo(87);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_rt)
+            .isEqualTo(88);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_rtcTagStart)
+            .isEqualTo(89);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_rtcTagEnd)
+            .isEqualTo(90);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_rtc)
+            .isEqualTo(91);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_rpTagStart)
+            .isEqualTo(92);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_rpTagEnd)
+            .isEqualTo(93);
+        assertWithMessage(MSG)
+            .that(JavadocParser.RULE_rp)
+            .isEqualTo(94);
 
         final int tokenCount = (int) Arrays.stream(JavadocParser.class.getDeclaredFields())
                 .filter(GeneratedJavadocTokenTypesTest::isPublicStaticFinalInt)
@@ -277,10 +670,11 @@ public class GeneratedJavadocTokenTypesTest {
                 .count();
 
         // Read JavaDoc before changing count below
-        assertEquals(95, tokenCount,
-                "all rules must be added to list in"
+        assertWithMessage("all rules must be added to list in"
                         + " 'GeneratedJavadocTokenTypesTest' and verified"
-                        + " that their old numbering didn't change");
+                        + " that their old numbering didn't change")
+            .that(tokenCount)
+            .isEqualTo(95);
     }
 
     /**

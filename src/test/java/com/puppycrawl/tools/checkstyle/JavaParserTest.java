@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
@@ -72,17 +71,31 @@ public class JavaParserTest extends AbstractModuleTestSupport {
 
         final DetailAST comment = blockComment.get();
 
-        assertEquals(3, comment.getLineNo(), "Unexpected line number");
-        assertEquals(0, comment.getColumnNo(), "Unexpected column number");
-        assertEquals("/*", comment.getText(), "Unexpected comment content");
+        assertWithMessage("Unexpected line number")
+            .that(comment.getLineNo())
+            .isEqualTo(3);
+        assertWithMessage("Unexpected column number")
+            .that(comment.getColumnNo())
+            .isEqualTo(0);
+        assertWithMessage("Unexpected comment content")
+            .that(comment.getText())
+            .isEqualTo("/*");
 
         final DetailAST commentContent = comment.getFirstChild();
         final DetailAST commentEnd = comment.getLastChild();
 
-        assertEquals(3, commentContent.getLineNo(), "Unexpected line number");
-        assertEquals(2, commentContent.getColumnNo(), "Unexpected column number");
-        assertEquals(9, commentEnd.getLineNo(), "Unexpected line number");
-        assertEquals(1, commentEnd.getColumnNo(), "Unexpected column number");
+        assertWithMessage("Unexpected line number")
+            .that(commentContent.getLineNo())
+            .isEqualTo(3);
+        assertWithMessage("Unexpected column number")
+            .that(commentContent.getColumnNo())
+            .isEqualTo(2);
+        assertWithMessage("Unexpected line number")
+            .that(commentEnd.getLineNo())
+            .isEqualTo(9);
+        assertWithMessage("Unexpected column number")
+            .that(commentEnd.getColumnNo())
+            .isEqualTo(1);
     }
 
     @Test
@@ -99,15 +112,27 @@ public class JavaParserTest extends AbstractModuleTestSupport {
 
         final DetailAST comment = singleLineComment.get();
 
-        assertEquals(13, comment.getLineNo(), "Unexpected line number");
-        assertEquals(0, comment.getColumnNo(), "Unexpected column number");
-        assertEquals("//", comment.getText(), "Unexpected comment content");
+        assertWithMessage("Unexpected line number")
+            .that(comment.getLineNo())
+            .isEqualTo(13);
+        assertWithMessage("Unexpected column number")
+            .that(comment.getColumnNo())
+            .isEqualTo(0);
+        assertWithMessage("Unexpected comment content")
+            .that(comment.getText())
+            .isEqualTo("//");
 
         final DetailAST commentContent = comment.getFirstChild();
 
-        assertEquals(TokenTypes.COMMENT_CONTENT, commentContent.getType(), "Unexpected token type");
-        assertEquals(13, commentContent.getLineNo(), "Unexpected line number");
-        assertEquals(2, commentContent.getColumnNo(), "Unexpected column number");
+        assertWithMessage("Unexpected token type")
+            .that(commentContent.getType())
+            .isEqualTo(TokenTypes.COMMENT_CONTENT);
+        assertWithMessage("Unexpected line number")
+            .that(commentContent.getLineNo())
+            .isEqualTo(13);
+        assertWithMessage("Unexpected column number")
+            .that(commentContent.getColumnNo())
+            .isEqualTo(2);
         assertWithMessage("Unexpected comment content")
                 .that(commentContent.getText().startsWith(" inline comment"))
                 .isTrue();
@@ -127,15 +152,27 @@ public class JavaParserTest extends AbstractModuleTestSupport {
 
         final DetailAST comment = singleLineComment.get();
 
-        assertEquals(1, comment.getLineNo(), "Unexpected line number");
-        assertEquals(4, comment.getColumnNo(), "Unexpected column number");
-        assertEquals("//", comment.getText(), "Unexpected comment content");
+        assertWithMessage("Unexpected line number")
+            .that(comment.getLineNo())
+            .isEqualTo(1);
+        assertWithMessage("Unexpected column number")
+            .that(comment.getColumnNo())
+            .isEqualTo(4);
+        assertWithMessage("Unexpected comment content")
+            .that(comment.getText())
+            .isEqualTo("//");
 
         final DetailAST commentContent = comment.getFirstChild();
 
-        assertEquals(TokenTypes.COMMENT_CONTENT, commentContent.getType(), "Unexpected token type");
-        assertEquals(1, commentContent.getLineNo(), "Unexpected line number");
-        assertEquals(6, commentContent.getColumnNo(), "Unexpected column number");
+        assertWithMessage("Unexpected token type")
+            .that(commentContent.getType())
+            .isEqualTo(TokenTypes.COMMENT_CONTENT);
+        assertWithMessage("Unexpected line number")
+            .that(commentContent.getLineNo())
+            .isEqualTo(1);
+        assertWithMessage("Unexpected column number")
+            .that(commentContent.getColumnNo())
+            .isEqualTo(6);
         assertWithMessage("Unexpected comment content")
                 .that(commentContent.getText().startsWith(" indented comment"))
                 .isTrue();
@@ -162,15 +199,16 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals(
-                    CheckstyleException.class.getName()
+            assertWithMessage("Invalid exception message")
+                .that(ex.toString())
+                .isEqualTo(CheckstyleException.class.getName()
                             + ": IllegalStateException occurred while parsing file "
-                            + input.getAbsolutePath() + ".",
-                    ex.toString(), "Invalid exception message");
+                            + input.getAbsolutePath() + ".");
             assertSame(IllegalStateException.class, ex.getCause().getClass(), "Invalid class");
-            assertEquals(IllegalStateException.class.getName()
-                            + ": 2:0: no viable alternative at input 'classD'",
-                    ex.getCause().toString(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getCause().toString())
+                .isEqualTo(IllegalStateException.class.getName()
+                            + ": 2:0: no viable alternative at input 'classD'");
         }
     }
 
@@ -206,9 +244,15 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         final DetailAST content = textBlockContent.get();
         final String expectedContents = "\n                 string";
 
-        assertEquals(5, content.getLineNo(), "Unexpected line number");
-        assertEquals(32, content.getColumnNo(), "Unexpected column number");
-        assertEquals(expectedContents, content.getText(), "Unexpected text block content");
+        assertWithMessage("Unexpected line number")
+            .that(content.getLineNo())
+            .isEqualTo(5);
+        assertWithMessage("Unexpected column number")
+            .that(content.getColumnNo())
+            .isEqualTo(32);
+        assertWithMessage("Unexpected text block content")
+            .that(content.getText())
+            .isEqualTo(expectedContents);
     }
 
     @Test

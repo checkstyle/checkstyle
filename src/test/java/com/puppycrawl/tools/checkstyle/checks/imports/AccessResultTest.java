@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +33,9 @@ public class AccessResultTest {
     @Test
     public void testAccessResultValueOf() {
         final AccessResult result = AccessResult.valueOf("ALLOWED");
-        assertEquals(AccessResult.ALLOWED, result, "Invalid access result");
+        assertWithMessage("Invalid access result")
+            .that(result)
+            .isEqualTo(AccessResult.ALLOWED);
     }
 
     /* Additional test for jacoco, since values()

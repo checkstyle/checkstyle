@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck.MSG_LINE_NEW;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck.MSG_LINE_PREVIOUS;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -150,11 +149,12 @@ public class OperatorWrapCheckTest
             assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                     + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
                     + "whitespace.OperatorWrapCheck - "
-                    + "Cannot set property 'option' to 'invalid_option'",
-                ex.getMessage(), "Invalid exception message");
+                    + "Cannot set property 'option' to 'invalid_option'");
         }
     }
 

@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_OBJECT_ARRA
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -109,23 +108,27 @@ public class ViolationTest {
     public void testGetSeverityLevel() {
         final Violation violation = createSampleViolation();
 
-        assertEquals(SeverityLevel.ERROR,
-                violation.getSeverityLevel(), "Invalid severity level");
+        assertWithMessage("Invalid severity level")
+            .that(violation.getSeverityLevel())
+            .isEqualTo(SeverityLevel.ERROR);
     }
 
     @Test
     public void testGetModuleId() {
         final Violation violation = createSampleViolation();
 
-        assertEquals("module", violation.getModuleId(), "Invalid module id");
+        assertWithMessage("Invalid module id")
+            .that(violation.getModuleId())
+            .isEqualTo("module");
     }
 
     @Test
     public void testGetSourceName() {
         final Violation violation = createSampleViolation();
 
-        assertEquals("com.puppycrawl.tools.checkstyle.api.Violation",
-                violation.getSourceName(), "Invalid source name");
+        assertWithMessage("Invalid source name")
+            .that(violation.getSourceName())
+            .isEqualTo("com.puppycrawl.tools.checkstyle.api.Violation");
     }
 
     @Test
@@ -133,7 +136,9 @@ public class ViolationTest {
         final Violation violation = createSampleViolation();
         Violation.setLocale(Locale.ENGLISH);
 
-        assertEquals("Empty statement.", violation.getViolation(), "Invalid violation");
+        assertWithMessage("Invalid violation")
+            .that(violation.getViolation())
+            .isEqualTo("Empty statement.");
     }
 
     @Test
@@ -272,7 +277,9 @@ public class ViolationTest {
         final Violation violation = createSampleViolation();
         Violation.setLocale(Locale.FRENCH);
 
-        assertEquals("Instruction vide.", violation.getViolation(), "Invalid violation");
+        assertWithMessage("Invalid violation")
+            .that(violation.getViolation())
+            .isEqualTo("Instruction vide.");
     }
 
     @DefaultLocale("fr")
@@ -281,7 +288,9 @@ public class ViolationTest {
         Violation.setLocale(Locale.US);
         final Violation violation = createSampleViolation();
 
-        assertEquals("Empty statement.", violation.getViolation(), "Invalid violation");
+        assertWithMessage("Invalid violation")
+            .that(violation.getViolation())
+            .isEqualTo("Empty statement.");
     }
 
     @DefaultLocale("fr")
@@ -290,7 +299,9 @@ public class ViolationTest {
         Violation.setLocale(Locale.ROOT);
         final Violation violation = createSampleViolation();
 
-        assertEquals("Empty statement.", violation.getViolation(), "Invalid violation");
+        assertWithMessage("Invalid violation")
+            .that(violation.getViolation())
+            .isEqualTo("Empty statement.");
     }
 
     @DefaultLocale("fr")
@@ -299,7 +310,9 @@ public class ViolationTest {
         Violation.setLocale(Locale.US);
         final Violation violation = createSampleViolation();
 
-        assertEquals("empty.statement", violation.getKey(), "Invalid violation key");
+        assertWithMessage("Invalid violation key")
+            .that(violation.getKey())
+            .isEqualTo("empty.statement");
     }
 
     @DefaultLocale("fr")
@@ -308,16 +321,22 @@ public class ViolationTest {
         Violation.setLocale(Locale.ROOT);
         final Violation violation = createSampleViolation();
 
-        assertEquals("Empty statement.", violation.getViolation(), "Invalid violation");
+        assertWithMessage("Invalid violation")
+            .that(violation.getViolation())
+            .isEqualTo("Empty statement.");
 
         final Map<String, ResourceBundle> bundleCache =
                 TestUtil.getInternalStaticState(Violation.class, "BUNDLE_CACHE");
 
-        assertEquals(1, bundleCache.size(), "Invalid bundle cache size");
+        assertWithMessage("Invalid bundle cache size")
+            .that(bundleCache.size())
+            .isEqualTo(1);
 
         Violation.setLocale(Locale.CHINA);
 
-        assertEquals(0, bundleCache.size(), "Invalid bundle cache size");
+        assertWithMessage("Invalid bundle cache size")
+            .that(bundleCache.size())
+            .isEqualTo(0);
     }
 
     @Test
@@ -329,8 +348,12 @@ public class ViolationTest {
                 "messages.properties", "key", EMPTY_OBJECT_ARRAY, SeverityLevel.ERROR, null,
                 getClass(), null);
 
-        assertEquals(TokenTypes.CLASS_DEF, violation1.getTokenType(), "Invalid token type");
-        assertEquals(TokenTypes.OBJBLOCK, violation2.getTokenType(), "Invalid token type");
+        assertWithMessage("Invalid token type")
+            .that(violation1.getTokenType())
+            .isEqualTo(TokenTypes.CLASS_DEF);
+        assertWithMessage("Invalid token type")
+            .that(violation2.getTokenType())
+            .isEqualTo(TokenTypes.OBJBLOCK);
     }
 
     @Test
@@ -339,7 +362,9 @@ public class ViolationTest {
                 TokenTypes.CLASS_DEF, "messages.properties", "key", null, SeverityLevel.ERROR,
                 null, getClass(), null);
 
-        assertEquals(123, violation1.getColumnCharIndex(), "Invalid column char index");
+        assertWithMessage("Invalid column char index")
+            .that(violation1.getColumnCharIndex())
+            .isEqualTo(123);
     }
 
     @Test
@@ -372,7 +397,9 @@ public class ViolationTest {
                 .that(message2.compareTo(message1) > 0)
                 .isTrue();
         final int actual = message1.compareTo(message1a);
-        assertEquals(0, actual, "Invalid comparing result");
+        assertWithMessage("Invalid comparing result")
+            .that(actual)
+            .isEqualTo(0);
     }
 
     @Test
@@ -388,7 +415,9 @@ public class ViolationTest {
                 .that(message2.compareTo(message1) > 0)
                 .isTrue();
         final int actual = message1.compareTo(message1a);
-        assertEquals(0, actual, "Invalid comparing result");
+        assertWithMessage("Invalid comparing result")
+            .that(actual)
+            .isEqualTo(0);
     }
 
     private static Violation createSampleViolation() {

@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_ORDERING;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_SEPARATED_IN_GROUP;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_SEPARATION;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
@@ -51,7 +50,9 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testImportOrderOptionValueOf() {
         final ImportOrderOption option = ImportOrderOption.valueOf("TOP");
-        assertEquals(ImportOrderOption.TOP, option, "Invalid valueOf result");
+        assertWithMessage("Invalid valueOf result")
+            .that(option)
+            .isEqualTo(ImportOrderOption.TOP);
     }
 
     @Test
@@ -206,12 +207,12 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
             assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals(
-                    "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                         + "cannot initialize module com.puppycrawl.tools.checkstyle.checks"
                         + ".imports.ImportOrderCheck - "
-                        + "Cannot set property 'option' to 'invalid_option'",
-                    ex.getMessage(), "Invalid exception message");
+                        + "Cannot set property 'option' to 'invalid_option'");
         }
     }
 
@@ -522,14 +523,15 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
             assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                         + "cannot initialize module com.puppycrawl.tools.checkstyle.checks"
                         + ".imports.ImportOrderCheck - "
-                        + "Cannot set property 'groups' to '/^javax'",
-                    ex.getMessage(), "Invalid exception message");
-            assertEquals("Invalid group: /^javax",
-                    ex.getCause().getCause().getCause().getCause().getMessage(),
-                    "Invalid exception message");
+                        + "Cannot set property 'groups' to '/^javax'");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getCause().getCause().getCause().getCause().getMessage())
+                .isEqualTo("Invalid group: /^javax");
         }
     }
 

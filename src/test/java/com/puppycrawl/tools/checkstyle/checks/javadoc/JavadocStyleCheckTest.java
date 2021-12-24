@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_EMPTY;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_EXTRA_HTML;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_INCOMPLETE_TAG;
@@ -26,7 +27,6 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.M
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_NO_PERIOD;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_UNCLOSED_HTML;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 
@@ -400,9 +400,10 @@ public class JavadocStyleCheckTest
     @Test
     public void testHtmlTagToString() {
         final HtmlTag tag = new HtmlTag("id", 3, 5, true, false, "<a href=\"URL\"/>");
-        assertEquals("HtmlTag[id='id', lineNo=3, position=5, text='<a href=\"URL\"/>', "
-                + "closedTag=true, incompleteTag=false]", tag.toString(),
-                "Invalid toString result");
+        assertWithMessage("Invalid toString result")
+            .that(tag.toString())
+            .isEqualTo("HtmlTag[id='id', lineNo=3, position=5, text='<a href=\"URL\"/>', "
+                + "closedTag=true, incompleteTag=false]");
     }
 
     @Test

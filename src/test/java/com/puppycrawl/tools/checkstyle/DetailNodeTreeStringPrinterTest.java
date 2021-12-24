@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADO
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_PARSE_RULE_ERROR;
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_WRONG_SINGLETON_TAG;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 
@@ -66,8 +65,9 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                     "getParseErrorMessage",
                     new ParseErrorMessage(0, MSG_JAVADOC_MISSED_HTML_CLOSE, 1, "qwe"));
-            assertEquals(expected, ex.getMessage(),
-                    "Generated and expected parse error messages don't match");
+            assertWithMessage("Generated and expected parse error messages don't match")
+                .that(ex.getMessage())
+                .isEqualTo(expected);
         }
     }
 
@@ -92,8 +92,10 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 DetailNodeTreeStringPrinter.class,
                 null);
         final String expected = "[ERROR:35] " + violation.getViolation();
-        assertEquals(expected, actual,
-                "Javadoc parse error violation for missed HTML tag doesn't meet expectations");
+        assertWithMessage("Javadoc parse error violation for missed HTML tag "
+                + "doesn't meet expectations")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -111,7 +113,9 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 DetailNodeTreeStringPrinter.class,
                 null);
         final String expected = "[ERROR:10] " + violation.getViolation();
-        assertEquals(expected, actual, "Javadoc parse error violation doesn't meet expectations");
+        assertWithMessage("Javadoc parse error violation doesn't meet expectations")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -129,9 +133,10 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 DetailNodeTreeStringPrinter.class,
                 null);
         final String expected = "[ERROR:100] " + violation.getViolation();
-        assertEquals(expected, actual,
-                "Javadoc parse error violation for void elements with close tag "
-                    + "doesn't meet expectations");
+        assertWithMessage("Javadoc parse error violation for void elements with close tag "
+                    + "doesn't meet expectations")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -147,8 +152,9 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                     "getParseErrorMessage",
                     new ParseErrorMessage(35, MSG_JAVADOC_MISSED_HTML_CLOSE, 7, "parsing"));
-            assertEquals(expected, ex.getMessage(),
-                    "Generated and expected parse error messages don't match");
+            assertWithMessage("Generated and expected parse error messages don't match")
+                .that(ex.getMessage())
+                .isEqualTo(expected);
         }
     }
 
@@ -165,8 +171,9 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                     "getParseErrorMessage",
                     new ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
                             9, "no viable alternative at input '<<'", "HTML_ELEMENT"));
-            assertEquals(expected, ex.getMessage(),
-                    "Generated and expected parse error messages don't match");
+            assertWithMessage("Generated and expected parse error messages don't match")
+                .that(ex.getMessage())
+                .isEqualTo(expected);
         }
     }
 
@@ -183,8 +190,9 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                     "getParseErrorMessage",
                     new ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
                             4, "no viable alternative at input '</tag'", "HTML_ELEMENT"));
-            assertEquals(expected, ex.getMessage(),
-                    "Generated and expected parse error messages don't match");
+            assertWithMessage("Generated and expected parse error messages don't match")
+                .that(ex.getMessage())
+                .isEqualTo(expected);
         }
     }
 
@@ -200,8 +208,9 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                     "getParseErrorMessage",
                     new ParseErrorMessage(0, MSG_JAVADOC_MISSED_HTML_CLOSE, 10, "tag2"));
-            assertEquals(expected, ex.getMessage(),
-                    "Generated and expected parse error messages don't match");
+            assertWithMessage("Generated and expected parse error messages don't match")
+                .that(ex.getMessage())
+                .isEqualTo(expected);
         }
     }
 
@@ -217,8 +226,9 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                     "getParseErrorMessage",
                     new ParseErrorMessage(0, MSG_JAVADOC_MISSED_HTML_CLOSE, 3, "a"));
-            assertEquals(expected, ex.getMessage(),
-                    "Generated and expected parse error messages don't match");
+            assertWithMessage("Generated and expected parse error messages don't match")
+                .that(ex.getMessage())
+                .isEqualTo(expected);
         }
     }
 
