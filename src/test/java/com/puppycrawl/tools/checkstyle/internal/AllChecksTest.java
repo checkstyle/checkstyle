@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.lang.reflect.Field;
@@ -534,11 +533,14 @@ public class AllChecksTest extends AbstractModuleTestSupport {
             // No messages in just module
             if ("SuppressWarningsHolder".equals(name)) {
                 assertWithMessage(name + " should not have any 'MSG_*' fields for error messages")
-                        .that(messages).isEmpty();
+                        .that(messages)
+                        .isEmpty();
             }
             else {
-                assertFalse(messages.isEmpty(),
-                        name + " should have at least one 'MSG_*' field for error messages");
+                assertWithMessage(
+                        name + " should have at least one 'MSG_*' field for error messages")
+                                .that(messages.isEmpty())
+                                .isFalse();
             }
         }
     }
@@ -614,10 +616,12 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                             module.getSimpleName(), messageString, locale.getLanguage())
                     .that(result.trim())
                     .isNotEmpty();
-            assertFalse(!"todo.match".equals(messageString) && result.trim().startsWith("TODO"),
-                    module.getSimpleName()
-                    + " should have non-TODO text for the message '"
-                    + messageString + "' in locale " + locale.getLanguage() + "'");
+            assertWithMessage(
+                    module.getSimpleName() + " should have non-TODO text for the message '"
+                            + messageString + "' in locale " + locale.getLanguage() + "'")
+                                    .that(!"todo.match".equals(messageString)
+                                            && result.trim().startsWith("TODO"))
+                                    .isFalse();
         }
     }
 

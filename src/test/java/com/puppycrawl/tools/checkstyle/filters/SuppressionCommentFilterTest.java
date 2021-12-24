@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.filters;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.File;
@@ -627,7 +626,9 @@ public class SuppressionCommentFilterTest
         final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, "filename",
                 new Violation(1, null, null, null, null, Object.class, null), null);
         final boolean result = suppressionCommentFilter.accept(dummyEvent);
-        assertFalse(result, "Filter should not accept event");
+        assertWithMessage("Filter should not accept event")
+            .that(result)
+            .isFalse();
     }
 
     @Test

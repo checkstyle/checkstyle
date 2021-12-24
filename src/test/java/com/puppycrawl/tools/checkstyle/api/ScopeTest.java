@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
@@ -120,7 +119,9 @@ public class ScopeTest {
         assertWithMessage("Invalid subscope")
                 .that(Scope.PRIVATE.isIn(Scope.PRIVATE))
                 .isTrue();
-        assertFalse(Scope.ANONINNER.isIn(Scope.PRIVATE), "Invalid subscope");
+        assertWithMessage("Invalid subscope")
+                .that(Scope.ANONINNER.isIn(Scope.PRIVATE))
+                .isFalse();
     }
 
     @Test
@@ -137,8 +138,12 @@ public class ScopeTest {
         assertWithMessage("Invalid subscope")
                 .that(Scope.PACKAGE.isIn(Scope.PACKAGE))
                 .isTrue();
-        assertFalse(Scope.PRIVATE.isIn(Scope.PACKAGE), "Invalid subscope");
-        assertFalse(Scope.ANONINNER.isIn(Scope.PACKAGE), "Invalid subscope");
+        assertWithMessage("Invalid subscope")
+                .that(Scope.PRIVATE.isIn(Scope.PACKAGE))
+                .isFalse();
+        assertWithMessage("Invalid subscope")
+                .that(Scope.ANONINNER.isIn(Scope.PACKAGE))
+                .isFalse();
     }
 
     @Test
@@ -152,9 +157,15 @@ public class ScopeTest {
         assertWithMessage("Invalid subscope")
                 .that(Scope.PROTECTED.isIn(Scope.PROTECTED))
                 .isTrue();
-        assertFalse(Scope.PACKAGE.isIn(Scope.PROTECTED), "Invalid subscope");
-        assertFalse(Scope.PRIVATE.isIn(Scope.PROTECTED), "Invalid subscope");
-        assertFalse(Scope.ANONINNER.isIn(Scope.PROTECTED), "Invalid subscope");
+        assertWithMessage("Invalid subscope")
+                .that(Scope.PACKAGE.isIn(Scope.PROTECTED))
+                .isFalse();
+        assertWithMessage("Invalid subscope")
+                .that(Scope.PRIVATE.isIn(Scope.PROTECTED))
+                .isFalse();
+        assertWithMessage("Invalid subscope")
+                .that(Scope.ANONINNER.isIn(Scope.PROTECTED))
+                .isFalse();
     }
 
     @Test
@@ -165,10 +176,18 @@ public class ScopeTest {
         assertWithMessage("Invalid subscope")
                 .that(Scope.PUBLIC.isIn(Scope.PUBLIC))
                 .isTrue();
-        assertFalse(Scope.PROTECTED.isIn(Scope.PUBLIC), "Invalid subscope");
-        assertFalse(Scope.PACKAGE.isIn(Scope.PUBLIC), "Invalid subscope");
-        assertFalse(Scope.PRIVATE.isIn(Scope.PUBLIC), "Invalid subscope");
-        assertFalse(Scope.ANONINNER.isIn(Scope.PUBLIC), "Invalid subscope");
+        assertWithMessage("Invalid subscope")
+                .that(Scope.PROTECTED.isIn(Scope.PUBLIC))
+                .isFalse();
+        assertWithMessage("Invalid subscope")
+                .that(Scope.PACKAGE.isIn(Scope.PUBLIC))
+                .isFalse();
+        assertWithMessage("Invalid subscope")
+                .that(Scope.PRIVATE.isIn(Scope.PUBLIC))
+                .isFalse();
+        assertWithMessage("Invalid subscope")
+                .that(Scope.ANONINNER.isIn(Scope.PUBLIC))
+                .isFalse();
     }
 
     @Test
@@ -176,11 +195,21 @@ public class ScopeTest {
         assertWithMessage("Invalid subscope")
                 .that(Scope.NOTHING.isIn(Scope.NOTHING))
                 .isTrue();
-        assertFalse(Scope.PUBLIC.isIn(Scope.NOTHING), "Invalid subscope");
-        assertFalse(Scope.PROTECTED.isIn(Scope.NOTHING), "Invalid subscope");
-        assertFalse(Scope.PACKAGE.isIn(Scope.NOTHING), "Invalid subscope");
-        assertFalse(Scope.PRIVATE.isIn(Scope.NOTHING), "Invalid subscope");
-        assertFalse(Scope.ANONINNER.isIn(Scope.NOTHING), "Invalid subscope");
+        assertWithMessage("Invalid subscope")
+                .that(Scope.PUBLIC.isIn(Scope.NOTHING))
+                .isFalse();
+        assertWithMessage("Invalid subscope")
+                .that(Scope.PROTECTED.isIn(Scope.NOTHING))
+                .isFalse();
+        assertWithMessage("Invalid subscope")
+                .that(Scope.PACKAGE.isIn(Scope.NOTHING))
+                .isFalse();
+        assertWithMessage("Invalid subscope")
+                .that(Scope.PRIVATE.isIn(Scope.NOTHING))
+                .isFalse();
+        assertWithMessage("Invalid subscope")
+                .that(Scope.ANONINNER.isIn(Scope.NOTHING))
+                .isFalse();
     }
 
 }

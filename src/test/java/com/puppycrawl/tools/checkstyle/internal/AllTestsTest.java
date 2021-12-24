@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,7 +51,9 @@ public class AllTestsTest {
             grabAllTests(allTests, filePath.toFile());
         });
 
-        assertFalse(allTests.keySet().isEmpty(), "found tests");
+        assertWithMessage("found tests")
+            .that(allTests.keySet().isEmpty())
+            .isFalse();
 
         walk(Paths.get("src/test/resources/com/puppycrawl"), filePath -> {
             verifyInputFile(allTests, filePath.toFile());
@@ -70,7 +71,9 @@ public class AllTestsTest {
             grabAllFiles(allTests, filePath.toFile());
         });
 
-        assertFalse(allTests.keySet().isEmpty(), "found tests");
+        assertWithMessage("found tests")
+            .that(allTests.keySet().isEmpty())
+            .isFalse();
 
         walk(Paths.get("src/test/java"), filePath -> {
             verifyHasProductionFile(allTests, filePath.toFile());
