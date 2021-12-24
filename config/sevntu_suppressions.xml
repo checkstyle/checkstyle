@@ -29,6 +29,8 @@
 
   <!-- Tone down the checking for test code -->
   <suppress checks="ForbidCertainImports"
+            files="CodePointUtilTest\.java"/>
+  <suppress checks="ForbidCertainImports"
              files="DetailAstImplTest\.java"/>
   <suppress checks="SingleBreakOrContinue" files="[\\/]XdocsPagesTest\.java"/>
 
