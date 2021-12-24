@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.gui;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -271,7 +270,9 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final Object child = parseTree.getChild(commentContentNode, 0);
 
-        assertFalse(parseTree.isLeaf(child), "Child has not to be leaf");
+        assertWithMessage("Child has not to be leaf")
+                .that(parseTree.isLeaf(child))
+                .isFalse();
         assertWithMessage("Child has to be leaf")
                 .that(parseTree.isLeaf(tree.getFirstChild()))
                 .isTrue();
@@ -315,7 +316,9 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
             assertEquals("Unknown column", ex.getMessage(), "Invalid error message");
         }
 
-        assertFalse(parseTree.isCellEditable(1), "Invalid cell editable status");
+        assertWithMessage("Invalid cell editable status")
+                .that(parseTree.isCellEditable(1))
+                .isFalse();
     }
 
     @Test
