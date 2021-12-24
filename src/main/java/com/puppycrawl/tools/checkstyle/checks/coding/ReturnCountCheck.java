@@ -90,12 +90,37 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass{
+ * public static int method(int x)
+ * {return x*x;
+ * return x + x; // OK
+ * }
+ * public static int method(int x)
+ * {return x*x;
+ * return x + x;
+ * return x - x;
+ * return x / x; // violation, more than three return statements per method
+ * }}
+ * </pre>
+ * <p>
  * To configure the check so that it doesn't allow any return statements per void method:
  * </p>
  * <pre>
  * &lt;module name=&quot;ReturnCount&quot;&gt;
  *   &lt;property name=&quot;maxForVoid&quot; value=&quot;0&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass{
+ * public static int method(int x){ } // OK
+ * public static int method(int x){ return; } // violation, doesn't allow any return statements per void method
+ * }
  * </pre>
  * <p>
  * To configure the check so that it doesn't allow more than 2 return statements per method
@@ -108,6 +133,28 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass{
+ * public void method(){ } // OK
+ * public void method(){ return; } // OK
+ * public void method(int x){
+ * if(x == 0) return;
+ * return;
+ * } // violation, more than one return statements
+ * public static int method(int x)
+ * {return x*x;
+ * return x + x; // OK
+ * }
+ * public static int method(int x)
+ * {return x*x;
+ * return x + x;
+ * return x - x;
+ * return x / x; // violation, more than two return statements in methods
+ * }}
+ * </pre>
+ * <p>
  * To configure the check so that it doesn't allow more than three
  * return statements per method for all methods:
  * </p>
@@ -116,6 +163,22 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
  *   &lt;property name=&quot;format&quot; value=&quot;^$&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass{
+ * public static int method(int x)
+ * {return x*x;
+ * return x + x; // OK
+ * }
+ * public static int method(int x)
+ * {return x*x;
+ * return x + x;
+ * return x - x;
+ * return x / x; // violation, doesn't allow more than three return statements per method for all methods
+ * }}
  * </pre>
  * <p>
  * To configure the check so that it doesn't allow any return statements in constructors,
@@ -135,6 +198,33 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
  *   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass{
+ * public MyClass(){ }; // OK
+ * public MyClass(){return;} // OK
+ * public MyClass(){return 0;} // violation, doesn't allow any return statements in constructors
+ * Operation test5 = (int x, int y) -> x + y; // OK
+ * Operation test6 = (int x, int y) -> { return x + y;}; // Ok
+ * Operation test7 = (int x, int y) -> {
+ * if(x > y) return x - y;
+ * return x + y;
+ * } // violation, more than one return statement in lambda expressions
+ * interface Operation{
+ * int operation(int x, int y);}
+ * public static int method(int x)
+ * {return x*x;
+ * return x + x; // OK
+ * }
+ * public static int method(int x)
+ * {return x*x;
+ * return x + x;
+ * return x - x;
+ * return x / x; // violation, more than two return statements in methods
+ * }}
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
