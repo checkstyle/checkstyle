@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -101,10 +100,18 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         copy.setLineNo(ast.getLineNo());
         copy.setColumnNo(ast.getColumnNo());
 
-        assertEquals("test", copy.getText(), "Invalid text");
-        assertEquals(1, copy.getType(), "Invalid type");
-        assertEquals(2, copy.getLineNo(), "Invalid line number");
-        assertEquals(3, copy.getColumnNo(), "Invalid column number");
+        assertWithMessage("Invalid text")
+            .that(copy.getText())
+            .isEqualTo("test");
+        assertWithMessage("Invalid type")
+            .that(copy.getType())
+            .isEqualTo(1);
+        assertWithMessage("Invalid line number")
+            .that(copy.getLineNo())
+            .isEqualTo(2);
+        assertWithMessage("Invalid column number")
+            .that(copy.getColumnNo())
+            .isEqualTo(3);
     }
 
     @Test
@@ -117,10 +124,18 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(token);
 
-        assertEquals("test", ast.getText(), "Invalid text");
-        assertEquals(1, ast.getType(), "Invalid type");
-        assertEquals(2, ast.getLineNo(), "Invalid line number");
-        assertEquals(3, ast.getColumnNo(), "Invalid column number");
+        assertWithMessage("Invalid text")
+            .that(ast.getText())
+            .isEqualTo("test");
+        assertWithMessage("Invalid type")
+            .that(ast.getType())
+            .isEqualTo(1);
+        assertWithMessage("Invalid line number")
+            .that(ast.getLineNo())
+            .isEqualTo(2);
+        assertWithMessage("Invalid column number")
+            .that(ast.getColumnNo())
+            .isEqualTo(3);
     }
 
     @Test
@@ -141,16 +156,28 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
 
         setParentMethod.invoke(secondLevelA, root);
 
-        assertEquals(0, secondLevelA.getChildCount(), "Invalid child count");
-        assertEquals(0, firstLevelB.getChildCount(), "Invalid child count");
-        assertEquals(1, firstLevelA.getChildCount(), "Invalid child count");
-        assertEquals(2, root.getChildCount(), "Invalid child count");
-        assertEquals(2, root.getNumberOfChildren(), "Invalid child count");
+        assertWithMessage("Invalid child count")
+            .that(secondLevelA.getChildCount())
+            .isEqualTo(0);
+        assertWithMessage("Invalid child count")
+            .that(firstLevelB.getChildCount())
+            .isEqualTo(0);
+        assertWithMessage("Invalid child count")
+            .that(firstLevelA.getChildCount())
+            .isEqualTo(1);
+        assertWithMessage("Invalid child count")
+            .that(root.getChildCount())
+            .isEqualTo(2);
+        assertWithMessage("Invalid child count")
+            .that(root.getNumberOfChildren())
+            .isEqualTo(2);
 
         assertNull(root.getPreviousSibling(), "Previous sibling should be null");
         assertNull(firstLevelA.getPreviousSibling(), "Previous sibling should be null");
         assertNull(secondLevelA.getPreviousSibling(), "Previous sibling should be null");
-        assertEquals(firstLevelA, firstLevelB.getPreviousSibling(), "Invalid previous sibling");
+        assertWithMessage("Invalid previous sibling")
+            .that(firstLevelB.getPreviousSibling())
+            .isEqualTo(firstLevelA);
     }
 
     @Test
@@ -185,15 +212,25 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         setParentMethod.invoke(firstLevelB, root);
 
         final int childCountLevelB = firstLevelB.getChildCount(0);
-        assertEquals(0, childCountLevelB, "Invalid child count");
+        assertWithMessage("Invalid child count")
+            .that(childCountLevelB)
+            .isEqualTo(0);
         final int childCountLevelA = firstLevelA.getChildCount(TokenTypes.EXPR);
-        assertEquals(0, childCountLevelA, "Invalid child count");
+        assertWithMessage("Invalid child count")
+            .that(childCountLevelA)
+            .isEqualTo(0);
         final int identTypeCount = root.getChildCount(TokenTypes.IDENT);
-        assertEquals(1, identTypeCount, "Invalid child count");
+        assertWithMessage("Invalid child count")
+            .that(identTypeCount)
+            .isEqualTo(1);
         final int exprTypeCount = root.getChildCount(TokenTypes.EXPR);
-        assertEquals(1, exprTypeCount, "Invalid child count");
+        assertWithMessage("Invalid child count")
+            .that(exprTypeCount)
+            .isEqualTo(1);
         final int invalidTypeCount = root.getChildCount(0);
-        assertEquals(0, invalidTypeCount, "Invalid child count");
+        assertWithMessage("Invalid child count")
+            .that(invalidTypeCount)
+            .isEqualTo(0);
     }
 
     @Test
@@ -203,13 +240,17 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
 
         root.setFirstChild(firstLevelA);
 
-        assertEquals(1, root.getChildCount(), "Invalid child count");
+        assertWithMessage("Invalid child count")
+            .that(root.getChildCount())
+            .isEqualTo(1);
 
         getSetParentMethod().invoke(firstLevelA, root);
         firstLevelA.addPreviousSibling(null);
         firstLevelA.addNextSibling(null);
 
-        assertEquals(1, root.getChildCount(), "Invalid child count");
+        assertWithMessage("Invalid child count")
+            .that(root.getChildCount())
+            .isEqualTo(1);
     }
 
     @Test
@@ -222,17 +263,29 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
 
         instance.addPreviousSibling(previousSibling);
 
-        assertEquals(previousSibling, instance.getPreviousSibling(), "unexpected result");
-        assertEquals(previousSibling, parent.getFirstChild(), "unexpected result");
+        assertWithMessage("unexpected result")
+            .that(instance.getPreviousSibling())
+            .isEqualTo(previousSibling);
+        assertWithMessage("unexpected result")
+            .that(parent.getFirstChild())
+            .isEqualTo(previousSibling);
 
         final DetailAST newPreviousSibling = new DetailAstImpl();
 
         instance.addPreviousSibling(newPreviousSibling);
 
-        assertEquals(newPreviousSibling, instance.getPreviousSibling(), "unexpected result");
-        assertEquals(previousSibling, newPreviousSibling.getPreviousSibling(), "unexpected result");
-        assertEquals(newPreviousSibling, previousSibling.getNextSibling(), "unexpected result");
-        assertEquals(previousSibling, parent.getFirstChild(), "unexpected result");
+        assertWithMessage("unexpected result")
+            .that(instance.getPreviousSibling())
+            .isEqualTo(newPreviousSibling);
+        assertWithMessage("unexpected result")
+            .that(newPreviousSibling.getPreviousSibling())
+            .isEqualTo(previousSibling);
+        assertWithMessage("unexpected result")
+            .that(previousSibling.getNextSibling())
+            .isEqualTo(newPreviousSibling);
+        assertWithMessage("unexpected result")
+            .that(parent.getFirstChild())
+            .isEqualTo(previousSibling);
     }
 
     @Test
@@ -242,8 +295,12 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
 
         child.addPreviousSibling(newSibling);
 
-        assertEquals(child, newSibling.getNextSibling(), "Invalid child token");
-        assertEquals(newSibling, child.getPreviousSibling(), "Invalid child token");
+        assertWithMessage("Invalid child token")
+            .that(newSibling.getNextSibling())
+            .isEqualTo(child);
+        assertWithMessage("Invalid child token")
+            .that(child.getPreviousSibling())
+            .isEqualTo(newSibling);
     }
 
     @Test
@@ -253,23 +310,31 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         final DetailAST firstLevelB = new DetailAstImpl();
         final DetailAST firstLevelC = new DetailAstImpl();
 
-        assertEquals(0, root.getChildCount(), "Invalid child count");
+        assertWithMessage("Invalid child count")
+            .that(root.getChildCount())
+            .isEqualTo(0);
 
         root.setFirstChild(firstLevelA);
         final Method setParentMethod = getSetParentMethod();
         setParentMethod.invoke(firstLevelA, root);
 
-        assertEquals(1, root.getChildCount(), "Invalid child count");
+        assertWithMessage("Invalid child count")
+            .that(root.getChildCount())
+            .isEqualTo(1);
 
         firstLevelA.addNextSibling(firstLevelB);
         setParentMethod.invoke(firstLevelB, root);
 
-        assertEquals(firstLevelB, firstLevelA.getNextSibling(), "Invalid next sibling");
+        assertWithMessage("Invalid next sibling")
+            .that(firstLevelA.getNextSibling())
+            .isEqualTo(firstLevelB);
 
         firstLevelA.addNextSibling(firstLevelC);
         setParentMethod.invoke(firstLevelC, root);
 
-        assertEquals(firstLevelC, firstLevelA.getNextSibling(), "Invalid next sibling");
+        assertWithMessage("Invalid next sibling")
+            .that(firstLevelA.getNextSibling())
+            .isEqualTo(firstLevelC);
     }
 
     @Test
@@ -322,7 +387,9 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
             final BitSet branchTokenTypes = TestUtil.invokeMethod(parent, "getBranchTokenTypes");
             method.accept(null);
             final BitSet branchTokenTypes2 = TestUtil.invokeMethod(parent, "getBranchTokenTypes");
-            assertEquals(branchTokenTypes, branchTokenTypes2, "Branch token types are not equal");
+            assertWithMessage("Branch token types are not equal")
+                .that(branchTokenTypes2)
+                .isEqualTo(branchTokenTypes);
             assertNotSame(branchTokenTypes, branchTokenTypes2,
                     "Branch token types should not be the same");
         }
@@ -357,16 +424,24 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
             method.accept(null);
             final int intermediateCount = TestUtil.getInternalState(parent, "childCount");
             final int finishCount = parent.getChildCount();
-            assertEquals(startCount, finishCount, "Child count has changed");
-            assertEquals(Integer.MIN_VALUE, intermediateCount, "Invalid child count");
+            assertWithMessage("Child count has changed")
+                .that(finishCount)
+                .isEqualTo(startCount);
+            assertWithMessage("Invalid child count")
+                .that(intermediateCount)
+                .isEqualTo(Integer.MIN_VALUE);
         }
 
         final int startCount = child.getChildCount();
         child.addChild(null);
         final int intermediateCount = TestUtil.getInternalState(child, "childCount");
         final int finishCount = child.getChildCount();
-        assertEquals(startCount, finishCount, "Child count has changed");
-        assertEquals(Integer.MIN_VALUE, intermediateCount, "Invalid child count");
+        assertWithMessage("Child count has changed")
+            .that(finishCount)
+            .isEqualTo(startCount);
+        assertWithMessage("Invalid child count")
+            .that(intermediateCount)
+            .isEqualTo(Integer.MIN_VALUE);
     }
 
     @Test
@@ -374,7 +449,9 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         final DetailAST root = new DetailAstImpl();
 
         TestUtil.setInternalState(root, "childCount", 999);
-        assertEquals(999, root.getChildCount(), "Child count has changed");
+        assertWithMessage("Child count has changed")
+            .that(root.getChildCount())
+            .isEqualTo(999);
     }
 
     @Test
@@ -387,9 +464,15 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         child.setNextSibling(sibling);
         child.addNextSibling(newSibling);
 
-        assertEquals(parent, newSibling.getParent(), "Invalid parent");
-        assertEquals(sibling, newSibling.getNextSibling(), "Invalid next sibling");
-        assertEquals(newSibling, child.getNextSibling(), "Invalid child");
+        assertWithMessage("Invalid parent")
+            .that(newSibling.getParent())
+            .isEqualTo(parent);
+        assertWithMessage("Invalid next sibling")
+            .that(newSibling.getNextSibling())
+            .isEqualTo(sibling);
+        assertWithMessage("Invalid child")
+            .that(child.getNextSibling())
+            .isEqualTo(newSibling);
     }
 
     @Test
@@ -400,7 +483,9 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         oldParent.addChild(newSibling);
         child.addNextSibling(newSibling);
 
-        assertEquals(oldParent, newSibling.getParent(), "Invalid parent");
+        assertWithMessage("Invalid parent")
+            .that(newSibling.getParent())
+            .isEqualTo(oldParent);
         assertNull(newSibling.getNextSibling(), "Invalid next sibling");
         assertSame(newSibling, child.getNextSibling(), "Invalid child");
     }
@@ -409,52 +494,68 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     public void testGetLineNo() {
         final DetailAstImpl root1 = new DetailAstImpl();
         root1.setLineNo(1);
-        assertEquals(1, root1.getLineNo(), "Invalid line number");
+        assertWithMessage("Invalid line number")
+            .that(root1.getLineNo())
+            .isEqualTo(1);
 
         final DetailAstImpl root2 = new DetailAstImpl();
         final DetailAstImpl firstChild = new DetailAstImpl();
         firstChild.setLineNo(2);
         root2.setFirstChild(firstChild);
-        assertEquals(2, root2.getLineNo(), "Invalid line number");
+        assertWithMessage("Invalid line number")
+            .that(root2.getLineNo())
+            .isEqualTo(2);
 
         final DetailAstImpl root3 = new DetailAstImpl();
         final DetailAstImpl nextSibling = new DetailAstImpl();
         nextSibling.setLineNo(3);
         root3.setNextSibling(nextSibling);
-        assertEquals(3, root3.getLineNo(), "Invalid line number");
+        assertWithMessage("Invalid line number")
+            .that(root3.getLineNo())
+            .isEqualTo(3);
 
         final DetailAstImpl root4 = new DetailAstImpl();
         final DetailAstImpl comment = new DetailAstImpl();
         comment.setType(TokenTypes.SINGLE_LINE_COMMENT);
         comment.setLineNo(3);
         root4.setFirstChild(comment);
-        assertEquals(Integer.MIN_VALUE, root4.getLineNo(), "Invalid line number");
+        assertWithMessage("Invalid line number")
+            .that(root4.getLineNo())
+            .isEqualTo(Integer.MIN_VALUE);
     }
 
     @Test
     public void testGetColumnNo() {
         final DetailAstImpl root1 = new DetailAstImpl();
         root1.setColumnNo(1);
-        assertEquals(1, root1.getColumnNo(), "Invalid column number");
+        assertWithMessage("Invalid column number")
+            .that(root1.getColumnNo())
+            .isEqualTo(1);
 
         final DetailAstImpl root2 = new DetailAstImpl();
         final DetailAstImpl firstChild = new DetailAstImpl();
         firstChild.setColumnNo(2);
         root2.setFirstChild(firstChild);
-        assertEquals(2, root2.getColumnNo(), "Invalid column number");
+        assertWithMessage("Invalid column number")
+            .that(root2.getColumnNo())
+            .isEqualTo(2);
 
         final DetailAstImpl root3 = new DetailAstImpl();
         final DetailAstImpl nextSibling = new DetailAstImpl();
         nextSibling.setColumnNo(3);
         root3.setNextSibling(nextSibling);
-        assertEquals(3, root3.getColumnNo(), "Invalid column number");
+        assertWithMessage("Invalid column number")
+            .that(root3.getColumnNo())
+            .isEqualTo(3);
 
         final DetailAstImpl root4 = new DetailAstImpl();
         final DetailAstImpl comment = new DetailAstImpl();
         comment.setType(TokenTypes.SINGLE_LINE_COMMENT);
         comment.setColumnNo(3);
         root4.setFirstChild(comment);
-        assertEquals(Integer.MIN_VALUE, root4.getColumnNo(), "Invalid column number");
+        assertWithMessage("Invalid column number")
+            .that(root4.getColumnNo())
+            .isEqualTo(Integer.MIN_VALUE);
     }
 
     @Test
@@ -473,9 +574,13 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
 
         assertNull(firstChild.findFirstToken(TokenTypes.IDENT), "Invalid result");
         final DetailAST ident = root.findFirstToken(TokenTypes.IDENT);
-        assertEquals(firstChild, ident, "Invalid result");
+        assertWithMessage("Invalid result")
+            .that(ident)
+            .isEqualTo(firstChild);
         final DetailAST expr = root.findFirstToken(TokenTypes.EXPR);
-        assertEquals(secondChild, expr, "Invalid result");
+        assertWithMessage("Invalid result")
+            .that(expr)
+            .isEqualTo(secondChild);
         assertNull(root.findFirstToken(0), "Invalid result");
     }
 
@@ -521,7 +626,9 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         ast.setText("text");
         ast.setColumnNo(0);
         ast.setLineNo(0);
-        assertEquals("text[0x0]", ast.toString(), "Invalid text");
+        assertWithMessage("Invalid text")
+            .that(ast.toString())
+            .isEqualTo("text[0x0]");
     }
 
     private static List<File> getAllFiles(File dir) {
@@ -584,11 +691,15 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         final MessageFormat badParentFormatter = new MessageFormat(
                 "Bad parent node={0} parent={1} filename={3} root={4}", Locale.ROOT);
         final String badParentMsg = badParentFormatter.format(params);
-        assertEquals(parent, node.getParent(), badParentMsg);
+        assertWithMessage(badParentMsg)
+            .that(node.getParent())
+            .isEqualTo(parent);
         final MessageFormat badPrevFormatter = new MessageFormat(
                 "Bad prev node={0} prev={2} parent={1} filename={3} root={4}", Locale.ROOT);
         final String badPrevMsg = badPrevFormatter.format(params);
-        assertEquals(prev, node.getPreviousSibling(), badPrevMsg);
+        assertWithMessage(badPrevMsg)
+            .that(node.getPreviousSibling())
+            .isEqualTo(prev);
     }
 
 }

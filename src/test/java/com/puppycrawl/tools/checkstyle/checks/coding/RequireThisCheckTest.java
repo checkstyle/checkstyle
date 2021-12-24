@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG_METHOD;
 import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG_VARIABLE;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
@@ -190,7 +189,9 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         check.visitToken(ast);
         final SortedSet<Violation> violations = check.getViolations();
 
-        assertEquals(0, violations.size(), "No exception violations expected");
+        assertWithMessage("No exception violations expected")
+            .that(violations.size())
+            .isEqualTo(0);
     }
 
     @Test
@@ -442,9 +443,9 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
 
         final DetailAstImpl actual = TestUtil.invokeMethod(o, "getFrameNameIdent");
         assertSame(ident, actual, "expected ident token");
-        assertEquals("CATCH_FRAME",
-            TestUtil.invokeMethod(o, "getType").toString(),
-                "expected catch frame type");
+        assertWithMessage("expected catch frame type")
+            .that(TestUtil.invokeMethod(o, "getType").toString())
+            .isEqualTo("CATCH_FRAME");
     }
 
     /**

@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.header;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISSING;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mockConstruction;
 import static org.mockito.Mockito.when;
@@ -295,8 +294,12 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         final URI uri = CommonUtil.getUriByFilename(getPath("InputHeaderjava.header"));
         check.setHeaderFile(uri);
         final Set<String> results = check.getExternalResourceLocations();
-        assertEquals(1, results.size(), "Invalid result size");
-        assertEquals(uri.toString(), results.iterator().next(), "Invalid resource location");
+        assertWithMessage("Invalid result size")
+            .that(results.size())
+            .isEqualTo(1);
+        assertWithMessage("Invalid resource location")
+            .that(results.iterator().next())
+            .isEqualTo(uri.toString());
     }
 
     @Test

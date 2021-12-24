@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.io.File;
@@ -622,15 +621,16 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             }
 
             if (ScopeUtil.isInScope(node, Scope.PUBLIC)) {
-                assertEquals(CHECK_TEXT.get("Description")
+                assertWithMessage(checkName + "'s class-level JavaDoc")
+                    .that(getJavaDocText(node))
+                    .isEqualTo(CHECK_TEXT.get("Description")
                         + CHECK_TEXT.computeIfAbsent("Rule Description", unused -> "")
                         + CHECK_TEXT.computeIfAbsent("Notes", unused -> "")
                         + CHECK_TEXT.computeIfAbsent("Properties", unused -> "")
                         + CHECK_TEXT.get("Examples")
                         + CHECK_TEXT.get("Parent Module")
                         + violationMessagesText + " @since "
-                        + CHECK_TEXT.get("since"), getJavaDocText(node),
-                        checkName + "'s class-level JavaDoc");
+                        + CHECK_TEXT.get("since"));
             }
         }
 
@@ -640,8 +640,10 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 final String propertyDoc = CHECK_PROPERTY_DOC.get(propertyName);
 
                 if (propertyDoc != null) {
-                    assertEquals(makeFirstUpper(propertyDoc), getJavaDocText(node),
-                            checkName + "'s class field-level JavaDoc for " + propertyName);
+                    assertWithMessage(checkName + "'s class field-level JavaDoc for "
+                            + propertyName)
+                        .that(getJavaDocText(node))
+                        .isEqualTo(makeFirstUpper(propertyDoc));
                 }
             }
         }
@@ -656,9 +658,10 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 if (propertyDoc != null) {
                     final String javaDoc = getJavaDocText(node);
 
-                    assertEquals("Setter to " + makeFirstLower(propertyDoc),
-                            javaDoc.substring(0, javaDoc.indexOf(" @param")),
-                            checkName + "'s class method-level JavaDoc for " + propertyName);
+                    assertWithMessage(checkName + "'s class method-level JavaDoc for "
+                            + propertyName)
+                        .that(javaDoc.substring(0, javaDoc.indexOf(" @param")))
+                        .isEqualTo("Setter to " + makeFirstLower(propertyDoc));
                 }
             }
         }

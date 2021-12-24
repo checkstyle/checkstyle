@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.nio.file.Files;
@@ -74,8 +73,10 @@ public class CliOptionsXdocsSyncTest {
             assertWithMessage("CLI Option: " + option + " present in "
                     + "Main.java but not documented in cmdline.xml.vm")
                     .that(descXdoc).isNotNull();
-            assertEquals("CLI options descriptions in xdoc: "
-                    + " should match that of in Main.java", descXdoc, descMain);
+            assertWithMessage(descMain)
+                .that(descXdoc)
+                .isEqualTo("CLI options descriptions in xdoc: "
+                    + " should match that of in Main.java");
             cmdDesc.remove(option);
         }
         assertTrue("CLI Options: " + cmdDesc + " present in "
@@ -104,10 +105,14 @@ public class CliOptionsXdocsSyncTest {
                         .filter(names -> names.length() != 2)
                         .collect(Collectors.toSet());
 
-        assertEquals("Short parameters in Main.java and cmdline"
-                        + ".xml.vm should match", shortParamsXdoc, shortParamsMain);
-        assertEquals("Long parameters in Main.java and cmdline"
-                        + ".xml.vm should match", longParamsXdoc, longParamsMain);
+        assertWithMessage("Short parameters in Main.java and cmdline"
+                + ".xml.vm should match")
+            .that(shortParamsMain)
+            .isEqualTo(shortParamsXdoc);
+        assertWithMessage("Long parameters in Main.java and cmdline"
+                + ".xml.vm should match")
+            .that(longParamsMain)
+            .isEqualTo(longParamsXdoc);
     }
 
     private static Set<String> getParameters(String text, String regex) {

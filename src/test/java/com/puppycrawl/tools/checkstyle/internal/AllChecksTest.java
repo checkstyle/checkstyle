@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.lang.reflect.Field;
@@ -460,9 +459,11 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         }
         for (Entry<String, Set<String>> entry : checkTokens.entrySet()) {
             final Set<String> actual = configCheckTokens.get(entry.getKey());
-            assertEquals(entry.getValue(), actual,
-                    "'" + entry.getKey() + "' should have all acceptable tokens from check in "
-                    + configName + " config or specify an override to ignore the specific tokens");
+            assertWithMessage("'" + entry.getKey()
+                    + "' should have all acceptable tokens from check in " + configName
+                    + " config or specify an override to ignore the specific tokens")
+                .that(actual)
+                .isEqualTo(entry.getValue());
         }
     }
 
@@ -552,10 +553,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         // test validity of messages from modules
         for (Class<?> module : CheckUtil.getCheckstyleModules()) {
             for (Field message : CheckUtil.getCheckMessages(module, true)) {
-                assertEquals(Modifier.PUBLIC | Modifier.STATIC | Modifier.FINAL,
-                        message.getModifiers(),
-                        module.getSimpleName() + "." + message.getName()
-                                + " should be 'public static final'");
+                assertWithMessage(module.getSimpleName() + "." + message.getName()
+                                + " should be 'public static final'")
+                    .that(message.getModifiers())
+                    .isEqualTo(Modifier.PUBLIC | Modifier.STATIC | Modifier.FINAL);
 
                 // below is required for package/private classes
                 if (!message.isAccessible()) {

@@ -28,7 +28,6 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.mock;
@@ -80,36 +79,48 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     @Test
     public void testLengthExpandedTabs() {
         final String s1 = "\t";
-        assertEquals(8, CommonUtil.lengthExpandedTabs(s1, s1.length(), 8),
-                "Invalid expanded tabs length");
+        assertWithMessage("Invalid expanded tabs length")
+            .that(CommonUtil.lengthExpandedTabs(s1, s1.length(), 8))
+            .isEqualTo(8);
 
         final String s2 = "  \t";
-        assertEquals(8, CommonUtil.lengthExpandedTabs(s2, s2.length(), 8),
-                "Invalid expanded tabs length");
+        assertWithMessage("Invalid expanded tabs length")
+            .that(CommonUtil.lengthExpandedTabs(s2, s2.length(), 8))
+            .isEqualTo(8);
 
         final String s3 = "\t\t";
-        assertEquals(16, CommonUtil.lengthExpandedTabs(s3, s3.length(), 8),
-                "Invalid expanded tabs length");
+        assertWithMessage("Invalid expanded tabs length")
+            .that(CommonUtil.lengthExpandedTabs(s3, s3.length(), 8))
+            .isEqualTo(16);
 
         final String s4 = " \t ";
-        assertEquals(9, CommonUtil.lengthExpandedTabs(s4, s4.length(), 8),
-                "Invalid expanded tabs length");
+        assertWithMessage("Invalid expanded tabs length")
+            .that(CommonUtil.lengthExpandedTabs(s4, s4.length(), 8))
+            .isEqualTo(9);
 
-        assertEquals(0, CommonUtil.lengthMinusTrailingWhitespace(""),
-                "Invalid expanded tabs length");
-        assertEquals(0, CommonUtil.lengthMinusTrailingWhitespace(" \t "),
-                "Invalid expanded tabs length");
-        assertEquals(3, CommonUtil.lengthMinusTrailingWhitespace(" 23"),
-                "Invalid expanded tabs length");
-        assertEquals(3, CommonUtil.lengthMinusTrailingWhitespace(" 23 \t "),
-                "Invalid expanded tabs length");
+        assertWithMessage("Invalid expanded tabs length")
+            .that(CommonUtil.lengthMinusTrailingWhitespace(""))
+            .isEqualTo(0);
+        assertWithMessage("Invalid expanded tabs length")
+            .that(CommonUtil.lengthMinusTrailingWhitespace(" \t "))
+            .isEqualTo(0);
+        assertWithMessage("Invalid expanded tabs length")
+            .that(CommonUtil.lengthMinusTrailingWhitespace(" 23"))
+            .isEqualTo(3);
+        assertWithMessage("Invalid expanded tabs length")
+            .that(CommonUtil.lengthMinusTrailingWhitespace(" 23 \t "))
+            .isEqualTo(3);
     }
 
     @Test
     public void testCreatePattern() {
-        assertEquals("Test", CommonUtil.createPattern("Test").pattern(), "invalid pattern");
-        assertEquals(".*Pattern.*", CommonUtil.createPattern(".*Pattern.*")
-                .pattern(), "invalid pattern");
+        assertWithMessage("invalid pattern")
+            .that(CommonUtil.createPattern("Test").pattern())
+            .isEqualTo("Test");
+        assertWithMessage("invalid pattern")
+            .that(CommonUtil.createPattern(".*Pattern.*")
+                .pattern())
+            .isEqualTo(".*Pattern.*");
     }
 
     @Test
@@ -178,26 +189,34 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testBaseClassNameForCanonicalName() {
-        assertEquals("List", CommonUtil.baseClassName("java.util.List"), "Invalid base class name");
+        assertWithMessage("Invalid base class name")
+            .that(CommonUtil.baseClassName("java.util.List"))
+            .isEqualTo("List");
     }
 
     @Test
     public void testBaseClassNameForSimpleName() {
-        assertEquals("Set", CommonUtil.baseClassName("Set"), "Invalid base class name");
+        assertWithMessage("Invalid base class name")
+            .that(CommonUtil.baseClassName("Set"))
+            .isEqualTo("Set");
     }
 
     @Test
     public void testRelativeNormalizedPath() {
         final String relativePath = CommonUtil.relativizeAndNormalizePath("/home", "/home/test");
 
-        assertEquals("test", relativePath, "Invalid relative path");
+        assertWithMessage("Invalid relative path")
+            .that(relativePath)
+            .isEqualTo("test");
     }
 
     @Test
     public void testRelativeNormalizedPathWithNullBaseDirectory() {
         final String relativePath = CommonUtil.relativizeAndNormalizePath(null, "/tmp");
 
-        assertEquals("/tmp", relativePath, "Invalid relative path");
+        assertWithMessage("Invalid relative path")
+            .that(relativePath)
+            .isEqualTo("/tmp");
     }
 
     @Test
@@ -209,7 +228,9 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final String relativePath = CommonUtil.relativizeAndNormalizePath(basePath,
             absoluteFilePath);
 
-        assertEquals("SampleFile.java", relativePath, "Invalid relative path");
+        assertWithMessage("Invalid relative path")
+            .that(relativePath)
+            .isEqualTo("SampleFile.java");
     }
 
     @Test
@@ -232,7 +253,9 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     public void testGetExistingConstructor() throws NoSuchMethodException {
         final Constructor<?> constructor = CommonUtil.getConstructor(String.class, String.class);
 
-        assertEquals(String.class.getConstructor(String.class), constructor, "Invalid constructor");
+        assertWithMessage("Invalid constructor")
+            .that(constructor)
+            .isEqualTo(String.class.getConstructor(String.class));
     }
 
     @Test
@@ -252,7 +275,9 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
         final String constructedString = CommonUtil.invokeConstructor(constructor, "string");
 
-        assertEquals("string", constructedString, "Invalid construction result");
+        assertWithMessage("Invalid construction result")
+            .that(constructedString)
+            .isEqualTo("string");
     }
 
     @SuppressWarnings("rawtypes")
@@ -295,34 +320,44 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testFillTemplateWithStringsByRegexp() {
-        assertEquals("template", CommonUtil.fillTemplateWithStringsByRegexp("template",
-                "lineToPlaceInTemplate", Pattern.compile("NO MATCH")), "invalid result");
-        assertEquals("before word after",
-                CommonUtil.fillTemplateWithStringsByRegexp("before $0 after", "word",
-                        Pattern.compile("\\w+")), "invalid result");
-        assertEquals("before word 123 after1 word after2 123 after3",
-                CommonUtil.fillTemplateWithStringsByRegexp("before $0 after1 $1 after2 $2 after3",
-                        "word 123", Pattern.compile("(\\w+) (\\d+)")), "invalid result");
+        assertWithMessage("invalid result")
+            .that(CommonUtil.fillTemplateWithStringsByRegexp("template",
+                "lineToPlaceInTemplate", Pattern.compile("NO MATCH")))
+            .isEqualTo("template");
+        assertWithMessage("invalid result")
+            .that(CommonUtil.fillTemplateWithStringsByRegexp("before $0 after", "word",
+                        Pattern.compile("\\w+")))
+            .isEqualTo("before word after");
+        assertWithMessage("invalid result")
+            .that(CommonUtil.fillTemplateWithStringsByRegexp("before $0 after1 $1 after2 $2 after3",
+                        "word 123", Pattern.compile("(\\w+) (\\d+)")))
+            .isEqualTo("before word 123 after1 word after2 123 after3");
     }
 
     @Test
     public void testGetFileNameWithoutExtension() {
-        assertEquals("filename", CommonUtil.getFileNameWithoutExtension("filename"),
-                "invalid result");
-        assertEquals("filename", CommonUtil.getFileNameWithoutExtension("filename.extension"),
-                "invalid result");
-        assertEquals("filename.subext",
-                CommonUtil.getFileNameWithoutExtension("filename.subext.extension"),
-                "invalid result");
+        assertWithMessage("invalid result")
+            .that(CommonUtil.getFileNameWithoutExtension("filename"))
+            .isEqualTo("filename");
+        assertWithMessage("invalid result")
+            .that(CommonUtil.getFileNameWithoutExtension("filename.extension"))
+            .isEqualTo("filename");
+        assertWithMessage("invalid result")
+            .that(CommonUtil.getFileNameWithoutExtension("filename.subext.extension"))
+            .isEqualTo("filename.subext");
     }
 
     @Test
     public void testGetFileExtension() {
-        assertEquals("", CommonUtil.getFileExtension("filename"), "Invalid extension");
-        assertEquals("extension", CommonUtil.getFileExtension("filename.extension"),
-                "Invalid extension");
-        assertEquals("extension", CommonUtil.getFileExtension("filename.subext.extension"),
-                "Invalid extension");
+        assertWithMessage("Invalid extension")
+            .that(CommonUtil.getFileExtension("filename"))
+            .isEqualTo("");
+        assertWithMessage("Invalid extension")
+            .that(CommonUtil.getFileExtension("filename.extension"))
+            .isEqualTo("extension");
+        assertWithMessage("Invalid extension")
+            .that(CommonUtil.getFileExtension("filename.subext.extension"))
+            .isEqualTo("extension");
     }
 
     @Test
@@ -481,7 +516,9 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final Properties properties = System.getProperties();
         final Configuration config = ConfigurationLoader.loadConfiguration(uri.toString(),
             new PropertiesExpander(properties));
-        assertEquals("Checker", config.getName(), "Unexpected config name!");
+        assertWithMessage("Unexpected config name!")
+            .that(config.getName())
+            .isEqualTo("Checker");
     }
 
     @Test
@@ -493,7 +530,9 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final Properties properties = System.getProperties();
         final Configuration config = ConfigurationLoader.loadConfiguration(uri.toString(),
             new PropertiesExpander(properties));
-        assertEquals("Checker", config.getName(), "Unexpected config name!");
+        assertWithMessage("Unexpected config name!")
+            .that(config.getName())
+            .isEqualTo("Checker");
     }
 
     /**
@@ -528,7 +567,9 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final Properties properties = System.getProperties();
         final Configuration config = ConfigurationLoader.loadConfiguration(uri.toString(),
             new PropertiesExpander(properties));
-        assertEquals("Checker", config.getName(), "Unexpected config name!");
+        assertWithMessage("Unexpected config name!")
+            .that(config.getName())
+            .isEqualTo("Checker");
     }
 
     @Test
@@ -540,7 +581,9 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final Properties properties = System.getProperties();
         final Configuration config = ConfigurationLoader.loadConfiguration(uri.toString(),
             new PropertiesExpander(properties));
-        assertEquals("Checker", config.getName(), "Unexpected config name!");
+        assertWithMessage("Unexpected config name!")
+            .that(config.getName())
+            .isEqualTo("Checker");
     }
 
     @Test

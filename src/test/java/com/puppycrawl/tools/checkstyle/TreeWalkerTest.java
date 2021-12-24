@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.doThrow;
@@ -269,9 +268,11 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals("TreeWalker is not allowed as a parent of java.lang.String Please review "
-                    + "'Parent Module' section for this Check in web documentation if "
-                    + "Check is standard.", ex.getMessage(), "Error message is not expected");
+            assertWithMessage("Error message is not expected")
+                .that(ex.getMessage())
+                .isEqualTo("TreeWalker is not allowed as a parent of java.lang.String "
+                    + "Please review 'Parent Module' section for this Check in "
+                    + "web documentation if Check is standard.");
         }
     }
 
@@ -283,9 +284,13 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalker.configure(config);
 
         final int tabWidth = TestUtil.getInternalState(treeWalker, "tabWidth");
-        assertEquals(1, tabWidth, "Invalid setter result");
+        assertWithMessage("Invalid setter result")
+            .that(tabWidth)
+            .isEqualTo(1);
         final Object configuration = TestUtil.getInternalState(treeWalker, "configuration");
-        assertEquals(config, configuration, "Invalid configuration");
+        assertWithMessage("Invalid configuration")
+            .that(configuration)
+            .isEqualTo(config);
     }
 
     @Test
@@ -326,8 +331,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals("IllegalStateException occurred while parsing file input.java.",
-                ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("IllegalStateException occurred while parsing file input.java.");
         }
     }
 
@@ -478,7 +484,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final Set<TreeWalkerFilter> filters = TestUtil.getInternalState(treeWalker, "filters");
         final int tabWidth = TestUtil.getInternalState(filters.iterator().next(), "tabWidth");
 
-        assertEquals(99, tabWidth, "expected tab width");
+        assertWithMessage("expected tab width")
+            .that(tabWidth)
+            .isEqualTo(99);
     }
 
     @Test
@@ -530,9 +538,12 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalker.finishLocalSetup();
 
         final Context context = TestUtil.getInternalState(treeWalker, "childContext");
-        assertEquals("error", context.get("severity"), "Severity differs from expected");
-        assertEquals(String.valueOf(100), context.get("tabWidth"),
-                "Tab width differs from expected");
+        assertWithMessage("Severity differs from expected")
+            .that(context.get("severity"))
+            .isEqualTo("error");
+        assertWithMessage("Tab width differs from expected")
+            .that(context.get("tabWidth"))
+            .isEqualTo(String.valueOf(100));
     }
 
     @Test

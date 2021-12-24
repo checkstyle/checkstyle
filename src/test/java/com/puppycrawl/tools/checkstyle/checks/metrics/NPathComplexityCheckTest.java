@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.File;
@@ -281,12 +280,16 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         npathComplexityCheckObj.visitToken(ast);
         final SortedSet<Violation> violations1 = npathComplexityCheckObj.getViolations();
 
-        assertEquals(0, violations1.size(), "No exception violations expected");
+        assertWithMessage("No exception violations expected")
+            .that(violations1.size())
+            .isEqualTo(0);
 
         npathComplexityCheckObj.leaveToken(ast);
         final SortedSet<Violation> violations2 = npathComplexityCheckObj.getViolations();
 
-        assertEquals(0, violations2.size(), "No exception violations expected");
+        assertWithMessage("No exception violations expected")
+            .that(violations2.size())
+            .isEqualTo(0);
     }
 
     /**
@@ -337,13 +340,17 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         npathComplexityCheckObj.visitToken(astIf);
         final SortedSet<Violation> violations1 = npathComplexityCheckObj.getViolations();
 
-        assertEquals(0, violations1.size(), "No exception violations expected");
+        assertWithMessage("No exception violations expected")
+            .that(violations1.size())
+            .isEqualTo(0);
 
         // visiting ternary, it lies before expressionSpatialRange
         npathComplexityCheckObj.visitToken(astTernary);
         final SortedSet<Violation> violations2 = npathComplexityCheckObj.getViolations();
 
-        assertEquals(0, violations2.size(), "No exception violations expected");
+        assertWithMessage("No exception violations expected")
+            .that(violations2.size())
+            .isEqualTo(0);
     }
 
     /**

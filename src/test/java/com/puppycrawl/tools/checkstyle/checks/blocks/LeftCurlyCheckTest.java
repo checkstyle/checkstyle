@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_K
 import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_KEY_LINE_NEW;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck.MSG_KEY_LINE_PREVIOUS;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -47,7 +46,9 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testLeftCurlyOptionValueOf() {
         final LeftCurlyOption option = LeftCurlyOption.valueOf("NL");
-        assertEquals(LeftCurlyOption.NL, option, "Invalid valueOf result");
+        assertWithMessage("Invalid valueOf result")
+            .that(option)
+            .isEqualTo(LeftCurlyOption.NL);
     }
 
     @Test
@@ -462,11 +463,12 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
             assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                     + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
                     + "blocks.LeftCurlyCheck - "
-                    + "Cannot set property 'option' to 'invalid_option'",
-                ex.getMessage(), "Invalid exception message");
+                    + "Cannot set property 'option' to 'invalid_option'");
         }
     }
 
