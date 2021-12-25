@@ -104,7 +104,13 @@ public final class JavaParser {
             throw new CheckstyleException(exceptionMsg, ex);
         }
 
-        return new JavaAstVisitor(tokenStream).visit(compilationUnit);
+        final DetailAST root = new JavaAstVisitor(tokenStream).visit(compilationUnit);
+
+        // Clear DFA after parsing to reduce memory usage
+        lexer.getInterpreter().clearDFA();
+        parser.getInterpreter().clearDFA();
+
+        return root;
     }
 
     /**

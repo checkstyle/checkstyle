@@ -133,47 +133,47 @@ pr-age)
   ;;
 
 test)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  mvn --debug -e --no-transfer-progress clean integration-test failsafe:verify \
   -DargLine='-Xms1024m -Xmx2048m'
   ;;
 
 test-de)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  mvn --debug -e --no-transfer-progress clean integration-test failsafe:verify \
     -DargLine='-Duser.language=de -Duser.country=DE -Xms1024m -Xmx2048m'
   ;;
 
 test-es)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  mvn --debug -e --no-transfer-progress clean integration-test failsafe:verify \
     -DargLine='-Duser.language=es -Duser.country=ES -Xms1024m -Xmx2048m'
   ;;
 
 test-fi)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  mvn --debug -e --no-transfer-progress clean integration-test failsafe:verify \
     -DargLine='-Duser.language=fi -Duser.country=FI -Xms1024m -Xmx2048m'
   ;;
 
 test-fr)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  mvn --debug -e --no-transfer-progress clean integration-test failsafe:verify \
     -DargLine='-Duser.language=fr -Duser.country=FR -Xms1024m -Xmx2048m'
   ;;
 
 test-zh)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  mvn --debug -e --no-transfer-progress clean integration-test failsafe:verify \
     -DargLine='-Duser.language=zh -Duser.country=CN -Xms1024m -Xmx2048m'
   ;;
 
 test-ja)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  mvn --debug -e --no-transfer-progress clean integration-test failsafe:verify \
     -DargLine='-Duser.language=ja -Duser.country=JP -Xms1024m -Xmx2048m'
   ;;
 
 test-pt)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  mvn --debug -e --no-transfer-progress clean integration-test failsafe:verify \
     -DargLine='-Duser.language=pt -Duser.country=PT -Xms1024m -Xmx2048m'
   ;;
 
 test-tr)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  mvn --debug -e --no-transfer-progress clean integration-test failsafe:verify \
     -DargLine='-Duser.language=tr -Duser.country=TR -Xms1024m -Xmx2048m'
   ;;
 

@@ -1276,6 +1276,7 @@
               src/test/resources-noncompilable
             </additionalClasspathElement>
           </additionalClasspathElements>
+          <useFile>false</useFile>
           <includes>
             <include>com/puppycrawl/**/*.java</include>
           </includes>
