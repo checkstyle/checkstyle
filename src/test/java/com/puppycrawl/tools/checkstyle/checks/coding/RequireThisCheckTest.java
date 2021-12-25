@@ -22,9 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG_METHOD;
 import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG_VARIABLE;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
@@ -62,8 +60,6 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "122:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
             "123:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
             "124:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", ""),
-            "130:13: " + getCheckMessage(MSG_METHOD, "instanceMethod", "Issue2240."),
-            "131:13: " + getCheckMessage(MSG_VARIABLE, "i", "Issue2240."),
             "143:9: " + getCheckMessage(MSG_METHOD, "foo", ""),
             "151:9: " + getCheckMessage(MSG_VARIABLE, "s", ""),
             "177:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
@@ -83,7 +79,6 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "25:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
             "124:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", ""),
-            "130:13: " + getCheckMessage(MSG_METHOD, "instanceMethod", "Issue22402."),
             "143:9: " + getCheckMessage(MSG_METHOD, "foo", ""),
         };
         verifyWithInlineConfigParser(
@@ -100,7 +95,6 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "65:9: " + getCheckMessage(MSG_VARIABLE, "z", ""),
             "122:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
             "123:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
-            "131:13: " + getCheckMessage(MSG_VARIABLE, "i", "Issue22403."),
             "152:9: " + getCheckMessage(MSG_VARIABLE, "s", ""),
             "179:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
             "179:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
@@ -163,17 +157,19 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTokensNotNull() {
         final RequireThisCheck check = new RequireThisCheck();
-        assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
-        assertNotNull(check.getDefaultTokens(), "Acceptable tokens should not be null");
-        assertNotNull(check.getRequiredTokens(), "Acceptable tokens should not be null");
+        assertWithMessage("Acceptable tokens should not be null")
+                .that(check.getAcceptableTokens());
+        assertWithMessage("Acceptable tokens should not be null")
+                .that(check.getDefaultTokens());
+        assertWithMessage("Acceptable tokens should not be null")
+                .that(check.getRequiredTokens());
     }
 
     @Test
     public void testWithAnonymousClass() throws Exception {
         final String[] expected = {
             "28:25: " + getCheckMessage(MSG_METHOD, "doSideEffect", ""),
-            "32:24: " + getCheckMessage(MSG_VARIABLE, "bar", "InputRequireThisAnonymousEmpty."),
-            "55:17: " + getCheckMessage(MSG_VARIABLE, "foobar", ""),
+            "57:17: " + getCheckMessage(MSG_VARIABLE, "foobar", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisAnonymousEmpty.java"),
@@ -190,7 +186,9 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         check.visitToken(ast);
         final SortedSet<Violation> violations = check.getViolations();
 
-        assertEquals(0, violations.size(), "No exception violations expected");
+        assertWithMessage("No exception violations expected")
+                .that(violations.size())
+                .isEqualTo(0);
     }
 
     @Test
@@ -435,16 +433,18 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final DetailAstImpl ident = new DetailAstImpl();
         ident.setText("testName");
 
-        final Class<?> cls = Class.forName(RequireThisCheck.class.getName() + "$CatchFrame");
+        final Class<?> cls = Class.forName(AbstractFrameCheck.class.getName() + "$CatchFrame");
         final Constructor<?> constructor = cls.getDeclaredConstructors()[0];
         constructor.setAccessible(true);
         final Object o = constructor.newInstance(null, ident);
 
         final DetailAstImpl actual = TestUtil.invokeMethod(o, "getFrameNameIdent");
-        assertSame(ident, actual, "expected ident token");
-        assertEquals("CATCH_FRAME",
-            TestUtil.invokeMethod(o, "getType").toString(),
-                "expected catch frame type");
+        assertWithMessage("expected ident token")
+                .that(actual)
+                        .isEqualTo(ident);
+        assertWithMessage("expected catch frame type")
+                .that(TestUtil.invokeMethod(o, "getType").toString())
+                        .isEqualTo("CATCH_FRAME");
     }
 
     /**
@@ -463,13 +463,10 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final Optional<DetailAST> classDef = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.CLASS_DEF);
 
-        assertWithMessage("Ast should contain CLASS_DEF")
-                .that(classDef.isPresent())
-                .isTrue();
-        assertWithMessage("State is not cleared on beginTree")
-                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(),
-                        "current", current -> ((Collection<?>) current).isEmpty()))
-                .isTrue();
+        assertWithMessage("Ast should contain CLASS_DEF").that(classDef.isPresent());
+        assertTrue(
+                TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(),
+                        "current", current -> ((Collection<?>) current).isEmpty()),
+                "State is not cleared on beginTree");
     }
-
 }
