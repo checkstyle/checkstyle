@@ -57,8 +57,6 @@
   <suppress checks="MethodCount" files="[\\/]CommentsIndentationCheck.java$"/>
   <!-- VisibilityModifierCheck has 7 options which require 7 additional methods (setters) -->
   <suppress checks="MethodCount" files="[\\/]VisibilityModifierCheck.java$"/>
-  <!-- RequireThisCheck has a hierarchy of nested classes which contains a lot of methods. -->
-  <suppress checks="MethodCount" files="[\\/]RequireThisCheck.java$"/>
   <!-- parse method needs catching Exceptions to print context of execution -->
   <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]InlineConfigParser\.java"/>
 
