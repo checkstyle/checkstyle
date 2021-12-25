@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.util.Collection;
@@ -97,11 +97,14 @@ public class SuperCloneCheckTest
                 JavaParser.Options.WITHOUT_COMMENTS),
             ast -> ast.getType() == TokenTypes.METHOD_DEF);
 
-        assertTrue(methodDef.isPresent(), "Ast should contain METHOD_DEF");
-        assertTrue(
-            TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(), "methodStack",
-                methodStack -> ((Collection<Set<String>>) methodStack).isEmpty()),
-                "State is not cleared on beginTree");
+        assertWithMessage("Ast should contain METHOD_DEF")
+                .that(methodDef.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
+                        "methodStack",
+                        methodStack -> ((Collection<Set<String>>) methodStack).isEmpty()))
+                .isTrue();
     }
 
 }

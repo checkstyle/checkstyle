@@ -20,8 +20,6 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,55 +31,103 @@ public class CsvFilterElementTest {
     @Test
     public void testDecideSingle() {
         final IntFilterElement filter = new CsvFilterElement("0");
-        assertFalse(filter.accept(-1), "less than");
-        assertTrue(filter.accept(0), "equal");
-        assertFalse(filter.accept(1), "greater than");
+        assertWithMessage("less than")
+                .that(filter.accept(-1))
+                .isFalse();
+        assertWithMessage("equal")
+                .that(filter.accept(0))
+                .isTrue();
+        assertWithMessage("greater than")
+                .that(filter.accept(1))
+                .isFalse();
     }
 
     @Test
     public void testDecidePair() {
         final IntFilterElement filter = new CsvFilterElement("0, 2");
-        assertFalse(filter.accept(-1), "less than");
-        assertTrue(filter.accept(0), "equal 0");
-        assertFalse(filter.accept(1), "greater than");
-        assertTrue(filter.accept(2), "equal 2");
+        assertWithMessage("less than")
+                .that(filter.accept(-1))
+                .isFalse();
+        assertWithMessage("equal 0")
+                .that(filter.accept(0))
+                .isTrue();
+        assertWithMessage("greater than")
+                .that(filter.accept(1))
+                .isFalse();
+        assertWithMessage("equal 2")
+                .that(filter.accept(2))
+                .isTrue();
     }
 
     @Test
     public void testDecideRange() {
         final IntFilterElement filter = new CsvFilterElement("0-2");
-        assertFalse(filter.accept(-1), "less than");
-        assertTrue(filter.accept(0), "equal 0");
-        assertTrue(filter.accept(1), "equal 1");
-        assertTrue(filter.accept(2), "equal 2");
-        assertFalse(filter.accept(3), "greater than");
+        assertWithMessage("less than")
+                .that(filter.accept(-1))
+                .isFalse();
+        assertWithMessage("equal 0")
+                .that(filter.accept(0))
+                .isTrue();
+        assertWithMessage("equal 1")
+                .that(filter.accept(1))
+                .isTrue();
+        assertWithMessage("equal 2")
+                .that(filter.accept(2))
+                .isTrue();
+        assertWithMessage("greater than")
+                .that(filter.accept(3))
+                .isFalse();
     }
 
     @Test
     public void testDecideEmptyRange() {
         final IntFilterElement filter = new CsvFilterElement("2-0");
-        assertFalse(filter.accept(-1), "less than");
-        assertFalse(filter.accept(0), "equal 0");
-        assertFalse(filter.accept(1), "equal 1");
-        assertFalse(filter.accept(2), "equal 2");
-        assertFalse(filter.accept(3), "greater than");
+        assertWithMessage("less than")
+                .that(filter.accept(-1))
+                .isFalse();
+        assertWithMessage("equal 0")
+                .that(filter.accept(0))
+                .isFalse();
+        assertWithMessage("equal 1")
+                .that(filter.accept(1))
+                .isFalse();
+        assertWithMessage("equal 2")
+                .that(filter.accept(2))
+                .isFalse();
+        assertWithMessage("greater than")
+                .that(filter.accept(3))
+                .isFalse();
     }
 
     @Test
     public void testDecideRangePlusValue() {
         final IntFilterElement filter = new CsvFilterElement("0-2, 10");
-        assertFalse(filter.accept(-1), "less than");
-        assertTrue(filter.accept(0), "equal 0");
-        assertTrue(filter.accept(1), "equal 1");
-        assertTrue(filter.accept(2), "equal 2");
-        assertFalse(filter.accept(3), "greater than");
-        assertTrue(filter.accept(10), "equal 10");
+        assertWithMessage("less than")
+                .that(filter.accept(-1))
+                .isFalse();
+        assertWithMessage("equal 0")
+                .that(filter.accept(0))
+                .isTrue();
+        assertWithMessage("equal 1")
+                .that(filter.accept(1))
+                .isTrue();
+        assertWithMessage("equal 2")
+                .that(filter.accept(2))
+                .isTrue();
+        assertWithMessage("greater than")
+                .that(filter.accept(3))
+                .isFalse();
+        assertWithMessage("equal 10")
+                .that(filter.accept(10))
+                .isTrue();
     }
 
     @Test
     public void testEmptyChain() {
         final CsvFilterElement filter = new CsvFilterElement("");
-        assertFalse(filter.accept(0), "0");
+        assertWithMessage("0")
+                .that(filter.accept(0))
+                .isFalse();
     }
 
     @Test

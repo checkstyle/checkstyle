@@ -19,8 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
 import java.util.Arrays;
@@ -39,8 +38,9 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
 
     @Test
     public void testPrivateConstr() throws Exception {
-        assertTrue(TestUtil.isUtilsClassHasPrivateConstructor(BlockCommentPosition.class, true),
-                "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(TestUtil.isUtilsClassHasPrivateConstructor(BlockCommentPosition.class, true))
+                .isTrue();
     }
 
     @Test
@@ -77,7 +77,9 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
             final DetailAST ast = JavaParser.parseFile(new File(getPath(metadata.getFileName())),
                 JavaParser.Options.WITH_COMMENTS);
             final int matches = getJavadocsCount(ast, metadata.getAssertion());
-            assertEquals(metadata.getMatchesNum(), matches, "Invalid javadoc count");
+            assertWithMessage("Invalid javadoc count")
+                    .that(matches)
+                    .isEqualTo(metadata.getMatchesNum());
         }
     }
 
@@ -95,7 +97,9 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
                 new File(getNonCompilablePath(metadata.getFileName())),
                     JavaParser.Options.WITH_COMMENTS);
             final int matches = getJavadocsCount(ast, metadata.getAssertion());
-            assertEquals(metadata.getMatchesNum(), matches, "Invalid javadoc count");
+            assertWithMessage("Invalid javadoc count")
+                    .that(matches)
+                    .isEqualTo(metadata.getMatchesNum());
         }
     }
 

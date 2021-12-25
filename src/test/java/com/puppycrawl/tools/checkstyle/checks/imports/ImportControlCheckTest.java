@@ -19,12 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_DISALLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_MISSING_FILE;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_UNKNOWN_PKG;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -116,14 +115,15 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
             verifyWithInlineConfigParser(
                     getPath("InputImportControl7.java"), expected);
-            fail("Test should fail if exception was not thrown");
+            assertWithMessage("Test should fail if exception was not thrown").fail();
         }
         catch (CheckstyleException ex) {
             final String message = getCheckstyleExceptionMessage(ex);
             final String messageStart = "Unable to find: ";
 
-            assertTrue(message.startsWith(message),
-                    "Invalid message, should start with: " + messageStart);
+            assertWithMessage("Invalid message, should start with: " + messageStart)
+                    .that(message.startsWith(message))
+                    .isTrue();
         }
     }
 
@@ -134,14 +134,15 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
             verify(checkConfig, getPath("InputImportControl8.java"), expected);
-            fail("Test should fail if exception was not thrown");
+            assertWithMessage("Test should fail if exception was not thrown").fail();
         }
         catch (CheckstyleException ex) {
             final String message = getCheckstyleExceptionMessage(ex);
             final String messageStart = "Unable to load ";
 
-            assertTrue(message.startsWith(message),
-                    "Invalid message, should start with: " + messageStart);
+            assertWithMessage("Invalid message, should start with: " + messageStart)
+                    .that(message.startsWith(message))
+                    .isTrue();
         }
     }
 
@@ -283,14 +284,15 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
             verify(checkConfig, getPath("InputImportControl18.java"), expected);
-            fail("Test should fail if exception was not thrown");
+            assertWithMessage("Test should fail if exception was not thrown").fail();
         }
         catch (CheckstyleException ex) {
             final String message = getCheckstyleExceptionMessage(ex);
             final String messageStart = "Unable to find: ";
 
-            assertTrue(message.startsWith(message),
-                    "Invalid message, should start with: " + messageStart);
+            assertWithMessage("Invalid message, should start with: " + messageStart)
+                    .that(message.startsWith(message))
+                    .isTrue();
         }
     }
 
@@ -309,14 +311,15 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
             verifyWithInlineConfigParser(
                     getPath("InputImportControl20.java"), expected);
-            fail("Test should fail if exception was not thrown");
+            assertWithMessage("Test should fail if exception was not thrown").fail();
         }
         catch (CheckstyleException ex) {
             final String message = getCheckstyleExceptionMessage(ex);
             final String messageStart = "Unable to load ";
 
-            assertTrue(message.startsWith(message),
-                    "Invalid message, should start with: " + messageStart);
+            assertWithMessage("Invalid message, should start with: " + messageStart)
+                    .that(message.startsWith(message))
+                    .isTrue();
         }
     }
 
@@ -341,8 +344,9 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
 
         final String contents = new String(Files.readAllBytes(cacheFile.toPath()),
                 StandardCharsets.UTF_8);
-        assertTrue(contents.contains("InputImportControlOneRegExp.xml"),
-                "External resource is not present in cache");
+        assertWithMessage("External resource is not present in cache")
+                .that(contents.contains("InputImportControlOneRegExp.xml"))
+                .isTrue();
     }
 
     @Test

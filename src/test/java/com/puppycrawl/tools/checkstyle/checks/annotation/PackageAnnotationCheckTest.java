@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,7 +52,9 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
         final PackageAnnotationCheck constantNameCheckObj = new PackageAnnotationCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
         final int[] expected = {TokenTypes.PACKAGE_DEF};
-        assertArrayEquals(expected, actual, "Invalid acceptable tokens");
+        assertWithMessage("Invalid acceptable tokens")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test

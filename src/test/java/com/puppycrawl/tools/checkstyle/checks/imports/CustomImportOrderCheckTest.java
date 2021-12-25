@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_LEX;
 import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_LINE_SEPARATOR;
 import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_NONGROUP_EXPECTED;
@@ -27,7 +28,6 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCh
 import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_SEPARATED_IN_GROUP;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -439,7 +439,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
 
             verifyWithInlineConfigParser(
                     getPath("InputCustomImportOrderDefault5.java"), expected);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
@@ -461,7 +461,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
 
             verifyWithInlineConfigParser(
                     getPath("InputCustomImportOrderDefault6.java"), expected);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
@@ -483,7 +483,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
 
             verifyWithInlineConfigParser(
                     getPath("InputCustomImportOrderDefault7.java"), expected);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
@@ -505,7 +505,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
 
             verifyWithInlineConfigParser(
                     getPath("InputCustomImportOrderDefault8.java"), expected);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "

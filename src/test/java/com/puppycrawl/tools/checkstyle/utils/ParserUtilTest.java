@@ -19,9 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,28 +31,45 @@ public class ParserUtilTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(ParserUtil.class, true),
-            "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(isUtilsClassHasPrivateConstructor(ParserUtil.class, true))
+                .isTrue();
     }
 
     @Test
     public void testCreationOfFakeCommentBlock() {
         final DetailAST testCommentBlock =
             ParserUtil.createBlockCommentNode("test_comment");
-        assertEquals(TokenTypes.BLOCK_COMMENT_BEGIN, testCommentBlock.getType(),
-            "Invalid token type");
-        assertEquals("/*", testCommentBlock.getText(), "Invalid text");
-        assertEquals(0, testCommentBlock.getLineNo(), "Invalid line number");
+        assertWithMessage("Invalid token type")
+                .that(testCommentBlock.getType())
+                .isEqualTo(TokenTypes.BLOCK_COMMENT_BEGIN);
+        assertWithMessage("Invalid text")
+                .that(testCommentBlock.getText())
+                .isEqualTo("/*");
+        assertWithMessage("Invalid line number")
+                .that(testCommentBlock.getLineNo())
+                .isEqualTo(0);
 
         final DetailAST contentCommentBlock = testCommentBlock.getFirstChild();
-        assertEquals(TokenTypes.COMMENT_CONTENT, contentCommentBlock.getType(),
-            "Invalid token type");
-        assertEquals("*test_comment", contentCommentBlock.getText(), "Invalid text");
-        assertEquals(0, contentCommentBlock.getLineNo(), "Invalid line number");
-        assertEquals(-1, contentCommentBlock.getColumnNo(), "Invalid column number");
+        assertWithMessage("Invalid token type")
+                .that(contentCommentBlock.getType())
+                .isEqualTo(TokenTypes.COMMENT_CONTENT);
+        assertWithMessage("Invalid text")
+                .that(contentCommentBlock.getText())
+                .isEqualTo("*test_comment");
+        assertWithMessage("Invalid line number")
+                .that(contentCommentBlock.getLineNo())
+                .isEqualTo(0);
+        assertWithMessage("Invalid column number")
+                .that(contentCommentBlock.getColumnNo())
+                .isEqualTo(-1);
 
         final DetailAST endCommentBlock = contentCommentBlock.getNextSibling();
-        assertEquals(TokenTypes.BLOCK_COMMENT_END, endCommentBlock.getType(), "Invalid token type");
-        assertEquals("*/", endCommentBlock.getText(), "Invalid text");
+        assertWithMessage("Invalid token type")
+                .that(endCommentBlock.getType())
+                .isEqualTo(TokenTypes.BLOCK_COMMENT_END);
+        assertWithMessage("Invalid text")
+                .that(endCommentBlock.getText())
+                .isEqualTo("*/");
     }
 }

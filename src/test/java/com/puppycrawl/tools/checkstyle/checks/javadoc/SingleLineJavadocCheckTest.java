@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,16 +38,17 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
     public void testAcceptableTokens() {
         final SingleLineJavadocCheck checkObj = new SingleLineJavadocCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
-        assertArrayEquals(expected, checkObj.getAcceptableTokens(),
-                "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(checkObj.getAcceptableTokens()).isEqualTo(expected);
     }
 
     @Test
     public void testGetRequiredTokens() {
         final SingleLineJavadocCheck checkObj = new SingleLineJavadocCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
-        assertArrayEquals(expected, checkObj.getRequiredTokens(),
-                "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+                .that(checkObj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test

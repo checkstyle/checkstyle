@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.AvoidDoubleBraceInitializationCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -63,12 +63,14 @@ public class AvoidDoubleBraceInitializationCheckTest extends AbstractModuleTestS
         final int[] expected = {
             TokenTypes.OBJBLOCK,
         };
-        assertArrayEquals(expected, check.getAcceptableTokens(),
-            "Acceptable required tokens are invalid");
-        assertArrayEquals(expected, check.getDefaultTokens(),
-            "Default required tokens are invalid");
-        assertArrayEquals(expected, check.getRequiredTokens(),
-            "Required required tokens are invalid");
+        assertWithMessage("Acceptable required tokens are invalid")
+                .that(check.getAcceptableTokens()).isEqualTo(expected);
+        assertWithMessage("Default required tokens are invalid")
+                .that(check.getDefaultTokens())
+                .isEqualTo(expected);
+        assertWithMessage("Required required tokens are invalid")
+                .that(check.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
 }

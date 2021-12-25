@@ -21,10 +21,7 @@ package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -304,7 +301,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                     final String errorMessage = String.format(Locale.ROOT,
                             "%s's default tokens must be a subset"
                             + " of acceptable tokens.", check.getName());
-                    fail(errorMessage);
+                    assertWithMessage(errorMessage).fail();
                 }
             }
         }
@@ -323,7 +320,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                     final String errorMessage = String.format(Locale.ROOT,
                             "%s's required tokens must be a subset"
                             + " of acceptable tokens.", check.getName());
-                    fail(errorMessage);
+                    assertWithMessage(errorMessage).fail();
                 }
             }
         }
@@ -342,7 +339,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                     final String errorMessage = String.format(Locale.ROOT,
                             "%s's required tokens must be a subset"
                             + " of default tokens.", check.getName());
-                    fail(errorMessage);
+                    assertWithMessage(errorMessage).fail();
                 }
             }
         }
@@ -358,10 +355,12 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 continue;
             }
 
-            assertTrue(module.isAnnotationPresent(GlobalStatefulCheck.class)
-                || module.isAnnotationPresent(FileStatefulCheck.class)
-                || module.isAnnotationPresent(StatelessCheck.class),
-                "module '" + module.getSimpleName() + "' must contain a multi-thread annotation");
+            assertWithMessage("module '" + module.getSimpleName()
+                    + "' must contain a multi-thread annotation")
+                            .that(module.isAnnotationPresent(GlobalStatefulCheck.class)
+                                    || module.isAnnotationPresent(FileStatefulCheck.class)
+                                    || module.isAnnotationPresent(StatelessCheck.class))
+                            .isTrue();
         }
     }
 
@@ -375,7 +374,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
             .forEach(check -> {
                 final String errorMessage = String.format(Locale.ROOT,
                     "%s is not referenced in checkstyle_checks.xml", check);
-                fail(errorMessage);
+                assertWithMessage(errorMessage).fail();
             });
     }
 
@@ -487,8 +486,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                     CheckUtil.getTokenNameSet(check.getDefaultTokens()));
         }
         else {
-            fail("All default tokens should be used in config for "
-                    + checkConfig.getName());
+            assertWithMessage("All default tokens should be used in config for "
+                    + checkConfig.getName()).fail();
         }
     }
 
@@ -509,7 +508,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 final String missingModuleMessage = String.format(Locale.ROOT,
                     "Module %s does not have xdoc documentation.",
                     moduleName);
-                fail(missingModuleMessage);
+                assertWithMessage(missingModuleMessage).fail();
             });
     }
 
@@ -519,8 +518,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
         moduleNames.removeAll(INTERNAL_MODULES);
         for (String moduleName : moduleNames) {
-            assertTrue(configChecks.contains(moduleName),
-                    "checkstyle_checks.xml is missing module: " + moduleName);
+            assertWithMessage("checkstyle_checks.xml is missing module: " + moduleName)
+                    .that(configChecks.contains(moduleName))
+                    .isTrue();
         }
     }
 
@@ -532,12 +532,15 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
             // No messages in just module
             if ("SuppressWarningsHolder".equals(name)) {
-                assertTrue(messages.isEmpty(),
-                        name + " should not have any 'MSG_*' fields for error messages");
+                assertWithMessage(name + " should not have any 'MSG_*' fields for error messages")
+                        .that(messages)
+                        .isEmpty();
             }
             else {
-                assertFalse(messages.isEmpty(),
-                        name + " should have at least one 'MSG_*' field for error messages");
+                assertWithMessage(
+                        name + " should have at least one 'MSG_*' field for error messages")
+                                .that(messages)
+                                .isNotEmpty();
             }
         }
     }
@@ -577,9 +580,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                     continue;
                 }
 
-                assertTrue(entry.getValue().contains(key.toString()),
-                        "property '" + key + "' isn't used by any check in package '"
-                        + entry.getKey() + "'");
+                assertWithMessage("property '" + key + "' isn't used by any check in package '"
+                                      + entry.getKey() + "'")
+                        .that(entry.getValue().contains(key.toString()))
+                        .isTrue();
             }
         }
     }
@@ -601,9 +605,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
             }
             // -@cs[IllegalCatch] There is no other way to deliver filename that was used
             catch (Exception ex) {
-                fail(module.getSimpleName() + " with the message '" + messageString
+                assertWithMessage(module.getSimpleName() + " with the message '" + messageString
                         + "' in locale '" + locale.getLanguage() + "' failed with: "
-                        + ex.getClass().getSimpleName() + " - " + ex.getMessage());
+                        + ex.getClass().getSimpleName() + " - " + ex.getMessage()).fail();
             }
 
             assertNotNull(result, module.getSimpleName() + " should have text for the message '"
@@ -612,10 +616,12 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                             module.getSimpleName(), messageString, locale.getLanguage())
                     .that(result.trim())
                     .isNotEmpty();
-            assertFalse(!"todo.match".equals(messageString) && result.trim().startsWith("TODO"),
-                    module.getSimpleName()
-                    + " should have non-TODO text for the message '"
-                    + messageString + "' in locale " + locale.getLanguage() + "'");
+            assertWithMessage(
+                    module.getSimpleName() + " should have non-TODO text for the message '"
+                            + messageString + "' in locale " + locale.getLanguage() + "'")
+                                    .that(!"todo.match".equals(messageString)
+                                            && result.trim().startsWith("TODO"))
+                                    .isFalse();
         }
     }
 

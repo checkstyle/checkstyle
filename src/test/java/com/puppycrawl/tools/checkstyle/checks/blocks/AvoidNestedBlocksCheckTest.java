@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -39,8 +39,9 @@ public class AvoidNestedBlocksCheckTest
     public void testGetRequiredTokens() {
         final AvoidNestedBlocksCheck checkObj = new AvoidNestedBlocksCheck();
         final int[] expected = {TokenTypes.SLIST};
-        assertArrayEquals(expected, checkObj.getRequiredTokens(),
-                "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+                .that(checkObj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test
@@ -74,7 +75,9 @@ public class AvoidNestedBlocksCheckTest
         final AvoidNestedBlocksCheck constantNameCheckObj = new AvoidNestedBlocksCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
         final int[] expected = {TokenTypes.SLIST };
-        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
 }

@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.RequireEmptyLineBeforeBlockTagGroupCheck.MSG_JAVADOC_TAG_LINE_BEFORE;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,8 +41,9 @@ public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModule
         final RequireEmptyLineBeforeBlockTagGroupCheck checkObj =
                 new RequireEmptyLineBeforeBlockTagGroupCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
-        assertArrayEquals(expected, checkObj.getRequiredTokens(),
-                "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+                .that(checkObj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test

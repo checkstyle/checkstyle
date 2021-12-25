@@ -19,12 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.util.Collection;
@@ -93,7 +92,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
 
         try {
             createChecker(checkConfig);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
@@ -298,12 +297,14 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
         final Optional<DetailAST> importAst = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.IMPORT);
 
-        assertTrue(importAst.isPresent(), "Ast should contain IMPORT");
-        assertTrue(
-                TestUtil.isStatefulFieldClearedDuringBeginTree(check, importAst.get(),
+        assertWithMessage("Ast should contain IMPORT")
+                .that(importAst.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, importAst.get(),
                     "importedClassPackages",
-                    importedClssPackage -> ((Map<String, String>) importedClssPackage).isEmpty()),
-                    "State is not cleared on beginTree");
+                    importedClssPackage -> ((Map<String, String>) importedClssPackage).isEmpty()))
+                .isTrue();
     }
 
     /**
@@ -322,12 +323,14 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
         final Optional<DetailAST> classDef = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.CLASS_DEF);
 
-        assertTrue(classDef.isPresent(), "Ast should contain CLASS_DEF");
-        assertTrue(
-                TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(),
-                    "classesContexts",
-                    classContexts -> ((Collection<?>) classContexts).size() == 1),
-                    "State is not cleared on beginTree");
+        assertWithMessage("Ast should contain CLASS_DEF")
+                .that(classDef.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(),
+                        "classesContexts",
+                        classContexts -> ((Collection<?>) classContexts).size() == 1))
+                .isTrue();
     }
 
 }

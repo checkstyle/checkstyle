@@ -19,9 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,8 +39,8 @@ public class ArrayTypeStyleCheckTest
     public void testGetRequiredTokens() {
         final ArrayTypeStyleCheck checkObj = new ArrayTypeStyleCheck();
         final int[] expected = {TokenTypes.ARRAY_DECLARATOR};
-        assertArrayEquals(expected, checkObj.getRequiredTokens(),
-                "Required tokens differs from expected");
+        assertWithMessage("Required tokens differs from expected")
+                .that(checkObj.getRequiredTokens()).isEqualTo(expected);
     }
 
     @Test
@@ -97,8 +96,12 @@ public class ArrayTypeStyleCheckTest
         final int[] expected = {TokenTypes.ARRAY_DECLARATOR };
         final ArrayTypeStyleCheck check = new ArrayTypeStyleCheck();
         final int[] actual = check.getAcceptableTokens();
-        assertEquals(1, actual.length, "Amount of acceptable tokens differs from expected");
-        assertArrayEquals(expected, actual, "Acceptable tokens differs from expected");
+        assertWithMessage("Amount of acceptable tokens differs from expected")
+                .that(actual)
+                .hasLength(1);
+        assertWithMessage("Acceptable tokens differs from expected")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
 }

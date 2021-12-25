@@ -24,8 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacter
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_FILE_CONTAINS_TAB;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -199,27 +197,22 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
     @Test
     public void testSuppressionCommentsInJavaScriptFile() throws Exception {
-        final DefaultConfiguration filterCfg =
-            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
-        filterCfg.addProperty("offCommentFormat", "// CS-OFF");
-        filterCfg.addProperty("onCommentFormat", "// CS-ON");
-
-        final DefaultConfiguration checkCfg = createModuleConfig(RegexpSinglelineCheck.class);
-        checkCfg.addProperty("format", ".*===.*");
-
         final String[] suppressed = {
-            "2: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED, ".*===.*"),
+            "22: " + getCheckMessage(RegexpSinglelineCheck.class,
+                    MSG_REGEXP_EXCEEDED, ".*\\s===.*"),
         };
 
         final String[] violationMessages = {
-            "2: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED, ".*===.*"),
-            "5: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED, ".*===.*"),
+            "22: " + getCheckMessage(RegexpSinglelineCheck.class,
+                    MSG_REGEXP_EXCEEDED, ".*\\s===.*"),
+            "25: " + getCheckMessage(RegexpSinglelineCheck.class,
+                    MSG_REGEXP_EXCEEDED, ".*\\s===.*"),
         };
 
-        verifySuppressed(
-            "InputSuppressWithPlainTextCommentFilter.js",
-            removeSuppressed(violationMessages, suppressed),
-            filterCfg, checkCfg
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithPlainTextCommentFilter.js"),
+            violationMessages,
+            removeSuppressed(violationMessages, suppressed)
         );
     }
 
@@ -248,7 +241,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
                 removeSuppressed(violationMessages, suppressed),
                 filterCfg, checkCfg
             );
-            fail("CheckstyleException is expected");
+            assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
@@ -273,7 +266,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
                 "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
                 CommonUtil.EMPTY_STRING_ARRAY, filterCfg, checkCfg
             );
-            fail("CheckstyleException is expected");
+            assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
@@ -307,7 +300,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
                 removeSuppressed(violationMessages, suppressed),
                 filterCfg, checkCfg
             );
-            fail("CheckstyleException is expected");
+            assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
@@ -339,7 +332,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
                 removeSuppressed(violationMessages, suppressed),
                 filterCfg, checkCfg
             );
-            fail("CheckstyleException is expected");
+            assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
@@ -352,7 +345,9 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     public void testAcceptNullViolation() {
         final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
         final AuditEvent auditEvent = new AuditEvent(this);
-        assertTrue(filter.accept(auditEvent), "Filter should accept audit event");
+        assertWithMessage("Filter should accept audit event")
+                .that(filter.accept(auditEvent))
+                .isTrue();
         assertNull(auditEvent.getFileName(), "File name should not be null");
     }
 
@@ -391,195 +386,141 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         fileTabCheckCfg.addProperty("id", "foo");
 
         final String[] suppressedViolationMessages = {
-            "9:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         final String[] expectedViolationMessages = {
-            "6: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "9: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "9:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "11: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "14: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "41: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
         };
 
-        verifySuppressed(
-            "InputSuppressWithPlainTextCommentFilterSuppressById.java",
-            removeSuppressed(expectedViolationMessages, suppressedViolationMessages),
-            filterCfg, regexpCheckCfg, fileTabCheckCfg
+        verifyFilterWithInlineConfigParser(
+                getPath("InputSuppressWithPlainTextCommentFilterSuppressById.java"),
+                expectedViolationMessages,
+                removeSuppressed(expectedViolationMessages, suppressedViolationMessages)
         );
     }
 
     @Test
     public void testSuppressByModuleId() throws Exception {
-        final DefaultConfiguration filterCfg =
-            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
-        filterCfg.addProperty("offCommentFormat", "CSOFF (\\w+) \\(\\w+\\)");
-        filterCfg.addProperty("onCommentFormat", "CSON (\\w+)");
-        filterCfg.addProperty("idFormat", "$1");
-
-        final DefaultConfiguration regexpCheckCfg = createModuleConfig(RegexpSinglelineCheck.class);
-        regexpCheckCfg.addProperty("id", "ignore");
-        regexpCheckCfg.addProperty("format", ".*[a-zA-Z][0-9].*");
-
-        final DefaultConfiguration fileTabCheckCfg =
-            createModuleConfig(FileTabCharacterCheck.class);
-        fileTabCheckCfg.addProperty("eachLine", "true");
-        fileTabCheckCfg.addProperty("id", "foo");
-
         final String[] suppressedViolationMessages = {
-            "6: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "9: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "11: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
         };
 
         final String[] expectedViolationMessages = {
-            "6: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "30: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "9:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "9: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "11: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "14: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "41: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
         };
 
-        verifySuppressed(
-            "InputSuppressWithPlainTextCommentFilterSuppressById.java",
-            removeSuppressed(expectedViolationMessages, suppressedViolationMessages),
-            filterCfg, regexpCheckCfg, fileTabCheckCfg
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithPlainTextCommentFilterSuppressById2.java"),
+            expectedViolationMessages,
+            removeSuppressed(expectedViolationMessages, suppressedViolationMessages)
         );
     }
 
     @Test
     public void testSuppressByCheckAndModuleId() throws Exception {
-        final DefaultConfiguration filterCfg =
-            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
-        filterCfg.addProperty("offCommentFormat", "CSOFF (\\w+) \\(\\w+\\)");
-        filterCfg.addProperty("onCommentFormat", "CSON (\\w+)");
-        filterCfg.addProperty("checkFormat", "FileTabCharacterCheck");
-        filterCfg.addProperty("idFormat", "foo");
-
-        final DefaultConfiguration regexpCheckCfg = createModuleConfig(RegexpSinglelineCheck.class);
-        regexpCheckCfg.addProperty("id", "ignore");
-        regexpCheckCfg.addProperty("format", ".*[a-zA-Z][0-9].*");
-
-        final DefaultConfiguration fileTabCheckCfg =
-            createModuleConfig(FileTabCharacterCheck.class);
-        fileTabCheckCfg.addProperty("eachLine", "true");
-        fileTabCheckCfg.addProperty("id", "foo");
-
         final String[] suppressedViolationMessages = {
-            "9:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         final String[] expectedViolationMessages = {
-            "6: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "30: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "9:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "9: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "11: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "14: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "41: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
         };
 
-        verifySuppressed(
-            "InputSuppressWithPlainTextCommentFilterSuppressById.java",
-            removeSuppressed(expectedViolationMessages, suppressedViolationMessages),
-            filterCfg, regexpCheckCfg, fileTabCheckCfg
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithPlainTextCommentFilterSuppressById3.java"),
+            expectedViolationMessages,
+            removeSuppressed(expectedViolationMessages, suppressedViolationMessages)
         );
     }
 
     @Test
     public void testSuppressByCheckAndNonMatchingModuleId() throws Exception {
-        final DefaultConfiguration filterCfg =
-            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
-        filterCfg.addProperty("offCommentFormat", "CSOFF (\\w+) \\(\\w+\\)");
-        filterCfg.addProperty("onCommentFormat", "CSON (\\w+)");
-        filterCfg.addProperty("checkFormat", "FileTabCharacterCheck");
-        filterCfg.addProperty("idFormat", "$1");
-
-        final DefaultConfiguration regexpCheckCfg = createModuleConfig(RegexpSinglelineCheck.class);
-        regexpCheckCfg.addProperty("id", "ignore");
-        regexpCheckCfg.addProperty("format", ".*[a-zA-Z][0-9].*");
-
-        final DefaultConfiguration fileTabCheckCfg =
-            createModuleConfig(FileTabCharacterCheck.class);
-        fileTabCheckCfg.addProperty("eachLine", "true");
-        fileTabCheckCfg.addProperty("id", "foo");
-
         final String[] suppressedViolationMessages = CommonUtil.EMPTY_STRING_ARRAY;
 
         final String[] expectedViolationMessages = {
-            "6: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "30: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "9:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "9: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "11: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "14: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "41: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
         };
 
-        verifySuppressed(
-            "InputSuppressWithPlainTextCommentFilterSuppressById.java",
-            removeSuppressed(expectedViolationMessages, suppressedViolationMessages),
-            filterCfg, regexpCheckCfg, fileTabCheckCfg
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithPlainTextCommentFilterSuppressById4.java"),
+            expectedViolationMessages,
+            removeSuppressed(expectedViolationMessages, suppressedViolationMessages)
         );
     }
 
     @Test
     public void testSuppressByModuleIdWithNullModuleId() throws Exception {
-        final DefaultConfiguration filterCfg =
-            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
-        filterCfg.addProperty("offCommentFormat", "CSOFF (\\w+) \\(\\w+\\)");
-        filterCfg.addProperty("onCommentFormat", "CSON (\\w+)");
-        filterCfg.addProperty("idFormat", "$1");
-
-        final DefaultConfiguration regexpCheckCfg = createModuleConfig(RegexpSinglelineCheck.class);
-        regexpCheckCfg.addProperty("id", "ignore");
-        regexpCheckCfg.addProperty("format", ".*[a-zA-Z][0-9].*");
-
-        final DefaultConfiguration fileTabCheckCfg =
-            createModuleConfig(FileTabCharacterCheck.class);
-        fileTabCheckCfg.addProperty("eachLine", "true");
-        fileTabCheckCfg.addProperty("id", null);
-
         final String[] suppressedViolationMessages = {
-            "6: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "9: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "11: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
-            };
-
-        final String[] expectedViolationMessages = {
-            "6: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
-            "9:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "9: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
-            "11: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
-            "14: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
         };
 
-        verifySuppressed(
-            "InputSuppressWithPlainTextCommentFilterSuppressById.java",
-            removeSuppressed(expectedViolationMessages, suppressedViolationMessages),
-            filterCfg, regexpCheckCfg, fileTabCheckCfg
+        final String[] expectedViolationMessages = {
+            "30: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "41: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+        };
+
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithPlainTextCommentFilterSuppressById5.java"),
+            expectedViolationMessages,
+            removeSuppressed(expectedViolationMessages, suppressedViolationMessages)
         );
     }
 
@@ -594,14 +535,16 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
         try {
             filter.accept(auditEvent);
-            fail(IllegalStateException.class.getSimpleName() + " is expected");
+            assertWithMessage(IllegalStateException.class.getSimpleName() + " is expected").fail();
         }
         catch (IllegalStateException ex) {
             assertEquals("Cannot read source file: " + fileName, ex.getMessage(),
                     "Invalid exception message");
 
             final Throwable cause = ex.getCause();
-            assertTrue(cause instanceof FileNotFoundException, "Exception cause has invalid type");
+            assertWithMessage("Exception cause has invalid type")
+                    .that(cause instanceof FileNotFoundException)
+                    .isTrue();
             assertEquals(fileName + " (No such file or directory)", cause.getMessage(),
                     "Invalid exception message");
         }
@@ -609,41 +552,25 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
     @Test
     public void testFilterWithCustomMessageFormat() throws Exception {
-        final DefaultConfiguration filterCfg =
-            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
-        final String messageFormat =
-            ".*" + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB) + ".*";
-        // -@cs[CheckstyleTestMakeup] need to test dynamic property
-        filterCfg.addProperty("messageFormat", messageFormat);
-
-        final DefaultConfiguration fileTabCheckCfg =
-            createModuleConfig(FileTabCharacterCheck.class);
-        fileTabCheckCfg.addProperty("eachLine", "true");
-
-        final DefaultConfiguration regexpCheckCfg = createModuleConfig(RegexpSinglelineCheck.class);
-        regexpCheckCfg.addProperty("id", "ignore");
-        regexpCheckCfg.addProperty("format", ".*[a-zA-Z][0-9].*");
-
         final String[] suppressed = {
-            "8:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "34:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         final String[] violationMessages = {
-            "6: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "32: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "8:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "8: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "34:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "34: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "10: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "13: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "39: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
         };
 
-        verifySuppressed(
-            "InputSuppressWithPlainTextCommentFilterCustomMessageFormat.java",
-            removeSuppressed(violationMessages, suppressed),
-            filterCfg, fileTabCheckCfg, regexpCheckCfg
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithPlainTextCommentFilterCustomMessageFormat.java"),
+            violationMessages, removeSuppressed(violationMessages, suppressed)
         );
     }
 
@@ -722,7 +649,9 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
                 "bundle", "key", null, SeverityLevel.ERROR, "moduleId", getClass(),
                 "customMessage"));
 
-        assertTrue(filter.accept(event), "filter should accept directory");
+        assertWithMessage("filter should accept directory")
+                .that(filter.accept(event))
+                .isTrue();
     }
 
     private void verifySuppressed(String fileNameWithExtension, String[] violationMessages,

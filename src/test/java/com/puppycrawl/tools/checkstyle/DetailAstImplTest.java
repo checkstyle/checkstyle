@@ -21,12 +21,10 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.Writer;
@@ -280,8 +278,12 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         final DetailAstImpl modifiers = createToken(root, TokenTypes.MODIFIERS);
         createToken(modifiers, TokenTypes.LITERAL_PUBLIC);
 
-        assertTrue(root.branchContains(TokenTypes.LITERAL_PUBLIC), "invalid result");
-        assertFalse(root.branchContains(TokenTypes.OBJBLOCK), "invalid result");
+        assertWithMessage("invalid result")
+                .that(root.branchContains(TokenTypes.LITERAL_PUBLIC))
+                .isTrue();
+        assertWithMessage("invalid result")
+                .that(root.branchContains(TokenTypes.OBJBLOCK))
+                .isFalse();
     }
 
     private static DetailAstImpl createToken(DetailAstImpl root, int type) {
@@ -333,7 +335,9 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         bitSet.set(999);
 
         TestUtil.setInternalState(root, "branchTokenTypes", bitSet);
-        assertTrue(root.branchContains(999), "Branch tokens has changed");
+        assertWithMessage("Branch tokens has changed")
+                .that(root.branchContains(999))
+                .isTrue();
     }
 
     @Test
@@ -505,7 +509,9 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
 
             assertNotNull(rootAST, "file must return a root node: " + fileName);
 
-            assertTrue(checkTree(fileName, rootAST), "tree is valid");
+            assertWithMessage("tree is valid")
+                    .that(checkTree(fileName, rootAST))
+                    .isTrue();
         }
     }
 

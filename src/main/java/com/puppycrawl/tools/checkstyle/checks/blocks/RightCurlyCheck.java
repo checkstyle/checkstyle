@@ -460,15 +460,14 @@ public class RightCurlyCheck extends AbstractCheck {
      */
     private static boolean isBlockAloneOnSingleLine(Details details) {
         DetailAST nextToken = details.nextToken;
-        if (nextToken != null) {
-            while (nextToken.getType() == TokenTypes.LITERAL_ELSE) {
-                nextToken = Details.getNextToken(nextToken);
-            }
 
-            if (nextToken.getType() == TokenTypes.DO_WHILE) {
-                final DetailAST doWhileSemi = nextToken.getParent().getLastChild();
-                nextToken = Details.getNextToken(doWhileSemi);
-            }
+        while (nextToken != null && nextToken.getType() == TokenTypes.LITERAL_ELSE) {
+            nextToken = Details.getNextToken(nextToken);
+        }
+
+        if (nextToken != null && nextToken.getType() == TokenTypes.DO_WHILE) {
+            final DetailAST doWhileSemi = nextToken.getParent().getLastChild();
+            nextToken = Details.getNextToken(doWhileSemi);
         }
 
         return TokenUtil.areOnSameLine(details.lcurly, details.rcurly)
