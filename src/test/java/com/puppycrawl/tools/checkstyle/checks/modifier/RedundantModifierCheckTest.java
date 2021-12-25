@@ -187,9 +187,9 @@ public class RedundantModifierCheckTest
     @Test
     public void testFinalInTryWithResource() throws Exception {
         final String[] expected = {
-            "30:14: " + getCheckMessage(MSG_KEY, "final"),
-            "35:14: " + getCheckMessage(MSG_KEY, "final"),
-            "36:17: " + getCheckMessage(MSG_KEY, "final"),
+            "38:14: " + getCheckMessage(MSG_KEY, "final"),
+            "43:14: " + getCheckMessage(MSG_KEY, "final"),
+            "44:17: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierFinalInTryWithResource.java"),
