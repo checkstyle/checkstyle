@@ -127,7 +127,7 @@ class Issue22402 {
 
     class Nested {
         void bar() {
-            instanceMethod(); // violation
+            instanceMethod();
             i++;
         }
     }

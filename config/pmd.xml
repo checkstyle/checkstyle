@@ -330,7 +330,6 @@
   <rule ref="category/java/design.xml/ExcessiveClassLength">
     <properties>
       <!-- *TokenTypes are special classes that are big due to a lot of description comments.
-           RequireThisCheck has to work with and identify many frames.
            JavadocMethodCheck is in the process of being rewritten. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypes'
