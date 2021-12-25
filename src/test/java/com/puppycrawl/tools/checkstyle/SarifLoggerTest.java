@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -214,7 +214,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
             final SarifLogger logger = new SarifLogger(outStream, null);
             // assert required to calm down eclipse's 'The allocated object is never used' violation
             assertNotNull(logger, "Null instance");
-            fail("Exception was expected");
+            assertWithMessage("Exception was expected").fail();
         }
         catch (IllegalArgumentException | IOException exception) {
             assertEquals("Parameter outputStreamOptions can not be null",
@@ -262,7 +262,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     public void testReadResourceWithInvalidName() {
         try {
             SarifLogger.readResource("random");
-            fail("Exception expected");
+            assertWithMessage("Exception expected").fail();
         }
         catch (IOException exception) {
             assertEquals("Cannot find the resource random",

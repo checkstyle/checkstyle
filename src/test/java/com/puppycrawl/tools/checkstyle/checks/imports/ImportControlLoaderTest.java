@@ -19,22 +19,29 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 
 import org.junit.jupiter.api.Test;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.AttributesImpl;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -59,7 +66,7 @@ public class ImportControlLoaderTest {
         try {
             ImportControlLoader.load(new URI("aaa://"
                     + getPath("InputImportControlLoaderComplete.xml")));
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
             assertSame(MalformedURLException.class, ex.getCause().getClass(),
@@ -92,7 +99,7 @@ public class ImportControlLoaderTest {
                 Attributes.class, String.class);
             privateMethod.setAccessible(true);
             privateMethod.invoke(null, attr, "you_cannot_find_me");
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (InvocationTargetException ex) {
             assertSame(SAXException.class, ex.getCause().getClass(), "Invalid exception class");
@@ -114,13 +121,37 @@ public class ImportControlLoaderTest {
             privateMethod.setAccessible(true);
             privateMethod.invoke(null, source,
                     new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (InvocationTargetException ex) {
             assertSame(CheckstyleException.class, ex.getCause().getClass(),
                     "Invalid exception class");
-            assertTrue(ex.getCause().getMessage().startsWith("unable to read"),
-                    "Invalid exception message: " + ex.getCause().getMessage());
+            assertWithMessage("Invalid exception message: " + ex.getCause().getMessage())
+                    .that(ex.getCause().getMessage().startsWith("unable to read"))
+                    .isTrue();
+        }
+    }
+
+    @Test
+    public void testInputStreamFailsOnRead() throws Exception {
+        try (InputStream inputStream = mock(InputStream.class)) {
+            final int available = doThrow(IOException.class).when(inputStream).available();
+            final URL url = mock(URL.class);
+            when(url.openStream()).thenReturn(inputStream);
+            final URI uri = mock(URI.class);
+            when(uri.toURL()).thenReturn(url);
+
+            final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
+                ImportControlLoader.load(uri);
+            });
+            assertWithMessage("Invalid exception class")
+                    .that(ex)
+                    .hasCauseThat()
+                            .isInstanceOf(SAXParseException.class);
+            // Workaround for warning "Result of InputStream.available() is ignored"
+            assertWithMessage("")
+                    .that(available)
+                    .isEqualTo(0);
         }
     }
 

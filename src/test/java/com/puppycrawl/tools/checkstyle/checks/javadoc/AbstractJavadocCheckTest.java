@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_PARSE_RULE_ERROR;
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_UNCLOSED_HTML_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_JAVADOC_MISSED_HTML_CLOSE;
@@ -31,8 +32,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.util.LinkedHashMap;
@@ -279,14 +278,15 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
             verify(checkConfig, path, expected);
-            fail("CheckstyleException is expected");
+            assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (IllegalStateException ex) {
             final String expected = "Javadoc Token "
                     + "\"RETURN_LITERAL\" was not found in "
                     + "Acceptable javadoc tokens list in check";
-            assertTrue(ex.getMessage().startsWith(expected),
-                    "Invalid exception, should start with: " + expected);
+            assertWithMessage("Invalid exception, should start with: " + expected)
+                    .that(ex.getMessage().startsWith(expected))
+                    .isTrue();
         }
     }
 
@@ -311,14 +311,15 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
             verify(checkConfig, pathToEmptyFile, expected);
-            fail("CheckstyleException is expected");
+            assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (IllegalStateException ex) {
             final String expected = "Javadoc Token \""
                     + JavadocTokenTypes.RETURN_LITERAL + "\" from required"
                     + " javadoc tokens was not found in default javadoc tokens list in check";
-            assertTrue(ex.getMessage().startsWith(expected),
-                    "Invalid exception, should start with: " + expected);
+            assertWithMessage("Invalid exception, should start with: " + expected)
+                    .that(ex.getMessage().startsWith(expected))
+                    .isTrue();
         }
     }
 
@@ -329,8 +330,9 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocVisitLeaveCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAbstractJavadocLeaveToken.java"), expected);
-        assertTrue(JavadocVisitLeaveCheck.visitCount > 0,
-                "Javadoc visit count should be greater than zero");
+        assertWithMessage("Javadoc visit count should be greater than zero")
+                .that(JavadocVisitLeaveCheck.visitCount > 0)
+                .isTrue();
         assertEquals(JavadocVisitLeaveCheck.visitCount, JavadocVisitLeaveCheck.leaveCount,
                 "Javadoc visit and leave count should be equal");
     }

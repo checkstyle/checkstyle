@@ -19,11 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 
@@ -168,8 +166,9 @@ public class JavadocUtilTest {
     @Test
     public void testEmptyBlockComment() {
         final String emptyComment = "";
-        assertFalse(JavadocUtil.isJavadocComment(emptyComment),
-                "Should return false when empty string is passed");
+        assertWithMessage("Should return false when empty string is passed")
+                .that(JavadocUtil.isJavadocComment(emptyComment))
+                .isFalse();
     }
 
     @Test
@@ -189,15 +188,17 @@ public class JavadocUtilTest {
         commentBegin.setFirstChild(commentContent);
         commentContent.setNextSibling(commentEnd);
 
-        assertFalse(JavadocUtil.isJavadocComment(commentBegin),
-                "Should return false when empty block comment is passed");
+        assertWithMessage("Should return false when empty block comment is passed")
+                .that(JavadocUtil.isJavadocComment(commentBegin))
+                .isFalse();
     }
 
     @Test
     public void testEmptyJavadocComment() {
         final String emptyJavadocComment = "*";
-        assertTrue(JavadocUtil.isJavadocComment(emptyJavadocComment),
-                "Should return true when empty javadoc comment is passed");
+        assertWithMessage("Should return true when empty javadoc comment is passed")
+                .that(JavadocUtil.isJavadocComment(emptyJavadocComment))
+                .isTrue();
     }
 
     @Test
@@ -224,14 +225,16 @@ public class JavadocUtilTest {
         final DetailAstImpl aJavadocPosition = new DetailAstImpl();
         aJavadocPosition.setType(TokenTypes.METHOD_DEF);
         aJavadocPosition.setFirstChild(commentBeginParent);
-        assertTrue(JavadocUtil.isJavadocComment(commentBegin),
-                "Should return true when empty javadoc comment ast is passed");
+        assertWithMessage("Should return true when empty javadoc comment ast is passed")
+                .that(JavadocUtil.isJavadocComment(commentBegin))
+                .isTrue();
     }
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(JavadocUtil.class, true),
-                "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(isUtilsClassHasPrivateConstructor(JavadocUtil.class, true))
+                .isTrue();
     }
 
     @Test
@@ -245,17 +248,20 @@ public class JavadocUtilTest {
         secondChild.setType(JavadocTokenTypes.CODE_LITERAL);
 
         node.setChildren(firstChild, secondChild);
-        assertFalse(JavadocUtil.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL),
-                "Should return true when branch contains node passed");
+        assertWithMessage("Should return true when branch contains node passed")
+                .that(JavadocUtil.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL))
+                .isFalse();
 
         firstChild.setParent(node);
         secondChild.setParent(node);
-        assertFalse(JavadocUtil.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL),
-                "Should return false when branch does not contain node passed");
+        assertWithMessage("Should return false when branch does not contain node passed")
+                .that(JavadocUtil.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL))
+                .isFalse();
 
         secondChild.setType(JavadocTokenTypes.AUTHOR_LITERAL);
-        assertTrue(JavadocUtil.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL),
-                "Should return true when branch contains node passed");
+        assertWithMessage("Should return true when branch contains node passed")
+                .that(JavadocUtil.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL))
+                .isTrue();
     }
 
     @Test
@@ -268,7 +274,7 @@ public class JavadocUtilTest {
     public void testGetTokenNameForLargeId() {
         try {
             JavadocUtil.getTokenName(30073);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Unknown javadoc token id. Given id: 30073", ex.getMessage(),
@@ -280,7 +286,7 @@ public class JavadocUtilTest {
     public void testGetTokenNameForInvalidId() {
         try {
             JavadocUtil.getTokenName(110);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Unknown javadoc token id. Given id: 110", ex.getMessage(),
@@ -292,7 +298,7 @@ public class JavadocUtilTest {
     public void testGetTokenNameForLowerBoundInvalidId() {
         try {
             JavadocUtil.getTokenName(10095);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Unknown javadoc token id. Given id: 10095", ex.getMessage(),
@@ -304,7 +310,7 @@ public class JavadocUtilTest {
     public void testGetTokenIdThatIsUnknown() {
         try {
             JavadocUtil.getTokenId("");
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Unknown javadoc token name. Given name ", ex.getMessage(),

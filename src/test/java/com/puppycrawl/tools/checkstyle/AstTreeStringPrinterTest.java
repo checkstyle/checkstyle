@@ -19,13 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -48,8 +47,9 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(AstTreeStringPrinter.class, true),
-                "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(isUtilsClassHasPrivateConstructor(AstTreeStringPrinter.class, true))
+                .isTrue();
     }
 
     @Test
@@ -57,7 +57,7 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
         final File input = new File(getNonCompilablePath("InputAstTreeStringPrinter.java"));
         try {
             AstTreeStringPrinter.printFileAst(input, JavaParser.Options.WITHOUT_COMMENTS);
-            fail("exception expected");
+            assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
             assertSame(IllegalStateException.class, ex.getCause().getClass(), "Invalid class");

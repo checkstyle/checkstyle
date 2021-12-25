@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
@@ -68,7 +68,7 @@ public class FileLengthCheckTest
         try {
             checkConfig.addProperty("max", "abc");
             createChecker(checkConfig);
-            fail("Should indicate illegal args");
+            assertWithMessage("Should indicate illegal args").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.checks."
@@ -95,7 +95,7 @@ public class FileLengthCheckTest
         assertEquals(".java", check.getFileExtensions()[0], "extension should be the same");
         try {
             check.setFileExtensions((String[]) null);
-            fail("IllegalArgumentException is expected");
+            assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Extensions array can not be null", ex.getMessage(),

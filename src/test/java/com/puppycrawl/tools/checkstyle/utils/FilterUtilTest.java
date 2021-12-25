@@ -19,9 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 
@@ -35,19 +34,24 @@ public class FilterUtilTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(FilterUtil.class, true),
-                "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(isUtilsClassHasPrivateConstructor(FilterUtil.class, true))
+                .isTrue();
     }
 
     @Test
     public void testExistingFile() throws Exception {
         final File file = File.createTempFile("junit", null, temporaryFolder);
-        assertTrue(FilterUtil.isFileExists(file.getPath()), "Suppression file exists");
+        assertWithMessage("Suppression file exists")
+                .that(FilterUtil.isFileExists(file.getPath()))
+                .isTrue();
     }
 
     @Test
     public void testNonExistentFile() {
-        assertFalse(FilterUtil.isFileExists("non-existent.xml"), "Suppression file does not exist");
+        assertWithMessage("Suppression file does not exist")
+                .that(FilterUtil.isFileExists("non-existent.xml"))
+                .isFalse();
     }
 
 }

@@ -19,9 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -94,8 +93,10 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(TestUtil.isUtilsClassHasPrivateConstructor(
-            JavadocPropertiesGenerator.class, false), "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+            .that(TestUtil.isUtilsClassHasPrivateConstructor(
+                                            JavadocPropertiesGenerator.class, false))
+            .isTrue();
     }
 
     @Test
@@ -148,7 +149,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         try {
             JavadocPropertiesGenerator.main(
                 "--destfile", DESTFILE_ABSOLUTE_PATH, "NotExistent.java");
-            fail("Exception was expected");
+            assertWithMessage("Exception was expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals(
@@ -157,8 +158,12 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
                 ex.getMessage(), "Invalid error message");
 
             final Throwable cause = ex.getCause();
-            assertTrue(cause instanceof FileNotFoundException, "Invalid error message");
-            assertTrue(cause.getMessage().contains("NotExistent.java"), "Invalid error message");
+            assertWithMessage("Invalid error message")
+                    .that(cause instanceof FileNotFoundException)
+                    .isTrue();
+            assertWithMessage("Invalid error message")
+                    .that(cause.getMessage().contains("NotExistent.java"))
+                    .isTrue();
         }
         assertEquals("", systemErr.getCapturedData(), "Unexpected error log");
         assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
@@ -171,7 +176,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             // Passing a folder name will cause the FileNotFoundException.
             JavadocPropertiesGenerator.main("--destfile", "..",
                 getPath("InputJavadocPropertiesGeneratorCorrect.java"));
-            fail("Exception was expected");
+            assertWithMessage("Exception was expected").fail();
         }
         catch (CheckstyleException ex) {
             final String expectedError = "Failed to write javadoc properties of '"
@@ -179,8 +184,12 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             assertEquals(expectedError, ex.getMessage(), "Invalid error message");
 
             final Throwable cause = ex.getCause();
-            assertTrue(cause instanceof FileNotFoundException, "Invalid error message");
-            assertTrue(cause.getMessage().contains(".."), "Invalid error message");
+            assertWithMessage("Invalid error message")
+                    .that(cause instanceof FileNotFoundException)
+                    .isTrue();
+            assertWithMessage("Invalid error message")
+                    .that(cause.getMessage().contains(".."))
+                    .isTrue();
         }
         assertEquals("", systemErr.getCapturedData(), "Unexpected error log");
         assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
@@ -240,12 +249,13 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         final String path = getPath("InputJavadocPropertiesGeneratorJavadocParseError.java");
         try {
             JavadocPropertiesGenerator.main(path, "--destfile", DESTFILE_ABSOLUTE_PATH);
-            fail("Exception was expected");
+            assertWithMessage("Exception was expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertTrue(ex.getMessage()
-                            .contains("mismatched input '<EOF>' expecting JAVADOC_INLINE_TAG_END"),
-                    "Invalid error message");
+            assertWithMessage("Invalid error message")
+                    .that(ex.getMessage()
+                            .contains("mismatched input '<EOF>' expecting JAVADOC_INLINE_TAG_END"))
+                    .isTrue();
         }
         final long size = FileUtils.sizeOf(DESTFILE);
         assertEquals(0, size, "File '" + DESTFILE + "' must be empty");
@@ -256,7 +266,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         final String path = getPath("InputJavadocPropertiesGeneratorNotImplementedTag.java");
         try {
             JavadocPropertiesGenerator.main(path, "--destfile", DESTFILE_ABSOLUTE_PATH);
-            fail("Exception was expected");
+            assertWithMessage("Exception was expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("Unsupported inline tag LINK_LITERAL",
@@ -271,16 +281,21 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         final String path = getNonCompilablePath("InputJavadocPropertiesGeneratorParseError.java");
         try {
             JavadocPropertiesGenerator.main(path, "--destfile", DESTFILE_ABSOLUTE_PATH);
-            fail("Exception was expected");
+            assertWithMessage("Exception was expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getMessage().contains("InputJavadocPropertiesGeneratorParseError.java"),
-                    "Invalid error message");
+            assertWithMessage("Invalid error message")
+                    .that(ex.getMessage()
+                            .contains("InputJavadocPropertiesGeneratorParseError.java"))
+                    .isTrue();
 
             final Throwable cause = ex.getCause();
-            assertTrue(cause instanceof IllegalStateException, "Invalid error message");
-            assertTrue(cause.getMessage().contains("9:0: mismatched input '!' expecting '}'"),
-                    "Invalid error message");
+            assertWithMessage("Invalid error message")
+                    .that(cause instanceof IllegalStateException)
+                    .isTrue();
+            assertWithMessage("Invalid error message")
+                    .that(cause.getMessage().contains("9:0: mismatched input '!' expecting '}'"))
+                    .isTrue();
         }
     }
 

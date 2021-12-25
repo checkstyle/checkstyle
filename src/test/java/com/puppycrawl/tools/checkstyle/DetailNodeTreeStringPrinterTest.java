@@ -19,13 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_MISSED_HTML_CLOSE;
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_PARSE_RULE_ERROR;
 import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_WRONG_SINGLETON_TAG;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 
@@ -44,8 +43,9 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(DetailNodeTreeStringPrinter.class, true),
-                "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(isUtilsClassHasPrivateConstructor(DetailNodeTreeStringPrinter.class, true))
+                .isTrue();
     }
 
     @Test
@@ -60,7 +60,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 getPath("InputDetailNodeTreeStringPrinterJavadocWithError.javadoc"));
         try {
             DetailNodeTreeStringPrinter.printFileAst(file);
-            fail("Javadoc parser didn't fail on missing end tag");
+            assertWithMessage("Javadoc parser didn't fail on missing end tag").fail();
         }
         catch (IllegalArgumentException ex) {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
@@ -141,7 +141,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                         + "UnescapedJavaCodeWithGenericsInJavadoc.javadoc"));
         try {
             DetailNodeTreeStringPrinter.printFileAst(file);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (IllegalArgumentException ex) {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
@@ -158,7 +158,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 getPath("InputDetailNodeTreeStringPrinterNoViableAltException.javadoc"));
         try {
             DetailNodeTreeStringPrinter.printFileAst(file);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (IllegalArgumentException ex) {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
@@ -176,7 +176,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 getPath("InputDetailNodeTreeStringPrinterHtmlTagCloseBeforeTagOpen.javadoc"));
         try {
             DetailNodeTreeStringPrinter.printFileAst(file);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (IllegalArgumentException ex) {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
@@ -194,7 +194,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 getPath("InputDetailNodeTreeStringPrinterWrongHtmlTagOrder.javadoc"));
         try {
             DetailNodeTreeStringPrinter.printFileAst(file);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (IllegalArgumentException ex) {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
@@ -211,7 +211,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 getPath("InputDetailNodeTreeStringPrinterOmittedStartTagForHtmlElement.javadoc"));
         try {
             DetailNodeTreeStringPrinter.printFileAst(file);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (IllegalArgumentException ex) {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,

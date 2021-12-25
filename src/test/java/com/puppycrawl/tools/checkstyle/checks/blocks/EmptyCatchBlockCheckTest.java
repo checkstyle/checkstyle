@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,8 +38,9 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
     public void testGetRequiredTokens() {
         final EmptyCatchBlockCheck checkObj = new EmptyCatchBlockCheck();
         final int[] expected = {TokenTypes.LITERAL_CATCH};
-        assertArrayEquals(expected, checkObj.getRequiredTokens(),
-                "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+                .that(checkObj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test
@@ -96,7 +97,9 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
         final EmptyCatchBlockCheck constantNameCheckObj = new EmptyCatchBlockCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
         final int[] expected = {TokenTypes.LITERAL_CATCH };
-        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(actual)
+                .isEqualTo(expected);
     }
 
 }

@@ -109,6 +109,16 @@ build:
   #       fi
 
   - script:
+      name: NoErrorTest - PMD
+      code: |
+        if [[ $RUN_JOB == 1 ]]; then
+          echo "Command: ./.ci/validation.sh no-error-pmd"
+          ./.ci/validation.sh no-error-pmd
+        else
+          echo "build is skipped ..."
+        fi
+
+  - script:
       name: NoExceptiontest - Apache Struts
       code: |
         if [[ $RUN_JOB == 1 ]]; then

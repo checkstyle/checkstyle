@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_INCORRECT_STYLE;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_PARENS_MISSING;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_PARENS_PRESENT;
@@ -26,8 +27,6 @@ import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseSty
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
@@ -304,13 +303,14 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         final AnnotationUseStyleCheck check = new AnnotationUseStyleCheck();
         try {
             check.setElementStyle("SHOULD_PRODUCE_ERROR");
-            fail("ConversionException is expected");
+            assertWithMessage("ConversionException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
             final String messageStart = "unable to parse";
 
-            assertTrue(ex.getMessage().startsWith(messageStart),
-                    "Invalid exception message, should start with: " + messageStart);
+            assertWithMessage("Invalid exception message, should start with: " + messageStart)
+                    .that(ex.getMessage().startsWith(messageStart))
+                    .isTrue();
         }
     }
 

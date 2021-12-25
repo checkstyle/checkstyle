@@ -73,8 +73,7 @@ blocks:
           matrix:
             - env_var: CMD
               values:
-                - mvn -e --no-transfer-progress clean install -Pno-validations
-                    && .ci/validation.sh no-error-pmd
+                - "true"
                 # until https://github.com/checkstyle/checkstyle/issues/9248
                 # - mvn -e clean install -Pno-validations
                 #    && .ci/validation.sh no-violation-test-configurate

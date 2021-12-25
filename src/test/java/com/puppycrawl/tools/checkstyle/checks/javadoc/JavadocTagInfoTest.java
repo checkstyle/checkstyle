@@ -19,11 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.lang.reflect.Method;
 
@@ -81,13 +79,15 @@ public class JavadocTagInfoTest {
         };
         for (int type: validTypes) {
             ast.setType(type);
-            assertTrue(JavadocTagInfo.AUTHOR.isValidOn(ast),
-                    "Invalid ast type for current tag: " + ast.getType());
+            assertWithMessage("Invalid ast type for current tag: " + ast.getType())
+                    .that(JavadocTagInfo.AUTHOR.isValidOn(ast))
+                    .isTrue();
         }
 
         ast.setType(TokenTypes.LAMBDA);
-        assertFalse(JavadocTagInfo.AUTHOR.isValidOn(ast),
-                "Should return false when ast type is invalid for current tag");
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.AUTHOR.isValidOn(ast))
+                .isFalse();
     }
 
     @Test
@@ -124,18 +124,21 @@ public class JavadocTagInfoTest {
             };
             for (int type: validTypes) {
                 ast.setType(type);
-                assertTrue(tagInfo.isValidOn(ast),
-                        "Invalid ast type for current tag: " + ast.getType());
+                assertWithMessage("Invalid ast type for current tag: " + ast.getType())
+                        .that(tagInfo.isValidOn(ast))
+                        .isTrue();
             }
 
             astParent.setType(TokenTypes.SLIST);
             ast.setType(TokenTypes.VARIABLE_DEF);
-            assertFalse(tagInfo.isValidOn(ast),
-                    "Should return false when ast type is invalid for current tag");
+            assertWithMessage("Should return false when ast type is invalid for current tag")
+                    .that(tagInfo.isValidOn(ast))
+                    .isFalse();
 
             ast.setType(TokenTypes.PARAMETER_DEF);
-            assertFalse(tagInfo.isValidOn(ast),
-                    "Should return false when ast type is invalid for current tag");
+            assertWithMessage("Should return false when ast type is invalid for current tag")
+                    .that(tagInfo.isValidOn(ast))
+                    .isFalse();
         }
     }
 
@@ -161,18 +164,21 @@ public class JavadocTagInfoTest {
         };
         for (int type: validTypes) {
             ast.setType(type);
-            assertTrue(JavadocTagInfo.DEPRECATED.isValidOn(ast),
-                    "Invalid ast type for current tag: " + ast.getType());
+            assertWithMessage("Invalid ast type for current tag: " + ast.getType())
+                    .that(JavadocTagInfo.DEPRECATED.isValidOn(ast))
+                    .isTrue();
         }
 
         astParent.setType(TokenTypes.SLIST);
         ast.setType(TokenTypes.VARIABLE_DEF);
-        assertFalse(JavadocTagInfo.DEPRECATED.isValidOn(ast),
-                "Should return false when ast type is invalid for current tag");
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.DEPRECATED.isValidOn(ast))
+                .isFalse();
 
         ast.setType(TokenTypes.PARAMETER_DEF);
-        assertFalse(JavadocTagInfo.DEPRECATED.isValidOn(ast),
-                "Should return false when ast type is invalid for current tag");
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.DEPRECATED.isValidOn(ast))
+                .isFalse();
     }
 
     @Test
@@ -189,18 +195,21 @@ public class JavadocTagInfoTest {
         };
         for (int type: validTypes) {
             ast.setType(type);
-            assertTrue(JavadocTagInfo.SERIAL.isValidOn(ast),
-                    "Invalid ast type for current tag: " + ast.getType());
+            assertWithMessage("Invalid ast type for current tag: " + ast.getType())
+                    .that(JavadocTagInfo.SERIAL.isValidOn(ast))
+                    .isTrue();
         }
 
         astParent.setType(TokenTypes.SLIST);
         ast.setType(TokenTypes.VARIABLE_DEF);
-        assertFalse(JavadocTagInfo.SERIAL.isValidOn(ast),
-                "Should return false when ast type is invalid for current tag");
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.SERIAL.isValidOn(ast))
+                .isFalse();
 
         ast.setType(TokenTypes.PARAMETER_DEF);
-        assertFalse(JavadocTagInfo.SERIAL.isValidOn(ast),
-                "Should return false when ast type is invalid for current tag");
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.SERIAL.isValidOn(ast))
+                .isFalse();
     }
 
     @Test
@@ -213,13 +222,15 @@ public class JavadocTagInfoTest {
         };
         for (int type: validTypes) {
             ast.setType(type);
-            assertTrue(JavadocTagInfo.EXCEPTION.isValidOn(ast),
-                    "Invalid ast type for current tag: " + ast.getType());
+            assertWithMessage("Invalid ast type for current tag: " + ast.getType())
+                    .that(JavadocTagInfo.EXCEPTION.isValidOn(ast))
+                    .isTrue();
         }
 
         ast.setType(TokenTypes.LAMBDA);
-        assertFalse(JavadocTagInfo.EXCEPTION.isValidOn(ast),
-                "Should return false when ast type is invalid for current tag");
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.EXCEPTION.isValidOn(ast))
+                .isFalse();
     }
 
     @Test
@@ -232,13 +243,15 @@ public class JavadocTagInfoTest {
         };
         for (int type: validTypes) {
             ast.setType(type);
-            assertTrue(JavadocTagInfo.THROWS.isValidOn(ast),
-                    "Invalid ast type for current tag: " + ast.getType());
+            assertWithMessage("Invalid ast type for current tag: " + ast.getType())
+                    .that(JavadocTagInfo.THROWS.isValidOn(ast))
+                    .isTrue();
         }
 
         ast.setType(TokenTypes.LAMBDA);
-        assertFalse(JavadocTagInfo.THROWS.isValidOn(ast),
-                "Should return false when ast type is invalid for current tag");
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.THROWS.isValidOn(ast))
+                .isFalse();
     }
 
     @Test
@@ -254,13 +267,15 @@ public class JavadocTagInfoTest {
         };
         for (int type: validTypes) {
             ast.setType(type);
-            assertTrue(JavadocTagInfo.VERSION.isValidOn(ast),
-                    "Invalid ast type for current tag: " + ast.getType());
+            assertWithMessage("Invalid ast type for current tag: " + ast.getType())
+                    .that(JavadocTagInfo.VERSION.isValidOn(ast))
+                    .isTrue();
         }
 
         ast.setType(TokenTypes.LAMBDA);
-        assertFalse(JavadocTagInfo.VERSION.isValidOn(ast),
-                "Should return false when ast type is invalid for current tag");
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.VERSION.isValidOn(ast))
+                .isFalse();
     }
 
     @Test
@@ -275,13 +290,15 @@ public class JavadocTagInfoTest {
         };
         for (int type: validTypes) {
             ast.setType(type);
-            assertTrue(JavadocTagInfo.PARAM.isValidOn(ast),
-                    "Invalid ast type for current tag: " + ast.getType());
+            assertWithMessage("Invalid ast type for current tag: " + ast.getType())
+                    .that(JavadocTagInfo.PARAM.isValidOn(ast))
+                    .isTrue();
         }
 
         ast.setType(TokenTypes.LAMBDA);
-        assertFalse(JavadocTagInfo.PARAM.isValidOn(ast),
-                "Should return false when ast type is invalid for current tag");
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.PARAM.isValidOn(ast))
+                .isFalse();
     }
 
     @Test
@@ -299,17 +316,20 @@ public class JavadocTagInfoTest {
         };
         for (int type: validTypes) {
             ast.setType(type);
-            assertTrue(JavadocTagInfo.RETURN.isValidOn(ast),
-                    "Invalid ast type for current tag: " + ast.getType());
+            assertWithMessage("Invalid ast type for current tag: " + ast.getType())
+                    .that(JavadocTagInfo.RETURN.isValidOn(ast))
+                    .isTrue();
         }
 
         astChild2.setType(TokenTypes.LITERAL_VOID);
-        assertFalse(JavadocTagInfo.RETURN.isValidOn(ast),
-                "Should return false when ast type is invalid for current tag");
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.RETURN.isValidOn(ast))
+                .isFalse();
 
         ast.setType(TokenTypes.LAMBDA);
-        assertFalse(JavadocTagInfo.RETURN.isValidOn(ast),
-                "Should return false when ast type is invalid for current tag");
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.RETURN.isValidOn(ast))
+                .isFalse();
     }
 
     @Test
@@ -328,21 +348,25 @@ public class JavadocTagInfoTest {
         };
         for (int type: validTypes) {
             ast.setType(type);
-            assertTrue(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast),
-                    "Invalid ast type for current tag: " + ast.getType());
+            assertWithMessage("Invalid ast type for current tag: " + ast.getType())
+                    .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
+                    .isTrue();
         }
 
         astChild2.setText("1111");
-        assertFalse(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast),
-                "Should return false when ast type is invalid for current tag");
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
+                .isFalse();
 
         astChild2.setType(TokenTypes.LITERAL_VOID);
-        assertFalse(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast),
-                "Should return false when ast type is invalid for current tag");
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
+                .isFalse();
 
         ast.setType(TokenTypes.LAMBDA);
-        assertFalse(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast),
-                "Should return false when ast type is invalid for current tag");
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
+                .isFalse();
     }
 
     @Test
@@ -364,17 +388,20 @@ public class JavadocTagInfoTest {
         };
         for (String name: validNames) {
             astChild.setText(name);
-            assertTrue(JavadocTagInfo.SERIAL_DATA.isValidOn(ast),
-                    "Invalid ast type for current tag: " + ast.getType());
+            assertWithMessage("Invalid ast type for current tag: " + ast.getType())
+                    .that(JavadocTagInfo.SERIAL_DATA.isValidOn(ast))
+                    .isTrue();
         }
 
         astChild.setText("1111");
-        assertFalse(JavadocTagInfo.SERIAL_DATA.isValidOn(ast),
-                "Should return false when ast type is invalid for current tag");
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.SERIAL_DATA.isValidOn(ast))
+                .isFalse();
 
         ast.setType(TokenTypes.LAMBDA);
-        assertFalse(JavadocTagInfo.SERIAL_DATA.isValidOn(ast),
-                "Should return false when ast type is invalid for current tag");
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.SERIAL_DATA.isValidOn(ast))
+                .isFalse();
     }
 
     @Test
@@ -386,7 +413,7 @@ public class JavadocTagInfoTest {
 
         try {
             JavadocTagInfo.fromName(null);
-            fail("IllegalArgumentException is expected");
+            assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("the name is null", ex.getMessage(),
@@ -395,7 +422,7 @@ public class JavadocTagInfoTest {
 
         try {
             JavadocTagInfo.fromName("myname");
-            fail("IllegalArgumentException is expected");
+            assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("the name [myname] is not a valid Javadoc tag name", ex.getMessage(),
@@ -404,7 +431,7 @@ public class JavadocTagInfoTest {
 
         try {
             JavadocTagInfo.fromText(null);
-            fail("IllegalArgumentException is expected");
+            assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("the text is null", ex.getMessage(), "Invalid exception message");
@@ -412,7 +439,7 @@ public class JavadocTagInfoTest {
 
         try {
             JavadocTagInfo.fromText("myname");
-            fail("IllegalArgumentException is expected");
+            assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals(

@@ -19,10 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -59,8 +57,9 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
         final AuditEvent ev = new AuditEvent(this, "ATest.java", null);
 
-        assertTrue(filter.accept(ev),
-                "Audit event should be excepted when there are no suppressions");
+        assertWithMessage("Audit event should be excepted when there are no suppressions")
+                .that(filter.accept(ev))
+                .isTrue();
     }
 
     @Test
@@ -73,8 +72,9 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
                 SeverityLevel.ERROR, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
 
-        assertFalse(filter.accept(ev),
-                "Audit event should be rejected when there is a matching suppression");
+        assertWithMessage("Audit event should be rejected when there is a matching suppression")
+                .that(filter.accept(ev))
+                .isFalse();
     }
 
     @Test
@@ -84,7 +84,9 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
         final AuditEvent ev = new AuditEvent(this, "AnyJava.java", null);
-        assertTrue(filter.accept(ev), "Audit event on null file should be excepted, but was not");
+        assertWithMessage("Audit event on null file should be excepted, but was not")
+                .that(filter.accept(ev))
+                .isTrue();
     }
 
     @Test
@@ -93,7 +95,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         try {
             final boolean optional = false;
             createSuppressionFilter(fileName, optional);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("Unable to find: " + fileName, ex.getMessage(), "Invalid error message");
@@ -106,7 +108,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         try {
             final boolean optional = true;
             createSuppressionFilter(fileName, optional);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals(
@@ -123,7 +125,9 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
         final AuditEvent ev = new AuditEvent(this, "AnyFile.java", null);
 
-        assertTrue(filter.accept(ev), "Suppression file with true optional was not accepted");
+        assertWithMessage("Suppression file with true optional was not accepted")
+                .that(filter.accept(ev))
+                .isTrue();
     }
 
     @Test
@@ -134,7 +138,9 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
         final AuditEvent ev = new AuditEvent(this, "AnyFile.java", null);
 
-        assertTrue(filter.accept(ev), "Should except event when suppression file does not exist");
+        assertWithMessage("Should except event when suppression file does not exist")
+                .that(filter.accept(ev))
+                .isTrue();
     }
 
     @Test
@@ -146,8 +152,9 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
         final AuditEvent ev = new AuditEvent(this, "AnyFile.java", null);
 
-        assertTrue(filter.accept(ev),
-                "Should except event when suppression file url does not exist");
+        assertWithMessage("Should except event when suppression file url does not exist")
+                .that(filter.accept(ev))
+                .isTrue();
     }
 
     @Test
