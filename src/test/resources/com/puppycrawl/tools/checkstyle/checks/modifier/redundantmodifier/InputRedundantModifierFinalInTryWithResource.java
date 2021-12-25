@@ -22,18 +22,22 @@ public class InputRedundantModifierFinalInTryWithResource {
         catch (RuntimeException e) {
         }
 
-        try (@NotNull BufferedReader br = new BufferedReader(new InputStreamReader(null, "utf"))) {
+        try (@NotNull BufferedReader br =
+                     new BufferedReader(new InputStreamReader(null, "utf"))) {
         }
         catch (IOException e) {
         }
 
-        try (final BufferedReader br = new BufferedReader(new InputStreamReader(null, "utf-8"))) { // violation
+        try (final BufferedReader br =
+                     new BufferedReader(new InputStreamReader(null, "utf-8"))) { // violation
         }
         catch (IOException e) {
         }
 
-        try (final BufferedReader br = new BufferedReader(new InputStreamReader(null, "utf-8")); // violation
-                final BufferedReader br2 = new BufferedReader(new InputStreamReader(null, "utf"))) { // violation
+        try (final BufferedReader br =
+                     new BufferedReader(new InputStreamReader(null, "utf-8")); // violation
+                final BufferedReader br2 =
+                        new BufferedReader(new InputStreamReader(null, "utf"))) { // violation
         }
         catch (IOException e) {
         }
