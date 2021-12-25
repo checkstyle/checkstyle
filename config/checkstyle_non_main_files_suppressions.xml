@@ -353,15 +353,6 @@
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputUnusedImports2.java"/>
 
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputRedundantModifierFinalInTryWithResource.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputRedundantModifierFinalInTryWithResource.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputRedundantModifierFinalInTryWithResource.java"/>
-
-  <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputWhitespaceAroundGenerics.java"/>
 
   <!-- apply check numberOfTestCasesInXpath only for files in suppressionxpathfilter directory -->
