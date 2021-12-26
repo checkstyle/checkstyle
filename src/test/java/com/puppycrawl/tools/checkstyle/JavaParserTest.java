@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.io.File;
@@ -52,7 +51,9 @@ public class JavaParserTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNullRootWithComments() {
-        assertNull(JavaParser.appendHiddenCommentNodes(null), "Invalid return root");
+        assertWithMessage("Invalid return root")
+            .that(JavaParser.appendHiddenCommentNodes(null))
+            .isNull();
     }
 
     @Test

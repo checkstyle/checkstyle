@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_OBJECT_ARRA
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -147,7 +146,9 @@ public class ViolationTest {
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 Locale.ENGLISH, "java.class",
                 Thread.currentThread().getContextClassLoader(), true);
-        assertNull(bundle, "Bundle should be null when reload is true and URL is null");
+        assertWithMessage("Bundle should be null when reload is true and URL is null")
+            .that(bundle)
+            .isNull();
     }
 
     /**
@@ -272,7 +273,9 @@ public class ViolationTest {
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 Locale.ENGLISH, "java.class",
                 new TestUrlsClassLoader(url), true);
-        assertNull(bundle, "Bundle should be null when stream is null");
+        assertWithMessage("Bundle should be null when stream is null")
+            .that(bundle)
+            .isNull();
     }
 
     @Test
