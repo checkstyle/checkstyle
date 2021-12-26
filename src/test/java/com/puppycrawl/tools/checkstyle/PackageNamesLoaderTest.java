@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.io.File;
 import java.io.IOException;
@@ -201,8 +200,9 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
             assertWithMessage("Invalid exception cause class")
                     .that(ex.getCause() instanceof IOException)
                     .isTrue();
-            assertNotEquals("unable to get package file resources", ex.getMessage(),
-                    "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                    .that(ex.getMessage())
+                    .isNotEqualTo("unable to get package file resources");
         }
     }
 
