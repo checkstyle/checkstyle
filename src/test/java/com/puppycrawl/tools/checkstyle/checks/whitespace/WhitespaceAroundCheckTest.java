@@ -176,8 +176,8 @@ public class WhitespaceAroundCheckTest
     public void testGenericsTokensAreFlagged()
             throws Exception {
         final String[] expected = {
-            "27:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
-            "27:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "&"),
+            "27:16: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
+            "27:16: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "&"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundGenerics.java"), expected);
