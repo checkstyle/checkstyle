@@ -35,7 +35,7 @@ public class InputDefaultComesLast
         }
 
         switch (i) {
-        case 1: break; default: break; case 2: break; // violation 'Default should be last label in the switch.'
+        case 1: break; default: break; case 2: break; // violation 'Default should be last.'
         }
 
         switch (i) {
@@ -64,15 +64,15 @@ public class InputDefaultComesLast
         }
 
         switch (i) {
-            case 0: default: case 1: break; case 2: break; // violation 'Default should be last label in the switch.'
+            case 0: default: case 1: break; case 2: break; // violation 'Default should be last.'
         }
 
         switch (i) {
-            default: case 1: break; case 2: break; // violation 'Default should be last label in the switch.'
+            default: case 1: break; case 2: break; // violation 'Default should be last.'
         }
 
         switch (i) {
-            case 1: default: break; case 2: break; // violation 'Default should be last label in the switch.'
+            case 1: default: break; case 2: break; // violation 'Default should be last.'
         }
 
         switch (i) {

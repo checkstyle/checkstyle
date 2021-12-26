@@ -23,23 +23,23 @@ public class InputDeclarationOrderOnlyModifiers
     private static final String ERROR = "error";
 
     // protected before private
-    protected static final String ERROR1 = "error"; // violation 'Variable access definition in wrong order.'
+    protected static final String ERROR1 = "error";// violation 'Variable.*access.*wrong.*order'
 
     // public before private
-    public static final String WARNING = "warning"; // violation 'Variable access definition in wrong order.'
+    public static final String WARNING = "warning"; // violation 'Variable.*access.*wrong.*order'
 
     private int mMaxInitVars = 3;
 
     // statics should be before instance members
     // publics before private
-    public static final int MAX_ITER_VARS = 3; // violation 'Static variable definition in wrong order.'
+    public static final int MAX_ITER_VARS = 3; // violation 'Static.*variable.*wrong.*order'
 
     private class InnerClass
     {
         private static final int INNER_FOO = 2;
 
         // public before private
-        public static final int INNER_FOO2 = 2; // violation 'Variable access definition in wrong order.'
+        public static final int INNER_FOO2 = 2; // violation 'Variable.*access.*wrong.*order'
 
         public InnerClass()
         {
@@ -57,7 +57,7 @@ public class InputDeclarationOrderOnlyModifiers
 
         // member variables should be before methods or ctors
         // public before private
-        public static final int INNER_FOO3 = 2; // violation 'Static variable definition in wrong order.'
+        public static final int INNER_FOO3 = 2; // violation 'Static.*variable.*wrong.*order'
     }
 
     public int getFoo1()
@@ -103,7 +103,7 @@ enum InputDeclarationOrderEnum3
         private static final int INNER_FOO = 2;
 
         // public before private
-        public static final int INNER_FOO2 = 2; // violation 'Variable access definition in wrong order.'
+        public static final int INNER_FOO2 = 2; // violation 'Variable.*access.*wrong.*order'
 
         public void doIt()
         {
@@ -111,39 +111,39 @@ enum InputDeclarationOrderEnum3
 
         // member variables should be before methods or ctors
         // public before private
-        public static final int INNER_FOO3 = 2; // violation 'Static variable definition in wrong order.'
+        public static final int INNER_FOO3 = 2; // violation 'Static.*variable.*wrong.*order'
     };
 
     static final int FOO2 = 3;
 
     // public before package
-    public static final int FOO = 3; // violation 'Variable access definition in wrong order.'
+    public static final int FOO = 3; // violation 'Variable.*access.*wrong.*order'
 
     private static final int FOO3 = 3;
 
     // public before package and private
-    public static final int FOO4 = 3; // violation 'Variable access definition in wrong order.'
+    public static final int FOO4 = 3; // violation 'Variable.*access.*wrong.*order'
 
     private static final String ERROR = "error";
 
     // protected before private
-    protected static final String ERROR1 = "error"; // violation 'Variable access definition in wrong order.'
+    protected static final String ERROR1 = "error"; // violation 'Variable.*access.*wrong.*order'
 
     // public before private
-    public static final String WARNING = "warning"; // violation 'Variable access definition in wrong order.'
+    public static final String WARNING = "warning"; // violation 'Variable.*access.*wrong.*order'
 
     private int mMaxInitVars = 3;
 
     // statics should be before instance members
     // publics before private
-    public static final int MAX_ITER_VARS = 3; // violation 'Static variable definition in wrong order.'
+    public static final int MAX_ITER_VARS = 3; // violation 'Static.*variable.*wrong.*order'
 
     private class InnerClass
     {
         private static final int INNER_FOO = 2;
 
         // public before private
-        public static final int INNER_FOO2 = 2; // violation 'Variable access definition in wrong order.'
+        public static final int INNER_FOO2 = 2; // violation 'Variable.*access.*wrong.*order'
 
         public InnerClass()
         {
@@ -154,7 +154,7 @@ enum InputDeclarationOrderEnum3
 
         // member variables should be before methods or ctors
         // public before private
-        public static final int INNER_FOO3 = 2; // violation 'Static variable definition in wrong order.'
+        public static final int INNER_FOO3 = 2; // violation 'Static.*variable.*wrong.*order'
     }
 
     public int getFoo1()
@@ -193,6 +193,6 @@ enum InputDeclarationOrderEnum3
     class AsyncProcess {
         private final int startLogErrorsCnt = 0;
 
-        protected final int maxTotalConcurrentTasks = 0; // violation 'Variable access definition in wrong order.'
+        protected final int maxTotalConcurrentTasks = 0;//violation 'Variable.*access.*wrong.*order'
     }
 }
