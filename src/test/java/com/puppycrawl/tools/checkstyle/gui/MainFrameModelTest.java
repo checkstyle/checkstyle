@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.gui;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -121,14 +120,18 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     public void testOpenFileNullParameter2() throws Exception {
         model.openFile(null);
 
-        assertNull(model.getText(), "Test is null");
+        assertWithMessage("Test is null")
+            .that(model.getText())
+            .isNull();
         assertWithMessage("Title is expected value")
             .that(model.getTitle())
             .isEqualTo("Checkstyle GUI");
         assertWithMessage("Reload action should be disabled")
                 .that(model.isReloadActionEnabled())
                 .isFalse();
-        assertNull(model.getCurrentFile(), "Current file is null");
+        assertWithMessage("Current file is null")
+            .that(model.getCurrentFile())
+            .isNull();
     }
 
     @Test

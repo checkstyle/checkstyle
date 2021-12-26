@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -53,8 +52,9 @@ public class XpathFileGeneratorAstFilterTest {
 
         final AuditEvent auditEvent = new AuditEvent(this, "Test.java", violation);
 
-        assertNull(XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent),
-                "filter has no queries");
+        assertWithMessage("filter has no queries")
+            .that(XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent))
+            .isNull();
     }
 
     @Test
@@ -95,8 +95,9 @@ public class XpathFileGeneratorAstFilterTest {
         final AuditEvent auditEvent = new AuditEvent(this,
                 getPath("InputXpathFileGeneratorAstFilter.java"), violation);
 
-        assertNull(XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent),
-                "expected null");
+        assertWithMessage("expected null")
+            .that(XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent))
+            .isNull();
     }
 
     @Test

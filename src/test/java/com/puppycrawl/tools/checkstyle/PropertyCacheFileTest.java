@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mockStatic;
@@ -128,7 +127,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         assertWithMessage("Config hash key should not be null")
             .that(hash)
             .isNotNull();
-        assertNull(cache.get("key"), "Should return null if key is not in cache");
+        assertWithMessage("Should return null if key is not in cache")
+            .that(cache.get("key"))
+            .isNull();
 
         cache.load();
 
