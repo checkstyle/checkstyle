@@ -294,10 +294,6 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         final DFA finalLexerDfa = lexer.getInterpreter().decisionToDFA[0];
         final DFA finalParserDfa = parser.getInterpreter().decisionToDFA[0];
 
-        assertWithMessage("DFA states should not be equal after invocation of 'getLexer'")
-                .that(initialLexerDfa)
-                .isNotEqualTo(finalLexerDfa);
-
         assertWithMessage("DFA states should not be equal after invocation of 'getParser'")
                 .that(initialParserDfa)
                 .isNotEqualTo(finalParserDfa);

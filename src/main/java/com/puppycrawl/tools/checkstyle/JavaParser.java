@@ -107,7 +107,6 @@ public final class JavaParser {
         final DetailAST root = new JavaAstVisitor(tokenStream).visit(compilationUnit);
 
         // Clear DFA after parsing to reduce memory usage
-        lexer.getInterpreter().clearDFA();
         parser.getInterpreter().clearDFA();
 
         return root;
