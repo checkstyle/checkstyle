@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck.MSG_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck.MSG_PRECEDED;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -44,8 +43,9 @@ public class EmptyForInitializerPadCheckTest
     public void testGetRequiredTokens() {
         final EmptyForInitializerPadCheck checkObj = new EmptyForInitializerPadCheck();
         final int[] expected = {TokenTypes.FOR_INIT};
-        assertArrayEquals(expected, checkObj.getRequiredTokens(),
-                "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     @Test
@@ -74,7 +74,9 @@ public class EmptyForInitializerPadCheckTest
         final int[] expected = {
             TokenTypes.FOR_INIT,
         };
-        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     /* Additional test for jacoco, since valueOf()

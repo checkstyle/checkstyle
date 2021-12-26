@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -62,7 +61,9 @@ public class ClassMemberImpliedModifierCheckTest
             TokenTypes.ENUM_DEF,
             TokenTypes.RECORD_DEF,
         };
-        assertArrayEquals(expected, actual, "Required tokens are invalid");
+        assertWithMessage("Required tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test

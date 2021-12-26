@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_MISSING_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_TAG_FORMAT;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_UNKNOWN_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_UNUSED_TAG;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,8 +41,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final JavadocTypeCheck javadocTypeCheck = new JavadocTypeCheck();
-        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, javadocTypeCheck.getRequiredTokens(),
-                "JavadocTypeCheck#getRequiredTokens should return empty array by default");
+        assertWithMessage("JavadocTypeCheck#getRequiredTokens should return empty array by default")
+            .that(javadocTypeCheck.getRequiredTokens())
+            .isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
     }
 
     @Test
@@ -58,7 +59,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             TokenTypes.RECORD_DEF,
         };
 
-        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test

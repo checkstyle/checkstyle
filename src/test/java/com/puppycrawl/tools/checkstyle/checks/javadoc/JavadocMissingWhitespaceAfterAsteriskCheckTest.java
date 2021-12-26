@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingWhitespaceAfterAsteriskCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -45,8 +45,9 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
             JavadocTokenTypes.JAVADOC,
             JavadocTokenTypes.LEADING_ASTERISK,
         };
-        assertArrayEquals(expected, checkObj.getAcceptableJavadocTokens(),
-                "Default tokens are invalid");
+        assertWithMessage("Default tokens are invalid")
+            .that(checkObj.getAcceptableJavadocTokens())
+            .isEqualTo(expected);
     }
 
     @Test
@@ -57,8 +58,9 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
             JavadocTokenTypes.JAVADOC,
             JavadocTokenTypes.LEADING_ASTERISK,
         };
-        assertArrayEquals(expected, checkObj.getRequiredJavadocTokens(),
-                "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+            .that(checkObj.getRequiredJavadocTokens())
+            .isEqualTo(expected);
     }
 
     @Test

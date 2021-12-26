@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck.MSG_LINE_NEW;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck.MSG_LINE_PREVIOUS;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -75,7 +74,9 @@ public class SeparatorWrapCheckTest
             TokenTypes.DOT,
             TokenTypes.COMMA,
         };
-        assertArrayEquals(expected, actual, "Invalid default tokens");
+        assertWithMessage("Invalid default tokens")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test

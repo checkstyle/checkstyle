@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -55,8 +55,9 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
             TokenTypes.LAMBDA,
         };
 
-        assertArrayEquals(expected, illegalIdentifierNameCheck.getAcceptableTokens(),
-            "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(illegalIdentifierNameCheck.getAcceptableTokens())
+            .isEqualTo(expected);
     }
 
     @Test
@@ -65,8 +66,9 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
             new IllegalIdentifierNameCheck();
         final int[] expected = CommonUtil.EMPTY_INT_ARRAY;
 
-        assertArrayEquals(expected, illegalIdentifierNameCheck.getRequiredTokens(),
-            "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+            .that(illegalIdentifierNameCheck.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     @Test

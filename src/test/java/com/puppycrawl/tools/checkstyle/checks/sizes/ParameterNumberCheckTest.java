@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -39,8 +39,10 @@ public class ParameterNumberCheckTest
     @Test
     public void testGetRequiredTokens() {
         final ParameterNumberCheck checkObj = new ParameterNumberCheck();
-        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens(),
-                "ParameterNumberCheck#getRequiredTokens should return empty array by default");
+        assertWithMessage("ParameterNumberCheck#getRequiredTokens should return empty array "
+                + "by default")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
     }
 
     @Test
@@ -53,7 +55,9 @@ public class ParameterNumberCheckTest
             TokenTypes.CTOR_DEF,
         };
 
-        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test

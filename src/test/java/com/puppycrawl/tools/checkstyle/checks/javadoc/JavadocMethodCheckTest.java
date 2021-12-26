@@ -26,7 +26,6 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_RETURN_EXPECTED;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_UNUSED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_UNUSED_TAG_GENERAL;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -60,7 +59,9 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             TokenTypes.COMPACT_CTOR_DEF,
         };
 
-        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -427,7 +428,9 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         };
         final JavadocMethodCheck check = new JavadocMethodCheck();
         final int[] actual = check.getRequiredTokens();
-        assertArrayEquals(expected, actual, "Required tokens differ from expected");
+        assertWithMessage("Required tokens differ from expected")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test

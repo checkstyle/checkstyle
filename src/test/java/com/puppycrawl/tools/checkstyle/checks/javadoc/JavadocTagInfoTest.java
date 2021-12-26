@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.lang.reflect.Method;
 
@@ -66,7 +65,9 @@ public class JavadocTagInfoTest {
             JavadocTagInfo.Type.INLINE,
         };
         final JavadocTagInfo.Type[] actual = JavadocTagInfo.Type.values();
-        assertArrayEquals(expected, actual, "Invalid Type values");
+        assertWithMessage("Invalid Type values")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test

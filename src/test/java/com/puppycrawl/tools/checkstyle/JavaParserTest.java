@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
@@ -219,12 +218,12 @@ public class JavaParserTest extends AbstractModuleTestSupport {
                 JavaParser.Options.WITH_COMMENTS);
         final CountComments counter = new CountComments(root);
 
-        assertArrayEquals(
-                Arrays.asList("1,4", "6,4", "9,0").toArray(),
-                counter.lineComments.toArray(), "Invalid line comments");
-        assertArrayEquals(
-                Arrays.asList("5,4", "8,0").toArray(),
-                counter.blockComments.toArray(), "Invalid block comments");
+        assertWithMessage("Invalid line comments")
+            .that(counter.lineComments)
+            .isEqualTo(Arrays.asList("1,4", "6,4", "9,0"));
+        assertWithMessage("Invalid block comments")
+            .that(counter.blockComments)
+            .isEqualTo(Arrays.asList("5,4", "8,0"));
     }
 
     @Test

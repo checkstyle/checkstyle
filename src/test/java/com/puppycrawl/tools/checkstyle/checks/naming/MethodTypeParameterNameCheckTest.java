@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,8 +41,9 @@ public class MethodTypeParameterNameCheckTest
             new MethodTypeParameterNameCheck();
         final int[] expected = {TokenTypes.TYPE_PARAMETER};
 
-        assertArrayEquals(expected, methodTypeParameterNameCheck.getAcceptableTokens(),
-                "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(methodTypeParameterNameCheck.getAcceptableTokens())
+            .isEqualTo(expected);
     }
 
     @Test
@@ -50,8 +51,9 @@ public class MethodTypeParameterNameCheckTest
         final MethodTypeParameterNameCheck checkObj =
             new MethodTypeParameterNameCheck();
         final int[] expected = {TokenTypes.TYPE_PARAMETER};
-        assertArrayEquals(expected, checkObj.getRequiredTokens(),
-                "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     @Test

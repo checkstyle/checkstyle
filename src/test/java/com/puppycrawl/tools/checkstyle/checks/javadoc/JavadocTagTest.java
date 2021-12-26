@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -55,7 +54,9 @@ public class JavadocTagTest {
             JavadocUtil.JavadocTagType.INLINE,
             JavadocUtil.JavadocTagType.ALL,
         };
-        assertArrayEquals(expected, enumConstants, "Invalid enum constants");
+        assertWithMessage("Invalid enum constants")
+            .that(enumConstants)
+            .isEqualTo(expected);
     }
 
     @Test
