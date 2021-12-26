@@ -165,14 +165,14 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     public void testEqualsNested() throws Exception {
 
         final String[] expected = {
-            "25:44: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
-            "26:48: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
-            "27:48: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
-            "33:44: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
-            "36:49: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
-            "39:49: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
-            "42:49: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
-            "45:49: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+            "25:34: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+            "26:34: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+            "27:34: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+            "33:34: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+            "36:39: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+            "39:39: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+            "42:39: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+            "45:39: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEqualsAvoidNullNested.java"), expected);
