@@ -21,9 +21,6 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_OBJECT_ARRAY;
-import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -62,8 +59,9 @@ public class ViolationTest {
     public void testLanguageIsValid() {
         final String language = DEFAULT_LOCALE.getLanguage();
         if (!language.isEmpty()) {
-            assertThat("Invalid language",
-                Arrays.asList(Locale.getISOLanguages()), hasItem(language));
+            assertWithMessage("Invalid language")
+                .that(Arrays.asList(Locale.getISOLanguages()))
+                .contains(language);
         }
     }
 
@@ -74,8 +72,9 @@ public class ViolationTest {
     public void testCountryIsValid() {
         final String country = DEFAULT_LOCALE.getCountry();
         if (!country.isEmpty()) {
-            assertThat("Invalid country",
-                    Arrays.asList(Locale.getISOCountries()), hasItem(country));
+            assertWithMessage("Invalid country")
+                    .that(Arrays.asList(Locale.getISOCountries()))
+                    .contains(country);
         }
     }
 
@@ -88,8 +87,9 @@ public class ViolationTest {
         final String language = DEFAULT_LOCALE.getLanguage();
         if (!language.isEmpty() && !Locale.ENGLISH.getLanguage().equals(language)) {
             final Violation violation = createSampleViolation();
-            assertThat("Unsupported language: " + DEFAULT_LOCALE,
-                    violation.getViolation(), not("Empty statement."));
+            assertWithMessage("Unsupported language: " + DEFAULT_LOCALE)
+                    .that(violation.getViolation())
+                    .isNotEqualTo("Empty statement.");
         }
     }
 
