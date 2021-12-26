@@ -48,7 +48,7 @@ public class ModuleReflectionUtilTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
-                .that(isUtilsClassHasPrivateConstructor(ModuleReflectionUtil.class, true))
+                .that(isUtilsClassHasPrivateConstructor(ModuleReflectionUtil.class))
                 .isTrue();
     }
 

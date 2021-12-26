@@ -48,7 +48,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
-                .that(TestUtil.isUtilsClassHasPrivateConstructor(JavaParser.class, false))
+                .that(TestUtil.isUtilsClassHasPrivateConstructor(JavaParser.class))
                 .isTrue();
     }
 

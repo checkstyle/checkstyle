@@ -70,7 +70,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
-                .that(isUtilsClassHasPrivateConstructor(CommonUtil.class, true))
+                .that(isUtilsClassHasPrivateConstructor(CommonUtil.class))
                 .isTrue();
     }
 
