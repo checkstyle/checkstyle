@@ -1582,6 +1582,8 @@
                 <exclude>**/WriteTagCheckTest.class</exclude>
 
                 <exclude>**/AbstractJavadocCheckTest.class</exclude>
+                <exclude>**/JavaParserTest.class</exclude>
+                
               </excludes>
             </configuration>
           </execution>
