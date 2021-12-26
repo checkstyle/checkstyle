@@ -19,8 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.grammar.comments;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -56,7 +55,8 @@ public class AllBlockCommentsTest extends AbstractModuleTestSupport {
         lineSeparator = CheckUtil.getLineSeparatorForFile(path, StandardCharsets.UTF_8);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, path, expected);
-        assertTrue(ALL_COMMENTS.isEmpty(), "All comments should be empty");
+        assertWithMessage("All comments should be empty")
+            .that(ALL_COMMENTS).isEmpty();
     }
 
     public static class BlockCommentListenerCheck extends AbstractCheck {
@@ -98,7 +98,7 @@ public class AllBlockCommentsTest extends AbstractModuleTestSupport {
         public void visitToken(DetailAST ast) {
             final String commentContent = ast.getFirstChild().getText();
             if (!ALL_COMMENTS.remove(commentContent)) {
-                fail("Unexpected comment: " + commentContent);
+                assertWithMessage("Unexpected comment: " + commentContent).fail();
             }
         }
 

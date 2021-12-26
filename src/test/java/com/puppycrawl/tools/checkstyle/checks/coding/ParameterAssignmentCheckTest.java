@@ -19,10 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.ParameterAssignmentCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.util.Collection;
@@ -32,7 +31,6 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -50,10 +48,18 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
     public void testDefault()
             throws Exception {
         final String[] expected = {
-            "15:15: " + getCheckMessage(MSG_KEY, "field"),
-            "16:15: " + getCheckMessage(MSG_KEY, "field"),
-            "18:14: " + getCheckMessage(MSG_KEY, "field"),
-            "26:30: " + getCheckMessage(MSG_KEY, "field1"),
+            "17:15: " + getCheckMessage(MSG_KEY, "field"),
+            "18:15: " + getCheckMessage(MSG_KEY, "field"),
+            "20:14: " + getCheckMessage(MSG_KEY, "field"),
+            "28:30: " + getCheckMessage(MSG_KEY, "field1"),
+            "45:31: " + getCheckMessage(MSG_KEY, "q"),
+            "46:39: " + getCheckMessage(MSG_KEY, "q"),
+            "47:34: " + getCheckMessage(MSG_KEY, "w"),
+            "49:41: " + getCheckMessage(MSG_KEY, "w"),
+            "50:49: " + getCheckMessage(MSG_KEY, "a"),
+            "52:11: " + getCheckMessage(MSG_KEY, "c"),
+            "53:11: " + getCheckMessage(MSG_KEY, "d"),
+            "63:15: " + getCheckMessage(MSG_KEY, "d"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterAssignmentWithUnchecked.java"),
@@ -68,35 +74,22 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testEnhancedSwitch() throws Exception {
+        final String[] expected = {
+            "14:28: " + getCheckMessage(MSG_KEY, "a"),
+            "21:16: " + getCheckMessage(MSG_KEY, "result"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputParameterAssignmentWithEnhancedSwitch.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final ParameterAssignmentCheck check = new ParameterAssignmentCheck();
         assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
         assertNotNull(check.getDefaultTokens(), "Default tokens should not be null");
         assertNotNull(check.getRequiredTokens(), "Required tokens should not be null");
-    }
-
-    @Test
-    public void testImproperToken() {
-        final ParameterAssignmentCheck check = new ParameterAssignmentCheck();
-
-        final DetailAstImpl classDefAst = new DetailAstImpl();
-        classDefAst.setType(TokenTypes.CLASS_DEF);
-
-        try {
-            check.visitToken(classDefAst);
-            fail("IllegalStateException is expected");
-        }
-        catch (IllegalStateException ex) {
-            // it is OK
-        }
-
-        try {
-            check.leaveToken(classDefAst);
-            fail("IllegalStateException is expected");
-        }
-        catch (IllegalStateException ex) {
-            // it is OK
-        }
     }
 
     /**
@@ -115,12 +108,14 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
                 JavaParser.Options.WITHOUT_COMMENTS),
             ast -> ast.getType() == TokenTypes.METHOD_DEF);
 
-        assertTrue(methodDef.isPresent(), "Ast should contain METHOD_DEF");
-        assertTrue(
-            TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
+        assertWithMessage("Ast should contain METHOD_DEF")
+                .that(methodDef.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+            .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
                 "parameterNamesStack",
-                parameterNamesStack -> ((Collection<Set<String>>) parameterNamesStack).isEmpty()),
-                "State is not cleared on beginTree");
+                parameterNamesStack -> ((Collection<Set<String>>) parameterNamesStack).isEmpty()))
+            .isTrue();
     }
 
 }

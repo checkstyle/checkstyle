@@ -19,11 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
@@ -163,7 +161,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
         try {
             holder.setAliasList("=SomeAlias");
-            fail("Exception expected");
+            assertWithMessage("Exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("'=' expected in alias list item: =SomeAlias", ex.getMessage(),
@@ -176,7 +174,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         populateHolder("MockEntry", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 100, 10);
 
-        assertFalse(SuppressWarningsHolder.isSuppressed(event), "Event is not suppressed");
+        assertWithMessage("Event is not suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(event))
+                .isFalse();
     }
 
     @Test
@@ -186,7 +186,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         final AuditEvent event = createAuditEvent("id", 110, 10);
         holder.setAliasList(MemberNameCheck.class.getName() + "=check");
 
-        assertTrue(SuppressWarningsHolder.isSuppressed(event), "Event is not suppressed");
+        assertWithMessage("Event is not suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(event))
+                .isTrue();
     }
 
     @Test
@@ -194,7 +196,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         populateHolder("check", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 350, 350);
 
-        assertTrue(SuppressWarningsHolder.isSuppressed(event), "Event is not suppressed");
+        assertWithMessage("Event is not suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(event))
+                .isTrue();
     }
 
     @Test
@@ -202,7 +206,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         populateHolder("check", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 350, 352);
 
-        assertFalse(SuppressWarningsHolder.isSuppressed(event), "Event is not suppressed");
+        assertWithMessage("Event is not suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(event))
+                .isFalse();
     }
 
     @Test
@@ -210,7 +216,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         populateHolder("check", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 400, 10);
 
-        assertFalse(SuppressWarningsHolder.isSuppressed(event), "Event is not suppressed");
+        assertWithMessage("Event is not suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(event))
+                .isFalse();
     }
 
     @Test
@@ -218,7 +226,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         populateHolder("check", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 100, 100);
 
-        assertTrue(SuppressWarningsHolder.isSuppressed(event), "Event is not suppressed");
+        assertWithMessage("Event is not suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(event))
+                .isTrue();
     }
 
     @Test
@@ -226,7 +236,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         populateHolder("check", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 100, 0);
 
-        assertTrue(SuppressWarningsHolder.isSuppressed(event), "Event is not suppressed");
+        assertWithMessage("Event is not suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(event))
+                .isTrue();
     }
 
     @Test
@@ -238,21 +250,25 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
             new Violation(100, 10, null, null, null, "id", MemberNameCheck.class, "msg");
         final AuditEvent firstEventForTest =
             new AuditEvent(source, "fileName", firstViolationForTest);
-        assertFalse(SuppressWarningsHolder.isSuppressed(firstEventForTest), "Event is suppressed");
+        assertWithMessage("Event is suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(firstEventForTest))
+                .isFalse();
 
         final Violation secondViolationForTest =
             new Violation(100, 150, null, null, null, "id", MemberNameCheck.class, "msg");
         final AuditEvent secondEventForTest =
             new AuditEvent(source, "fileName", secondViolationForTest);
-        assertTrue(SuppressWarningsHolder.isSuppressed(secondEventForTest),
-                "Event is not suppressed");
+        assertWithMessage("Event is not suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(secondEventForTest))
+                .isTrue();
 
         final Violation thirdViolationForTest =
             new Violation(200, 1, null, null, null, "id", MemberNameCheck.class, "msg");
         final AuditEvent thirdEventForTest =
             new AuditEvent(source, "fileName", thirdViolationForTest);
-        assertTrue(SuppressWarningsHolder.isSuppressed(thirdEventForTest),
-                "Event is not suppressed");
+        assertWithMessage("Event is not suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(thirdEventForTest))
+                .isTrue();
     }
 
     @Test
@@ -295,11 +311,12 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
         try {
             getAllAnnotationValues.invoke(holder, parent);
-            fail("Exception expected");
+            assertWithMessage("Exception expected").fail();
         }
         catch (InvocationTargetException ex) {
-            assertTrue(ex.getCause() instanceof IllegalArgumentException,
-                    "Error type is unexpected");
+            assertWithMessage("Error type is unexpected")
+                    .that(ex.getCause() instanceof IllegalArgumentException)
+                    .isTrue();
             assertEquals("Unexpected AST: Method Def[0x0]", ex.getCause().getMessage(),
                     "Error message is unexpected");
         }
@@ -320,11 +337,12 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
         try {
             getAllAnnotationValues.invoke(holder, methodDef);
-            fail("Exception expected");
+            assertWithMessage("Exception expected").fail();
         }
         catch (InvocationTargetException ex) {
-            assertTrue(ex.getCause() instanceof IllegalArgumentException,
-                    "Error type is unexpected");
+            assertWithMessage("Error type is unexpected")
+                    .that(ex.getCause() instanceof IllegalArgumentException)
+                    .isTrue();
             assertEquals("Expression or annotation array initializer AST expected: Method Def[0x0]",
                     ex.getCause().getMessage(), "Error message is unexpected");
         }
@@ -350,11 +368,12 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
         try {
             getAnnotationTarget.invoke(holder, methodDef);
-            fail("Exception expected");
+            assertWithMessage("Exception expected").fail();
         }
         catch (InvocationTargetException ex) {
-            assertTrue(ex.getCause() instanceof IllegalArgumentException,
-                    "Error type is unexpected");
+            assertWithMessage("Error type is unexpected")
+                    .that(ex.getCause() instanceof IllegalArgumentException)
+                    .isTrue();
             assertEquals("Unexpected container AST: Parent ast[0x0]", ex.getCause().getMessage(),
                     "Error message is unexpected");
         }
@@ -368,7 +387,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
         try {
             holder.visitToken(methodDef);
-            fail("Exception expected");
+            assertWithMessage("Exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Identifier AST expected, but get null.", ex.getMessage(),
@@ -405,12 +424,14 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                     JavaParser.Options.WITHOUT_COMMENTS),
             ast -> ast.getType() == TokenTypes.ANNOTATION);
 
-        assertTrue(annotationDef.isPresent(), "Ast should contain ANNOTATION");
-        assertTrue(
-            TestUtil.isStatefulFieldClearedDuringBeginTree(check, annotationDef.get(),
-                "ENTRIES",
-                entries -> ((ThreadLocal<List<Object>>) entries).get().isEmpty()),
-                "State is not cleared on beginTree");
+        assertWithMessage("Ast should contain ANNOTATION")
+                .that(annotationDef.isPresent())
+                .isTrue();
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, annotationDef.get(),
+                        "ENTRIES",
+                        entries -> ((ThreadLocal<List<Object>>) entries).get().isEmpty()))
+                .isTrue();
     }
 
     private static void populateHolder(String checkName, int firstLine,

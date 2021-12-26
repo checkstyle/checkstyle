@@ -22,9 +22,6 @@ package com.puppycrawl.tools.checkstyle.utils;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -44,8 +41,9 @@ public class TokenUtilTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(TokenUtil.class, true),
-                "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(isUtilsClassHasPrivateConstructor(TokenUtil.class, true))
+                .isTrue();
     }
 
     @Test
@@ -62,16 +60,17 @@ public class TokenUtilTest {
 
         try {
             TokenUtil.getIntFromField(field, 0);
-            fail("IllegalStateException is expected");
+            assertWithMessage("IllegalStateException is expected").fail();
         }
         catch (IllegalStateException expected) {
             // The exception message may vary depending on the version of the JDK.
             // It will definitely contain the TokenUtil class name and the Integer class name.
             final String message = expected.getMessage();
-            assertTrue(message.startsWith("java.lang.IllegalAccessException: ")
-                        && message.contains("com.puppycrawl.tools.checkstyle.utils.TokenUtil")
-                        && message.contains("access a member of class java.lang.Integer"),
-                    "Invalid exception message: " + message);
+            assertWithMessage("Invalid exception message: " + message)
+                    .that(message.startsWith("java.lang.IllegalAccessException: ")
+                            && message.contains("com.puppycrawl.tools.checkstyle.utils.TokenUtil")
+                            && message.contains("access a member of class java.lang.Integer"))
+                    .isTrue();
         }
     }
 
@@ -126,7 +125,7 @@ public class TokenUtilTest {
         final int nextAfterMaxId = maxId + 1;
         try {
             TokenUtil.getTokenName(nextAfterMaxId);
-            fail("IllegalArgumentException is expected");
+            assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException expectedException) {
             assertEquals("unknown TokenTypes id '" + nextAfterMaxId + "'",
@@ -155,7 +154,7 @@ public class TokenUtilTest {
         final int id = 0;
         try {
             TokenUtil.getTokenName(id);
-            fail("IllegalArgumentException is expected");
+            assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException expected) {
             assertEquals("unknown TokenTypes id '" + id + "'", expected.getMessage(),
@@ -168,7 +167,7 @@ public class TokenUtilTest {
         final String id = "NON_EXISTENT_VALUE";
         try {
             TokenUtil.getTokenId(id);
-            fail("IllegalArgumentException is expected");
+            assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException expected) {
             assertEquals("unknown TokenTypes value '" + id + "'", expected.getMessage(),
@@ -181,7 +180,7 @@ public class TokenUtilTest {
         final String id = "NON_EXISTENT_VALUE";
         try {
             TokenUtil.getShortDescription(id);
-            fail("IllegalArgumentException is expected");
+            assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException expected) {
             assertEquals("unknown TokenTypes value '" + id + "'", expected.getMessage(),
@@ -191,20 +190,27 @@ public class TokenUtilTest {
 
     @Test
     public void testIsCommentType() {
-        assertTrue(TokenUtil.isCommentType(TokenTypes.SINGLE_LINE_COMMENT),
-                "Should return true when valid type passed");
-        assertTrue(TokenUtil.isCommentType(TokenTypes.BLOCK_COMMENT_BEGIN),
-                "Should return true when valid type passed");
-        assertTrue(TokenUtil.isCommentType(TokenTypes.BLOCK_COMMENT_END),
-                "Should return true when valid type passed");
-        assertTrue(TokenUtil.isCommentType(TokenTypes.COMMENT_CONTENT),
-                "Should return true when valid type passed");
-        assertTrue(TokenUtil.isCommentType("COMMENT_CONTENT"),
-                "Should return true when valid type passed");
-        assertFalse(TokenUtil.isCommentType(TokenTypes.CLASS_DEF),
-                "Should return false when invalid type passed");
-        assertFalse(TokenUtil.isCommentType("CLASS_DEF"),
-                "Should return false when invalid type passed");
+        assertWithMessage("Should return true when valid type passed")
+                .that(TokenUtil.isCommentType(TokenTypes.SINGLE_LINE_COMMENT))
+                .isTrue();
+        assertWithMessage("Should return true when valid type passed")
+                .that(TokenUtil.isCommentType(TokenTypes.BLOCK_COMMENT_BEGIN))
+                .isTrue();
+        assertWithMessage("Should return true when valid type passed")
+                .that(TokenUtil.isCommentType(TokenTypes.BLOCK_COMMENT_END))
+                .isTrue();
+        assertWithMessage("Should return true when valid type passed")
+                .that(TokenUtil.isCommentType(TokenTypes.COMMENT_CONTENT))
+                .isTrue();
+        assertWithMessage("Should return true when valid type passed")
+                .that(TokenUtil.isCommentType("COMMENT_CONTENT"))
+                .isTrue();
+        assertWithMessage("Should return false when invalid type passed")
+                .that(TokenUtil.isCommentType(TokenTypes.CLASS_DEF))
+                .isFalse();
+        assertWithMessage("Should return false when invalid type passed")
+                .that(TokenUtil.isCommentType("CLASS_DEF"))
+                .isFalse();
     }
 
     @Test
@@ -291,16 +297,21 @@ public class TokenUtilTest {
 
     @Test
     public void testIsTypeDeclaration() {
-        assertTrue(TokenUtil.isTypeDeclaration(TokenTypes.CLASS_DEF),
-                "Should return true when valid type passed");
-        assertTrue(TokenUtil.isTypeDeclaration(TokenTypes.INTERFACE_DEF),
-                "Should return true when valid type passed");
-        assertTrue(TokenUtil.isTypeDeclaration(TokenTypes.ANNOTATION_DEF),
-                "Should return true when valid type passed");
-        assertTrue(TokenUtil.isTypeDeclaration(TokenTypes.ENUM_DEF),
-                "Should return true when valid type passed");
-        assertTrue(TokenUtil.isTypeDeclaration(TokenTypes.RECORD_DEF),
-                "Should return true when valid type passed");
+        assertWithMessage("Should return true when valid type passed")
+                .that(TokenUtil.isTypeDeclaration(TokenTypes.CLASS_DEF))
+                .isTrue();
+        assertWithMessage("Should return true when valid type passed")
+                .that(TokenUtil.isTypeDeclaration(TokenTypes.INTERFACE_DEF))
+                .isTrue();
+        assertWithMessage("Should return true when valid type passed")
+                .that(TokenUtil.isTypeDeclaration(TokenTypes.ANNOTATION_DEF))
+                .isTrue();
+        assertWithMessage("Should return true when valid type passed")
+                .that(TokenUtil.isTypeDeclaration(TokenTypes.ENUM_DEF))
+                .isTrue();
+        assertWithMessage("Should return true when valid type passed")
+                .that(TokenUtil.isTypeDeclaration(TokenTypes.RECORD_DEF))
+                .isTrue();
     }
 
     @Test
@@ -313,8 +324,12 @@ public class TokenUtilTest {
         final boolean result2 = TokenUtil.isOfType(astForTest, TokenTypes.LITERAL_FOR,
                                 TokenTypes.LITERAL_IF, TokenTypes.LITERAL_CATCH);
 
-        assertTrue(result1, "Token type did not match");
-        assertTrue(result2, "Token type did not match");
+        assertWithMessage("Token type did not match")
+                .that(result1)
+                .isTrue();
+        assertWithMessage("Token type did not match")
+                .that(result2)
+                .isTrue();
     }
 
     @Test
@@ -330,9 +345,28 @@ public class TokenUtilTest {
         final boolean result3 = TokenUtil.isOfType(astForTest2, TokenTypes.LITERAL_FOR,
                                 TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE);
 
-        assertFalse(result1, "Token type should not match");
-        assertFalse(result2, "Token type should not match");
-        assertFalse(result3, "Token type should not match");
+        assertWithMessage("Token type should not match")
+                .that(result1)
+                .isFalse();
+        assertWithMessage("Token type should not match")
+                .that(result2)
+                .isFalse();
+        assertWithMessage("Token type should not match")
+                .that(result3)
+                .isFalse();
+    }
+
+    @Test
+    public void testIsBooleanLiteralType() {
+        assertWithMessage("Result is not expected")
+                .that(TokenUtil.isBooleanLiteralType(TokenTypes.LITERAL_TRUE))
+                .isTrue();
+        assertWithMessage("Result is not expected")
+                .that(TokenUtil.isBooleanLiteralType(TokenTypes.LITERAL_FALSE))
+                .isTrue();
+        assertWithMessage("Result is not expected")
+                .that(TokenUtil.isBooleanLiteralType(TokenTypes.LOR))
+                .isFalse();
     }
 
 }

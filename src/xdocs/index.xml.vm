@@ -2,7 +2,7 @@
 
 <document xmlns="http://maven.apache.org/XDOC/2.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
 
   <head>
     <title>Checkstyle ${projectVersion}</title>
@@ -116,6 +116,50 @@
       <p>
         Checkstyle is not using Semantic Versioning
         (<a href="https://github.com/checkstyle/checkstyle/issues/3709">reasons in issue #3709</a>)
+      </p>
+    </section>
+
+    <section name="JRE and JDK">
+      <p>
+        Runtime of Checkstyle is limited only by minimal version or JRE.
+      </p>
+      <div class="wrapper">
+        <table>
+          <tr>
+            <th>Checkstyle version</th>
+            <th>JRE version</th>
+          </tr>
+          <tr>
+            <td>
+              7.x, 8.x, 9.x
+            </td>
+            <td>
+              8 and above
+            </td>
+          </tr>
+          <tr>
+            <td>
+              6.x
+            </td>
+            <td>
+              6 and above
+            </td>
+          </tr>
+          <tr>
+            <td>
+              5.x
+            </td>
+            <td>
+              5 and above
+            </td>
+          </tr>
+        </table>
+      </div>
+      <p>
+        Checkstyle currently is confirmed to be build by all JDKs from 8 through 17.
+        Most recent JDKs may be supported. Please
+        <a href="https://checkstyle.org/report_issue.html">report an issue</a>
+        if there is any problems with most recent JDKs.
       </p>
     </section>
 

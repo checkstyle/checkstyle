@@ -26,11 +26,8 @@ import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_STARTED_MESSAG
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -140,10 +137,18 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
 
-        assertFalse(auditAdapter.wasCalled(), "Checker.destroy() doesn't remove listeners.");
-        assertFalse(fileSet.wasCalled(), "Checker.destroy() doesn't remove file sets.");
-        assertFalse(filter.wasCalled(), "Checker.destroy() doesn't remove filters.");
-        assertFalse(fileFilter.wasCalled(), "Checker.destroy() doesn't remove file filters.");
+        assertWithMessage("Checker.destroy() doesn't remove listeners.")
+                .that(auditAdapter.wasCalled())
+                .isFalse();
+        assertWithMessage("Checker.destroy() doesn't remove file sets.")
+                .that(fileSet.wasCalled())
+                .isFalse();
+        assertWithMessage("Checker.destroy() doesn't remove filters.")
+                .that(filter.wasCalled())
+                .isFalse();
+        assertWithMessage("Checker.destroy() doesn't remove file filters.")
+                .that(fileFilter.wasCalled())
+                .isFalse();
     }
 
     @Test
@@ -154,31 +159,51 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         // Let's try fire some events
         getFireAuditStartedMethod().invoke(checker);
-        assertTrue(auditAdapter.wasCalled(), "Checker.fireAuditStarted() doesn't call listener");
-        assertTrue(auditAdapter.wasEventPassed(), "Checker.fireAuditStarted() doesn't pass event");
+        assertWithMessage("Checker.fireAuditStarted() doesn't call listener")
+                .that(auditAdapter.wasCalled())
+                .isTrue();
+        assertWithMessage("Checker.fireAuditStarted() doesn't pass event")
+                .that(auditAdapter.wasEventPassed())
+                .isTrue();
 
         auditAdapter.resetListener();
         getFireAuditFinished().invoke(checker);
-        assertTrue(auditAdapter.wasCalled(), "Checker.fireAuditFinished() doesn't call listener");
-        assertTrue(auditAdapter.wasEventPassed(), "Checker.fireAuditFinished() doesn't pass event");
+        assertWithMessage("Checker.fireAuditFinished() doesn't call listener")
+                .that(auditAdapter.wasCalled())
+                .isTrue();
+        assertWithMessage("Checker.fireAuditFinished() doesn't pass event")
+                .that(auditAdapter.wasEventPassed())
+                .isTrue();
 
         auditAdapter.resetListener();
         checker.fireFileStarted("Some File Name");
-        assertTrue(auditAdapter.wasCalled(), "Checker.fireFileStarted() doesn't call listener");
-        assertTrue(auditAdapter.wasEventPassed(), "Checker.fireFileStarted() doesn't pass event");
+        assertWithMessage("Checker.fireFileStarted() doesn't call listener")
+                .that(auditAdapter.wasCalled())
+                .isTrue();
+        assertWithMessage("Checker.fireFileStarted() doesn't pass event")
+                .that(auditAdapter.wasEventPassed())
+                .isTrue();
 
         auditAdapter.resetListener();
         checker.fireFileFinished("Some File Name");
-        assertTrue(auditAdapter.wasCalled(), "Checker.fireFileFinished() doesn't call listener");
-        assertTrue(auditAdapter.wasEventPassed(), "Checker.fireFileFinished() doesn't pass event");
+        assertWithMessage("Checker.fireFileFinished() doesn't call listener")
+                .that(auditAdapter.wasCalled())
+                .isTrue();
+        assertWithMessage("Checker.fireFileFinished() doesn't pass event")
+                .that(auditAdapter.wasEventPassed())
+                .isTrue();
 
         auditAdapter.resetListener();
         final SortedSet<Violation> violations = new TreeSet<>();
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
-        assertTrue(auditAdapter.wasCalled(), "Checker.fireErrors() doesn't call listener");
-        assertTrue(auditAdapter.wasEventPassed(), "Checker.fireErrors() doesn't pass event");
+        assertWithMessage("Checker.fireErrors() doesn't call listener")
+                .that(auditAdapter.wasCalled())
+                .isTrue();
+        assertWithMessage("Checker.fireErrors() doesn't pass event")
+                .that(auditAdapter.wasEventPassed())
+                .isTrue();
     }
 
     @Test
@@ -192,35 +217,51 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         // Let's try fire some events
         getFireAuditStartedMethod().invoke(checker);
-        assertTrue(aa2.wasCalled(), "Checker.fireAuditStarted() doesn't call listener");
-        assertFalse(auditAdapter.wasCalled(),
-                "Checker.fireAuditStarted() does call removed listener");
+        assertWithMessage("Checker.fireAuditStarted() doesn't call listener")
+                .that(aa2.wasCalled())
+                .isTrue();
+        assertWithMessage("Checker.fireAuditStarted() does call removed listener")
+                .that(auditAdapter.wasCalled())
+                .isFalse();
 
         aa2.resetListener();
         getFireAuditFinished().invoke(checker);
-        assertTrue(aa2.wasCalled(), "Checker.fireAuditFinished() doesn't call listener");
-        assertFalse(auditAdapter.wasCalled(),
-                "Checker.fireAuditFinished() does call removed listener");
+        assertWithMessage("Checker.fireAuditFinished() doesn't call listener")
+                .that(aa2.wasCalled())
+                .isTrue();
+        assertWithMessage("Checker.fireAuditFinished() does call removed listener")
+                .that(auditAdapter.wasCalled())
+                .isFalse();
 
         aa2.resetListener();
         checker.fireFileStarted("Some File Name");
-        assertTrue(aa2.wasCalled(), "Checker.fireFileStarted() doesn't call listener");
-        assertFalse(auditAdapter.wasCalled(),
-                "Checker.fireFileStarted() does call removed listener");
+        assertWithMessage("Checker.fireFileStarted() doesn't call listener")
+                .that(aa2.wasCalled())
+                .isTrue();
+        assertWithMessage("Checker.fireFileStarted() does call removed listener")
+                .that(auditAdapter.wasCalled())
+                .isFalse();
 
         aa2.resetListener();
         checker.fireFileFinished("Some File Name");
-        assertTrue(aa2.wasCalled(), "Checker.fireFileFinished() doesn't call listener");
-        assertFalse(auditAdapter.wasCalled(),
-                "Checker.fireFileFinished() does call removed listener");
+        assertWithMessage("Checker.fireFileFinished() doesn't call listener")
+                .that(aa2.wasCalled())
+                .isTrue();
+        assertWithMessage("Checker.fireFileFinished() does call removed listener")
+                .that(auditAdapter.wasCalled())
+                .isFalse();
 
         aa2.resetListener();
         final SortedSet<Violation> violations = new TreeSet<>();
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
-        assertTrue(aa2.wasCalled(), "Checker.fireErrors() doesn't call listener");
-        assertFalse(auditAdapter.wasCalled(), "Checker.fireErrors() does call removed listener");
+        assertWithMessage("Checker.fireErrors() doesn't call listener")
+                .that(aa2.wasCalled())
+                .isTrue();
+        assertWithMessage("Checker.fireErrors() does call removed listener")
+                .that(auditAdapter.wasCalled())
+                .isFalse();
     }
 
     @Test
@@ -232,7 +273,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         filter.resetFilter();
         checker.process(Collections.singletonList(new File("dummy.java")));
-        assertTrue(filter.wasCalled(), "Checker.acceptFileStarted() doesn't call filter");
+        assertWithMessage("Checker.acceptFileStarted() doesn't call filter")
+                .that(filter.wasCalled())
+                .isTrue();
     }
 
     @Test
@@ -246,8 +289,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         f2.resetFilter();
         checker.process(Collections.singletonList(new File("dummy.java")));
-        assertTrue(f2.wasCalled(), "Checker.acceptFileStarted() doesn't call filter");
-        assertFalse(filter.wasCalled(), "Checker.acceptFileStarted() does call removed filter");
+        assertWithMessage("Checker.acceptFileStarted() doesn't call filter")
+                .that(f2.wasCalled())
+                .isTrue();
+        assertWithMessage("Checker.acceptFileStarted() does call removed filter")
+                .that(filter.wasCalled())
+                .isFalse();
     }
 
     @Test
@@ -262,7 +309,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
-        assertTrue(filter.wasCalled(), "Checker.fireErrors() doesn't call filter");
+        assertWithMessage("Checker.fireErrors() doesn't call filter")
+                .that(filter.wasCalled())
+                .isTrue();
     }
 
     @Test
@@ -279,8 +328,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
         checker.fireErrors("Some File Name", violations);
-        assertTrue(f2.wasCalled(), "Checker.fireErrors() doesn't call filter");
-        assertFalse(filter.wasCalled(), "Checker.fireErrors() does call removed filter");
+        assertWithMessage("Checker.fireErrors() doesn't call filter")
+                .that(f2.wasCalled())
+                .isTrue();
+        assertWithMessage("Checker.fireErrors() does call removed filter")
+                .that(filter.wasCalled())
+                .isFalse();
     }
 
     @Test
@@ -366,7 +419,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         try {
             checker.setCharset("UNKNOWN-CHARSET");
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (UnsupportedEncodingException ex) {
             assertEquals("unsupported charset: 'UNKNOWN-CHARSET'", ex.getMessage(),
@@ -380,7 +433,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         try {
             checker.finishLocalSetup();
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("if no custom moduleFactory is set, moduleClassLoader must be specified",
@@ -436,7 +489,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Configuration config = new DefaultConfiguration("java.lang.String");
         try {
             checker.setupChild(config);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("java.lang.String is not allowed as a child in Checker", ex.getMessage(),
@@ -450,7 +503,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("$$No such property", null);
         try {
             createChecker(checkConfig);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker"
@@ -473,8 +526,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setupChild(config);
 
         final List<AuditListener> listeners = TestUtil.getInternalState(checker, "listeners");
-        assertTrue(listeners.get(listeners.size() - 1) instanceof DebugAuditAdapter,
-                "Invalid child listener class");
+        assertWithMessage("Invalid child listener class")
+                .that(listeners.get(listeners.size() - 1) instanceof DebugAuditAdapter)
+                .isTrue();
     }
 
     @Test
@@ -490,11 +544,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setCacheFile(String.format(Locale.ENGLISH, "%0300d", 0));
         try {
             checker.destroy();
-            fail("Exception did not happen");
+            assertWithMessage("Exception did not happen").fail();
         }
         catch (IllegalStateException ex) {
-            assertTrue(ex.getCause() instanceof IOException,
-                    "Cause of exception differs from IOException");
+            assertWithMessage("Cause of exception differs from IOException")
+                    .that(ex.getCause() instanceof IOException)
+                    .isTrue();
         }
     }
 
@@ -504,8 +559,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testCacheAndCheckWhichDoesNotImplementExternalResourceHolderInterface()
             throws Exception {
-        assertFalse(ExternalResourceHolder.class.isAssignableFrom(HiddenFieldCheck.class),
-                "ExternalResourceHolder has changed his parent");
+        assertWithMessage("ExternalResourceHolder has changed his parent")
+                .that(ExternalResourceHolder.class.isAssignableFrom(HiddenFieldCheck.class))
+                .isFalse();
         final DefaultConfiguration checkConfig = createModuleConfig(HiddenFieldCheck.class);
 
         final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
@@ -696,7 +752,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         filesToProcess.add(mock);
         try {
             checker.process(filesToProcess);
-            fail("IOError is expected!");
+            assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
         catch (Error error) {
@@ -745,7 +801,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         filesToProcess.add(mock);
         try {
             checker.process(filesToProcess);
-            fail("IOError is expected!");
+            assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
         catch (Error error) {
@@ -764,8 +820,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testCacheAndFilterWhichDoesNotImplementExternalResourceHolderInterface()
             throws Exception {
-        assertFalse(ExternalResourceHolder.class.isAssignableFrom(DummyFilter.class),
-                "ExternalResourceHolder has changed its parent");
+        assertWithMessage("ExternalResourceHolder has changed its parent")
+                .that(ExternalResourceHolder.class.isAssignableFrom(DummyFilter.class))
+                .isFalse();
         final DefaultConfiguration filterConfig = createModuleConfig(DummyFilter.class);
 
         final DefaultConfiguration checkerConfig = createRootConfig(filterConfig);
@@ -935,7 +992,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String filePath = getPath("InputChecker.java");
         try {
             verify(checkConfig, filePath);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("Exception was thrown while processing " + filePath, ex.getMessage(),
@@ -964,7 +1021,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String filePath = getPath("InputChecker.java");
         try {
             checker.process(Collections.singletonList(new File(filePath)));
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
             assertEquals("Exception was thrown while processing " + filePath, ex.getMessage(),
@@ -1026,7 +1083,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         filesToProcess.add(mock);
         try {
             checker.process(filesToProcess);
-            fail("IOError is expected!");
+            assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
         catch (Error error) {
@@ -1086,7 +1143,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         filesToProcess.add(mock);
         try {
             checker.process(filesToProcess);
-            fail("IOError is expected!");
+            assertWithMessage("IOError is expected!").fail();
         }
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
         catch (Error error) {
@@ -1136,7 +1193,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         filesToProcess.add(mock);
         try {
             checker.process(filesToProcess);
-            fail("SecurityException is expected!");
+            assertWithMessage("SecurityException is expected!").fail();
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Error cause differs from SecurityException")
@@ -1183,7 +1240,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         filesToProcess.add(mock);
         try {
             checker.process(filesToProcess);
-            fail("SecurityException is expected!");
+            assertWithMessage("SecurityException is expected!").fail();
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Error cause differs from SecurityException")
@@ -1290,7 +1347,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setupChild(createModuleConfig(DebugAuditAdapter.class));
         // Let's try fire some events
         checker.process(Collections.singletonList(new File("dummy.java")));
-        assertTrue(auditAdapter.wasCalled(), "Checker.fireAuditStarted() doesn't call listener");
+        assertWithMessage("Checker.fireAuditStarted() doesn't call listener")
+                .that(auditAdapter.wasCalled())
+                .isTrue();
     }
 
     @Test
@@ -1311,7 +1370,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleFactory(factory);
         checker.setupChild(createModuleConfig(TestBeforeExecutionFileFilter.class));
         checker.process(Collections.singletonList(new File("dummy.java")));
-        assertTrue(fileFilter.wasCalled(), "Checker.acceptFileStarted() doesn't call listener");
+        assertWithMessage("Checker.acceptFileStarted() doesn't call listener")
+                .that(fileFilter.wasCalled())
+                .isTrue();
     }
 
     @Test
@@ -1332,7 +1393,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleFactory(factory);
         checker.finishLocalSetup();
         checker.setupChild(createModuleConfig(DummyFileSet.class));
-        assertTrue(fileSet.isInitCalled(), "FileSetCheck.init() wasn't called");
+        assertWithMessage("FileSetCheck.init() wasn't called")
+                .that(fileSet.isInitCalled())
+                .isTrue();
     }
 
     // -@cs[CheckstyleTestMakeup] must use raw class to directly initialize DefaultLogger

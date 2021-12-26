@@ -22,9 +22,6 @@ package com.puppycrawl.tools.checkstyle.xpath;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.XpathUtil.getXpathItems;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.util.List;
@@ -62,7 +59,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testCompareOrder() {
         try {
             rootNode.compareOrder(null);
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -76,8 +73,9 @@ public class RootNodeTest extends AbstractPathTestSupport {
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertEquals(1, nodes.size(), "Invalid number of nodes");
         final NodeInfo firstNode = nodes.get(0);
-        assertTrue(firstNode instanceof RootNode,
-                "Should return true, because selected node is RootNode");
+        assertWithMessage("Should return true, because selected node is RootNode")
+                .that(firstNode instanceof RootNode)
+                .isTrue();
         assertEquals(firstNode, rootNode, "Result node should have same reference as expected");
     }
 
@@ -139,7 +137,9 @@ public class RootNodeTest extends AbstractPathTestSupport {
     @Test
     public void testRootWithNullDetailAst() {
         final RootNode emptyRootNode = new RootNode(null);
-        assertFalse(emptyRootNode.hasChildNodes(), "Empty node should not have children");
+        assertWithMessage("Empty node should not have children")
+                .that(emptyRootNode.hasChildNodes())
+                .isFalse();
 
         try (AxisIterator iterator = emptyRootNode.iterateAxis(AxisInfo.DESCENDANT)) {
             assertEquals(EmptyIterator.ofNodes(), iterator,
@@ -155,7 +155,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testGetStringValue() {
         try {
             rootNode.getStringValue();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -167,7 +167,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testGetAttributeValue() {
         try {
             rootNode.getAttributeValue("", "");
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -180,7 +180,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
         final NamespaceBinding[] namespaceBindings = {new NamespaceBinding("prefix", "uri")};
         try {
             rootNode.getDeclaredNamespaces(namespaceBindings);
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -192,7 +192,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testIsId() {
         try {
             rootNode.isId();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -204,7 +204,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testIsIdref() {
         try {
             rootNode.isIdref();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -216,7 +216,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testIsNilled() {
         try {
             rootNode.isNilled();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -228,7 +228,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testIsStreamed() {
         try {
             rootNode.isStreamed();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -240,7 +240,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testGetConfiguration() {
         try {
             rootNode.getConfiguration();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -252,7 +252,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testSetSystemId() {
         try {
             rootNode.setSystemId("1");
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -264,7 +264,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testGetSystemId() {
         try {
             rootNode.getSystemId();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -276,7 +276,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testGetPublicId() {
         try {
             rootNode.getPublicId();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -288,7 +288,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testBaseUri() {
         try {
             rootNode.getBaseURI();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -300,7 +300,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testSaveLocation() {
         try {
             rootNode.saveLocation();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -312,7 +312,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testGetStringValueCs() {
         try {
             rootNode.getStringValueCS();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -324,7 +324,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testFingerprint() {
         try {
             rootNode.getFingerprint();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -336,7 +336,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testGetDisplayName() {
         try {
             rootNode.getDisplayName();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -348,7 +348,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testGetPrefix() {
         try {
             rootNode.getPrefix();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -360,7 +360,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testGetSchemaType() {
         try {
             rootNode.getSchemaType();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -372,7 +372,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testAtomize() {
         try {
             rootNode.atomize();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -384,7 +384,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testGenerateId() {
         try {
             rootNode.generateId(null);
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -396,7 +396,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testCopy() {
         try {
             rootNode.copy(null, -1, null);
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -408,7 +408,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     public void testGetAllNamespaces() {
         try {
             rootNode.getAllNamespaces();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -418,9 +418,11 @@ public class RootNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testSameNodeInfo() {
-        assertTrue(rootNode.isSameNodeInfo(rootNode),
-                "Should return true, because object is being compared to itself");
-        assertFalse(rootNode.isSameNodeInfo(null),
-                "Should return false, because object does not equal null");
+        assertWithMessage("Should return true, because object is being compared to itself")
+                .that(rootNode.isSameNodeInfo(rootNode))
+                .isTrue();
+        assertWithMessage("Should return false, because object does not equal null")
+                .that(rootNode.isSameNodeInfo(null))
+                .isFalse();
     }
 }

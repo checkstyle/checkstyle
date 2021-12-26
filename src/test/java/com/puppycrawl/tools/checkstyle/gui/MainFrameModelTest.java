@@ -21,11 +21,8 @@ package com.puppycrawl.tools.checkstyle.gui;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -78,7 +75,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
                             parseMode.toString(), "Invalid toString result");
                     break;
                 default:
-                    fail("Unexpected enum value");
+                    assertWithMessage("Unexpected enum value").fail();
             }
         }
     }
@@ -125,7 +122,9 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
 
         assertNull(model.getText(), "Test is null");
         assertEquals("Checkstyle GUI", model.getTitle(), "Title is expected value");
-        assertFalse(model.isReloadActionEnabled(), "Reload action should be disabled");
+        assertWithMessage("Reload action should be disabled")
+                .that(model.isReloadActionEnabled())
+                .isFalse();
         assertNull(model.getCurrentFile(), "Current file is null");
     }
 
@@ -136,7 +135,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
         try {
             model.openFile(nonExistentFile);
 
-            fail("Expected CheckstyleException is not thrown.");
+            assertWithMessage("Expected CheckstyleException is not thrown.").fail();
         }
         catch (CheckstyleException ex) {
             final String expectedMsg = String.format(Locale.ROOT,
@@ -154,7 +153,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
         try {
             model.openFile(nonCompilableFile);
 
-            fail("Expected CheckstyleException is not thrown.");
+            assertWithMessage("Expected CheckstyleException is not thrown.").fail();
         }
         catch (CheckstyleException ex) {
             final String expectedMsg = String.format(Locale.ROOT,
@@ -171,14 +170,17 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
         final String expectedTitle = "Checkstyle GUI : " + FILE_NAME_TEST_DATA;
         assertEquals(expectedTitle, model.getTitle(), "Invalid model title");
 
-        assertTrue(model.isReloadActionEnabled(), "Reload action should be enabled");
+        assertWithMessage("Reload action should be enabled")
+                .that(model.isReloadActionEnabled())
+                .isTrue();
 
         final int expectedLines = 19;
         assertEquals(expectedLines, model.getLinesToPosition().size(), "Invalid lines to position");
 
         final String testDataFileNameWithoutPostfix = FILE_NAME_TEST_DATA.replace(".java", "");
-        assertTrue(model.getText().contains(testDataFileNameWithoutPostfix),
-                "Invalid model text: " + model.getText());
+        assertWithMessage("Invalid model text: " + model.getText())
+                .that(model.getText().contains(testDataFileNameWithoutPostfix))
+                .isTrue();
 
         final File expectedLastDirectory = new File(getPath(""));
         assertEquals(expectedLastDirectory, model.getLastDirectory(),

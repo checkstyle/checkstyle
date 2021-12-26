@@ -205,7 +205,7 @@
     <maven.pmd.plugin.version>3.15.0</maven.pmd.plugin.version>
     <pmd.version>6.41.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.7</maven.jacoco.plugin.version>
-    <powermock.version>2.0.9</powermock.version>
+    <mockito.version>4.2.0</mockito.version>
     <saxon.version>10.6</saxon.version>
     <maven.checkstyle.plugin.version>3.1.2</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.40.0</maven.sevntu.checkstyle.plugin.version>
@@ -289,50 +289,22 @@
       <version>1.5.0</version>
       <scope>test</scope>
     </dependency>
-    <!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->
-    <dependency>
-      <groupId>org.junit.vintage</groupId>
-      <artifactId>junit-vintage-engine</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
-    </dependency>
     <dependency>
       <groupId>com.google.truth</groupId>
       <artifactId>truth</artifactId>
       <version>1.1.3</version>
       <scope>test</scope>
     </dependency>
-    <!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->
-    <dependency>
-      <groupId>com.github.stefanbirkner</groupId>
-      <artifactId>system-rules</artifactId>
-      <version>1.19.0</version>
-      <scope>test</scope>
-    </dependency>
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.8</version>
+      <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.powermock</groupId>
-      <artifactId>powermock-api-mockito2</artifactId>
-      <version>${powermock.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->
-    <dependency>
-      <groupId>org.javassist</groupId>
-      <artifactId>javassist</artifactId>
-      <version>3.28.0-GA</version>
-      <scope>test</scope>
-    </dependency>
-    <!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->
-    <dependency>
-      <groupId>org.powermock</groupId>
-      <artifactId>powermock-module-junit4</artifactId>
-      <version>${powermock.version}</version>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-inline</artifactId>
+      <version>${mockito.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -1894,6 +1866,8 @@
             <excludedLink>http://maven.apache.org/plugins/maven-eclipse-plugin/</excludedLink>
             <excludedLink>http://maven.apache.org/plugins/maven-install-plugin/</excludedLink>
             <excludedLink>http://maven.apache.org/plugins/maven-linkcheck-plugin/</excludedLink>
+            <!-- permanent 403 -->
+            <excludedLink>https://www.ej-technologies.com/*</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
@@ -1902,17 +1876,6 @@
   </reporting>
 
   <profiles>
-
-    <!-- Till https://github.com/powermock/powermock/issues/1094 -->
-    <profile>
-      <id>java16</id>
-      <activation>
-        <jdk>[16,)</jdk>
-      </activation>
-      <properties>
-        <surefire.options>--illegal-access=warn</surefire.options>
-      </properties>
-    </profile>
 
     <profile>
       <!-- To be used during development. Run the command -->

@@ -25,10 +25,8 @@ import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -192,8 +190,12 @@ public class ViolationTest {
                 "java.class", new TestUrlsClassLoader(url), true);
 
         assertNotNull(bundle, "Bundle should not be null when stream is not null");
-        assertFalse(urlConnection.getUseCaches(), "connection should not be using caches");
-        assertTrue(closed.get(), "connection should be closed");
+        assertWithMessage("connection should not be using caches")
+                .that(urlConnection.getUseCaches())
+                .isFalse();
+        assertWithMessage("connection should be closed")
+                .that(closed.get())
+                .isTrue();
     }
 
     /**
@@ -240,8 +242,12 @@ public class ViolationTest {
                 "java.class", new TestUrlsClassLoader(url), false);
 
         assertNotNull(bundle, "Bundle should not be null when stream is not null");
-        assertTrue(urlConnection.getUseCaches(), "connection should not be using caches");
-        assertTrue(closed.get(), "connection should be closed");
+        assertWithMessage("connection should not be using caches")
+                .that(urlConnection.getUseCaches())
+                .isTrue();
+        assertWithMessage("connection should be closed")
+                .that(closed.get())
+                .isTrue();
     }
 
     @Test
@@ -342,9 +348,15 @@ public class ViolationTest {
         final Violation message2 = createSampleViolationWithId("module2");
         final Violation messageNull = createSampleViolationWithId(null);
 
-        assertTrue(message1.compareTo(messageNull) > 0, "Invalid comparing result");
-        assertTrue(messageNull.compareTo(message1) < 0, "Invalid comparing result");
-        assertTrue(message1.compareTo(message2) < 0, "Invalid comparing result");
+        assertWithMessage("Invalid comparing result")
+                .that(message1.compareTo(messageNull) > 0)
+                .isTrue();
+        assertWithMessage("Invalid comparing result")
+                .that(messageNull.compareTo(message1) < 0)
+                .isTrue();
+        assertWithMessage("Invalid comparing result")
+                .that(message1.compareTo(message2) < 0)
+                .isTrue();
     }
 
     @Test
@@ -353,8 +365,12 @@ public class ViolationTest {
         final Violation message1a = createSampleViolationWithLine(1);
         final Violation message2 = createSampleViolationWithLine(2);
 
-        assertTrue(message1.compareTo(message2) < 0, "Invalid comparing result");
-        assertTrue(message2.compareTo(message1) > 0, "Invalid comparing result");
+        assertWithMessage("Invalid comparing result")
+                .that(message1.compareTo(message2) < 0)
+                .isTrue();
+        assertWithMessage("Invalid comparing result")
+                .that(message2.compareTo(message1) > 0)
+                .isTrue();
         final int actual = message1.compareTo(message1a);
         assertEquals(0, actual, "Invalid comparing result");
     }
@@ -365,8 +381,12 @@ public class ViolationTest {
         final Violation message1a = createSampleViolationWithColumn(1);
         final Violation message2 = createSampleViolationWithColumn(2);
 
-        assertTrue(message1.compareTo(message2) < 0, "Invalid comparing result");
-        assertTrue(message2.compareTo(message1) > 0, "Invalid comparing result");
+        assertWithMessage("Invalid comparing result")
+                .that(message1.compareTo(message2) < 0)
+                .isTrue();
+        assertWithMessage("Invalid comparing result")
+                .that(message2.compareTo(message1) > 0)
+                .isTrue();
         final int actual = message1.compareTo(message1a);
         assertEquals(0, actual, "Invalid comparing result");
     }

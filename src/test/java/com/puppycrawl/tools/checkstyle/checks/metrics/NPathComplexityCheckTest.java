@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.util.Collection;
@@ -127,14 +127,14 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         ast.setType(TokenTypes.LITERAL_ELSE);
 
         final NPathComplexityCheck check = new NPathComplexityCheck();
-        assertTrue(
-            TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "rangeValues",
-                rangeValues -> ((Collection<Context>) rangeValues).isEmpty()),
-                "Stateful field is not cleared after beginTree");
-        assertTrue(
-            TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "expressionValues",
-                expressionValues -> ((Collection<Context>) expressionValues).isEmpty()),
-                "Stateful field is not cleared after beginTree");
+        assertWithMessage("Stateful field is not cleared after beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "rangeValues",
+                        rangeValues -> ((Collection<Context>) rangeValues).isEmpty()))
+                .isTrue();
+        assertWithMessage("Stateful field is not cleared after beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "expressionValues",
+                        expressionValues -> ((Collection<Context>) expressionValues).isEmpty()))
+                .isTrue();
     }
 
     @Test
@@ -148,10 +148,10 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         ast.addChild(child);
 
         final NPathComplexityCheck check = new NPathComplexityCheck();
-        assertTrue(
-            TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "afterValues",
-                isAfterValues -> ((Collection<Context>) isAfterValues).isEmpty()),
-                "Stateful field is not cleared after beginTree");
+        assertWithMessage("Stateful field is not cleared after beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "afterValues",
+                        isAfterValues -> ((Collection<Context>) isAfterValues).isEmpty()))
+                .isTrue();
     }
 
     @Test
@@ -162,18 +162,19 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
                 JavaParser.Options.WITHOUT_COMMENTS),
             ast -> ast.getType() == TokenTypes.QUESTION);
 
-        assertTrue(question.isPresent(), "Ast should contain QUESTION");
+        assertWithMessage("Ast should contain QUESTION")
+                .that(question.isPresent())
+                .isTrue();
 
-        assertTrue(
-            TestUtil.isStatefulFieldClearedDuringBeginTree(
-                check,
-                question.get(),
-                "processingTokenEnd",
-                processingTokenEnd -> {
-                    return TestUtil.<Integer>getInternalState(processingTokenEnd, "endLineNo") == 0
-                        && TestUtil.<Integer>getInternalState(
-                                processingTokenEnd, "endColumnNo") == 0;
-                }), "State is not cleared on beginTree");
+        assertWithMessage("State is not cleared on beginTree")
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, question.get(),
+                        "processingTokenEnd", processingTokenEnd -> {
+                            return TestUtil.<Integer>getInternalState(processingTokenEnd,
+                                    "endLineNo") == 0
+                                    && TestUtil.<Integer>getInternalState(processingTokenEnd,
+                                            "endColumnNo") == 0;
+                        }))
+                .isTrue();
     }
 
     @Test
@@ -308,9 +309,9 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         token.setLineNo(0);
         token.setColumnNo(0);
 
-        assertTrue(
-            TestUtil.<Boolean>invokeMethod(tokenEnd, "isAfter", token),
-                "isAfter must be true for same line/column");
+        assertWithMessage("isAfter must be true for same line/column")
+                .that(TestUtil.<Boolean>invokeMethod(tokenEnd, "isAfter", token))
+                .isTrue();
     }
 
     @Test

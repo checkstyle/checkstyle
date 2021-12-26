@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.xpath;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,7 +42,7 @@ public class AttributeNodeTest {
     public void testCompareOrder() {
         try {
             attributeNode.compareOrder(null);
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -72,7 +71,7 @@ public class AttributeNodeTest {
     public void testGetAttributeValue() {
         try {
             attributeNode.getAttributeValue("", "");
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -94,7 +93,7 @@ public class AttributeNodeTest {
     public void testGetParent() {
         try {
             attributeNode.getParent();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -106,7 +105,7 @@ public class AttributeNodeTest {
     public void testGetRoot() {
         try {
             attributeNode.getRoot();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -122,7 +121,7 @@ public class AttributeNodeTest {
     @Test
     public void testIterate() {
         try (AxisIterator ignored = attributeNode.iterateAxis(AxisInfo.SELF)) {
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -134,7 +133,7 @@ public class AttributeNodeTest {
     public void testGetLineNumber() {
         try {
             attributeNode.getLineNumber();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -146,7 +145,7 @@ public class AttributeNodeTest {
     public void testGetColumnNumber() {
         try {
             attributeNode.getColumnNumber();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -158,7 +157,7 @@ public class AttributeNodeTest {
     public void testGetTokenType() {
         try {
             attributeNode.getTokenType();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -170,7 +169,7 @@ public class AttributeNodeTest {
     public void testGetUnderlyingNode() {
         try {
             attributeNode.getUnderlyingNode();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
@@ -182,7 +181,7 @@ public class AttributeNodeTest {
     public void testGetAllNamespaces() {
         try {
             attributeNode.getAllNamespaces();
-            fail("Exception is excepted");
+            assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",

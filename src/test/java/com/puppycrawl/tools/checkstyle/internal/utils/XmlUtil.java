@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.internal.utils;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -64,8 +64,8 @@ public final class XmlUtil {
             rawXml = builder.parse(new InputSource(new StringReader(code)));
         }
         catch (IOException | SAXException ex) {
-            fail(fileName + " has invalid xml (" + ex.getMessage() + "): "
-                    + unserializedSource);
+            assertWithMessage(fileName + " has invalid xml (" + ex.getMessage() + "): "
+                    + unserializedSource).fail();
         }
 
         return rawXml;

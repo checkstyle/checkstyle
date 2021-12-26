@@ -26,10 +26,7 @@ import static com.puppycrawl.tools.checkstyle.utils.XpathUtil.getTextAttributeVa
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,28 +51,37 @@ public class XpathUtilTest {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue(isUtilsClassHasPrivateConstructor(XpathUtil.class, true),
-                "Constructor is not private");
+        assertWithMessage("Constructor is not private")
+                .that(isUtilsClassHasPrivateConstructor(XpathUtil.class, true))
+                .isTrue();
     }
 
     @Test
     public void testSupportsTextAttribute() {
-        assertTrue(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.IDENT)),
-                "Should return true for supported token types");
-        assertTrue(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.NUM_INT)),
-                "Should return true for supported token types");
-        assertTrue(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.STRING_LITERAL)),
-                "Should return true for supported token types");
-        assertTrue(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.CHAR_LITERAL)),
-                "Should return true for supported token types");
-        assertTrue(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.NUM_DOUBLE)),
-                "Should return true for supported token types");
-        assertFalse(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.VARIABLE_DEF)),
-                "Should return false for unsupported token types");
-        assertFalse(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.OBJBLOCK)),
-                "Should return false for unsupported token types");
-        assertFalse(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.LITERAL_CHAR)),
-                "Should return true for supported token types");
+        assertWithMessage("Should return true for supported token types")
+                .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.IDENT)))
+                .isTrue();
+        assertWithMessage("Should return true for supported token types")
+                .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.NUM_INT)))
+                .isTrue();
+        assertWithMessage("Should return true for supported token types")
+                .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.STRING_LITERAL)))
+                .isTrue();
+        assertWithMessage("Should return true for supported token types")
+                .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.CHAR_LITERAL)))
+                .isTrue();
+        assertWithMessage("Should return true for supported token types")
+                .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.NUM_DOUBLE)))
+                .isTrue();
+        assertWithMessage("Should return false for unsupported token types")
+                .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.VARIABLE_DEF)))
+                .isFalse();
+        assertWithMessage("Should return false for unsupported token types")
+                .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.OBJBLOCK)))
+                .isFalse();
+        assertWithMessage("Should return true for supported token types")
+                .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.LITERAL_CHAR)))
+                .isFalse();
     }
 
     @Test
@@ -161,7 +167,7 @@ public class XpathUtilTest {
                 + "//METHOD_DEF//VARIABLE_DEF//IDENT";
         try {
             XpathUtil.printXpathBranch(invalidXpath, file);
-            fail("Should end with exception");
+            assertWithMessage("Should end with exception").fail();
         }
         catch (CheckstyleException ex) {
             final String expectedMessage =
