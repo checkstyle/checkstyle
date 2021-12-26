@@ -170,7 +170,7 @@ public class InputOneStatementPerLineMultiline {
      */
     private void issue2211fail() {
         try(
-    AutoCloseable i=new java.io.PipedReader();AutoCloseable k=new java.io.PipedReader(); // violation
+    AutoCloseable i=new java.io.PipedReader();AutoCloseable k=new java.io.PipedReader();// violation
         ) {
         } catch (Exception e1) {
         }
