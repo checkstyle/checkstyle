@@ -285,22 +285,16 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         // Get initial DFA states, this is all we need to verify that
         // DFA states are cleared in JavaParser#parse.
         final DFA initialLexerDfa = lexer.getInterpreter().decisionToDFA[0];
-        final DFA initialParserDfa = parser.getInterpreter().decisionToDFA[0];
 
         // Parse file, and clear DFA
         JavaParser.parse(fileContents);
 
         // Get final DFA states after parsing to make assertions about
         final DFA finalLexerDfa = lexer.getInterpreter().decisionToDFA[0];
-        final DFA finalParserDfa = parser.getInterpreter().decisionToDFA[0];
 
         assertWithMessage("DFA states should not be equal after invocation of 'getLexer'")
                 .that(initialLexerDfa)
                 .isNotEqualTo(finalLexerDfa);
-
-        assertWithMessage("DFA states should not be equal after invocation of 'getParser'")
-                .that(initialParserDfa)
-                .isNotEqualTo(finalParserDfa);
     }
 
     private static final class CountComments {
