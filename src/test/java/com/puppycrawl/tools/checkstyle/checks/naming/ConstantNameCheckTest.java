@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -159,7 +158,9 @@ public class ConstantNameCheckTest
         final int[] expected = {
             TokenTypes.VARIABLE_DEF,
         };
-        assertNotNull(actual, "Default acceptable should not be null");
+        assertWithMessage("Default acceptable should not be null")
+            .that(actual)
+            .isNotNull();
         assertWithMessage("Default acceptable tokens are invalid")
             .that(actual)
             .isEqualTo(expected);

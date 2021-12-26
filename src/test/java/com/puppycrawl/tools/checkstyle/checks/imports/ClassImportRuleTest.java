@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +28,9 @@ public class ClassImportRuleTest {
     @Test
     public void testClassImportRule() {
         final ClassImportRule rule = new ClassImportRule(true, false, "pkg.a", false);
-        assertNotNull(rule, "Class import rule should not be null");
+        assertWithMessage("Class import rule should not be null")
+            .that(rule)
+            .isNotNull();
         assertWithMessage("Invalid access result")
             .that(rule.verifyImport("asda"))
             .isEqualTo(AccessResult.UNKNOWN);
@@ -53,7 +54,9 @@ public class ClassImportRuleTest {
     @Test
     public void testClassImportRuleRegexpSimple() {
         final ClassImportRule rule = new ClassImportRule(true, false, "pkg.a", true);
-        assertNotNull(rule, "Class import rule should not be null");
+        assertWithMessage("Class import rule should not be null")
+            .that(rule)
+            .isNotNull();
         assertWithMessage("Invalid access result")
             .that(rule.verifyImport("asda"))
             .isEqualTo(AccessResult.UNKNOWN);
@@ -77,7 +80,9 @@ public class ClassImportRuleTest {
     @Test
     public void testClassImportRuleRegexp() {
         final ClassImportRule rule = new ClassImportRule(true, false, "pk[gx]\\.a", true);
-        assertNotNull(rule, "Class import rule should not be null");
+        assertWithMessage("Class import rule should not be null")
+            .that(rule)
+            .isNotNull();
         assertWithMessage("Invalid access result")
             .that(rule.verifyImport("asda"))
             .isEqualTo(AccessResult.UNKNOWN);

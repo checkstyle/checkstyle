@@ -29,7 +29,6 @@ import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.NULL_PACKAGE_
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.PACKAGE_SEPARATOR;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.STRING_SEPARATOR;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mockStatic;
 
 import java.io.File;
@@ -142,7 +141,9 @@ public class PackageObjectFactoryTest {
         final Checker checker =
             (Checker) factory.createModule(
                         "com.puppycrawl.tools.checkstyle.Checker");
-        assertNotNull(checker, "Checker should not be null when creating module from name");
+        assertWithMessage("Checker should not be null when creating module from name")
+            .that(checker)
+            .isNotNull();
     }
 
     @Test
@@ -320,7 +321,9 @@ public class PackageObjectFactoryTest {
                 "createModuleByTryInEachPackage", String.class);
         createModuleByBruteForce.setAccessible(true);
         final Checker checker = (Checker) createModuleByBruteForce.invoke(factory, className);
-        assertNotNull(checker, "Checker should not be null when creating module from name");
+        assertWithMessage("Checker should not be null when creating module from name")
+            .that(checker)
+            .isNotNull();
     }
 
     @Test
@@ -334,7 +337,9 @@ public class PackageObjectFactoryTest {
         createModuleByBruteForce.setAccessible(true);
         final AnnotationLocationCheck check = (AnnotationLocationCheck) createModuleByBruteForce
                 .invoke(packageObjectFactory, checkName);
-        assertNotNull(check, "Check should not be null when creating module from name");
+        assertWithMessage("Check should not be null when creating module from name")
+            .that(check)
+            .isNotNull();
     }
 
     @Test
@@ -345,7 +350,9 @@ public class PackageObjectFactoryTest {
             Thread.currentThread().getContextClassLoader(), TRY_IN_ALL_REGISTERED_PACKAGES);
         final AnnotationLocationCheck check = (AnnotationLocationCheck) packageObjectFactory
                 .createModule(checkName);
-        assertNotNull(check, "Check should not be null when creating module from name");
+        assertWithMessage("Check should not be null when creating module from name")
+            .that(check)
+            .isNotNull();
     }
 
     @Test

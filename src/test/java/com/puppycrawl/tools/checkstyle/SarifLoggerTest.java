@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -214,7 +213,9 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         try {
             final SarifLogger logger = new SarifLogger(outStream, null);
             // assert required to calm down eclipse's 'The allocated object is never used' violation
-            assertNotNull(logger, "Null instance");
+            assertWithMessage("Null instance")
+                .that(logger)
+                .isNotNull();
             assertWithMessage("Exception was expected").fail();
         }
         catch (IllegalArgumentException | IOException exception) {
@@ -263,7 +264,9 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         logger.finishLocalSetup();
         logger.auditStarted(null);
         logger.auditFinished(null);
-        assertNotNull(logger, "instance should not be null");
+        assertWithMessage("instance should not be null")
+            .that(logger)
+            .isNotNull();
     }
 
     @Test

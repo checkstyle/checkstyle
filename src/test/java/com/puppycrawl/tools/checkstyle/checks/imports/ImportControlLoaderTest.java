@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doThrow;
@@ -57,7 +56,9 @@ public class ImportControlLoaderTest {
         final AbstractImportControl root =
                 ImportControlLoader.load(
                     new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
-        assertNotNull(root, "Import root should not be null");
+        assertWithMessage("Import root should not be null")
+            .that(root)
+            .isNotNull();
     }
 
     @Test
@@ -82,7 +83,9 @@ public class ImportControlLoaderTest {
         final AbstractImportControl root =
                 ImportControlLoader.load(
                     new File(getPath("InputImportControlLoaderWithNewElement.xml")).toURI());
-        assertNotNull(root, "Import root should not be null");
+        assertWithMessage("Import root should not be null")
+            .that(root)
+            .isNotNull();
     }
 
     @Test
