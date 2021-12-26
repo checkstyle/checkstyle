@@ -248,12 +248,6 @@
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDefaultComesLast.java"/>
 
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDefaultComesLastSkipIfLastAndSharedWithCase.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDefaultComesLastSkipIfLastAndSharedWithCase.java"/>
-
-  <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
 
   <suppress id="lineLength"
