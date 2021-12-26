@@ -32,7 +32,7 @@ public class BlockTagUtilTest {
     @Test
     public void testHasPrivateConstructor() throws Exception {
         assertWithMessage("Constructor is not private")
-                .that(TestUtil.isUtilsClassHasPrivateConstructor(BlockTagUtil.class, true))
+                .that(TestUtil.isUtilsClassHasPrivateConstructor(BlockTagUtil.class))
                 .isTrue();
     }
 

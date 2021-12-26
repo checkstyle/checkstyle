@@ -94,7 +94,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
             .that(TestUtil.isUtilsClassHasPrivateConstructor(
-                                            JavadocPropertiesGenerator.class, false))
+                                            JavadocPropertiesGenerator.class))
             .isTrue();
     }
 

@@ -31,7 +31,7 @@ public class JavadocTokenTypesTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
-                .that(isUtilsClassHasPrivateConstructor(JavadocTokenTypes.class, true))
+                .that(isUtilsClassHasPrivateConstructor(JavadocTokenTypes.class))
                 .isTrue();
     }
 
