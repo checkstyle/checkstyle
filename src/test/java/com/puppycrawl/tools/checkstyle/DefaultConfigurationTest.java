@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -37,7 +36,9 @@ public class DefaultConfigurationTest {
         config.addProperty("property", "value");
         final String[] actual = config.getPropertyNames();
         final String[] expected = {"property"};
-        assertArrayEquals(expected, actual, "Invalid property names");
+        assertWithMessage("Invalid property names")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -59,7 +60,9 @@ public class DefaultConfigurationTest {
         config.addAttribute("attribute", "first");
         final String[] actual = config.getAttributeNames();
         final String[] expected = {"attribute"};
-        assertArrayEquals(expected, actual, "Invalid attribute names");
+        assertWithMessage("Invalid attribute names")
+            .that(actual)
+            .isEqualTo(expected);
         assertWithMessage("Invalid property value")
             .that(config.getAttribute("attribute"))
             .isEqualTo("first");

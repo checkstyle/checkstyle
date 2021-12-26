@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_TAG_NOT_VALID_ON;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -232,7 +231,9 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid acceptable token size")
             .that(actual.length)
             .isEqualTo(1);
-        assertArrayEquals(expectedTokens, actual, "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+            .that(actual)
+            .isEqualTo(expectedTokens);
     }
 
 }
