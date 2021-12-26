@@ -39,7 +39,7 @@ public class AnnotationUtilTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         try {
-            isUtilsClassHasPrivateConstructor(AnnotationUtil.class, true);
+            isUtilsClassHasPrivateConstructor(AnnotationUtil.class);
             assertWithMessage("Exception is expected").fail();
         }
         catch (InvocationTargetException ex) {

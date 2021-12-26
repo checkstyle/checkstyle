@@ -52,7 +52,7 @@ public class XpathUtilTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
-                .that(isUtilsClassHasPrivateConstructor(XpathUtil.class, true))
+                .that(isUtilsClassHasPrivateConstructor(XpathUtil.class))
                 .isTrue();
     }
 
