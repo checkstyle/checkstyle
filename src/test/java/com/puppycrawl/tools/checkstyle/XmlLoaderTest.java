@@ -49,7 +49,7 @@ public class XmlLoaderTest {
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(
-                        XmlLoader.LoadExternalDtdFeatureProvider.class, true))
+                        XmlLoader.LoadExternalDtdFeatureProvider.class))
                 .isTrue();
     }
 
