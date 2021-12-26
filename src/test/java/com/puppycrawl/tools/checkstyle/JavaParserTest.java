@@ -225,9 +225,15 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         final File file =
                 new File(getPath("InputJavaParserNoStackOverflowOnDeepStringConcat.java"));
 
-        final DetailAST ast = TestUtil.getResultWithLimitedResources(() -> {
-            return JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS);
-        });
+        DetailAST ast = null;
+        try {
+            ast = TestUtil.getResultWithLimitedResources(() -> {
+                return JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS);
+            });
+        }
+        catch (Exception exception) {
+            exception.printStackTrace(System.out);
+        }
 
         assertWithMessage("File parsing should complete successfully.")
                 .that(ast)

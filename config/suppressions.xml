@@ -61,6 +61,7 @@
   <suppress checks="MethodCount" files="[\\/]RequireThisCheck.java$"/>
   <!-- parse method needs catching Exceptions to print context of execution -->
   <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]InlineConfigParser\.java"/>
+  <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]JavaParserTest\.java"/>
 
   <!-- we need that set of converters -->
   <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>
