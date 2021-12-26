@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,8 +47,9 @@ public class FinalClassCheckTest
              TokenTypes.PACKAGE_DEF,
              TokenTypes.LITERAL_NEW,
             };
-        assertArrayEquals(expected, checkObj.getRequiredTokens(),
-                "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     @Test
@@ -122,8 +122,9 @@ public class FinalClassCheckTest
              TokenTypes.PACKAGE_DEF,
              TokenTypes.LITERAL_NEW,
             };
-        assertArrayEquals(expected, obj.getAcceptableTokens(),
-                "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(obj.getAcceptableTokens())
+            .isEqualTo(expected);
     }
 
     @Test

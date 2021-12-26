@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterTypeMemberDeclarationCheck.MSG_SEMI;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -100,11 +100,14 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
             TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.RECORD_DEF,
         };
-        assertArrayEquals(expected, check.getAcceptableTokens(),
-                "Acceptable required tokens are invalid");
-        assertArrayEquals(expected, check.getDefaultTokens(),
-                "Default required tokens are invalid");
-        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, check.getRequiredTokens(),
-                "Required required tokens are invalid");
+        assertWithMessage("Acceptable required tokens are invalid")
+            .that(check.getAcceptableTokens())
+            .isEqualTo(expected);
+        assertWithMessage("Default required tokens are invalid")
+            .that(check.getDefaultTokens())
+            .isEqualTo(expected);
+        assertWithMessage("Required required tokens are invalid")
+            .that(check.getRequiredTokens())
+            .isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
     }
 }

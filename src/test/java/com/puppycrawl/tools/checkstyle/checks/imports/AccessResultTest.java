@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -50,7 +49,9 @@ public class AccessResultTest {
             AccessResult.DISALLOWED,
             AccessResult.UNKNOWN,
         };
-        assertArrayEquals(expected, actual, "Invalid access result values");
+        assertWithMessage("Invalid access result values")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
 }

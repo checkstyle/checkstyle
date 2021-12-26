@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocPositionCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -42,7 +42,9 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
         final InvalidJavadocPositionCheck check = new InvalidJavadocPositionCheck();
         final int[] actual = check.getAcceptableTokens();
 
-        assertArrayEquals(expected, actual, "Acceptable tokens differs from expected");
+        assertWithMessage("Acceptable tokens differs from expected")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -53,7 +55,9 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
         final InvalidJavadocPositionCheck check = new InvalidJavadocPositionCheck();
         final int[] actual = check.getRequiredTokens();
 
-        assertArrayEquals(expected, actual, "Required tokens differ from expected");
+        assertWithMessage("Required tokens differ from expected")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test

@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.io.File;
 
@@ -46,8 +46,9 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.RECORD_DEF,
         };
-        assertArrayEquals(expected, checkObj.getRequiredTokens(),
-                "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     @Test
@@ -135,8 +136,9 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.RECORD_DEF,
         };
-        assertArrayEquals(expected, obj.getAcceptableTokens(),
-                "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(obj.getAcceptableTokens())
+            .isEqualTo(expected);
     }
 
 }

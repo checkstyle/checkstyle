@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingLeadingAsteriskCheck.MSG_MISSING_ASTERISK;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -42,8 +42,9 @@ public class JavadocMissingLeadingAsteriskCheckTest extends AbstractModuleTestSu
         final int[] expected = {
             JavadocTokenTypes.NEWLINE,
         };
-        assertArrayEquals(expected, checkObj.getAcceptableJavadocTokens(),
-            "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(checkObj.getAcceptableJavadocTokens())
+            .isEqualTo(expected);
     }
 
     @Test

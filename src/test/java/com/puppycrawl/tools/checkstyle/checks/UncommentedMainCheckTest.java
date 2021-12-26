@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.antlr.v4.runtime.CommonToken;
@@ -70,10 +69,12 @@ public class UncommentedMainCheckTest
         final UncommentedMainCheck check = new UncommentedMainCheck();
         assertNotNull(check.getRequiredTokens(), "Required tokens should not be null");
         assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
-        assertArrayEquals(check.getDefaultTokens(),
-                check.getAcceptableTokens(), "Invalid default tokens");
-        assertArrayEquals(check.getDefaultTokens(),
-                check.getRequiredTokens(), "Invalid acceptable tokens");
+        assertWithMessage("Invalid default tokens")
+            .that(check.getAcceptableTokens())
+            .isEqualTo(check.getDefaultTokens());
+        assertWithMessage("Invalid acceptable tokens")
+            .that(check.getRequiredTokens())
+            .isEqualTo(check.getDefaultTokens());
     }
 
     @Test

@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -158,8 +157,9 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
         };
-        assertArrayEquals(expected, checkObj.getRequiredTokens(),
-                "Required tokens differ from expected");
+        assertWithMessage("Required tokens differ from expected")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     @Test
@@ -440,7 +440,9 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
         };
-        assertArrayEquals(expected, actual, "Acceptable tokens differ from expected");
+        assertWithMessage("Acceptable tokens differ from expected")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
