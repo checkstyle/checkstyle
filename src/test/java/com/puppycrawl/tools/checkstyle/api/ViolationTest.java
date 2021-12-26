@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_OBJECT_ARRA
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.IOException;
@@ -194,7 +193,9 @@ public class ViolationTest {
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages", Locale.ENGLISH,
                 "java.class", new TestUrlsClassLoader(url), true);
 
-        assertNotNull(bundle, "Bundle should not be null when stream is not null");
+        assertWithMessage("Bundle should not be null when stream is not null")
+            .that(bundle)
+            .isNotNull();
         assertWithMessage("connection should not be using caches")
                 .that(urlConnection.getUseCaches())
                 .isFalse();
@@ -246,7 +247,9 @@ public class ViolationTest {
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages", Locale.ENGLISH,
                 "java.class", new TestUrlsClassLoader(url), false);
 
-        assertNotNull(bundle, "Bundle should not be null when stream is not null");
+        assertWithMessage("Bundle should not be null when stream is not null")
+            .that(bundle)
+            .isNotNull();
         assertWithMessage("connection should not be using caches")
                 .that(urlConnection.getUseCaches())
                 .isTrue();

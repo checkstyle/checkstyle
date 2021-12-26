@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -612,7 +611,9 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
             final DetailAST rootAST = JavaParser.parseFile(new File(fileName),
                     JavaParser.Options.WITHOUT_COMMENTS);
 
-            assertNotNull(rootAST, "file must return a root node: " + fileName);
+            assertWithMessage("file must return a root node: " + fileName)
+                .that(rootAST)
+                .isNotNull();
 
             assertWithMessage("tree is valid")
                     .that(checkTree(fileName, rootAST))

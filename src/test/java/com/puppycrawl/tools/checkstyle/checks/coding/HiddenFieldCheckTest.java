@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.File;
 import java.util.Optional;
@@ -160,8 +159,9 @@ public class HiddenFieldCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(HiddenFieldCheck.class);
         checkConfig.addProperty("ignoreFormat", "^i.*$");
-        assertNotNull(checkConfig.getProperty("ignoreFormat"),
-                "Ignore format should not be null");
+        assertWithMessage("Ignore format should not be null")
+            .that(checkConfig.getProperty("ignoreFormat"))
+            .isNotNull();
         final String[] expected = {
             "30:13: " + getCheckMessage(MSG_KEY, "hidden"),
             "33:34: " + getCheckMessage(MSG_KEY, "hidden"),

@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
@@ -45,7 +44,9 @@ public class ScopeTest {
     @Test
     public void testMisc() {
         final Scope scope = Scope.getInstance("public");
-        assertNotNull(scope, "Scope must not be null");
+        assertWithMessage("Scope must not be null")
+            .that(scope)
+            .isNotNull();
         assertWithMessage("Invalid scope toString")
             .that(scope.toString())
             .isEqualTo("public");

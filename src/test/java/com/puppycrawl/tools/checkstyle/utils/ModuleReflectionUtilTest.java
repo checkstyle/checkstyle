@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.File;
 import java.util.List;
@@ -172,7 +171,9 @@ public class ModuleReflectionUtilTest {
     @Test
     public void testKeepEclipseHappy() {
         final InvalidNonDefaultConstructorClass test = new InvalidNonDefaultConstructorClass(0);
-        assertNotNull(test, "should use constructor");
+        assertWithMessage("should use constructor")
+            .that(test)
+            .isNotNull();
         assertWithMessage("should use field")
             .that(test.getField())
             .isEqualTo(1);

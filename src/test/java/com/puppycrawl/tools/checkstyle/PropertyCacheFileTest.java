@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -113,8 +112,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
 
         cache.load();
 
-        assertNotNull(cache.get(PropertyCacheFile.CONFIG_HASH_KEY),
-                "Config hash key should not be null");
+        assertWithMessage("Config hash key should not be null")
+            .that(cache.get(PropertyCacheFile.CONFIG_HASH_KEY))
+            .isNotNull();
     }
 
     @Test
@@ -125,7 +125,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         cache.load();
 
         final String hash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertNotNull(hash, "Config hash key should not be null");
+        assertWithMessage("Config hash key should not be null")
+            .that(hash)
+            .isNotNull();
         assertNull(cache.get("key"), "Should return null if key is not in cache");
 
         cache.load();
@@ -136,8 +138,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid cache value")
             .that(cache.get("key"))
             .isEqualTo("value");
-        assertNotNull(cache.get(PropertyCacheFile.CONFIG_HASH_KEY),
-                "Config hash key should not be null");
+        assertWithMessage("Config hash key should not be null")
+            .that(cache.get(PropertyCacheFile.CONFIG_HASH_KEY))
+            .isNotNull();
     }
 
     @Test
@@ -149,7 +152,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         cache.load();
 
         final String hash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertNotNull(hash, "Config hash key should not be null");
+        assertWithMessage("Config hash key should not be null")
+            .that(hash)
+            .isNotNull();
 
         cache.reset();
 
@@ -169,7 +174,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         cache.put("myFile", 1);
 
         final String hash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertNotNull(hash, "Config hash key should not be null");
+        assertWithMessage("Config hash key should not be null")
+            .that(hash)
+            .isNotNull();
 
         // apply new external resource to clear cache
         final Set<String> resources = new HashSet<>();
