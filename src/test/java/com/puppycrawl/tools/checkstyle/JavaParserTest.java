@@ -297,10 +297,6 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         assertWithMessage("DFA states should not be equal after invocation of 'getLexer'")
                 .that(initialLexerDfa)
                 .isNotEqualTo(finalLexerDfa);
-
-        assertWithMessage("DFA states should not be equal after invocation of 'getParser'")
-                .that(initialParserDfa)
-                .isNotEqualTo(finalParserDfa);
     }
 
     private static final class CountComments {
