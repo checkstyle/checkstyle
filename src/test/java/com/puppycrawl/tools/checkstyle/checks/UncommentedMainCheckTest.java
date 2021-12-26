@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.antlr.v4.runtime.CommonToken;
@@ -117,7 +116,9 @@ public class UncommentedMainCheckTest
             assertWithMessage("IllegalStateException is expected").fail();
         }
         catch (IllegalStateException ex) {
-            assertEquals(ast.toString(), ex.getMessage(), "Error message is unexpected");
+            assertWithMessage("Error message is unexpected")
+                .that(ex.getMessage())
+                .isEqualTo(ast.toString());
         }
     }
 

@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
@@ -94,7 +93,9 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals("Unable to find: " + fileName, ex.getMessage(), "Invalid error message");
+            assertWithMessage("Invalid error message")
+                .that(ex.getMessage())
+                .isEqualTo("Unable to find: " + fileName);
         }
     }
 
@@ -107,9 +108,10 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals("Unable to parse " + fileName
-                    + " - invalid files or checks or message format for suppress-xpath",
-                    ex.getMessage(), "Invalid error message");
+            assertWithMessage("Invalid error message")
+                .that(ex.getMessage())
+                .isEqualTo("Unable to parse " + fileName
+                    + " - invalid files or checks or message format for suppress-xpath");
         }
     }
 
@@ -175,7 +177,9 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
         final SuppressionXpathFilter filter = createSuppressionXpathFilter(fileName, optional);
         final Set<String> expected = Collections.singleton(fileName);
         final Set<String> actual = filter.getExternalResourceLocations();
-        assertEquals(expected, actual, "Invalid external resource");
+        assertWithMessage("Invalid external resource")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     private static SuppressionXpathFilter createSuppressionXpathFilter(String fileName,

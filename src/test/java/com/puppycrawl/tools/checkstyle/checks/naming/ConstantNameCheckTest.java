@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
@@ -60,11 +59,12 @@ public class ConstantNameCheckTest
             assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                     + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
                     + "naming.ConstantNameCheck - "
-                    + "illegal value '\\' for property 'format'",
-                ex.getMessage(), "Invalid exception message");
+                    + "illegal value '\\' for property 'format'");
         }
     }
 

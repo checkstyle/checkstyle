@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -51,7 +50,9 @@ public class TokenUtilTest {
         final Field field = Integer.class.getField("MAX_VALUE");
         final int maxValue = TokenUtil.getIntFromField(field, 0);
 
-        assertEquals(Integer.MAX_VALUE, maxValue, "Invalid getIntFromField result");
+        assertWithMessage("Invalid getIntFromField result")
+            .that(maxValue)
+            .isEqualTo(Integer.MAX_VALUE);
     }
 
     @Test
@@ -84,7 +85,9 @@ public class TokenUtilTest {
         expectedMap.put("MAX_VALUE", Integer.MAX_VALUE);
         expectedMap.put("MIN_VALUE", Integer.MIN_VALUE);
 
-        assertEquals(expectedMap, actualMap, "Unexpected name to value map");
+        assertWithMessage("Unexpected name to value map")
+            .that(actualMap)
+            .isEqualTo(expectedMap);
     }
 
     @Test
@@ -128,8 +131,9 @@ public class TokenUtilTest {
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException expectedException) {
-            assertEquals("unknown TokenTypes id '" + nextAfterMaxId + "'",
-                expectedException.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(expectedException.getMessage())
+                .isEqualTo("unknown TokenTypes id '" + nextAfterMaxId + "'");
         }
     }
 
@@ -145,7 +149,9 @@ public class TokenUtilTest {
             final String name = field.getName();
             final int id = field.getInt(name);
 
-            assertEquals(name, TokenUtil.getTokenName(id), "Invalid token name");
+            assertWithMessage("Invalid token name")
+                .that(TokenUtil.getTokenName(id))
+                .isEqualTo(name);
         }
     }
 
@@ -157,8 +163,9 @@ public class TokenUtilTest {
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException expected) {
-            assertEquals("unknown TokenTypes id '" + id + "'", expected.getMessage(),
-                "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(expected.getMessage())
+                .isEqualTo("unknown TokenTypes id '" + id + "'");
         }
     }
 
@@ -170,8 +177,9 @@ public class TokenUtilTest {
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException expected) {
-            assertEquals("unknown TokenTypes value '" + id + "'", expected.getMessage(),
-                "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(expected.getMessage())
+                .isEqualTo("unknown TokenTypes value '" + id + "'");
         }
     }
 
@@ -183,8 +191,9 @@ public class TokenUtilTest {
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException expected) {
-            assertEquals("unknown TokenTypes value '" + id + "'", expected.getMessage(),
-                "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(expected.getMessage())
+                .isEqualTo("unknown TokenTypes value '" + id + "'");
         }
     }
 
@@ -217,7 +226,9 @@ public class TokenUtilTest {
     public void testGetTokenTypesTotalNumber() {
         final int tokenTypesTotalNumber = TokenUtil.getTokenTypesTotalNumber();
 
-        assertEquals(184, tokenTypesTotalNumber, "Invalid token total number");
+        assertWithMessage("Invalid token total number")
+            .that(tokenTypesTotalNumber)
+            .isEqualTo(184);
     }
 
     @Test
@@ -225,8 +236,12 @@ public class TokenUtilTest {
         final int[] allTokenIds = TokenUtil.getAllTokenIds();
         final int sum = Arrays.stream(allTokenIds).sum();
 
-        assertEquals(184, allTokenIds.length, "Invalid token length");
-        assertEquals(18737, sum, "invalid sum");
+        assertWithMessage("Invalid token length")
+            .that(allTokenIds.length)
+            .isEqualTo(184);
+        assertWithMessage("invalid sum")
+            .that(sum)
+            .isEqualTo(18737);
     }
 
     @Test
@@ -234,14 +249,18 @@ public class TokenUtilTest {
         final int id = TokenTypes.COMMENT_CONTENT;
         final String tokenName = TokenUtil.getTokenName(id);
 
-        assertEquals("COMMENT_CONTENT", tokenName, "Invalid token name");
+        assertWithMessage("Invalid token name")
+            .that(tokenName)
+            .isEqualTo("COMMENT_CONTENT");
     }
 
     @Test
     public void testCorrectBehaviourOfGetTokenId() {
         final String id = "COMPILATION_UNIT";
 
-        assertEquals(TokenTypes.COMPILATION_UNIT, TokenUtil.getTokenId(id), "Invalid token id");
+        assertWithMessage("Invalid token id")
+            .that(TokenUtil.getTokenId(id))
+            .isEqualTo(TokenTypes.COMPILATION_UNIT);
     }
 
     @Test
@@ -249,8 +268,9 @@ public class TokenUtilTest {
         final String id = "COMPILATION_UNIT";
         final String shortDescription = TokenUtil.getShortDescription(id);
 
-        assertEquals("This is the root node for the source file.",
-                shortDescription, "Invalid short description");
+        assertWithMessage("Invalid short description")
+            .that(shortDescription)
+            .isEqualTo("This is the root node for the source file.");
     }
 
     @Test
@@ -270,7 +290,9 @@ public class TokenUtilTest {
         final Optional<DetailAST> result = TokenUtil.findFirstTokenByPredicate(astForTest,
             ast -> "second".equals(ast.getText()));
 
-        assertEquals(secondSibling, result.orElse(null), "Invalid second sibling");
+        assertWithMessage("Invalid second sibling")
+            .that(result.orElse(null))
+            .isEqualTo(secondSibling);
     }
 
     @Test
@@ -291,8 +313,12 @@ public class TokenUtilTest {
         TokenUtil.forEachChild(astForTest, TokenTypes.CLASS_DEF, children::add);
         final DetailAST firstChild = children.get(0);
 
-        assertEquals(1, children.size(), "Must be one match");
-        assertEquals(secondSibling, firstChild, "Mismatched child node");
+        assertWithMessage("Must be one match")
+            .that(children.size())
+            .isEqualTo(1);
+        assertWithMessage("Mismatched child node")
+            .that(firstChild)
+            .isEqualTo(secondSibling);
     }
 
     @Test

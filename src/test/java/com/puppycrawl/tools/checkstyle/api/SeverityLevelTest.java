@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
@@ -38,50 +37,65 @@ public class SeverityLevelTest {
     @Test
     public void testSeverityLevelValueOf() {
         final SeverityLevel level = SeverityLevel.valueOf("INFO");
-        assertEquals(SeverityLevel.INFO, level, "Invalid severity level");
+        assertWithMessage("Invalid severity level")
+            .that(level)
+            .isEqualTo(SeverityLevel.INFO);
     }
 
     @Test
     public void testMisc() {
         final SeverityLevel severityLevel = SeverityLevel.getInstance("info");
         assertNotNull(severityLevel, "Invalid getInstance result, should not be null");
-        assertEquals("info", severityLevel.toString(), "Invalid toString result");
-        assertEquals("info", severityLevel.getName(), "Invalid severity level name");
+        assertWithMessage("Invalid toString result")
+            .that(severityLevel.toString())
+            .isEqualTo("info");
+        assertWithMessage("Invalid severity level name")
+            .that(severityLevel.getName())
+            .isEqualTo("info");
 
         try {
             SeverityLevel.getInstance("unknown");
             assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals(
-                    "No enum constant com.puppycrawl.tools.checkstyle.api.SeverityLevel.UNKNOWN",
-                    ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("No enum constant "
+                    + "com.puppycrawl.tools.checkstyle.api.SeverityLevel.UNKNOWN");
         }
     }
 
     @Test
     public void testMixedCaseSpaces() {
-        assertEquals(SeverityLevel.IGNORE, SeverityLevel.getInstance("IgnoRe "),
-                "Invalid getInstance result");
-        assertEquals(SeverityLevel.INFO, SeverityLevel.getInstance(" iNfo"),
-                "Invalid getInstance result");
-        assertEquals(SeverityLevel.WARNING, SeverityLevel.getInstance(" WarniNg"),
-                "Invalid getInstance result");
-        assertEquals(SeverityLevel.ERROR, SeverityLevel.getInstance("    ERROR "),
-                "Invalid getInstance result");
+        assertWithMessage("Invalid getInstance result")
+            .that(SeverityLevel.getInstance("IgnoRe "))
+            .isEqualTo(SeverityLevel.IGNORE);
+        assertWithMessage("Invalid getInstance result")
+            .that(SeverityLevel.getInstance(" iNfo"))
+            .isEqualTo(SeverityLevel.INFO);
+        assertWithMessage("Invalid getInstance result")
+            .that(SeverityLevel.getInstance(" WarniNg"))
+            .isEqualTo(SeverityLevel.WARNING);
+        assertWithMessage("Invalid getInstance result")
+            .that(SeverityLevel.getInstance("    ERROR "))
+            .isEqualTo(SeverityLevel.ERROR);
     }
 
     @DefaultLocale(language = "tr", country = "TR")
     @Test
     public void testMixedCaseSpacesWithDifferentLocales() {
-        assertEquals(SeverityLevel.IGNORE, SeverityLevel.getInstance("IgnoRe "),
-                "Invalid getInstance result");
-        assertEquals(SeverityLevel.INFO, SeverityLevel.getInstance(" iNfo"),
-                "Invalid getInstance result");
-        assertEquals(SeverityLevel.WARNING, SeverityLevel.getInstance(" WarniNg"),
-                "Invalid getInstance result");
-        assertEquals(SeverityLevel.ERROR, SeverityLevel.getInstance("    ERROR "),
-                "Invalid getInstance result");
+        assertWithMessage("Invalid getInstance result")
+            .that(SeverityLevel.getInstance("IgnoRe "))
+            .isEqualTo(SeverityLevel.IGNORE);
+        assertWithMessage("Invalid getInstance result")
+            .that(SeverityLevel.getInstance(" iNfo"))
+            .isEqualTo(SeverityLevel.INFO);
+        assertWithMessage("Invalid getInstance result")
+            .that(SeverityLevel.getInstance(" WarniNg"))
+            .isEqualTo(SeverityLevel.WARNING);
+        assertWithMessage("Invalid getInstance result")
+            .that(SeverityLevel.getInstance("    ERROR "))
+            .isEqualTo(SeverityLevel.ERROR);
     }
 
 }

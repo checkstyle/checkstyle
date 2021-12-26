@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
@@ -47,7 +46,9 @@ public class InlineTagUtilTest {
             " */"};
         final List<TagInfo> tags = InlineTagUtil.extractInlineTags(text);
 
-        assertEquals(4, tags.size(), "Unexpected tags size");
+        assertWithMessage("Unexpected tags size")
+            .that(tags.size())
+            .isEqualTo(4);
 
         assertTag(tags.get(0), "link", "List", 2, 4);
         assertTag(tags.get(1), "link", "List link text", 2, 19);
@@ -65,7 +66,9 @@ public class InlineTagUtilTest {
 
         final List<TagInfo> tags = InlineTagUtil.extractInlineTags(text);
 
-        assertEquals(1, tags.size(), "Unexpected tags size");
+        assertWithMessage("Unexpected tags size")
+            .that(tags.size())
+            .isEqualTo(1);
         assertTag(tags.get(0), "link", "foo bar baz", 2, 4);
     }
 
@@ -78,7 +81,9 @@ public class InlineTagUtilTest {
 
         final List<TagInfo> tags = InlineTagUtil.extractInlineTags(text);
 
-        assertEquals(1, tags.size(), "Unexpected tags size");
+        assertWithMessage("Unexpected tags size")
+            .that(tags.size())
+            .isEqualTo(1);
         assertTag(tags.get(0), "code", "foo bar baz", 2, 4);
     }
 
@@ -90,7 +95,9 @@ public class InlineTagUtilTest {
 
         final List<TagInfo> tags = InlineTagUtil.extractInlineTags(source);
 
-        assertEquals(1, tags.size(), "Unexpected tags size");
+        assertWithMessage("Unexpected tags size")
+            .that(tags.size())
+            .isEqualTo(1);
 
         final TagInfo tag = tags.get(0);
         assertTag(tag, "link", "foo", 1, 3);
@@ -123,10 +130,18 @@ public class InlineTagUtilTest {
     }
 
     private static void assertTag(TagInfo tag, String name, String value, int line, int col) {
-        assertEquals(name, tag.getName(), "Unexpected tags name");
-        assertEquals(value, tag.getValue(), "Unexpected tags value");
-        assertEquals(line, tag.getPosition().getLine(), "Unexpected tags position");
-        assertEquals(col, tag.getPosition().getColumn(), "Unexpected tags position");
+        assertWithMessage("Unexpected tags name")
+            .that(tag.getName())
+            .isEqualTo(name);
+        assertWithMessage("Unexpected tags value")
+            .that(tag.getValue())
+            .isEqualTo(value);
+        assertWithMessage("Unexpected tags position")
+            .that(tag.getPosition().getLine())
+            .isEqualTo(line);
+        assertWithMessage("Unexpected tags position")
+            .that(tag.getPosition().getColumn())
+            .isEqualTo(col);
     }
 
 }

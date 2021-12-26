@@ -25,7 +25,6 @@ import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY_MI
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -231,12 +230,15 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         assertWithMessage("Translation keys should be empty when File is not found")
                 .that(keys).isEmpty();
 
-        assertEquals(1, dispatcher.savedErrors.size(), "expected number of errors to fire");
+        assertWithMessage("expected number of errors to fire")
+            .that(dispatcher.savedErrors.size())
+            .isEqualTo(1);
         final Violation violation = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, "general.fileNotFound",
                 null, null, getClass(), null);
-        assertEquals(violation.getViolation(),
-                dispatcher.savedErrors.iterator().next().getViolation(), "Invalid violation");
+        assertWithMessage("Invalid violation")
+            .that(dispatcher.savedErrors.iterator().next().getViolation())
+            .isEqualTo(violation.getViolation());
     }
 
     @Test
@@ -253,12 +255,15 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         final Exception exception = new IOException("test exception");
         TestUtil.invokeMethod(check, "logException", exception, new File(""));
 
-        assertEquals(1, dispatcher.savedErrors.size(), "expected number of errors to fire");
+        assertWithMessage("expected number of errors to fire")
+            .that(dispatcher.savedErrors.size())
+            .isEqualTo(1);
         final Violation violation = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, "general.exception",
                 new String[] {exception.getMessage()}, null, getClass(), null);
-        assertEquals(violation.getViolation(),
-                dispatcher.savedErrors.iterator().next().getViolation(), "Invalid violation");
+        assertWithMessage("Invalid violation")
+            .that(dispatcher.savedErrors.iterator().next().getViolation())
+            .isEqualTo(violation.getViolation());
     }
 
     @Test

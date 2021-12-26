@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -131,7 +130,9 @@ public class FinalClassCheckTest
     public void testQualifiedClassName() throws Exception {
         final String actual = TestUtil.invokeStaticMethod(FinalClassCheck.class,
                 "getQualifiedClassName", "", null, "ClassName");
-        assertEquals("ClassName", actual, "unexpected result");
+        assertWithMessage("unexpected result")
+            .that(actual)
+            .isEqualTo("ClassName");
     }
 
 }

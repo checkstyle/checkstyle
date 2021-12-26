@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
@@ -38,46 +37,76 @@ public class ScopeTest {
     @Test
     public void testScopeValueOf() {
         final Scope scope = Scope.valueOf("PRIVATE");
-        assertEquals(Scope.PRIVATE, scope, "Invalid scope");
+        assertWithMessage("Invalid scope")
+            .that(scope)
+            .isEqualTo(Scope.PRIVATE);
     }
 
     @Test
     public void testMisc() {
         final Scope scope = Scope.getInstance("public");
         assertNotNull(scope, "Scope must not be null");
-        assertEquals("public", scope.toString(), "Invalid scope toString");
-        assertEquals("public", scope.getName(), "Invalid scope name");
+        assertWithMessage("Invalid scope toString")
+            .that(scope.toString())
+            .isEqualTo("public");
+        assertWithMessage("Invalid scope name")
+            .that(scope.getName())
+            .isEqualTo("public");
 
         try {
             Scope.getInstance("unknown");
             assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals(
-                    "No enum constant com.puppycrawl.tools.checkstyle.api.Scope.UNKNOWN",
-                    ex.getMessage(), "Invalid error message");
+            assertWithMessage("Invalid error message")
+                .that(ex.getMessage())
+                .isEqualTo("No enum constant com.puppycrawl.tools.checkstyle.api.Scope.UNKNOWN");
         }
     }
 
     @Test
     public void testMixedCaseSpaces() {
-        assertEquals(Scope.NOTHING, Scope.getInstance("NothinG "), "Invalid scope");
-        assertEquals(Scope.PUBLIC, Scope.getInstance(" PuBlic"), "Invalid scope");
-        assertEquals(Scope.PROTECTED, Scope.getInstance(" ProteCted"), "Invalid scope");
-        assertEquals(Scope.PACKAGE, Scope.getInstance("    PackAge "), "Invalid scope");
-        assertEquals(Scope.PRIVATE, Scope.getInstance("privaTe   "), "Invalid scope");
-        assertEquals(Scope.ANONINNER, Scope.getInstance("AnonInner"), "Invalid scope");
+        assertWithMessage("Invalid scope")
+            .that(Scope.getInstance("NothinG "))
+            .isEqualTo(Scope.NOTHING);
+        assertWithMessage("Invalid scope")
+            .that(Scope.getInstance(" PuBlic"))
+            .isEqualTo(Scope.PUBLIC);
+        assertWithMessage("Invalid scope")
+            .that(Scope.getInstance(" ProteCted"))
+            .isEqualTo(Scope.PROTECTED);
+        assertWithMessage("Invalid scope")
+            .that(Scope.getInstance("    PackAge "))
+            .isEqualTo(Scope.PACKAGE);
+        assertWithMessage("Invalid scope")
+            .that(Scope.getInstance("privaTe   "))
+            .isEqualTo(Scope.PRIVATE);
+        assertWithMessage("Invalid scope")
+            .that(Scope.getInstance("AnonInner"))
+            .isEqualTo(Scope.ANONINNER);
     }
 
     @DefaultLocale(language = "tr", country = "TR")
     @Test
     public void testMixedCaseSpacesWithDifferentLocale() {
-        assertEquals(Scope.NOTHING, Scope.getInstance("NothinG "), "Invalid scope");
-        assertEquals(Scope.PUBLIC, Scope.getInstance(" PuBlic"), "Invalid scope");
-        assertEquals(Scope.PROTECTED, Scope.getInstance(" ProteCted"), "Invalid scope");
-        assertEquals(Scope.PACKAGE, Scope.getInstance("    PackAge "), "Invalid scope");
-        assertEquals(Scope.PRIVATE, Scope.getInstance("privaTe   "), "Invalid scope");
-        assertEquals(Scope.ANONINNER, Scope.getInstance("AnonInner"), "Invalid scope");
+        assertWithMessage("Invalid scope")
+            .that(Scope.getInstance("NothinG "))
+            .isEqualTo(Scope.NOTHING);
+        assertWithMessage("Invalid scope")
+            .that(Scope.getInstance(" PuBlic"))
+            .isEqualTo(Scope.PUBLIC);
+        assertWithMessage("Invalid scope")
+            .that(Scope.getInstance(" ProteCted"))
+            .isEqualTo(Scope.PROTECTED);
+        assertWithMessage("Invalid scope")
+            .that(Scope.getInstance("    PackAge "))
+            .isEqualTo(Scope.PACKAGE);
+        assertWithMessage("Invalid scope")
+            .that(Scope.getInstance("privaTe   "))
+            .isEqualTo(Scope.PRIVATE);
+        assertWithMessage("Invalid scope")
+            .that(Scope.getInstance("AnonInner"))
+            .isEqualTo(Scope.ANONINNER);
     }
 
     @Test
