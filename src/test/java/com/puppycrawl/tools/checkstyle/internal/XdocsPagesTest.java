@@ -22,9 +22,6 @@ package com.puppycrawl.tools.checkstyle.internal;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static java.lang.Integer.parseInt;
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.hamcrest.CoreMatchers.describedAs;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.beans.PropertyDescriptor;
 import java.io.File;
@@ -1751,18 +1748,14 @@ public class XdocsPagesTest {
                 if (ruleNumberPartsAreNumeric) {
                     final int numericRuleNumberPart = parseInt(ruleNumberPart);
                     final int numericLastRuleNumberPart = parseInt(lastRuleNumberPart);
-                    assertThat(outOfOrderReason,
-                            numericRuleNumberPart < numericLastRuleNumberPart,
-                            describedAs("'%0' should not be less than '%1'",
-                                    is(false),
-                                    numericRuleNumberPart, numericLastRuleNumberPart));
+                    assertWithMessage(outOfOrderReason)
+                        .that(numericRuleNumberPart)
+                        .isAtLeast(numericLastRuleNumberPart);
                 }
                 else {
-                    assertThat(outOfOrderReason,
-                            ruleNumberPart.compareToIgnoreCase(lastRuleNumberPart) < 0,
-                            describedAs("'%0' should not be less than '%1'",
-                                    is(false),
-                                    ruleNumberPart, lastRuleNumberPart));
+                    assertWithMessage(outOfOrderReason)
+                        .that(ruleNumberPart.compareToIgnoreCase(lastRuleNumberPart))
+                        .isAtLeast(0);
                 }
                 lastRuleNumberPartWasEqual = ruleNumberPart.equalsIgnoreCase(lastRuleNumberPart);
                 if (!lastRuleNumberPartWasEqual) {

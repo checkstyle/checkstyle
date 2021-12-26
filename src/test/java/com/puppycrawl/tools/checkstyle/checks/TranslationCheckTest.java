@@ -22,9 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.TranslationCheck.MSG_KEY_MISSING_TRANSLATION_FILE;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.endsWith;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -606,10 +603,12 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         }
         catch (IllegalArgumentException ex) {
             final String exceptionMessage = ex.getMessage();
-            assertThat("Error message is unexpected",
-                    exceptionMessage, containsString("11"));
-            assertThat("Error message is unexpected",
-                    exceptionMessage, endsWith("[TranslationCheck]"));
+            assertWithMessage("Error message is unexpected")
+                    .that(exceptionMessage)
+                    .contains("11");
+            assertWithMessage("Error message is unexpected")
+                    .that(exceptionMessage)
+                    .endsWith("[TranslationCheck]");
         }
     }
 
