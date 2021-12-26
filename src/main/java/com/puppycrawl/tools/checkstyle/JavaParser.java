@@ -108,7 +108,6 @@ public final class JavaParser {
 
         // Clear DFA after parsing to reduce memory usage
         lexer.getInterpreter().clearDFA();
-        parser.getInterpreter().clearDFA();
 
         return root;
     }
