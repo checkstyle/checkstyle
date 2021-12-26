@@ -182,70 +182,7 @@
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderForwardReference.java"/>
 
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyConstructors.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyConstructors.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyConstructors.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyConstructors.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderVariableAccess.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDefaultComesLast.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDefaultComesLast.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDefaultComesLast.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDefaultComesLast.java"/>
 
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
