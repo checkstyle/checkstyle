@@ -25,7 +25,6 @@ import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationChec
 import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_ERROR;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_ERROR_MULTI;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -154,8 +153,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final IndentComment[] linesWithWarn =
                         getLinesWithWarnAndCheckComments(filePath, tabWidth);
         verify(config, filePath, expected, linesWithWarn);
-        assertEquals(linesWithWarn.length, expected.length,
-            "Expected warning count in UT does not match warn comment count in input file");
+        assertWithMessage("Expected warning count in UT does not match warn comment count "
+                + "in input file")
+            .that(expected.length)
+            .isEqualTo(linesWithWarn.length);
     }
 
     private void verify(Configuration config, String filePath, String[] expected,
@@ -198,7 +199,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
         indentationCheck.setThrowsIndent(1);
 
-        assertEquals(1, indentationCheck.getThrowsIndent(), "Invalid throws indent");
+        assertWithMessage("Invalid throws indent")
+            .that(indentationCheck.getThrowsIndent())
+            .isEqualTo(1);
     }
 
     @Test

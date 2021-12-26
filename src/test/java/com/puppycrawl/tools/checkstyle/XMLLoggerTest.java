@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
@@ -75,7 +74,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         };
         for (String[] encoding : encodings) {
             final String encoded = XMLLogger.encode(encoding[0]);
-            assertEquals(encoding[1], encoded, "\"" + encoding[0] + "\"");
+            assertWithMessage("\"" + encoding[0] + "\"")
+                .that(encoded)
+                .isEqualTo(encoding[1]);
         }
         outStream.close();
     }
@@ -127,7 +128,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         logger.auditStarted(null);
         logger.auditFinished(null);
 
-        assertEquals(1, outStream.getCloseCount(), "Invalid close count");
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(1);
 
         verifyXml(getPath("ExpectedXMLLoggerEmpty.xml"), outStream);
     }
@@ -140,7 +143,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         logger.auditStarted(null);
         logger.auditFinished(null);
 
-        assertEquals(0, outStream.getCloseCount(), "Invalid close count");
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(0);
 
         outStream.close();
         verifyXml(getPath("ExpectedXMLLoggerEmpty.xml"), outStream);
@@ -258,7 +263,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerException.xml"), outStream);
-        assertEquals(1, outStream.getCloseCount(), "Invalid close count");
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(1);
     }
 
     @Test
@@ -273,7 +280,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerExceptionNullFileName.xml"), outStream);
-        assertEquals(1, outStream.getCloseCount(), "Invalid close count");
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(1);
     }
 
     @Test
@@ -294,7 +303,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         logger.fileFinished(ev);
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerException2.xml"), outStream);
-        assertEquals(1, outStream.getCloseCount(), "Invalid close count");
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(1);
     }
 
     @Test
@@ -311,7 +322,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         logger.fileFinished(fileFinishedEvent);
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerException3.xml"), outStream);
-        assertEquals(1, outStream.getCloseCount(), "Invalid close count");
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(1);
     }
 
     @Test
@@ -330,7 +343,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         logger.fileFinished(fileFinishedEvent);
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerException2.xml"), outStream);
-        assertEquals(1, outStream.getCloseCount(), "Invalid close count");
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(1);
     }
 
     @Test
@@ -361,8 +376,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             assertWithMessage("Exception was expected").fail();
         }
         catch (IllegalArgumentException exception) {
-            assertEquals("Parameter outputStreamOptions can not be null",
-                    exception.getMessage(), "Invalid error message");
+            assertWithMessage("Invalid error message")
+                .that(exception.getMessage())
+                .isEqualTo("Parameter outputStreamOptions can not be null");
         }
     }
 

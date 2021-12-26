@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.io.File;
@@ -61,8 +60,9 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
         }
         catch (CheckstyleException ex) {
             assertSame(IllegalStateException.class, ex.getCause().getClass(), "Invalid class");
-            assertEquals("2:0: no viable alternative at input 'classD'",
-                    ex.getCause().getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getCause().getMessage())
+                .isEqualTo("2:0: no viable alternative at input 'classD'");
         }
     }
 
@@ -99,7 +99,9 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
         final String expected = toLfLineEnding(new String(Files.readAllBytes(Paths.get(
                 getPath("ExpectedAstTreeStringPrinter.txt"))), StandardCharsets.UTF_8));
 
-        assertEquals(expected, actual, "Print AST output is invalid");
+        assertWithMessage("Print AST output is invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test

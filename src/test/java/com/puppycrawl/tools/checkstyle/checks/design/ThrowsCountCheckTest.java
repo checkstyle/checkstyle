@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
@@ -88,7 +87,9 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
             assertWithMessage("IllegalStateException is expected").fail();
         }
         catch (IllegalStateException ex) {
-            assertEquals(ast.toString(), ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo(ast.toString());
         }
     }
 

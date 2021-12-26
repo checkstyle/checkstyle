@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
@@ -230,8 +229,9 @@ public class NoWhitespaceAfterCheckTest
             assertWithMessage("no intended exception thrown").fail();
         }
         catch (IllegalStateException ex) {
-            assertEquals("unexpected ast syntax import[0x-1]", ex.getMessage(),
-                    "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("unexpected ast syntax import[0x-1]");
         }
     }
 

@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.meta;
 
-import static org.junit.Assert.assertEquals;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -67,8 +67,8 @@ public final class MetadataGeneratorUtilTest {
                 .sorted()
                 .collect(Collectors.toCollection(LinkedHashSet::new));
         checkstyleModules.removeAll(modulesContainingNoMetadataFile);
-        assertEquals("Number of generated metadata files dont match with number of checkstyle "
-                        + "module", checkstyleModules, metaFiles);
+        assertWithMessage("Number of generated metadata files dont match with number of checkstyle "
+                + "module").that(metaFiles).isEqualTo(checkstyleModules);
     }
 
     /**

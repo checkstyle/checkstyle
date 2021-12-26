@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
@@ -98,7 +97,9 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals("Unable to find: " + fileName, ex.getMessage(), "Invalid error message");
+            assertWithMessage("Invalid error message")
+                .that(ex.getMessage())
+                .isEqualTo("Unable to find: " + fileName);
         }
     }
 
@@ -111,9 +112,10 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals(
-                    "Unable to parse " + fileName + " - invalid files or checks or message format",
-                ex.getMessage(), "Invalid error message");
+            assertWithMessage("Invalid error message")
+                .that(ex.getMessage())
+                .isEqualTo("Unable to parse " + fileName
+                        + " - invalid files or checks or message format");
         }
     }
 

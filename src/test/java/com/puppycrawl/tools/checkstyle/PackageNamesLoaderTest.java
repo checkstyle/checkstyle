@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.io.File;
@@ -60,7 +59,9 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
         final Set<String> packageNames = PackageNamesLoader
                 .getPackageNames(Thread.currentThread()
                         .getContextClassLoader());
-        assertEquals(0, packageNames.size(), "pkgNames.length.");
+        assertWithMessage("pkgNames.length.")
+            .that(packageNames.size())
+            .isEqualTo(0);
     }
 
     @Test
@@ -68,7 +69,9 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
         final Set<String> actualPackageNames = PackageNamesLoader
                 .getPackageNames(new TestUrlsClassLoader(Collections.emptyEnumeration()));
 
-        assertEquals(0, actualPackageNames.size(), "Invalid package names length.");
+        assertWithMessage("Invalid package names length.")
+            .that(actualPackageNames.size())
+            .isEqualTo(0);
     }
 
     @Test
@@ -99,11 +102,14 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
             "com.puppycrawl.tools.checkstyle.filters",
         };
 
-        assertEquals(expectedPackageNames.length,
-            actualPackageNames.size(), "Invalid package names length.");
+        assertWithMessage("Invalid package names length.")
+            .that(actualPackageNames.size())
+            .isEqualTo(expectedPackageNames.length);
         final Set<String> checkstylePackagesSet =
                 new HashSet<>(Arrays.asList(expectedPackageNames));
-        assertEquals(checkstylePackagesSet, actualPackageNames, "Invalid names set.");
+        assertWithMessage("Invalid names set.")
+            .that(actualPackageNames)
+            .isEqualTo(checkstylePackagesSet);
     }
 
     @Test
@@ -117,11 +123,14 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
             "coding.",
         };
 
-        assertEquals(expectedPackageNames.length,
-            actualPackageNames.size(), "Invalid package names length.");
+        assertWithMessage("Invalid package names length.")
+            .that(actualPackageNames.size())
+            .isEqualTo(expectedPackageNames.length);
         final Set<String> checkstylePackagesSet =
                 new HashSet<>(Arrays.asList(expectedPackageNames));
-        assertEquals(checkstylePackagesSet, actualPackageNames, "Invalid names set.");
+        assertWithMessage("Invalid names set.")
+            .that(actualPackageNames)
+            .isEqualTo(checkstylePackagesSet);
     }
 
     @Test
@@ -136,11 +145,14 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
             "coding.",
         };
 
-        assertEquals(expectedPackageNames.length, actualPackageNames.size(),
-                "Invalid package names length.");
+        assertWithMessage("Invalid package names length.")
+            .that(actualPackageNames.size())
+            .isEqualTo(expectedPackageNames.length);
         final Set<String> checkstylePackagesSet =
                 new HashSet<>(Arrays.asList(expectedPackageNames));
-        assertEquals(checkstylePackagesSet, actualPackageNames, "Invalid names set.");
+        assertWithMessage("Invalid names set.")
+            .that(actualPackageNames)
+            .isEqualTo(checkstylePackagesSet);
     }
 
     @Test
@@ -204,8 +216,9 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
             assertWithMessage("Invalid exception cause class")
                     .that(ex.getCause() instanceof IOException)
                     .isTrue();
-            assertEquals("unable to get package file resources", ex.getMessage(),
-                    "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("unable to get package file resources");
         }
     }
 
