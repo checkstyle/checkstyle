@@ -80,12 +80,12 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void oneStatementNonCompilableInputTest() throws Exception {
         final String[] expected = {
-            "39:6: " + getCheckMessage(MSG_KEY),
-            "44:58: " + getCheckMessage(MSG_KEY),
-            "45:58: " + getCheckMessage(MSG_KEY),
-            "45:74: " + getCheckMessage(MSG_KEY),
-            "46:50: " + getCheckMessage(MSG_KEY),
-            "50:85: " + getCheckMessage(MSG_KEY),
+            "39:4: " + getCheckMessage(MSG_KEY),
+            "44:54: " + getCheckMessage(MSG_KEY),
+            "45:54: " + getCheckMessage(MSG_KEY),
+            "45:70: " + getCheckMessage(MSG_KEY),
+            "46:46: " + getCheckMessage(MSG_KEY),
+            "50:81: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(

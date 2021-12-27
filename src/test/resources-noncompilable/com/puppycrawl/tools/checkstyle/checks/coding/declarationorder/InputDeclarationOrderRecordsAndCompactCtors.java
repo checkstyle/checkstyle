@@ -40,6 +40,7 @@ public class InputDeclarationOrderRecordsAndCompactCtors {
         record MyInnerRecord(int z){}
         static int x = 43;
         public MyRecord3{}
-        private static final HashMap<String, Integer> hashMap = new HashMap<>(); // violation 'Static variable definition in wrong order.'
+        private static final HashMap<String,// violation 'Static variable definition in wrong order'
+                Integer> hashMap = new HashMap<>();
     }
 }
