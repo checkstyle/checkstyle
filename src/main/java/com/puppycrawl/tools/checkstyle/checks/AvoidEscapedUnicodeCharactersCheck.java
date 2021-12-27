@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -30,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 
 /**
  * <p>
@@ -431,8 +432,8 @@ public class AvoidEscapedUnicodeCharactersCheck
             final List<TextBlock> commentList = blockComments.get(lineNo);
             if (commentList != null) {
                 final TextBlock comment = commentList.get(commentList.size() - 1);
-                final String line = getLines()[lineNo - 1];
-                result = isTrailingBlockComment(comment, line);
+                final int[] codePoints = getLineCodePoints(lineNo - 1);
+                result = isTrailingBlockComment(comment, codePoints);
             }
         }
         return result;
@@ -442,12 +443,13 @@ public class AvoidEscapedUnicodeCharactersCheck
      * Whether the C style comment is trailing.
      *
      * @param comment the comment to check.
-     * @param line the line where the comment starts.
+     * @param codePoints the first line of the comment, in unicode code points
      * @return true if the comment is trailing.
      */
-    private static boolean isTrailingBlockComment(TextBlock comment, String line) {
+    private static boolean isTrailingBlockComment(TextBlock comment, int... codePoints) {
         return comment.getText().length != 1
-            || CommonUtil.isBlank(line.substring(comment.getEndColNo() + 1));
+            || CodePointUtil.isBlank(Arrays.copyOfRange(codePoints,
+                comment.getEndColNo() + 1, codePoints.length));
     }
 
     /**
