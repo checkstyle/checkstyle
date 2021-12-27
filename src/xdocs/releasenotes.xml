@@ -10,6 +10,154 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 9.2.1">
+      <div class="releaseDate">26.12.2021</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            SimplifyBooleanExpression: A false negative about ternary operator.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11015">#11015</a>
+          </li>
+          <li>
+            ParameterAssignment does not detect problem for Lambda parameters.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11038">#11038</a>
+          </li>
+          <li>
+            NPE in IllegalTypeCheck when checking a record (Java 14).
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/10817">#10817</a>
+          </li>
+          <li>
+            Version 9.x Reports Whitespace Before Paren After String with Emojis.
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/11001">#11001</a>
+          </li>
+          <li>
+            TrailingCommentsCheck ignores first comment character.
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/10997">#10997</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Update existing Input files to follow 100 line limit .
+            Author: Abhinav Rajput
+            <a href="https://github.com/checkstyle/checkstyle/issues/10625">#10625</a>
+          </li>
+          <li>
+            doc: extend beginning development with step to build in terminal before IDE.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Infra: migrate to Truth in tests.
+            Author: rnveach, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9142">#9142</a>
+          </li>
+          <li>
+            adds section for list of supported JREs.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/10891">#10891</a>
+          </li>
+          <li>
+            Rebase Github action is failing due to missed permission.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11052">#11052</a>
+          </li>
+          <li>
+            Setup JDK17 build.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/10905">#10905</a>
+          </li>
+          <li>
+            Migrate to Inline Config Parser for filters.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10737">#10737</a>
+          </li>
+          <li>
+            Make powermock tests compatible with JDK17+.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/7368">#7368</a>
+          </li>
+          <li>
+            Remove `illegal-access=warn` workaround for JDK16.
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/11067">#11067</a>
+          </li>
+          <li>
+            Update Xpath unit tests to have at least two test methods.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/8151">#8151</a>
+          </li>
+          <li>
+            Pitest2 job fails when image is upgraded to ubuntu-2004:202010-01.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/9351">#9351</a>
+          </li>
+          <li>
+            RightCurlyCheck.isBlockAloneOnSingleLine might throw NPE .
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/11054">#11054</a>
+          </li>
+          <li>
+            Remove dependency on Powermock from tests.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/10932">#10932</a>
+          </li>
+          <li>
+            Fix links to maven web site - maven.apache.org.
+            Author: Aditya Vishwakkarma, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11003">#11003</a>
+          </li>
+          <li>
+            update doc for RedundantImport.
+            Author: Binita Kumari
+            <a href="https://github.com/checkstyle/checkstyle/issues/7688">#7688</a>
+          </li>
+          <li>
+            Group Shell Scripts by Activity and not CI.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11029">#11029</a>
+          </li>
+          <li>
+            All scripts in Travis should be single line to return exit code to Travis.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11027">#11027</a>
+          </li>
+          <li>
+            create example of AST for TokenTypes.ELIST.
+            Author: Binita Kumari
+            <a href="https://github.com/checkstyle/checkstyle/issues/9420">#9420</a>
+          </li>
+          <li>
+            Add support for violation N lines above/below in Inline Config Parser.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/10752">#10752</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.INSTANCE_INIT.
+            Author: Abhinav Rajput
+            <a href="https://github.com/checkstyle/checkstyle/issues/9455">#9455</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.ANNOTATION.
+            Author: Abhinav Rajput
+            <a href="https://github.com/checkstyle/checkstyle/issues/9387">#9387</a>
+          </li>
+          <li>
+            create example of AST for TokenTypes.EMPTY_STAT.
+            Author: Binita Kumari
+            <a href="https://github.com/checkstyle/checkstyle/issues/9422">#9422</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.BLOCK_COMMENT_END.
+            Author: Abhinav Rajput
+            <a href="https://github.com/checkstyle/checkstyle/issues/9400">#9400</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 9.2">
       <div class="releaseDate">28.11.2021</div>
       <p>Breaking backward compatibility:</p>
