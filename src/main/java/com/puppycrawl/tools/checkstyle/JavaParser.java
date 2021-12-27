@@ -88,7 +88,7 @@ public final class JavaParser {
         lexer.removeErrorListeners();
 
         final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
-        final JavaLanguageParser parser = new JavaLanguageParser(tokenStream);
+        final JavaLanguageParser parser = new JavaLanguageParser(tokenStream, true);
         parser.setErrorHandler(new CheckstyleParserErrorStrategy());
         parser.removeErrorListeners();
         parser.addErrorListener(new CheckstyleErrorListener());
@@ -104,13 +104,7 @@ public final class JavaParser {
             throw new CheckstyleException(exceptionMsg, ex);
         }
 
-        final DetailAST root = new JavaAstVisitor(tokenStream).visit(compilationUnit);
-
-        // Clear DFA after parsing to reduce memory usage
-        lexer.getInterpreter().clearDFA();
-        parser.getInterpreter().clearDFA();
-
-        return root;
+        return new JavaAstVisitor(tokenStream).visit(compilationUnit);
     }
 
     /**
