@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -248,26 +247,36 @@ public class SuppressFilterElementTest {
             .isEqualTo(filterBased);
         final SuppressFilterElement filter3 =
                 new SuppressFilterElement("Test", "Test3", null, null, null, null);
-        assertNotEquals(filterBased, filter3, "filter, filter3");
+        assertWithMessage("filter, filter3")
+            .that(filter3)
+            .isNotEqualTo(filterBased);
         final SuppressFilterElement filterBased1 =
                 new SuppressFilterElement("Test", "Test", null, null, null, "1-10");
 
-        assertNotEquals(filterBased1, filter2, "filter, filter2");
+        assertWithMessage("filter, filter2")
+            .that(filter2)
+            .isNotEqualTo(filterBased1);
         final SuppressFilterElement filter22 =
                 new SuppressFilterElement("Test", "Test", null, null, null, "1-10");
         assertWithMessage("filter, filter2")
             .that(filter22)
             .isEqualTo(filterBased1);
-        assertNotEquals(filterBased1, filter2, "filter, filter2");
+        assertWithMessage("filter, filter2")
+            .that(filter2)
+            .isNotEqualTo(filterBased1);
         final SuppressFilterElement filterBased2 =
                 new SuppressFilterElement("Test", "Test", null, null, "3,4", null);
-        assertNotEquals(filterBased2, filter2, "filter, filter2");
+        assertWithMessage("filter, filter2")
+            .that(filter2)
+            .isNotEqualTo(filterBased2);
         final SuppressFilterElement filter23 =
                 new SuppressFilterElement("Test", "Test", null, null, "3,4", null);
         assertWithMessage("filter, filter2")
             .that(filter23)
             .isEqualTo(filterBased2);
-        assertNotEquals(filterBased2, filter2, "filter, filter2");
+        assertWithMessage("filter, filter2")
+            .that(filter2)
+            .isNotEqualTo(filterBased2);
         assertWithMessage("filter, filter2")
             .that(filter23)
             .isEqualTo(filterBased2);

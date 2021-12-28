@@ -25,7 +25,6 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsCla
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.itsallcode.junit.sysextensions.AssertExit.assertExitWithStatus;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.BufferedReader;
@@ -1630,7 +1629,9 @@ public class MainTest {
     @Test
     public void testDebugOption(@SysErr Capturable systemErr) throws IOException {
         Main.main("-c", "/google_checks.xml", getPath("InputMain.java"), "-d");
-        assertNotEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isNotEqualTo("");
     }
 
     @Test
@@ -1704,7 +1705,9 @@ public class MainTest {
 
         final List<File> result = (List<File>) method.invoke(null, new File(getFilePath("")),
                 list);
-        assertNotEquals(0, result.size(), "Invalid result size");
+        assertWithMessage("Invalid result size")
+            .that(result.size())
+            .isNotEqualTo(0);
     }
 
     @Test
