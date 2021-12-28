@@ -46,20 +46,20 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
 
     @Test
     public void test() {
-        assertThat(XmlMetaReader.readAllModulesIncludingThirdPartyIfAny().size()).isEqualTo(198);
+        assertThat(XmlMetaReader.readAllModulesIncludingThirdPartyIfAny()).hasSize(198);
     }
 
     @Test
     public void testDuplicatePackage() {
         assertThat(XmlMetaReader
-                .readAllModulesIncludingThirdPartyIfAny("com.puppycrawl.tools.checkstyle.meta")
-                .size()).isEqualTo(198);
+                    .readAllModulesIncludingThirdPartyIfAny("com.puppycrawl.tools.checkstyle.meta"))
+                .hasSize(198);
     }
 
     @Test
     public void testBadPackage() {
-        assertThat(XmlMetaReader.readAllModulesIncludingThirdPartyIfAny("DOES.NOT.EXIST").size())
-                .isEqualTo(198);
+        assertThat(XmlMetaReader.readAllModulesIncludingThirdPartyIfAny("DOES.NOT.EXIST"))
+                .hasSize(198);
     }
 
     @Test
@@ -72,10 +72,10 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
                 "com.puppycrawl.tools.checkstyle.TreeWalker");
             assertThat(result.getName()).isEqualTo("InputCheck");
             final List<String> violationMessageKeys = result.getViolationMessageKeys();
-            assertThat(violationMessageKeys.size()).isEqualTo(1);
+            assertThat(violationMessageKeys).hasSize(1);
             assertThat(violationMessageKeys.get(0)).isEqualTo("test.key");
             final List<ModulePropertyDetails> props = result.getProperties();
-            assertThat(props.size()).isEqualTo(2);
+            assertThat(props).hasSize(2);
             final ModulePropertyDetails prop1 = props.get(0);
             checkProperty(prop1, "propertyOne", "java.lang.String",
                 "propertyOneDefaultValue",
@@ -100,7 +100,7 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
                 "com.puppycrawl.tools.checkstyle.TreeWalker");
             assertThat(result.getName()).isEqualTo("InputCheckNoProps");
             final List<String> violationMessageKeys = result.getViolationMessageKeys();
-            assertThat(violationMessageKeys.size()).isEqualTo(2);
+            assertThat(violationMessageKeys).hasSize(2);
             assertThat(violationMessageKeys.get(0)).isEqualTo("test.key1");
             assertThat(violationMessageKeys.get(1)).isEqualTo("test.key2");
             assertThat(result.getProperties().isEmpty()).isTrue();
@@ -118,7 +118,7 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
             assertThat(result.getName()).isEqualTo("SomeFilter");
             assertThat(result.getViolationMessageKeys().isEmpty()).isTrue();
             final List<ModulePropertyDetails> props = result.getProperties();
-            assertThat(props.size()).isEqualTo(1);
+            assertThat(props).hasSize(1);
             final ModulePropertyDetails prop1 = props.get(0);
             checkProperty(prop1, "propertyOne", "java.util.regex.Pattern",
                 "propertyDefaultValue", "Property description.");
@@ -138,7 +138,7 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
             assertThat(result.getName()).isEqualTo("FileFilter");
             assertThat(result.getViolationMessageKeys().isEmpty()).isTrue();
             final List<ModulePropertyDetails> props = result.getProperties();
-            assertThat(props.size()).isEqualTo(1);
+            assertThat(props).hasSize(1);
             final ModulePropertyDetails prop1 = props.get(0);
             assertThat(prop1.getName()).isEqualTo("fileNamePattern");
             assertThat(prop1.getType()).isEqualTo("java.util.regex.Pattern");

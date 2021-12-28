@@ -402,7 +402,8 @@ public class SuppressionCommentFilterTest
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
             assertWithMessage("Invalid exception message")
-                .that(cause.getMessage())
+                .that(cause)
+                .hasMessageThat()
                 .isEqualTo("unable to parse expanded comment e[l");
         }
     }
@@ -421,7 +422,8 @@ public class SuppressionCommentFilterTest
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
             assertWithMessage("Invalid exception message")
-                .that(cause.getMessage())
+                .that(cause)
+                .hasMessageThat()
                 .isEqualTo("unable to parse expanded comment e[l");
         }
     }
@@ -640,13 +642,13 @@ public class SuppressionCommentFilterTest
         final List<?> tags1 = getTagsAfterExecution(suppressionCommentFilter,
                 "filename1", "//CHECKSTYLE:OFF", "line2");
         assertWithMessage("Invalid tags size")
-            .that(tags1.size())
-            .isEqualTo(1);
+            .that(tags1)
+            .hasSize(1);
         final List<?> tags2 = getTagsAfterExecution(suppressionCommentFilter,
                 "filename2", "No comments in this file");
         assertWithMessage("Invalid tags size")
-            .that(tags2.size())
-            .isEqualTo(0);
+            .that(tags2)
+            .isEmpty();
     }
 
     private static List<Comparable<Object>> getTagsAfterExecutionOnDefaultFilter(String... lines) {

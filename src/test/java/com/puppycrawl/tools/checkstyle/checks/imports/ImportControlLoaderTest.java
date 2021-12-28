@@ -71,7 +71,8 @@ public class ImportControlLoaderTest {
             assertSame(MalformedURLException.class, ex.getCause().getClass(),
                     "Invalid exception class");
             assertWithMessage("Invalid exception message")
-                .that(ex.getCause().getMessage())
+                .that(ex)
+                .hasCauseThat().hasMessageThat()
                 .isEqualTo("unknown protocol: aaa");
         }
     }
@@ -104,7 +105,9 @@ public class ImportControlLoaderTest {
         catch (InvocationTargetException ex) {
             assertSame(SAXException.class, ex.getCause().getClass(), "Invalid exception class");
             assertWithMessage("Invalid exception message")
-                .that(ex.getCause().getMessage())
+                .that(ex)
+                .hasCauseThat()
+                .hasMessageThat()
                 .isEqualTo("missing attribute you_cannot_find_me");
         }
     }
@@ -128,8 +131,9 @@ public class ImportControlLoaderTest {
             assertSame(CheckstyleException.class, ex.getCause().getClass(),
                     "Invalid exception class");
             assertWithMessage("Invalid exception message: " + ex.getCause().getMessage())
-                    .that(ex.getCause().getMessage().startsWith("unable to read"))
-                    .isTrue();
+                    .that(ex)
+                    .hasCauseThat().hasMessageThat()
+                    .startsWith("unable to read");
         }
     }
 

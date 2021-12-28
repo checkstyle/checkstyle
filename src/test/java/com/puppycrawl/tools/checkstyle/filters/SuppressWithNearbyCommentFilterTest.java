@@ -361,9 +361,9 @@ public class SuppressWithNearbyCommentFilterTest
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
-            final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
             assertWithMessage("Invalid exception message")
-                .that(cause.getMessage())
+                .that(ex)
+                .hasCauseThat().hasMessageThat()
                 .isEqualTo("unable to parse influence"
                         + " from 'SUPPRESS CHECKSTYLE MemberNameCheck' using a");
         }
@@ -418,7 +418,8 @@ public class SuppressWithNearbyCommentFilterTest
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
             assertWithMessage("Invalid exception message")
-                .that(cause.getMessage())
+                .that(cause)
+                .hasMessageThat()
                 .isEqualTo("unable to parse expanded comment a[l");
         }
     }
@@ -734,13 +735,13 @@ public class SuppressWithNearbyCommentFilterTest
         final List<?> tags1 = getTagsAfterExecution(suppressionCommentFilter,
                 "filename1", "//SUPPRESS CHECKSTYLE ignore this");
         assertWithMessage("Invalid tags size")
-            .that(tags1.size())
-            .isEqualTo(1);
+            .that(tags1)
+            .hasSize(1);
         final List<?> tags2 = getTagsAfterExecution(suppressionCommentFilter,
                 "filename2", "No comments in this file");
         assertWithMessage("Invalid tags size")
-            .that(tags2.size())
-            .isEqualTo(0);
+            .that(tags2)
+            .isEmpty();
     }
 
     /**

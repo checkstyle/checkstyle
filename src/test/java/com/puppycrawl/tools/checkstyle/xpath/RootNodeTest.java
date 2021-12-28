@@ -72,8 +72,8 @@ public class RootNodeTest extends AbstractPathTestSupport {
         final String xpath = "/";
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertWithMessage("Invalid number of nodes")
-            .that(nodes.size())
-            .isEqualTo(1);
+            .that(nodes)
+            .hasSize(1);
         final NodeInfo firstNode = nodes.get(0);
         assertWithMessage("Should return true, because selected node is RootNode")
                 .that(firstNode instanceof RootNode)

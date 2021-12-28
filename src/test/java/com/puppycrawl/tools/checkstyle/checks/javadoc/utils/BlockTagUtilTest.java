@@ -48,8 +48,8 @@ public class BlockTagUtilTest {
 
         final List<TagInfo> tags = BlockTagUtil.extractBlockTags(text);
         assertWithMessage("Invalid tags size")
-            .that(tags.size())
-            .isEqualTo(4);
+            .that(tags)
+            .hasSize(4);
 
         final TagInfo tag1 = tags.get(0);
         assertTagEquals(tag1, "foo", "abc", 1, 4);
@@ -73,8 +73,8 @@ public class BlockTagUtilTest {
         };
         final List<TagInfo> tags = BlockTagUtil.extractBlockTags(text);
         assertWithMessage("Invalid tags size")
-            .that(tags.size())
-            .isEqualTo(1);
+            .that(tags)
+            .hasSize(1);
         assertWithMessage("Invalid tag name")
             .that(tags.get(0).getName())
             .isEqualTo("version");
@@ -92,8 +92,8 @@ public class BlockTagUtilTest {
 
         final List<TagInfo> tags = BlockTagUtil.extractBlockTags(text);
         assertWithMessage("Invalid tags size")
-            .that(tags.size())
-            .isEqualTo(1);
+            .that(tags)
+            .hasSize(1);
         assertWithMessage("Invalid tag name")
             .that(tags.get(0).getName())
             .isEqualTo("version");

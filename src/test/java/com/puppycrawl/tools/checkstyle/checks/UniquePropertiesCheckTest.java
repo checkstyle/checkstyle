@@ -138,8 +138,8 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         final SortedSet<Violation> violations =
                 check.process(file, fileText);
         assertWithMessage("Wrong messages count: " + violations.size())
-            .that(violations.size())
-            .isEqualTo(1);
+            .that(violations)
+            .hasSize(1);
         final Violation violation = violations.iterator().next();
         final String retrievedMessage = violations.iterator().next().getKey();
         assertWithMessage("violation key '" + retrievedMessage + "' is not valid")

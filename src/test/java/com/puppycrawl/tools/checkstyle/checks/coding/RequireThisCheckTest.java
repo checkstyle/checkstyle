@@ -190,8 +190,8 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final SortedSet<Violation> violations = check.getViolations();
 
         assertWithMessage("No exception violations expected")
-            .that(violations.size())
-            .isEqualTo(0);
+            .that(violations)
+            .isEmpty();
     }
 
     @Test

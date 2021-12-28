@@ -293,8 +293,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             details.load(reader);
         }
         assertWithMessage("Invalid details size")
-            .that(details.size())
-            .isEqualTo(1);
+            .that(details)
+            .hasSize(1);
 
         // change in config
         config.addProperty("newAttr", "newValue");
@@ -317,8 +317,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             detailsAfterChangeInConfig.load(reader);
         }
         assertWithMessage("Invalid cache size")
-            .that(detailsAfterChangeInConfig.size())
-            .isEqualTo(1);
+            .that(detailsAfterChangeInConfig)
+            .hasSize(1);
     }
 
     @Test

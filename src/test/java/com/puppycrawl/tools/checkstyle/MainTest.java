@@ -789,8 +789,9 @@ public class MainTest {
         }
         catch (InvocationTargetException ex) {
             assertWithMessage("Invalid error cause")
-                    .that(ex.getCause() instanceof CheckstyleException)
-                    .isTrue();
+                    .that(ex)
+                    .hasCauseThat()
+                    .isInstanceOf(CheckstyleException.class);
             // We do separate validation for message as in Windows
             // disk drive letter appear in message,
             // so we skip that drive letter for compatibility issues
@@ -881,8 +882,8 @@ public class MainTest {
         final List<File> result = TestUtil.invokeStaticMethod(Main.class, "listFiles",
                 fileMock, new ArrayList<Pattern>());
         assertWithMessage("Invalid result size")
-            .that(result.size())
-            .isEqualTo(0);
+            .that(result)
+            .isEmpty();
     }
 
     /**
@@ -915,8 +916,8 @@ public class MainTest {
         final List<File> result = TestUtil.invokeStaticMethod(Main.class, "listFiles",
                 fileMock, new ArrayList<Pattern>());
         assertWithMessage("Invalid result size")
-            .that(result.size())
-            .isEqualTo(0);
+            .that(result)
+            .isEmpty();
     }
 
     @Test

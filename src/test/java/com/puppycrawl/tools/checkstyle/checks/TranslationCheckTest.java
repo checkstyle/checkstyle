@@ -231,8 +231,8 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
                 .that(keys).isEmpty();
 
         assertWithMessage("expected number of errors to fire")
-            .that(dispatcher.savedErrors.size())
-            .isEqualTo(1);
+            .that(dispatcher.savedErrors)
+            .hasSize(1);
         final Violation violation = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, "general.fileNotFound",
                 null, null, getClass(), null);

@@ -368,7 +368,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         }
         catch (InvocationTargetException ex) {
             assertWithMessage("Invalid exception cause message")
-                .that(ex.getCause().getMessage())
+                .that(ex)
+                .hasCauseThat().hasMessageThat()
                 .isEqualTo("Syntax error in property: ${a");
         }
     }
@@ -383,7 +384,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         }
         catch (InvocationTargetException ex) {
             assertWithMessage("Invalid exception cause message")
-                .that(ex.getCause().getMessage())
+                .that(ex)
+                .hasCauseThat().hasMessageThat()
                 .isEqualTo("Property ${c} has not been set");
         }
     }
@@ -521,7 +523,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             assertSame(CheckstyleException.class, ex.getCause().getCause().getClass(),
                     "Expected cause of type CheckstyleException");
             assertWithMessage("Invalid exception cause message")
-                .that(ex.getCause().getCause().getMessage())
+                .that(ex)
+                .hasCauseThat().hasCauseThat().hasMessageThat()
                 .isEqualTo("Property ${nonexistent} has not been set");
         }
     }
@@ -635,8 +638,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                 "parsePropertyString", "$",
                fragments, propertyRefs);
         assertWithMessage("Fragments list has unexpected amount of items")
-            .that(fragments.size())
-            .isEqualTo(1);
+            .that(fragments)
+            .hasSize(1);
     }
 
     @Test

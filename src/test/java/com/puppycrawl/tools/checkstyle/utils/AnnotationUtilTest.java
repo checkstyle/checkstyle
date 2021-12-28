@@ -43,7 +43,8 @@ public class AnnotationUtilTest {
         }
         catch (InvocationTargetException ex) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getCause().getMessage())
+                .that(ex)
+                .hasCauseThat().hasMessageThat()
                 .isEqualTo("do not instantiate.");
         }
     }

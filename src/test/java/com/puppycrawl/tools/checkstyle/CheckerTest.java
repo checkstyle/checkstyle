@@ -568,8 +568,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
         catch (IllegalStateException ex) {
             assertWithMessage("Cause of exception differs from IOException")
-                    .that(ex.getCause() instanceof IOException)
-                    .isTrue();
+                    .that(ex.getCause())
+                    .isInstanceOf(IOException.class);
         }
     }
 
@@ -642,8 +642,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // There should 2 objects in cache: processed file (file.java) and checker configuration.
         final int expectedNumberOfObjectsInCache = 2;
         assertWithMessage("Cache has unexpected size")
-            .that(cache.size())
-            .isEqualTo(expectedNumberOfObjectsInCache);
+            .that(cache)
+            .hasSize(expectedNumberOfObjectsInCache);
 
         final String expectedConfigHash = "D581D4A2BD482D4E1EF1F82459356BA2D8A3B" + "FC3";
         assertWithMessage("Cache has unexpected hash")
@@ -675,8 +675,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
 
         assertWithMessage("Cache has unexpected size")
-            .that(cacheAfterClear.size())
-            .isEqualTo(1);
+            .that(cacheAfterClear)
+            .hasSize(1);
         assertNotNull(cacheAfterClear.getProperty(PropertyCacheFile.CONFIG_HASH_KEY),
                 "Cache has null hash");
 
@@ -698,8 +698,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .isEqualTo(cacheAfterClear.getProperty(PropertyCacheFile.CONFIG_HASH_KEY));
         final int expectedNumberOfObjectsInCacheAfterSecondRun = 2;
         assertWithMessage("Cache has changed number of items")
-            .that(cacheAfterSecondRun.size())
-            .isEqualTo(expectedNumberOfObjectsInCacheAfterSecondRun);
+            .that(cacheAfterSecondRun)
+            .hasSize(expectedNumberOfObjectsInCacheAfterSecondRun);
     }
 
     @Test
@@ -728,8 +728,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
 
         assertWithMessage("Cache has unexpected size")
-            .that(cacheAfterClear.size())
-            .isEqualTo(1);
+            .that(cacheAfterClear)
+            .hasSize(1);
     }
 
     @Test
@@ -787,11 +787,14 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
         catch (Error error) {
             assertWithMessage("Error cause differs from IOError")
-                    .that(error.getCause()).isInstanceOf(IOError.class);
+                    .that(error.getCause())
+                    .isInstanceOf(IOError.class);
             assertWithMessage("Error cause is not InternalError")
-                    .that(error.getCause().getCause()).isInstanceOf(InternalError.class);
+                    .that(error.getCause().getCause())
+                    .isInstanceOf(InternalError.class);
             assertWithMessage("Error message is not expected")
-                    .that(error.getCause().getCause().getMessage())
+                    .that(error)
+                    .hasCauseThat().hasCauseThat().hasMessageThat()
                     .isEqualTo(errorMessage);
         }
     }
@@ -837,11 +840,15 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
         catch (Error error) {
             assertWithMessage("Error cause differs from IOError")
-                    .that(error.getCause()).isInstanceOf(IOError.class);
+                    .that(error)
+                    .hasCauseThat()
+                    .isInstanceOf(IOError.class);
             assertWithMessage("Error cause is not InternalError")
-                    .that(error.getCause().getCause()).isInstanceOf(InternalError.class);
+                    .that(error)
+                    .hasCauseThat().hasCauseThat()
+                    .isInstanceOf(InternalError.class);
             assertWithMessage("Error message is not expected")
-                    .that(error.getCause().getCause().getMessage())
+                    .that(error).hasCauseThat().hasCauseThat().hasMessageThat()
                     .isEqualTo(errorMessage);
         }
     }
@@ -888,11 +895,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .isEqualTo(cacheAfterFirstRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY));
         final int expectedNumberOfObjectsInCache = 2;
         assertWithMessage("Number of items in cache differs from expected")
-            .that(cacheAfterFirstRun.size())
-            .isEqualTo(expectedNumberOfObjectsInCache);
+            .that(cacheAfterFirstRun)
+            .hasSize(expectedNumberOfObjectsInCache);
         assertWithMessage("Number of items in cache differs from expected")
-            .that(cacheAfterSecondRun.size())
-            .isEqualTo(expectedNumberOfObjectsInCache);
+            .that(cacheAfterSecondRun)
+            .hasSize(expectedNumberOfObjectsInCache);
     }
 
     /**
@@ -937,8 +944,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final int expectedNumberOfObjectsInCacheAfterFirstRun = 4;
         assertWithMessage("Number of items in cache differs from expected")
-            .that(cacheAfterFirstRun.size())
-            .isEqualTo(expectedNumberOfObjectsInCacheAfterFirstRun);
+            .that(cacheAfterFirstRun)
+            .hasSize(expectedNumberOfObjectsInCacheAfterFirstRun);
 
         // Change a list of external resources which are used by the check
         final String secondExternalResourceLocation = "InputCheckerImportControlTwo.xml";
@@ -971,8 +978,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 "Cache has null as a resource key");
         final int expectedNumberOfObjectsInCacheAfterSecondRun = 4;
         assertWithMessage("Number of items in cache differs from expected")
-            .that(cacheAfterSecondRun.size())
-            .isEqualTo(expectedNumberOfObjectsInCacheAfterSecondRun);
+            .that(cacheAfterSecondRun)
+            .hasSize(expectedNumberOfObjectsInCacheAfterSecondRun);
         assertNull(cacheAfterFirstRun.getProperty(secondExternalResourceKey),
                 "Cache has not null as a resource key");
         assertNotNull(cacheAfterSecondRun.getProperty(secondExternalResourceKey),
@@ -1079,8 +1086,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
             }
 
             assertWithMessage("Cache has unexpected size")
-                .that(cache.size())
-                .isEqualTo(1);
+                .that(cache)
+                .hasSize(1);
             assertNull(cache.getProperty(filePath), "testFile is not in cache");
         }
     }
@@ -1133,9 +1140,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
         catch (Error error) {
             assertWithMessage("Error cause differs from IOError")
-                    .that(error.getCause()).isInstanceOf(IOError.class);
+                    .that(error.getCause())
+                    .isInstanceOf(IOError.class);
             assertWithMessage("Error message is not expected")
-                    .that(error.getCause().getCause().getMessage())
+                    .that(error)
+                    .hasCauseThat().hasCauseThat().hasMessageThat()
                     .isEqualTo(errorMessage);
 
             // destroy is called by Main
@@ -1147,8 +1156,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
             }
 
             assertWithMessage("Cache has unexpected size")
-                    .that(cache.size())
-                    .isEqualTo(1);
+                    .that(cache)
+                    .hasSize(1);
             assertNull(cache.getProperty("testFile"), "testFile is not in cache");
         }
     }
@@ -1196,9 +1205,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
         catch (Error error) {
             assertWithMessage("Error cause differs from IOError")
-                    .that(error.getCause()).isInstanceOf(IOError.class);
+                    .that(error)
+                    .hasCauseThat()
+                    .isInstanceOf(IOError.class);
             assertWithMessage("Error message is not expected")
-                    .that(error.getCause().getCause().getMessage())
+                    .that(error)
+                    .hasCauseThat().hasCauseThat().hasMessageThat()
                     .isEqualTo(errorMessage);
 
             // destroy is called by Main
@@ -1210,8 +1222,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
             }
 
             assertWithMessage("Cache has unexpected size")
-                    .that(cache.size())
-                    .isEqualTo(1);
+                    .that(cache)
+                    .hasSize(1);
         }
     }
 
@@ -1248,10 +1260,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Error cause differs from SecurityException")
-                    .that(ex.getCause())
+                    .that(ex)
+                    .hasCauseThat()
                     .isInstanceOf(SecurityException.class);
             assertWithMessage("Error message is not expected")
-                    .that(ex.getCause().getMessage())
+                    .that(ex)
+                    .hasCauseThat().hasMessageThat()
                     .isEqualTo(errorMessage);
         }
     }
@@ -1297,10 +1311,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Error cause differs from SecurityException")
-                    .that(ex.getCause())
+                    .that(ex)
+                    .hasCauseThat()
                     .isInstanceOf(SecurityException.class);
             assertWithMessage("Error message is not expected")
-                    .that(ex.getCause().getMessage())
+                    .that(ex)
+                    .hasCauseThat().hasMessageThat()
                     .isEqualTo(errorMessage);
 
             // destroy is called by Main
@@ -1312,8 +1328,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
             }
 
             assertWithMessage("Cache has unexpected size")
-                    .that(cache.size())
-                    .isEqualTo(1);
+                    .that(cache)
+                    .hasSize(1);
         }
     }
 

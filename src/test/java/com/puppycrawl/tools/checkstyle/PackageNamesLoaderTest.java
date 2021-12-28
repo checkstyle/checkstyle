@@ -60,8 +60,8 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
                 .getPackageNames(Thread.currentThread()
                         .getContextClassLoader());
         assertWithMessage("pkgNames.length.")
-            .that(packageNames.size())
-            .isEqualTo(0);
+            .that(packageNames)
+            .isEmpty();
     }
 
     @Test
@@ -70,8 +70,8 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
                 .getPackageNames(new TestUrlsClassLoader(Collections.emptyEnumeration()));
 
         assertWithMessage("Invalid package names length.")
-            .that(actualPackageNames.size())
-            .isEqualTo(0);
+            .that(actualPackageNames)
+            .isEmpty();
     }
 
     @Test
@@ -103,8 +103,8 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
         };
 
         assertWithMessage("Invalid package names length.")
-            .that(actualPackageNames.size())
-            .isEqualTo(expectedPackageNames.length);
+            .that(actualPackageNames)
+            .hasSize(expectedPackageNames.length);
         final Set<String> checkstylePackagesSet =
                 new HashSet<>(Arrays.asList(expectedPackageNames));
         assertWithMessage("Invalid names set.")
@@ -124,8 +124,8 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
         };
 
         assertWithMessage("Invalid package names length.")
-            .that(actualPackageNames.size())
-            .isEqualTo(expectedPackageNames.length);
+            .that(actualPackageNames)
+            .hasSize(expectedPackageNames.length);
         final Set<String> checkstylePackagesSet =
                 new HashSet<>(Arrays.asList(expectedPackageNames));
         assertWithMessage("Invalid names set.")
@@ -146,8 +146,8 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
         };
 
         assertWithMessage("Invalid package names length.")
-            .that(actualPackageNames.size())
-            .isEqualTo(expectedPackageNames.length);
+            .that(actualPackageNames)
+            .hasSize(expectedPackageNames.length);
         final Set<String> checkstylePackagesSet =
                 new HashSet<>(Arrays.asList(expectedPackageNames));
         assertWithMessage("Invalid names set.")
@@ -166,8 +166,9 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Invalid exception cause class")
-                    .that(ex.getCause() instanceof SAXException)
-                    .isTrue();
+                    .that(ex)
+                    .hasCauseThat()
+                    .isInstanceOf(SAXException.class);
         }
     }
 
@@ -199,8 +200,9 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Invalid exception cause class")
-                    .that(ex.getCause() instanceof IOException)
-                    .isTrue();
+                    .that(ex)
+                    .hasCauseThat()
+                    .isInstanceOf(IOException.class);
             assertNotEquals("unable to get package file resources", ex.getMessage(),
                     "Invalid exception message");
         }
@@ -214,8 +216,9 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Invalid exception cause class")
-                    .that(ex.getCause() instanceof IOException)
-                    .isTrue();
+                    .that(ex)
+                    .hasCauseThat()
+                    .isInstanceOf(IOException.class);
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
                 .isEqualTo("unable to get package file resources");

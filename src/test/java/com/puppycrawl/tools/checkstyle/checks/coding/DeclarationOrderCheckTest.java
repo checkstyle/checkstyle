@@ -142,15 +142,15 @@ public class DeclarationOrderCheckTest
         final SortedSet<Violation> violations1 = check.getViolations();
 
         assertWithMessage("No exception violations expected")
-            .that(violations1.size())
-            .isEqualTo(0);
+            .that(violations1)
+            .isEmpty();
 
         check.visitToken(ctor);
         final SortedSet<Violation> violations2 = check.getViolations();
 
         assertWithMessage("No exception violations expected")
-            .that(violations2.size())
-            .isEqualTo(0);
+            .that(violations2)
+            .isEmpty();
     }
 
     @Test
@@ -167,8 +167,8 @@ public class DeclarationOrderCheckTest
         final SortedSet<Violation> violations = check.getViolations();
 
         assertWithMessage("No exception violations expected")
-            .that(violations.size())
-            .isEqualTo(0);
+            .that(violations)
+            .isEmpty();
     }
 
     @Test
