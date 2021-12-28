@@ -39,6 +39,30 @@ options { tokenVocab=JavaLanguageLexer; }
     private boolean isYieldStatement() {
         return _input.LT(1).getType() == JavaLanguageLexer.LITERAL_YIELD && switchBlockDepth > 0;
     }
+
+    static int fileCounter = 0;
+
+    /**
+     * We create a custom constructor so that we can clear the DFA
+     * states upon instantiation of JavaLanguageParser.
+     *
+     * @param input the token stream to parse
+     * @param clearDfaLimit this is the number of files to parse before clearing
+     *         the parser's DFA states. This number can have a significant impact
+     *         on performance; more frequent clearing of DFA states can lead to
+     *         slower parsing but lower memory usage. Conversely, not clearing the
+     *         DFA states at all can lead to enourmous memory usage, but may also
+     *         have a negative effect on memory usage from higher garbage collector
+     *         activity. If {@code clearDfaLimit} is set to zero, DFA states are
+     *         never cleared.
+     */
+    public JavaLanguageParser(TokenStream input, int clearDfaLimit) {
+        super(input);
+        _interp = new ParserATNSimulator(this, _ATN , _decisionToDFA, _sharedContextCache);
+        if (clearDfaLimit != 0 && ++fileCounter % clearDfaLimit == 0) {
+            _interp.clearDFA();
+        }
+    }
 }
 
 compilationUnit
