@@ -493,6 +493,13 @@
             <threshold>Low</threshold>
             <excludeFilterFile>config/spotbugs-exclude.xml</excludeFilterFile>
             <spotbugsXmlOutputDirectory>target/spotbugsreports</spotbugsXmlOutputDirectory>
+            <plugins>
+              <plugin>
+                <groupId>com.mebigfatguy.fb-contrib</groupId>
+                <artifactId>fb-contrib</artifactId>
+                <version>7.4.7</version>
+              </plugin>
+            </plugins>
           </configuration>
         </plugin>
 

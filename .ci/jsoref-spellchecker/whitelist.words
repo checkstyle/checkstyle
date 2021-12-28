@@ -11,6 +11,7 @@ abstractclassname
 abstractfileset
 abstractjavadoc
 ABx
+ACEM
 Acheckstyle
 acm
 Aconfig
@@ -19,6 +20,7 @@ addons
 adf
 adoptopenjdk
 adr
+AFBR
 AFDF
 AFilter
 aggregators
@@ -250,6 +252,7 @@ config
 configurationloader
 Connell's
 constantname
+CONTAINSKEY
 Contextualizable
 contextualization
 contextualized
@@ -270,6 +273,7 @@ csv
 ctor
 ctx
 customimportorder
+CVAA
 cvs
 cyclomatic
 cyclomaticcomplexity
@@ -407,6 +411,8 @@ fallthru
 Fannotation
 favicon
 Fblocks
+FCBL
+FCCD
 Fchecks
 Fcheckstyle
 fchurn
@@ -743,6 +749,7 @@ libcore
 liberapay
 libexec
 lifecycle
+LII
 linebreak
 linecolumn
 linelength
@@ -783,6 +790,7 @@ mavenbadge
 maxmethods
 mct
 mdl
+mebigfatguy
 mega
 membername
 metadata
@@ -822,6 +830,7 @@ mozilla
 MRELEASE
 mstudman
 MTAGLIST
+MUI
 multicharacter
 multiline
 Multimap
@@ -864,12 +873,14 @@ netbeans
 newdomain
 newlineatendoffile
 Nfc
+NFF
 Nfo
 Niederhauser
 nikitasavinov
 nio
 nlow
 nmancus
+NMCS
 NMTOKEN
 noarch
 noarg
@@ -929,7 +940,9 @@ nutsandbolts
 nvuillam
 objblock
 oburn
+OCP
 ogg
+OI
 olddomain
 ololo
 olympe
@@ -951,6 +964,7 @@ optimisation
 orderedproperties
 orderingandspacing
 orekit
+ORELSEGET
 orm
 Osgi
 oss
@@ -1014,6 +1028,7 @@ pkghtml
 pkginfo
 pkx
 plugin
+PMB
 pmd
 pmdruleset
 PModel
@@ -1028,9 +1043,12 @@ powermock
 ppc
 Ppitest
 prebuilts
+PRESIZE
 printf
 println
+PRINTSTACKTRACE
 priva
+PRMC
 programpractice
 Proguard
 propertycachefile
@@ -1135,10 +1153,14 @@ sdk
 selfexplanatory
 Selkin
 semaphoreci
+SEO
 separatorwrap
+SERIALVERSIONUID
 servlet
+SETLABELFOR
 SETPOINT
 sevntu
+SGSU
 shengchen
 Shiell
 sickboy
@@ -1201,6 +1223,7 @@ streamapi
 strictfp
 stringliteralequality
 strkkk
+STT
 Studman
 Styleable
 styleguide
@@ -1273,6 +1296,7 @@ tokennizer
 tokentype
 tolist
 Toolbar
+TOSTRING
 Touchscreen
 trailingcomment
 treelayout
@@ -1290,9 +1314,11 @@ tw
 typecastparenpad
 typename
 typevariablenames
+UAC
 uber
 ubuntu
 ucc
+UCPM
 UElement
 ufeff
 ul
@@ -1322,6 +1348,7 @@ upperell
 upsss
 uri
 url
+USBR
 userguide
 username
 usr
@@ -1378,6 +1405,7 @@ wiki
 wikipedia
 wiktionary
 windowsservercore
+WOC
 woff
 wontfix
 workaround
