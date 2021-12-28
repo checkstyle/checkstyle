@@ -39,6 +39,15 @@ options { tokenVocab=JavaLanguageLexer; }
     private boolean isYieldStatement() {
         return _input.LT(1).getType() == JavaLanguageLexer.LITERAL_YIELD && switchBlockDepth > 0;
     }
+
+    public JavaLanguageParser(TokenStream input, boolean dummyArg) {
+        super(input);
+        final DFA[] myDfa = new DFA[_ATN.getNumberOfDecisions()];
+        for (int i = 0; i < _ATN.getNumberOfDecisions(); i++) {
+            myDfa[i] = new DFA(_ATN.getDecisionState(i), i);
+        }
+        _interp = new ParserATNSimulator(this,_ATN,myDfa,_sharedContextCache);
+    }
 }
 
 compilationUnit
