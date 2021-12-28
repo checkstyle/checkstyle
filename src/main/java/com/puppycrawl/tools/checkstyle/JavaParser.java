@@ -34,9 +34,6 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.atn.ParserATNSimulator;
-import org.antlr.v4.runtime.atn.PredictionContextCache;
-import org.antlr.v4.runtime.dfa.DFA;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -91,7 +88,7 @@ public final class JavaParser {
         lexer.removeErrorListeners();
 
         final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
-        final JavaLanguageParser parser = new JavaLanguageParser(tokenStream);
+        final JavaLanguageParser parser = new JavaLanguageParser(tokenStream, true);
         parser.setErrorHandler(new CheckstyleParserErrorStrategy());
         parser.removeErrorListeners();
         parser.addErrorListener(new CheckstyleErrorListener());
@@ -107,15 +104,7 @@ public final class JavaParser {
             throw new CheckstyleException(exceptionMsg, ex);
         }
 
-        final DetailAST root = new JavaAstVisitor(tokenStream).visit(compilationUnit);
-
-        // Clear DFA after parsing to reduce memory usage
-        final ParserATNSimulator simulator = new ParserATNSimulator(parser, parser.getATN(),
-                parser.getInterpreter().decisionToDFA, new PredictionContextCache());
-        simulator.clearDFA();
-        parser.setInterpreter(simulator);
-
-        return root;
+        return new JavaAstVisitor(tokenStream).visit(compilationUnit);
     }
 
     /**
