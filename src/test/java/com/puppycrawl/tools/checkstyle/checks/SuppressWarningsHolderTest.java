@@ -320,10 +320,13 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         }
         catch (InvocationTargetException ex) {
             assertWithMessage("Error type is unexpected")
-                    .that(ex.getCause() instanceof IllegalArgumentException)
-                    .isTrue();
+                    .that(ex)
+                    .hasCauseThat()
+                    .isInstanceOf(IllegalArgumentException.class);
             assertWithMessage("Error message is unexpected")
-                .that(ex.getCause().getMessage())
+                .that(ex)
+                .hasCauseThat()
+                .hasMessageThat()
                 .isEqualTo("Unexpected AST: Method Def[0x0]");
         }
     }
@@ -347,10 +350,12 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         }
         catch (InvocationTargetException ex) {
             assertWithMessage("Error type is unexpected")
-                    .that(ex.getCause() instanceof IllegalArgumentException)
-                    .isTrue();
+                    .that(ex)
+                    .hasCauseThat()
+                    .isInstanceOf(IllegalArgumentException.class);
             assertWithMessage("Error message is unexpected")
-                .that(ex.getCause().getMessage())
+                .that(ex)
+                .hasCauseThat().hasMessageThat()
                 .isEqualTo("Expression or annotation array initializer AST expected: "
                         + "Method Def[0x0]");
         }
@@ -380,10 +385,12 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         }
         catch (InvocationTargetException ex) {
             assertWithMessage("Error type is unexpected")
-                    .that(ex.getCause() instanceof IllegalArgumentException)
-                    .isTrue();
+                    .that(ex)
+                    .hasCauseThat()
+                    .isInstanceOf(IllegalArgumentException.class);
             assertWithMessage("Error message is unexpected")
-                .that(ex.getCause().getMessage())
+                .that(ex)
+                .hasCauseThat().hasMessageThat()
                 .isEqualTo("Unexpected container AST: Parent ast[0x0]");
         }
     }

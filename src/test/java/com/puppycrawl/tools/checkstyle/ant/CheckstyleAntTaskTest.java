@@ -162,8 +162,8 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 .isTrue();
         final List<File> filesToCheck = TestRootModuleChecker.getFilesToCheck();
         assertWithMessage("There are more files to check than expected")
-                .that(filesToCheck.size())
-                .isEqualTo(1);
+                .that(filesToCheck)
+                .hasSize(1);
         assertWithMessage("The path of file differs from expected")
                 .that(filesToCheck.get(0).getAbsolutePath())
                 .isEqualTo(getPath(FLAWLESS_INPUT));
@@ -424,8 +424,8 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final List<String> output = readWholeFile(outputFile);
         final int sizeOfOutputWithNoViolations = 2;
         assertWithMessage("No violations expected")
-                .that(output.size())
-                .isEqualTo(sizeOfOutputWithNoViolations);
+                .that(output)
+                .hasSize(sizeOfOutputWithNoViolations);
     }
 
     @Test
@@ -449,8 +449,8 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final List<String> output = readWholeFile(outputFile);
         final int sizeOfOutputWithNoViolations = 2;
         assertWithMessage("No violations expected")
-                .that(output.size())
-                .isEqualTo(sizeOfOutputWithNoViolations);
+                .that(output)
+                .hasSize(sizeOfOutputWithNoViolations);
     }
 
     @Test

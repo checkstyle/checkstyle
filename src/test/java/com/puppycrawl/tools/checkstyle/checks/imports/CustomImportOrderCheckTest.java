@@ -444,7 +444,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Invalid exception message")
-                .that(ex.getMessage())
+                .that(ex)
+                .hasMessageThat()
                 .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                         + "cannot initialize module com.puppycrawl.tools.checkstyle.checks"
                         + ".imports.CustomImportOrderCheck - "

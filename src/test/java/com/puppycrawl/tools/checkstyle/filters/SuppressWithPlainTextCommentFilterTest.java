@@ -245,7 +245,8 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
             assertWithMessage("Invalid exception message")
-                .that(cause.getMessage())
+                .that(cause)
+                .hasMessageThat()
                 .isEqualTo("unable to parse expanded comment e[l");
         }
     }
@@ -271,7 +272,8 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
             assertWithMessage("Invalid exception message")
-                .that(cause.getMessage())
+                .that(cause)
+                .hasMessageThat()
                 .isEqualTo("unable to parse expanded comment e[l");
         }
     }
@@ -306,7 +308,8 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
             assertWithMessage("Invalid exception message")
-                .that(cause.getMessage())
+                .that(cause)
+                .hasMessageThat()
                 .isEqualTo("unable to parse expanded comment e[l");
         }
     }
@@ -339,7 +342,8 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
             assertWithMessage("Invalid exception message")
-                .that(cause.getMessage())
+                .that(cause)
+                .hasMessageThat()
                 .isEqualTo("unable to parse expanded comment e[l");
         }
     }
@@ -547,10 +551,11 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
             final Throwable cause = ex.getCause();
             assertWithMessage("Exception cause has invalid type")
-                    .that(cause instanceof FileNotFoundException)
-                    .isTrue();
+                    .that(cause)
+                    .isInstanceOf(FileNotFoundException.class);
             assertWithMessage("Invalid exception message")
-                .that(cause.getMessage())
+                .that(cause)
+                .hasMessageThat()
                 .isEqualTo(fileName + " (No such file or directory)");
         }
     }

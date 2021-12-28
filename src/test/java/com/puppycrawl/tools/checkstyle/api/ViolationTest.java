@@ -329,14 +329,14 @@ public class ViolationTest {
                 TestUtil.getInternalStaticState(Violation.class, "BUNDLE_CACHE");
 
         assertWithMessage("Invalid bundle cache size")
-            .that(bundleCache.size())
-            .isEqualTo(1);
+            .that(bundleCache)
+            .hasSize(1);
 
         Violation.setLocale(Locale.CHINA);
 
         assertWithMessage("Invalid bundle cache size")
-            .that(bundleCache.size())
-            .isEqualTo(0);
+            .that(bundleCache)
+            .isEmpty();
     }
 
     @Test

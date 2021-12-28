@@ -51,8 +51,8 @@ public class JavadocUtilTest {
         final JavadocTags allTags =
             JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.ALL);
         assertWithMessage("Invalid valid tags size")
-            .that(allTags.getValidTags().size())
-            .isEqualTo(5);
+            .that(allTags.getValidTags())
+            .hasSize(5);
     }
 
     @Test
@@ -65,8 +65,8 @@ public class JavadocUtilTest {
         final JavadocTags allTags =
             JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.ALL);
         assertWithMessage("Invalid valid tags size")
-            .that(allTags.getValidTags().size())
-            .isEqualTo(1);
+            .that(allTags.getValidTags())
+            .hasSize(1);
     }
 
     @Test
@@ -81,11 +81,11 @@ public class JavadocUtilTest {
         final JavadocTags inlineTags =
             JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.INLINE);
         assertWithMessage("Invalid valid tags size")
-            .that(blockTags.getValidTags().size())
-            .isEqualTo(1);
+            .that(blockTags.getValidTags())
+            .hasSize(1);
         assertWithMessage("Invalid valid tags size")
-            .that(inlineTags.getValidTags().size())
-            .isEqualTo(2);
+            .that(inlineTags.getValidTags())
+            .hasSize(2);
     }
 
     @Test
@@ -126,8 +126,8 @@ public class JavadocUtilTest {
             comment, JavadocUtil.JavadocTagType.ALL).getValidTags();
 
         assertWithMessage("Invalid tags size")
-            .that(tags.size())
-            .isEqualTo(2);
+            .that(tags)
+            .hasSize(2);
 
         final JavadocTag seeTag = tags.get(0);
         assertWithMessage("Invalid tag name")
@@ -160,10 +160,9 @@ public class JavadocUtilTest {
         final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
             comment, JavadocUtil.JavadocTagType.INLINE).getValidTags();
 
-        final int size = tags.size();
         assertWithMessage("Invalid tags size")
-            .that(size)
-            .isEqualTo(1);
+            .that(tags)
+            .hasSize(1);
         final int lineNo = tags.get(0).getLineNo();
         assertWithMessage("Unexpected line number")
             .that(lineNo)
@@ -185,15 +184,15 @@ public class JavadocUtilTest {
         final JavadocTags allTags =
             JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.ALL);
         assertWithMessage("Unexpected invalid tags size")
-            .that(allTags.getInvalidTags().size())
-            .isEqualTo(2);
+            .that(allTags.getInvalidTags())
+            .hasSize(2);
         assertTag("Unexpected invalid tag", new InvalidJavadocTag(1, 4, "fake"),
                 allTags.getInvalidTags().get(0));
         assertTag("Unexpected invalid tag", new InvalidJavadocTag(2, 4, "bogus"),
                 allTags.getInvalidTags().get(1));
         assertWithMessage("Unexpected valid tags size")
-            .that(allTags.getValidTags().size())
-            .isEqualTo(1);
+            .that(allTags.getValidTags())
+            .hasSize(1);
         assertTag("Unexpected valid tag", new JavadocTag(3, 4, "link", "List valid"),
                 allTags.getValidTags().get(0));
     }

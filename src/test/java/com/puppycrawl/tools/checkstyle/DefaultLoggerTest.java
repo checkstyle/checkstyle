@@ -275,8 +275,8 @@ public class DefaultLoggerTest {
             .that(message.invoke(messageClass))
             .isEqualTo("Une erreur est survenue {0}");
         assertWithMessage("Invalid bundle cache size")
-            .that(bundleCache.size())
-            .isEqualTo(1);
+            .that(bundleCache)
+            .hasSize(1);
     }
 
     @Test

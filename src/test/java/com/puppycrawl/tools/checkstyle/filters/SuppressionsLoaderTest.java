@@ -289,8 +289,8 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final FilterSet set = SuppressionsLoader.loadSuppressions(fn);
 
         assertWithMessage("Invalid number of filters")
-            .that(set.getFilters().size())
-            .isEqualTo(1);
+            .that(set.getFilters())
+            .hasSize(1);
     }
 
     @Test
@@ -385,8 +385,8 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final Set<TreeWalkerFilter> filterSet = SuppressionsLoader.loadXpathSuppressions(fn);
 
         assertWithMessage("Invalid number of filters")
-            .that(filterSet.size())
-            .isEqualTo(1);
+            .that(filterSet)
+            .hasSize(1);
     }
 
 }
