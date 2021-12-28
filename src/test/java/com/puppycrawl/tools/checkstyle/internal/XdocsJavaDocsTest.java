@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.io.File;
 import java.net.URI;
@@ -520,8 +519,9 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             if ("a".equals(nodeName) && "href".equals(attrName)) {
                 String value = attribute.getNodeValue();
 
-                assertNotEquals('#', value.charAt(0),
-                        "links starting with '#' aren't supported: " + value);
+                assertWithMessage("links starting with '#' aren't supported: " + value)
+                    .that(value.charAt(0))
+                    .isNotEqualTo('#');
 
                 if (value.contains("://")) {
                     attrValue = value;

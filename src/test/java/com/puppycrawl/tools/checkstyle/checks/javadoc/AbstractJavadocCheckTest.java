@@ -29,7 +29,6 @@ import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.File;
@@ -251,8 +250,9 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                 "Invalid default javadoc tokens");
         assertArrayEquals(defaultJavadocTokens, check.getAcceptableJavadocTokens(),
                 "Invalid acceptable javadoc tokens");
-        assertNotEquals(defaultJavadocTokens, check.getRequiredJavadocTokens(),
-                "Invalid required javadoc tokens");
+        assertWithMessage("Invalid required javadoc tokens")
+            .that(check.getRequiredJavadocTokens())
+            .isNotEqualTo(defaultJavadocTokens);
     }
 
     @Test
