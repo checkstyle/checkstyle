@@ -129,8 +129,8 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         final SortedSet<Violation> internalViolations =
                 check.getViolations();
         assertWithMessage("Internal violation should only have 1")
-                .that(internalViolations.size())
-                .isEqualTo(1);
+                .that(internalViolations)
+                .hasSize(1);
 
         // again to prove only 1 violation exists
         final File secondFile = new File("inputAbstractFileSetCheck.tmp");
@@ -150,8 +150,8 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         final SortedSet<Violation> internalViolations2 =
             check.getViolations();
         assertWithMessage("Internal violation should only have 1 again")
-                .that(internalViolations2.size())
-                .isEqualTo(1);
+                .that(internalViolations2)
+                .hasSize(1);
     }
 
     @Test
@@ -193,8 +193,8 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         final SortedSet<Violation> internalViolations = check.process(file, theText);
 
         assertWithMessage("Internal violation should only have 1")
-                .that(internalViolations.size())
-                .isEqualTo(1);
+                .that(internalViolations)
+                .hasSize(1);
 
         final Violation violation = internalViolations.iterator().next();
         assertWithMessage("expected line")
@@ -240,8 +240,8 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
                 .isEqualTo("fileName");
 
         assertWithMessage("errors should only have 1")
-                .that(dispatcher.errorList.size())
-                .isEqualTo(1);
+                .that(dispatcher.errorList)
+                .hasSize(1);
 
         final Violation violation = dispatcher.errorList.iterator().next();
         assertWithMessage("expected line")
@@ -256,8 +256,8 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         check.finishProcessing();
 
         assertWithMessage("errors should still have 1 after re-run")
-                .that(dispatcher.errorList.size())
-                .isEqualTo(1);
+                .that(dispatcher.errorList)
+                .hasSize(1);
         assertWithMessage("finishProcessing was called twice")
                 .that(check.finishProcessingCount)
                 .isEqualTo(2);

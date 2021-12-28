@@ -188,8 +188,8 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
 
         final int expectedLines = 19;
         assertWithMessage("Invalid lines to position")
-            .that(model.getLinesToPosition().size())
-            .isEqualTo(expectedLines);
+            .that(model.getLinesToPosition())
+            .hasSize(expectedLines);
 
         final String testDataFileNameWithoutPostfix = FILE_NAME_TEST_DATA.replace(".java", "");
         assertWithMessage("Invalid model text: " + model.getText())

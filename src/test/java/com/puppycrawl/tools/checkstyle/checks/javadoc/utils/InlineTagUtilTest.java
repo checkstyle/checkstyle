@@ -47,8 +47,8 @@ public class InlineTagUtilTest {
         final List<TagInfo> tags = InlineTagUtil.extractInlineTags(text);
 
         assertWithMessage("Unexpected tags size")
-            .that(tags.size())
-            .isEqualTo(4);
+            .that(tags)
+            .hasSize(4);
 
         assertTag(tags.get(0), "link", "List", 2, 4);
         assertTag(tags.get(1), "link", "List link text", 2, 19);
@@ -67,8 +67,8 @@ public class InlineTagUtilTest {
         final List<TagInfo> tags = InlineTagUtil.extractInlineTags(text);
 
         assertWithMessage("Unexpected tags size")
-            .that(tags.size())
-            .isEqualTo(1);
+            .that(tags)
+            .hasSize(1);
         assertTag(tags.get(0), "link", "foo bar baz", 2, 4);
     }
 
@@ -82,8 +82,8 @@ public class InlineTagUtilTest {
         final List<TagInfo> tags = InlineTagUtil.extractInlineTags(text);
 
         assertWithMessage("Unexpected tags size")
-            .that(tags.size())
-            .isEqualTo(1);
+            .that(tags)
+            .hasSize(1);
         assertTag(tags.get(0), "code", "foo bar baz", 2, 4);
     }
 
@@ -96,8 +96,8 @@ public class InlineTagUtilTest {
         final List<TagInfo> tags = InlineTagUtil.extractInlineTags(source);
 
         assertWithMessage("Unexpected tags size")
-            .that(tags.size())
-            .isEqualTo(1);
+            .that(tags)
+            .hasSize(1);
 
         final TagInfo tag = tags.get(0);
         assertTag(tag, "link", "foo", 1, 3);

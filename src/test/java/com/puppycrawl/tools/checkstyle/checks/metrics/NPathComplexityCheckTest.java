@@ -281,15 +281,15 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         final SortedSet<Violation> violations1 = npathComplexityCheckObj.getViolations();
 
         assertWithMessage("No exception violations expected")
-            .that(violations1.size())
-            .isEqualTo(0);
+            .that(violations1)
+            .isEmpty();
 
         npathComplexityCheckObj.leaveToken(ast);
         final SortedSet<Violation> violations2 = npathComplexityCheckObj.getViolations();
 
         assertWithMessage("No exception violations expected")
-            .that(violations2.size())
-            .isEqualTo(0);
+            .that(violations2)
+            .isEmpty();
     }
 
     /**
@@ -341,16 +341,16 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         final SortedSet<Violation> violations1 = npathComplexityCheckObj.getViolations();
 
         assertWithMessage("No exception violations expected")
-            .that(violations1.size())
-            .isEqualTo(0);
+            .that(violations1)
+            .isEmpty();
 
         // visiting ternary, it lies before expressionSpatialRange
         npathComplexityCheckObj.visitToken(astTernary);
         final SortedSet<Violation> violations2 = npathComplexityCheckObj.getViolations();
 
         assertWithMessage("No exception violations expected")
-            .that(violations2.size())
-            .isEqualTo(0);
+            .that(violations2)
+            .isEmpty();
     }
 
     /**

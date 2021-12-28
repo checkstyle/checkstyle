@@ -174,11 +174,12 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
 
             final Throwable cause = ex.getCause();
             assertWithMessage("Invalid error message")
-                    .that(cause instanceof FileNotFoundException)
-                    .isTrue();
+                    .that(cause)
+                    .isInstanceOf(FileNotFoundException.class);
             assertWithMessage("Invalid error message")
-                    .that(cause.getMessage().contains("NotExistent.java"))
-                    .isTrue();
+                    .that(cause)
+                    .hasMessageThat()
+                    .contains("NotExistent.java");
         }
         assertWithMessage("Unexpected error log")
             .that(systemErr.getCapturedData())
@@ -206,11 +207,11 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
 
             final Throwable cause = ex.getCause();
             assertWithMessage("Invalid error message")
-                    .that(cause instanceof FileNotFoundException)
-                    .isTrue();
+                    .that(cause)
+                    .isInstanceOf(FileNotFoundException.class);
             assertWithMessage("Invalid error message")
-                    .that(cause.getMessage().contains(".."))
-                    .isTrue();
+                    .that(cause)
+                    .hasMessageThat().contains("..");
         }
         assertWithMessage("Unexpected error log")
             .that(systemErr.getCapturedData())
@@ -343,11 +344,11 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
 
             final Throwable cause = ex.getCause();
             assertWithMessage("Invalid error message")
-                    .that(cause instanceof IllegalStateException)
-                    .isTrue();
+                    .that(cause)
+                    .isInstanceOf(IllegalStateException.class);
             assertWithMessage("Invalid error message")
-                    .that(cause.getMessage().contains("9:0: mismatched input '!' expecting '}'"))
-                    .isTrue();
+                    .that(cause)
+                    .hasMessageThat().contains("9:0: mismatched input '!' expecting '}'");
         }
     }
 

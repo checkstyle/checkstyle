@@ -314,8 +314,8 @@ public class TokenUtilTest {
         final DetailAST firstChild = children.get(0);
 
         assertWithMessage("Must be one match")
-            .that(children.size())
-            .isEqualTo(1);
+            .that(children)
+            .hasSize(1);
         assertWithMessage("Mismatched child node")
             .that(firstChild)
             .isEqualTo(secondSibling);

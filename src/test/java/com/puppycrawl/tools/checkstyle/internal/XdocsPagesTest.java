@@ -694,8 +694,8 @@ public class XdocsPagesTest {
             final Set<Node> nodes = XmlUtil.getChildrenElements(subSection);
             assertWithMessage(fileName + " section '" + sectionName
                     + "' subsection 'Properties' should have one child node")
-                .that(nodes.size())
-                .isEqualTo(1);
+                .that(nodes)
+                .hasSize(1);
 
             final Node div = nodes.iterator().next();
             assertWithMessage(fileName + " section '" + sectionName
@@ -799,8 +799,8 @@ public class XdocsPagesTest {
 
             assertWithMessage(fileName + " section '" + sectionName
                     + "' should have the requested columns")
-                .that(columns.size())
-                .isEqualTo(5);
+                .that(columns)
+                .hasSize(5);
 
             if (skip) {
                 assertWithMessage(fileName + " section '" + sectionName
@@ -1783,8 +1783,8 @@ public class XdocsPagesTest {
 
     private static void validateStyleAnchors(Set<Node> anchors, String fileName, String ruleName) {
         assertWithMessage(fileName + " rule '" + ruleName + "' must have two row anchors")
-            .that(anchors.size())
-            .isEqualTo(2);
+            .that(anchors)
+            .hasSize(2);
 
         final int space = ruleName.indexOf(' ');
         assertNotEquals(-1, space,
