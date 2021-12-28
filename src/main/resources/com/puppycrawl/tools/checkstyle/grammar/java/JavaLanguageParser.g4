@@ -22,6 +22,17 @@ parser grammar JavaLanguageParser;
 options { tokenVocab=JavaLanguageLexer; }
 
 @parser::members {
+
+    /**
+     * This is the number of files to parse before clearing the parser's
+     * DFA states. This number can have a significant impact on performance;
+     * we have found 500 files to be a good balance between parser speed and
+     * memory usage. This field must be public in order to be accessed and
+     * used for {@link JavaLanguageParser#JavaLanguageParser(TokenStream, int)}
+     * generated constructor.
+     */
+    public static final int CLEAR_DFA_LIMIT = 500;
+
     /**
     * This value tracks the depth of a switch expression. Along with the
     * IDENT to id rule at the end of the parser, this value helps us
@@ -38,6 +49,32 @@ options { tokenVocab=JavaLanguageLexer; }
      */
     private boolean isYieldStatement() {
         return _input.LT(1).getType() == JavaLanguageLexer.LITERAL_YIELD && switchBlockDepth > 0;
+    }
+
+    static int fileCounter = 0;
+
+    /**
+     * We create a custom constructor so that we can clear the DFA
+     * states upon instantiation of JavaLanguageParser.
+     *
+     * @param input the token stream to parse
+     * @param clearDfaLimit this is the number of files to parse before clearing
+     *         the parser's DFA states. This number can have a significant impact
+     *         on performance; more frequent clearing of DFA states can lead to
+     *         slower parsing but lower memory usage. Conversely, not clearing the
+     *         DFA states at all can lead to enormous memory usage, but may also
+     *         have a negative effect on memory usage from higher garbage collector
+     *         activity. If {@code clearDfaLimit} is set to zero, DFA states are
+     *         never cleared.
+     */
+    public JavaLanguageParser(TokenStream input, int clearDfaLimit) {
+        super(input);
+        _interp = new ParserATNSimulator(this, _ATN , _decisionToDFA, _sharedContextCache);
+        fileCounter++;
+        if (fileCounter > clearDfaLimit) {
+            _interp.clearDFA();
+            fileCounter = 0;
+        }
     }
 }
 
