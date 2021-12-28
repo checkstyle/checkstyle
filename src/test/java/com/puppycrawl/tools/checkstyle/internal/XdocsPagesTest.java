@@ -25,7 +25,6 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.hamcrest.CoreMatchers.describedAs;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -1787,9 +1786,10 @@ public class XdocsPagesTest {
             .hasSize(2);
 
         final int space = ruleName.indexOf(' ');
-        assertNotEquals(-1, space,
-                fileName + " rule '" + ruleName
-                        + "' must have have a space between the rule's number and the rule's name");
+        assertWithMessage(fileName + " rule '" + ruleName
+                + "' must have have a space between the rule's number and the rule's name")
+            .that(space)
+            .isNotEqualTo(-1);
 
         final String ruleNumber = ruleName.substring(0, space);
 
