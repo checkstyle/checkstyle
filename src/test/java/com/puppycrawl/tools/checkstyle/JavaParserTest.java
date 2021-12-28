@@ -257,20 +257,6 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoStackOverflowOnDeepStringConcat() throws Exception {
-        final File file =
-                new File(getPath("InputJavaParserNoStackOverflowOnDeepStringConcat.java"));
-
-        final DetailAST ast = TestUtil.getResultWithLimitedResources(() -> {
-            return JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS);
-        });
-
-        assertWithMessage("File parsing should complete successfully.")
-                .that(ast)
-                .isNotNull();
-    }
-
-    @Test
     public void testNoFreezeOnDeeplyNestedLambdas() throws Exception {
         final File file =
                 new File(getNonCompilablePath("InputJavaParserNoFreezeOnDeeplyNestedLambdas.java"));
