@@ -155,45 +155,6 @@
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrder.java"/>
 
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderVariableAccess.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNullIgnoreCase.java"/>
 
   <suppress id="lineLength"
