@@ -384,16 +384,16 @@ public class PackageObjectFactoryTest {
                     return !canonicalNames.contains(clazz.getCanonicalName())
                             && !Definitions.INTERNAL_MODULES.contains(clazz.getName());
                 }).findFirst();
-        if (optional1.isPresent()) {
-            assertWithMessage("Invalid canonical name: " + optional1.get()).fail();
-        }
+        assertWithMessage("Invalid canonical name: %s", optional1)
+                .that(optional1.isPresent())
+                .isFalse();
         final Optional<String> optional2 = canonicalNames.stream().filter(canonicalName -> {
             return classes.stream().map(Class::getCanonicalName)
                     .noneMatch(clssCanonicalName -> clssCanonicalName.equals(canonicalName));
         }).findFirst();
-        if (optional2.isPresent()) {
-            assertWithMessage("Invalid class: " + optional2.get()).fail();
-        }
+        assertWithMessage("Invalid class: %s", optional2)
+                .that(optional2.isPresent())
+                .isFalse();
     }
 
     @Test

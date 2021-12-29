@@ -295,12 +295,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 final int[] defaultTokens = testedCheck.getDefaultTokens();
                 final int[] acceptableTokens = testedCheck.getAcceptableTokens();
 
-                if (!isSubset(defaultTokens, acceptableTokens)) {
-                    final String errorMessage = String.format(Locale.ROOT,
-                            "%s's default tokens must be a subset"
-                            + " of acceptable tokens.", check.getName());
-                    assertWithMessage(errorMessage).fail();
-                }
+                assertWithMessage("%s's default tokens must be a subset of acceptable tokens.",
+                            check.getName())
+                        .that(isSubset(defaultTokens, acceptableTokens))
+                        .isTrue();
             }
         }
     }
@@ -314,12 +312,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 final int[] requiredTokens = testedCheck.getRequiredTokens();
                 final int[] acceptableTokens = testedCheck.getAcceptableTokens();
 
-                if (!isSubset(requiredTokens, acceptableTokens)) {
-                    final String errorMessage = String.format(Locale.ROOT,
-                            "%s's required tokens must be a subset"
-                            + " of acceptable tokens.", check.getName());
-                    assertWithMessage(errorMessage).fail();
-                }
+                assertWithMessage("%s's required tokens must be a subset of acceptable tokens.",
+                            check.getName())
+                        .that(isSubset(requiredTokens, acceptableTokens))
+                        .isTrue();
             }
         }
     }
@@ -333,12 +329,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 final int[] defaultTokens = testedCheck.getDefaultTokens();
                 final int[] requiredTokens = testedCheck.getRequiredTokens();
 
-                if (!isSubset(requiredTokens, defaultTokens)) {
-                    final String errorMessage = String.format(Locale.ROOT,
-                            "%s's required tokens must be a subset"
-                            + " of default tokens.", check.getName());
-                    assertWithMessage(errorMessage).fail();
-                }
+                assertWithMessage("%s's required tokens must be a subset of default tokens.",
+                            check.getName())
+                        .that(isSubset(requiredTokens, defaultTokens))
+                        .isTrue();
             }
         }
     }
