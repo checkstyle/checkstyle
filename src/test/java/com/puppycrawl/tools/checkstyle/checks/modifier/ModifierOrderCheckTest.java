@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_ANNOTATION_ORDER;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_MODIFIER_ORDER;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 
@@ -43,8 +43,9 @@ public class ModifierOrderCheckTest
     public void testGetRequiredTokens() {
         final ModifierOrderCheck checkObj = new ModifierOrderCheck();
         final int[] expected = {TokenTypes.MODIFIERS};
-        assertArrayEquals(expected, checkObj.getRequiredTokens(),
-                "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     @Test
@@ -79,7 +80,9 @@ public class ModifierOrderCheckTest
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
         };
-        assertArrayEquals(expected, actual, "Default tokens are invalid");
+        assertWithMessage("Default tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
         final int[] unexpectedEmptyArray = CommonUtil.EMPTY_INT_ARRAY;
         assertNotSame(unexpectedEmptyArray, actual, "Default tokens should not be empty array");
         assertNotSame(unexpectedArray, actual, "Invalid default tokens");
@@ -95,7 +98,9 @@ public class ModifierOrderCheckTest
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
         };
-        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
         final int[] unexpectedEmptyArray = CommonUtil.EMPTY_INT_ARRAY;
         assertNotSame(
                 unexpectedEmptyArray, actual, "Default tokens should not be empty array");

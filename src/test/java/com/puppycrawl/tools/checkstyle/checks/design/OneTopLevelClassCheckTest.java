@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.io.File;
 import java.util.Arrays;
@@ -79,8 +78,9 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     public void testAcceptableTokens() {
         final OneTopLevelClassCheck check = new OneTopLevelClassCheck();
         final int[] expected = {TokenTypes.COMPILATION_UNIT};
-        assertArrayEquals(expected, check.getAcceptableTokens(),
-                "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+            .that(check.getAcceptableTokens())
+            .isEqualTo(expected);
     }
 
     @Test

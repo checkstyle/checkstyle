@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
@@ -74,10 +73,12 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     public void testGet() {
         final SuppressWarningsHolder checkObj = new SuppressWarningsHolder();
         final int[] expected = {TokenTypes.ANNOTATION};
-        assertArrayEquals(expected, checkObj.getRequiredTokens(),
-                "Required token array differs from expected");
-        assertArrayEquals(expected, checkObj.getAcceptableTokens(),
-                "Required token array differs from expected");
+        assertWithMessage("Required token array differs from expected")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
+        assertWithMessage("Required token array differs from expected")
+            .that(checkObj.getAcceptableTokens())
+            .isEqualTo(expected);
     }
 
     @Test

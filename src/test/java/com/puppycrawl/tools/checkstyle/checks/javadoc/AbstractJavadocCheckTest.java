@@ -27,7 +27,6 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocChec
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.MSG_SUMMARY_FIRST_SENTENCE;
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -242,14 +241,18 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         };
 
         assertNotNull(check.getDefaultTokens(), "Default tokens should not be null");
-        assertArrayEquals(check.getDefaultTokens(), check.getAcceptableTokens(),
-                "Acceptable tokens should be equal to default");
-        assertArrayEquals(check.getDefaultTokens(), check.getRequiredTokens(),
-                "Required tokens should be equal to default");
-        assertArrayEquals(defaultJavadocTokens, check.getDefaultJavadocTokens(),
-                "Invalid default javadoc tokens");
-        assertArrayEquals(defaultJavadocTokens, check.getAcceptableJavadocTokens(),
-                "Invalid acceptable javadoc tokens");
+        assertWithMessage("Acceptable tokens should be equal to default")
+            .that(check.getAcceptableTokens())
+            .isEqualTo(check.getDefaultTokens());
+        assertWithMessage("Required tokens should be equal to default")
+            .that(check.getRequiredTokens())
+            .isEqualTo(check.getDefaultTokens());
+        assertWithMessage("Invalid default javadoc tokens")
+            .that(check.getDefaultJavadocTokens())
+            .isEqualTo(defaultJavadocTokens);
+        assertWithMessage("Invalid acceptable javadoc tokens")
+            .that(check.getAcceptableJavadocTokens())
+            .isEqualTo(defaultJavadocTokens);
         assertWithMessage("Invalid required javadoc tokens")
             .that(check.getRequiredJavadocTokens())
             .isNotEqualTo(defaultJavadocTokens);
