@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.ByteArrayOutputStream;
@@ -212,7 +211,9 @@ public class DefaultLoggerTest {
         dl.finishLocalSetup();
         dl.auditStarted(null);
         dl.auditFinished(null);
-        assertNotNull(dl, "instance should not be null");
+        assertWithMessage("instance should not be null")
+            .that(dl)
+            .isNotNull();
     }
 
     /**

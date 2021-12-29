@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.gui;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -201,7 +200,9 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
             .that(model.getLastDirectory())
             .isEqualTo(expectedLastDirectory);
 
-        assertNotNull(model.getParseTreeTableModel(), "ParseTree table model should not be null");
+        assertWithMessage("ParseTree table model should not be null")
+            .that(model.getParseTreeTableModel())
+            .isNotNull();
     }
 
     @Test

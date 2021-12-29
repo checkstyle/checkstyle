@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.gui;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
@@ -225,7 +224,9 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     @Test
     public void testGetIndexOfChild() {
         DetailAST ithChild = tree.getFirstChild();
-        assertNotNull(ithChild, "Child must not be null");
+        assertWithMessage("Child must not be null")
+            .that(ithChild)
+            .isNotNull();
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         int index = 0;
         while (ithChild != null) {
@@ -262,7 +263,9 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
             .getNextSibling()
             .getNextSibling();
 
-        assertNotNull(node, "Expected a non-null identifier node here");
+        assertWithMessage("Expected a non-null identifier node here")
+            .that(node)
+            .isNotNull();
         assertWithMessage("Expected identifier token")
             .that(node.getType())
             .isEqualTo(TokenTypes.IDENT);
@@ -302,7 +305,9 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     @Test
     public void testGetValueAtDetailNode() {
         final DetailAST commentContentNode = tree.getFirstChild().getNextSibling().getFirstChild();
-        assertNotNull(commentContentNode, "Comment node cannot be null");
+        assertWithMessage("Comment node cannot be null")
+            .that(commentContentNode)
+            .isNotNull();
         final int nodeType = commentContentNode.getType();
         assertWithMessage("Comment node should be a comment type")
                 .that(TokenUtil.isCommentType(nodeType))

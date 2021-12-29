@@ -25,7 +25,6 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.hamcrest.CoreMatchers.describedAs;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.beans.PropertyDescriptor;
@@ -322,11 +321,15 @@ public class XdocsPagesTest {
                 final Node subSection = subSections.item(position);
                 final Node name = subSection.getAttributes().getNamedItem("name");
 
-                assertNotNull(name, "All sub-sections in '" + fileName + "' must have a name");
+                assertWithMessage("All sub-sections in '" + fileName + "' must have a name")
+                    .that(name)
+                    .isNotNull();
 
                 final Node id = subSection.getAttributes().getNamedItem("id");
 
-                assertNotNull(id, "All sub-sections in '" + fileName + "' must have an id");
+                assertWithMessage("All sub-sections in '" + fileName + "' must have an id")
+                    .that(id)
+                    .isNotNull();
 
                 final String sectionName;
 
@@ -707,7 +710,9 @@ public class XdocsPagesTest {
             assertWithMessage(wrapperMessage)
                     .that(div.hasAttributes())
                     .isTrue();
-            assertNotNull(div.getAttributes().getNamedItem("class").getNodeValue(), wrapperMessage);
+            assertWithMessage(wrapperMessage)
+                .that(div.getAttributes().getNamedItem("class").getNodeValue())
+                .isNotNull();
             assertWithMessage(wrapperMessage)
                     .that(div.getAttributes().getNamedItem("class").getNodeValue()
                                     .contains("wrapper"))

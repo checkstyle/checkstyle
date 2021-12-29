@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -611,8 +610,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                         + ex.getClass().getSimpleName() + " - " + ex.getMessage()).fail();
             }
 
-            assertNotNull(result, module.getSimpleName() + " should have text for the message '"
-                    + messageString + "' in locale " + locale.getLanguage() + "'");
+            assertWithMessage(module.getSimpleName() + " should have text for the message '"
+                    + messageString + "' in locale " + locale.getLanguage() + "'")
+                .that(result)
+                .isNotNull();
             assertWithMessage("%s should have non-empty text for the message '%s' in locale '%s'",
                             module.getSimpleName(), messageString, locale.getLanguage())
                     .that(result.trim())

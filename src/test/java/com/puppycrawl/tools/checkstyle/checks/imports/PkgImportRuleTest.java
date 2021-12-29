@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +28,9 @@ public class PkgImportRuleTest {
     @Test
     public void testPkgImportRule() {
         final PkgImportRule rule = new PkgImportRule(true, false, "pkg", false, false);
-        assertNotNull(rule, "Rule must not be null");
+        assertWithMessage("Rule must not be null")
+            .that(rule)
+            .isNotNull();
         assertWithMessage("Invalid access result")
             .that(rule.verifyImport("asda"))
             .isEqualTo(AccessResult.UNKNOWN);
@@ -53,7 +54,9 @@ public class PkgImportRuleTest {
     @Test
     public void testPkgImportRuleExactMatch() {
         final PkgImportRule rule = new PkgImportRule(true, false, "pkg", true, false);
-        assertNotNull(rule, "Rule must not be null");
+        assertWithMessage("Rule must not be null")
+            .that(rule)
+            .isNotNull();
         assertWithMessage("Invalid access result")
             .that(rule.verifyImport("asda"))
             .isEqualTo(AccessResult.UNKNOWN);
@@ -74,7 +77,9 @@ public class PkgImportRuleTest {
     @Test
     public void testPkgImportRuleRegexpSimple() {
         final PkgImportRule rule = new PkgImportRule(true, false, "pkg", false, true);
-        assertNotNull(rule, "Rule must not be null");
+        assertWithMessage("Rule must not be null")
+            .that(rule)
+            .isNotNull();
         assertWithMessage("Invalid access result")
             .that(rule.verifyImport("asda"))
             .isEqualTo(AccessResult.UNKNOWN);
@@ -98,7 +103,9 @@ public class PkgImportRuleTest {
     @Test
     public void testPkgImportRuleExactMatchRegexpSimple() {
         final PkgImportRule rule = new PkgImportRule(true, false, "pkg", true, true);
-        assertNotNull(rule, "Rule must not be null");
+        assertWithMessage("Rule must not be null")
+            .that(rule)
+            .isNotNull();
         assertWithMessage("Invalid access result")
             .that(rule.verifyImport("asda"))
             .isEqualTo(AccessResult.UNKNOWN);
@@ -119,7 +126,9 @@ public class PkgImportRuleTest {
     @Test
     public void testPkgImportRuleRegexp() {
         final PkgImportRule rule = new PkgImportRule(true, false, "(pkg|hallo)", false, true);
-        assertNotNull(rule, "Rule must not be null");
+        assertWithMessage("Rule must not be null")
+            .that(rule)
+            .isNotNull();
         assertWithMessage("Invalid access result")
             .that(rule.verifyImport("asda"))
             .isEqualTo(AccessResult.UNKNOWN);
@@ -155,7 +164,9 @@ public class PkgImportRuleTest {
     @Test
     public void testPkgImportRuleNoRegexp() {
         final PkgImportRule rule = new PkgImportRule(true, false, "(pkg|hallo)", false, false);
-        assertNotNull(rule, "Rule must not be null");
+        assertWithMessage("Rule must not be null")
+            .that(rule)
+            .isNotNull();
         assertWithMessage("Invalid access result")
             .that(rule.verifyImport("pkga"))
             .isEqualTo(AccessResult.UNKNOWN);
@@ -188,7 +199,9 @@ public class PkgImportRuleTest {
     @Test
     public void testPkgImportRuleExactMatchRegexp() {
         final PkgImportRule rule = new PkgImportRule(true, false, "(pkg|hallo)", true, true);
-        assertNotNull(rule, "Rule must not be null");
+        assertWithMessage("Rule must not be null")
+            .that(rule)
+            .isNotNull();
         assertWithMessage("Invalid access result")
             .that(rule.verifyImport("asda"))
             .isEqualTo(AccessResult.UNKNOWN);

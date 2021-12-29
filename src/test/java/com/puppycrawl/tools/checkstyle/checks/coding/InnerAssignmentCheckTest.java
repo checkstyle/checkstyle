@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -42,7 +42,6 @@ public class InnerAssignmentCheckTest
             "22:19: " + getCheckMessage(MSG_KEY),
             "24:39: " + getCheckMessage(MSG_KEY),
             "26:35: " + getCheckMessage(MSG_KEY),
-
             "44:16: " + getCheckMessage(MSG_KEY),
             "45:24: " + getCheckMessage(MSG_KEY),
             "46:19: " + getCheckMessage(MSG_KEY),
@@ -73,9 +72,15 @@ public class InnerAssignmentCheckTest
     @Test
     public void testTokensNotNull() {
         final InnerAssignmentCheck check = new InnerAssignmentCheck();
-        assertNotNull(check.getAcceptableTokens(), "Unexpected acceptable tokens");
-        assertNotNull(check.getDefaultTokens(), "Unexpected default tokens");
-        assertNotNull(check.getRequiredTokens(), "Unexpected required tokens");
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Default tokens should not be null")
+            .that(check.getDefaultTokens())
+            .isNotNull();
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
     }
 
 }
