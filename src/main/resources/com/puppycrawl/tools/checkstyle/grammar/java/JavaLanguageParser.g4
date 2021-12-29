@@ -39,6 +39,24 @@ options { tokenVocab=JavaLanguageLexer; }
     private boolean isYieldStatement() {
         return _input.LT(1).getType() == JavaLanguageLexer.LITERAL_YIELD && switchBlockDepth > 0;
     }
+
+    static int fileCounter = 0;
+
+    /**
+     * We create a custom constructor so that we can clear the DFA
+     * states upon instantiation of JavaLanguageParser; this requires
+     * adding a dummy argument to constructor parameters.
+     *
+     * @param input the token stream to parse
+     * @param dummyArg dummy argument
+     */
+    public JavaLanguageParser(TokenStream input, boolean dummyArg) {
+        super(input);
+        _interp = new ParserATNSimulator(this, _ATN , _decisionToDFA, _sharedContextCache);
+        if (++fileCounter % 500 == 0) {
+            _interp.clearDFA();
+        }
+    }
 }
 
 compilationUnit
