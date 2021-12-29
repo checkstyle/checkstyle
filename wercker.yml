@@ -127,16 +127,16 @@ build:
         else
           echo "build is skipped ..."
         fi
-
-  - script:
-      name: NoExceptiontest - Checkstyle ,sevntu-checkstyle
-      code: |
-        if [[ $RUN_JOB == 1 ]]; then
-          echo "Command: ./.ci/validation.sh no-exception-checkstyle-sevntu"
-          ./.ci/validation.sh no-exception-checkstyle-sevntu
-        else
-          echo "build is skipped ..."
-        fi
+  # until https://github.com/checkstyle/checkstyle/pull/9622
+  # - script:
+  #     name: NoExceptiontest - Checkstyle ,sevntu-checkstyle
+  #     code: |
+  #       if [[ $RUN_JOB == 1 ]]; then
+  #         echo "Command: ./.ci/validation.sh no-exception-checkstyle-sevntu"
+  #         ./.ci/validation.sh no-exception-checkstyle-sevntu
+  #       else
+  #         echo "build is skipped ..."
+  #       fi
 
   - script:
        name: NoExceptiontest - Checkstyle ,sevntu-checkstyle javadoc
