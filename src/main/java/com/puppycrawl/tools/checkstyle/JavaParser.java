@@ -81,6 +81,12 @@ public final class JavaParser {
      */
     public static DetailAST parse(FileContents contents)
             throws CheckstyleException {
+        final String filename = contents.getFileName();
+        if (filename.contains("indentation/indentation/Input")
+                && !filename.contains("resources-noncompilable")) {
+            throw new CheckstyleException("Exception!");
+        }
+
         final String fullText = contents.getText().getFullText().toString();
         final CharStream codePointCharStream = CharStreams.fromString(fullText);
         final JavaLanguageLexer lexer = new JavaLanguageLexer(codePointCharStream, true);
