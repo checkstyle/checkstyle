@@ -2963,10 +2963,11 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             final int line = event.getLine();
             final String message = event.getMessage();
 
-            if (position >= comments.length) {
-                assertWithMessage("found a warning when none was expected for #" + position
-                        + " at line " + line + " with message " + message).fail();
-            }
+            assertWithMessage(
+                    "found a warning when none was expected for #%s at line %s with message %s",
+                    position, line, message)
+                .that(position)
+                .isLessThan(comments.length);
 
             final IndentComment comment = comments[position];
             position++;
