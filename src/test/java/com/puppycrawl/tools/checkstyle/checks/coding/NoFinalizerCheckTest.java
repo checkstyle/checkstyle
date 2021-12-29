@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -46,8 +46,9 @@ public class NoFinalizerCheckTest
                 new NoFinalizerCheck();
         final int[] expected = {TokenTypes.METHOD_DEF};
 
-        assertArrayEquals(expected, noFinalizerCheck.getAcceptableTokens(),
-                "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(noFinalizerCheck.getAcceptableTokens())
+            .isEqualTo(expected);
     }
 
     @Test

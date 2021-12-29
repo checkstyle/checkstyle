@@ -26,7 +26,6 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCh
 import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_NONGROUP_IMPORT;
 import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_ORDER;
 import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_SEPARATED_IN_GROUP;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -63,8 +62,9 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             TokenTypes.STATIC_IMPORT,
             TokenTypes.PACKAGE_DEF,
         };
-        assertArrayEquals(
-                expected, checkObj.getRequiredTokens(), "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     @Test
@@ -357,7 +357,9 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             TokenTypes.PACKAGE_DEF,
         };
 
-        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test

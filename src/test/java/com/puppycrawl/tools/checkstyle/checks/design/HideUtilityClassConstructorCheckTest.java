@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,8 +41,9 @@ public class HideUtilityClassConstructorCheckTest
         final HideUtilityClassConstructorCheck checkObj =
             new HideUtilityClassConstructorCheck();
         final int[] expected = {TokenTypes.CLASS_DEF};
-        assertArrayEquals(expected, checkObj.getRequiredTokens(),
-                "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     @Test
@@ -140,8 +141,9 @@ public class HideUtilityClassConstructorCheckTest
     public void testGetAcceptableTokens() {
         final HideUtilityClassConstructorCheck obj = new HideUtilityClassConstructorCheck();
         final int[] expected = {TokenTypes.CLASS_DEF};
-        assertArrayEquals(expected, obj.getAcceptableTokens(),
-                "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(obj.getAcceptableTokens())
+            .isEqualTo(expected);
     }
 
 }

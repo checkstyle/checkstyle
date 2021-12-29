@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationChec
 import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_CHILD_ERROR_MULTI;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_ERROR;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_ERROR_MULTI;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -179,7 +178,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final int[] expected = handlerFactory.getHandledTypes();
         Arrays.sort(expected);
         Arrays.sort(requiredTokens);
-        assertArrayEquals(expected, requiredTokens, "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+            .that(requiredTokens)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -190,7 +191,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final int[] expected = handlerFactory.getHandledTypes();
         Arrays.sort(expected);
         Arrays.sort(acceptableTokens);
-        assertArrayEquals(expected, acceptableTokens, "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(acceptableTokens)
+            .isEqualTo(expected);
     }
 
     @Test

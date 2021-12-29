@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -126,7 +126,9 @@ public class CyclomaticComplexityCheckTest
             TokenTypes.LOR,
             TokenTypes.COMPACT_CTOR_DEF,
         };
-        assertArrayEquals(expected, actual, "Invalid acceptable tokens");
+        assertWithMessage("Invalid acceptable tokens")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -141,7 +143,9 @@ public class CyclomaticComplexityCheckTest
             TokenTypes.STATIC_INIT,
             TokenTypes.COMPACT_CTOR_DEF,
         };
-        assertArrayEquals(expected, actual, "Invalid required tokens");
+        assertWithMessage("Invalid required tokens")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test

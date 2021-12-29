@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.Checker.EXCEPTION_MSG;
 import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_FINISHED_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_STARTED_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -737,8 +736,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Checker checker = new Checker();
         checker.setFileExtensions(".test1", "test2");
         final String[] actual = TestUtil.getInternalState(checker, "fileExtensions");
-        assertArrayEquals(new String[] {".test1", ".test2"}, actual,
-                "Extensions are not expected");
+        assertWithMessage("Extensions are not expected")
+            .that(actual)
+            .isEqualTo(new String[] {".test1", ".test2"});
     }
 
     @Test
@@ -1388,8 +1388,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.process(Collections.singletonList(new File("dummy.java")));
         final List<String> expected =
             Arrays.asList("beginProcessing", "finishProcessing", "destroy");
-        assertArrayEquals(expected.toArray(), fileSet.getMethodCalls().toArray(),
-                "Method calls were not expected");
+        assertWithMessage("Method calls were not expected")
+            .that(fileSet.getMethodCalls().toArray())
+            .isEqualTo(expected.toArray());
     }
 
     @Test

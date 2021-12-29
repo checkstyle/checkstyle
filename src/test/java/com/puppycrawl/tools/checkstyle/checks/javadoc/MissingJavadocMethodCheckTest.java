@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck.MSG_JAVADOC_MISSING;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -47,7 +47,9 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
             TokenTypes.COMPACT_CTOR_DEF,
         };
 
-        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -55,7 +57,9 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
         final MissingJavadocMethodCheck missingJavadocMethodCheck = new MissingJavadocMethodCheck();
         final int[] actual = missingJavadocMethodCheck.getRequiredTokens();
         final int[] expected = CommonUtil.EMPTY_INT_ARRAY;
-        assertArrayEquals(expected, actual, "Required tokens are invalid");
+        assertWithMessage("Required tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test

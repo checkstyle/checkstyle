@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -42,7 +42,9 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
 
         final LambdaParameterNameCheck check = new LambdaParameterNameCheck();
         final int[] requiredTokens = check.getRequiredTokens();
-        assertArrayEquals(expected, requiredTokens, "Invalid required tokens");
+        assertWithMessage("Invalid required tokens")
+            .that(requiredTokens)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -53,7 +55,9 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
 
         final LambdaParameterNameCheck check = new LambdaParameterNameCheck();
         final int[] acceptableTokens = check.getAcceptableTokens();
-        assertArrayEquals(expected, acceptableTokens, "Invalid acceptable tokens");
+        assertWithMessage("Invalid acceptable tokens")
+            .that(acceptableTokens)
+            .isEqualTo(expected);
     }
 
     @Test
