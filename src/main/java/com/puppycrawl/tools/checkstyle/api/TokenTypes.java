@@ -5986,7 +5986,12 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * public sealed class Shape permits Circle, Square, Rectangle { }
+     * switch(o) {
+     *     case String s && s.length() > 4: // guarded pattern, `PATTERN_DEF`
+     *         break;
+     *     case String s: // type pattern, no `PATTERN_DEF`
+     *         break;
+     * }
      * </pre>
      * <p>parses as:</p>
      * <pre>
@@ -6062,21 +6067,7 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * CLASS_DEF -&gt; CLASS_DEF
-     * |--MODIFIERS -&gt; MODIFIERS
-     * |   |--LITERAL_PUBLIC -&gt; public
-     * |   `--LITERAL_SEALED -&gt; sealed
-     * |--LITERAL_CLASS -&gt; class
-     * |--IDENT -&gt; Shape
-     * |--PERMITS_CLAUSE -&gt; permits
-     * |   |--IDENT -&gt; Circle
-     * |   |--COMMA -&gt; ,
-     * |   |--IDENT -&gt; Square
-     * |   |--COMMA -&gt; ,
-     * |   `--IDENT -&gt; Rectangle
-     * `--OBJBLOCK -&gt; OBJBLOCK
-     *     |--LCURLY -&gt; {
-     *     `--RCURLY -&gt; }
+     * public sealed class Shape permits Circle, Square, Rectangle { }
      * </pre>
      *
      * @see <a href="https://docs.oracle.com/en/java/javase/15/docs/specs/sealed-classes-jls.html">
@@ -6091,6 +6082,75 @@ public final class TokenTypes {
      */
     public static final int PERMITS_CLAUSE =
         JavaLanguageLexer.PERMITS_CLAUSE;
+
+    /**
+     * A pattern definition, excluding simple type pattern (pattern variable)
+     * definition such as {@code if (o instance of Integer i){}}. Pattern definitions
+     * appear as operands of statements and expressions.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * switch(o) {
+     *     case String s && s.length() > 4: // guarded pattern, `PATTERN_DEF`
+     *         break;
+     *     case String s: // type pattern, no `PATTERN_DEF`
+     *         break;
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_SWITCH -&gt; switch
+     * |   |--LPAREN -&gt; (
+     * |   |--EXPR -&gt; EXPR
+     * |   |   `--IDENT -&gt; o
+     * |   |--RPAREN -&gt; )
+     * |   |--LCURLY -&gt; {
+     * |   |--CASE_GROUP -&gt; CASE_GROUP
+     * |   |   |--LITERAL_CASE -&gt; case
+     * |   |   |   |--PATTERN_DEF -&gt; PATTERN_DEF
+     * |   |   |   |   `--LAND -&gt; &&
+     * |   |   |   |       |--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     * |   |   |   |       |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |   |   |       |   |--TYPE -&gt; TYPE
+     * |   |   |   |       |   |   `--IDENT -&gt; String
+     * |   |   |   |       |   `--IDENT -&gt; s
+     * |   |   |   |       `--GT -&gt; >
+     * |   |   |   |           |--METHOD_CALL -&gt; (
+     * |   |   |   |           |   |--DOT -&gt; .
+     * |   |   |   |           |   |   |--IDENT -&gt; s
+     * |   |   |   |           |   |   `--IDENT -&gt; length
+     * |   |   |   |           |   |--ELIST -&gt; ELIST
+     * |   |   |   |           |   `--RPAREN -&gt; )
+     * |   |   |   |           `--NUM_INT -&gt; 4
+     * |   |   |   `--COLON -&gt; :
+     * |   |   `--SLIST -&gt; SLIST
+     * |   |       `--LITERAL_BREAK -&gt; break
+     * |   |           `--SEMI -&gt; ;
+     * |   |--CASE_GROUP -&gt; CASE_GROUP
+     * |   |   |--LITERAL_CASE -&gt; case
+     * |   |   |   |--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     * |   |   |   |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |   |   |   |--TYPE -&gt; TYPE
+     * |   |   |   |   |   `--IDENT -&gt; String
+     * |   |   |   |   `--IDENT -&gt; s
+     * |   |   |   `--COLON -&gt; :
+     * |   |   `--SLIST -&gt; SLIST
+     * |   |       `--LITERAL_BREAK -&gt; break
+     * |   |           `--SEMI -&gt; ;
+     * |   `--RCURLY -&gt; }
+     * `--RCURLY -&gt; }
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se17/html/">
+     * Java Language Specification, &sect;14.30</a>
+     * @see #LITERAL_SWITCH
+     * @see #PATTERN_VARIABLE_DEF
+     * @see #LITERAL_INSTANCEOF
+     *
+     * @since 9.3
+     */
+    public static final int PATTERN_DEF =
+        JavaLanguageLexer.PATTERN_DEF;
 
     /** Prevent instantiation. */
     private TokenTypes() {
