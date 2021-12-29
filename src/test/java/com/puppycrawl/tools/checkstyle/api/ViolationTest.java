@@ -21,18 +21,15 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_OBJECT_ARRAY;
-import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
-import java.util.Arrays;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -63,10 +60,10 @@ public class ViolationTest {
     @Test
     public void testLanguageIsValid() {
         final String language = DEFAULT_LOCALE.getLanguage();
-        if (!language.isEmpty()) {
-            assertThat("Invalid language",
-                Arrays.asList(Locale.getISOLanguages()), hasItem(language));
-        }
+        assumeFalse(language.isEmpty(), "Locale not set");
+        assertWithMessage("Invalid language")
+                .that(Locale.getISOLanguages()).asList()
+                .contains(language);
     }
 
     /**
@@ -75,10 +72,10 @@ public class ViolationTest {
     @Test
     public void testCountryIsValid() {
         final String country = DEFAULT_LOCALE.getCountry();
-        if (!country.isEmpty()) {
-            assertThat("Invalid country",
-                    Arrays.asList(Locale.getISOCountries()), hasItem(country));
-        }
+        assumeFalse(country.isEmpty(), "Locale not set");
+        assertWithMessage("Invalid country")
+                .that(Locale.getISOCountries()).asList()
+                .contains(country);
     }
 
     /**
@@ -88,11 +85,12 @@ public class ViolationTest {
     @Test
     public void testLocaleIsSupported() {
         final String language = DEFAULT_LOCALE.getLanguage();
-        if (!language.isEmpty() && !Locale.ENGLISH.getLanguage().equals(language)) {
-            final Violation violation = createSampleViolation();
-            assertThat("Unsupported language: " + DEFAULT_LOCALE,
-                    violation.getViolation(), not("Empty statement."));
-        }
+        assumeFalse(language.isEmpty() || Locale.ENGLISH.getLanguage().equals(language),
+                "Custom locale not set");
+        final Violation violation = createSampleViolation();
+        assertWithMessage("Unsupported language: {}", DEFAULT_LOCALE)
+                .that(violation.getViolation())
+                .isNotEqualTo("Empty statement.");
     }
 
     @Test

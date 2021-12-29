@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -74,14 +75,12 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
                 break;
             }
         }
-        // Use Assume.assumeNotNull(actualFilterSet) instead of the if-condition
-        // when https://github.com/jayway/powermock/issues/428 will be fixed
-        if (actualFilterSet != null) {
-            final FilterSet expectedFilterSet = new FilterSet();
-            assertWithMessage("Failed to load from url")
-                .that(actualFilterSet.getFilters())
-                .isEqualTo(expectedFilterSet.getFilters());
-        }
+
+        assumeTrue(actualFilterSet != null, "No Internet connection.");
+        final FilterSet expectedFilterSet = new FilterSet();
+        assertWithMessage("Failed to load from url")
+            .that(actualFilterSet.getFilters())
+            .isEqualTo(expectedFilterSet.getFilters());
     }
 
     @Test
