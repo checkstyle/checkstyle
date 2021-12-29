@@ -1215,6 +1215,11 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     }
 
     @Override
+    public DetailAstImpl visitCaseConstant(JavaLanguageParser.CaseConstantContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
     public DetailAstImpl visitEnhancedFor(JavaLanguageParser.EnhancedForContext ctx) {
         final DetailAstImpl leftParen = create(ctx.LPAREN());
         final DetailAstImpl enhancedForControl =
@@ -1342,7 +1347,18 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     public DetailAstImpl visitInstanceOfExp(JavaLanguageParser.InstanceOfExpContext ctx) {
         final DetailAstImpl literalInstanceOf = create(ctx.LITERAL_INSTANCEOF());
         literalInstanceOf.addChild(visit(ctx.expr()));
-        literalInstanceOf.addChild(visit(ctx.children.get(2)));
+        final ParseTree patternOrType = ctx.getChild(2);
+
+        final DetailAstImpl patternDef;
+        if (patternOrType instanceof JavaLanguageParser.ParenPatternContext) {
+            // Parenthesized pattern has a `PATTERN_DEF` parent
+            patternDef = createImaginary(TokenTypes.PATTERN_DEF);
+            patternDef.addChild(visit(patternOrType));
+        }
+        else {
+            patternDef = visit(patternOrType);
+        }
+        literalInstanceOf.addChild(patternDef);
         return literalInstanceOf;
     }
 
@@ -1926,8 +1942,43 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     }
 
     @Override
-    public DetailAstImpl visitPatternVariableDefinition(
-            JavaLanguageParser.PatternVariableDefinitionContext ctx) {
+    public DetailAstImpl visitPattern(JavaLanguageParser.PatternContext ctx) {
+        final ParserRuleContext primaryPattern = ctx.primaryPattern();
+        final boolean isSimpleTypePattern = primaryPattern != null
+                && primaryPattern.getChild(0) instanceof JavaLanguageParser.TypePatternContext;
+
+        final DetailAstImpl pattern;
+        if (isSimpleTypePattern) {
+            // For simple type pattern like 'Integer i`, we do not add `PATTERN_DEF` parent
+            pattern = visit(ctx.primaryPattern());
+        }
+        else {
+            pattern = createImaginary(TokenTypes.PATTERN_DEF);
+            pattern.addChild(visit(ctx.getChild(0)));
+        }
+        return pattern;
+    }
+
+    @Override
+    public DetailAstImpl visitGuardedPattern(JavaLanguageParser.GuardedPatternContext ctx) {
+        final DetailAstImpl logicalAnd = create(ctx.LAND());
+        logicalAnd.addChild(visit(ctx.primaryPattern()));
+        logicalAnd.addChild(visit(ctx.expr()));
+        return logicalAnd;
+    }
+
+    @Override
+    public DetailAstImpl visitParenPattern(JavaLanguageParser.ParenPatternContext ctx) {
+        final DetailAstImpl lparen = create(ctx.LPAREN());
+        final ParseTree innerPattern = ctx.getChild(1);
+        lparen.addChild(visit(innerPattern));
+        lparen.addChild(create(ctx.RPAREN()));
+        return lparen;
+    }
+
+    @Override
+    public DetailAstImpl visitTypePattern(
+            JavaLanguageParser.TypePatternContext ctx) {
         final DetailAstImpl type = visit(ctx.type);
         final DetailAstImpl patternVariableDef = createImaginary(TokenTypes.PATTERN_VARIABLE_DEF);
         patternVariableDef.addChild(createModifiers(ctx.mods));
