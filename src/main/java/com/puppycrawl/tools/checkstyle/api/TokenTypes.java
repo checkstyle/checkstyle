@@ -6092,6 +6092,75 @@ public final class TokenTypes {
     public static final int PERMITS_CLAUSE =
         JavaLanguageLexer.PERMITS_CLAUSE;
 
+    /**
+     * A pattern definition, excluding simple type pattern (pattern variable)
+     * definition such as {@code if (o instance of Integer i){}}. Pattern definitions
+     * appear as operands of statements and expressions.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * switch(o) {
+     *     case String s &amp;&amp; s.length() &gt; 4: // guarded pattern, `PATTERN_DEF`
+     *         break;
+     *     case String s: // type pattern, no `PATTERN_DEF`
+     *         break;
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_SWITCH -&gt; switch
+     * |   |--LPAREN -&gt; (
+     * |   |--EXPR -&gt; EXPR
+     * |   |   `--IDENT -&gt; o
+     * |   |--RPAREN -&gt; )
+     * |   |--LCURLY -&gt; {
+     * |   |--CASE_GROUP -&gt; CASE_GROUP
+     * |   |   |--LITERAL_CASE -&gt; case
+     * |   |   |   |--PATTERN_DEF -&gt; PATTERN_DEF
+     * |   |   |   |   `--LAND -&gt; &amp;&amp;
+     * |   |   |   |       |--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     * |   |   |   |       |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |   |   |       |   |--TYPE -&gt; TYPE
+     * |   |   |   |       |   |   `--IDENT -&gt; String
+     * |   |   |   |       |   `--IDENT -&gt; s
+     * |   |   |   |       `--GT -&gt; &gt;
+     * |   |   |   |           |--METHOD_CALL -&gt; (
+     * |   |   |   |           |   |--DOT -&gt; .
+     * |   |   |   |           |   |   |--IDENT -&gt; s
+     * |   |   |   |           |   |   `--IDENT -&gt; length
+     * |   |   |   |           |   |--ELIST -&gt; ELIST
+     * |   |   |   |           |   `--RPAREN -&gt; )
+     * |   |   |   |           `--NUM_INT -&gt; 4
+     * |   |   |   `--COLON -&gt; :
+     * |   |   `--SLIST -&gt; SLIST
+     * |   |       `--LITERAL_BREAK -&gt; break
+     * |   |           `--SEMI -&gt; ;
+     * |   |--CASE_GROUP -&gt; CASE_GROUP
+     * |   |   |--LITERAL_CASE -&gt; case
+     * |   |   |   |--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     * |   |   |   |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |   |   |   |--TYPE -&gt; TYPE
+     * |   |   |   |   |   `--IDENT -&gt; String
+     * |   |   |   |   `--IDENT -&gt; s
+     * |   |   |   `--COLON -&gt; :
+     * |   |   `--SLIST -&gt; SLIST
+     * |   |       `--LITERAL_BREAK -&gt; break
+     * |   |           `--SEMI -&gt; ;
+     * |   `--RCURLY -&gt; }
+     * `--RCURLY -&gt; }
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se17/html/">
+     * Java Language Specification, &sect;14.30</a>
+     * @see #LITERAL_SWITCH
+     * @see #PATTERN_VARIABLE_DEF
+     * @see #LITERAL_INSTANCEOF
+     *
+     * @since 9.3
+     */
+    public static final int PATTERN_DEF =
+        JavaLanguageLexer.PATTERN_DEF;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }
