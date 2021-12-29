@@ -787,7 +787,7 @@ no-exception-checkstyle-sevntu)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from "-b update-exclusions https://github.com/nmancus1/contribution"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
   sed -i'' 's/#local-checkstyle/local-checkstyle/' projects-for-wercker.properties
