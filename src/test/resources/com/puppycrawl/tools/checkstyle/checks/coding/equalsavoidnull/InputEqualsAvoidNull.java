@@ -47,11 +47,11 @@ public class InputEqualsAvoidNull {
 
         s.equalsIgnoreCase(((s = "cold pizza"))); // violation 'left .* of .* equalsIgnoreCase'
 
-        s.equalsIgnoreCase("cheese" + "ham" + "sauce"); // violation 'left .* of .* equalsIgnoreCase'
+        s.equalsIgnoreCase("cheese"+"ham"+"sauce");// violation 'left.*of.*equalsIgnoreCase'
 
-        s.equalsIgnoreCase(("cheese" + "ham") + "sauce"); // violation 'left .* of .* equalsIgnoreCase'
+        s.equalsIgnoreCase(("cheese"+"ham")+"sauce");// violation 'left.*of.*equalsIgnoreCase'
 
-        s.equalsIgnoreCase((("cheese" + "ham")) + "sauce"); // violation 'left .* of .* equalsIgnoreCase'
+        s.equalsIgnoreCase((("cheese"+"ham"))+"sauce");// violation 'left.*of.*equalsIgnoreCase'
     }
 
     /**
@@ -73,17 +73,17 @@ public class InputEqualsAvoidNull {
 
         o.equals((("cheese" + "ham")) + "sauce");
 
-        s.equalsIgnoreCase("hot pizza"); // violation 'left .* of .* equalsIgnoreCase'
+        s.equalsIgnoreCase("hot pizza");// violation 'left.*of.*equalsIgnoreCase'
 
-        s.equalsIgnoreCase(s = "cold pizza"); // violation 'left .* of .* equalsIgnoreCase'
+        s.equalsIgnoreCase(s = "cold pizza");// violation 'left.*of.*equalsIgnoreCase'
 
-        s.equalsIgnoreCase(((s = "cold pizza"))); // violation 'left .* of .* equalsIgnoreCase'
+        s.equalsIgnoreCase(((s = "cold pizza")));// violation 'left.*of.*equalsIgnoreCase'
 
-        s.equalsIgnoreCase("cheese" + "ham" + "sauce"); // violation 'left .* of .* equalsIgnoreCase'
+        s.equalsIgnoreCase("cheese"+"ham"+"sauce");// violation 'left.*of.*equalsIgnoreCase'
 
-        s.equalsIgnoreCase(("cheese" + "ham") + "sauce"); // violation 'left .* of .* equalsIgnoreCase'
+        s.equalsIgnoreCase(("cheese"+"ham")+"sauce");// violation 'left.*of.*equalsIgnoreCase'
 
-        s.equalsIgnoreCase((("cheese" + "ham")) + "sauce"); // violation 'left .* of .* equalsIgnoreCase'
+        s.equalsIgnoreCase((("cheese"+"ham"))+"sauce");// violation 'left.*of.*equalsIgnoreCase'
     }
 
 
@@ -185,7 +185,7 @@ public class InputEqualsAvoidNull {
 
         (s += "garlic").equalsIgnoreCase("basil");
 
-        ("Chicago Style" + "NY Style").equalsIgnoreCase("California Style" + "Any Style");
+        ("Chicago Style"+"NY Style").equalsIgnoreCase("California Style"+"Any Style");
 
         "onions".equalsIgnoreCase(s);
 
@@ -323,8 +323,9 @@ class NewTest {
                     if (s.equals("")) { // violation 'left .* of .* equals'
                         synchronized (this) {
                             switch (s) {
-                                case "1": String str = ""; str.equals(""); // violation 'left .* of .* equals'
-                                case "2": s.equals(""); str = ""; // violation 'left .* of .* equals'
+                                case "1": String str = "";
+                                str.equals(""); // violation 'left .* of .* equals'
+                                case "2": s.equals(""); str = ""; // violation 'left .*of.*equals'
                                 str.equals(""); // violation 'left .* of .* equals'
                                 case "3": param.equals(""); // violation 'left .* of .* equals'
                                     break;
@@ -425,7 +426,7 @@ class TestConcatenations {
         s.equals(getInt() + getInt());
         s.endsWith("a");
         String s = "";
-        if (!s.equals("Hello[EOL]" + System.getProperty("line.separator"))) // violation 'left .* of .* equals'
+        if (!s.equals("Hi[EOL]"+System.getProperty("line.separator")))//violation 'left.*of.*equals'
             foo();
     }
 
