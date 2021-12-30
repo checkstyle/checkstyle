@@ -201,6 +201,23 @@ public class EmptyBlockCheckTest
     }
 
     @Test
+    public void testEmptyBlockWithEmoji() throws Exception {
+        final String[] expected = {
+            "14:12: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "STATIC_INIT"),
+            "24:27: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "27:34: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "29:62: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "for"),
+            "30:25: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "32:25: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "switch"),
+            "39:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "44:46: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyBlockWithEmoji.java"), expected);
+
+    }
+
+    @Test
     public void testAnnotationDefaultKeyword() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         final String path = getPath("InputEmptyBlockAnnotationDefaultKeyword.java");
