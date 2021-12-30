@@ -323,7 +323,7 @@ class NewTest1 {
                     if (s.equals("")) { // violation 'left .* of .* equals'
                         synchronized (this) {
                             switch (s) {
-                                case "1": String str = ""; str.equals(""); // violation 'left .* of .* equals'
+                                case "1":String str="";str.equals("");//violation 'left.*of.*equals'
                                 case "2": s.equals(""); // violation 'left .* of .* equals'
                                 str = ""; str.equals(""); // violation 'left .* of .* equals'
                                 case "3": param.equals(""); // violation 'left .* of .* equals'
@@ -425,7 +425,7 @@ class TestConcatenations1 {
         s.equals(getInt() + getInt());
         s.endsWith("a");
         String s = "";
-        if (!s.equals("Hello[EOL]" + System.getProperty("line.separator"))) // violation 'left .* of .* equals'
+        if (!s.equals("Hi[EOL]"+System.getProperty("line.separator")))//violation 'left.*of.*equals'
             foo();
     }
 
