@@ -14,10 +14,11 @@
   <!-- Disallow obsolete Junit API -->
   <disallow pkg="org.junit" exact-match="true"/>
   <disallow pkg="junit.framework" />
-  <!-- until https://github.com/checkstyle/checkstyle/issues/9142 -->
-  <disallow pkg="org.junit.jupiter.api.Assertions"/>
+  <!-- Disallow hamcrest and only allow Truth -->
   <disallow pkg="org.hamcrest.CoreMatchers"/>
   <disallow pkg="org.hamcrest.MatcherAssert"/>
+  <!-- until https://github.com/checkstyle/checkstyle/issues/9142 -->
+  <disallow pkg="org.junit.jupiter.api.Assertions"/>
 
   <!-- Reflection shouldn't be used in tests. -->
   <disallow pkg="java\.lang\.reflect\.*" regex="true" />
