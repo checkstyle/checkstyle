@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -204,7 +203,9 @@ public class JavaParserTest extends AbstractModuleTestSupport {
                 .isEqualTo(CheckstyleException.class.getName()
                             + ": IllegalStateException occurred while parsing file "
                             + input.getAbsolutePath() + ".");
-            assertSame(IllegalStateException.class, ex.getCause().getClass(), "Invalid class");
+            assertWithMessage("Invalid class")
+                .that(ex.getCause())
+                .isInstanceOf(IllegalStateException.class);
             assertWithMessage("Invalid exception message")
                 .that(ex.getCause().toString())
                 .isEqualTo(IllegalStateException.class.getName()

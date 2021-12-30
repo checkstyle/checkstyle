@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.gui;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.io.File;
 
@@ -366,11 +365,21 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     @Test
     public void testColumnMethods() {
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
-        assertSame(ParseTreeTableModel.class, parseTree.getColumnClass(0), "Invalid type");
-        assertSame(String.class, parseTree.getColumnClass(1), "Invalid type");
-        assertSame(Integer.class, parseTree.getColumnClass(2), "Invalid type");
-        assertSame(Integer.class, parseTree.getColumnClass(3), "Invalid type");
-        assertSame(String.class, parseTree.getColumnClass(4), "Invalid type");
+        assertWithMessage("Invalid type")
+            .that(parseTree.getColumnClass(0))
+            .isEqualTo(ParseTreeTableModel.class);
+        assertWithMessage("Invalid type")
+            .that(parseTree.getColumnClass(1))
+            .isEqualTo(String.class);
+        assertWithMessage("Invalid type")
+            .that(parseTree.getColumnClass(2))
+            .isEqualTo(Integer.class);
+        assertWithMessage("Invalid type")
+            .that(parseTree.getColumnClass(3))
+            .isEqualTo(Integer.class);
+        assertWithMessage("Invalid type")
+            .that(parseTree.getColumnClass(4))
+            .isEqualTo(String.class);
 
         try {
             parseTree.getColumnClass(parseTree.getColumnCount());
