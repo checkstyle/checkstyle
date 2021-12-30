@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.io.File;
@@ -171,9 +170,15 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
             .that(root.getNumberOfChildren())
             .isEqualTo(2);
 
-        assertNull(root.getPreviousSibling(), "Previous sibling should be null");
-        assertNull(firstLevelA.getPreviousSibling(), "Previous sibling should be null");
-        assertNull(secondLevelA.getPreviousSibling(), "Previous sibling should be null");
+        assertWithMessage("Previous sibling should be null")
+            .that(root.getPreviousSibling())
+            .isNull();
+        assertWithMessage("Previous sibling should be null")
+            .that(firstLevelA.getPreviousSibling())
+            .isNull();
+        assertWithMessage("Previous sibling should be null")
+            .that(secondLevelA.getPreviousSibling())
+            .isNull();
         assertWithMessage("Invalid previous sibling")
             .that(firstLevelB.getPreviousSibling())
             .isEqualTo(firstLevelA);
@@ -485,7 +490,9 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid parent")
             .that(newSibling.getParent())
             .isEqualTo(oldParent);
-        assertNull(newSibling.getNextSibling(), "Invalid next sibling");
+        assertWithMessage("Invalid next sibling")
+            .that(newSibling.getNextSibling())
+            .isNull();
         assertSame(newSibling, child.getNextSibling(), "Invalid child");
     }
 
@@ -571,7 +578,9 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         root.addChild(secondChild);
         root.addChild(thirdChild);
 
-        assertNull(firstChild.findFirstToken(TokenTypes.IDENT), "Invalid result");
+        assertWithMessage("Invalid result")
+            .that(firstChild.findFirstToken(TokenTypes.IDENT))
+            .isNull();
         final DetailAST ident = root.findFirstToken(TokenTypes.IDENT);
         assertWithMessage("Invalid result")
             .that(ident)
@@ -580,7 +589,9 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid result")
             .that(expr)
             .isEqualTo(secondChild);
-        assertNull(root.findFirstToken(0), "Invalid result");
+        assertWithMessage("Invalid result")
+            .that(root.findFirstToken(0))
+            .isNull();
     }
 
     @Test

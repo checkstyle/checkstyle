@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.gui;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.io.File;
@@ -137,7 +136,9 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         final DetailAST commentContentNode = tree.getLastChild().getLastChild()
                 .getPreviousSibling().getLastChild().getFirstChild().getFirstChild();
         final Object commentChild = parseTree.getChild(commentContentNode, 0);
-        assertNull(commentChild, "Child must be null");
+        assertWithMessage("Child must be null")
+            .that(commentChild)
+            .isNull();
     }
 
     @Test
@@ -289,7 +290,9 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         assertWithMessage("Wrong class name")
             .that(text)
             .isEqualTo("InputParseTreeTablePresentation");
-        assertNull(treeModel, "Root node should have null value");
+        assertWithMessage("Root node should have null value")
+            .that(treeModel)
+            .isNull();
 
         try {
             parseTree.getValueAt(node, parseTree.getColumnCount());
@@ -333,7 +336,9 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         final String text = (String) parseTree.getValueAt(child, 4);
         final String expectedText = "JAVADOC";
 
-        assertNull(treeModel, "Tree model must be null");
+        assertWithMessage("Tree model must be null")
+            .that(treeModel)
+            .isNull();
         assertWithMessage("Invalid type")
             .that(type)
             .isEqualTo("JAVADOC");

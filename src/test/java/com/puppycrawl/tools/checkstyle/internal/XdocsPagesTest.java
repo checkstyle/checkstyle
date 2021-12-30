@@ -25,7 +25,6 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.hamcrest.CoreMatchers.describedAs;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.beans.PropertyDescriptor;
 import java.io.File;
@@ -484,8 +483,9 @@ public class XdocsPagesTest {
                 final String sectionName = XmlUtil.getNameAttributeOfNode(section);
 
                 if ("Content".equals(sectionName) || "Overview".equals(sectionName)) {
-                    assertNull(lastSectionName,
-                            fileName + " section '" + sectionName + "' should be first");
+                    assertWithMessage(fileName + " section '" + sectionName + "' should be first")
+                        .that(lastSectionName)
+                        .isNull();
                     continue;
                 }
 
