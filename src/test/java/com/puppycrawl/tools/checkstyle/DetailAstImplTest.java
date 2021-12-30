@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.io.File;
 import java.io.Writer;
@@ -493,7 +492,9 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid next sibling")
             .that(newSibling.getNextSibling())
             .isNull();
-        assertSame(newSibling, child.getNextSibling(), "Invalid child");
+        assertWithMessage("Invalid parent")
+            .that(child.getNextSibling())
+            .isEqualTo(newSibling);
     }
 
     @Test

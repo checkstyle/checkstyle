@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mockConstruction;
 import static org.mockito.Mockito.when;
@@ -518,10 +517,12 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             assertWithMessage("Invalid exception message")
                 .that(ex.getMessage())
                 .isEqualTo("unable to parse configuration stream");
-            assertSame(SAXException.class, ex.getCause().getClass(),
-                    "Expected cause of type SAXException");
-            assertSame(CheckstyleException.class, ex.getCause().getCause().getClass(),
-                    "Expected cause of type CheckstyleException");
+            assertWithMessage("Expected cause of type SAXException")
+                .that(ex.getCause())
+                .isInstanceOf(SAXException.class);
+            assertWithMessage("Expected cause of type CheckstyleException")
+                .that(ex.getCause().getCause())
+                .isInstanceOf(CheckstyleException.class);
             assertWithMessage("Invalid exception cause message")
                 .that(ex)
                 .hasCauseThat().hasCauseThat().hasMessageThat()

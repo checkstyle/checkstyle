@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.xpath;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.XpathUtil.getXpathItems;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.io.File;
 import java.util.List;
@@ -196,7 +195,9 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
         try (AxisIterator first = elementNode.iterateAxis(AxisInfo.ATTRIBUTE);
              AxisIterator second = elementNode.iterateAxis(AxisInfo.ATTRIBUTE)) {
-            assertSame(first.next(), second.next(), "Expected same attribute node");
+            assertWithMessage("Expected same attribute node")
+                .that(second.next())
+                .isEqualTo(first.next());
         }
     }
 
