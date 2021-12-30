@@ -27,6 +27,8 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.PropertyType;
+import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -137,6 +139,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
      * don't match ignoredStringsRegexp. This allows you to exclude syntactical
      * contexts like annotations or static initializers from the check.
      */
+    @XdocsPropertyType(PropertyType.TOKEN_ARRAY)
     private final BitSet ignoreOccurrenceContext = new BitSet();
 
     /**
