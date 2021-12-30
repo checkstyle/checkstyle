@@ -19,12 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
+import java.util.Arrays;
 import java.util.Locale;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -290,41 +292,43 @@ public class EmptyBlockCheck
         final int slistColNo = slistAST.getColumnNo();
         final int rcurlyLineNo = rcurlyAST.getLineNo();
         final int rcurlyColNo = rcurlyAST.getColumnNo();
-        final String[] lines = getLines();
         boolean returnValue = false;
         if (slistLineNo == rcurlyLineNo) {
             // Handle braces on the same line
-            final String txt = lines[slistLineNo - 1]
-                    .substring(slistColNo + 1, rcurlyColNo);
-            if (!CommonUtil.isBlank(txt)) {
+            final int[] txt = Arrays.copyOfRange(getLineCodePoints(slistLineNo - 1),
+                    slistColNo + 1, rcurlyColNo);
+
+            if (!CodePointUtil.isBlank(txt)) {
                 returnValue = true;
             }
         }
         else {
-            final String firstLine = lines[slistLineNo - 1].substring(slistColNo + 1);
-            final String lastLine = lines[rcurlyLineNo - 1].substring(0, rcurlyColNo);
+            final int[] codePointsFirstLine = getLineCodePoints(slistLineNo - 1);
+            final int[] firstLine = Arrays.copyOfRange(codePointsFirstLine,
+                    slistColNo + 1, codePointsFirstLine.length);
+            final int[] codePointsLastLine = getLineCodePoints(rcurlyLineNo - 1);
+            final int[] lastLine = Arrays.copyOfRange(codePointsLastLine, 0, rcurlyColNo);
             // check if all lines are also only whitespace
-            returnValue = !(CommonUtil.isBlank(firstLine) && CommonUtil.isBlank(lastLine))
-                    || !checkIsAllLinesAreWhitespace(lines, slistLineNo, rcurlyLineNo);
+            returnValue = !(CodePointUtil.isBlank(firstLine) && CodePointUtil.isBlank(lastLine))
+                    || !checkIsAllLinesAreWhitespace(slistLineNo, rcurlyLineNo);
         }
         return returnValue;
     }
 
     /**
-     * Checks is all lines in array contain whitespaces only.
+     * Checks is all lines from 'lineFrom' to 'lineTo' (exclusive)
+     * contain whitespaces only.
      *
-     * @param lines
-     *            array of lines
      * @param lineFrom
      *            check from this line number
      * @param lineTo
      *            check to this line numbers
      * @return true if lines contain only whitespaces
      */
-    private static boolean checkIsAllLinesAreWhitespace(String[] lines, int lineFrom, int lineTo) {
+    private boolean checkIsAllLinesAreWhitespace(int lineFrom, int lineTo) {
         boolean result = true;
         for (int i = lineFrom; i < lineTo - 1; i++) {
-            if (!CommonUtil.isBlank(lines[i])) {
+            if (!CodePointUtil.isBlank(getLineCodePoints(i))) {
                 result = false;
                 break;
             }
