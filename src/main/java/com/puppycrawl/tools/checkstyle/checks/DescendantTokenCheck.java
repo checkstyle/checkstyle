@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle.checks;
 import java.util.Arrays;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.PropertyType;
+import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -344,6 +346,7 @@ public class DescendantTokenCheck extends AbstractCheck {
      */
     private boolean sumTokenCounts;
     /** Specify set of tokens with limited occurrences as descendants. */
+    @XdocsPropertyType(PropertyType.TOKEN_ARRAY)
     private int[] limitedTokens = CommonUtil.EMPTY_INT_ARRAY;
     /** Define the violation message when the minimum count is not reached. */
     private String minimumMessage;

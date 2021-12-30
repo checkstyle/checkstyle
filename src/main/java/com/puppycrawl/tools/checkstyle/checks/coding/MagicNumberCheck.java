@@ -21,7 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Arrays;
 
+import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
+import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -291,6 +293,7 @@ public class MagicNumberCheck extends AbstractCheck {
      * Specify tokens that are allowed in the AST path from the
      * number literal to the enclosing constant definition.
      */
+    @XdocsPropertyType(PropertyType.TOKEN_ARRAY)
     private int[] constantWaiverParentToken = {
         TokenTypes.ASSIGN,
         TokenTypes.ARRAY_INIT,
