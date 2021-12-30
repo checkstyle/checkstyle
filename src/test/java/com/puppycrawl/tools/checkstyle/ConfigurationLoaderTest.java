@@ -26,7 +26,6 @@ import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -365,7 +364,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                 null, "${a", new PropertiesExpander(props), null);
             assertWithMessage("expected to fail, instead got: " + value).fail();
         }
-        catch (InvocationTargetException ex) {
+        catch (ReflectiveOperationException ex) {
             assertWithMessage("Invalid exception cause message")
                 .that(ex)
                 .hasCauseThat().hasMessageThat()
@@ -381,7 +380,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                 null, "${c}", new PropertiesExpander(props), null);
             assertWithMessage("expected to fail, instead got: " + value).fail();
         }
-        catch (InvocationTargetException ex) {
+        catch (ReflectiveOperationException ex) {
             assertWithMessage("Invalid exception cause message")
                 .that(ex)
                 .hasCauseThat().hasMessageThat()
@@ -498,7 +497,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
             assertWithMessage("InvocationTargetException is expected").fail();
         }
-        catch (InvocationTargetException ex) {
+        catch (ReflectiveOperationException ex) {
             assertWithMessage("Invalid exception cause message")
                 .that(ex)
                     .hasCauseThat()

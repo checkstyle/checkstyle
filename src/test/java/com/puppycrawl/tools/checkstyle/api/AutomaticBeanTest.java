@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
-import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.regex.Pattern;
@@ -139,10 +138,10 @@ public class AutomaticBeanTest {
         }
         catch (CheckstyleException ex) {
             final String expected = "Cannot set property ";
-            assertWithMessage("Invalid exception cause, should be: InvocationTargetException")
+            assertWithMessage("Invalid exception cause, should be: ReflectiveOperationException")
                     .that(ex)
                     .hasCauseThat()
-                    .isInstanceOf(InvocationTargetException.class);
+                    .isInstanceOf(ReflectiveOperationException.class);
             assertWithMessage("Invalid exception message, should start with: " + expected)
                     .that(ex)
                     .hasMessageThat()
