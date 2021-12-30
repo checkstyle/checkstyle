@@ -12,7 +12,8 @@ public class InputMissingOverrideBadOverrideFromObject
     /**
      * {@inheritDoc}
      */
-    public boolean equals(Object obj) { // violation 'Must include @java.lang.Override annotation when '@inheritDoc' Javadoc tag exists.'
+    public boolean // violation 'include @java.lang.Override annotation when '@inheritDoc''
+    equals(Object obj) {
         return false;
     }
 
@@ -32,7 +33,8 @@ public class InputMissingOverrideBadOverrideFromObject
         /**
          * {@inheritDoc}
          */
-        protected void finalize() throws Throwable {} // violation 'Must include @java.lang.Override annotation when '@inheritDoc' Javadoc tag exists.'
+        protected void // violation 'include @java.lang.Override annotation when '@inheritDoc''
+        finalize() throws Throwable {}
     }
 }
 
@@ -41,7 +43,7 @@ interface HashEq2 {
     /**
      * {@inheritDoc}
      */
-    public int hashCode(); // violation 'Must include @java.lang.Override annotation when '@inheritDoc' Javadoc tag exists.'
+    public int hashCode(); // violation 'include @java.lang.Override annotation when '@inheritDoc''
 }
 
 enum enum3 {
@@ -50,7 +52,7 @@ enum enum3 {
     /**
      * {@inheritDoc}
      */
-    public String toString() { // violation 'Must include @java.lang.Override annotation when '@inheritDoc' Javadoc tag exists.'
+    public String toString(){//violation 'include @java.lang.Override annotation when '@inheritDoc''
         return "B";
     }
 
