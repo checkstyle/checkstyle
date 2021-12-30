@@ -603,7 +603,13 @@ switchLabel
     ;
 
 caseConstants
-    : expression (COMMA expression)*
+    : caseConstant (COMMA caseConstant)*
+    ;
+
+caseConstant
+    : pattern
+    | expression
+    | LITERAL_DEFAULT
     ;
 
 forControl
@@ -664,7 +670,7 @@ expr
     | expr bop=(PLUS|MINUS) expr                                           #binOp
     // handle bitwise shifts below, not in lexer
     | expr (LT LT | GT GT GT | GT GT) expr                                 #bitShift
-    | expr bop=LITERAL_INSTANCEOF (patternDefinition | typeType[true])     #instanceOfExp
+    | expr bop=LITERAL_INSTANCEOF (primaryPattern | typeType[true])        #instanceOfExp
     | expr bop=(LE | GE | GT | LT) expr                                    #binOp
     | expr bop=(EQUAL | NOT_EQUAL) expr                                    #binOp
     | expr bop=BAND expr                                                   #binOp
@@ -822,11 +828,26 @@ arguments
     : LPAREN expressionList? RPAREN
     ;
 
-patternDefinition
-    : patternVariableDefinition
+pattern
+    : guardedPattern
+    | primaryPattern
     ;
 
-patternVariableDefinition
+guardedPattern
+    : primaryPattern LAND expr
+    ;
+
+primaryPattern
+    : typePattern                                                          #patternVariableDef
+    | LPAREN
+      // Set of production rules below should mirror `pattern` production rule
+      // above. We do not reuse `pattern` production rule here to avoid a bunch
+      // of nested `PATTERN_DEF` nodes, as we also do for expressions.
+      (guardedPattern | primaryPattern)
+      RPAREN                                                               #parenPattern
+    ;
+
+typePattern
     : mods+=modifier* type=typeType[true] id
     ;
 
