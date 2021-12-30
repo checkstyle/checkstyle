@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.io.File;
 
@@ -128,7 +127,9 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
             assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertSame(IllegalStateException.class, ex.getCause().getClass(), "Invalid class");
+            assertWithMessage("Invalid class")
+                .that(ex.getCause())
+                .isInstanceOf(IllegalStateException.class);
             assertWithMessage("Invalid exception message")
                 .that(ex.getCause().toString())
                 .isEqualTo(IllegalStateException.class.getName()
