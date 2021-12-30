@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 import java.io.File;
 import java.io.Writer;
@@ -391,10 +390,11 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
             method.accept(null);
             final BitSet branchTokenTypes2 = TestUtil.invokeMethod(parent, "getBranchTokenTypes");
             assertWithMessage("Branch token types are not equal")
-                .that(branchTokenTypes2)
-                .isEqualTo(branchTokenTypes);
-            assertNotSame(branchTokenTypes, branchTokenTypes2,
-                    "Branch token types should not be the same");
+                .that(branchTokenTypes)
+                .isEqualTo(branchTokenTypes2);
+            assertWithMessage("Branch token types should not be the same")
+                .that(branchTokenTypes)
+                .isNotSameInstanceAs(branchTokenTypes2);
         }
     }
 
