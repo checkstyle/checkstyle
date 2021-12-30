@@ -553,6 +553,19 @@ javac16)
   fi
   ;;
 
+javac17)
+  files=($(grep -Rl --include='*.java' ': Compilable with Java17' \
+        src/test/resources-noncompilable || true))
+  if [[  ${#files[@]} -eq 0 ]]; then
+    echo "No Java17 files to process"
+  else
+      mkdir -p target
+      for file in "${files[@]}"
+      do
+        javac --release 17 --enable-preview -d target "${file}"
+      done
+  fi
+  ;;
 
 jdk14-assembly-site)
   mvn -e --no-transfer-progress package -Passembly
