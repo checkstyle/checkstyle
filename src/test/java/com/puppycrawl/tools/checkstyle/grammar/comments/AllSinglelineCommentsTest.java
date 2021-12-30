@@ -92,9 +92,9 @@ public class AllSinglelineCommentsTest extends AbstractModuleTestSupport {
         @Override
         public void visitToken(DetailAST ast) {
             final String commentContent = ast.getFirstChild().getText();
-            if (!ALL_COMMENTS.remove(commentContent)) {
-                assertWithMessage("Unexpected comment: " + commentContent).fail();
-            }
+            assertWithMessage("Unexpected comment: %s", commentContent)
+                    .that(ALL_COMMENTS.remove(commentContent))
+                    .isTrue();
         }
 
     }
