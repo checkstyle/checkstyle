@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.utils;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,12 +35,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class AnnotationUtilTest {
 
     @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException {
+    public void testIsProperUtilsClass() {
         try {
             isUtilsClassHasPrivateConstructor(AnnotationUtil.class);
             assertWithMessage("Exception is expected").fail();
         }
-        catch (InvocationTargetException ex) {
+        catch (ReflectiveOperationException ex) {
             assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasCauseThat().hasMessageThat()

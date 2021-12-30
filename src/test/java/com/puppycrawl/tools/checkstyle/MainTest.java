@@ -31,7 +31,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -793,7 +792,7 @@ public class MainTest {
             method.invoke(null, new File("."));
             assertWithMessage("Exception was expected").fail();
         }
-        catch (InvocationTargetException ex) {
+        catch (ReflectiveOperationException ex) {
             assertWithMessage("Invalid error cause")
                     .that(ex)
                     .hasCauseThat()

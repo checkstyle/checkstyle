@@ -24,7 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashSet;
@@ -232,7 +231,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testUnableToFindSuppressions() throws Exception {
+    public void testUnableToFindSuppressions() {
         final String sourceName = "InputSuppressionsLoaderNone.xml";
 
         try {
@@ -240,7 +239,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
                     new InputSource(sourceName), sourceName);
             assertWithMessage("InvocationTargetException is expected").fail();
         }
-        catch (InvocationTargetException ex) {
+        catch (ReflectiveOperationException ex) {
             assertWithMessage("Invalid exception cause message")
                 .that(ex)
                     .hasCauseThat()
@@ -250,7 +249,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testUnableToReadSuppressions() throws Exception {
+    public void testUnableToReadSuppressions() {
         final String sourceName = "InputSuppressionsLoaderNone.xml";
 
         try {
@@ -258,7 +257,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
                     new InputSource(), sourceName);
             assertWithMessage("InvocationTargetException is expected").fail();
         }
-        catch (InvocationTargetException ex) {
+        catch (ReflectiveOperationException ex) {
             assertWithMessage("Invalid exception cause message")
                 .that(ex)
                     .hasCauseThat()
