@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -57,7 +56,9 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
             assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertSame(IllegalStateException.class, ex.getCause().getClass(), "Invalid class");
+            assertWithMessage("Invalid class")
+                .that(ex.getCause())
+                .isInstanceOf(IllegalStateException.class);
             assertWithMessage("Invalid exception message")
                 .that(ex.getCause().getMessage())
                 .isEqualTo("2:0: no viable alternative at input 'classD'");
