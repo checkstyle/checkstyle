@@ -22,9 +22,11 @@ package com.puppycrawl.tools.checkstyle.bdd;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.lang.reflect.Modifier;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -106,15 +108,20 @@ public final class InlineConfigParser {
                                                 boolean setFilteredViolations) throws Exception {
         final TestInputConfiguration.Builder testInputConfigBuilder =
                 new TestInputConfiguration.Builder();
+        final Path filePath = Paths.get(inputFilePath);
+        final List<String> lines = readFile(filePath);
         try {
-            final Path filePath = Paths.get(inputFilePath);
-            final List<String> lines = readFile(filePath);
             setModules(testInputConfigBuilder, inputFilePath, lines);
-            setViolations(testInputConfigBuilder, lines, setFilteredViolations);
         }
         catch (Exception ex) {
             throw new CheckstyleException("Config comment not specified properly in "
                     + inputFilePath, ex);
+        }
+        try {
+            setViolations(testInputConfigBuilder, lines, setFilteredViolations);
+        }
+        catch (CheckstyleException e) {
+            throw new CheckstyleException(e.getMessage() + " in " + inputFilePath, e);
         }
         return testInputConfigBuilder.build();
     }
@@ -263,7 +270,8 @@ public final class InlineConfigParser {
     }
 
     private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
-                                      List<String> lines, boolean useFilteredViolations) {
+                                      List<String> lines, boolean useFilteredViolations)
+            throws ClassNotFoundException, CheckstyleException {
         for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
             setViolations(inputConfigBuilder, lines, useFilteredViolations, lineNo);
         }
@@ -280,7 +288,11 @@ public final class InlineConfigParser {
      */
     private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
                                       List<String> lines, boolean useFilteredViolations,
-                                      int lineNo) {
+                                      int lineNo)
+            throws ClassNotFoundException, CheckstyleException {
+        List<ModuleInputConfiguration> moduleLists = inputConfigBuilder.getChildrenModules();
+        final boolean specifyViolationMessage = (moduleLists.size() == 1)
+                && getNumberOfMessages(moduleLists.get(0).getModuleName()) > 1;
         final Matcher violationMatcher =
                 VIOLATION_PATTERN.matcher(lines.get(lineNo));
         final Matcher violationAboveMatcher =
@@ -298,23 +310,39 @@ public final class InlineConfigParser {
         final Matcher violationSomeLinesBelowMatcher =
                 VIOLATION_SOME_LINES_BELOW_PATTERN.matcher(lines.get(lineNo));
         if (violationMatcher.matches()) {
-            inputConfigBuilder.addViolation(lineNo + 1, violationMatcher.group(1));
+            final String violationMessage = violationMatcher.group(1);
+            final int violationLineNum = lineNo + 1;
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    violationLineNum);
+            inputConfigBuilder.addViolation(violationLineNum, violationMessage);
         }
         else if (violationAboveMatcher.matches()) {
-            inputConfigBuilder.addViolation(lineNo, violationAboveMatcher.group(1));
+            final String violationMessage = violationAboveMatcher.group(1);
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage, lineNo);
+            inputConfigBuilder.addViolation(lineNo, violationMessage);
         }
         else if (violationBelowMatcher.matches()) {
-            inputConfigBuilder.addViolation(lineNo + 2, violationBelowMatcher.group(1));
+            final String violationMessage = violationBelowMatcher.group(1);
+            final int violationLineNum = lineNo + 2;
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    violationLineNum);
+            inputConfigBuilder.addViolation(violationLineNum, violationMessage);
         }
         else if (violationSomeLinesAboveMatcher.matches()) {
+            final String violationMessage = violationSomeLinesAboveMatcher.group(2);
             final int linesAbove = Integer.parseInt(violationSomeLinesAboveMatcher.group(1)) - 1;
-            inputConfigBuilder.addViolation(lineNo - linesAbove,
-                    violationSomeLinesAboveMatcher.group(2));
+            final int violationLineNum = lineNo - linesAbove;
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    violationLineNum);
+            inputConfigBuilder.addViolation(violationLineNum, violationMessage);
         }
         else if (violationSomeLinesBelowMatcher.matches()) {
+            final String violationMessage = violationSomeLinesBelowMatcher.group(2);
             final int linesBelow = Integer.parseInt(violationSomeLinesBelowMatcher.group(1)) + 1;
-            inputConfigBuilder.addViolation(lineNo + linesBelow,
-                    violationSomeLinesBelowMatcher.group(2));
+            final int violationLineNum = lineNo + linesBelow;
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    violationLineNum);
+            inputConfigBuilder.addViolation(violationLineNum, violationMessage);
         }
         else if (multipleViolationsMatcher.matches()) {
             Collections
@@ -344,7 +372,11 @@ public final class InlineConfigParser {
     }
 
     private static void setFilteredViolation(TestInputConfiguration.Builder inputConfigBuilder,
-                                             int lineNo, String line) {
+                                             int lineNo, String line)
+            throws ClassNotFoundException, CheckstyleException {
+        List<ModuleInputConfiguration> moduleLists = inputConfigBuilder.getChildrenModules();
+        final boolean specifyViolationMessage = (moduleLists.size() == 1)
+                && getNumberOfMessages(moduleLists.get(0).getModuleName()) > 1;
         final Matcher violationMatcher =
                 FILTERED_VIOLATION_PATTERN.matcher(line);
         final Matcher violationAboveMatcher =
@@ -352,13 +384,60 @@ public final class InlineConfigParser {
         final Matcher violationBelowMatcher =
                 FILTERED_VIOLATION_BELOW_PATTERN.matcher(line);
         if (violationMatcher.matches()) {
-            inputConfigBuilder.addFilteredViolation(lineNo, violationMatcher.group(1));
+            final String violationMessage = violationMatcher.group(1);
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage, lineNo);
+            inputConfigBuilder.addFilteredViolation(lineNo, violationMessage);
         }
         else if (violationAboveMatcher.matches()) {
-            inputConfigBuilder.addFilteredViolation(lineNo - 1, violationAboveMatcher.group(1));
+            final String violationMessage = violationAboveMatcher.group(1);
+            final int violationLineNum = lineNo - 1;
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    violationLineNum);
+            inputConfigBuilder.addFilteredViolation(violationLineNum, violationMessage);
         }
         else if (violationBelowMatcher.matches()) {
-            inputConfigBuilder.addFilteredViolation(lineNo + 1, violationBelowMatcher.group(1));
+            final String violationMessage = violationBelowMatcher.group(1);
+            final int violationLineNum = lineNo + 1;
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    violationLineNum);
+            inputConfigBuilder.addFilteredViolation(violationLineNum, violationMessage);
+        }
+    }
+
+    /**
+     * Gets the number of message keys in a check.
+     *
+     * @param className className
+     * @return number of message keys in a check
+     * @throws ClassNotFoundException classNotFoundException
+     */
+    private static long getNumberOfMessages(String className) throws ClassNotFoundException {
+        final Class<?> clazz = Class.forName(className);
+        final String messageInitials = "MSG_";
+        return Arrays.stream(clazz.getDeclaredFields())
+                .filter(field -> {
+                    final int modifiers = field.getModifiers();
+                    final String fieldName = field.getName();
+                    return fieldName.startsWith(messageInitials)
+                            && Modifier.isStatic(modifiers)
+                            && Modifier.isFinal(modifiers);
+                })
+                .count();
+    }
+
+    /**
+     * Check whether violation is specified along with {@code // violation} comment.
+     *
+     * @param shouldViolationMsgBeSpecified should violation messages be specified.
+     * @param violationMessage violation message
+     * @param lineNum line number
+     * @throws CheckstyleException checkstyleException
+     */
+    private static void checkWhetherViolationSpecified(boolean shouldViolationMsgBeSpecified,
+            String violationMessage, int lineNum) throws CheckstyleException {
+        if (shouldViolationMsgBeSpecified && violationMessage == null) {
+            throw new CheckstyleException(
+                    "Violation message should be specified on line " + lineNum);
         }
     }
 }
