@@ -125,7 +125,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
             "321:32: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "322:45: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "323:33: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "326:70: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "326:66: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "327:51: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "328:53: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "329:55: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
