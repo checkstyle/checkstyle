@@ -28,7 +28,6 @@ import static org.mockito.Mockito.when;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -90,7 +89,7 @@ public class ImportControlLoaderTest {
 
     @Test
     // UT uses Reflection to avoid removing null-validation from static method
-    public void testSafeGetThrowsException() throws Exception {
+    public void testSafeGetThrowsException() {
         final AttributesImpl attr = new AttributesImpl() {
             @Override
             public String getValue(int index) {
@@ -105,7 +104,7 @@ public class ImportControlLoaderTest {
             privateMethod.invoke(null, attr, "you_cannot_find_me");
             assertWithMessage("exception expected").fail();
         }
-        catch (InvocationTargetException ex) {
+        catch (ReflectiveOperationException ex) {
             assertWithMessage("Invalid exception class")
                 .that(ex.getCause())
                 .isInstanceOf(SAXException.class);
@@ -121,7 +120,7 @@ public class ImportControlLoaderTest {
     // UT uses Reflection to cover IOException from 'loader.parseInputSource(source);'
     // because this is possible situation (though highly unlikely), which depends on hardware
     // and is difficult to emulate
-    public void testLoadThrowsException() throws Exception {
+    public void testLoadThrowsException() {
         final InputSource source = new InputSource();
         try {
             final Class<?> clazz = ImportControlLoader.class;
@@ -132,7 +131,7 @@ public class ImportControlLoaderTest {
                     new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
             assertWithMessage("exception expected").fail();
         }
-        catch (InvocationTargetException ex) {
+        catch (ReflectiveOperationException ex) {
             assertWithMessage("Invalid exception class")
                 .that(ex.getCause())
                 .isInstanceOf(CheckstyleException.class);
