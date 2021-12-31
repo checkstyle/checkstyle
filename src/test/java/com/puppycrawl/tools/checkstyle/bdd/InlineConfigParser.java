@@ -22,14 +22,18 @@ package com.puppycrawl.tools.checkstyle.bdd;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.lang.reflect.Modifier;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -87,6 +91,64 @@ public final class InlineConfigParser {
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
 
+    /**
+     * Checks in which violation message is not specified in input file and have more than
+     * one violation message key.
+     */
+    private static final Set<String> SUPPRESSED_CHECKS = new HashSet<>(Arrays.asList(
+            "com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck",
+            "com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck",
+            "com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck",
+            "com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck",
+            "com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck",
+            "com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck",
+            "com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck",
+            "com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck",
+            "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck",
+            "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck",
+            "com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck",
+            "com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck",
+            "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck",
+            "com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck",
+            "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck",
+            "com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck",
+            "com.puppycrawl.tools.checkstyle.checks.TranslationCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck",
+            "com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck",
+            "com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck",
+            "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck",
+            "com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck",
+            "com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck"));
+
     /** Stop instances being created. **/
     private InlineConfigParser() {
     }
@@ -106,15 +168,20 @@ public final class InlineConfigParser {
                                                 boolean setFilteredViolations) throws Exception {
         final TestInputConfiguration.Builder testInputConfigBuilder =
                 new TestInputConfiguration.Builder();
+        final Path filePath = Paths.get(inputFilePath);
+        final List<String> lines = readFile(filePath);
         try {
-            final Path filePath = Paths.get(inputFilePath);
-            final List<String> lines = readFile(filePath);
             setModules(testInputConfigBuilder, inputFilePath, lines);
-            setViolations(testInputConfigBuilder, lines, setFilteredViolations);
         }
         catch (Exception ex) {
             throw new CheckstyleException("Config comment not specified properly in "
                     + inputFilePath, ex);
+        }
+        try {
+            setViolations(testInputConfigBuilder, lines, setFilteredViolations);
+        }
+        catch (CheckstyleException ex) {
+            throw new CheckstyleException(ex.getMessage() + " in " + inputFilePath, ex);
         }
         return testInputConfigBuilder.build();
     }
@@ -263,9 +330,15 @@ public final class InlineConfigParser {
     }
 
     private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
-                                      List<String> lines, boolean useFilteredViolations) {
+                                      List<String> lines, boolean useFilteredViolations)
+            throws ClassNotFoundException, CheckstyleException {
+        final List<ModuleInputConfiguration> moduleLists = inputConfigBuilder.getChildrenModules();
+        final boolean specifyViolationMessage = moduleLists.size() == 1
+                && !SUPPRESSED_CHECKS.contains(moduleLists.get(0).getModuleName())
+                && getNumberOfMessages(moduleLists.get(0).getModuleName()) > 1;
         for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
-            setViolations(inputConfigBuilder, lines, useFilteredViolations, lineNo);
+            setViolations(inputConfigBuilder, lines,
+                    useFilteredViolations, lineNo, specifyViolationMessage);
         }
     }
 
@@ -277,10 +350,14 @@ public final class InlineConfigParser {
      * @param useFilteredViolations flag to set filtered violations.
      * @param lineNo current line.
      * @noinspection IfStatementWithTooManyBranches
+     * @throws CheckstyleException if violation message is not specified
      */
+    // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
+    // -@cs[JavaNCSS] splitting this method is not reasonable.
     private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
                                       List<String> lines, boolean useFilteredViolations,
-                                      int lineNo) {
+                                      int lineNo, boolean specifyViolationMessage)
+            throws CheckstyleException {
         final Matcher violationMatcher =
                 VIOLATION_PATTERN.matcher(lines.get(lineNo));
         final Matcher violationAboveMatcher =
@@ -298,23 +375,39 @@ public final class InlineConfigParser {
         final Matcher violationSomeLinesBelowMatcher =
                 VIOLATION_SOME_LINES_BELOW_PATTERN.matcher(lines.get(lineNo));
         if (violationMatcher.matches()) {
-            inputConfigBuilder.addViolation(lineNo + 1, violationMatcher.group(1));
+            final String violationMessage = violationMatcher.group(1);
+            final int violationLineNum = lineNo + 1;
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    violationLineNum);
+            inputConfigBuilder.addViolation(violationLineNum, violationMessage);
         }
         else if (violationAboveMatcher.matches()) {
-            inputConfigBuilder.addViolation(lineNo, violationAboveMatcher.group(1));
+            final String violationMessage = violationAboveMatcher.group(1);
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage, lineNo);
+            inputConfigBuilder.addViolation(lineNo, violationMessage);
         }
         else if (violationBelowMatcher.matches()) {
-            inputConfigBuilder.addViolation(lineNo + 2, violationBelowMatcher.group(1));
+            final String violationMessage = violationBelowMatcher.group(1);
+            final int violationLineNum = lineNo + 2;
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    violationLineNum);
+            inputConfigBuilder.addViolation(violationLineNum, violationMessage);
         }
         else if (violationSomeLinesAboveMatcher.matches()) {
+            final String violationMessage = violationSomeLinesAboveMatcher.group(2);
             final int linesAbove = Integer.parseInt(violationSomeLinesAboveMatcher.group(1)) - 1;
-            inputConfigBuilder.addViolation(lineNo - linesAbove,
-                    violationSomeLinesAboveMatcher.group(2));
+            final int violationLineNum = lineNo - linesAbove;
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    violationLineNum);
+            inputConfigBuilder.addViolation(violationLineNum, violationMessage);
         }
         else if (violationSomeLinesBelowMatcher.matches()) {
+            final String violationMessage = violationSomeLinesBelowMatcher.group(2);
             final int linesBelow = Integer.parseInt(violationSomeLinesBelowMatcher.group(1)) + 1;
-            inputConfigBuilder.addViolation(lineNo + linesBelow,
-                    violationSomeLinesBelowMatcher.group(2));
+            final int violationLineNum = lineNo + linesBelow;
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    violationLineNum);
+            inputConfigBuilder.addViolation(violationLineNum, violationMessage);
         }
         else if (multipleViolationsMatcher.matches()) {
             Collections
@@ -339,12 +432,15 @@ public final class InlineConfigParser {
                     });
         }
         else if (useFilteredViolations) {
-            setFilteredViolation(inputConfigBuilder, lineNo + 1, lines.get(lineNo));
+            setFilteredViolation(inputConfigBuilder, lineNo + 1,
+                    lines.get(lineNo), specifyViolationMessage);
         }
     }
 
     private static void setFilteredViolation(TestInputConfiguration.Builder inputConfigBuilder,
-                                             int lineNo, String line) {
+                                             int lineNo, String line,
+                                             boolean specifyViolationMessage)
+            throws CheckstyleException {
         final Matcher violationMatcher =
                 FILTERED_VIOLATION_PATTERN.matcher(line);
         final Matcher violationAboveMatcher =
@@ -352,13 +448,60 @@ public final class InlineConfigParser {
         final Matcher violationBelowMatcher =
                 FILTERED_VIOLATION_BELOW_PATTERN.matcher(line);
         if (violationMatcher.matches()) {
-            inputConfigBuilder.addFilteredViolation(lineNo, violationMatcher.group(1));
+            final String violationMessage = violationMatcher.group(1);
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage, lineNo);
+            inputConfigBuilder.addFilteredViolation(lineNo, violationMessage);
         }
         else if (violationAboveMatcher.matches()) {
-            inputConfigBuilder.addFilteredViolation(lineNo - 1, violationAboveMatcher.group(1));
+            final String violationMessage = violationAboveMatcher.group(1);
+            final int violationLineNum = lineNo - 1;
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    violationLineNum);
+            inputConfigBuilder.addFilteredViolation(violationLineNum, violationMessage);
         }
         else if (violationBelowMatcher.matches()) {
-            inputConfigBuilder.addFilteredViolation(lineNo + 1, violationBelowMatcher.group(1));
+            final String violationMessage = violationBelowMatcher.group(1);
+            final int violationLineNum = lineNo + 1;
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    violationLineNum);
+            inputConfigBuilder.addFilteredViolation(violationLineNum, violationMessage);
+        }
+    }
+
+    /**
+     * Gets the number of message keys in a check.
+     *
+     * @param className className
+     * @return number of message keys in a check
+     * @throws ClassNotFoundException if class is not found
+     */
+    private static long getNumberOfMessages(String className) throws ClassNotFoundException {
+        final Class<?> clazz = Class.forName(className);
+        final String messageInitials = "MSG_";
+        return Arrays.stream(clazz.getDeclaredFields())
+                .filter(field -> {
+                    final int modifiers = field.getModifiers();
+                    final String fieldName = field.getName();
+                    return fieldName.startsWith(messageInitials)
+                            && Modifier.isStatic(modifiers)
+                            && Modifier.isFinal(modifiers);
+                })
+                .count();
+    }
+
+    /**
+     * Check whether violation is specified along with {@code // violation} comment.
+     *
+     * @param shouldViolationMsgBeSpecified should violation messages be specified.
+     * @param violationMessage violation message
+     * @param lineNum line number
+     * @throws CheckstyleException if violation message is not specified
+     */
+    private static void checkWhetherViolationSpecified(boolean shouldViolationMsgBeSpecified,
+            String violationMessage, int lineNum) throws CheckstyleException {
+        if (shouldViolationMsgBeSpecified && violationMessage == null) {
+            throw new CheckstyleException(
+                    "Violation message should be specified on line " + lineNum);
         }
     }
 }
