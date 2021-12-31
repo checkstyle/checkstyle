@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck"
+             name="UnusedLocalVariable"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that a local variable is declared and/or assigned, but not used.
+ Doesn't support
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30"&gt;
+ pattern variables yet&lt;/a&gt;.
+ Doesn't check
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.12.3"&gt;
+ array components&lt;/a&gt; as array
+ components are classified as different kind of variables by
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se17/html/index.html"&gt;&lt;/a&gt;.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="unused.local.var"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
