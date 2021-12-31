@@ -69,7 +69,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void shouldNotLogLongPackageStatements() throws Exception {
         final String[] expected = {
-            "16: " + getCheckMessage(MSG_KEY, 80, 101),
+            "17: " + getCheckMessage(MSG_KEY, 80, 100),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputLineLengthLongPackageStatement.java"),

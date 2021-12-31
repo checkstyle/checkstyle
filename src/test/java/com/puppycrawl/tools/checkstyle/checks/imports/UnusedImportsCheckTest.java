@@ -68,7 +68,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithoutProcessJavadoc() throws Exception {
         final String[] expected = {
-            "11:16: " + getCheckMessage(MSG_KEY,
+            "11:8: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks."
                 + "imports.unusedimports.InputUnusedImportsBug"),
             "14:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
@@ -106,7 +106,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testProcessJavadoc() throws Exception {
         final String[] expected = {
-            "11:16: " + getCheckMessage(MSG_KEY,
+            "11:8: " + getCheckMessage(MSG_KEY,
                     "com.puppycrawl.tools.checkstyle.checks."
                     + "imports.unusedimports.InputUnusedImportsBug"),
             "14:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),

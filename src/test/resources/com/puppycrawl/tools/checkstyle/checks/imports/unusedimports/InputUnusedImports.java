@@ -8,7 +8,7 @@ processJavadoc = (default)true
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
 import com.puppycrawl.tools.checkstyle.checks.imports.*;
-        import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsBug; // violation
+import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsBug;//violation
 import java.io.*;
 import java.lang.*;
 import java.lang.String; // violation
