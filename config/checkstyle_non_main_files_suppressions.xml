@@ -89,9 +89,6 @@
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/10625 -->
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]InputLineLengthLongPackageStatement.java"/>
-
-  <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputMissingOverrideBadOverrideFromObject.java"/>
 
   <suppress id="lineLength"
