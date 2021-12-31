@@ -21,8 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 
@@ -52,8 +50,9 @@ public class VisibilityModifierCheckTest
             TokenTypes.VARIABLE_DEF,
             TokenTypes.IMPORT,
         };
-        assertArrayEquals(
-                expected, checkObj.getRequiredTokens(), "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     @Test
@@ -309,8 +308,9 @@ public class VisibilityModifierCheckTest
             TokenTypes.VARIABLE_DEF,
             TokenTypes.IMPORT,
         };
-        assertArrayEquals(expected, obj.getAcceptableTokens(),
-                "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(obj.getAcceptableTokens())
+            .isEqualTo(expected);
     }
 
     @Test
@@ -365,8 +365,9 @@ public class VisibilityModifierCheckTest
             assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Unexpected token type: class", ex.getMessage(),
-                    "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("Unexpected token type: class");
         }
     }
 

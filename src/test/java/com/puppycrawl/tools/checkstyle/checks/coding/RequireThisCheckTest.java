@@ -22,8 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG_METHOD;
 import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG_VARIABLE;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.io.File;
@@ -163,9 +161,15 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTokensNotNull() {
         final RequireThisCheck check = new RequireThisCheck();
-        assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
-        assertNotNull(check.getDefaultTokens(), "Acceptable tokens should not be null");
-        assertNotNull(check.getRequiredTokens(), "Acceptable tokens should not be null");
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Default tokens should not be null")
+            .that(check.getDefaultTokens())
+            .isNotNull();
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
     }
 
     @Test
@@ -190,7 +194,9 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         check.visitToken(ast);
         final SortedSet<Violation> violations = check.getViolations();
 
-        assertEquals(0, violations.size(), "No exception violations expected");
+        assertWithMessage("No exception violations expected")
+            .that(violations)
+            .isEmpty();
     }
 
     @Test
@@ -442,9 +448,9 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
 
         final DetailAstImpl actual = TestUtil.invokeMethod(o, "getFrameNameIdent");
         assertSame(ident, actual, "expected ident token");
-        assertEquals("CATCH_FRAME",
-            TestUtil.invokeMethod(o, "getType").toString(),
-                "expected catch frame type");
+        assertWithMessage("expected catch frame type")
+            .that(TestUtil.invokeMethod(o, "getType").toString())
+            .isEqualTo("CATCH_FRAME");
     }
 
     /**

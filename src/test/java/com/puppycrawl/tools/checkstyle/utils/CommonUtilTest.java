@@ -22,14 +22,6 @@ package com.puppycrawl.tools.checkstyle.utils;
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.CoreMatchers.startsWith;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.mock;
@@ -71,7 +63,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
-                .that(isUtilsClassHasPrivateConstructor(CommonUtil.class, true))
+                .that(isUtilsClassHasPrivateConstructor(CommonUtil.class))
                 .isTrue();
     }
 
@@ -81,36 +73,48 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     @Test
     public void testLengthExpandedTabs() {
         final String s1 = "\t";
-        assertEquals(8, CommonUtil.lengthExpandedTabs(s1, s1.length(), 8),
-                "Invalid expanded tabs length");
+        assertWithMessage("Invalid expanded tabs length")
+            .that(CommonUtil.lengthExpandedTabs(s1, s1.length(), 8))
+            .isEqualTo(8);
 
         final String s2 = "  \t";
-        assertEquals(8, CommonUtil.lengthExpandedTabs(s2, s2.length(), 8),
-                "Invalid expanded tabs length");
+        assertWithMessage("Invalid expanded tabs length")
+            .that(CommonUtil.lengthExpandedTabs(s2, s2.length(), 8))
+            .isEqualTo(8);
 
         final String s3 = "\t\t";
-        assertEquals(16, CommonUtil.lengthExpandedTabs(s3, s3.length(), 8),
-                "Invalid expanded tabs length");
+        assertWithMessage("Invalid expanded tabs length")
+            .that(CommonUtil.lengthExpandedTabs(s3, s3.length(), 8))
+            .isEqualTo(16);
 
         final String s4 = " \t ";
-        assertEquals(9, CommonUtil.lengthExpandedTabs(s4, s4.length(), 8),
-                "Invalid expanded tabs length");
+        assertWithMessage("Invalid expanded tabs length")
+            .that(CommonUtil.lengthExpandedTabs(s4, s4.length(), 8))
+            .isEqualTo(9);
 
-        assertEquals(0, CommonUtil.lengthMinusTrailingWhitespace(""),
-                "Invalid expanded tabs length");
-        assertEquals(0, CommonUtil.lengthMinusTrailingWhitespace(" \t "),
-                "Invalid expanded tabs length");
-        assertEquals(3, CommonUtil.lengthMinusTrailingWhitespace(" 23"),
-                "Invalid expanded tabs length");
-        assertEquals(3, CommonUtil.lengthMinusTrailingWhitespace(" 23 \t "),
-                "Invalid expanded tabs length");
+        assertWithMessage("Invalid expanded tabs length")
+            .that(CommonUtil.lengthMinusTrailingWhitespace(""))
+            .isEqualTo(0);
+        assertWithMessage("Invalid expanded tabs length")
+            .that(CommonUtil.lengthMinusTrailingWhitespace(" \t "))
+            .isEqualTo(0);
+        assertWithMessage("Invalid expanded tabs length")
+            .that(CommonUtil.lengthMinusTrailingWhitespace(" 23"))
+            .isEqualTo(3);
+        assertWithMessage("Invalid expanded tabs length")
+            .that(CommonUtil.lengthMinusTrailingWhitespace(" 23 \t "))
+            .isEqualTo(3);
     }
 
     @Test
     public void testCreatePattern() {
-        assertEquals("Test", CommonUtil.createPattern("Test").pattern(), "invalid pattern");
-        assertEquals(".*Pattern.*", CommonUtil.createPattern(".*Pattern.*")
-                .pattern(), "invalid pattern");
+        assertWithMessage("invalid pattern")
+            .that(CommonUtil.createPattern("Test").pattern())
+            .isEqualTo("Test");
+        assertWithMessage("invalid pattern")
+            .that(CommonUtil.createPattern(".*Pattern.*")
+                .pattern())
+            .isEqualTo(".*Pattern.*");
     }
 
     @Test
@@ -139,8 +143,9 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     public void testFileExtensions() {
         final String[] fileExtensions = {"java"};
         final File pdfFile = new File("file.pdf");
-        assertFalse(CommonUtil.matchesFileExtension(pdfFile, fileExtensions),
-                "Invalid file extension");
+        assertWithMessage("Invalid file extension")
+                .that(CommonUtil.matchesFileExtension(pdfFile, fileExtensions))
+                .isFalse();
         assertWithMessage("Invalid file extension")
                 .that(CommonUtil.matchesFileExtension(pdfFile))
                 .isTrue();
@@ -155,7 +160,9 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid file extension")
                 .that(CommonUtil.matchesFileExtension(emptyExtensionFile, ""))
                 .isTrue();
-        assertFalse(CommonUtil.matchesFileExtension(pdfFile, ".noMatch"), "Invalid file extension");
+        assertWithMessage("Invalid file extension")
+                .that(CommonUtil.matchesFileExtension(pdfFile, ".noMatch"))
+                .isFalse();
         assertWithMessage("Invalid file extension")
                 .that(CommonUtil.matchesFileExtension(pdfFile, ".pdf"))
                 .isTrue();
@@ -169,31 +176,41 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid result")
                 .that(CommonUtil.hasWhitespaceBefore(4, "    a"))
                 .isTrue();
-        assertFalse(CommonUtil.hasWhitespaceBefore(5, "    a"), "Invalid result");
+        assertWithMessage("Invalid result")
+                .that(CommonUtil.hasWhitespaceBefore(5, "    a"))
+                .isFalse();
     }
 
     @Test
     public void testBaseClassNameForCanonicalName() {
-        assertEquals("List", CommonUtil.baseClassName("java.util.List"), "Invalid base class name");
+        assertWithMessage("Invalid base class name")
+            .that(CommonUtil.baseClassName("java.util.List"))
+            .isEqualTo("List");
     }
 
     @Test
     public void testBaseClassNameForSimpleName() {
-        assertEquals("Set", CommonUtil.baseClassName("Set"), "Invalid base class name");
+        assertWithMessage("Invalid base class name")
+            .that(CommonUtil.baseClassName("Set"))
+            .isEqualTo("Set");
     }
 
     @Test
     public void testRelativeNormalizedPath() {
         final String relativePath = CommonUtil.relativizeAndNormalizePath("/home", "/home/test");
 
-        assertEquals("test", relativePath, "Invalid relative path");
+        assertWithMessage("Invalid relative path")
+            .that(relativePath)
+            .isEqualTo("test");
     }
 
     @Test
     public void testRelativeNormalizedPathWithNullBaseDirectory() {
         final String relativePath = CommonUtil.relativizeAndNormalizePath(null, "/tmp");
 
-        assertEquals("/tmp", relativePath, "Invalid relative path");
+        assertWithMessage("Invalid relative path")
+            .that(relativePath)
+            .isEqualTo("/tmp");
     }
 
     @Test
@@ -205,7 +222,9 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final String relativePath = CommonUtil.relativizeAndNormalizePath(basePath,
             absoluteFilePath);
 
-        assertEquals("SampleFile.java", relativePath, "Invalid relative path");
+        assertWithMessage("Invalid relative path")
+            .that(relativePath)
+            .isEqualTo("SampleFile.java");
     }
 
     @Test
@@ -219,14 +238,18 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     @Test
     public void testInvalidPattern() {
         final boolean result = CommonUtil.isPatternValid("some[invalidPattern");
-        assertFalse(result, "Should return false when pattern is invalid");
+        assertWithMessage("Should return false when pattern is invalid")
+                .that(result)
+                .isFalse();
     }
 
     @Test
     public void testGetExistingConstructor() throws NoSuchMethodException {
         final Constructor<?> constructor = CommonUtil.getConstructor(String.class, String.class);
 
-        assertEquals(String.class.getConstructor(String.class), constructor, "Invalid constructor");
+        assertWithMessage("Invalid constructor")
+            .that(constructor)
+            .isEqualTo(String.class.getConstructor(String.class));
     }
 
     @Test
@@ -246,7 +269,9 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
         final String constructedString = CommonUtil.invokeConstructor(constructor, "string");
 
-        assertEquals("string", constructedString, "Invalid construction result");
+        assertWithMessage("Invalid construction result")
+            .that(constructedString)
+            .isEqualTo("string");
     }
 
     @SuppressWarnings("rawtypes")
@@ -289,34 +314,44 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testFillTemplateWithStringsByRegexp() {
-        assertEquals("template", CommonUtil.fillTemplateWithStringsByRegexp("template",
-                "lineToPlaceInTemplate", Pattern.compile("NO MATCH")), "invalid result");
-        assertEquals("before word after",
-                CommonUtil.fillTemplateWithStringsByRegexp("before $0 after", "word",
-                        Pattern.compile("\\w+")), "invalid result");
-        assertEquals("before word 123 after1 word after2 123 after3",
-                CommonUtil.fillTemplateWithStringsByRegexp("before $0 after1 $1 after2 $2 after3",
-                        "word 123", Pattern.compile("(\\w+) (\\d+)")), "invalid result");
+        assertWithMessage("invalid result")
+            .that(CommonUtil.fillTemplateWithStringsByRegexp("template",
+                "lineToPlaceInTemplate", Pattern.compile("NO MATCH")))
+            .isEqualTo("template");
+        assertWithMessage("invalid result")
+            .that(CommonUtil.fillTemplateWithStringsByRegexp("before $0 after", "word",
+                        Pattern.compile("\\w+")))
+            .isEqualTo("before word after");
+        assertWithMessage("invalid result")
+            .that(CommonUtil.fillTemplateWithStringsByRegexp("before $0 after1 $1 after2 $2 after3",
+                        "word 123", Pattern.compile("(\\w+) (\\d+)")))
+            .isEqualTo("before word 123 after1 word after2 123 after3");
     }
 
     @Test
     public void testGetFileNameWithoutExtension() {
-        assertEquals("filename", CommonUtil.getFileNameWithoutExtension("filename"),
-                "invalid result");
-        assertEquals("filename", CommonUtil.getFileNameWithoutExtension("filename.extension"),
-                "invalid result");
-        assertEquals("filename.subext",
-                CommonUtil.getFileNameWithoutExtension("filename.subext.extension"),
-                "invalid result");
+        assertWithMessage("invalid result")
+            .that(CommonUtil.getFileNameWithoutExtension("filename"))
+            .isEqualTo("filename");
+        assertWithMessage("invalid result")
+            .that(CommonUtil.getFileNameWithoutExtension("filename.extension"))
+            .isEqualTo("filename");
+        assertWithMessage("invalid result")
+            .that(CommonUtil.getFileNameWithoutExtension("filename.subext.extension"))
+            .isEqualTo("filename.subext");
     }
 
     @Test
     public void testGetFileExtension() {
-        assertEquals("", CommonUtil.getFileExtension("filename"), "Invalid extension");
-        assertEquals("extension", CommonUtil.getFileExtension("filename.extension"),
-                "Invalid extension");
-        assertEquals("extension", CommonUtil.getFileExtension("filename.subext.extension"),
-                "Invalid extension");
+        assertWithMessage("Invalid extension")
+            .that(CommonUtil.getFileExtension("filename"))
+            .isEqualTo("");
+        assertWithMessage("Invalid extension")
+            .that(CommonUtil.getFileExtension("filename.extension"))
+            .isEqualTo("extension");
+        assertWithMessage("Invalid extension")
+            .that(CommonUtil.getFileExtension("filename.subext.extension"))
+            .isEqualTo("extension");
     }
 
     @Test
@@ -328,19 +363,23 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testIsIdentifierEmptyString() {
-        assertFalse(CommonUtil.isIdentifier(""), "Should return false when empty string is passed");
+        assertWithMessage("Should return false when empty string is passed")
+                .that(CommonUtil.isIdentifier(""))
+                .isFalse();
     }
 
     @Test
     public void testIsIdentifierInvalidFirstSymbol() {
-        assertFalse(CommonUtil.isIdentifier("1InvalidIdentifier"),
-                "Should return false when invalid identifier is passed");
+        assertWithMessage("Should return false when invalid identifier is passed")
+                .that(CommonUtil.isIdentifier("1InvalidIdentifier"))
+                .isFalse();
     }
 
     @Test
     public void testIsIdentifierInvalidSymbols() {
-        assertFalse(CommonUtil.isIdentifier("invalid#Identifier"),
-                "Should return false when invalid identifier is passed");
+        assertWithMessage("Should return false when invalid identifier is passed")
+                .that(CommonUtil.isIdentifier("invalid#Identifier"))
+                .isFalse();
     }
 
     @Test
@@ -352,59 +391,72 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testIsNameEmptyString() {
-        assertFalse(CommonUtil.isName(""), "Should return false when empty string is passed");
+        assertWithMessage("Should return false when empty string is passed")
+                .that(CommonUtil.isName(""))
+                .isFalse();
     }
 
     @Test
     public void testIsNameInvalidFirstSymbol() {
-        assertFalse(CommonUtil.isName("1.invalid.name"),
-                "Should return false when invalid name is passed");
+        assertWithMessage("Should return false when invalid name is passed")
+                .that(CommonUtil.isName("1.invalid.name"))
+                .isFalse();
     }
 
     @Test
     public void testIsNameEmptyPart() {
-        assertFalse(CommonUtil.isName("invalid..name"),
-                "Should return false when name has empty part");
+        assertWithMessage("Should return false when name has empty part")
+                .that(CommonUtil.isName("invalid..name"))
+                .isFalse();
     }
 
     @Test
     public void testIsNameEmptyLastPart() {
-        assertFalse(CommonUtil.isName("invalid.name."),
-                "Should return false when name has empty part");
+        assertWithMessage("Should return false when name has empty part")
+                .that(CommonUtil.isName("invalid.name."))
+                .isFalse();
     }
 
     @Test
     public void testIsNameInvalidSymbol() {
-        assertFalse(CommonUtil.isName("invalid.name#42"),
-                "Should return false when invalid name is passed");
+        assertWithMessage("Should return false when invalid name is passed")
+                .that(CommonUtil.isName("invalid.name#42"))
+                .isFalse();
     }
 
     @Test
     public void testIsBlank() {
-        assertFalse(CommonUtil.isBlank("string"), "Should return false when string is not empty");
+        assertWithMessage("Should return false when string is not empty")
+                .that(CommonUtil.isBlank("string"))
+                .isFalse();
     }
 
     @Test
     public void testIsBlankAheadWhitespace() {
-        assertFalse(CommonUtil.isBlank("  string"), "Should return false when string is not empty");
+        assertWithMessage("Should return false when string is not empty")
+                .that(CommonUtil.isBlank("  string"))
+                .isFalse();
     }
 
     @Test
     public void testIsBlankBehindWhitespace() {
-        assertFalse(CommonUtil.isBlank("string    "),
-                "Should return false when string is not empty");
+        assertWithMessage("Should return false when string is not empty")
+                .that(CommonUtil.isBlank("string    "))
+                .isFalse();
     }
 
     @Test
     public void testIsBlankWithWhitespacesAround() {
-        assertFalse(CommonUtil.isBlank("    string    "),
-                "Should return false when string is not empty");
+        assertWithMessage("Should return false when string is not empty")
+                .that(CommonUtil.isBlank("    string    "))
+                .isFalse();
     }
 
     @Test
     public void testIsBlankWhitespaceInside() {
-        assertFalse(CommonUtil.isBlank("str    ing"),
-                "Should return false when string is not empty");
+        assertWithMessage("Should return false when string is not empty")
+                .that(CommonUtil.isBlank("str    ing"))
+                .isFalse();
     }
 
     @Test
@@ -437,13 +489,16 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testIsIntInvalidString() {
-        assertFalse(CommonUtil.isInt("foo"),
-                "Should return false when object passed is not integer");
+        assertWithMessage("Should return false when object passed is not integer")
+                .that(CommonUtil.isInt("foo"))
+                .isFalse();
     }
 
     @Test
     public void testIsIntNull() {
-        assertFalse(CommonUtil.isInt(null), "Should return false when null is passed");
+        assertWithMessage("Should return false when null is passed")
+                .that(CommonUtil.isInt(null))
+                .isFalse();
     }
 
     @Test
@@ -455,7 +510,9 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final Properties properties = System.getProperties();
         final Configuration config = ConfigurationLoader.loadConfiguration(uri.toString(),
             new PropertiesExpander(properties));
-        assertEquals("Checker", config.getName(), "Unexpected config name!");
+        assertWithMessage("Unexpected config name!")
+            .that(config.getName())
+            .isEqualTo("Checker");
     }
 
     @Test
@@ -467,7 +524,9 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final Properties properties = System.getProperties();
         final Configuration config = ConfigurationLoader.loadConfiguration(uri.toString(),
             new PropertiesExpander(properties));
-        assertEquals("Checker", config.getName(), "Unexpected config name!");
+        assertWithMessage("Unexpected config name!")
+            .that(config.getName())
+            .isEqualTo("Checker");
     }
 
     /**
@@ -482,15 +541,19 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final String filename =
                 getPackageLocation() + "/InputCommonUtilTest_resource.txt";
         final URI uri = CommonUtil.getUriByFilename(filename);
-        assertThat("URI is null for: " + filename, uri, is(not(nullValue())));
+        assertWithMessage("URI is null for: " + filename)
+            .that(uri)
+            .isNotNull();
         final String uriRelativeToPackage =
                 "com/puppycrawl/tools/checkstyle/utils/"
                         + getPackageLocation() + "/InputCommonUtilTest_resource.txt";
-        assertThat("URI is relative to package " + uriRelativeToPackage,
-            uri.toString(), not(containsString(uriRelativeToPackage)));
+        assertWithMessage("URI is relative to package " + uriRelativeToPackage)
+            .that(uri.toString())
+            .doesNotContain(uriRelativeToPackage);
         final String content = IOUtils.toString(uri.toURL(), StandardCharsets.UTF_8);
-        assertThat("Content mismatches for: " + uri,
-                content, startsWith("good"));
+        assertWithMessage("Content mismatches for: " + uri)
+            .that(content)
+            .startsWith("good");
     }
 
     @Test
@@ -502,7 +565,9 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final Properties properties = System.getProperties();
         final Configuration config = ConfigurationLoader.loadConfiguration(uri.toString(),
             new PropertiesExpander(properties));
-        assertEquals("Checker", config.getName(), "Unexpected config name!");
+        assertWithMessage("Unexpected config name!")
+            .that(config.getName())
+            .isEqualTo("Checker");
     }
 
     @Test
@@ -514,7 +579,9 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final Properties properties = System.getProperties();
         final Configuration config = ConfigurationLoader.loadConfiguration(uri.toString(),
             new PropertiesExpander(properties));
-        assertEquals("Checker", config.getName(), "Unexpected config name!");
+        assertWithMessage("Unexpected config name!")
+            .that(config.getName())
+            .isEqualTo("Checker");
     }
 
     @Test

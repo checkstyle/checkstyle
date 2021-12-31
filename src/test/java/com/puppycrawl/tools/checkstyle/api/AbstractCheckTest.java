@@ -275,12 +275,12 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
 
         check.log(1, "key", "args");
         assertWithMessage("Invalid violation size")
-                .that(check.getViolations().size())
-                .isEqualTo(1);
+                .that(check.getViolations())
+                .hasSize(1);
         check.clearViolations();
         assertWithMessage("Invalid violation size")
-                .that(check.getViolations().size())
-                .isEqualTo(0);
+                .that(check.getViolations())
+                .isEmpty();
     }
 
     @Test
@@ -297,8 +297,8 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         final SortedSet<Violation> internalViolations = check.getViolations();
 
         assertWithMessage("Internal violation should only have 2")
-                .that(internalViolations.size())
-                .isEqualTo(2);
+                .that(internalViolations)
+                .hasSize(2);
 
         final Iterator<Violation> iterator = internalViolations.iterator();
 
@@ -337,8 +337,8 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         final SortedSet<Violation> internalViolations = check.getViolations();
 
         assertWithMessage("Internal violation should only have 1")
-                .that(internalViolations.size())
-                .isEqualTo(1);
+                .that(internalViolations)
+                .hasSize(1);
 
         final Violation firstViolation = internalViolations.iterator().next();
         assertWithMessage("expected line")

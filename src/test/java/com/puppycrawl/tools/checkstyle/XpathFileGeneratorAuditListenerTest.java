@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -142,8 +141,9 @@ public class XpathFileGeneratorAuditListenerTest {
             assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
-            assertEquals("Operation is not supported",
-                    ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("Operation is not supported");
         }
     }
 
@@ -242,7 +242,9 @@ public class XpathFileGeneratorAuditListenerTest {
         listener.auditStarted(null);
         listener.auditFinished(null);
 
-        assertEquals(1, outStream.getCloseCount(), "Invalid close count");
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(1);
     }
 
     @Test
@@ -254,7 +256,9 @@ public class XpathFileGeneratorAuditListenerTest {
         listener.auditStarted(null);
         listener.auditFinished(null);
 
-        assertEquals(0, outStream.getCloseCount(), "Invalid close count");
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(0);
     }
 
     private AuditEvent createAuditEvent(String fileName, int lineNumber, int columnNumber,
@@ -320,7 +324,9 @@ public class XpathFileGeneratorAuditListenerTest {
                 .isEqualTo(1);
 
         final String actual = out.toString();
-        assertEquals(expected, actual, "Invalid suppressions file content");
+        assertWithMessage("Invalid suppressions file content")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     private static class TestByteArrayOutputStream extends ByteArrayOutputStream {

@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -109,31 +108,42 @@ public class CommitValidationTest {
 
     @Test
     public void testCommitMessage() {
-        assertEquals(3, validateCommitMessage("minor: Test. Test."),
-                "should not accept commit message with periods on end");
-        assertEquals(3, validateCommitMessage("minor: Test. "),
-                "should not accept commit message with spaces on end");
-        assertEquals(3, validateCommitMessage("minor: Test.\t"),
-                "should not accept commit message with tabs on end");
-        assertEquals(3, validateCommitMessage("minor: Test.\n"),
-                "should not accept commit message with period on end, ignoring new line");
-        assertEquals(1, validateCommitMessage("Test. Test"),
-                "should not accept commit message with missing prefix");
-        assertEquals(1, validateCommitMessage("Test. Test\n"),
-                "should not accept commit message with missing prefix");
-        assertEquals(2, validateCommitMessage("minor: Test.\nTest"),
-                "should not accept commit message with multiple lines with text");
-        assertEquals(0, validateCommitMessage("minor: Test\n"),
-                "should accept commit message with a new line on end");
-        assertEquals(0, validateCommitMessage("minor: Test\n\n"),
-                "should accept commit message with multiple new lines on end");
-        assertEquals(0, validateCommitMessage("minor: Test. Test"),
-                "should accept commit message that ends properly");
-        assertEquals(4, validateCommitMessage("minor: Test Test Test Test Test"
+        assertWithMessage("should not accept commit message with periods on end")
+            .that(validateCommitMessage("minor: Test. Test."))
+            .isEqualTo(3);
+        assertWithMessage("should not accept commit message with spaces on end")
+            .that(validateCommitMessage("minor: Test. "))
+            .isEqualTo(3);
+        assertWithMessage("should not accept commit message with tabs on end")
+            .that(validateCommitMessage("minor: Test.\t"))
+            .isEqualTo(3);
+        assertWithMessage("should not accept commit message with period on end, ignoring new line")
+            .that(validateCommitMessage("minor: Test.\n"))
+            .isEqualTo(3);
+        assertWithMessage("should not accept commit message with missing prefix")
+            .that(validateCommitMessage("Test. Test"))
+            .isEqualTo(1);
+        assertWithMessage("should not accept commit message with missing prefix")
+            .that(validateCommitMessage("Test. Test\n"))
+            .isEqualTo(1);
+        assertWithMessage("should not accept commit message with multiple lines with text")
+            .that(validateCommitMessage("minor: Test.\nTest"))
+            .isEqualTo(2);
+        assertWithMessage("should accept commit message with a new line on end")
+            .that(validateCommitMessage("minor: Test\n"))
+            .isEqualTo(0);
+        assertWithMessage("should accept commit message with multiple new lines on end")
+            .that(validateCommitMessage("minor: Test\n\n"))
+            .isEqualTo(0);
+        assertWithMessage("should accept commit message that ends properly")
+            .that(validateCommitMessage("minor: Test. Test"))
+            .isEqualTo(0);
+        assertWithMessage("should accept commit message with less than or equal to 200 characters")
+            .that(validateCommitMessage("minor: Test Test Test Test Test"
                 + "Test Test Test Test Test Test Test Test Test Test Test Test Test Test "
                 + "Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test "
-                + "Test Test Test Test Test Test Test  Test Test Test Test Test Test"),
-                "should accept commit message with less than or equal to 200 characters");
+                + "Test Test Test Test Test Test Test  Test Test Test Test Test Test"))
+            .isEqualTo(4);
     }
 
     @Test

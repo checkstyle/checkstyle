@@ -20,8 +20,6 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +36,9 @@ public class SeverityMatchFilterTest {
     @Test
     public void testDefault() {
         final AuditEvent ev = new AuditEvent(this, "Test.java");
-        assertFalse(filter.accept(ev), "no message");
+        assertWithMessage("no message")
+            .that(filter.accept(ev))
+            .isFalse();
         final SeverityLevel errorLevel = SeverityLevel.ERROR;
         final Violation errorMessage =
             new Violation(1, 0, "", "", null,
@@ -51,7 +51,9 @@ public class SeverityMatchFilterTest {
         final Violation infoViolation =
                 new Violation(1, 0, "", "", null, infoLevel, null, getClass(), null);
         final AuditEvent ev3 = new AuditEvent(this, "ATest.java", infoViolation);
-        assertFalse(filter.accept(ev3), "level:" + infoLevel);
+        assertWithMessage("level:" + infoLevel)
+            .that(filter.accept(ev3))
+            .isFalse();
     }
 
     @Test
@@ -67,7 +69,9 @@ public class SeverityMatchFilterTest {
             new Violation(1, 0, "", "", null,
                 errorLevel, null, getClass(), null);
         final AuditEvent ev2 = new AuditEvent(this, "ATest.java", errorMessage);
-        assertFalse(filter.accept(ev2), "level:" + errorLevel);
+        assertWithMessage("level:" + errorLevel)
+            .that(filter.accept(ev2))
+            .isFalse();
         final SeverityLevel infoLevel = SeverityLevel.INFO;
         final Violation infoMessage =
                 new Violation(1, 0, "", "", null, infoLevel, null, getClass(), null);
@@ -83,7 +87,9 @@ public class SeverityMatchFilterTest {
         filter.setAcceptOnMatch(false);
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         // event with no message has severity level INFO
-        assertFalse(filter.accept(ev), "no message");
+        assertWithMessage("no message")
+            .that(filter.accept(ev))
+            .isFalse();
         final SeverityLevel errorLevel = SeverityLevel.ERROR;
         final Violation errorViolation =
             new Violation(1, 0, "", "", null,
@@ -96,13 +102,17 @@ public class SeverityMatchFilterTest {
         final Violation infoViolation = new Violation(1, 0, "", "", null, infoLevel,
             null, getClass(), null);
         final AuditEvent ev3 = new AuditEvent(this, "ATest.java", infoViolation);
-        assertFalse(filter.accept(ev3), "level:" + infoLevel);
+        assertWithMessage("level:" + infoLevel)
+            .that(filter.accept(ev3))
+            .isFalse();
     }
 
     @Test
     public void testConfigure() throws CheckstyleException {
         filter.configure(new DefaultConfiguration("test"));
-        assertNotNull(filter, "object exists");
+        assertWithMessage("object exists")
+            .that(filter)
+            .isNotNull();
     }
 
 }

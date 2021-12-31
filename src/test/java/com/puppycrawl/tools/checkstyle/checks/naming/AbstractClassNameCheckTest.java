@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck.MSG_ILLEGAL_ABSTRACT_CLASS_NAME;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck.MSG_NO_ABSTRACT_CLASS_MODIFIER;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -128,7 +128,9 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         final int[] expected = {
             TokenTypes.CLASS_DEF,
         };
-        assertArrayEquals(expected, actual, "Invalid acceptable tokens");
+        assertWithMessage("Invalid acceptable tokens")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -138,7 +140,9 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         final int[] expected = {
             TokenTypes.CLASS_DEF,
         };
-        assertArrayEquals(expected, actual, "Invalid required tokens");
+        assertWithMessage("Invalid required tokens")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
 }

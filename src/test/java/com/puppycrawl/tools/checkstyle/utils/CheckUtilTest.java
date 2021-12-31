@@ -22,8 +22,6 @@ package com.puppycrawl.tools.checkstyle.utils;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenInAstByPredicate;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
@@ -52,14 +50,16 @@ public class CheckUtilTest extends AbstractPathTestSupport {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
-                .that(isUtilsClassHasPrivateConstructor(CheckUtil.class, true))
+                .that(isUtilsClassHasPrivateConstructor(CheckUtil.class))
                 .isTrue();
     }
 
     @Test
     public void testParseDoubleWithIncorrectToken() {
         final double parsedDouble = CheckUtil.parseDouble("1_02", TokenTypes.ASSIGN);
-        assertEquals(Double.NaN, parsedDouble, 0.0, "Invalid parse result");
+        assertWithMessage("Invalid parse result")
+            .that(parsedDouble)
+            .isEqualTo(Double.NaN);
     }
 
     @Test
@@ -67,8 +67,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(TokenTypes.ASSIGN);
         ast.setText("ASSIGN");
-        assertFalse(CheckUtil.isElseIf(ast),
-                "Invalid elseIf check result 'ASSIGN' is not 'else if'");
+        assertWithMessage("Invalid elseIf check result 'ASSIGN' is not 'else if'")
+                .that(CheckUtil.isElseIf(ast))
+                .isFalse();
 
         final DetailAstImpl parentAst = new DetailAstImpl();
         parentAst.setType(TokenTypes.LCURLY);
@@ -79,8 +80,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         ifAst.setText("IF");
         parentAst.addChild(ifAst);
 
-        assertFalse(CheckUtil.isElseIf(ifAst),
-                "Invalid elseIf check result: 'IF' is not 'else if'");
+        assertWithMessage("Invalid elseIf check result: 'IF' is not 'else if'")
+                .that(CheckUtil.isElseIf(ifAst))
+                .isFalse();
 
         final DetailAstImpl parentAst2 = new DetailAstImpl();
         parentAst2.setType(TokenTypes.SLIST);
@@ -88,8 +90,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
 
         parentAst2.addChild(ifAst);
 
-        assertFalse(CheckUtil.isElseIf(ifAst),
-                "Invalid elseIf check result: 'SLIST' is not 'else if'");
+        assertWithMessage("Invalid elseIf check result: 'SLIST' is not 'else if'")
+                .that(CheckUtil.isElseIf(ifAst))
+                .isFalse();
 
         final DetailAstImpl elseAst = new DetailAstImpl();
         elseAst.setType(TokenTypes.LITERAL_ELSE);
@@ -113,7 +116,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         metDef.setType(TokenTypes.METHOD_DEF);
         metDef.addChild(modifiers);
 
-        assertFalse(CheckUtil.isEqualsMethod(metDef), "Invalid result: ast is not equals method");
+        assertWithMessage("Invalid result: ast is not equals method")
+                .that(CheckUtil.isEqualsMethod(metDef))
+                .isFalse();
 
         metDef.removeChildren();
 
@@ -137,7 +142,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         parameters.addChild(parameter1);
         metDef.addChild(parameters);
 
-        assertFalse(CheckUtil.isEqualsMethod(metDef), "Invalid result: ast is not equals method");
+        assertWithMessage("Invalid result: ast is not equals method")
+                .that(CheckUtil.isEqualsMethod(metDef))
+                .isFalse();
     }
 
     @Test
@@ -152,7 +159,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         catch (IllegalArgumentException exc) {
             final String expectedExceptionMsg = "expected non-null AST-token with type 'MODIFIERS'";
             final String actualExceptionMsg = exc.getMessage();
-            assertEquals(expectedExceptionMsg, actualExceptionMsg, "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(actualExceptionMsg)
+                .isEqualTo(expectedExceptionMsg);
         }
     }
 
@@ -162,7 +171,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         final List<String> expected = Arrays.asList("V", "C");
         final List<String> actual = CheckUtil.getTypeParameterNames(parameterizedClassNode);
 
-        assertEquals(expected, actual, "Invalid type parameters");
+        assertWithMessage("Invalid type parameters")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -174,7 +185,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
                 firstTypeParameter.getNextSibling().getNextSibling());
         final List<DetailAST> actual = CheckUtil.getTypeParameters(parameterizedClassNode);
 
-        assertEquals(expected, actual, "Invalid type parameters");
+        assertWithMessage("Invalid type parameters")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -185,8 +198,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid result: AST provided is not equals method")
                 .that(CheckUtil.isEqualsMethod(equalsMethodNode))
                 .isTrue();
-        assertFalse(CheckUtil.isEqualsMethod(someOtherMethod),
-                "Invalid result: AST provided is equals method");
+        assertWithMessage("Invalid result: AST provided is equals method")
+                .that(CheckUtil.isEqualsMethod(someOtherMethod))
+                .isFalse();
     }
 
     @Test
@@ -205,8 +219,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid result: AST provided is not else if with curly")
                 .that(CheckUtil.isElseIf(ifElse))
                 .isTrue();
-        assertFalse(CheckUtil.isElseIf(ifWithoutElse),
-                "Invalid result: AST provided is else if with curly");
+        assertWithMessage("Invalid result: AST provided is else if with curly")
+                .that(CheckUtil.isElseIf(ifWithoutElse))
+                .isFalse();
     }
 
     @Test
@@ -217,8 +232,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid result: AST provided is void method")
                 .that(CheckUtil.isNonVoidMethod(nonVoidMethod))
                 .isTrue();
-        assertFalse(CheckUtil.isNonVoidMethod(voidMethod),
-                "Invalid result: AST provided is non void method");
+        assertWithMessage("Invalid result: AST provided is non void method")
+                .that(CheckUtil.isNonVoidMethod(voidMethod))
+                .isFalse();
     }
 
     @Test
@@ -229,8 +245,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid result: AST provided is getter method")
                 .that(CheckUtil.isGetterMethod(getterMethod))
                 .isTrue();
-        assertFalse(CheckUtil.isGetterMethod(notGetterMethod),
-                "Invalid result: AST provided is not getter method");
+        assertWithMessage("Invalid result: AST provided is not getter method")
+                .that(CheckUtil.isGetterMethod(notGetterMethod))
+                .isFalse();
     }
 
     @Test
@@ -243,8 +260,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid result: AST provided is setter method")
                 .that(CheckUtil.isSetterMethod(setterMethod))
                 .isTrue();
-        assertFalse(CheckUtil.isSetterMethod(notSetterMethod),
-                "Invalid result: AST provided is not setter method");
+        assertWithMessage("Invalid result: AST provided is not setter method")
+                .that(CheckUtil.isSetterMethod(notSetterMethod))
+                .isFalse();
     }
 
     @Test
@@ -254,27 +272,37 @@ public class CheckUtilTest extends AbstractPathTestSupport {
                 .getAccessModifierFromModifiersToken(interfaceDef
                         .findFirstToken(TokenTypes.OBJBLOCK)
                         .findFirstToken(TokenTypes.METHOD_DEF));
-        assertEquals(AccessModifierOption.PUBLIC, modifierInterface, "Invalid access modifier");
+        assertWithMessage("Invalid access modifier")
+            .that(modifierInterface)
+            .isEqualTo(AccessModifierOption.PUBLIC);
 
         final DetailAST privateVariable = getNodeFromFile(TokenTypes.VARIABLE_DEF);
         final AccessModifierOption modifierPrivate =
                 CheckUtil.getAccessModifierFromModifiersToken(privateVariable);
-        assertEquals(AccessModifierOption.PRIVATE, modifierPrivate, "Invalid access modifier");
+        assertWithMessage("Invalid access modifier")
+            .that(modifierPrivate)
+            .isEqualTo(AccessModifierOption.PRIVATE);
 
         final DetailAST protectedVariable = privateVariable.getNextSibling();
         final AccessModifierOption modifierProtected =
                 CheckUtil.getAccessModifierFromModifiersToken(protectedVariable);
-        assertEquals(AccessModifierOption.PROTECTED, modifierProtected, "Invalid access modifier");
+        assertWithMessage("Invalid access modifier")
+            .that(modifierProtected)
+            .isEqualTo(AccessModifierOption.PROTECTED);
 
         final DetailAST publicVariable = protectedVariable.getNextSibling();
         final AccessModifierOption modifierPublic =
                 CheckUtil.getAccessModifierFromModifiersToken(publicVariable);
-        assertEquals(AccessModifierOption.PUBLIC, modifierPublic, "Invalid access modifier");
+        assertWithMessage("Invalid access modifier")
+            .that(modifierPublic)
+            .isEqualTo(AccessModifierOption.PUBLIC);
 
         final DetailAST packageVariable = publicVariable.getNextSibling();
         final AccessModifierOption modifierPackage =
                 CheckUtil.getAccessModifierFromModifiersToken(packageVariable);
-        assertEquals(AccessModifierOption.PACKAGE, modifierPackage, "Invalid access modifier");
+        assertWithMessage("Invalid access modifier")
+            .that(modifierPackage)
+            .isEqualTo(AccessModifierOption.PACKAGE);
     }
 
     @Test
@@ -283,7 +311,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
 
         final DetailAST firstChild = classDef.getFirstChild().getFirstChild();
         final DetailAST firstNode = CheckUtil.getFirstNode(classDef);
-        assertEquals(firstChild, firstNode, "Invalid first node");
+        assertWithMessage("Invalid first node")
+            .that(firstNode)
+            .isEqualTo(firstChild);
     }
 
     @Test
@@ -299,7 +329,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         root.addChild(child);
 
         final DetailAST firstNode = CheckUtil.getFirstNode(root);
-        assertEquals(root, firstNode, "Unexpected node");
+        assertWithMessage("Unexpected node")
+            .that(firstNode)
+            .isEqualTo(root);
     }
 
     @Test
@@ -315,7 +347,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         root.addChild(child);
 
         final DetailAST firstNode = CheckUtil.getFirstNode(root);
-        assertEquals(root, firstNode, "Unexpected node");
+        assertWithMessage("Unexpected node")
+            .that(firstNode)
+            .isEqualTo(root);
     }
 
     @Test
@@ -331,51 +365,68 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid result: parameter provided is receiver parameter")
                 .that(CheckUtil.isReceiverParameter(receiverParameter))
                 .isTrue();
-        assertFalse(CheckUtil.isReceiverParameter(simpleParameter),
-                "Invalid result: parameter provided is not receiver parameter");
+        assertWithMessage("Invalid result: parameter provided is not receiver parameter")
+                .that(CheckUtil.isReceiverParameter(simpleParameter))
+                .isFalse();
     }
 
     @Test
     public void testParseDoubleFloatingPointValues() {
-        assertEquals(-0.05, CheckUtil.parseDouble("-0.05f", TokenTypes.NUM_FLOAT), 0,
-                "Invalid parse result");
-        assertEquals(10.0, CheckUtil.parseDouble("10.0", TokenTypes.NUM_DOUBLE), 0,
-                "Invalid parse result");
-        assertEquals(1230, CheckUtil.parseDouble("1.23e3", TokenTypes.NUM_DOUBLE), 0,
-                "Invalid parse result");
-        assertEquals(-321, CheckUtil.parseDouble("-3.21E2", TokenTypes.NUM_DOUBLE), 0,
-                "Invalid parse result");
-        assertEquals(-0.0, CheckUtil.parseDouble("-0.0", TokenTypes.NUM_DOUBLE), 0,
-                "Invalid parse result");
-        assertEquals(Double.NaN, CheckUtil.parseDouble("NaN", TokenTypes.NUM_DOUBLE), 0,
-                "Invalid parse result");
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("-0.05f", TokenTypes.NUM_FLOAT))
+            .isEqualTo(-0.05);
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("10.0", TokenTypes.NUM_DOUBLE))
+            .isEqualTo(10.0);
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("1.23e3", TokenTypes.NUM_DOUBLE))
+            .isEqualTo(1230);
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("-3.21E2", TokenTypes.NUM_DOUBLE))
+            .isEqualTo(-321);
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("-0.0", TokenTypes.NUM_DOUBLE))
+            .isEqualTo(-0.0);
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("NaN", TokenTypes.NUM_DOUBLE))
+            .isEqualTo(Double.NaN);
     }
 
     @Test
     public void testParseDoubleIntegerValues() {
-        assertEquals(0.0, CheckUtil.parseDouble("0L", TokenTypes.NUM_LONG), 0,
-                "Invalid parse result");
-        assertEquals(0b101, CheckUtil.parseDouble("0B101", TokenTypes.NUM_INT), 0,
-                "Invalid parse result");
-        assertEquals(289_775_941,
-                CheckUtil.parseDouble("0b10001010001011010000101000101L", TokenTypes.NUM_LONG), 0,
-                "Invalid parse result");
-        assertEquals(1.0, CheckUtil.parseDouble("1", TokenTypes.NUM_INT), 0,
-                "Invalid parse result");
-        assertEquals(8.0, CheckUtil.parseDouble("8L", TokenTypes.NUM_LONG), 0,
-                "Invalid parse result");
-        assertEquals(-2.147_483_648E10, CheckUtil.parseDouble("-21474836480", TokenTypes.NUM_LONG),
-                0, "Invalid parse result");
-        assertEquals(-2, CheckUtil.parseDouble("-2", TokenTypes.NUM_INT), 0,
-                "Invalid parse result");
-        assertEquals(-1, CheckUtil.parseDouble("0xffffffff", TokenTypes.NUM_INT), 0,
-                "Invalid parse result");
-        assertEquals(2915.0, CheckUtil.parseDouble("0x0B63", TokenTypes.NUM_INT), 0,
-                "Invalid parse result");
-        assertEquals(2.147_483_647E10, CheckUtil.parseDouble("21474836470", TokenTypes.NUM_LONG),
-                0, "Invalid parse result");
-        assertEquals(59.0, CheckUtil.parseDouble("073l", TokenTypes.NUM_LONG), 0,
-                "Invalid parse result");
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("0L", TokenTypes.NUM_LONG))
+            .isEqualTo(0.0);
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("0B101", TokenTypes.NUM_INT))
+            .isEqualTo(0b101);
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("0b10001010001011010000101000101L", TokenTypes.NUM_LONG))
+            .isEqualTo(289_775_941);
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("1", TokenTypes.NUM_INT))
+            .isEqualTo(1.0);
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("8L", TokenTypes.NUM_LONG))
+            .isEqualTo(8.0);
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("-21474836480", TokenTypes.NUM_LONG))
+            .isEqualTo(-2.147_483_648E10);
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("-2", TokenTypes.NUM_INT))
+            .isEqualTo(-2);
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("0xffffffff", TokenTypes.NUM_INT))
+            .isEqualTo(-1);
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("0x0B63", TokenTypes.NUM_INT))
+            .isEqualTo(2915.0);
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("21474836470", TokenTypes.NUM_LONG))
+            .isEqualTo(2.147_483_647E10);
+        assertWithMessage("Invalid parse result")
+            .that(CheckUtil.parseDouble("073l", TokenTypes.NUM_LONG))
+            .isEqualTo(59.0);
     }
 
     @Test
@@ -387,7 +438,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         expected.add("ClassOnly");
         expected.add("my.Class");
         expected.add("Class");
-        assertEquals(expected, actual, "Result is not expected");
+        assertWithMessage("Result is not expected")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     private DetailAST getNodeFromFile(int type) throws Exception {

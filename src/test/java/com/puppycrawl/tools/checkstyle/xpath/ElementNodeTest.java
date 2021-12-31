@@ -21,8 +21,6 @@ package com.puppycrawl.tools.checkstyle.xpath;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.XpathUtil.getXpathItems;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.io.File;
@@ -70,8 +68,12 @@ public class ElementNodeTest extends AbstractPathTestSupport {
 
         final AbstractNode parentNode = new ElementNode(rootNode, rootNode, parentAST, 1, 0);
         final AbstractNode childNode = new ElementNode(rootNode, parentNode, detailAST, 2, 0);
-        assertEquals(-1, parentNode.compareOrder(childNode), "Incorrect ordering value");
-        assertEquals(1, childNode.compareOrder(parentNode), "Incorrect ordering value");
+        assertWithMessage("Incorrect ordering value")
+            .that(parentNode.compareOrder(childNode))
+            .isEqualTo(-1);
+        assertWithMessage("Incorrect ordering value")
+            .that(childNode.compareOrder(parentNode))
+            .isEqualTo(1);
     }
 
     @Test
@@ -90,8 +92,12 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         final AbstractNode parentNode = new ElementNode(rootNode, rootNode, parentAST, 1, 0);
         final List<AbstractNode> children = parentNode.getChildren();
 
-        assertEquals(-1, children.get(0).compareOrder(children.get(1)), "Incorrect ordering value");
-        assertEquals(1, children.get(1).compareOrder(children.get(0)), "Incorrect ordering value");
+        assertWithMessage("Incorrect ordering value")
+            .that(children.get(0).compareOrder(children.get(1)))
+            .isEqualTo(-1);
+        assertWithMessage("Incorrect ordering value")
+            .that(children.get(1).compareOrder(children.get(0)))
+            .isEqualTo(1);
     }
 
     @Test
@@ -99,25 +105,35 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         final String xpath = "//OBJBLOCK";
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         final int result = nodes.get(0).compareOrder(null);
-        assertEquals(0, result, "Expected result wrong");
+        assertWithMessage("Expected result wrong")
+            .that(result)
+            .isEqualTo(0);
     }
 
     @Test
     public void testGetParent() throws Exception {
         final String xpath = "//OBJBLOCK";
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
-        assertEquals(1, nodes.size(), "Invalid number of nodes");
+        assertWithMessage("Invalid number of nodes")
+            .that(nodes)
+            .hasSize(1);
         final AbstractNode parent = (AbstractNode) nodes.get(0).getParent();
-        assertEquals(TokenTypes.CLASS_DEF, parent.getTokenType(), "Invalid token type");
+        assertWithMessage("Invalid token type")
+            .that(parent.getTokenType())
+            .isEqualTo(TokenTypes.CLASS_DEF);
     }
 
     @Test
     public void testRootOfElementNode() throws Exception {
         final String xpath = "//OBJBLOCK";
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
-        assertEquals(1, nodes.size(), "Invalid number of nodes");
+        assertWithMessage("Invalid number of nodes")
+            .that(nodes)
+            .hasSize(1);
         final AbstractNode root = (AbstractNode) nodes.get(0).getRoot();
-        assertEquals(TokenTypes.COMPILATION_UNIT, root.getTokenType(), "Invalid token type");
+        assertWithMessage("Invalid token type")
+            .that(root.getTokenType())
+            .isEqualTo(TokenTypes.COMPILATION_UNIT);
         assertWithMessage("Should return true, because selected node is RootNode")
                 .that(root instanceof RootNode)
                 .isTrue();
@@ -127,25 +143,35 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     public void testGetNodeByValueNumInt() throws Exception {
         final String xPath = "//NUM_INT[@text = 123]";
         final List<NodeInfo> nodes = getXpathItems(xPath, rootNode);
-        assertEquals(1, nodes.size(), "Invalid number of nodes");
+        assertWithMessage("Invalid number of nodes")
+            .that(nodes)
+            .hasSize(1);
         final int tokenType = ((AbstractNode) nodes.get(0)).getTokenType();
-        assertEquals(TokenTypes.NUM_INT, tokenType, "Invalid token type");
+        assertWithMessage("Invalid token type")
+            .that(tokenType)
+            .isEqualTo(TokenTypes.NUM_INT);
     }
 
     @Test
     public void testGetNodeByValueStringLiteral() throws Exception {
         final String xPath = "//STRING_LITERAL[@text = 'HelloWorld']";
         final List<NodeInfo> nodes = getXpathItems(xPath, rootNode);
-        assertEquals(2, nodes.size(), "Invalid number of nodes");
+        assertWithMessage("Invalid number of nodes")
+            .that(nodes)
+            .hasSize(2);
         final int tokenType = ((AbstractNode) nodes.get(0)).getTokenType();
-        assertEquals(TokenTypes.STRING_LITERAL, tokenType, "Invalid token type");
+        assertWithMessage("Invalid token type")
+            .that(tokenType)
+            .isEqualTo(TokenTypes.STRING_LITERAL);
     }
 
     @Test
     public void testGetNodeByValueWithSameTokenText() throws Exception {
         final String xPath = "//MODIFIERS[@text = 'MODIFIERS']";
         final List<NodeInfo> nodes = getXpathItems(xPath, rootNode);
-        assertEquals(0, nodes.size(), "Invalid number of nodes");
+        assertWithMessage("Invalid number of nodes")
+            .that(nodes)
+            .hasSize(0);
     }
 
     @Test
@@ -156,8 +182,9 @@ public class ElementNodeTest extends AbstractPathTestSupport {
 
         final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
 
-        assertEquals("HelloWorld", elementNode.getAttributeValue(null, "text"),
-                "Invalid text attribute");
+        assertWithMessage("Invalid text attribute")
+            .that(elementNode.getAttributeValue(null, "text"))
+            .isEqualTo("HelloWorld");
     }
 
     @Test
@@ -181,7 +208,9 @@ public class ElementNodeTest extends AbstractPathTestSupport {
 
         final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
 
-        assertNull(elementNode.getAttributeValue(null, "text"), "Must be null");
+        assertWithMessage("Must be null")
+            .that(elementNode.getAttributeValue(null, "text"))
+            .isNull();
     }
 
     @Test
@@ -192,7 +221,9 @@ public class ElementNodeTest extends AbstractPathTestSupport {
 
         final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
 
-        assertNull(elementNode.getAttributeValue(null, "somename"), "Must be null");
+        assertWithMessage("Must be null")
+            .that(elementNode.getAttributeValue(null, "somename"))
+            .isNull();
     }
 
     @Test

@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -95,7 +94,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
             .that(TestUtil.isUtilsClassHasPrivateConstructor(
-                                            JavadocPropertiesGenerator.class, false))
+                                            JavadocPropertiesGenerator.class))
             .isTrue();
     }
 
@@ -108,8 +107,12 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
                 "Missing required options and parameters: "
                 + "'--destfile=<outputFile>', '<inputFile>'%n")
                 + USAGE;
-        assertEquals(expected, systemErr.getCapturedData(), "Unexpected error log");
-        assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
+        assertWithMessage("Unexpected error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -119,8 +122,12 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
 
         final String expected = String.format(Locale.ROOT,
                 "Missing required option: '--destfile=<outputFile>'%n") + USAGE;
-        assertEquals(expected, systemErr.getCapturedData(), "Unexpected error log");
-        assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
+        assertWithMessage("Unexpected error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -130,8 +137,12 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
 
         final String expected = String.format(Locale.ROOT,
                 "Missing required parameter: '<inputFile>'%n") + USAGE;
-        assertEquals(expected, systemErr.getCapturedData(), "Unexpected error log");
-        assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
+        assertWithMessage("Unexpected error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -139,8 +150,12 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             throws Exception {
         JavadocPropertiesGenerator.main("--destfile", DESTFILE_ABSOLUTE_PATH,
             getPath("InputJavadocPropertiesGeneratorNotClass.java"));
-        assertEquals("", systemErr.getCapturedData(), "Unexpected error log");
-        assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
+        assertWithMessage("Unexpected error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -152,21 +167,26 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             assertWithMessage("Exception was expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals(
-                    "Failed to write javadoc properties of 'NotExistent.java' to '"
-                    + DESTFILE_ABSOLUTE_PATH + "'",
-                ex.getMessage(), "Invalid error message");
+            assertWithMessage("Invalid error message")
+                .that(ex.getMessage())
+                .isEqualTo("Failed to write javadoc properties of 'NotExistent.java' to '"
+                    + DESTFILE_ABSOLUTE_PATH + "'");
 
             final Throwable cause = ex.getCause();
             assertWithMessage("Invalid error message")
-                    .that(cause instanceof FileNotFoundException)
-                    .isTrue();
+                    .that(cause)
+                    .isInstanceOf(FileNotFoundException.class);
             assertWithMessage("Invalid error message")
-                    .that(cause.getMessage().contains("NotExistent.java"))
-                    .isTrue();
+                    .that(cause)
+                    .hasMessageThat()
+                    .contains("NotExistent.java");
         }
-        assertEquals("", systemErr.getCapturedData(), "Unexpected error log");
-        assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
+        assertWithMessage("Unexpected error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -181,18 +201,24 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         catch (CheckstyleException ex) {
             final String expectedError = "Failed to write javadoc properties of '"
                 + getPath("InputJavadocPropertiesGeneratorCorrect.java") + "' to '..'";
-            assertEquals(expectedError, ex.getMessage(), "Invalid error message");
+            assertWithMessage("Invalid error message")
+                .that(ex.getMessage())
+                .isEqualTo(expectedError);
 
             final Throwable cause = ex.getCause();
             assertWithMessage("Invalid error message")
-                    .that(cause instanceof FileNotFoundException)
-                    .isTrue();
+                    .that(cause)
+                    .isInstanceOf(FileNotFoundException.class);
             assertWithMessage("Invalid error message")
-                    .that(cause.getMessage().contains(".."))
-                    .isTrue();
+                    .that(cause)
+                    .hasMessageThat().contains("..");
         }
-        assertEquals("", systemErr.getCapturedData(), "Unexpected error log");
-        assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
+        assertWithMessage("Unexpected error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -208,10 +234,16 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
 
         JavadocPropertiesGenerator.main(getPath("InputJavadocPropertiesGeneratorCorrect.java"),
             "--destfile", DESTFILE_ABSOLUTE_PATH);
-        assertEquals("", systemErr.getCapturedData(), "Unexpected error log");
-        assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
+        assertWithMessage("Unexpected error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
         final String fileContent = FileUtils.readFileToString(DESTFILE, StandardCharsets.UTF_8);
-        assertEquals(expectedContent, fileContent, "File content is not expected");
+        assertWithMessage("File content is not expected")
+            .that(fileContent)
+            .isEqualTo(expectedContent);
     }
 
     @Test
@@ -219,10 +251,16 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             throws Exception {
         JavadocPropertiesGenerator.main(getPath("InputJavadocPropertiesGeneratorEmptyJavadoc.java"),
             "--destfile", DESTFILE_ABSOLUTE_PATH);
-        assertEquals("", systemErr.getCapturedData(), "Unexpected error log");
-        assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
+        assertWithMessage("Unexpected error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
         final long size = FileUtils.sizeOf(DESTFILE);
-        assertEquals(0, size, "File '" + DESTFILE + "' must be empty");
+        assertWithMessage("File '" + DESTFILE + "' must be empty")
+            .that(size)
+            .isEqualTo(0);
     }
 
     @Test
@@ -230,18 +268,28 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             throws Exception {
         JavadocPropertiesGenerator.main(getPath("InputJavadocPropertiesGeneratorNotConstants.java"),
             "--destfile", DESTFILE_ABSOLUTE_PATH);
-        assertEquals("", systemErr.getCapturedData(), "Unexpected error log");
-        assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
+        assertWithMessage("Unexpected error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
         final long size = FileUtils.sizeOf(DESTFILE);
-        assertEquals(0, size, "File '" + DESTFILE + "' must be empty");
+        assertWithMessage("File '" + DESTFILE + "' must be empty")
+            .that(size)
+            .isEqualTo(0);
     }
 
     @Test
     public void testHelp(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws Exception {
         JavadocPropertiesGenerator.main("-h");
-        assertEquals("", systemErr.getCapturedData(), "Unexpected error log");
-        assertEquals(USAGE, systemOut.getCapturedData(), "Unexpected output log");
+        assertWithMessage("Unexpected error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(USAGE);
     }
 
     @Test
@@ -258,7 +306,9 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
                     .isTrue();
         }
         final long size = FileUtils.sizeOf(DESTFILE);
-        assertEquals(0, size, "File '" + DESTFILE + "' must be empty");
+        assertWithMessage("File '" + DESTFILE + "' must be empty")
+            .that(size)
+            .isEqualTo(0);
     }
 
     @Test
@@ -269,11 +319,14 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             assertWithMessage("Exception was expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals("Unsupported inline tag LINK_LITERAL",
-                ex.getMessage(), "Invalid error message");
+            assertWithMessage("Invalid error message")
+                .that(ex.getMessage())
+                .isEqualTo("Unsupported inline tag LINK_LITERAL");
         }
         final long size = FileUtils.sizeOf(DESTFILE);
-        assertEquals(0, size, "File '" + DESTFILE + "' must be empty");
+        assertWithMessage("File '" + DESTFILE + "' must be empty")
+            .that(size)
+            .isEqualTo(0);
     }
 
     @Test
@@ -291,11 +344,11 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
 
             final Throwable cause = ex.getCause();
             assertWithMessage("Invalid error message")
-                    .that(cause instanceof IllegalStateException)
-                    .isTrue();
+                    .that(cause)
+                    .isInstanceOf(IllegalStateException.class);
             assertWithMessage("Invalid error message")
-                    .that(cause.getMessage().contains("9:0: mismatched input '!' expecting '}'"))
-                    .isTrue();
+                    .that(cause)
+                    .hasMessageThat().contains("9:0: mismatched input '!' expecting '}'");
         }
     }
 

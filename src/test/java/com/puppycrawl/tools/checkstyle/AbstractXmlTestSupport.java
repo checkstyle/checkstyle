@@ -144,8 +144,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
                 final Set<Node> actualChildren = XmlUtil.getChildrenElements(actual);
 
                 assertWithMessage("node have same number of children: %s", path)
-                        .that(actualChildren.size())
-                        .isEqualTo(expectedChildren.size());
+                        .that(actualChildren)
+                        .hasSize(expectedChildren.size());
 
                 for (Node expectedChild : expectedChildren) {
                     Node foundChild = null;

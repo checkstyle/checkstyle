@@ -21,20 +21,13 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_OBJECT_ARRAY;
-import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
-import java.util.Arrays;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -65,10 +58,10 @@ public class ViolationTest {
     @Test
     public void testLanguageIsValid() {
         final String language = DEFAULT_LOCALE.getLanguage();
-        if (!language.isEmpty()) {
-            assertThat("Invalid language",
-                Arrays.asList(Locale.getISOLanguages()), hasItem(language));
-        }
+        assumeFalse(language.isEmpty(), "Locale not set");
+        assertWithMessage("Invalid language")
+                .that(Locale.getISOLanguages()).asList()
+                .contains(language);
     }
 
     /**
@@ -77,10 +70,10 @@ public class ViolationTest {
     @Test
     public void testCountryIsValid() {
         final String country = DEFAULT_LOCALE.getCountry();
-        if (!country.isEmpty()) {
-            assertThat("Invalid country",
-                    Arrays.asList(Locale.getISOCountries()), hasItem(country));
-        }
+        assumeFalse(country.isEmpty(), "Locale not set");
+        assertWithMessage("Invalid country")
+                .that(Locale.getISOCountries()).asList()
+                .contains(country);
     }
 
     /**
@@ -90,11 +83,12 @@ public class ViolationTest {
     @Test
     public void testLocaleIsSupported() {
         final String language = DEFAULT_LOCALE.getLanguage();
-        if (!language.isEmpty() && !Locale.ENGLISH.getLanguage().equals(language)) {
-            final Violation violation = createSampleViolation();
-            assertThat("Unsupported language: " + DEFAULT_LOCALE,
-                    violation.getViolation(), not("Empty statement."));
-        }
+        assumeFalse(language.isEmpty() || Locale.ENGLISH.getLanguage().equals(language),
+                "Custom locale not set");
+        final Violation violation = createSampleViolation();
+        assertWithMessage("Unsupported language: {}", DEFAULT_LOCALE)
+                .that(violation.getViolation())
+                .isNotEqualTo("Empty statement.");
     }
 
     @Test
@@ -110,23 +104,27 @@ public class ViolationTest {
     public void testGetSeverityLevel() {
         final Violation violation = createSampleViolation();
 
-        assertEquals(SeverityLevel.ERROR,
-                violation.getSeverityLevel(), "Invalid severity level");
+        assertWithMessage("Invalid severity level")
+            .that(violation.getSeverityLevel())
+            .isEqualTo(SeverityLevel.ERROR);
     }
 
     @Test
     public void testGetModuleId() {
         final Violation violation = createSampleViolation();
 
-        assertEquals("module", violation.getModuleId(), "Invalid module id");
+        assertWithMessage("Invalid module id")
+            .that(violation.getModuleId())
+            .isEqualTo("module");
     }
 
     @Test
     public void testGetSourceName() {
         final Violation violation = createSampleViolation();
 
-        assertEquals("com.puppycrawl.tools.checkstyle.api.Violation",
-                violation.getSourceName(), "Invalid source name");
+        assertWithMessage("Invalid source name")
+            .that(violation.getSourceName())
+            .isEqualTo("com.puppycrawl.tools.checkstyle.api.Violation");
     }
 
     @Test
@@ -134,7 +132,9 @@ public class ViolationTest {
         final Violation violation = createSampleViolation();
         Violation.setLocale(Locale.ENGLISH);
 
-        assertEquals("Empty statement.", violation.getViolation(), "Invalid violation");
+        assertWithMessage("Invalid violation")
+            .that(violation.getViolation())
+            .isEqualTo("Empty statement.");
     }
 
     @Test
@@ -144,7 +144,9 @@ public class ViolationTest {
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 Locale.ENGLISH, "java.class",
                 Thread.currentThread().getContextClassLoader(), true);
-        assertNull(bundle, "Bundle should be null when reload is true and URL is null");
+        assertWithMessage("Bundle should be null when reload is true and URL is null")
+            .that(bundle)
+            .isNull();
     }
 
     /**
@@ -190,8 +192,12 @@ public class ViolationTest {
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages", Locale.ENGLISH,
                 "java.class", new TestUrlsClassLoader(url), true);
 
-        assertNotNull(bundle, "Bundle should not be null when stream is not null");
-        assertFalse(urlConnection.getUseCaches(), "connection should not be using caches");
+        assertWithMessage("Bundle should not be null when stream is not null")
+            .that(bundle)
+            .isNotNull();
+        assertWithMessage("connection should not be using caches")
+                .that(urlConnection.getUseCaches())
+                .isFalse();
         assertWithMessage("connection should be closed")
                 .that(closed.get())
                 .isTrue();
@@ -240,7 +246,9 @@ public class ViolationTest {
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages", Locale.ENGLISH,
                 "java.class", new TestUrlsClassLoader(url), false);
 
-        assertNotNull(bundle, "Bundle should not be null when stream is not null");
+        assertWithMessage("Bundle should not be null when stream is not null")
+            .that(bundle)
+            .isNotNull();
         assertWithMessage("connection should not be using caches")
                 .that(urlConnection.getUseCaches())
                 .isTrue();
@@ -263,7 +271,9 @@ public class ViolationTest {
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 Locale.ENGLISH, "java.class",
                 new TestUrlsClassLoader(url), true);
-        assertNull(bundle, "Bundle should be null when stream is null");
+        assertWithMessage("Bundle should be null when stream is null")
+            .that(bundle)
+            .isNull();
     }
 
     @Test
@@ -271,7 +281,9 @@ public class ViolationTest {
         final Violation violation = createSampleViolation();
         Violation.setLocale(Locale.FRENCH);
 
-        assertEquals("Instruction vide.", violation.getViolation(), "Invalid violation");
+        assertWithMessage("Invalid violation")
+            .that(violation.getViolation())
+            .isEqualTo("Instruction vide.");
     }
 
     @DefaultLocale("fr")
@@ -280,7 +292,9 @@ public class ViolationTest {
         Violation.setLocale(Locale.US);
         final Violation violation = createSampleViolation();
 
-        assertEquals("Empty statement.", violation.getViolation(), "Invalid violation");
+        assertWithMessage("Invalid violation")
+            .that(violation.getViolation())
+            .isEqualTo("Empty statement.");
     }
 
     @DefaultLocale("fr")
@@ -289,7 +303,9 @@ public class ViolationTest {
         Violation.setLocale(Locale.ROOT);
         final Violation violation = createSampleViolation();
 
-        assertEquals("Empty statement.", violation.getViolation(), "Invalid violation");
+        assertWithMessage("Invalid violation")
+            .that(violation.getViolation())
+            .isEqualTo("Empty statement.");
     }
 
     @DefaultLocale("fr")
@@ -298,7 +314,9 @@ public class ViolationTest {
         Violation.setLocale(Locale.US);
         final Violation violation = createSampleViolation();
 
-        assertEquals("empty.statement", violation.getKey(), "Invalid violation key");
+        assertWithMessage("Invalid violation key")
+            .that(violation.getKey())
+            .isEqualTo("empty.statement");
     }
 
     @DefaultLocale("fr")
@@ -307,16 +325,22 @@ public class ViolationTest {
         Violation.setLocale(Locale.ROOT);
         final Violation violation = createSampleViolation();
 
-        assertEquals("Empty statement.", violation.getViolation(), "Invalid violation");
+        assertWithMessage("Invalid violation")
+            .that(violation.getViolation())
+            .isEqualTo("Empty statement.");
 
         final Map<String, ResourceBundle> bundleCache =
                 TestUtil.getInternalStaticState(Violation.class, "BUNDLE_CACHE");
 
-        assertEquals(1, bundleCache.size(), "Invalid bundle cache size");
+        assertWithMessage("Invalid bundle cache size")
+            .that(bundleCache)
+            .hasSize(1);
 
         Violation.setLocale(Locale.CHINA);
 
-        assertEquals(0, bundleCache.size(), "Invalid bundle cache size");
+        assertWithMessage("Invalid bundle cache size")
+            .that(bundleCache)
+            .isEmpty();
     }
 
     @Test
@@ -328,8 +352,12 @@ public class ViolationTest {
                 "messages.properties", "key", EMPTY_OBJECT_ARRAY, SeverityLevel.ERROR, null,
                 getClass(), null);
 
-        assertEquals(TokenTypes.CLASS_DEF, violation1.getTokenType(), "Invalid token type");
-        assertEquals(TokenTypes.OBJBLOCK, violation2.getTokenType(), "Invalid token type");
+        assertWithMessage("Invalid token type")
+            .that(violation1.getTokenType())
+            .isEqualTo(TokenTypes.CLASS_DEF);
+        assertWithMessage("Invalid token type")
+            .that(violation2.getTokenType())
+            .isEqualTo(TokenTypes.OBJBLOCK);
     }
 
     @Test
@@ -338,7 +366,9 @@ public class ViolationTest {
                 TokenTypes.CLASS_DEF, "messages.properties", "key", null, SeverityLevel.ERROR,
                 null, getClass(), null);
 
-        assertEquals(123, violation1.getColumnCharIndex(), "Invalid column char index");
+        assertWithMessage("Invalid column char index")
+            .that(violation1.getColumnCharIndex())
+            .isEqualTo(123);
     }
 
     @Test
@@ -371,7 +401,9 @@ public class ViolationTest {
                 .that(message2.compareTo(message1) > 0)
                 .isTrue();
         final int actual = message1.compareTo(message1a);
-        assertEquals(0, actual, "Invalid comparing result");
+        assertWithMessage("Invalid comparing result")
+            .that(actual)
+            .isEqualTo(0);
     }
 
     @Test
@@ -387,7 +419,9 @@ public class ViolationTest {
                 .that(message2.compareTo(message1) > 0)
                 .isTrue();
         final int actual = message1.compareTo(message1a);
-        assertEquals(0, actual, "Invalid comparing result");
+        assertWithMessage("Invalid comparing result")
+            .that(actual)
+            .isEqualTo(0);
     }
 
     private static Violation createSampleViolation() {

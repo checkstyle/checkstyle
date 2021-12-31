@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -150,7 +150,9 @@ public class RedundantModifierCheckTest
             TokenTypes.ENUM_DEF,
             TokenTypes.RESOURCE,
         };
-        assertArrayEquals(expected, actual, "Invalid acceptable tokens");
+        assertWithMessage("Invalid acceptable tokens")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -158,7 +160,9 @@ public class RedundantModifierCheckTest
         final RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
         final int[] actual = redundantModifierCheckObj.getRequiredTokens();
         final int[] expected = CommonUtil.EMPTY_INT_ARRAY;
-        assertArrayEquals(expected, actual, "Invalid required tokens");
+        assertWithMessage("Invalid required tokens")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -187,9 +191,9 @@ public class RedundantModifierCheckTest
     @Test
     public void testFinalInTryWithResource() throws Exception {
         final String[] expected = {
-            "30:14: " + getCheckMessage(MSG_KEY, "final"),
-            "35:14: " + getCheckMessage(MSG_KEY, "final"),
-            "36:17: " + getCheckMessage(MSG_KEY, "final"),
+            "38:14: " + getCheckMessage(MSG_KEY, "final"),
+            "43:14: " + getCheckMessage(MSG_KEY, "final"),
+            "44:17: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantModifierFinalInTryWithResource.java"),

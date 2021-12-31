@@ -21,9 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.File;
 import java.util.Collection;
@@ -240,8 +237,12 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.SWITCH_RULE,
         };
-        assertNotNull(actual, "Acceptable tokens should not be null");
-        assertArrayEquals(expected, actual, "Invalid acceptable tokens");
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(actual)
+            .isNotNull();
+        assertWithMessage("Invalid acceptable tokens")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -268,8 +269,12 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.SWITCH_RULE,
         };
-        assertNotNull(actual, "Required tokens should not be null");
-        assertArrayEquals(expected, actual, "Invalid required tokens");
+        assertWithMessage("Required tokens should not be null")
+            .that(actual)
+            .isNotNull();
+        assertWithMessage("Invalid required tokens")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -281,12 +286,16 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         npathComplexityCheckObj.visitToken(ast);
         final SortedSet<Violation> violations1 = npathComplexityCheckObj.getViolations();
 
-        assertEquals(0, violations1.size(), "No exception violations expected");
+        assertWithMessage("No exception violations expected")
+            .that(violations1)
+            .isEmpty();
 
         npathComplexityCheckObj.leaveToken(ast);
         final SortedSet<Violation> violations2 = npathComplexityCheckObj.getViolations();
 
-        assertEquals(0, violations2.size(), "No exception violations expected");
+        assertWithMessage("No exception violations expected")
+            .that(violations2)
+            .isEmpty();
     }
 
     /**
@@ -337,13 +346,17 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         npathComplexityCheckObj.visitToken(astIf);
         final SortedSet<Violation> violations1 = npathComplexityCheckObj.getViolations();
 
-        assertEquals(0, violations1.size(), "No exception violations expected");
+        assertWithMessage("No exception violations expected")
+            .that(violations1)
+            .isEmpty();
 
         // visiting ternary, it lies before expressionSpatialRange
         npathComplexityCheckObj.visitToken(astTernary);
         final SortedSet<Violation> violations2 = npathComplexityCheckObj.getViolations();
 
-        assertEquals(0, violations2.size(), "No exception violations expected");
+        assertWithMessage("No exception violations expected")
+            .that(violations2)
+            .isEmpty();
     }
 
     /**

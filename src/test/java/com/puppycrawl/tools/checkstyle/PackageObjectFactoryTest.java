@@ -29,8 +29,6 @@ import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.NULL_PACKAGE_
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.PACKAGE_SEPARATOR;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.STRING_SEPARATOR;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mockStatic;
 
 import java.io.File;
@@ -75,7 +73,9 @@ public class PackageObjectFactoryTest {
             assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals(NULL_LOADER_MESSAGE, ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo(NULL_LOADER_MESSAGE);
         }
     }
 
@@ -86,7 +86,9 @@ public class PackageObjectFactoryTest {
             assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals(NULL_LOADER_MESSAGE, ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo(NULL_LOADER_MESSAGE);
         }
     }
 
@@ -98,7 +100,9 @@ public class PackageObjectFactoryTest {
             assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals(NULL_PACKAGE_MESSAGE, ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo(NULL_PACKAGE_MESSAGE);
         }
     }
 
@@ -110,7 +114,9 @@ public class PackageObjectFactoryTest {
             assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals(NULL_PACKAGE_MESSAGE, ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo(NULL_PACKAGE_MESSAGE);
         }
     }
 
@@ -123,7 +129,9 @@ public class PackageObjectFactoryTest {
             assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals(NULL_PACKAGE_MESSAGE, ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo(NULL_PACKAGE_MESSAGE);
         }
     }
 
@@ -133,7 +141,9 @@ public class PackageObjectFactoryTest {
         final Checker checker =
             (Checker) factory.createModule(
                         "com.puppycrawl.tools.checkstyle.Checker");
-        assertNotNull(checker, "Checker should not be null when creating module from name");
+        assertWithMessage("Checker should not be null when creating module from name")
+            .that(checker)
+            .isNotNull();
     }
 
     @Test
@@ -147,8 +157,9 @@ public class PackageObjectFactoryTest {
             final Violation exceptionMessage = new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
                     new String[] {name, null}, null, factory.getClass(), null);
-            assertEquals(exceptionMessage.getViolation(), ex.getMessage(),
-                    "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo(exceptionMessage.getViolation());
         }
     }
 
@@ -167,8 +178,9 @@ public class PackageObjectFactoryTest {
                 final Violation exceptionMessage = new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
                     new String[] {name, attemptedNames}, null, factory.getClass(), null);
-                assertEquals(exceptionMessage.getViolation(), ex.getMessage(),
-                        "Invalid exception message");
+                assertWithMessage("Invalid exception message")
+                    .that(ex.getMessage())
+                    .isEqualTo(exceptionMessage.getViolation());
             }
         }
     }
@@ -183,9 +195,13 @@ public class PackageObjectFactoryTest {
         final PackageObjectFactory objectFactory =
                 new PackageObjectFactory(packageName, classLoader);
         final Object instance1 = objectFactory.createModule(name);
-        assertEquals(fullName, instance1.getClass().getCanonicalName(), "Invalid canonical name");
+        assertWithMessage("Invalid canonical name")
+            .that(instance1.getClass().getCanonicalName())
+            .isEqualTo(fullName);
         final Object instance2 = objectFactory.createModule(moduleName);
-        assertEquals(fullName, instance2.getClass().getCanonicalName(), "Invalid canonical name");
+        assertWithMessage("Invalid canonical name")
+            .that(instance2.getClass().getCanonicalName())
+            .isEqualTo(fullName);
     }
 
     @Test
@@ -197,7 +213,9 @@ public class PackageObjectFactoryTest {
         final PackageObjectFactory objectFactory =
                 new PackageObjectFactory(packageName, classLoader);
         final Object instance = objectFactory.createModule(moduleName);
-        assertEquals(fullName, instance.getClass().getCanonicalName(), "Invalid canonical name");
+        assertWithMessage("Invalid canonical name")
+            .that(instance.getClass().getCanonicalName())
+            .isEqualTo(fullName);
     }
 
     @Test
@@ -210,7 +228,9 @@ public class PackageObjectFactoryTest {
         final PackageObjectFactory objectFactory =
                 new PackageObjectFactory(packageName, classLoader);
         final Object instance = objectFactory.createModule(moduleName);
-        assertEquals(fullName, instance.getClass().getCanonicalName(), "Invalid canonical name");
+        assertWithMessage("Invalid canonical name")
+            .that(instance.getClass().getCanonicalName())
+            .isEqualTo(fullName);
     }
 
     @Test
@@ -231,8 +251,9 @@ public class PackageObjectFactoryTest {
             final Violation exceptionMessage = new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE,
                     new String[] {name, optionalNames}, null, getClass(), null);
-            assertEquals(
-                    exceptionMessage.getViolation(), ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo(exceptionMessage.getViolation());
         }
     }
 
@@ -258,8 +279,9 @@ public class PackageObjectFactoryTest {
             final Violation exceptionMessage = new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
                     new String[] {name, attemptedNames}, null, getClass(), null);
-            assertEquals(
-                    exceptionMessage.getViolation(), ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo(exceptionMessage.getViolation());
         }
     }
 
@@ -286,8 +308,9 @@ public class PackageObjectFactoryTest {
             final Violation exceptionMessage = new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
                     new String[] {name, attemptedNames}, null, getClass(), null);
-            assertEquals(
-                    exceptionMessage.getViolation(), ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo(exceptionMessage.getViolation());
         }
     }
 
@@ -298,7 +321,9 @@ public class PackageObjectFactoryTest {
                 "createModuleByTryInEachPackage", String.class);
         createModuleByBruteForce.setAccessible(true);
         final Checker checker = (Checker) createModuleByBruteForce.invoke(factory, className);
-        assertNotNull(checker, "Checker should not be null when creating module from name");
+        assertWithMessage("Checker should not be null when creating module from name")
+            .that(checker)
+            .isNotNull();
     }
 
     @Test
@@ -312,7 +337,9 @@ public class PackageObjectFactoryTest {
         createModuleByBruteForce.setAccessible(true);
         final AnnotationLocationCheck check = (AnnotationLocationCheck) createModuleByBruteForce
                 .invoke(packageObjectFactory, checkName);
-        assertNotNull(check, "Check should not be null when creating module from name");
+        assertWithMessage("Check should not be null when creating module from name")
+            .that(check)
+            .isNotNull();
     }
 
     @Test
@@ -323,7 +350,9 @@ public class PackageObjectFactoryTest {
             Thread.currentThread().getContextClassLoader(), TRY_IN_ALL_REGISTERED_PACKAGES);
         final AnnotationLocationCheck check = (AnnotationLocationCheck) packageObjectFactory
                 .createModule(checkName);
-        assertNotNull(check, "Check should not be null when creating module from name");
+        assertWithMessage("Check should not be null when creating module from name")
+            .that(check)
+            .isNotNull();
     }
 
     @Test
@@ -336,7 +365,9 @@ public class PackageObjectFactoryTest {
         final String className = "SomeClass";
         final String actual =
             String.valueOf(method.invoke(PackageObjectFactory.class, className, packages));
-        assertEquals("test." + className, actual, "Invalid class name");
+        assertWithMessage("Invalid class name")
+            .that(actual)
+            .isEqualTo("test." + className);
     }
 
     @Test
@@ -353,16 +384,16 @@ public class PackageObjectFactoryTest {
                     return !canonicalNames.contains(clazz.getCanonicalName())
                             && !Definitions.INTERNAL_MODULES.contains(clazz.getName());
                 }).findFirst();
-        if (optional1.isPresent()) {
-            assertWithMessage("Invalid canonical name: " + optional1.get()).fail();
-        }
+        assertWithMessage("Invalid canonical name: %s", optional1)
+                .that(optional1.isPresent())
+                .isFalse();
         final Optional<String> optional2 = canonicalNames.stream().filter(canonicalName -> {
             return classes.stream().map(Class::getCanonicalName)
                     .noneMatch(clssCanonicalName -> clssCanonicalName.equals(canonicalName));
         }).findFirst();
-        if (optional2.isPresent()) {
-            assertWithMessage("Invalid class: " + optional2.get()).fail();
-        }
+        assertWithMessage("Invalid class: %s", optional2)
+                .that(optional2.isPresent())
+                .isFalse();
     }
 
     @Test
@@ -372,11 +403,13 @@ public class PackageObjectFactoryTest {
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals("Unable to instantiate com.puppycrawl.tools.checkstyle."
-                    + "PackageObjectFactoryTest$FailConstructorFileSet", ex.getMessage(),
-                    "Invalid exception message");
-            assertEquals("IllegalAccessException", ex.getCause().getClass()
-                    .getSimpleName(), "Invalid exception cause class");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("Unable to instantiate com.puppycrawl.tools.checkstyle."
+                    + "PackageObjectFactoryTest$FailConstructorFileSet");
+            assertWithMessage("Invalid exception cause class")
+                .that(ex.getCause().getClass().getSimpleName())
+                .isEqualTo("IllegalAccessException");
         }
     }
 
@@ -385,9 +418,9 @@ public class PackageObjectFactoryTest {
         final String fullName =
                 "com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck";
 
-        assertEquals("DefaultComesLastCheck",
-                PackageObjectFactory.getShortFromFullModuleNames(fullName),
-                "Invalid simple check name");
+        assertWithMessage("Invalid simple check name")
+            .that(PackageObjectFactory.getShortFromFullModuleNames(fullName))
+            .isEqualTo("DefaultComesLastCheck");
     }
 
     @Test
@@ -395,8 +428,9 @@ public class PackageObjectFactoryTest {
         final String fullName =
                 "java.util.stream.Collectors";
 
-        assertEquals(fullName, PackageObjectFactory.getShortFromFullModuleNames(fullName),
-                "Invalid simple check name");
+        assertWithMessage("Invalid simple check name")
+            .that(PackageObjectFactory.getShortFromFullModuleNames(fullName))
+            .isEqualTo(fullName);
     }
 
     /**

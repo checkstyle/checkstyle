@@ -20,9 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
@@ -76,10 +73,12 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     public void testGet() {
         final SuppressWarningsHolder checkObj = new SuppressWarningsHolder();
         final int[] expected = {TokenTypes.ANNOTATION};
-        assertArrayEquals(expected, checkObj.getRequiredTokens(),
-                "Required token array differs from expected");
-        assertArrayEquals(expected, checkObj.getAcceptableTokens(),
-                "Required token array differs from expected");
+        assertWithMessage("Required token array differs from expected")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
+        assertWithMessage("Required token array differs from expected")
+            .that(checkObj.getAcceptableTokens())
+            .isEqualTo(expected);
     }
 
     @Test
@@ -135,25 +134,30 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
     @Test
     public void testGetDefaultAlias() {
-        assertEquals("somename", SuppressWarningsHolder.getDefaultAlias("SomeName"),
-                "Default alias differs from expected");
-        assertEquals("somename", SuppressWarningsHolder.getDefaultAlias("SomeNameCheck"),
-                "Default alias differs from expected");
+        assertWithMessage("Default alias differs from expected")
+            .that(SuppressWarningsHolder.getDefaultAlias("SomeName"))
+            .isEqualTo("somename");
+        assertWithMessage("Default alias differs from expected")
+            .that(SuppressWarningsHolder.getDefaultAlias("SomeNameCheck"))
+            .isEqualTo("somename");
     }
 
     @Test
     public void testSetAliasListEmpty() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
         holder.setAliasList("");
-        assertEquals("", SuppressWarningsHolder.getAlias(""), "Empty alias list should not be set");
+        assertWithMessage("Empty alias list should not be set")
+            .that(SuppressWarningsHolder.getAlias(""))
+            .isEqualTo("");
     }
 
     @Test
     public void testSetAliasListCorrect() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
         holder.setAliasList("alias=value");
-        assertEquals("value", SuppressWarningsHolder.getAlias("alias"),
-                "Alias differs from expected");
+        assertWithMessage("Alias differs from expected")
+            .that(SuppressWarningsHolder.getAlias("alias"))
+            .isEqualTo("value");
     }
 
     @Test
@@ -165,8 +169,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("'=' expected in alias list item: =SomeAlias", ex.getMessage(),
-                    "Error message is unexpected");
+            assertWithMessage("Error message is unexpected")
+                .that(ex.getMessage())
+                .isEqualTo("'=' expected in alias list item: =SomeAlias");
         }
     }
 
@@ -175,7 +180,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         populateHolder("MockEntry", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 100, 10);
 
-        assertFalse(SuppressWarningsHolder.isSuppressed(event), "Event is not suppressed");
+        assertWithMessage("Event is not suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(event))
+                .isFalse();
     }
 
     @Test
@@ -205,7 +212,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         populateHolder("check", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 350, 352);
 
-        assertFalse(SuppressWarningsHolder.isSuppressed(event), "Event is not suppressed");
+        assertWithMessage("Event is not suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(event))
+                .isFalse();
     }
 
     @Test
@@ -213,7 +222,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         populateHolder("check", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 400, 10);
 
-        assertFalse(SuppressWarningsHolder.isSuppressed(event), "Event is not suppressed");
+        assertWithMessage("Event is not suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(event))
+                .isFalse();
     }
 
     @Test
@@ -245,7 +256,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
             new Violation(100, 10, null, null, null, "id", MemberNameCheck.class, "msg");
         final AuditEvent firstEventForTest =
             new AuditEvent(source, "fileName", firstViolationForTest);
-        assertFalse(SuppressWarningsHolder.isSuppressed(firstEventForTest), "Event is suppressed");
+        assertWithMessage("Event is suppressed")
+                .that(SuppressWarningsHolder.isSuppressed(firstEventForTest))
+                .isFalse();
 
         final Violation secondViolationForTest =
             new Violation(100, 150, null, null, null, "id", MemberNameCheck.class, "msg");
@@ -308,10 +321,14 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         }
         catch (InvocationTargetException ex) {
             assertWithMessage("Error type is unexpected")
-                    .that(ex.getCause() instanceof IllegalArgumentException)
-                    .isTrue();
-            assertEquals("Unexpected AST: Method Def[0x0]", ex.getCause().getMessage(),
-                    "Error message is unexpected");
+                    .that(ex)
+                    .hasCauseThat()
+                    .isInstanceOf(IllegalArgumentException.class);
+            assertWithMessage("Error message is unexpected")
+                .that(ex)
+                .hasCauseThat()
+                .hasMessageThat()
+                .isEqualTo("Unexpected AST: Method Def[0x0]");
         }
     }
 
@@ -334,10 +351,14 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         }
         catch (InvocationTargetException ex) {
             assertWithMessage("Error type is unexpected")
-                    .that(ex.getCause() instanceof IllegalArgumentException)
-                    .isTrue();
-            assertEquals("Expression or annotation array initializer AST expected: Method Def[0x0]",
-                    ex.getCause().getMessage(), "Error message is unexpected");
+                    .that(ex)
+                    .hasCauseThat()
+                    .isInstanceOf(IllegalArgumentException.class);
+            assertWithMessage("Error message is unexpected")
+                .that(ex)
+                .hasCauseThat().hasMessageThat()
+                .isEqualTo("Expression or annotation array initializer AST expected: "
+                        + "Method Def[0x0]");
         }
     }
 
@@ -365,10 +386,13 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         }
         catch (InvocationTargetException ex) {
             assertWithMessage("Error type is unexpected")
-                    .that(ex.getCause() instanceof IllegalArgumentException)
-                    .isTrue();
-            assertEquals("Unexpected container AST: Parent ast[0x0]", ex.getCause().getMessage(),
-                    "Error message is unexpected");
+                    .that(ex)
+                    .hasCauseThat()
+                    .isInstanceOf(IllegalArgumentException.class);
+            assertWithMessage("Error message is unexpected")
+                .that(ex)
+                .hasCauseThat().hasMessageThat()
+                .isEqualTo("Unexpected container AST: Parent ast[0x0]");
         }
     }
 
@@ -383,8 +407,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Identifier AST expected, but get null.", ex.getMessage(),
-                    "Error message is unexpected");
+            assertWithMessage("Error message is unexpected")
+                .that(ex.getMessage())
+                .isEqualTo("Identifier AST expected, but get null.");
         }
     }
 

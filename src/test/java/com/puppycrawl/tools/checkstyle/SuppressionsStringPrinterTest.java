@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.io.File;
@@ -42,7 +41,7 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
-                .that(isUtilsClassHasPrivateConstructor(SuppressionsStringPrinter.class, true))
+                .that(isUtilsClassHasPrivateConstructor(SuppressionsStringPrinter.class))
                 .isTrue();
     }
 
@@ -61,7 +60,9 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
         final String result = SuppressionsStringPrinter.printSuppressions(input,
                 lineAndColumnNumber, tabWidth);
 
-        assertEquals(expected, result, "Invalid xpath queries");
+        assertWithMessage("Invalid xpath queries")
+            .that(result)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -82,7 +83,9 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
         final String result = SuppressionsStringPrinter.printSuppressions(input,
                 lineAndColumnNumber, tabWidth);
 
-        assertEquals(expected, result, "Invalid xpath queries");
+        assertWithMessage("Invalid xpath queries")
+            .that(result)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -92,7 +95,9 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
         final int tabWidth = 6;
         final String result = SuppressionsStringPrinter.printSuppressions(input,
                 lineAndColumnNumber, tabWidth);
-        assertEquals(EOL, result, "Invalid xpath queries");
+        assertWithMessage("Invalid xpath queries")
+            .that(result)
+            .isEqualTo(EOL);
     }
 
     @Test
@@ -106,8 +111,9 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
             assertWithMessage("exception expected").fail();
         }
         catch (IllegalStateException ex) {
-            assertEquals("abc-432 does not match valid format 'line:column'.",
-                    ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("abc-432 does not match valid format 'line:column'.");
         }
     }
 
@@ -123,9 +129,10 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
         }
         catch (CheckstyleException ex) {
             assertSame(IllegalStateException.class, ex.getCause().getClass(), "Invalid class");
-            assertEquals(IllegalStateException.class.getName()
-                            + ": 2:0: no viable alternative at input 'classD'",
-                    ex.getCause().toString(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getCause().toString())
+                .isEqualTo(IllegalStateException.class.getName()
+                            + ": 2:0: no viable alternative at input 'classD'");
         }
     }
 

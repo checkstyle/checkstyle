@@ -20,8 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -70,7 +68,9 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         };
         for (String[] encoding : encodings) {
             final String encoded = SarifLogger.escape(encoding[0]);
-            assertEquals(encoding[1], encoded, "\"" + encoding[0] + "\"");
+            assertWithMessage("\"" + encoding[0] + "\"")
+                .that(encoded)
+                .isEqualTo(encoding[1]);
         }
     }
 
@@ -213,12 +213,15 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         try {
             final SarifLogger logger = new SarifLogger(outStream, null);
             // assert required to calm down eclipse's 'The allocated object is never used' violation
-            assertNotNull(logger, "Null instance");
+            assertWithMessage("Null instance")
+                .that(logger)
+                .isNotNull();
             assertWithMessage("Exception was expected").fail();
         }
         catch (IllegalArgumentException | IOException exception) {
-            assertEquals("Parameter outputStreamOptions can not be null",
-                    exception.getMessage(), "Invalid error message");
+            assertWithMessage("Invalid error message")
+                .that(exception.getMessage())
+                .isEqualTo("Parameter outputStreamOptions can not be null");
         }
     }
 
@@ -229,7 +232,9 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         logger.auditStarted(null);
         logger.auditFinished(null);
 
-        assertEquals(1, outStream.getCloseCount(), "Invalid close count");
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(1);
 
         verifyContent(getPath("ExpectedSarifLoggerEmpty.sarif"), outStream);
     }
@@ -241,8 +246,12 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         logger.auditStarted(null);
         logger.auditFinished(null);
 
-        assertEquals(0, outStream.getCloseCount(), "Invalid close count");
-        assertEquals(1, outStream.getFlushCount(), "Invalid flush count");
+        assertWithMessage("Invalid close count")
+            .that(outStream.getCloseCount())
+            .isEqualTo(0);
+        assertWithMessage("Invalid flush count")
+            .that(outStream.getFlushCount())
+            .isEqualTo(1);
 
         outStream.close();
         verifyContent(getPath("ExpectedSarifLoggerEmpty.sarif"), outStream);
@@ -255,7 +264,9 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         logger.finishLocalSetup();
         logger.auditStarted(null);
         logger.auditFinished(null);
-        assertNotNull(logger, "instance should not be null");
+        assertWithMessage("instance should not be null")
+            .that(logger)
+            .isNotNull();
     }
 
     @Test
@@ -265,9 +276,9 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception expected").fail();
         }
         catch (IOException exception) {
-            assertEquals("Cannot find the resource random",
-                exception.getMessage(),
-                "Exception message must match");
+            assertWithMessage("Exception message must match")
+                .that(exception.getMessage())
+                .isEqualTo("Cannot find the resource random");
         }
     }
 
@@ -277,7 +288,9 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         final String expectedContent = readFile(expectedOutputFile);
         final String actualContent = toLfLineEnding(new String(actualOutputStream.toByteArray(),
                 StandardCharsets.UTF_8));
-        assertEquals(expectedContent, actualContent, "sarif content should match");
+        assertWithMessage("sarif content should match")
+            .that(actualContent)
+            .isEqualTo(expectedContent);
     }
 
     private static class TestException extends RuntimeException {

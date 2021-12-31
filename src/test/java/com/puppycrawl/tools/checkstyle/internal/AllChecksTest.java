@@ -20,9 +20,6 @@
 package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -298,12 +295,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 final int[] defaultTokens = testedCheck.getDefaultTokens();
                 final int[] acceptableTokens = testedCheck.getAcceptableTokens();
 
-                if (!isSubset(defaultTokens, acceptableTokens)) {
-                    final String errorMessage = String.format(Locale.ROOT,
-                            "%s's default tokens must be a subset"
-                            + " of acceptable tokens.", check.getName());
-                    assertWithMessage(errorMessage).fail();
-                }
+                assertWithMessage("%s's default tokens must be a subset of acceptable tokens.",
+                            check.getName())
+                        .that(isSubset(defaultTokens, acceptableTokens))
+                        .isTrue();
             }
         }
     }
@@ -317,12 +312,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 final int[] requiredTokens = testedCheck.getRequiredTokens();
                 final int[] acceptableTokens = testedCheck.getAcceptableTokens();
 
-                if (!isSubset(requiredTokens, acceptableTokens)) {
-                    final String errorMessage = String.format(Locale.ROOT,
-                            "%s's required tokens must be a subset"
-                            + " of acceptable tokens.", check.getName());
-                    assertWithMessage(errorMessage).fail();
-                }
+                assertWithMessage("%s's required tokens must be a subset of acceptable tokens.",
+                            check.getName())
+                        .that(isSubset(requiredTokens, acceptableTokens))
+                        .isTrue();
             }
         }
     }
@@ -336,12 +329,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 final int[] defaultTokens = testedCheck.getDefaultTokens();
                 final int[] requiredTokens = testedCheck.getRequiredTokens();
 
-                if (!isSubset(requiredTokens, defaultTokens)) {
-                    final String errorMessage = String.format(Locale.ROOT,
-                            "%s's required tokens must be a subset"
-                            + " of default tokens.", check.getName());
-                    assertWithMessage(errorMessage).fail();
-                }
+                assertWithMessage("%s's required tokens must be a subset of default tokens.",
+                            check.getName())
+                        .that(isSubset(requiredTokens, defaultTokens))
+                        .isTrue();
             }
         }
     }
@@ -461,9 +452,11 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         }
         for (Entry<String, Set<String>> entry : checkTokens.entrySet()) {
             final Set<String> actual = configCheckTokens.get(entry.getKey());
-            assertEquals(entry.getValue(), actual,
-                    "'" + entry.getKey() + "' should have all acceptable tokens from check in "
-                    + configName + " config or specify an override to ignore the specific tokens");
+            assertWithMessage("'" + entry.getKey()
+                    + "' should have all acceptable tokens from check in " + configName
+                    + " config or specify an override to ignore the specific tokens")
+                .that(actual)
+                .isEqualTo(entry.getValue());
         }
     }
 
@@ -534,11 +527,14 @@ public class AllChecksTest extends AbstractModuleTestSupport {
             // No messages in just module
             if ("SuppressWarningsHolder".equals(name)) {
                 assertWithMessage(name + " should not have any 'MSG_*' fields for error messages")
-                        .that(messages).isEmpty();
+                        .that(messages)
+                        .isEmpty();
             }
             else {
-                assertFalse(messages.isEmpty(),
-                        name + " should have at least one 'MSG_*' field for error messages");
+                assertWithMessage(
+                        name + " should have at least one 'MSG_*' field for error messages")
+                                .that(messages)
+                                .isNotEmpty();
             }
         }
     }
@@ -550,10 +546,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         // test validity of messages from modules
         for (Class<?> module : CheckUtil.getCheckstyleModules()) {
             for (Field message : CheckUtil.getCheckMessages(module, true)) {
-                assertEquals(Modifier.PUBLIC | Modifier.STATIC | Modifier.FINAL,
-                        message.getModifiers(),
-                        module.getSimpleName() + "." + message.getName()
-                                + " should be 'public static final'");
+                assertWithMessage(module.getSimpleName() + "." + message.getName()
+                                + " should be 'public static final'")
+                    .that(message.getModifiers())
+                    .isEqualTo(Modifier.PUBLIC | Modifier.STATIC | Modifier.FINAL);
 
                 // below is required for package/private classes
                 if (!message.isAccessible()) {
@@ -608,16 +604,20 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                         + ex.getClass().getSimpleName() + " - " + ex.getMessage()).fail();
             }
 
-            assertNotNull(result, module.getSimpleName() + " should have text for the message '"
-                    + messageString + "' in locale " + locale.getLanguage() + "'");
+            assertWithMessage(module.getSimpleName() + " should have text for the message '"
+                    + messageString + "' in locale " + locale.getLanguage() + "'")
+                .that(result)
+                .isNotNull();
             assertWithMessage("%s should have non-empty text for the message '%s' in locale '%s'",
                             module.getSimpleName(), messageString, locale.getLanguage())
                     .that(result.trim())
                     .isNotEmpty();
-            assertFalse(!"todo.match".equals(messageString) && result.trim().startsWith("TODO"),
-                    module.getSimpleName()
-                    + " should have non-TODO text for the message '"
-                    + messageString + "' in locale " + locale.getLanguage() + "'");
+            assertWithMessage(
+                    module.getSimpleName() + " should have non-TODO text for the message '"
+                            + messageString + "' in locale " + locale.getLanguage() + "'")
+                                    .that(!"todo.match".equals(messageString)
+                                            && result.trim().startsWith("TODO"))
+                                    .isFalse();
         }
     }
 

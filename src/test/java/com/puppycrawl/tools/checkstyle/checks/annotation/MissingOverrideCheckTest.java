@@ -19,10 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_TAG_NOT_VALID_ON;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -80,13 +79,13 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testBadOverrideFromOther() throws Exception {
         final String[] expected = {
-            "17:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "33:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "41:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "46:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "53:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "58:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "68:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "17:3: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "33:3: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "41:3: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "46:3: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "53:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "58:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "68:3: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
         verifyWithInlineConfigParser(
@@ -229,8 +228,12 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
         final int[] expectedTokens = {TokenTypes.METHOD_DEF };
         final MissingOverrideCheck check = new MissingOverrideCheck();
         final int[] actual = check.getAcceptableTokens();
-        assertEquals(1, actual.length, "Invalid acceptable token size");
-        assertArrayEquals(expectedTokens, actual, "Default required tokens are invalid");
+        assertWithMessage("Invalid acceptable token size")
+            .that(actual.length)
+            .isEqualTo(1);
+        assertWithMessage("Default required tokens are invalid")
+            .that(actual)
+            .isEqualTo(expectedTokens);
     }
 
 }

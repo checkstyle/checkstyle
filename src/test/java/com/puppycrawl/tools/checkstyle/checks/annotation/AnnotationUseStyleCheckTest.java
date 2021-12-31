@@ -25,8 +25,6 @@ import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseSty
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_PARENS_PRESENT;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -49,8 +47,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     public void testElementStyleOptionValueOf() {
         final AnnotationUseStyleCheck.ElementStyleOption option =
             AnnotationUseStyleCheck.ElementStyleOption.valueOf("COMPACT");
-        assertEquals(AnnotationUseStyleCheck.ElementStyleOption.COMPACT, option,
-                "Invalid valueOf result");
+        assertWithMessage("Invalid valueOf result")
+            .that(option)
+            .isEqualTo(AnnotationUseStyleCheck.ElementStyleOption.COMPACT);
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -61,8 +60,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     public void testTrailingArrayCommaOptionValueOf() {
         final AnnotationUseStyleCheck.TrailingArrayCommaOption option =
             AnnotationUseStyleCheck.TrailingArrayCommaOption.valueOf("ALWAYS");
-        assertEquals(AnnotationUseStyleCheck.TrailingArrayCommaOption.ALWAYS, option,
-                "Invalid valueOf result");
+        assertWithMessage("Invalid valueOf result")
+            .that(option)
+            .isEqualTo(AnnotationUseStyleCheck.TrailingArrayCommaOption.ALWAYS);
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -73,8 +73,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     public void testClosingParensOptionValueOf() {
         final AnnotationUseStyleCheck.ClosingParensOption option =
             AnnotationUseStyleCheck.ClosingParensOption.valueOf("ALWAYS");
-        assertEquals(AnnotationUseStyleCheck.ClosingParensOption.ALWAYS, option,
-                "Invalid valueOf result");
+        assertWithMessage("Invalid valueOf result")
+            .that(option)
+            .isEqualTo(AnnotationUseStyleCheck.ClosingParensOption.ALWAYS);
     }
 
     @Test
@@ -295,7 +296,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         final AnnotationUseStyleCheck constantNameCheckObj = new AnnotationUseStyleCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
         final int[] expected = {TokenTypes.ANNOTATION };
-        assertArrayEquals(expected, actual, "Invalid acceptable tokens");
+        assertWithMessage("Invalid acceptable tokens")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test

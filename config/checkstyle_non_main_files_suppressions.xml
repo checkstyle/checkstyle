@@ -89,12 +89,6 @@
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/10625 -->
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]InputDeclarationOrderRecordsAndCompactCtors.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]InputOneStatementPerLine.java"/>
-
-  <suppress id="lineLength"
          files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]InputLineLengthLongPackageStatement.java"/>
 
   <suppress id="lineLength"
@@ -122,27 +116,6 @@
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputMissingOverrideBadOverrideFromObjectJava5.java"/>
 
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputMissingOverrideBadOverrideFromOther.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputMissingOverrideBadOverrideFromOther.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputMissingOverrideBadOverrideFromOther.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputMissingOverrideBadOverrideFromOther.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputMissingOverrideBadOverrideFromOther.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputMissingOverrideBadOverrideFromOther.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputMissingOverrideBadOverrideFromOther.java"/>
-
-  <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrder.java"/>
 
   <suppress id="lineLength"
@@ -180,135 +153,6 @@
 
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrder.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderAvoidDuplicatesInStaticFinalFields.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderForwardReference.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderForwardReference.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderForwardReference.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderForwardReference.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderForwardReference.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderForwardReference.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyConstructors.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyConstructors.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyConstructors.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyConstructors.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderOnlyModifiers.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDeclarationOrderVariableAccess.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDefaultComesLast.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDefaultComesLast.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDefaultComesLast.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDefaultComesLast.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDefaultComesLastSkipIfLastAndSharedWithCase.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputDefaultComesLastSkipIfLastAndSharedWithCase.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNull.java"/>
 
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNullIgnoreCase.java"/>
@@ -318,51 +162,12 @@
 
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNullIgnoreCase.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNullNested.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNullNested.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNullNested.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNullNested.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNullNested.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNullNested.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNullNested.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNullNested.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputOneStatementPerLineMultiline.java"/>
 
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputUnusedImports.java"/>
 
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputUnusedImports2.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputRedundantModifierFinalInTryWithResource.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputRedundantModifierFinalInTryWithResource.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputRedundantModifierFinalInTryWithResource.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputWhitespaceAroundGenerics.java"/>
 
   <!-- apply check numberOfTestCasesInXpath only for files in suppressionxpathfilter directory -->
   <suppress id="numberOfTestCasesInXpath"

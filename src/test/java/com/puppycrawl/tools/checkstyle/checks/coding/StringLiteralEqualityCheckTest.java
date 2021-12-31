@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -59,11 +59,54 @@ public class StringLiteralEqualityCheckTest
     }
 
     @Test
+    public void testConcatenatedStringLiterals() throws Exception {
+        final String[] expected = {
+            "14:15: " + getCheckMessage(MSG_KEY, "=="),
+            "17:24: " + getCheckMessage(MSG_KEY, "=="),
+            "20:31: " + getCheckMessage(MSG_KEY, "!="),
+            "23:15: " + getCheckMessage(MSG_KEY, "=="),
+            "28:26: " + getCheckMessage(MSG_KEY, "=="),
+            "31:26: " + getCheckMessage(MSG_KEY, "!="),
+            "34:15: " + getCheckMessage(MSG_KEY, "!="),
+            "37:32: " + getCheckMessage(MSG_KEY, "=="),
+            "39:33: " + getCheckMessage(MSG_KEY, "!="),
+            "41:31: " + getCheckMessage(MSG_KEY, "!="),
+            "42:27: " + getCheckMessage(MSG_KEY, "=="),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputStringLiteralEqualityConcatenatedString.java"), expected);
+    }
+
+    @Test
+    public void testConcatenatedTextBlocks() throws Exception {
+        final String[] expected = {
+            "15:15: " + getCheckMessage(MSG_KEY, "=="),
+            "21:23: " + getCheckMessage(MSG_KEY, "=="),
+            "26:23: " + getCheckMessage(MSG_KEY, "!="),
+            "29:15: " + getCheckMessage(MSG_KEY, "=="),
+            "38:26: " + getCheckMessage(MSG_KEY, "=="),
+            "42:26: " + getCheckMessage(MSG_KEY, "!="),
+            "46:15: " + getCheckMessage(MSG_KEY, "!="),
+            "51:28: " + getCheckMessage(MSG_KEY, "!="),
+            "53:31: " + getCheckMessage(MSG_KEY, "=="),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputStringLiteralEqualityConcatenatedTextBlocks.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final StringLiteralEqualityCheck check = new StringLiteralEqualityCheck();
-        assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
-        assertNotNull(check.getDefaultTokens(), "Default tokens should not be null");
-        assertNotNull(check.getRequiredTokens(), "Required tokens should not be null");
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Default tokens should not be null")
+            .that(check.getDefaultTokens())
+            .isNotNull();
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
     }
 
 }

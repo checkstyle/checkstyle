@@ -20,9 +20,8 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -166,11 +165,16 @@ public class DefaultLoggerTest {
         dl.auditFinished(null);
         auditFinishMessage.setAccessible(true);
         auditStartMessage.setAccessible(true);
-        assertEquals(auditStartMessage.invoke(getAuditStartMessageClass()) + System.lineSeparator()
+        assertWithMessage("expected output")
+            .that(infoStream.toString())
+            .isEqualTo(auditStartMessage.invoke(getAuditStartMessageClass())
+                        + System.lineSeparator()
                         + auditFinishMessage.invoke(getAuditFinishMessageClass())
-                        + System.lineSeparator(), infoStream.toString(), "expected output");
-        assertEquals("[ERROR] fileName:1:2: customViolation [DefaultLoggerTest]"
-                + System.lineSeparator(), errorStream.toString(), "expected output");
+                        + System.lineSeparator());
+        assertWithMessage("expected output")
+            .that(errorStream.toString())
+            .isEqualTo("[ERROR] fileName:1:2: customViolation [DefaultLoggerTest]"
+                + System.lineSeparator());
     }
 
     @Test
@@ -188,11 +192,16 @@ public class DefaultLoggerTest {
         dl.auditFinished(null);
         auditFinishMessage.setAccessible(true);
         auditStartMessage.setAccessible(true);
-        assertEquals(auditStartMessage.invoke(getAuditStartMessageClass()) + System.lineSeparator()
+        assertWithMessage("expected output")
+            .that(infoStream.toString())
+            .isEqualTo(auditStartMessage.invoke(getAuditStartMessageClass())
+                        + System.lineSeparator()
                         + auditFinishMessage.invoke(getAuditFinishMessageClass())
-                        + System.lineSeparator(), infoStream.toString(), "expected output");
-        assertEquals("[ERROR] fileName:1:2: customViolation [moduleId]"
-                + System.lineSeparator(), errorStream.toString(), "expected output");
+                        + System.lineSeparator());
+        assertWithMessage("expected output")
+            .that(errorStream.toString())
+            .isEqualTo("[ERROR] fileName:1:2: customViolation [moduleId]"
+                + System.lineSeparator());
     }
 
     @Test
@@ -203,7 +212,9 @@ public class DefaultLoggerTest {
         dl.finishLocalSetup();
         dl.auditStarted(null);
         dl.auditFinished(null);
-        assertNotNull(dl, "instance should not be null");
+        assertWithMessage("instance should not be null")
+            .that(dl)
+            .isNotNull();
     }
 
     /**
@@ -212,11 +223,10 @@ public class DefaultLoggerTest {
     @Test
     public void testLanguageIsValid() {
         final String language = DEFAULT_LOCALE.getLanguage();
-        if (!language.isEmpty()) {
-            assertWithMessage("Invalid language")
-                    .that(Arrays.asList(Locale.getISOLanguages()))
-                    .contains(language);
-        }
+        assumeFalse(language.isEmpty(), "Locale not set");
+        assertWithMessage("Invalid language")
+                .that(Arrays.asList(Locale.getISOLanguages()))
+                .contains(language);
     }
 
     /**
@@ -225,11 +235,10 @@ public class DefaultLoggerTest {
     @Test
     public void testCountryIsValid() {
         final String country = DEFAULT_LOCALE.getCountry();
-        if (!country.isEmpty()) {
-            assertWithMessage("Invalid country")
-                    .that(Arrays.asList(Locale.getISOCountries()))
-                    .contains(country);
-        }
+        assumeFalse(country.isEmpty(), "Locale not set");
+        assertWithMessage("Invalid country")
+                .that(Arrays.asList(Locale.getISOCountries()))
+                .contains(country);
     }
 
     /**
@@ -239,16 +248,17 @@ public class DefaultLoggerTest {
     @Test
     public void testLocaleIsSupported() throws Exception {
         final String language = DEFAULT_LOCALE.getLanguage();
-        if (!language.isEmpty() && !Locale.ENGLISH.getLanguage().equals(language)) {
-            final Class<?> localizedMessage = getDefaultLoggerClass().getDeclaredClasses()[0];
-            final Object messageCon = localizedMessage.getConstructor(String.class, String[].class)
-                    .newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE, null);
-            final Method message = messageCon.getClass().getDeclaredMethod("getMessage");
-            final Object constructor = localizedMessage.getConstructor(String.class)
-                    .newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE);
-            assertWithMessage("Unsupported language: " + DEFAULT_LOCALE)
-                    .that(message.invoke(constructor)).isEqualTo("Error auditing {0}");
-        }
+        assumeFalse(language.isEmpty() || Locale.ENGLISH.getLanguage().equals(language),
+                "Custom locale not set");
+        final Class<?> localizedMessage = getDefaultLoggerClass().getDeclaredClasses()[0];
+        final Object messageCon = localizedMessage.getConstructor(String.class, String[].class)
+                .newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE, null);
+        final Method message = messageCon.getClass().getDeclaredMethod("getMessage");
+        final Object constructor = localizedMessage.getConstructor(String.class)
+                .newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE);
+        assertWithMessage("Unsupported language: " + DEFAULT_LOCALE)
+                .that(message.invoke(constructor))
+                .isEqualTo("Error auditing {0}");
     }
 
     @DefaultLocale("fr")
@@ -261,9 +271,12 @@ public class DefaultLoggerTest {
         message.setAccessible(true);
         final Map<String, ResourceBundle> bundleCache =
                 TestUtil.getInternalStaticState(message.getDeclaringClass(), "BUNDLE_CACHE");
-        assertEquals("Une erreur est survenue {0}", message.invoke(messageClass),
-                "Invalid message");
-        assertEquals(1, bundleCache.size(), "Invalid bundle cache size");
+        assertWithMessage("Invalid message")
+            .that(message.invoke(messageClass))
+            .isEqualTo("Une erreur est survenue {0}");
+        assertWithMessage("Invalid bundle cache size")
+            .that(bundleCache)
+            .hasSize(1);
     }
 
     @Test

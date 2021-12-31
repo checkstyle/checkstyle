@@ -20,10 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mockStatic;
@@ -75,7 +71,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             assertWithMessage("exception expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("config can not be null", ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("config can not be null");
         }
         final Configuration config = new DefaultConfiguration("myName");
         try {
@@ -83,7 +81,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             assertWithMessage("exception expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("fileName can not be null", ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("fileName can not be null");
         }
     }
 
@@ -96,8 +96,12 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         assertWithMessage("Should return true when file is in cache")
                 .that(cache.isInCache("myFile", 1))
                 .isTrue();
-        assertFalse(cache.isInCache("myFile", 2), "Should return false when file is not in cache");
-        assertFalse(cache.isInCache("myFile1", 1), "Should return false when file is not in cache");
+        assertWithMessage("Should return false when file is not in cache")
+                .that(cache.isInCache("myFile", 2))
+                .isFalse();
+        assertWithMessage("Should return false when file is not in cache")
+                .that(cache.isInCache("myFile1", 1))
+                .isFalse();
     }
 
     @Test
@@ -107,8 +111,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
 
         cache.load();
 
-        assertNotNull(cache.get(PropertyCacheFile.CONFIG_HASH_KEY),
-                "Config hash key should not be null");
+        assertWithMessage("Config hash key should not be null")
+            .that(cache.get(PropertyCacheFile.CONFIG_HASH_KEY))
+            .isNotNull();
     }
 
     @Test
@@ -119,15 +124,24 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         cache.load();
 
         final String hash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertNotNull(hash, "Config hash key should not be null");
-        assertNull(cache.get("key"), "Should return null if key is not in cache");
+        assertWithMessage("Config hash key should not be null")
+            .that(hash)
+            .isNotNull();
+        assertWithMessage("Should return null if key is not in cache")
+            .that(cache.get("key"))
+            .isNull();
 
         cache.load();
 
-        assertEquals(hash, cache.get(PropertyCacheFile.CONFIG_HASH_KEY), "Invalid config hash key");
-        assertEquals("value", cache.get("key"), "Invalid cache value");
-        assertNotNull(cache.get(PropertyCacheFile.CONFIG_HASH_KEY),
-                "Config hash key should not be null");
+        assertWithMessage("Invalid config hash key")
+            .that(cache.get(PropertyCacheFile.CONFIG_HASH_KEY))
+            .isEqualTo(hash);
+        assertWithMessage("Invalid cache value")
+            .that(cache.get("key"))
+            .isEqualTo("value");
+        assertWithMessage("Config hash key should not be null")
+            .that(cache.get(PropertyCacheFile.CONFIG_HASH_KEY))
+            .isNotNull();
     }
 
     @Test
@@ -139,12 +153,15 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         cache.load();
 
         final String hash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertNotNull(hash, "Config hash key should not be null");
+        assertWithMessage("Config hash key should not be null")
+            .that(hash)
+            .isNotNull();
 
         cache.reset();
 
-        assertEquals(hash, cache.get(PropertyCacheFile.CONFIG_HASH_KEY),
-                "Invalid config hash key");
+        assertWithMessage("Invalid config hash key")
+            .that(cache.get(PropertyCacheFile.CONFIG_HASH_KEY))
+            .isEqualTo(hash);
     }
 
     @Test
@@ -158,17 +175,21 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         cache.put("myFile", 1);
 
         final String hash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertNotNull(hash, "Config hash key should not be null");
+        assertWithMessage("Config hash key should not be null")
+            .that(hash)
+            .isNotNull();
 
         // apply new external resource to clear cache
         final Set<String> resources = new HashSet<>();
         resources.add("dummy");
         cache.putExternalResources(resources);
 
-        assertEquals(hash, cache.get(PropertyCacheFile.CONFIG_HASH_KEY),
-                "Invalid config hash key");
-        assertFalse(cache.isInCache("myFile", 1),
-                "Should return false in file is not in cache");
+        assertWithMessage("Invalid config hash key")
+            .that(cache.get(PropertyCacheFile.CONFIG_HASH_KEY))
+            .isEqualTo(hash);
+        assertWithMessage("Should return false in file is not in cache")
+                .that(cache.isInCache("myFile", 1))
+                .isFalse();
     }
 
     @Test
@@ -224,8 +245,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         digest.update(out.toByteArray());
         final String expected = BaseEncoding.base16().upperCase().encode(digest.digest());
 
-        assertEquals(expected, cache.get("module-resource*?:" + pathToResource),
-                "Hashes are not equal");
+        assertWithMessage("Hashes are not equal")
+            .that(cache.get("module-resource*?:" + pathToResource))
+            .isEqualTo(expected);
     }
 
     @Test
@@ -268,7 +290,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
 
         final String expectedInitialConfigHash = "D5BB1747FC11B2BB839C80A6C28E3E7684AF9940";
         final String actualInitialConfigHash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertEquals(expectedInitialConfigHash, actualInitialConfigHash, "Invalid config hash");
+        assertWithMessage("Invalid config hash")
+            .that(actualInitialConfigHash)
+            .isEqualTo(expectedInitialConfigHash);
 
         cache.persist();
 
@@ -276,7 +300,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
             details.load(reader);
         }
-        assertEquals(1, details.size(), "Invalid details size");
+        assertWithMessage("Invalid details size")
+            .that(details)
+            .hasSize(1);
 
         // change in config
         config.addProperty("newAttr", "newValue");
@@ -288,8 +314,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         final String expectedConfigHashAfterChange = "714876AE38C069EC52BF86889F061B3776E526D3";
         final String actualConfigHashAfterChange =
             cacheAfterChangeInConfig.get(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertEquals(expectedConfigHashAfterChange, actualConfigHashAfterChange,
-                "Invalid config hash");
+        assertWithMessage("Invalid config hash")
+            .that(actualConfigHashAfterChange)
+            .isEqualTo(expectedConfigHashAfterChange);
 
         cacheAfterChangeInConfig.persist();
 
@@ -297,7 +324,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
             detailsAfterChangeInConfig.load(reader);
         }
-        assertEquals(1, detailsAfterChangeInConfig.size(), "Invalid cache size");
+        assertWithMessage("Invalid cache size")
+            .that(detailsAfterChangeInConfig)
+            .hasSize(1);
     }
 
     @Test

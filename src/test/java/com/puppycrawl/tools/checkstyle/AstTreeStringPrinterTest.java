@@ -21,9 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.io.File;
@@ -48,7 +45,7 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
-                .that(isUtilsClassHasPrivateConstructor(AstTreeStringPrinter.class, true))
+                .that(isUtilsClassHasPrivateConstructor(AstTreeStringPrinter.class))
                 .isTrue();
     }
 
@@ -61,8 +58,9 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
         }
         catch (CheckstyleException ex) {
             assertSame(IllegalStateException.class, ex.getCause().getClass(), "Invalid class");
-            assertEquals("2:0: no viable alternative at input 'classD'",
-                    ex.getCause().getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getCause().getMessage())
+                .isEqualTo("2:0: no viable alternative at input 'classD'");
         }
     }
 
@@ -86,7 +84,9 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
         final DetailAST nodeToPrint = ast.getFirstChild().getNextSibling()
                 .getFirstChild().getFirstChild();
         final String result = AstTreeStringPrinter.printBranch(nodeToPrint);
-        assertThat("Branches do not match", result, is(expected));
+        assertWithMessage("Branches do not match")
+            .that(result)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -99,7 +99,9 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
         final String expected = toLfLineEnding(new String(Files.readAllBytes(Paths.get(
                 getPath("ExpectedAstTreeStringPrinter.txt"))), StandardCharsets.UTF_8));
 
-        assertEquals(expected, actual, "Print AST output is invalid");
+        assertWithMessage("Print AST output is invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -173,12 +175,15 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
 
         final String textBlockContent = textBlockContentNode.getText();
 
-        assertThat("Text block content contains \"\\n\" as substring",
-                textBlockContent.contains("\\n"), is(false));
-        assertThat("Text block content line terminator is counted as one character",
-                textBlockContent.length(), is(1));
-        assertThat("Text block content contains only a line terminator",
-                textBlockContent.matches("\n"), is(true));
+        assertWithMessage("Text block content contains \"\\n\" as substring")
+            .that(textBlockContent)
+            .doesNotContain("\\n");
+        assertWithMessage("Text block content line terminator is counted as one character")
+            .that(textBlockContent)
+            .hasLength(1);
+        assertWithMessage("Text block content contains only a line terminator")
+            .that(textBlockContent)
+            .matches("\n");
     }
 
 }

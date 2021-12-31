@@ -19,12 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_ACCESS;
 import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_CONSTRUCTOR;
 import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_INSTANCE;
 import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_STATIC;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.SortedSet;
 
@@ -120,9 +119,15 @@ public class DeclarationOrderCheckTest
     @Test
     public void testTokensNotNull() {
         final DeclarationOrderCheck check = new DeclarationOrderCheck();
-        assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
-        assertNotNull(check.getDefaultTokens(), "Default tokens should not be null");
-        assertNotNull(check.getRequiredTokens(), "Required tokens should not be null");
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Default tokens should not be null")
+            .that(check.getDefaultTokens())
+            .isNotNull();
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
     }
 
     @Test
@@ -141,12 +146,16 @@ public class DeclarationOrderCheckTest
         check.visitToken(method);
         final SortedSet<Violation> violations1 = check.getViolations();
 
-        assertEquals(0, violations1.size(), "No exception violations expected");
+        assertWithMessage("No exception violations expected")
+            .that(violations1)
+            .isEmpty();
 
         check.visitToken(ctor);
         final SortedSet<Violation> violations2 = check.getViolations();
 
-        assertEquals(0, violations2.size(), "No exception violations expected");
+        assertWithMessage("No exception violations expected")
+            .that(violations2)
+            .isEmpty();
     }
 
     @Test
@@ -162,7 +171,9 @@ public class DeclarationOrderCheckTest
         check.visitToken(array);
         final SortedSet<Violation> violations = check.getViolations();
 
-        assertEquals(0, violations.size(), "No exception violations expected");
+        assertWithMessage("No exception violations expected")
+            .that(violations)
+            .isEmpty();
     }
 
     @Test

@@ -19,10 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.MSG_IO_EXCEPTION_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -60,7 +59,9 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testLineSeparatorOptionValueOf() {
         final LineSeparatorOption option = LineSeparatorOption.valueOf("CR");
-        assertEquals(LineSeparatorOption.CR, option, "Invalid valueOf result");
+        assertWithMessage("Invalid valueOf result")
+            .that(option)
+            .isEqualTo(LineSeparatorOption.CR);
     }
 
     /**
@@ -91,7 +92,9 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         final List<String> testStrings = new ArrayList<>(3);
         final Method getLineNumber = UniquePropertiesCheck.class.getDeclaredMethod(
             "getLineNumber", FileText.class, String.class);
-        assertNotNull(getLineNumber, "Get line number method should be present");
+        assertWithMessage("Get line number method should be present")
+            .that(getLineNumber)
+            .isNotNull();
         getLineNumber.setAccessible(true);
         testStrings.add("");
         testStrings.add("0 = 0");
@@ -99,8 +102,12 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(new File("some.properties"), testStrings);
         final Object lineNumber = getLineNumber.invoke(UniquePropertiesCheck.class,
                 fileText, "some key");
-        assertNotNull(lineNumber, "Line number should not be null");
-        assertEquals(1, lineNumber, "Invalid line number");
+        assertWithMessage("Line number should not be null")
+            .that(lineNumber)
+            .isNotNull();
+        assertWithMessage("Invalid line number")
+            .that(lineNumber)
+            .isEqualTo(1);
     }
 
     @Test
@@ -133,14 +140,17 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(file, Collections.emptyList());
         final SortedSet<Violation> violations =
                 check.process(file, fileText);
-        assertEquals(1, violations.size(), "Wrong messages count: " + violations.size());
+        assertWithMessage("Wrong messages count: " + violations.size())
+            .that(violations)
+            .hasSize(1);
         final Violation violation = violations.iterator().next();
         final String retrievedMessage = violations.iterator().next().getKey();
-        assertEquals("unable.open.cause", retrievedMessage,
-                "violation key '" + retrievedMessage + "' is not valid");
-        assertEquals(violation.getViolation(),
-                getCheckMessage(MSG_IO_EXCEPTION_KEY, fileName, getFileNotFoundDetail(file)),
-                "violation '" + violation.getViolation() + "' is not valid");
+        assertWithMessage("violation key '" + retrievedMessage + "' is not valid")
+            .that(retrievedMessage)
+            .isEqualTo("unable.open.cause");
+        assertWithMessage("violation '" + violation.getViolation() + "' is not valid")
+            .that(getCheckMessage(MSG_IO_EXCEPTION_KEY, fileName, getFileNotFoundDetail(file)))
+            .isEqualTo(violation.getViolation());
     }
 
     @Test
@@ -156,11 +166,15 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         final Object result = method.invoke(uniqueProperties, 1, "value");
         final Map<Object, Object> table = new HashMap<>();
         final Object expected = table.put(1, "value");
-        assertEquals(expected, result, "Invalid result of put method");
+        assertWithMessage("Invalid result of put method")
+            .that(result)
+            .isEqualTo(expected);
 
         final Object result2 = method.invoke(uniqueProperties, 1, "value");
         final Object expected2 = table.put(1, "value");
-        assertEquals(expected2, result2, "Value should be substituted");
+        assertWithMessage("Value should be substituted")
+            .that(result2)
+            .isEqualTo(expected2);
     }
 
     /**

@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck.MSG_KEY_BLOCK;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck.MSG_KEY_SINGLE;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -220,7 +219,9 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
         }
         catch (IllegalArgumentException ex) {
             final String msg = ex.getMessage();
-            assertEquals("Unexpected token type: methodStub", msg, "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(msg)
+                .isEqualTo("Unexpected token type: methodStub");
         }
     }
 

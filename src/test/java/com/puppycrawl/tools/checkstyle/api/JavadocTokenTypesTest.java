@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.lang.reflect.Field;
 
@@ -32,7 +31,7 @@ public class JavadocTokenTypesTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
-                .that(isUtilsClassHasPrivateConstructor(JavadocTokenTypes.class, true))
+                .that(isUtilsClassHasPrivateConstructor(JavadocTokenTypes.class))
                 .isTrue();
     }
 
@@ -40,196 +39,559 @@ public class JavadocTokenTypesTest {
     public void testTokenValues() {
         final String msg = "Please ensure that token values in `JavadocTokenTypes.java` have not"
                 + " changed.";
-        assertEquals(11, JavadocTokenTypes.RETURN_LITERAL, msg);
-        assertEquals(8, JavadocTokenTypes.DEPRECATED_LITERAL, msg);
-        assertEquals(16, JavadocTokenTypes.SINCE_LITERAL, msg);
-        assertEquals(15, JavadocTokenTypes.SERIAL_DATA_LITERAL, msg);
-        assertEquals(14, JavadocTokenTypes.SERIAL_FIELD_LITERAL, msg);
-        assertEquals(10, JavadocTokenTypes.PARAM_LITERAL, msg);
-        assertEquals(12, JavadocTokenTypes.SEE_LITERAL, msg);
-        assertEquals(13, JavadocTokenTypes.SERIAL_LITERAL, msg);
-        assertEquals(18, JavadocTokenTypes.VERSION_LITERAL, msg);
-        assertEquals(9, JavadocTokenTypes.EXCEPTION_LITERAL, msg);
-        assertEquals(17, JavadocTokenTypes.THROWS_LITERAL, msg);
-        assertEquals(7, JavadocTokenTypes.AUTHOR_LITERAL, msg);
-        assertEquals(21, JavadocTokenTypes.CUSTOM_NAME, msg);
-        assertEquals(19, JavadocTokenTypes.JAVADOC_INLINE_TAG_START, msg);
-        assertEquals(20, JavadocTokenTypes.JAVADOC_INLINE_TAG_END, msg);
-        assertEquals(45, JavadocTokenTypes.CODE_LITERAL, msg);
-        assertEquals(46, JavadocTokenTypes.DOC_ROOT_LITERAL, msg);
-        assertEquals(48, JavadocTokenTypes.LINK_LITERAL, msg);
-        assertEquals(47, JavadocTokenTypes.INHERIT_DOC_LITERAL, msg);
-        assertEquals(49, JavadocTokenTypes.LINKPLAIN_LITERAL, msg);
-        assertEquals(50, JavadocTokenTypes.LITERAL_LITERAL, msg);
-        assertEquals(51, JavadocTokenTypes.VALUE_LITERAL, msg);
-        assertEquals(28, JavadocTokenTypes.PACKAGE_CLASS, msg);
-        assertEquals(30, JavadocTokenTypes.HASH, msg);
-        assertEquals(33, JavadocTokenTypes.MEMBER, msg);
-        assertEquals(34, JavadocTokenTypes.LEFT_BRACE, msg);
-        assertEquals(35, JavadocTokenTypes.RIGHT_BRACE, msg);
-        assertEquals(36, JavadocTokenTypes.ARGUMENT, msg);
-        assertEquals(37, JavadocTokenTypes.COMMA, msg);
-        assertEquals(27, JavadocTokenTypes.STRING, msg);
-        assertEquals(43, JavadocTokenTypes.CLASS_NAME, msg);
-        assertEquals(25, JavadocTokenTypes.PARAMETER_NAME, msg);
-        assertEquals(23, JavadocTokenTypes.LITERAL_EXCLUDE, msg);
-        assertEquals(22, JavadocTokenTypes.LITERAL_INCLUDE, msg);
-        assertEquals(39, JavadocTokenTypes.FIELD_NAME, msg);
-        assertEquals(41, JavadocTokenTypes.FIELD_TYPE, msg);
-        assertEquals(100, JavadocTokenTypes.HTML_TAG_NAME, msg);
-        assertEquals(5, JavadocTokenTypes.START, msg);
-        assertEquals(57, JavadocTokenTypes.SLASH, msg);
-        assertEquals(55, JavadocTokenTypes.END, msg);
-        assertEquals(56, JavadocTokenTypes.SLASH_END, msg);
-        assertEquals(58, JavadocTokenTypes.EQUALS, msg);
-        assertEquals(89, JavadocTokenTypes.ATTR_VALUE, msg);
-        assertEquals(59, JavadocTokenTypes.P_HTML_TAG_NAME, msg);
-        assertEquals(60, JavadocTokenTypes.LI_HTML_TAG_NAME, msg);
-        assertEquals(61, JavadocTokenTypes.TR_HTML_TAG_NAME, msg);
-        assertEquals(62, JavadocTokenTypes.TD_HTML_TAG_NAME, msg);
-        assertEquals(63, JavadocTokenTypes.TH_HTML_TAG_NAME, msg);
-        assertEquals(64, JavadocTokenTypes.BODY_HTML_TAG_NAME, msg);
-        assertEquals(65, JavadocTokenTypes.COLGROUP_HTML_TAG_NAME, msg);
-        assertEquals(66, JavadocTokenTypes.DD_HTML_TAG_NAME, msg);
-        assertEquals(67, JavadocTokenTypes.DT_HTML_TAG_NAME, msg);
-        assertEquals(68, JavadocTokenTypes.HEAD_HTML_TAG_NAME, msg);
-        assertEquals(69, JavadocTokenTypes.HTML_HTML_TAG_NAME, msg);
-        assertEquals(70, JavadocTokenTypes.OPTION_HTML_TAG_NAME, msg);
-        assertEquals(71, JavadocTokenTypes.TBODY_HTML_TAG_NAME, msg);
-        assertEquals(72, JavadocTokenTypes.TFOOT_HTML_TAG_NAME, msg);
-        assertEquals(73, JavadocTokenTypes.THEAD_HTML_TAG_NAME, msg);
-        assertEquals(74, JavadocTokenTypes.AREA_HTML_TAG_NAME, msg);
-        assertEquals(75, JavadocTokenTypes.BASE_HTML_TAG_NAME, msg);
-        assertEquals(76, JavadocTokenTypes.BASEFONT_HTML_TAG_NAME, msg);
-        assertEquals(77, JavadocTokenTypes.BR_HTML_TAG_NAME, msg);
-        assertEquals(78, JavadocTokenTypes.COL_HTML_TAG_NAME, msg);
-        assertEquals(79, JavadocTokenTypes.FRAME_HTML_TAG_NAME, msg);
-        assertEquals(80, JavadocTokenTypes.HR_HTML_TAG_NAME, msg);
-        assertEquals(81, JavadocTokenTypes.IMG_HTML_TAG_NAME, msg);
-        assertEquals(82, JavadocTokenTypes.INPUT_HTML_TAG_NAME, msg);
-        assertEquals(83, JavadocTokenTypes.ISINDEX_HTML_TAG_NAME, msg);
-        assertEquals(84, JavadocTokenTypes.LINK_HTML_TAG_NAME, msg);
-        assertEquals(85, JavadocTokenTypes.META_HTML_TAG_NAME, msg);
-        assertEquals(86, JavadocTokenTypes.PARAM_HTML_TAG_NAME, msg);
-        assertEquals(87, JavadocTokenTypes.EMBED_HTML_TAG_NAME, msg);
-        assertEquals(88, JavadocTokenTypes.KEYGEN_HTML_TAG_NAME, msg);
-        assertEquals(92, JavadocTokenTypes.SOURCE_HTML_TAG_NAME, msg);
-        assertEquals(93, JavadocTokenTypes.TRACK_HTML_TAG_NAME, msg);
-        assertEquals(94, JavadocTokenTypes.WBR_HTML_TAG_NAME, msg);
-        assertEquals(2, JavadocTokenTypes.HTML_COMMENT_START, msg);
-        assertEquals(91, JavadocTokenTypes.HTML_COMMENT_END, msg);
-        assertEquals(1, JavadocTokenTypes.LEADING_ASTERISK, msg);
-        assertEquals(6, JavadocTokenTypes.NEWLINE, msg);
-        assertEquals(24, JavadocTokenTypes.CHAR, msg);
-        assertEquals(4, JavadocTokenTypes.WS, msg);
-        assertEquals(-1, JavadocTokenTypes.EOF, msg);
-        assertEquals(10000, JavadocTokenTypes.JAVADOC, msg);
-        assertEquals(10071, JavadocTokenTypes.JAVADOC_TAG, msg);
-        assertEquals(10072, JavadocTokenTypes.JAVADOC_INLINE_TAG, msg);
-        assertEquals(10069, JavadocTokenTypes.REFERENCE, msg);
-        assertEquals(10070, JavadocTokenTypes.PARAMETERS, msg);
-        assertEquals(10068, JavadocTokenTypes.DESCRIPTION, msg);
-        assertEquals(10001, JavadocTokenTypes.HTML_ELEMENT, msg);
-        assertEquals(10002, JavadocTokenTypes.HTML_ELEMENT_START, msg);
-        assertEquals(10003, JavadocTokenTypes.HTML_ELEMENT_END, msg);
-        assertEquals(10005, JavadocTokenTypes.HTML_TAG, msg);
-        assertEquals(10004, JavadocTokenTypes.ATTRIBUTE, msg);
-        assertEquals(10008, JavadocTokenTypes.PARAGRAPH, msg);
-        assertEquals(10006, JavadocTokenTypes.P_TAG_START, msg);
-        assertEquals(10007, JavadocTokenTypes.P_TAG_END, msg);
-        assertEquals(10011, JavadocTokenTypes.LI, msg);
-        assertEquals(10009, JavadocTokenTypes.LI_TAG_START, msg);
-        assertEquals(10010, JavadocTokenTypes.LI_TAG_END, msg);
-        assertEquals(10014, JavadocTokenTypes.TR, msg);
-        assertEquals(10012, JavadocTokenTypes.TR_TAG_START, msg);
-        assertEquals(10013, JavadocTokenTypes.TR_TAG_END, msg);
-        assertEquals(10017, JavadocTokenTypes.TD, msg);
-        assertEquals(10015, JavadocTokenTypes.TD_TAG_START, msg);
-        assertEquals(10016, JavadocTokenTypes.TD_TAG_END, msg);
-        assertEquals(10020, JavadocTokenTypes.TH, msg);
-        assertEquals(10018, JavadocTokenTypes.TH_TAG_START, msg);
-        assertEquals(10019, JavadocTokenTypes.TH_TAG_END, msg);
-        assertEquals(10023, JavadocTokenTypes.BODY, msg);
-        assertEquals(10021, JavadocTokenTypes.BODY_TAG_START, msg);
-        assertEquals(10022, JavadocTokenTypes.BODY_TAG_END, msg);
-        assertEquals(10026, JavadocTokenTypes.COLGROUP, msg);
-        assertEquals(10024, JavadocTokenTypes.COLGROUP_TAG_START, msg);
-        assertEquals(10025, JavadocTokenTypes.COLGROUP_TAG_END, msg);
-        assertEquals(10029, JavadocTokenTypes.DD, msg);
-        assertEquals(10027, JavadocTokenTypes.DD_TAG_START, msg);
-        assertEquals(10028, JavadocTokenTypes.DD_TAG_END, msg);
-        assertEquals(10032, JavadocTokenTypes.DT, msg);
-        assertEquals(10030, JavadocTokenTypes.DT_TAG_START, msg);
-        assertEquals(10031, JavadocTokenTypes.DT_TAG_END, msg);
-        assertEquals(10035, JavadocTokenTypes.HEAD, msg);
-        assertEquals(10033, JavadocTokenTypes.HEAD_TAG_START, msg);
-        assertEquals(10034, JavadocTokenTypes.HEAD_TAG_END, msg);
-        assertEquals(10038, JavadocTokenTypes.HTML, msg);
-        assertEquals(10036, JavadocTokenTypes.HTML_TAG_START, msg);
-        assertEquals(10037, JavadocTokenTypes.HTML_TAG_END, msg);
-        assertEquals(10041, JavadocTokenTypes.OPTION, msg);
-        assertEquals(10039, JavadocTokenTypes.OPTION_TAG_START, msg);
-        assertEquals(10040, JavadocTokenTypes.OPTION_TAG_END, msg);
-        assertEquals(10044, JavadocTokenTypes.TBODY, msg);
-        assertEquals(10042, JavadocTokenTypes.TBODY_TAG_START, msg);
-        assertEquals(10043, JavadocTokenTypes.TBODY_TAG_END, msg);
-        assertEquals(10047, JavadocTokenTypes.TFOOT, msg);
-        assertEquals(10045, JavadocTokenTypes.TFOOT_TAG_START, msg);
-        assertEquals(10046, JavadocTokenTypes.TFOOT_TAG_END, msg);
-        assertEquals(10050, JavadocTokenTypes.THEAD, msg);
-        assertEquals(10048, JavadocTokenTypes.THEAD_TAG_START, msg);
-        assertEquals(10049, JavadocTokenTypes.THEAD_TAG_END, msg);
-        assertEquals(10051, JavadocTokenTypes.SINGLETON_ELEMENT, msg);
-        assertEquals(10052, JavadocTokenTypes.EMPTY_TAG, msg);
-        assertEquals(10053, JavadocTokenTypes.AREA_TAG, msg);
-        assertEquals(10054, JavadocTokenTypes.BASE_TAG, msg);
-        assertEquals(10055, JavadocTokenTypes.BASEFONT_TAG, msg);
-        assertEquals(10056, JavadocTokenTypes.BR_TAG, msg);
-        assertEquals(10057, JavadocTokenTypes.COL_TAG, msg);
-        assertEquals(10058, JavadocTokenTypes.FRAME_TAG, msg);
-        assertEquals(10059, JavadocTokenTypes.HR_TAG, msg);
-        assertEquals(10060, JavadocTokenTypes.IMG_TAG, msg);
-        assertEquals(10061, JavadocTokenTypes.INPUT_TAG, msg);
-        assertEquals(10062, JavadocTokenTypes.ISINDEX_TAG, msg);
-        assertEquals(10063, JavadocTokenTypes.LINK_TAG, msg);
-        assertEquals(10064, JavadocTokenTypes.META_TAG, msg);
-        assertEquals(10065, JavadocTokenTypes.PARAM_TAG, msg);
-        assertEquals(10075, JavadocTokenTypes.EMBED_TAG, msg);
-        assertEquals(10076, JavadocTokenTypes.KEYGEN_TAG, msg);
-        assertEquals(10077, JavadocTokenTypes.SOURCE_TAG, msg);
-        assertEquals(10078, JavadocTokenTypes.TRACK_TAG, msg);
-        assertEquals(10079, JavadocTokenTypes.WBR_TAG, msg);
-        assertEquals(10073, JavadocTokenTypes.HTML_COMMENT, msg);
-        assertEquals(10074, JavadocTokenTypes.TEXT, msg);
-        assertEquals(95, JavadocTokenTypes.OPTGROUP_HTML_TAG_NAME, msg);
-        assertEquals(10080, JavadocTokenTypes.OPTGROUP_TAG_START, msg);
-        assertEquals(10081, JavadocTokenTypes.OPTGROUP_TAG_END, msg);
-        assertEquals(10082, JavadocTokenTypes.OPTGROUP, msg);
-        assertEquals(96, JavadocTokenTypes.RB_HTML_TAG_NAME, msg);
-        assertEquals(10083, JavadocTokenTypes.RB_TAG_START, msg);
-        assertEquals(10084, JavadocTokenTypes.RB_TAG_END, msg);
-        assertEquals(10085, JavadocTokenTypes.RB, msg);
-        assertEquals(97, JavadocTokenTypes.RT_HTML_TAG_NAME, msg);
-        assertEquals(10086, JavadocTokenTypes.RT_TAG_START, msg);
-        assertEquals(10087, JavadocTokenTypes.RT_TAG_END, msg);
-        assertEquals(10088, JavadocTokenTypes.RT, msg);
-        assertEquals(98, JavadocTokenTypes.RTC_HTML_TAG_NAME, msg);
-        assertEquals(10089, JavadocTokenTypes.RTC_TAG_START, msg);
-        assertEquals(10090, JavadocTokenTypes.RTC_TAG_END, msg);
-        assertEquals(10091, JavadocTokenTypes.RTC, msg);
-        assertEquals(99, JavadocTokenTypes.RP_HTML_TAG_NAME, msg);
-        assertEquals(10092, JavadocTokenTypes.RP_TAG_START, msg);
-        assertEquals(10093, JavadocTokenTypes.RP_TAG_END, msg);
-        assertEquals(10094, JavadocTokenTypes.RP, msg);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.RETURN_LITERAL)
+            .isEqualTo(11);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.DEPRECATED_LITERAL)
+            .isEqualTo(8);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.SINCE_LITERAL)
+            .isEqualTo(16);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.SERIAL_DATA_LITERAL)
+            .isEqualTo(15);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.SERIAL_FIELD_LITERAL)
+            .isEqualTo(14);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.PARAM_LITERAL)
+            .isEqualTo(10);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.SEE_LITERAL)
+            .isEqualTo(12);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.SERIAL_LITERAL)
+            .isEqualTo(13);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.VERSION_LITERAL)
+            .isEqualTo(18);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.EXCEPTION_LITERAL)
+            .isEqualTo(9);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.THROWS_LITERAL)
+            .isEqualTo(17);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.AUTHOR_LITERAL)
+            .isEqualTo(7);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.CUSTOM_NAME)
+            .isEqualTo(21);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.JAVADOC_INLINE_TAG_START)
+            .isEqualTo(19);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.JAVADOC_INLINE_TAG_END)
+            .isEqualTo(20);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.CODE_LITERAL)
+            .isEqualTo(45);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.DOC_ROOT_LITERAL)
+            .isEqualTo(46);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.LINK_LITERAL)
+            .isEqualTo(48);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.INHERIT_DOC_LITERAL)
+            .isEqualTo(47);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.LINKPLAIN_LITERAL)
+            .isEqualTo(49);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.LITERAL_LITERAL)
+            .isEqualTo(50);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.VALUE_LITERAL)
+            .isEqualTo(51);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.PACKAGE_CLASS)
+            .isEqualTo(28);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.HASH)
+            .isEqualTo(30);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.MEMBER)
+            .isEqualTo(33);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.LEFT_BRACE)
+            .isEqualTo(34);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.RIGHT_BRACE)
+            .isEqualTo(35);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.ARGUMENT)
+            .isEqualTo(36);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.COMMA)
+            .isEqualTo(37);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.STRING)
+            .isEqualTo(27);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.CLASS_NAME)
+            .isEqualTo(43);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.PARAMETER_NAME)
+            .isEqualTo(25);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.LITERAL_EXCLUDE)
+            .isEqualTo(23);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.LITERAL_INCLUDE)
+            .isEqualTo(22);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.FIELD_NAME)
+            .isEqualTo(39);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.FIELD_TYPE)
+            .isEqualTo(41);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.HTML_TAG_NAME)
+            .isEqualTo(100);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.START)
+            .isEqualTo(5);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.SLASH)
+            .isEqualTo(57);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.END)
+            .isEqualTo(55);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.SLASH_END)
+            .isEqualTo(56);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.EQUALS)
+            .isEqualTo(58);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.ATTR_VALUE)
+            .isEqualTo(89);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.P_HTML_TAG_NAME)
+            .isEqualTo(59);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.LI_HTML_TAG_NAME)
+            .isEqualTo(60);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TR_HTML_TAG_NAME)
+            .isEqualTo(61);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TD_HTML_TAG_NAME)
+            .isEqualTo(62);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TH_HTML_TAG_NAME)
+            .isEqualTo(63);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.BODY_HTML_TAG_NAME)
+            .isEqualTo(64);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.COLGROUP_HTML_TAG_NAME)
+            .isEqualTo(65);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.DD_HTML_TAG_NAME)
+            .isEqualTo(66);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.DT_HTML_TAG_NAME)
+            .isEqualTo(67);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.HEAD_HTML_TAG_NAME)
+            .isEqualTo(68);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.HTML_HTML_TAG_NAME)
+            .isEqualTo(69);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.OPTION_HTML_TAG_NAME)
+            .isEqualTo(70);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TBODY_HTML_TAG_NAME)
+            .isEqualTo(71);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TFOOT_HTML_TAG_NAME)
+            .isEqualTo(72);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.THEAD_HTML_TAG_NAME)
+            .isEqualTo(73);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.AREA_HTML_TAG_NAME)
+            .isEqualTo(74);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.BASE_HTML_TAG_NAME)
+            .isEqualTo(75);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.BASEFONT_HTML_TAG_NAME)
+            .isEqualTo(76);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.BR_HTML_TAG_NAME)
+            .isEqualTo(77);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.COL_HTML_TAG_NAME)
+            .isEqualTo(78);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.FRAME_HTML_TAG_NAME)
+            .isEqualTo(79);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.HR_HTML_TAG_NAME)
+            .isEqualTo(80);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.IMG_HTML_TAG_NAME)
+            .isEqualTo(81);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.INPUT_HTML_TAG_NAME)
+            .isEqualTo(82);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.ISINDEX_HTML_TAG_NAME)
+            .isEqualTo(83);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.LINK_HTML_TAG_NAME)
+            .isEqualTo(84);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.META_HTML_TAG_NAME)
+            .isEqualTo(85);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.PARAM_HTML_TAG_NAME)
+            .isEqualTo(86);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.EMBED_HTML_TAG_NAME)
+            .isEqualTo(87);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.KEYGEN_HTML_TAG_NAME)
+            .isEqualTo(88);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.SOURCE_HTML_TAG_NAME)
+            .isEqualTo(92);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TRACK_HTML_TAG_NAME)
+            .isEqualTo(93);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.WBR_HTML_TAG_NAME)
+            .isEqualTo(94);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.HTML_COMMENT_START)
+            .isEqualTo(2);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.HTML_COMMENT_END)
+            .isEqualTo(91);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.LEADING_ASTERISK)
+            .isEqualTo(1);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.NEWLINE)
+            .isEqualTo(6);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.CHAR)
+            .isEqualTo(24);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.WS)
+            .isEqualTo(4);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.EOF)
+            .isEqualTo(-1);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.JAVADOC)
+            .isEqualTo(10000);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.JAVADOC_TAG)
+            .isEqualTo(10071);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.JAVADOC_INLINE_TAG)
+            .isEqualTo(10072);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.REFERENCE)
+            .isEqualTo(10069);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.PARAMETERS)
+            .isEqualTo(10070);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.DESCRIPTION)
+            .isEqualTo(10068);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.HTML_ELEMENT)
+            .isEqualTo(10001);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.HTML_ELEMENT_START)
+            .isEqualTo(10002);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.HTML_ELEMENT_END)
+            .isEqualTo(10003);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.HTML_TAG)
+            .isEqualTo(10005);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.ATTRIBUTE)
+            .isEqualTo(10004);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.PARAGRAPH)
+            .isEqualTo(10008);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.P_TAG_START)
+            .isEqualTo(10006);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.P_TAG_END)
+            .isEqualTo(10007);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.LI)
+            .isEqualTo(10011);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.LI_TAG_START)
+            .isEqualTo(10009);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.LI_TAG_END)
+            .isEqualTo(10010);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TR)
+            .isEqualTo(10014);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TR_TAG_START)
+            .isEqualTo(10012);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TR_TAG_END)
+            .isEqualTo(10013);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TD)
+            .isEqualTo(10017);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TD_TAG_START)
+            .isEqualTo(10015);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TD_TAG_END)
+            .isEqualTo(10016);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TH)
+            .isEqualTo(10020);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TH_TAG_START)
+            .isEqualTo(10018);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TH_TAG_END)
+            .isEqualTo(10019);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.BODY)
+            .isEqualTo(10023);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.BODY_TAG_START)
+            .isEqualTo(10021);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.BODY_TAG_END)
+            .isEqualTo(10022);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.COLGROUP)
+            .isEqualTo(10026);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.COLGROUP_TAG_START)
+            .isEqualTo(10024);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.COLGROUP_TAG_END)
+            .isEqualTo(10025);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.DD)
+            .isEqualTo(10029);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.DD_TAG_START)
+            .isEqualTo(10027);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.DD_TAG_END)
+            .isEqualTo(10028);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.DT)
+            .isEqualTo(10032);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.DT_TAG_START)
+            .isEqualTo(10030);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.DT_TAG_END)
+            .isEqualTo(10031);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.HEAD)
+            .isEqualTo(10035);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.HEAD_TAG_START)
+            .isEqualTo(10033);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.HEAD_TAG_END)
+            .isEqualTo(10034);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.HTML)
+            .isEqualTo(10038);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.HTML_TAG_START)
+            .isEqualTo(10036);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.HTML_TAG_END)
+            .isEqualTo(10037);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.OPTION)
+            .isEqualTo(10041);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.OPTION_TAG_START)
+            .isEqualTo(10039);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.OPTION_TAG_END)
+            .isEqualTo(10040);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TBODY)
+            .isEqualTo(10044);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TBODY_TAG_START)
+            .isEqualTo(10042);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TBODY_TAG_END)
+            .isEqualTo(10043);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TFOOT)
+            .isEqualTo(10047);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TFOOT_TAG_START)
+            .isEqualTo(10045);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TFOOT_TAG_END)
+            .isEqualTo(10046);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.THEAD)
+            .isEqualTo(10050);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.THEAD_TAG_START)
+            .isEqualTo(10048);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.THEAD_TAG_END)
+            .isEqualTo(10049);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.SINGLETON_ELEMENT)
+            .isEqualTo(10051);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.EMPTY_TAG)
+            .isEqualTo(10052);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.AREA_TAG)
+            .isEqualTo(10053);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.BASE_TAG)
+            .isEqualTo(10054);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.BASEFONT_TAG)
+            .isEqualTo(10055);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.BR_TAG)
+            .isEqualTo(10056);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.COL_TAG)
+            .isEqualTo(10057);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.FRAME_TAG)
+            .isEqualTo(10058);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.HR_TAG)
+            .isEqualTo(10059);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.IMG_TAG)
+            .isEqualTo(10060);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.INPUT_TAG)
+            .isEqualTo(10061);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.ISINDEX_TAG)
+            .isEqualTo(10062);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.LINK_TAG)
+            .isEqualTo(10063);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.META_TAG)
+            .isEqualTo(10064);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.PARAM_TAG)
+            .isEqualTo(10065);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.EMBED_TAG)
+            .isEqualTo(10075);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.KEYGEN_TAG)
+            .isEqualTo(10076);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.SOURCE_TAG)
+            .isEqualTo(10077);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TRACK_TAG)
+            .isEqualTo(10078);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.WBR_TAG)
+            .isEqualTo(10079);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.HTML_COMMENT)
+            .isEqualTo(10073);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.TEXT)
+            .isEqualTo(10074);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.OPTGROUP_HTML_TAG_NAME)
+            .isEqualTo(95);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.OPTGROUP_TAG_START)
+            .isEqualTo(10080);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.OPTGROUP_TAG_END)
+            .isEqualTo(10081);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.OPTGROUP)
+            .isEqualTo(10082);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.RB_HTML_TAG_NAME)
+            .isEqualTo(96);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.RB_TAG_START)
+            .isEqualTo(10083);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.RB_TAG_END)
+            .isEqualTo(10084);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.RB)
+            .isEqualTo(10085);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.RT_HTML_TAG_NAME)
+            .isEqualTo(97);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.RT_TAG_START)
+            .isEqualTo(10086);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.RT_TAG_END)
+            .isEqualTo(10087);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.RT)
+            .isEqualTo(10088);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.RTC_HTML_TAG_NAME)
+            .isEqualTo(98);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.RTC_TAG_START)
+            .isEqualTo(10089);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.RTC_TAG_END)
+            .isEqualTo(10090);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.RTC)
+            .isEqualTo(10091);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.RP_HTML_TAG_NAME)
+            .isEqualTo(99);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.RP_TAG_START)
+            .isEqualTo(10092);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.RP_TAG_END)
+            .isEqualTo(10093);
+        assertWithMessage(msg)
+            .that(JavadocTokenTypes.RP)
+            .isEqualTo(10094);
     }
 
     @Test
     public void testRuleOffsetValue() throws Exception {
         final Field ruleTypesOffset = JavadocTokenTypes.class.getDeclaredField("RULE_TYPES_OFFSET");
         ruleTypesOffset.setAccessible(true);
-        assertEquals(10000, ruleTypesOffset.getInt(null),
-                "Please ensure that the field `RULE_TYPES_OFFSET` in"
-                        + " `JavadocTokenTypes.java` has a value of 10000");
+        assertWithMessage("Please ensure that the field `RULE_TYPES_OFFSET` in"
+                + " `JavadocTokenTypes.java` has a value of 10000")
+                        .that(ruleTypesOffset.getInt(null))
+                        .isEqualTo(10000);
     }
 
 }

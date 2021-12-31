@@ -35,7 +35,7 @@ public class FilterUtilTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
-                .that(isUtilsClassHasPrivateConstructor(FilterUtil.class, true))
+                .that(isUtilsClassHasPrivateConstructor(FilterUtil.class))
                 .isTrue();
     }
 
@@ -50,7 +50,8 @@ public class FilterUtilTest {
     @Test
     public void testNonExistentFile() {
         assertWithMessage("Suppression file does not exist")
-                .that(FilterUtil.isFileExists("non-existent.xml")).isFalse();
+                .that(FilterUtil.isFileExists("non-existent.xml"))
+                .isFalse();
     }
 
 }

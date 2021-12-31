@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck.MSG_JAVADOC_MISSING;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +43,9 @@ public class JavadocVariableCheckTest
         final int[] expected = {
             TokenTypes.VARIABLE_DEF,
         };
-        assertArrayEquals(expected, actual, "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -56,7 +58,9 @@ public class JavadocVariableCheckTest
             TokenTypes.ENUM_CONSTANT_DEF,
         };
 
-        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test

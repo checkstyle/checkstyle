@@ -21,8 +21,6 @@ package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -40,12 +38,14 @@ public class AnnotationUtilTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         try {
-            isUtilsClassHasPrivateConstructor(AnnotationUtil.class, true);
+            isUtilsClassHasPrivateConstructor(AnnotationUtil.class);
             assertWithMessage("Exception is expected").fail();
         }
         catch (InvocationTargetException ex) {
-            assertEquals("do not instantiate.", ex.getCause().getMessage(),
-                    "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasCauseThat().hasMessageThat()
+                .isEqualTo("do not instantiate.");
         }
     }
 
@@ -56,7 +56,9 @@ public class AnnotationUtilTest {
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("the ast is null", ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("the ast is null");
         }
     }
 
@@ -67,7 +69,9 @@ public class AnnotationUtilTest {
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("the ast is null", ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("the ast is null");
         }
     }
 
@@ -75,8 +79,9 @@ public class AnnotationUtilTest {
     public void testContainsAnnotationFalse() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(1);
-        assertFalse(AnnotationUtil.containsAnnotation(ast),
-                "AnnotationUtil should not contain " + ast);
+        assertWithMessage("AnnotationUtil should not contain " + ast)
+                .that(AnnotationUtil.containsAnnotation(ast))
+                .isFalse();
     }
 
     @Test
@@ -86,8 +91,9 @@ public class AnnotationUtilTest {
         final DetailAstImpl ast2 = new DetailAstImpl();
         ast2.setType(TokenTypes.MODIFIERS);
         ast.addChild(ast2);
-        assertFalse(AnnotationUtil.containsAnnotation(ast),
-                "AnnotationUtil should not contain " + ast);
+        assertWithMessage("AnnotationUtil should not contain " + ast)
+                .that(AnnotationUtil.containsAnnotation(ast))
+                .isFalse();
     }
 
     @Test
@@ -112,7 +118,9 @@ public class AnnotationUtilTest {
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("the ast is null", ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("the ast is null");
         }
     }
 
@@ -123,7 +131,9 @@ public class AnnotationUtilTest {
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("the ast is null", ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("the ast is null");
         }
     }
 
@@ -134,7 +144,9 @@ public class AnnotationUtilTest {
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("the annotation is null", ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("the annotation is null");
         }
     }
 
@@ -145,8 +157,9 @@ public class AnnotationUtilTest {
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("the annotation is empty or spaces", ex.getMessage(),
-                    "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("the annotation is empty or spaces");
         }
     }
 
@@ -157,7 +170,9 @@ public class AnnotationUtilTest {
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("the ast is null", ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("the ast is null");
         }
     }
 
@@ -168,7 +183,9 @@ public class AnnotationUtilTest {
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("the ast is null", ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("the ast is null");
         }
     }
 
@@ -181,8 +198,9 @@ public class AnnotationUtilTest {
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("annotations cannot be null", ex.getMessage(),
-                    "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("annotations cannot be null");
         }
     }
 
@@ -191,7 +209,9 @@ public class AnnotationUtilTest {
         final DetailAST ast = new DetailAstImpl();
         final List<String> annotations = new ArrayList<>();
         final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);
-        assertFalse(result, "An empty list should lead to a false result");
+        assertWithMessage("An empty list should lead to a false result")
+            .that(result)
+            .isFalse();
     }
 
     @Test
@@ -202,7 +222,9 @@ public class AnnotationUtilTest {
         ast.addChild(modifiersAst);
         final List<String> annotations = Collections.singletonList("Override");
         final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);
-        assertFalse(result, "An empty ast should lead to a false result");
+        assertWithMessage("An empty ast should lead to a false result")
+            .that(result)
+            .isFalse();
     }
 
     @Test
@@ -246,7 +268,9 @@ public class AnnotationUtilTest {
         ast.addChild(modifiersAst);
         final List<String> annotations = Collections.singletonList("Deprecated");
         final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);
-        assertFalse(result, "No matching annotation found");
+        assertWithMessage("No matching annotation found")
+            .that(result)
+            .isFalse();
     }
 
     @Test
@@ -294,8 +318,9 @@ public class AnnotationUtilTest {
         child.setNextSibling(annotations);
         astForTest.setFirstChild(child);
 
-        assertFalse(AnnotationUtil.containsAnnotation(astForTest, "AnnotationBad"),
-                "Annotation should not contain " + astForTest);
+        assertWithMessage("Annotation should not contain " + astForTest)
+                .that(AnnotationUtil.containsAnnotation(astForTest, "AnnotationBad"))
+                .isFalse();
     }
 
     @Test

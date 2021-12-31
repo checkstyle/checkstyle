@@ -20,8 +20,7 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.File;
 import java.io.IOException;
@@ -73,8 +72,9 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
                 SeverityLevel.ERROR, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
 
-        assertFalse(filter.accept(ev),
-                "Audit event should be rejected when there is a matching suppression");
+        assertWithMessage("Audit event should be rejected when there is a matching suppression")
+                .that(filter.accept(ev))
+                .isFalse();
     }
 
     @Test
@@ -98,7 +98,9 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals("Unable to find: " + fileName, ex.getMessage(), "Invalid error message");
+            assertWithMessage("Invalid error message")
+                .that(ex.getMessage())
+                .isEqualTo("Unable to find: " + fileName);
         }
     }
 
@@ -111,9 +113,10 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertEquals(
-                    "Unable to parse " + fileName + " - invalid files or checks or message format",
-                ex.getMessage(), "Invalid error message");
+            assertWithMessage("Invalid error message")
+                .that(ex.getMessage())
+                .isEqualTo("Unable to parse " + fileName
+                        + " - invalid files or checks or message format");
         }
     }
 
@@ -190,37 +193,31 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
             }
         }
 
-        // Run the test only if connection is available and url is reachable.
-        // We must use an if statement over junit's rule or assume because
-        // powermock disrupts the assume exception and turns into a failure
-        // instead of a skip when it doesn't pass
-        if (urlForTest != null) {
-            final DefaultConfiguration firstFilterConfig =
-                createModuleConfig(SuppressionFilter.class);
-            // -@cs[CheckstyleTestMakeup] need to test dynamic property
-            firstFilterConfig.addProperty("file", urlForTest);
+        assumeTrue(urlForTest != null, "No Internet connection.");
+        final DefaultConfiguration firstFilterConfig = createModuleConfig(SuppressionFilter.class);
+        // -@cs[CheckstyleTestMakeup] need to test dynamic property
+        firstFilterConfig.addProperty("file", urlForTest);
 
-            final DefaultConfiguration firstCheckerConfig = createRootConfig(firstFilterConfig);
-            final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
-            firstCheckerConfig.addProperty("cacheFile", cacheFile.getPath());
+        final DefaultConfiguration firstCheckerConfig = createRootConfig(firstFilterConfig);
+        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
+        firstCheckerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-            final String pathToEmptyFile =
-                    File.createTempFile("file", ".java", temporaryFolder).getPath();
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String pathToEmptyFile =
+                File.createTempFile("file", ".java", temporaryFolder).getPath();
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(firstCheckerConfig, pathToEmptyFile, expected);
+        verify(firstCheckerConfig, pathToEmptyFile, expected);
 
-            // One more time to use cache.
-            final DefaultConfiguration secondFilterConfig =
-                createModuleConfig(SuppressionFilter.class);
-            // -@cs[CheckstyleTestMakeup] need to test dynamic property
-            secondFilterConfig.addProperty("file", urlForTest);
+        // One more time to use cache.
+        final DefaultConfiguration secondFilterConfig =
+            createModuleConfig(SuppressionFilter.class);
+        // -@cs[CheckstyleTestMakeup] need to test dynamic property
+        secondFilterConfig.addProperty("file", urlForTest);
 
-            final DefaultConfiguration secondCheckerConfig = createRootConfig(secondFilterConfig);
-            secondCheckerConfig.addProperty("cacheFile", cacheFile.getPath());
+        final DefaultConfiguration secondCheckerConfig = createRootConfig(secondFilterConfig);
+        secondCheckerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-            verify(secondCheckerConfig, pathToEmptyFile, expected);
-        }
+        verify(secondCheckerConfig, pathToEmptyFile, expected);
     }
 
     private static boolean isConnectionAvailableAndStable(String url) throws Exception {

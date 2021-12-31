@@ -20,9 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.google.common.truth.Truth.assertThat;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +36,9 @@ public class JavadocTagTest {
     public void testJavadocTagTypeValueOf() {
         final JavadocUtil.JavadocTagType enumConst =
             JavadocUtil.JavadocTagType.valueOf("ALL");
-        assertEquals(JavadocUtil.JavadocTagType.ALL, enumConst, "Invalid enum valueOf result");
+        assertWithMessage("Invalid enum valueOf result")
+            .that(enumConst)
+            .isEqualTo(JavadocUtil.JavadocTagType.ALL);
     }
 
     /* Additional test for jacoco, since values()
@@ -54,7 +54,9 @@ public class JavadocTagTest {
             JavadocUtil.JavadocTagType.INLINE,
             JavadocUtil.JavadocTagType.ALL,
         };
-        assertArrayEquals(expected, enumConstants, "Invalid enum constants");
+        assertWithMessage("Invalid enum constants")
+            .that(enumConstants)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -63,9 +65,9 @@ public class JavadocTagTest {
 
         final String result = javadocTag.toString();
 
-        assertEquals(
-                "JavadocTag[tag='author' lineNo=0, columnNo=1, firstArg='firstArg']", result,
-                "Invalid toString result");
+        assertWithMessage("Invalid toString result")
+            .that(result)
+            .isEqualTo("JavadocTag[tag='author' lineNo=0, columnNo=1, firstArg='firstArg']");
     }
 
     @Test
@@ -80,7 +82,8 @@ public class JavadocTagTest {
 
     @Test
     public void testJavadocTagReferenceImportsInvalid() {
-        assertFalse(new JavadocTag(0, 0, "author", null).canReferenceImports(), "");
+        assertThat(new JavadocTag(0, 0, "author", null).canReferenceImports())
+                .isFalse();
     }
 
 }

@@ -23,11 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.AbstractPathTestSupport.addEndOfLine;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static com.puppycrawl.tools.checkstyle.utils.XpathUtil.getTextAttributeValue;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.io.File;
 import java.io.IOException;
@@ -53,7 +48,7 @@ public class XpathUtilTest {
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
-                .that(isUtilsClassHasPrivateConstructor(XpathUtil.class, true))
+                .that(isUtilsClassHasPrivateConstructor(XpathUtil.class))
                 .isTrue();
     }
 
@@ -74,27 +69,32 @@ public class XpathUtilTest {
         assertWithMessage("Should return true for supported token types")
                 .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.NUM_DOUBLE)))
                 .isTrue();
-        assertFalse(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.VARIABLE_DEF)),
-                "Should return false for unsupported token types");
-        assertFalse(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.OBJBLOCK)),
-                "Should return false for unsupported token types");
-        assertFalse(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.LITERAL_CHAR)),
-                "Should return true for supported token types");
+        assertWithMessage("Should return false for unsupported token types")
+                .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.VARIABLE_DEF)))
+                .isFalse();
+        assertWithMessage("Should return false for unsupported token types")
+                .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.OBJBLOCK)))
+                .isFalse();
+        assertWithMessage("Should return true for supported token types")
+                .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.LITERAL_CHAR)))
+                .isFalse();
     }
 
     @Test
     public void testGetValue() {
-        assertEquals("HELLO WORLD", getTextAttributeValue(
-                createDetailAST(TokenTypes.STRING_LITERAL, "\"HELLO WORLD\"")),
-                "Returned value differs from expected");
-        assertEquals("123", getTextAttributeValue(createDetailAST(TokenTypes.NUM_INT, "123")),
-                "Returned value differs from expected");
-        assertEquals("HELLO WORLD",
-                getTextAttributeValue(createDetailAST(TokenTypes.IDENT, "HELLO WORLD")),
-                "Returned value differs from expected");
-        assertNotEquals("HELLO WORLD",
-                getTextAttributeValue(createDetailAST(TokenTypes.STRING_LITERAL, "HELLO WORLD")),
-                "Returned value differs from expected");
+        assertWithMessage("Returned value differs from expected")
+            .that(getTextAttributeValue(
+                createDetailAST(TokenTypes.STRING_LITERAL, "\"HELLO WORLD\"")))
+            .isEqualTo("HELLO WORLD");
+        assertWithMessage("Returned value differs from expected")
+            .that(getTextAttributeValue(createDetailAST(TokenTypes.NUM_INT, "123")))
+            .isEqualTo("123");
+        assertWithMessage("Returned value differs from expected")
+            .that(getTextAttributeValue(createDetailAST(TokenTypes.IDENT, "HELLO WORLD")))
+            .isEqualTo("HELLO WORLD");
+        assertWithMessage("Returned value differs from expected")
+            .that(getTextAttributeValue(createDetailAST(TokenTypes.STRING_LITERAL, "HELLO WORLD")))
+            .isNotEqualTo("HELLO WORLD");
     }
 
     @Test
@@ -112,7 +112,9 @@ public class XpathUtilTest {
             "        |       |   |--IDENT -> a [1:39]");
         final String result = XpathUtil.printXpathBranch(
             "//CLASS_DEF//METHOD_DEF//VARIABLE_DEF//IDENT", file);
-        assertThat("Branch string is different", result, is(expected));
+        assertWithMessage("Branch string is different")
+            .that(result)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -127,7 +129,9 @@ public class XpathUtilTest {
             "        |--BLOCK_COMMENT_BEGIN -> /* [1:13]");
         final String result = XpathUtil.printXpathBranch(
             "//CLASS_DEF//BLOCK_COMMENT_BEGIN", file);
-        assertThat("Branch string is different", result, is(expected));
+        assertWithMessage("Branch string is different")
+            .that(result)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -153,7 +157,9 @@ public class XpathUtilTest {
             "        |       |   |--IDENT -> b [1:50]");
         final String result = XpathUtil.printXpathBranch(
             "//CLASS_DEF//METHOD_DEF//VARIABLE_DEF//IDENT", file);
-        assertThat("Branch string is different", result, is(expected));
+        assertWithMessage("Branch string is different")
+            .that(result)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -171,7 +177,9 @@ public class XpathUtilTest {
             final String expectedMessage =
                 "Error during evaluation for xpath: " + invalidXpath
                     + ", file: " + file.getCanonicalPath();
-            assertThat("Exception message is different", ex.getMessage(), is(expectedMessage));
+            assertWithMessage("Exception message is different")
+                .that(ex.getMessage())
+                .isEqualTo(expectedMessage);
         }
     }
 

@@ -19,12 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_CLASS;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_FILE;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_METHOD;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_RECORD;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -143,8 +142,12 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
         };
-        assertNotNull(actual, "Acceptable tokens should not be null");
-        assertArrayEquals(expected, actual, "Invalid acceptable tokens");
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(actual)
+            .isNotNull();
+        assertWithMessage("Invalid acceptable tokens")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -183,8 +186,12 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
         };
-        assertNotNull(actual, "Required tokens should not be null");
-        assertArrayEquals(expected, actual, "Invalid required tokens");
+        assertWithMessage("Required tokens should not be null")
+            .that(actual)
+            .isNotNull();
+        assertWithMessage("Invalid required tokens")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
 }

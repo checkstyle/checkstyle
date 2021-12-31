@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.xpath;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -45,8 +44,9 @@ public class AttributeNodeTest {
             assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
-            assertEquals("Operation is not supported",
-                ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("Operation is not supported");
         }
     }
 
@@ -74,8 +74,9 @@ public class AttributeNodeTest {
             assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
-            assertEquals("Operation is not supported",
-                ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("Operation is not supported");
         }
     }
 
@@ -96,8 +97,9 @@ public class AttributeNodeTest {
             assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
-            assertEquals("Operation is not supported",
-                ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("Operation is not supported");
         }
     }
 
@@ -108,14 +110,17 @@ public class AttributeNodeTest {
             assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
-            assertEquals("Operation is not supported",
-                ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("Operation is not supported");
         }
     }
 
     @Test
     public void testGetStringValue() {
-        assertEquals("value", attributeNode.getStringValue(), "Invalid string value");
+        assertWithMessage("Invalid string value")
+            .that(attributeNode.getStringValue())
+            .isEqualTo("value");
     }
 
     @Test
@@ -124,8 +129,9 @@ public class AttributeNodeTest {
             assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
-            assertEquals("Operation is not supported",
-                ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("Operation is not supported");
         }
     }
 
@@ -136,8 +142,9 @@ public class AttributeNodeTest {
             assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
-            assertEquals("Operation is not supported",
-                ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("Operation is not supported");
         }
     }
 
@@ -148,8 +155,9 @@ public class AttributeNodeTest {
             assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
-            assertEquals("Operation is not supported",
-                ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("Operation is not supported");
         }
     }
 
@@ -160,8 +168,9 @@ public class AttributeNodeTest {
             assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
-            assertEquals("Operation is not supported",
-                ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("Operation is not supported");
         }
     }
 
@@ -172,8 +181,9 @@ public class AttributeNodeTest {
             assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
-            assertEquals("Operation is not supported",
-                ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("Operation is not supported");
         }
     }
 
@@ -184,8 +194,9 @@ public class AttributeNodeTest {
             assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {
-            assertEquals("Operation is not supported",
-                    ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("Operation is not supported");
         }
     }
 }

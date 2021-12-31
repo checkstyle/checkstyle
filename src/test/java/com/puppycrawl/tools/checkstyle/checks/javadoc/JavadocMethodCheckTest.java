@@ -19,14 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_DUPLICATE_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_INVALID_INHERIT_DOC;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_RETURN_EXPECTED;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_UNUSED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_UNUSED_TAG_GENERAL;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -60,7 +59,9 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             TokenTypes.COMPACT_CTOR_DEF,
         };
 
-        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -427,7 +428,9 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         };
         final JavadocMethodCheck check = new JavadocMethodCheck();
         final int[] actual = check.getRequiredTokens();
-        assertArrayEquals(expected, actual, "Required tokens differ from expected");
+        assertWithMessage("Required tokens differ from expected")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -439,7 +442,9 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final Object token = tokenConstructor.newInstance("tokenName", 1, 1);
         final Method toString = token.getClass().getDeclaredMethod("toString");
         final String result = (String) toString.invoke(token);
-        assertEquals("Token[tokenName(1x1)]", result, "Invalid toString result");
+        assertWithMessage("Invalid toString result")
+            .that(result)
+            .isEqualTo("Token[tokenName(1x1)]");
     }
 
     @Test

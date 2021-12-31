@@ -21,9 +21,6 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.File;
 import java.util.Arrays;
@@ -339,10 +336,10 @@ public class SuppressionCommentFilterTest
     @Test
     public void testToStringOfTagClass() {
         final Object tag = getTagsAfterExecutionOnDefaultFilter("//CHECKSTYLE:OFF").get(0);
-        assertEquals(
-                "Tag[text='CHECKSTYLE:OFF', line=1, column=0, type=OFF,"
-                    + " tagCheckRegexp=.*, tagMessageRegexp=null, tagIdRegexp=null]",
-                    tag.toString(), "Invalid toString result");
+        assertWithMessage("Invalid toString result")
+            .that(tag.toString())
+            .isEqualTo("Tag[text='CHECKSTYLE:OFF', line=1, column=0, type=OFF,"
+                    + " tagCheckRegexp=.*, tagMessageRegexp=null, tagIdRegexp=null]");
     }
 
     @Test
@@ -351,10 +348,10 @@ public class SuppressionCommentFilterTest
         filter.setMessageFormat(".*");
         final Object tag =
                 getTagsAfterExecution(filter, "filename", "//CHECKSTYLE:ON").get(0);
-        assertEquals(
-                "Tag[text='CHECKSTYLE:ON', line=1, column=0, type=ON,"
-                + " tagCheckRegexp=.*, tagMessageRegexp=.*, tagIdRegexp=null]", tag.toString(),
-                "Invalid toString result");
+        assertWithMessage("Invalid toString result")
+            .that(tag.toString())
+            .isEqualTo("Tag[text='CHECKSTYLE:ON', line=1, column=0, type=ON,"
+                + " tagCheckRegexp=.*, tagMessageRegexp=.*, tagIdRegexp=null]");
     }
 
     @Test
@@ -385,7 +382,9 @@ public class SuppressionCommentFilterTest
                 .that(tag3.compareTo(tag1) > 0)
                 .isTrue();
         final int actual = tag1.compareTo(tag4);
-        assertEquals(0, actual, "Invalid comparing result");
+        assertWithMessage("Invalid comparing result")
+            .that(actual)
+            .isEqualTo(0);
     }
 
     @Test
@@ -401,8 +400,10 @@ public class SuppressionCommentFilterTest
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
-            assertEquals("unable to parse expanded comment e[l", cause.getMessage(),
-                    "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(cause)
+                .hasMessageThat()
+                .isEqualTo("unable to parse expanded comment e[l");
         }
     }
 
@@ -419,8 +420,10 @@ public class SuppressionCommentFilterTest
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
-            assertEquals("unable to parse expanded comment e[l", cause.getMessage(),
-                    "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(cause)
+                .hasMessageThat()
+                .isEqualTo("unable to parse expanded comment e[l");
         }
     }
 
@@ -435,7 +438,9 @@ public class SuppressionCommentFilterTest
         assertWithMessage("Filter should accept audit event")
             .that(filter.accept(auditEvent))
                 .isTrue();
-        assertNull(auditEvent.getFileName(), "File name should not be null");
+        assertWithMessage("File name should not be null")
+            .that(auditEvent.getFileName())
+            .isNull();
     }
 
     @Test
@@ -627,7 +632,9 @@ public class SuppressionCommentFilterTest
         final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, "filename",
                 new Violation(1, null, null, null, null, Object.class, null), null);
         final boolean result = suppressionCommentFilter.accept(dummyEvent);
-        assertFalse(result, "Filter should not accept event");
+        assertWithMessage("Filter should not accept event")
+            .that(result)
+            .isFalse();
     }
 
     @Test
@@ -635,10 +642,14 @@ public class SuppressionCommentFilterTest
         final SuppressionCommentFilter suppressionCommentFilter = new SuppressionCommentFilter();
         final List<?> tags1 = getTagsAfterExecution(suppressionCommentFilter,
                 "filename1", "//CHECKSTYLE:OFF", "line2");
-        assertEquals(1, tags1.size(), "Invalid tags size");
+        assertWithMessage("Invalid tags size")
+            .that(tags1)
+            .hasSize(1);
         final List<?> tags2 = getTagsAfterExecution(suppressionCommentFilter,
                 "filename2", "No comments in this file");
-        assertEquals(0, tags2.size(), "Invalid tags size");
+        assertWithMessage("Invalid tags size")
+            .that(tags2)
+            .isEmpty();
     }
 
     private static List<Comparable<Object>> getTagsAfterExecutionOnDefaultFilter(String... lines) {

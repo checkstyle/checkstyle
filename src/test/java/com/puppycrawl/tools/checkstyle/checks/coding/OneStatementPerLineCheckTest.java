@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -54,9 +54,15 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTokensNotNull() {
         final OneStatementPerLineCheck check = new OneStatementPerLineCheck();
-        assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
-        assertNotNull(check.getDefaultTokens(), "Default tokens should not be null");
-        assertNotNull(check.getRequiredTokens(), "Required tokens should not be null");
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(check.getAcceptableTokens())
+            .isNotNull();
+        assertWithMessage("Default tokens should not be null")
+            .that(check.getDefaultTokens())
+            .isNotNull();
+        assertWithMessage("Required tokens should not be null")
+            .that(check.getRequiredTokens())
+            .isNotNull();
     }
 
     @Test
@@ -80,12 +86,12 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void oneStatementNonCompilableInputTest() throws Exception {
         final String[] expected = {
-            "39:6: " + getCheckMessage(MSG_KEY),
-            "44:58: " + getCheckMessage(MSG_KEY),
-            "45:58: " + getCheckMessage(MSG_KEY),
-            "45:74: " + getCheckMessage(MSG_KEY),
-            "46:50: " + getCheckMessage(MSG_KEY),
-            "50:85: " + getCheckMessage(MSG_KEY),
+            "39:4: " + getCheckMessage(MSG_KEY),
+            "44:54: " + getCheckMessage(MSG_KEY),
+            "45:54: " + getCheckMessage(MSG_KEY),
+            "45:70: " + getCheckMessage(MSG_KEY),
+            "46:46: " + getCheckMessage(MSG_KEY),
+            "50:81: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(

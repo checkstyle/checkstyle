@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_DISALLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_MISSING_FILE;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_UNKNOWN_PKG;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -57,8 +56,9 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
         };
-        assertArrayEquals(expected, checkObj.getRequiredTokens(),
-                "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+            .that(checkObj.getRequiredTokens())
+            .isEqualTo(expected);
     }
 
     @Test
@@ -265,7 +265,9 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             TokenTypes.STATIC_IMPORT,
         };
 
-        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(actual)
+            .isEqualTo(expected);
     }
 
     @Test

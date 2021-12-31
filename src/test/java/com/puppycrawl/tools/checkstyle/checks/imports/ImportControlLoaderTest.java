@@ -20,8 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doThrow;
@@ -58,7 +56,9 @@ public class ImportControlLoaderTest {
         final AbstractImportControl root =
                 ImportControlLoader.load(
                     new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
-        assertNotNull(root, "Import root should not be null");
+        assertWithMessage("Import root should not be null")
+            .that(root)
+            .isNotNull();
     }
 
     @Test
@@ -71,8 +71,10 @@ public class ImportControlLoaderTest {
         catch (CheckstyleException ex) {
             assertSame(MalformedURLException.class, ex.getCause().getClass(),
                     "Invalid exception class");
-            assertEquals("unknown protocol: aaa", ex.getCause().getMessage(),
-                    "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasCauseThat().hasMessageThat()
+                .isEqualTo("unknown protocol: aaa");
         }
     }
 
@@ -81,7 +83,9 @@ public class ImportControlLoaderTest {
         final AbstractImportControl root =
                 ImportControlLoader.load(
                     new File(getPath("InputImportControlLoaderWithNewElement.xml")).toURI());
-        assertNotNull(root, "Import root should not be null");
+        assertWithMessage("Import root should not be null")
+            .that(root)
+            .isNotNull();
     }
 
     @Test
@@ -103,8 +107,11 @@ public class ImportControlLoaderTest {
         }
         catch (InvocationTargetException ex) {
             assertSame(SAXException.class, ex.getCause().getClass(), "Invalid exception class");
-            assertEquals("missing attribute you_cannot_find_me", ex.getCause().getMessage(),
-                    "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasCauseThat()
+                .hasMessageThat()
+                .isEqualTo("missing attribute you_cannot_find_me");
         }
     }
 
@@ -127,8 +134,9 @@ public class ImportControlLoaderTest {
             assertSame(CheckstyleException.class, ex.getCause().getClass(),
                     "Invalid exception class");
             assertWithMessage("Invalid exception message: " + ex.getCause().getMessage())
-                    .that(ex.getCause().getMessage().startsWith("unable to read"))
-                    .isTrue();
+                    .that(ex)
+                    .hasCauseThat().hasMessageThat()
+                    .startsWith("unable to read");
         }
     }
 

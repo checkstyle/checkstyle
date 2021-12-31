@@ -24,8 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationChec
 import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_CHILD_ERROR_MULTI;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_ERROR;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_ERROR_MULTI;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -154,8 +152,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final IndentComment[] linesWithWarn =
                         getLinesWithWarnAndCheckComments(filePath, tabWidth);
         verify(config, filePath, expected, linesWithWarn);
-        assertEquals(linesWithWarn.length, expected.length,
-            "Expected warning count in UT does not match warn comment count in input file");
+        assertWithMessage("Expected warning count in UT does not match warn comment count "
+                + "in input file")
+            .that(expected.length)
+            .isEqualTo(linesWithWarn.length);
     }
 
     private void verify(Configuration config, String filePath, String[] expected,
@@ -178,7 +178,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final int[] expected = handlerFactory.getHandledTypes();
         Arrays.sort(expected);
         Arrays.sort(requiredTokens);
-        assertArrayEquals(expected, requiredTokens, "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+            .that(requiredTokens)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -189,7 +191,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final int[] expected = handlerFactory.getHandledTypes();
         Arrays.sort(expected);
         Arrays.sort(acceptableTokens);
-        assertArrayEquals(expected, acceptableTokens, "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(acceptableTokens)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -198,7 +202,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
         indentationCheck.setThrowsIndent(1);
 
-        assertEquals(1, indentationCheck.getThrowsIndent(), "Invalid throws indent");
+        assertWithMessage("Invalid throws indent")
+            .that(indentationCheck.getThrowsIndent())
+            .isEqualTo(1);
     }
 
     @Test
@@ -2957,10 +2963,11 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             final int line = event.getLine();
             final String message = event.getMessage();
 
-            if (position >= comments.length) {
-                assertWithMessage("found a warning when none was expected for #" + position
-                        + " at line " + line + " with message " + message).fail();
-            }
+            assertWithMessage(
+                    "found a warning when none was expected for #%s at line %s with message %s",
+                    position, line, message)
+                .that(position)
+                .isLessThan(comments.length);
 
             final IndentComment comment = comments[position];
             position++;

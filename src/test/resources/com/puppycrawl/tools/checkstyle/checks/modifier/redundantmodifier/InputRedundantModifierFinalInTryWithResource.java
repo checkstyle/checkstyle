@@ -12,28 +12,36 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
 public class InputRedundantModifierFinalInTryWithResource {
+    private static InputStreamReader streamm;
+
+    public InputRedundantModifierFinalInTryWithResource() throws UnsupportedEncodingException {
+        streamm = new InputStreamReader(null, "utf");
+    }
+
     public static void test() {
         try {
         }
         catch (RuntimeException e) {
         }
 
-        try (@NotNull BufferedReader br = new BufferedReader(new InputStreamReader(null, "utf"))) {
+        try (@NotNull BufferedReader br =
+                     new BufferedReader(streamm)) {
         }
         catch (IOException e) {
         }
 
-        try (final BufferedReader br = new BufferedReader(new InputStreamReader(null, "utf-8"))) { // violation
+        try (final BufferedReader br =  new BufferedReader(streamm)) { // violation
         }
         catch (IOException e) {
         }
 
-        try (final BufferedReader br = new BufferedReader(new InputStreamReader(null, "utf-8")); // violation
-                final BufferedReader br2 = new BufferedReader(new InputStreamReader(null, "utf"))) { // violation
+        try (final BufferedReader br =  new BufferedReader(streamm); // violation
+                final BufferedReader br2 = new BufferedReader(streamm)) { // violation
         }
         catch (IOException e) {
         }
