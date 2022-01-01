@@ -30,7 +30,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -376,8 +375,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             messageDigest.when(() -> MessageDigest.getInstance("SHA-1"))
                     .thenThrow(NoSuchAlgorithmException.class);
 
-            final InvocationTargetException ex =
-                assertThrows(InvocationTargetException.class, () -> {
+            final ReflectiveOperationException ex =
+                assertThrows(ReflectiveOperationException.class, () -> {
                     TestUtil.invokeStaticMethod(PropertyCacheFile.class,
                             "getHashCodeBasedOnObjectContent", config);
                 });
