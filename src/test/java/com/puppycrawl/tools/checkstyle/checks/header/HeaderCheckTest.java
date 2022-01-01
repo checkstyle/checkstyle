@@ -29,7 +29,6 @@ import static org.mockito.Mockito.when;
 import java.io.File;
 import java.io.IOException;
 import java.io.LineNumberReader;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.util.Set;
 
@@ -206,9 +205,8 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         final HeaderCheck check = new HeaderCheck();
         check.setHeaderFile(new URI("test://bad"));
 
-        final InvocationTargetException ex = assertThrows(InvocationTargetException.class, () -> {
-            TestUtil.invokeMethod(check, "loadHeaderFile");
-        });
+        final ReflectiveOperationException ex = assertThrows(ReflectiveOperationException.class,
+            () -> TestUtil.invokeMethod(check, "loadHeaderFile"));
         assertWithMessage("Invalid exception cause message")
             .that(ex)
                 .hasCauseThat()
@@ -263,9 +261,8 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
     public void testLoadHeaderFileTwice() {
         final HeaderCheck check = new HeaderCheck();
         check.setHeader("Header");
-        final InvocationTargetException ex = assertThrows(InvocationTargetException.class, () -> {
-            TestUtil.invokeMethod(check, "loadHeaderFile");
-        });
+        final ReflectiveOperationException ex = assertThrows(ReflectiveOperationException.class,
+                () -> TestUtil.invokeMethod(check, "loadHeaderFile"));
         assertWithMessage("Invalid exception cause message")
                 .that(ex)
                 .hasCauseThat()

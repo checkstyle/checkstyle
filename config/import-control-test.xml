@@ -26,11 +26,6 @@
   <allow pkg=".*" regex="true" />
 
   <subpackage name="api">
-    <file name="AutomaticBeanTest">
-      <!-- Catches InvocationTargetException. -->
-      <allow class="java.lang.reflect.InvocationTargetException" />
-    </file>
-
   </subpackage>
   <subpackage name="internal">
     <subpackage name="utils">

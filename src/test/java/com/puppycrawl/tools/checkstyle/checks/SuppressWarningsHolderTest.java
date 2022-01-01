@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
@@ -319,7 +318,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
             getAllAnnotationValues.invoke(holder, parent);
             assertWithMessage("Exception expected").fail();
         }
-        catch (InvocationTargetException ex) {
+        catch (ReflectiveOperationException ex) {
             assertWithMessage("Error type is unexpected")
                     .that(ex)
                     .hasCauseThat()
@@ -349,7 +348,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
             getAllAnnotationValues.invoke(holder, methodDef);
             assertWithMessage("Exception expected").fail();
         }
-        catch (InvocationTargetException ex) {
+        catch (ReflectiveOperationException ex) {
             assertWithMessage("Error type is unexpected")
                     .that(ex)
                     .hasCauseThat()
@@ -384,7 +383,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
             getAnnotationTarget.invoke(holder, methodDef);
             assertWithMessage("Exception expected").fail();
         }
-        catch (InvocationTargetException ex) {
+        catch (ReflectiveOperationException ex) {
             assertWithMessage("Error type is unexpected")
                     .that(ex)
                     .hasCauseThat()
