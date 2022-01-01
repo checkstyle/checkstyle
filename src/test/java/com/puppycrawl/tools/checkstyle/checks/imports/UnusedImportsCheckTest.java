@@ -68,36 +68,36 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithoutProcessJavadoc() throws Exception {
         final String[] expected = {
-            "11:8: " + getCheckMessage(MSG_KEY,
+            "12:8: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks."
                 + "imports.unusedimports.InputUnusedImportsBug"),
-            "14:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
-            "16:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "15:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
             "17:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "20:8: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
-            "23:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToggleButton"),
-            "25:8: " + getCheckMessage(MSG_KEY, "javax.swing.BorderFactory"),
-            "30:15: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
-            // "32:8: Unused import - java.awt.Component.", // Should be detected
-            "33:8: " + getCheckMessage(MSG_KEY, "java.awt.Graphics2D"),
-            "34:8: " + getCheckMessage(MSG_KEY, "java.awt.HeadlessException"),
-            "35:8: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
-            "36:8: " + getCheckMessage(MSG_KEY, "java.util.Date"),
-            "37:8: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
-            "38:8: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
-            "40:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Checker"),
-            "41:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.CheckerTest"),
-            "42:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Definitions"),
-            "43:8: " + getCheckMessage(MSG_KEY,
+            "18:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "21:8: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
+            "24:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToggleButton"),
+            "26:8: " + getCheckMessage(MSG_KEY, "javax.swing.BorderFactory"),
+            "31:15: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
+            // "33:8: Unused import - java.awt.Component.", // Should be detected
+            "34:8: " + getCheckMessage(MSG_KEY, "java.awt.Graphics2D"),
+            "35:8: " + getCheckMessage(MSG_KEY, "java.awt.HeadlessException"),
+            "36:8: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
+            "37:8: " + getCheckMessage(MSG_KEY, "java.util.Date"),
+            "38:8: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
+            "39:8: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
+            "41:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Checker"),
+            "42:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.CheckerTest"),
+            "43:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Definitions"),
+            "44:8: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks.imports.unusedimports."
                         + "InputUnusedImports15Extensions"),
-            "44:8: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest"),
             "45:8: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.PackageNamesLoader"),
+                "com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest"),
             "46:8: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.PackageNamesLoader"),
+            "47:8: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.DefaultConfiguration"),
-            "47:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
+            "48:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImports2.java"), expected);
@@ -106,19 +106,19 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testProcessJavadoc() throws Exception {
         final String[] expected = {
-            "11:8: " + getCheckMessage(MSG_KEY,
+            "12:8: " + getCheckMessage(MSG_KEY,
                     "com.puppycrawl.tools.checkstyle.checks."
                     + "imports.unusedimports.InputUnusedImportsBug"),
-            "14:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
-            "16:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "15:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
             "17:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "20:8: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
-            "23:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToggleButton"),
-            "25:8: " + getCheckMessage(MSG_KEY, "javax.swing.BorderFactory"),
-            "30:15: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
-            // "29:8: Unused import - java.awt.Component.", // Should be detected
-            "35:8: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
-            "47:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
+            "18:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "21:8: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
+            "24:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToggleButton"),
+            "26:8: " + getCheckMessage(MSG_KEY, "javax.swing.BorderFactory"),
+            "31:15: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
+            // "30:8: Unused import - java.awt.Component.", // Should be detected
+            "36:8: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
+            "48:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImports.java"), expected);

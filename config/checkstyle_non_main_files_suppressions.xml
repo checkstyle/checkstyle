@@ -160,12 +160,6 @@
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputEqualsAvoidNullIgnoreCase.java"/>
 
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputUnusedImports.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputUnusedImports2.java"/>
-
   <!-- apply check numberOfTestCasesInXpath only for files in suppressionxpathfilter directory -->
   <suppress id="numberOfTestCasesInXpath"
          files="src[\\/]it[\\/]java[\\/]com[\\/].*" />
