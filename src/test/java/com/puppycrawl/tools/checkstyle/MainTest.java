@@ -22,8 +22,6 @@ package com.puppycrawl.tools.checkstyle;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.AbstractPathTestSupport.addEndOfLine;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.itsallcode.junit.sysextensions.AssertExit.assertExitWithStatus;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
@@ -471,8 +469,9 @@ public class MainTest {
         final Path path = new File(getPath("InputMain.java")).toPath();
         final AutomaticBean.OutputStreamOptions option =
                 TestUtil.invokeStaticMethod(Main.class, "getOutputStreamOptions", path);
-        assertThat("Main.getOutputStreamOptions return CLOSE on not null Path",
-                option, is(AutomaticBean.OutputStreamOptions.CLOSE));
+        assertWithMessage("Main.getOutputStreamOptions return CLOSE on not null Path")
+                .that(option)
+                .isEqualTo(AutomaticBean.OutputStreamOptions.CLOSE);
     }
 
     @Test
@@ -524,8 +523,12 @@ public class MainTest {
                 getPath("InputMainViolationsForGoogleXpathSuppressions.xml"));
         Main.main("-c", "/google_checks.xml",
                 getPath("InputMainViolationsForGoogle.java"));
-        assertThat("Unexpected output log", systemOut.getCapturedData(), is(noViolationsOutput));
-        assertThat("Unexpected system error log", systemErr.getCapturedData(), is(""));
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(noViolationsOutput);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -535,8 +538,12 @@ public class MainTest {
                 getPath("InputMainViolationsForGoogleSuppressions.xml"));
         Main.main("-c", "/google_checks.xml",
                 getPath("InputMainViolationsForGoogle.java"));
-        assertThat("Unexpected output log", systemOut.getCapturedData(), is(noViolationsOutput));
-        assertThat("Unexpected system error log", systemErr.getCapturedData(), is(""));
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(noViolationsOutput);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1030,8 +1037,12 @@ public class MainTest {
         Main.main("-b", "/COMPILATION_UNIT/CLASS_DEF//METHOD_DEF[./IDENT[@text='methodOne']]"
                         + "//VARIABLE_DEF/IDENT",
                 getPath("InputMainXPath.java"));
-        assertThat("Unexpected output log", systemOut.getCapturedData(), is(expected));
-        assertThat("Unexpected system error log", systemErr.getCapturedData(), is(""));
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1045,8 +1056,12 @@ public class MainTest {
             "        |   |--BLOCK_COMMENT_BEGIN -> /* [18:4]");
         Main.main("-b", "/COMPILATION_UNIT/CLASS_DEF//BLOCK_COMMENT_BEGIN",
                 getPath("InputMainXPath.java"));
-        assertThat("Unexpected output log", systemOut.getCapturedData(), is(expected));
-        assertThat("Unexpected system error log", systemErr.getCapturedData(), is(""));
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1054,8 +1069,12 @@ public class MainTest {
             @SysOut Capturable systemOut) throws IOException {
         final String expected = addEndOfLine("COMPILATION_UNIT -> COMPILATION_UNIT [1:0]");
         Main.main("-b", "/COMPILATION_UNIT", getPath("InputMainXPath.java"));
-        assertThat("Unexpected output log", systemOut.getCapturedData(), is(expected));
-        assertThat("Unexpected system error log", systemErr.getCapturedData(), is(""));
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1072,8 +1091,12 @@ public class MainTest {
         final String xpath = "/COMPILATION_UNIT/CLASS_DEF//METHOD_DEF[./IDENT[@text='method']]"
                 + "//VARIABLE_DEF/IDENT";
         Main.main("--branch-matching-xpath", xpath, getPath("InputMainXPath.java"));
-        assertThat("Unexpected output log", systemOut.getCapturedData(), is(expected));
-        assertThat("Unexpected system error log", systemErr.getCapturedData(), is(""));
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1092,8 +1115,12 @@ public class MainTest {
         Main.main("--branch-matching-xpath", "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Two']]"
                         + "//METHOD_DEF",
                 getPath("InputMainXPath.java"));
-        assertThat("Unexpected output log", systemOut.getCapturedData(), is(expected));
-        assertThat("Unexpected system error log", systemErr.getCapturedData(), is(""));
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expected);
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
@@ -1107,8 +1134,9 @@ public class MainTest {
         final String exceptionFirstLine = addEndOfLine("com.puppycrawl.tools.checkstyle.api."
             + "CheckstyleException: Error during evaluation for xpath: " + invalidXpath
             + ", file: " + filePath);
-        assertThat("Unexpected system error log",
-            systemErr.getCapturedData().startsWith(exceptionFirstLine), is(true));
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .startsWith(exceptionFirstLine);
     }
 
     @Test

@@ -22,11 +22,6 @@ package com.puppycrawl.tools.checkstyle.internal;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static java.lang.Integer.parseInt;
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.hamcrest.CoreMatchers.describedAs;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.beans.PropertyDescriptor;
 import java.io.File;
@@ -322,11 +317,15 @@ public class XdocsPagesTest {
                 final Node subSection = subSections.item(position);
                 final Node name = subSection.getAttributes().getNamedItem("name");
 
-                assertNotNull(name, "All sub-sections in '" + fileName + "' must have a name");
+                assertWithMessage("All sub-sections in '" + fileName + "' must have a name")
+                    .that(name)
+                    .isNotNull();
 
                 final Node id = subSection.getAttributes().getNamedItem("id");
 
-                assertNotNull(id, "All sub-sections in '" + fileName + "' must have an id");
+                assertWithMessage("All sub-sections in '" + fileName + "' must have an id")
+                    .that(id)
+                    .isNotNull();
 
                 final String sectionName;
 
@@ -481,8 +480,9 @@ public class XdocsPagesTest {
                 final String sectionName = XmlUtil.getNameAttributeOfNode(section);
 
                 if ("Content".equals(sectionName) || "Overview".equals(sectionName)) {
-                    assertNull(lastSectionName,
-                            fileName + " section '" + sectionName + "' should be first");
+                    assertWithMessage(fileName + " section '" + sectionName + "' should be first")
+                        .that(lastSectionName)
+                        .isNull();
                     continue;
                 }
 
@@ -707,7 +707,9 @@ public class XdocsPagesTest {
             assertWithMessage(wrapperMessage)
                     .that(div.hasAttributes())
                     .isTrue();
-            assertNotNull(div.getAttributes().getNamedItem("class").getNodeValue(), wrapperMessage);
+            assertWithMessage(wrapperMessage)
+                .that(div.getAttributes().getNamedItem("class").getNodeValue())
+                .isNotNull();
             assertWithMessage(wrapperMessage)
                     .that(div.getAttributes().getNamedItem("class").getNodeValue()
                                     .contains("wrapper"))
@@ -1746,18 +1748,14 @@ public class XdocsPagesTest {
                 if (ruleNumberPartsAreNumeric) {
                     final int numericRuleNumberPart = parseInt(ruleNumberPart);
                     final int numericLastRuleNumberPart = parseInt(lastRuleNumberPart);
-                    assertThat(outOfOrderReason,
-                            numericRuleNumberPart < numericLastRuleNumberPart,
-                            describedAs("'%0' should not be less than '%1'",
-                                    is(false),
-                                    numericRuleNumberPart, numericLastRuleNumberPart));
+                    assertWithMessage(outOfOrderReason)
+                        .that(numericRuleNumberPart)
+                        .isAtLeast(numericLastRuleNumberPart);
                 }
                 else {
-                    assertThat(outOfOrderReason,
-                            ruleNumberPart.compareToIgnoreCase(lastRuleNumberPart) < 0,
-                            describedAs("'%0' should not be less than '%1'",
-                                    is(false),
-                                    ruleNumberPart, lastRuleNumberPart));
+                    assertWithMessage(outOfOrderReason)
+                        .that(ruleNumberPart.compareToIgnoreCase(lastRuleNumberPart))
+                        .isAtLeast(0);
                 }
                 lastRuleNumberPartWasEqual = ruleNumberPart.equalsIgnoreCase(lastRuleNumberPart);
                 if (!lastRuleNumberPartWasEqual) {

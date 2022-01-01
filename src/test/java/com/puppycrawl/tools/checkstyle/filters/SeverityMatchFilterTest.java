@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -111,7 +110,9 @@ public class SeverityMatchFilterTest {
     @Test
     public void testConfigure() throws CheckstyleException {
         filter.configure(new DefaultConfiguration("test"));
-        assertNotNull(filter, "object exists");
+        assertWithMessage("object exists")
+            .that(filter)
+            .isNotNull();
     }
 
 }

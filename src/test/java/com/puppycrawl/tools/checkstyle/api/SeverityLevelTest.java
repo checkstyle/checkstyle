@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
@@ -45,7 +44,9 @@ public class SeverityLevelTest {
     @Test
     public void testMisc() {
         final SeverityLevel severityLevel = SeverityLevel.getInstance("info");
-        assertNotNull(severityLevel, "Invalid getInstance result, should not be null");
+        assertWithMessage("Invalid getInstance result, should not be null")
+            .that(severityLevel)
+            .isNotNull();
         assertWithMessage("Invalid toString result")
             .that(severityLevel.toString())
             .isEqualTo("info");

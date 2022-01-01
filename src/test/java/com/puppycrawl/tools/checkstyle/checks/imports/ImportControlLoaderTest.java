@@ -20,8 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
@@ -57,7 +55,9 @@ public class ImportControlLoaderTest {
         final AbstractImportControl root =
                 ImportControlLoader.load(
                     new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
-        assertNotNull(root, "Import root should not be null");
+        assertWithMessage("Import root should not be null")
+            .that(root)
+            .isNotNull();
     }
 
     @Test
@@ -68,8 +68,9 @@ public class ImportControlLoaderTest {
             assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertSame(MalformedURLException.class, ex.getCause().getClass(),
-                    "Invalid exception class");
+            assertWithMessage("Invalid exception class")
+                .that(ex.getCause())
+                .isInstanceOf(MalformedURLException.class);
             assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasCauseThat().hasMessageThat()
@@ -82,7 +83,9 @@ public class ImportControlLoaderTest {
         final AbstractImportControl root =
                 ImportControlLoader.load(
                     new File(getPath("InputImportControlLoaderWithNewElement.xml")).toURI());
-        assertNotNull(root, "Import root should not be null");
+        assertWithMessage("Import root should not be null")
+            .that(root)
+            .isNotNull();
     }
 
     @Test
@@ -103,7 +106,9 @@ public class ImportControlLoaderTest {
             assertWithMessage("exception expected").fail();
         }
         catch (InvocationTargetException ex) {
-            assertSame(SAXException.class, ex.getCause().getClass(), "Invalid exception class");
+            assertWithMessage("Invalid exception class")
+                .that(ex.getCause())
+                .isInstanceOf(SAXException.class);
             assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasCauseThat()
@@ -128,8 +133,9 @@ public class ImportControlLoaderTest {
             assertWithMessage("exception expected").fail();
         }
         catch (InvocationTargetException ex) {
-            assertSame(CheckstyleException.class, ex.getCause().getClass(),
-                    "Invalid exception class");
+            assertWithMessage("Invalid exception class")
+                .that(ex.getCause())
+                .isInstanceOf(CheckstyleException.class);
             assertWithMessage("Invalid exception message: " + ex.getCause().getMessage())
                     .that(ex)
                     .hasCauseThat().hasMessageThat()

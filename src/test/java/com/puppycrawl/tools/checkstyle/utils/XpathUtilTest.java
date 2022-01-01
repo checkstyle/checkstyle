@@ -23,8 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.AbstractPathTestSupport.addEndOfLine;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static com.puppycrawl.tools.checkstyle.utils.XpathUtil.getTextAttributeValue;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.File;
 import java.io.IOException;
@@ -114,7 +112,9 @@ public class XpathUtilTest {
             "        |       |   |--IDENT -> a [1:39]");
         final String result = XpathUtil.printXpathBranch(
             "//CLASS_DEF//METHOD_DEF//VARIABLE_DEF//IDENT", file);
-        assertThat("Branch string is different", result, is(expected));
+        assertWithMessage("Branch string is different")
+            .that(result)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -129,7 +129,9 @@ public class XpathUtilTest {
             "        |--BLOCK_COMMENT_BEGIN -> /* [1:13]");
         final String result = XpathUtil.printXpathBranch(
             "//CLASS_DEF//BLOCK_COMMENT_BEGIN", file);
-        assertThat("Branch string is different", result, is(expected));
+        assertWithMessage("Branch string is different")
+            .that(result)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -155,7 +157,9 @@ public class XpathUtilTest {
             "        |       |   |--IDENT -> b [1:50]");
         final String result = XpathUtil.printXpathBranch(
             "//CLASS_DEF//METHOD_DEF//VARIABLE_DEF//IDENT", file);
-        assertThat("Branch string is different", result, is(expected));
+        assertWithMessage("Branch string is different")
+            .that(result)
+            .isEqualTo(expected);
     }
 
     @Test
@@ -173,7 +177,9 @@ public class XpathUtilTest {
             final String expectedMessage =
                 "Error during evaluation for xpath: " + invalidXpath
                     + ", file: " + file.getCanonicalPath();
-            assertThat("Exception message is different", ex.getMessage(), is(expectedMessage));
+            assertWithMessage("Exception message is different")
+                .that(ex.getMessage())
+                .isEqualTo(expectedMessage);
         }
     }
 

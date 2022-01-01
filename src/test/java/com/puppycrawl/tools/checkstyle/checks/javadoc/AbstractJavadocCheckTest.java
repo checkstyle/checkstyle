@@ -28,7 +28,6 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.File;
 import java.util.LinkedHashMap;
@@ -240,7 +239,9 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             }
         };
 
-        assertNotNull(check.getDefaultTokens(), "Default tokens should not be null");
+        assertWithMessage("Default tokens should not be null")
+            .that(check.getDefaultTokens())
+            .isNotNull();
         assertWithMessage("Acceptable tokens should be equal to default")
             .that(check.getAcceptableTokens())
             .isEqualTo(check.getDefaultTokens());
@@ -539,7 +540,9 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                 .that(ast.getText())
                 .isEqualTo("JAVADOC");
             final DetailNode text = JavadocUtil.findFirstToken(ast, JavadocTokenTypes.TEXT);
-            assertNotNull(text, "Empty javadoc text at " + ast);
+            assertWithMessage("Empty javadoc text at " + ast)
+                .that(text)
+                .isNotNull();
             assertWithMessage(ast.toString())
                 .that(text.getText())
                 .isEqualTo("Javadoc");

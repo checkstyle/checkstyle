@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -57,7 +56,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     public void testEncode()
             throws IOException {
         final XMLLogger test = new XMLLogger(outStream, OutputStreamOptions.NONE);
-        assertNotNull(test, "should be able to create XMLLogger without issue");
+        assertWithMessage("should be able to create XMLLogger without issue")
+            .that(test)
+            .isNotNull();
         final String[][] encodings = {
             {"<", "&lt;"},
             {">", "&gt;"},
@@ -85,7 +86,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     public void testIsReference()
             throws IOException {
         final XMLLogger test = new XMLLogger(outStream, OutputStreamOptions.NONE);
-        assertNotNull(test, "should be able to create XMLLogger without issue");
+        assertWithMessage("should be able to create XMLLogger without issue")
+            .that(test)
+            .isNotNull();
         final String[] references = {
             "&#0;",
             "&#x0;",
@@ -372,7 +375,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         try {
             final XMLLogger logger = new XMLLogger(outStream, null);
             // assert required to calm down eclipse's 'The allocated object is never used' violation
-            assertNotNull(logger, "Null instance");
+            assertWithMessage("Null instance")
+                .that(logger)
+                .isNotNull();
             assertWithMessage("Exception was expected").fail();
         }
         catch (IllegalArgumentException exception) {
@@ -388,7 +393,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         logger.finishLocalSetup();
         logger.auditStarted(null);
         logger.auditFinished(null);
-        assertNotNull(logger, "instance should not be null");
+        assertWithMessage("instance should not be null")
+            .that(logger)
+            .isNotNull();
     }
 
     private static class TestException extends RuntimeException {

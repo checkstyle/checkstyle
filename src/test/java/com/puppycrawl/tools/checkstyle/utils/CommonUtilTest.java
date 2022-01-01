@@ -22,12 +22,6 @@ package com.puppycrawl.tools.checkstyle.utils;
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.CoreMatchers.startsWith;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.mock;
@@ -547,15 +541,19 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final String filename =
                 getPackageLocation() + "/InputCommonUtilTest_resource.txt";
         final URI uri = CommonUtil.getUriByFilename(filename);
-        assertThat("URI is null for: " + filename, uri, is(not(nullValue())));
+        assertWithMessage("URI is null for: " + filename)
+            .that(uri)
+            .isNotNull();
         final String uriRelativeToPackage =
                 "com/puppycrawl/tools/checkstyle/utils/"
                         + getPackageLocation() + "/InputCommonUtilTest_resource.txt";
-        assertThat("URI is relative to package " + uriRelativeToPackage,
-            uri.toString(), not(containsString(uriRelativeToPackage)));
+        assertWithMessage("URI is relative to package " + uriRelativeToPackage)
+            .that(uri.toString())
+            .doesNotContain(uriRelativeToPackage);
         final String content = IOUtils.toString(uri.toURL(), StandardCharsets.UTF_8);
-        assertThat("Content mismatches for: " + uri,
-                content, startsWith("good"));
+        assertWithMessage("Content mismatches for: " + uri)
+            .that(content)
+            .startsWith("good");
     }
 
     @Test

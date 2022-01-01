@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.File;
 import java.util.Collection;
@@ -238,7 +237,9 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.SWITCH_RULE,
         };
-        assertNotNull(actual, "Acceptable tokens should not be null");
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(actual)
+            .isNotNull();
         assertWithMessage("Invalid acceptable tokens")
             .that(actual)
             .isEqualTo(expected);
@@ -268,7 +269,9 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.SWITCH_RULE,
         };
-        assertNotNull(actual, "Required tokens should not be null");
+        assertWithMessage("Required tokens should not be null")
+            .that(actual)
+            .isNotNull();
         assertWithMessage("Invalid required tokens")
             .that(actual)
             .isEqualTo(expected);

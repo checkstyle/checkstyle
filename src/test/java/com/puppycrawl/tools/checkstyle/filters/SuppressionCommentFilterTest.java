@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.File;
 import java.util.Arrays;
@@ -439,7 +438,9 @@ public class SuppressionCommentFilterTest
         assertWithMessage("Filter should accept audit event")
             .that(filter.accept(auditEvent))
                 .isTrue();
-        assertNull(auditEvent.getFileName(), "File name should not be null");
+        assertWithMessage("File name should not be null")
+            .that(auditEvent.getFileName())
+            .isNull();
     }
 
     @Test

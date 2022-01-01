@@ -21,8 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -59,7 +57,9 @@ public class XmlLoaderTest {
         final Map<String, String> map = new HashMap<>();
         map.put("predefined", "/google.xml");
         final DummyLoader dummyLoader = new DummyLoader(map);
-        assertNull(dummyLoader.resolveEntity("notPredefined", "BAD"), "Invalid entity");
+        assertWithMessage("Invalid entity")
+            .that(dummyLoader.resolveEntity("notPredefined", "BAD"))
+            .isNull();
     }
 
     @Test
@@ -67,7 +67,9 @@ public class XmlLoaderTest {
         final Map<String, String> map = new HashMap<>();
         map.put("predefined", "/google.xml");
         final DummyLoader dummyLoader = new DummyLoader(map);
-        assertNotNull(dummyLoader.resolveEntity("predefined", "BAD"), "Invalid entity");
+        assertWithMessage("Invalid entity")
+            .that(dummyLoader.resolveEntity("predefined", "BAD"))
+            .isNotNull();
     }
 
     private static final class DummyLoader extends XmlLoader {

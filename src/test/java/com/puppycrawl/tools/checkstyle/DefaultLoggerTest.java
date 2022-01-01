@@ -20,8 +20,8 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -212,7 +212,9 @@ public class DefaultLoggerTest {
         dl.finishLocalSetup();
         dl.auditStarted(null);
         dl.auditFinished(null);
-        assertNotNull(dl, "instance should not be null");
+        assertWithMessage("instance should not be null")
+            .that(dl)
+            .isNotNull();
     }
 
     /**
@@ -221,11 +223,10 @@ public class DefaultLoggerTest {
     @Test
     public void testLanguageIsValid() {
         final String language = DEFAULT_LOCALE.getLanguage();
-        if (!language.isEmpty()) {
-            assertWithMessage("Invalid language")
-                    .that(Arrays.asList(Locale.getISOLanguages()))
-                    .contains(language);
-        }
+        assumeFalse(language.isEmpty(), "Locale not set");
+        assertWithMessage("Invalid language")
+                .that(Arrays.asList(Locale.getISOLanguages()))
+                .contains(language);
     }
 
     /**
@@ -234,11 +235,10 @@ public class DefaultLoggerTest {
     @Test
     public void testCountryIsValid() {
         final String country = DEFAULT_LOCALE.getCountry();
-        if (!country.isEmpty()) {
-            assertWithMessage("Invalid country")
-                    .that(Arrays.asList(Locale.getISOCountries()))
-                    .contains(country);
-        }
+        assumeFalse(country.isEmpty(), "Locale not set");
+        assertWithMessage("Invalid country")
+                .that(Arrays.asList(Locale.getISOCountries()))
+                .contains(country);
     }
 
     /**
@@ -248,17 +248,17 @@ public class DefaultLoggerTest {
     @Test
     public void testLocaleIsSupported() throws Exception {
         final String language = DEFAULT_LOCALE.getLanguage();
-        if (!language.isEmpty() && !Locale.ENGLISH.getLanguage().equals(language)) {
-            final Class<?> localizedMessage = getDefaultLoggerClass().getDeclaredClasses()[0];
-            final Object messageCon = localizedMessage.getConstructor(String.class, String[].class)
-                    .newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE, null);
-            final Method message = messageCon.getClass().getDeclaredMethod("getMessage");
-            final Object constructor = localizedMessage.getConstructor(String.class)
-                    .newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE);
-            assertWithMessage("Unsupported language: " + DEFAULT_LOCALE)
-                    .that(message.invoke(constructor))
-                    .isEqualTo("Error auditing {0}");
-        }
+        assumeFalse(language.isEmpty() || Locale.ENGLISH.getLanguage().equals(language),
+                "Custom locale not set");
+        final Class<?> localizedMessage = getDefaultLoggerClass().getDeclaredClasses()[0];
+        final Object messageCon = localizedMessage.getConstructor(String.class, String[].class)
+                .newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE, null);
+        final Method message = messageCon.getClass().getDeclaredMethod("getMessage");
+        final Object constructor = localizedMessage.getConstructor(String.class)
+                .newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE);
+        assertWithMessage("Unsupported language: " + DEFAULT_LOCALE)
+                .that(message.invoke(constructor))
+                .isEqualTo("Error auditing {0}");
     }
 
     @DefaultLocale("fr")

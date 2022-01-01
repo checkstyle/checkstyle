@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -296,12 +295,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 final int[] defaultTokens = testedCheck.getDefaultTokens();
                 final int[] acceptableTokens = testedCheck.getAcceptableTokens();
 
-                if (!isSubset(defaultTokens, acceptableTokens)) {
-                    final String errorMessage = String.format(Locale.ROOT,
-                            "%s's default tokens must be a subset"
-                            + " of acceptable tokens.", check.getName());
-                    assertWithMessage(errorMessage).fail();
-                }
+                assertWithMessage("%s's default tokens must be a subset of acceptable tokens.",
+                            check.getName())
+                        .that(isSubset(defaultTokens, acceptableTokens))
+                        .isTrue();
             }
         }
     }
@@ -315,12 +312,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 final int[] requiredTokens = testedCheck.getRequiredTokens();
                 final int[] acceptableTokens = testedCheck.getAcceptableTokens();
 
-                if (!isSubset(requiredTokens, acceptableTokens)) {
-                    final String errorMessage = String.format(Locale.ROOT,
-                            "%s's required tokens must be a subset"
-                            + " of acceptable tokens.", check.getName());
-                    assertWithMessage(errorMessage).fail();
-                }
+                assertWithMessage("%s's required tokens must be a subset of acceptable tokens.",
+                            check.getName())
+                        .that(isSubset(requiredTokens, acceptableTokens))
+                        .isTrue();
             }
         }
     }
@@ -334,12 +329,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 final int[] defaultTokens = testedCheck.getDefaultTokens();
                 final int[] requiredTokens = testedCheck.getRequiredTokens();
 
-                if (!isSubset(requiredTokens, defaultTokens)) {
-                    final String errorMessage = String.format(Locale.ROOT,
-                            "%s's required tokens must be a subset"
-                            + " of default tokens.", check.getName());
-                    assertWithMessage(errorMessage).fail();
-                }
+                assertWithMessage("%s's required tokens must be a subset of default tokens.",
+                            check.getName())
+                        .that(isSubset(requiredTokens, defaultTokens))
+                        .isTrue();
             }
         }
     }
@@ -611,8 +604,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                         + ex.getClass().getSimpleName() + " - " + ex.getMessage()).fail();
             }
 
-            assertNotNull(result, module.getSimpleName() + " should have text for the message '"
-                    + messageString + "' in locale " + locale.getLanguage() + "'");
+            assertWithMessage(module.getSimpleName() + " should have text for the message '"
+                    + messageString + "' in locale " + locale.getLanguage() + "'")
+                .that(result)
+                .isNotNull();
             assertWithMessage("%s should have non-empty text for the message '%s' in locale '%s'",
                             module.getSimpleName(), messageString, locale.getLanguage())
                     .that(result.trim())

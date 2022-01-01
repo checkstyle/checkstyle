@@ -20,9 +20,6 @@
 package com.puppycrawl.tools.checkstyle.gui;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.io.File;
 
@@ -138,7 +135,9 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         final DetailAST commentContentNode = tree.getLastChild().getLastChild()
                 .getPreviousSibling().getLastChild().getFirstChild().getFirstChild();
         final Object commentChild = parseTree.getChild(commentContentNode, 0);
-        assertNull(commentChild, "Child must be null");
+        assertWithMessage("Child must be null")
+            .that(commentChild)
+            .isNull();
     }
 
     @Test
@@ -225,7 +224,9 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     @Test
     public void testGetIndexOfChild() {
         DetailAST ithChild = tree.getFirstChild();
-        assertNotNull(ithChild, "Child must not be null");
+        assertWithMessage("Child must not be null")
+            .that(ithChild)
+            .isNotNull();
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         int index = 0;
         while (ithChild != null) {
@@ -262,7 +263,9 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
             .getNextSibling()
             .getNextSibling();
 
-        assertNotNull(node, "Expected a non-null identifier node here");
+        assertWithMessage("Expected a non-null identifier node here")
+            .that(node)
+            .isNotNull();
         assertWithMessage("Expected identifier token")
             .that(node.getType())
             .isEqualTo(TokenTypes.IDENT);
@@ -286,7 +289,9 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         assertWithMessage("Wrong class name")
             .that(text)
             .isEqualTo("InputParseTreeTablePresentation");
-        assertNull(treeModel, "Root node should have null value");
+        assertWithMessage("Root node should have null value")
+            .that(treeModel)
+            .isNull();
 
         try {
             parseTree.getValueAt(node, parseTree.getColumnCount());
@@ -302,7 +307,9 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     @Test
     public void testGetValueAtDetailNode() {
         final DetailAST commentContentNode = tree.getFirstChild().getNextSibling().getFirstChild();
-        assertNotNull(commentContentNode, "Comment node cannot be null");
+        assertWithMessage("Comment node cannot be null")
+            .that(commentContentNode)
+            .isNotNull();
         final int nodeType = commentContentNode.getType();
         assertWithMessage("Comment node should be a comment type")
                 .that(TokenUtil.isCommentType(nodeType))
@@ -328,7 +335,9 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         final String text = (String) parseTree.getValueAt(child, 4);
         final String expectedText = "JAVADOC";
 
-        assertNull(treeModel, "Tree model must be null");
+        assertWithMessage("Tree model must be null")
+            .that(treeModel)
+            .isNull();
         assertWithMessage("Invalid type")
             .that(type)
             .isEqualTo("JAVADOC");
@@ -356,11 +365,21 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     @Test
     public void testColumnMethods() {
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
-        assertSame(ParseTreeTableModel.class, parseTree.getColumnClass(0), "Invalid type");
-        assertSame(String.class, parseTree.getColumnClass(1), "Invalid type");
-        assertSame(Integer.class, parseTree.getColumnClass(2), "Invalid type");
-        assertSame(Integer.class, parseTree.getColumnClass(3), "Invalid type");
-        assertSame(String.class, parseTree.getColumnClass(4), "Invalid type");
+        assertWithMessage("Invalid type")
+            .that(parseTree.getColumnClass(0))
+            .isEqualTo(ParseTreeTableModel.class);
+        assertWithMessage("Invalid type")
+            .that(parseTree.getColumnClass(1))
+            .isEqualTo(String.class);
+        assertWithMessage("Invalid type")
+            .that(parseTree.getColumnClass(2))
+            .isEqualTo(Integer.class);
+        assertWithMessage("Invalid type")
+            .that(parseTree.getColumnClass(3))
+            .isEqualTo(Integer.class);
+        assertWithMessage("Invalid type")
+            .that(parseTree.getColumnClass(4))
+            .isEqualTo(String.class);
 
         try {
             parseTree.getColumnClass(parseTree.getColumnCount());

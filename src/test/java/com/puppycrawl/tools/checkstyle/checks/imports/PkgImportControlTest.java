@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -73,8 +72,9 @@ public class PkgImportControlTest {
 
     @Test
     public void testDotMetaCharacter() {
-        assertNull(icUncommon.locateFinest("com-kazgroup.courtlink.uncommon.regexp", "MyClass"),
-                "Unexpected response");
+        assertWithMessage("Unexpected response")
+            .that(icUncommon.locateFinest("com-kazgroup.courtlink.uncommon.regexp", "MyClass"))
+            .isNull();
     }
 
     @Test
@@ -85,15 +85,19 @@ public class PkgImportControlTest {
         assertWithMessage("Unexpected response")
             .that(icRoot.locateFinest("com.kazgroup.courtlink.common.api", "MyClass"))
             .isEqualTo(icCommon);
-        assertNull(icRoot.locateFinest("com", "MyClass"), "Unexpected response");
+        assertWithMessage("Unexpected response")
+            .that(icRoot.locateFinest("com", "MyClass"))
+            .isNull();
     }
 
     @Test
     public void testEnsureTrailingDot() {
-        assertNull(icRoot.locateFinest("com.kazgroup.courtlinkkk", "MyClass"),
-                "Unexpected response");
-        assertNull(icRoot.locateFinest("com.kazgroup.courtlink/common.api", "MyClass"),
-                "Unexpected response");
+        assertWithMessage("Unexpected response")
+            .that(icRoot.locateFinest("com.kazgroup.courtlinkkk", "MyClass"))
+            .isNull();
+        assertWithMessage("Unexpected response")
+            .that(icRoot.locateFinest("com.kazgroup.courtlink/common.api", "MyClass"))
+            .isNull();
     }
 
     @Test
@@ -132,7 +136,9 @@ public class PkgImportControlTest {
 
     @Test
     public void testUnknownPkg() {
-        assertNull(icRoot.locateFinest("net.another", "MyClass"), "Unexpected response");
+        assertWithMessage("Unexpected response")
+            .that(icRoot.locateFinest("net.another", "MyClass"))
+            .isNull();
     }
 
     @Test
@@ -143,7 +149,9 @@ public class PkgImportControlTest {
         assertWithMessage("Unexpected response")
             .that(icRootRegexpChild.locateFinest("com.kazgroup.courtlink.common.api", "MyClass"))
             .isEqualTo(icCommonRegexpChild);
-        assertNull(icRootRegexpChild.locateFinest("com", "MyClass"), "Unexpected response");
+        assertWithMessage("Unexpected response")
+            .that(icRootRegexpChild.locateFinest("com", "MyClass"))
+            .isNull();
     }
 
     @Test
@@ -196,16 +204,22 @@ public class PkgImportControlTest {
 
     @Test
     public void testRegExpChildUnknownPkg() {
-        assertNull(icRootRegexpChild.locateFinest("net.another", "MyClass"), "Unexpected response");
+        assertWithMessage("Unexpected response")
+            .that(icRootRegexpChild.locateFinest("net.another", "MyClass"))
+            .isNull();
     }
 
     @Test
     public void testRegExpParentInRootIsConsidered() {
-        assertNull(icRootRegexpParent.locateFinest("com", "MyClass"), "Package should not be null");
-        assertNull(icRootRegexpParent.locateFinest("com/hurz/courtlink", "MyClass"),
-                "Package should not be null");
-        assertNull(icRootRegexpParent.locateFinest("com.hurz.hurz.courtlink", "MyClass"),
-                "Package should not be null");
+        assertWithMessage("Package should not be null")
+            .that(icRootRegexpParent.locateFinest("com", "MyClass"))
+            .isNull();
+        assertWithMessage("Package should not be null")
+            .that(icRootRegexpParent.locateFinest("com/hurz/courtlink", "MyClass"))
+            .isNull();
+        assertWithMessage("Package should not be null")
+            .that(icRootRegexpParent.locateFinest("com.hurz.hurz.courtlink", "MyClass"))
+            .isNull();
         assertWithMessage("Invalid package")
             .that(icRootRegexpParent.locateFinest("com.hurz.courtlink.domain", "MyClass"))
             .isEqualTo(icRootRegexpParent);
@@ -228,10 +242,12 @@ public class PkgImportControlTest {
 
     @Test
     public void testRegExpParentEnsureTrailingDot() {
-        assertNull(icRootRegexpParent.locateFinest("com.kazgroup.courtlinkkk", "MyClass"),
-                "Invalid package");
-        assertNull(icRootRegexpParent.locateFinest("com.kazgroup.courtlink/common.api", "MyClass"),
-                "Invalid package");
+        assertWithMessage("Invalid package")
+            .that(icRootRegexpParent.locateFinest("com.kazgroup.courtlinkkk", "MyClass"))
+            .isNull();
+        assertWithMessage("Invalid package")
+            .that(icRootRegexpParent.locateFinest("com.kazgroup.courtlink/common.api", "MyClass"))
+            .isNull();
     }
 
     @Test
@@ -299,8 +315,9 @@ public class PkgImportControlTest {
 
     @Test
     public void testRegExpParentUnknownPkg() {
-        assertNull(icRootRegexpParent.locateFinest("net.another", "MyClass"),
-                "Package should not be null");
+        assertWithMessage("Package should not be null")
+            .that(icRootRegexpParent.locateFinest("net.another", "MyClass"))
+            .isNull();
     }
 
 }

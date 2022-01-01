@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_ANNOTATION_ORDER;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_MODIFIER_ORDER;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 import org.junit.jupiter.api.Test;
@@ -86,7 +85,9 @@ public class ModifierOrderCheckTest
         final int[] unexpectedEmptyArray = CommonUtil.EMPTY_INT_ARRAY;
         assertNotSame(unexpectedEmptyArray, actual, "Default tokens should not be empty array");
         assertNotSame(unexpectedArray, actual, "Invalid default tokens");
-        assertNotNull(actual, "Default tokens should not be null");
+        assertWithMessage("Default tokens should not be null")
+            .that(actual)
+            .isNotNull();
     }
 
     @Test
@@ -105,7 +106,9 @@ public class ModifierOrderCheckTest
         assertNotSame(
                 unexpectedEmptyArray, actual, "Default tokens should not be empty array");
         assertNotSame(unexpectedArray, actual, "Invalid acceptable tokens");
-        assertNotNull(actual, "Acceptable tokens should not be null");
+        assertWithMessage("Acceptable tokens should not be null")
+            .that(actual)
+            .isNotNull();
     }
 
     @Test

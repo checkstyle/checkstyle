@@ -24,8 +24,6 @@ import static com.puppycrawl.tools.checkstyle.Checker.EXCEPTION_MSG;
 import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_FINISHED_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_STARTED_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -370,8 +368,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("Audit was finished on larger amount of files than expected")
             .that(auditAdapter.getNumFilesFinished())
             .isEqualTo(numLegalFiles);
-        assertNull(cache.get(new File("file.java").getCanonicalPath()),
-                "Cache shout not contain any file");
+        assertWithMessage("Cache shout not contain any file")
+            .that(cache.get(new File("file.java").getCanonicalPath()))
+            .isNull();
     }
 
     @Test
@@ -459,8 +458,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.finishLocalSetup();
         final Context actualCtx = TestUtil.getInternalState(checker, "childContext");
 
-        assertNotNull(actualCtx.get("moduleFactory"),
-                "Default module factory should be created when it is not specified");
+        assertWithMessage("Default module factory should be created when it is not specified")
+            .that(actualCtx.get("moduleFactory"))
+            .isNotNull();
     }
 
     @Test
@@ -649,7 +649,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .that(cache.getProperty(PropertyCacheFile.CONFIG_HASH_KEY))
             .isEqualTo(expectedConfigHash);
 
-        assertNotNull(cache.getProperty(tmpFile.getPath()), "Cache file has null path");
+        assertWithMessage("Cache file has null path")
+            .that(cache.getProperty(tmpFile.getPath()))
+            .isNotNull();
     }
 
     @Test
@@ -676,8 +678,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("Cache has unexpected size")
             .that(cacheAfterClear)
             .hasSize(1);
-        assertNotNull(cacheAfterClear.getProperty(PropertyCacheFile.CONFIG_HASH_KEY),
-                "Cache has null hash");
+        assertWithMessage("Cache has null hash")
+            .that(cacheAfterClear.getProperty(PropertyCacheFile.CONFIG_HASH_KEY))
+            .isNotNull();
 
         final String pathToEmptyFile =
                 File.createTempFile("file", ".java", temporaryFolder).getPath();
@@ -690,7 +693,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             cacheAfterSecondRun.load(reader);
         }
 
-        assertNotNull(cacheAfterSecondRun.getProperty(pathToEmptyFile), "Cache has null path");
+        assertWithMessage("Cache has null path")
+            .that(cacheAfterSecondRun.getProperty(pathToEmptyFile))
+            .isNotNull();
         final String cacheHash = cacheAfterSecondRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY);
         assertWithMessage("Cash have changed it hash")
             .that(cacheHash)
@@ -747,8 +752,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // the invocation of clearCache method does not throw an exception.
         final Checker checker = new Checker();
         checker.clearCache();
-        assertNull(TestUtil.getInternalState(checker, "cacheFile"),
-                "If cache file is not set the cache should default to null");
+        final PropertyCacheFile cache = TestUtil.getInternalState(checker, "cacheFile");
+        assertWithMessage("If cache file is not set the cache should default to null")
+            .that(cache)
+            .isNull();
     }
 
     /**
@@ -974,16 +981,19 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("Cache has changed its resource key")
             .that(resourceKey)
             .isEqualTo(cacheAfterFirstRun.getProperty(firstExternalResourceKey));
-        assertNotNull(cacheAfterFirstRun.getProperty(firstExternalResourceKey),
-                "Cache has null as a resource key");
+        assertWithMessage("Cache has null as a resource key")
+            .that(cacheAfterFirstRun.getProperty(firstExternalResourceKey))
+            .isNotNull();
         final int expectedNumberOfObjectsInCacheAfterSecondRun = 4;
         assertWithMessage("Number of items in cache differs from expected")
             .that(cacheAfterSecondRun)
             .hasSize(expectedNumberOfObjectsInCacheAfterSecondRun);
-        assertNull(cacheAfterFirstRun.getProperty(secondExternalResourceKey),
-                "Cache has not null as a resource key");
-        assertNotNull(cacheAfterSecondRun.getProperty(secondExternalResourceKey),
-                "Cache has null as a resource key");
+        assertWithMessage("Cache has not null as a resource key")
+            .that(cacheAfterFirstRun.getProperty(secondExternalResourceKey))
+            .isNull();
+        assertWithMessage("Cache has null as a resource key")
+            .that(cacheAfterSecondRun.getProperty(secondExternalResourceKey))
+            .isNotNull();
     }
 
     @Test
@@ -1028,8 +1038,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             final Properties details = new Properties();
             details.load(input);
 
-            assertNotNull(details.getProperty(fileViolationPath),
-                    "suppressed violation file saved in cache");
+            assertWithMessage("suppressed violation file saved in cache")
+                .that(details.getProperty(fileViolationPath))
+                .isNotNull();
         }
     }
 
@@ -1088,7 +1099,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             assertWithMessage("Cache has unexpected size")
                 .that(cache)
                 .hasSize(1);
-            assertNull(cache.getProperty(filePath), "testFile is not in cache");
+            assertWithMessage("testFile is not in cache")
+                .that(cache.getProperty(filePath))
+                .isNull();
         }
     }
 
@@ -1158,7 +1171,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
             assertWithMessage("Cache has unexpected size")
                     .that(cache)
                     .hasSize(1);
-            assertNull(cache.getProperty("testFile"), "testFile is not in cache");
+            assertWithMessage("testFile is not in cache")
+                .that(cache.getProperty("testFile"))
+                .isNull();
         }
     }
 
