@@ -90,9 +90,9 @@ public class XmlLoader
     public InputSource resolveEntity(String publicId, String systemId)
             throws SAXException, IOException {
         final InputSource inputSource;
-        if (publicIdToResourceNameMap.containsKey(publicId)) {
-            final String dtdResourceName =
-                    publicIdToResourceNameMap.get(publicId);
+        final String dtdResourceName =
+            publicIdToResourceNameMap.get(publicId);
+        if (dtdResourceName != null) {
             final ClassLoader loader =
                 getClass().getClassLoader();
             final InputStream dtdIs =
