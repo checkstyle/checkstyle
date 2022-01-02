@@ -135,14 +135,12 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
                 currentIndex++;
                 final String methodName =
                         currentToken.findFirstToken(TokenTypes.IDENT).getText();
-                if (methodIndexMap.containsKey(methodName)) {
-                    final int previousIndex = methodIndexMap.get(methodName);
-                    if (currentIndex - previousIndex > allowedDistance) {
-                        final int previousLineWithOverloadMethod =
-                                methodLineNumberMap.get(methodName);
-                        log(currentToken, MSG_KEY,
-                                previousLineWithOverloadMethod);
-                    }
+                final Integer previousIndex = methodIndexMap.get(methodName);
+                if (previousIndex != null && currentIndex - previousIndex > allowedDistance) {
+                    final int previousLineWithOverloadMethod =
+                            methodLineNumberMap.get(methodName);
+                    log(currentToken, MSG_KEY,
+                            previousLineWithOverloadMethod);
                 }
                 methodIndexMap.put(methodName, currentIndex);
                 methodLineNumberMap.put(methodName, currentToken.getLineNo());
