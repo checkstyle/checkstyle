@@ -131,22 +131,22 @@ public final class XmlMetaReader {
             final Document document = builder.parse(moduleMetadataStream);
             final Element root = document.getDocumentElement();
             final Element element = getDirectChildsByTag(root, "module").get(0);
-            final ModuleDetails moduleDetails = new ModuleDetails();
             final Element module = getDirectChildsByTag(element, moduleType.getLabel()).get(0);
-            moduleDetails.setModuleType(moduleType);
-            result = createModule(module, moduleDetails);
+            result = new ModuleDetails();
+
+            result.setModuleType(moduleType);
+            populateModule(module, result);
         }
         return result;
     }
 
     /**
-     * Create the module detail object from XML metadata.
+     * Populate the module detail object from XML metadata.
      *
      * @param mod root XML document element
      * @param moduleDetails module detail object, which is to be updated
-     * @return module detail object containing all metadata
      */
-    private static ModuleDetails createModule(Element mod, ModuleDetails moduleDetails) {
+    private static void populateModule(Element mod, ModuleDetails moduleDetails) {
         moduleDetails.setName(getAttributeValue(mod, XML_TAG_NAME));
         moduleDetails.setFullQualifiedName(getAttributeValue(mod, "fully-qualified-name"));
         moduleDetails.setParent(getAttributeValue(mod, "parent"));
@@ -164,7 +164,6 @@ public final class XmlMetaReader {
         if (messageKeys != null) {
             moduleDetails.addToViolationMessages(messageKeys);
         }
-        return moduleDetails;
     }
 
     /**
