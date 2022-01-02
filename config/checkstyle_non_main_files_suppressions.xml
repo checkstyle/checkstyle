@@ -88,11 +88,6 @@
   <suppress id="lineLength" files=".ci[\\/]openjdk16-excluded.files"/>
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/10625 -->
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputUnusedImports.java"/>
-
-  <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputUnusedImports2.java"/>
 
   <!-- apply check numberOfTestCasesInXpath only for files in suppressionxpathfilter directory -->
   <suppress id="numberOfTestCasesInXpath"
