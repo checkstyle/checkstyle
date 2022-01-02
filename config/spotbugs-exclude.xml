@@ -124,6 +124,11 @@
     <Field name="$jacocoData"/>
     <Bug pattern="SE_TRANSIENT_FIELD_NOT_RESTORED"/>
   </Match>
+  <Match>
+    <!-- Creates too many false positives on classes stored in sets/maps
+         which require multiple objects to be stored. -->
+    <Bug pattern="FCBL_FIELD_COULD_BE_LOCAL"/>
+  </Match>
   <!-- After https://github.com/checkstyle/checkstyle/issues/11140
        there should be one section per one bug pattern, with list of allowed classes or methods -->
   <Match>
@@ -140,7 +145,6 @@
       DLC_DUBIOUS_LIST_COLLECTION,
       EXS_EXCEPTION_SOFTENING_NO_CHECKED,
       EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS,
-      FCBL_FIELD_COULD_BE_LOCAL,
       FCCD_FIND_CLASS_CIRCULAR_DEPENDENCY,
       IMC_IMMATURE_CLASS_BAD_SERIALVERSIONUID,
       IMC_IMMATURE_CLASS_NO_EQUALS,
