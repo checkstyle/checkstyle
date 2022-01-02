@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.LineColumn;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
@@ -71,7 +72,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * Key is "line:column". Value is {@link DetailNode} tree. Map is stored in {@link ThreadLocal}
      * to guarantee basic thread safety and avoid shared, mutable state when not necessary.
      */
-    private static final ThreadLocal<Map<String, ParseStatus>> TREE_CACHE =
+    private static final ThreadLocal<Map<LineColumn, ParseStatus>> TREE_CACHE =
             ThreadLocal.withInitial(HashMap::new);
 
     /**
@@ -297,8 +298,8 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
             // store as field, to share with child Checks
             context.get().blockCommentAst = blockCommentNode;
 
-            final String treeCacheKey = blockCommentNode.getLineNo() + ":"
-                    + blockCommentNode.getColumnNo();
+            final LineColumn treeCacheKey = new LineColumn(blockCommentNode.getLineNo(),
+                    blockCommentNode.getColumnNo());
 
             final ParseStatus result;
 
