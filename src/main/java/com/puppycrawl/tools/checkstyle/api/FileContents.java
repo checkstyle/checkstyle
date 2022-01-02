@@ -154,15 +154,10 @@ public final class FileContents implements CommentListener {
                 endColNo);
 
         // save the comment
-        if (clangComments.containsKey(startLineNo)) {
-            final List<TextBlock> entries = clangComments.get(startLineNo);
-            entries.add(comment);
-        }
-        else {
-            final List<TextBlock> entries = new ArrayList<>();
-            entries.add(comment);
-            clangComments.put(startLineNo, entries);
-        }
+        final List<TextBlock> entries = clangComments.computeIfAbsent(startLineNo,
+                empty -> new ArrayList<>());
+
+        entries.add(comment);
 
         // Remember if possible Javadoc comment
         final String firstLine = line(startLineNo - 1);
