@@ -439,4 +439,28 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolationsForGreater,
                 expectedXpathQueriesForGreater);
     }
+
+    @Test
+    public void testFollowing() throws Exception {
+        final File fileToProcess =
+                new File(getPath("SuppressionXpathRegressionMatchXpathThree.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(MatchXpathCheck.class);
+        moduleConfig.addProperty("query",
+                "//METHOD_DEF/following::*[1]");
+
+        final String[] expectedViolation = {
+            "5:1: " + getCheckMessage(MatchXpathCheck.class, MatchXpathCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/COMPILATION_UNIT"
+                        + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathThree']]"
+                        + "/OBJBLOCK/RCURLY"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
