@@ -865,7 +865,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      */
     private static DetailAST getFirstCaseGroupOrSwitchRule(DetailAST block) {
         return Optional.ofNullable(block.findFirstToken(TokenTypes.CASE_GROUP))
-            .orElse(block.findFirstToken(TokenTypes.SWITCH_RULE));
+            .orElseGet(() -> block.findFirstToken(TokenTypes.SWITCH_RULE));
     }
 
     /**

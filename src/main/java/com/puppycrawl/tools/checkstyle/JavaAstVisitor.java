@@ -1444,7 +1444,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
         // We always add an 'ELIST' node
         final DetailAstImpl expressionList = Optional.ofNullable(visit(ctx.expressionList()))
-                .orElse(createImaginary(TokenTypes.ELIST));
+                .orElseGet(() -> createImaginary(TokenTypes.ELIST));
 
         DetailAstPair.addAstChild(currentAst, expressionList);
         DetailAstPair.addAstChild(currentAst, create(ctx.RPAREN()));
@@ -1470,7 +1470,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         methodCall.addChild(visit(ctx.id()));
         // We always add an 'ELIST' node
         final DetailAstImpl expressionList = Optional.ofNullable(visit(ctx.expressionList()))
-                .orElse(createImaginary(TokenTypes.ELIST));
+                .orElseGet(() -> createImaginary(TokenTypes.ELIST));
 
         methodCall.addChild(expressionList);
         methodCall.addChild(create((Token) ctx.RPAREN().getPayload()));
@@ -1587,7 +1587,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
                 (Token) ctx.LPAREN().getPayload());
         // We always add an 'ELIST' node
         final DetailAstImpl expressionList = Optional.ofNullable(visit(ctx.expressionList()))
-                .orElse(createImaginary(TokenTypes.ELIST));
+                .orElseGet(() -> createImaginary(TokenTypes.ELIST));
 
         final DetailAstImpl dot = create(ctx.DOT());
         dot.addChild(visit(ctx.expr()));
@@ -1629,7 +1629,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
         // We add an 'PARAMETERS' node here whether it exists or not
         final DetailAstImpl parameters = Optional.ofNullable(visit(ctx.formalParameterList()))
-                .orElse(createImaginary(TokenTypes.PARAMETERS));
+                .orElseGet(() -> createImaginary(TokenTypes.PARAMETERS));
         addLastSibling(lparen, parameters);
         addLastSibling(lparen, create(ctx.RPAREN()));
         return lparen;
@@ -1907,7 +1907,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
             root.addChild(dot);
 
             final DetailAstImpl expressionList = Optional.ofNullable(visit(ctx.expressionList()))
-                    .orElse(createImaginary(TokenTypes.ELIST));
+                    .orElseGet(() -> createImaginary(TokenTypes.ELIST));
             root.addChild(expressionList);
 
             root.addChild(create(ctx.RPAREN()));
@@ -1922,7 +1922,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
         // We always add an 'ELIST' node
         final DetailAstImpl expressionList = Optional.ofNullable(visit(ctx.expressionList()))
-                .orElse(createImaginary(TokenTypes.ELIST));
+                .orElseGet(() -> createImaginary(TokenTypes.ELIST));
         addLastSibling(lparen, expressionList);
         addLastSibling(lparen, create(ctx.RPAREN()));
         return lparen;
