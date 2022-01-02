@@ -157,6 +157,18 @@
     <!-- Creates too many false positives on orElseGet calls. -->
     <Bug pattern="OI_OPTIONAL_ISSUES_USES_ORELSEGET_WITH_NULL"/>
   </Match>
+  <Match>
+    <!-- Must scan entire list to find the best item. -->
+    <Class name="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"/>
+    <Method name="getGroupNumber"/>
+    <Bug pattern="SLS_SUSPICIOUS_LOOP_SEARCH"/>
+  </Match>
+  <Match>
+    <!-- Unable to resolve the item. -->
+    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+    <Method name="findLastChildWhichContainsSpecifiedToken"/>
+    <Bug pattern="SLS_SUSPICIOUS_LOOP_SEARCH"/>
+  </Match>
   <!-- After https://github.com/checkstyle/checkstyle/issues/11140
        there should be one section per one bug pattern, with list of allowed classes or methods -->
   <Match>
@@ -190,7 +202,6 @@
       S508C_NO_SETLABELFOR,
       SEO_SUBOPTIMAL_EXPRESSION_ORDER,
       SGSU_SUSPICIOUS_GETTER_SETTER_USE,
-      SLS_SUSPICIOUS_LOOP_SEARCH,
       STT_STRING_PARSING_A_FIELD,
       SUI_CONTAINS_BEFORE_ADD,
       UAC_UNNECESSARY_API_CONVERSION_FILE_TO_PATH,
