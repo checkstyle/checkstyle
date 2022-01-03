@@ -57,13 +57,6 @@
          so content is big and that is by design. -->
     <exclude name="CommentSize"/>
   </rule>
-  <rule ref="category/java/documentation.xml/CommentRequired">
-    <properties>
-      <!-- RequireThisCheck$AbstractFrame is a private class, no comment is required. -->
-      <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='RequireThisCheck']"/>
-    </properties>
-  </rule>
 
   <rule ref="category/java/codestyle.xml">
     <!-- Opposite to UnnecessaryConstructor. -->
@@ -274,7 +267,7 @@
   <rule ref="category/java/design.xml/NcssCount">
     <properties>
       <property name="methodReportLevel" value="32"/>
-      <!-- Main, PackageObjectFactory, RequireThisCheck, HandlerFactory,
+      <!-- Main, PackageObjectFactory, RequireThisCheck, RedundantThisCheck, HandlerFactory,
              VariableDeclarationUsageDistanceCheck,
              are big and should not be split without a good reason.
            The methods visitToken/leaveToken are a big SWITCH block with a number of IF blocks.
@@ -285,7 +278,8 @@
            SuppressFilterElement is a single constructor and can't be split easily -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='Main'
-        or @SimpleName='PackageObjectFactory' or @SimpleName='RequireThisCheck'
+        or @SimpleName='PackageObjectFactory' or @SimpleName='RedundantThisCheck'
+         or @SimpleName='RequireThisCheck'
         or @SimpleName='VariableDeclarationUsageDistanceCheck'
         or @SimpleName='HandlerFactory']
       | //ClassOrInterfaceDeclaration[@SimpleName='XMLLogger']//MethodDeclaration[@Name='encode']

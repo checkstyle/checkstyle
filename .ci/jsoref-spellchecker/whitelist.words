@@ -1089,6 +1089,7 @@ recordcomponentnumber
 recordtypeparametername
 redundantimport
 redundantmodifier
+redundantthis
 refactor
 refactoring
 refid
