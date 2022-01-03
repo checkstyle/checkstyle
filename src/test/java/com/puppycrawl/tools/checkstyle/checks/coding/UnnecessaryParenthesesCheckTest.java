@@ -214,8 +214,11 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "130:13: " + getCheckMessage(MSG_EXPR),
             "131:30: " + getCheckMessage(MSG_EXPR),
             "132:28: " + getCheckMessage(MSG_EXPR),
+            "133:21: " + getCheckMessage(MSG_EXPR),
             "134:21: " + getCheckMessage(MSG_EXPR),
             "145:20: " + getCheckMessage(MSG_EXPR),
+            "166:18: " + getCheckMessage(MSG_EXPR),
+            "176:23: " + getCheckMessage(MSG_EXPR),
         };
 
         verifyWithInlineConfigParser(
