@@ -20,8 +20,6 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -75,7 +73,9 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             }
         }
 
-        assumeTrue(actualFilterSet != null, "No Internet connection.");
+        assertWithMessage("No Internet connection.")
+            .that(actualFilterSet)
+            .isNotNull();
         final FilterSet expectedFilterSet = new FilterSet();
         assertWithMessage("Failed to load from url")
             .that(actualFilterSet.getFilters())
@@ -184,8 +184,9 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getMessage().startsWith("Number format exception " + fn + " - "),
-                    ex.getMessage());
+            assertWithMessage(ex.getMessage())
+                .that(ex.getMessage())
+                .startsWith("Number format exception " + fn + " - ");
         }
     }
 
