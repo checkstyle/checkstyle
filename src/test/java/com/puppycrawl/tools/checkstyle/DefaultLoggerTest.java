@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -223,7 +222,9 @@ public class DefaultLoggerTest {
     @Test
     public void testLanguageIsValid() {
         final String language = DEFAULT_LOCALE.getLanguage();
-        assumeFalse(language.isEmpty(), "Locale not set");
+        assertWithMessage("Locale not set")
+            .that(language)
+            .isNotEmpty();
         assertWithMessage("Invalid language")
                 .that(Arrays.asList(Locale.getISOLanguages()))
                 .contains(language);
@@ -235,7 +236,9 @@ public class DefaultLoggerTest {
     @Test
     public void testCountryIsValid() {
         final String country = DEFAULT_LOCALE.getCountry();
-        assumeFalse(country.isEmpty(), "Locale not set");
+        assertWithMessage("Locale not set")
+            .that(country)
+            .isEmpty();
         assertWithMessage("Invalid country")
                 .that(Arrays.asList(Locale.getISOCountries()))
                 .contains(country);
@@ -248,8 +251,9 @@ public class DefaultLoggerTest {
     @Test
     public void testLocaleIsSupported() throws Exception {
         final String language = DEFAULT_LOCALE.getLanguage();
-        assumeFalse(language.isEmpty() || Locale.ENGLISH.getLanguage().equals(language),
-                "Custom locale not set");
+        assertWithMessage("Custom locale not set")
+            .that(language.isEmpty() || Locale.ENGLISH.getLanguage().equals(language))
+            .isFalse();
         final Class<?> localizedMessage = getDefaultLoggerClass().getDeclaredClasses()[0];
         final Object messageCon = localizedMessage.getConstructor(String.class, String[].class)
                 .newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE, null);
