@@ -19,7 +19,7 @@
 
 package org.checkstyle.suppressionxpathfilter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
 import java.io.Writer;
@@ -102,8 +102,9 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
      */
     private static void verifyXpathQueries(List<String> generatedXpathQueries,
                                            List<String> expectedXpathQueries) {
-        assertEquals(expectedXpathQueries,
-                generatedXpathQueries, "Generated queries do not match expected ones");
+        assertWithMessage("Generated queries do not match expected ones")
+            .that(generatedXpathQueries)
+            .isEqualTo(expectedXpathQueries);
     }
 
     /**
