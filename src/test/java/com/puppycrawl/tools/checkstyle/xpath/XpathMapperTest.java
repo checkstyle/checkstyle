@@ -1028,21 +1028,29 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     public void testQueryElementFollowing() throws Exception {
         final String xpath = "//IDENT[@text='variable']/following::*";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
+        final List<NodeInfo> actual = getXpathItems(xpath, rootNode);
+        assertWithMessage("Number of result nodes differ from expected")
+                .that(actual.size())
+                .isEqualTo(60);
+    }
+
+    @Test
+    public void testQueryElementFollowingTwo() throws Exception {
+        final String xpath = "//LITERAL_RETURN[.//STRING_LITERAL[@text='HelloWorld']]/following::*";
+        final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
-        final DetailAST expectedAssignNode = getSiblingByType(rootNode.getUnderlyingNode(),
+        final DetailAST expectedMethodDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
                 TokenTypes.COMPILATION_UNIT)
                 .findFirstToken(TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
-                .findFirstToken(TokenTypes.SLIST)
-                .findFirstToken(TokenTypes.VARIABLE_DEF)
-                .findFirstToken(TokenTypes.MODIFIERS)
-                .getNextSibling()
-                .getNextSibling()
                 .getNextSibling();
-        final DetailAST expectedExprNode = expectedAssignNode.getFirstChild();
-        final DetailAST expectedNumIntNode = expectedExprNode.getFirstChild();
-        final DetailAST[] expected = {expectedAssignNode, expectedExprNode, expectedNumIntNode};
+        final DetailAST expectedRcurlyNodeOne = expectedMethodDefNode.getNextSibling();
+        final DetailAST expectedRcurlyNodeTwo = expectedMethodDefNode
+                .findFirstToken(TokenTypes.SLIST)
+                .findFirstToken(TokenTypes.LITERAL_RETURN)
+                .getNextSibling();
+        final DetailAST[] expected = {expectedRcurlyNodeOne, expectedRcurlyNodeTwo};
         assertWithMessage("Result nodes differ from expected")
                 .that(actual)
                 .isEqualTo(expected);
@@ -1135,7 +1143,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
-                .findFirstToken(TokenTypes.VARIABLE_DEF);
+                .findFirstToken(TokenTypes.SEMI)
+                .getNextSibling().getNextSibling();
         final DetailAST[] expected = {expectedVariableDefNode};
         assertWithMessage("Result nodes differ from expected")
                 .that(actual)
@@ -1222,6 +1231,16 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         assertWithMessage("Result nodes differ from expected")
                 .that(actual)
                 .isEqualTo(expected);
+    }
+
+    @Test
+    public void testManyNestedNodes() throws Exception {
+        final String xpath = "//STRING_LITERAL";
+        final RootNode rootNode = getRootNode("InputXpathMapperStringConcat.java");
+        final List<NodeInfo> actual = getXpathItems(xpath, rootNode);
+        assertWithMessage("Number of result nodes differ from expected")
+                .that(actual.size())
+                .isEqualTo(39299);
     }
 
     private RootNode getRootNode(String fileName) throws Exception {
