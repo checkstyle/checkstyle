@@ -17,7 +17,9 @@
   <!-- Disallow hamcrest and only allow Truth -->
   <disallow pkg="org.hamcrest.CoreMatchers"/>
   <disallow pkg="org.hamcrest.MatcherAssert"/>
-  <!-- until https://github.com/checkstyle/checkstyle/issues/9142 -->
+  <!-- Disallow Junit assert in favor of Truth asserts in few exceptions -->
+  <allow class="org.junit.jupiter.api.Assertions.assertThrows"/>
+  <allow class="org.junit.jupiter.api.Assertions.assertDoesNotThrow"/>
   <disallow pkg="org.junit.jupiter.api.Assertions"/>
 
   <!-- Reflection shouldn't be used in tests. -->
