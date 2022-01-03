@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.IOException;
@@ -184,8 +183,9 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
-            assertTrue(ex.getMessage().startsWith("Number format exception " + fn + " - "),
-                    ex.getMessage());
+            assertWithMessage(ex.getMessage())
+                .that(ex.getMessage())
+                .startsWith("Number format exception " + fn + " - ");
         }
     }
 

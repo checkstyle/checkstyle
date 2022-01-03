@@ -19,8 +19,7 @@
 
 package org.checkstyle.base;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -251,22 +250,29 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
             for (int i = 0; i < expected.length; i++) {
                 final String expectedResult = messageFileName + ":" + expected[i];
                 final String actual = lnr.readLine();
-                assertEquals(expectedResult, actual, "error message " + i);
+                assertWithMessage("error message %s", i)
+                    .that(actual)
+                    .isEqualTo(expectedResult);
 
                 String parseInt = removeDeviceFromPathOnWindows(actual);
                 parseInt = parseInt.substring(parseInt.indexOf(':') + 1);
                 parseInt = parseInt.substring(0, parseInt.indexOf(':'));
                 final int lineNumber = Integer.parseInt(parseInt);
-                assertTrue(previousLineNumber == lineNumber
-                                || theWarnings.remove((Integer) lineNumber),
-                        "input file is expected to have a warning comment on line number "
-                                        + lineNumber);
+                assertWithMessage(
+                        "input file is expected to have a warning comment on line number %s",
+                        lineNumber)
+                    .that(previousLineNumber == lineNumber
+                            || theWarnings.remove((Integer) lineNumber))
+                    .isTrue();
                 previousLineNumber = lineNumber;
             }
 
-            assertEquals(expected.length,
-                    errs, "unexpected output: " + lnr.readLine());
-            assertEquals(0, theWarnings.size(), "unexpected warnings " + theWarnings);
+            assertWithMessage("unexpected output: %s", lnr.readLine())
+                .that(errs)
+                .isEqualTo(expected.length);
+            assertWithMessage("unexpected warnings %s", theWarnings)
+                .that(theWarnings)
+                .isEmpty();
         }
 
         checker.destroy();
