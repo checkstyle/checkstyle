@@ -87,8 +87,6 @@
   <!-- we must use full paths in file pattern property value -->
   <suppress id="lineLength" files=".ci[\\/]openjdk16-excluded.files"/>
 
-  <!-- until https://github.com/checkstyle/checkstyle/issues/10625 -->
-
   <!-- apply check numberOfTestCasesInXpath only for files in suppressionxpathfilter directory -->
   <suppress id="numberOfTestCasesInXpath"
          files="src[\\/]it[\\/]java[\\/]com[\\/].*" />
