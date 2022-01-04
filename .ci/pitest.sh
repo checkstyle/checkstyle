@@ -151,8 +151,18 @@ pitest-javadoc)
 #   # post validation is skipped, we do not test gui throughly
 #   ;;
 
+--list)
+  echo "Supported profiles:"
+  pomXmlPath="$(dirname "${0}")/../pom.xml"
+  sed -n -e 's/<id>\(pitest-\w\+\)<\/id>/\1/p' < "${pomXmlPath}" | sort
+  ;;
+
 *)
-  echo "Unexpected argument: $1"
+  if [[ -n "$1" ]]; then
+    echo "Unexpected argument: $1"
+  fi
+  echo "Usage $0 <profile>"
+  echo "To see the full list of supported profiles run '$0 --list'"
   sleep 5s
   false
   ;;
