@@ -152,7 +152,13 @@ pitest-javadoc)
 #   ;;
 
 *)
-  echo "Unexpected argument: $1"
+  if [[ -n "$1" && "--help" != "$1" ]]; then
+    echo "Unexpected argument: $1"
+  fi
+  echo "Usage $0 <profile>"
+  echo "Supported profiles:"
+  pomXmlPath="$(dirname "${0}")/../pom.xml"
+  sed -n -e 's/<id>\(pitest-\w\+\)<\/id>/\1/p' < "${pomXmlPath}" | sort
   sleep 5s
   false
   ;;
