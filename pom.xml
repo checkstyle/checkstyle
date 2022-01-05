@@ -1498,6 +1498,7 @@
                 <exclude>**/Main.class</exclude>
                 <exclude>**/Main$CliOptions.class</exclude>
                 <exclude>**/JavadocPropertiesGenerator.class</exclude>
+                <exclude>**/MetadataGeneratorUtil.class</exclude>
                 <!-- generated classes, unfortunately use problematic api -->
                 <exclude>**/JavadocParser.class</exclude>
               </excludes>
