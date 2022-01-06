@@ -69,6 +69,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "183:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
             "183:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
             "183:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "211:25: " + getCheckMessage(MSG_VARIABLE, "field", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisEnumInnerClassesAndBugs.java"),
@@ -269,6 +270,13 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisValidateOnlyOverlappingTrue.java"), expected);
+    }
+
+    @Test
+    public void testValidateOnlyOverlappingTrue2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisValidateOnlyOverlappingTrue2.java"), expected);
     }
 
     @Test
