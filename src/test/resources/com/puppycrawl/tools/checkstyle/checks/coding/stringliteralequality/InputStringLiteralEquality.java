@@ -50,4 +50,8 @@ public class InputStringLiteralEquality
             // completely dynamic, don't flag
         }
     }
+
+    public static boolean isMethod(Integer value) {
+        return value.intValue() != value.intValue() + 1;
+    }
 }
