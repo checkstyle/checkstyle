@@ -86,4 +86,14 @@ public class InputHiddenFieldRecords {
         }
     }
 
+    record MyTestRecord3(String str, Locale treeSet) {
+        void foo(Locale hashMap) {
+        }
+    }
+
+    record MyTestRecord4(int x, int y) {
+        public MyTestRecord4(Locale treeSet) { // does not check constructor params
+            this(4, 5);
+        }
+    }
 }

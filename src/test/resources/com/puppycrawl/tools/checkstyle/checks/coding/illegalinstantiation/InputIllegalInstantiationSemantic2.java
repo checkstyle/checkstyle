@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegalinstantiation;
 import java.io.*; // star import for instantiation tests
 import java.awt.Dimension; // explicit import for instantiation tests
 import java.awt.Color;
-
+import java.util.*;
 /**
  * Test case for detecting simple semantic violations.
  * @author Lars Kühne
@@ -136,5 +136,15 @@ class InputIllegalInstantiationSemantic2
 
     private class InputModifier {
 
+    }
+
+    private void method() {
+        Boolean[] array = new Boolean[3];
+        Object object = new @Interned Object();
+        Map<Class<?>, Boolean> x = new HashMap<Class<?>, Boolean>();
+    }
+
+    @java.lang.annotation.Target(java.lang.annotation.ElementType.TYPE_USE)
+    @interface Interned {
     }
 }
