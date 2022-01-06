@@ -118,6 +118,20 @@ enum FooType {
     }
 }
 
+enum Foo2 {
+    VALUE {
+        public void value() {
+            value("");
+        }
+
+        public void middle() {
+        }
+
+        public void value(String s) {
+        }
+    };
+}
+
 @interface ClassPreamble {
     String author();
 }
