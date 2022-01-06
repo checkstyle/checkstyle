@@ -475,3 +475,20 @@ public class InputRequireThisValidateOnlyOverlappingTrue {
 
     boolean foo57(boolean booleanField) { booleanField = !booleanField;  return booleanField; }
 }
+class TestClass2 {
+    private final TestClass2 analyzer;
+    private final int positionOffsetGap;
+
+    public TestClass2(TestClass2 analyzer) {
+        this(analyzer.analyzer(), 0);
+    }
+
+    public TestClass2(TestClass2 analyzer, int positionOffsetGap) {
+        this.analyzer = analyzer;
+        this.positionOffsetGap = positionOffsetGap;
+    }
+
+    public TestClass2 analyzer() {
+        return null;
+    }
+}
