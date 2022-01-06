@@ -69,6 +69,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "183:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
             "183:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
             "183:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "211:25: " + getCheckMessage(MSG_VARIABLE, "field", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisEnumInnerClassesAndBugs.java"),
