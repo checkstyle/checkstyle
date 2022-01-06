@@ -455,4 +455,25 @@ class class5 {
             }
         };
     }
+
+    public void test6() {
+        byte tmpByte[];
+
+        if (true) {
+                if (true) {
+                    tmpByte = new byte[0];
+                }
+        } else {
+            if (true) {
+                if (true) {
+                    tmpByte = new byte[1];
+                }
+            }
+            if (false) {
+                if (true) {
+                    tmpByte = new byte[2];
+                }
+            }
+        }
+    }
 }

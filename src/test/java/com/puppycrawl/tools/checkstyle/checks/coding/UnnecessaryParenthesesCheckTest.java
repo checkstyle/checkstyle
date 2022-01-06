@@ -31,6 +31,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthes
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Test fixture for the UnnecessaryParenthesesCheck.
@@ -164,6 +165,15 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
                 "InputUnnecessaryParenthesesCheckTextBlocks.java"),
+            expected);
+    }
+
+    @Test
+    public void testUnnecessaryParenthesesPatterns() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                "InputUnnecessaryParenthesesCheckPatterns.java"),
             expected);
     }
 
