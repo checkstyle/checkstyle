@@ -7,6 +7,8 @@ MissingSwitchDefault
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.coding.missingswitchdefault;
 
+import java.util.stream.Stream;
+
 public class InputMissingSwitchDefaultCheckSwitchExpressionsThree {
     public enum Options {
         ONE,
@@ -79,6 +81,26 @@ public class InputMissingSwitchDefaultCheckSwitchExpressionsThree {
             case FRI -> 4;
             default -> 5;
         };
+    }
+
+    boolean complexDefault(Day k, String string) {
+        switch (k) { // ok
+        case MON -> {
+            System.out.println(2);
+            System.out.println(3);
+            System.out.println(4);
+            System.out.println(5);
+            System.out.println(6);
+            System.out.println(7);
+            System.out.println(8);
+            System.out.println(9);
+            System.out.println(10);
+            System.out.println(11);
+        }
+        default -> Stream.of(string.split(" "))
+            .anyMatch(Word -> "in".equals(Word));
+        }
+        return true;
     }
 
 }
