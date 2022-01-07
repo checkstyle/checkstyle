@@ -445,12 +445,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
     @Override
     public void beginTree(DetailAST rootAST) {
         illegalShortClassNames.clear();
-
-        for (String s : illegalClassNames) {
-            if (s.indexOf('.') == -1) {
-                illegalShortClassNames.add(s);
-            }
-        }
+        illegalShortClassNames.addAll(illegalClassNames);
     }
 
     @Override
@@ -518,13 +513,11 @@ public final class IllegalTypeCheck extends AbstractCheck {
      */
     private boolean isContainVerifiableType(DetailAST modifiers) {
         boolean result = false;
-        if (modifiers.getFirstChild() != null) {
-            for (DetailAST modifier = modifiers.getFirstChild(); modifier != null;
-                     modifier = modifier.getNextSibling()) {
-                if (memberModifiers.contains(modifier.getType())) {
-                    result = true;
-                    break;
-                }
+        for (DetailAST modifier = modifiers.getFirstChild(); modifier != null;
+                 modifier = modifier.getNextSibling()) {
+            if (memberModifiers.contains(modifier.getType())) {
+                result = true;
+                break;
             }
         }
         return result;
@@ -667,7 +660,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
             if (child.getType() == TokenTypes.IDENT) {
                 checkIdent(child);
             }
-            else if (child.getType() == TokenTypes.TYPE_ARGUMENTS) {
+            else {
                 TokenUtil.forEachChild(child, TokenTypes.TYPE_ARGUMENT, this::checkType);
             }
             child = child.getNextSibling();
@@ -798,12 +791,10 @@ public final class IllegalTypeCheck extends AbstractCheck {
         DetailAST toVisitAst = currentNode.getFirstChild();
         while (toVisitAst == null) {
             toVisitAst = currentNode.getNextSibling();
-            if (toVisitAst == null) {
-                if (currentNode.getParent().equals(subTreeRootAst)) {
-                    break;
-                }
-                currentNode = currentNode.getParent();
+            if (currentNode.getParent().equals(subTreeRootAst)) {
+                break;
             }
+            currentNode = currentNode.getParent();
         }
         return toVisitAst;
     }
