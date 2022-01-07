@@ -43,4 +43,12 @@ public class InputEqualsAvoidNullRecordsAndCompactCtors {
         }
     }
 
+    record TestRecord5() {
+        TestRecord5 (int num) {
+            this();
+            str.equalsIgnoreCase("my string"); // violation 'left .* of .* equalsIgnoreCase'
+            "my string".equals(str); // ok
+        }
+        private static String str;
+    }
 }
