@@ -485,26 +485,23 @@ public class MagicNumberCheck extends AbstractCheck {
     private static boolean isInHashCodeMethod(DetailAST ast) {
         boolean inHashCodeMethod = false;
 
-        // if not in a code block, can't be in hashCode()
-        if (ScopeUtil.isInCodeBlock(ast)) {
-            // find the method definition AST
-            DetailAST methodDefAST = ast.getParent();
-            while (methodDefAST != null
-                    && methodDefAST.getType() != TokenTypes.METHOD_DEF) {
-                methodDefAST = methodDefAST.getParent();
-            }
+        // find the method definition AST
+        DetailAST methodDefAST = ast.getParent();
+        while (methodDefAST != null
+                && methodDefAST.getType() != TokenTypes.METHOD_DEF) {
+            methodDefAST = methodDefAST.getParent();
+        }
 
-            if (methodDefAST != null) {
-                // Check for 'hashCode' name.
-                final DetailAST identAST = methodDefAST.findFirstToken(TokenTypes.IDENT);
+        if (methodDefAST != null) {
+            // Check for 'hashCode' name.
+            final DetailAST identAST = methodDefAST.findFirstToken(TokenTypes.IDENT);
 
-                if ("hashCode".equals(identAST.getText())) {
-                    // Check for no arguments.
-                    final DetailAST paramAST = methodDefAST.findFirstToken(TokenTypes.PARAMETERS);
-                    // we are in a 'public int hashCode()' method! The compiler will ensure
-                    // the method returns an 'int' and is public.
-                    inHashCodeMethod = !paramAST.hasChildren();
-                }
+            if ("hashCode".equals(identAST.getText())) {
+                // Check for no arguments.
+                final DetailAST paramAST = methodDefAST.findFirstToken(TokenTypes.PARAMETERS);
+                // we are in a 'public int hashCode()' method! The compiler will ensure
+                // the method returns an 'int' and is public.
+                inHashCodeMethod = !paramAST.hasChildren();
             }
         }
         return inHashCodeMethod;
@@ -567,14 +564,9 @@ public class MagicNumberCheck extends AbstractCheck {
      * @param list list of numbers to ignore.
      */
     public void setIgnoreNumbers(double... list) {
-        if (list.length == 0) {
-            ignoreNumbers = CommonUtil.EMPTY_DOUBLE_ARRAY;
-        }
-        else {
-            ignoreNumbers = new double[list.length];
-            System.arraycopy(list, 0, ignoreNumbers, 0, list.length);
-            Arrays.sort(ignoreNumbers);
-        }
+        ignoreNumbers = new double[list.length];
+        System.arraycopy(list, 0, ignoreNumbers, 0, list.length);
+        Arrays.sort(ignoreNumbers);
     }
 
     /**
