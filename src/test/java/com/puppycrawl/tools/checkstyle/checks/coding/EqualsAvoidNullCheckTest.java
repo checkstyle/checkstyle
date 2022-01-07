@@ -222,6 +222,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
             "22:34: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "34:33: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
             "41:33: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+            "49:33: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputEqualsAvoidNullRecordsAndCompactCtors.java"),
