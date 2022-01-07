@@ -1070,5 +1070,4 @@ class New1 {
         New1.field = 3;
         New1.field = (int)a;
     }
-
 }

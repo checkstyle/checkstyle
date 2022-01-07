@@ -81,6 +81,16 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
+    public void testGeneralLogic2() throws Exception {
+        final String[] expected = {
+            "17:9: " + getCheckMessage(MSG_KEY, "first", 5, 1),
+            "29:9: " + getCheckMessage(MSG_KEY, "allInvariants", 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceGeneral2.java"), expected);
+    }
+
+    @Test
     public void testDistance() throws Exception {
         final String[] expected = {
             "83:9: " + getCheckMessage(MSG_KEY, "count", 4, 3),
