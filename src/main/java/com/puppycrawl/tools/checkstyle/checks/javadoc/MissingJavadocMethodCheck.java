@@ -370,6 +370,8 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
         };
     }
 
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     @Override
     public final void visitToken(DetailAST ast) {
         final Scope theScope = ScopeUtil.getScope(ast);

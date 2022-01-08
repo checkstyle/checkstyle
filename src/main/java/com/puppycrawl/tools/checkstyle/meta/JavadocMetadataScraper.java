@@ -48,6 +48,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * Class for scraping module metadata from the corresponding class' class-level javadoc.
  */
+// suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+@SuppressWarnings("deprecation")
 @FileStatefulCheck
 public class JavadocMetadataScraper extends AbstractJavadocCheck {
 
@@ -188,6 +190,8 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
         return getAcceptableJavadocTokens();
     }
 
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     @Override
     public void beginJavadocTree(DetailNode rootAst) {
         if (isTopLevelClassJavadoc()) {
@@ -592,6 +596,8 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      *
      * @return simple module name
      */
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     private String getModuleSimpleName() {
         final String fullFileName = getFileContents().getFileName();
         final String[] pathTokens = FILE_SEPARATOR_PATTERN.split(fullFileName);

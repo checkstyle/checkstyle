@@ -514,6 +514,8 @@ public class FallThroughCheck extends AbstractCheck {
      * @param lineNo The line number in the file.
      * @return True if a match was found inside a comment.
      */
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     private boolean matchesComment(Pattern pattern, String line, int lineNo) {
         final Matcher matcher = pattern.matcher(line);
         boolean matches = false;
