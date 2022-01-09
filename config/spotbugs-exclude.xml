@@ -74,6 +74,14 @@
     </Or>
   </Match>
   <Match>
+    <!-- These fields are restricted caches which must remain populated until the process ends. -->
+    <Bug pattern="PMB_POSSIBLE_MEMORY_BLOAT"/>
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.PackageObjectFactory"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder"/>
+    </Or>
+  </Match>
+  <Match>
     <!-- false positive, beginTree is a kind of constructor for Checks -->
     <Or>
       <Class name="com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck" />
@@ -160,7 +168,6 @@
       OI_OPTIONAL_ISSUES_USES_ORELSEGET_WITH_NULL,
       OPM_OVERLY_PERMISSIVE_METHOD,
       PMB_INSTANCE_BASED_THREAD_LOCAL,
-      PMB_POSSIBLE_MEMORY_BLOAT,
       PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS,
       PSC_PRESIZE_COLLECTIONS,
       PSC_SUBOPTIMAL_COLLECTION_SIZING,
