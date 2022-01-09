@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.utils;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenInAstByPredicate;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.util.Arrays;
@@ -154,7 +153,8 @@ public class CheckUtilTest extends AbstractPathTestSupport {
 
         try {
             CheckUtil.getAccessModifierFromModifiersToken(modifiers);
-            fail(IllegalArgumentException.class.getSimpleName() + " was expected.");
+            assertWithMessage("%s was expected.", IllegalArgumentException.class.getSimpleName())
+                .fail();
         }
         catch (IllegalArgumentException exc) {
             final String expectedExceptionMsg = "expected non-null AST-token with type 'MODIFIERS'";
@@ -452,9 +452,9 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         final Optional<DetailAST> node = findTokenInAstByPredicate(root,
             ast -> ast.getType() == type);
 
-        if (!node.isPresent()) {
-            fail("Cannot find node of specified type: " + type);
-        }
+        assertWithMessage("Cannot find node of specified type: %s", type)
+            .that(node.isPresent())
+            .isTrue();
 
         return node.get();
     }
