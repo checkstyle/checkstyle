@@ -710,6 +710,6 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
                 .map(DetailNode::getText)
                 .map(pattern::matcher)
                 .map(Matcher::matches)
-                .orElse(false);
+                .orElse(Boolean.FALSE);
     }
 }

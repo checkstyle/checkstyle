@@ -349,7 +349,7 @@ public final class ReturnCountCheck extends AbstractCheck {
          * @param maxAssigned Maximum allowed number of return statements.
          * @param voidReturn Identifies if context is void.
          */
-        public void visitLiteralReturn(int maxAssigned, Boolean voidReturn) {
+        public void visitLiteralReturn(int maxAssigned, boolean voidReturn) {
             isVoidContext = voidReturn;
             maxAllowed = maxAssigned;
 
