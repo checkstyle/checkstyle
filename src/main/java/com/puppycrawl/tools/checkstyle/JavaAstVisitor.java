@@ -552,8 +552,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         DetailAstPair.addAstChild(currentAST, visit(ctx.typeArguments()));
 
         // This is how we build the annotations/ qualified name/ type parameters tree
-        for (int i = 0; i < ctx.extended.size(); i++) {
-            final ParserRuleContext extendedContext = ctx.extended.get(i);
+        for (ParserRuleContext extendedContext : ctx.extended) {
             final DetailAstImpl dot = create(extendedContext.start);
             DetailAstPair.makeAstRoot(currentAST, dot);
             final List<ParseTree> childList = extendedContext
@@ -661,8 +660,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final DetailAstPair currentAst = new DetailAstPair();
         DetailAstPair.addAstChild(currentAst, ast);
 
-        for (int i = 0; i < ctx.extended.size(); i++) {
-            final ParserRuleContext extendedContext = ctx.extended.get(i);
+        for (ParserRuleContext extendedContext : ctx.extended) {
             final DetailAstImpl dot = create(extendedContext.start);
             DetailAstPair.makeAstRoot(currentAst, dot);
             final List<ParseTree> childList = extendedContext
@@ -1724,8 +1722,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         DetailAstPair.addAstChild(currentAST, visit(ctx.typeArgumentsOrDiamond()));
 
         // This is how we build the type arguments/ qualified name tree
-        for (int i = 0; i < ctx.extended.size(); i++) {
-            final ParserRuleContext extendedContext = ctx.extended.get(i);
+        for (ParserRuleContext extendedContext : ctx.extended) {
             final DetailAstImpl dot = create(extendedContext.start);
             DetailAstPair.makeAstRoot(currentAST, dot);
             final List<ParseTree> childList = extendedContext
