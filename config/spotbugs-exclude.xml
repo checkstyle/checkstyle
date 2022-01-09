@@ -137,6 +137,11 @@
          which require multiple objects to be stored. -->
     <Bug pattern="FCBL_FIELD_COULD_BE_LOCAL"/>
   </Match>
+  <Match>
+    <!-- Check is broken and does not clearly report where the fault is.
+         Suppressed until https://github.com/mebigfatguy/fb-contrib/issues/408 -->
+    <Bug pattern="WOC_WRITE_ONLY_COLLECTION_FIELD"/>
+  </Match>
   <!-- After https://github.com/checkstyle/checkstyle/issues/11140
        there should be one section per one bug pattern, with list of allowed classes or methods -->
   <Match>
@@ -181,7 +186,6 @@
       UCPM_USE_CHARACTER_PARAMETERIZED_METHOD,
       USBR_UNNECESSARY_STORE_BEFORE_RETURN,
       WEM_WEAK_EXCEPTION_MESSAGING,
-      WOC_WRITE_ONLY_COLLECTION_FIELD,
       " />
   </Match>
 </FindBugsFilter>
