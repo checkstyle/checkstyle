@@ -673,7 +673,7 @@ public class NeedBracesCheck extends AbstractCheck {
             .map(DetailAST::getNextSibling)
             .map(DetailAST::getLastChild)
             .map(lastToken -> TokenUtil.areOnSameLine(ast, lastToken))
-            .orElse(true);
+            .orElse(Boolean.TRUE);
     }
 
     /**
