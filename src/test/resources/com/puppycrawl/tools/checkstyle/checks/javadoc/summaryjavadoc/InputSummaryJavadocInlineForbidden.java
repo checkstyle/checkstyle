@@ -1,9 +1,8 @@
 /*
 SummaryJavadoc
 violateExecutionOnNonTightHtml = (default)false
-forbiddenSummaryFragments = @return the *|This method returns
+forbiddenSummaryFragments = @return the .*|This method returns
 period = (default).
-
 
 */
 
@@ -39,6 +38,27 @@ public class InputSummaryJavadocInlineForbidden {
      * {@summary As of , replaced by {@link #setBounds(int, int, int, int)}}
      */
     void foo11() {
+    }
+    // violation below
+    /**
+     * {@return}
+     */
+    int returnNothing() {
+        return 0;
+    }
+    // violation below
+    /**
+     * {@return This method returns something}
+     */
+    int returnSomething() {
+        return 0;
+    }
+    // violation below
+    /**
+     * {@return This method returns something.}
+     */
+    int returnSomethingElse() {
+        return 0;
     }
     // violation below
     /**

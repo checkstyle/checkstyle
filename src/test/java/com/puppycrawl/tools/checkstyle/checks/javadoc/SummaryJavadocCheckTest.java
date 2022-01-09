@@ -89,17 +89,20 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testInlineForbidden() throws Exception {
         final String[] expected = {
-            "26: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "32: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "38: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "44: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-            "49: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "54: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "25: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "31: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "37: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "43: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "50: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "57: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
             "64: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-            "86: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "99: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "114: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "120: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "69: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "74: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "84: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "106: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "119: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "134: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "140: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
         };
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocInlineForbidden.java"), expected);
@@ -155,15 +158,16 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "32: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "42: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "47: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "60: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "65: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "122: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "127: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "132: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "143: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "161: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "166: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "186: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "56: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "79: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "84: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "141: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "146: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "151: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "162: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "180: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "185: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "205: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
         };
 
         verifyWithInlineConfigParser(

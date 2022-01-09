@@ -40,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#firstsentence">
  * Javadoc summary sentence</a> does not contain phrases that are not recommended to use.
  * Summaries that contain only the {@code {@inheritDoc}} tag are skipped.
+ * Summaries that contain a non-empty {@code {@return}} are allowed.
  * Check also violate Javadoc that does not contain first sentence.
  * </p>
  * <ul>
@@ -257,11 +258,15 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * This regexp is used to extract the content of a summary javadoc tag.
      */
     private static final Pattern SUMMARY_PATTERN = Pattern.compile("\\{@summary ([\\S\\s]+)}");
+
     /** Period literal. */
     private static final String PERIOD = ".";
 
     /** Summary tag text. */
     private static final String SUMMARY_TEXT = "@summary";
+
+    /** Return tag text. */
+    private static final String RETURN_TEXT = "@return";
 
     /** Set of allowed Tokens tags in summary java doc. */
     private static final Set<Integer> ALLOWED_TYPES = Collections.unmodifiableSet(
@@ -313,10 +318,12 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        if (containsSummaryTag(ast)) {
-            validateSummaryTag(ast);
+        boolean handled = false;
+        final Optional<DetailNode> inlineTagNodeOpt = getInlineTagNode(ast);
+        if (inlineTagNodeOpt.isPresent()) {
+            handled = handleInlineTagNode(ast, inlineTagNodeOpt.get());
         }
-        else if (!startsWithInheritDoc(ast)) {
+        if (!handled && !startsWithInheritDoc(ast)) {
             final String summaryDoc = getSummarySentence(ast);
             if (summaryDoc.isEmpty()) {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
@@ -336,18 +343,37 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Checks if summary tag present.
+     * Handle the cases for an inline tag. May not match the inline tag and return
+     * {@code false}.
+     *
+     * @param ast the node for the javadoc
+     * @param inlineTagNode the node for the tag
+     * @return {@code true} if the tag was handled
+     */
+    private boolean handleInlineTagNode(DetailNode ast, DetailNode inlineTagNode) {
+        boolean handled = false;
+        if (isSummaryTag(inlineTagNode)) {
+            validateSummaryTag(ast);
+            handled = true;
+        }
+        else if (isInlineReturnTag(inlineTagNode)) {
+            validateInlineReturnTag(ast, inlineTagNode);
+            handled = true;
+        }
+        return handled;
+    }
+
+    /**
+     * Gets the node for the inline tag if present.
      *
      * @param javadoc javadoc root node.
-     * @return {@code true} if first sentence contains @summary tag.
+     * @return the node for the inline tag if present.
      */
-    private static boolean containsSummaryTag(DetailNode javadoc) {
-        final Optional<DetailNode> node = Arrays.stream(javadoc.getChildren())
-                .filter(SummaryJavadocCheck::isInlineTagPresent)
-                .findFirst()
-                .map(SummaryJavadocCheck::getInlineTagNodeWithinHtmlElement);
-
-        return node.isPresent() && isSummaryTag(node.get());
+    private static Optional<DetailNode> getInlineTagNode(DetailNode javadoc) {
+        return Arrays.stream(javadoc.getChildren())
+            .filter(SummaryJavadocCheck::isInlineTagPresent)
+            .findFirst()
+            .map(SummaryJavadocCheck::getInlineTagNodeWithinHtmlElement);
     }
 
     /**
@@ -407,12 +433,28 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
+     * Checks if the first tag inside ast is summary tag.
+     *
+     * @param javadoc root node.
+     * @return {@code true} if first tag is summary tag.
+     */
+    private static boolean isInlineReturnTag(DetailNode javadoc) {
+        final DetailNode[] child = javadoc.getChildren();
+
+        // Checking size of ast is not required, since ast contains
+        // children of Inline Tag, as at least 2 children will be present which are
+        // RCURLY and LCURLY.
+        return child[1].getType() == JavadocTokenTypes.CUSTOM_NAME
+                && RETURN_TEXT.equals(child[1].getText());
+    }
+
+    /**
      * Checks the inline summary (if present) for {@code period} at end and forbidden fragments.
      *
      * @param ast javadoc root node.
      */
     private void validateSummaryTag(DetailNode ast) {
-        final String inlineSummary = getInlineSummary();
+        final String inlineSummary = getInlineTagContent(SUMMARY_PATTERN);
         final String summaryVisible = getVisibleContent(inlineSummary);
         if (summaryVisible.isEmpty()) {
             log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
@@ -428,14 +470,37 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Gets entire content of summary tag.
+     * Checks the inline return (if present) for forbidden fragments.
      *
-     * @return summary sentence of javadoc root node.
+     * @param ast javadoc root node.
+     * @param inlineTagNode inline tag node.
      */
-    private String getInlineSummary() {
+    private void validateInlineReturnTag(DetailNode ast, DetailNode inlineTagNode) {
+        // Text is stored in the first DESCRIPTION node's child
+        final String inlineReturn = Arrays.stream(inlineTagNode.getChildren())
+            .filter(child -> child.getType() == JavadocTokenTypes.DESCRIPTION)
+            .findFirst()
+            .map(descNode -> descNode.getChildren()[0].getText())
+            .orElse("");
+        final String returnVisible = getVisibleContent(inlineReturn);
+        if (returnVisible.isEmpty()) {
+            log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
+        }
+        else if (containsForbiddenFragment(inlineReturn)) {
+            log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
+        }
+    }
+
+    /**
+     * Gets entire content of an inline tag.
+     *
+     * @param pattern the pattern to match an inline tag with
+     * @return the content of an inline tag in javadoc root node.
+     */
+    private String getInlineTagContent(Pattern pattern) {
         final DetailAST blockCommentAst = getBlockCommentAst();
         final String javadocText = blockCommentAst.getFirstChild().getText();
-        final Matcher matcher = SUMMARY_PATTERN.matcher(javadocText);
+        final Matcher matcher = pattern.matcher(javadocText);
         String comment = "";
         if (matcher.find()) {
             comment = matcher.group(1);
