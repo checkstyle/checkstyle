@@ -138,6 +138,11 @@
     <Bug pattern="FCBL_FIELD_COULD_BE_LOCAL"/>
   </Match>
   <Match>
+    <!-- Runtime#exit(int) used in Main#main to return the exit code to the system. -->
+    <Class name="com.puppycrawl.tools.checkstyle.Main"/>
+    <Bug pattern="MDM_RUNTIME_EXIT_OR_HALT"/>
+  </Match>
+  <Match>
     <!-- False positive as we override and enforce final so no more overrides. -->
     <Bug pattern="COM_COPIED_OVERRIDDEN_METHOD"/>
     <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck"/>
