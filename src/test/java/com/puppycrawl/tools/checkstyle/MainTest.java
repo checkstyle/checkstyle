@@ -22,8 +22,10 @@ package com.puppycrawl.tools.checkstyle;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.AbstractPathTestSupport.addEndOfLine;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.itsallcode.junit.sysextensions.AssertExit.assertExitWithStatus;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.verify;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -46,7 +48,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.itsallcode.io.Capturable;
-import org.itsallcode.junit.sysextensions.ExitGuard;
 import org.itsallcode.junit.sysextensions.SystemErrGuard;
 import org.itsallcode.junit.sysextensions.SystemErrGuard.SysErr;
 import org.itsallcode.junit.sysextensions.SystemOutGuard;
@@ -55,6 +56,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -64,7 +67,7 @@ import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecke
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.ChainedPropertyUtil;
 
-@ExtendWith({ExitGuard.class, SystemErrGuard.class, SystemOutGuard.class})
+@ExtendWith({SystemErrGuard.class, SystemOutGuard.class})
 public class MainTest {
 
     private static final String SHORT_USAGE = String.format(Locale.ROOT,
@@ -248,9 +251,8 @@ public class MainTest {
     }
 
     @Test
-    public void testVersionPrint(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
-            throws IOException {
-        Main.main("-V");
+    public void testVersionPrint(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
+        invokeMain(0, "-V");
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Checkstyle version: null" + System.lineSeparator());
@@ -260,9 +262,8 @@ public class MainTest {
     }
 
     @Test
-    public void testUsageHelpPrint(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
-            throws IOException {
-        Main.main("-h");
+    public void testUsageHelpPrint(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
+        invokeMain(0, "-h");
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo(USAGE);
@@ -276,7 +277,7 @@ public class MainTest {
         // need to specify a file:
         // <files> is defined as a required positional param;
         // picocli verifies required parameters before checking unknown options
-        assertExitWithStatus(-1, () -> invokeMain("-q", "file"));
+        invokeMain(-1, "-q", "file");
         final String usage = "Unknown option: '-q'" + EOL + SHORT_USAGE;
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
@@ -289,7 +290,7 @@ public class MainTest {
     @Test
     public void testWrongArgumentMissingFiles(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        assertExitWithStatus(-1, () -> invokeMain("-q"));
+        invokeMain(-1, "-q");
         // files is defined as a required positional param;
         // picocli verifies required parameters before checking unknown options
         final String usage = "Missing required parameter: '<files>'" + EOL + SHORT_USAGE;
@@ -303,7 +304,7 @@ public class MainTest {
 
     @Test
     public void testNoConfigSpecified(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
-        assertExitWithStatus(-1, () -> invokeMain(getPath("InputMain.java")));
+        invokeMain(-1, getPath("InputMain.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Must specify a config XML file." + System.lineSeparator());
@@ -315,9 +316,7 @@ public class MainTest {
     @Test
     public void testNonExistentTargetFile(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        assertExitWithStatus(-1, () -> {
-            invokeMain("-c", "/google_checks.xml", "NonExistentFile.java");
-        });
+        invokeMain(-1, "-c", "/google_checks.xml", "NonExistentFile.java");
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Files to process must be specified, found 0." + System.lineSeparator());
@@ -336,9 +335,7 @@ public class MainTest {
         assumeTrue(file.setReadable(false), "file is still readable");
 
         final String canonicalPath = file.getCanonicalPath();
-        assertExitWithStatus(-1, () -> {
-            invokeMain("-c", "/google_checks.xml", canonicalPath);
-        });
+        invokeMain(-1, "-c", "/google_checks.xml", canonicalPath);
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Files to process must be specified, found 0." + System.lineSeparator());
@@ -350,10 +347,8 @@ public class MainTest {
     @Test
     public void testNonExistentConfigFile(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        assertExitWithStatus(-1, () -> {
-            invokeMain("-c", "src/main/resources/non_existent_config.xml",
+        invokeMain(-1, "-c", "src/main/resources/non_existent_config.xml",
                     getPath("InputMain.java"));
-        });
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo(addEndOfLine("Could not find config XML file "
@@ -366,9 +361,7 @@ public class MainTest {
     @Test
     public void testNonExistentOutputFormat(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        assertExitWithStatus(-1, () -> {
-            invokeMain("-c", "/google_checks.xml", "-f", "xmlp", getPath("InputMain.java"));
-        });
+        invokeMain(-1, "-c", "/google_checks.xml", "-f", "xmlp", getPath("InputMain.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("");
@@ -380,10 +373,8 @@ public class MainTest {
 
     @Test
     public void testNonExistentClass(@SysErr Capturable systemErr) {
-        assertExitWithStatus(-2, () -> {
-            invokeMain("-c", getPath("InputMainConfig-non-existent-classname.xml"),
+        invokeMain(-2, "-c", getPath("InputMainConfig-non-existent-classname.xml"),
                     getPath("InputMain.java"));
-        });
         final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
                 + " cannot initialize module TreeWalker - ";
         assertWithMessage("Unexpected system error log")
@@ -392,9 +383,8 @@ public class MainTest {
     }
 
     @Test
-    public void testExistingTargetFile(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
-            throws IOException {
-        Main.main("-c", getPath("InputMainConfig-classname.xml"), getPath("InputMain.java"));
+    public void testExistingTargetFile(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
+        invokeMain(0, "-c", getPath("InputMainConfig-classname.xml"), getPath("InputMain.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo(addEndOfLine(auditStartMessage.getViolation(),
@@ -407,7 +397,7 @@ public class MainTest {
     @Test
     public void testExistingTargetFileXmlOutput(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
-        Main.main("-c", getPath("InputMainConfig-classname.xml"), "-f", "xml",
+        invokeMain(0, "-c", getPath("InputMainConfig-classname.xml"), "-f", "xml",
                 getPath("InputMain.java"));
         final String expectedPath = getFilePath("InputMain.java");
         final String version = Main.class.getPackage().getImplementationVersion();
@@ -440,7 +430,7 @@ public class MainTest {
         try (ShouldNotBeClosedStream stream = new ShouldNotBeClosedStream()) {
             System.setOut(stream);
             System.setErr(stream);
-            Main.main("-c", getPath("InputMainConfig-classname.xml"), "-f", "xml",
+            invokeMain(0, "-c", getPath("InputMainConfig-classname.xml"), "-f", "xml",
                     getPath("InputMain.java"));
             assertWithMessage("stream should not be closed")
                 .that(stream.isClosed)
@@ -475,8 +465,8 @@ public class MainTest {
 
     @Test
     public void testExistingTargetFilePlainOutput(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
-        Main.main("-c", getPath("InputMainConfig-classname.xml"), "-f", "plain",
+            @SysOut Capturable systemOut) {
+        invokeMain(0, "-c", getPath("InputMainConfig-classname.xml"), "-f", "plain",
                 getPath("InputMain.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
@@ -490,7 +480,7 @@ public class MainTest {
     @Test
     public void testExistingTargetFileWithViolations(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
-        Main.main("-c", getPath("InputMainConfig-classname2.xml"), getPath("InputMain.java"));
+        invokeMain(0, "-c", getPath("InputMainConfig-classname2.xml"), getPath("InputMain.java"));
         final Violation invalidPatternMessageMain = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
                 "name.invalidPattern", new String[] {"InputMain", "^[a-z0-9]*$"},
@@ -517,10 +507,10 @@ public class MainTest {
 
     @Test
     public void testViolationsByGoogleAndXpathSuppressions(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws Exception {
+            @SysOut Capturable systemOut) {
         System.setProperty("org.checkstyle.google.suppressionxpathfilter.config",
                 getPath("InputMainViolationsForGoogleXpathSuppressions.xml"));
-        Main.main("-c", "/google_checks.xml",
+        invokeMain(0, "-c", "/google_checks.xml",
                 getPath("InputMainViolationsForGoogle.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
@@ -532,10 +522,10 @@ public class MainTest {
 
     @Test
     public void testViolationsByGoogleAndSuppressions(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws Exception {
+            @SysOut Capturable systemOut) {
         System.setProperty("org.checkstyle.google.suppressionfilter.config",
                 getPath("InputMainViolationsForGoogleSuppressions.xml"));
-        Main.main("-c", "/google_checks.xml",
+        invokeMain(0, "-c", "/google_checks.xml",
                 getPath("InputMainViolationsForGoogle.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
@@ -548,10 +538,8 @@ public class MainTest {
     @Test
     public void testExistingTargetFileWithError(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws Exception {
-        assertExitWithStatus(2, () -> {
-            invokeMain("-c", getPath("InputMainConfig-classname2-error.xml"),
+        invokeMain(2, "-c", getPath("InputMainConfig-classname2-error.xml"),
                     getPath("InputMain.java"));
-        });
         final Violation errorCounterTwoMessage = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
                 new String[] {String.valueOf(2)}, null, getClass(), null);
@@ -587,10 +575,8 @@ public class MainTest {
     @Test
     public void testExistingTargetFileWithOneError(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws Exception {
-        assertExitWithStatus(1, () -> {
-            invokeMain("-c", getPath("InputMainConfig-classname2-error.xml"),
+        invokeMain(1, "-c", getPath("InputMainConfig-classname2-error.xml"),
                     getPath("InputMain1.java"));
-        });
         final Violation errorCounterTwoMessage = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
                 new String[] {String.valueOf(1)}, null, getClass(), null);
@@ -613,9 +599,7 @@ public class MainTest {
     @Test
     public void testExistingTargetFileWithOneErrorAgainstSunCheck(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws Exception {
-        assertExitWithStatus(1, () -> {
-            invokeMain("-c", "/sun_checks.xml", getPath("InputMain1.java"));
-        });
+        invokeMain(1, "-c", "/sun_checks.xml", getPath("InputMain1.java"));
         final Violation errorCounterTwoMessage = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
                 new String[] {String.valueOf(1)}, null, getClass(), null);
@@ -636,8 +620,8 @@ public class MainTest {
 
     @Test
     public void testExistentTargetFilePlainOutputToNonExistentFile(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
-        Main.main("-c", getPath("InputMainConfig-classname.xml"), "-f", "plain",
+            @SysOut Capturable systemOut) {
+        invokeMain(0, "-c", getPath("InputMainConfig-classname.xml"), "-f", "plain",
                 "-o", temporaryFolder + "/output.txt", getPath("InputMain.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
@@ -655,7 +639,7 @@ public class MainTest {
         assertWithMessage("File must exist")
                 .that(new File(outputFile).exists())
                 .isTrue();
-        Main.main("-c", getPath("InputMainConfig-classname.xml"), "-f", "plain",
+        invokeMain(0, "-c", getPath("InputMainConfig-classname.xml"), "-f", "plain",
                 "-o", outputFile, getPath("InputMain.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
@@ -671,7 +655,7 @@ public class MainTest {
         assertWithMessage("File must not exist")
                 .that(new File(outputFile).exists())
                 .isFalse();
-        Main.main("-c", getPath("InputMainConfig-classname.xml"), "-f", "plain",
+        invokeMain(0, "-c", getPath("InputMainConfig-classname.xml"), "-f", "plain",
                 "-o", outputFile, getPath("InputMain.java"));
         assertWithMessage("File must exist")
                 .that(new File(outputFile).exists())
@@ -680,8 +664,8 @@ public class MainTest {
 
     @Test
     public void testExistingTargetFilePlainOutputProperties(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
-        Main.main("-c", getPath("InputMainConfig-classname-prop.xml"),
+            @SysOut Capturable systemOut) {
+        invokeMain(0, "-c", getPath("InputMainConfig-classname-prop.xml"),
                 "-p", getPath("InputMainMycheckstyle.properties"), getPath("InputMain.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
@@ -694,8 +678,8 @@ public class MainTest {
 
     @Test
     public void testPropertyFileWithPropertyChaining(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
-        Main.main("-c", getPath("InputMainConfig-classname-prop.xml"),
+            @SysOut Capturable systemOut) {
+        invokeMain(0, "-c", getPath("InputMainConfig-classname-prop.xml"),
             "-p", getPath("InputMainPropertyChaining.properties"), getPath("InputMain.java"));
 
         assertWithMessage("Unexpected output log")
@@ -710,11 +694,9 @@ public class MainTest {
     @Test
     public void testPropertyFileWithPropertyChainingUndefinedProperty(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        assertExitWithStatus(-2, () -> {
-            invokeMain("-c", getPath("InputMainConfig-classname-prop.xml"),
+        invokeMain(-2, "-c", getPath("InputMainConfig-classname-prop.xml"),
                 "-p", getPath("InputMainPropertyChainingUndefinedProperty.properties"),
                 getPath("InputMain.java"));
-        });
 
         assertWithMessage("Invalid error message")
             .that(systemErr.getCapturedData())
@@ -727,10 +709,8 @@ public class MainTest {
     @Test
     public void testExistingTargetFilePlainOutputNonexistentProperties(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        assertExitWithStatus(-1, () -> {
-            invokeMain("-c", getPath("InputMainConfig-classname-prop.xml"),
+        invokeMain(-1, "-c", getPath("InputMainConfig-classname-prop.xml"),
                     "-p", "nonexistent.properties", getPath("InputMain.java"));
-        });
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Could not find file 'nonexistent.properties'."
@@ -742,9 +722,7 @@ public class MainTest {
 
     @Test
     public void testExistingIncorrectConfigFile(@SysErr Capturable systemErr) {
-        assertExitWithStatus(-2, () -> {
-            invokeMain("-c", getPath("InputMainConfig-Incorrect.xml"), getPath("InputMain.java"));
-        });
+        invokeMain(-2, "-c", getPath("InputMainConfig-Incorrect.xml"), getPath("InputMain.java"));
         final String errorOutput = "com.puppycrawl.tools.checkstyle.api."
             + "CheckstyleException: unable to parse configuration stream - ";
         assertWithMessage("Unexpected system error log")
@@ -754,10 +732,8 @@ public class MainTest {
 
     @Test
     public void testExistingIncorrectChildrenInConfigFile(@SysErr Capturable systemErr) {
-        assertExitWithStatus(-2, () -> {
-            invokeMain("-c", getPath("InputMainConfig-incorrectChildren.xml"),
+        invokeMain(-2, "-c", getPath("InputMainConfig-incorrectChildren.xml"),
                     getPath("InputMain.java"));
-        });
         final String errorOutput = "com.puppycrawl.tools.checkstyle.api."
                 + "CheckstyleException: cannot initialize module RegexpSingleline"
                 + " - RegexpSingleline is not allowed as a child in RegexpSingleline";
@@ -768,10 +744,8 @@ public class MainTest {
 
     @Test
     public void testExistingIncorrectChildrenInConfigFile2(@SysErr Capturable systemErr) {
-        assertExitWithStatus(-2, () -> {
-            invokeMain("-c", getPath("InputMainConfig-incorrectChildren2.xml"),
+        invokeMain(-2, "-c", getPath("InputMainConfig-incorrectChildren2.xml"),
                     getPath("InputMain.java"));
-        });
         final String errorOutput = "com.puppycrawl.tools.checkstyle.api."
                 + "CheckstyleException: cannot initialize module TreeWalker - "
                 + "cannot initialize module JavadocMethod - "
@@ -833,7 +807,7 @@ public class MainTest {
         final String msgKey = "maxLen.file";
         final String bundle = "com.puppycrawl.tools.checkstyle.checks.sizes.messages";
 
-        Main.main("-c", getPath("InputMainConfig-filelength.xml"),
+        invokeMain(0, "-c", getPath("InputMainConfig-filelength.xml"),
                 getPath(""));
         final String expectedPath = getFilePath("") + File.separator;
         final StringBuilder sb = new StringBuilder(28);
@@ -928,10 +902,8 @@ public class MainTest {
     @Test
     public void testFileReferenceDuringException(@SysErr Capturable systemErr) {
         // We put xml as source to cause parse exception
-        assertExitWithStatus(-2, () -> {
-            invokeMain("-c", getPath("InputMainConfig-classname.xml"),
+        invokeMain(-2, "-c", getPath("InputMainConfig-classname.xml"),
                     getNonCompilablePath("InputMainIncorrectClass.java"));
-        });
         final String exceptionMessage = addEndOfLine("com.puppycrawl.tools.checkstyle.api."
                 + "CheckstyleException: Exception was thrown while processing "
                 + new File(getNonCompilablePath("InputMainIncorrectClass.java")).getPath());
@@ -942,9 +914,7 @@ public class MainTest {
 
     @Test
     public void testRemoveLexerDefaultErrorListener(@SysErr Capturable systemErr) {
-        assertExitWithStatus(-2, () -> {
-            invokeMain("-t", getNonCompilablePath("InputMainIncorrectClass.java"));
-        });
+        invokeMain(-2, "-t", getNonCompilablePath("InputMainIncorrectClass.java"));
 
         assertWithMessage("First line of exception message should not contain lexer error.")
             .that(systemErr.getCapturedData().startsWith("line 2:2 token recognition error"))
@@ -953,10 +923,7 @@ public class MainTest {
 
     @Test
     public void testRemoveParserDefaultErrorListener(@SysErr Capturable systemErr) {
-        assertExitWithStatus(-2, () -> {
-            invokeMain("-t", getNonCompilablePath("InputMainIncorrectClass.java"));
-        });
-
+        invokeMain(-2, "-t", getNonCompilablePath("InputMainIncorrectClass.java"));
         final String capturedData = systemErr.getCapturedData();
 
         assertWithMessage("First line of exception message should not contain parser error.")
@@ -971,7 +938,7 @@ public class MainTest {
     @Test
     public void testPrintTreeOnMoreThanOneFile(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        assertExitWithStatus(-1, () -> invokeMain("-t", getPath("")));
+        invokeMain(-1, "-t", getPath(""));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Printing AST is allowed for only one file." + System.lineSeparator());
@@ -981,8 +948,7 @@ public class MainTest {
     }
 
     @Test
-    public void testPrintTreeOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
-            throws IOException {
+    public void testPrintTreeOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         final String expected = addEndOfLine(
             "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
             "|--PACKAGE_DEF -> package [1:0]",
@@ -1013,7 +979,7 @@ public class MainTest {
             "        |--LCURLY -> { [5:21]",
             "        `--RCURLY -> } [6:0]");
 
-        Main.main("-t", getPath("InputMain.java"));
+        invokeMain(0, "-t", getPath("InputMain.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo(expected);
@@ -1023,8 +989,7 @@ public class MainTest {
     }
 
     @Test
-    public void testPrintXpathOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
-            throws IOException {
+    public void testPrintXpathOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         final String expected = addEndOfLine(
             "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
             "|--CLASS_DEF -> CLASS_DEF [3:0]",
@@ -1033,7 +998,7 @@ public class MainTest {
             "|       |   `--SLIST -> { [4:20]",
             "|       |       |--VARIABLE_DEF -> VARIABLE_DEF [5:8]",
             "|       |       |   |--IDENT -> a [5:12]");
-        Main.main("-b", "/COMPILATION_UNIT/CLASS_DEF//METHOD_DEF[./IDENT[@text='methodOne']]"
+        invokeMain(0, "-b", "/COMPILATION_UNIT/CLASS_DEF//METHOD_DEF[./IDENT[@text='methodOne']]"
                         + "//VARIABLE_DEF/IDENT",
                 getPath("InputMainXPath.java"));
         assertWithMessage("Unexpected output log")
@@ -1046,14 +1011,14 @@ public class MainTest {
 
     @Test
     public void testPrintXpathCommentNode(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
+            @SysOut Capturable systemOut) {
         final String expected = addEndOfLine(
             "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
             "`--CLASS_DEF -> CLASS_DEF [17:0]",
             "    `--OBJBLOCK -> OBJBLOCK [17:19]",
             "        |--CTOR_DEF -> CTOR_DEF [19:4]",
             "        |   |--BLOCK_COMMENT_BEGIN -> /* [18:4]");
-        Main.main("-b", "/COMPILATION_UNIT/CLASS_DEF//BLOCK_COMMENT_BEGIN",
+        invokeMain(0, "-b", "/COMPILATION_UNIT/CLASS_DEF//BLOCK_COMMENT_BEGIN",
                 getPath("InputMainXPath.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
@@ -1065,9 +1030,9 @@ public class MainTest {
 
     @Test
     public void testPrintXpathNodeParentNull(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
+            @SysOut Capturable systemOut) {
         final String expected = addEndOfLine("COMPILATION_UNIT -> COMPILATION_UNIT [1:0]");
-        Main.main("-b", "/COMPILATION_UNIT", getPath("InputMainXPath.java"));
+        invokeMain(0, "-b", "/COMPILATION_UNIT", getPath("InputMainXPath.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo(expected);
@@ -1077,8 +1042,8 @@ public class MainTest {
     }
 
     @Test
-    public void testPrintXpathFullOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
-            throws IOException {
+    public void testPrintXpathFullOption(
+            @SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         final String expected = addEndOfLine(
             "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
             "|--CLASS_DEF -> CLASS_DEF [3:0]",
@@ -1089,7 +1054,7 @@ public class MainTest {
             "|       |       |   |--IDENT -> a [9:12]");
         final String xpath = "/COMPILATION_UNIT/CLASS_DEF//METHOD_DEF[./IDENT[@text='method']]"
                 + "//VARIABLE_DEF/IDENT";
-        Main.main("--branch-matching-xpath", xpath, getPath("InputMainXPath.java"));
+        invokeMain(0, "--branch-matching-xpath", xpath, getPath("InputMainXPath.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo(expected);
@@ -1099,8 +1064,8 @@ public class MainTest {
     }
 
     @Test
-    public void testPrintXpathTwoResults(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
-            throws IOException {
+    public void testPrintXpathTwoResults(
+            @SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         final String expected = addEndOfLine(
             "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
             "|--CLASS_DEF -> CLASS_DEF [12:0]",
@@ -1111,8 +1076,8 @@ public class MainTest {
             "|--CLASS_DEF -> CLASS_DEF [12:0]",
             "|   `--OBJBLOCK -> OBJBLOCK [12:10]",
             "|       |--METHOD_DEF -> METHOD_DEF [14:4]");
-        Main.main("--branch-matching-xpath", "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Two']]"
-                        + "//METHOD_DEF",
+        invokeMain(0, "--branch-matching-xpath",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Two']]//METHOD_DEF",
                 getPath("InputMainXPath.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
@@ -1127,9 +1092,7 @@ public class MainTest {
         final String invalidXpath = "\\/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='Two']]"
                 + "//METHOD_DEF";
         final String filePath = getFilePath("InputMainXPath.java");
-        assertExitWithStatus(-2, () -> {
-            invokeMain("--branch-matching-xpath", invalidXpath, filePath);
-        });
+        invokeMain(-2, "--branch-matching-xpath", invalidXpath, filePath);
         final String exceptionFirstLine = addEndOfLine("com.puppycrawl.tools.checkstyle.api."
             + "CheckstyleException: Error during evaluation for xpath: " + invalidXpath
             + ", file: " + filePath);
@@ -1140,7 +1103,7 @@ public class MainTest {
 
     @Test
     public void testPrintTreeCommentsOption(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
+            @SysOut Capturable systemOut) {
         final String expected = addEndOfLine(
             "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
             "|--PACKAGE_DEF -> package [1:0]",
@@ -1174,7 +1137,7 @@ public class MainTest {
             "        |--LCURLY -> { [5:21]",
             "        `--RCURLY -> } [6:0]");
 
-        Main.main("-T", getPath("InputMain.java"));
+        invokeMain(0, "-T", getPath("InputMain.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo(expected);
@@ -1190,7 +1153,7 @@ public class MainTest {
             getPath("InputMainExpectedInputJavadocComment.txt"))), StandardCharsets.UTF_8)
             .replaceAll("\\\\r\\\\n", "\\\\n").replaceAll("\r\n", "\n");
 
-        Main.main("-j", getPath("InputMainJavadocComment.javadoc"));
+        invokeMain(0, "-j", getPath("InputMainJavadocComment.javadoc"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData().replaceAll("\\\\r\\\\n", "\\\\n")
                         .replaceAll("\r\n", "\n"))
@@ -1202,7 +1165,7 @@ public class MainTest {
 
     @Test
     public void testPrintSuppressionOption(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
+            @SysOut Capturable systemOut) {
         final String expected = addEndOfLine(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]"
@@ -1210,7 +1173,7 @@ public class MainTest {
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']"
                         + "]/LITERAL_CLASS");
 
-        Main.main(getPath("InputMainSuppressionsStringPrinter.java"), "-s", "3:1");
+        invokeMain(0, getPath("InputMainSuppressionsStringPrinter.java"), "-s", "3:1");
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo(expected);
@@ -1221,7 +1184,7 @@ public class MainTest {
 
     @Test
     public void testPrintSuppressionAndTabWidthOption(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
+            @SysOut Capturable systemOut) {
         final String expected = addEndOfLine(
             "/COMPILATION_UNIT/CLASS_DEF"
                     + "[./IDENT[@text='InputMainSuppressionsStringPrinter']]/OBJBLOCK"
@@ -1240,7 +1203,7 @@ public class MainTest {
                     + "/METHOD_DEF[./IDENT[@text='getName']]/SLIST"
                     + "/VARIABLE_DEF[./IDENT[@text='var']]/TYPE/LITERAL_INT");
 
-        Main.main(getPath("InputMainSuppressionsStringPrinter.java"),
+        invokeMain(0, getPath("InputMainSuppressionsStringPrinter.java"),
                 "-s", "7:9", "--tabWidth", "2");
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
@@ -1253,9 +1216,7 @@ public class MainTest {
     @Test
     public void testPrintSuppressionConflictingOptionsTvsC(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        assertExitWithStatus(-1, () -> {
-            invokeMain("-c", "/google_checks.xml", getPath(""), "-s", "2:4");
-        });
+        invokeMain(-1, "-c", "/google_checks.xml", getPath(""), "-s", "2:4");
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Option '-s' cannot be used with other options."
@@ -1268,9 +1229,7 @@ public class MainTest {
     @Test
     public void testPrintSuppressionConflictingOptionsTvsP(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        assertExitWithStatus(-1, () -> {
-            invokeMain("-p", getPath("InputMainMycheckstyle.properties"), "-s", "2:4", getPath(""));
-        });
+        invokeMain(-1, "-p", getPath("InputMainMycheckstyle.properties"), "-s", "2:4", getPath(""));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Option '-s' cannot be used with other options."
@@ -1283,7 +1242,7 @@ public class MainTest {
     @Test
     public void testPrintSuppressionConflictingOptionsTvsF(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        assertExitWithStatus(-1, () -> invokeMain("-f", "plain", "-s", "2:4", getPath("")));
+        invokeMain(-1, "-f", "plain", "-s", "2:4", getPath(""));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Option '-s' cannot be used with other options."
@@ -1298,7 +1257,7 @@ public class MainTest {
             @SysOut Capturable systemOut) throws IOException {
         final String outputPath = new File(temporaryFolder, "file.output").getCanonicalPath();
 
-        assertExitWithStatus(-1, () -> invokeMain("-o", outputPath, "-s", "2:4", getPath("")));
+        invokeMain(-1, "-o", outputPath, "-s", "2:4", getPath(""));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Option '-s' cannot be used with other options."
@@ -1311,7 +1270,7 @@ public class MainTest {
     @Test
     public void testPrintSuppressionOnMoreThanOneFile(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        assertExitWithStatus(-1, () -> invokeMain("-s", "2:4", getPath(""), getPath("")));
+        invokeMain(-1, "-s", "2:4", getPath(""), getPath(""));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Printing xpath suppressions is allowed for only one file."
@@ -1323,7 +1282,7 @@ public class MainTest {
 
     @Test
     public void testGenerateXpathSuppressionOptionOne(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
+            @SysOut Capturable systemOut) {
         final String expected = addEndOfLine(
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
                 "<!DOCTYPE suppressions PUBLIC",
@@ -1425,7 +1384,7 @@ public class MainTest {
                     + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
                 "</suppressions>");
 
-        Main.main("-c", "/google_checks.xml", "--generate-xpath-suppression",
+        invokeMain(0, "-c", "/google_checks.xml", "--generate-xpath-suppression",
                 getPath("InputMainComplexityOverflow.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
@@ -1437,7 +1396,7 @@ public class MainTest {
 
     @Test
     public void testGenerateXpathSuppressionOptionTwo(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
+            @SysOut Capturable systemOut) {
         final String expected = addEndOfLine(
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
             "<!DOCTYPE suppressions PUBLIC",
@@ -1467,7 +1426,7 @@ public class MainTest {
                 + "/LITERAL_FOR/SLIST/LITERAL_FOR\"/>",
             "</suppressions>");
 
-        Main.main("-c", getPath("InputMainConfig-xpath-suppressions.xml"),
+        invokeMain(0, "-c", getPath("InputMainConfig-xpath-suppressions.xml"),
                 "--generate-xpath-suppression",
                 getPath("InputMainGenerateXpathSuppressions.java"));
         assertWithMessage("Unexpected output log")
@@ -1480,10 +1439,10 @@ public class MainTest {
 
     @Test
     public void testGenerateXpathSuppressionOptionEmptyConfig(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
+            @SysOut Capturable systemOut) {
         final String expected = "";
 
-        Main.main("-c", getPath("InputMainConfig-empty.xml"), "--generate-xpath-suppression",
+        invokeMain(0, "-c", getPath("InputMainConfig-empty.xml"), "--generate-xpath-suppression",
                 getPath("InputMainComplexityOverflow.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
@@ -1511,7 +1470,7 @@ public class MainTest {
                     + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='low']\"/>",
                 "</suppressions>");
         final File file = new File(temporaryFolder, "file.output");
-        Main.main("-c", getPath("InputMainConfig-xpath-suppressions.xml"), "-o", file.getPath(),
+        invokeMain(0, "-c", getPath("InputMainConfig-xpath-suppressions.xml"), "-o", file.getPath(),
                 "--generate-xpath-suppression",
                 getPath("InputMainGenerateXpathSuppressionsTabWidth.java"));
         try (BufferedReader br = Files.newBufferedReader(file.toPath())) {
@@ -1527,7 +1486,7 @@ public class MainTest {
 
     @Test
     public void testGenerateXpathSuppressionOptionDefaultTabWidth(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
+            @SysOut Capturable systemOut) {
         final String expected = addEndOfLine(
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
                 "<!DOCTYPE suppressions PUBLIC",
@@ -1543,7 +1502,7 @@ public class MainTest {
                     + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='low']\"/>",
                 "</suppressions>");
 
-        Main.main("-c", getPath("InputMainConfig-xpath-suppressions.xml"),
+        invokeMain(0, "-c", getPath("InputMainConfig-xpath-suppressions.xml"),
                 "--generate-xpath-suppression",
                 getPath("InputMainGenerateXpathSuppressionsTabWidth.java"));
         assertWithMessage("Unexpected output log")
@@ -1556,10 +1515,10 @@ public class MainTest {
 
     @Test
     public void testGenerateXpathSuppressionOptionCustomTabWidth(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
+            @SysOut Capturable systemOut) {
         final String expected = "";
 
-        Main.main("-c", getPath("InputMainConfig-xpath-suppressions.xml"),
+        invokeMain(0, "-c", getPath("InputMainConfig-xpath-suppressions.xml"),
                 "--generate-xpath-suppression", "--tabWidth", "20",
                 getPath("InputMainGenerateXpathSuppressionsTabWidth.java"));
         assertWithMessage("Unexpected output log")
@@ -1578,7 +1537,7 @@ public class MainTest {
             StandardCharsets.UTF_8).replaceAll("\\\\r\\\\n", "\\\\n")
                 .replaceAll("\r\n", "\n");
 
-        Main.main("-J", getPath("InputMainAstTreeStringPrinterJavadoc.java"));
+        invokeMain(0, "-J", getPath("InputMainAstTreeStringPrinterJavadoc.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData().replaceAll("\\\\r\\\\n", "\\\\n")
                         .replaceAll("\r\n", "\n"))
@@ -1591,7 +1550,7 @@ public class MainTest {
     @Test
     public void testConflictingOptionsTvsC(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        assertExitWithStatus(-1, () -> invokeMain("-c", "/google_checks.xml", "-t", getPath("")));
+        invokeMain(-1, "-c", "/google_checks.xml", "-t", getPath(""));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Option '-t' cannot be used with other options." + System.lineSeparator());
@@ -1603,9 +1562,7 @@ public class MainTest {
     @Test
     public void testConflictingOptionsTvsP(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        assertExitWithStatus(-1, () -> {
-            invokeMain("-p", getPath("InputMainMycheckstyle.properties"), "-t", getPath(""));
-        });
+        invokeMain(-1, "-p", getPath("InputMainMycheckstyle.properties"), "-t", getPath(""));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Option '-t' cannot be used with other options." + System.lineSeparator());
@@ -1617,7 +1574,7 @@ public class MainTest {
     @Test
     public void testConflictingOptionsTvsF(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
-        assertExitWithStatus(-1, () -> invokeMain("-f", "plain", "-t", getPath("")));
+        invokeMain(-1, "-f", "plain", "-t", getPath(""));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Option '-t' cannot be used with other options." + System.lineSeparator());
@@ -1631,7 +1588,7 @@ public class MainTest {
             @SysOut Capturable systemOut) throws IOException {
         final String outputPath = new File(temporaryFolder, "file.output").getCanonicalPath();
 
-        assertExitWithStatus(-1, () -> invokeMain("-s", outputPath, "-t", getPath("")));
+        invokeMain(-1, "-s", outputPath, "-t", getPath(""));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Option '-t' cannot be used with other options." + System.lineSeparator());
@@ -1645,7 +1602,7 @@ public class MainTest {
             @SysOut Capturable systemOut) throws IOException {
         final String outputPath = new File(temporaryFolder, "file.output").getCanonicalPath();
 
-        assertExitWithStatus(-1, () -> invokeMain("-o", outputPath, "-t", getPath("")));
+        invokeMain(-1, "-o", outputPath, "-t", getPath(""));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Option '-t' cannot be used with other options." + System.lineSeparator());
@@ -1655,8 +1612,8 @@ public class MainTest {
     }
 
     @Test
-    public void testDebugOption(@SysErr Capturable systemErr) throws IOException {
-        Main.main("-c", "/google_checks.xml", getPath("InputMain.java"), "-d");
+    public void testDebugOption(@SysErr Capturable systemErr) {
+        invokeMain(0, "-c", "/google_checks.xml", getPath("InputMain.java"), "-d");
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
             .isNotEqualTo("");
@@ -1666,9 +1623,7 @@ public class MainTest {
     public void testExcludeOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws IOException {
         final String filePath = getFilePath("");
-        assertExitWithStatus(-1, () -> {
-            invokeMain("-c", "/google_checks.xml", filePath, "-e", filePath);
-        });
+        invokeMain(-1, "-c", "/google_checks.xml", filePath, "-e", filePath);
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Files to process must be specified, found 0." + System.lineSeparator());
@@ -1681,9 +1636,7 @@ public class MainTest {
     public void testExcludeOptionFile(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws IOException {
         final String filePath = getFilePath("InputMain.java");
-        assertExitWithStatus(-1, () -> {
-            invokeMain("-c", "/google_checks.xml", filePath, "-e", filePath);
-        });
+        invokeMain(-1, "-c", "/google_checks.xml", filePath, "-e", filePath);
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Files to process must be specified, found 0." + System.lineSeparator());
@@ -1696,9 +1649,7 @@ public class MainTest {
     public void testExcludeRegexpOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws IOException {
         final String filePath = getFilePath("");
-        assertExitWithStatus(-1, () -> {
-            invokeMain("-c", "/google_checks.xml", filePath, "-x", ".");
-        });
+        invokeMain(-1, "-c", "/google_checks.xml", filePath, "-x", ".");
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Files to process must be specified, found 0." + System.lineSeparator());
@@ -1711,9 +1662,7 @@ public class MainTest {
     public void testExcludeRegexpOptionFile(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
         final String filePath = getFilePath("InputMain.java");
-        assertExitWithStatus(-1, () -> {
-            invokeMain("-c", "/google_checks.xml", filePath, "-x", ".");
-        });
+        invokeMain(-1, "-c", "/google_checks.xml", filePath, "-x", ".");
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("Files to process must be specified, found 0." + System.lineSeparator());
@@ -1739,11 +1688,10 @@ public class MainTest {
     }
 
     @Test
-    public void testCustomRootModule(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
-            throws IOException {
+    public void testCustomRootModule(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         TestRootModuleChecker.reset();
 
-        Main.main("-c", getPath("InputMainConfig-custom-root-module.xml"),
+        invokeMain(0, "-c", getPath("InputMainConfig-custom-root-module.xml"),
                 getPath("InputMain.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
@@ -1762,10 +1710,8 @@ public class MainTest {
     @Test
     public void testCustomSimpleRootModule(@SysErr Capturable systemErr) {
         TestRootModuleChecker.reset();
-        assertExitWithStatus(-2, () -> {
-            invokeMain("-c", getPath("InputMainConfig-custom-simple-root-module.xml"),
+        invokeMain(-2, "-c", getPath("InputMainConfig-custom-simple-root-module.xml"),
                 getPath("InputMain.java"));
-        });
         final String checkstylePackage = "com.puppycrawl.tools.checkstyle.";
         final Violation unableToInstantiateExceptionMessage = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE,
@@ -1789,10 +1735,8 @@ public class MainTest {
     @Test
     public void testExceptionOnExecuteIgnoredModuleWithUnknownModuleName(
             @SysErr Capturable systemErr) {
-        assertExitWithStatus(-2, () -> {
-            invokeMain("-c", getPath("InputMainConfig-non-existent-classname-ignore.xml"),
+        invokeMain(-2, "-c", getPath("InputMainConfig-non-existent-classname-ignore.xml"),
                     "--executeIgnoredModules", getPath("InputMain.java"));
-        });
         final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
                 + " cannot initialize module TreeWalker - ";
         assertWithMessage("Unexpected system error log")
@@ -1803,10 +1747,8 @@ public class MainTest {
     @Test
     public void testExceptionOnExecuteIgnoredModuleWithBadPropertyValue(
             @SysErr Capturable systemErr) {
-        assertExitWithStatus(-2, () -> {
-            invokeMain("-c", getPath("InputMainConfig-TypeName-bad-value.xml"),
+        invokeMain(-2, "-c", getPath("InputMainConfig-TypeName-bad-value.xml"),
                     "--executeIgnoredModules", getPath("InputMain.java"));
-        });
         final String cause = "com.puppycrawl.tools.checkstyle.api.CheckstyleException:"
                 + " cannot initialize module TreeWalker - ";
         final String causeDetail = "it is not a boolean";
@@ -1820,8 +1762,8 @@ public class MainTest {
 
     @Test
     public void testNoProblemOnExecuteIgnoredModuleWithBadPropertyValue(
-            @SysErr Capturable systemErr) throws IOException {
-        Main.main("-c", getPath("InputMainConfig-TypeName-bad-value.xml"),
+            @SysErr Capturable systemErr) {
+        invokeMain(0, "-c", getPath("InputMainConfig-TypeName-bad-value.xml"),
                     "", getPath("InputMain.java"));
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
@@ -1830,7 +1772,7 @@ public class MainTest {
 
     @Test
     public void testMissingFiles(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
-        assertExitWithStatus(-1, MainTest::invokeMain);
+        invokeMain(-1);
         final String usage = "Missing required parameter: '<files>'" + EOL + SHORT_USAGE;
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
@@ -1881,17 +1823,25 @@ public class MainTest {
     }
 
     /**
-     * Helper method to run {@link Main#main(String...)} as {@link Runnable}.
+     * Helper method to run {@link Main#main(String...)} and verify the exit code.
+     * Uses {@link Mockito#mockStatic(Class)} to mock method {@link Runtime#exit(int)}
+     * to avoid VM termination.
      *
+     * @param expectedExitCode the expected exit code to verify
      * @param arguments the command line arguments
+     * @noinspection CallToSystemExit, ResultOfMethodCallIgnored
      */
-    private static void invokeMain(String... arguments) {
-        try {
+    private static void invokeMain(int expectedExitCode, String... arguments) {
+        final Runtime mock = mock(Runtime.class);
+        try (MockedStatic<Runtime> runtime = mockStatic(Runtime.class)) {
+            runtime.when(Runtime::getRuntime)
+                    .thenReturn(mock);
             Main.main(arguments);
         }
         catch (IOException exception) {
-            assertWithMessage("Unexpected exception: " + exception).fail();
+            assertWithMessage("Unexpected exception: %s", exception).fail();
         }
+        verify(mock).exit(expectedExitCode);
     }
 
     /**
