@@ -137,6 +137,11 @@
          which require multiple objects to be stored. -->
     <Bug pattern="FCBL_FIELD_COULD_BE_LOCAL"/>
   </Match>
+  <Match>
+    <!-- Runtime#exit(int) used in Main#main to return the exit code to the system. -->
+    <Class name="com.puppycrawl.tools.checkstyle.Main"/>
+    <Bug pattern="MDM_RUNTIME_EXIT_OR_HALT"/>
+  </Match>
   <!-- After https://github.com/checkstyle/checkstyle/issues/11140
        there should be one section per one bug pattern, with list of allowed classes or methods -->
   <Match>
