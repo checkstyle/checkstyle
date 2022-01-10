@@ -562,11 +562,13 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private static DetailAST findLastChildWhichContainsSpecifiedToken(DetailAST ast, int childType,
                                                               int containType) {
         DetailAST returnValue = null;
-        for (DetailAST astIterator = ast.getFirstChild(); astIterator != null;
-                astIterator = astIterator.getNextSibling()) {
+        for (DetailAST astIterator = ast.getLastChild();
+                ;
+                astIterator = astIterator.getPreviousSibling()) {
             if (astIterator.getType() == childType
                     && astIterator.findFirstToken(containType) != null) {
                 returnValue = astIterator;
+                break;
             }
         }
         return returnValue;
