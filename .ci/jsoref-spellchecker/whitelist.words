@@ -131,6 +131,7 @@ blockandinlinetags
 blockcomment
 blockcommentposition
 blockcommentstyle
+blockindentation
 blockquote
 blog
 blogspot
@@ -578,6 +579,7 @@ importorder
 importrule
 imprt
 Incompatabilities
+indentcontinuationlines
 Inet
 infinispan
 Inlined
