@@ -38,4 +38,9 @@
     <module name="OuterTypeFilenameCheck"/>
   </module>
 
+  <module name="FileLength">
+    <property name="max" value="120" />
+    <property name="fileExtensions" value="java" />
+  </module>
+
 </module>
