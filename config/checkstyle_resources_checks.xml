@@ -38,4 +38,8 @@
     <module name="OuterTypeFilenameCheck"/>
   </module>
 
+  <module name="FileLength">
+    <property name="max" value="120" />
+  </module>
+
 </module>
