@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,7 +91,12 @@ public final class FullIdent {
                 final DetailAST firstChild = ast.getFirstChild();
                 extractFullIdent(full, firstChild);
                 full.append(".");
-                extractFullIdent(full, firstChild.getNextSibling());
+                DetailAST sibling = firstChild.getNextSibling();
+                while (sibling != null
+                        && sibling.getType() == TokenTypes.TYPE_ARGUMENTS) {
+                    sibling = sibling.getNextSibling();
+                }
+                extractFullIdent(full, sibling);
                 appendBrackets(full, ast);
             }
             else if (isArrayTypeDeclarationStart) {
