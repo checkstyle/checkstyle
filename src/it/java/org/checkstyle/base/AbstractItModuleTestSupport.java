@@ -237,6 +237,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         stream.reset();
         final List<File> theFiles = new ArrayList<>();
         Collections.addAll(theFiles, processedFiles);
+        validateFileLength(theFiles);
         final List<Integer> theWarnings = new ArrayList<>();
         Collections.addAll(theWarnings, warnsExpected);
         final int errs = checker.process(theFiles);

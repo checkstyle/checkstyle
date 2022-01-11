@@ -363,6 +363,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         stream.reset();
         final List<File> theFiles = new ArrayList<>();
         Collections.addAll(theFiles, processedFiles);
+        validateFileLength(theFiles);
         final int errs = checker.process(theFiles);
 
         // process each of the lines
