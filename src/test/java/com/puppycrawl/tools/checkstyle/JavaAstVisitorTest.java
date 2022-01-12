@@ -24,19 +24,28 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
+import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParserBaseVisitor;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-public class JavaAstVisitorTest {
+public class JavaAstVisitorTest extends AbstractModuleTestSupport {
 
     /**
      * If a visit method is not overridden, we should explain why we do not 'visit' the
@@ -77,6 +86,11 @@ public class JavaAstVisitorTest {
             "visitClassOrInterfaceTypeExtended",
             "visitQualifiedNameExtended"
     );
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/javaastvisitor";
+    }
 
     @Test
     public void testAllVisitMethodsAreOverridden() {
@@ -189,5 +203,53 @@ public class JavaAstVisitorTest {
         assertWithMessage("Method should not throw exception.")
                 .that(addLastSibling.invoke(JavaAstVisitor.class, null, null))
                 .isNull();
+    }
+
+    /**
+     * This test exists to kill surviving mutation from pitest removing expression AST building
+     * optimization in {@link JavaAstVisitor#visitBinOp(JavaLanguageParser.BinOpContext)}.
+     * We do not use {@link JavaParser#parse(FileContents)} here due to DFA clearing hack.
+     *
+     * <p>
+     * Consider: we have iterative expression AST building to avoid stackoverflow
+     * in {@link JavaAstVisitor#visitBinOp(JavaLanguageParser.BinOpContext)}. In actual
+     * generated parser, we avoid stackoverflow thanks to the left recursive expression
+     * rule (eliminating unnecessary recursive calls to hierarchical expression production rules).
+     * However, ANTLR's ParserATNSimulator has no such optimization. So, the number of recursive
+     * calls to ParserATNSimulator#closure when calling ParserATNSimulator#clearDFA causes a
+     * StackOverflow error. We avoid this by using the single argument constructor (thus not
+     * forcing DFA clearing) in this test.
+     * </p>
+     *
+     * @throws Exception if input file does not exist
+     */
+    @Test
+    public void testNoStackOverflowOnDeepStringConcat() throws Exception {
+        final File file =
+                new File(getPath("InputJavaAstVisitorNoStackOverflowOnDeepStringConcat.java"));
+        final FileText fileText = new FileText(file, StandardCharsets.UTF_8.name());
+        final FileContents contents = new FileContents(fileText);
+
+        final String fullText = contents.getText().getFullText().toString();
+        final CharStream codePointCharStream = CharStreams.fromString(fullText);
+        final JavaLanguageLexer lexer = new JavaLanguageLexer(codePointCharStream, true);
+        lexer.setCommentListener(contents);
+
+        final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
+        final JavaLanguageParser parser = new JavaLanguageParser(tokenStream);
+
+        final JavaLanguageParser.CompilationUnitContext compilationUnit = parser.compilationUnit();
+
+        // We restrict execution to use limited resources here, so that we can
+        // kill surviving pitest mutation from removal of nested binary operation
+        // optimization in JavaAstVisitor#visitBinOp. Limited resources (small stack size)
+        // ensure that we throw a StackOverflowError if optimization is removed.
+        final DetailAST root = TestUtil.getResultWithLimitedResources(
+                () -> new JavaAstVisitor(tokenStream).visit(compilationUnit)
+        );
+
+        assertWithMessage("File parsing and AST building should complete successfully.")
+                .that(root)
+                .isNotNull();
     }
 }
