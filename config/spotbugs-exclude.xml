@@ -138,6 +138,12 @@
     <Bug pattern="FCBL_FIELD_COULD_BE_LOCAL"/>
   </Match>
   <Match>
+    <!-- False positive as we override and enforce final so no more overrides. -->
+    <Bug pattern="COM_COPIED_OVERRIDDEN_METHOD"/>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck"/>
+    <Method name="finishTree"/>
+  </Match>
+  <Match>
     <!-- Check is broken and does not clearly report where the fault is.
          Suppressed until https://github.com/mebigfatguy/fb-contrib/issues/408 -->
     <Bug pattern="WOC_WRITE_ONLY_COLLECTION_FIELD"/>
@@ -152,7 +158,6 @@
       CC_CYCLOMATIC_COMPLEXITY,
       CE_CLASS_ENVY,
       CLI_CONSTANT_LIST_INDEX,
-      COM_COPIED_OVERRIDDEN_METHOD,
       CVAA_CONTRAVARIANT_ELEMENT_ASSIGNMENT,
       DLC_DUBIOUS_LIST_COLLECTION,
       EXS_EXCEPTION_SOFTENING_NO_CHECKED,
