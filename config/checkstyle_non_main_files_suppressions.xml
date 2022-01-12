@@ -68,6 +68,8 @@
 
   <!-- we can not change expected as it will require change of main class logic -->
   <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/].*[\\/]antlr4[\\/]Expected.*\.txt"/>
+  <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/].*ExpectedXMLLogger.*\.xml"/>
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]ant[\\/]checkstyleanttask[\\/]ExpectedCheckstyleAntTaskXmlOutput\.xml"/>
