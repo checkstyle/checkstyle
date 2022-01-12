@@ -45,9 +45,6 @@ public final class FileContents implements CommentListener {
     private static final Pattern MATCH_SINGLELINE_COMMENT = Pattern
             .compile(MATCH_SINGLELINE_COMMENT_PAT);
 
-    /** The file name. */
-    private final String fileName;
-
     /** The text. */
     private final FileText text;
 
@@ -71,7 +68,6 @@ public final class FileContents implements CommentListener {
      * @param text the contents of the file
      */
     public FileContents(FileText text) {
-        fileName = text.getFile().toString();
         this.text = new FileText(text);
     }
 
@@ -109,7 +105,7 @@ public final class FileContents implements CommentListener {
      * @return the name of the file
      */
     public String getFileName() {
-        return fileName;
+        return text.getFile().toString();
     }
 
     @Override
@@ -334,7 +330,7 @@ public final class FileContents implements CommentListener {
      * @return true if the package file.
      */
     public boolean inPackageInfo() {
-        return fileName.endsWith("package-info.java");
+        return getFileName().endsWith("package-info.java");
     }
 
 }
