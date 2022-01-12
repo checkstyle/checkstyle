@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -954,10 +955,10 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private int countEmptyLines(DetailAST startStatement, DetailAST endStatement) {
         int emptyLinesNumber = 0;
-        final String[] lines = getLines();
         final int endLineNo = endStatement.getLineNo();
         for (int lineNo = startStatement.getLineNo(); lineNo < endLineNo; lineNo++) {
-            if (CommonUtil.isBlank(lines[lineNo])) {
+            final int[] codePoints = getLineCodePoints(lineNo);
+            if (CodePointUtil.isBlank(codePoints)) {
                 emptyLinesNumber++;
             }
         }
@@ -1108,9 +1109,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @return the column number where a code starts.
      */
     private int getLineStart(int lineNo) {
-        final char[] line = getLines()[lineNo - 1].toCharArray();
+        final int[] line = getLineCodePoints(lineNo - 1);
         int lineStart = 0;
-        while (Character.isWhitespace(line[lineStart])) {
+        while (CommonUtil.isCodePointWhitespace(line, lineStart)) {
             lineStart++;
         }
         return lineStart;
@@ -1145,9 +1146,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @return true if current single line comment is trailing comment.
      */
     private boolean isTrailingSingleLineComment(DetailAST singleLineComment) {
-        final String targetSourceLine = getLine(singleLineComment.getLineNo() - 1);
+        final int[] targetSourceLine = getLineCodePoints(singleLineComment.getLineNo() - 1);
         final int commentColumnNo = singleLineComment.getColumnNo();
-        return !CommonUtil.hasWhitespaceBefore(commentColumnNo, targetSourceLine);
+        return !CodePointUtil.hasWhitespaceBefore(commentColumnNo, targetSourceLine);
     }
 
     /**
@@ -1163,10 +1164,10 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @return true if current comment block is trailing comment.
      */
     private boolean isTrailingBlockComment(DetailAST blockComment) {
-        final String commentLine = getLine(blockComment.getLineNo() - 1);
+        final int[] commentLine = getLineCodePoints(blockComment.getLineNo() - 1);
         final int commentColumnNo = blockComment.getColumnNo();
         final DetailAST nextSibling = blockComment.getNextSibling();
-        return !CommonUtil.hasWhitespaceBefore(commentColumnNo, commentLine)
+        return !CodePointUtil.hasWhitespaceBefore(commentColumnNo, commentLine)
             || nextSibling != null && TokenUtil.areOnSameLine(nextSibling, blockComment);
     }
 
