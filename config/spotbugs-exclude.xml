@@ -148,6 +148,10 @@
          Suppressed until https://github.com/mebigfatguy/fb-contrib/issues/408 -->
     <Bug pattern="WOC_WRITE_ONLY_COLLECTION_FIELD"/>
   </Match>
+  <Match>
+    <!-- Creates too many false positives on orElseGet calls. -->
+    <Bug pattern="OI_OPTIONAL_ISSUES_USES_ORELSEGET_WITH_NULL"/>
+  </Match>
   <!-- After https://github.com/checkstyle/checkstyle/issues/11140
        there should be one section per one bug pattern, with list of allowed classes or methods -->
   <Match>
@@ -172,7 +176,6 @@
       NFF_NON_FUNCTIONAL_FIELD,
       NMCS_NEEDLESS_MEMBER_COLLECTION_SYNCHRONIZATION,
       OCP_OVERLY_CONCRETE_PARAMETER,
-      OI_OPTIONAL_ISSUES_USES_ORELSEGET_WITH_NULL,
       OPM_OVERLY_PERMISSIVE_METHOD,
       PMB_INSTANCE_BASED_THREAD_LOCAL,
       PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS,
