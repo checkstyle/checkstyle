@@ -41,216 +41,216 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
 
     @Test
     public void testClassAstTree1() throws Exception {
-        verifyAst(getPath("InputRegressionJavaClass1Ast.txt"),
+        verifyAst(getPath("ExpectedRegressionJavaClass1Ast.txt"),
                 getPath("InputRegressionJavaClass1.java"));
     }
 
     @Test
     public void testClassAstTree2() throws Exception {
-        verifyAst(getPath("InputRegressionJavaClass2Ast.txt"),
+        verifyAst(getPath("ExpectedRegressionJavaClass2Ast.txt"),
                 getPath("InputRegressionJavaClass2.java"));
     }
 
     @Test
     public void testJava8ClassAstTree1() throws Exception {
-        verifyAst(getPath("InputRegressionJava8Class1Ast.txt"),
+        verifyAst(getPath("ExpectedRegressionJava8Class1Ast.txt"),
                 getPath("InputRegressionJava8Class1.java"));
     }
 
     @Test
     public void testJava8ClassAstTree2() throws Exception {
-        verifyAst(getPath("InputRegressionJava8Class2Ast.txt"),
+        verifyAst(getPath("ExpectedRegressionJava8Class2Ast.txt"),
                 getPath("InputRegressionJava8Class2.java"));
     }
 
     @Test
     public void testJava9TryWithResourcesAstTree() throws Exception {
-        verifyAst(getPath("InputJava9TryWithResources.txt"),
+        verifyAst(getPath("ExpectedJava9TryWithResources.txt"),
                 getNonCompilablePath("/java9/InputJava9TryWithResources.java"));
     }
 
     @Test
     public void testAdvanceJava9TryWithResourcesAstTree() throws Exception {
-        verifyAst(getPath("InputAdvanceJava9TryWithResources.txt"),
+        verifyAst(getPath("ExpectedAdvanceJava9TryWithResources.txt"),
                 getNonCompilablePath("/java9/InputAdvanceJava9TryWithResources.java"));
     }
 
     @Test
     public void testInputSemicolonBetweenImports() throws Exception {
-        verifyAst(getPath("InputSemicolonBetweenImportsAst.txt"),
+        verifyAst(getPath("ExpectedSemicolonBetweenImportsAst.txt"),
                 getNonCompilablePath("InputSemicolonBetweenImports.java"));
     }
 
     @Test
     public void testInterfaceAstTree1() throws Exception {
-        verifyAst(getPath("InputRegressionJavaInterface1Ast.txt"),
+        verifyAst(getPath("ExpectedRegressionJavaInterface1Ast.txt"),
                 getPath("InputRegressionJavaInterface1.java"));
     }
 
     @Test
     public void testInterfaceAstTree2() throws Exception {
-        verifyAst(getPath("InputRegressionJavaInterface2Ast.txt"),
+        verifyAst(getPath("ExpectedRegressionJavaInterface2Ast.txt"),
                 getPath("InputRegressionJavaInterface2.java"));
     }
 
     @Test
     public void testJava8InterfaceAstTree1() throws Exception {
-        verifyAst(getPath("InputRegressionJava8Interface1Ast.txt"),
+        verifyAst(getPath("ExpectedRegressionJava8Interface1Ast.txt"),
                 getPath("InputRegressionJava8Interface1.java"));
     }
 
     @Test
     public void testEnumAstTree1() throws Exception {
-        verifyAst(getPath("InputRegressionJavaEnum1Ast.txt"),
+        verifyAst(getPath("ExpectedRegressionJavaEnum1Ast.txt"),
                 getPath("InputRegressionJavaEnum1.java"));
     }
 
     @Test
     public void testEnumAstTree2() throws Exception {
-        verifyAst(getPath("InputRegressionJavaEnum2Ast.txt"),
+        verifyAst(getPath("ExpectedRegressionJavaEnum2Ast.txt"),
                 getPath("InputRegressionJavaEnum2.java"));
     }
 
     @Test
     public void testAnnotationAstTree1() throws Exception {
-        verifyAst(getPath("InputRegressionJavaAnnotation1Ast.txt"),
+        verifyAst(getPath("ExpectedRegressionJavaAnnotation1Ast.txt"),
                 getPath("InputRegressionJavaAnnotation1.java"));
     }
 
     @Test
     public void testTypecast() throws Exception {
-        verifyAst(getPath("InputRegressionJavaTypecastAst.txt"),
+        verifyAst(getPath("ExpectedRegressionJavaTypecastAst.txt"),
                 getPath("InputRegressionJavaTypecast.java"));
     }
 
     @Test
     public void testJava14InstanceofWithPatternMatching() throws Exception {
-        verifyAst(getPath("java14/InputJava14InstanceofWithPatternMatchingAST.txt"),
+        verifyAst(getPath("java14/ExpectedJava14InstanceofWithPatternMatchingAST.txt"),
                 getNonCompilablePath("java14/InputJava14InstanceofWithPatternMatching.java"));
     }
 
     @Test
     public void testCharLiteralSurrogatePair() throws Exception {
-        verifyAst(getPath("InputCharLiteralSurrogatePair.txt"),
+        verifyAst(getPath("ExpectedCharLiteralSurrogatePair.txt"),
                 getPath("InputCharLiteralSurrogatePair.java"));
     }
 
     @Test
     public void testCustomAstTree() throws Exception {
-        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "\t");
-        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "\r\n");
-        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "\n");
-        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "\r\r");
-        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "\r");
-        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "\u000c\f");
-        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "// \n",
+        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\t");
+        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\r\n");
+        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\n");
+        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\r\r");
+        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\r");
+        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\u000c\f");
+        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "// \n",
                 JavaParser.Options.WITH_COMMENTS);
-        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "// \r",
+        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "// \r",
                 JavaParser.Options.WITH_COMMENTS);
-        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "// \r\n",
+        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "// \r\n",
                 JavaParser.Options.WITH_COMMENTS);
-        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "/* \n */",
+        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "/* \n */",
                 JavaParser.Options.WITH_COMMENTS);
-        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "/* \r\n */",
+        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "/* \r\n */",
                 JavaParser.Options.WITH_COMMENTS);
-        verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "/* \r" + "\u0000\u0000" + " */",
+        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "/* \r" + "\u0000\u0000" + " */",
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
     public void testNewlineCr() throws Exception {
-        verifyAst(getPath("InputNewlineCrAtEndOfFileAst.txt"),
+        verifyAst(getPath("ExpectedNewlineCrAtEndOfFileAst.txt"),
                 getPath("InputAstRegressionNewlineCrAtEndOfFile.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
     public void testJava14Records() throws Exception {
-        verifyAst(getPath("java14/InputJava14Records.txt"),
+        verifyAst(getPath("java14/ExpectedJava14Records.txt"),
                 getNonCompilablePath("java14/InputJava14Records.java"));
     }
 
     @Test
     public void testJava14RecordsTopLevel() throws Exception {
-        verifyAst(getPath("java14/InputJava14RecordsTopLevel.txt"),
+        verifyAst(getPath("java14/ExpectedJava14RecordsTopLevel.txt"),
                 getNonCompilablePath("java14/InputJava14RecordsTopLevel.java"));
     }
 
     @Test
     public void testJava14LocalRecordAnnotation() throws Exception {
-        verifyAst(getPath("java14/InputJava14LocalRecordAnnotation.txt"),
+        verifyAst(getPath("java14/ExpectedJava14LocalRecordAnnotation.txt"),
             getNonCompilablePath("java14/InputJava14LocalRecordAnnotation.java"));
     }
 
     @Test
     public void testJava14TextBlocks() throws Exception {
-        verifyAst(getPath("java14/InputJava14TextBlocks.txt"),
+        verifyAst(getPath("java14/ExpectedJava14TextBlocks.txt"),
                 getNonCompilablePath("java14/InputJava14TextBlocks.java"));
     }
 
     @Test
     public void testJava14TextBlocksEscapes() throws Exception {
-        verifyAst(getPath("java14/InputJava14TextBlocksEscapesAreOneChar.txt"),
+        verifyAst(getPath("java14/ExpectedJava14TextBlocksEscapesAreOneChar.txt"),
                 getNonCompilablePath("java14/InputJava14TextBlocksEscapesAreOneChar.java"));
     }
 
     @Test
     public void testJava14SwitchExpression() throws Exception {
-        verifyAst(getPath("java14/InputJava14SwitchExpression.txt"),
+        verifyAst(getPath("java14/ExpectedJava14SwitchExpression.txt"),
                 getNonCompilablePath("java14/InputJava14SwitchExpression.java"));
     }
 
     @Test
     public void testInputJava14TextBlocksTabSize() throws Exception {
-        verifyAst(getPath("java14/InputJava14TextBlocksTabSize.txt"),
+        verifyAst(getPath("java14/ExpectedJava14TextBlocksTabSize.txt"),
             getNonCompilablePath("java14/InputJava14TextBlocksTabSize.java"));
     }
 
     @Test
     public void testInputEscapedS() throws Exception {
-        verifyAst(getPath("java14/InputJava14EscapedS.txt"),
+        verifyAst(getPath("java14/ExpectedJava14EscapedS.txt"),
                 getNonCompilablePath("java14/InputJava14EscapedS.java"));
     }
 
     @Test
     public void testInputSealedAndPermits() throws Exception {
-        verifyAst(getPath("java15/InputAstRegressionSealedAndPermits.txt"),
+        verifyAst(getPath("java15/ExpectedAstRegressionSealedAndPermits.txt"),
             getNonCompilablePath("java15/InputAstRegressionSealedAndPermits.java"));
     }
 
     @Test
     public void testInputTopLevelNonSealed() throws Exception {
-        verifyAst(getPath("java15/InputTopLevelNonSealed.txt"),
+        verifyAst(getPath("java15/ExpectedTopLevelNonSealed.txt"),
             getNonCompilablePath("java15/InputTopLevelNonSealed.java"));
     }
 
     @Test
     public void testPatternVariableWithModifiers() throws Exception {
-        verifyAst(getPath("java16/InputPatternVariableWithModifiers.txt"),
+        verifyAst(getPath("java16/ExpectedPatternVariableWithModifiers.txt"),
                 getNonCompilablePath("java16/InputPatternVariableWithModifiers.java"));
     }
 
     @Test
     public void testInputMethodDefArrayDeclarator() throws Exception {
-        verifyAst(getPath("InputAstRegressionMethodDefArrayDeclarator.txt"),
+        verifyAst(getPath("ExpectedAstRegressionMethodDefArrayDeclarator.txt"),
                 getPath("InputAstRegressionMethodDefArrayDeclarator.java"));
     }
 
     @Test
     public void testInputCstyleArrayDefinition() throws Exception {
-        verifyAst(getPath("InputAstRegressionCStyleArrayDefinition.txt"),
+        verifyAst(getPath("ExpectedAstRegressionCStyleArrayDefinition.txt"),
                 getPath("InputAstRegressionCStyleArrayDefinition.java"));
     }
 
     @Test
     public void testInputAnnotatedMethodVariableArityParam() throws Exception {
-        verifyAst(getPath("InputAstRegressionAnnotatedMethodVariableArityParam.txt"),
+        verifyAst(getPath("ExpectedAstRegressionAnnotatedMethodVariableArityParam.txt"),
                 getPath("InputAstRegressionAnnotatedMethodVariableArityParam.java"));
     }
 
     @Test
     public void testInputManyAlternativesInMultiCatch() throws Exception {
-        verifyAst(getPath("InputAstRegressionManyAlternativesInMultiCatch.txt"),
+        verifyAst(getPath("ExpectedAstRegressionManyAlternativesInMultiCatch.txt"),
                 getPath("InputAstRegressionManyAlternativesInMultiCatch.java"));
     }
 
