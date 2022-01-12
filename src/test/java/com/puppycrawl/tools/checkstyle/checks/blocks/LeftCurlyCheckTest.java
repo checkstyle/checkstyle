@@ -467,7 +467,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
             "67:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
             "72:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "78:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
-            "81:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13)
+            "81:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
         };
         verifyWithInlineConfigParser(getPath("InputLeftCurlyWithEmoji.java"), expected);
     }
@@ -475,19 +475,19 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testLeftCurlyWithEmojiNewLine() throws Exception {
         final String[] expected = {
-                "18:32: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 32),
-                "20:27: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 27),
-                "25:29: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 29),
-                "28:32: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 32),
-                "34:28: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 28),
-                "31:28: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 28),
-                "43:39: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 39),
-                "60:27: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 27),
-                "61:28: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 28),
-                "75:26: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 26),
-                "76:26: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 26),
-                "77:24: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 24),
-                "89:52: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 52),
+            "18:32: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 32),
+            "20:27: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 27),
+            "25:29: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 29),
+            "28:32: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 32),
+            "34:28: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 28),
+            "31:28: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 28),
+            "43:39: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 39),
+            "60:27: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 27),
+            "61:28: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 28),
+            "75:26: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 26),
+            "76:26: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 26),
+            "77:24: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 24),
+            "89:52: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 52),
         };
         verifyWithInlineConfigParser(getPath("InputLeftCurlyWithEmojiNl.java"), expected);
     }

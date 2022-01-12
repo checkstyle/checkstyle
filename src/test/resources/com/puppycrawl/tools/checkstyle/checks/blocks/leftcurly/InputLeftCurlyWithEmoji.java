@@ -14,7 +14,7 @@ tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, \
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 public class InputLeftCurlyWithEmoji {
-    static Runnable r1 = () -> {String.valueOf("Hello world 🥳 🎄 !");}; // violation ''{' should have line break.'
+    static Runnable r1 = () -> {String.valueOf(" 🥳🎄!");}; // violation ''{' should have line break.'
 
     private void method() { // ok
 

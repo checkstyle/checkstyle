@@ -15,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 public class InputLeftCurlyWithEmojiNl
 { // OK
-    static Runnable r1 = () -> {String.valueOf("Hello world 🥳 🎄 !");}; // violation ''{' should be on a new line.'
+    static Runnable r1 = () -> {String.valueOf("🥳 🎄 !");}; // violation ''{' should be on a new line.'
 
     private void method() { // violation ''{' should be on a new line.'
 

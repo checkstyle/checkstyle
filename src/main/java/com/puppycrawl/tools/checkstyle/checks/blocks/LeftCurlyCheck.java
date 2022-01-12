@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -442,21 +443,21 @@ public class LeftCurlyCheck
      */
     private void verifyBrace(final DetailAST brace,
                              final DetailAST startToken) {
-        final int[] codePoints = getLineCodePoints(brace.getLineNo() - 1);
+        final int[] braceLine = getLineCodePoints(brace.getLineNo() - 1);
 
         // Check for being told to ignore, or have '{}' which is a special case
-        if (codePoints.length <= brace.getColumnNo() + 1
-                || codePoints[brace.getColumnNo() + 1] != '}') {
+        if (braceLine.length <= brace.getColumnNo() + 1
+                || braceLine[brace.getColumnNo() + 1] != '}') {
             if (option == LeftCurlyOption.NL) {
-                if (!CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), codePoints)) {
+                if (!CodePointUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
                     log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
                 }
             }
             else if (option == LeftCurlyOption.EOL) {
-                validateEol(brace, codePoints);
+                validateEol(brace, braceLine);
             }
             else if (!TokenUtil.areOnSameLine(startToken, brace)) {
-                validateNewLinePosition(brace, startToken, codePoints);
+                validateNewLinePosition(brace, startToken, braceLine);
             }
         }
     }
@@ -465,10 +466,10 @@ public class LeftCurlyCheck
      * Validate EOL case.
      *
      * @param brace brace AST
-     * @param codePoints Unicode code points
+     * @param braceLine content of line with brace in array of unicode code points
      */
-    private void validateEol(DetailAST brace, int...codePoints) {
-        if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), codePoints)) {
+    private void validateEol(DetailAST brace, int...braceLine) {
+        if (CodePointUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
             log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
         if (!hasLineBreakAfter(brace)) {
@@ -481,19 +482,19 @@ public class LeftCurlyCheck
      *
      * @param brace brace AST
      * @param startToken start Token
-     * @param codePoints Unicode code points
+     * @param braceLine content of line with brace in array of unicode code points
      */
-    private void validateNewLinePosition(DetailAST brace, DetailAST startToken, int...codePoints) {
+    private void validateNewLinePosition(DetailAST brace, DetailAST startToken, int...braceLine) {
         // not on the same line
         if (startToken.getLineNo() + 1 == brace.getLineNo()) {
-            if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), codePoints)) {
+            if (CodePointUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
                 log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
             }
             else {
                 log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
             }
         }
-        else if (!CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), codePoints)) {
+        else if (!CodePointUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
             log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
     }
