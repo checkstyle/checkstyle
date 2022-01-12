@@ -66,7 +66,7 @@ public final class TreeTable extends JTable {
     /** JTextArea xpathEditor. */
     private JTextArea xpathEditor;
     /** Line position map. */
-    private List<Integer> linePositionMap;
+    private List<Integer> linePositionList;
 
     /**
      * Creates TreeTable base on TreeTableModel.
@@ -149,7 +149,7 @@ public final class TreeTable extends JTable {
      * Make selection of code in a text area.
      */
     private void makeCodeSelection() {
-        new CodeSelector(tree.getLastSelectedPathComponent(), editor, linePositionMap).select();
+        new CodeSelector(tree.getLastSelectedPathComponent(), editor, linePositionList).select();
     }
 
     /**
@@ -321,12 +321,12 @@ public final class TreeTable extends JTable {
     }
 
     /**
-     * Sets line position map.
+     * Sets line position list.
      *
-     * @param linePositionMap Line position map.
+     * @param linePositionList Line position list.
      */
-    public void setLinePositionMap(List<Integer> linePositionMap) {
-        this.linePositionMap = new ArrayList<>(linePositionMap);
+    public void setLinePositionList(List<Integer> linePositionList) {
+        this.linePositionList = new ArrayList<>(linePositionList);
     }
 
     /**
