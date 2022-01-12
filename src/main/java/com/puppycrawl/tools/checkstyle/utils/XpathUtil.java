@@ -170,8 +170,7 @@ public final class XpathUtil {
             text = text.substring(1, text.length() - 1);
         }
         text = CARRIAGE_RETURN_TO_TAG.matcher(text).replaceAll("\\\\r");
-        text = NEWLINE_TO_TAG.matcher(text).replaceAll("\\\\n");
-        return text;
+        return NEWLINE_TO_TAG.matcher(text).replaceAll("\\\\n");
     }
 
     /**
