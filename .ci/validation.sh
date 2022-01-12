@@ -699,6 +699,7 @@ no-error-spring-cloud-gcp)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/googlecloudplatform/spring-cloud-gcp
   cd .ci-temp/spring-cloud-gcp
+  git checkout 7c99f37087ac8febdbf7e185375a217b744895a4
   mvn -e --no-transfer-progress checkstyle:check@checkstyle-validation \
    -Dmaven-checkstyle-plugin.version=3.1.1 \
    -Dpuppycrawl-tools-checkstyle.version=${CS_POM_VERSION}
