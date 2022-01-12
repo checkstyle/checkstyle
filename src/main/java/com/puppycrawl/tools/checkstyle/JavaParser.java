@@ -68,6 +68,14 @@ public final class JavaParser {
 
     }
 
+    /**
+     * This is the number of files to parse before clearing the parser's
+     * DFA states. This number can have a significant impact on performance;
+     * we have found 500 files to be a good balance between parser speed and
+     * memory usage.
+     */
+    private static final int CLEAR_DFA_LIMIT = 500;
+
     /** Stop instances being created. **/
     private JavaParser() {
     }
@@ -81,6 +89,21 @@ public final class JavaParser {
      */
     public static DetailAST parse(FileContents contents)
             throws CheckstyleException {
+        return parse(contents, CLEAR_DFA_LIMIT);
+    }
+
+    /**
+     * Static helper method to parses a Java source file.
+     *
+     * @param contents contains the contents of the file
+     * @param clearDfaLimit the number of files to parse before clearing ANTLR
+     *                      DFA states; if it is set to zero, DFA states are never
+     *                      cleared.
+     * @return the root of the AST
+     * @throws CheckstyleException if the contents is not a valid Java source
+     */
+    public static DetailAST parse(FileContents contents, int clearDfaLimit)
+            throws CheckstyleException {
         final String fullText = contents.getText().getFullText().toString();
         final CharStream codePointCharStream = CharStreams.fromString(fullText);
         final JavaLanguageLexer lexer = new JavaLanguageLexer(codePointCharStream, true);
@@ -88,7 +111,7 @@ public final class JavaParser {
         lexer.removeErrorListeners();
 
         final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
-        final JavaLanguageParser parser = new JavaLanguageParser(tokenStream);
+        final JavaLanguageParser parser = new JavaLanguageParser(tokenStream, clearDfaLimit);
         parser.setErrorHandler(new CheckstyleParserErrorStrategy());
         parser.removeErrorListeners();
         parser.addErrorListener(new CheckstyleErrorListener());
