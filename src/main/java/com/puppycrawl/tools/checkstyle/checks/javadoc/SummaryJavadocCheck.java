@@ -440,9 +440,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         if (matcher.find()) {
             comment = matcher.group(1);
         }
-        comment = JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN.matcher(comment)
+        return JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN.matcher(comment)
                 .replaceAll("");
-        return comment;
     }
 
     /**

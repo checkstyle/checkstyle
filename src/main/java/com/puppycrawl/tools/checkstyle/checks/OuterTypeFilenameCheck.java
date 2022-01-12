@@ -172,8 +172,7 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
     private String getFileName() {
         String name = getFileContents().getFileName();
         name = name.substring(name.lastIndexOf(File.separatorChar) + 1);
-        name = FILE_EXTENSION_PATTERN.matcher(name).replaceAll("");
-        return name;
+        return FILE_EXTENSION_PATTERN.matcher(name).replaceAll("");
     }
 
 }
