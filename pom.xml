@@ -3293,8 +3293,9 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest
                 </param>
+                <!-- 80% coverage, 100% mutation in CodePointUtil -->
                 <param>
-                  com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheckTest
+                  com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheckTest
                 </param>
                 <!-- 2% mutation in ScopeUtil -->
                 <param>
