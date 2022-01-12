@@ -87,7 +87,7 @@ public class MainFrame extends JFrame {
 
         treeTable = new TreeTable(model.getParseTreeTableModel());
         treeTable.setEditor(textArea);
-        treeTable.setLinePositionMap(model.getLinesToPosition());
+        treeTable.setLinePositionList(model.getLinesToPosition());
         final JScrollPane treeTableScrollPane = new JScrollPane(treeTable);
 
         final JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
@@ -191,7 +191,7 @@ public class MainFrame extends JFrame {
             setTitle(model.getTitle());
             reloadAction.setEnabled(model.isReloadActionEnabled());
             textArea.setText(model.getText());
-            treeTable.setLinePositionMap(model.getLinesToPosition());
+            treeTable.setLinePositionList(model.getLinesToPosition());
         }
         catch (final CheckstyleException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
