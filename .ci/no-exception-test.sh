@@ -60,7 +60,7 @@ openjdk16-with-checks-nonjavadoc-error)
   cd .ci-temp/contribution/checkstyle-tester
   cp ../../../.ci/openjdk-projects-to-test-on.config openjdk-projects-to-test-on.config
   sed -i '/  <!-- Filters -->/r ../../../.ci/openjdk16-excluded.files' checks-nonjavadoc-error.xml
-  export MAVEN_OPTS="-Xmx7168m"
+  export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects openjdk-projects-to-test-on.config \
       --mode single --allowExcludes \
       --patchConfig checks-nonjavadoc-error.xml \
