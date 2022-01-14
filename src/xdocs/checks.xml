@@ -987,6 +987,10 @@
             <td>Checks that long constants are defined with an upper ell.</td>
           </tr>
           <tr>
+            <td><a href="config_coding.html#UnusedLocalVariable">UnusedLocalVariable</a></td>
+            <td>Checks that a local variable is declared and/or assigned, but not used.</td>
+          </tr>
+          <tr>
             <td><a href="config_coding.html#VariableDeclarationUsageDistance">
               VariableDeclarationUsageDistance</a></td>
             <td>Checks the distance between declaration of variable and its first usage.</td>

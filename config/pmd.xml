@@ -320,10 +320,13 @@
     <properties>
       <property name="maxmethods" value="20"/>
       <!-- The class PackageObjectFactory has many boilerplate methods.
-           JavadocMethodCheck is in the process of being rewritten. -->
+           JavadocMethodCheck is in the process of being rewritten.
+           UnusedLocalVariable has some methods that would be moved to util
+           after merging https://github.com/checkstyle/checkstyle/pull/10968 -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='PackageObjectFactory']
           | //ClassOrInterfaceDeclaration[@SimpleName='JavadocMethodCheck']
+          | //ClassOrInterfaceDeclaration[@SimpleName='UnusedLocalVariableCheck']
           | //ClassOrInterfaceDeclaration[@SimpleName='JavaAstVisitor']"/>
     </properties>
   </rule>
@@ -331,11 +334,13 @@
     <properties>
       <!-- *TokenTypes are special classes that are big due to a lot of description comments.
            RequireThisCheck has to work with and identify many frames.
-           JavadocMethodCheck is in the process of being rewritten. -->
+           JavadocMethodCheck is in the process of being rewritten.
+           UnusedLocalVariableCheck has to identify the scope of variables. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypes'
         or @SimpleName='TokenTypes' or @SimpleName='RequireThisCheck'
-        or @SimpleName='JavadocMethodCheck' or @SimpleName='JavaAstVisitor']"/>
+        or @SimpleName='JavadocMethodCheck' or @SimpleName='JavaAstVisitor'
+        or @SimpleName='UnusedLocalVariableCheck']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">
