@@ -88,7 +88,8 @@ public final class JavaParser {
         lexer.removeErrorListeners();
 
         final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
-        final JavaLanguageParser parser = new JavaLanguageParser(tokenStream);
+        final JavaLanguageParser parser =
+                new JavaLanguageParser(tokenStream, JavaLanguageParser.CLEAR_DFA_LIMIT);
         parser.setErrorHandler(new CheckstyleParserErrorStrategy());
         parser.removeErrorListeners();
         parser.addErrorListener(new CheckstyleErrorListener());
