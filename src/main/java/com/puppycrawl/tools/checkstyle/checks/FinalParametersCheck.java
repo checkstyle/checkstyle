@@ -68,12 +68,70 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;FinalParameters&quot;/&gt;
  * </pre>
  * <p>
+ * Example :
+ * </p>
+ * <pre>
+ * public class Point {
+ *       private int m,n;
+ *       private String s;
+ *       public Point(){ //ok
+ *       s = "ABC";
+ *       }
+ *       public Point(final int m) { // ok
+ *           this();
+ *           this.m = m;
+ *       }
+ *       public Point(final int m,int n){ //Violation - n should be final
+ *           this();
+ *           this.m = m;
+ *           this.n = n;
+ *       }
+ *       public void methodOne(final int x){ //ok
+ *            //
+ *       }
+ *       public void methodTwo(int x){  //Violation - x should be final
+ *            //
+ *       }
+ *       public static void main(String[] args) { //violation - args should be final
+ *            //
+ *       }
+ * }
+ * </pre>
+ * <p>
  * To configure the check to enforce final parameters only for constructors:
  * </p>
  * <pre>
  * &lt;module name=&quot;FinalParameters&quot;&gt;
  *   &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *     public class Point {
+ *        private int m,n;
+ *        private String s;
+ *        public Point(){
+ *            s = "ABC";
+ *        }
+ *        public Point(final int m) { //OK
+ *            this();
+ *            this.m = m;
+ *        }
+ *        public Point(final int m,int n){ //Violation - n should be final
+ *            this();
+ *            this.m = m;
+ *            this.n = n;
+ *        }
+ *        public void methodOne(final int x){ //ok
+ *            //
+ *        }
+ *        public void methodTwo(int x){ //ok
+ *            //
+ *        }
+ *        public static void main(String[] args) { //ok
+ *            //
+ *        }
+ * }
  * </pre>
  * <p>
  * To configure the check to allow ignoring
@@ -84,6 +142,34 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;FinalParameters&quot;&gt;
  *   &lt;property name=&quot;ignorePrimitiveTypes&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Point {
+ *         private int m,n;
+ *         private String s;
+ *         public Point(){
+ *              s = "ABC";
+ *         }
+ *         public Point(final int m) { //OK
+ *             this();
+ *             this.m = m;
+ *         }
+ *         public Point(final int m,int n){ //OK
+ *             this();
+ *             this.m = m;
+ *             this.n = n;
+ *         }
+ *         public void methodOne(final int x){ //ok
+ *              //
+ *         }
+ *         public void methodTwo(int x){ //ok
+ *              //
+ *         }
+ *         public static void main(String[] args) { //args should be final as it is of referenced type
+ *             //
+ *         }
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
