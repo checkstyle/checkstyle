@@ -46,9 +46,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <p>
  * The check is not "type aware", that is to say, it can't tell if parentheses
- * are unnecessary based on the types in an expression.  It also doesn't know
- * about operator precedence and associativity; therefore it won't catch
- * something like
+ * are unnecessary based on the types in an expression. The check is partially aware about
+ * operator precedence but unaware about operator associativity. It won't catch cases such as:
  * </p>
  * <pre>
  * int x = (a + b) + c; // 1st Case
@@ -66,6 +65,29 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * and <em>r</em> were {@code boolean} still there will be no violation
  * raised as check is not "type aware".
  * </p>
+ * <p>
+ * The partial support for operator precedence includes cases of the following type:
+ * </p>
+ * <pre>
+ * boolean a = true, b = true;
+ * boolean c = false, d = false;
+ * if ((a &amp;&amp; b) || c) { // violation, unnecessary paren
+ * }
+ * if (a &amp;&amp; (b || c)) { // ok
+ * }
+ * if ((a == b) &amp;&amp; c) { // violation, unnecessary paren
+ * }
+ * String e = &quot;e&quot;;
+ * if ((e instanceof String) &amp;&amp; a || b) { // violation, unnecessary paren
+ * }
+ * int f = 0;
+ * int g = 0;
+ * if (!(f &gt;= g) // ok
+ *         &amp;&amp; (g &gt; f)) { // violation, unnecessary paren
+ * }
+ * if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
+ * }
+ * </pre>
  * <ul>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -122,6 +144,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * TEXT_BLOCK_LITERAL_BEGIN</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
  * LAND</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">
+ * LOR</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_INSTANCEOF">
  * LITERAL_INSTANCEOF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GT">
@@ -376,6 +400,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.LAMBDA,
             TokenTypes.TEXT_BLOCK_LITERAL_BEGIN,
             TokenTypes.LAND,
+            TokenTypes.LOR,
             TokenTypes.LITERAL_INSTANCEOF,
             TokenTypes.GT,
             TokenTypes.LT,
@@ -422,6 +447,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.LAMBDA,
             TokenTypes.TEXT_BLOCK_LITERAL_BEGIN,
             TokenTypes.LAND,
+            TokenTypes.LOR,
             TokenTypes.LITERAL_INSTANCEOF,
             TokenTypes.GT,
             TokenTypes.LT,
@@ -508,7 +534,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             else if (TokenUtil.isOfType(type, ASSIGNMENTS)) {
                 assignDepth--;
             }
-            else if (isSurrounded(ast) && checkAroundOperators(ast)) {
+            else if (isSurrounded(ast) && unnecessaryParenAroundOperators(ast)) {
                 log(ast.getPreviousSibling(), MSG_EXPR);
             }
         }
@@ -571,19 +597,22 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
 
     /**
      * Checks if conditional, relational, unary and postfix operators
-     * in expressions are surrounded by parentheses.
+     * in expressions are surrounded by unnecessary parentheses.
      *
      * @param ast the {@code DetailAST} to check if it is surrounded by
-     *        parentheses.
+     *        unnecessary parentheses.
      * @return {@code true} if the expression is surrounded by
-     *         parentheses.
+     *         unnecessary parentheses.
      */
-    private static boolean checkAroundOperators(DetailAST ast) {
+    private static boolean unnecessaryParenAroundOperators(DetailAST ast) {
         final int type = ast.getType();
         final int parentType = ast.getParent().getType();
         final boolean isConditional = TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL);
         boolean result = TokenUtil.isOfType(parentType, CONDITIONALS_AND_RELATIONAL);
         if (isConditional) {
+            if (type == TokenTypes.LOR) {
+                result = result && !TokenUtil.isOfType(parentType, TokenTypes.LAND);
+            }
             result = result && !TokenUtil.isOfType(parentType, TokenTypes.EQUAL,
                 TokenTypes.NOT_EQUAL);
         }

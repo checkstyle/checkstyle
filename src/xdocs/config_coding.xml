@@ -6878,8 +6878,8 @@ boolean b = (~a) &gt; -27            // parens around ~a
       <subsection name="Notes" id="UnnecessaryParentheses_Notes">
         <p>
           The check is not "type aware", that is to say, it can't tell if parentheses
-          are unnecessary based on the types in an expression.  It also doesn't know about
-          operator precedence and associativity; therefore it won't catch something like
+          are unnecessary based on the types in an expression. The check is partially aware about
+          operator precedence but unaware about operator associativity. It won't catch cases such as:
         </p>
         <source>
 int x = (a + b) + c; // 1st Case
@@ -6898,6 +6898,29 @@ if (p == (q &lt;= r)) {}
           and <em>r</em> were <code>boolean</code> still there will be no violation
           raised as check is not "type aware".
         </p>
+        <p>
+          The partial support for operator precedence includes cases of the following type:
+        </p>
+        <source>
+boolean a = true, b = true;
+boolean c = false, d = false;
+if ((a &amp;&amp; b) || c) { // violation, unnecessary paren
+}
+if (a &amp;&amp; (b || c)) { // ok
+}
+if ((a == b) &amp;&amp; c) { // violation, unnecessary paren
+}
+String e = &quot;e&quot;;
+if ((e instanceof String) &amp;&amp; a || b) { // violation, unnecessary paren
+}
+int f = 0;
+int g = 0;
+if (!(f &gt;= g) // ok
+        &amp;&amp; (g &gt; f)) { // violation, unnecessary paren
+}
+if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
+}
+        </source>
       </subsection>
 
       <subsection name="Properties" id="UnnecessaryParentheses_Properties">
@@ -6965,6 +6988,8 @@ if (p == (q &lt;= r)) {}
                 TEXT_BLOCK_LITERAL_BEGIN</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
                 LAND</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">
+                LOR</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_INSTANCEOF">
                 LITERAL_INSTANCEOF</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GT">
@@ -7048,6 +7073,8 @@ if (p == (q &lt;= r)) {}
                   TEXT_BLOCK_LITERAL_BEGIN</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
                   LAND</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">
+                  LOR</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_INSTANCEOF">
                   LITERAL_INSTANCEOF</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GT">
