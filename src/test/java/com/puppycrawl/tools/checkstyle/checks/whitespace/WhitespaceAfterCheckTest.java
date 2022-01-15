@@ -186,4 +186,16 @@ public class WhitespaceAfterCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAfterCountUnicodeCorrectly.java"), expected);
     }
+
+    @Test
+    public void testVarargs() throws Exception {
+        final String[] expected = {
+            "14:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "17:67: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "20:42: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "27:45: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "36:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+        };
+        verifyWithInlineConfigParser(getPath("InputWhitespaceAfterVarargs.java"), expected);
+    }
 }
