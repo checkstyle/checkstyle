@@ -85,7 +85,7 @@
          files="config[\\/]intellij-idea-inspection-scope.xml"/>
 
   <!-- we must use full paths in file pattern property value -->
-  <suppress id="lineLength" files=".ci[\\/]openjdk16-excluded.files"/>
+  <suppress id="lineLength" files=".ci[\\/]openjdk17-excluded.files"/>
 
   <!-- apply check numberOfTestCasesInXpath only for files in suppressionxpathfilter directory -->
   <suppress id="numberOfTestCasesInXpath"

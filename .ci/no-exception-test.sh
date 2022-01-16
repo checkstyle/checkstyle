@@ -51,7 +51,7 @@ guava-with-sun-checks)
   rm sun_checks.*
   ;;
 
-openjdk16-with-checks-nonjavadoc-error)
+openjdk17-with-checks-nonjavadoc-error)
   LOCAL_GIT_REPO=$(pwd)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   checkout_from https://github.com/checkstyle/contribution
@@ -59,7 +59,7 @@ openjdk16-with-checks-nonjavadoc-error)
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
   cd .ci-temp/contribution/checkstyle-tester
   cp ../../../.ci/openjdk-projects-to-test-on.config openjdk-projects-to-test-on.config
-  sed -i '/  <!-- Filters -->/r ../../../.ci/openjdk16-excluded.files' checks-nonjavadoc-error.xml
+  sed -i '/  <!-- Filters -->/r ../../../.ci/openjdk17-excluded.files' checks-nonjavadoc-error.xml
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects openjdk-projects-to-test-on.config \
       --mode single --allowExcludes \
