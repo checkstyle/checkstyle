@@ -14,7 +14,7 @@ my @excludes=qw(
   /releasenotes\.xml$
   /.*_..\.translation[^/]*$
   /jdk14-test-excluded-files\.list$
-  /openjdk16-excluded\.files$
+  /openjdk17-excluded\.files$
 );
 my $exclude = join "|", @excludes;
 while (<>) {

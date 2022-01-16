@@ -6,7 +6,7 @@ on:
 
 jobs:
   # this execution should stay on github actions due to time/ memory limits in other CI
-  no-exception-openjdk16:
+  no-exception-openjdk17:
     runs-on: ubuntu-latest
     steps:
     - name: Set up JDK 8
@@ -23,4 +23,4 @@ jobs:
     - name: Install checkstyle
       run: mvn -e --no-transfer-progress clean install -Pno-validations
 
-    - run: .ci/no-exception-test.sh openjdk16-with-checks-nonjavadoc-error
+    - run: .ci/no-exception-test.sh openjdk17-with-checks-nonjavadoc-error
