@@ -59,13 +59,13 @@
   <!-- Headers -->
   <module name="Header">
     <property name="headerFile" value="${checkstyle.header.file}"/>
-    <property name="fileExtensions" value="java"/>
+    <property name="fileExtensions" value="java, g4"/>
     <property name="id" value="header"/>
   </module>
   <module name="RegexpHeader">
     <property name="id" value="regexpHeader"/>
     <property name="headerFile" value="${checkstyle.regexp.header.file}"/>
-    <property name="fileExtensions" value="java"/>
+    <property name="fileExtensions" value="java, g4"/>
   </module>
 
   <!-- Javadoc Comments -->
