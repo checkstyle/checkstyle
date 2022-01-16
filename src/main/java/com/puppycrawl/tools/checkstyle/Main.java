@@ -102,7 +102,7 @@ public final class Main {
      *
      * @param args the command line arguments.
      * @throws IOException if there is a problem with files access
-     * @noinspection UseOfSystemOutOrSystemErr, CallToPrintStackTrace
+     * @noinspection UseOfSystemOutOrSystemErr, CallToPrintStackTrace, CallToSystemExit
      **/
     public static void main(String... args) throws IOException {
 
@@ -149,7 +149,7 @@ public final class Main {
                 System.err.println(errorCounterViolation.getViolation());
             }
         }
-        ExitHelper.exit(exitStatus);
+        Runtime.getRuntime().exit(exitStatus);
     }
 
     /**
@@ -861,30 +861,6 @@ public final class Main {
             }
             return result;
         }
-    }
-
-    /**
-     * This class is needed for a workaround for the Jacoco limitations. A call to
-     * {@link System#exit(int)} will never be shown as covered.
-     * Since it is not possible to exclude a certain method from the Jacoco coverage,
-     * the entire class is excluded.
-     * Method 'exit' must contain IF condition, see details at
-     * https://github.com/checkstyle/checkstyle/pull/10951
-     */
-    private static class ExitHelper {
-
-        /**
-         * Terminates the program.
-         *
-         * @param code the return code
-         * @noinspection CallToSystemExit
-         */
-        private static void exit(int code) {
-            if (code != 0) {
-                System.exit(code);
-            }
-        }
-
     }
 
 }

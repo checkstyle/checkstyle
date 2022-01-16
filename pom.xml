@@ -860,8 +860,6 @@
                     <exclude>
                       com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.RegularClass
                     </exclude>
-                    <!-- JaCaCo limitation: https://github.com/jacoco/jacoco/issues/117 -->
-                    <exclude>com.puppycrawl.tools.checkstyle.Main.ExitHelper</exclude>
                     <!-- Swing related classes -->
                     <exclude>com.puppycrawl.tools.checkstyle.gui.BaseCellEditor*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.CodeSelector</exclude>
