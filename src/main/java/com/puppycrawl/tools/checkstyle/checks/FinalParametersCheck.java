@@ -72,29 +72,14 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <pre>
  * public class Point {
- *       private int m,n;
- *       private String s;
- *       public Point(){ //ok
- *       s = "ABC";
- *       }
- *       public Point(final int m) { // ok
- *           this();
- *           this.m = m;
- *       }
- *       public Point(final int m,int n){ //Violation - n should be final
- *           this();
- *           this.m = m;
- *           this.n = n;
- *       }
- *       public void methodOne(final int x){ //ok
- *            //
- *       }
- *       public void methodTwo(int x){  //Violation - x should be final
- *            //
- *       }
- *       public static void main(String[] args) { //violation - args should be final
- *            //
- *       }
+ *   private int m,n;
+ *   private String s;
+ *   public Point() { } // ok
+ *   public Point(final int m) { } // ok
+ *   public Point(final int m,int n){ } // violation - n should be final
+ *   public void methodOne(final int x){ } // ok
+ *   public void methodTwo(int x){ } // violation - x should be final
+ *   public static void main(String[] args) { } // violation - args should be final
  * }
  * </pre>
  * <p>
@@ -107,31 +92,16 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <p>Example:</p>
  * <pre>
- *     public class Point {
- *        private int m,n;
- *        private String s;
- *        public Point(){
- *            s = "ABC";
- *        }
- *        public Point(final int m) { //OK
- *            this();
- *            this.m = m;
- *        }
- *        public Point(final int m,int n){ //Violation - n should be final
- *            this();
- *            this.m = m;
- *            this.n = n;
- *        }
- *        public void methodOne(final int x){ //ok
- *            //
- *        }
- *        public void methodTwo(int x){ //ok
- *            //
- *        }
- *        public static void main(String[] args) { //ok
- *            //
- *        }
- * }
+ * public class Point {
+ *   private int m,n;
+ *   private String s;
+ *   public Point() { } // ok
+ *   public Point(final int m) { } // ok
+ *   public Point(final int m,int n){ } // violation - n should be final
+ *   public void methodOne(final int x){ } // ok
+ *   public void methodTwo(int x){ } // ok
+ *   public static void main(String[] args) { } // ok
+ *   }
  * </pre>
  * <p>
  * To configure the check to allow ignoring
@@ -146,29 +116,14 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>Example:</p>
  * <pre>
  * public class Point {
- *         private int m,n;
- *         private String s;
- *         public Point(){
- *              s = "ABC";
- *         }
- *         public Point(final int m) { //OK
- *             this();
- *             this.m = m;
- *         }
- *         public Point(final int m,int n){ //OK
- *             this();
- *             this.m = m;
- *             this.n = n;
- *         }
- *         public void methodOne(final int x){ //ok
- *              //
- *         }
- *         public void methodTwo(int x){ //ok
- *              //
- *         }
- *         public static void main(String[] args) { //args should be final as it is of referenced type
- *             //
- *         }
+ *   private int m,n;
+ *   private String s;
+ *   public Point() { } // ok
+ *   public Point(final int m) { } // ok
+ *   public Point(final int m,int n){ } // ok
+ *   public void methodOne(final int x){ } // ok
+ *   public void methodTwo(int x){ } // ok
+ *   public static void main(String[] args) { } // violation - args should be final
  * }
  * </pre>
  * <p>
