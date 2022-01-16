@@ -1032,10 +1032,10 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
         <source>
 &lt;module name=&quot;FinalParameters&quot;/&gt;
         </source>
-         <p>
-             Example:
-         </p>
-         <source>
+        <p>
+           Example:
+        </p>
+        <source>
 public class Point {
       private int m,n;
       private String s;
@@ -1061,7 +1061,7 @@ public class Point {
            //
       }
 }
-       </source>
+        </source>
         <p>
           To configure the check to enforce final parameters only for
           constructors:
