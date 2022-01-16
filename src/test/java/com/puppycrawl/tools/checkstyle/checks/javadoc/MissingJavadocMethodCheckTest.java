@@ -65,7 +65,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void extendAnnotationTest() throws Exception {
         final String[] expected = {
-            "60:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "44:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputMissingJavadocMethodExtendAnnotation.java"), expected);
