@@ -49,7 +49,7 @@ public class XpathRegressionVariableDeclarationUsageDistanceTest extends Abstrac
         moduleConfig.addProperty("ignoreFinal", "false");
 
         final String[] expectedViolation = {
-            "26:9: " + getCheckMessage(VariableDeclarationUsageDistanceCheck.class,
+            "7:9: " + getCheckMessage(VariableDeclarationUsageDistanceCheck.class,
                     VariableDeclarationUsageDistanceCheck.MSG_KEY, "temp", 2, 1),
         };
 
@@ -90,7 +90,7 @@ public class XpathRegressionVariableDeclarationUsageDistanceTest extends Abstrac
         moduleConfig.addProperty("ignoreFinal", "false");
 
         final String[] expectedViolation = {
-            "25:9: " + getCheckMessage(VariableDeclarationUsageDistanceCheck.class,
+            "6:9: " + getCheckMessage(VariableDeclarationUsageDistanceCheck.class,
                     VariableDeclarationUsageDistanceCheck.MSG_KEY, "count", 2, 1),
         };
 
