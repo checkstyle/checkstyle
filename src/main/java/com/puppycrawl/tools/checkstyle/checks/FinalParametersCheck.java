@@ -68,12 +68,38 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;FinalParameters&quot;/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class Point {
+ *   public Point() { } // ok
+ *   public Point(final int m) { } // ok
+ *   public Point(final int m,int n) { } // violation, n should be final
+ *   public void methodOne(final int x) { } // ok
+ *   public void methodTwo(int x) { } // violation, x should be final
+ *   public static void main(String[] args) { } // violation, args should be final
+ * }
+ * </pre>
+ * <p>
  * To configure the check to enforce final parameters only for constructors:
  * </p>
  * <pre>
  * &lt;module name=&quot;FinalParameters&quot;&gt;
  *   &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class Point {
+ *   public Point() { } // ok
+ *   public Point(final int m) { } // ok
+ *   public Point(final int m,int n) { } // violation, n should be final
+ *   public void methodOne(final int x) { } // ok
+ *   public void methodTwo(int x) { } // ok
+ *   public static void main(String[] args) { } // ok
+ * }
  * </pre>
  * <p>
  * To configure the check to allow ignoring
@@ -84,6 +110,19 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;FinalParameters&quot;&gt;
  *   &lt;property name=&quot;ignorePrimitiveTypes&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class Point {
+ *   public Point() { } // ok
+ *   public Point(final int m) { } // ok
+ *   public Point(final int m,int n) { } // ok
+ *   public void methodOne(final int x) { } // ok
+ *   public void methodTwo(int x) { } // ok
+ *   public static void main(String[] args) { } // violation, args should be final
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
