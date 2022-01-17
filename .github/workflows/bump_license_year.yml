@@ -10,6 +10,9 @@ on:
     - cron: "0 0 1 1 *"
   # So we can manually trigger if required
   workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
 jobs:
   bump:
     name: Bump license year
@@ -40,3 +43,4 @@ jobs:
           delete-branch: true
           body: "minor: Bump year to ${{ env.YEAR }}"
           title: "minor: Bump year to ${{ env.YEAR }}"
+          token: ${{ secrets.GITHUB_TOKEN }}
