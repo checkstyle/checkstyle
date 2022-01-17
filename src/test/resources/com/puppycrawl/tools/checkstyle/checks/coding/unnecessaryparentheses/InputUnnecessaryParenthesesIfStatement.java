@@ -114,49 +114,4 @@ public class InputUnnecessaryParenthesesIfStatement {
             return;
         }
     }
-
-    public void checkBooleanStatements() {
-        boolean a = true;
-        int b = 42;
-        int c = 42;
-        int d = 32;
-        if ((b == c) == a
-                && (( // violation
-                                (b==c)==(d>=b)==a!=(c==d))
-                || (b<=c)!=a==(c>=d))) {
-            return;
-        }
-
-        if (( // violation
-                a!=(b==c) && (a // violation
-                        && (b==c))) // violation
-                 || (a || a!=(b<=c))     // ok
-                 || (a==(b!=d==(c==b) && a!=(b<=c)))) { // violation
-                                                        // after '||'
-            return;
-        }
-
-        if (a==(b>=c && a==(c==d && d!=b)) // ok
-                && a==(c<=d)) { // ok
-           return;
-        }
-
-        if (a && a==(b<=c)==(a
-                && (b<=c))) { // violation
-            return;
-        }
-
-        if (a==(b==c) // ok
-                || a!=(b<=c)) { // ok
-            return;
-        }
-
-        if ((b==0) == (c==d) // ok
-                && (Integer.valueOf(d) instanceof Integer) == true) { // ok
-            return;
-        }
-    }
-
-
 }
-
