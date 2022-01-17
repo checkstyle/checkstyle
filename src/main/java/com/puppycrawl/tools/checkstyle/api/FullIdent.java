@@ -85,7 +85,13 @@ public final class FullIdent {
                         || nextSibling.getType() == TokenTypes.ANNOTATIONS)
                     && isArrayTypeDeclaration(nextSibling);
 
-            if (ast.getType() == TokenTypes.DOT) {
+            final int typeOfAst = ast.getType();
+            if (typeOfAst == TokenTypes.LITERAL_NEW
+                    && ast.hasChildren()) {
+                final DetailAST firstChild = ast.getFirstChild();
+                extractFullIdent(full, firstChild);
+            }
+            else if (typeOfAst == TokenTypes.DOT) {
                 final DetailAST firstChild = ast.getFirstChild();
                 extractFullIdent(full, firstChild);
                 full.append(".");
@@ -96,7 +102,7 @@ public final class FullIdent {
                 full.append(ast);
                 appendBrackets(full, ast);
             }
-            else if (ast.getType() != TokenTypes.ANNOTATIONS) {
+            else if (typeOfAst != TokenTypes.ANNOTATIONS) {
                 full.append(ast);
             }
         }
