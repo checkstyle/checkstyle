@@ -42,4 +42,25 @@ public final class CodePointUtil {
                 .allMatch(Character::isWhitespace);
     }
 
+    /**
+     * Returns whether the given code point array of line contains
+     * only whitespace up to the specified index.
+     *
+     * @param codePoints
+     *            array of Unicode code point of string to check
+     * @param index
+     *            index to check up to
+     * @return whether there is only whitespace
+     */
+    public static boolean hasWhitespaceBefore(int index, int...codePoints) {
+        boolean result = true;
+        for (int i = 0; i < index; i++) {
+            if (!CommonUtil.isCodePointWhitespace(codePoints, i)) {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+
 }
