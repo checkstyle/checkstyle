@@ -438,7 +438,7 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.annotation.SuppressWarningsCheck"},
         }).collect(Collectors.collectingAndThen(
                 Collectors.toMap(data -> data[0], data -> data[1]),
-                Collections::<String, String>unmodifiableMap));
+                Collections::unmodifiableMap));
     }
 
     /**
@@ -456,7 +456,7 @@ public class PackageObjectFactory implements ModuleFactory {
             {"RightCurlyCheck", BASE_PACKAGE + ".checks.blocks.RightCurlyCheck"},
         }).collect(Collectors.collectingAndThen(
                 Collectors.toMap(data -> data[0], data -> data[1]),
-                Collections::<String, String>unmodifiableMap));
+                Collections::unmodifiableMap));
     }
 
     /**
@@ -551,7 +551,7 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.UnusedLocalVariableCheck"},
         }).collect(Collectors.collectingAndThen(
                 Collectors.toMap(data -> data[0], data -> data[1]),
-                Collections::<String, String>unmodifiableMap));
+                Collections::unmodifiableMap));
     }
 
     /**
@@ -581,7 +581,7 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.design.VisibilityModifierCheck"},
         }).collect(Collectors.collectingAndThen(
                 Collectors.toMap(data -> data[0], data -> data[1]),
-                Collections::<String, String>unmodifiableMap));
+                Collections::unmodifiableMap));
     }
 
     /**
@@ -597,7 +597,7 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.header.RegexpHeaderCheck"},
         }).collect(Collectors.collectingAndThen(
                 Collectors.toMap(data -> data[0], data -> data[1]),
-                Collections::<String, String>unmodifiableMap));
+                Collections::unmodifiableMap));
     }
 
     /**
@@ -625,7 +625,7 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.imports.UnusedImportsCheck"},
         }).collect(Collectors.collectingAndThen(
                 Collectors.toMap(data -> data[0], data -> data[1]),
-                Collections::<String, String>unmodifiableMap));
+                Collections::unmodifiableMap));
     }
 
     /**
@@ -641,7 +641,7 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.indentation.IndentationCheck"},
         }).collect(Collectors.collectingAndThen(
                 Collectors.toMap(data -> data[0], data -> data[1]),
-                Collections::<String, String>unmodifiableMap));
+                Collections::unmodifiableMap));
     }
 
     /**
@@ -685,7 +685,7 @@ public class PackageObjectFactory implements ModuleFactory {
             {"WriteTagCheck", BASE_PACKAGE + ".checks.javadoc.WriteTagCheck"},
         }).collect(Collectors.collectingAndThen(
                 Collectors.toMap(data -> data[0], data -> data[1]),
-                Collections::<String, String>unmodifiableMap));
+                Collections::unmodifiableMap));
     }
 
     /**
@@ -709,7 +709,7 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.metrics.NPathComplexityCheck"},
         }).collect(Collectors.collectingAndThen(
                 Collectors.toMap(data -> data[0], data -> data[1]),
-                Collections::<String, String>unmodifiableMap));
+                Collections::unmodifiableMap));
     }
 
     /**
@@ -729,7 +729,7 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.modifier.RedundantModifierCheck"},
         }).collect(Collectors.collectingAndThen(
                 Collectors.toMap(data -> data[0], data -> data[1]),
-                Collections::<String, String>unmodifiableMap));
+                Collections::unmodifiableMap));
     }
 
     /**
@@ -781,7 +781,7 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.naming.IllegalIdentifierNameCheck"},
         }).collect(Collectors.collectingAndThen(
                 Collectors.toMap(data -> data[0], data -> data[1]),
-                Collections::<String, String>unmodifiableMap));
+                Collections::unmodifiableMap));
     }
 
     /**
@@ -803,7 +803,7 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.regexp.RegexpSinglelineJavaCheck"},
         }).collect(Collectors.collectingAndThen(
                 Collectors.toMap(data -> data[0], data -> data[1]),
-                Collections::<String, String>unmodifiableMap));
+                Collections::unmodifiableMap));
     }
 
     /**
@@ -835,7 +835,7 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.sizes.RecordComponentNumberCheck"},
         }).collect(Collectors.collectingAndThen(
                 Collectors.toMap(data -> data[0], data -> data[1]),
-                Collections::<String, String>unmodifiableMap));
+                Collections::unmodifiableMap));
     }
 
     /**
@@ -875,7 +875,7 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.whitespace.WhitespaceAroundCheck"},
         }).collect(Collectors.collectingAndThen(
                 Collectors.toMap(data -> data[0], data -> data[1]),
-                Collections::<String, String>unmodifiableMap));
+                Collections::unmodifiableMap));
     }
 
     /**
@@ -903,7 +903,7 @@ public class PackageObjectFactory implements ModuleFactory {
             {"UpperEllCheck", BASE_PACKAGE + ".checks.UpperEllCheck"},
         }).collect(Collectors.collectingAndThen(
                 Collectors.toMap(data -> data[0], data -> data[1]),
-                Collections::<String, String>unmodifiableMap));
+                Collections::unmodifiableMap));
     }
 
     /**
@@ -917,7 +917,7 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".filefilters.BeforeExecutionExclusionFileFilter"},
         }).collect(Collectors.collectingAndThen(
                 Collectors.toMap(data -> data[0], data -> data[1]),
-                Collections::<String, String>unmodifiableMap));
+                Collections::unmodifiableMap));
     }
 
     /**
@@ -946,7 +946,7 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".filters.SuppressWithNearbyCommentFilter"},
         }).collect(Collectors.collectingAndThen(
                 Collectors.toMap(data -> data[0], data -> data[1]),
-                Collections::<String, String>unmodifiableMap));
+                Collections::unmodifiableMap));
     }
 
     /**
@@ -960,7 +960,7 @@ public class PackageObjectFactory implements ModuleFactory {
             {"TreeWalker", BASE_PACKAGE + ".TreeWalker"},
         }).collect(Collectors.collectingAndThen(
                 Collectors.toMap(data -> data[0], data -> data[1]),
-                Collections::<String, String>unmodifiableMap));
+                Collections::unmodifiableMap));
     }
 
 }
