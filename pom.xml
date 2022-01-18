@@ -3320,6 +3320,9 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheckTest
                 </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheckTest
+                </param>
               </targetTests>
               <excludedTestClasses>
                 <param>*.Input*</param>
