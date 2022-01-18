@@ -35,7 +35,7 @@ class badCaseForTestDot<T extends FooForTestDot &  BarForTestDot> {
 
     public void goodCaseForTestDot(int... aFoo)throws FooExceptionForTestDot, BarExceptionForTestDot
     {
-        String s = "ffffooooString"; // violation below
+        String s = "ffffooooString"; // violation below ''.' should be on a new line'
         s.
                 isEmpty(); //bad wrapping
         try {
