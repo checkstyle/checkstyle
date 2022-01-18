@@ -42,6 +42,13 @@
     </subpackage>
   </subpackage>
 
+  <subpackage name="bdd">
+    <file name="InlineConfigParser">
+      <!-- Use reflection to count violation messages in a check. -->
+      <allow class="java.lang.reflect.Modifier" />
+    </file>
+  </subpackage>
+
   <file name="JavaAstVisitorTest">
     <!-- Uses reflection to validate method order. -->
     <allow pkg="java.lang.reflect" />
