@@ -44,7 +44,7 @@ class badCaseForTestComma<T extends FooForTestComma &  BarForTestComma> {
                 | BarException4TC e) {}
 
         foo(1
-                ,s);  // violation
+                ,s);  // violation '',' should be on the previous line'
         int[] i;
     }
     public static String foo(int i, String s) throws FooException4TC, BarException4TC
