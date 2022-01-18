@@ -149,5 +149,9 @@ public final class TestInputConfiguration {
                     filteredViolations
             );
         }
+
+        public List<ModuleInputConfiguration> getChildrenModules() {
+            return Collections.unmodifiableList(childrenModules);
+        }
     }
 }
