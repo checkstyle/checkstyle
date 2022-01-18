@@ -547,6 +547,8 @@ public class PackageObjectFactory implements ModuleFactory {
             {"NoArrayTrailingCommaCheck",
                 BASE_PACKAGE + ".checks.coding.NoArrayTrailingCommaCheck"},
             {"MatchXpathCheck", BASE_PACKAGE + ".checks.coding.MatchXpathCheck"},
+            {"UnusedLocalVariableCheck",
+                BASE_PACKAGE + ".checks.coding.UnusedLocalVariableCheck"},
         }).collect(Collectors.collectingAndThen(
                 Collectors.toMap(data -> data[0], data -> data[1]),
                 Collections::<String, String>unmodifiableMap));
