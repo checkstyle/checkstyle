@@ -20,7 +20,7 @@ class InputSummaryJavadocIncorrect {
      * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}
      */
     void foo3() {}
-    // violation below
+    // violation below 'Summary javadoc is missing.'
     /**
      * @throws Exception if a problem occurs
      */
@@ -38,12 +38,12 @@ class InputSummaryJavadocIncorrect {
      * Some Javadoc.
      */
     public static final byte NUL = 0;
-    // violation below
+    // violation below 'Summary javadoc is missing.'
     /**
      * <a href="mailto:vlad@htmlbook.ru"/>
      */
      class InnerInputCorrectJavaDocParagraphCheck {
-    // violation below
+    // violation below 'First sentence .* missing an ending period.'
          /**
           * foooo@foooo
           */
@@ -53,18 +53,18 @@ class InputSummaryJavadocIncorrect {
          * Some java@doc.
          */
         public static final byte NUL_2 = 0;
-    // violation below
+    // violation below 'Forbidden summary fragment.'
         /**
          * This method
          * returns some javadoc. Some javadoc.
          */
         boolean emulated() {return false;}
-    // violation below
+    // violation below 'Summary javadoc is missing.'
         /**
          * <a href="mailto:vlad@htmlbook.ru"/>
          */
         void foo2() {}
-    // violation below
+    // violation below 'Summary javadoc is missing.'
         /**
          * @return the
          * customer ID some javadoc.
@@ -75,7 +75,7 @@ class InputSummaryJavadocIncorrect {
          * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.
          */
         void foo3() {}
-    // violation below
+    // violation below 'Summary javadoc is missing.'
         /**
          * @throws Exception if a problem occurs
          */
@@ -89,7 +89,7 @@ class InputSummaryJavadocIncorrect {
          */
         void foo6() {}
     }
-    // violation below
+    // violation below 'Forbidden summary fragment.'
      /**
       * A {@code InnerInputCorrectJavaDocParagraphCheck} is a simple code.
       */
@@ -109,7 +109,7 @@ class InputSummaryJavadocIncorrect {
          * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.
          */
         void foo3() {}
-    // violation below
+    // violation below 'Summary javadoc is missing.'
         /**
          * @throws Exception if a problem occurs
          */
@@ -122,31 +122,40 @@ class InputSummaryJavadocIncorrect {
          * An especially short bit of Javadoc.
          */
         void foo6() {}
-    // violation below
+    // violation below 'First sentence .* missing an ending period.'
          /**
           * mm{@inheritDoc}
           */
          void foo7() {}
-    // violation below
+    // violation below 'Summary javadoc is missing.'
          /**
           * {@link #setBounds(int,int,int,int)}
           */
          void foo8() {}
-    // violation below
+    // violation below 'Summary javadoc is missing.'
          /**
           *
           */
          void foo10() {}
     };
-    // violation below
+    // violation below 'First sentence .* missing an ending period.'
     /**
      * M m m m {@inheritDoc}
      */
     void foo7() {}
-    // violation below
+    // violation below 'Summary javadoc is missing.'
     /** */
     <T> T foo8(T t) {return null;}
-    // violation below
+    // violation below 'Summary javadoc is missing.'
     /** */
     String[] foo9() {return null;}
+
+    /**
+     * This is the summary.
+     * {@summary This is NOT summary according to javadoc tool}
+     */
+    // violation 2 lines above 'Summary .* missing an ending period.'
+    // until https://github.com/checkstyle/checkstyle/issues/11213
+    void testMethod() {
+    }
 }
