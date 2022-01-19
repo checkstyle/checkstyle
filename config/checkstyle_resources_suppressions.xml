@@ -60,6 +60,10 @@
     files="linelength[\\/]InputLineLengthLongPackageStatement\.java"/>
 
   <!-- intentional problem for testing -->
+  <suppress checks="PackageDeclarationCheck"
+    files="unusedlocalvariable[\\/]InputUnusedLocalVariableWithoutPackageStatement\.java"/>
+
+  <!-- intentional problem for testing -->
   <suppress checks="OuterTypeFilename"
     files="[\\/]InputOuterType.*\.java"/>
   <suppress checks="OuterTypeFilename"
