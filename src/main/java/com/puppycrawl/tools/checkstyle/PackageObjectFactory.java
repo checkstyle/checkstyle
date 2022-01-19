@@ -899,6 +899,8 @@ public class PackageObjectFactory implements ModuleFactory {
     private static void fillModulesFromFiltersPackage() {
         NAME_TO_FULL_MODULE_NAME.put("SeverityMatchFilter",
                 BASE_PACKAGE + ".filters.SeverityMatchFilter");
+        NAME_TO_FULL_MODULE_NAME.put("SuppressByMessageFilter",
+                BASE_PACKAGE + ".filters.SuppressByMessageFilter");
         NAME_TO_FULL_MODULE_NAME.put("SuppressWithPlainTextCommentFilter",
             BASE_PACKAGE + ".filters.SuppressWithPlainTextCommentFilter");
         NAME_TO_FULL_MODULE_NAME.put("SuppressionCommentFilter",
