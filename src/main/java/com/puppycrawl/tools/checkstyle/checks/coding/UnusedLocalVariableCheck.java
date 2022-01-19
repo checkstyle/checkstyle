@@ -23,9 +23,12 @@ import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
@@ -218,10 +221,10 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private final Map<DetailAST, TypeDeclDesc> anonInnerAstToTypeDeclDesc;
 
     /**
-     * Queue of tokens of type {@link UnusedLocalVariableCheck#CONTAINERS_FOR_ANON_INNERS}
+     * Set of tokens of type {@link UnusedLocalVariableCheck#CONTAINERS_FOR_ANON_INNERS}
      * and {@link TokenTypes#LAMBDA} in some cases.
      */
-    private final Queue<DetailAST> anonInnerClassHolders;
+    private final Set<DetailAST> anonInnerClassHolders;
 
     /**
      * Name of the package.
@@ -234,23 +237,15 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private int depth;
 
     /**
-     * Block containing local anon inner class, keeps updating throughout the check.
-     * Acts as a tracker and checks whether the current node being visited is present
-     * inside the block containing a local anonymous inner class.
-     */
-    private DetailAST blockContainingLocalAnonInnerClass;
-
-    /**
      * Creates a new {@code UnusedLocalVariableCheck} instance.
      */
     public UnusedLocalVariableCheck() {
         variables = new ArrayDeque<>();
         typeDeclarations = new ArrayDeque<>();
-        typeDeclAstToTypeDeclDesc = new HashMap<>();
+        typeDeclAstToTypeDeclDesc = new LinkedHashMap<>();
         anonInnerAstToTypeDeclDesc = new HashMap<>();
-        anonInnerClassHolders = new ArrayDeque<>();
-        blockContainingLocalAnonInnerClass = null;
-        packageName = "";
+        anonInnerClassHolders = new HashSet<>();
+        packageName = null;
         depth = 0;
     }
 
@@ -300,7 +295,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         typeDeclAstToTypeDeclDesc.clear();
         anonInnerAstToTypeDeclDesc.clear();
         anonInnerClassHolders.clear();
-        packageName = "";
+        packageName = null;
         depth = 0;
     }
 
@@ -316,15 +311,15 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         else if (type == TokenTypes.IDENT) {
             visitIdentToken(ast, variables);
         }
+        else if (type == TokenTypes.LITERAL_NEW
+                && isInsideLocalAnonInnerClass(ast)) {
+            visitLocalAnonInnerClass(ast);
+        }
         else if (TokenUtil.isTypeDeclaration(type)) {
             visitTypeDeclarationToken(ast);
         }
         else if (type == TokenTypes.PACKAGE_DEF) {
             packageName = extractQualifiedName(ast.getFirstChild().getNextSibling());
-        }
-        else if (type == TokenTypes.LITERAL_NEW
-                && isInsideLocalAnonInnerClass(ast)) {
-            visitLocalAnonInnerClass(ast);
         }
     }
 
@@ -335,9 +330,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         }
         else if (ast.getType() == TokenTypes.COMPILATION_UNIT) {
             leaveCompilationUnit();
-        }
-        else if (ast.equals(blockContainingLocalAnonInnerClass)) {
-            blockContainingLocalAnonInnerClass = null;
         }
         else if (isNonLocalTypeDeclaration(ast)) {
             depth--;
@@ -351,9 +343,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param dotAst dotAst
      * @param variablesStack stack of all the relevant variables in the scope
      */
-    private void visitDotToken(DetailAST dotAst, Deque<VariableDesc> variablesStack) {
-        if (blockContainingLocalAnonInnerClass == null
-                && dotAst.getParent().getType() != TokenTypes.LITERAL_NEW
+    private static void visitDotToken(DetailAST dotAst, Deque<VariableDesc> variablesStack) {
+        if (dotAst.getParent().getType() != TokenTypes.LITERAL_NEW
                 && shouldCheckIdentTokenNestedUnderDot(dotAst)) {
             checkIdentifierAst(dotAst.findFirstToken(TokenTypes.IDENT), variablesStack);
         }
@@ -365,10 +356,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param varDefAst varDefAst
      */
     private void visitVariableDefToken(DetailAST varDefAst) {
-        if (blockContainingLocalAnonInnerClass == null) {
-            addLocalVariables(varDefAst, variables);
-            addInstanceOrClassVar(varDefAst);
-        }
+        addLocalVariables(varDefAst, variables);
+        addInstanceOrClassVar(varDefAst);
     }
 
     /**
@@ -377,13 +366,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param identAst identAst
      * @param variablesStack stack of all the relevant variables in the scope
      */
-    private void visitIdentToken(DetailAST identAst, Deque<VariableDesc> variablesStack) {
-        if (blockContainingLocalAnonInnerClass == null) {
-            final DetailAST parentAst = identAst.getParent();
-            if (!TokenUtil.isOfType(parentAst, UNACCEPTABLE_PARENT_OF_IDENT)
-                    && shouldCheckIdentWithMethodRefParent(identAst)) {
-                checkIdentifierAst(identAst, variablesStack);
-            }
+    private static void visitIdentToken(DetailAST identAst, Deque<VariableDesc> variablesStack) {
+        final DetailAST parentAst = identAst.getParent();
+        if (!TokenUtil.isOfType(parentAst, UNACCEPTABLE_PARENT_OF_IDENT)
+                && shouldCheckIdentWithMethodRefParent(identAst)) {
+            checkIdentifierAst(identAst, variablesStack);
         }
     }
 
@@ -409,11 +396,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private void visitLocalAnonInnerClass(DetailAST literalNewAst) {
         anonInnerAstToTypeDeclDesc.put(literalNewAst, typeDeclarations.peek());
-        if (blockContainingLocalAnonInnerClass == null) {
-            blockContainingLocalAnonInnerClass = getBlockContainingLocalAnonInnerClass(
-                    literalNewAst);
-            anonInnerClassHolders.add(blockContainingLocalAnonInnerClass);
-        }
+        anonInnerClassHolders.add(getBlockContainingLocalAnonInnerClass(literalNewAst));
     }
 
     /**
@@ -441,9 +424,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         if (lastChild != null && lastChild.getType() == TokenTypes.OBJBLOCK) {
             DetailAST parentAst = literalNewAst.getParent();
             while (parentAst.getType() != TokenTypes.SLIST) {
-                if (parentAst.getType() == TokenTypes.ENUM_CONSTANT_DEF
-                        || parentAst.getType() == TokenTypes.OBJBLOCK
-                        && TokenUtil.isTypeDeclaration(parentAst.getParent().getType())) {
+                if (TokenUtil.isTypeDeclaration(parentAst.getParent().getType())) {
                     break;
                 }
                 parentAst = parentAst.getParent();
@@ -462,8 +443,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private void logViolations(DetailAST scopeAst, Deque<VariableDesc> variablesStack) {
         while (!variablesStack.isEmpty() && variablesStack.peek().getScope() == scopeAst) {
             final VariableDesc variableDesc = variablesStack.pop();
-            if (blockContainingLocalAnonInnerClass == null
-                    && !variableDesc.isUsed()
+            if (!variableDesc.isUsed()
                     && !variableDesc.isInstVarOrClassVar()) {
                 final DetailAST typeAst = variableDesc.getTypeAst();
                 log(typeAst, MSG_UNUSED_LOCAL_VARIABLE, variableDesc.getName());
@@ -478,10 +458,9 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * cast a shadow on local variables.
      */
     private void leaveCompilationUnit() {
-        while (!anonInnerClassHolders.isEmpty()) {
-            final DetailAST holder = anonInnerClassHolders.remove();
+        anonInnerClassHolders.forEach(holder -> {
             iterateOverBlockContainingLocalAnonInnerClass(holder, new ArrayDeque<>());
-        }
+        });
     }
 
     /**
@@ -491,8 +470,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @return true if type declaration is non-local
      */
     private static boolean isNonLocalTypeDeclaration(DetailAST typeDeclAst) {
-        return typeDeclAst.getParent().getType() != TokenTypes.SLIST
-                && TokenUtil.isTypeDeclaration(typeDeclAst.getType());
+        return TokenUtil.isTypeDeclaration(typeDeclAst.getType())
+                && typeDeclAst.getParent().getType() != TokenTypes.SLIST;
     }
 
     /**
@@ -527,15 +506,14 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static void addLocalVariables(DetailAST varDefAst, Deque<VariableDesc> variablesStack) {
         final DetailAST parentAst = varDefAst.getParent();
         final DetailAST grandParent = parentAst.getParent();
-        final boolean isInstanceVarInLocalAnonymousInnerClass =
-                grandParent.getType() == TokenTypes.LITERAL_NEW
-                        && isInsideLocalAnonInnerClass(grandParent);
-        if (isInstanceVarInLocalAnonymousInnerClass
+        final boolean isInstanceVarInAnonymousInnerClass =
+                grandParent.getType() == TokenTypes.LITERAL_NEW;
+        if (isInstanceVarInAnonymousInnerClass
                 || parentAst.getType() != TokenTypes.OBJBLOCK) {
             final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
             final VariableDesc desc = new VariableDesc(ident.getText(),
                     varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));
-            if (isInstanceVarInLocalAnonymousInnerClass) {
+            if (isInstanceVarInAnonymousInnerClass) {
                 desc.registerAsInstOrClassVar();
             }
             variablesStack.push(desc);
@@ -550,8 +528,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private void addInstanceOrClassVar(DetailAST varDefAst) {
         final DetailAST parentAst = varDefAst.getParent();
-        if (parentAst.getType() == TokenTypes.OBJBLOCK
-                && isNonLocalTypeDeclaration(parentAst.getParent())
+        if (isNonLocalTypeDeclaration(parentAst.getParent())
                 && !isPrivateInstanceVariable(varDefAst)) {
             final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
             final VariableDesc desc = new VariableDesc(ident.getText(),
@@ -581,12 +558,25 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private TypeDeclDesc getSuperClassOfAnonInnerClass(DetailAST literalNewAst) {
         TypeDeclDesc obtainedClass = null;
         final String shortNameOfClass = getShortNameOfAnonInnerClass(literalNewAst);
-
-        final List<TypeDeclDesc> typeDeclWithSameName = typeDeclWithSameName(shortNameOfClass);
-        if (!typeDeclWithSameName.isEmpty()) {
-            obtainedClass = getTheNearestClass(
-                    anonInnerAstToTypeDeclDesc.get(literalNewAst).getQualifiedName(),
-                    typeDeclWithSameName);
+        if (packageName != null && shortNameOfClass.startsWith(packageName)) {
+            final Optional<TypeDeclDesc> classWithCompletePackageName =
+                    typeDeclAstToTypeDeclDesc.values()
+                    .stream()
+                    .filter(typeDeclDesc -> {
+                        return typeDeclDesc.getQualifiedName().equals(shortNameOfClass);
+                    })
+                    .findFirst();
+            if (classWithCompletePackageName.isPresent()) {
+                obtainedClass = classWithCompletePackageName.get();
+            }
+        }
+        else {
+            final List<TypeDeclDesc> typeDeclWithSameName = typeDeclWithSameName(shortNameOfClass);
+            if (!typeDeclWithSameName.isEmpty()) {
+                obtainedClass = getTheNearestClass(
+                        anonInnerAstToTypeDeclDesc.get(literalNewAst).getQualifiedName(),
+                        typeDeclWithSameName);
+            }
         }
         return obtainedClass;
     }
@@ -636,15 +626,33 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      *
      * @param superClassName name of the super class
      * @return true if there is another type declaration with same name.
-     * @noinspection CallToStringConcatCanBeReplacedByOperator
      */
     private List<TypeDeclDesc> typeDeclWithSameName(String superClassName) {
         return typeDeclAstToTypeDeclDesc.values().stream()
                 .filter(typeDeclDesc -> {
-                    return typeDeclDesc.getQualifiedName()
-                            .endsWith(PACKAGE_SEPARATOR.concat(superClassName));
+                    return hasSameNameAsSuperClass(superClassName, typeDeclDesc);
                 })
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Whether the qualified name of {@code typeDeclDesc} matches the super class name.
+     *
+     * @param superClassName name of the super class
+     * @param typeDeclDesc type declaration description
+     * @return {@code true} if the qualified name of {@code typeDeclDesc}
+     *         matches the super class name
+     */
+    private boolean hasSameNameAsSuperClass(String superClassName, TypeDeclDesc typeDeclDesc) {
+        final boolean result;
+        if (packageName == null && typeDeclDesc.getDepth() == 0) {
+            result = typeDeclDesc.getQualifiedName().equals(superClassName);
+        }
+        else {
+            result = typeDeclDesc.getQualifiedName()
+                    .endsWith(PACKAGE_SEPARATOR + superClassName);
+        }
+        return result;
     }
 
     /**
@@ -729,7 +737,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         final String qualifiedClassName;
 
         if (outerClassQualifiedName == null) {
-            if (packageName.isEmpty()) {
+            if (packageName == null) {
                 qualifiedClassName = className;
             }
             else {
@@ -781,24 +789,21 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         else if (type == TokenTypes.IDENT) {
             visitIdentToken(ast, variablesStack);
         }
-        else if (type == TokenTypes.LITERAL_NEW
-                && isInsideLocalAnonInnerClass(ast)) {
+        else if (isInsideLocalAnonInnerClass(ast)) {
             final TypeDeclDesc obtainedClass = getSuperClassOfAnonInnerClass(ast);
             modifyVariablesStack(obtainedClass, variablesStack, ast);
         }
     }
 
     /**
-     * Visit all ast nodes under {@link UnusedLocalVariableCheck#anonInnerClassHolders} once
+     * Leave all ast nodes under {@link UnusedLocalVariableCheck#anonInnerClassHolders} once
      * again.
      *
      * @param ast ast
      * @param variablesStack stack of all the relevant variables in the scope
      */
     private void customLeaveToken(DetailAST ast, Deque<VariableDesc> variablesStack) {
-        if (TokenUtil.isOfType(ast, SCOPES)) {
-            logViolations(ast, variablesStack);
-        }
+        logViolations(ast, variablesStack);
     }
 
     /**
@@ -845,9 +850,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         for (VariableDesc variableDesc : variablesStack) {
             if (identAst.getText().equals(variableDesc.getName())
                     && !isLeftHandSideValue(identAst)) {
-                if (!variableDesc.isInstVarOrClassVar()) {
-                    variableDesc.registerAsUsed();
-                }
+                variableDesc.registerAsUsed();
                 break;
             }
         }
@@ -866,14 +869,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             result = parentAst;
         }
         else {
-            final DetailAST grandParent = parentAst.getParent();
-            final DetailAST scopeAst = grandParent.findFirstToken(TokenTypes.SLIST);
-            if (scopeAst == null) {
-                result = grandParent;
-            }
-            else {
-                result = scopeAst;
-            }
+            result = parentAst.getParent();
         }
         return result;
     }
