@@ -475,7 +475,8 @@ public class PackageObjectFactory implements ModuleFactory {
     // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
     // -@cs[JavaNCSS] splitting this method is not reasonable.
     private static Map<String, String> fillChecksFromCodingPackage() {
-        return Stream.of(
+        //noinspection RedundantTypeArguments (explicit type arguments speedup compilation and analysis time)
+        return Stream.<AbstractMap.SimpleEntry<String, String>>of(
                 new AbstractMap.SimpleEntry<>("ArrayTrailingCommaCheck",
                     BASE_PACKAGE + ".checks.coding.ArrayTrailingCommaCheck"),
                 new AbstractMap.SimpleEntry<>("AvoidDoubleBraceInitializationCheck",
