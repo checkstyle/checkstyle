@@ -70,14 +70,13 @@ jobs:
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
-    # until https://github.com/sevntu-checkstyle/sevntu.checkstyle/pull/858
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="NoErrorTest - checkstyle's sevntu"
-    #     - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-    #     - CMD2="./.ci/validation.sh no-error-checkstyles-sevntu"
-    #     - CMD="$CMD1 && $CMD2"
-    #     - USE_MAVEN_REPO="true"
+     - jdk: openjdk8
+       env:
+         - DESC="NoErrorTest - checkstyle's sevntu"
+         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+         - CMD2="./.ci/validation.sh no-error-checkstyles-sevntu"
+         - CMD="$CMD1 && $CMD2"
+         - USE_MAVEN_REPO="true"
 
     - jdk: openjdk8
       env:
