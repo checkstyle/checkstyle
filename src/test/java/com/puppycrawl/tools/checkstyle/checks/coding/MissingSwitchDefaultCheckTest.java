@@ -90,4 +90,15 @@ public class MissingSwitchDefaultCheckTest
                 expected);
     }
 
+    @Test
+    public void testMissingSwitchDefaultCaseLabelElements() throws Exception {
+        final String[] expected = {
+            "39:9: " + getCheckMessage(MSG_KEY, "default"),
+            "44:9: " + getCheckMessage(MSG_KEY, "default"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMissingSwitchDefaultCaseLabelElements.java"),
+                expected);
+    }
+
 }

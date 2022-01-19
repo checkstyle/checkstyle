@@ -132,7 +132,13 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
         boolean found = false;
 
         while (nextAst != null) {
-            if (nextAst.findFirstToken(TokenTypes.LITERAL_DEFAULT) != null) {
+            // Check list of case label elements like 'case null, default:'
+            final DetailAST firstChild = nextAst.getFirstChild();
+            final boolean caseLabelContainsDefault = firstChild != null
+                    && firstChild.findFirstToken(TokenTypes.LITERAL_DEFAULT) != null;
+
+            if (caseLabelContainsDefault
+                    || nextAst.findFirstToken(TokenTypes.LITERAL_DEFAULT) != null) {
                 found = true;
                 break;
             }
