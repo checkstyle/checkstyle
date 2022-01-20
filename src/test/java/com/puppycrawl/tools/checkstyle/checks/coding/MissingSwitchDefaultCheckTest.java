@@ -90,4 +90,12 @@ public class MissingSwitchDefaultCheckTest
                 expected);
     }
 
+    @Test
+    public void testMissingSwitchDefaultCaseLabelElements() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMissingSwitchDefaultCaseLabelElements.java"),
+                expected);
+    }
+
 }
