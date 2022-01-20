@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.function.Predicate;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -38,7 +40,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * introduction of new types in an enumeration type. Note that
  * the compiler requires switch expressions to be exhaustive,
  * so this check does not enforce default branches on
- * such expressions.
+ * such expressions. Switch blocks containing pattern case label elements
+ * are also required to be exhaustive, and require no default label.
  * </p>
  * <p>
  * To configure the check:
@@ -65,6 +68,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  default: // OK
  *    break;
  * }
+ *
+ * switch(o) { // OK, pattern label element in case label requires switch block to cover all inputs
+ *     case Object o1: System.out.println("object");
+ * }
+ *
  * return switch (option) { // OK, the compiler requires switch expression to be exhaustive
  *  case ONE:
  *    yield 1;
@@ -116,7 +124,11 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final DetailAST firstSwitchMemberAst = findFirstSwitchMember(ast);
 
-        if (!containsDefaultSwitch(firstSwitchMemberAst) && !isSwitchExpression(ast)) {
+        if (!containsDefaultLabel(firstSwitchMemberAst)
+                && !containsPatterCaseLabelElement(firstSwitchMemberAst)
+                && !containsNullReferenceCaseLabelElement(firstSwitchMemberAst)
+                && !containsDefaultCaseLabelElement(firstSwitchMemberAst)
+                && !isSwitchExpression(ast)) {
             log(ast, MSG_KEY);
         }
     }
@@ -127,20 +139,69 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
      * @param caseGroupAst first case group to check.
      * @return true if 'default' switch found.
      */
-    private static boolean containsDefaultSwitch(DetailAST caseGroupAst) {
+    private static boolean containsDefaultLabel(DetailAST caseGroupAst) {
+        final Predicate<DetailAST> astPredicate = ast -> {
+            return ast.findFirstToken(TokenTypes.LITERAL_DEFAULT) != null;
+        };
+        return findAstByPredicate(caseGroupAst, astPredicate) != null;
+    }
+
+    /**
+     * Checks if a switch block contains a case label with a pattern variable definition.
+     * In this situation, the compiler enforces the given switch block to cover
+     * all possible inputs, and we do not need a default label.
+     *
+     * @param caseGroupAst first case group to check.
+     * @return true if switch block contains a pattern case label element
+     */
+    private static boolean containsPatterCaseLabelElement(DetailAST caseGroupAst) {
+        final Predicate<DetailAST> astPredicate = ast -> {
+            return ast.getFirstChild() != null
+                    && ast.getFirstChild().findFirstToken(TokenTypes.PATTERN_VARIABLE_DEF) != null;
+        };
+        return findAstByPredicate(caseGroupAst, astPredicate) != null;
+    }
+
+    /**
+     * Checks if a switch block has case label with null reference. In this situation,
+     * the compiler enforces the given switch block to cover all possible inputs,
+     * and we do not need a default label.
+     *
+     * @param caseGroupAst first case group to check.
+     * @return true if switch block contains a null reference
+     */
+    private static boolean containsNullReferenceCaseLabelElement(DetailAST caseGroupAst) {
         DetailAST nextAst = caseGroupAst;
         boolean found = false;
 
-        while (nextAst != null) {
-            if (nextAst.findFirstToken(TokenTypes.LITERAL_DEFAULT) != null) {
+        while (nextAst != null && nextAst.getFirstChild() != null) {
+            final DetailAST grandChild = nextAst.getFirstChild().getFirstChild();
+            final DetailAST nullReference = findAstByPredicate(grandChild,
+                    ast -> ast.findFirstToken(TokenTypes.LITERAL_NULL) != null
+            );
+
+            if (nullReference != null) {
                 found = true;
                 break;
             }
-
             nextAst = nextAst.getNextSibling();
         }
 
         return found;
+    }
+
+    /**
+     * Checks if a switch block contains a default case label.
+     *
+     * @param caseGroupAst first case group to check.
+     * @return true if switch block contains default case label
+     */
+    private static boolean containsDefaultCaseLabelElement(DetailAST caseGroupAst) {
+        final Predicate<DetailAST> astPredicate = ast -> {
+            return ast.getFirstChild() != null
+                    && ast.getFirstChild().findFirstToken(TokenTypes.LITERAL_DEFAULT) != null;
+        };
+        return findAstByPredicate(caseGroupAst, astPredicate) != null;
     }
 
     /**
@@ -168,4 +229,25 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
                 || ast.getParent().getParent().getType() == TokenTypes.EXPR;
     }
 
+    /**
+     * Iterates through siblings of an ast node, evaluating given predicate for each
+     * sibling and returns the first matching node. This operation includes
+     * evaluation of the given node.
+     *
+     * @param ast the ast to check self and siblings of
+     * @param predicate the expression to evaluate
+     * @return first matching node, or null if matching node is not present
+     */
+    private static DetailAST findAstByPredicate(DetailAST ast, Predicate<DetailAST> predicate) {
+        DetailAST nextAst = ast;
+        DetailAST foundAst = null;
+
+        while (nextAst != null) {
+            if (predicate.test(nextAst)) {
+                foundAst = nextAst;
+            }
+            nextAst = nextAst.getNextSibling();
+        }
+        return foundAst;
+    }
 }
