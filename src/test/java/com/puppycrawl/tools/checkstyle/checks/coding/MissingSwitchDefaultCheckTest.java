@@ -41,6 +41,7 @@ public class MissingSwitchDefaultCheckTest
             "23:9: " + getCheckMessage(MSG_KEY, "default"),
             "35:17: " + getCheckMessage(MSG_KEY, "default"),
             "46:17: " + getCheckMessage(MSG_KEY, "default"),
+            "53:9: " + getCheckMessage(MSG_KEY, "default"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputMissingSwitchDefault.java"),
@@ -87,6 +88,14 @@ public class MissingSwitchDefaultCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMissingSwitchDefaultCheckSwitchExpressionsThree.java"),
+                expected);
+    }
+
+    @Test
+    public void testMissingSwitchDefaultCaseLabelElements() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMissingSwitchDefaultCaseLabelElements.java"),
                 expected);
     }
 
