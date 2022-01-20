@@ -26,6 +26,16 @@ public class InputMissingSwitchDefaultCaseLabelElements {
                 System.out.println("The rest (including null)");
         }
 
+        switch(o) { // violation
+            case Object obj, null:
+                System.out.println("null");
+        }
+
+        switch(o) { // violation
+            case Object obj, null ->
+                System.out.println("null");
+        }
+
         switch(o) { // ok
             case null, default ->
                 System.out.println("The rest (including null)");
@@ -34,16 +44,6 @@ public class InputMissingSwitchDefaultCaseLabelElements {
         switch(o) { // ok
             case null, default:
                 throw new UnsupportedOperationException("not supported!");
-        }
-
-        switch(o) { // violation
-            case null:
-                System.out.println("null");
-        }
-
-        switch(o) { // violation
-            case null ->
-                System.out.println("null");
         }
     }
 }
