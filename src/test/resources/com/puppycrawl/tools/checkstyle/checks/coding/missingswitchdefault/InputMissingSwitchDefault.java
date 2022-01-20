@@ -49,5 +49,9 @@ class bad_test {
             }
             default: break;
         }
+
+        switch(i) { // violation
+
+        }
     }
 }
