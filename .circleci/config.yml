@@ -35,7 +35,7 @@ jobs:
             ./.ci/no-exception-test.sh no-exception-only-javadoc
   no-error-xwiki:
     docker:
-      - image: checkstyle/jdk-8-groovy-git-mvn:1.8.0_282-3.0.8-2.25.1-3.6.3
+      - image: checkstyle/jdk-11-groovy-git-mvn:11.0.13__3.0.9__2.25.1__3.6.3
     steps:
       - checkout
       - run:
