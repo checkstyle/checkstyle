@@ -38,7 +38,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * introduction of new types in an enumeration type. Note that
  * the compiler requires switch expressions to be exhaustive,
  * so this check does not enforce default branches on
- * such expressions.
+ * such expressions. Switch blocks containing pattern case label elements
+ * are also required to be exhaustive, and require no default label.
  * </p>
  * <p>
  * To configure the check:
@@ -65,6 +66,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  default: // OK
  *    break;
  * }
+ *
+ * switch(o) { // OK, pattern label element in case label requires switch block to cover all inputs
+ *     case Object o1: System.out.println("object");
+ * }
+ *
  * return switch (option) { // OK, the compiler requires switch expression to be exhaustive
  *  case ONE:
  *    yield 1;
@@ -116,9 +122,39 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final DetailAST firstSwitchMemberAst = findFirstSwitchMember(ast);
 
-        if (!containsDefaultSwitch(firstSwitchMemberAst) && !isSwitchExpression(ast)) {
+        if (!containsPatternCaseLabel(firstSwitchMemberAst)
+                && !containsDefaultSwitch(firstSwitchMemberAst)
+                && !isSwitchExpression(ast)) {
             log(ast, MSG_KEY);
         }
+    }
+
+    /**
+     * Checks if a switch block has a pattern case label element. In this situation,
+     * the compiler enforces the given switch block to cover all possible inputs,
+     * and we do not need a default label.
+     *
+     * @param caseGroupAst first case group to check.
+     * @return true if switch block contains a pattern case label element
+     */
+    private static boolean containsPatternCaseLabel(DetailAST caseGroupAst) {
+        DetailAST nextAst = caseGroupAst;
+        boolean found = false;
+
+        while (nextAst != null) {
+            final DetailAST firstChild = nextAst.getFirstChild();
+            final boolean caseLabelContainsPattern = firstChild != null
+                    && firstChild.findFirstToken(TokenTypes.PATTERN_VARIABLE_DEF) != null;
+
+            if (caseLabelContainsPattern) {
+                found = true;
+                break;
+            }
+
+            nextAst = nextAst.getNextSibling();
+        }
+
+        return found;
     }
 
     /**
@@ -132,7 +168,13 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
         boolean found = false;
 
         while (nextAst != null) {
-            if (nextAst.findFirstToken(TokenTypes.LITERAL_DEFAULT) != null) {
+            // Check list of case label elements like 'case null, default:'
+            final DetailAST firstChild = nextAst.getFirstChild();
+            final boolean caseLabelContainsDefault = firstChild != null
+                    && firstChild.findFirstToken(TokenTypes.LITERAL_DEFAULT) != null;
+
+            if (caseLabelContainsDefault
+                    || nextAst.findFirstToken(TokenTypes.LITERAL_DEFAULT) != null) {
                 found = true;
                 break;
             }
