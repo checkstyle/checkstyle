@@ -4233,7 +4233,8 @@ abstract class AbstractExample { // OK
           protected against later changes, e.g. introduction of new types in an
           enumeration type. Note that the compiler requires switch expressions
           to be exhaustive, so this check does not enforce default branches on
-          such expressions.
+          such expressions. Switch blocks containing pattern case label elements
+          are also required to be exhaustive, and require no default label.
         </p>
       </subsection>
 
@@ -4267,6 +4268,11 @@ switch (i) {
   default: // OK
     break;
 }
+
+switch(o) { // OK, pattern label element in case label requires switch block to cover all inputs
+    case Object o1: System.out.println("object");
+}
+
 return switch (option) { // OK, the compiler requires switch expression to be exhaustive
   case ONE:
     yield 1;
