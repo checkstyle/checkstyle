@@ -32,6 +32,7 @@ import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
@@ -49,6 +50,7 @@ public final class MetadataGeneratorUtil {
      * @param moduleFolders folders to check
      * @throws IOException ioException
      * @throws CheckstyleException checkstyleException
+     * @noinspection UseOfSystemOutOrSystemErr
      */
     public static void generate(String path, String... moduleFolders)
             throws IOException, CheckstyleException {
@@ -65,6 +67,9 @@ public final class MetadataGeneratorUtil {
         defaultConfiguration.addChild(treeWalkerConfig);
         treeWalkerConfig.addChild(scraperCheckConfig);
         checker.configure(defaultConfiguration);
+
+        checker.addListener(new MetadataGeneratorLogger(System.out));
+
         dumpMetadata(checker, path, moduleFolders);
     }
 
@@ -94,7 +99,7 @@ public final class MetadataGeneratorUtil {
                         .collect(Collectors.toList()));
             }
         }
-
+        validFiles.forEach(System.out::println);
         checker.process(validFiles);
     }
 }
