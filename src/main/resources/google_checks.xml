@@ -105,7 +105,7 @@
     <module name="WhitespaceAfter">
       <property name="tokens"
                value="COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE,
-                    LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, DO_WHILE"/>
+                    LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, DO_WHILE, ELLIPSIS"/>
     </module>
     <module name="WhitespaceAround">
       <property name="allowEmptyConstructors" value="true"/>
