@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableC
 import java.io.File;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -212,6 +213,20 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUnusedLocalVarNestedClasses2() throws Exception {
+        final String[] expected = {
+            "29:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "q"),
+            "30:51: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "obj"),
+            "46:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
+            "57:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
+            "108:33: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableNestedClasses2.java"),
+                expected);
+    }
+
+    @Test
     public void testUnusedLocalVarEnum() throws Exception {
         final String[] expected = {
             "22:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
@@ -235,6 +250,18 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputUnusedLocalVariableRecords.java"),
+                expected);
+    }
+
+    @Test
+    public void testUnusedLocalVarWithoutPackageStatement() throws Exception {
+        final String[] expected = {
+            "12:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "24:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "var2"),
+            "45:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "var3"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputUnusedLocalVariableWithoutPackageStatement.java"),
                 expected);
     }
 
@@ -344,7 +371,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, packageDefToken,
                         "packageName",
-                        ""::equals))
+                        Objects::isNull))
                 .isTrue();
     }
 }
