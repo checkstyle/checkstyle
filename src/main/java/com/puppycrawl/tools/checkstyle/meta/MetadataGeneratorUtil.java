@@ -99,7 +99,7 @@ public final class MetadataGeneratorUtil {
                         .collect(Collectors.toList()));
             }
         }
-
+        validFiles.forEach(System.out::println);
         checker.process(validFiles);
     }
 }
