@@ -643,7 +643,9 @@ caseConstants
     ;
 
 caseConstant
-    : expression
+    : pattern
+    | expression
+    | LITERAL_DEFAULT
     ;
 
 forControl
@@ -862,11 +864,26 @@ arguments
     : LPAREN expressionList? RPAREN
     ;
 
-primaryPattern
-    : patternVariableDefinition                                             #typePattern
+pattern
+    : guardedPattern
+    | primaryPattern
     ;
 
-patternVariableDefinition
+guardedPattern
+    : primaryPattern LAND expr
+    ;
+
+primaryPattern
+    : typePattern                                                          #patternVariableDef
+    | LPAREN
+      // Set of production rules below should mirror `pattern` production rule
+      // above. We do not reuse `pattern` production rule here to avoid a bunch
+      // of nested `PATTERN_DEF` nodes, as we also do for expressions.
+      (guardedPattern | primaryPattern)
+      RPAREN                                                               #parenPattern
+    ;
+
+typePattern
     : mods+=modifier* type=typeType[true] id
     ;
 
