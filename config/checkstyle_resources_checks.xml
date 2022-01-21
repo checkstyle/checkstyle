@@ -25,12 +25,12 @@
     <property name="folderPattern"
              value="[\\/]src[\\/](it|test)[\\/]resources(-noncompilable?)[\\/]"/>
     <property name="fileNamePattern"
-             value="^(package-info.java)|(Input\w+\.java)|(.*\.properties)$"/>
+             value="^(package-info.java)|(Input\w+\.java)|(Expected\w+\.txt)|(.*\.properties)$"/>
     <property name="match" value="false"/>
     <message key="regexp.filepath.mismatch"
-           value="All files in the ''src/(it|test)/resources'' folder
-                 should be named
-                 ''Input*.java'' or ''package-info.java'' or ''*.properties''."/>
+           value="All files in the ''src/(it|test)/resources'' folder should be named
+                 ''Input*.java'' or ''Expected*.java''
+                 or ''package-info.java'' or ''*.properties''."/>
   </module>
 
   <module name="TreeWalker">
