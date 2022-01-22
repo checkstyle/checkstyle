@@ -92,7 +92,7 @@ jobs:
         run: |
           cd checkstyle
           bash
-          mvn -e --no-transfer-progress clean site -Pno-validations
+          mvn -e --no-transfer-progress clean site -Pno-validations -Dmaven.javadoc.skip=false
 
       - name: Copy site to AWS S3 Bucket
         run: |
