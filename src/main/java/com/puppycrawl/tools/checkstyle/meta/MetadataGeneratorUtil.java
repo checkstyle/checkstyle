@@ -32,7 +32,9 @@ import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /** Class which handles all the metadata generation and writing calls. */
@@ -49,6 +51,7 @@ public final class MetadataGeneratorUtil {
      * @param moduleFolders folders to check
      * @throws IOException ioException
      * @throws CheckstyleException checkstyleException
+     * @noinspection UseOfSystemOutOrSystemErr
      */
     public static void generate(String path, String... moduleFolders)
             throws IOException, CheckstyleException {
@@ -58,13 +61,18 @@ public final class MetadataGeneratorUtil {
         checker.setModuleClassLoader(Checker.class.getClassLoader());
         final DefaultConfiguration scraperCheckConfig =
                         new DefaultConfiguration(JavadocMetadataScraper.class.getName());
-        final DefaultConfiguration defaultConfiguration = new DefaultConfiguration("configuration");
+        final DefaultConfiguration defaultConfiguration =
+                new DefaultConfiguration("configuration");
         final DefaultConfiguration treeWalkerConfig =
                 new DefaultConfiguration(TreeWalker.class.getName());
         defaultConfiguration.addProperty("charset", StandardCharsets.UTF_8.name());
         defaultConfiguration.addChild(treeWalkerConfig);
         treeWalkerConfig.addChild(scraperCheckConfig);
         checker.configure(defaultConfiguration);
+
+        checker.addListener(new MetadataGeneratorLogger(System.out,
+                AutomaticBean.OutputStreamOptions.NONE));
+
         dumpMetadata(checker, path, moduleFolders);
     }
 
@@ -94,7 +102,6 @@ public final class MetadataGeneratorUtil {
                         .collect(Collectors.toList()));
             }
         }
-
         checker.process(validFiles);
     }
 }
