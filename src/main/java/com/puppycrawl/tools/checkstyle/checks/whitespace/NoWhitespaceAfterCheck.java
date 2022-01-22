@@ -91,13 +91,166 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
  * </pre>
- * <p>To configure the check to forbid linebreaks after a DOT token:
+ * <p>
+ * To configure check to restrict use of whitespace after DOT token:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;NoWhitespaceAfter&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Test {
+ *   int a, b;
+ *   Test(int a, int b) {
+ *     this. a = a; // violation, whitespace after '.' is not allowed
+ *     this.b = b; // OK
+ *   }
+ *
+ *   public void function() {}
+ *
+ *   public static void main(String[] args) {
+ *     Test ob = new Test(5, 7);
+ *     ob. function(); // violation, whitespace after '.' is not allowed
+ *     ob.function(); // OK
+ *     ob. a = 10; // violation, whitespace after '.' is not allowed
+ *     ob.b = 17; // OK
+ *   }
+ * }
+ * </pre>
+ *
+ * <p>
+ * To configure check to allow line breaks after DOT token:
  * </p>
  * <pre>
  * &lt;module name=&quot;NoWhitespaceAfter&quot;&gt;
  *   &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
  *   &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ *
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Test{
+ *   int a, b;
+ *   Test(int a, int b) {
+ *     this.
+ *         a = a; // violation, linebreak after '.' is not allowed
+ *     this.b = b; // OK
+ *   }
+ *
+ *   public void function() {}
+ *   public static void main(String[] args) {
+ *     Test ob = new Test(5, 7);
+ *     ob.
+ *       function(); // violation, linebreak after '.' is not allowed
+ *     ob.function(); // OK
+ *     ob.
+ *       a = 10; // violation, linebreak after '.' is not allowed
+ *     ob.b = 17; // OK
+ *   }
+ * }
+ * </pre>
+ *
+ * <p>
+ * To configure check to restrict use of whitespace after ARRAY_DECLARATOR token:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;NoWhitespaceAfter&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;ARRAY_DECLARATOR&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * int [] array1; // violation, whitespace after 'int' is not allowed
+ * int[] array2; // OK
+ * int[ ] array3; // OK
+ * int array4 []; // violation, whitespace after 'array4' is not allowed
+ * int array5[]; // OK
+ * int array6[ ]; // OK
+ * </pre>
+ *
+ * <p>
+ * To configure check to allow line breaks after ARRAY_DECLARATOR token:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;NoWhitespaceAfter&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;ARRAY_DECLARATOR&quot;/&gt;
+ *   &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * int
+ *   [] array1; // violation, linebreak after 'int' is not allowed
+ * int[
+ *     ] array2; // OK
+ * int array3
+ *     []; // violation, linebreak after 'a' is not allowed
+ * int array4[
+ *       ]; // OK
+ *
+ * </pre>
+ *
+ * <p>
+ * To configure check to restrict use of whitespace after ARRAY_INIT token:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;NoWhitespaceAfter&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;ARRAY_INIT&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * int[] array1 = { 1, 2, 3, 4}; // violation, whitespace after '{' is not allowed
+ * int[] array2 = {1, 2, 3, 4 }; // OK
+ * int[][] array3 = {{ 1,2}, {3,4}} // violation, whitespace after '{' is not allowed
+ * int[][] array4 = {{1,2}, {3,4} } // OK
+ * int[] array5 = new int[]{ 1,2,3,4} // violation, whitespace after '{' is not allowed
+ * </pre>
+ *
+ * <p>
+ * To configure check to allow line breaks after ARRAY_INIT token:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;NoWhitespaceAfter&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;ARRAY_INIT&quot;/&gt;
+ *   &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * int[] array1 = {
+ *                 1,
+ *                 2
+ *                }; // violation, linebreak after '{' is not allowed
+ * int[] array2 = {1,2
+ *                };// OK
+ * int[][] array3 = {
+ *                 {1,2},
+ *                 {3,4}
+ *                }; // violation, linebreak after '{' is not allowed
+ * int[][] array4 = {{1,2},
+ *                   {3,4}
+ *                  }; // OK
  * </pre>
  * <p>
  * If the annotation is between the type and the array, the check will skip validation for spaces:
