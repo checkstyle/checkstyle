@@ -17,7 +17,9 @@
  introduction of new types in an enumeration type. Note that
  the compiler requires switch expressions to be exhaustive,
  so this check does not enforce default branches on
- such expressions.
+ such expressions. Also, switch statements that use pattern or null
+ labels are checked by the compiler for completeness (exhaustiveness), so
+ this check does not enforce default labels for these statements.
  &lt;/p&gt;</description>
          <message-keys>
             <message-key key="missing.switch.default"/>
