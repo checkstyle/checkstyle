@@ -3840,10 +3840,14 @@ public final class TokenTypes {
     /**
      * The {@code instanceof} operator.  The first child is an
      * object reference or something that evaluates to an object
-     * reference.  The second child is a reference type.
+     * reference.  The second child is a reference type or pattern.
      * <p>For example:</p>
      * <pre>
-     * boolean isBuilder = text instanceof StringBuilder;
+     * boolean isBuilderReferenceType = text instanceof StringBuilder; // reference type
+     * boolean isBuilderPatternWithPattern =
+     *         text instanceof StringBuilder s; // type pattern, no `PATTERN_DEF`
+     * boolean isBuilderEmpty = text instanceof
+     *         (StringBuilder sb &amp;&amp; sb.isEmpty());  // guarded pattern, `PATTERN_DEF`
      * </pre>
      * <p>parses as:</p>
      * <pre>
@@ -3851,7 +3855,7 @@ public final class TokenTypes {
      * |   |--MODIFIERS -&gt; MODIFIERS
      * |   |--TYPE -&gt; TYPE
      * |   |   `--LITERAL_BOOLEAN -&gt; boolean
-     * |   |--IDENT -&gt; isBuilder
+     * |   |--IDENT -&gt; isBuilderReferenceType
      * |   `--ASSIGN -&gt; =
      * |       `--EXPR -&gt; EXPR
      * |           `--LITERAL_INSTANCEOF -&gt; instanceof
@@ -3859,6 +3863,46 @@ public final class TokenTypes {
      * |               `--TYPE -&gt; TYPE
      * |                   `--IDENT -&gt; StringBuilder
      * |--SEMI -&gt; ;
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--LITERAL_BOOLEAN -&gt; boolean
+     * |   |--IDENT -&gt; isBuilderPatternWithPattern
+     * |   `--ASSIGN -&gt; =
+     * |       `--EXPR -&gt; EXPR
+     * |           `--LITERAL_INSTANCEOF -&gt; instanceof
+     * |               |--IDENT -&gt; text
+     * |               `--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     * |                   |--MODIFIERS -&gt; MODIFIERS
+     * |                   |--TYPE -&gt; TYPE
+     * |                   |   `--IDENT -&gt; StringBuilder
+     * |                   `--IDENT -&gt; s
+     * |--SEMI -&gt; ;
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--LITERAL_BOOLEAN -&gt; boolean
+     * |   |--IDENT -&gt; isBuilderEmpty
+     * |   `--ASSIGN -&gt; =
+     * |       `--EXPR -&gt; EXPR
+     * |           `--LITERAL_INSTANCEOF -&gt; instanceof
+     * |               |--IDENT -&gt; text
+     * |               `--PATTERN_DEF -&gt; PATTERN_DEF
+     * |                   `--LPAREN -&gt; (
+     * |                       |--LAND -&gt; &amp;&amp;
+     * |                       |   |--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     * |                       |   |   |--MODIFIERS -&gt; MODIFIERS
+     * |                       |   |   |--TYPE -&gt; TYPE
+     * |                       |   |   |   `--IDENT -&gt; StringBuilder
+     * |                       |   |   `--IDENT -&gt; sb
+     * |                       |   `--METHOD_CALL -&gt; (
+     * |                       |       |--DOT -&gt; .
+     * |                       |       |   |--IDENT -&gt; sb
+     * |                       |       |   `--IDENT -&gt; isEmpty
+     * |                       |       |--ELIST -&gt; ELIST
+     * |                       |       `--RPAREN -&gt; )
+     * |                       `--RPAREN -&gt; )
+     * `--SEMI -&gt; ;
      * </pre>
      *
      * @see <a
@@ -3869,6 +3913,8 @@ public final class TokenTypes {
      * @see #IDENT
      * @see #DOT
      * @see #TYPE
+     * @see #PATTERN_VARIABLE_DEF
+     * @see #PATTERN_DEF
      * @see FullIdent
      **/
     public static final int LITERAL_INSTANCEOF =
@@ -6091,6 +6137,75 @@ public final class TokenTypes {
      */
     public static final int PERMITS_CLAUSE =
         JavaLanguageLexer.PERMITS_CLAUSE;
+
+    /**
+     * A pattern definition, excluding simple type pattern (pattern variable)
+     * definition such as {@code if (o instanceof Integer i){}}. Pattern definitions
+     * appear as operands of statements and expressions.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * switch(o) {
+     *     case String s &amp;&amp; s.length() &gt; 4: // guarded pattern, `PATTERN_DEF`
+     *         break;
+     *     case String s: // type pattern, no `PATTERN_DEF`
+     *         break;
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_SWITCH -&gt; switch
+     * |   |--LPAREN -&gt; (
+     * |   |--EXPR -&gt; EXPR
+     * |   |   `--IDENT -&gt; o
+     * |   |--RPAREN -&gt; )
+     * |   |--LCURLY -&gt; {
+     * |   |--CASE_GROUP -&gt; CASE_GROUP
+     * |   |   |--LITERAL_CASE -&gt; case
+     * |   |   |   |--PATTERN_DEF -&gt; PATTERN_DEF
+     * |   |   |   |   `--LAND -&gt; &amp;&amp;
+     * |   |   |   |       |--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     * |   |   |   |       |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |   |   |       |   |--TYPE -&gt; TYPE
+     * |   |   |   |       |   |   `--IDENT -&gt; String
+     * |   |   |   |       |   `--IDENT -&gt; s
+     * |   |   |   |       `--GT -&gt; &gt;
+     * |   |   |   |           |--METHOD_CALL -&gt; (
+     * |   |   |   |           |   |--DOT -&gt; .
+     * |   |   |   |           |   |   |--IDENT -&gt; s
+     * |   |   |   |           |   |   `--IDENT -&gt; length
+     * |   |   |   |           |   |--ELIST -&gt; ELIST
+     * |   |   |   |           |   `--RPAREN -&gt; )
+     * |   |   |   |           `--NUM_INT -&gt; 4
+     * |   |   |   `--COLON -&gt; :
+     * |   |   `--SLIST -&gt; SLIST
+     * |   |       `--LITERAL_BREAK -&gt; break
+     * |   |           `--SEMI -&gt; ;
+     * |   |--CASE_GROUP -&gt; CASE_GROUP
+     * |   |   |--LITERAL_CASE -&gt; case
+     * |   |   |   |--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     * |   |   |   |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |   |   |   |--TYPE -&gt; TYPE
+     * |   |   |   |   |   `--IDENT -&gt; String
+     * |   |   |   |   `--IDENT -&gt; s
+     * |   |   |   `--COLON -&gt; :
+     * |   |   `--SLIST -&gt; SLIST
+     * |   |       `--LITERAL_BREAK -&gt; break
+     * |   |           `--SEMI -&gt; ;
+     * |   `--RCURLY -&gt; }
+     * `--RCURLY -&gt; }
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30">
+     * Java Language Specification, &sect;14.30</a>
+     * @see #LITERAL_SWITCH
+     * @see #PATTERN_VARIABLE_DEF
+     * @see #LITERAL_INSTANCEOF
+     *
+     * @since 9.3
+     */
+    public static final int PATTERN_DEF =
+        JavaLanguageLexer.PATTERN_DEF;
 
     /** Prevent instantiation. */
     private TokenTypes() {
