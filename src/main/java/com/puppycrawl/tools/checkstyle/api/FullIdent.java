@@ -80,10 +80,7 @@ public final class FullIdent {
             final DetailAST nextSibling = ast.getNextSibling();
 
             // Here we want type declaration, but not initialization
-            final boolean isArrayTypeDeclarationStart = nextSibling != null
-                    && (nextSibling.getType() == TokenTypes.ARRAY_DECLARATOR
-                        || nextSibling.getType() == TokenTypes.ANNOTATIONS)
-                    && isArrayTypeDeclaration(nextSibling);
+            final boolean isArrayTypeDeclarationStart = isArrayTypeDeclarationStart(nextSibling);
 
             final int typeOfAst = ast.getType();
             if (typeOfAst == TokenTypes.LITERAL_NEW
@@ -98,6 +95,9 @@ public final class FullIdent {
                 extractFullIdent(full, firstChild.getNextSibling());
                 appendBrackets(full, ast);
             }
+            else if (typeOfAst == TokenTypes.METHOD_CALL) {
+                extractFullIdent(full, ast.getFirstChild());
+            }
             else if (isArrayTypeDeclarationStart) {
                 full.append(ast);
                 appendBrackets(full, ast);
@@ -106,6 +106,19 @@ public final class FullIdent {
                 full.append(ast);
             }
         }
+    }
+
+    /**
+     * Is array type declaration start.
+     *
+     * @param ast the type ast we are building a {@code FullIdent} for
+     * @return {@code true} if it is array type declaration start
+     */
+    private static boolean isArrayTypeDeclarationStart(DetailAST ast) {
+        return ast != null
+                && (ast.getType() == TokenTypes.ARRAY_DECLARATOR
+                    || ast.getType() == TokenTypes.ANNOTATIONS)
+                && isArrayTypeDeclaration(ast);
     }
 
     /**
