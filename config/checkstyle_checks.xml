@@ -902,6 +902,11 @@
     <module name="TypecastParenPad"/>
     <module name="WhitespaceAfter"/>
     <module name="WhitespaceAround"/>
+    <module name="ChainedMethodCallWrap">
+      <!-- Temporarily changed the config, will restore it to normal after merging #11431 -->
+      <property name="identifierPattern" value="^$"/>
+      <property name="maxSingleLineCalls" value="2" />
+    </module>
 
   </module>
 
