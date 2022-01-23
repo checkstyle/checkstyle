@@ -211,6 +211,11 @@
     <allow class="com.puppycrawl.tools.checkstyle.FileStatefulCheck"/>
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalker"/>
     <allow class="com.puppycrawl.tools.checkstyle.utils.TokenUtil"/>
+
+    <file name="MetadataGeneratorUtil">
+      <allow class="com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger"/>
+    </file>
+
   </subpackage>
 
   <subpackage name="xpath">
