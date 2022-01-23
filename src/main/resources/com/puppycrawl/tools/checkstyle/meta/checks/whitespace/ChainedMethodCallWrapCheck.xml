@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.ChainedMethodCallWrapCheck"
+             name="ChainedMethodCallWrap"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks whether method calls specified by identifier pattern are wrapped.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="^$"
+                      name="identifierPattern"
+                      type="java.util.regex.Pattern">
+               <description>Specify methods to be checked.</description>
+            </property>
+            <property default-value="1" name="maxCallsPerLine" type="int">
+               <description>Specify maximum number of method calls per lines if we
+ are wrapping the method calls. If all the method calls span over a single line then this
+ property has no effect.</description>
+            </property>
+            <property default-value="1" name="maxSingleLineCalls" type="int">
+               <description>Specify maximum number of method calls if all chained
+ method calls span over a single line. If chained method calls span over multiple lines then
+ this property has no effect.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="too.many.single.line"/>
+            <message-key key="wrap.method.call"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
