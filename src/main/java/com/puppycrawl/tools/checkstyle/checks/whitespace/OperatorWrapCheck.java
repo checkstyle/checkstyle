@@ -390,6 +390,9 @@ public class OperatorWrapCheck
         if (node.getFirstChild() == null || isAssignToVariable(node)) {
             result = node.getPreviousSibling();
         }
+        else if (isInPatternDefinition(node)) {
+            result = node.getFirstChild();
+        }
         else {
             result = adjustParens(node.getFirstChild(), DetailAST::getNextSibling);
         }
@@ -397,6 +400,21 @@ public class OperatorWrapCheck
             result = result.getLastChild();
         }
         return result;
+    }
+
+    /**
+     * Ascends AST to determine if given node is part of a pattern
+     * definition.
+     *
+     * @param node the node to check
+     * @return true if node is in pattern definition
+     */
+    private static boolean isInPatternDefinition(DetailAST node) {
+        DetailAST parent = node.getParent();
+        while (parent != null && parent.getType() != TokenTypes.PATTERN_DEF) {
+            parent = parent.getParent();
+        }
+        return parent != null;
     }
 
     /**
