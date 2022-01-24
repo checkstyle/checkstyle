@@ -186,4 +186,18 @@ public class WhitespaceAfterCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAfterCountUnicodeCorrectly.java"), expected);
     }
+
+    @Test
+    public void testWhitespaceAfterWithEmoji() throws Exception {
+        final String[] expected = {
+            "13:50: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "13:56: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "29:32: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "38:23: " + getCheckMessage(MSG_WS_TYPECAST, ";"),
+            "48:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "48:53: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputWhitespaceAfterWithEmoji.java"), expected);
+    }
 }
