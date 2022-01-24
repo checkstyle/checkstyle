@@ -16,6 +16,119 @@
       </macro>
     </section>
 
+    <section name="ChainedMethodCallWrap">
+      <p>Since Checkstyle 9.3</p>
+      <subsection name="Description" id="ChainedMethodCallWrap_Description">
+        <p>
+          Checks whether method calls specified by identifier pattern are wrapped.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="ChainedMethodCallWrap_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>identifierPattern</td>
+              <td>Specify methods to be checked.</td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
+              <td><code>"^$"</code></td>
+              <td>9.3</td>
+            </tr>
+            <tr>
+              <td>maxCallsPerLine</td>
+              <td>
+                  Specify maximum number of method calls per lines if we are wrapping the
+                  method calls. If all the method calls span over a single line then this
+                  property has no effect.
+              </td>
+              <td><a href="property_types.html#int">int</a></td>
+              <td><code>1</code></td>
+              <td>9.3</td>
+            </tr>
+            <tr>
+              <td>maxSingleLineCalls</td>
+              <td>
+                  Specify maximum number of method calls if all chained method calls span
+                  over a single line. If chained method calls span over multiple lines then
+                  this property has no effect.
+              </td>
+              <td><a href="property_types.html#int">int</a></td>
+              <td><code>1</code></td>
+              <td>9.3</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="ChainedMethodCallWrap_Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;ChainedMethodCallWrap&quot;&gt;
+ &lt;property name=&quot;identifierPattern&quot; value=&quot;^assert.*$&quot; /&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+void method() {
+    assertWithSomeMessage("ex").that(1).isEqualTo(1);
+                     // violation above, ''3' method calls on single line, max allowed is '1''
+    assertWithSomeMessage("ex")
+            .that(1).isEqualTo(1); // violation, 'Chained method call should be wrapped'
+}
+        </source>
+
+      </subsection>
+
+      <subsection name="Example of Usage" id="ChainedMethodCallWrap_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ChainedMethodCallWrap">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="ChainedMethodCallWrap_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.single.line%22">
+            too.many.single.line</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22wrap.method.call%22">
+            wrap.method.call</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="ChainedMethodCallWrap_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.whitespace
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="ChainedMethodCallWrap_Parent_Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="EmptyForInitializerPad">
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="EmptyForInitializerPad_Description">
