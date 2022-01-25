@@ -44,7 +44,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
- * Property {@code excludes} - Specify packages where star imports are allowed.
+ * Property {@code excludes} - Specify packages where starred class imports are
+ * allowed and classes where starred static member imports are allowed.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
  * </li>
@@ -152,7 +153,10 @@ public class AvoidStarImportCheck
     /** Suffix for the star import. */
     private static final String STAR_IMPORT_SUFFIX = ".*";
 
-    /** Specify packages where star imports are allowed. */
+    /**
+     * Specify packages where starred class imports are
+     * allowed and classes where starred static member imports are allowed.
+     */
     private final List<String> excludes = new ArrayList<>();
 
     /**
@@ -192,7 +196,8 @@ public class AvoidStarImportCheck
     }
 
     /**
-     * Setter to specify packages where star imports are allowed.
+     * Setter to specify packages where starred class imports are
+     * allowed and classes where starred static member imports are allowed.
      *
      * @param excludesParam a list of package names/fully-qualifies class names
      *     where star imports are ok.
