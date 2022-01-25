@@ -29,6 +29,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -275,6 +276,31 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
                 .hasMessageThat()
                 .isEqualTo("unable to parse expanded comment e[l");
         }
+    }
+
+    @Test
+    public void testInfluenceFormat() throws Exception {
+        final DefaultConfiguration filterCfg =
+            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
+        filterCfg.addProperty("onCommentFormat", "@cs-\\: ([\\w\\|]+) influence (\\d+)");
+        filterCfg.addProperty("offCommentFormat", "BEGIN GENERATED CONTENT");
+        filterCfg.addProperty("checkFormat", "$1");
+        filterCfg.addProperty("influenceFormat", "$2");
+
+        final DefaultConfiguration checkCfg = createModuleConfig(FileTabCharacterCheck.class);
+        checkCfg.addProperty("eachLine", "true");
+
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+
+        final String[] violationMessages = {
+            "5:6: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB)
+        };
+
+        verifySuppressed(
+                "InputSuppressWithPlainTextCommentFilterInfluenceFormat.java",
+                removeSuppressed(violationMessages, suppressed),
+                filterCfg, checkCfg
+        );
     }
 
     @Test
