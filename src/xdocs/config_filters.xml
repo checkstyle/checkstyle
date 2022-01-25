@@ -2296,6 +2296,14 @@ public class UserService {
               <td><code>null</code></td>
               <td>8.24</td>
             </tr>
+            <tr>
+              <td>influenceFormat</td>
+              <td>Specify negative/zero/positive value that defines the number of
+                  lines preceding/at/following the suppression comment.</td>
+              <td><a href="property_types.html#String">String</a></td>
+              <td><code>"0"</code></td>
+              <td>10.0</td>
+            </tr>
           </table>
         </div>
       </subsection>
@@ -2498,6 +2506,28 @@ JOIN jobs AS j ON u.job_id = j.id
 -- CSOFF count (test query execution plan)
 EXPLAIN SELECT COUNT(*) FROM restaurants
 -- CSON count
+        </source>
+        <p>
+          Example of how to configure the check to suppress more than one checks.
+          The influence format format is specified in the second regexp group.
+        </p>
+        <source>
+&lt;module name="SuppressWithPlainTextCommentFilter&quot;&gt;
+  &lt;property name="onCommentFormat" value="@cs-\: ([\w\|]+) influence (\d+)"/&gt;
+  &lt;property name=&quot;offCommentFormat&quot; value=&quot;BEGIN GENERATED CONTENT&quot;/&gt;
+  &lt;property name="checkFormat" value="$1"/&gt;
+  &lt;property name="influenceFormat" value="$2"/&gt;
+&lt;/module&gt;
+        </source>
+        <source>
+// @cs-: ClassDataAbstractionCoupling influence 2
+// @cs-: MagicNumber influence 4
+@Service // no violations from ClassDataAbstractionCoupling here
+@Transactional
+public class UserService {
+  private int value = 10022; // no violations from MagicNumber here
+}
+//BEGIN GENERATED CONTENT
         </source>
         <p>
             Example of how to configure the check to suppress more than one check
