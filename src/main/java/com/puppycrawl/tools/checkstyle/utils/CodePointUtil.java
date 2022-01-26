@@ -52,7 +52,7 @@ public final class CodePointUtil {
      */
     public static boolean hasWhitespaceBefore(int index, int... codePoints) {
         return Arrays.stream(codePoints, 0, index)
-                .allMatch(Character::isWhitespace);
+                    .allMatch(Character::isWhitespace);
     }
 
 }

@@ -3298,6 +3298,10 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheckTest
                 </param>
+                <!-- 12% mutation in CodePointUtil -->
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheckTest
+                </param>
                 <!-- 2% mutation in ScopeUtil -->
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheckTest
