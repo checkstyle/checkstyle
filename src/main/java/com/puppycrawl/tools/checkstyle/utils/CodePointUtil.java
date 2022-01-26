@@ -51,8 +51,9 @@ public final class CodePointUtil {
      * @return true if all code points preceding given index are whitespace
      */
     public static boolean hasWhitespaceBefore(int index, int... codePoints) {
-        return Arrays.stream(codePoints, 0, index)
-                .allMatch(Character::isWhitespace);
+        return index < 0
+                || Arrays.stream(codePoints, 0, index)
+                    .allMatch(Character::isWhitespace);
     }
 
 }
