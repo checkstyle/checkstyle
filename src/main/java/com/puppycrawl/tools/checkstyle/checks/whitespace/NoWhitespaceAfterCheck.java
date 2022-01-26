@@ -91,7 +91,56 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
  * </pre>
- * <p>To configure the check to forbid linebreaks after a DOT token:
+ *
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Test2 {
+ *   public void function1() {}
+ *   public void function2() {}
+ * }
+ *
+ * class Test extends Test2 {
+ *   int p, q, r;
+ *   @ Override // violation, whitespace after '@' is not allowed
+ *   public void function1() {}
+ *
+ *   @
+ *   Override // OK, default value of 'allowLineBreaks' is true
+ *   public void function2() {}
+ *
+ *   public void examples(int p) {
+ *     this. p = 5; // violation, whitespace after '.' is not allowed
+ *     this.q = 10; // OK
+ *     this.
+ *     r = 15; // OK, default value of 'allowLineBreaks' is true
+ *     int[] array1 = { 1,2,3,4}; // violation, whitespace after '{' is not allowed
+ *     int[] array2 = {1, 2, 3, 4 }; // OK
+ *     int[][] array3 = {{ 1,2}, {3,4}}; // violation, whitespace after '{' is not allowed
+ *     int[] array4 = {
+ *     1,
+ *     2
+ *     }; // OK, default value of 'allowLineBreaks' is true
+ *     int a=0, b;
+ *     ++ a; // violation, whitespace after '++' is not allowed
+ *     ++a; // OK
+ *     -- a; // violation, whitespace after '--' is not allowed
+ *     --a; // OK
+ *     b = - a; // violation, whitespace after '-' is not allowed
+ *     b = + a; // violation, whitespace after '+' is not allowed
+ *     b = -a; // OK
+ *     b = ~ a; // violation, whitespace after '~' is not allowed
+ *     b = ~a; // OK
+ *     boolean c = false, d;
+ *     d = ! c; // violation, whitespace after '!' is not allowed
+ *     d = !c; // OK
+ *   }
+ * }
+ * </pre>
+ *
+ * <p>
+ * To configure the check to forbid line breaks after DOT token:
  * </p>
  * <pre>
  * &lt;module name=&quot;NoWhitespaceAfter&quot;&gt;
@@ -99,6 +148,54 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Test{
+ *   int a, b;
+ *   Test(int a, int b) {
+ *     this.
+ *         a = a; // violation, linebreak after '.' is not allowed
+ *     this.b = b; // OK
+ *   }
+ *
+ *   public void function() {}
+ *
+ *   public static void main(String[] args) {
+ *     Test ob = new Test(5, 7);
+ *     ob.
+ *       function(); // violation, linebreak after '.' is not allowed
+ *     ob.function(); // OK
+ *     ob.
+ *       a = 10; // violation, linebreak after '.' is not allowed
+ *     ob.b = 17; // OK
+ *   }
+ * }
+ * </pre>
+ *
+ * <p>
+ * To configure the check to restrict use of whitespace after ARRAY_DECLARATOR and INDEX_OP token:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;NoWhitespaceAfter&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;ARRAY_DECLARATOR, INDEX_OP&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ *
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * int [] array1 = new int[5]; // violation, whitespace after 'int' is not allowed
+ * int[] array2; // OK
+ * int array4 []; // violation, whitespace after 'array4' is not allowed
+ * int array5[]; // OK
+ * array1 [0] = 5; // violation, whitespace after 'array1' is not allowed
+ * array1[1] = 10; // OK
+ * </pre>
+ *
  * <p>
  * If the annotation is between the type and the array, the check will skip validation for spaces:
  * </p>
