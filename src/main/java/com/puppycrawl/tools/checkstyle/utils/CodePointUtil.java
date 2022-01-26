@@ -38,8 +38,22 @@ public final class CodePointUtil {
      * @return true if codePoints is blank.
      */
     public static boolean isBlank(int... codePoints) {
-        return Arrays.stream(codePoints)
-                .allMatch(Character::isWhitespace);
+        return hasWhitespaceBefore(codePoints.length, codePoints);
+    }
+
+    /**
+     * Checks if the given code point array contains only whitespace up to specified index.
+     *
+     * @param codePoints
+     *            array of Unicode code point of string to check
+     * @param index
+     *            index to check up to (exclusive)
+     * @return true if all code points preceding given index are whitespace
+     */
+    public static boolean hasWhitespaceBefore(int index, int... codePoints) {
+        return index < 0
+                || Arrays.stream(codePoints, 0, index)
+                    .allMatch(Character::isWhitespace);
     }
 
 }
