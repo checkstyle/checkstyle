@@ -249,6 +249,35 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testEnumMembers() throws Exception {
+        final String[] expected = {
+            "22:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
+            "27:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
+            "28:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "31:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "CTOR_DEF"),
+            "36:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "STATIC_INIT"),
+            "40:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "STATIC_INIT"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputEmptyLineSeparatorEnumMembers.java"), expected
+        );
+    }
+
+    @Test
+    public void testInterfaceFields() throws Exception {
+        final String[] expected = {
+            "21:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
+            "25:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
+            "34:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
+            "38:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
+            "45:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputEmptyLineSeparatorInterfaceFields.java"), expected
+        );
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final EmptyLineSeparatorCheck emptyLineSeparatorCheckObj = new EmptyLineSeparatorCheck();
         final int[] actual = emptyLineSeparatorCheckObj.getAcceptableTokens();
