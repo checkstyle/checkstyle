@@ -249,6 +249,17 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testEnumFields() throws Exception {
+        final String[] expected = {
+            "21:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
+            "26:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputEmptyLineSeparatorEnumFields.java"), expected
+        );
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final EmptyLineSeparatorCheck emptyLineSeparatorCheckObj = new EmptyLineSeparatorCheck();
         final int[] actual = emptyLineSeparatorCheckObj.getAcceptableTokens();
