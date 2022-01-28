@@ -610,7 +610,7 @@ no-error-pgjdbc)
   checkout_from https://github.com/pgjdbc/pgjdbc.git
   cd .ci-temp/pgjdbc
   # pgjdbc easily damage build, we should use stable versions
-  git checkout "3a2bb""d77969903f8a4ce721d45905c72bd1688d6"
+  git checkout "417c9a2354ad""c3d2c80f84b0a5059ce""ad92e7c2b"
   ./gradlew --no-parallel --no-daemon checkstyleAll \
             -PenableMavenLocal -Pcheckstyle.version=${CS_POM_VERSION}
   cd ../
