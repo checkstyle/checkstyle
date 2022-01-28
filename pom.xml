@@ -1674,7 +1674,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>taglist-maven-plugin</artifactId>
-        <version>2.4</version>
+        <version>3.0.0</version>
         <configuration>
           <!-- skip till http://jira.codehaus.org/browse/MTAGLIST-71 -->
           <skipTestSources>true</skipTestSources>
