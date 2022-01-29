@@ -330,6 +330,23 @@ public class NoWhitespaceAfterCheckTest
                 getPath("InputNoWhitespaceAfterNewGenericTypeArgument.java"), expected);
     }
 
+    @Test
+    public void testNoWhitespaceAfterWithEmoji() throws Exception {
+
+        final String[] expected = {
+            "16:16: " + getCheckMessage(MSG_KEY, "String"),
+            "16:26: " + getCheckMessage(MSG_KEY, "{"),
+            "23:24: " + getCheckMessage(MSG_KEY, "char"),
+            "28:22: " + getCheckMessage(MSG_KEY, ")"),
+            "28:23: " + getCheckMessage(MSG_KEY, "@"),
+            "35:17: " + getCheckMessage(MSG_KEY, "!"),
+            "35:22: " + getCheckMessage(MSG_KEY, "."),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterWithEmoji.java"), expected);
+    }
+
     /**
      * Creates MOCK lexical token and returns AST node for this token.
      *
