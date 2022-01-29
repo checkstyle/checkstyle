@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -1180,11 +1181,11 @@ public class CustomImportOrderCheck extends AbstractCheck {
      */
     private int getCountOfEmptyLinesBetween(int fromLineNo, int toLineNo) {
         int result = 0;
-        final String[] lines = getLines();
 
         for (int i = fromLineNo + 1; i <= toLineNo - 1; i++) {
+            final int[] line = getLineCodePoints(i - 1);
             // "- 1" because the numbering is one-based
-            if (CommonUtil.isBlank(lines[i - 1])) {
+            if (CodePointUtil.isBlank(line)) {
                 result++;
             }
         }
