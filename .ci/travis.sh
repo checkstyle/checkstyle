@@ -6,6 +6,34 @@ source ./.ci/util.sh
 
 export RUN_JOB=1
 
+function after_execution_test {
+  # git difference
+
+  if [ "$(git status | grep 'Changes not staged\|Untracked files')" ]; then
+    printf "Please clean up or update .gitattributes file.\nGit status output:\n"
+    git status
+    printf "Top 300 lines of diff:\n"
+    git diff | head -n 300
+    sleep 5s
+    false
+  fi
+
+  # ci temp check
+
+  fail=0
+  mkdir -p .ci-temp
+  if [ -z "$(ls -A .ci-temp)" ]; then
+    echo "Folder .ci-temp/ is empty."
+  else
+    echo "Folder .ci-temp/ is not empty. Verification failed."
+    echo "Contents of .ci-temp/:"
+    fail=1
+  fi
+  ls -A .ci-temp
+  sleep 5s
+  exit $fail  
+}
+
 case $1 in
 
 init-m2-repo)
@@ -82,32 +110,6 @@ deploy-snapshot)
   sleep 5s
   ;;
 
-git-diff)
-  if [ "$(git status | grep 'Changes not staged\|Untracked files')" ]; then
-    printf "Please clean up or update .gitattributes file.\nGit status output:\n"
-    git status
-    printf "Top 300 lines of diff:\n"
-    git diff | head -n 300
-    sleep 5s
-    false
-  fi
-  ;;
-
-ci-temp-check)
-    fail=0
-    mkdir -p .ci-temp
-    if [ -z "$(ls -A .ci-temp)" ]; then
-        echo "Folder .ci-temp/ is empty."
-    else
-        echo "Folder .ci-temp/ is not empty. Verification failed."
-        echo "Contents of .ci-temp/:"
-        fail=1
-    fi
-    ls -A .ci-temp
-    sleep 5s
-    exit $fail
-  ;;
-
 jacoco)
   export MAVEN_OPTS='-Xmx2000m'
   mvn -e --no-transfer-progress clean test \
@@ -127,3 +129,5 @@ jacoco)
   ;;
 
 esac
+
+after_execution_test
