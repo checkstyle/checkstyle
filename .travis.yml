@@ -125,5 +125,3 @@ script:
 after_success:
   - ./.ci/travis.sh run-command-after-success
   - ./.ci/travis.sh deploy-snapshot
-  - ./.ci/travis.sh git-diff
-  - ./.ci/travis.sh ci-temp-check
