@@ -376,8 +376,8 @@ public class RightCurlyCheck extends AbstractCheck {
                                                int... targetSrcLine) {
         return bracePolicy == RightCurlyOption.ALONE
                     && shouldBeAloneOnLineWithAloneOption(details, targetSrcLine)
-                || (bracePolicy == RightCurlyOption.ALONE_OR_SINGLELINE
-                    || details.shouldCheckLastRcurly)
+                    || (bracePolicy == RightCurlyOption.ALONE_OR_SINGLELINE
+                        || details.shouldCheckLastRcurly)
                     && shouldBeAloneOnLineWithNotAloneOption(details, targetSrcLine);
     }
 
