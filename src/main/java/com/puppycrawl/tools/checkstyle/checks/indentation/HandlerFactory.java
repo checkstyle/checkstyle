@@ -27,6 +27,7 @@ import java.util.Set;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Factory for handlers. Looks up constructor via reflection.
@@ -176,7 +177,7 @@ public class HandlerFactory {
     private AbstractExpressionHandler createMethodCallHandler(IndentationCheck indentCheck,
         DetailAST ast, AbstractExpressionHandler parent) {
         DetailAST astNode = ast.getFirstChild();
-        while (astNode.getType() == TokenTypes.DOT) {
+        while (TokenUtil.isOfType(astNode, TokenTypes.DOT, TokenTypes.INDEX_OP)) {
             astNode = astNode.getFirstChild();
         }
         AbstractExpressionHandler theParent = parent;

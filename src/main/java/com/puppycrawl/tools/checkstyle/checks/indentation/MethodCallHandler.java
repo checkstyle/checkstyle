@@ -118,14 +118,21 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         boolean result = false;
         final DetailAST main = getMainAst();
         final DetailAST dot = main.getFirstChild();
-        final DetailAST target = dot.getFirstChild();
+        DetailAST target = dot.getFirstChild();
+        while (target.getType() == TokenTypes.INDEX_OP) {
+            target = target.getFirstChild();
+        }
 
         final DetailAST dot1 = target.getFirstChild();
-        final DetailAST target1 = dot1.getFirstChild();
 
-        if (dot1.getType() == TokenTypes.DOT
-            && target1.getType() == TokenTypes.METHOD_CALL) {
-            result = true;
+        if (dot1.getType() == TokenTypes.DOT) {
+            DetailAST target1 = dot1.getFirstChild();
+            while (target1.getType() == TokenTypes.INDEX_OP) {
+                target1 = target1.getFirstChild();
+            }
+            if (target1.getType() == TokenTypes.METHOD_CALL) {
+                result = true;
+            }
         }
         return result;
     }
