@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -210,8 +211,8 @@ public class MethodParamPadCheck
         }
 
         if (parenAST != null) {
-            final String line = getLines()[parenAST.getLineNo() - 1];
-            if (CommonUtil.hasWhitespaceBefore(parenAST.getColumnNo(), line)) {
+            final int[] line = getLineCodePoints(parenAST.getLineNo() - 1);
+            if (CodePointUtil.hasWhitespaceBefore(parenAST.getColumnNo(), line)) {
                 if (!allowLineBreaks) {
                     log(parenAST, MSG_LINE_PREVIOUS, parenAST.getText());
                 }
@@ -219,11 +220,11 @@ public class MethodParamPadCheck
             else {
                 final int before = parenAST.getColumnNo() - 1;
                 if (option == PadOption.NOSPACE
-                    && Character.isWhitespace(line.charAt(before))) {
+                    && CommonUtil.isCodePointWhitespace(line, before)) {
                     log(parenAST, MSG_WS_PRECEDED, parenAST.getText());
                 }
                 else if (option == PadOption.SPACE
-                         && !Character.isWhitespace(line.charAt(before))) {
+                         && !CommonUtil.isCodePointWhitespace(line, before)) {
                     log(parenAST, MSG_WS_NOT_PRECEDED, parenAST.getText());
                 }
             }
