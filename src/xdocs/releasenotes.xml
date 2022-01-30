@@ -10,6 +10,160 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 9.3">
+      <div class="releaseDate">30.01.2022</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            Support patterns in switch (preview-feature in Java 17) as described by JEP 406.
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/10848">#10848</a>
+          </li>
+          <li>
+            New Check: UnusedVariable.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/7504">#7504</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            OutOfMemory following CheckStyle 9.X upgrade.
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/10934">#10934</a>
+          </li>
+          <li>
+            False positive in `MissingSwitchDefault` with pattern in switch label.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/11220">#11220</a>
+          </li>
+          <li>
+            `OperatorWrapCheck` throws NPE on guarded patterns.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/11187">#11187</a>
+          </li>
+          <li>
+            UnnecessaryParentheses: false negative.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11061">#11061</a>
+          </li>
+          <li>
+            All checks that use `AbstractCheck#getLine()` should check code
+            points instead of characters for spacing.
+            Author: MUzairS15
+            <a href="https://github.com/checkstyle/checkstyle/issues/10924">#10924</a>
+          </li>
+          <li>
+            Stackoverflow error on deeply concatenated strings.
+            Author: Timur Tibeyev
+            <a href="https://github.com/checkstyle/checkstyle/issues/9267">#9267</a>
+          </li>
+          <li>
+            StringLiteralEquality FN about String literal expression.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11031">#11031</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Fail test execution if Input file does nor have message on violation
+            line and Check has not signle message.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11091">#11091</a>
+          </li>
+          <li>
+            Pitest: add new mutator REMOVE_CONDITIONALS.
+            Author: rnveach, Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/6320">#6320</a>
+          </li>
+          <li>
+            Run regression testing in CI over openjdk17.
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/11185">#11185</a>
+          </li>
+          <li>
+            Let &#39;site&#39; Github action to generate javadoc.
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/11228">#11228</a>
+          </li>
+          <li>
+            Improve Japanese message translation.
+            Author: SATO Yusuke
+            <a href="https://github.com/checkstyle/checkstyle/issues/11200">#11200</a>
+          </li>
+          <li>
+            add file filters for non-compilable files in openjdk16.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11215">#11215</a>
+          </li>
+          <li>
+            Update `bump-license-year.sh` to use `g4` file extension..
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/11203">#11203</a>
+          </li>
+          <li>
+            Replace System.exit with Runtime.exit.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11172">#11172</a>
+          </li>
+          <li>
+            Solve fb-contrib errors.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/11140">#11140</a>
+          </li>
+          <li>
+            Add github action to bump year in license.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11194">#11194</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Prevent usage of &#39;getFileContents()&#39; method in code.
+            Author: haanhvu
+            <a href="https://github.com/checkstyle/checkstyle/issues/9889">#9889</a>
+          </li>
+          <li>
+            Infra: migrate to Truth in tests.
+            Author: rnveach, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9142">#9142</a>
+          </li>
+          <li>
+            Update existing Input files to follow 100 line limit .
+            Author: Abhinav Rajput
+            <a href="https://github.com/checkstyle/checkstyle/issues/10625">#10625</a>
+          </li>
+          <li>
+            Resolve Reflection Suppressions and Import Control.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/11113">#11113</a>
+          </li>
+          <li>
+            Add sb-contrib plugin to spotbugs configuration.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11120">#11120</a>
+          </li>
+          <li>
+            Refactor XdocsPagesTest to use some annotation to specify the property type.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/10744">#10744</a>
+          </li>
+          <li>
+            Replace assertions guarded by &#39;if&#39; with assumeXXX methods in tests.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11131">#11131</a>
+          </li>
+          <li>
+            Remove checkConstructorIsPrivate from TestUtil#isUtilsClassHasPrivateConstructor.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11107">#11107</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 9.2.1">
       <div class="releaseDate">26.12.2021</div>
       <p>Bug fixes:</p>
