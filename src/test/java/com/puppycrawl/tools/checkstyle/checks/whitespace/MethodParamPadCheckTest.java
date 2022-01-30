@@ -149,6 +149,23 @@ public class MethodParamPadCheckTest
     }
 
     @Test
+    public void testMethodParamPadCheckWithEmoji() throws Exception {
+        final String[] expected = {
+            "19:31: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "21:30: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "25:28: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "32:36: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "36:70: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "38:31: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "41:24: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "47:24: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "50:23: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMethodParamPadCheckWithEmoji.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final MethodParamPadCheck methodParamPadCheckObj = new MethodParamPadCheck();
         final int[] actual = methodParamPadCheckObj.getAcceptableTokens();
