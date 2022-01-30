@@ -121,9 +121,9 @@ jobs:
 script:
   - ./.ci/travis.sh init-m2-repo
   - ./.ci/travis.sh run-command "$CMD"
+  - ./.ci/travis.sh git-diff
+  - ./.ci/travis.sh ci-temp-check
 
 after_success:
   - ./.ci/travis.sh run-command-after-success
   - ./.ci/travis.sh deploy-snapshot
-  - ./.ci/travis.sh git-diff
-  - ./.ci/travis.sh ci-temp-check

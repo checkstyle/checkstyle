@@ -19,7 +19,7 @@
  &lt;p&gt;
  This check does not validate any switch expressions. Rationale:
  The compiler requires switch expressions to be exhaustive. This means
- that all possible inputs must be covered.
+ that all possible inputs must be covered and BAD change.
  &lt;/p&gt;
  &lt;p&gt;
  This check does not validate switch statements that use pattern or null
