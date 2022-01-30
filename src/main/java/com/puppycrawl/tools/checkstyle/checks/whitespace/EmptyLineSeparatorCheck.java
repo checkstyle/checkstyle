@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -811,8 +812,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         // 3 is the number of the pre-previous line because the numbering starts from zero.
         final int number = 3;
         if (lineNo >= number) {
-            final String prePreviousLine = getLines()[lineNo - number];
-            result = CommonUtil.isBlank(prePreviousLine);
+            final int[] prePreviousLine = getLineCodePoints(lineNo - number);
+            result = CodePointUtil.isBlank(prePreviousLine);
         }
         return result;
     }
@@ -889,8 +890,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         final int lineNo = token.getLineNo();
         if (lineNo != 1) {
             // [lineNo - 2] is the number of the previous line as the numbering starts from zero.
-            final String lineBefore = getLines()[lineNo - 2];
-            result = CommonUtil.isBlank(lineBefore);
+            final int[] lineBefore = getLineCodePoints(lineNo - 2);
+            result = CodePointUtil.isBlank(lineBefore);
         }
         return result;
     }
@@ -906,8 +907,10 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         // from zero.
         boolean result = false;
         if (comment != null) {
-            final String lineWithComment = getLines()[comment.getLineNo() - 1].trim();
-            result = lineWithComment.startsWith("//") || lineWithComment.startsWith("/*");
+            final int[] lineWithComment = CodePointUtil.trim(
+                    getLineCodePoints(comment.getLineNo() - 1));
+            result = CodePointUtil.startsWith(lineWithComment, "//", 0)
+                     || CodePointUtil.startsWith(lineWithComment, "/*", 0);
         }
         return result;
     }
