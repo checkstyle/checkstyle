@@ -2296,6 +2296,14 @@ public class UserService {
               <td><code>null</code></td>
               <td>8.24</td>
             </tr>
+            <tr>
+              <td>influenceFormat</td>
+              <td>Specify negative/zero/positive value that defines the number of
+                  lines preceding/at/following the suppression comment.</td>
+              <td><a href="property_types.html#String">String</a></td>
+              <td><code>"0"</code></td>
+              <td>5.0</td>
+            </tr>
           </table>
         </div>
       </subsection>
@@ -2513,6 +2521,16 @@ EXPLAIN SELECT COUNT(*) FROM restaurants
   &lt;/module&gt;
 
 &lt;/module&gt;
+        </source>
+        <p>
+          Example of how to configure the check to suppress more than one checks.
+          The influence format format is specified in the second regexp group.
+        </p>
+        <source>
+  &lt;module name="SuppressWithPlainTextCommentFilter&quot;&gt;
+    &lt;property name="checkFormat" value="$1"/&gt;
+    &lt;property name="influenceFormat" value="$2"/&gt;
+  &lt;/module&gt;
         </source>
         <source>
 -- @cs-: RegexpSinglelineCheck
