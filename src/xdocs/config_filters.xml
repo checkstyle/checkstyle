@@ -2528,7 +2528,6 @@ EXPLAIN SELECT COUNT(*) FROM restaurants
         </p>
         <source>
   &lt;module name="SuppressWithPlainTextCommentFilter&quot;&gt;
-    &lt;property name="commentFormat" value="@cs-\: ([\w\|]+) influence (\d+)"/&gt;
     &lt;property name="checkFormat" value="$1"/&gt;
     &lt;property name="influenceFormat" value="$2"/&gt;
   &lt;/module&gt;
