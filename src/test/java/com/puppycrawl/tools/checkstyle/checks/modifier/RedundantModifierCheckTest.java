@@ -149,6 +149,7 @@ public class RedundantModifierCheckTest
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.RESOURCE,
+            TokenTypes.RECORD_DEF,
         };
         assertWithMessage("Invalid acceptable tokens")
             .that(actual)
@@ -276,5 +277,20 @@ public class RedundantModifierCheckTest
         };
         verifyWithInlineConfigParser(getPath(
                 "InputRedundantModifierNestedDef.java"), expected);
+    }
+
+    @Test
+    public void testNestedRecords() throws Exception {
+        final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_KEY, "static"),
+            "16:9: " + getCheckMessage(MSG_KEY, "static"),
+            "21:9: " + getCheckMessage(MSG_KEY, "static"),
+            "27:9: " + getCheckMessage(MSG_KEY, "static"),
+            "32:13: " + getCheckMessage(MSG_KEY, "static"),
+            "43:5: " + getCheckMessage(MSG_KEY, "static"),
+            "47:9: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRedundantModifierNestedRecords.java"), expected);
     }
 }

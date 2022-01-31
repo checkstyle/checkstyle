@@ -56,6 +56,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Nested {@code enum} definitions that are declared as {@code static}.
  * </li>
+ * <li>
+ * Nested {@code record} definitions that are declared as {@code static}.
+ * </li>
  * </ol>
  * <p>
  * Interfaces by definition are abstract so the {@code abstract}
@@ -74,6 +77,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>As annotations are a form of interface, their fields are also
  * automatically public, static and final just as their
  * annotation fields are automatically public and abstract.</p>
+ *
+ * <p>Nested records are implicitly static. This avoids an immediately enclosing
+ * instance which would silently add state to the record class.
+ * <a href="https://openjdk.java.net/jeps/395">JEP 395</a></p>.
  *
  * <p>Enums by definition are static implicit subclasses of java.lang.Enum&#60;E&#62;.
  * So, the {@code static} modifier on the enums is redundant. In addition,
@@ -155,7 +162,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
  * ENUM_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE">
- * RESOURCE</a>.
+ * RESOURCE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+ * RECORD_DEF</a>.
  * </li>
  * </ul>
  * <p>
@@ -225,19 +234,24 @@ public class RedundantModifierCheck
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.RESOURCE,
+            TokenTypes.RECORD_DEF,
         };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.INTERFACE_DEF) {
+        final int type = ast.getType();
+        if (type == TokenTypes.INTERFACE_DEF) {
             checkInterfaceModifiers(ast);
         }
-        else if (ast.getType() == TokenTypes.ENUM_DEF) {
+        else if (type == TokenTypes.ENUM_DEF) {
             checkEnumDef(ast);
         }
+        else if (type == TokenTypes.RECORD_DEF) {
+            checkForRedundantModifier(ast, TokenTypes.LITERAL_STATIC);
+        }
         else {
-            if (ast.getType() == TokenTypes.CTOR_DEF) {
+            if (type == TokenTypes.CTOR_DEF) {
                 if (isEnumMember(ast)) {
                     checkEnumConstructorModifiers(ast);
                 }
@@ -245,10 +259,10 @@ public class RedundantModifierCheck
                     checkClassConstructorModifiers(ast);
                 }
             }
-            else if (ast.getType() == TokenTypes.METHOD_DEF) {
+            else if (type == TokenTypes.METHOD_DEF) {
                 processMethods(ast);
             }
-            else if (ast.getType() == TokenTypes.RESOURCE) {
+            else if (type == TokenTypes.RESOURCE) {
                 processResources(ast);
             }
 
