@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -152,16 +153,16 @@ public class EmptyForIteratorPadCheck
         if (!ast.hasChildren()) {
             // empty for iterator. test pad after semi.
             final DetailAST semi = ast.getPreviousSibling();
-            final String line = getLines()[semi.getLineNo() - 1];
+            final int[] line = getLineCodePoints(semi.getLineNo() - 1);
             final int after = semi.getColumnNo() + 1;
             // don't check if at end of line
-            if (after < line.length()) {
+            if (after < line.length) {
                 if (option == PadOption.NOSPACE
-                    && Character.isWhitespace(line.charAt(after))) {
+                    && CommonUtil.isCodePointWhitespace(line, after)) {
                     log(ast, MSG_WS_FOLLOWED, SEMICOLON);
                 }
                 else if (option == PadOption.SPACE
-                         && !Character.isWhitespace(line.charAt(after))) {
+                         && !CommonUtil.isCodePointWhitespace(line, after)) {
                     log(ast, MSG_WS_NOT_FOLLOWED, SEMICOLON);
                 }
             }
