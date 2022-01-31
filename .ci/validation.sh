@@ -645,10 +645,12 @@ no-error-hibernate-search)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/hibernate/hibernate-search.git
   cd .ci-temp/hibernate-search
-  mvn -e --no-transfer-progress clean install -DskipTests=true -Dtest.elasticsearch.run.skip=true \
+  mvn -e --no-transfer-progress clean install -pl build/config -am \
+     -DskipTests=true -Dmaven.compiler.failOnWarning=false \
      -Dcheckstyle.skip=true -Dforbiddenapis.skip=true \
-     -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
-  mvn -e --no-transfer-progress checkstyle:check  -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
+     -Dversion.com.puppycrawl.tools.checkstyle=${CS_POM_VERSION}
+  mvn -e --no-transfer-progress checkstyle:check \
+     -Dversion.com.puppycrawl.tools.checkstyle=${CS_POM_VERSION}
   cd ../
   removeFolderWithProtectedFiles hibernate-search
   ;;
