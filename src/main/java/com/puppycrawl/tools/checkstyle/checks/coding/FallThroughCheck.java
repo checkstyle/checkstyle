@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 
 /**
  * <p>
@@ -496,7 +496,8 @@ public class FallThroughCheck extends AbstractCheck {
             //    }
             final int startLineNo = currentCase.getLineNo();
             for (int i = endLineNo - 2; i > startLineNo - 1; i--) {
-                if (!CommonUtil.isBlank(lines[i])) {
+                final int[] line = getLineCodePoints(i);
+                if (!CodePointUtil.isBlank(line)) {
                     allThroughComment = matchesComment(reliefPattern, lines[i], i + 1);
                     break;
                 }
