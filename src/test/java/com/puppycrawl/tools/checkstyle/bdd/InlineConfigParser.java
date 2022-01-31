@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.bdd;
 
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
@@ -26,18 +28,9 @@ import java.lang.reflect.Modifier;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public final class InlineConfigParser {
 
@@ -128,7 +121,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.TranslationCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck",
             "com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck",
