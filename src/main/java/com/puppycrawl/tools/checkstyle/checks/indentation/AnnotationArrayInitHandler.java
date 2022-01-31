@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Handler for annotation array initialization blocks.
@@ -131,10 +132,10 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
      */
     private int getNextFirstNonBlankOnLineAfter(int lineNo, int columnNo) {
         int realColumnNo = columnNo + 1;
-        final String line = getIndentCheck().getLines()[lineNo - 1];
-        final int lineLength = line.length();
+        final int[] line = getIndentCheck().getLineCodePoints(lineNo - 1);
+        final int lineLength = line.length;
         while (realColumnNo < lineLength
-            && Character.isWhitespace(line.charAt(realColumnNo))) {
+            && CommonUtil.isCodePointWhitespace(line, realColumnNo)) {
             realColumnNo++;
         }
 
