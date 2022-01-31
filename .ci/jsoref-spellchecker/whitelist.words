@@ -352,6 +352,7 @@ Dstrict
 Dtest
 Dubinin
 Duser
+Dversion
 Dxml
 eb
 ecj
@@ -1060,6 +1061,7 @@ propertycachefile
 prot
 PROTECTE
 protonpack
+Pstatic
 pubconstr
 pubifc
 PUBLI
