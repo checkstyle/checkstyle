@@ -166,6 +166,18 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testWithEmoji() throws Exception {
+        final String[] expected = {
+            "24:17: " + getCheckMessage(MSG_FALL_THROUGH),
+            "27:17: " + getCheckMessage(MSG_FALL_THROUGH),
+            "53:17: " + getCheckMessage(MSG_FALL_THROUGH),
+            "56:17: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughWithEmoji.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final FallThroughCheck check = new FallThroughCheck();
         assertWithMessage("Acceptable tokens should not be null")
