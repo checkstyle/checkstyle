@@ -109,14 +109,14 @@ jobs:
         - CMD2="./.ci/validation.sh no-error-spring-cloud-gcp"
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
-    # until https://github.com/jqno/equalsverifier/issues/586
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="NoErrorTest - EqualsVerifier"
-    #     - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-    #     - CMD2="./.ci/validation.sh no-error-equalsverifier"
-    #     - CMD="$CMD1 && $CMD2"
-    #     - USE_MAVEN_REPO="true"
+
+    - jdk: openjdk17
+      env:
+        - DESC="NoErrorTest - EqualsVerifier"
+        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+        - CMD2="./.ci/validation.sh no-error-equalsverifier"
+        - CMD="$CMD1 && $CMD2"
+        - USE_MAVEN_REPO="true"
 
 script:
   - ./.ci/travis.sh init-m2-repo

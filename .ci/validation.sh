@@ -724,7 +724,7 @@ no-error-equalsverifier)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/jqno/equalsverifier.git
   cd .ci-temp/equalsverifier
-  mvn -e --no-transfer-progress compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+  mvn -e --no-transfer-progress compile checkstyle:check -Dversion.checkstyle=${CS_POM_VERSION}
   cd ../
   removeFolderWithProtectedFiles equalsverifier
   ;;
