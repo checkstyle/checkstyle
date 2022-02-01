@@ -290,8 +290,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * EXPLAIN SELECT COUNT(*) FROM restaurants
  * -- CSON count
  * </pre>
+ * <p>
+ * Example of how to configure the check to suppress more than one checks.
+ * The influence format format is specified in the second regexp group.
+ * </p>
  * <pre>
- * &lt;module name="SuppressWithNearbyCommentFilter"&gt;
+ * &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
  *   &lt;property name="onCommentFormat" value="@cs-\: ([\w\|]+) influence (\d+)"/&gt;
  *   &lt;property name="offCommentFormat" value="BEGIN GENERATED CONTENT"/&gt;
  *   &lt;property name="checkFormat" value="$1"/&gt;
