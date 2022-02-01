@@ -230,31 +230,46 @@ public class RedundantModifierCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.INTERFACE_DEF) {
-            checkInterfaceModifiers(ast);
+        switch (ast.getType()) {
+            case TokenTypes.INTERFACE_DEF:
+                checkInterfaceModifiers(ast);
+                break;
+            case TokenTypes.ENUM_DEF:
+                checkEnumDef(ast);
+                break;
+            default:
+                checkTypeDeclMembersAndResources(ast);
+                break;
         }
-        else if (ast.getType() == TokenTypes.ENUM_DEF) {
-            checkEnumDef(ast);
-        }
-        else {
-            if (ast.getType() == TokenTypes.CTOR_DEF) {
+    }
+
+    /**
+     * Check members present in type declarations and resources.
+     *
+     * @param ast ast
+     */
+    private void checkTypeDeclMembersAndResources(DetailAST ast) {
+        switch (ast.getType()) {
+            case TokenTypes.CTOR_DEF:
                 if (isEnumMember(ast)) {
                     checkEnumConstructorModifiers(ast);
                 }
                 else {
                     checkClassConstructorModifiers(ast);
                 }
-            }
-            else if (ast.getType() == TokenTypes.METHOD_DEF) {
+                break;
+            case TokenTypes.METHOD_DEF:
                 processMethods(ast);
-            }
-            else if (ast.getType() == TokenTypes.RESOURCE) {
+                break;
+            case TokenTypes.RESOURCE:
                 processResources(ast);
-            }
+                break;
+            default:
+                break;
+        }
 
-            if (isInterfaceOrAnnotationMember(ast)) {
-                processInterfaceOrAnnotation(ast);
-            }
+        if (isInterfaceOrAnnotationMember(ast)) {
+            processInterfaceOrAnnotation(ast);
         }
     }
 
