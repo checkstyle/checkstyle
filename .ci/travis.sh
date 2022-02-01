@@ -40,6 +40,13 @@ install-custom-mvn)
   fi
   ;;
 
+remove-custom-mvn)
+  if [[ -n "${CUSTOM_MVN_VERSION}" ]]; then
+    rm apache-maven-${CUSTOM_MVN_VERSION}-bin.zip
+    rm -rf apache-maven-${CUSTOM_MVN_VERSION}
+  fi
+  ;;
+
 run-command)
   if [[ $RUN_JOB == 1 ]]; then
     echo "eval of CMD is starting";
