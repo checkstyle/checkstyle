@@ -290,6 +290,24 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * EXPLAIN SELECT COUNT(*) FROM restaurants
  * -- CSON count
  * </pre>
+ * <pre>
+ * &lt;module name="SuppressWithNearbyCommentFilter"&gt;
+ *   &lt;property name="onCommentFormat" value="@cs-\: ([\w\|]+) influence (\d+)"/&gt;
+ *   &lt;property name="offCommentFormat" value="BEGIN GENERATED CONTENT"/&gt;
+ *   &lt;property name="checkFormat" value="$1"/&gt;
+ *   &lt;property name="influenceFormat" value="$2"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * // @cs-: ClassDataAbstractionCoupling influence 2
+ * // @cs-: MagicNumber influence 4
+ * &#64;Service // no violations from ClassDataAbstractionCoupling here
+ * &#64;Transactional
+ * public class UserService {
+ *   private int value = 10022; // no violations from MagicNumber here
+ * }
+ * //BEGIN GENERATED CONTENT
+ * </pre>
  * <p>
  * Example of how to configure the check to suppress more than one check
  * (Checker is configured to check only sql files).
