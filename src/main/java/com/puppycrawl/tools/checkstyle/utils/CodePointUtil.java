@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 /**
  * Contains utility methods for code point.
@@ -40,6 +41,41 @@ public final class CodePointUtil {
     public static boolean isBlank(int... codePoints) {
         return Arrays.stream(codePoints)
                 .allMatch(Character::isWhitespace);
+    }
+
+    /**
+     * Returns sub array removing all leading and trailing space.
+     *
+     * @param codePoints Array of unicode code point with leading or trailing whitespace
+     * @return array with white spaces removed
+     */
+    public static int[] trim(int...codePoints) {
+
+        final int beginIndex = IntStream.range(0, codePoints.length)
+                .filter(index -> !Character.isWhitespace(codePoints[index]))
+                .findFirst()
+                .orElse(codePoints.length);
+
+        final int endIndex = IntStream.iterate(codePoints.length - 1, index -> index - 1)
+                .filter(index -> !Character.isWhitespace(codePoints[index]))
+                .findFirst()
+                .orElse(0);
+
+        return Arrays.copyOfRange(codePoints, beginIndex, endIndex + 1);
+    }
+
+    /**
+     * Tests if the array starts with specified prefix.
+     *
+     * @param prefix the prefix
+     * @param codePoints the array of Unicode code point
+     * @param fromIndex index from which sequence needs to be matched
+     * @return true, if the code point array from specified index starts with
+     *      character sequence represented by argument; false otherwise
+     */
+    public static boolean startsWith(int[] codePoints, String prefix, int fromIndex) {
+        return Arrays.equals(Arrays.copyOfRange(codePoints, fromIndex,
+                fromIndex + prefix.length()), prefix.codePoints().toArray());
     }
 
 }
