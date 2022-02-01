@@ -29,6 +29,9 @@
  &lt;li&gt;
  Nested {@code enum} definitions that are declared as {@code static}.
  &lt;/li&gt;
+ &lt;li&gt;
+ Nested {@code record} definitions that are declared as {@code static}.
+ &lt;/li&gt;
  &lt;/ol&gt;
  &lt;p&gt;
  Interfaces by definition are abstract so the {@code abstract}
@@ -47,6 +50,10 @@
  &lt;p&gt;As annotations are a form of interface, their fields are also
  automatically public, static and final just as their
  annotation fields are automatically public and abstract.&lt;/p&gt;
+
+ &lt;p&gt;Nested records are implicitly static. This avoids an immediately enclosing
+ instance which would silently add state to the record class.
+ See &lt;a href="https://openjdk.java.net/jeps/395"&gt;JEP 395&lt;/a&gt; for more info.&lt;/p&gt;
 
  &lt;p&gt;Enums by definition are static implicit subclasses of java.lang.Enum&amp;#60;E&amp;#62;.
  So, the {@code static} modifier on the enums is redundant. In addition,
@@ -108,7 +115,7 @@
  }
  &lt;/pre&gt;</description>
          <properties>
-            <property default-value="METHOD_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,INTERFACE_DEF,CTOR_DEF,CLASS_DEF,ENUM_DEF,RESOURCE"
+            <property default-value="METHOD_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,INTERFACE_DEF,CTOR_DEF,CLASS_DEF,ENUM_DEF,RESOURCE,RECORD_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
