@@ -48,7 +48,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Final modifier on methods of final and anonymous classes.
  * </li>
  * <li>
- * Inner {@code interface} declarations that are declared as {@code static}.
+ * Type declarations nested under {@code interface} and {@code @interface} that are declared
+ * as {@code public} or {@code static}.
  * </li>
  * <li>
  * Class constructors.
@@ -58,12 +59,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ol>
  * <p>
- * Interfaces by definition are abstract so the {@code abstract}
- * modifier on the interface is redundant.
+ * {@code interface} and {@code @interface} by definition are abstract so the {@code abstract}
+ * modifier is redundant on them.
  * </p>
- * <p>Classes inside of interfaces by definition are public and static,
- * so the {@code public} and {@code static} modifiers
- * on the inner classes are redundant. On the other hand, classes
+ * <p>Type declarations nested under an interface and an annotated interface by definition
+ * are public and static, so the {@code public} and {@code static} modifiers
+ * on nested type declarations are redundant. On the other hand, classes
  * inside of interfaces can be abstract or non abstract.
  * So, {@code abstract} modifier is allowed.
  * </p>
@@ -155,7 +156,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
  * ENUM_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE">
- * RESOURCE</a>.
+ * RESOURCE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+ * ANNOTATION_DEF</a>.
  * </li>
  * </ul>
  * <p>
@@ -225,36 +228,53 @@ public class RedundantModifierCheck
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.RESOURCE,
+            TokenTypes.ANNOTATION_DEF,
         };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.INTERFACE_DEF) {
-            checkInterfaceModifiers(ast);
+        switch (ast.getType()) {
+            case TokenTypes.INTERFACE_DEF:
+            case TokenTypes.ANNOTATION_DEF:
+                checkInterfaceModifiers(ast);
+                break;
+            case TokenTypes.ENUM_DEF:
+                checkForRedundantModifier(ast, TokenTypes.LITERAL_STATIC);
+                break;
+            case TokenTypes.CTOR_DEF:
+                checkConstructorModifiers(ast);
+                break;
+            case TokenTypes.METHOD_DEF:
+                processMethods(ast);
+                break;
+            case TokenTypes.RESOURCE:
+                processResources(ast);
+                break;
+            case TokenTypes.CLASS_DEF:
+            case TokenTypes.VARIABLE_DEF:
+            case TokenTypes.ANNOTATION_FIELD_DEF:
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + ast.getType());
         }
-        else if (ast.getType() == TokenTypes.ENUM_DEF) {
-            checkEnumDef(ast);
+
+        if (isInterfaceOrAnnotationMember(ast)) {
+            processInterfaceOrAnnotation(ast);
+        }
+    }
+
+    /**
+     * Check modifiers of constructor.
+     *
+     * @param ctorDefAst ast node of type {@link TokenTypes#CTOR_DEF}
+     */
+    private void checkConstructorModifiers(DetailAST ctorDefAst) {
+        if (isEnumMember(ctorDefAst)) {
+            checkEnumConstructorModifiers(ctorDefAst);
         }
         else {
-            if (ast.getType() == TokenTypes.CTOR_DEF) {
-                if (isEnumMember(ast)) {
-                    checkEnumConstructorModifiers(ast);
-                }
-                else {
-                    checkClassConstructorModifiers(ast);
-                }
-            }
-            else if (ast.getType() == TokenTypes.METHOD_DEF) {
-                processMethods(ast);
-            }
-            else if (ast.getType() == TokenTypes.RESOURCE) {
-                processResources(ast);
-            }
-
-            if (isInterfaceOrAnnotationMember(ast)) {
-                processInterfaceOrAnnotation(ast);
-            }
+            checkClassConstructorModifiers(ctorDefAst);
         }
     }
 
@@ -286,20 +306,6 @@ public class RedundantModifierCheck
         TokenUtil.findFirstTokenByPredicate(
             modifiers, mod -> mod.getType() != TokenTypes.ANNOTATION
         ).ifPresent(modifier -> log(modifier, MSG_KEY, modifier.getText()));
-    }
-
-    /**
-     * Checks whether enum has proper modifiers.
-     *
-     * @param ast enum definition.
-     */
-    private void checkEnumDef(DetailAST ast) {
-        if (isInterfaceOrAnnotationMember(ast)) {
-            processInterfaceOrAnnotation(ast);
-        }
-        else {
-            checkForRedundantModifier(ast, TokenTypes.LITERAL_STATIC);
-        }
     }
 
     /**

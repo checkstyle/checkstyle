@@ -21,7 +21,7 @@ public interface InputRedundantModifierNestedClassInPublicInterfaceRedundantModi
             class ClassInPrivateNestedInterface {
                 public ClassInPrivateNestedInterface() { } // violation
             }
-            public interface PrivateNestedInterfaceWithPublicModifier {
+            public interface PrivateNestedInterfaceWithPublicModifier { // violation
                 class ClassInPrivateNestedInterface {
                     public ClassInPrivateNestedInterface() { } // violation
                 }
