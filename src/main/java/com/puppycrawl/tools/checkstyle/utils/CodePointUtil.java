@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 /**
  * Contains utility methods for code point.
@@ -38,8 +39,56 @@ public final class CodePointUtil {
      * @return true if codePoints is blank.
      */
     public static boolean isBlank(int... codePoints) {
-        return Arrays.stream(codePoints)
+        return hasWhitespaceBefore(codePoints.length, codePoints);
+    }
+
+    /**
+     * Checks if the given code point array contains only whitespace up to specified index.
+     *
+     * @param codePoints
+     *            array of Unicode code point of string to check
+     * @param index
+     *            index to check up to (exclusive)
+     * @return true if all code points preceding given index are whitespace
+     */
+    public static boolean hasWhitespaceBefore(int index, int... codePoints) {
+        return Arrays.stream(codePoints, 0, index)
                 .allMatch(Character::isWhitespace);
+    }
+
+    /**
+     * Returns sub array removing all leading and trailing whitespaces.
+     *
+     * @param codePoints Array of unicode code point
+     * @return array with whitespaces removed
+     */
+    public static int[] trim(int...codePoints) {
+
+        final int beginIndex = IntStream.range(0, codePoints.length)
+                .filter(index -> !Character.isWhitespace(codePoints[index]))
+                .findFirst()
+                .orElse(codePoints.length);
+
+        final int endIndex = IntStream.iterate(codePoints.length - 1, index -> index - 1)
+                .filter(index -> !Character.isWhitespace(codePoints[index]))
+                .findFirst()
+                .orElse(0);
+        return Arrays.copyOfRange(codePoints, beginIndex, endIndex + 1);
+    }
+
+    /**
+     * Tests if the unicode code points array beginning at the
+     * specified index starts with the specified prefix.
+     *
+     * @param prefix the prefix
+     * @param codePoints the array of unicode code point to check
+     * @param fromIndex index from which sequence needs to be matched (inclusive)
+     * @return {@code true}, if the unicode code point array from specified index starts with
+     *         character sequence
+     */
+    public static boolean startsWith(int[] codePoints, String prefix, int fromIndex) {
+        return Arrays.equals(Arrays.copyOfRange(codePoints, fromIndex,
+                fromIndex + prefix.length()), prefix.codePoints().toArray());
     }
 
 }

@@ -292,6 +292,26 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCommentIndentationWithEmoji() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(CommentsIndentationCheck.class);
+        final String[] expected = {
+            "7:9: " + getCheckMessage(MSG_KEY_SINGLE, 8, 8, 16),
+            "18:13: " + getCheckMessage(MSG_KEY_SINGLE, 17, 12, 8),
+            "20:9: " + getCheckMessage(MSG_KEY_SINGLE, 22, 8, 4),
+            "39:17: " + getCheckMessage(MSG_KEY_SINGLE, 38, 16, 24),
+            "63:13: " + getCheckMessage(MSG_KEY_SINGLE, 65, 12, 8),
+            "67:9: " + getCheckMessage(MSG_KEY_SINGLE, 66, 8, 12),
+            "81:13: " + getCheckMessage(MSG_KEY_SINGLE, 83, 12, 8),
+            "90:17: " + getCheckMessage(MSG_KEY_BLOCK, 91, 16, 12),
+            "92:17: " + getCheckMessage(MSG_KEY_BLOCK, 94, 16, 12),
+            "95:17: " + getCheckMessage(MSG_KEY_BLOCK, 108, 16, 12, 1),
+        };
+        verify(checkConfig,
+                getPath("InputCommentsIndentationCheckWithEmoji.java"),
+                expected);
+    }
+
+    @Test
     public void testCommentsBlockCommentBeforePackage() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(CommentsIndentationCheck.class);
         final String[] expected = {

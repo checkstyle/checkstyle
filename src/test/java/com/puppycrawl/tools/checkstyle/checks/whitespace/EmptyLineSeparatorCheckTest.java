@@ -552,4 +552,18 @@ public class EmptyLineSeparatorCheckTest
                 expected);
     }
 
+    @Test
+    public void testEmptyLineSeparatorWithEmoji() throws Exception {
+
+        final String[] expected = {
+            "22:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
+            "27:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
+            "33:15: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "41:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorWithEmoji.java"),
+                expected);
+    }
+
 }
