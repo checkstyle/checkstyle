@@ -63,6 +63,10 @@
             <property name="idFormat" type="java.util.regex.Pattern">
                <description>Specify check ID pattern to suppress.</description>
             </property>
+            <property default-value="0" name="influenceFormat" type="java.lang.String">
+               <description>Specify negative/zero/positive value that
+ defines the number of lines preceding/at/following the suppression comment.</description>
+            </property>
          </properties>
       </filter>
    </module>
