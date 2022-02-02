@@ -38,7 +38,7 @@ public class Java9TryWithResourcesTest extends AbstractModuleTestSupport {
     public void testCanParse() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputJava9TryWithResources.java"), expected);
+                getPath("InputJava9TryWithResources.java"), expected);
     }
 
 }

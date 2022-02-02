@@ -6,7 +6,7 @@ tokens = (default)METHOD_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, INTERFACE_DEF,
 
 */
 
-//non-compiled with javac: Compilable with Java9
+
 package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
 import java.io.IOException;

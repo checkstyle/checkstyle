@@ -162,7 +162,7 @@ public class MethodNameCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMethodNamePublicMethodsInInterfaces.java"),
+                getPath("InputMethodNamePublicMethodsInInterfaces.java"),
             expected);
     }
 
@@ -178,7 +178,7 @@ public class MethodNameCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMethodNamePrivateMethodsInInterfaces.java"),
+                getPath("InputMethodNamePrivateMethodsInInterfaces.java"),
             expected);
     }
 

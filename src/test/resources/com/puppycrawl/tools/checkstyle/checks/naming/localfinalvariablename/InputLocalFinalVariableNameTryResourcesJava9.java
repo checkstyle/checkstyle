@@ -6,7 +6,6 @@ tokens = (default)VARIABLE_DEF, PARAMETER_DEF, RESOURCE
 
 */
 
-//non-compiled with javac: Compilable with Java9
 package com.puppycrawl.tools.checkstyle.checks.naming.localfinalvariablename;
 
 public class InputLocalFinalVariableNameTryResourcesJava9 {

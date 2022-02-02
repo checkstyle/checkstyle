@@ -7,7 +7,6 @@ tokens = (default)QUESTION, COLON, EQUAL, NOT_EQUAL, DIV, PLUS, MINUS, STAR, MOD
 
 
 */
-//non-compiled with javac: Compilable with Java9
 package com.puppycrawl.tools.checkstyle.checks.whitespace.operatorwrap;
 
 public class InputOperatorWrapTryWithResources implements AutoCloseable
