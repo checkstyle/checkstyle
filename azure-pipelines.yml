@@ -30,47 +30,47 @@ strategy:
       cmd: "./.ci/test-spelling-unknown-words.sh"
       skipCache: true
 
-    # unit tests (openjdk8)
+    # unit tests (openjdk11)
     'test':
       image: 'ubuntu-20.04'
       cmd: "./.ci/validation.sh test"
 
-    # unit tests in German locale (openjdk8)
+    # unit tests in German locale (openjdk11)
     'test-de':
       image: 'ubuntu-20.04'
       cmd: "./.ci/validation.sh test-de"
 
-    # unit tests in Spanish locale (openjdk8)
+    # unit tests in Spanish locale (openjdk11)
     'test-es':
       image: 'ubuntu-20.04'
       cmd: "./.ci/validation.sh test-es"
 
-    # unit tests in Finnish locale (openjdk8)
+    # unit tests in Finnish locale (openjdk11)
     'test-fi':
       image: 'ubuntu-20.04'
       cmd: "./.ci/validation.sh test-fi"
 
-    # unit tests in French locale (openjdk8)
+    # unit tests in French locale (openjdk11)
     'test-fr':
       image: 'ubuntu-20.04'
       cmd: "./.ci/validation.sh test-fr"
 
-    # unit tests in Chinese locale (openjdk8)
+    # unit tests in Chinese locale (openjdk11)
     'test-zh':
       image: 'ubuntu-20.04'
       cmd: "./.ci/validation.sh test-zh"
 
-    # unit tests in Japanese locale (openjdk8)
+    # unit tests in Japanese locale (openjdk11)
     'test-ja':
       image: 'ubuntu-20.04'
       cmd: "./.ci/validation.sh test-ja"
 
-    # unit tests in Portuguese locale (openjdk8)
+    # unit tests in Portuguese locale (openjdk11)
     'test-pt':
       image: 'ubuntu-20.04'
       cmd: "./.ci/validation.sh test-pt"
 
-    # unit tests in Turkish locale (openjdk8)
+    # unit tests in Turkish locale (openjdk11)
     'test-tr':
       image: 'ubuntu-20.04'
       cmd: "./.ci/validation.sh test-tr"
@@ -80,25 +80,15 @@ strategy:
       image: 'ubuntu-20.04'
       cmd: "mvn -e --no-transfer-progress verify"
 
-    # MacOS JDK8 verify
-    'MacOS JDK8 verify':
-      image: 'macOS-10.15'
-      cmd: "export JAVA_HOME=$JAVA_HOME_8_X64 && mvn -e --no-transfer-progress verify"
-
     # MacOS JDK11 verify
     'MacOS JDK11 verify':
       image: 'macOS-10.15'
-      cmd: "export JAVA_HOME=$JAVA_HOME_11_X64 && mvn -e --no-transfer-progress verify"
+      cmd: "JAVA_HOME=$JAVA_HOME_11_X64 mvn -e --no-transfer-progress verify"
 
-    # MacOS JDK13 verify
-    'MacOS JDK13 verify':
-      image: 'macOS-10.15'
-      cmd: "export JAVA_HOME=$JAVA_HOME_13_X64 && mvn -e --no-transfer-progress verify"
-
-    # MacOS JDK14 verify
+    # MacOS JDK17 verify
     'MacOS JDK14 verify':
-      image: 'macOS-10.15'
-      cmd: "export JAVA_HOME=$JAVA_HOME_14_X64 && mvn -e --no-transfer-progress verify"
+      image: 'macOS-11'
+      cmd: "JAVA_HOME=$JAVA_HOME_17_X64 mvn -e --no-transfer-progress verify"
 
     # moved back to Travis till we find a way to keep secrets in azure
     # ensure that all modules are used in no exception configs
@@ -126,7 +116,7 @@ pool:
 
 variables:
   MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
-  MAVEN_OPTS: '-Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
+  MAVEN_OPTS: '--show-version -Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
   SKIP_CACHE: $(skipCache)
   IMAGE: $(image)
   ON_CRON_ONLY: $(onCronOnly)
@@ -146,6 +136,12 @@ steps:
 - bash: |
     gem install mdl
   condition: eq(variables.NEED_MDL, 'true')
+
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: 11
+    jdkArchitectureOption: 'X64'
+    jdkSourceOption: 'PreInstalled'
 
 - task: Cache@2
   inputs:

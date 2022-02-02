@@ -26,8 +26,8 @@ jobs:
   include:
 
     # this job do deploy maven repository
-    # unit tests (openjdk8)
-    - jdk: openjdk8
+    # unit tests (openjdk11)
+    - jdk: openjdk11
       env:
         - DESC="tests and deploy"
         - CMD="mvn -e --no-transfer-progress clean integration-test failsafe:verify
@@ -43,7 +43,7 @@ jobs:
     #    - CMD2="./.ci/validation.sh verify-no-exception-configs"
     #    - CMD="$CMD1 && $CMD2"
 
-    - jdk: openjdk8
+    - jdk: openjdk11
       env:
         - DESC="NoErrorTest - Postgresql JDBC Driver"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
@@ -51,7 +51,7 @@ jobs:
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
-    - jdk: openjdk8
+    - jdk: openjdk11
       env:
         - DESC="NoErrorTest - Orekit"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
@@ -62,7 +62,7 @@ jobs:
     - jdk: openjdk11
       env:
         - DESC="NoErrorTest - Hibernate Search"
-        - CUSTOM_MVN_VERSION="3.8.1"
+        - CUSTOM_MVN_VERSION="3.8.4"
         - M2_HOME="$PWD/apache-maven-${CUSTOM_MVN_VERSION}"
         - PATH="$M2_HOME/bin:$PATH"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
@@ -70,7 +70,7 @@ jobs:
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
-    - jdk: openjdk8
+    - jdk: openjdk11
       env:
         - DESC="NoErrorTest - checkstyle's sevntu"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
@@ -78,7 +78,7 @@ jobs:
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
-    - jdk: openjdk8
+    - jdk: openjdk11
       env:
         - DESC="NoErrorTest - sevntu-checks"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
@@ -86,7 +86,7 @@ jobs:
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
-    - jdk: openjdk8
+    - jdk: openjdk11
       env:
         - DESC="NoErrorTest - contribution"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
@@ -94,7 +94,7 @@ jobs:
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
-    - jdk: openjdk8
+    - jdk: openjdk11
       env:
         - DESC="NoErrorTest - methods distance"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
@@ -102,7 +102,7 @@ jobs:
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
-    - jdk: openjdk8
+    - jdk: openjdk11
       env:
         - DESC="NoErrorTest - Spring Cloud GCP"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
