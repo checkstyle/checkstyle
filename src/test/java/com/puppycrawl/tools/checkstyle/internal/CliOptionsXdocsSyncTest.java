@@ -20,8 +20,6 @@
 package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.junit.Assert.assertTrue;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -79,8 +77,10 @@ public class CliOptionsXdocsSyncTest {
                 .isEqualTo(descXdoc);
             cmdDesc.remove(option);
         }
-        assertTrue("CLI Options: " + cmdDesc + " present in "
-                + "cmdline.xml.vm, not documented in Main.java", cmdDesc.isEmpty());
+        assertWithMessage("CLI Options: %s present in cmdline.xml.vm, not documented in Main.java",
+                    cmdDesc)
+                .that(cmdDesc)
+                .isEmpty();
     }
 
     @Test
@@ -127,7 +127,7 @@ public class CliOptionsXdocsSyncTest {
 
     private static NodeList getSectionsFromXdoc(String xdocPath) throws Exception {
         final Path path = Paths.get(xdocPath);
-        final String input = new String(Files.readAllBytes(path), UTF_8);
+        final String input = Files.readString(path);
         final Document document = XmlUtil.getRawXml(path.getFileName().toString(), input, input);
         return document.getElementsByTagName("section");
     }

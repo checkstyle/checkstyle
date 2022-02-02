@@ -603,9 +603,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         verify(checkerConfig, filePath, expected);
 
         assertWithMessage("External resource is not present in cache")
-                .that(new String(Files.readAllBytes(cacheFile.toPath()), StandardCharsets.UTF_8)
-                        .contains("InputTreeWalkerSuppressionXpathFilter.xml"))
-                .isTrue();
+                .that(Files.readString(cacheFile.toPath()))
+                .contains("InputTreeWalkerSuppressionXpathFilter.xml");
     }
 
     @Test

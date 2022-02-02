@@ -106,12 +106,10 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * This set contains faulty property default value which should not be written to the XML
      * metadata files.
      */
-    private static final Set<String> PROPERTIES_TO_NOT_WRITE = Collections.unmodifiableSet(
-            new HashSet<>(Arrays.asList(
+    private static final Set<String> PROPERTIES_TO_NOT_WRITE = Set.of(
                     "null",
                     "the charset property of the parent <a href=https://checkstyle.org/"
-                        + "config.html#Checker>Checker</a> module"
-    )));
+                        + "config.html#Checker>Checker</a> module");
 
     /**
      * Format for exception message for missing type for check property.

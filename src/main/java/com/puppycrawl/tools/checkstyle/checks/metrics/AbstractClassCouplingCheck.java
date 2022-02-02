@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -150,7 +151,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      */
     public final void setExcludedClasses(String... excludedClasses) {
         this.excludedClasses =
-            Collections.unmodifiableSet(Arrays.stream(excludedClasses).collect(Collectors.toSet()));
+            Arrays.stream(excludedClasses).collect(Collectors.toUnmodifiableSet());
     }
 
     /**
@@ -159,9 +160,10 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      * @param from array representing regular expressions of classes to ignore.
      */
     public void setExcludeClassesRegexps(String... from) {
-        excludeClassesRegexps.addAll(Arrays.stream(from.clone())
+        Arrays.stream(from)
                 .map(CommonUtil::createPattern)
-                .collect(Collectors.toSet()));
+                .distinct()
+                .forEach(excludeClassesRegexps::add);
     }
 
     /**
@@ -173,16 +175,15 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      */
     public final void setExcludedPackages(String... excludedPackages) {
         final List<String> invalidIdentifiers = Arrays.stream(excludedPackages)
-            .filter(excludedPackageName -> !CommonUtil.isName(excludedPackageName))
+            .filter(Predicate.not(CommonUtil::isName))
             .collect(Collectors.toList());
         if (!invalidIdentifiers.isEmpty()) {
             throw new IllegalArgumentException(
-                "the following values are not valid identifiers: "
-                    + invalidIdentifiers.stream().collect(Collectors.joining(", ", "[", "]")));
+                "the following values are not valid identifiers: " + invalidIdentifiers);
         }
 
-        this.excludedPackages = Collections.unmodifiableSet(
-            Arrays.stream(excludedPackages).collect(Collectors.toSet()));
+        this.excludedPackages =
+            Arrays.stream(excludedPackages).collect(Collectors.toUnmodifiableSet());
     }
 
     @Override

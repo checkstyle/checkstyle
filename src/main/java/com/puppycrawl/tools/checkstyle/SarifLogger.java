@@ -137,12 +137,6 @@ public class SarifLogger extends AutomaticBean implements AuditListener {
         // No code by default
     }
 
-    /**
-     * {@inheritDoc}
-     * Following idea suppressions are false positives
-     *
-     * @noinspection DynamicRegexReplaceableByCompiledPattern
-     */
     @Override
     public void auditFinished(AuditEvent event) {
         final String version = SarifLogger.class.getPackage().getImplementationVersion();
@@ -158,12 +152,6 @@ public class SarifLogger extends AutomaticBean implements AuditListener {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     * Following idea suppressions are false positives
-     *
-     * @noinspection DynamicRegexReplaceableByCompiledPattern
-     */
     @Override
     public void addError(AuditEvent event) {
         if (event.getColumn() > 0) {
@@ -187,12 +175,6 @@ public class SarifLogger extends AutomaticBean implements AuditListener {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     * Following idea suppressions are false positives
-     *
-     * @noinspection DynamicRegexReplaceableByCompiledPattern
-     */
     @Override
     public void addException(AuditEvent event, Throwable throwable) {
         final StringWriter stringWriter = new StringWriter();
@@ -305,14 +287,10 @@ public class SarifLogger extends AutomaticBean implements AuditListener {
      * @return the escaped string.
      */
     private static String escapeUnicode1F(char chr) {
-        final StringBuilder stringBuilder = new StringBuilder(UNICODE_LENGTH + 1);
-        stringBuilder.append("\\u");
         final String hexString = Integer.toHexString(chr);
-        for (int i = 0; i < UNICODE_LENGTH - hexString.length(); i++) {
-            stringBuilder.append('0');
-        }
-        stringBuilder.append(hexString.toUpperCase(Locale.US));
-        return stringBuilder.toString();
+        return "\\u"
+                + "0".repeat(UNICODE_LENGTH - hexString.length())
+                + hexString.toUpperCase(Locale.US);
     }
 
     /**
