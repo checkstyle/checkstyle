@@ -107,7 +107,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
      * This test is needed for 100% coverage.
      * The Pitest reports some conditions as redundant, for example:
      * <pre>
-     *     if (!collection.isEmpty()) { // This may me omitted.
+     *     if (!collection.isEmpty()) { // This may be omitted.
      *         Object value = doSomeHardJob();
      *         for (Item item : collection) {
      *             item.accept(value);
