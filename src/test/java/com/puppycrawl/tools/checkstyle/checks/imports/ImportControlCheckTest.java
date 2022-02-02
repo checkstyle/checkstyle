@@ -121,9 +121,9 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             final String message = getCheckstyleExceptionMessage(ex);
             final String messageStart = "Unable to find: ";
 
-            assertWithMessage("Invalid message, should start with: " + messageStart)
-                    .that(message.startsWith(message))
-                    .isTrue();
+            assertWithMessage("Invalid message, should start with: %s", messageStart)
+                    .that(message)
+                    .startsWith(messageStart);
         }
     }
 
@@ -140,9 +140,9 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             final String message = getCheckstyleExceptionMessage(ex);
             final String messageStart = "Unable to load ";
 
-            assertWithMessage("Invalid message, should start with: " + messageStart)
-                    .that(message.startsWith(message))
-                    .isTrue();
+            assertWithMessage("Invalid message, should start with: %s", messageStart)
+                    .that(message)
+                    .startsWith(messageStart);
         }
     }
 
@@ -292,9 +292,9 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             final String message = getCheckstyleExceptionMessage(ex);
             final String messageStart = "Unable to find: ";
 
-            assertWithMessage("Invalid message, should start with: " + messageStart)
-                    .that(message.startsWith(message))
-                    .isTrue();
+            assertWithMessage("Invalid message, should start with: %s", messageStart)
+                    .that(message)
+                    .startsWith(messageStart);
         }
     }
 
@@ -319,9 +319,9 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             final String message = getCheckstyleExceptionMessage(ex);
             final String messageStart = "Unable to load ";
 
-            assertWithMessage("Invalid message, should start with: " + messageStart)
-                    .that(message.startsWith(message))
-                    .isTrue();
+            assertWithMessage("Invalid message, should start with: %s", messageStart)
+                    .that(message)
+                    .startsWith(messageStart);
         }
     }
 
