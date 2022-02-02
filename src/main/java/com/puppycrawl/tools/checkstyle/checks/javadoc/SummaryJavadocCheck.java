@@ -20,8 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -264,12 +262,10 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private static final String SUMMARY_TEXT = "@summary";
 
     /** Set of allowed Tokens tags in summary java doc. */
-    private static final Set<Integer> ALLOWED_TYPES = Collections.unmodifiableSet(
-            new HashSet<>(Arrays.asList(
+    private static final Set<Integer> ALLOWED_TYPES = Set.of(
                     JavadocTokenTypes.WS,
                     JavadocTokenTypes.DESCRIPTION,
-                    JavadocTokenTypes.TEXT))
-    );
+                    JavadocTokenTypes.TEXT);
 
     /**
      * Specify the regexp for forbidden summary fragments.

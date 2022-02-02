@@ -162,6 +162,6 @@ public class AvoidDoubleBraceInitializationCheck extends AbstractCheck {
     private static boolean hasOnlyInitialization(DetailAST objBlock) {
         final boolean hasInitBlock = objBlock.findFirstToken(TokenTypes.INSTANCE_INIT) != null;
         return hasInitBlock
-                  && !TokenUtil.findFirstTokenByPredicate(objBlock, HAS_MEMBERS).isPresent();
+                  && TokenUtil.findFirstTokenByPredicate(objBlock, HAS_MEMBERS).isEmpty();
     }
 }

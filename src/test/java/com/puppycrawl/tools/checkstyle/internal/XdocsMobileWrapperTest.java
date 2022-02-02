@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static java.nio.charset.StandardCharsets.UTF_8;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -55,7 +54,7 @@ public class XdocsMobileWrapperTest {
             final File file = path.toFile();
             final String fileName = file.getName();
 
-            final String input = new String(Files.readAllBytes(path), UTF_8);
+            final String input = Files.readString(path);
             assertWithMessage(fileName + ": input file cannot be empty")
                     .that(input)
                     .isNotEmpty();

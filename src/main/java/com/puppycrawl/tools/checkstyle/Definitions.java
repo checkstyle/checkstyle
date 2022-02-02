@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -33,10 +31,8 @@ public final class Definitions {
             "com.puppycrawl.tools.checkstyle.messages";
 
     /** Name of modules which are not checks, but are internal modules. */
-    public static final Set<String> INTERNAL_MODULES = Collections.unmodifiableSet(
-            new HashSet<>(Collections.singletonList(
-                    "com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper"
-    )));
+    public static final Set<String> INTERNAL_MODULES = Set.of(
+                    "com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper");
 
     /**
      * Do no allow {@code Definitions} instances to be created.

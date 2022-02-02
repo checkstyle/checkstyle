@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
@@ -79,14 +78,15 @@ public abstract class AbstractPathTestSupport {
 
     /**
      * Reads the contents of a file.
+     * IDEA inspection RedundantThrows suppressed as a false positive.
      *
      * @param filename the name of the file whose contents are to be read
      * @return contents of the file with all {@code \r\n} replaced by {@code \n}
      * @throws IOException if I/O exception occurs while reading
+     * @noinspection RedundantThrows
      */
     protected static String readFile(String filename) throws IOException {
-        return toLfLineEnding(new String(Files.readAllBytes(
-                Paths.get(filename)), StandardCharsets.UTF_8));
+        return toLfLineEnding(Files.readString(Paths.get(filename)));
     }
 
     /**

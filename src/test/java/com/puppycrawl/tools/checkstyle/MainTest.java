@@ -1151,11 +1151,20 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     * Verifies the output of the command line parameter "-j".
+     * IDEA inspection RedundantThrows suppressed as a false positive.
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @throws IOException if I/O exception occurs while reading the test input.
+     * @noinspection RedundantThrows
+     */
     @Test
     public void testPrintTreeJavadocOption(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws Exception {
-        final String expected = new String(Files.readAllBytes(Paths.get(
-            getPath("InputMainExpectedInputJavadocComment.txt"))), StandardCharsets.UTF_8)
+            @SysOut Capturable systemOut) throws IOException {
+        final String expected = Files.readString(Paths.get(
+            getPath("InputMainExpectedInputJavadocComment.txt")))
             .replaceAll("\\\\r\\\\n", "\\\\n").replaceAll("\r\n", "\n");
 
         assertMainReturnCode(0, "-j", getPath("InputMainJavadocComment.javadoc"));
@@ -1535,12 +1544,21 @@ public class MainTest {
             .isEqualTo("");
     }
 
+    /**
+     * Verifies the output of the command line parameter "-J".
+     * IDEA inspection RedundantThrows suppressed as a false positive.
+     *
+     * @param systemErr wrapper for {@code System.err}
+     * @param systemOut wrapper for {@code System.out}
+     * @throws IOException if I/O exception occurs while reading the test input.
+     * @noinspection RedundantThrows
+     */
     @Test
     public void testPrintFullTreeOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws IOException {
-        final String expected = new String(Files.readAllBytes(Paths.get(
-            getPath("InputMainExpectedInputAstTreeStringPrinterJavadoc.txt"))),
-            StandardCharsets.UTF_8).replaceAll("\\\\r\\\\n", "\\\\n")
+        final String expected = Files.readString(Paths.get(
+            getPath("InputMainExpectedInputAstTreeStringPrinterJavadoc.txt")))
+                .replaceAll("\\\\r\\\\n", "\\\\n")
                 .replaceAll("\r\n", "\n");
 
         assertMainReturnCode(0, "-J", getPath("InputMainAstTreeStringPrinterJavadoc.java"));
