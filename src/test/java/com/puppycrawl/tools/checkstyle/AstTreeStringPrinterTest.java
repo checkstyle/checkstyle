@@ -97,8 +97,8 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
         final String actual = toLfLineEnding(AstTreeStringPrinter.printAst(text,
                 JavaParser.Options.WITHOUT_COMMENTS));
-        final String expected = toLfLineEnding(new String(Files.readAllBytes(Paths.get(
-                getPath("ExpectedAstTreeStringPrinter.txt"))), StandardCharsets.UTF_8));
+        final String expected = toLfLineEnding(Files.readString(Paths.get(
+                getPath("ExpectedAstTreeStringPrinter.txt"))));
 
         assertWithMessage("Print AST output is invalid")
             .that(actual)

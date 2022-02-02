@@ -832,12 +832,12 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     public static boolean shouldCheckIdentTokenNestedUnderDot(DetailAST dotAst) {
 
-        return !TokenUtil.findFirstTokenByPredicate(dotAst,
+        return TokenUtil.findFirstTokenByPredicate(dotAst,
                         childAst -> {
                             return TokenUtil.isOfType(childAst,
                                     UNACCEPTABLE_CHILD_OF_DOT);
                         })
-                .isPresent();
+                .isEmpty();
     }
 
     /**
