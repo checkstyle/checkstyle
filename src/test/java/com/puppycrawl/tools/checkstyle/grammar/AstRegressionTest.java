@@ -66,13 +66,13 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     @Test
     public void testJava9TryWithResourcesAstTree() throws Exception {
         verifyAst(getPath("ExpectedJava9TryWithResources.txt"),
-                getNonCompilablePath("/java9/InputJava9TryWithResources.java"));
+                getPath("/java9/InputJava9TryWithResources.java"));
     }
 
     @Test
     public void testAdvanceJava9TryWithResourcesAstTree() throws Exception {
         verifyAst(getPath("ExpectedAdvanceJava9TryWithResources.txt"),
-                getNonCompilablePath("/java9/InputAdvanceJava9TryWithResources.java"));
+                getPath("/java9/InputAdvanceJava9TryWithResources.java"));
     }
 
     @Test

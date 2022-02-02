@@ -255,7 +255,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     public void testClassFanOutComplexityIgnoreVar() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputClassFanOutComplexityVar.java"), expected);
+                getPath("InputClassFanOutComplexityVar.java"), expected);
     }
 
     @Test

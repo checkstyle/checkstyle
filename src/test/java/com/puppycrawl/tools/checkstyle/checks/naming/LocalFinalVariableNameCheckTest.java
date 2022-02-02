@@ -116,8 +116,7 @@ public class LocalFinalVariableNameCheckTest
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
-            "InputLocalFinalVariableNameTryResourcesJava9.java"), expected);
+                getPath("InputLocalFinalVariableNameTryResourcesJava9.java"), expected);
     }
 
 }

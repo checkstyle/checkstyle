@@ -469,7 +469,7 @@ check-since-version)
   fi
   ;;
 
-javac8)
+javac11)
   # InputCustomImportOrderNoPackage2 - nothing is required in front of first import
   # InputIllegalTypePackageClassName - bad import for testing
   # InputVisibilityModifierPackageClassName - bad import for testing
@@ -482,22 +482,8 @@ javac8)
   mkdir -p target
   for file in "${files[@]}"
   do
-    javac --release 8 -d target "${file}"
+    javac -d target "${file}"
   done
-  ;;
-
-javac9)
-  files=($(grep -Rl --include='*.java' ': Compilable with Java9' \
-        src/test/resources-noncompilable || true))
-  if [[  ${#files[@]} -eq 0 ]]; then
-    echo "No Java9 files to process"
-  else
-      mkdir -p target
-      for file in "${files[@]}"
-      do
-        javac --release 9 -d target "${file}"
-      done
-  fi
   ;;
 
 javac14)
