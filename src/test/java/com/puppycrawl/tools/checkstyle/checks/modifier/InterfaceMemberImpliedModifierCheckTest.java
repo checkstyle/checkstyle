@@ -358,7 +358,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     public void testPrivateMethodsOnInterface() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputInterfaceMemberImpliedModifierPrivateMethods.java"),
+                getPath("InputInterfaceMemberImpliedModifierPrivateMethods.java"),
             expected);
     }
 

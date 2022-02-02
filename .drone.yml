@@ -148,16 +148,10 @@ steps:
   commands:
   - ./.ci/validation.sh check-since-version
 
-- name: javac8
+- name: javac11
   image: *default-image
   commands:
-  - ./.ci/validation.sh javac8
-
-
-- name: javac9
-  image: *default-image
-  commands:
-  - ./.ci/validation.sh javac9
+  - ./.ci/validation.sh javac11
 
 - name: javac14
   image: maven:3.6.3-adoptopenjdk-14

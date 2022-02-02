@@ -259,7 +259,7 @@ public class RedundantModifierCheckTest
             "18:19: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRedundantModifierTryWithResources.java"),
+                getPath("InputRedundantModifierTryWithResources.java"),
                 expected);
     }
 

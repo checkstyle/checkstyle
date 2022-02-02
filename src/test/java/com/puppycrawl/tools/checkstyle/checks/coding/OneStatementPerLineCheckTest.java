@@ -108,7 +108,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputOneStatementPerLineTryWithResources.java"),
+                getPath("InputOneStatementPerLineTryWithResources.java"),
                 expected);
     }
 
@@ -116,7 +116,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     public void testResourcesIgnored() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputOneStatementPerLineTryWithResourcesIgnore.java"),
+                getPath("InputOneStatementPerLineTryWithResourcesIgnore.java"),
                 expected);
     }
 

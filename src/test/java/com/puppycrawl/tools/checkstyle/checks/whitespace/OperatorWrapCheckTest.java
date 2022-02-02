@@ -160,7 +160,7 @@ public class OperatorWrapCheckTest
     public void testTryWithResources() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputOperatorWrapTryWithResources.java"), expected);
+                getPath("InputOperatorWrapTryWithResources.java"), expected);
     }
 
     @Test

@@ -403,8 +403,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     public void testNotPublicInterfaceMethods() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
-            "InputMissingJavadocMethodInterfacePrivateMethod.java"), expected);
+                getPath("InputMissingJavadocMethodInterfacePrivateMethod.java"), expected);
     }
 
     @Test

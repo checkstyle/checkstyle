@@ -170,7 +170,7 @@ public class MatchXpathCheckTest
             "13:9: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMatchXpathAvoidInstanceCreationWithoutVar.java"),
+                getPath("InputMatchXpathAvoidInstanceCreationWithoutVar.java"),
                 expected);
     }
 

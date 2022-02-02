@@ -18,7 +18,6 @@ excludedPackages = (default)
 
 */
 
-//non-compiled with javac: Compilable with Java10
 package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 
 import javax.naming.NamingException;
