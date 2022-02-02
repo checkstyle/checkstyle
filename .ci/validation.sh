@@ -492,7 +492,7 @@ javac8)
   mkdir -p target
   for file in "${files[@]}"
   do
-    javac -d target "${file}"
+    javac --release 8 -d target "${file}"
   done
   ;;
 
