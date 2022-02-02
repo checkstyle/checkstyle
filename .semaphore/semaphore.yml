@@ -3,7 +3,7 @@ name: "Checkstyle CI pipeline on Semaphore"
 agent:
   machine:
     type: e1-standard-2
-    os_image: ubuntu1804
+    os_image: ubuntu2004
 auto_cancel:
   running:
     when: "branch != 'master'"
@@ -28,20 +28,20 @@ blocks:
             fi
       jobs:
         # NonDex supports only Java 8 till https://github.com/TestingResearchIllinois/NonDex/pull/155
-        #        - name: NonDex (openjdk11)
-        #          priority:
-        #            - value: 90
-        #              when: true
-        #          matrix:
-        #            - env_var: CMD
-        #              values:
-        #                - .ci/validation.sh nondex
-        #          commands:
-        #            - sem-version java 11
-        #            - echo "eval of CMD is starting";
-        #            - echo "CMD=$CMD";
-        #            - eval $CMD;
-        #            - echo "eval of CMD is completed";
+        # - name: NonDex (openjdk11)
+        #   priority:
+        #     - value: 90
+        #       when: true
+        #   matrix:
+        #     - env_var: CMD
+        #       values:
+        #         - .ci/validation.sh nondex
+        #   commands:
+        #     - sem-version java 11
+        #     - echo "eval of CMD is starting";
+        #     - echo "CMD=$CMD";
+        #     - eval $CMD;
+        #     - echo "eval of CMD is completed";
 
         - name: Validation (openjdk11, fast pool)
           matrix:
@@ -50,13 +50,9 @@ blocks:
                 - .ci/validation.sh all-sevntu-checks
                 - .ci/validation.sh check-missing-pitests
                 - .ci/validation.sh eclipse-static-analysis
-                - .ci/validation.sh eclipse-static-analysis-java11
-                - .ci/validation.sh java11-verify
                 - .ci/validation.sh verify-regexp-id
-                - mvn -e --no-transfer-progress clean install -Pno-validations
-                    && .ci/no-exception-test.sh guava-with-google-checks
-                - mvn -e --no-transfer-progress clean install -Pno-validations
-                    && .ci/no-exception-test.sh guava-with-sun-checks
+                - .ci/no-exception-test.sh guava-with-google-checks
+                - .ci/no-exception-test.sh guava-with-sun-checks
                 # until https://github.com/checkstyle/checkstyle/issues/9807
                 # - mvn -e --no-transfer-progress clean package -Passembly
                 #    && .ci/validation.sh no-violation-test-josm

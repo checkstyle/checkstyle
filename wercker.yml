@@ -1,5 +1,5 @@
 box:
-  id: maven:3.8.1-jdk-11
+  id: maven:3.8.4-jdk-11
   username: $DOCKERHUB_USER
   password: $DOCKERHUB_TOKEN
 
