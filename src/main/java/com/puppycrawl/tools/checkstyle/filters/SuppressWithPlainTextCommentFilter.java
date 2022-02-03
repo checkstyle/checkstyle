@@ -679,6 +679,8 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
             final Suppression suppression = (Suppression) other;
             return Objects.equals(lineNo, suppression.lineNo)
                     && Objects.equals(columnNo, suppression.columnNo)
+                    && Objects.equals(firstLine, suppression.firstLine)
+                    && Objects.equals(lastLine, suppression.lastLine)
                     && Objects.equals(suppressionType, suppression.suppressionType)
                     && Objects.equals(text, suppression.text)
                     && Objects.equals(eventSourceRegexp, suppression.eventSourceRegexp)
@@ -689,8 +691,8 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
         @Override
         public int hashCode() {
             return Objects.hash(
-                text, lineNo, columnNo, suppressionType, eventSourceRegexp, eventMessageRegexp,
-                eventIdRegexp);
+                text, lineNo, columnNo, firstLine, lastLine, suppressionType, eventSourceRegexp,
+                eventMessageRegexp, eventIdRegexp);
         }
 
         /**
