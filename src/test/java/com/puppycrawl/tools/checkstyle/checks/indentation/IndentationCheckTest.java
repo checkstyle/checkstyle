@@ -585,6 +585,43 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAnnotationArrayInitWithEmoji() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("arrayInitIndent", "0");
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "0");
+        checkConfig.addProperty("tabWidth", "8");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 4, "0, 41, 43"),
+            "30:9: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 8, "4, 29, 31"),
+            "32:3: " + getCheckMessage(MSG_ERROR,
+                    "annotation array initialization rcurly", 2, 4),
+            "42:7: " + getCheckMessage(MSG_ERROR,
+                    "member def type", 6, "4"),
+            "47:7: " + getCheckMessage(MSG_ERROR,
+                    "annotation array initialization lcurly", 6, "2"),
+            "48:11: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 10, "2, 6, 8"),
+            "49:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 12, "2, 6, 8"),
+            "50:21: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 20, "2, 6, 8"),
+            "52:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 4, "2, 6, 8"),
+        };
+        final String fileName = getPath("InputIndentationAnnArrInitWithEmoji.java");
+        verifyWarns(checkConfig, fileName, expected);
+
+    }
+
+    @Test
     public void testOddAnnotations()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
