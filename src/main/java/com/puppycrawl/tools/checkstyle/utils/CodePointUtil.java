@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 /**
  * Contains utility methods for code point.
@@ -40,6 +41,35 @@ public final class CodePointUtil {
     public static boolean isBlank(int... codePoints) {
         return Arrays.stream(codePoints)
                 .allMatch(Character::isWhitespace);
+    }
+
+    /**
+     * Returns sub array removing trailing whitespaces.
+     *
+     * @param codePoints array of unicode code points
+     * @return array with trailing whitespaces removed
+     */
+    public static int[] stripTrailing(int...codePoints) {
+
+        final int endIndex = IntStream.iterate(codePoints.length - 1, index -> index - 1)
+                .limit(codePoints.length)
+                .filter(index -> !Character.isWhitespace(codePoints[index]))
+                .findFirst()
+                .orElse(0);
+        return Arrays.copyOfRange(codePoints, 0, endIndex + 1);
+    }
+
+    /**
+     * Tests if the unicode code points array beginning at the
+     * specified index starts with the specified prefix.
+     *
+     * @param prefix the prefix
+     * @param codePoints the array of unicode code point to check
+     * @return {@code true}, if the unicode code point array ends with provided prefix
+     */
+    public static boolean endsWith(int[] codePoints, String prefix) {
+        return Arrays.equals(Arrays.copyOfRange(codePoints, codePoints.length - prefix.length(),
+                codePoints.length), prefix.codePoints().toArray());
     }
 
 }
