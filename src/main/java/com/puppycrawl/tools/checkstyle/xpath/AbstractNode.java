@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.xpath;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import net.sf.saxon.Configuration;
@@ -31,9 +30,10 @@ import net.sf.saxon.om.NamespaceBinding;
 import net.sf.saxon.om.NamespaceMap;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.om.TreeInfo;
+import net.sf.saxon.pattern.NodePredicate;
 import net.sf.saxon.s9api.Location;
+import net.sf.saxon.str.UnicodeString;
 import net.sf.saxon.tree.iter.AxisIterator;
-import net.sf.saxon.tree.util.FastStringBuffer;
 import net.sf.saxon.tree.util.Navigator;
 import net.sf.saxon.type.SchemaType;
 
@@ -136,7 +136,7 @@ public abstract class AbstractNode implements NodeInfo {
      * @return {@code AxisIterator} object
      */
     @Override
-    public AxisIterator iterateAxis(int axisNumber, Predicate<? super NodeInfo> nodeTest) {
+    public AxisIterator iterateAxis(int axisNumber, NodePredicate nodeTest) {
         AxisIterator axisIterator = iterateAxis(axisNumber);
         if (nodeTest != null) {
             axisIterator = new Navigator.AxisFilter(axisIterator, nodeTest);
@@ -299,13 +299,14 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Returns CharSequence string value. Throws {@code UnsupportedOperationException},
-     * because no child class implements it and this method is not used for querying.
+     * Returns the value of the item as a Unicode string.
+     * Throws {@code UnsupportedOperationException}, because no child class implements it and
+     * this method is not used for querying.
      *
      * @return CharSequence string value
      */
     @Override
-    public final CharSequence getStringValueCS() {
+    public final UnicodeString getUnicodeStringValue() {
         throw createUnsupportedOperationException();
     }
 
@@ -368,10 +369,10 @@ public abstract class AbstractNode implements NodeInfo {
      * Generate id method. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
      *
-     * @param fastStringBuffer fastStringBuffer
+     * @param buffer buffer
      */
     @Override
-    public final void generateId(FastStringBuffer fastStringBuffer) {
+    public final void generateId(StringBuilder buffer) {
         throw createUnsupportedOperationException();
     }
 
