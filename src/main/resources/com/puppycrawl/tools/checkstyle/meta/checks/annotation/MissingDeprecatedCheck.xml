@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck"
-             name="MissingDeprecated"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="MissingDeprecated"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Verifies that the annotation {@code @Deprecated} and the Javadoc tag
  {@code @deprecated} are both present when either of them is present.
@@ -40,8 +40,8 @@
  &lt;/pre&gt;</description>
          <properties>
             <property default-value="false"
-                      name="violateExecutionOnNonTightHtml"
-                      type="boolean">
+                       name="violateExecutionOnNonTightHtml"
+                       type="boolean">
                <description>Control when to
  print violations if the Javadoc being examined by this check violates the
  tight html rules defined at

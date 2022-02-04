@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck"
-             name="AnnotationUseStyle"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="AnnotationUseStyle"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks the style of elements in annotations.
  &lt;/p&gt;
@@ -75,18 +75,18 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="compact_no_array"
-                      name="elementStyle"
-                      type="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyleOption">
+                       name="elementStyle"
+                       type="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyleOption">
                <description>Define the annotation element styles.</description>
             </property>
             <property default-value="never"
-                      name="closingParens"
-                      type="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParensOption">
+                       name="closingParens"
+                       type="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParensOption">
                <description>Define the policy for ending parenthesis.</description>
             </property>
             <property default-value="never"
-                      name="trailingArrayComma"
-                      type="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayCommaOption">
+                       name="trailingArrayComma"
+                       type="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayCommaOption">
                <description>Define the policy for trailing comma in arrays.</description>
             </property>
          </properties>

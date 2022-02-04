@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter"
-              name="SeverityMatchFilter"
-              parent="com.puppycrawl.tools.checkstyle.Checker">
+               name="SeverityMatchFilter"
+               parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;p&gt;
  Filter {@code SeverityMatchFilter} decides audit events according to the
  &lt;a href="https://checkstyle.org/config.html#Severity"&gt;severity level&lt;/a&gt; of the event.
@@ -13,8 +13,8 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="error"
-                      name="severity"
-                      type="com.puppycrawl.tools.checkstyle.api.SeverityLevel">
+                       name="severity"
+                       type="com.puppycrawl.tools.checkstyle.api.SeverityLevel">
                <description>Specify the severity level of this filter.</description>
             </property>
             <property default-value="true" name="acceptOnMatch" type="boolean">

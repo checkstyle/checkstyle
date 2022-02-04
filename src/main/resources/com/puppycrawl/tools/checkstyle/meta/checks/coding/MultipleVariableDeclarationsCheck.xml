@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck"
-             name="MultipleVariableDeclarations"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="MultipleVariableDeclarations"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that each variable declaration is in its own statement
  and on its own line.

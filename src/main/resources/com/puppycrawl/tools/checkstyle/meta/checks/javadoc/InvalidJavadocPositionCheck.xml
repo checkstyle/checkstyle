@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocPositionCheck"
-             name="InvalidJavadocPosition"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="InvalidJavadocPosition"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that Javadocs are located at the correct position. As specified at
  &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html"&gt;

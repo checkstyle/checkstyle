@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck"
-             name="OverloadMethodsDeclarationOrder"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="OverloadMethodsDeclarationOrder"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that overloaded methods are grouped together. Overloaded methods have the same
  name but different signatures where the signature can differ by the number of

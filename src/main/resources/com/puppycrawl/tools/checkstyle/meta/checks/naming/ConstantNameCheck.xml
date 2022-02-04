@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck"
-             name="ConstantName"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="ConstantName"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that constant names conform to a specified pattern.
  A &lt;em&gt;constant&lt;/em&gt; is a &lt;strong&gt;static&lt;/strong&gt; and &lt;strong&gt;final&lt;/strong&gt;
@@ -13,8 +13,8 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"
-                      name="format"
-                      type="java.util.regex.Pattern">
+                       name="format"
+                       type="java.util.regex.Pattern">
                <description>Specifies valid identifiers.</description>
             </property>
             <property default-value="true" name="applyToPublic" type="boolean">

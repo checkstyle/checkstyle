@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <file-filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter"
-                   name="BeforeExecutionExclusionFileFilter"
-                   parent="com.puppycrawl.tools.checkstyle.Checker">
+                    name="BeforeExecutionExclusionFileFilter"
+                    parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;p&gt;
  File filter {@code BeforeExecutionExclusionFileFilter} decides which files should be
  excluded from being processed by the utility.

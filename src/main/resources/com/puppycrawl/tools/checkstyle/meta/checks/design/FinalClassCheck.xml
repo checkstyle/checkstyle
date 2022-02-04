@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck"
-             name="FinalClass"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="FinalClass"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that a class that has only private constructors and has no descendant
  classes is declared as final.

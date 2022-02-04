@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck"
-             name="AbstractClassName"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="AbstractClassName"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Ensures that the names of abstract classes conforming to some pattern
  and check that {@code abstract} modifier exists.
@@ -16,8 +16,8 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="^Abstract.+$"
-                      name="format"
-                      type="java.util.regex.Pattern">
+                       name="format"
+                       type="java.util.regex.Pattern">
                <description>Specify valid identifiers.</description>
             </property>
             <property default-value="false" name="ignoreModifier" type="boolean">

@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"
-             name="LineLength"
-             parent="com.puppycrawl.tools.checkstyle.Checker">
+              name="LineLength"
+              parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;p&gt;
  Checks for long lines.
  &lt;/p&gt;
@@ -39,8 +39,8 @@
                <description>Specify file extensions that are accepted.</description>
             </property>
             <property default-value="^(package|import) .*"
-                      name="ignorePattern"
-                      type="java.util.regex.Pattern">
+                       name="ignorePattern"
+                       type="java.util.regex.Pattern">
                <description>Specify pattern for lines to ignore.</description>
             </property>
             <property default-value="80" name="max" type="int">

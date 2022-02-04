@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheck"
-             name="NoCodeInFile"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="NoCodeInFile"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks whether file contains code. Files which are considered to have no code:
  &lt;/p&gt;

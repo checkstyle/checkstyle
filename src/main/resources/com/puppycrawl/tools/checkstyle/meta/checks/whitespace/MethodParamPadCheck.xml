@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck"
-             name="MethodParamPad"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="MethodParamPad"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks the padding between the identifier of a method definition,
  constructor definition, method call, or constructor invocation;
@@ -21,14 +21,14 @@
  and left parenthesis.</description>
             </property>
             <property default-value="nospace"
-                      name="option"
-                      type="com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption">
+                       name="option"
+                       type="com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption">
                <description>Specify policy on how to pad method parameter.</description>
             </property>
             <property default-value="CTOR_DEF,LITERAL_NEW,METHOD_CALL,METHOD_DEF,SUPER_CTOR_CALL,ENUM_CONSTANT_DEF,RECORD_DEF"
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
+                       name="tokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
          </properties>

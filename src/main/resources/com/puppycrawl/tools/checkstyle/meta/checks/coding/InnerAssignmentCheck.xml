@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck"
-             name="InnerAssignment"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="InnerAssignment"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks for assignments in subexpressions, such as in
  {@code String s = Integer.toString(i = 2);}.

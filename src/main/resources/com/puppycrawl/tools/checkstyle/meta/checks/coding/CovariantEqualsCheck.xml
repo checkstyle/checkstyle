@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck"
-             name="CovariantEquals"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="CovariantEquals"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that classes and records which define a covariant {@code equals()} method
  also override method {@code equals(Object)}.

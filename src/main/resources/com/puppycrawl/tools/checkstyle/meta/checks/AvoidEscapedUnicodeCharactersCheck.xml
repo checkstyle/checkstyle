@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck"
-             name="AvoidEscapedUnicodeCharacters"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="AvoidEscapedUnicodeCharacters"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Restricts using
  &lt;a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.3"&gt;
@@ -17,8 +17,8 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false"
-                      name="allowEscapesForControlCharacters"
-                      type="boolean">
+                       name="allowEscapesForControlCharacters"
+                       type="boolean">
                <description>Allow use escapes for
  non-printable, control characters.</description>
             </property>
@@ -26,13 +26,13 @@
                <description>Allow use escapes if trail comment is present.</description>
             </property>
             <property default-value="false"
-                      name="allowIfAllCharactersEscaped"
-                      type="boolean">
+                       name="allowIfAllCharactersEscaped"
+                       type="boolean">
                <description>Allow if all characters in literal are escaped.</description>
             </property>
             <property default-value="false"
-                      name="allowNonPrintableEscapes"
-                      type="boolean">
+                       name="allowNonPrintableEscapes"
+                       type="boolean">
                <description>Allow use escapes for
  non-printable, whitespace characters.</description>
             </property>

@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck"
-             name="JavadocType"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="JavadocType"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks the Javadoc comments for type definitions. By default, does
  not check for author or version tags. The scope to verify is specified using the {@code Scope}
@@ -23,8 +23,8 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="private"
-                      name="scope"
-                      type="com.puppycrawl.tools.checkstyle.api.Scope">
+                       name="scope"
+                       type="com.puppycrawl.tools.checkstyle.api.Scope">
                <description>Specify the visibility scope where Javadoc comments are checked.</description>
             </property>
             <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
@@ -46,15 +46,15 @@
  a Javadoc tag is not recognised.</description>
             </property>
             <property default-value="Generated"
-                      name="allowedAnnotations"
-                      type="java.lang.String[]">
+                       name="allowedAnnotations"
+                       type="java.lang.String[]">
                <description>Specify the list of annotations that allow
  missed documentation. Only short names are allowed, e.g. {@code Generated}.</description>
             </property>
             <property default-value="INTERFACE_DEF,CLASS_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF"
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
+                       name="tokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
          </properties>

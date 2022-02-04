@@ -2,15 +2,15 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.RequireEmptyLineBeforeBlockTagGroupCheck"
-             name="RequireEmptyLineBeforeBlockTagGroup"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="RequireEmptyLineBeforeBlockTagGroup"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that one blank line before the block tag if it is present in Javadoc.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false"
-                      name="violateExecutionOnNonTightHtml"
-                      type="boolean">
+                       name="violateExecutionOnNonTightHtml"
+                       type="boolean">
                <description>Control when to print violations
  if the Javadoc being examined by this check violates the tight html rules defined at
  &lt;a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules"&gt;

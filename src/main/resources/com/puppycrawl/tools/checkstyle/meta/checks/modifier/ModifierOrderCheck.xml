@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"
-             name="ModifierOrder"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="ModifierOrder"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that the order of modifiers conforms to the suggestions in the
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se16/preview/specs/sealed-classes-jls.html"&gt;

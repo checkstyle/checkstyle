@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ParameterAssignmentCheck"
-             name="ParameterAssignment"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="ParameterAssignment"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Disallows assignment of parameters.
  &lt;/p&gt;

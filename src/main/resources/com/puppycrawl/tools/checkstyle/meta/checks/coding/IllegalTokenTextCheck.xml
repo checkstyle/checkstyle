@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
-             name="IllegalTokenText"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="IllegalTokenText"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks specified tokens text for matching an illegal pattern.
  By default no tokens are specified.
@@ -20,9 +20,9 @@
  if empty then the default message is used.</description>
             </property>
             <property default-value=""
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
+                       name="tokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
          </properties>

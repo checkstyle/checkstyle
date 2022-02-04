@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck"
-             name="InterfaceMemberImpliedModifier"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="InterfaceMemberImpliedModifier"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks for implicit modifiers on interface members and nested types.
  &lt;/p&gt;
@@ -72,14 +72,14 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="true"
-                      name="violateImpliedPublicField"
-                      type="boolean">
+                       name="violateImpliedPublicField"
+                       type="boolean">
                <description>Control whether to enforce that {@code public}
  is explicitly coded on interface fields.</description>
             </property>
             <property default-value="true"
-                      name="violateImpliedStaticField"
-                      type="boolean">
+                       name="violateImpliedStaticField"
+                       type="boolean">
                <description>Control whether to enforce that {@code static}
  is explicitly coded on interface fields.</description>
             </property>
@@ -88,26 +88,26 @@
  is explicitly coded on interface fields.</description>
             </property>
             <property default-value="true"
-                      name="violateImpliedPublicMethod"
-                      type="boolean">
+                       name="violateImpliedPublicMethod"
+                       type="boolean">
                <description>Control whether to enforce that {@code public}
  is explicitly coded on interface methods.</description>
             </property>
             <property default-value="true"
-                      name="violateImpliedAbstractMethod"
-                      type="boolean">
+                       name="violateImpliedAbstractMethod"
+                       type="boolean">
                <description>Control whether to enforce that {@code abstract}
  is explicitly coded on interface methods.</description>
             </property>
             <property default-value="true"
-                      name="violateImpliedPublicNested"
-                      type="boolean">
+                       name="violateImpliedPublicNested"
+                       type="boolean">
                <description>Control whether to enforce that {@code public}
  is explicitly coded on interface nested types.</description>
             </property>
             <property default-value="true"
-                      name="violateImpliedStaticNested"
-                      type="boolean">
+                       name="violateImpliedStaticNested"
+                       type="boolean">
                <description>Control whether to enforce that {@code static}
  is explicitly coded on interface nested types.</description>
             </property>

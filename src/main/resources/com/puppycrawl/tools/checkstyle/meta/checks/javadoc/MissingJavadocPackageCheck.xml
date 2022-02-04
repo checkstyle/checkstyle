@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck"
-             name="MissingJavadocPackage"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="MissingJavadocPackage"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks for missing Javadoc comments in package-info.java files.
  &lt;/p&gt;
