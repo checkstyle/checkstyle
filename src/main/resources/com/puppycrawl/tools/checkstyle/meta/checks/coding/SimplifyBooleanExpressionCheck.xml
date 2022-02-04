@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheck"
-             name="SimplifyBooleanExpression"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="SimplifyBooleanExpression"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks for over-complicated boolean expressions. Currently finds code like
  {@code if (b == true)}, {@code b || true}, {@code !false},

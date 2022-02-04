@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck"
-             name="NPathComplexity"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="NPathComplexity"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks the NPATH complexity against a specified limit.
  &lt;/p&gt;

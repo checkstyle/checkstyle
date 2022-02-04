@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter"
-              name="SuppressionXpathFilter"
-              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+               name="SuppressionXpathFilter"
+               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Filter {@code SuppressionXpathFilter} works as
  &lt;a href="https://checkstyle.org/config_filters.html#SuppressionFilter"&gt;SuppressionFilter&lt;/a&gt;.

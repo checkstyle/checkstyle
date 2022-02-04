@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NoArrayTrailingCommaCheck"
-             name="NoArrayTrailingComma"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="NoArrayTrailingComma"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that array initialization do not contain a trailing comma.
  Rationale: JLS allows trailing commas in arrays and enumerations, but does not allow

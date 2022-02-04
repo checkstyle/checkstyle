@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"
-             name="FinalLocalVariable"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="FinalLocalVariable"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that local variables that never have their values changed are declared final.
  The check can be configured to also check that unchanged parameters are declared final.
@@ -14,16 +14,16 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false"
-                      name="validateEnhancedForLoopVariable"
-                      type="boolean">
+                       name="validateEnhancedForLoopVariable"
+                       type="boolean">
                <description>Control whether to check
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2"&gt;
  enhanced for-loop&lt;/a&gt; variable.</description>
             </property>
             <property default-value="VARIABLE_DEF"
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
+                       name="tokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
          </properties>

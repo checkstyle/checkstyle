@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck"
-             name="JavadocContentLocation"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="JavadocContentLocation"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that the Javadoc content begins from the same position
  for all Javadoc comments in the project. Any leading asterisks and spaces
@@ -63,8 +63,8 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="second_line"
-                      name="location"
-                      type="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationOption">
+                       name="location"
+                       type="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationOption">
                <description>Specify the policy on placement of the Javadoc content.</description>
             </property>
          </properties>

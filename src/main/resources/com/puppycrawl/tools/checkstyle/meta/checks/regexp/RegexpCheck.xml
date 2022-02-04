@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck"
-             name="Regexp"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="Regexp"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that a specified pattern exists, exists less than
  a set number of times, or does not exist in the file.

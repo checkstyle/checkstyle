@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck"
-             name="AnnotationLocation"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="AnnotationLocation"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks location of annotation on language elements.
  By default, Check enforce to locate annotations immediately after
@@ -36,27 +36,27 @@
  &lt;/pre&gt;</description>
          <properties>
             <property default-value="false"
-                      name="allowSamelineMultipleAnnotations"
-                      type="boolean">
+                       name="allowSamelineMultipleAnnotations"
+                       type="boolean">
                <description>Allow annotation(s) to be located on
  the same line as target element.</description>
             </property>
             <property default-value="true"
-                      name="allowSamelineSingleParameterlessAnnotation"
-                      type="boolean">
+                       name="allowSamelineSingleParameterlessAnnotation"
+                       type="boolean">
                <description>Allow single parameterless
  annotation to be located on the same line as target element.</description>
             </property>
             <property default-value="false"
-                      name="allowSamelineParameterizedAnnotation"
-                      type="boolean">
+                       name="allowSamelineParameterizedAnnotation"
+                       type="boolean">
                <description>Allow one and only parameterized
  annotation to be located on the same line as target element.</description>
             </property>
             <property default-value="CLASS_DEF,INTERFACE_DEF,PACKAGE_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,METHOD_DEF,CTOR_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF"
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
+                       name="tokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
          </properties>

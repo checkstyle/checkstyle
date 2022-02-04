@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck"
-             name="LocalFinalVariableName"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="LocalFinalVariableName"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that local final variable names conform to a specified pattern.
   A catch parameter and resources in try statements
@@ -11,14 +11,14 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="^[a-z][a-zA-Z0-9]*$"
-                      name="format"
-                      type="java.util.regex.Pattern">
+                       name="format"
+                       type="java.util.regex.Pattern">
                <description>Specifies valid identifiers.</description>
             </property>
             <property default-value="VARIABLE_DEF,PARAMETER_DEF,RESOURCE"
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
+                       name="tokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
          </properties>

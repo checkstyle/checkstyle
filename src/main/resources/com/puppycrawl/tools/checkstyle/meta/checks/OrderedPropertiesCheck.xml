@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck"
-             name="OrderedProperties"
-             parent="com.puppycrawl.tools.checkstyle.Checker">
+              name="OrderedProperties"
+              parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;p&gt;Detects if keys in properties files are in correct order.&lt;/p&gt;
  &lt;p&gt;
    Rationale: Sorted properties make it easy for people to find required properties by name
@@ -22,8 +22,8 @@
  The string compare will work, but not the line number reporting.&lt;/p&gt;</description>
          <properties>
             <property default-value=".properties"
-                      name="fileExtensions"
-                      type="java.lang.String[]">
+                       name="fileExtensions"
+                       type="java.lang.String[]">
                <description>Specify file type extension of the files to check.</description>
             </property>
          </properties>

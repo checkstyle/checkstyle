@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck"
-             name="ParameterName"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="ParameterName"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that method parameter names conform to a specified pattern.
  By using {@code accessModifiers} property it is possible
@@ -19,8 +19,8 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="^[a-z][a-zA-Z0-9]*$"
-                      name="format"
-                      type="java.util.regex.Pattern">
+                       name="format"
+                       type="java.util.regex.Pattern">
                <description>Specifies valid identifiers.</description>
             </property>
             <property default-value="false" name="ignoreOverridden" type="boolean">
@@ -28,8 +28,8 @@
  validation.</description>
             </property>
             <property default-value="public, protected, package, private"
-                      name="accessModifiers"
-                      type="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]">
+                       name="accessModifiers"
+                       type="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]">
                <description>Access modifiers of methods where parameters are
  checked.</description>
             </property>

@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStaticImportCheck"
-             name="AvoidStaticImport"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="AvoidStaticImport"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that there are no static import statements.
  &lt;/p&gt;

@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck"
-             name="RegexpOnFilename"
-             parent="com.puppycrawl.tools.checkstyle.Checker">
+              name="RegexpOnFilename"
+              parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;p&gt;
  Checks that a specified pattern matches based on file and/or folder path.
  It can also be used to verify files
@@ -56,8 +56,8 @@
  the fileNamePattern is supplied, otherwise it is applied on the folderPattern.</description>
             </property>
             <property default-value="false"
-                      name="ignoreFileNameExtensions"
-                      type="boolean">
+                       name="ignoreFileNameExtensions"
+                       type="boolean">
                <description>Control whether to ignore the file extension for
  the file name match.</description>
             </property>

@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck"
-             name="ThrowsCount"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="ThrowsCount"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Restricts throws statements to a specified count.
  Methods with "Override" or "java.lang.Override" annotation are skipped
