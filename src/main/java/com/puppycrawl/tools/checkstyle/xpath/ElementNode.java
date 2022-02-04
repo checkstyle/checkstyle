@@ -251,7 +251,7 @@ public class ElementNode extends AbstractNode {
                 break;
             case AxisInfo.CHILD:
                 if (hasChildNodes()) {
-                    result = new ArrayIterator.OfNodes(
+                    result = new ArrayIterator.OfNodes<AbstractNode>(
                             getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));
                 }
                 else {
@@ -373,7 +373,7 @@ public class ElementNode extends AbstractNode {
             result = EmptyIterator.ofNodes();
         }
         else {
-            result = new ArrayIterator.OfNodes(
+            result = new ArrayIterator.OfNodes<AbstractNode>(
                     getFollowingSiblings().toArray(EMPTY_ABSTRACT_NODE_ARRAY));
         }
         return result;
