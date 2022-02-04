@@ -2512,12 +2512,12 @@ EXPLAIN SELECT COUNT(*) FROM restaurants
           The influence format format is specified in the second regexp group.
         </p>
         <source>
-  &lt;module name="SuppressWithPlainTextCommentFilter&quot;&gt;
-    &lt;property name="onCommentFormat" value="@cs-\: ([\w\|]+) influence (\d+)"/&gt;
-    &lt;property name=&quot;offCommentFormat&quot; value=&quot;BEGIN GENERATED CONTENT&quot;/&gt;
-    &lt;property name="checkFormat" value="$1"/&gt;
-    &lt;property name="influenceFormat" value="$2"/&gt;
-  &lt;/module&gt;
+&lt;module name="SuppressWithPlainTextCommentFilter&quot;&gt;
+  &lt;property name="onCommentFormat" value="@cs-\: ([\w\|]+) influence (\d+)"/&gt;
+  &lt;property name=&quot;offCommentFormat&quot; value=&quot;BEGIN GENERATED CONTENT&quot;/&gt;
+  &lt;property name="checkFormat" value="$1"/&gt;
+  &lt;property name="influenceFormat" value="$2"/&gt;
+&lt;/module&gt;
         </source>
         <source>
 // @cs-: ClassDataAbstractionCoupling influence 2
