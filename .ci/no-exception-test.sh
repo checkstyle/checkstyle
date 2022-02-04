@@ -14,7 +14,6 @@ guava-with-google-checks)
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
   cd ../../../
-  mvn -e --no-transfer-progress clean install -Pno-validations
   cp src/main/resources/google_checks.xml .ci-temp/google_checks.xml
   sed -i.'' 's/warning/ignore/' .ci-temp/google_checks.xml
   cd .ci-temp/contribution/checkstyle-tester
@@ -37,7 +36,6 @@ guava-with-sun-checks)
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
   cd ../../../
-  mvn -e --no-transfer-progress clean install -Pno-validations
   cp src/main/resources/sun_checks.xml .ci-temp/sun_checks.xml
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' .ci-temp/sun_checks.xml
   cd .ci-temp/contribution/checkstyle-tester
