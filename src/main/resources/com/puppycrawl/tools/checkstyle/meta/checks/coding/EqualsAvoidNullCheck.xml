@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck"
-             name="EqualsAvoidNull"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="EqualsAvoidNull"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that any combination of String literals
  is on the left side of an {@code equals()} comparison.

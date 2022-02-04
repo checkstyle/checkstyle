@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"
-             name="RedundantModifier"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="RedundantModifier"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks for redundant modifiers.
  &lt;/p&gt;
@@ -117,9 +117,9 @@
  &lt;/pre&gt;</description>
          <properties>
             <property default-value="METHOD_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,INTERFACE_DEF,CTOR_DEF,CLASS_DEF,ENUM_DEF,RESOURCE,ANNOTATION_DEF,RECORD_DEF"
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
+                       name="tokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
          </properties>

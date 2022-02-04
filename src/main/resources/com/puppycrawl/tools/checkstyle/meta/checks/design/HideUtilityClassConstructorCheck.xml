@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck"
-             name="HideUtilityClassConstructor"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="HideUtilityClassConstructor"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Makes sure that utility classes (classes that contain only static methods or fields in their API)
  do not have a public constructor.

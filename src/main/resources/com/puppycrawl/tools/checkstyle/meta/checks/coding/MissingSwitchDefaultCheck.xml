@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheck"
-             name="MissingSwitchDefault"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="MissingSwitchDefault"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that switch statement has a {@code default} clause.
  &lt;/p&gt;

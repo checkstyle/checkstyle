@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck"
-             name="SingleSpaceSeparator"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="SingleSpaceSeparator"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that non-whitespace characters are separated by no more than one
  whitespace. Separating characters by tabs or multiple spaces will be

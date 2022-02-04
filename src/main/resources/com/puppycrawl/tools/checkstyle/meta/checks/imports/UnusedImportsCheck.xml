@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"
-             name="UnusedImports"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="UnusedImports"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks for unused import statements. Checkstyle uses a simple but very
  reliable algorithm to report on unused import statements. An import statement

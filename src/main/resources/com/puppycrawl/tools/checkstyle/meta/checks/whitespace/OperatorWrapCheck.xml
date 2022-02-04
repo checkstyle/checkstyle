@@ -2,21 +2,21 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"
-             name="OperatorWrap"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="OperatorWrap"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks the policy on how to wrap lines on operators.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="nl"
-                      name="option"
-                      type="com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption">
+                       name="option"
+                       type="com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption">
                <description>Specify policy on how to wrap lines.</description>
             </property>
             <property default-value="QUESTION,COLON,EQUAL,NOT_EQUAL,DIV,PLUS,MINUS,STAR,MOD,SR,BSR,GE,GT,SL,LE,LT,BXOR,BOR,LOR,BAND,LAND,TYPE_EXTENSION_AND,LITERAL_INSTANCEOF"
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
+                       name="tokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
          </properties>

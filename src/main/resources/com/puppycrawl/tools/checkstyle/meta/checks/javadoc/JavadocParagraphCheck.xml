@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck"
-             name="JavadocParagraph"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="JavadocParagraph"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks the Javadoc paragraph.
  &lt;/p&gt;
@@ -17,8 +17,8 @@
  &lt;/ul&gt;</description>
          <properties>
             <property default-value="false"
-                      name="violateExecutionOnNonTightHtml"
-                      type="boolean">
+                       name="violateExecutionOnNonTightHtml"
+                       type="boolean">
                <description>Control when to print violations
  if the Javadoc being examined by this check violates the tight html rules defined at
  &lt;a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules"&gt;

@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder"
-             name="SuppressWarningsHolder"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="SuppressWarningsHolder"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Maintains a set of check suppressions from {@code @SuppressWarnings} annotations.
  It allows to prevent Checkstyle from reporting violations from parts of code that were

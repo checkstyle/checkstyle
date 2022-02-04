@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck"
-             name="EmptyForIteratorPad"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="EmptyForIteratorPad"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks the padding of an empty for iterator; that is whether a white
  space is required at an empty for iterator, or such white space is
@@ -16,8 +16,8 @@
  &lt;/pre&gt;</description>
          <properties>
             <property default-value="nospace"
-                      name="option"
-                      type="com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption">
+                       name="option"
+                       type="com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption">
                <description>Specify policy on how to pad an empty for iterator.</description>
             </property>
          </properties>

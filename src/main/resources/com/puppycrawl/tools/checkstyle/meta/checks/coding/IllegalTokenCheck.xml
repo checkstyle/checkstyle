@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck"
-             name="IllegalToken"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="IllegalToken"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks for illegal tokens. By default labels are prohibited.
  &lt;/p&gt;

@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterTypeMemberDeclarationCheck"
-             name="UnnecessarySemicolonAfterTypeMemberDeclaration"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="UnnecessarySemicolonAfterTypeMemberDeclaration"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks if unnecessary semicolon is used after type member declaration.
  &lt;/p&gt;
@@ -15,9 +15,9 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,STATIC_INIT,INSTANCE_INIT,CTOR_DEF,METHOD_DEF,ENUM_CONSTANT_DEF,COMPACT_CTOR_DEF,RECORD_DEF"
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
+                       name="tokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
          </properties>

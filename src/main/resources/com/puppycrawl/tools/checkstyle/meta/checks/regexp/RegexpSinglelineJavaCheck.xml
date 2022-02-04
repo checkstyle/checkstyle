@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"
-             name="RegexpSinglelineJava"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="RegexpSinglelineJava"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that a specified pattern matches a single line in Java files.
  &lt;/p&gt;

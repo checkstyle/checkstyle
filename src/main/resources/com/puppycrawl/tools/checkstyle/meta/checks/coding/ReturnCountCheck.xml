@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck"
-             name="ReturnCount"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="ReturnCount"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Restricts the number of return statements in methods, constructors and lambda expressions.
  Ignores specified methods ({@code equals} by default).
@@ -34,14 +34,14 @@
  in void methods/constructors/lambdas.</description>
             </property>
             <property default-value="^equals$"
-                      name="format"
-                      type="java.util.regex.Pattern">
+                       name="format"
+                       type="java.util.regex.Pattern">
                <description>Specify method names to ignore.</description>
             </property>
             <property default-value="CTOR_DEF,METHOD_DEF,LAMBDA"
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
+                       name="tokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
          </properties>

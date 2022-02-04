@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck"
-             name="TypecastParenPad"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="TypecastParenPad"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks the policy on the padding of parentheses for typecasts. That is, whether a space
  is required after a left parenthesis and before a right parenthesis, or such
@@ -11,8 +11,8 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="nospace"
-                      name="option"
-                      type="com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption">
+                       name="option"
+                       type="com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption">
                <description>Specify policy on how to pad parentheses.</description>
             </property>
          </properties>

@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck"
-             name="FileLength"
-             parent="com.puppycrawl.tools.checkstyle.Checker">
+              name="FileLength"
+              parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;p&gt;
  Checks for long source files.
  &lt;/p&gt;

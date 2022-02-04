@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.AvoidNoArgumentSuperConstructorCallCheck"
-             name="AvoidNoArgumentSuperConstructorCall"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="AvoidNoArgumentSuperConstructorCall"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks if call to superclass constructor without arguments is present.
  Such invocation is redundant because constructor body implicitly

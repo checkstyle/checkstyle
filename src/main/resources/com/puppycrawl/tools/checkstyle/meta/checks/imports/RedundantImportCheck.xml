@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck"
-             name="RedundantImport"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="RedundantImport"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks for redundant import statements. An import statement is
  considered redundant if:

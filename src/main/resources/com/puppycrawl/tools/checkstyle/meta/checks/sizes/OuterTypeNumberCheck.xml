@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.OuterTypeNumberCheck"
-             name="OuterTypeNumber"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="OuterTypeNumber"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks for the number of types declared at the &lt;i&gt;outer&lt;/i&gt; (or &lt;i&gt;root&lt;/i&gt;) level in a file.
  &lt;/p&gt;

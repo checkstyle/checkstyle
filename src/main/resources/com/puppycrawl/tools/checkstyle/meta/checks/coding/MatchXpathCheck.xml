@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck"
-             name="MatchXpath"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="MatchXpath"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Evaluates Xpath query and report violation on all matching AST nodes. This check allows
  user to implement custom checks using Xpath. If Xpath query is not specified explicitly,

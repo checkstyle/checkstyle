@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck"
-             name="RegexpHeader"
-             parent="com.puppycrawl.tools.checkstyle.Checker">
+              name="RegexpHeader"
+              parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;p&gt;
  Checks the header of a source file against a header that contains a
  &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html"&gt;
