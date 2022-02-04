@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck"
-             name="EmptyStatement"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="EmptyStatement"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Detects empty statements (standalone {@code ";"} semicolon).
  Empty statements often introduce bugs that are hard to spot

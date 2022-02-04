@@ -205,7 +205,7 @@ public class TreeTableTest extends AbstractGuiTestSupport {
         xpathTextArea.setText("//CLASS_DEF^");
         findNodeButton.doClick();
 
-        final String expected = "//CLASS_DEF^\nInvalid character '^' in expression";
+        final String expected = "//CLASS_DEF^\nInvalid character '^' (x5e) in expression";
 
         assertWithMessage("Unexpected XPath text area text")
                 .that(xpathTextArea.getText())

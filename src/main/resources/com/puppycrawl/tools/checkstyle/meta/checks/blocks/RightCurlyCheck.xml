@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck"
-             name="RightCurly"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="RightCurly"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks the placement of right curly braces ({@code '}'}) for code blocks. This check supports
  if-else, try-catch-finally blocks, while-loops, for-loops,
@@ -17,15 +17,15 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="same"
-                      name="option"
-                      type="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption">
+                       name="option"
+                       type="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption">
                <description>Specify the policy on placement of a right curly brace
  (&lt;code&gt;'}'&lt;/code&gt;).</description>
             </property>
             <property default-value="LITERAL_TRY,LITERAL_CATCH,LITERAL_FINALLY,LITERAL_IF,LITERAL_ELSE"
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
+                       name="tokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
          </properties>

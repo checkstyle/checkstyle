@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck"
-             name="RecordComponentNumber"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="RecordComponentNumber"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks the number of record components in the
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se14/preview/specs/records-jls.html#jls-8.10.1"&gt;
@@ -15,8 +15,8 @@
  record definition.</description>
             </property>
             <property default-value="public, protected, package, private"
-                      name="accessModifiers"
-                      type="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]">
+                       name="accessModifiers"
+                       type="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]">
                <description>Access modifiers of record definitions where
  the number of record components should be checked.</description>
             </property>

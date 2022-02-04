@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheck"
-             name="NoClone"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="NoClone"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that the clone method is not overridden from the
  Object class.

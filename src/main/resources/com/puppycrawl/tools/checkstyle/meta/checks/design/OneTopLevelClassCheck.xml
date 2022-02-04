@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck"
-             name="OneTopLevelClass"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="OneTopLevelClass"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that each top-level class, interface, enum
  or annotation resides in a source file of its own.

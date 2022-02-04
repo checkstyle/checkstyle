@@ -2,24 +2,24 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"
-             name="NeedBraces"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="NeedBraces"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks for braces around code blocks.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false"
-                      name="allowSingleLineStatement"
-                      type="boolean">
+                       name="allowSingleLineStatement"
+                       type="boolean">
                <description>allow single-line statements without braces.</description>
             </property>
             <property default-value="false" name="allowEmptyLoopBody" type="boolean">
                <description>allow loops with empty bodies.</description>
             </property>
             <property default-value="LITERAL_DO,LITERAL_ELSE,LITERAL_FOR,LITERAL_IF,LITERAL_WHILE"
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
+                       name="tokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
          </properties>

@@ -2,15 +2,15 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck"
-             name="ClassTypeParameterName"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="ClassTypeParameterName"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that class type parameter names conform to a specified pattern.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="^[A-Z]$"
-                      name="format"
-                      type="java.util.regex.Pattern">
+                       name="format"
+                       type="java.util.regex.Pattern">
                <description>Specifies valid identifiers.</description>
             </property>
          </properties>

@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck"
-             name="DescendantToken"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="DescendantToken"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks for restricted tokens beneath other tokens.
  &lt;/p&gt;
@@ -17,9 +17,9 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value=""
-                      name="limitedTokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenTypesSet">
+                       name="limitedTokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenTypesSet">
                <description>Specify set of tokens with limited occurrences as descendants.</description>
             </property>
             <property default-value="0" name="minimumDepth" type="int">

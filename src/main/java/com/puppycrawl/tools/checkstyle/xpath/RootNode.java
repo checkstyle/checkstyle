@@ -173,7 +173,7 @@ public class RootNode extends AbstractNode {
                 break;
             case AxisInfo.CHILD:
                 if (hasChildNodes()) {
-                    result = new ArrayIterator.OfNodes(
+                    result = new ArrayIterator.OfNodes<>(
                             getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));
                 }
                 else {

@@ -344,7 +344,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     @Test
     public void testGetStringValueCs() {
         try {
-            rootNode.getStringValueCS();
+            rootNode.getUnicodeStringValue();
             assertWithMessage("Exception is excepted").fail();
         }
         catch (UnsupportedOperationException ex) {

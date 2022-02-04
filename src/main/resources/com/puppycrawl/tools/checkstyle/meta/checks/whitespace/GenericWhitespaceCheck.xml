@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck"
-             name="GenericWhitespace"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="GenericWhitespace"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that the whitespace around the Generic tokens (angle brackets)
  "&amp;lt;" and "&amp;gt;" are correct to the &lt;i&gt;typical&lt;/i&gt; convention.

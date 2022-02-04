@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressionSingleFilter"
-              name="SuppressionSingleFilter"
-              parent="com.puppycrawl.tools.checkstyle.Checker">
+               name="SuppressionSingleFilter"
+               parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;p&gt;
  Filter {@code SuppressionSingleFilter} suppresses audit events for Checks violations in the
  specified file, class, checks, message, module id, lines, and columns.

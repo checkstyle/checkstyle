@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck"
-             name="ImportControl"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="ImportControl"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Controls what can be imported in each package and file. Useful for ensuring
  that application layering rules are not violated, especially on large projects.

@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck"
-             name="OneStatementPerLine"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="OneStatementPerLine"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that there is only one statement per line.
  &lt;/p&gt;
@@ -24,8 +24,8 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false"
-                      name="treatTryResourcesAsStatement"
-                      type="boolean">
+                       name="treatTryResourcesAsStatement"
+                       type="boolean">
                <description>Enable resources processing.</description>
             </property>
          </properties>

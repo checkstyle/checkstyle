@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck"
-             name="MutableException"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="MutableException"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Ensures that exception classes (classes with names conforming to some pattern
  and explicitly extending classes with names conforming to other
@@ -25,13 +25,13 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="^.*Exception$|^.*Error$|^.*Throwable$"
-                      name="format"
-                      type="java.util.regex.Pattern">
+                       name="format"
+                       type="java.util.regex.Pattern">
                <description>Specify pattern for exception class names.</description>
             </property>
             <property default-value="^.*Exception$|^.*Error$|^.*Throwable$"
-                      name="extendedClassNameFormat"
-                      type="java.util.regex.Pattern">
+                       name="extendedClassNameFormat"
+                       type="java.util.regex.Pattern">
                <description>Specify pattern for extended class names.</description>
             </property>
          </properties>

@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInEnumerationCheck"
-             name="UnnecessarySemicolonInEnumeration"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="UnnecessarySemicolonInEnumeration"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks if unnecessary semicolon is in enum definitions.
  Semicolon is not needed if enum body contains only enum constants.

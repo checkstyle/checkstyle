@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"
-             name="AvoidStarImport"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="AvoidStarImport"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that there are no import statements that use the {@code *} notation.
  &lt;/p&gt;
@@ -27,8 +27,8 @@
  imports like {@code import java.util.*;}.</description>
             </property>
             <property default-value="false"
-                      name="allowStaticMemberImports"
-                      type="boolean">
+                       name="allowStaticMemberImports"
+                       type="boolean">
                <description>Control whether to allow starred
  static member imports like {@code import static org.junit.Assert.*;}.</description>
             </property>

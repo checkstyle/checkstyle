@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck"
-             name="ExplicitInitialization"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="ExplicitInitialization"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks if any class or object member is explicitly initialized
  to default for its type value ({@code null} for object

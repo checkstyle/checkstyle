@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck"
-             name="PackageAnnotation"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="PackageAnnotation"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that all package annotations are in the package-info.java file.
  &lt;/p&gt;
