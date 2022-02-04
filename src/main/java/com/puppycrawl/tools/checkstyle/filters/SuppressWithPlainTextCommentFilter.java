@@ -102,6 +102,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.
  * </li>
+ * <li>
+ * Property {@code influenceFormat} - Specify negative/zero/positive value that
+ * defines the number of lines preceding/at/following the suppression comment.
+ * Type is {@code java.lang.String}.
+ * Default value is {@code "0"}.
+ * </li>
  * </ul>
  * <p>
  * To configure a filter to suppress audit events between a comment containing
@@ -285,6 +291,28 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * -- CSON count
  * </pre>
  * <p>
+ * Example of how to configure the check to suppress more than one checks.
+ * The influence format format is specified in the second regexp group.
+ * </p>
+ * <pre>
+ * &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
+ *   &lt;property name="onCommentFormat" value="@cs-\: ([\w\|]+) influence (\d+)"/&gt;
+ *   &lt;property name="offCommentFormat" value="BEGIN GENERATED CONTENT"/&gt;
+ *   &lt;property name="checkFormat" value="$1"/&gt;
+ *   &lt;property name="influenceFormat" value="$2"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * // @cs-: ClassDataAbstractionCoupling influence 2
+ * // @cs-: MagicNumber influence 4
+ * &#64;Service // no violations from ClassDataAbstractionCoupling here
+ * &#64;Transactional
+ * public class UserService {
+ *   private int value = 10022; // no violations from MagicNumber here
+ * }
+ * //BEGIN GENERATED CONTENT
+ * </pre>
+ * <p>
  * Example of how to configure the check to suppress more than one check
  * (Checker is configured to check only sql files).
  * </p>
@@ -326,6 +354,9 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
     /** Default check format to suppress. By default the filter suppress all checks. */
     private static final String DEFAULT_CHECK_FORMAT = ".*";
 
+    /** Default regex for lines that should be suppressed. */
+    private static final String DEFAULT_INFLUENCE_FORMAT = "0";
+
     /** Specify comment pattern to trigger filter to begin suppression. */
     private Pattern offCommentFormat = CommonUtil.createPattern(DEFAULT_OFF_FORMAT);
 
@@ -343,6 +374,12 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
     /** Specify check ID pattern to suppress. */
     @XdocsPropertyType(PropertyType.PATTERN)
     private String idFormat;
+
+    /**
+     * Specify negative/zero/positive value that defines the number of lines
+     * preceding/at/following the suppression comment.
+     */
+    private String influenceFormat = DEFAULT_INFLUENCE_FORMAT;
 
     /**
      * Setter to specify comment pattern to trigger filter to begin suppression.
@@ -387,6 +424,16 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
      */
     public final void setIdFormat(String format) {
         idFormat = format;
+    }
+
+    /**
+     * Setter to specify negative/zero/positive value that defines the number
+     * of lines preceding/at/following the suppression comment.
+     *
+     * @param format a {@code String} value
+     */
+    public final void setInfluenceFormat(String format) {
+        influenceFormat = format;
     }
 
     @Override
@@ -461,11 +508,11 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
         Suppression suppression = null;
         if (onCommentMatcher.find()) {
             suppression = new Suppression(onCommentMatcher.group(0),
-                lineNo + 1, onCommentMatcher.start(), SuppressionType.ON, this);
+                lineNo + 1, SuppressionType.ON, this);
         }
         if (offCommentMatcher.find()) {
             suppression = new Suppression(offCommentMatcher.group(0),
-                lineNo + 1, offCommentMatcher.start(), SuppressionType.OFF, this);
+                lineNo + 1, SuppressionType.OFF, this);
         }
 
         return Optional.ofNullable(suppression);
@@ -510,12 +557,14 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
         /** The regexp which is used to match the event ID.*/
         private final Pattern eventIdRegexp;
 
+        /** The first line where warnings may be suppressed. */
+        private final int firstLine;
+        /** The last line where warnings may be suppressed. */
+        private final int lastLine;
         /** Suppression text.*/
         private final String text;
         /** Suppression line.*/
         private final int lineNo;
-        /** Suppression column number.*/
-        private final int columnNo;
         /** Suppression type. */
         private final SuppressionType suppressionType;
 
@@ -524,7 +573,6 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
          *
          * @param text suppression text.
          * @param lineNo suppression line number.
-         * @param columnNo suppression column number.
          * @param suppressionType suppression type.
          * @param filter the {@link SuppressWithPlainTextCommentFilter} with the context.
          * @throws IllegalArgumentException if there is an error in the filter regex syntax.
@@ -532,13 +580,11 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
         /* package */ Suppression(
             String text,
             int lineNo,
-            int columnNo,
             SuppressionType suppressionType,
             SuppressWithPlainTextCommentFilter filter
         ) {
             this.text = text;
             this.lineNo = lineNo;
-            this.columnNo = columnNo;
             this.suppressionType = suppressionType;
 
             final Pattern commentFormat;
@@ -572,10 +618,42 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
                             filter.idFormat, text, commentFormat);
                     eventIdRegexp = Pattern.compile(format);
                 }
+                format = CommonUtil.fillTemplateWithStringsByRegexp(
+                        filter.influenceFormat, text, commentFormat);
+
+                final int influence = parseInfluence(format, filter.influenceFormat, text);
+
+                if (influence >= 1) {
+                    firstLine = lineNo;
+                    lastLine = lineNo + influence;
+                }
+                else {
+                    firstLine = lineNo + influence;
+                    lastLine = lineNo;
+                }
             }
             catch (final PatternSyntaxException ex) {
                 throw new IllegalArgumentException(
                     "unable to parse expanded comment " + format, ex);
+            }
+        }
+
+        /**
+         * Gets influence from suppress filter influence format param.
+         *
+         * @param format          influence format to parse
+         * @param influenceFormat raw influence format
+         * @param text            text of the suppression
+         * @return parsed influence
+         * @throws IllegalArgumentException when unable to parse int in format
+         */
+        private static int parseInfluence(String format, String influenceFormat, String text) {
+            try {
+                return Integer.parseInt(format);
+            }
+            catch (final NumberFormatException ex) {
+                throw new IllegalArgumentException("unable to parse influence from '" + text
+                        + "' using " + influenceFormat, ex);
             }
         }
 
@@ -594,8 +672,9 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
                 return false;
             }
             final Suppression suppression = (Suppression) other;
-            return Objects.equals(lineNo, suppression.lineNo)
-                    && Objects.equals(columnNo, suppression.columnNo)
+            return Objects.equals(firstLine, suppression.firstLine)
+                    && Objects.equals(lastLine, suppression.lastLine)
+                    && Objects.equals(lineNo, suppression.lineNo)
                     && Objects.equals(suppressionType, suppression.suppressionType)
                     && Objects.equals(text, suppression.text)
                     && Objects.equals(eventSourceRegexp, suppression.eventSourceRegexp)
@@ -606,8 +685,8 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
         @Override
         public int hashCode() {
             return Objects.hash(
-                text, lineNo, columnNo, suppressionType, eventSourceRegexp, eventMessageRegexp,
-                eventIdRegexp);
+                text, lineNo, firstLine, lastLine, suppressionType, eventSourceRegexp,
+                eventMessageRegexp, eventIdRegexp);
         }
 
         /**
