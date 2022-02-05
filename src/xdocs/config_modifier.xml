@@ -548,8 +548,8 @@ public interface RoadFeature {
           <li>Interface and annotation definitions.</li>
           <li>Final modifier on methods of final and anonymous classes.</li>
           <li>
-            Inner <code>interface</code> declarations that are declared
-            as <code>static</code>.
+            Type declarations nested under <code>interface</code> and <code>@interface</code> that are declared
+            as <code>public</code> or <code>static</code>.
           </li>
           <li>Class constructors.</li>
           <li>
@@ -559,14 +559,14 @@ public interface RoadFeature {
         </ol>
 
         <p>
-          Interfaces by definition are abstract so the <code>abstract</code>
-          modifier on the interface is redundant.
+          <code>interface</code> and <code>@interface</code> by definition are abstract
+          so the <code>abstract</code> modifier is redundant on them.
         </p>
 
         <p>
-          Classes inside of interfaces by definition are public and static,
-          so the <code>public</code> and <code>static</code> modifiers
-          on the inner classes are redundant. On the other hand, classes
+          Type declarations nested under an interface and an annotated interface by definition
+          are public and static, so the <code>public</code> and <code>static</code> modifiers
+          on nested type declarations are redundant. On the other hand, classes
           inside of interfaces can be abstract or non abstract.
           So, <code>abstract</code> modifier is allowed.
         </p>
@@ -689,6 +689,8 @@ public class ClassExtending extends ClassExample {
                   ENUM_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE">
                   RESOURCE</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                ANNOTATION_DEF</a>
                 .
               </td>
               <td>
@@ -708,6 +710,8 @@ public class ClassExtending extends ClassExample {
                   ENUM_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE">
                   RESOURCE</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                ANNOTATION_DEF</a>
                 .
               </td>
               <td>3.0</td>
