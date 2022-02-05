@@ -21,7 +21,8 @@
  Final modifier on methods of final and anonymous classes.
  &lt;/li&gt;
  &lt;li&gt;
- Inner {@code interface} declarations that are declared as {@code static}.
+ Type declarations nested under {@code interface} and {@code @interface} that are declared
+ as {@code public} or {@code static}.
  &lt;/li&gt;
  &lt;li&gt;
  Class constructors.
@@ -31,12 +32,12 @@
  &lt;/li&gt;
  &lt;/ol&gt;
  &lt;p&gt;
- Interfaces by definition are abstract so the {@code abstract}
- modifier on the interface is redundant.
+ {@code interface} and {@code @interface} by definition are abstract so the {@code abstract}
+ modifier is redundant on them.
  &lt;/p&gt;
- &lt;p&gt;Classes inside of interfaces by definition are public and static,
- so the {@code public} and {@code static} modifiers
- on the inner classes are redundant. On the other hand, classes
+ &lt;p&gt;Type declarations nested under an interface and an annotated interface by definition
+ are public and static, so the {@code public} and {@code static} modifiers
+ on nested type declarations are redundant. On the other hand, classes
  inside of interfaces can be abstract or non abstract.
  So, {@code abstract} modifier is allowed.
  &lt;/p&gt;
@@ -108,7 +109,7 @@
  }
  &lt;/pre&gt;</description>
          <properties>
-            <property default-value="METHOD_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,INTERFACE_DEF,CTOR_DEF,CLASS_DEF,ENUM_DEF,RESOURCE"
+            <property default-value="METHOD_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,INTERFACE_DEF,CTOR_DEF,CLASS_DEF,ENUM_DEF,RESOURCE,ANNOTATION_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
