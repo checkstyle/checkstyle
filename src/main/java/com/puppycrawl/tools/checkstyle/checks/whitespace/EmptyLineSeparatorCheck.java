@@ -935,8 +935,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true variable definition is a type field.
      */
     private static boolean isTypeField(DetailAST variableDef) {
-        return TokenUtil.isOfType(variableDef.getParent().getParent(),
-             TokenTypes.CLASS_DEF, TokenTypes.RECORD_DEF);
+        return TokenUtil.isTypeDeclaration(variableDef.getParent().getParent().getType());
     }
 
 }
