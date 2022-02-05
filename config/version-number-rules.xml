@@ -26,12 +26,6 @@
         <ignoreVersion type="regex">.*</ignoreVersion>
       </ignoreVersions>
     </rule>
-    <rule groupId="org.itsallcode" artifactId="junit5-system-extensions">
-      <ignoreVersions>
-        <!-- until https://github.com/checkstyle/checkstyle/issues/9146 -->
-        <ignoreVersion type="regex">.*</ignoreVersion>
-      </ignoreVersions>
-    </rule>
     <rule groupId="com.github.spotbugs" artifactId="spotbugs-maven-plugin">
       <ignoreVersions>
         <!-- until https://github.com/spotbugs/spotbugs/issues/1601 -->
