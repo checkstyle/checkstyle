@@ -44,14 +44,14 @@ pitest-annotation|pitest-design \
 |pitest-tree-walker \
 |pitest-utils \
 |pitest-java-ast-visitor)
-  mvn --no-transfer-progress -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  mvn --no-transfer-progress -e -P$1 clean test-compile org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
 # till #9351
 pitest-main)
-  mvn --no-transfer-progress -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  mvn --no-transfer-progress -e -P$1 clean test-compile org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
   "Main.java.html:<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>"
   );
@@ -59,7 +59,7 @@ pitest-main)
   ;;
 
 pitest-header)
-  mvn --no-transfer-progress -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  mvn --no-transfer-progress -e -P$1 clean test-compile org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
   "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>                    isMatch = headerLineNo == headerSize</span></pre></td></tr>"
   "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>                            || isMatch(line, headerLineNo);</span></pre></td></tr>"
@@ -68,7 +68,7 @@ pitest-header)
   ;;
 
 pitest-imports)
-  mvn --no-transfer-progress -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  mvn --no-transfer-progress -e -P$1 clean test-compile org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
   "ImportControlLoader.java.html:<td class='covered'><pre><span  class='survived'>        else if (ALLOW_ELEMENT_NAME.equals(qName) || &#34;disallow&#34;.equals(qName)) {</span></pre></td></tr>"
   "PkgImportControl.java.html:<td class='covered'><pre><span  class='survived'>        if (regex || parent.regex) {</span></pre></td></tr>"
@@ -78,7 +78,7 @@ pitest-imports)
   ;;
 
 pitest-common)
-  mvn --no-transfer-progress -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  mvn --no-transfer-progress -e -P$1 clean test-compile org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
   "Checker.java.html:<td class='covered'><pre><span  class='survived'>                if (cacheFile != null &#38;&#38; cacheFile.isInCache(fileName, timestamp)</span></pre></td></tr>"
   "DefaultLogger.java.html:<td class='covered'><pre><span  class='survived'>        closeError = errorStreamOptions == OutputStreamOptions.CLOSE;</span></pre></td></tr>"
@@ -95,7 +95,7 @@ pitest-common)
 
 
 pitest-ant)
-  mvn --no-transfer-progress -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  mvn --no-transfer-progress -e -P$1 clean test-compile org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
   "CheckstyleAntTask.java.html:<td class='covered'><pre><span  class='survived'>            if (toFile == null || !useFile) {</span></pre></td></tr>"
   "CheckstyleAntTask.java.html:<td class='covered'><pre><span  class='survived'>            if (toFile == null || !useFile) {</span></pre></td></tr>"
@@ -107,7 +107,7 @@ pitest-ant)
   ;;
 
 pitest-indentation)
-  mvn --no-transfer-progress -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  mvn --no-transfer-progress -e -P$1 clean test-compile org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
   "AbstractExpressionHandler.java.html:<td class='covered'><pre><span  class='survived'>                    &#38;&#38; curNode.getColumnNo() &#60; realStart.getColumnNo()) {</span></pre></td></tr>"
   "AbstractExpressionHandler.java.html:<td class='covered'><pre><span  class='survived'>            if (colNum == null || thisLineColumn &#60; colNum) {</span></pre></td></tr>"
@@ -137,7 +137,7 @@ pitest-indentation)
   ;;
 
 pitest-javadoc)
-  mvn --no-transfer-progress -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  mvn --no-transfer-progress -e -P$1 clean test-compile org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
   "AbstractJavadocCheck.java.html:<td class='covered'><pre><span  class='survived'>        beginJavadocTree(root);</span></pre></td></tr>"
   "AbstractJavadocCheck.java.html:<td class='covered'><pre><span  class='survived'>        finishJavadocTree(root);</span></pre></td></tr>"
@@ -147,7 +147,7 @@ pitest-javadoc)
   ;;
 
 # pitesttyle-gui)
-#   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+#   mvn -e -P$1 clean test-compile org.pitest:pitest-maven:mutationCoverage;
 #   # post validation is skipped, we do not test gui throughly
 #   ;;
 
