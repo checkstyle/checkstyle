@@ -679,7 +679,7 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
             return equalsOrNot(other);
         }
 
-        public boolean equalsOrNot(Object other){
+        public boolean equalsOrNot(Object other) {
             final Suppression suppression = (Suppression) other;
             return Objects.equals(lineNo, suppression.lineNo)
                     && Objects.equals(columnNo, suppression.columnNo)
