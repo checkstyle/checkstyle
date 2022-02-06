@@ -462,6 +462,14 @@
       <message key="matchxpath.match"
                value="Block comment text should start with space after asterisk."/>
     </module>
+    <module name="MatchXpath">
+      <property name="id" value="deprecatedWithoutSince"/>
+      <property name="query"
+               value="//ANNOTATION[./IDENT[@text='Deprecated']
+                      and not(./ANNOTATION_MEMBER_VALUE_PAIR/IDENT[@text='since'])]"/>
+      <message key="matchxpath.match"
+             value="@Deprecated annotation should contain 'since' property."/>
+    </module>
     <module name="MissingCtor">
       <!--
         we will not use that fanatic validation, extra code is not good

@@ -192,7 +192,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      *      Please use AST based methods instead.
      * @noinspection WeakerAccess
      */
-    @Deprecated
+    @Deprecated(since = "9.3")
     public final FileContents getFileContents() {
         return context.get().fileContents;
     }
