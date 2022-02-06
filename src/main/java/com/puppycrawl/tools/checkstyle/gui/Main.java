@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.gui;
 
+import java.awt.Toolkit;
 import java.io.File;
+import java.net.URL;
 
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
@@ -47,6 +49,8 @@ public final class Main {
                 final File sourceFile = new File(args[0]);
                 mainFrame.openFile(sourceFile);
             }
+            final URL iconUrl = Main.class.getResource("icon.png");
+            mainFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(iconUrl));
             mainFrame.setTitle("Checkstyle GUI");
             mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             mainFrame.setVisible(true);
