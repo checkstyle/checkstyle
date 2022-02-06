@@ -163,7 +163,7 @@ public class MainFrameModel {
     public File getLastDirectory() {
         File lastDirectory = null;
         if (currentFile != null) {
-            lastDirectory = new File(currentFile.getParent());
+            lastDirectory = currentFile.getParentFile();
         }
         return lastDirectory;
     }
