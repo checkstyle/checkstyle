@@ -90,12 +90,48 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass {
+ *   public int sign(int x) {
+ *     if (x &lt; 0)
+ *       return -1;
+ *     if (x == 0)
+ *       return 1;
+ *     return 0;
+ *   } // OK
+ *   public int badSign(int x) {
+ *     if (x &lt; -2)
+ *       return -2;
+ *     if (x == 0)
+ *       return 0;
+ *     if (x &gt; 2)
+ *       return 2;
+ *     return 1;
+ *   } // violation, more than three return statements
+ * }
+ * </pre>
+ * <p>
  * To configure the check so that it doesn't allow any return statements per void method:
  * </p>
  * <pre>
  * &lt;module name=&quot;ReturnCount&quot;&gt;
  *   &lt;property name=&quot;maxForVoid&quot; value=&quot;0&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass {
+ *   public void firstMethod(int x) {
+ *   } // OK
+ *
+ *   public void badMethod(int x) {
+ *     return;
+ *   } // violation, return statements per void method
+ * }
  * </pre>
  * <p>
  * To configure the check so that it doesn't allow more than 2 return statements per method
@@ -108,6 +144,39 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass {
+ *   public void firstMethod() {
+ *   } // OK
+ *
+ *   public void secondMethod() {
+ *     return;
+ *   } // OK
+ *
+ *   public void badMethod(int x) {
+ *     if (x == 0)
+ *       return;
+ *     return;
+ *   } // violation, more than one return statements
+ *
+ *   public int sign(int x) {
+ *     if (x &lt; 0)
+ *       return -1;
+ *     return 0;
+ *   } // OK
+ *
+ *   public int badSign(int x) {
+ *     if (x &lt; 0)
+ *       return -1;
+ *     if (x == 0)
+ *       return 1;
+ *     return 0;
+ *   } // violation, more than two return statements in methods
+ * }
+ * </pre>
+ * <p>
  * To configure the check so that it doesn't allow more than three
  * return statements per method for all methods:
  * </p>
@@ -118,13 +187,37 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass {
+ *   public int sign(int x) {
+ *     if (x &lt; 0)
+ *       return -1;
+ *     if (x == 0)
+ *       return 1;
+ *     return 0;
+ *   } // OK
+ *
+ *   public int badSign(int x) {
+ *     if (x &lt; -2)
+ *       return -2;
+ *     if (x == 0)
+ *       return 0;
+ *     if (x &gt; 2)
+ *       return 2;
+ *     return 1;
+ *   } // violation, more than three return statements per method
+ * }
+ * </pre>
+ * <p>
  * To configure the check so that it doesn't allow any return statements in constructors,
  * more than one return statement in all lambda expressions and more than two return
  * statements in methods:
  * </p>
  * <pre>
  * &lt;module name=&quot;ReturnCount&quot;&gt;
- *   &lt;property name=&quot;max&quot; value=&quot;0&quot;/&gt;
+ *   &lt;property name=&quot;maxForVoid&quot; value=&quot;0&quot;/&gt;
  *   &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
  * &lt;/module&gt;
  * &lt;module name=&quot;ReturnCount&quot;&gt;
@@ -135,6 +228,46 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
  *   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * import java.util.function.Predicate;
+ *
+ * public class Test {
+ *   public Test() {
+ *   } // OK
+ *
+ *   public Test(int i) {
+ *     return; // violation, max allowed for constructors is 0
+ *   }
+ *
+ *   final Predicate&lt;Integer&gt; p = i -&gt; {
+ *     if (i &gt; 5) {
+ *       return true;
+ *     }
+ *     return false;
+ *   }; // violation, max allowed for lambdas is 1
+ *
+ *   final Predicate&lt;Integer&gt; q = i -&gt; {
+ *     return i &gt; 5;
+ *   }; // OK
+ *
+ *   public int sign(int x) {
+ *     if (x &gt; 0)
+ *       return -1;
+ *     return 0;
+ *   } // OK
+ *
+ *   public int badSign(int x) {
+ *     if (x &lt; 0)
+ *       return -1;
+ *     if (x == 0)
+ *       return 1;
+ *     return 0;
+ *   } // violation, more than two return statements in methods
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
