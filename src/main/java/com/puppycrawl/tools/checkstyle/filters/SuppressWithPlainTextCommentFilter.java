@@ -676,16 +676,20 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
             if (other == null || getClass() != other.getClass()) {
                 return false;
             }
+            return equalsOrNot(other);
+        }
+
+        public boolean equalsOrNot(Object other){
             final Suppression suppression = (Suppression) other;
-            return Objects.equals(firstLine, suppression.firstLine)
-                    && Objects.equals(lastLine, suppression.lastLine)
+            return Objects.equals(lineNo, suppression.lineNo)
                     && Objects.equals(columnNo, suppression.columnNo)
-                    && Objects.equals(lineNo, suppression.lineNo)
                     && Objects.equals(suppressionType, suppression.suppressionType)
                     && Objects.equals(text, suppression.text)
                     && Objects.equals(eventSourceRegexp, suppression.eventSourceRegexp)
                     && Objects.equals(eventMessageRegexp, suppression.eventMessageRegexp)
-                    && Objects.equals(eventIdRegexp, suppression.eventIdRegexp);
+                    && Objects.equals(eventIdRegexp, suppression.eventIdRegexp)
+                    && Objects.equals(firstLine, suppression.firstLine)
+                    && Objects.equals(lastLine, suppression.lastLine);
         }
 
         @Override
