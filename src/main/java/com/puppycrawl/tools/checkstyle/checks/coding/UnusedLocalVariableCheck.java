@@ -287,9 +287,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST root) {
-        // No need to set blockContainingLocalAnonInnerClass to null, if
-        // its value gets changed during the check then it is changed back to null
-        // inside the check only.
         variables.clear();
         typeDeclarations.clear();
         typeDeclAstToTypeDeclDesc.clear();
