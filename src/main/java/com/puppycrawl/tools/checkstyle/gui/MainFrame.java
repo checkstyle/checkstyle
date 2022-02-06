@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.gui;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -57,6 +58,9 @@ public class MainFrame extends JFrame {
     /** A unique serial version identifier. */
     private static final long serialVersionUID = 7970053543351871890L;
 
+    /** The icon to show in the OS task panel. */
+    private static final String ICON = "icon.png";
+
     /** Checkstyle frame model. */
     private final transient MainFrameModel model = new MainFrameModel();
     /** Reload action. */
@@ -76,6 +80,7 @@ public class MainFrame extends JFrame {
     /** Create content of this MainFrame. */
     private void createContent() {
         setLayout(new BorderLayout());
+        setIconImage(Toolkit.getDefaultToolkit().getImage(MainFrame.class.getResource(ICON)));
 
         textArea = new JTextArea(20, 15);
         textArea.setEditable(false);
