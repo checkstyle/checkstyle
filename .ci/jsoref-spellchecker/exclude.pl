@@ -4,6 +4,7 @@
 # output is null delimited to match input
 $/="\0";
 my @excludes=qw(
+  \.png$
   (^|/)images/
   ^src/it/resources/
   ^src/test/resources/
