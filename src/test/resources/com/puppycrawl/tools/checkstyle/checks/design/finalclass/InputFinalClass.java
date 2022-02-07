@@ -121,13 +121,13 @@ enum testenum2
 }
 
 interface TestInterface {
-    class SomeClass {
+    class SomeClass { // violation
         private SomeClass() {}
     }
 }
 
 @interface SomeAnnotation {
-    class SomeClass {
+    class SomeClass { // violation
         private SomeClass() {}
     }
 }
