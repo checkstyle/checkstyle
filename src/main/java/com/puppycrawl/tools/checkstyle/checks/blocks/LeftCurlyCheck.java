@@ -105,19 +105,32 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * &lt;module name="LeftCurly"/&gt;
  * </pre>
+ * <p>
+ * Example:
+ * </p>
  * <pre>
  * class Test
- * { // Violation - '{' should be on the previous line
+ * {            // Violation - '{' should be on the previous line
  *   private interface TestInterface
- *   { // Violation - '{' should be on the previous line
+ *   {          // Violation - '{' should be on the previous line
+ *   }
+ *
+ *   while (num == 10)
+ *   {          // Violation - '{' should be on the previous line
+ *             --num;
+ *   }
+ *
+ *   while (left &lt; 25 &amp;&amp;
+ *             right &gt; 50) {    //OK
+ *             continue;
  *   }
  *
  *   private
  *   class
- *   MyClass { // OK
+ *   MyClass {              // OK
  *   }
  *
- *   enum Colors {RED, // OK
+ *   enum Colors {RED,      // OK
  *     BLUE,
  *     GREEN;
  *   }
@@ -129,48 +142,116 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * &lt;module name=&quot;LeftCurly&quot;&gt;
  *   &lt;property name=&quot;option&quot; value=&quot;nl&quot;/&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF,INTERFACE_DEF&quot;/&gt;
+ *   &lt;property name=&quot;tokens&quot;
+ *          value=&quot;CLASS_DEF,INTERFACE_DEF,LITERAL_WHILE&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Example:
+ * </p>
  * <pre>
  * class Test
- * { // OK
+ * {            // OK
  *   private interface TestInterface
- *   { // OK
+ *   {          // OK
+ *   }
+ *
+ *   while (num == 10)
+ *   {         // OK
+ *             --num;
+ *   }
+ *
+ *   while (left &lt; 25 &amp;&amp;
+ *             right &gt; 50) {    // Violation - '{' should be on a new line
+ *             continue;
  *   }
  *
  *   private
  *   class
- *   MyClass { // Violation - '{' should be on a new line
+ *   MyClass {      // Violation - '{' should be on a new line
  *   }
  *
- *   enum Colors {RED, // OK
+ *   enum Colors {RED,      // OK
  *     BLUE,
  *     GREEN;
  *   }
  * }
  * </pre>
  * <p>
- * An example of how to configure the check to validate enum definitions:
+ * To configure the check to validate {@code enum} definitions:
  * </p>
  * <pre>
  * &lt;module name=&quot;LeftCurly&quot;&gt;
  *   &lt;property name=&quot;ignoreEnums&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Example:
+ * </p>
  * <pre>
  * class Test
- * { // Violation - '{' should be on the previous line
+ * {            // Violation - '{' should be on the previous line
  *   private interface TestInterface
- *   { // Violation - '{' should be on the previous line
+ *   {          // Violation - '{' should be on the previous line
+ *   }
+ *
+ *   while (num == 10)
+ *   {          // Violation - '{' should be on the previous line
+ *             --num;
+ *   }
+ *
+ *   while (left &lt; 25 &amp;&amp;
+ *             right &gt; 50) {    // OK
+ *             continue;
  *   }
  *
  *   private
  *   class
- *   MyClass { // OK
+ *   MyClass {      // OK
  *   }
  *
- *   enum Colors {RED, // Violation - '{' should have line break after
+ *   enum Colors {RED,      // Violation - '{' should have line break after
+ *   BLUE,
+ *   GREEN;
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to apply the {@code nlow} policy to type blocks:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;LeftCurly&quot;&gt;
+ *  &lt;property name=&quot;option&quot; value=&quot;nlow&quot;/&gt;
+ *  &lt;property name=&quot;tokens&quot;
+ *          value=&quot;CLASS_DEF,INTERFACE_DEF,LITERAL_WHILE&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Test
+ * {            // Violation - '{' should be on the previous line
+ *   private interface TestInterface
+ *   {          // Violation - '{' should be on the previous line
+ *   }
+ *
+ *   while (num == 10)
+ *   {          // Violation - '{' should be on the previous line for single line expression
+ *             --num;
+ *   }
+ *
+ *   while (left &lt; 25 &amp;&amp;
+ *             right &gt; 50) {    // Violation
+ *             continue;   // ^^^ '{' should be on the next line for multi-line expression
+ *   }
+ *
+ *   private
+ *   class
+ *   MyClass {      // OK
+ *   }
+ *
+ *   enum Colors {RED,      // OK
  *   BLUE,
  *   GREEN;
  *   }
