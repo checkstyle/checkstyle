@@ -18,4 +18,12 @@ public class InputWhitespaceAfterBad {
             System.out.println("false");
         }
     }
+
+    public void check3 (int...a) { // warn
+        Runnable r2 = () ->String.valueOf("Hello world two!"); // warn
+        switch(a[0]) { // warn
+            default:
+                break;
+        }
+    }
 }
