@@ -90,17 +90,25 @@
     <section name="Backport">
       <p>
         Since Checkstyle 7, some users have been unable to continue upgrading to newer versions
-        of the utility because of the new JDK 1.8 compile requirement. The development team doesn't
+        of the utility because of the new JDK compile requirements. The development team doesn't
         have the resources to keep updating the utility for older JDKs for those that can't
         work with the latest version.
       </p>
       <p>
         However, some members of the community have created an unofficial backport of the latest
-        Checkstyle releases to be run with JDKs as old as 1.6. If you wish to continue using new
-        Checkstyle versions on older JDKs, we recommend you either checkout the
-        <a href="https://github.com/rnveach/checkstyle-backport-jre6">github site</a> or the
-        <a href="https://rnveach.github.io/checkstyle-backport-jre6/">documentation site</a> on how
+        Checkstyle releases to be run with older JDKs. It is not always an easy process and provided
+        at the same release time as Checkstyle, but it tries to maintain a functional equivalent
+        alternative.
+      </p>
+      <p>
+        If you wish to continue using new Checkstyle versions on older JDKs,
+        we recommend you either checkout the
+        <a href="https://github.com/rnveach/checkstyle-backport-jre8">github site</a> or the
+        <a href="https://rnveach.github.io/checkstyle-backport-jre8/">documentation site</a> on how
         to use the backport version of the utility, in place of the official Checkstyle version.
+        The <a href="https://github.com/rnveach/checkstyle-backport-jre6">JDK 1.6 site</a> is
+        being deprecated because of the continued technical hurdles with backporting the code to
+        such an old runtime.
       </p>
     </section>
 
