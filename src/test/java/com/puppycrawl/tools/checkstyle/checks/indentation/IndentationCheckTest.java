@@ -2929,6 +2929,27 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         verifyWarns(checkConfig, fileName, expected);
     }
 
+    @Test
+    public void testLambdaInEnum() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        final String[] expected = {
+            "35:13: " + getCheckMessage(MSG_ERROR, "if", 12, "8"),
+            "81:17: " + getCheckMessage(MSG_ERROR_MULTI, "if", 16, "8, 12"),
+            "82:21: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "if", 20, "12, 16"),
+            "83:17: " + getCheckMessage(MSG_ERROR_MULTI, "if rcurly", 16, "8, 12"),
+            "84:17: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "block", 16, "8, 12"),
+        };
+        final String fileName = getPath("InputIndentationLambdaInEnum.java");
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
     private static final class IndentAudit implements AuditListener {
 
         private final IndentComment[] comments;
