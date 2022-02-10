@@ -69,6 +69,10 @@ public class LambdaHandler extends AbstractExpressionHandler {
             return getParent().getSuggestedChildIndent(this);
         }
 
+        if (getParent() instanceof ObjectBlockHandler) {
+            return getParent().getSuggestedChildIndent(this);
+        }
+
         DetailAST parent = getMainAst().getParent();
         if (getParent() instanceof NewHandler) {
             parent = parent.getParent();
