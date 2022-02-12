@@ -1283,7 +1283,7 @@ public class XdocsPagesTest {
         while (!Object.class.equals(currentClass)) {
             try {
                 result = currentClass.getDeclaredField(propertyName);
-                result.setAccessible(true);
+                result.trySetAccessible();
                 break;
             }
             catch (NoSuchFieldException ignored) {
@@ -1359,9 +1359,7 @@ public class XdocsPagesTest {
 
         for (Field field : fields) {
             // below is required for package/private classes
-            if (!field.isAccessible()) {
-                field.setAccessible(true);
-            }
+            field.trySetAccessible();
 
             list.add(field.get(null).toString());
         }
