@@ -1517,10 +1517,6 @@
                 <exclude>**/MainTest.class</exclude>
                 <!-- tests need forbidden apis to test the main code fully -->
                 <exclude>**/XpathFileGeneratorAuditListenerTest.class</exclude>
-                <!-- These tests uses java.lang.reflect.AccessibleObject.isAccessible
-                  which has no Java 8 compatible workaround. -->
-                <exclude>**/AllChecksTest.class</exclude>
-                <exclude>**/XdocsPagesTest.class</exclude>
                 <!-- Needed for testing deprecated API. -->
                 <exclude>**/DefaultConfigurationTest.class</exclude>
                 <!-- Inline Config cannot be supported. -->
