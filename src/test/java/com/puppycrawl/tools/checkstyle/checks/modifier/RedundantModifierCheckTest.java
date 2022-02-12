@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierC
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -126,6 +127,7 @@ public class RedundantModifierCheckTest
 
         final String[] expected = {
             "22:17: " + getCheckMessage(MSG_KEY, "public"),
+            "24:13: " + getCheckMessage(MSG_KEY, "public"),
             "26:21: " + getCheckMessage(MSG_KEY, "public"),
             "37:12: " + getCheckMessage(MSG_KEY, "public"),
             "45:17: " + getCheckMessage(MSG_KEY, "public"),
@@ -149,10 +151,27 @@ public class RedundantModifierCheckTest
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.RESOURCE,
+            TokenTypes.ANNOTATION_DEF,
         };
         assertWithMessage("Invalid acceptable tokens")
             .that(actual)
             .isEqualTo(expected);
+    }
+
+    @Test
+    public void testWrongTokenType() {
+        final RedundantModifierCheck obj = new RedundantModifierCheck();
+        final DetailAstImpl ast = new DetailAstImpl();
+        ast.initialize(TokenTypes.LITERAL_NULL, "null");
+        try {
+            obj.visitToken(ast);
+            assertWithMessage("IllegalStateException is expected").fail();
+        }
+        catch (IllegalStateException ex) {
+            assertWithMessage("Invalid exception message")
+                    .that(ex.getMessage())
+                    .isEqualTo("Unexpected token type: " + ast.getType());
+        }
     }
 
     @Test
@@ -273,6 +292,22 @@ public class RedundantModifierCheckTest
             "13:5: " + getCheckMessage(MSG_KEY, "static"),
             "13:12: " + getCheckMessage(MSG_KEY, "public"),
             "16:9: " + getCheckMessage(MSG_KEY, "public"),
+            "19:5: " + getCheckMessage(MSG_KEY, "public"),
+            "19:12: " + getCheckMessage(MSG_KEY, "static"),
+            "22:5: " + getCheckMessage(MSG_KEY, "public"),
+            "22:12: " + getCheckMessage(MSG_KEY, "abstract"),
+            "22:21: " + getCheckMessage(MSG_KEY, "static"),
+            "26:1: " + getCheckMessage(MSG_KEY, "abstract"),
+            "28:5: " + getCheckMessage(MSG_KEY, "public"),
+            "28:12: " + getCheckMessage(MSG_KEY, "static"),
+            "32:9: " + getCheckMessage(MSG_KEY, "public"),
+            "32:16: " + getCheckMessage(MSG_KEY, "static"),
+            "34:13: " + getCheckMessage(MSG_KEY, "public"),
+            "34:20: " + getCheckMessage(MSG_KEY, "static"),
+            "37:13: " + getCheckMessage(MSG_KEY, "public"),
+            "37:20: " + getCheckMessage(MSG_KEY, "static"),
+            "40:13: " + getCheckMessage(MSG_KEY, "public"),
+            "40:20: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(getPath(
                 "InputRedundantModifierNestedDef.java"), expected);
