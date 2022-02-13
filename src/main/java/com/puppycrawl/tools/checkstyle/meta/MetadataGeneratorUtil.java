@@ -58,7 +58,8 @@ public final class MetadataGeneratorUtil {
         checker.setModuleClassLoader(Checker.class.getClassLoader());
         final DefaultConfiguration scraperCheckConfig =
                         new DefaultConfiguration(JavadocMetadataScraper.class.getName());
-        final DefaultConfiguration defaultConfiguration = new DefaultConfiguration("configuration");
+        final DefaultConfiguration defaultConfiguration =
+                new DefaultConfiguration("configuration");
         final DefaultConfiguration treeWalkerConfig =
                 new DefaultConfiguration(TreeWalker.class.getName());
         defaultConfiguration.addProperty("charset", StandardCharsets.UTF_8.name());
@@ -94,7 +95,6 @@ public final class MetadataGeneratorUtil {
                         .collect(Collectors.toList()));
             }
         }
-
         checker.process(validFiles);
     }
 }
