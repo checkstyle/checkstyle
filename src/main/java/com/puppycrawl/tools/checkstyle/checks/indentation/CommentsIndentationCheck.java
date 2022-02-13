@@ -349,7 +349,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     private static DetailAST getNextStmt(DetailAST comment) {
         DetailAST nextStmt = comment.getNextSibling();
         while (nextStmt != null
-                && isComment(nextStmt)
+                && TokenUtil.isCommentType(nextStmt)
                 && comment.getColumnNo() != nextStmt.getColumnNo()) {
             nextStmt = nextStmt.getNextSibling();
         }
@@ -395,7 +395,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private boolean isDistributedExpression(DetailAST comment) {
         DetailAST previousSibling = comment.getPreviousSibling();
-        while (previousSibling != null && isComment(previousSibling)) {
+        while (previousSibling != null && TokenUtil.isCommentType(previousSibling)) {
             previousSibling = previousSibling.getPreviousSibling();
         }
         boolean isDistributed = false;
@@ -490,14 +490,14 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private static DetailAST getDistributedPreviousStatement(DetailAST comment) {
         DetailAST currentToken = comment.getPreviousSibling();
-        while (isComment(currentToken)) {
+        while (TokenUtil.isCommentType(currentToken)) {
             currentToken = currentToken.getPreviousSibling();
         }
         final DetailAST previousStatement;
         if (currentToken.getType() == TokenTypes.SEMI) {
             currentToken = currentToken.getPreviousSibling();
             while (currentToken.getFirstChild() != null) {
-                if (isComment(currentToken)) {
+                if (TokenUtil.isCommentType(currentToken)) {
                     currentToken = currentToken.getNextSibling();
                 }
                 else {
@@ -785,20 +785,6 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Whether the ast is a comment.
-     *
-     * @param ast the ast to check.
-     * @return true if the ast is a comment.
-     */
-    private static boolean isComment(DetailAST ast) {
-        final int astType = ast.getType();
-        return astType == TokenTypes.SINGLE_LINE_COMMENT
-            || astType == TokenTypes.BLOCK_COMMENT_BEGIN
-            || astType == TokenTypes.COMMENT_CONTENT
-            || astType == TokenTypes.BLOCK_COMMENT_END;
-    }
-
-    /**
      * Whether the AST node starts a block.
      *
      * @param root the AST node to check.
@@ -843,7 +829,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
             tokenWhichBeginsTheLine = root;
         }
         if (tokenWhichBeginsTheLine != null
-                && !isComment(tokenWhichBeginsTheLine)
+                && !TokenUtil.isCommentType(tokenWhichBeginsTheLine)
                 && isOnPreviousLineIgnoringComments(comment, tokenWhichBeginsTheLine)) {
             previousStatement = tokenWhichBeginsTheLine;
         }
@@ -909,11 +895,11 @@ public class CommentsIndentationCheck extends AbstractCheck {
                                                      DetailAST checkedStatement) {
         DetailAST nextToken = getNextToken(checkedStatement);
         int distanceAim = 1;
-        if (nextToken != null && isComment(nextToken)) {
+        if (TokenUtil.isCommentType(nextToken)) {
             distanceAim += countEmptyLines(checkedStatement, currentStatement);
         }
 
-        while (nextToken != null && nextToken != currentStatement && isComment(nextToken)) {
+        while (nextToken != currentStatement && TokenUtil.isCommentType(nextToken)) {
             if (nextToken.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
                 distanceAim += nextToken.getLastChild().getLineNo() - nextToken.getLineNo();
             }
@@ -939,7 +925,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
         else {
             nextToken = checkedStatement.getNextSibling();
         }
-        if (nextToken != null && isComment(nextToken) && isTrailingComment(nextToken)) {
+        if (nextToken != null && TokenUtil.isCommentType(nextToken)
+            && isTrailingComment(nextToken)) {
             nextToken = nextToken.getNextSibling();
         }
         return nextToken;
@@ -1046,7 +1033,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
                     prevStmt = blockBody;
                 }
             }
-            if (isComment(prevStmt)) {
+            if (TokenUtil.isCommentType(prevStmt)) {
                 prevStmt = prevStmt.getNextSibling();
             }
         }

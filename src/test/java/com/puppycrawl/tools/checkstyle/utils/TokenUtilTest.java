@@ -35,6 +35,8 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class TokenUtilTest {
 
@@ -220,6 +222,21 @@ public class TokenUtilTest {
         assertWithMessage("Should return false when invalid type passed")
                 .that(TokenUtil.isCommentType("CLASS_DEF"))
                 .isFalse();
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {
+        TokenTypes.SINGLE_LINE_COMMENT,
+        TokenTypes.BLOCK_COMMENT_BEGIN,
+        TokenTypes.BLOCK_COMMENT_END,
+        TokenTypes.COMMENT_CONTENT,
+    })
+    public void testIsCommentTypeAst(int type) {
+        final DetailAstImpl ast = new DetailAstImpl();
+        ast.setType(type);
+        assertWithMessage("Should return true when comment ast passed")
+                .that(TokenUtil.isCommentType(ast))
+                .isTrue();
     }
 
     @Test

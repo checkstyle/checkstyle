@@ -19,12 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -119,6 +122,11 @@ public class MethodLengthCheck extends AbstractCheck {
     private int max = DEFAULT_MAX_LINES;
 
     @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
     }
@@ -158,24 +166,39 @@ public class MethodLengthCheck extends AbstractCheck {
      * @param closingBrace block closing brace
      * @return number of lines with code for current block
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     private int getLengthOfBlock(DetailAST openingBrace, DetailAST closingBrace) {
         int length = closingBrace.getLineNo() - openingBrace.getLineNo() + 1;
 
         if (!countEmpty) {
-            final FileContents contents = getFileContents();
-            final int lastLine = closingBrace.getLineNo();
-            // lastLine - 1 is actual last line index. Last line is line with curly brace,
-            // which is always not empty. So, we make it lastLine - 2 to cover last line that
-            // actually may be empty.
-            for (int i = openingBrace.getLineNo() - 1; i <= lastLine - 2; i++) {
-                if (contents.lineIsBlank(i) || contents.lineIsComment(i)) {
-                    length--;
-                }
-            }
+            final Set<Integer> usedLines = new HashSet<>(length);
+            usedLines.add(openingBrace.getLineNo());
+            usedLines.add(closingBrace.getLineNo());
+            collectCodeLines(openingBrace.getFirstChild(), usedLines);
+            length = usedLines.size();
         }
         return length;
+    }
+
+    /**
+     * Collects numbers of lines where code present into given set.
+     *
+     * @param ast start ast
+     * @param usedLines set to put line numbers into
+     */
+    private void collectCodeLines(DetailAST ast, Set<Integer> usedLines) {
+        DetailAST node = ast;
+        while (node != null) {
+            final DetailAST next = node.getNextSibling();
+            if (!TokenUtil.isCommentType(node)) {
+                final int lineNo = node.getLineNo();
+                usedLines.add(lineNo);
+                if (next == null || next.getLineNo() > lineNo + 1) {
+                    // go deeper only if nested ast can have more than 1 line
+                    collectCodeLines(node.getFirstChild(), usedLines);
+                }
+            }
+            node = next;
+        }
     }
 
     /**
