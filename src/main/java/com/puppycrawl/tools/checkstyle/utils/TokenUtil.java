@@ -190,10 +190,20 @@ public final class TokenUtil {
      * @return true if type is comment-related type.
      */
     public static boolean isCommentType(int type) {
-        return type == TokenTypes.SINGLE_LINE_COMMENT
-                || type == TokenTypes.BLOCK_COMMENT_BEGIN
-                || type == TokenTypes.BLOCK_COMMENT_END
-                || type == TokenTypes.COMMENT_CONTENT;
+        return isOfType(type, TokenTypes.SINGLE_LINE_COMMENT, TokenTypes.BLOCK_COMMENT_BEGIN,
+            TokenTypes.BLOCK_COMMENT_END, TokenTypes.COMMENT_CONTENT);
+    }
+
+    /**
+     * Is ast comment-related type (SINGLE_LINE_COMMENT,
+     * BLOCK_COMMENT_BEGIN, BLOCK_COMMENT_END, COMMENT_CONTENT).
+     *
+     * @param ast - AST
+     * @return true if ast is comment-related type.
+     */
+    public static boolean isCommentType(DetailAST ast) {
+        return isOfType(ast, TokenTypes.SINGLE_LINE_COMMENT, TokenTypes.BLOCK_COMMENT_BEGIN,
+                TokenTypes.BLOCK_COMMENT_END, TokenTypes.COMMENT_CONTENT);
     }
 
     /**
