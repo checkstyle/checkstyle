@@ -199,7 +199,7 @@ public class JavadocMetadataScraperTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "19: " + getCheckMessage(MSG_DESC_MISSING,
-                    "InputJavadocMetadataScraperAbstractSuper"),
+                    "InputJavadocMetadataScraperAbstractSuperCheck"),
         };
         verifyWithInlineConfigParser(getPath(
                 "InputJavadocMetadataScraperAbstractSuperCheck.java"), expected);

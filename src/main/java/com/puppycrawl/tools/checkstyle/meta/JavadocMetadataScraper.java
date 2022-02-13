@@ -34,9 +34,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -44,6 +41,9 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 /**
  * Class for scraping module metadata from the corresponding class' class-level javadoc.
@@ -236,7 +236,9 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
         moduleDetails.setDescription(getDescriptionText());
         if (isTopLevelClassJavadoc()) {
             if (moduleDetails.getDescription().isEmpty()) {
-                log(rootAst.getLineNumber(), MSG_DESC_MISSING, moduleDetails.getName());
+                final String fullQualifiedName = moduleDetails.getFullQualifiedName();
+                log(rootAst.getLineNumber(), MSG_DESC_MISSING,
+                        fullQualifiedName.substring(fullQualifiedName.lastIndexOf('.') + 1));
             }
             else if (writeXmlOutput) {
                 try {
