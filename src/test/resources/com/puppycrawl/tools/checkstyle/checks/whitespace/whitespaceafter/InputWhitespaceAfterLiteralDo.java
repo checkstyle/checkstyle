@@ -67,7 +67,7 @@ public class InputWhitespaceAfterLiteralDo {
         } while (condition());
 
         //Invalid
-        do{                             // violation
+        do{                             // violation, space after 'do' is required
             testDo();
         } while (condition());
     }
