@@ -54,7 +54,7 @@ class InputWhitespaceAfterBraces
         }
 
         // Invalid
-        for(int i = 1;i < 5;i++); // 2 violations
+        for(int i = 1;i < 5;i++); // 2 violations, space after 'for' and ';' is required
         for (int i = 1; i < 5; i++)
             testFor();
         for (int i = 1; i < 5;
@@ -103,7 +103,7 @@ class InputWhitespaceAfterBraces
     void whitespaceAfterSemi()
     {
         //reject
-        int i = 1;int j = 2; // violation
+        int i = 1;int j = 2; // violation, space after ';' is required
 
         //accept
         for (;;) {
