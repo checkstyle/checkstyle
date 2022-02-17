@@ -88,7 +88,7 @@ class InputWhitespaceAfterTypeCast
     private void testCasts()
     {
         Object o = (Object) new Object(); // ok
-        o = (Object)o; // violation
+        o = (Object)o; // violation ''typecast' is not followed by whitespace'
         o = ( Object ) o; // ok
         o = (Object)
             o; // ok

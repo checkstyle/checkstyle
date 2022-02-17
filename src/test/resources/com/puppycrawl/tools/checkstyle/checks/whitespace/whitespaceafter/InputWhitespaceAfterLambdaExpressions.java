@@ -11,12 +11,13 @@ import java.util.function.Function;
 public class InputWhitespaceAfterLambdaExpressions {
 
     static Runnable r1 = () -> { // ok
-        String.valueOf("Hello world one!");
+        // String.valueOf("Hello world one!");
     };
 
-    static Runnable r2 = () ->String.valueOf("Hello world two!"); // violation
+    static Runnable r2 = () ->String.valueOf("Hello world two!"); // violation ''->' .* whitespace'
 
-    static Runnable r3 = () ->{String.valueOf("Hello world two!");}; // violation
+    static Runnable r3 = ()
+            ->{String.valueOf("Hello world two!");}; // violation ''->' .* whitespace'
 
     static Runnable r4 = () -> // ok
     {
@@ -24,6 +25,7 @@ public class InputWhitespaceAfterLambdaExpressions {
     };
 
     public void foo() {
-        Function<Object, String> function = (o) ->o.toString(); // violation
+        Function<Object, String> function =
+                (o) ->o.toString(); // violation ''->' is not followed by whitespace'
     }
 }
