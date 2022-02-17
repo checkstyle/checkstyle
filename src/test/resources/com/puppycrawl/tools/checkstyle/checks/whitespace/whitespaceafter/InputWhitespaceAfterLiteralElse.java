@@ -31,7 +31,7 @@ public class InputWhitespaceAfterLiteralElse {
         //Invalid
         if (condition()) {
             testIfElse();
-        } else{                            // violation
+        } else{                            // violation, space after 'else' is required
             testIfElse();
         }
     }

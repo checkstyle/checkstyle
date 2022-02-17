@@ -11,7 +11,7 @@ public class InputWhitespaceAfterMultilineCast {
     void issue3850() {
         Object obj = new Object();
         obj = (java.lang.
-                Object)obj; // violation
+                Object)obj; // violation, space after ')' is required
         obj = (java.lang.
                 Object) obj; // ok
     }

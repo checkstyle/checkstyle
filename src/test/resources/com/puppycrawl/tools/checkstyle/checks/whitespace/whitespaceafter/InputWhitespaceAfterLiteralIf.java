@@ -22,7 +22,7 @@ public class InputWhitespaceAfterLiteralIf {
         }
 
         //Invalid
-        if(condition()) {                  // violation
+        if(condition()) {                  // violation, space after 'if' is required
             testIfElse();
         } else {
             testIfElse();
