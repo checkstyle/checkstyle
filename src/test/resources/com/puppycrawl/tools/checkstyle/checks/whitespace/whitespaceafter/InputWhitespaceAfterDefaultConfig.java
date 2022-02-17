@@ -42,7 +42,7 @@ final class InputWhitespaceAfterDefaultConfig
     protected int mNumCreated2 = 0;
 
     /** commas are wrong **/
-    private int[] mInts = new int[] {1,2, 3, // violation
+    private int[] mInts = new int[] {1,2, 3, // violation, space after ',' is required
                                      4};
 
     //
@@ -71,7 +71,7 @@ final class InputWhitespaceAfterDefaultConfig
      * @param badFormat3 bad format
      * @throws java.lang.Exception abc
      **/
-    int test1(int badFormat1,int badFormat2, // violation
+    int test1(int badFormat1,int badFormat2, // violation, space after ',' is required
               final int badFormat3)
         throws java.lang.Exception
     {
