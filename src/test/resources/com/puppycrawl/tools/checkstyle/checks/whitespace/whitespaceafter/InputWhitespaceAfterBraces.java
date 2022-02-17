@@ -103,7 +103,7 @@ class InputWhitespaceAfterBraces
     void whitespaceAfterSemi()
     {
         //reject
-        int i = 1;int j = 2; // violation
+        int i = 1;int j = 2; // violation '';' is not followed by whitespace'
 
         //accept
         for (;;) {

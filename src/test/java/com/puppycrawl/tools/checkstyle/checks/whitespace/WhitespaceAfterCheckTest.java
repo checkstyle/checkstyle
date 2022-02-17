@@ -191,10 +191,10 @@ public class WhitespaceAfterCheckTest
     public void testVarargs() throws Exception {
         final String[] expected = {
             "14:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
-            "17:67: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
-            "20:42: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
-            "27:45: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
-            "36:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "18:25: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "21:36: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "28:40: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "37:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
         };
         verifyWithInlineConfigParser(getPath("InputWhitespaceAfterVarargs.java"), expected);
     }
@@ -203,12 +203,12 @@ public class WhitespaceAfterCheckTest
     public void testSwitchStatements() throws Exception {
         final String[] expected = {
             "18:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "switch"),
-            "30:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "switch"),
-            "32:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
-            "39:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "switch"),
-            "40:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
-            "41:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
-            "48:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "switch"),
+            "31:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "switch"),
+            "33:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
+            "40:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "switch"),
+            "41:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
+            "42:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
+            "49:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "switch"),
         };
 
         verifyWithInlineConfigParser(
@@ -220,8 +220,8 @@ public class WhitespaceAfterCheckTest
     public void testLambdaExpressions() throws Exception {
         final String[] expected = {
             "17:29: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
-            "19:29: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
-            "27:49: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
+            "19:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
+            "28:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
         };
 
         verifyWithInlineConfigParser(getPath("InputWhitespaceAfterLambdaExpressions.java"),
