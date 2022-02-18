@@ -17,7 +17,7 @@ public class InputWhitespaceAfterGenerics<A, B extends Collection<?>,
 }
 
 //No whitespace after commas
-class BadCommas < A,B,C extends Map < A,String > > // 3 violations, space after ',' and ',' and ',' is required
+class BadCommas < A,B,C extends Map < A,String > > // 3 violations
 {
     private java.util.Hashtable < Integer, D > p =
         new java.util.Hashtable < Integer, D > ();
