@@ -18,14 +18,14 @@ class InputEmptyBlockSemantic2Statement
     public void fooMethod()
     {
         int a = 1;
-        if (a == 1) {}  // violation
+        if (a == 1) {}  // violation 'Must have at least one statement'
         char[] s = {'1', '2'};
         int index = 2;
-        if (doSideEffect() == 1) {} // violation
+        if (doSideEffect() == 1) {} // violation 'Must have at least one statement'
         while ((a = index - 1) != 0) {} // ok
         for (; index < s.length && s[index] != 'x'; index++) {} // ok
-        if (a == 1) {} else {System.identityHashCode("a");} // violation
-        switch (a) {}   // violation
+        if (a == 1) {} else {a++;}// violation 'Must have at least one statement'
+        switch (a) {}   // violation 'Must have at least one statement'
         switch (a) {    // ok
             case 1:
                 a = 2;
