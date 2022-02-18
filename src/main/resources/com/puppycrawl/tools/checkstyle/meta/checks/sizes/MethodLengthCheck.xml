@@ -17,8 +17,7 @@
                <description>Specify the maximum number of lines allowed.</description>
             </property>
             <property default-value="true" name="countEmpty" type="boolean">
-               <description>Control whether to count empty lines and single
- line comments of the form {@code //}.</description>
+               <description>Control whether to count empty lines and comments.</description>
             </property>
             <property default-value="METHOD_DEF,CTOR_DEF,COMPACT_CTOR_DEF"
                       name="tokens"

@@ -19,10 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -42,8 +49,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code 150}.
  * </li>
  * <li>
- * Property {@code countEmpty} - Control whether to count empty lines and single
- * line comments of the form {@code //}.
+ * Property {@code countEmpty} - Control whether to count empty lines and comments.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
@@ -77,7 +83,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </pre>
  * <p>
  * To configure the check so that it accepts methods with at most 60 lines,
- * not counting empty lines and single line comments:
+ * not counting empty lines and comments:
  * </p>
  * <pre>
  * &lt;module name="MethodLength"&gt;
@@ -112,7 +118,7 @@ public class MethodLengthCheck extends AbstractCheck {
     /** Default maximum number of lines. */
     private static final int DEFAULT_MAX_LINES = 150;
 
-    /** Control whether to count empty lines and single line comments of the form {@code //}. */
+    /** Control whether to count empty lines and comments. */
     private boolean countEmpty = true;
 
     /** Specify the maximum number of lines allowed. */
@@ -141,9 +147,14 @@ public class MethodLengthCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final DetailAST openingBrace = ast.findFirstToken(TokenTypes.SLIST);
         if (openingBrace != null) {
-            final DetailAST closingBrace =
-                openingBrace.findFirstToken(TokenTypes.RCURLY);
-            final int length = getLengthOfBlock(openingBrace, closingBrace);
+            final int length;
+            if (countEmpty) {
+                final DetailAST closingBrace = openingBrace.findFirstToken(TokenTypes.RCURLY);
+                length = getLengthOfBlock(openingBrace, closingBrace);
+            }
+            else {
+                length = countUsedLines(openingBrace);
+            }
             if (length > max) {
                 final String methodName = ast.findFirstToken(TokenTypes.IDENT).getText();
                 log(ast, MSG_KEY, length, max, methodName);
@@ -152,30 +163,45 @@ public class MethodLengthCheck extends AbstractCheck {
     }
 
     /**
-     * Returns length of code only without comments and blank lines.
+     * Returns length of code.
      *
      * @param openingBrace block opening brace
      * @param closingBrace block closing brace
      * @return number of lines with code for current block
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
-    private int getLengthOfBlock(DetailAST openingBrace, DetailAST closingBrace) {
-        int length = closingBrace.getLineNo() - openingBrace.getLineNo() + 1;
+    private static int getLengthOfBlock(DetailAST openingBrace, DetailAST closingBrace) {
+        final int startLineNo = openingBrace.getLineNo();
+        final int endLineNo = closingBrace.getLineNo();
+        return endLineNo - startLineNo + 1;
+    }
 
-        if (!countEmpty) {
-            final FileContents contents = getFileContents();
-            final int lastLine = closingBrace.getLineNo();
-            // lastLine - 1 is actual last line index. Last line is line with curly brace,
-            // which is always not empty. So, we make it lastLine - 2 to cover last line that
-            // actually may be empty.
-            for (int i = openingBrace.getLineNo() - 1; i <= lastLine - 2; i++) {
-                if (contents.lineIsBlank(i) || contents.lineIsComment(i)) {
-                    length--;
-                }
+    /**
+     * Count number of used code lines without comments.
+     *
+     * @param ast start ast
+     * @return number of used lines of code
+     */
+    private static int countUsedLines(DetailAST ast) {
+        final Set<Integer> usedLines = new HashSet<>();
+        final Deque<DetailAST> nodes = new ArrayDeque<>();
+        nodes.add(ast);
+        while (!nodes.isEmpty()) {
+            final DetailAST node = nodes.removeFirst();
+            final int lineNo = node.getLineNo();
+            // text block requires special treatment,
+            // since it is the only non-comment token that can span more than one line
+            if (node.getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
+                IntStream.rangeClosed(lineNo, node.getLastChild().getLineNo())
+                    .forEach(usedLines::add);
+            }
+            else {
+                usedLines.add(lineNo);
+                Stream.iterate(
+                    node.getLastChild(), Objects::nonNull, DetailAST::getPreviousSibling
+                ).forEach(nodes::addFirst);
             }
         }
-        return length;
+        return usedLines.size();
     }
 
     /**
@@ -188,11 +214,9 @@ public class MethodLengthCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to control whether to count empty lines and single line comments
-     * of the form {@code //}.
+     * Setter to control whether to count empty lines and comments.
      *
-     * @param countEmpty whether to count empty and single line comments
-     *     of the form //.
+     * @param countEmpty whether to count empty and comments.
      */
     public void setCountEmpty(boolean countEmpty) {
         this.countEmpty = countEmpty;
