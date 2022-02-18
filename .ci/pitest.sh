@@ -33,7 +33,7 @@ case $1 in
 
 pitest-annotation|pitest-design \
 |pitest-metrics|pitest-modifier|pitest-naming \
-|pitest-sizes|pitest-whitespace \
+|pitest-whitespace \
 |pitest-api|pitest-blocks \
 |pitest-packagenamesloader \
 |pitest-common-2|pitest-misc|pitest-xpath \
@@ -63,6 +63,14 @@ pitest-header)
   declare -a ignoredItems=(
   "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>                    isMatch = headerLineNo == headerSize</span></pre></td></tr>"
   "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>                            || isMatch(line, headerLineNo);</span></pre></td></tr>"
+  );
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
+
+pitest-sizes)
+  mvn --no-transfer-progress -e -P$1 clean test-compile org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+  "MethodLengthCheck.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; isExceedingLimit(length)) {</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
   ;;

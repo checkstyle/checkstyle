@@ -1,7 +1,7 @@
 /*
 MethodLength
 max = 2
-countEmpty = (default)true
+countEmpty = false
 tokens = (default)METHOD_DEF, CTOR_DEF, COMPACT_CTOR_DEF
 
 
@@ -10,7 +10,7 @@ tokens = (default)METHOD_DEF, CTOR_DEF, COMPACT_CTOR_DEF
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 
-public class InputMethodLengthRecordsAndCompactCtors {
+public class InputMethodLengthCompactCtorsCountEmpty {
 
     record MyTestRecord() {
         static { // ok
@@ -22,40 +22,32 @@ public class InputMethodLengthRecordsAndCompactCtors {
 
     //compact ctor
     record MyTestRecord2() {
-        public MyTestRecord2 { // violation
-            System.out.println("test");
-            System.out.println("test");
+        public MyTestRecord2 { // violation 'Method .* length is 3 lines (max allowed is 2).'
             System.out.println("test");
 
         }
     }
 
     record MyTestRecord3(String str) {
-        void foo() { // violation
-            System.out.println("test");
-            System.out.println("test");
+        void foo() { // violation 'Method .* length is 3 lines (max allowed is 2).'
             System.out.println("test");
         }
     }
 
     record MyTestRecord4(int x, int y) {
-        public MyTestRecord4() { // violation
+        public MyTestRecord4() { // violation 'Method .* length is 3 lines (max allowed is 2).'
             this(4, 5);
-            System.out.println("test");
-            System.out.println("test");
-            System.out.println("test");
 
         }
     }
 
     record MyTestRecord5() {
-        static { // ok
-            int y = 5;
-            int z = 10;
-            String newString = String.valueOf(y);
-            System.out.println(newString);
-            System.out.println("Value of y: " + newString);
-            System.out.println(y + z);
+        public MyTestRecord4() { // ok
+            // some comment
+            /*
+            block comment
+             */
+
         }
     }
 
