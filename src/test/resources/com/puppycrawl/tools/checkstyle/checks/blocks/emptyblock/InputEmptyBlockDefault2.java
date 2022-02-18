@@ -12,17 +12,17 @@ public class InputEmptyBlockDefault2 {
     void method1(int a) {
         switch (a) {}
         switch (a) {default: ; }    // ok
-        switch (a) {default: {}}    // violation
+        switch (a) {default: {}}    // violation 'Must have at least one statement'
         switch (a) {
             default:
         }
         switch (a) {
             default:
-            {}  // violation
+            {}  // violation 'Must have at least one statement'
         }
         switch (a) {
             default:
-            {   // violation
+            {   // violation 'Must have at least one statement'
             }
         }
     }
@@ -33,7 +33,7 @@ public class InputEmptyBlockDefault2 {
             case 2:a++;
             default:    // ok
                 switch (a) {
-                    default: {  // violation
+                    default: {  // violation 'Must have at least one statement'
 
                     }
                 }
@@ -43,7 +43,7 @@ public class InputEmptyBlockDefault2 {
     void method3(int a, int b) {
         switch (a) {
             case 1: break;
-            default: {} method2(a);     // violation
+            default: {} method2(a);     // violation 'Must have at least one statement'
         }
 
         switch (b) {
@@ -51,13 +51,13 @@ public class InputEmptyBlockDefault2 {
             default: method2(b); {}     // ok
         }
 
-        switch (a+b) {case 1: break; default: {} ; }    // violation
+        switch (a+b) {case 1: break; default: {} ; }// violation 'Must have at least one statement'
     }
 
     void method4(int a, int b) {
         switch (a) {
             case 1:
-            default: {}      // violation
+            default: {}      // violation 'Must have at least one statement'
         }
 
         switch (b) {
@@ -72,7 +72,7 @@ public class InputEmptyBlockDefault2 {
 
         switch (a-b) {
             case 1:
-            default: {      // violation
+            default: {      // violation 'Must have at least one statement'
 
             } ;
             case 2: { }
@@ -85,7 +85,7 @@ public class InputEmptyBlockDefault2 {
             case 2:
             case 3:
             default:
-            {               // violation
+            {               // violation 'Must have at least one statement'
             }
         }
 
