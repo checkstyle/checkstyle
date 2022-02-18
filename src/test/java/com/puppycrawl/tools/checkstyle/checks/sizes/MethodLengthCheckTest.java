@@ -86,10 +86,40 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCountEmpty() throws Exception {
+        final int max = 2;
+        final String[] expected = {
+            "24:5: " + getCheckMessage(MSG_KEY, 3, max, "AA"),
+            "41:5: " + getCheckMessage(MSG_KEY, 3, max, "threeLines"),
+            "45:5: " + getCheckMessage(MSG_KEY, 3, max, "threeLinesAndComments"),
+            "53:5: " + getCheckMessage(MSG_KEY, 3, max, "threeLinesWrap"),
+            "63:5: " + getCheckMessage(MSG_KEY, 10, max, "m2"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMethodLengthCountEmptySmallSize.java"), expected);
+    }
+
+    @Test
     public void testAbstract() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMethodLengthModifier.java"), expected);
+    }
+
+    @Test
+    public void testTextBlocks() throws Exception {
+        final int max = 2;
+
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY, 21, max, "longEmptyTextBlock"),
+            "43:5: " + getCheckMessage(MSG_KEY, 10, max, "textBlock2"),
+            "57:5: " + getCheckMessage(MSG_KEY, 8, max, "textBlockWithIndent"),
+            "66:5: " + getCheckMessage(MSG_KEY, 12, max, "textBlockNoIndent"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMethodLengthTextBlocksCountEmpty.java"),
+                expected);
     }
 
     @Test
@@ -106,7 +136,24 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMethodLengthRecordsAndCompactCtors.java"),
+            getNonCompilablePath("InputMethodLengthRecordsAndCompactCtors.java"),
+            expected);
+    }
+
+    @Test
+    public void testRecordsAndCompactCtorsCountEmpty() throws Exception {
+        final int max = 2;
+
+        final String[] expected = {
+            "25:9: " + getCheckMessage(MSG_KEY, 3, max, "MyTestRecord2"),
+            "32:9: " + getCheckMessage(MSG_KEY, 3, max, "foo"),
+            "38:9: " + getCheckMessage(MSG_KEY, 3, max, "MyTestRecord4"),
+            "55:9: " + getCheckMessage(MSG_KEY, 13, max, "m"),
+            "58:17: " + getCheckMessage(MSG_KEY, 8, max, "R76"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMethodLengthCompactCtorsCountEmpty.java"),
                 expected);
     }
 
