@@ -55,7 +55,7 @@ public class InputWhitespaceAfterLiteralFor {
         }
 
         //Invalid
-        for(int i = 0; i < 5; i++) {      // violation, space after 'for' is required
+        for(int i = 0; i < 5; i++) {      // violation ''for' is not followed by whitespace'
             testFor();
         }
     }
