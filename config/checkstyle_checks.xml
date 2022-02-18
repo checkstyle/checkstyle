@@ -338,7 +338,8 @@
       <property name="ignoredAnnotations"
                 value="Override, Test, Before, After, BeforeClass, AfterClass"/>
       <property name="ignoredAnnotations"
-                value="BeforeAll, AfterAll, BeforeEach, AfterEach"/>
+                value="BeforeAll, AfterAll, BeforeEach, AfterEach,
+                       ParameterizedTest, ValueSource"/>
     </module>
     <module name="FinalClass"/>
     <module name="HideUtilityClassConstructor"/>

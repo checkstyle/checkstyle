@@ -86,6 +86,19 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCountEmpty() throws Exception {
+        final int max = 2;
+        final String[] expected = {
+            "24:5: " + getCheckMessage(MSG_KEY, 3, max, "AA"),
+            "41:5: " + getCheckMessage(MSG_KEY, 3, max, "threeLines"),
+            "45:5: " + getCheckMessage(MSG_KEY, 3, max, "threeLinesAndComments"),
+            "53:5: " + getCheckMessage(MSG_KEY, 3, max, "threeLinesWrap"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMethodLengthCountEmptySmallSize.java"), expected);
+    }
+
+    @Test
     public void testAbstract() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -107,6 +120,22 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMethodLengthRecordsAndCompactCtors.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordsAndCompactCtorsCountEmpty() throws Exception {
+
+        final int max = 2;
+
+        final String[] expected = {
+            "25:9: " + getCheckMessage(MSG_KEY, 3, max, "MyTestRecord2"),
+            "32:9: " + getCheckMessage(MSG_KEY, 3, max, "foo"),
+            "38:9: " + getCheckMessage(MSG_KEY, 3, max, "MyTestRecord4"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMethodLengthCompactCtorsCountEmpty.java"),
                 expected);
     }
 
