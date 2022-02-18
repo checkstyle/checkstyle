@@ -35,14 +35,14 @@ class InputEmptyBlockSemanticStatement
 
     void exHandlerTest()
     {
-        try {   // violation
+        try {   // violation, Empty 'try' block
         }
-        finally {   // violation
+        finally {   // violation, Empty 'finally' block
         }
-        try {   // violation
+        try {   // violation, Empty 'try' block
             // something
         }
-        finally {   // violation
+        finally {   // violation, Empty 'finally' block
             // something
         }
         try {   // ok
@@ -65,7 +65,7 @@ class InputEmptyBlockSemanticStatement
     }
 
     // empty instance initializer
-    {   // violation
+    {   // violation Empty block
     }
 
     private class InputBraces {
@@ -73,9 +73,9 @@ class InputEmptyBlockSemanticStatement
     }
 
     synchronized void foo() {
-        synchronized (this) {}  // violation
+        synchronized (this) {}  // violation, Empty 'synchronized' block
         synchronized (Class.class) { // ok
-            synchronized (new Object()) {   // violation
+            synchronized (new Object()) {   // violation, Avoid nested block
                 // text
             }
         }
@@ -86,7 +86,7 @@ class InputEmptyBlockSemanticStatement
 
         int a = 0;}
 
-    static {    // violation
+    static {    // violation, Empty block
 
     }
 }

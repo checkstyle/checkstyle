@@ -12,13 +12,13 @@ public class InputEmptyBlockDefault {
     void method1(int a) {
         switch (a) {}
         switch (a) {default: ; }    // ok
-        switch (a) {default: {}}    // violation
+        switch (a) {default: {}}    // violation,Empty block after 'default' keyword
         switch (a) {
             default:
         }
         switch (a) {
             default:
-            {}  // violation
+            {}  // violation,Empty block after 'default' keyword
         }
         switch (a) {
             default:
@@ -43,7 +43,7 @@ public class InputEmptyBlockDefault {
     void method3(int a, int b) {
         switch (a) {
             case 1: break;
-            default: {} method2(a);     // violation
+            default: {} method2(a);     // violation,Empty block after 'default' keyword
         }
 
         switch (b) {
@@ -51,13 +51,13 @@ public class InputEmptyBlockDefault {
             default: method2(b); {}     // ok
         }
 
-        switch (a+b) {case 1: break; default: {} ; }    // violation
+        switch (a+b) {case 1: break; default: {} ; }    // violation,Empty block after 'default' keyword
     }
 
     void method4(int a, int b) {
         switch (a) {
             case 1:
-            default: {}      // violation
+            default: {}      // violation,Empty block after 'default' keyword
         }
 
         switch (b) {
@@ -86,7 +86,7 @@ public class InputEmptyBlockDefault {
             case 3:
             default:
             {
-            }   // violation above
+            }   // violation above, '{' must be on same line with 'default' keyword
         }
 
         switch (b) {
