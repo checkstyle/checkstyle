@@ -1868,6 +1868,7 @@
             <excludedLink>http://maven.apache.org/plugins/maven-linkcheck-plugin/</excludedLink>
             <!-- permanent 403 -->
             <excludedLink>https://www.ej-technologies.com/*</excludedLink>
+            <excludedLink>https://travis-ci.com/</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
