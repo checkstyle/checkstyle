@@ -19,10 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Objects;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -144,7 +149,7 @@ public class MethodLengthCheck extends AbstractCheck {
             final DetailAST closingBrace =
                 openingBrace.findFirstToken(TokenTypes.RCURLY);
             final int length = getLengthOfBlock(openingBrace, closingBrace);
-            if (length > max) {
+            if (isExceedingLimit(length)) {
                 final String methodName = ast.findFirstToken(TokenTypes.IDENT).getText();
                 log(ast, MSG_KEY, length, max, methodName);
             }
@@ -158,24 +163,69 @@ public class MethodLengthCheck extends AbstractCheck {
      * @param closingBrace block closing brace
      * @return number of lines with code for current block
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     private int getLengthOfBlock(DetailAST openingBrace, DetailAST closingBrace) {
-        int length = closingBrace.getLineNo() - openingBrace.getLineNo() + 1;
+        final int startLineNo = openingBrace.getLineNo();
+        final int endLineNo = closingBrace.getLineNo();
+        int rawLength = endLineNo - startLineNo + 1;
 
-        if (!countEmpty) {
-            final FileContents contents = getFileContents();
-            final int lastLine = closingBrace.getLineNo();
-            // lastLine - 1 is actual last line index. Last line is line with curly brace,
-            // which is always not empty. So, we make it lastLine - 2 to cover last line that
-            // actually may be empty.
-            for (int i = openingBrace.getLineNo() - 1; i <= lastLine - 2; i++) {
-                if (contents.lineIsBlank(i) || contents.lineIsComment(i)) {
-                    length--;
-                }
+        // Pitest does not like check for exceeding limit below,
+        // but is a shortcut to avoid iterating over whole ast,
+        // because its result cant be greater than "raw" block length
+        if (!countEmpty
+                && isExceedingLimit(rawLength)) {
+            rawLength = countUsedLines(openingBrace.getFirstChild(), startLineNo, rawLength);
+        }
+        return rawLength;
+    }
+
+    /**
+     * Checks that length is strictly greater than limit.
+     *
+     * @param length length
+     * @return true if given length is strictly greater than limit
+     */
+    private boolean isExceedingLimit(int length) {
+        return length > max;
+    }
+
+    /**
+     * Collects numbers of lines where code present into given set.
+     *
+     * @param ast start ast
+     * @param startLine start line number
+     * @param length raw length of code block
+     * @return number of used lines of code
+     */
+    private static int countUsedLines(DetailAST ast, int startLine, int length) {
+        final boolean[] usedLines = new boolean[length];
+        usedLines[0] = true;
+        final Deque<DetailAST> nodes = new ArrayDeque<>();
+        Stream.iterate(ast, Objects::nonNull, DetailAST::getNextSibling).forEach(nodes::addLast);
+        while (!nodes.isEmpty()) {
+            final DetailAST node = nodes.removeFirst();
+            final int offset = node.getLineNo() - startLine;
+            // text block content requires special treatment,
+            // since it is the only non-comment token that can span more than one line
+            if (node.getType() == TokenTypes.TEXT_BLOCK_CONTENT) {
+                final int contentLinesCount = (int) node.getText().lines().count();
+                // count only lines inside, exclude first and last lines
+                IntStream.range(1, contentLinesCount)
+                    .map(idx -> offset + idx)
+                    .forEach(idx -> usedLines[idx] = true);
+            }
+            else {
+                usedLines[offset] = true;
+            }
+            Stream.iterate(node.getLastChild(), Objects::nonNull, DetailAST::getPreviousSibling)
+                .forEach(nodes::addFirst);
+        }
+        int result = 0;
+        for (boolean usedLine : usedLines) {
+            if (usedLine) {
+                result++;
             }
         }
-        return length;
+        return result;
     }
 
     /**
