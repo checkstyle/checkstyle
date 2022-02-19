@@ -19,10 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import java.util.ArrayDeque;
+import java.util.BitSet;
+import java.util.Deque;
+import java.util.stream.IntStream;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -158,24 +162,58 @@ public class MethodLengthCheck extends AbstractCheck {
      * @param closingBrace block closing brace
      * @return number of lines with code for current block
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     private int getLengthOfBlock(DetailAST openingBrace, DetailAST closingBrace) {
-        int length = closingBrace.getLineNo() - openingBrace.getLineNo() + 1;
+        final int startLineNo = closingBrace.getLineNo();
+        final int endLineNo = openingBrace.getLineNo();
+        int length = startLineNo - endLineNo + 1;
 
-        if (!countEmpty) {
-            final FileContents contents = getFileContents();
-            final int lastLine = closingBrace.getLineNo();
-            // lastLine - 1 is actual last line index. Last line is line with curly brace,
-            // which is always not empty. So, we make it lastLine - 2 to cover last line that
-            // actually may be empty.
-            for (int i = openingBrace.getLineNo() - 1; i <= lastLine - 2; i++) {
-                if (contents.lineIsBlank(i) || contents.lineIsComment(i)) {
-                    length--;
-                }
-            }
+        if (length > max && !countEmpty) {
+            length = countUsedLines(openingBrace.getFirstChild(), endLineNo, startLineNo);
         }
         return length;
+    }
+
+    /**
+     * Collects numbers of lines where code present into given set.
+     *
+     * @param ast start ast
+     * @param startLine start line number
+     * @param endLine end line number
+     * @return number of used lines of code
+     */
+    private int countUsedLines(DetailAST ast, int startLine, int endLine) {
+        final BitSet usedLines = new BitSet(endLine - startLine + 1);
+        usedLines.set(0);
+        usedLines.set(endLine - startLine);
+        final Deque<DetailAST> nodesToInspect = new ArrayDeque<>();
+        DetailAST nextNode = ast;
+        while (nextNode != null) {
+            nodesToInspect.addLast(nextNode);
+            nextNode = nextNode.getNextSibling();
+        }
+        while (!nodesToInspect.isEmpty()) {
+            final DetailAST node = nodesToInspect.removeFirst();
+            final int currNodeLineNumber = node.getLineNo();
+            // text block content requires special treatment,
+            // since it is the only token that can span more than one line
+            if (node.getType() == TokenTypes.TEXT_BLOCK_CONTENT) {
+                final int textBlockLinesCount = (int) node.getText().lines().count();
+                // count only lines inside, exclude first and last lines,
+                // they will be counted as block start/end tokens
+                IntStream.range(1, textBlockLinesCount - 1)
+                    .map(idx -> idx + currNodeLineNumber)
+                    .forEach(usedLines::set);
+            }
+            else {
+                usedLines.set(currNodeLineNumber - startLine);
+            }
+            DetailAST child = node.getLastChild();
+            while (child != null) {
+                nodesToInspect.addFirst(child);
+                child = child.getPreviousSibling();
+            }
+        }
+        return usedLines.cardinality();
     }
 
     /**

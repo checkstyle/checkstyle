@@ -1,7 +1,7 @@
 /*
 MethodLength
 max = 2
-countEmpty = (default)true
+countEmpty = false
 tokens = (default)METHOD_DEF, CTOR_DEF, COMPACT_CTOR_DEF
 
 
@@ -10,7 +10,7 @@ tokens = (default)METHOD_DEF, CTOR_DEF, COMPACT_CTOR_DEF
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 
-public class InputMethodLengthRecordsAndCompactCtors {
+public class InputMethodLengthCompactCtorsAndTextBlocks {
 
     record MyTestRecord() {
         static { // ok
@@ -76,4 +76,13 @@ public class InputMethodLengthRecordsAndCompactCtors {
             return R76.class;
         }
     }
+
+    void textBlock() { // violation 'Method .* length is 8 lines (max allowed is 2).'
+    String a = """ 2
+        3
+        4
+        5
+        6
+
+    8""";}
 }
