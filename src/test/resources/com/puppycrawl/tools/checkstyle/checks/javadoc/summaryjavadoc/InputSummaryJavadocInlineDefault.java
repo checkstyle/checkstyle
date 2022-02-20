@@ -52,10 +52,29 @@ class InputSummaryJavadocInlineDefault {
     /** {@summary An especially short bit of Javadoc.} */
     void foo13() {} // ok
 
+    // violation below
+    /**
+     * {@return}
+     */
+    int returnNothing() {
+        return 0;
+    }
+
     /**
      * {@summary Some Javadoc.}
      */
     public static final byte NUL = 0; // ok
+
+    /**
+     * {@return nothing, this is a field}
+     */
+    private static final byte NOT_A_METHOD = 0; // ok
+
+    /**
+     * {@return nothing, this is a class}
+     */
+    private class NotAMethod {} // ok
+
     // violation below
     /**
      * {@summary <a href="mailto:vlad@htmlbook.ru"/>}
