@@ -39,7 +39,8 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * Javadoc summary sentence</a> does not contain phrases that are not recommended to use.
  * Summaries that contain only the {@code {@inheritDoc}} tag are skipped.
  * Summaries that contain a non-empty {@code {@return}} are allowed.
- * Check also violate Javadoc that does not contain first sentence.
+ * Check also violate Javadoc that does not contain first sentence, though with {@code {@return}} a
+ * period is not required as the Javadoc tool adds it.
  * </p>
  * <ul>
  * <li>
