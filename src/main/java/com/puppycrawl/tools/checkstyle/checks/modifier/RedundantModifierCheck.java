@@ -56,6 +56,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Nested {@code enum} definitions that are declared as {@code static}.
  * </li>
+ * <li>
+ * {@code record} definitions that are declared as {@code final} and nested
+ * {@code record} definitions that are declared as {@code static}.
+ * </li>
  * </ol>
  * <p>
  * interfaces by definition are abstract so the {@code abstract} modifier is redundant on them.
@@ -72,6 +76,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>As annotations are a form of interface, their fields are also
  * automatically public, static and final just as their
  * annotation fields are automatically public and abstract.</p>
+ *
+ * <p>A record class is implicitly final and cannot be abstract, these restrictions emphasize
+ * that the API of a record class is defined solely by its state description, and
+ * cannot be enhanced later by another class. Nested records are implicitly static. This avoids an
+ * immediately enclosing instance which would silently add state to the record class.
+ * See <a href="https://openjdk.java.net/jeps/395">JEP 395</a> for more info.</p>
  *
  * <p>Enums by definition are static implicit subclasses of java.lang.Enum&#60;E&#62;.
  * So, the {@code static} modifier on the enums is redundant. In addition,
@@ -155,7 +165,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE">
  * RESOURCE</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
- * ANNOTATION_DEF</a>.
+ * ANNOTATION_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+ * RECORD_DEF</a>.
  * </li>
  * </ul>
  * <p>
@@ -226,6 +238,7 @@ public class RedundantModifierCheck
             TokenTypes.ENUM_DEF,
             TokenTypes.RESOURCE,
             TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
         };
     }
 
@@ -247,6 +260,9 @@ public class RedundantModifierCheck
                 break;
             case TokenTypes.RESOURCE:
                 processResources(ast);
+                break;
+            case TokenTypes.RECORD_DEF:
+                checkForRedundantModifier(ast, TokenTypes.FINAL, TokenTypes.LITERAL_STATIC);
                 break;
             case TokenTypes.CLASS_DEF:
             case TokenTypes.VARIABLE_DEF:
