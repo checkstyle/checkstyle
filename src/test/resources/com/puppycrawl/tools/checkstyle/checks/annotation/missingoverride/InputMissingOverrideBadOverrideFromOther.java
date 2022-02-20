@@ -66,4 +66,9 @@ enum Football2 implements IFoo2, IBar2 {
    * {@inheritDoc}
    */
   public void doFoo() {} // violation 'include @java.lang.Override annotation when '@inheritDoc''
+
+  /**
+   * {@inheritDoc}
+   */
+  void some() {} // violation 'include @java.lang.Override annotation when '@inheritDoc''
 }
