@@ -101,7 +101,6 @@
     files="[\\/]src[\\/]xdocs[\\/]beginning_development.xml"/>
 
   <!-- these are legacy use cases until #11166 -->
-  <suppress id="noUsageOfGetFileContentsMethod" files="MissingOverrideCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="PackageAnnotationCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="FallThroughCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="PackageDeclarationCheck.java"/>
