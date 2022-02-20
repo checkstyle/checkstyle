@@ -109,6 +109,22 @@ class InputSummaryJavadocInlineCorrect {
     private void voidValidJavadoc() {} // ok
 
     /**
+     * {@return a zero}
+     */
+    private int returnFoo1() // ok
+    {
+        return 0;
+    }
+
+    /**
+     * {@return a {@code 0}}
+     */
+    private int returnFoo2() // ok
+    {
+        return 0;
+    }
+
+    /**
      * Sentence starts as a plain text sentence
      * {@summary ... but ends in the summary tag.}
      */
