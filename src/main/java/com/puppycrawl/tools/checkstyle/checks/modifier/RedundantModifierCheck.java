@@ -412,14 +412,17 @@ public class RedundantModifierCheck
      * Checks if given ast has a redundant modifier.
      *
      * @param ast ast
-     * @param modifierType The modifier to check for.
+     * @param modifierTypes The modifiers to check for.
      */
-    private void checkForRedundantModifier(DetailAST ast, int modifierType) {
+    private void checkForRedundantModifier(DetailAST ast, int... modifierTypes) {
         Optional.ofNullable(ast.findFirstToken(TokenTypes.MODIFIERS))
             .ifPresent(modifiers -> {
-                TokenUtil.forEachChild(modifiers, modifierType, modifier -> {
-                    log(modifier, MSG_KEY, modifier.getText());
-                });
+                for (DetailAST childAst = modifiers.getFirstChild();
+                     childAst != null; childAst = childAst.getNextSibling()) {
+                    if (TokenUtil.isOfType(childAst, modifierTypes)) {
+                        log(childAst, MSG_KEY, childAst.getText());
+                    }
+                }
             });
     }
 
