@@ -314,12 +314,11 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        boolean handled = false;
-        final Optional<DetailNode> inlineTagNodeOpt = getInlineTagNode(ast);
-        if (inlineTagNodeOpt.isPresent()) {
-            handled = handleInlineTagNode(ast, inlineTagNodeOpt.get());
-        }
-        if (!handled && !startsWithInheritDoc(ast)) {
+        if (containsSummaryTag(ast)) {
+            validateSummaryTag(ast);
+        } else if (containsInlineReturnTag(ast)) {
+            validateInlineReturnTag(ast);
+        } else if (!startsWithInheritDoc(ast)) {
             final String summaryDoc = getSummarySentence(ast);
             if (summaryDoc.isEmpty()) {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
@@ -338,25 +337,16 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         }
     }
 
-    /**
-     * Handle the cases for an inline tag. May not match the inline tag and return
-     * {@code false}.
-     *
-     * @param ast the node for the javadoc
-     * @param inlineTagNode the node for the tag
-     * @return {@code true} if the tag was handled
-     */
-    private boolean handleInlineTagNode(DetailNode ast, DetailNode inlineTagNode) {
-        boolean handled = false;
-        if (isSummaryTag(inlineTagNode)) {
-            validateSummaryTag(ast);
-            handled = true;
-        }
-        else if (isInlineReturnTag(inlineTagNode)) {
-            validateInlineReturnTag(ast, inlineTagNode);
-            handled = true;
-        }
-        return handled;
+    private static boolean containsSummaryTag(DetailNode javadoc) {
+        final Optional<DetailNode> node = getInlineTagNode(javadoc);
+
+        return node.isPresent() && isSummaryTag(node.get());
+    }
+
+    private static boolean containsInlineReturnTag(DetailNode javadoc) {
+        final Optional<DetailNode> node = getInlineTagNode(javadoc);
+
+        return node.isPresent() && isInlineReturnTag(node.get());
     }
 
     /**
@@ -483,12 +473,12 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Checks the inline return (if present) for forbidden fragments.
+     * Checks the inline return for forbidden fragments.
      *
      * @param ast javadoc root node.
-     * @param inlineTagNode inline tag node.
      */
-    private void validateInlineReturnTag(DetailNode ast, DetailNode inlineTagNode) {
+    private void validateInlineReturnTag(DetailNode ast) {
+        final DetailNode inlineTagNode = getInlineTagNode(ast).get();
         // Text is stored in the first DESCRIPTION node's child
         final String inlineReturn = Arrays.stream(inlineTagNode.getChildren())
             .filter(child -> child.getType() == JavadocTokenTypes.DESCRIPTION)
