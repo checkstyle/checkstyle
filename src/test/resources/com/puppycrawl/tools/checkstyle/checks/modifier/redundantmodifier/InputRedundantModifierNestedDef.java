@@ -15,4 +15,30 @@ public interface InputRedundantModifierNestedDef {
     interface MyInnerInterface {
         public strictfp class MyInnerClass {} // violation
     }
+
+    public static class testClass { // 2 violations
+    }
+
+    public abstract static @interface testAnnotatedInterface { // 3 violations
+    }
+}
+
+abstract @interface testAnnotatedInterface { // violation
+
+    public static enum testEnum { // 2 violations
+    }
+
+    interface testInterface {
+        public static interface nestedInterface { // 2 violations
+
+            public static class nestedClass { // 2 violations
+            }
+
+            public static @interface nestedAnnInterface { // 2 violations
+            }
+
+            public static enum nestedEnum { // 2 violations
+            }
+        }
+    }
 }
