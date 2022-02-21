@@ -114,8 +114,6 @@ public class MainFrame extends JFrame {
         xpathAreaPanel.setBorder(title);
 
         add(xpathAreaPanel, BorderLayout.PAGE_END);
-
-        pack();
     }
 
     /**
