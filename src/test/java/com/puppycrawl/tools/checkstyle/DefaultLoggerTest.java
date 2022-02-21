@@ -65,7 +65,7 @@ public class DefaultLoggerTest {
                 errorStream, OutputStreamOptions.CLOSE);
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
-        final String output = errorStream.toString(StandardCharsets.UTF_8.name());
+        final String output = errorStream.toString(StandardCharsets.UTF_8);
         final Constructor<?> cons = getConstructor();
         cons.setAccessible(true);
         final Object addExceptionMessage = cons.newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE,
@@ -320,8 +320,8 @@ public class DefaultLoggerTest {
                 dl.addException(new AuditEvent(5000, "myfile"),
                         new IllegalStateException("upsss"));
                 dl.auditFinished(new AuditEvent(6000, "myfile"));
-                infoOutput = infoStream.toString(StandardCharsets.UTF_8.name());
-                errorOutput = errorStream.toString(StandardCharsets.UTF_8.name());
+                infoOutput = infoStream.toString(StandardCharsets.UTF_8);
+                errorOutput = errorStream.toString(StandardCharsets.UTF_8);
 
                 assertWithMessage("Info stream should be closed")
                         .that(infoStream.closedCount)
