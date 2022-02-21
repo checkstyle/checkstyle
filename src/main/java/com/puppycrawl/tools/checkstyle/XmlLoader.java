@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -64,14 +63,8 @@ public class XmlLoader
      */
     protected XmlLoader(Map<String, String> publicIdToResourceNameMap)
             throws SAXException, ParserConfigurationException {
-        this.publicIdToResourceNameMap = new HashMap<>(publicIdToResourceNameMap);
-        final SAXParserFactory factory = SAXParserFactory.newInstance();
-        LoadExternalDtdFeatureProvider.setFeaturesBySystemProperty(factory);
-        factory.setValidating(true);
-        parser = factory.newSAXParser().getXMLReader();
-        parser.setContentHandler(this);
-        parser.setEntityResolver(this);
-        parser.setErrorHandler(this);
+        this.publicIdToResourceNameMap = Map.copyOf(publicIdToResourceNameMap);
+        parser = createXmlReader(this);
     }
 
     /**
@@ -89,9 +82,14 @@ public class XmlLoader
     @Override
     public InputSource resolveEntity(String publicId, String systemId)
             throws SAXException, IOException {
+        final String dtdResourceName;
+        if (publicId == null) {
+            dtdResourceName = null;
+        }
+        else {
+            dtdResourceName = publicIdToResourceNameMap.get(publicId);
+        }
         final InputSource inputSource;
-        final String dtdResourceName =
-            publicIdToResourceNameMap.get(publicId);
         if (dtdResourceName == null) {
             inputSource = super.resolveEntity(publicId, systemId);
         }
@@ -109,6 +107,26 @@ public class XmlLoader
     @Override
     public void error(SAXParseException exception) throws SAXException {
         throw exception;
+    }
+
+    /**
+     * Helper method to create {@code XMLReader}.
+     *
+     * @param handler the content handler
+     * @return new XMLReader instance
+     * @throws ParserConfigurationException if a parser cannot be created
+     * @throws SAXException for SAX errors
+     */
+    private static XMLReader createXmlReader(DefaultHandler handler)
+            throws SAXException, ParserConfigurationException {
+        final SAXParserFactory factory = SAXParserFactory.newInstance();
+        LoadExternalDtdFeatureProvider.setFeaturesBySystemProperty(factory);
+        factory.setValidating(true);
+        final XMLReader xmlReader = factory.newSAXParser().getXMLReader();
+        xmlReader.setContentHandler(handler);
+        xmlReader.setEntityResolver(handler);
+        xmlReader.setErrorHandler(handler);
+        return xmlReader;
     }
 
     /**

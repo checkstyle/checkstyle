@@ -201,7 +201,7 @@
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.9.3</antlr4.version>
     <maven.site.plugin.version>3.11.0</maven.site.plugin.version>
-    <maven.spotbugs.plugin.version>4.2.3</maven.spotbugs.plugin.version>
+    <maven.spotbugs.plugin.version>4.5.3.0</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.16.0</maven.pmd.plugin.version>
     <pmd.version>6.43.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.7</maven.jacoco.plugin.version>
