@@ -312,7 +312,7 @@ public class SarifLogger extends AutomaticBean implements AuditListener {
                 result.write(buffer, 0, length);
                 length = inputStream.read(buffer);
             }
-            return result.toString(StandardCharsets.UTF_8.name());
+            return result.toString(StandardCharsets.UTF_8);
         }
     }
 }

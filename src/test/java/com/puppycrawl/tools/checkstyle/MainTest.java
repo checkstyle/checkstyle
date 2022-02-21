@@ -32,7 +32,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -1877,8 +1876,8 @@ public class MainTest {
 
         private boolean isClosed;
 
-        /* package */ ShouldNotBeClosedStream() throws UnsupportedEncodingException {
-            super(new ByteArrayOutputStream(), false, StandardCharsets.UTF_8.name());
+        /* package */ ShouldNotBeClosedStream() {
+            super(new ByteArrayOutputStream(), false, StandardCharsets.UTF_8);
         }
 
         @Override
