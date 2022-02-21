@@ -5054,8 +5054,8 @@ public final class TokenTypes {
      *     `--RCURLY -&gt; }
      * </pre>
      *
-     * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
-     * JSR14</a>
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html#jls-8.1.2">
+     * Generic Classes and Type Parameters</a>
      * @see #GENERIC_START
      * @see #GENERIC_END
      * @see #TYPE_PARAMETER
@@ -5096,8 +5096,8 @@ public final class TokenTypes {
      *     `--RCURLY -&gt; }
      * </pre>
      *
-     * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
-     * JSR14</a>
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html#jls-8.1.2">
+     * Generic Classes and Type Parameters</a>
      * @see #IDENT
      * @see #WILDCARD_TYPE
      * @see #TYPE_UPPER_BOUNDS
@@ -5165,8 +5165,8 @@ public final class TokenTypes {
      *  `--SEMI -&gt; ;
      * </pre>
      *
-     * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
-     * JSR14</a>
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html#jls-8.1.2">
+     * Generic Classes and Type Parameters</a>
      * @see #WILDCARD_TYPE
      * @see #TYPE_UPPER_BOUNDS
      * @see #TYPE_LOWER_BOUNDS
@@ -5196,8 +5196,8 @@ public final class TokenTypes {
      * |--SEMI -&gt; ;
      * </pre>
      *
-     * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
-     * JSR14</a>
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html#jls-8.1.2">
+     * Generic Classes and Type Parameters</a>
      * @see #TYPE_ARGUMENT
      * @see #TYPE_UPPER_BOUNDS
      * @see #TYPE_LOWER_BOUNDS
@@ -5229,8 +5229,8 @@ public final class TokenTypes {
      *  `--SEMI -&gt; ;
      *  </pre>
      *
-     * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
-     * JSR14</a>
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html#jls-8.1.2">
+     * Generic Classes and Type Parameters</a>
      * @see #TYPE_PARAMETER
      * @see #TYPE_ARGUMENT
      * @see #WILDCARD_TYPE
@@ -5262,8 +5262,8 @@ public final class TokenTypes {
      *     `--SEMI -&gt; ;
      *  </pre>
      *
-     * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
-     * JSR14</a>
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html#jls-8.1.2">
+     * Generic Classes and Type Parameters</a>
      * @see #TYPE_ARGUMENT
      * @see #WILDCARD_TYPE
      */
