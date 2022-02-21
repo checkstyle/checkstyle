@@ -100,8 +100,7 @@ public final class JavadocPropertiesGenerator {
      * @throws CheckstyleException if a javadoc comment can not be parsed
      */
     private static void writePropertiesFile(CliOptions options) throws CheckstyleException {
-        try (PrintWriter writer = new PrintWriter(options.outputFile,
-                StandardCharsets.UTF_8.name())) {
+        try (PrintWriter writer = new PrintWriter(options.outputFile, StandardCharsets.UTF_8)) {
             final DetailAST top = JavaParser.parseFile(options.inputFile,
                     JavaParser.Options.WITH_COMMENTS).getFirstChild();
             final DetailAST objBlock = getClassBody(top);
