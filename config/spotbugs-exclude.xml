@@ -198,4 +198,13 @@
       WEM_WEAK_EXCEPTION_MESSAGING,
       " />
   </Match>
+  <Match>
+    <!-- Till https://github.com/spotbugs/spotbugs/issues/1601 -->
+    <Bug pattern="EI_EXPOSE_REP,EI_EXPOSE_REP2"/>
+  </Match>
+  <Match>
+    <!-- Till https://github.com/spotbugs/spotbugs/issues/1867 -->
+    <Class name="com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper"/>
+    <Bug pattern="MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR"/>
+  </Match>
 </FindBugsFilter>

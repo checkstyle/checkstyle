@@ -42,15 +42,25 @@ public final class Main {
      */
     public static void main(final String... args) {
         SwingUtilities.invokeLater(() -> {
-            final MainFrame mainFrame = new MainFrame();
-            if (args.length > 0) {
-                final File sourceFile = new File(args[0]);
-                mainFrame.openFile(sourceFile);
-            }
-            mainFrame.setTitle("Checkstyle GUI");
-            mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            mainFrame.setVisible(true);
+            createMainFrame(args);
         });
+    }
+
+    /**
+     * Helper method to create the {@code MainFrame} instance.
+     *
+     * @param args the command line arguments
+     */
+    private static void createMainFrame(String... args) {
+        final MainFrame mainFrame = new MainFrame();
+        if (args.length > 0) {
+            final File sourceFile = new File(args[0]);
+            mainFrame.openFile(sourceFile);
+        }
+        mainFrame.setTitle("Checkstyle GUI");
+        mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        mainFrame.pack();
+        mainFrame.setVisible(true);
     }
 
 }
