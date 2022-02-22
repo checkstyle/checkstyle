@@ -3287,6 +3287,9 @@
                   com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheckTest
                 </param>
                 <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheckTest
+                </param>
+                <param>
                   com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheckTest
                 </param>
                 <param>
