@@ -115,17 +115,21 @@ public class MethodCallHandler extends AbstractExpressionHandler {
      * @return true if chained class are wrapped
      */
     private boolean isChainedMethodCallWrapped() {
-        boolean result = false;
         final DetailAST mainAst = getMainAst();
         final DetailAST dotAst = mainAst.getFirstChild();
-        final DetailAST probableMethodCallAst = dotAst.getFirstChild();
+        DetailAST probableMethodCallAst = dotAst.getFirstChild();
+        while (probableMethodCallAst.getType() == TokenTypes.INDEX_OP) {
+            probableMethodCallAst = probableMethodCallAst.getFirstChild();
+        }
 
         final DetailAST nestedDotAst = probableMethodCallAst.getFirstChild();
-        final DetailAST nestedMethodCallAst = nestedDotAst.getFirstChild();
-
-        if (nestedDotAst.getType() == TokenTypes.DOT
-            && nestedMethodCallAst.getType() == TokenTypes.METHOD_CALL) {
-            result = true;
+        boolean result = false;
+        if (nestedDotAst.getType() == TokenTypes.DOT) {
+            DetailAST nestedMethodCallAst = nestedDotAst.getFirstChild();
+            while (nestedMethodCallAst.getType() == TokenTypes.INDEX_OP) {
+                nestedMethodCallAst = nestedMethodCallAst.getFirstChild();
+            }
+            result = nestedMethodCallAst.getType() == TokenTypes.METHOD_CALL;
         }
         return result;
     }
