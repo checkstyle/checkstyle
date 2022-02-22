@@ -441,6 +441,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * Checks if the first tag inside ast is a tag with the given name.
      *
      * @param javadoc root node.
+     * @param name name of inline tag.
+     *
      * @return {@code true} if first tag is a tag with the given name.
      */
     private static boolean isInlineTagWithName(DetailNode javadoc, String name) {
@@ -498,13 +500,16 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     private void validateInlineReturnTag(DetailNode ast) {
         // the presence of the tag is checked by `containsInlineReturnTag`
-        final DetailNode inlineTagNode = getInlineTagNode(ast).orElseThrow();
+        final Optional<DetailNode> inlineTagNode = getInlineTagNode(ast);
         // Text is stored in the first DESCRIPTION node's child
-        final String inlineReturn = Arrays.stream(inlineTagNode.getChildren())
-            .filter(child -> child.getType() == JavadocTokenTypes.DESCRIPTION)
-            .findFirst()
-            .map(descNode -> descNode.getChildren()[0].getText())
-            .orElse("");
+        final String inlineReturn = inlineTagNode.map(
+                node -> {
+                    return Arrays.stream(node.getChildren())
+                            .filter(child -> child.getType() == JavadocTokenTypes.DESCRIPTION)
+                            .findFirst()
+                            .map(descNode -> descNode.getChildren()[0].getText())
+                            .orElse("");
+                }).orElse("");
         final String returnVisible = getVisibleContent(inlineReturn);
         if (returnVisible.isEmpty()) {
             log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
