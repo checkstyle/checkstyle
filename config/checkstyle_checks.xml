@@ -902,6 +902,8 @@
     <module name="TypecastParenPad"/>
     <module name="WhitespaceAfter"/>
     <module name="WhitespaceAround"/>
+    <!-- Default config temporarily used. -->
+    <module name="ChainedMethodCallWrap"/>
 
   </module>
 
