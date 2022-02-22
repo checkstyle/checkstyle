@@ -115,12 +115,6 @@ public class ParameterNumberCheck
      */
     public static final String MSG_KEY = "maxParam";
 
-    /** {@link Override Override} annotation name. */
-    private static final String OVERRIDE = "Override";
-
-    /** Canonical {@link Override Override} annotation name. */
-    private static final String CANONICAL_OVERRIDE = "java.lang." + OVERRIDE;
-
     /** Default maximum number of allowed parameters. */
     private static final int DEFAULT_MAX_PARAMETERS = 7;
 
@@ -183,8 +177,7 @@ public class ParameterNumberCheck
     private boolean shouldIgnoreNumberOfParameters(DetailAST ast) {
         // if you override a method, you have no power over the number of parameters
         return ignoreOverriddenMethods
-                && (AnnotationUtil.containsAnnotation(ast, OVERRIDE)
-                || AnnotationUtil.containsAnnotation(ast, CANONICAL_OVERRIDE));
+                && AnnotationUtil.hasOverrideAnnotation(ast);
     }
 
 }

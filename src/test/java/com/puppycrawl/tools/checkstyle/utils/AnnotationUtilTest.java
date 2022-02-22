@@ -27,6 +27,8 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -211,6 +213,75 @@ public class AnnotationUtilTest {
         assertWithMessage("An empty list should lead to a false result")
             .that(result)
             .isFalse();
+    }
+
+    @Test
+    public void testHasOverrideNoNode() {
+        final DetailAstImpl ast = new DetailAstImpl();
+        final DetailAstImpl modifiersAst = new DetailAstImpl();
+        modifiersAst.setType(TokenTypes.MODIFIERS);
+        ast.addChild(modifiersAst);
+        final boolean result = AnnotationUtil.hasOverrideAnnotation(ast);
+        assertWithMessage("An empty ast should lead to a false result")
+            .that(result)
+            .isFalse();
+    }
+
+    @Test
+    public void testHasOverrideNull() {
+        final boolean result = AnnotationUtil.hasOverrideAnnotation(null);
+        assertWithMessage("null should lead to a false result")
+            .that(result)
+            .isFalse();
+    }
+
+    @Test
+    public void testHasOverrideOtherAnnotation() {
+        final DetailAstImpl ast = new DetailAstImpl();
+        final DetailAstImpl modifiersAst = create(
+            TokenTypes.MODIFIERS,
+            create(
+                TokenTypes.ANNOTATION,
+                create(
+                    TokenTypes.DOT,
+                    create(
+                        TokenTypes.IDENT,
+                        "Ovvverride")
+                )
+            )
+        );
+        ast.addChild(modifiersAst);
+        final boolean result = AnnotationUtil.hasOverrideAnnotation(ast);
+        assertWithMessage("An other annotation name should lead to a false result")
+            .that(result)
+            .isFalse();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"Override", "java.lang.Override"})
+    public void testHasOverrideAnnotation(String annoName) {
+        final DetailAstImpl astForTest = new DetailAstImpl();
+        astForTest.setType(TokenTypes.PACKAGE_DEF);
+        final DetailAstImpl child = new DetailAstImpl();
+        final DetailAstImpl annotations = new DetailAstImpl();
+        final DetailAstImpl annotation = new DetailAstImpl();
+        final DetailAstImpl annotationNameHolder = new DetailAstImpl();
+        final DetailAstImpl annotationName = new DetailAstImpl();
+        annotations.setType(TokenTypes.ANNOTATIONS);
+        annotation.setType(TokenTypes.ANNOTATION);
+        annotationNameHolder.setType(TokenTypes.AT);
+        annotationName.setText(annoName);
+
+        annotationNameHolder.setNextSibling(annotationName);
+        annotation.setFirstChild(annotationNameHolder);
+        annotations.setFirstChild(annotation);
+        child.setNextSibling(annotations);
+        astForTest.setFirstChild(child);
+
+        final boolean result = AnnotationUtil.containsAnnotation(astForTest, annoName);
+        assertWithMessage("Annotation should contain " + astForTest)
+            .that(result)
+            .isTrue();
     }
 
     @Test
