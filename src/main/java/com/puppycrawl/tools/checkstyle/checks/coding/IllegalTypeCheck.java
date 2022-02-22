@@ -809,7 +809,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
         final String methodName =
             ast.findFirstToken(TokenTypes.IDENT).getText();
         return isVerifiable(ast) && !ignoredMethodNames.contains(methodName)
-                && !AnnotationUtil.containsAnnotation(ast, "Override");
+                && !AnnotationUtil.hasOverrideAnnotation(ast);
     }
 
     /**
