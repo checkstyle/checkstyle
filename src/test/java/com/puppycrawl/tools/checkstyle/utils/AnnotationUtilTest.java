@@ -62,6 +62,13 @@ public class AnnotationUtilTest {
     }
 
     @Test
+    public void testHasOverrideAnnotationNull() {
+        assertWithMessage("Should be false for null ast")
+            .that(AnnotationUtil.hasOverrideAnnotation(null))
+            .isFalse();
+    }
+
+    @Test
     public void testContainsAnnotationNull2() {
         try {
             AnnotationUtil.containsAnnotation(null, "");
