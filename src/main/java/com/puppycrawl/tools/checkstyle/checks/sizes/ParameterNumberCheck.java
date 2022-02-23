@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import java.util.Arrays;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -41,6 +43,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * methods with {@code @Override} annotation.
  * Type is {@code boolean}.
  * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code ignoreMethodsAnnotatedBy} - Ignore number of parameters for
+ * method with any of given annotation.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code ""}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -130,6 +138,9 @@ public class ParameterNumberCheck
     /** Ignore number of parameters for methods with {@code @Override} annotation. */
     private boolean ignoreOverriddenMethods;
 
+    /** Ignore number of parameters for method with any of given annotation. */
+    private String[] ignoreMethodsAnnotatedBy = {};
+
     /**
      * Setter to specify the maximum number of parameters allowed.
      *
@@ -146,6 +157,15 @@ public class ParameterNumberCheck
      */
     public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods) {
         this.ignoreOverriddenMethods = ignoreOverriddenMethods;
+    }
+
+    /**
+     * Setter to ignore number of parameters for methods with any given annotation.
+     *
+     * @param annotations set annotation names
+     */
+    public void setIgnoreMethodsAnnotatedBy(String... annotations) {
+        this.ignoreMethodsAnnotatedBy = annotations;
     }
 
     @Override
@@ -181,10 +201,22 @@ public class ParameterNumberCheck
      *         false otherwise
      */
     private boolean shouldIgnoreNumberOfParameters(DetailAST ast) {
+        return shouldIgnoreOverriddenMethods(ast) || shouldIgnoreAnnotatedMethods(ast);
+    }
+
+    private boolean shouldIgnoreOverriddenMethods(DetailAST ast) {
         // if you override a method, you have no power over the number of parameters
         return ignoreOverriddenMethods
                 && (AnnotationUtil.containsAnnotation(ast, OVERRIDE)
                 || AnnotationUtil.containsAnnotation(ast, CANONICAL_OVERRIDE));
+    }
+
+    private boolean shouldIgnoreAnnotatedMethods(DetailAST ast) {
+        // if you implement external API, you have no power over the number of parameters,
+        // e.g. when create a class for REST API and convert JSON to object by constructor
+        // annotated by `@JsonCreator`.
+        return Arrays.stream(ignoreMethodsAnnotatedBy)
+                .anyMatch(it -> AnnotationUtil.containsAnnotation(ast, it));
     }
 
 }
