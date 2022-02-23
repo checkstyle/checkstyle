@@ -172,6 +172,28 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInlineReturn() throws Exception {
+        final String[] expected = {
+            "74: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturn.java"), expected);
+    }
+
+    @Test
+    public void testInlineReturnForbidden() throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "21: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "28: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturnForbidden.java"), expected);
+    }
+
+    @Test
     public void testPeriodAtEnd() throws Exception {
         final String[] expected = {
             "19: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
