@@ -14,8 +14,8 @@ public class InputWhitespaceAfterVarargs {
     public void method(int...obj) { // violation ''...' is not followed by whitespace'
     }
 
-    public InputWhitespaceAfterVarargs(String first, List<Integer>...second) {
-        // violation ''...' is not followed by whitespace'
+    public InputWhitespaceAfterVarargs(String first,
+           List<Integer>...second) { // violation ''...' is not followed by whitespace'
     }
 
     public <T> void anotherMethod(List<T>...args) { // violation ''...' .* whitespace'
