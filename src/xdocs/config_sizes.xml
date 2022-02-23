@@ -1118,6 +1118,15 @@ public class ExampleClass {
               <td>6.2</td>
             </tr>
             <tr>
+              <td>ignoreMethodsAnnotatedBy</td>
+              <td>
+                  Ignore number of parameters for method with any of given annotation.
+              </td>
+              <td><a href="property_types.html#String[]">String[]</a></td>
+              <td><code></code></td>
+              <td>9.4</td>
+            </tr>
+            <tr>
               <td>tokens</td>
               <td>tokens to check</td>
 
