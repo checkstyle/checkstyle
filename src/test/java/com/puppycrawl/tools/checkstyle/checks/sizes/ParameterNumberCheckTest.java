@@ -28,6 +28,8 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+import java.io.IOException;
+
 public class ParameterNumberCheckTest
     extends AbstractModuleTestSupport {
 
@@ -121,6 +123,28 @@ public class ParameterNumberCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterNumber2.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreMethodsAnnotatedByEmpty() throws Exception {
+        final String[] expected = {
+                "15:10: " + getCheckMessage(MSG_KEY, 7, 8),
+                "20:10: " + getCheckMessage(MSG_KEY, 7, 8),
+                "25:10: " + getCheckMessage(MSG_KEY, 7, 8),
+                "30:10: " + getCheckMessage(MSG_KEY, 7, 8),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNumberAnnotations.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreMethodsAnnotatedBy() throws Exception {
+        final String[] expected = {
+                "15:10: " + getCheckMessage(MSG_KEY, 7, 8),
+                "30:10: " + getCheckMessage(MSG_KEY, 7, 8),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNumberAnnotations2.java"), expected);
     }
 
 }
