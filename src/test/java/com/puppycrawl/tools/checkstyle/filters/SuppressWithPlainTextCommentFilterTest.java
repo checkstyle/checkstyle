@@ -282,24 +282,35 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
         filterCfg.addProperty("influenceFormat", "a");
+        filterCfg.addProperty("messageFormat", "e[l");
+        filterCfg.addProperty("onCommentFormat", "// cs-on");
+        filterCfg.addProperty("offCommentFormat", "// cs-off");
 
         final DefaultConfiguration checkCfg = createModuleConfig(FileTabCharacterCheck.class);
         checkCfg.addProperty("eachLine", "true");
 
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
 
+        final String[] violationMessages = {
+            "5:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_FILE_CONTAINS_TAB),
+            "8:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "10:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+        };
+
         try {
             verifySuppressed(
-                    "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
-                    suppressed, filterCfg, checkCfg);
+                "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
+                removeSuppressed(violationMessages, suppressed),
+                filterCfg, checkCfg
+            );
             assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException ex) {
+            final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
             assertWithMessage("Invalid exception message")
-                .that(ex)
-                .hasCauseThat().hasMessageThat()
-                .isEqualTo("unable to parse influence"
-                        + " from 'SUPPRESS CHECKSTYLE MemberNameCheck' using a");
+                .that(cause)
+                .hasMessageThat()
+                .isEqualTo("unable to parse expanded comment e[l");
         }
     }
 
