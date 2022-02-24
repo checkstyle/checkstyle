@@ -278,6 +278,32 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
+    public void testInvalidInfluenceFormat() throws Exception {
+        final DefaultConfiguration filterCfg =
+            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
+        filterCfg.addProperty("influenceFormat", "a");
+
+        final DefaultConfiguration checkCfg = createModuleConfig(FileTabCharacterCheck.class);
+        checkCfg.addProperty("eachLine", "true");
+
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+
+        try {
+            verifySuppressed(
+                    "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
+                    suppressed, filterCfg, checkCfg);
+            assertWithMessage("CheckstyleException is expected").fail();
+        }
+        catch (CheckstyleException ex) {
+            assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasCauseThat().hasMessageThat()
+                .isEqualTo("unable to parse influence"
+                        + " from 'SUPPRESS CHECKSTYLE MemberNameCheck' using a");
+        }
+    }
+
+    @Test
     public void testInvalidMessageFormat() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
