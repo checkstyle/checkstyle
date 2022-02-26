@@ -91,7 +91,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "92:19: " + getCheckMessage(MSG_ASSIGN),
             "94:11: " + getCheckMessage(MSG_ASSIGN),
             "94:16: " + getCheckMessage(MSG_LITERAL, "3"),
-            "95:39: " + getCheckMessage(MSG_ASSIGN),
+            "95:26: " + getCheckMessage(MSG_ASSIGN),
             "106:11: " + getCheckMessage(MSG_ASSIGN),
             "106:14: " + getCheckMessage(MSG_STRING, "\"12345678901234567890123\""),
         };
@@ -116,11 +116,11 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "17:35: " + getCheckMessage(MSG_LAMBDA),
             "18:35: " + getCheckMessage(MSG_LAMBDA),
             "25:18: " + getCheckMessage(MSG_LAMBDA),
-            "26:57: " + getCheckMessage(MSG_LAMBDA),
-            "45:25: " + getCheckMessage(MSG_LAMBDA),
-            "45:33: " + getCheckMessage(MSG_LAMBDA),
-            "48:25: " + getCheckMessage(MSG_LAMBDA),
-            "51:31: " + getCheckMessage(MSG_LAMBDA),
+            "28:25: " + getCheckMessage(MSG_LAMBDA),
+            "47:25: " + getCheckMessage(MSG_LAMBDA),
+            "47:33: " + getCheckMessage(MSG_LAMBDA),
+            "50:25: " + getCheckMessage(MSG_LAMBDA),
+            "53:31: " + getCheckMessage(MSG_LAMBDA),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnnecessaryParenthesesLambdas.java"), expected);
@@ -129,17 +129,17 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnnecessaryParenthesesSwitchExpression() throws Exception {
         final String[] expected = {
-            "21:50: " + getCheckMessage(MSG_ASSIGN),
-            "24:19: " + getCheckMessage(MSG_LITERAL, 2),
-            "25:58: " + getCheckMessage(MSG_ASSIGN),
-            "30:28: " + getCheckMessage(MSG_ASSIGN),
-            "32:24: " + getCheckMessage(MSG_IDENT, "case7"),
-            "36:28: " + getCheckMessage(MSG_ASSIGN),
-            "46:50: " + getCheckMessage(MSG_ASSIGN),
-            "48:19: " + getCheckMessage(MSG_LITERAL, 2),
-            "49:58: " + getCheckMessage(MSG_ASSIGN),
-            "53:28: " + getCheckMessage(MSG_ASSIGN),
-            "58:28: " + getCheckMessage(MSG_ASSIGN),
+            "21:31: " + getCheckMessage(MSG_ASSIGN),
+            "24:13: " + getCheckMessage(MSG_LITERAL, 2),
+            "25:39: " + getCheckMessage(MSG_ASSIGN),
+            "30:18: " + getCheckMessage(MSG_ASSIGN),
+            "32:16: " + getCheckMessage(MSG_IDENT, "g"),
+            "36:18: " + getCheckMessage(MSG_ASSIGN),
+            "46:31: " + getCheckMessage(MSG_ASSIGN),
+            "48:13: " + getCheckMessage(MSG_LITERAL, 2),
+            "49:39: " + getCheckMessage(MSG_ASSIGN),
+            "53:18: " + getCheckMessage(MSG_ASSIGN),
+            "58:18: " + getCheckMessage(MSG_ASSIGN),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
@@ -150,17 +150,17 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnnecessaryParenthesesTextBlocks() throws Exception {
         final String[] expected = {
-            "19:27: " + getCheckMessage(MSG_STRING, "\"this\""),
-            "19:38: " + getCheckMessage(MSG_STRING, "\"that\""),
-            "19:49: " + getCheckMessage(MSG_STRING, "\"other\""),
-            "20:27: " + getCheckMessage(MSG_STRING, "\"\\n     "
-                + "           this\""),
-            "22:20: " + getCheckMessage(MSG_STRING, "\"\\n     "
-                + "           that\""),
-            "24:20: " + getCheckMessage(MSG_STRING, "\"\\n     "
-                + "           other\""),
-            "27:27: " + getCheckMessage(MSG_STRING, "\"\\n                this i...\""),
-            "28:40: " + getCheckMessage(MSG_STRING, "\"\\n                and an...\""),
+            "19:23: " + getCheckMessage(MSG_STRING, "\"this\""),
+            "19:34: " + getCheckMessage(MSG_STRING, "\"that\""),
+            "19:45: " + getCheckMessage(MSG_STRING, "\"other\""),
+            "20:23: " + getCheckMessage(MSG_STRING, "\"\\n     "
+                + "   this\""),
+            "22:12: " + getCheckMessage(MSG_STRING, "\"\\n     "
+                + "   that\""),
+            "24:12: " + getCheckMessage(MSG_STRING, "\"\\n     "
+                + "   other\""),
+            "27:23: " + getCheckMessage(MSG_STRING, "\"\\n        this is a test...\""),
+            "28:32: " + getCheckMessage(MSG_STRING, "\"\\n        and another li...\""),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
@@ -196,30 +196,30 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "20:20: " + getCheckMessage(MSG_EXPR),
-            "35:13: " + getCheckMessage(MSG_EXPR),
-            "36:20: " + getCheckMessage(MSG_EXPR),
-            "40:13: " + getCheckMessage(MSG_EXPR),
-            "40:14: " + getCheckMessage(MSG_EXPR),
-            "41:20: " + getCheckMessage(MSG_EXPR),
-            "46:20: " + getCheckMessage(MSG_EXPR),
-            "50:13: " + getCheckMessage(MSG_EXPR),
-            "51:20: " + getCheckMessage(MSG_EXPR),
-            "55:13: " + getCheckMessage(MSG_EXPR),
-            "56:17: " + getCheckMessage(MSG_EXPR),
-            "57:28: " + getCheckMessage(MSG_EXPR),
-            "62:13: " + getCheckMessage(MSG_EXPR),
-            "67:14: " + getCheckMessage(MSG_EXPR),
-            "68:24: " + getCheckMessage(MSG_EXPR),
-            "71:13: " + getCheckMessage(MSG_EXPR),
+            "34:13: " + getCheckMessage(MSG_EXPR),
+            "35:20: " + getCheckMessage(MSG_EXPR),
+            "39:13: " + getCheckMessage(MSG_EXPR),
+            "39:14: " + getCheckMessage(MSG_EXPR),
+            "40:20: " + getCheckMessage(MSG_EXPR),
+            "45:20: " + getCheckMessage(MSG_EXPR),
+            "49:13: " + getCheckMessage(MSG_EXPR),
+            "50:20: " + getCheckMessage(MSG_EXPR),
+            "54:13: " + getCheckMessage(MSG_EXPR),
+            "55:17: " + getCheckMessage(MSG_EXPR),
+            "56:28: " + getCheckMessage(MSG_EXPR),
+            "61:13: " + getCheckMessage(MSG_EXPR),
+            "66:14: " + getCheckMessage(MSG_EXPR),
+            "67:24: " + getCheckMessage(MSG_EXPR),
+            "70:13: " + getCheckMessage(MSG_EXPR),
+            "71:21: " + getCheckMessage(MSG_EXPR),
             "72:21: " + getCheckMessage(MSG_EXPR),
-            "73:21: " + getCheckMessage(MSG_EXPR),
-            "79:12: " + getCheckMessage(MSG_EXPR),
-            "80:20: " + getCheckMessage(MSG_EXPR),
-            "87:20: " + getCheckMessage(MSG_EXPR),
-            "105:13: " + getCheckMessage(MSG_EXPR),
-            "108:13: " + getCheckMessage(MSG_EXPR),
-            "109:21: " + getCheckMessage(MSG_EXPR),
-            "112:13: " + getCheckMessage(MSG_EXPR),
+            "78:12: " + getCheckMessage(MSG_EXPR),
+            "79:20: " + getCheckMessage(MSG_EXPR),
+            "86:20: " + getCheckMessage(MSG_EXPR),
+            "103:13: " + getCheckMessage(MSG_EXPR),
+            "106:13: " + getCheckMessage(MSG_EXPR),
+            "107:21: " + getCheckMessage(MSG_EXPR),
+            "110:13: " + getCheckMessage(MSG_EXPR),
         };
 
         verifyWithInlineConfigParser(
