@@ -18,14 +18,14 @@ public class InputUnnecessaryParenthesesCheckTextBlocks {
     void method() {
         String string1 = ("this") + ("that") + ("other"); // 3 violations
         String string2 = ("""
-                this""") // violation above
+                this""") // violation above '.* around string "\\n                this\"'
                 + ("""
-                that""") // violation above
+                that""") // violation above '.* around string "\\n                that\"'
                 + ("""
-                other"""); // violation above
-        // violation below
+                other"""); // violation above '.* around string "\\n                other\"'
+        // violation below '.* around string "\\n                this i...\"'
         String string3 = ("""
                 this is a test.""") + ("""
-                and another line"""); // violation above
+                and another line"""); // violation above '.* "\\n                and an...\"'
     }
 }

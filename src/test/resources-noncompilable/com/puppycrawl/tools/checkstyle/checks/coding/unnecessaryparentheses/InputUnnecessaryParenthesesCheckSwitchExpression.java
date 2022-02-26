@@ -18,22 +18,22 @@ public class InputUnnecessaryParenthesesCheckSwitchExpression {
     MathOperation2 tooManyParens(int k) {
         return switch (k) {
             case 1 -> {
-                MathOperation2 case5 = (a, b) -> (a + b); // violation
+                MathOperation2 case5 = (a, b) -> (a + b); // violation '.* right-hand side'
                 yield case5;
             }
-            case (2) -> { // violation
-                MathOperation2 case6 = (int a, int b) -> (a + b); // violation
+            case (2) -> { // violation 'Unnecessary parentheses around literal '2''
+                MathOperation2 case6 = (int a, int b) -> (a + b); // violation '.* right-hand side'
                 yield case6;
             }
             case 3 -> {
                 MathOperation2 case7 = (int a, int b) -> {
-                    return (a + b); // violation
+                    return (a + b); // violation '.* around assignment right-hand side'
                 };
-                yield (case7); // violation
+                yield (case7); // violation 'Unnecessary parentheses around identifier 'case7''
             }
             default -> {
                 MathOperation2 case8 = (int x, int y) -> {
-                    return (x + y); // violation
+                    return (x + y); // violation '.* around assignment right-hand side'
                 };
                 yield case8;
             }
@@ -43,19 +43,19 @@ public class InputUnnecessaryParenthesesCheckSwitchExpression {
     MathOperation2 tooManyParens2(int k) {
        switch (k) {
             case 1 -> {
-                MathOperation2 case5 = (a, b) -> (a + b); // violation
+                MathOperation2 case5 = (a, b) -> (a + b); // violation '.* right-hand side'
             }
-            case (2) -> { // violation
-                MathOperation2 case6 = (int a, int b) -> (a + b); // violation
+            case (2) -> { // violation 'Unnecessary parentheses around literal '2''
+                MathOperation2 case6 = (int a, int b) -> (a + b); // violation '.* right-hand side'
             }
             case 3 -> {
                 MathOperation2 case7 = (int a, int b) -> {
-                    return (a + b + 2 ); // violation
+                    return (a + b + 2 ); // violation '.* around assignment right-hand side'
                 };
             }
             default -> {
                 MathOperation2 case8 = (int x, int y) -> {
-                    return (x + y); // violation
+                    return (x + y); // violation '.* around assignment right-hand side'
                 };
             }
         };
