@@ -15,54 +15,56 @@ tokens = (default)EXPR, IDENT, NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG, \
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 
 public class InputUnnecessaryParenthesesCheckSwitchExpression {
-    MathOperation2 tooManyParens(int k) {
-        return switch (k) {
-            case 1 -> {
-                MathOperation2 case5 = (a, b) -> (a + b); // violation
-                yield case5;
-            }
-            case (2) -> { // violation
-                MathOperation2 case6 = (int a, int b) -> (a + b); // violation
-                yield case6;
-            }
-            case 3 -> {
-                MathOperation2 case7 = (int a, int b) -> {
-                    return (a + b); // violation
-                };
-                yield (case7); // violation
-            }
-            default -> {
-                MathOperation2 case8 = (int x, int y) -> {
-                    return (x + y); // violation
-                };
-                yield case8;
-            }
+  MathOp2 tooManyParens(int k) {
+    return switch (k) {
+      case 1 -> {
+        MathOp2 e = (a, b) -> (a + b); // violation 'parentheses around assignment right-hand side'
+        yield e;
+      }
+      case (2) -> { // violation 'Unnecessary parentheses around literal '2''
+        MathOp2 f = (int a, int b) -> (a + b); // violation 'paren.* around assignment right.*side'
+        yield f;
+      }
+      case 3 -> {
+        MathOp2 g = (int a, int b) -> {
+          return (a + b); // violation 'Unnecessary parentheses around assignment right-hand side'
         };
-    }
-
-    MathOperation2 tooManyParens2(int k) {
-       switch (k) {
-            case 1 -> {
-                MathOperation2 case5 = (a, b) -> (a + b); // violation
-            }
-            case (2) -> { // violation
-                MathOperation2 case6 = (int a, int b) -> (a + b); // violation
-            }
-            case 3 -> {
-                MathOperation2 case7 = (int a, int b) -> {
-                    return (a + b + 2 ); // violation
-                };
-            }
-            default -> {
-                MathOperation2 case8 = (int x, int y) -> {
-                    return (x + y); // violation
-                };
-            }
+        yield (g); // violation 'Unnecessary parentheses around identifier 'g''
+      }
+      default -> {
+        MathOp2 h = (int x, int y) -> {
+          return (x + y); // violation 'Unnecessary parentheses around assignment right-hand side'
         };
-       return (a, b) -> 0;
-    }
+        yield h;
+      }
+    };
+  }
 
-    interface MathOperation2 {
-        int operation(int a, int b);
+  MathOp2 tooManyParens2(int k) {
+    switch (k) {
+      case 1 -> {
+        MathOp2 e = (a, b) -> (a + b); // violation 'parentheses around assignment right-hand side'
+      }
+      case (2) -> { // violation 'Unnecessary parentheses around literal '2''
+        MathOp2 f = (int a, int b) -> (a + b); // violation 'paren.* around assignment right.*side'
+      }
+      case 3 -> {
+        MathOp2 g = (int a, int b) -> {
+          return (a + b + 2); // violation 'Unnecessary parentheses around assignment right.*side'
+        };
+      }
+      default -> {
+        MathOp2 h = (int x, int y) -> {
+          return (x + y); // violation 'Unnecessary parentheses around assignment right-hand side'
+        };
+      }
     }
+    ;
+    return (a, b) -> 0;
+  }
+
+  interface MathOp2 {
+
+    int operation(int a, int b);
+  }
 }

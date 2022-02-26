@@ -16,9 +16,9 @@ public class InputUnnecessaryParenthesesOperatorsAndCasts {
     int f1() {
         int x = 0;
         for (int i = (0+1); ((i) < (6+6)); i += (1+0)) { // 4 violations
-            x += (i + 100); // violation
+            x += (i + 100); // violation 'Unnecessary parentheses around assignment right-hand side'
             (x) += (i + 100/**comment test*/); // 2 violations
-            x = (x + i + 100); // violation
+            x = (x + i + 100); // violation 'Unnecessary parentheses around assignment right.*side'
             (x) = (x + i + 100); // 2 violations
         }
 
@@ -26,7 +26,7 @@ public class InputUnnecessaryParenthesesOperatorsAndCasts {
             System.identityHashCode("hi");
         }
 
-        return (0); // violation
+        return (0); // violation 'Unnecessary parentheses around literal '0''
     }
 
     private int f2(int arg1, double arg2) {
@@ -36,35 +36,35 @@ public class InputUnnecessaryParenthesesOperatorsAndCasts {
         x = 0;
         a = 0;
         b = 0;
-        c = (a + b); // violation
+        c = (a + b); // violation 'Unnecessary parentheses around assignment right-hand side'
         d = c - 1;
 
         int i = (int) arg2;
-        i = ((int) arg2); // violation
+        i = ((int) arg2); // violation 'Unnecessary parentheses around assignment right-hand side'
 
-        x += (i + 100 + arg1); // violation
+        x += (i + 100 + arg1); // violation 'Unnecessary parentheses around assignment right.*side'
         a = (a + b) * (c + d);
-        b = ((((a + b) * (c + d)))); // violation
-        c = (((a) <= b)) ? 0 : 1; // violation
+        b = ((((a + b) * (c + d)))); // violation 'parentheses around assignment right.*side'
+        c = (((a) <= b)) ? 0 : 1; // violation 'Unnecessary parentheses around identifier 'a''
         d = (a) + (b) * (600) / (int) (12.5f) + (int) (arg2); // 5 violations
         e = ("this") + ("that") + ("is" + "other"); // 2 violations
         f = ("this is a really, really long string that should be truncated."); // 2 violations
 
-        return (x + a + b + d); // violation
+        return (x + a + b + d); // violation 'Unnecessary parentheses around return value'
     }
 
     private boolean f3() {
         int x = f2((1), (13.5)); // 2 violations
-        boolean b = (true); // violation
-        return (b); // violation
+        boolean b = (true); // violation 'Unnecessary parentheses around literal 'true''
+        return (b); // violation 'Unnecessary parentheses around identifier 'b''
     }
 
     public static int f4(int z, int a) {
-        int r = (z * a); // violation
+        int r = (z * a); // violation 'Unnecessary parentheses around assignment right-hand side'
         r = (a > z) ? a : z;
-        r = ((a > z) ? a : z); // violation
+        r = ((a > z) ? a : z); // violation 'Unnecessary parentheses around assignment right.*side'
         r = (a > z) ? a : (z + z);
-        return (r * r - 1); // violation
+        return (r * r - 1); // violation 'Unnecessary parentheses around return value'
     }
 
     public void f5() {
@@ -74,25 +74,25 @@ public class InputUnnecessaryParenthesesOperatorsAndCasts {
         if (x == y) {
             print(x);
         }
-        if ((x > y)) { // violation
+        if ((x > y)) { // violation 'Unnecessary parentheses around expression'
             print(y);
         }
 
-        while ((x < 10)) { // violation
+        while ((x < 10)) { // violation 'Unnecessary parentheses around expression'
             print(x++);
         }
 
         do {
-            print((y+=100)); // violation
-        } while (y < (4000)); // violation
+            print((y+=100)); // violation 'Unnecessary parentheses around expression'
+        } while (y < (4000)); // violation 'Unnecessary parentheses around literal '4000''
     }
 
     private void f6(TypeA a) {
         TypeB b = (TypeB) a;
-        TypeC c = ((TypeC) a); // violation
+        TypeC c = ((TypeC) a); // violation 'Unnecessary parentheses around assignment right.*side'
         int r = 12345;
         r <<= (3); // 2 violations
-        TypeParameterized<String> d = ((TypeParameterized<String>) a); // violation
+        GenT<String> d = ((GenT<String>) a); // violation 'paren.* around assignment right.*side'
     }
 
     private void print(int arg)
@@ -108,8 +108,8 @@ public class InputUnnecessaryParenthesesOperatorsAndCasts {
         return 0;
     }
 
-    static class TypeParameterized<T> {}
-    static class TypeA extends TypeParameterized<String> {}
+    static class GenT<T> {}
+    static class TypeA extends GenT<String> {}
     static class TypeB extends TypeA {}
     static class TypeC extends TypeA {}
 }
