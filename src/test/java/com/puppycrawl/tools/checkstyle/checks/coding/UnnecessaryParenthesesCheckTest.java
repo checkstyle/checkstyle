@@ -91,7 +91,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "92:19: " + getCheckMessage(MSG_ASSIGN),
             "94:11: " + getCheckMessage(MSG_ASSIGN),
             "94:16: " + getCheckMessage(MSG_LITERAL, "3"),
-            "95:39: " + getCheckMessage(MSG_ASSIGN),
+            "95:26: " + getCheckMessage(MSG_ASSIGN),
             "106:11: " + getCheckMessage(MSG_ASSIGN),
             "106:14: " + getCheckMessage(MSG_STRING, "\"12345678901234567890123\""),
         };
@@ -116,11 +116,11 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "17:35: " + getCheckMessage(MSG_LAMBDA),
             "18:35: " + getCheckMessage(MSG_LAMBDA),
             "25:18: " + getCheckMessage(MSG_LAMBDA),
-            "26:57: " + getCheckMessage(MSG_LAMBDA),
-            "45:25: " + getCheckMessage(MSG_LAMBDA),
-            "45:33: " + getCheckMessage(MSG_LAMBDA),
-            "48:25: " + getCheckMessage(MSG_LAMBDA),
-            "51:31: " + getCheckMessage(MSG_LAMBDA),
+            "28:25: " + getCheckMessage(MSG_LAMBDA),
+            "47:25: " + getCheckMessage(MSG_LAMBDA),
+            "47:33: " + getCheckMessage(MSG_LAMBDA),
+            "50:25: " + getCheckMessage(MSG_LAMBDA),
+            "53:31: " + getCheckMessage(MSG_LAMBDA),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnnecessaryParenthesesLambdas.java"), expected);
@@ -129,17 +129,17 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnnecessaryParenthesesSwitchExpression() throws Exception {
         final String[] expected = {
-            "21:50: " + getCheckMessage(MSG_ASSIGN),
-            "24:19: " + getCheckMessage(MSG_LITERAL, 2),
-            "25:58: " + getCheckMessage(MSG_ASSIGN),
-            "30:28: " + getCheckMessage(MSG_ASSIGN),
-            "32:24: " + getCheckMessage(MSG_IDENT, "case7"),
-            "36:28: " + getCheckMessage(MSG_ASSIGN),
-            "46:50: " + getCheckMessage(MSG_ASSIGN),
-            "48:19: " + getCheckMessage(MSG_LITERAL, 2),
-            "49:58: " + getCheckMessage(MSG_ASSIGN),
-            "53:28: " + getCheckMessage(MSG_ASSIGN),
-            "58:28: " + getCheckMessage(MSG_ASSIGN),
+            "21:31: " + getCheckMessage(MSG_ASSIGN),
+            "24:13: " + getCheckMessage(MSG_LITERAL, 2),
+            "25:39: " + getCheckMessage(MSG_ASSIGN),
+            "30:18: " + getCheckMessage(MSG_ASSIGN),
+            "32:16: " + getCheckMessage(MSG_IDENT, "g"),
+            "36:18: " + getCheckMessage(MSG_ASSIGN),
+            "46:31: " + getCheckMessage(MSG_ASSIGN),
+            "48:13: " + getCheckMessage(MSG_LITERAL, 2),
+            "49:39: " + getCheckMessage(MSG_ASSIGN),
+            "53:18: " + getCheckMessage(MSG_ASSIGN),
+            "58:18: " + getCheckMessage(MSG_ASSIGN),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
@@ -150,17 +150,17 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnnecessaryParenthesesTextBlocks() throws Exception {
         final String[] expected = {
-            "19:27: " + getCheckMessage(MSG_STRING, "\"this\""),
-            "19:38: " + getCheckMessage(MSG_STRING, "\"that\""),
-            "19:49: " + getCheckMessage(MSG_STRING, "\"other\""),
-            "20:27: " + getCheckMessage(MSG_STRING, "\"\\n     "
-                + "           this\""),
-            "22:20: " + getCheckMessage(MSG_STRING, "\"\\n     "
-                + "           that\""),
-            "24:20: " + getCheckMessage(MSG_STRING, "\"\\n     "
-                + "           other\""),
-            "27:27: " + getCheckMessage(MSG_STRING, "\"\\n                this i...\""),
-            "28:40: " + getCheckMessage(MSG_STRING, "\"\\n                and an...\""),
+            "19:23: " + getCheckMessage(MSG_STRING, "\"this\""),
+            "19:34: " + getCheckMessage(MSG_STRING, "\"that\""),
+            "19:45: " + getCheckMessage(MSG_STRING, "\"other\""),
+            "20:23: " + getCheckMessage(MSG_STRING, "\"\\n     "
+                + "   this\""),
+            "22:12: " + getCheckMessage(MSG_STRING, "\"\\n     "
+                + "   that\""),
+            "24:12: " + getCheckMessage(MSG_STRING, "\"\\n     "
+                + "   other\""),
+            "27:23: " + getCheckMessage(MSG_STRING, "\"\\n        this is a test...\""),
+            "28:32: " + getCheckMessage(MSG_STRING, "\"\\n        and another li...\""),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
