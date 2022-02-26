@@ -15,17 +15,17 @@ tokens = (default)EXPR, IDENT, NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG, \
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 
 public class InputUnnecessaryParenthesesCheckTextBlocks {
-    void method() {
-        String string1 = ("this") + ("that") + ("other"); // 3 violations
-        String string2 = ("""
-                this""") // violation above
-                + ("""
-                that""") // violation above
-                + ("""
-                other"""); // violation above
-        // violation below
-        String string3 = ("""
-                this is a test.""") + ("""
-                and another line"""); // violation above
-    }
+  void method() {
+    String string1 = ("this") + ("that") + ("other"); // 3 violations
+    String string2 = ("""
+        this""") // violation above 'Unnecessary parentheses around string "\\n        this\"'
+        + ("""
+        that""") // violation above 'Unnecessary parentheses around string "\\n        that\"'
+        + ("""
+        other"""); // violation above 'Unnecessary parentheses around string "\\n        other\"'
+    // violation below 'Unnecessary parentheses around string "\\n        this is a test...\"'
+    String string3 = ("""
+        this is a test.""") + ("""
+        and another line"""); // violation above 'paren.* around string "\\n\s* and another li...\"'
+  }
 }
