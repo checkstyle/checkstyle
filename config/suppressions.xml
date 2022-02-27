@@ -174,4 +174,12 @@
   <!-- DetailAST API requires large number of methods -->
   <suppress checks="MethodCount"
             files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]DetailAstImpl.java"/>
+
+  <!-- EmptyLineSeparatorCheck -->
+  <suppress checks="MethodCount"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]whitespace[\\/]EmptyLineSeparatorCheck.java"/>
+  <suppress checks="CyclomaticComplexity"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]whitespace[\\/]EmptyLineSeparatorCheck.java"/>
+  <suppress checks="NPathComplexity"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]whitespace[\\/]EmptyLineSeparatorCheck.java"/>
 </suppressions>
