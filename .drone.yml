@@ -84,7 +84,7 @@ steps:
   - ./.ci/drone-io.sh restore-maven-cache
 
 - name: release-dry-run
-  image: *default-image
+  image: &default-image maven:3.8.4-openjdk-11
   environment:
     MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
   volumes:
