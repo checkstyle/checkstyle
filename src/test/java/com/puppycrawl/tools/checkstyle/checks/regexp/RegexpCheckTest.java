@@ -41,14 +41,16 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     public void testGetAcceptableTokens() {
         final RegexpCheck regexpCheck = new RegexpCheck();
         assertWithMessage("RegexpCheck#getAcceptableTokens should return empty array by default")
-                .that(regexpCheck.getAcceptableTokens()).isEmpty();
+                .that(regexpCheck.getAcceptableTokens())
+                .isEmpty();
     }
 
     @Test
     public void testGetRequiredTokens() {
         final RegexpCheck checkObj = new RegexpCheck();
         assertWithMessage("RegexpCheck#getRequiredTokens should return empty array by default")
-                .that(checkObj.getRequiredTokens()).isEmpty();
+                .that(checkObj.getRequiredTokens())
+                .isEmpty();
     }
 
     @Test

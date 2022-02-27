@@ -126,7 +126,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  *
- * @since 10.0
+ * @since 10.1
  */
 @StatelessCheck
 public class ChainedMethodCallWrapCheck extends AbstractCheck {
