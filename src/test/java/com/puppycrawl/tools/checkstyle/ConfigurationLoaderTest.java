@@ -367,7 +367,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         catch (ReflectiveOperationException ex) {
             assertWithMessage("Invalid exception cause message")
                 .that(ex)
-                .hasCauseThat().hasMessageThat()
+                .hasCauseThat()
+                .hasMessageThat()
                 .isEqualTo("Syntax error in property: ${a");
         }
     }
@@ -383,7 +384,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         catch (ReflectiveOperationException ex) {
             assertWithMessage("Invalid exception cause message")
                 .that(ex)
-                .hasCauseThat().hasMessageThat()
+                .hasCauseThat()
+                .hasMessageThat()
                 .isEqualTo("Property ${c} has not been set");
         }
     }
@@ -524,7 +526,9 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                 .isInstanceOf(CheckstyleException.class);
             assertWithMessage("Invalid exception cause message")
                 .that(ex)
-                .hasCauseThat().hasCauseThat().hasMessageThat()
+                .hasCauseThat()
+                .hasCauseThat()
+                .hasMessageThat()
                 .isEqualTo("Property ${nonexistent} has not been set");
         }
     }

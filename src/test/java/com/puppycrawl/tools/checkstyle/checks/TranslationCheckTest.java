@@ -225,7 +225,8 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         final Set<String> keys = TestUtil.invokeMethod(check, "getTranslationKeys",
                 new File(".no.such.file"));
         assertWithMessage("Translation keys should be empty when File is not found")
-                .that(keys).isEmpty();
+                .that(keys)
+                .isEmpty();
 
         assertWithMessage("expected number of errors to fire")
             .that(dispatcher.savedErrors)
