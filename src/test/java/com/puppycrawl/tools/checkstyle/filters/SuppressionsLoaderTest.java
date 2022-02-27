@@ -60,9 +60,9 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
     @Test
     public void testLoadFromUrl() throws Exception {
         final String[] urlCandidates = {
-            "https://checkstyle.org/files/suppressions_none.xml",
             "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/site/resources/"
                 + "files/suppressions_none.xml",
+            "https://checkstyle.org/files/suppressions_none.xml",
         };
         FilterSet actualFilterSet = null;
 
