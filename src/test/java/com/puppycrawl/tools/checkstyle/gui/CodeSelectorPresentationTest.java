@@ -84,7 +84,8 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
                 .that(selector.getSelectionStart())
                 .isEqualTo(94);
         assertWithMessage("Invalid selection end")
-                .that(selector.getSelectionEnd()).isEqualTo(279);
+                .that(selector.getSelectionEnd())
+                .isEqualTo(279);
     }
 
     @Test

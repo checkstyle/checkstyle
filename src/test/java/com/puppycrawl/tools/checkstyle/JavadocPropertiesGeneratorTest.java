@@ -211,7 +211,8 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
                     .isInstanceOf(FileNotFoundException.class);
             assertWithMessage("Invalid error message")
                     .that(cause)
-                    .hasMessageThat().contains("..");
+                    .hasMessageThat()
+                    .contains("..");
         }
         assertWithMessage("Unexpected error log")
             .that(systemErr.getCapturedData())
@@ -348,7 +349,8 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
                     .isInstanceOf(IllegalStateException.class);
             assertWithMessage("Invalid error message")
                     .that(cause)
-                    .hasMessageThat().contains("9:0: mismatched input '!' expecting '}'");
+                    .hasMessageThat()
+                    .contains("9:0: mismatched input '!' expecting '}'");
         }
     }
 

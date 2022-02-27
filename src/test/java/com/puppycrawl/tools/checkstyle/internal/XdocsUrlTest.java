@@ -116,7 +116,8 @@ public class XdocsUrlTest {
                             + "is not consistent with check name in text in file '%s'",
                     checkNameInAttribute, AVAILABLE_CHECKS_PATH);
             assertWithMessage(checkNameInconsistentErrorMsg)
-                    .that(checkNameInText).matches(checkNameInAttribute);
+                    .that(checkNameInText)
+                    .matches(checkNameInAttribute);
             final String checkNameModuleErrorMsg = String.format(Locale.ROOT,
                     "Check with name '%s' is not in '%s' module",
                     checkNameInAttribute, moduleName);
