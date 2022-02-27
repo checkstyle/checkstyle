@@ -258,7 +258,8 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
         assertWithMessage("XpathRegressionTest is missing for [" + String.join(", ", allChecks)
                 + "]. Please add them to src/it/java/org/checkstyle/suppressionxpathfilter")
-                        .that(allChecks).isEmpty();
+                        .that(allChecks)
+                        .isEmpty();
     }
 
     @Test

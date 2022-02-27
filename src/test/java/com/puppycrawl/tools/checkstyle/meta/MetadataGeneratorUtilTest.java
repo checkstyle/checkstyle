@@ -68,7 +68,8 @@ public final class MetadataGeneratorUtilTest {
                 .collect(Collectors.toCollection(LinkedHashSet::new));
         checkstyleModules.removeAll(modulesContainingNoMetadataFile);
         assertWithMessage("Number of generated metadata files dont match with number of checkstyle "
-                + "module").that(metaFiles).isEqualTo(checkstyleModules);
+                + "module").that(metaFiles)
+                .isEqualTo(checkstyleModules);
     }
 
     /**
