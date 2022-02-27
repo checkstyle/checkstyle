@@ -82,7 +82,8 @@ public class StaticVariableNameCheckTest
             TokenTypes.VARIABLE_DEF,
         };
         assertWithMessage("Default acceptable tokens are invalid")
-                .that(actual).isEqualTo(expected);
+                .that(actual)
+                .isEqualTo(expected);
     }
 
 }

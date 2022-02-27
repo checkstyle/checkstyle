@@ -40,7 +40,8 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
         final MissingJavadocTypeCheck missingJavadocTypeCheck = new MissingJavadocTypeCheck();
         assertWithMessage(
                 "MissingJavadocTypeCheck#getRequiredTokens should return empty array by default")
-                        .that(missingJavadocTypeCheck.getRequiredTokens()).isEmpty();
+                        .that(missingJavadocTypeCheck.getRequiredTokens())
+                        .isEmpty();
     }
 
     @Test

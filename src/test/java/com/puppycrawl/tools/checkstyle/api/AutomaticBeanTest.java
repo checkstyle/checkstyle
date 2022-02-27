@@ -223,7 +223,8 @@ public class AutomaticBeanTest {
 
         final String message = "invalid result";
         assertWithMessage(message)
-                .that(bean.strings).asList()
+                .that(bean.strings)
+                .asList()
                 .containsExactly("a", "b", "c")
                 .inOrder();
         assertWithMessage(message)
@@ -239,7 +240,8 @@ public class AutomaticBeanTest {
                 .that(bean.uri)
                 .isEqualTo(new URI("http://github.com"));
         assertWithMessage(message)
-                .that(bean.accessModifiers).asList()
+                .that(bean.accessModifiers)
+                .asList()
                 .containsExactly(AccessModifierOption.PUBLIC, AccessModifierOption.PRIVATE)
                 .inOrder();
     }

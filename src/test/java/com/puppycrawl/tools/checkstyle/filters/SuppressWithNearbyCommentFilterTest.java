@@ -363,7 +363,8 @@ public class SuppressWithNearbyCommentFilterTest
         catch (CheckstyleException ex) {
             assertWithMessage("Invalid exception message")
                 .that(ex)
-                .hasCauseThat().hasMessageThat()
+                .hasCauseThat()
+                .hasMessageThat()
                 .isEqualTo("unable to parse influence"
                         + " from 'SUPPRESS CHECKSTYLE MemberNameCheck' using a");
         }
