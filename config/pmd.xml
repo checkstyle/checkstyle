@@ -112,7 +112,8 @@
       | //ClassOrInterfaceDeclaration[@SimpleName='HandlerFactory']
               //MethodDeclaration[@Name='getHandler']
       | //ClassOrInterfaceDeclaration[@SimpleName='JavaAstVisitor']
-              //MethodDeclaration[@Name='visitWildCardTypeArgument']"/>
+              //MethodDeclaration[@Name='visitWildCardTypeArgument']
+      | //ClassOrInterfaceDeclaration[@SimpleName='EmptyLineSeparatorCheck']"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/EmptyMethodInAbstractClassShouldBeAbstract">
