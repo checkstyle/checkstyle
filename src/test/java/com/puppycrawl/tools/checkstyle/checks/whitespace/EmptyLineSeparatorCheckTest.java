@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparat
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_MULTIPLE_LINES_AFTER;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_MULTIPLE_LINES_INSIDE;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_SHOULD_NOT_BE_SEPARATED;
 
 import org.junit.jupiter.api.Test;
 
@@ -82,6 +83,41 @@ public class EmptyLineSeparatorCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparator2.java"), expected);
+    }
+
+    @Test
+    public void testRequireEmptyLineAfterBlockStart() throws Exception {
+        final String[] expected = {
+                "15:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "STATIC_INIT"),
+                "21:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
+                "25:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+                "27:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+                "28:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CTOR_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorEmptyLineAfterBlockStart.java"), expected);
+    }
+
+    @Test
+    public void testAllowNoEmptyLineBeforeBlockEnd() throws Exception {
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_SHOULD_NOT_BE_SEPARATED, "}"),
+            "31:9: " + getCheckMessage(MSG_SHOULD_NOT_BE_SEPARATED, "}"),
+            "33:5: " + getCheckMessage(MSG_SHOULD_NOT_BE_SEPARATED, "}"),
+            "35:1: " + getCheckMessage(MSG_SHOULD_NOT_BE_SEPARATED, "}"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorNoEmptyLineBeforeBlockEnd.java"), expected);
+    }
+
+    @Test
+    public void testNoRightCurlyDisablesAllowNoEmptyLineBeforeBlockEnd() throws Exception {
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CTOR_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorNoEmptyLineBeforeBlockEndNoRightCurly.java"),
+                expected);
     }
 
     @Test
@@ -295,6 +331,7 @@ public class EmptyLineSeparatorCheckTest
             TokenTypes.VARIABLE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.RCURLY,
         };
         assertWithMessage("Default acceptable tokens are invalid")
             .that(actual)
