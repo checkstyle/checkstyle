@@ -801,7 +801,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .isInstanceOf(InternalError.class);
             assertWithMessage("Error message is not expected")
                     .that(error)
-                    .hasCauseThat().hasCauseThat().hasMessageThat()
+                    .hasCauseThat()
+                    .hasCauseThat()
+                    .hasMessageThat()
                     .isEqualTo(errorMessage);
         }
     }
@@ -852,10 +854,14 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .isInstanceOf(IOError.class);
             assertWithMessage("Error cause is not InternalError")
                     .that(error)
-                    .hasCauseThat().hasCauseThat()
+                    .hasCauseThat()
+                    .hasCauseThat()
                     .isInstanceOf(InternalError.class);
             assertWithMessage("Error message is not expected")
-                    .that(error).hasCauseThat().hasCauseThat().hasMessageThat()
+                    .that(error)
+                    .hasCauseThat()
+                    .hasCauseThat()
+                    .hasMessageThat()
                     .isEqualTo(errorMessage);
         }
     }
@@ -1157,7 +1163,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .isInstanceOf(IOError.class);
             assertWithMessage("Error message is not expected")
                     .that(error)
-                    .hasCauseThat().hasCauseThat().hasMessageThat()
+                    .hasCauseThat()
+                    .hasCauseThat()
+                    .hasMessageThat()
                     .isEqualTo(errorMessage);
 
             // destroy is called by Main
@@ -1225,7 +1233,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .isInstanceOf(IOError.class);
             assertWithMessage("Error message is not expected")
                     .that(error)
-                    .hasCauseThat().hasCauseThat().hasMessageThat()
+                    .hasCauseThat()
+                    .hasCauseThat()
+                    .hasMessageThat()
                     .isEqualTo(errorMessage);
 
             // destroy is called by Main
@@ -1280,7 +1290,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .isInstanceOf(SecurityException.class);
             assertWithMessage("Error message is not expected")
                     .that(ex)
-                    .hasCauseThat().hasMessageThat()
+                    .hasCauseThat()
+                    .hasMessageThat()
                     .isEqualTo(errorMessage);
         }
     }
@@ -1331,7 +1342,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .isInstanceOf(SecurityException.class);
             assertWithMessage("Error message is not expected")
                     .that(ex)
-                    .hasCauseThat().hasMessageThat()
+                    .hasCauseThat()
+                    .hasMessageThat()
                     .isEqualTo(errorMessage);
 
             // destroy is called by Main

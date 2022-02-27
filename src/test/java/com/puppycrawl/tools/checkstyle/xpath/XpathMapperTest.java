@@ -562,7 +562,8 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> objectNodes = getXpathItems(objectXpath, rootNode);
         assertWithMessage("Invalid number of nodes")
-                .that(objectNodes).hasSize(1);
+                .that(objectNodes)
+                .hasSize(1);
         final AbstractNode objNode = (AbstractNode) objectNodes.get(0);
         final String methodsXpath = "self::OBJBLOCK";
         final DetailAST[] actual = convertToArray(getXpathItems(methodsXpath, objNode));
