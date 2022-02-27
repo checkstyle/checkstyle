@@ -77,7 +77,8 @@ public class SuppressionXpathSingleFilterTest
         final TreeWalkerAuditEvent ev = createEvent(3, 0,
                 TokenTypes.CLASS_DEF);
         assertWithMessage("Event should be accepted")
-            .that(filter.accept(ev)).isTrue();
+            .that(filter.accept(ev))
+            .isTrue();
     }
 
     @Test
@@ -89,7 +90,8 @@ public class SuppressionXpathSingleFilterTest
         final TreeWalkerAuditEvent ev = createEvent(100, 0,
                 TokenTypes.CLASS_DEF);
         assertWithMessage("Event should be accepted")
-            .that(filter.accept(ev)).isTrue();
+            .that(filter.accept(ev))
+            .isTrue();
     }
 
     @Test
@@ -101,7 +103,8 @@ public class SuppressionXpathSingleFilterTest
         final TreeWalkerAuditEvent ev = createEvent(3, 100,
                 TokenTypes.CLASS_DEF);
         assertWithMessage("Event should be accepted")
-            .that(filter.accept(ev)).isTrue();
+            .that(filter.accept(ev))
+            .isTrue();
     }
 
     @Test
@@ -166,7 +169,8 @@ public class SuppressionXpathSingleFilterTest
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null,
                 null, null, null);
         assertWithMessage("Event should be accepted")
-            .that(filter.accept(ev)).isTrue();
+            .that(filter.accept(ev))
+            .isTrue();
     }
 
     @Test
@@ -178,7 +182,8 @@ public class SuppressionXpathSingleFilterTest
         final TreeWalkerAuditEvent ev = createEvent(3, 0,
                 TokenTypes.CLASS_DEF);
         assertWithMessage("Event should be accepted")
-            .that(filter.accept(ev)).isTrue();
+            .that(filter.accept(ev))
+            .isTrue();
     }
 
     @Test
@@ -218,7 +223,8 @@ public class SuppressionXpathSingleFilterTest
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null,
                 file.getName(), null, null);
         assertWithMessage("Event should be accepted")
-            .that(filter.accept(ev)).isTrue();
+            .that(filter.accept(ev))
+            .isTrue();
     }
 
     @Test
@@ -234,7 +240,8 @@ public class SuppressionXpathSingleFilterTest
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents, file.getName(),
                 message, JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
         assertWithMessage("Event should be accepted")
-            .that(filter.accept(ev)).isTrue();
+            .that(filter.accept(ev))
+            .isTrue();
     }
 
     @Test
@@ -267,7 +274,8 @@ public class SuppressionXpathSingleFilterTest
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents, file.getName(),
                 message, JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
         assertWithMessage("Event should be accepted")
-            .that(filter.accept(ev)).isTrue();
+            .that(filter.accept(ev))
+            .isTrue();
     }
 
     @Test
@@ -279,7 +287,8 @@ public class SuppressionXpathSingleFilterTest
         final TreeWalkerAuditEvent ev = createEvent(3, 0,
                 TokenTypes.CLASS_DEF);
         assertWithMessage("Event should be accepted")
-            .that(filter.accept(ev)).isTrue();
+            .that(filter.accept(ev))
+            .isTrue();
     }
 
     @Test
@@ -290,7 +299,8 @@ public class SuppressionXpathSingleFilterTest
         final TreeWalkerAuditEvent ev = createEvent(3, 0,
                 TokenTypes.CLASS_DEF);
         assertWithMessage("Event should be accepted")
-            .that(filter.accept(ev)).isTrue();
+            .that(filter.accept(ev))
+            .isTrue();
     }
 
     @Test

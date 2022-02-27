@@ -43,7 +43,8 @@ public class AnnotationUtilTest {
         catch (ReflectiveOperationException ex) {
             assertWithMessage("Invalid exception message")
                 .that(ex)
-                .hasCauseThat().hasMessageThat()
+                .hasCauseThat()
+                .hasMessageThat()
                 .isEqualTo("do not instantiate.");
         }
     }

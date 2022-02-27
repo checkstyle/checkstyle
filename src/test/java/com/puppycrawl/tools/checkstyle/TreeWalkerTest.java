@@ -347,7 +347,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalker.processFiltered(file, fileText);
         final Collection<Checks> checks = TestUtil.getInternalState(treeWalker, "ordinaryChecks");
         assertWithMessage("No checks -> No parsing")
-            .that(checks).isEmpty();
+            .that(checks)
+            .isEmpty();
     }
 
     @Test
@@ -436,7 +437,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalker.processFiltered(file, fileText);
         final Collection<Checks> checks = TestUtil.getInternalState(treeWalker, "ordinaryChecks");
         assertWithMessage("No checks -> No parsing")
-            .that(checks).isEmpty();
+            .that(checks)
+            .isEmpty();
     }
 
     @Test

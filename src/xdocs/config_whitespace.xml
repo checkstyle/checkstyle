@@ -17,7 +17,7 @@
     </section>
 
     <section name="ChainedMethodCallWrap">
-      <p>Since Checkstyle 10.0</p>
+      <p>Since Checkstyle 10.1</p>
       <subsection name="Description" id="ChainedMethodCallWrap_Description">
         <p>
           Checks whether method calls specified by identifier pattern are wrapped.
@@ -39,7 +39,7 @@
               <td>Specify methods to be checked.</td>
               <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^$"</code></td>
-              <td>10.0</td>
+              <td>10.1</td>
             </tr>
             <tr>
               <td>maxCallsPerLine</td>
@@ -50,7 +50,7 @@
               </td>
               <td><a href="property_types.html#int">int</a></td>
               <td><code>1</code></td>
-              <td>10.0</td>
+              <td>10.1</td>
             </tr>
             <tr>
               <td>maxSingleLineCalls</td>
@@ -61,7 +61,7 @@
               </td>
               <td><a href="property_types.html#int">int</a></td>
               <td><code>1</code></td>
-              <td>10.0</td>
+              <td>10.1</td>
             </tr>
           </table>
         </div>
