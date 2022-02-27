@@ -195,7 +195,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         assertWithMessage("Result should be empty")
-            .that(actual).isEmpty();
+            .that(actual)
+            .isEmpty();
     }
 
     @Test
