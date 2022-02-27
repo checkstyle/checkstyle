@@ -65,4 +65,10 @@
                         //MethodDeclaration[@Name='fillChecksFromCodingPackage']"/>
     </properties>
   </rule>
+  <rule ref="category/java/design.xml/NPathComplexity">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@SimpleName='EmptyLineSeparatorCheck']"/>
+    </properties>
+  </rule>
 </ruleset>
