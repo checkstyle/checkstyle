@@ -111,7 +111,7 @@
         <ul>
           <li>
             Support patterns in switch (preview-feature in Java 17) as described by JEP 406.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/10848">#10848</a>
           </li>
           <li>
@@ -124,7 +124,7 @@
         <ul>
           <li>
             OutOfMemory following CheckStyle 9.X upgrade.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/10934">#10934</a>
           </li>
           <li>
@@ -174,12 +174,12 @@
           </li>
           <li>
             Run regression testing in CI over openjdk17.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/11185">#11185</a>
           </li>
           <li>
             Let &#39;site&#39; Github action to generate javadoc.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/11228">#11228</a>
           </li>
           <li>
@@ -194,7 +194,7 @@
           </li>
           <li>
             Update `bump-license-year.sh` to use `g4` file extension..
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/11203">#11203</a>
           </li>
           <li>
@@ -280,12 +280,12 @@
           </li>
           <li>
             Version 9.x Reports Whitespace Before Paren After String with Emojis.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/11001">#11001</a>
           </li>
           <li>
             TrailingCommentsCheck ignores first comment character.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/10997">#10997</a>
           </li>
         </ul>
@@ -332,7 +332,7 @@
           </li>
           <li>
             Remove `illegal-access=warn` workaround for JDK16.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/11067">#11067</a>
           </li>
           <li>
@@ -413,7 +413,7 @@
         <ul>
           <li>
             Record inside interface is treated as method.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/10978">#10978</a>
           </li>
         </ul>
@@ -438,7 +438,7 @@
           <li>
             Version 9.x reports NoWhitespaceBefore error on semicolon or comma
             after string with emoji.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/10920">#10920</a>
           </li>
           <li>
@@ -583,7 +583,7 @@
           </li>
           <li>
             WhitespaceAround misrecognizes white spaces after emojis.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/10837">#10837</a>
           </li>
         </ul>
