@@ -120,7 +120,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck",
             "com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck",
             "com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck",
