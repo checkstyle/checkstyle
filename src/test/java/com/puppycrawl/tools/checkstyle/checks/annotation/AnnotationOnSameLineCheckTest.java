@@ -40,7 +40,8 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
         final AnnotationOnSameLineCheck check = new AnnotationOnSameLineCheck();
         assertWithMessage(
                 "AnnotationOnSameLineCheck#getRequiredTokens should return empty array by default")
-                        .that(check.getRequiredTokens()).isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
+                        .that(check.getRequiredTokens())
+                        .isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
     }
 
     @Test

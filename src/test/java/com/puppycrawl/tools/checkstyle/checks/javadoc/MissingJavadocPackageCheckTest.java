@@ -143,7 +143,8 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
             TokenTypes.PACKAGE_DEF,
         };
         assertWithMessage("Acceptable required tokens are invalid")
-                .that(check.getAcceptableTokens()).isEqualTo(expected);
+                .that(check.getAcceptableTokens())
+                .isEqualTo(expected);
         assertWithMessage("Default required tokens are invalid")
                 .that(check.getDefaultTokens())
                 .isEqualTo(expected);
