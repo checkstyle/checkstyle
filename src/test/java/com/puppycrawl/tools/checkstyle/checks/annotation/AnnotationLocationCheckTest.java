@@ -41,7 +41,8 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
         final AnnotationLocationCheck checkObj = new AnnotationLocationCheck();
         assertWithMessage(
                 "AnnotationLocationCheck#getRequiredTokens should return empty array by default")
-                        .that(checkObj.getRequiredTokens()).isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
+                        .that(checkObj.getRequiredTokens())
+                        .isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
     }
 
     @Test
