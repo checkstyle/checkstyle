@@ -20,7 +20,7 @@ class DerivedClass extends InputEqualsAvoidNullSuperClass {
     }
 
     void m2() {
-        if (this.classField.equals("JKHKJ")) { // violation
+        if (this.classField.equals("JKHKJ")) { // violation 'left.*of.*equals'
         }
     }
 }
