@@ -191,10 +191,10 @@ public class WhitespaceAfterCheckTest
     public void testVarargs() throws Exception {
         final String[] expected = {
             "14:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
-            "17:67: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
-            "20:42: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
-            "27:45: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
-            "36:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "18:25: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "22:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "30:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "39:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
         };
         verifyWithInlineConfigParser(getPath("InputWhitespaceAfterVarargs.java"), expected);
     }
@@ -221,7 +221,7 @@ public class WhitespaceAfterCheckTest
         final String[] expected = {
             "17:29: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
             "19:29: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
-            "27:49: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
+            "28:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
         };
 
         verifyWithInlineConfigParser(getPath("InputWhitespaceAfterLambdaExpressions.java"),
