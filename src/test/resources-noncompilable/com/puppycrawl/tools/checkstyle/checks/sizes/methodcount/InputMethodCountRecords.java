@@ -15,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.methodcount;
 
 public class InputMethodCountRecords {
 
-    record MyTestRecord() { // violation
+    record MyTestRecord() { // violation 'Total number of methods is 3 (max allowed is 2).'
         void foo() {
         }
 
@@ -47,7 +47,7 @@ public class InputMethodCountRecords {
         }
 
         Record foo2() {
-            record InMethodDef(int x){ // violation
+            record InMethodDef(int x){ // violation 'Total .* methods is 3 (max allowed is 2).'
                 void foo() {
                 }
 
@@ -65,7 +65,7 @@ public class InputMethodCountRecords {
         }
     }
 
-    record MyTestRecordOuter() { // violation
+    record MyTestRecordOuter() { // violation 'Total .* methods is 3 (max allowed is 2).'
         void foo() {
         }
 
@@ -75,7 +75,7 @@ public class InputMethodCountRecords {
         void foo3() {
         }
 
-        record MyTestRecordInner1() { // violation
+        record MyTestRecordInner1() { // violation 'Total .* methods is 3 (max allowed is 2).'
             void foo() {
             }
 
@@ -84,7 +84,7 @@ public class InputMethodCountRecords {
 
             void foo3() {
             }
-            record MyTestRecordInner2() { // violation
+            record MyTestRecordInner2() { // violation 'Total .* methods is 4 (max allowed is 2).'
                 void foo() {
                 }
 
@@ -96,7 +96,7 @@ public class InputMethodCountRecords {
                 }
 
                 Record innerMethod() {
-                    record InMethodDef(int x){ // violation
+                    record InMethodDef(int x){ // violation 'Total .* methods is 3 (.* is 2).'
                         void foo() {
                         }
 
