@@ -14,7 +14,7 @@ public class InputEmptyBlockSwitchExpressions {
         switch (k) {
             case ONE:
                 System.out.println("case two");
-            case TWO, THREE: { // violation
+            case TWO, THREE: { // violation 'Must have at least one statement'
 
             }
 
