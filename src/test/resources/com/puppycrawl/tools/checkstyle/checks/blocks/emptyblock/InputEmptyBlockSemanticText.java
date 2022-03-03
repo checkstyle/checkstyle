@@ -73,7 +73,7 @@ class InputEmptyBlockSemanticText
     }
 
     synchronized void foo() {
-        synchronized (this) {}  // violation
+        synchronized (this) {}  // violation 'Empty synchronized block'
         synchronized (Class.class) { // ok
             synchronized (new Object()) {   // ok
                 // text
