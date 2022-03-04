@@ -48,7 +48,7 @@ class InputEmptyForInitializerPadDefaultConfig
         }
 
         int i = 0;
-        for ( ; i < 1; i++ ) { // violation
+        for ( ; i < 1; i++ ) { // violation '';' is preceded with whitespace'
         }
 
         for (; i < 2; i++ ) {
