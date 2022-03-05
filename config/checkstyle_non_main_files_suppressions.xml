@@ -65,6 +65,8 @@
          files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocPosition.*\.java"/>
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocLeaveToken.*\.java"/>
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/].*[\\/]indentation[\\/]indentation[\\/]InputIndentationLambdaInEnum\.java"/>
 
   <!-- we can not change expected as it will require change of main class logic -->
   <suppress id="lineLength"
