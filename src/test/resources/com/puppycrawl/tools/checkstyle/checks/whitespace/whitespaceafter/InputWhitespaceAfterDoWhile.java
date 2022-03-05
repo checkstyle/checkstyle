@@ -22,6 +22,6 @@ public class InputWhitespaceAfterDoWhile {
         //Invalid
         do {
             testDoWhile();
-        } while(condition());            // violation
+        } while(condition()); // violation ''while' is not followed by whitespace'
     }
 }

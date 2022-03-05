@@ -19,7 +19,7 @@ public class InputMethodCount7 {
     void method2() {
     }
 
-    enum InnerEnum { // violation
+    enum InnerEnum { // violation 'Total number of methods is 2 (max allowed is 1).'
         ;
 
         public static void test1() {

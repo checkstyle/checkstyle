@@ -236,7 +236,9 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
         moduleDetails.setDescription(getDescriptionText());
         if (isTopLevelClassJavadoc()) {
             if (moduleDetails.getDescription().isEmpty()) {
-                log(rootAst.getLineNumber(), MSG_DESC_MISSING, moduleDetails.getName());
+                final String fullQualifiedName = moduleDetails.getFullQualifiedName();
+                log(rootAst.getLineNumber(), MSG_DESC_MISSING,
+                        fullQualifiedName.substring(fullQualifiedName.lastIndexOf('.') + 1));
             }
             else if (writeXmlOutput) {
                 try {

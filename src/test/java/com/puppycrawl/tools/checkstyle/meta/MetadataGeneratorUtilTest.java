@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.meta;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper.MSG_DESC_MISSING;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,14 +29,21 @@ import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.itsallcode.io.Capturable;
+import org.itsallcode.junit.sysextensions.SystemOutGuard;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
-public final class MetadataGeneratorUtilTest {
+@ExtendWith(SystemOutGuard.class)
+public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
 
     private final List<String> modulesContainingNoMetadataFile = Arrays.asList(
             "Checker",
@@ -43,14 +51,55 @@ public final class MetadataGeneratorUtilTest {
             "JavadocMetadataScraper"
     );
 
+    @Override
+    protected String getPackageLocation() {
+        return null;
+    }
+
+    /**
+     * Generates metadata for checkstyle modules and verifies number of
+     * generated metadata modules match the number of checkstyle modules.
+     * Also verifies whether every checkstyle module contains description.
+     *
+     * @param systemOut wrapper for {@code System.out}
+     * @throws Exception if exception occurs during generating metadata or
+     *                   if an I/O error is thrown when accessing the starting file.
+     * @noinspection UseOfSystemOutOrSystemErr
+     */
     @Test
-    public void testMetadataFilesGenerationAllFiles() throws Exception {
+    public void testMetadataFilesGenerationAllFiles(@SystemOutGuard.SysOut Capturable systemOut)
+            throws Exception {
+        systemOut.captureMuted();
 
         MetadataGeneratorUtil.generate(System.getProperty("user.dir")
                         + "/src/main/java/com/puppycrawl/tools/checkstyle",
-                "checks", "filters", "filefilters");
-        final Set<String> metaFiles;
+                System.out, "checks", "filters", "filefilters");
 
+        final String[] expectedErrorMessages = {
+            "31: " + getCheckMessage(MSG_DESC_MISSING, "AbstractSuperCheck"),
+            "45: " + getCheckMessage(MSG_DESC_MISSING, "AbstractHeaderCheck"),
+            "42: " + getCheckMessage(MSG_DESC_MISSING, "AbstractJavadocCheck"),
+            "45: " + getCheckMessage(MSG_DESC_MISSING, "AbstractClassCouplingCheck"),
+            "26: " + getCheckMessage(MSG_DESC_MISSING, "AbstractAccessControlNameCheck"),
+            "30: " + getCheckMessage(MSG_DESC_MISSING, "AbstractNameCheck"),
+            "29: " + getCheckMessage(MSG_DESC_MISSING, "AbstractParenPadCheck"),
+        };
+
+        final String[] actualViolations = systemOut.getCapturedData().split("\\n");
+        final Pattern violationExtractingPattern = Pattern.compile("((?<=:)\\d.*:.*(?=\\s\\[))");
+
+        Arrays.setAll(actualViolations, id -> {
+            final Matcher matcher = violationExtractingPattern.matcher(actualViolations[id]);
+            matcher.find();
+            return matcher.group(1);
+        });
+
+        assertWithMessage("Expected and actual errors do not match")
+                .that(expectedErrorMessages)
+                .asList()
+                .containsExactlyElementsIn(actualViolations);
+
+        final Set<String> metaFiles;
         try (Stream<Path> fileStream = Files.walk(
                 Paths.get(System.getProperty("user.dir") + "/src/main/resources/com/puppycrawl"
                         + "/tools/checkstyle/meta"))) {
@@ -67,8 +116,10 @@ public final class MetadataGeneratorUtilTest {
                 .sorted()
                 .collect(Collectors.toCollection(LinkedHashSet::new));
         checkstyleModules.removeAll(modulesContainingNoMetadataFile);
-        assertWithMessage("Number of generated metadata files dont match with number of checkstyle "
-                + "module").that(metaFiles).isEqualTo(checkstyleModules);
+        assertWithMessage("Number of generated metadata files dont match with "
+                + "number of checkstyle module")
+                .that(metaFiles)
+                .isEqualTo(checkstyleModules);
     }
 
     /**

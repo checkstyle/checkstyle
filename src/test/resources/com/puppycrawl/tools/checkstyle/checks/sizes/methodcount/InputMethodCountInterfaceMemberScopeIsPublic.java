@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.methodcount;
 
 public interface InputMethodCountInterfaceMemberScopeIsPublic {
 
-    enum Enum { // violation
+    enum Enum { // violation 'Number of public methods is 2 (max allowed is 1).'
 
         ;
 
@@ -24,7 +24,7 @@ public interface InputMethodCountInterfaceMemberScopeIsPublic {
 
     }
 
-    class Class { // violation
+    class Class { // violation 'Number of public methods is 2 (max allowed is 1).'
 
         public void method1() {}
 

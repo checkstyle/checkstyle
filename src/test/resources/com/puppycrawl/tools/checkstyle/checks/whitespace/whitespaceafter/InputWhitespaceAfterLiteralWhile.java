@@ -43,7 +43,7 @@ public class InputWhitespaceAfterLiteralWhile {
         }
 
         //Invalid
-        while(condition()) {               // violation
+        while(condition()) { // violation ''while' is not followed by whitespace'
             testWhile();
         }
     }

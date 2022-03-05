@@ -15,10 +15,10 @@ class InputWhitespaceAfterFor
         for (int i = 0; i < 1; i++) {
         }
 
-        for (int i = 0; i < 1;i++) { // violation
+        for (int i = 0; i < 1;i++) { // violation '';' is not followed by whitespace'
         }
 
-        for (int i = 0; i < 1;i++ ) { // violation
+        for (int i = 0; i < 1;i++ ) { // violation '';' is not followed by whitespace'
         }
 
         for (int i = 0; i < 1; i++ ) {

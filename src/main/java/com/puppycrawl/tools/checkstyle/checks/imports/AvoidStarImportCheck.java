@@ -44,7 +44,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
- * Property {@code excludes} - Specify packages where star imports are allowed.
+ * Property {@code excludes} - Specify packages where starred class imports are
+ * allowed and classes where starred static member imports are allowed.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
  * </li>
@@ -126,6 +127,43 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * import java.net.*;                // violation
  * </pre>
  * <p>
+ * To configure the check so that star imports from packages
+ * {@code java.io and java.net} are allowed:
+ * </p>
+ * <pre>
+ * &lt;module name="AvoidStarImport"&gt;
+ *   &lt;property name="allowClassImports" value="true"/&gt;
+ *   &lt;property name="excludes" value="java.io,java.net"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * import java.util.Scanner;         // OK
+ * import java.io.*;                 // OK
+ * import static java.lang.Math.*;   // violation
+ * import java.util.*;               // OK
+ * import java.net.*;                // OK
+ * </pre>
+ * <p>
+ * To configure the check so that star imports from packages
+ * {@code java.io and java.net} as well as static members imports
+ * from all packages are allowed:
+ * </p>
+ * <pre>
+ * &lt;module name="AvoidStarImport"&gt;
+ *   &lt;property name="allowStaticMemberImports" value="true"/&gt;
+ *   &lt;property name="excludes" value="java.io,java.net"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * import java.util.Scanner;         // OK
+ * import java.io.*;                 // OK
+ * import static java.lang.Math.*;   // OK
+ * import java.util.*;               // violation
+ * import java.net.*;                // OK
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -152,7 +190,10 @@ public class AvoidStarImportCheck
     /** Suffix for the star import. */
     private static final String STAR_IMPORT_SUFFIX = ".*";
 
-    /** Specify packages where star imports are allowed. */
+    /**
+     * Specify packages where starred class imports are
+     * allowed and classes where starred static member imports are allowed.
+     */
     private final List<String> excludes = new ArrayList<>();
 
     /**
@@ -192,7 +233,8 @@ public class AvoidStarImportCheck
     }
 
     /**
-     * Setter to specify packages where star imports are allowed.
+     * Setter to specify packages where starred class imports are
+     * allowed and classes where starred static member imports are allowed.
      *
      * @param excludesParam a list of package names/fully-qualifies class names
      *     where star imports are ok.
