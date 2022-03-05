@@ -278,6 +278,31 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
+    public void testInfluenceFormat() throws Exception {
+        final DefaultConfiguration filterCfg =
+            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
+        filterCfg.addProperty("onCommentFormat", "@cs-\\: ([\\w\\|]+) influence (\\d+)");
+        filterCfg.addProperty("offCommentFormat", "BEGIN GENERATED CONTENT");
+        filterCfg.addProperty("checkFormat", "$1");
+        filterCfg.addProperty("influenceFormat", "$2");
+
+        final DefaultConfiguration checkCfg = createModuleConfig(FileTabCharacterCheck.class);
+        checkCfg.addProperty("eachLine", "true");
+
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+
+        final String[] violationMessages = {
+            "5:6: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB)
+        };
+
+        verifySuppressed(
+                "InputSuppressWithPlainTextCommentFilterInfluenceFormat.java",
+                removeSuppressed(violationMessages, suppressed),
+                filterCfg, checkCfg
+        );
+    }
+
+    @Test
     public void testInvalidMessageFormat() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
