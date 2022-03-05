@@ -36,7 +36,7 @@ public class InputWhitespaceAround2
     public void enhancedFor ()
     {
         int[] i = new int[2];
-        for ( int j: i ) { // violation
+        for ( int j: i ) { // violation '':' is not preceded with whitespace'
             System.identityHashCode ( j );
         }
     }

@@ -28,8 +28,8 @@ public class InputWhitespaceAroundDoubleBraceInitialization {
             setProperty("double curly braces", "are not a style error");
         }};
         new Properties() {{
-            setProperty("double curly braces", "are not a style error");}}; // violation
-        new Properties() {{setProperty("double curly braces", "are not a style error"); // violation
+            setProperty("", "");}}; // violation  ''}' is not preceded with whitespace'
+        new Properties() {{setProperty("", ""); // violation ''{' is not followed by whitespace'
         }}; // 2 violations below
         new Properties() {{setProperty("double curly braces", "are not a style error");}};
         new Properties() {{
