@@ -14,5 +14,5 @@ public class InputGenericWhitespaceNested {
     static class IntEnumValue implements IntEnum, NumberEnum<Integer> {}
 
     static class IntEnumValueType<E extends Enum<E
->& IntEnum & NumberEnum<E>> {} // violation
+>& IntEnum & NumberEnum<E>> {} // violation ''&' is not preceded with whitespace.'
 }
