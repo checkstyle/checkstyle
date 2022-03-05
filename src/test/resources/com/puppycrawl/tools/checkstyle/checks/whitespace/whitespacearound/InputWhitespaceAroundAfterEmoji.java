@@ -22,8 +22,8 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 public class InputWhitespaceAroundAfterEmoji {
     String a = "🎄❤️😂" + "🎅🔥😊🎁"; // ok
-    String b = "🎄❤️😂"+ "🎅🔥😊🎁"; // violation
-    String c = "🎄❤️😂" +"🎅🔥😊🎁"; // violation
+    String b = "🎄❤️😂"+ "🎅🔥😊🎁"; // violation ''\+' is not preceded with whitespace'
+    String c = "🎄❤️😂" +"🎅🔥😊🎁"; // violation ''\+' is not followed by whitespace'
     String d = "🎄❤️😂"+"🎅🔥😊🎁"; // 2 violations
     String e = "🎄" + "❤" + "️😂" + "🎅" + "🔥" + "😊" + "🎁"; // ok
     String f = "🎄"+"❤"+"️😂"+"🎅"+"🔥"+"😊"+"🎁"; // 12 violations
