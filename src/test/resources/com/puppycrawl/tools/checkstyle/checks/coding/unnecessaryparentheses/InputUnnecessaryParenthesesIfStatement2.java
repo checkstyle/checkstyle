@@ -25,7 +25,7 @@ public class InputUnnecessaryParenthesesIfStatement2 {
         if (a && !(v && w || x || y && z || u && x)) { // ok
         }
         if (v ||
-                (u || x || y)) { // violation
+                (u || x || y)) { // violation 'Unnecessary parentheses around expression'
         }
         if ((v || x) == // ok
                 (w || y)) {
@@ -36,7 +36,7 @@ public class InputUnnecessaryParenthesesIfStatement2 {
         if (a && v || (w || z) && u || y) { // ok
         }
         if (a && x ||
-                (y || z) // violation
+                (y || z) // violation 'Unnecessary parentheses around expression'
                 || vy && u) {
         }
     }
@@ -48,19 +48,19 @@ public class InputUnnecessaryParenthesesIfStatement2 {
         int d = 32;
         if ((b == c) == a
                 && (
-                        ( // violation
+                        ( // violation 'Unnecessary parentheses around expression'
                             (b==c)==(d>=b)==a!=(c==d))
                     || (b<=c)!=a==(c>=d))) {
             return;
         }
 
-        if (( // violation
+        if (( // violation 'Unnecessary parentheses around expression'
                 a!=(b==c)
-                        && (a // violation
-                        && (b==c))) // violation
-                || (a // violation
+                        && (a // violation 'Unnecessary parentheses around expression'
+                        && (b==c))) // violation 'Unnecessary parentheses around expression'
+                || (a // violation 'Unnecessary parentheses around expression'
                 || a!=(b<=c)) // ok
-                || (a==(b!=d==(c==b) && a!=(b<=c)))) { // violation
+                || (a==(b!=d==(c==b) && a!=(b<=c)))) { // violation 'parentheses around expression'
                                                        // after '||'
             return;
         }
@@ -71,7 +71,7 @@ public class InputUnnecessaryParenthesesIfStatement2 {
         }
 
         if (a && a==(b<=c)==(a
-                && (b<=c))) { // violation
+                && (b<=c))) { // violation 'Unnecessary parentheses around expression'
             return;
         }
 

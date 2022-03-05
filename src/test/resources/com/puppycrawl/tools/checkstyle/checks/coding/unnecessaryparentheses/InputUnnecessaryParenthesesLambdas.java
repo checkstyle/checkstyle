@@ -14,16 +14,18 @@ import java.util.function.Function;
 
 public class InputUnnecessaryParenthesesLambdas {
     int foo(int y) {
-        MathOperation case1 = (x) -> x + x; // violation
-        MathOperation case2 = (x) -> { return x + x; }; // violation
+        MathOperation case1 = (x) -> x + x; // violation 'Unnecessary paren.* around lambda value'
+        MathOperation case2 = (x) -> { return x + x; }; // violation 'paren.* around lambda value'
         MathOperation case3 = (int x) -> x + x;
         MathOperation case4 = x -> x + x;
         MathOperation2 case5 = (a, b) -> a + b;
         MathOperation2 case6 = (int a, int b) -> a + b;
         MathOperation2 case7 = (int a, int b) -> { return a + b; };
         Objects.requireNonNull(null, () -> "message");
-        call((x) -> x + x); // violation
-        new HashSet<Integer>().stream().filter((filter) -> filter > 0); // violation
+        call((x) -> x + x); // violation 'Unnecessary parentheses around lambda value'
+        new HashSet<Integer>()
+            .stream()
+            .filter((f) -> f > 0); // violation 'Unnecessary parentheses around lambda value'
         return y;
     }
 
@@ -45,10 +47,10 @@ public class InputUnnecessaryParenthesesLambdas {
             return (t1) -> (t2) -> apply(t1, t2); // 2 violations
         }
         default Function1<T1, CheckedFunction1<T2, R>> curried3() {
-            return (t1) -> t2 -> apply(t1, t2); // violation
+            return (t1) -> t2 -> apply(t1, t2); // violation 'parentheses around lambda value'
         }
         default Function1<T1, CheckedFunction1<T2, R>> curried4() {
-            return t1 -> (t2) -> apply(t1, t2); // violation
+            return t1 -> (t2) -> apply(t1, t2); // violation 'parentheses around lambda value'
         }
     }
 

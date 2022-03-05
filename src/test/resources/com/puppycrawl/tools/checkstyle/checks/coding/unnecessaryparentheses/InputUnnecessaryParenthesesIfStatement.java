@@ -17,8 +17,7 @@ public class InputUnnecessaryParenthesesIfStatement {
 
     void method(String sectionName) {
         if ("Content".equals(sectionName) || "Overview".equals(sectionName)
-                || (!"AbbreviationAsWordInName".equals(sectionName) // violation
-                                                                    // parenthesis
+                || (!"A".equals(sectionName) // violation 'Unnecessary paren.* around expression'
                 && !"AbstractClassName".equals(sectionName) // ok
         )) {
             System.out.println("sd");
@@ -32,60 +31,59 @@ public class InputUnnecessaryParenthesesIfStatement {
 
         z = (x < y) ? x : y; // ok
 
-        if ((x < y)           // violation
-                && (x > z)) { // violation
+        if ((x < y)           // violation 'Unnecessary parentheses around expression'
+                && (x > z)) { // violation 'Unnecessary parentheses around expression'
             return;
         }
 
         if (((x < y)           // 2 violations
-                && (x > z))) { // violation
+                && (x > z))) { // violation 'Unnecessary parentheses around expression'
             return;
         }
 
         if (!(x <= y)          // ok
-                || (x >= z)) { // violation
+                || (x >= z)) { // violation 'Unnecessary parentheses around expression'
             return;
         }
 
-        if ((x == y)           // violation
-                || (x != z)) { // violation
+        if ((x == y)           // violation 'Unnecessary parentheses around expression'
+                || (x != z)) { // violation 'Unnecessary parentheses around expression'
             return;
         }
 
-        if ((                       // violation
-                (x == y)            // violation
-                        || (x != z) // violation
+        if ((                       // violation 'Unnecessary parentheses around expression'
+                (x == y)            // violation 'Unnecessary parentheses around expression'
+                        || (x != z) // violation 'Unnecessary parentheses around expression'
         )) {
             return;
         }
 
-        if ((Integer.valueOf(x) instanceof Integer) // violation
+        if ((Integer.valueOf(x) instanceof Integer) // violation 'parentheses around expression'
                 || Integer.valueOf(y) instanceof Integer) { // ok
             return;
         }
         if (x == ((y<z) ? y : z) &&
-            ((x>y && y>z)                  // violation
-                    || (!(x<z) && y>z))) { // violation
+            ((x>y && y>z)                  // violation 'Unnecessary parentheses around expression'
+                    || (!(x<z) && y>z))) { // violation 'Unnecessary parentheses around expression'
             return;
         }
-        if ((x >= 0 && y <= 9)            // violation
-                 || (z >= 5 && y <= 5)    // violation
-                 || (z >= 3 && x <= 7)) { // violation
+        if ((x >= 0 && y <= 9)            // violation 'Unnecessary parentheses around expression'
+                 || (z >= 5 && y <= 5)    // violation 'Unnecessary parentheses around expression'
+                 || (z >= 3 && x <= 7)) { // violation 'Unnecessary parentheses around expression'
             return;
         }
         if(x>= 0 && (x<=8 || y<=11) && y>=8) { // ok
             return;
         }
-        if((y>=11 && x<=5)            // violation
-                || (x<=12 && y>=8)) { // violation
+        if((y>=11 && x<=5)            // violation 'Unnecessary parentheses around expression'
+                || (x<=12 && y>=8)) { // violation 'Unnecessary parentheses around expression'
             return;
         }
     }
     private void check() {
         String sectionName = "Some String";
         if ("Some content".equals(sectionName) || "Some overview".equals(sectionName) // ok
-                || (!"AbbreviationAsWordInName".equals(sectionName) // violation
-                                                                    // parenthesis
+                || (!"A".equals(sectionName) // violation 'Unnecessary paren.* around expression'
                 && !"AbstractClassName".equals(sectionName) // ok
         )) {
             return;
@@ -102,14 +100,14 @@ public class InputUnnecessaryParenthesesIfStatement {
         boolean x = true;
         boolean y = true;
         int a = 25;
-        if ((++a) >= 54 && x) { // violation
+        if ((++a) >= 54 && x) { // violation 'Unnecessary parentheses around expression'
             return;
         }
-        if ((~a) > -27            // violation
-                 && (a-- < 30)) { // violation
+        if ((~a) > -27            // violation 'Unnecessary parentheses around expression'
+                 && (a-- < 30)) { // violation 'Unnecessary parentheses around expression'
             return;
         }
-        if ((-a) != -27 // violation
+        if ((-a) != -27 // violation 'Unnecessary parentheses around expression'
                  && x) {
             return;
         }
