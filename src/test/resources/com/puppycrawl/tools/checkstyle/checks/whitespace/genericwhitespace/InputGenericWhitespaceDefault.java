@@ -63,10 +63,10 @@ class InputGenericWhitespaceDefault implements Comparable<Object>, Serializable
     public static class IntEnumValueType<E extends Enum<E> & IntEnum> {
     }
 
-    public static class IntEnumValueType2<E extends Enum<E>& IntEnum> { // violation
+    class IntEnumValueType2<E extends Enum<E>& IntEnum> { // violation ''&' is not preceded .*'
     }
 
-    public static class IntEnumValueType3<E extends Enum<E>  & IntEnum> { // violation
+    class IntEnumValueTyp3<E extends Enum<E>  & IntEnum> { // violation ''>' is followed .*'
     }
 
     public static class IntEnumValueType4<T extends Comparable<List<T>> & IntEnum> {
@@ -84,13 +84,13 @@ Integer> x = new ArrayList<Integer
         Map<Class<?>, Integer> b = (Map<Class<?>, Integer>) a;
     }
     Object ok = new <String>Object();
-    Object notOkStart = new<String>Object(); // violation
-    Object notOkEnd = new <String> Object(); // violation
+    Object notOkStart = new<String>Object(); // violation ''<' is not preceded with whitespace.'
+    Object notOkEnd = new <String> Object(); // violation ''>' is followed by whitespace.'
     Object notOkStartAndEnd = new<String> Object(); // 2 violations
     Object okWithPackage = new <String>java.lang.Object();
     Object ok2 = new <String>Outer.Inner();
-    Object notOkStart2 = new<String>Outer.Inner(); // violation
-    Object notOkEnd2 = new <String> Outer.Inner(); // violation
+    Object notOkStart2 = new<String>Outer.Inner(); // violation ''<' is not preceded .*'
+    Object notOkEnd2 = new <String> Outer.Inner(); // violation '>' is followed by whitespace.'
     Object notOkStartAndEnd2 = new<String> Outer.Inner(); // 2 violations
 }
 interface SupplierFunction<T> extends Map<List<T>, T> {}
