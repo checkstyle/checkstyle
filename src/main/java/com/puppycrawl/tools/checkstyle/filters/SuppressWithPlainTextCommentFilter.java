@@ -679,6 +679,12 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
             return equalsOrNot(other);
         }
 
+        /**
+         * Indicates whether some other object is "equal to" this one.
+         * Suppression on enumeration is needed so code stays consistent.
+         *
+         * @noinspection EqualsCalledOnEnumConstant
+         */
         public boolean equalsOrNot(Object other) {
             final Suppression suppression = (Suppression) other;
             return Objects.equals(lineNo, suppression.lineNo)

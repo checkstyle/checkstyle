@@ -29,6 +29,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -278,13 +279,13 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testInvalidInfluenceFormat() throws Exception {
+    public void testInfluenceFormat() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
-        filterCfg.addProperty("influenceFormat", "a");
-        filterCfg.addProperty("messageFormat", "e[l");
-        filterCfg.addProperty("onCommentFormat", "// cs-on");
-        filterCfg.addProperty("offCommentFormat", "// cs-off");
+        filterCfg.addProperty("onCommentFormat", "@cs-\\: ([\\w\\|]+) influence (\\d+)");
+        filterCfg.addProperty("offCommentFormat", "BEGIN GENERATED CONTENT");
+        filterCfg.addProperty("checkFormat", "$1");
+        filterCfg.addProperty("influenceFormat", "$2");
 
         final DefaultConfiguration checkCfg = createModuleConfig(FileTabCharacterCheck.class);
         checkCfg.addProperty("eachLine", "true");
@@ -292,26 +293,14 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
 
         final String[] violationMessages = {
-            "5:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_FILE_CONTAINS_TAB),
-            "8:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "10:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "5:6: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB)
         };
 
-        try {
-            verifySuppressed(
-                "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
+        verifySuppressed(
+                "InputSuppressWithPlainTextCommentFilterInfluenceFormat.java",
                 removeSuppressed(violationMessages, suppressed),
                 filterCfg, checkCfg
-            );
-            assertWithMessage("CheckstyleException is expected").fail();
-        }
-        catch (CheckstyleException ex) {
-            final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
-            assertWithMessage("Invalid exception message")
-                .that(cause)
-                .hasMessageThat()
-                .isEqualTo("unable to parse expanded comment e[l");
-        }
+        );
     }
 
     @Test
