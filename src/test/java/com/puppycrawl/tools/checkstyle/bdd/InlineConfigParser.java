@@ -122,7 +122,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck",
-            "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck",
             "com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck",
