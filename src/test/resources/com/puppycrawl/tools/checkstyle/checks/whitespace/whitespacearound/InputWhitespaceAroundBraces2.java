@@ -50,7 +50,7 @@ class InputWhitespaceAroundBraces2
         }
 
         // Invalid
-        while(condition()); // violation
+        while(condition()); // violation ''while' is not followed by whitespace'
         while (condition())
             testWhile();
         while (condition())
@@ -67,7 +67,7 @@ class InputWhitespaceAroundBraces2
         }
 
         // Invalid
-        for(int i = 1;i < 5;i++); // violation
+        for(int i = 1;i < 5;i++); // violation ''for' is not followed by whitespace'
         for (int i = 1; i < 5; i++)
             testFor();
         for (int i = 1; i < 5;
