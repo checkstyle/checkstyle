@@ -195,16 +195,6 @@ public class MethodNameCheck
     public static final String MSG_KEY = "method.name.equals.class.name";
 
     /**
-     * {@link Override Override} annotation name.
-     */
-    private static final String OVERRIDE = "Override";
-
-    /**
-     * Canonical {@link Override Override} annotation name.
-     */
-    private static final String CANONICAL_OVERRIDE = "java.lang." + OVERRIDE;
-
-    /**
      * Controls whether to allow a method name to have the same name as the residing class name.
      * This is not to be confused with a constructor. An easy mistake is to place a return type on
      * a constructor declaration which turns it into a method. For example:
@@ -239,8 +229,7 @@ public class MethodNameCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (!AnnotationUtil.containsAnnotation(ast, OVERRIDE)
-            && !AnnotationUtil.containsAnnotation(ast, CANONICAL_OVERRIDE)) {
+        if (!AnnotationUtil.hasOverrideAnnotation(ast)) {
             // Will check the name against the format.
             super.visitToken(ast);
         }

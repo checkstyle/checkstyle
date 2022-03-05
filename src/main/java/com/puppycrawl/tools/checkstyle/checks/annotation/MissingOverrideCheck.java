@@ -184,12 +184,6 @@ public final class MissingOverrideCheck extends AbstractCheck {
     public static final String MSG_KEY_ANNOTATION_MISSING_OVERRIDE =
         "annotation.missing.override";
 
-    /** {@link Override Override} annotation name. */
-    private static final String OVERRIDE = "Override";
-
-    /** Fully-qualified {@link Override Override} annotation name. */
-    private static final String FQ_OVERRIDE = "java.lang." + OVERRIDE;
-
     /** Compiled regexp to match Javadoc tags with no argument and {}. */
     private static final Pattern MATCH_INHERIT_DOC =
             CommonUtil.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
@@ -251,21 +245,10 @@ public final class MissingOverrideCheck extends AbstractCheck {
 
             if (check
                 && containsTag
-                && !hasOverrideAnnotation(ast)) {
+                && !AnnotationUtil.hasOverrideAnnotation(ast)) {
                 log(ast, MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
             }
         }
-    }
-
-    /**
-     * Checks to see if the ast has Override annotation.
-     *
-     * @param ast AST node
-     * @return true if has Override annotation
-     */
-    private static boolean hasOverrideAnnotation(DetailAST ast) {
-        return AnnotationUtil.containsAnnotation(ast, OVERRIDE)
-                || AnnotationUtil.containsAnnotation(ast, FQ_OVERRIDE);
     }
 
     /**
