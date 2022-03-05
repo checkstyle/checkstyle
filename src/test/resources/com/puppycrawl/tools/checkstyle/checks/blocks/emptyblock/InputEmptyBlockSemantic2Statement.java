@@ -24,7 +24,7 @@ class InputEmptyBlockSemantic2Statement
         if (doSideEffect() == 1) {} // violation 'Must have at least one statement'
         while ((a = index - 1) != 0) {} // ok
         for (; index < s.length && s[index] != 'x'; index++) {} // ok
-        if (a == 1) {} else {System.identityHashCode("a");} // violation 'Must have at least one statement'
+        if (a == 1) {} else {a++;}// violation 'Must have at least one statement'
         switch (a) {}   // violation 'Must have at least one statement'
         switch (a) {    // ok
             case 1:

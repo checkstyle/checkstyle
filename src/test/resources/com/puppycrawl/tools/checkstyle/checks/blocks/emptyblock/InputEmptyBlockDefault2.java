@@ -51,7 +51,7 @@ public class InputEmptyBlockDefault2 {
             default: method2(b); {}     // ok
         }
 
-        switch (a+b) {case 1: break; default: {} ; }    // violation 'Must have at least one statement'
+        switch (a+b) {case 1: break; default: {} ; }// violation 'Must have at least one statement'
     }
 
     void method4(int a, int b) {

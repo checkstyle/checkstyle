@@ -36,9 +36,9 @@ class InputEmptyBlockSemanticText
     void exHandlerTest()
     {
         try {
-        }   // violation above
+        }   // violation above 'Empty try block'
         finally {
-        }   // violation above
+        }   // violation above 'Empty finally block'
         try {   // ok
             // something
         }
@@ -66,7 +66,7 @@ class InputEmptyBlockSemanticText
 
     // empty instance initializer
     {
-    }// violation above
+    }// violation above 'Empty INSTANCE_INIT block'
 
     private class InputBraces {
 
@@ -84,7 +84,7 @@ class InputEmptyBlockSemanticText
     static {
 
         int a = 0;}
-    // violation below
+    // violation below 'Empty STATIC_INIT block'
     static {
 
     }
