@@ -80,13 +80,13 @@ public class GenericWhitespaceCheckTest
             "36:20: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, ">"),
             "48:22: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
             "48:29: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
-            "66:59: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
-            "69:59: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "66:35: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
+            "69:35: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
             "87:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
             "88:34: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
             "89:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
             "89:41: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
-            "92:29: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "92:26: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
             "93:35: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
             "94:35: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
             "94:42: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
@@ -138,7 +138,7 @@ public class GenericWhitespaceCheckTest
     @Test
     public void testMethodReferences2() throws Exception {
         final String[] expected = {
-            "16:69: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "16:37: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputGenericWhitespaceMethodRef2.java"), expected);
