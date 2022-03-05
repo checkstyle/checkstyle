@@ -38,9 +38,9 @@ public class InputWhitespaceAroundRecords {
 
     // method
     record MyRecord3() {
-        void method (){ // violation
+        void method (){ // violation ''{' is not preceded with whitespace'
             final int a = 1;
-            int b= 1; // violation
+            int b= 1; // violation ''=' is not preceded with whitespace'
             b=1; // 2 violations
         }
 
@@ -50,7 +50,7 @@ public class InputWhitespaceAroundRecords {
     record MyRecord4() {
         public MyRecord4() {
             final int a = 1;
-            int b= 1; // violation
+            int b= 1; // violation ''=' is not preceded with whitespace'
             b=1; // 2 violations
         }
     }
@@ -59,7 +59,7 @@ public class InputWhitespaceAroundRecords {
     record MyRecord5() {
         public MyRecord5 {
             final int a = 1;
-            int b= 1; // violation
+            int b= 1; // violation ''=' is not preceded with whitespace'
             b=1; // 2 violations
         }
     }
@@ -67,7 +67,7 @@ public class InputWhitespaceAroundRecords {
     // static fields
     record MyRecord6() {
         static final int a = 1;
-        static int b= 1; // violation
+        static int b= 1; // violation ''=' is not preceded with whitespace'
     }
 
     record TestRecord7() {
