@@ -1498,6 +1498,28 @@
                 <exclude>**/JavadocPropertiesGenerator.class</exclude>
                 <!-- generated classes, unfortunately use problematic api -->
                 <exclude>**/JavadocParser.class</exclude>
+                <!-- reason at https://github.com/checkstyle/checkstyle/issues/7759 -->
+                <exclude>**/RegexpCheck.class</exclude>
+                <!-- no code in file, no AST to log -->
+                <exclude>**/NoCodeInFileCheck.class</exclude>
+                <!-- until https://github.com/checkstyle/checkstyle/issues/5770 -->
+                <exclude>**/AbstractJavadocCheck.class</exclude>
+                <exclude>**/AtclauseOrderCheck.class</exclude>
+                <exclude>**/JavadocBlockTagLocationCheck.class</exclude>
+                <exclude>**/JavadocMethodCheck.class</exclude>
+                <exclude>**/JavadocMissingLeadingAsteriskCheck.class</exclude>
+                <exclude>**/JavadocMissingWhitespaceAfterAsteriskCheck.class</exclude>
+                <exclude>**/JavadocParagraphCheck.class</exclude>
+                <exclude>**/JavadocStyleCheck.class</exclude>
+                <exclude>**/JavadocTagContinuationIndentationCheck.class</exclude>
+                <exclude>**/JavadocTypeCheck.class</exclude>
+                <exclude>**/MissingDeprecatedCheck.class</exclude>
+                <exclude>**/NonEmptyAtclauseDescriptionCheck.class</exclude>
+                <exclude>**/RequireEmptyLineBeforeBlockTagGroupCheck.class</exclude>
+                <exclude>**/SingleLineJavadocCheck.class</exclude>
+                <exclude>**/SummaryJavadocCheck.class</exclude>
+                <exclude>**/WriteTagCheck.class</exclude>
+                <exclude>**/JavadocMetadataScraper.class</exclude>
               </excludes>
             </configuration>
           </execution>
