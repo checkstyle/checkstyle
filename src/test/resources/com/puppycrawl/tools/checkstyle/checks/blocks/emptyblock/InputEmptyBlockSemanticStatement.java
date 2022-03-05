@@ -35,14 +35,14 @@ class InputEmptyBlockSemanticStatement
 
     void exHandlerTest()
     {
-        try {   // violation
+        try {   // violation 'Must have at least one statement.'
         }
-        finally {   // violation
+        finally {   // violation 'Must have at least one statement'
         }
-        try {   // violation
+        try {   // violation 'Must have at least one statement'
             // something
         }
-        finally {   // violation
+        finally {   // violation 'Must have at least one statement'
             // something
         }
         try {   // ok
@@ -65,7 +65,7 @@ class InputEmptyBlockSemanticStatement
     }
 
     // empty instance initializer
-    {   // violation
+    {   // violation 'Must have at least one statement'
     }
 
     private class InputBraces {
@@ -73,9 +73,9 @@ class InputEmptyBlockSemanticStatement
     }
 
     synchronized void foo() {
-        synchronized (this) {}  // violation
+        synchronized (this) {}  // violation 'Must have at least one statement'
         synchronized (Class.class) { // ok
-            synchronized (new Object()) {   // violation
+            synchronized (new Object()) {   // violation 'Must have at least one statement'
                 // text
             }
         }
@@ -86,7 +86,7 @@ class InputEmptyBlockSemanticStatement
 
         int a = 0;}
 
-    static {    // violation
+    static {    // violation 'Must have at least one statement'
 
     }
 }
