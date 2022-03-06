@@ -139,7 +139,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck",
             "com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck",
-            "com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck"));
 
