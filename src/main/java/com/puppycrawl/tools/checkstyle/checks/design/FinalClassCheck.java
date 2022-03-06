@@ -28,10 +28,11 @@ import java.util.Optional;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+import com.puppycrawl.tools.checkstyle.utils.TypeDeclDesc;
 
 /**
  * <p>
@@ -107,11 +108,11 @@ public class FinalClassCheck
      */
     private static final String PACKAGE_SEPARATOR = ".";
 
-    /** Keeps ClassDesc objects for all inner classes. */
-    private Map<String, ClassDesc> innerClasses;
+    /** Keeps TypeDeclDesc objects for all inner classes. */
+    private Map<String, TypeDeclDesc> innerClasses;
 
-    /** Keeps ClassDesc objects for stack of declared classes. */
-    private Deque<ClassDesc> classes;
+    /** Keeps TypeDeclDesc objects for stack of declared classes. */
+    private Deque<TypeDeclDesc> classes;
 
     /** Full qualified name of the package. */
     private String packageName;
@@ -151,7 +152,7 @@ public class FinalClassCheck
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.PACKAGE_DEF:
-                packageName = extractQualifiedName(ast.getFirstChild().getNextSibling());
+                packageName = TokenUtil.extractQualifiedName(ast.getFirstChild().getNextSibling());
                 break;
 
             case TokenTypes.ANNOTATION_DEF:
@@ -171,9 +172,9 @@ public class FinalClassCheck
             case TokenTypes.LITERAL_NEW:
                 if (ast.getFirstChild() != null
                         && ast.getLastChild().getType() == TokenTypes.OBJBLOCK) {
-                    for (ClassDesc classDesc : classes) {
-                        if (doesNameOfClassMatchAnonymousInnerClassName(ast, classDesc)) {
-                            classDesc.registerAnonymousInnerClass();
+                    for (TypeDeclDesc typeDeclDesc : classes) {
+                        if (doesNameOfClassMatchAnonymousInnerClassName(ast, typeDeclDesc)) {
+                            typeDeclDesc.registerAnonymousInnerClass();
                         }
                     }
                 }
@@ -190,8 +191,9 @@ public class FinalClassCheck
      * @param ast the token to process
      */
     private void visitClass(DetailAST ast) {
-        final String qualifiedClassName = getQualifiedClassName(ast);
-        final ClassDesc currClass = new ClassDesc(qualifiedClassName, classes.size(), ast);
+        final String qualifiedClassName = CheckUtil.getQualifiedTypeDeclarationName(
+            ast, classes, packageName);
+        final TypeDeclDesc currClass = new TypeDeclDesc(qualifiedClassName, classes.size(), ast);
         classes.push(currClass);
         innerClasses.put(qualifiedClassName, currClass);
     }
@@ -204,7 +206,7 @@ public class FinalClassCheck
     private void visitCtor(DetailAST ast) {
         if (!ScopeUtil.isInEnumBlock(ast) && !ScopeUtil.isInRecordBlock(ast)) {
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-            final ClassDesc desc = classes.getFirst();
+            final TypeDeclDesc desc = classes.getFirst();
             if (modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null) {
                 desc.registerNonPrivateCtor();
             }
@@ -223,10 +225,10 @@ public class FinalClassCheck
             // First pass: mark all classes that have derived inner classes
             innerClasses.forEach(this::registerNestedSubclassToOuterSuperClasses);
             // Second pass: report violation for all classes that should be declared as final
-            innerClasses.forEach((qualifiedClassName, classDesc) -> {
-                if (shouldBeDeclaredAsFinal(classDesc)) {
+            innerClasses.forEach((qualifiedClassName, typeDeclDesc) -> {
+                if (shouldBeDeclaredAsFinal(typeDeclDesc)) {
                     final String className = getClassNameFromQualifiedName(qualifiedClassName);
-                    log(classDesc.getClassAst(), MSG_KEY, className);
+                    log(typeDeclDesc.getTypeDeclAst(), MSG_KEY, className);
                 }
             });
         }
@@ -238,23 +240,13 @@ public class FinalClassCheck
      * @param desc description of the class
      * @return true if given class should be declared as final otherwise false
      */
-    private static boolean shouldBeDeclaredAsFinal(ClassDesc desc) {
+    private static boolean shouldBeDeclaredAsFinal(TypeDeclDesc desc) {
         return desc.isWithPrivateCtor()
                 && !(desc.isDeclaredAsAbstract()
                     || desc.isWithAnonymousInnerClass())
                 && !desc.isDeclaredAsFinal()
                 && !desc.isWithNonPrivateCtor()
                 && !desc.isWithNestedSubclass();
-    }
-
-    /**
-     * Get name of class (with qualified package if specified) in {@code ast}.
-     *
-     * @param ast ast to extract class name from
-     * @return qualified name
-     */
-    private static String extractQualifiedName(DetailAST ast) {
-        return FullIdent.createFullIdent(ast).getText();
     }
 
     /**
@@ -265,14 +257,14 @@ public class FinalClassCheck
      * @param currentClass class which outer super class will be informed about nesting subclass
      */
     private void registerNestedSubclassToOuterSuperClasses(String qualifiedClassName,
-                                                           ClassDesc currentClass) {
-        final String superClassName = getSuperClassName(currentClass.getClassAst());
+                                                           TypeDeclDesc currentClass) {
+        final String superClassName = getSuperClassName(currentClass.getTypeDeclAst());
         if (superClassName != null) {
-            final ClassDesc nearest =
+            final TypeDeclDesc nearest =
                     getNearestClassWithSameName(superClassName, qualifiedClassName);
             if (nearest == null) {
                 Optional.ofNullable(innerClasses.get(superClassName))
-                        .ifPresent(ClassDesc::registerNestedSubclass);
+                        .ifPresent(TypeDeclDesc::registerNestedSubclass);
             }
             else {
                 nearest.registerNestedSubclass();
@@ -284,21 +276,21 @@ public class FinalClassCheck
      * Checks if there is a class with same name.
      *
      * @param className name of the class
-     * @param superClassName name of the super class
+     * @param superClsName name of the super class
      * @return true if there is another class with same name.
      * @noinspection CallToStringConcatCanBeReplacedByOperator
      */
-    private ClassDesc getNearestClassWithSameName(String className, String superClassName) {
+    private TypeDeclDesc getNearestClassWithSameName(String className, String superClsName) {
         final String dotAndClassName = PACKAGE_SEPARATOR.concat(className);
         return innerClasses.entrySet().stream()
                 .filter(entry -> entry.getKey().endsWith(dotAndClassName))
                 .map(Map.Entry::getValue)
-                .min((first, second) -> {
+                .min((fir, sec) -> {
                     int diff = Integer.compare(
-                            classNameMatchingCount(superClassName, second.getQualifiedName()),
-                            classNameMatchingCount(superClassName, first.getQualifiedName()));
+                        CheckUtil.typeDeclNameMatchingCount(superClsName, sec.getQualifiedName()),
+                        CheckUtil.typeDeclNameMatchingCount(superClsName, fir.getQualifiedName()));
                     if (diff == 0) {
-                        diff = Integer.compare(first.getDepth(), second.getDepth());
+                        diff = Integer.compare(fir.getDepth(), sec.getDepth());
                     }
                     return diff;
                 })
@@ -306,87 +298,17 @@ public class FinalClassCheck
     }
 
     /**
-     * Calculates and returns the class name matching count.
-     *
-     * <p>
-     * Suppose our pattern class is {@code foo.a.b} and class to be matched is
-     * {@code foo.a.ball} then classNameMatchingCount would be calculated by comparing every
-     * character, and updating main counter when we hit "."
-     * to prevent matching "a.b" with "a.ball". In this case classNameMatchingCount would
-     * be equal to 6 and not 7 (b of ball is not counted).
-     * </p>
-     *
-     * @param patternClass class against which the given class has to be matched
-     * @param classToBeMatched class to be matched
-     * @return class name matching count
-     */
-    private static int classNameMatchingCount(String patternClass, String classToBeMatched) {
-        final char packageSeparator = PACKAGE_SEPARATOR.charAt(0);
-        final int length = Math.min(classToBeMatched.length(), patternClass.length());
-        int result = 0;
-        for (int i = 0; i < length && patternClass.charAt(i) == classToBeMatched.charAt(i); ++i) {
-            if (patternClass.charAt(i) == packageSeparator) {
-                result = i;
-            }
-        }
-        return result;
-    }
-
-    /**
      * Check if class name matches with anonymous inner class name.
      *
      * @param ast current ast.
-     * @param classDesc class to match.
+     * @param typeDeclDesc class to match.
      * @return true if current class name matches anonymous inner
      *         class name.
      */
     private static boolean doesNameOfClassMatchAnonymousInnerClassName(DetailAST ast,
-                                                               ClassDesc classDesc) {
-        final String[] className = classDesc.getQualifiedName().split("\\.");
+                                                               TypeDeclDesc typeDeclDesc) {
+        final String[] className = typeDeclDesc.getQualifiedName().split("\\.");
         return ast.getFirstChild().getText().equals(className[className.length - 1]);
-    }
-
-    /**
-     * Get qualified class name from given class Ast.
-     *
-     * @param classAst class to get qualified class name
-     * @return qualified class name of a class
-     */
-    private String getQualifiedClassName(DetailAST classAst) {
-        final String className = classAst.findFirstToken(TokenTypes.IDENT).getText();
-        String outerClassQualifiedName = null;
-        if (!classes.isEmpty()) {
-            outerClassQualifiedName = classes.peek().getQualifiedName();
-        }
-        return getQualifiedClassName(packageName, outerClassQualifiedName, className);
-    }
-
-    /**
-     * Calculate qualified class name(package + class name) laying inside given
-     * outer class.
-     *
-     * @param packageName package name, empty string on default package
-     * @param outerClassQualifiedName qualified name(package + class) of outer class,
-     *                           null if doesn't exist
-     * @param className class name
-     * @return qualified class name(package + class name)
-     */
-    private static String getQualifiedClassName(String packageName, String outerClassQualifiedName,
-                                                String className) {
-        final String qualifiedClassName;
-
-        if (outerClassQualifiedName == null) {
-            if (packageName.isEmpty()) {
-                qualifiedClassName = className;
-            }
-            else {
-                qualifiedClassName = packageName + PACKAGE_SEPARATOR + className;
-            }
-        }
-        else {
-            qualifiedClassName = outerClassQualifiedName + PACKAGE_SEPARATOR + className;
-        }
-        return qualifiedClassName;
     }
 
     /**
@@ -399,7 +321,7 @@ public class FinalClassCheck
         String superClassName = null;
         final DetailAST classExtend = classAst.findFirstToken(TokenTypes.EXTENDS_CLAUSE);
         if (classExtend != null) {
-            superClassName = extractQualifiedName(classExtend.getFirstChild());
+            superClassName = TokenUtil.extractQualifiedName(classExtend.getFirstChild());
         }
         return superClassName;
     }
@@ -412,154 +334,5 @@ public class FinalClassCheck
      */
     private static String getClassNameFromQualifiedName(String qualifiedName) {
         return qualifiedName.substring(qualifiedName.lastIndexOf(PACKAGE_SEPARATOR) + 1);
-    }
-
-    /** Maintains information about class' ctors. */
-    private static final class ClassDesc {
-
-        /** Corresponding node. */
-        private final DetailAST classAst;
-
-        /** Qualified class name(with package). */
-        private final String qualifiedName;
-
-        /** Is class declared as final. */
-        private final boolean declaredAsFinal;
-
-        /** Is class declared as abstract. */
-        private final boolean declaredAsAbstract;
-
-        /** Class nesting level. */
-        private final int depth;
-
-        /** Does class have non-private ctors. */
-        private boolean withNonPrivateCtor;
-
-        /** Does class have private ctors. */
-        private boolean withPrivateCtor;
-
-        /** Does class have nested subclass. */
-        private boolean withNestedSubclass;
-
-        /** Does class have anonymous inner class. */
-        private boolean withAnonymousInnerClass;
-
-        /**
-         *  Create a new ClassDesc instance.
-         *
-         *  @param qualifiedName qualified class name(with package)
-         *  @param depth class nesting level
-         *  @param classAst classAst node
-         */
-        /* package */ ClassDesc(String qualifiedName, int depth, DetailAST classAst) {
-            this.qualifiedName = qualifiedName;
-            this.depth = depth;
-            this.classAst = classAst;
-            final DetailAST modifiers = classAst.findFirstToken(TokenTypes.MODIFIERS);
-            declaredAsFinal = modifiers.findFirstToken(TokenTypes.FINAL) != null;
-            declaredAsAbstract = modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;
-        }
-
-        /**
-         * Get qualified class name.
-         *
-         * @return qualified class name
-         */
-        private String getQualifiedName() {
-            return qualifiedName;
-        }
-
-        /**
-         * Get the classAst node.
-         *
-         * @return classAst node
-         */
-        public DetailAST getClassAst() {
-            return classAst;
-        }
-
-        /** Adds private ctor. */
-        private void registerPrivateCtor() {
-            withPrivateCtor = true;
-        }
-
-        /** Adds non-private ctor. */
-        private void registerNonPrivateCtor() {
-            withNonPrivateCtor = true;
-        }
-
-        /** Adds nested subclass. */
-        private void registerNestedSubclass() {
-            withNestedSubclass = true;
-        }
-
-        /** Adds anonymous inner class. */
-        private void registerAnonymousInnerClass() {
-            withAnonymousInnerClass = true;
-        }
-
-        /**
-         *  Returns class nesting level.
-         *
-         *  @return class nesting level
-         */
-        private int getDepth() {
-            return depth;
-        }
-
-        /**
-         *  Does class have private ctors.
-         *
-         *  @return true if class has private ctors
-         */
-        private boolean isWithPrivateCtor() {
-            return withPrivateCtor;
-        }
-
-        /**
-         *  Does class have non-private ctors.
-         *
-         *  @return true if class has non-private ctors
-         */
-        private boolean isWithNonPrivateCtor() {
-            return withNonPrivateCtor;
-        }
-
-        /**
-         * Does class have nested subclass.
-         *
-         * @return true if class has nested subclass
-         */
-        private boolean isWithNestedSubclass() {
-            return withNestedSubclass;
-        }
-
-        /**
-         *  Is class declared as final.
-         *
-         *  @return true if class is declared as final
-         */
-        private boolean isDeclaredAsFinal() {
-            return declaredAsFinal;
-        }
-
-        /**
-         *  Is class declared as abstract.
-         *
-         *  @return true if class is declared as final
-         */
-        private boolean isDeclaredAsAbstract() {
-            return declaredAsAbstract;
-        }
-
-        /**
-         * Does class have an anonymous inner class.
-         *
-         * @return true if class has anonymous inner class
-         */
-        private boolean isWithAnonymousInnerClass() {
-            return withAnonymousInnerClass;
-        }
-
     }
 }

@@ -32,6 +32,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -317,6 +318,37 @@ public final class TokenUtil {
         final boolean isTrue = tokenType == TokenTypes.LITERAL_TRUE;
         final boolean isFalse = tokenType == TokenTypes.LITERAL_FALSE;
         return isTrue || isFalse;
+    }
+
+    /**
+     * Get name of package and super class of anon inner class by concatenating
+     * the identifier values under {@link TokenTypes#DOT}.
+     *
+     * @param ast ast to extract superclass or package name from
+     * @return qualified name
+     */
+    public static String extractQualifiedName(DetailAST ast) {
+        return FullIdent.createFullIdent(ast).getText();
+    }
+
+    /**
+     * Get the short name of super class of anonymous inner class.
+     * Example-
+     * <pre>
+     * TestClass.NestedClass obj = new Test().new NestedClass() {};
+     * // Short name will be Test.NestedClass
+     * </pre>
+     *
+     * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
+     * @return short name of base class of anonymous inner class
+     */
+    public static String getShortNameOfAnonInnerClass(DetailAST literalNewAst) {
+        DetailAST parentAst = literalNewAst.getParent();
+        while (isOfType(parentAst, TokenTypes.LITERAL_NEW, TokenTypes.DOT)) {
+            parentAst = parentAst.getParent();
+        }
+        final DetailAST firstChild = parentAst.getFirstChild();
+        return extractQualifiedName(firstChild);
     }
 
 }
