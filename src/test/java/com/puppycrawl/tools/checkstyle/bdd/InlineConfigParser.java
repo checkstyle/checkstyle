@@ -114,7 +114,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck",
             "com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck",
