@@ -3300,6 +3300,12 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheckTest
                 </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheckTest
+                </param>
               </targetTests>
               <excludedTestClasses>
                 <param>*.Input*</param>
