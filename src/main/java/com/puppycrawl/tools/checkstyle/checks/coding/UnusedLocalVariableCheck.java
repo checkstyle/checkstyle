@@ -34,11 +34,12 @@ import java.util.stream.Collectors;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+import com.puppycrawl.tools.checkstyle.utils.TypeDeclDesc;
+import com.puppycrawl.tools.checkstyle.utils.VariableDesc;
 
 /**
  * <p>
@@ -316,7 +317,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             visitTypeDeclarationToken(ast);
         }
         else if (type == TokenTypes.PACKAGE_DEF) {
-            packageName = extractQualifiedName(ast.getFirstChild().getNextSibling());
+            packageName = TokenUtil.extractQualifiedName(ast.getFirstChild().getNextSibling());
         }
     }
 
@@ -378,7 +379,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private void visitTypeDeclarationToken(DetailAST typeDeclAst) {
         if (isNonLocalTypeDeclaration(typeDeclAst)) {
-            final String qualifiedName = getQualifiedTypeDeclarationName(typeDeclAst);
+            final String qualifiedName = CheckUtil.getQualifiedTypeDeclarationName(
+                typeDeclAst, typeDeclarations, packageName);
             final TypeDeclDesc currTypeDecl = new TypeDeclDesc(qualifiedName, depth, typeDeclAst);
             depth++;
             typeDeclarations.push(currTypeDecl);
@@ -394,18 +396,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private void visitLocalAnonInnerClass(DetailAST literalNewAst) {
         anonInnerAstToTypeDeclDesc.put(literalNewAst, typeDeclarations.peek());
         anonInnerClassHolders.add(getBlockContainingLocalAnonInnerClass(literalNewAst));
-    }
-
-    /**
-     * Get name of package and super class of anon inner class by concatenating
-     * the identifier values under {@link TokenTypes#DOT}.
-     * Duplicated, until <a>https://github.com/checkstyle/checkstyle/issues/11201</a>
-     *
-     * @param ast ast to extract superclass or package name from
-     * @return qualified name
-     */
-    private static String extractQualifiedName(DetailAST ast) {
-        return FullIdent.createFullIdent(ast).getText();
     }
 
     /**
@@ -519,7 +509,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
 
     /**
      * Add instance variables and class variables to the
-     * {@link TypeDeclDesc#instanceAndClassVarStack}.
+     * TypeDeclDesc.instanceAndClassVarStack.
      *
      * @param varDefAst ast node of type {@link TokenTypes#VARIABLE_DEF}
      */
@@ -554,7 +544,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private TypeDeclDesc getSuperClassOfAnonInnerClass(DetailAST literalNewAst) {
         TypeDeclDesc obtainedClass = null;
-        final String shortNameOfClass = getShortNameOfAnonInnerClass(literalNewAst);
+        final String shortNameOfClass = TokenUtil.getShortNameOfAnonInnerClass(literalNewAst);
         if (packageName != null && shortNameOfClass.startsWith(packageName)) {
             final Optional<TypeDeclDesc> classWithCompletePackageName =
                     typeDeclAstToTypeDeclDesc.values()
@@ -579,26 +569,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Get the short name of super class of anonymous inner class.
-     * Example-
-     * <pre>
-     * TestClass.NestedClass obj = new Test().new NestedClass() {};
-     * // Short name will be Test.NestedClass
-     * </pre>
-     *
-     * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
-     * @return short name of base class of anonymous inner class
-     */
-    public static String getShortNameOfAnonInnerClass(DetailAST literalNewAst) {
-        DetailAST parentAst = literalNewAst.getParent();
-        while (TokenUtil.isOfType(parentAst, TokenTypes.LITERAL_NEW, TokenTypes.DOT)) {
-            parentAst = parentAst.getParent();
-        }
-        final DetailAST firstChild = parentAst.getFirstChild();
-        return extractQualifiedName(firstChild);
-    }
-
-    /**
      * Add non-private instance and class variables of the super class of the anonymous class
      * to the variables stack.
      *
@@ -619,7 +589,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
 
     /**
      * Checks if there is a type declaration with same name as the super class.
-     * Duplicated, until <a>https://github.com/checkstyle/checkstyle/issues/11201</a>
      *
      * @param superClassName name of the super class
      * @return true if there is another type declaration with same name.
@@ -655,7 +624,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     /**
      * For all type declarations with the same name as the superclass, gets the nearest type
      * declaration.
-     * Duplicated, until <a>https://github.com/checkstyle/checkstyle/issues/11201</a>
      *
      * @param outerTypeDeclName outer type declaration of anonymous inner class
      * @param typeDeclWithSameName typeDeclarations which have the same name as the super class
@@ -665,86 +633,13 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             List<TypeDeclDesc> typeDeclWithSameName) {
         return Collections.min(typeDeclWithSameName, (first, second) -> {
             int diff = Integer.compare(
-                    typeDeclNameMatchingCount(outerTypeDeclName, second.getQualifiedName()),
-                    typeDeclNameMatchingCount(outerTypeDeclName, first.getQualifiedName()));
+                CheckUtil.typeDeclNameMatchingCount(outerTypeDeclName, second.getQualifiedName()),
+                CheckUtil.typeDeclNameMatchingCount(outerTypeDeclName, first.getQualifiedName()));
             if (diff == 0) {
                 diff = Integer.compare(first.getDepth(), second.getDepth());
             }
             return diff;
         });
-    }
-
-    /**
-     * Calculates and returns the type declaration name matching count.
-     *
-     * <p>
-     * Suppose our pattern class is {@code foo.a.b} and class to be matched is
-     * {@code foo.a.ball} then type declaration name matching count would be calculated by
-     * comparing every character, and updating main counter when we hit "." to prevent matching
-     * "a.b" with "a.ball". In this case type declaration name matching count
-     * would be equal to 6 and not 7 (b of ball is not counted).
-     * </p>
-     * Duplicated, until <a>https://github.com/checkstyle/checkstyle/issues/11201</a>
-     *
-     * @param patternClass class against which the given class has to be matched
-     * @param classToBeMatched class to be matched
-     * @return class name matching count
-     */
-    private static int typeDeclNameMatchingCount(String patternClass, String classToBeMatched) {
-        final char packageSeparator = PACKAGE_SEPARATOR.charAt(0);
-        final int length = Math.min(classToBeMatched.length(), patternClass.length());
-        int result = 0;
-        for (int i = 0; i < length && patternClass.charAt(i) == classToBeMatched.charAt(i); ++i) {
-            if (patternClass.charAt(i) == packageSeparator) {
-                result = i;
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Get qualified type declaration name from type ast.
-     * Duplicated, until <a>https://github.com/checkstyle/checkstyle/issues/11201</a>
-     *
-     * @param typeDeclAst type declaration ast
-     * @return qualified name of type declaration
-     */
-    private String getQualifiedTypeDeclarationName(DetailAST typeDeclAst) {
-        final String className = typeDeclAst.findFirstToken(TokenTypes.IDENT).getText();
-        String outerClassQualifiedName = null;
-        if (!typeDeclarations.isEmpty()) {
-            outerClassQualifiedName = typeDeclarations.peek().getQualifiedName();
-        }
-        return getQualifiedTypeDeclarationName(packageName, outerClassQualifiedName, className);
-    }
-
-    /**
-     * Get the qualified name of type declaration by combining {@code packageName},
-     * {@code outerClassQualifiedName} and {@code className}.
-     * Duplicated, until <a>https://github.com/checkstyle/checkstyle/issues/11201</a>
-     *
-     * @param packageName packageName
-     * @param outerClassQualifiedName outerClassQualifiedName
-     * @param className className
-     * @return the qualified name of type declaration by combining {@code packageName},
-     *         {@code outerClassQualifiedName} and {@code className}
-     */
-    private static String getQualifiedTypeDeclarationName(String packageName,
-            String outerClassQualifiedName, String className) {
-        final String qualifiedClassName;
-
-        if (outerClassQualifiedName == null) {
-            if (packageName == null) {
-                qualifiedClassName = className;
-            }
-            else {
-                qualifiedClassName = packageName + PACKAGE_SEPARATOR + className;
-            }
-        }
-        else {
-            qualifiedClassName = outerClassQualifiedName + PACKAGE_SEPARATOR + className;
-        }
-        return qualifiedClassName;
     }
 
     /**
@@ -915,214 +810,5 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         return TokenUtil.isOfType(exprAst.getParent(),
                 TokenTypes.ELIST, TokenTypes.INDEX_OP, TokenTypes.ASSIGN)
                 && exprAst.getParent().getParent().getType() != TokenTypes.FOR_ITERATOR;
-    }
-
-    /**
-     * Maintains information about the variable.
-     */
-    private static final class VariableDesc {
-
-        /**
-         * The name of the variable.
-         */
-        private final String name;
-
-        /**
-         * Ast of type {@link TokenTypes#TYPE}.
-         */
-        private final DetailAST typeAst;
-
-        /**
-         * The scope of variable is determined by the ast of type
-         * {@link TokenTypes#SLIST} or {@link TokenTypes#LITERAL_FOR}
-         * or {@link TokenTypes#OBJBLOCK} which is enclosing the variable.
-         */
-        private final DetailAST scope;
-
-        /**
-         * Is an instance variable or a class variable.
-         */
-        private boolean instVarOrClassVar;
-
-        /**
-         * Is the variable used.
-         */
-        private boolean used;
-
-        /**
-         * Create a new VariableDesc instance.
-         *
-         * @param name name of the variable
-         * @param typeAst ast of type {@link TokenTypes#TYPE}
-         * @param scope ast of type {@link TokenTypes#SLIST} or
-         *              {@link TokenTypes#LITERAL_FOR} or {@link TokenTypes#OBJBLOCK}
-         *              which is enclosing the variable
-         */
-        /* package */ VariableDesc(String name, DetailAST typeAst, DetailAST scope) {
-            this.name = name;
-            this.typeAst = typeAst;
-            this.scope = scope;
-        }
-
-        /**
-         * Get the name of variable.
-         *
-         * @return name of variable
-         */
-        public String getName() {
-            return name;
-        }
-
-        /**
-         * Get the associated ast node of type {@link TokenTypes#TYPE}.
-         *
-         * @return the associated ast node of type {@link TokenTypes#TYPE}
-         */
-        public DetailAST getTypeAst() {
-            return typeAst;
-        }
-
-        /**
-         * Get ast of type {@link TokenTypes#SLIST}
-         * or {@link TokenTypes#LITERAL_FOR} or {@link TokenTypes#OBJBLOCK}
-         * which is enclosing the variable i.e. its scope.
-         *
-         * @return the scope associated with the variable
-         */
-        public DetailAST getScope() {
-            return scope;
-        }
-
-        /**
-         * Register the variable as used.
-         */
-        public void registerAsUsed() {
-            used = true;
-        }
-
-        /**
-         * Register the variable as an instance variable or
-         * class variable.
-         */
-        public void registerAsInstOrClassVar() {
-            instVarOrClassVar = true;
-        }
-
-        /**
-         * Is the variable used or not.
-         *
-         * @return true if variable is used
-         */
-        public boolean isUsed() {
-            return used;
-        }
-
-        /**
-         * Is an instance variable or a class variable.
-         *
-         * @return true if is an instance variable or a class variable
-         */
-        public boolean isInstVarOrClassVar() {
-            return instVarOrClassVar;
-        }
-    }
-
-    /**
-     * Maintains information about the type declaration.
-     * Any ast node of type {@link TokenTypes#CLASS_DEF} or {@link TokenTypes#INTERFACE_DEF}
-     * or {@link TokenTypes#ENUM_DEF} or {@link TokenTypes#ANNOTATION_DEF}
-     * or {@link TokenTypes#RECORD_DEF} is considered as a type declaration.
-     */
-    private static class TypeDeclDesc {
-
-        /**
-         * Complete type declaration name with package name and outer type declaration name.
-         */
-        private final String qualifiedName;
-
-        /**
-         * Depth of nesting of type declaration.
-         */
-        private final int depth;
-
-        /**
-         * Type declaration ast node.
-         */
-        private final DetailAST typeDeclAst;
-
-        /**
-         * A stack of type declaration's instance and static variables.
-         */
-        private final Deque<VariableDesc> instanceAndClassVarStack;
-
-        /**
-         * Create a new TypeDeclDesc instance.
-         *
-         * @param qualifiedName qualified name
-         * @param depth depth of nesting
-         * @param typeDeclAst type declaration ast node
-         */
-        /* package */ TypeDeclDesc(String qualifiedName, int depth,
-                DetailAST typeDeclAst) {
-            this.qualifiedName = qualifiedName;
-            this.depth = depth;
-            this.typeDeclAst = typeDeclAst;
-            instanceAndClassVarStack = new ArrayDeque<>();
-        }
-
-        /**
-         * Get the complete type declaration name i.e. type declaration name with package name
-         * and outer type declaration name.
-         *
-         * @return qualified class name
-         */
-        public String getQualifiedName() {
-            return qualifiedName;
-        }
-
-        /**
-         * Get the depth of type declaration.
-         *
-         * @return the depth of nesting of type declaration
-         */
-        public int getDepth() {
-            return depth;
-        }
-
-        /**
-         * Get the type declaration ast node.
-         *
-         * @return ast node of the type declaration
-         */
-        public DetailAST getTypeDeclAst() {
-            return typeDeclAst;
-        }
-
-        /**
-         * Get the copy of variables in instanceAndClassVar stack with updated scope.
-         *
-         * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
-         * @return copy of variables in instanceAndClassVar stack with updated scope.
-         */
-        public Deque<VariableDesc> getUpdatedCopyOfVarStack(DetailAST literalNewAst) {
-            final DetailAST updatedScope = literalNewAst.getLastChild();
-            final Deque<VariableDesc> instAndClassVarDeque = new ArrayDeque<>();
-            instanceAndClassVarStack.forEach(instVar -> {
-                final VariableDesc variableDesc = new VariableDesc(instVar.getName(),
-                        instVar.getTypeAst(), updatedScope);
-                variableDesc.registerAsInstOrClassVar();
-                instAndClassVarDeque.push(variableDesc);
-            });
-            return instAndClassVarDeque;
-        }
-
-        /**
-         * Add an instance variable or class variable to the stack.
-         *
-         * @param variableDesc variable to be added
-         */
-        public void addInstOrClassVar(VariableDesc variableDesc) {
-            instanceAndClassVarStack.push(variableDesc);
-        }
     }
 }
