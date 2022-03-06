@@ -23,7 +23,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-    class EmptyTypesAndNonEmptyClasses2{ int x; } // violation ''{' is not preceded with whitespace'
+    class EmptyAndNonEmptyClasses2{ int x; } // violation ''{' is not preceded with whitespace'
 
 public class InputWhitespaceAroundAllowEmptyTypesAndNonEmptyClasses2 {
 

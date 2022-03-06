@@ -345,7 +345,7 @@ public class WhitespaceAroundCheckTest
     @Test
     public void testAllowEmptyTypesIsSetToFalseAndNonEmptyClasses() throws Exception {
         final String[] expected = {
-            "26:39: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "26:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
             "33:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
             "37:32: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
             "41:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
@@ -369,7 +369,7 @@ public class WhitespaceAroundCheckTest
     @Test
     public void testAllowEmptyTypesIsSetToTrueAndNonEmptyClasses() throws Exception {
         final String[] expected = {
-            "26:40: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "26:35: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
             "32:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
             "36:32: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
             "40:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
