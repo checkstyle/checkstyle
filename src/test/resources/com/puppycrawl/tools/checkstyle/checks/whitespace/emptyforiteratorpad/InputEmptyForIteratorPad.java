@@ -27,7 +27,7 @@ class InputEmptyForIteratorPad
             i++;
         }
 
-        for (int i = 0; i < 1; ) { // violation
+        for (int i = 0; i < 1; ) { // violation '';' is followed by whitespace'
             i++;
         }
 
@@ -43,7 +43,7 @@ class InputEmptyForIteratorPad
         for ( int i = 0; i < 1; i++ ) {
         }
 
-        for ( int i = 0; i < 1; ) { // violation
+        for ( int i = 0; i < 1; ) { // violation '';' is followed by whitespace'
             i++;
         }
 
@@ -55,7 +55,7 @@ class InputEmptyForIteratorPad
         }
 
         for (
-        ;; ) { // violation
+        ;; ) { // violation '';' is followed by whitespace'
         }
     }
 }
