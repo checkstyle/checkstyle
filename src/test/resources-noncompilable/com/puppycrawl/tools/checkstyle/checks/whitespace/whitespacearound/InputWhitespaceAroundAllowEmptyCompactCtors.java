@@ -38,9 +38,9 @@ public class InputWhitespaceAroundAllowEmptyCompactCtors {
 
     // method
     record MyRecord3() {
-        void method (){ // violation
+        void method (){ // violation ''{' is not preceded with whitespace'
             final int a = 1;
-            int b= 1; // violation
+            int b= 1; // violation ''=' is not preceded with whitespace'
             b=1; // 2 violations
         }
 
@@ -50,7 +50,7 @@ public class InputWhitespaceAroundAllowEmptyCompactCtors {
     record MyRecord4() {
         public MyRecord4() {
             final int a = 1;
-            int b= 1; // violation
+            int b= 1; // violation ''=' is not preceded with whitespace'
             b=1; // 2 violations
         }
     }
@@ -64,7 +64,7 @@ public class InputWhitespaceAroundAllowEmptyCompactCtors {
     // static fields
     record MyRecord6() {
         static final int a = 1;
-        static int b= 1; // violation
+        static int b= 1; // violation ''=' is not preceded with whitespace'
     }
 
     record TestRecord7() {
@@ -77,7 +77,7 @@ class foo {
 }
 
 class foo2 {
-    public foo2(){} // violation
+    public foo2(){} // violation ''{' is not preceded with whitespace'
 }
 
 class foo3 {
@@ -86,5 +86,5 @@ class foo3 {
 }
 
 record TestRecord8(int a, int b) {
-    public TestRecord8{} // violation
+    public TestRecord8{} // violation ''{' is not preceded with whitespace'
 }

@@ -165,12 +165,12 @@ final class InputWhitespaceAroundSimple
     {
         // with tab-width 8 all statements below start at the same column,
         // with different combinations of ' ' and '\t' before the statement
-                int tab0 =1; // violation
-        	int tab1 =1; // violation
-         	int tab2 =1; // violation
-		int tab3 =1; // violation
-  	  	int tab4 =1; // violation
-  	        int tab5 =1; // violation
+                int tab0 =1; // violation ''=' is not followed by whitespace'
+        	int tab1 =1; // violation ''=' is not followed by whitespace'
+         	int tab2 =1; // violation ''=' is not followed by whitespace'
+		int tab3 =1; // violation ''=' is not followed by whitespace'
+  	  	int tab4 =1; // violation ''=' is not followed by whitespace'
+  	        int tab5 =1; // violation ''=' is not followed by whitespace'
     }
 
     // MEMME:
