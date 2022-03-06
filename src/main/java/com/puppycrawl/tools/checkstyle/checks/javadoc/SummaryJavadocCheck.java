@@ -416,7 +416,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             log(inlineSummaryTag.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
         }
         else if (!period.isEmpty()) {
-            if (isPeriodAtEnd(summaryVisible, period)) {
+            if (!isPeriodAtEnd(summaryVisible, period)) {
                 log(inlineSummaryTag.getLineNumber(), MSG_SUMMARY_MISSING_PERIOD);
             }
             else if (containsForbiddenFragment(inlineSummary)) {
@@ -486,7 +486,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     private static boolean isPeriodAtEnd(String sentence, String period) {
         final String summarySentence = sentence.trim();
-        return summarySentence.lastIndexOf(period) != summarySentence.length() - 1;
+        return summarySentence.lastIndexOf(period) == summarySentence.length() - 1;
     }
 
     /**
