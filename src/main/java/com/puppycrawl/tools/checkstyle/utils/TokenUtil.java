@@ -281,7 +281,14 @@ public final class TokenUtil {
      * @return true if type matches one of the given types.
      */
     public static boolean isOfType(int type, int... types) {
-        return Arrays.stream(types).anyMatch(tokenType -> tokenType == type);
+        boolean matching = false;
+        for (int t : types) {
+            if (t == type) {
+                matching = true;
+                break;
+            }
+        }
+        return matching;
     }
 
     /**
