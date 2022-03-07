@@ -70,7 +70,8 @@ public class CliOptionsXdocsSyncTest {
             final String descMain = opt.description()[0];
             assertWithMessage("CLI Option: " + option + " present in "
                     + "Main.java but not documented in cmdline.xml.vm")
-                    .that(descXdoc).isNotNull();
+                    .that(descXdoc)
+                    .isNotNull();
             assertWithMessage("CLI options descriptions in xdoc: "
                     + " should match that of in Main.java")
                 .that(descMain)
