@@ -31,7 +31,7 @@ class InputWhitespaceAroundKeywordsAndOperators
     /** ignore assignment **/
     private int mVar1=1; // 2 violations
     /** ignore assignment **/
-    private int mVar2 =1; // violation
+    private int mVar2 =1; // violation ''=' is not followed by whitespace'
     /** Should be ok **/
     private int mVar3 = 1;
 
@@ -39,10 +39,10 @@ class InputWhitespaceAroundKeywordsAndOperators
     void method1()
     {
         final int a = 1;
-        int b= 1; // violation
+        int b= 1; // violation ''=' is not preceded with whitespace'
         b=1; // 2 violations
         b+=1; // 2 violations
-        b -=- 1 + (+ b); // violation
+        b -=- 1 + (+ b); // violation ''-=' is not followed by whitespace'
         b = b ++ + b --; // Ignore 1
         b = ++ b - -- b; // Ignore 1
     }
@@ -50,7 +50,7 @@ class InputWhitespaceAroundKeywordsAndOperators
     /** method **/
     void method2()
     {
-        synchronized(this) { // violation
+        synchronized(this) { // violation ''synchronized' is not followed by whitespace'
         }
         try{ // 2 violations
         }
@@ -71,7 +71,7 @@ class InputWhitespaceAroundKeywordsAndOperators
     private void fastExit()
     {
         boolean complicatedStuffNeeded = true;
-        if( !complicatedStuffNeeded ) // violation
+        if( !complicatedStuffNeeded ) // violation ''if' is not followed by whitespace'
         {
             return; // should not complain about missing WS after return
         }
@@ -89,7 +89,7 @@ class InputWhitespaceAroundKeywordsAndOperators
     {
         if ( true )
         {
-            return(2); // violation
+            return(2); // violation ''return' is not followed by whitespace'
         }
         else
         {
@@ -132,12 +132,12 @@ class InputWhitespaceAroundKeywordsAndOperators
     private void divTest()
     {
         int a = 4 % 2;
-        int b = 4% 2; // violation
-        int c = 4 %2; // violation
+        int b = 4% 2; // violation ''%' is not preceded with whitespace'
+        int c = 4 %2; // violation ''%' is not followed by whitespace'
         int d = 4%2; // 2 violations
         int e = 4 / 2;
-        int f = 4/ 2; // violation
-        int g = 4 /2; // violation
+        int f = 4/ 2; // violation ''/' is not preceded with whitespace'
+        int g = 4 /2; // violation ''/' is not followed by whitespace'
         int h = 4/2; // 2 violations
     }
 
@@ -166,7 +166,7 @@ class InputWhitespaceAroundKeywordsAndOperators
         assert "OK".equals(null) ? false : true : "Whups";
 
         // missing WS around assert
-        assert(true); // violation
+        assert(true); // violation ''assert' is not followed by whitespace'
 
         // missing WS around colon
         assert true:"Whups"; // 2 violations
@@ -275,7 +275,7 @@ class SpecialCasesInForLoop
             new Runnable() {
                 public void run() {
                 }
-            }}; // violation
+            }}; // violation ''}' is not followed by whitespace'
         runs[0]
 .
  run()
