@@ -22,45 +22,39 @@ public class InputSummaryJavadocInlineForbidden {
      */
     void foo3() { // ok
     }
-    // violation below
     /**
      * {@summary This code is wrong }
-     */
+     */ // violation above 'Summary .* missing an ending period.'
     void foo5() {
     }
-    // violation below
     /**
      * {@summary This code {@see Javadoc} is wrong }
-     */
+     */ // violation above 'Summary .* missing an ending period.'
     void foo6() {
     }
-    // violation below
     /**
      * {@summary As of , replaced by {@link #setBounds(int, int, int, int)}}
-     */
+     */ // violation above 'Summary .* missing an ending period.'
     void foo11() {
     }
-    // violation below
     /**
      * {@summary This method returns something.}
-     */
+     */ // violation above 'Forbidden summary fragment.'
     public static final byte NUL = 0;
-    // violation below
     /**
      * {@summary <a href="mailto:vlad@htmlbook.ru"/>}
-     */
+     */ // violation above 'Summary javadoc is missing.'
     class InnerInputCorrectJavaDocParagraphCheck {
-    // violation below
         /**
          * {@summary foooo@foooo}
-         */
+         */ // violation above 'Summary .* missing an ending period.'
         public static final byte NUL = 0;
 
         /**
          * {@summary Some java@doc.}
          */
         public static final byte NUL_2 = 0; // ok
-    // violation below
+        // violation 2 lines below 'Forbidden summary fragment.'
         /**
          * {@summary @return the
          * customer ID some javadoc.}
@@ -82,7 +76,7 @@ public class InputSummaryJavadocInlineForbidden {
      */
     InputSummaryJavadocInlineForbidden.InnerInputCorrectJavaDocParagraphCheck anon =
             new InputSummaryJavadocInlineForbidden.InnerInputCorrectJavaDocParagraphCheck() {
-                // violation below
+                // violation below 'First sentence .* missing an ending period.'
                 /**
                  * mm{@inheritDoc}
                  */
@@ -95,7 +89,7 @@ public class InputSummaryJavadocInlineForbidden {
                 void foo10() { // ok
                 }
             };
-    // violation below
+    // violation 2 lines below 'Summary .* missing an ending period.'
     /**
      * {@summary first sentence is normally the summary.
      * Use of html tags:
@@ -110,17 +104,18 @@ public class InputSummaryJavadocInlineForbidden {
     public void validInlineJavadoc()
     {
     }
-    // violation below
     /**
      * {@summary <p> </p>}
-     */
+     */ // violation above 'Summary javadoc is missing.'
     void foo12() {
     }
-    // violation below
+
     /**
      * Sentence starts as a plain text sentence
      * {@summary ... but ends in the summary tag}
      */
+    // violation 2 lines above 'Summary .* missing an ending period.'
+    // until https://github.com/checkstyle/checkstyle/issues/11213
     public class TestClass {}
 
     /**
