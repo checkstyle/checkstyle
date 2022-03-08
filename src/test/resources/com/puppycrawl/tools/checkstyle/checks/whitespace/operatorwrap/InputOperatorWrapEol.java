@@ -18,8 +18,8 @@ class InputOperatorWrapEol
                 2;
 
         int x2
-                = 1 // violation
-                * 2; // violation
+                = 1 // violation ''=' should be on the previous line.'
+                * 2; // violation ''*' should be on the previous line.'
 
         int x3 = ((2 * 1)
                     ) * 0 * (1 * 2) * 0; // ok, parens
@@ -30,23 +30,23 @@ class InputOperatorWrapEol
                  null) {
         }
         try (Reader r
-                 = null) { // violation
+                 = null) { // violation ''=' should be on the previous line.'
         }
         int x = (1 < 2) ? // ok
                 false ? "".substring(0,
                         0).length()
-                    : false // violation
-                    ? 2 : 3 : 4; // violation
+                    : false // violation '':' should be on the previous line.'
+                    ? 2 : 3 : 4; // violation ''?' should be on the previous line.'
 
         for (int value : // ok
                 new int[0]) {}
         for (int value
-                : new int[0]) {} // violation
+                : new int[0]) {} // violation '':' should be on the previous line.'
 
         int[] a1 = // ok
                 {};
         int[] a2
-                = {}; // violation
+                = {}; // violation ''=' should be on the previous line.'
         int[] a3 = { // ok
         };
     }
@@ -58,8 +58,8 @@ class InputOperatorWrapEol
             ) {
         }
         if (magic == 0x32 // '2'
-                || magic == 0x41 // violation
-                || magic == 0x58 // violation
+                || magic == 0x41 // violation ''\|\|' should be on the previous line.'
+                || magic == 0x58 // violation ''\|\|' should be on the previous line.'
         ) {
         }
     }

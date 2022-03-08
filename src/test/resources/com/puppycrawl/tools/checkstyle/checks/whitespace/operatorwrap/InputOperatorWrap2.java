@@ -23,16 +23,16 @@ class InputOperatorWrap2
         int x = 1 +
             2 -
             3
-            - // violation
+            - // violation ''-' should be on the previous line.'
             4;
         x = x + 2;
         boolean y = true
-            && // violation
+            && // violation ''&&' should be on the previous line.'
             false;
         y = true &&
             false;
         y = false
-            && true; // violation
+            && true; // violation ''&&' should be on the previous line.'
         Arrays.sort(null, String
                     ::
                     compareToIgnoreCase);
