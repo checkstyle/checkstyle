@@ -123,7 +123,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck",
             "com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck",
