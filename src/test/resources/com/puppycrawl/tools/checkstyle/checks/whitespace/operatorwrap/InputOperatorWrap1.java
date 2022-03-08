@@ -20,8 +20,8 @@ class InputOperatorWrap1
 {
     void test()
     {
-        int x = 1 + // violation
-            2 - // violation
+        int x = 1 + // violation ''\+' should be on a new line.'
+            2 - // violation ''-' should be on a new line.'
             3
             -
             4;
@@ -29,7 +29,7 @@ class InputOperatorWrap1
         boolean y = true
             &&
             false;
-        y = true && // violation
+        y = true && // violation ''&&' should be on a new line.'
             false;
         y = false
             && true;
@@ -51,7 +51,7 @@ class InputOperatorWrap1
     }
 
     <
-        T extends Comparable & // violation
+        T extends Comparable & // violation ''&' should be on a new line.'
         java.io.Serializable
     >
     void testGenerics1()
@@ -64,7 +64,7 @@ class InputOperatorWrap1
     }
 }
 
-class badCase21<T extends Foo & // violation
+class badCase21<T extends Foo & // violation ''&' should be on a new line.'
     Bar> {
 }
 
