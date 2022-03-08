@@ -49,9 +49,9 @@ public class InputOperatorWrapGuardedPatterns {
 
     String typeGuardAfterParenthesizedTrueSwitchStatement2(Object o) {
         switch (o) {
-            case (Integer i) && // violation
+            case (Integer i) && // violation ''&&' should be on a new line.'
                     i == 0: o = String.valueOf(i); return "true";
-            case ((Integer i) && // violation
+            case ((Integer i) && // violation ''&&' should be on a new line.'
                     i == 2): o = String.valueOf(i); return "second";
             case Object x: return "any";
         }
@@ -59,22 +59,22 @@ public class InputOperatorWrapGuardedPatterns {
 
     String typeGuardAfterParenthesizedTrueSwitchExpression2(Object o) {
         return switch (o) {
-            case (Integer i) && // violation
+            case (Integer i) && // violation ''&&' should be on a new line.'
                     i == 0: o = String.valueOf(i); yield "true";
-            case ((Integer i) && // violation
+            case ((Integer i) && // violation ''&&' should be on a new line.'
                     i == 2): o = String.valueOf(i); yield "second";
             case Object x: yield "any";
         };
     }
 
     String typeGuardAfterParenthesizedTrueIfStatement2(Object o) {
-        if (o != null && // violation
-                o instanceof ((Integer i) && // violation
+        if (o != null && // violation ''&&' should be on a new line.'
+                o instanceof ((Integer i) && // violation ''&&' should be on a new line.'
                         i == 0)) {
             return "true";
-        } else if (o != null && // violation
-                o instanceof (((Integer i) && // violation
-                        i == 2)) && // violation
+        } else if (o != null && // violation ''&&' should be on a new line.'
+                o instanceof (((Integer i) && // violation ''&&' should be on a new line.'
+                        i == 2)) && // violation ''&&' should be on a new line.'
                 (o = i) != null) {
             return "second";
         } else {

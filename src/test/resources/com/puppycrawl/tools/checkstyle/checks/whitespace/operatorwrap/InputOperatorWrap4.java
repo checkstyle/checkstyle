@@ -32,12 +32,12 @@ class InputOperatorWrap4
         y = false
             && true;
         Arrays.sort(null, String
-                    :: // violation
+                    :: // violation ''::' should be on the previous line.'
                     compareToIgnoreCase);
         Arrays.sort(null, String::
                     compareToIgnoreCase);
         Arrays.sort(null, String
-                    ::compareToIgnoreCase); // violation
+                    ::compareToIgnoreCase); // violation ''::' should be on the previous line.'
     }
 
     void testAssignment()
