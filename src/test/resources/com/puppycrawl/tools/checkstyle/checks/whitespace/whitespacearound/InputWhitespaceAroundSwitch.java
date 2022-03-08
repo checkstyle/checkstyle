@@ -23,7 +23,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 public class InputWhitespaceAroundSwitch {
 
     public void switchTest(int k) {
-        switch(k) { // violation
+        switch(k) { // violation ''switch' is not followed by whitespace'
         default:
             break;
         }
