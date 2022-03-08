@@ -43,7 +43,7 @@ class InputOperatorWrap5
     void testAssignment()
     {
         int x
-            = 0; // violation
+            = 0; // violation ''=' should be on the previous line.'
         int y =
             0;
     }

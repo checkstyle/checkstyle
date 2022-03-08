@@ -122,7 +122,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck",
             "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck",
             "com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck",
@@ -136,6 +135,7 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck",
             "com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck",
+            "com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck"));
 
