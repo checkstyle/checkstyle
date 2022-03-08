@@ -15,7 +15,7 @@ import java.util.Arrays;
     "foo",
     "bar"
 })
-@Annotation2(example = // violation
+@Annotation2(example = // violation ''=' should be on a new line.'
 {
     "foo",
     "bar"
@@ -33,7 +33,7 @@ public class InputOperatorWrapArrayAssign {
         "foo",
         "bar"
     };
-    public String[] array2 = // violation
+    public String[] array2 = // violation ''=' should be on a new line.'
     {
         "foo",
         "bar"

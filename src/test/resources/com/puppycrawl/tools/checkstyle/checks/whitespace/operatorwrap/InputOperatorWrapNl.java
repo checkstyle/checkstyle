@@ -17,8 +17,8 @@ class InputOperatorWrapNl
                 = (1 // ok
                 * 2) * (1 // ok
                     * 2); // ok
-        int x2 = // violation
-                1 * // violation
+        int x2 = // violation ''=' should be on a new line.'
+                1 * // violation ''*' should be on a new line.'
                 2 * "" // ok
                     .length();
         int x3 = (2 * 1) * 0 * ( // ok, parens
@@ -29,10 +29,10 @@ class InputOperatorWrapNl
         label: try (Reader r
                      = null) { // ok
         }
-        try (Reader r = // violation
+        try (Reader r = // violation ''=' should be on a new line.'
                      null) {
         }
-        int x = (1 < 2) ? // violation
+        int x = (1 < 2) ? // violation ''?' should be on a new line.'
             false ? "".substring(0,
                     0).length() : false
                 ? 1 // ok
@@ -40,12 +40,12 @@ class InputOperatorWrapNl
 
         for (int value
                 : new int[0]) {} // ok
-        for (int value : // violation
+        for (int value : // violation '':' should be on a new line.'
                 new int[0]) {}
 
         int[] a1
                 = {}; // ok
-        int[] a2 = // violation
+        int[] a2 = // violation ''=' should be on a new line.'
                 {};
         int[] a3 = { // ok
         };
@@ -57,8 +57,8 @@ class InputOperatorWrapNl
                 || magic == 0x58 // 'X' // ok
         ) {
         }
-        if (magic != 0x31 && // violation
-                magic != 0x41 && // violation
+        if (magic != 0x31 && // violation ''&&' should be on a new line.'
+                magic != 0x41 && // violation ''&&' should be on a new line.'
                 magic != 0x59 // 'Y'
         ) {
         }
