@@ -20,9 +20,9 @@
 
       <p>
         OK, so you have finally decided to write your own Check.  Welcome
-        aboard, this is really a easy thing to do. Very basic Java knowledge is required
-        to write a Check, it is good practice for even for student.
-        There are actually two
+        aboard: this is a really easy thing to do. Very basic Java knowledge is required
+        to write a Check. It is good practice even for students.
+        Actually, there are two
         kinds of Checks, so before you can start, you have to find out
         which kind of Check you want to implement.
       </p>
@@ -39,14 +39,14 @@
       </p>
 
       <p>
-        Checkstyle provides a few FileSetCheck implementations by default
-        and one of them happens to be the
+        Checkstyle provides a few FileSetCheck implementations by default.
+        One of them is the
         <a href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">TreeWalker</a>. A
         TreeWalker supports submodules that are derived from the
         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html">AbstractCheck</a>
         class. The TreeWalker operates by separately transforming each of
         the Java input files into an abstract syntax tree and then handing
-        the result over to each of the Check submodules which in turn have
+        the result over to each of the Check submodules, which in turn have
         a look at a certain aspect of the tree.
       </p>
 
@@ -64,17 +64,17 @@
 
       <p>
         Suppose you have a convention that the number of methods in a
-        class should not exceed a certain limit, say 30. This rule makes
-        sense, a class should only do one thing and do it well. With a
+        class should not exceed 30. This rule makes
+        sense: a class should only do one thing and do it well. With a
         zillion methods chances are that the class does more than one
         thing. The only problem you have is that your convention is not
-        checked by Checkstyle, so you&#39;ll have to write your own Check
+        checked by Checkstyle. You&#39;ll have to write your own Check
         and plug it into the Checkstyle framework.
       </p>
 
       <p>
         This chapter is organized as a tour that takes you
-        through the process step by step and explains both the theoretical
+        through this process step by step and explains both the theoretical
         foundations and the
         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/package-summary.html">Checkstyle
           API</a> along the way.
@@ -86,37 +86,39 @@
 
       <p>
         Every Java Program is structured into files, and each of these
-        files has a certain structure. For example, if there is a
-        package statement then it is the first line of the file that is
-        not comment or whitespace. After the package statement comes a
-        list of import statements, which is followed by a class or
-        interface definition, and so on.
+        files has a certain structure. For example, a package statement
+        is always the first line of a file that is not comment or whitespace.
+        After the package statement comes a list of import statements, which
+        is followed by a class or interface definition, and so on.
       </p>
       <p>
         If you have ever read an introductory level Java book you probably
-        knew all of the above. And if you have studied computer science,
+        knew all the above. And if you have studied computer science,
         you probably also know that the rules that specify the Java language
-        can be formally specified using a grammar (statement is simplified
-        for didactic purposes).
+        can be formally specified using a grammar - though this statement is
+        simplified for didactic purposes).
       </p>
       <p>
         There are tools which read a grammar definition and produce a parser
         for the language that is specified in the grammar. In other
         words, the output of the tool is a program that can transform a
         stream of characters (a Java file) into a tree representation
-        that reflects the structure of the file. Checkstyle uses the
-        parser generator <a href="https://www.antlr.org">ANTLR</a> but
-        that is an implementation detail you do not need to worry about
-        when writing Checks, as well tested parser will parse Java file for you.
+        that reflects the structure of the file (<a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">
+        an Abstract Syntax Tree or AST</a>).
+        Checkstyle uses the parser generator <a href="https://www.antlr.org">ANTLR</a>,
+        but that is an implementation detail you do not need to worry about
+        when writing Checks, as this well tested parser will parse Java files
+        for you.
       </p>
 
     </section>
-    <section name="Tool to print Java tree structure">
+    <section name="Printing a Java tree structure">
       <p>
-        Checkstyle can print Abstract Syntax Tree for Java trees. You need to run checkstyle
-        jar file with <b>-t</b> or <b>-T</b> argument, providing java file.
+        Checkstyle can print an AST for a java file. To do so, run
+        the checkstyle jar file with the <b>-t</b> or <b>-T</b> argument,
+        providing the java file.
       </p>
-      <p>For example, here is MyClass.java file:</p>
+      <p>For example, take this MyClass.java file:</p>
       <source><![CDATA[
 /**
  * My <b>class</b>.
@@ -176,16 +178,15 @@ CLASS_DEF -> CLASS_DEF [5:0]
       </div>
       <p>
         As you can see very small java file transforms to a huge Abstract Syntax Tree, because
-        that is the most detailed tree including all components of the java file: object block,
+        this detailed tree includes all components of the java file: object blocks,
         comments, modifiers, etc.
       </p>
     </section>
 
     <section name="The Checkstyle SDK Gui">
-
       <p>
         Still with us? Great, you have mastered the basic theory so here
-        is your reward - a GUI that displays the structure of a Java source file. To run it type
+        is your reward - a GUI that displays the structure of a Java source file. To run it, run
       </p>
       <div class="wrap-content">
         <source>
@@ -194,7 +195,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
       </div>
 
       <p>
-        on the command line. Click the button at the bottom of the frame
+        Click the button at the bottom of the frame
         and select a syntactically correct Java source file. The frame
         will be populated with a tree that corresponds to the structure
         of the Java source code.
@@ -208,44 +209,44 @@ CLASS_DEF -> CLASS_DEF [5:0]
 
       <p>
         In the leftmost column you can open and close branches
-        of the tree, the remaining columns display information about each node
-        in the tree.  The second column displays a token type for each node. As
+        of the tree. The remaining columns display information about each node
+        in the tree. The second column displays a token type for each node. As
         you navigate from the root of the tree to one of the leafs, you&#39;ll
         notice that the token type denotes smaller and smaller units of your
         source file, i.e. close to the root you might see the token type
         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>
-        (a node that represents a class definition) while you will see token
+        (a node that represents a class definition), while you will see token
         types like IDENT (an identifier) near the leaves of the tree.
       </p>
 
       <p>
         In the bottom of frame you can find buttons "Open File", "Reload File"
-        and dropdown list with parse modes to choose. First one opens file
-        choose window. After choosing file tree that corresponds to java source
-        file builds in frame. Notice that only files with ".java" extension
-        can be opened. Second one reloads chosen file from file system and
-        rebuilds source code tree. Dropdown list allow to choose one of three
+        and a dropdown list with parse modes to choose. In the first option,
+        after choosing file, a tree that corresponds to a java source
+        file is shown. Notice that only files with the ".java" extension
+        can be opened. The second option reloads the chosen file from file system and
+        rebuilds the tree. In the dropdown list are three different
         parse modes: "PLAIN JAVA", "JAVA WITH COMMENTS", "JAVA WITH JAVADOC AND COMMENTS".
-        "PLAIN JAVA" mode uses to show java source code without comments. In
-        "JAVA WITH COMMENTS" you can see also comments blocks on the tree. When
-        "JAVA WITH JAVADOC AND COMMENTS" chosen javadoc tree builds and attaches
-        for every comment block, that contains javadoc.
+        "PLAIN JAVA" mode shows java source code without comments. In
+        "JAVA WITH COMMENTS" you can also see comments blocks on the tree. Lastly, when
+        "JAVA WITH JAVADOC AND COMMENTS" is chosen the javadoc tree builds and attaches
+        to every comment block that contains javadoc.
       </p>
 
       <p>
-        Notice: text of a tree node and its children is selected automatically
+        Note: the text of a tree node and its children is selected automatically
         after either pressing "Enter" or double-clicking on it, so there is no
-        need to make selection manually.
+        need to make a selection manually.
       </p>
 
       <p>
-        We&#39;ll get back to the details in the other columns later, they are important for
-        implementing Checks but not for understanding the basic concepts. For now it is sufficient
+        We&#39;ll get back to the details in the other columns later. They are important for
+        implementing Checks but not for understanding the basic concepts. For now, it is sufficient
         to know that the gui is a tool that lets you look at the structure of a Java file, i.e. you
         can see the Java grammar &#39;in action&#39;.
       </p>
 
-      <p> If you use <a href="https://www.eclipse.org/">Eclipse</a> you can install
+      <p> If you use <a href="https://www.eclipse.org/">Eclipse</a> you can install the
         <a href="https://github.com/sevntu-checkstyle/checkstyle-ast-eclipse-viewer">
           Checkstyle AST Eclipse Viewer</a>
         plugin to launch that application from context menu on any file in Eclipse.
@@ -262,9 +263,8 @@ CLASS_DEF -> CLASS_DEF [5:0]
       </p>
 
       <p>
-        When working with <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">
-        Abstract Syntax Tree (AST)</a>, a simple approach to define check operations
-        on them would be to add a <code>check()</code> method to the Class that defines
+        When working with an AST, a simple approach to writing Checks
+        on them would be to add a <code>check()</code> method to the class that defines
         the AST nodes. For example, our AST type could have a method
         <code>checkNumberOfMethods()</code>. Such an approach would suffer from a few
         serious drawbacks. Most importantly, it does not provide an extensible
@@ -277,12 +277,10 @@ CLASS_DEF -> CLASS_DEF [5:0]
         methods that implement checking functionality. Instead,
         Checkstyle&#39;s
         <a href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">TreeWalker</a>
-        takes a set of objects that conform to a
+        takes a set of objects that extend the
         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html">AbstractCheck</a>
-        interface. OK, you&#39;re right - actually it&#39;s not an interface
-        but an abstract class to provide some helper methods. A Check provides
-        methods that take an AST as an argument and perform the checking process
-        for that AST, most prominently
+        base class. A Check provides methods that take an AST as an argument and
+        perform the checking process for that AST, most prominently
         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#visitToken-com.puppycrawl.tools.checkstyle.api.DetailAST-">
           <code>visitToken()</code>
         </a>.
@@ -290,12 +288,11 @@ CLASS_DEF -> CLASS_DEF [5:0]
 
       <p>
         It is important to understand that the individual
-        Checks do not drive the AST traversal (it possible to traverse itself, but not recommended).
-        Instead, the TreeWalker initiates
-        a recursive descend from the root of the AST to the leaf nodes and calls
-        the Check methods. The traversal is done using a
+        Checks do not drive the AST traversal (it is possible
+        to traverse the tree manually, but not recommended).
+        Instead, the TreeWalker traverses the tree using a
         <a href="https://en.wikipedia.org/wiki/Tree_traversal">tree traversal (depth-first)</a>
-        algorithm.
+        algorithm, and calls the Check&#39;s methods.
       </p>
 
       <p>
@@ -303,7 +300,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#beginTree-com.puppycrawl.tools.checkstyle.api.DetailAST-">
           <code>beginTree()</code>
         </a> to give the Check a chance to do
-        some initialization. Then, when performing the recursive descend from
+        some initialization. Then, when performing the traversal from
         the root to the leaf nodes, the <code>visitToken()</code>
         method is called. Unlike the basic examples in the pattern book, there
         is a <code>visitToken()</code> counterpart called
@@ -324,12 +321,12 @@ CLASS_DEF -> CLASS_DEF [5:0]
 
       <p>
         Let&#39;s get back to our example and start writing code - that&#39;s why
-        you came here, right?
-        When you fire up the Checkstyle GUI and look at a few source
-        files you&#39;ll figure out pretty quickly that you are mainly
-        interested in the number of tree nodes of type METHOD_DEF. The
-        number of such tokens should be counted separately for each
-        CLASS_DEF / INTERFACE_DEF.
+        you came here, right? Remember that we are in the process of
+        writing a check that limits the amount of methods in a class.
+        Firing up the Checkstyle GUI and looking at a few source
+        files we notice that in the AST this corresponds to the
+        number of tree nodes of type METHOD_DEF. The number of such tokens
+        should be counted separately for each CLASS_DEF / INTERFACE_DEF.
       </p>
 
       <p>
@@ -337,8 +334,8 @@ CLASS_DEF -> CLASS_DEF [5:0]
         CLASS_DEF and INTERFACE_DEF. The TreeWalker will only call
         visitToken for these token types. Because the requirements of
         our tasks are so simple, there is no need to implement the other
-        fancy methods, like <code>finishTree()</code>, etc., so here is our first
-        shot at our Check implementation:
+        methods (<code>leaveToken()</code>, <code>finishTree()</code>, etc.
+        Here is our first shot at our Check implementation:
       </p>
 
       <source>
@@ -398,7 +395,7 @@ public class MethodLimitCheck extends AbstractCheck
       <ul>
 
         <li>
-          getDefaultTokens() - returns a set of TokenTypes which are processed in
+          getDefaultTokens() - returns a set of TokenTypes which are processed in the
           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#visitToken-com.puppycrawl.tools.checkstyle.api.DetailAST-">
           visitToken()</a> method by default.
         </li>
@@ -423,34 +420,36 @@ public class MethodLimitCheck extends AbstractCheck
 
       <p>
         Before <a href="releasenotes_old_6-0_7-8.html#Release_6.0">Checkstyle 6.0</a>,
-        there was no comments in AST tree as comments are not a code and ignored by compiler,
-        so it was not a primary focus of Checkstyle.
-        But more and more requests appear to do validation of code vs javadoc or comments.
-        So there was a simple solution to receive plain text of file in Check, do own parsing and
-        searching for required comments in file.
+        there were no comments in the AST. Comments are not a code and are ignored by compiler,
+        so they were not a primary focus of Checkstyle.
+        But more and more requests appeared to do validation of javadoc or comments.
+        One simple solution was to receive the plain-text file in a Check, manually parse it and
+        validate the comments in the file.
       </p>
       <p>
-        Since 6.0, there is a new method in AbstractCheck class that allow you to see or not
-        comment nodes in AST Tree -
+        Since version 6.0, there is a new method in the AbstractCheck class that allows you to see
+        comment nodes in the AST -
         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#isCommentNodesRequired--">
-        isCommentNodesRequired()</a>. It should return TRUE if Check want to see comments in AST
-        Tree.
+        isCommentNodesRequired()</a>. When this returns `true`, comments are included in the AST.
       </p>
       <p>
-        It is done as optional because it is change for a AST Tree structure, and non of existing
-        Checks ready for this.
-        Checkstyle does not do re-parse file one more time, comments were already in grammar and
-        parsed, but skipped during AST nodes creation.
+        This is optional to maintain backwards compatibility: it changes for the AST structure,
+        and breaking existing checks.
+        Checkstyle does not parse the files twice: comments were already in the grammar and
+        parsed, but skipped during the creation of AST nodes.
       </p>
       <p>
-        Before execution, all Checks are divided into 2 groups (base on isCommentNodesRequired
-        method): "java only Checks", "comments Checks".
-        Checkstyle execute "java only Checks" first, as all them finish, append to AST Tree missed
-        comment AST nodes and call "comments Checks".
-        All Javadoc Checks that are child of AbstractJavadocCheck are "comments Checks".
+        Before execution, all Checks are divided into 2 groups (based on the isCommentNodesRequired
+        method): "java only Checks" and "comment Checks".
+        Checkstyle executes "java only Checks" first. When they are all finished,
+        Checkstyle appends the comment AST nodes to the AST and calls "comment Checks".
+        All Javadoc Checks that are a child of
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html">
+          <code>AbstractJavadocCheck</code>
+        </a>are "comment Checks".
       </p>
       <p>
-        Comment tokens:
+        The following tokens exist:
         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">
             SINGLE_LINE_COMMENT</a>,
         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
@@ -469,10 +468,11 @@ public class MethodLimitCheck extends AbstractCheck
         In the example above you already saw that the DetailsAST class
         provides utility methods to extract information from the tree,
         like <code>getChildCount()</code>. By now you have
-        probably consulted the API documentation and found that
+        probably consulted the API documentation - and if not, you should -
+        and found that
         <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/api/DetailAST.java">
             DetailsAST</a> additionally provides methods for navigating around
-        in the syntax tree, like finding the next sibling of a node, the
+        in syntax tree, like finding the next sibling of a node, the
         children of a node, the parent of a node, etc.
       </p>
 
@@ -483,7 +483,7 @@ public class MethodLimitCheck extends AbstractCheck
         are visited by the TreeWalker.  Don&#39;t abuse that feature for
         exploring the whole tree, though. Let the TreeWalker drive the
         tree traversal and limit the visitor to the neighbours of a
-        single AST.
+        single AST node.
       </p>
 
     </section>
@@ -491,8 +491,7 @@ public class MethodLimitCheck extends AbstractCheck
     <section name="Defining Check Properties">
 
       <p>
-
-        OK Mr. Checkstyle, that&#39;s all very nice but in my company we
+        OK Mr. Checkstyle, that&#39;s all very nice, but in my company we
         have several projects, and each has another number of allowed
         methods. I need to control my Check through properties, so where
         is the API to do that?
@@ -523,8 +522,8 @@ public class MethodLimitCheck extends AbstractCheck
         MethodLimitCheck module in the configuration file. It doesn&#39;t get any
         simpler than that. The secret is that Checkstyle uses
         <a href="https://docs.oracle.com/javase/tutorial/reflect/member/fieldValues.html">
-        JavaBean reflection to set the JavaBean properties</a>. That works for all
-        primitive types like boolean, int, long, etc., plus Strings, plus arrays of these types.
+        JavaBean reflection</a> to set the JavaBean properties. This works for all
+        primitive types like boolean, int, long, etc., Strings, and arrays of these types.
       </p>
 
     </section>
@@ -532,12 +531,12 @@ public class MethodLimitCheck extends AbstractCheck
     <section name="Logging violations">
 
       <p>
-        Detecting violation is one thing, presenting them to the user is
+        Detecting violation is one thing; presenting them to the user is
         another. To do that, the Check base class provides several log
         methods, the simplest of them being <code>Check.log(String)</code>. In your
-        Check you can simply use a verbatim violation string like in
+        Check you can simply use a verbatim violation string as the argument, i.e.
         <code>log(&quot;Too many methods, only &quot; + mMax +
-        &quot; are allowed&quot;);</code> as the argument. That will
+        &quot; are allowed&quot;);</code>. This will
         work, but it&#39;s not the best possible solution if your Check is
         intended for a wider audience.
       </p>
@@ -545,23 +544,22 @@ public class MethodLimitCheck extends AbstractCheck
       <p>
         If you are not living in a country where people speak English,
         you may have noticed that Checkstyle writes internationalized
-        violation messages, for example if you live in Germany the violation
+        violation messages. For example, if you live in Germany the violation,
         messages are German. The individual Checks don&#39;t have to do
-        anything fancy to achieve this, it&#39;s actually quite easy and the
+        anything fancy to achieve this. It&#39;s actually quite easy and the
         Checkstyle framework does most of the work.
       </p>
 
       <p>
-        To support internationalized violation messages, you need to create or reuse existing
-        a messages.properties file alongside your Check class (
+        To support internationalized violation messages, you need to create or reuse an existing
+        messages.properties file alongside your Check class (
         <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/com/puppycrawl/tools/checkstyle/checks/sizes/messages.properties">
-          example</a>)
-        , i.e. the
-        Java file and the properties files should be in the same
-        directory.  Add a symbolic violation code and an English
+          example</a>).
+        The Java file and the properties files should be in the same
+        directory. Add a symbolic violation code and an English
         representation to the messages.properties. The file should
         contain the following line: <code>too.many.methods=Too many methods, only {0} are
-        allowed</code>.  Then replace the verbatim violation message with
+        allowed</code>. Then replace the verbatim violation message with
         the symbolic representation and use one of the log helper
         methods to provide the dynamic part of the message (mMax in this
         case): <code>log(&quot;too.many.methods&quot;,
@@ -573,7 +571,7 @@ public class MethodLimitCheck extends AbstractCheck
       </p>
 
       <p>
-        Supporting a new language is very easy now, simply create a new
+        Supporting a new language is very easy now. Simply create a new
         messages file for the language, e.g. messages_fr.properties to
         provide French violation messages. The correct file will be chosen
         automatically, based on the language settings of the user&#39;s
@@ -582,10 +580,10 @@ public class MethodLimitCheck extends AbstractCheck
 
     </section>
 
-    <section name="Integrate your Check">
+    <section name="Integrating Checks">
 
       <p>
-        The great final moment has arrived, you are about to run your
+        The great final moment has arrived! You are about to run your
         Check. To integrate your Check, add a new subentry under the
         TreeWalker module of your configuration file. Use the full
         classname of your Check class as the name of the module.
@@ -653,7 +651,7 @@ public class MethodLimitCheck extends AbstractCheck
 
     <section name="Limitations">
       <p>
-        There are basically only a few limits for Checkstyle:
+        There are only a few, but important, limitations for Checkstyle:
       </p>
       <ul>
         <li>Java
@@ -672,16 +670,17 @@ public class MethodLimitCheck extends AbstractCheck
           <a href="https://github.com/checkstyle/checkstyle/issues/10629">
           Issue #10629.</a>
         </li>
-        <li>To get valid violations, code have to be compilable, in other case you can get not easy
-        to understand parse errors.</li>
+        <li>To get valid violations, code has to be compilable.
+          If it is not, you can get hard to understand parse errors.</li>
         <li>You cannot determine the type of an expression.
         Example: "getValue() + getValue2()"</li>
         <li>You cannot determine the full inheritance hierarchy of type.</li>
-        <li>You cannot see the content of other files. You have content of one file only during all
-        Checks execution. All files are processed one by one.</li>
+        <li>You cannot see the content of other files. You have access to the
+          content of one file only during all Checks execution. All files
+          are processed one by one.</li>
       </ul>
       <p>
-        This means that you cannot implement some of the code inspection
+        This means that you cannot implement some code inspection
         features that are available in advanced IDEs like Eclipse,
         <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>,
         <a href="https://spotbugs.github.io/">SpotBugs</a>,
@@ -701,12 +700,12 @@ public class MethodLimitCheck extends AbstractCheck
 
     <section name="Writing FileSetChecks">
 
-      <p>Writing a FileSetCheck usually required when you do not need parse Java file
-      to get inner structure, or you are going to validate non "*.java" files.
+      <p>Writing a FileSetCheck usually is required when you do not need to parse Java files
+      to access the inner structure, or you are going to validate non "*.java" files.
       </p>
 
       <p>
-        Writing a FileSetCheck is pretty straightforward: Just inherit from
+        Writing a FileSetCheck is pretty straightforward: just inherit from
         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html">
         AbstractFileSetCheck</a> and override the abstract
         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html#processFiltered-java.io.File-com.puppycrawl.tools.checkstyle.api.FileText-">
@@ -757,30 +756,30 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
 
       <p>
         Note that the configuration via bean introspection also applies
-        here.  By implementing the <code>setMax()</code>
+        here. By implementing the <code>setMax()</code>
         method the FileSetCheck automatically makes &quot;max&quot; a
         legal configuration parameter that you can use in the Checkstyle
         configuration file.
       </p>
       <p>
-        There are virtually no limits what you can do in
+        There are virtually no limits to what you can do in
         FileSetChecks, but please do not be crazy.
       </p>
 
     </section>
 
-    <section name="Declare check's external resource locations">
+    <section name="Declare checks external resource locations">
       <p>
         Checkstyle can cache external configuration resources of any kind which are used by your
-        check. If you want to do such a thing, you should implement
+        Check. If you want to do such a thing, you should implement the
         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html">
             ExternalResourceHolder</a>
-        interface. Such module must declare external resource locations as a set of Strings
-        which will be returned from
+        interface. Such a module must declare the external resource locations as a set of Strings
+        which will be returned from the
         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">
           getExternalResourceLocations</a>
-        method. This will allow Checkstyle to invalidate (clear) cache when the content of at
-        least one external configuration resource of your check is changed.
+        method. This will allow Checkstyle to invalidate and clear cache when the content of at
+        least one external configuration resource of your Check is changed.
       </p>
       <p>
         ATTENTION!
@@ -790,10 +789,10 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
           If
           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">
             getExternalResourceLocations</a>
-          return null, there will be NullPointerException in
+          returns null, there will be a NullPointerException in
           <a href="apidocs/com/puppycrawl/tools/checkstyle/Checker.html">
             Checker</a>.
-          Such behaviour will signal that your module (check or filter) is designed incorrectly.
+          Such behaviour signals that your module (check or filter) is designed incorrectly.
         </li>
         <li>
           It makes sense to return an empty set from
@@ -811,8 +810,8 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
         That&#39;s probably our fault, and it means that we have to provide
         better documentation. Please do not hesitate to ask questions on
         the user <a href="mailing-lists.html">
-        mailing lists</a>, this will help us to improve this
-        document.  Please ask your questions as precisely as possible.
+        mailing lists</a>. This will help us to improve this
+        document. Please ask your questions as precisely as possible.
         We will not be able to answer questions like &quot;I want to
         write a Check but I don&#39;t know how, can you help me?&quot;. Tell
         us what you are trying to do (the purpose of the Check), what
@@ -823,7 +822,6 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
     </section>
 
     <section name="Contributing">
-
       <p>
         We need <em>your</em> help to keep improving Checkstyle.
 
@@ -832,7 +830,6 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
         <a href="contributing.html">contributing</a> it to the
         Checkstyle community and submit it for inclusion in the next
         release of Checkstyle.
-
       </p>
     </section>
 
