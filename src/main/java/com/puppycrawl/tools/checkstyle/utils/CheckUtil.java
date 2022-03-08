@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,6 +29,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 
@@ -70,6 +72,9 @@ public final class CheckUtil {
 
     /** Compiled pattern for all system newlines. */
     private static final Pattern ALL_NEW_LINES = Pattern.compile("\\R");
+
+    /** Package separator. */
+    private static final char PACKAGE_SEPARATOR = '.';
 
     /** Prevent instances. */
     private CheckUtil() {
@@ -588,5 +593,108 @@ public final class CheckUtil {
             }
         }
         return length;
+    }
+
+    /**
+     * Calculates and returns the type declaration name matching count.
+     *
+     * <p>
+     * Suppose our pattern class is {@code foo.a.b} and class to be matched is
+     * {@code foo.a.ball} then type declaration name matching count would be calculated by
+     * comparing every character, and updating main counter when we hit "." to prevent matching
+     * "a.b" with "a.ball". In this case type declaration name matching count
+     * would be equal to 6 and not 7 (b of ball is not counted).
+     * </p>
+     *
+     * @param patternClass class against which the given class has to be matched
+     * @param classToBeMatched class to be matched
+     * @return class name matching count
+     */
+    public static int typeDeclNameMatchingCount(String patternClass, String classToBeMatched) {
+        final int length = Math.min(classToBeMatched.length(), patternClass.length());
+        int result = 0;
+        for (int i = 0; i < length && patternClass.charAt(i) == classToBeMatched.charAt(i); ++i) {
+            if (patternClass.charAt(i) == PACKAGE_SEPARATOR) {
+                result = i;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Get qualified type declaration name.
+     *
+     * @param typeDeclAst type declaration ast
+     * @param typeDeclarations all the type declarations present in the file
+     * @param packageName name of the package
+     * @return qualified name of type declaration
+     */
+    public static String getQualifiedTypeDeclarationName(DetailAST typeDeclAst,
+        Deque<TypeDeclDesc> typeDeclarations, String packageName) {
+        final String className = typeDeclAst.findFirstToken(TokenTypes.IDENT).getText();
+        String outerClassQualifiedName = null;
+        if (!typeDeclarations.isEmpty()) {
+            outerClassQualifiedName = typeDeclarations.peek().getQualifiedName();
+        }
+        return getQualifiedTypeDeclarationName(packageName, outerClassQualifiedName, className);
+    }
+
+    /**
+     * Get the qualified name of type declaration by combining {@code packageName},
+     * {@code outerClassQualifiedName} and {@code className}.
+     *
+     * @param packageName packageName
+     * @param outerClassQualifiedName outerClassQualifiedName
+     * @param className className
+     * @return the qualified name of type declaration by combining {@code packageName},
+     *         {@code outerClassQualifiedName} and {@code className}
+     */
+    private static String getQualifiedTypeDeclarationName(String packageName,
+        String outerClassQualifiedName, String className) {
+        final String qualifiedClassName;
+
+        if (outerClassQualifiedName == null) {
+            if (packageName == null) {
+                qualifiedClassName = className;
+            }
+            else {
+                qualifiedClassName = packageName + PACKAGE_SEPARATOR + className;
+            }
+        }
+        else {
+            qualifiedClassName = outerClassQualifiedName + PACKAGE_SEPARATOR + className;
+        }
+        return qualifiedClassName;
+    }
+
+    /**
+     * Get name of package and super class of anon inner class by concatenating
+     * the identifier values under {@link TokenTypes#DOT}.
+     *
+     * @param ast ast to extract superclass or package name from
+     * @return qualified name
+     */
+    public static String extractQualifiedName(DetailAST ast) {
+        return FullIdent.createFullIdent(ast).getText();
+    }
+
+    /**
+     * Get the short name of super class of anonymous inner class.
+     * Example-
+     * <pre>
+     * TestClass.NestedClass obj = new Test().new NestedClass() {};
+     * // Short name will be Test.NestedClass
+     * </pre>
+     *
+     * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
+     * @return short name of base class of anonymous inner class
+     */
+    public static String getShortNameOfAnonInnerClass(DetailAST literalNewAst) {
+        DetailAST parentAst = literalNewAst.getParent();
+        while (TokenUtil.isOfType(parentAst, TokenTypes.LITERAL_NEW, TokenTypes.DOT)) {
+            parentAst = parentAst.getParent();
+        }
+        final DetailAST firstChild = parentAst.getFirstChild();
+        return extractQualifiedName(firstChild);
     }
 }
