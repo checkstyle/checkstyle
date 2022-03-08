@@ -34,7 +34,7 @@ class InputOperatorWrap3
         Arrays.sort(null, String
                     ::
                     compareToIgnoreCase);
-        Arrays.sort(null, String:: // violation
+        Arrays.sort(null, String:: // violation ''::' should be on a new line.'
                     compareToIgnoreCase);
         Arrays.sort(null, String
                     ::compareToIgnoreCase);
