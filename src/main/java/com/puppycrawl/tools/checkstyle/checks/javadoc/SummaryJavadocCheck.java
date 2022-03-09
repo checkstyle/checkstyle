@@ -304,7 +304,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     @Override
     public void visitJavadocToken(DetailNode ast) {
         final Optional<DetailNode> inlineSummaryTag = getInlineSummaryTag(ast);
-        if (inlineSummaryTag.isPresent()) {
+        if (inlineSummaryTag.isPresent() && isDefinedFirst(inlineSummaryTag.get())) {
             validateSummaryTag(inlineSummaryTag.get());
         }
         else if (!startsWithInheritDoc(ast)) {
@@ -343,6 +343,28 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             node = Optional.empty();
         }
         return node;
+    }
+
+    /**
+     * Whether the {@code {@summary}} tag is defined first in the javadoc.
+     *
+     * @param inlineSummaryTag node of type {@link JavadocTokenTypes#JAVADOC_INLINE_TAG}
+     * @return {@code true} if the {@code {@summary}} tag is defined first in the javadoc
+     */
+    private static boolean isDefinedFirst(DetailNode inlineSummaryTag) {
+        boolean result = true;
+        DetailNode previousSibling = JavadocUtil.getPreviousSibling(inlineSummaryTag);
+        while (previousSibling != null) {
+            final int siblingType = previousSibling.getType();
+            if (siblingType == JavadocTokenTypes.HTML_ELEMENT
+                || siblingType == JavadocTokenTypes.TEXT
+                && !previousSibling.getText().isBlank()) {
+                result = false;
+                break;
+            }
+            previousSibling = JavadocUtil.getPreviousSibling(previousSibling);
+        }
+        return result;
     }
 
     /**

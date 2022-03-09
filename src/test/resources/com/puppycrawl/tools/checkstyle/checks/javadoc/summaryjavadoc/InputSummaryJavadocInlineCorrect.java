@@ -108,6 +108,7 @@ class InputSummaryJavadocInlineCorrect {
      */
     private void voidValidJavadoc() {} // ok
 
+    // violation below 'First sentence of Javadoc is missing an ending period.'
     /**
      * Sentence starts as a plain text sentence
      * {@summary ... but ends in the summary tag.}

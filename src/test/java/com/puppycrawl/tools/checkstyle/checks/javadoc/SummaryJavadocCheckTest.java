@@ -57,7 +57,9 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testInlineCorrect() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "112: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+        };
 
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocInlineCorrect.java"), expected);
@@ -81,7 +83,6 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "142: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "147: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "150: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "155: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
         };
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocIncorrect.java"), expected);
@@ -100,7 +101,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "80: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "94: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "108: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "115: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "114: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocInlineForbidden.java"), expected);
@@ -146,6 +147,17 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocIncorrect2.java"), expected);
+    }
+
+    @Test
+    public void testIncorrectUsageOfSummaryTag() throws Exception {
+        final String[] expected = {
+            "33: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "41: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputSummaryJavadocIncorrect3.java"), expected);
     }
 
     @Test
