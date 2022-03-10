@@ -65,7 +65,8 @@ public class LambdaHandler extends AbstractExpressionHandler {
      */
     @Override
     protected IndentLevel getIndentImpl() {
-        if (getParent() instanceof MethodCallHandler) {
+        if (getParent() instanceof MethodCallHandler
+            || getParent() instanceof ObjectBlockHandler) {
             return getParent().getSuggestedChildIndent(this);
         }
 
