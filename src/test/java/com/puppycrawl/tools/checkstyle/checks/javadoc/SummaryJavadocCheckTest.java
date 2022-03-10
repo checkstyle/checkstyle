@@ -81,7 +81,6 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "142: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "147: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "150: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "155: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
         };
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocIncorrect.java"), expected);
@@ -146,6 +145,20 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocIncorrect2.java"), expected);
+    }
+
+    @Test
+    public void testIncorrectUsageOfSummaryTag() throws Exception {
+        final String[] expected = {
+            "33: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "41: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "55: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "64: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "73: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputSummaryJavadocIncorrect3.java"), expected);
     }
 
     @Test
