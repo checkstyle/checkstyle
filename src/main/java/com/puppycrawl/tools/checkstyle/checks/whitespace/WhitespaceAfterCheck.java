@@ -171,13 +171,13 @@ public class WhitespaceAfterCheck
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.TYPECAST) {
             final DetailAST targetAST = ast.findFirstToken(TokenTypes.RPAREN);
-            final String line = getLine(targetAST.getLineNo() - 1);
+            final int[] line = getLineCodePoints(targetAST.getLineNo() - 1);
             if (!isFollowedByWhitespace(targetAST, line)) {
                 log(targetAST, MSG_WS_TYPECAST);
             }
         }
         else {
-            final String line = getLine(ast.getLineNo() - 1);
+            final int[] line = getLineCodePoints(ast.getLineNo() - 1);
             if (!isFollowedByWhitespace(ast, line)) {
                 final Object[] message = {ast.getText()};
                 log(ast, MSG_WS_NOT_FOLLOWED, message);
@@ -189,17 +189,16 @@ public class WhitespaceAfterCheck
      * Checks whether token is followed by a whitespace.
      *
      * @param targetAST Ast token.
-     * @param line The line associated with the ast token.
+     * @param line Unicode code points array of line associated with the ast token.
      * @return true if ast token is followed by a whitespace.
      */
-    private static boolean isFollowedByWhitespace(DetailAST targetAST, String line) {
+    private static boolean isFollowedByWhitespace(DetailAST targetAST, int... line) {
         final int after =
             targetAST.getColumnNo() + targetAST.getText().length();
         boolean followedByWhitespace = true;
 
-        if (after < line.codePointCount(0, line.length())) {
-            final int[] codePoints = line.codePoints().toArray();
-            final int codePoint = codePoints[after];
+        if (after < line.length) {
+            final int codePoint = line[after];
 
             followedByWhitespace = codePoint == ';'
                 || codePoint == ')'
