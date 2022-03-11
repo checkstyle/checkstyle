@@ -70,6 +70,18 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * &lt;module name=&quot;MultipleStringLiterals&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *  public class MyClass {
+ *      String a = "StringContents";
+ *      public void myTest() {
+ *          String a1 = "StringContents"; // violation
+ *          String a2 = "DoubleString" + "DoubleString"; // violation
+ *          String a3 = "SingleString"; // OK
+ *          String a4 = ", " + ", " + ", "; // violation
+ *      }
+ *  }
+ * </pre>
  * <p>
  * To configure the check so that it allows two occurrences of each string:
  * </p>
@@ -77,6 +89,19 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
  *   &lt;property name=&quot;allowedDuplicates&quot; value=&quot;2&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *  public class MyClass {
+ *      String a = "StringContents";
+ *      public void myTest() {
+ *          String a1 = "StringContents"; // OK
+ *          String a2 = "DoubleString" + "DoubleString"; // OK
+ *          String a3 = "SingleString"; // OK
+ *          String a4 = ", " + ", " + ", "; // violation
+ *          String a5 = "" + ""; // OK
+ *      }
+ *  }
  * </pre>
  * <p>
  * To configure the check so that it ignores ", " and empty strings:
@@ -87,6 +112,19 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     value='^((&quot;&quot;)|(&quot;, &quot;))$'/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *  public class MyClass {
+ *      String a = "StringContents";
+ *      public void myTest() {
+ *          String a1 = "StringContents"; // violation
+ *          String a2 = "DoubleString" + "DoubleString"; // violation
+ *          String a3 = "SingleString"; // OK
+ *          String a4 = ", " + ", " + ", "; // OK
+ *          String a5 = "" + ""; // OK
+ *      }
+ *  }
+ * </pre>
  * <p>
  * To configure the check so that it flags duplicate strings in all syntactical contexts,
  * even in annotations like {@code @SuppressWarnings("unchecked")}:
@@ -95,6 +133,14 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
  *   &lt;property name=&quot;ignoreOccurrenceContext&quot; value=&quot;&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *  @SuppressWarnings("unchecked")
+ *  void myTest1(){}
+ *
+ *  @SuppressWarnings("unchecked") // violation
+ *  void myTest2(){}
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
