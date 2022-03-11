@@ -4629,12 +4629,19 @@ for (String arg: args1) {
           <pre>
 public class MyClass {
     String a = "StringContents";
+
     public void myTest() {
         String a1 = "StringContents"; // violation
         String a2 = "DoubleString" + "DoubleString"; // violation
         String a3 = "SingleString"; // OK
         String a4 = ", " + ", " + ", "; // violation
     }
+
+    @SuppressWarnings("unchecked")
+    public void myTest1(){}
+
+    @SuppressWarnings("unchecked") // OK
+    public void myTest2(){}
 }
           </pre>
         </div>
@@ -4653,13 +4660,19 @@ public class MyClass {
           <pre>
 public class MyClass {
     String a = "StringContents";
+
     public void myTest() {
         String a1 = "StringContents"; // OK
         String a2 = "DoubleString" + "DoubleString"; // OK
         String a3 = "SingleString"; // OK
         String a4 = ", " + ", " + ", "; // violation
-        String a5 = "" + ""; // OK
     }
+
+    @SuppressWarnings("unchecked")
+    public void myTest1(){}
+
+    @SuppressWarnings("unchecked") // OK
+    public void myTest2(){}
 }
           </pre>
         </div>
@@ -4678,13 +4691,19 @@ public class MyClass {
           <pre>
 public class MyClass {
     String a = "StringContents";
+
     public void myTest() {
         String a1 = "StringContents"; // violation
         String a2 = "DoubleString" + "DoubleString"; // violation
         String a3 = "SingleString"; // OK
         String a4 = ", " + ", " + ", "; // OK
-        String a5 = "" + ""; // OK
     }
+
+    @SuppressWarnings("unchecked")
+    public void myTest1(){}
+
+    @SuppressWarnings("unchecked") // OK
+    public void myTest2(){}
 }
           </pre>
         </div>
@@ -4702,11 +4721,22 @@ public class MyClass {
         <p>Example:</p>
         <div class="wrapper">
           <pre>
-@SuppressWarnings("unchecked")
-    void myTest1(){}
+public class MyClass {
+    String a = "StringContents";
 
-@SuppressWarnings("unchecked") // violation
-    void myTest2(){}
+    public void myTest() {
+        String a1 = "StringContents"; // violation
+        String a2 = "DoubleString" + "DoubleString"; // violation
+        String a3 = "SingleString"; // OK
+        String a4 = ", " + ", " + ", "; // violation
+    }
+
+    @SuppressWarnings("unchecked")
+    public void myTest1(){}
+
+    @SuppressWarnings("unchecked") // violation
+    public void myTest2(){}
+}
           </pre>
         </div>
       </subsection>

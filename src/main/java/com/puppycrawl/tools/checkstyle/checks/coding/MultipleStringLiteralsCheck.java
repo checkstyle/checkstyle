@@ -74,12 +74,19 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  *  public class MyClass {
  *      String a = "StringContents";
+ *
  *      public void myTest() {
  *          String a1 = "StringContents"; // violation
  *          String a2 = "DoubleString" + "DoubleString"; // violation
  *          String a3 = "SingleString"; // OK
  *          String a4 = ", " + ", " + ", "; // violation
  *      }
+ *
+ *     @SuppressWarnings("unchecked")
+ *     public void myTest1(){}
+ *
+ *     @SuppressWarnings("unchecked") // OK
+ *     public void myTest2(){}
  *  }
  * </pre>
  * <p>
@@ -94,13 +101,19 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  *  public class MyClass {
  *      String a = "StringContents";
+ *
  *      public void myTest() {
  *          String a1 = "StringContents"; // OK
  *          String a2 = "DoubleString" + "DoubleString"; // OK
  *          String a3 = "SingleString"; // OK
  *          String a4 = ", " + ", " + ", "; // violation
- *          String a5 = "" + ""; // OK
  *      }
+ *
+ *     @SuppressWarnings("unchecked")
+ *     public void myTest1(){}
+ *
+ *     @SuppressWarnings("unchecked") // OK
+ *     public void myTest2(){}
  *  }
  * </pre>
  * <p>
@@ -121,8 +134,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *          String a2 = "DoubleString" + "DoubleString"; // violation
  *          String a3 = "SingleString"; // OK
  *          String a4 = ", " + ", " + ", "; // OK
- *          String a5 = "" + ""; // OK
  *      }
+ *
+ *     @SuppressWarnings("unchecked")
+ *     public void myTest1(){}
+ *
+ *     @SuppressWarnings("unchecked") // OK
+ *     public void myTest2(){}
  *  }
  * </pre>
  * <p>
@@ -136,11 +154,21 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <p>Example:</p>
  * <pre>
- *  @SuppressWarnings("unchecked")
- *  void myTest1(){}
+ *  public class MyClass {
+ *      String a = "StringContents";
+ *      public void myTest() {
+ *          String a1 = "StringContents"; // violation
+ *          String a2 = "DoubleString" + "DoubleString"; // violation
+ *          String a3 = "SingleString"; // OK
+ *          String a4 = ", " + ", " + ", "; // violation
+ *      }
  *
- *  @SuppressWarnings("unchecked") // violation
- *  void myTest2(){}
+ *     @SuppressWarnings("unchecked")
+ *     public void myTest1(){}
+ *
+ *     @SuppressWarnings("unchecked") // violation
+ *     public void myTest2(){}
+ *  }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
