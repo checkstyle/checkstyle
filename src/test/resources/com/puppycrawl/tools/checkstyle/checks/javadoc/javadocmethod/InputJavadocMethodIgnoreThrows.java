@@ -12,7 +12,7 @@ tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -142,23 +142,23 @@ public class InputJavadocMethodIgnoreThrows {
     /**
      * Local inner classes should be ignored.
      *
-     * @param ast input
+     * @param str input
      */
-    void dfs(DetailAST ast) {
+    void dfs(String str) {
         class DFS {
             void neverCalled() {
                 throw new IllegalStateException(""); // ok, inside local class
             }
 
-            void dfs(DetailAST ast) {
-                if (ast != null) {
-                    dfs(ast.getFirstChild());
-                    System.out.println(ast);
-                    dfs(ast.getNextSibling());
+            void dfs(String str) {
+                if (str != null) {
+                    dfs(str.toLowerCase());
+                    System.out.println(str);
+                    dfs(str.toUpperCase());
                 }
             }
         }
-        new DFS().dfs(ast);
+        new DFS().dfs(str);
     }
 
     /**
