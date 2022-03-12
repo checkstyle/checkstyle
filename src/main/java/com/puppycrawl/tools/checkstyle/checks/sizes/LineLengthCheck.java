@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * or can set property {@code tabWidth} for {@code LineLength} alone.
  * </li>
  * <li>
- * Package and import statements (lines matching pattern {@code ^(package|import) .*})
+ * By default package and import statements (lines matching pattern {@code ^(package|import) .*})
  * are not verified by this check.
  * </li>
  * </ul>
@@ -59,7 +59,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code ignorePattern} - Specify pattern for lines to ignore.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^$"}.
+ * Default value is {@code "^(package|import) .*"}.
  * </li>
  * <li>
  * Property {@code max} - Specify the maximum line length allowed.
@@ -104,6 +104,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="fileExtensions" value="xml, properties"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>To configure check to validate {@code import} and {@code package} statements:
+ * </p>
+ * <pre>
+ * &lt;module name="LineLength"&gt;
+ *   &lt;property name="ignorePattern" value="^$"/&gt;
+ * &lt;/module&gt;
+ * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
@@ -130,14 +137,11 @@ public class LineLengthCheck extends AbstractFileSetCheck {
     /** Default maximum number of columns in a line. */
     private static final int DEFAULT_MAX_COLUMNS = 80;
 
-    /** Patterns matching package, import, and import static statements. */
-    private static final Pattern IGNORE_PATTERN = Pattern.compile("^(package|import) .*");
-
     /** Specify the maximum line length allowed. */
     private int max = DEFAULT_MAX_COLUMNS;
 
     /** Specify pattern for lines to ignore. */
-    private Pattern ignorePattern = Pattern.compile("^$");
+    private Pattern ignorePattern = Pattern.compile("^(package|import) .*");
 
     @Override
     protected void processFiltered(File file, FileText fileText) {
@@ -146,8 +150,7 @@ public class LineLengthCheck extends AbstractFileSetCheck {
             final int realLength = CommonUtil.lengthExpandedTabs(
                 line, line.codePointCount(0, line.length()), getTabWidth());
 
-            if (realLength > max && !IGNORE_PATTERN.matcher(line).find()
-                && !ignorePattern.matcher(line).find()) {
+            if (realLength > max && !ignorePattern.matcher(line).find()) {
                 log(i + 1, MSG_KEY, max, realLength);
             }
         }
