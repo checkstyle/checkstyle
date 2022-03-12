@@ -154,8 +154,6 @@ class InputSummaryJavadocIncorrect {
      * This is the summary.
      * {@summary This is NOT summary according to javadoc tool}
      */
-    // violation 2 lines above 'Summary .* missing an ending period.'
-    // until https://github.com/checkstyle/checkstyle/issues/11213
     void testMethod() {
     }
 }
