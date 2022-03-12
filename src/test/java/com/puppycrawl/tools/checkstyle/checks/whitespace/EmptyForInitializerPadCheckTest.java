@@ -104,6 +104,16 @@ public class EmptyForInitializerPadCheckTest
     }
 
     @Test
+    public void testWithEmoji() throws Exception {
+        final String[] expected = {
+            "23:13: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
+            "28:25: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyForInitializerPadWithEmoji.java"), expected);
+    }
+
+    @Test
     public void testInvalidOption() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(EmptyForInitializerPadCheck.class);
