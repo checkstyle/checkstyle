@@ -251,8 +251,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private static final Pattern HTML_ELEMENTS =
             Pattern.compile("<[^>]*>");
 
-    /** Period literal. */
-    private static final String PERIOD = ".";
+    /** Default period literal. */
+    private static final String DEFAULT_PERIOD = ".";
 
     /** Summary tag text. */
     private static final String SUMMARY_TEXT = "@summary";
@@ -274,7 +274,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     /**
      * Specify the period symbol at the end of first javadoc sentence.
      */
-    private String period = PERIOD;
+    private String period = DEFAULT_PERIOD;
 
     /**
      * Setter to specify the regexp for forbidden summary fragments.
@@ -658,7 +658,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     private static String getFirstSentence(DetailNode ast) {
         final StringBuilder result = new StringBuilder(256);
-        final String periodSuffix = PERIOD + ' ';
+        final String periodSuffix = DEFAULT_PERIOD + ' ';
         for (DetailNode child : ast.getChildren()) {
             final String text;
             if (child.getChildren().length == 0) {
