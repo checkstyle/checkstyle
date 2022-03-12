@@ -19,8 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.Queue;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -333,16 +335,75 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @return an optional of inline summary tag node, empty optional if inline tag is not
      *         a summary tag.
      */
-    private static Optional<DetailNode> getInlineSummaryTag(DetailNode javadoc) {
+    private Optional<DetailNode> getInlineSummaryTag(DetailNode javadoc) {
         Optional<DetailNode> node = Arrays.stream(javadoc.getChildren())
                 .filter(SummaryJavadocCheck::isInlineTagPresent)
                 .findFirst()
                 .map(SummaryJavadocCheck::getInlineTagNodeWithinHtmlElement);
 
-        if (node.isPresent() && !isSummaryTag(node.get())) {
+        if (node.isPresent() && (!isSummaryTag(node.get()) || !isDefinedFirst(node.get()))) {
             node = Optional.empty();
         }
         return node;
+    }
+
+    /**
+     * Whether the {@code {@summary}} tag is defined first in the javadoc.
+     *
+     * @param inlineSummaryTag node of type {@link JavadocTokenTypes#JAVADOC_INLINE_TAG}
+     * @return {@code true} if the {@code {@summary}} tag is defined first in the javadoc
+     */
+    private boolean isDefinedFirst(DetailNode inlineSummaryTag) {
+        boolean isDefinedFirst = true;
+        DetailNode previousSibling = JavadocUtil.getPreviousSibling(inlineSummaryTag);
+        while (previousSibling != null && isDefinedFirst) {
+            final int siblingType = previousSibling.getType();
+            if (siblingType == JavadocTokenTypes.TEXT) {
+                if (!previousSibling.getText().isBlank()) {
+                    isDefinedFirst = false;
+                }
+            }
+            else if (siblingType == JavadocTokenTypes.HTML_ELEMENT
+                && isTextPresentInsideHtmlTag(previousSibling)) {
+                isDefinedFirst = false;
+            }
+            previousSibling = JavadocUtil.getPreviousSibling(previousSibling);
+        }
+        return isDefinedFirst;
+    }
+
+    /**
+     * Whether some text is present inside the HTML element or tag.
+     *
+     * @param node DetailNode of type {@link JavadocTokenTypes#HTML_TAG}
+     *             or {@link JavadocTokenTypes#HTML_ELEMENT}
+     * @return {@code true} if some text is present inside the HTML element or tag
+     */
+    public static boolean isTextPresentInsideHtmlTag(DetailNode node) {
+        boolean isTextPresentInsideHtmlTag = false;
+        Queue<DetailNode> nestedHtmlElementsAndTags = new ArrayDeque<>();
+        DetailNode nestedChild = JavadocUtil.getFirstChild(node);
+        if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+            nestedChild = JavadocUtil.getFirstChild(nestedChild);
+        }
+        while (nestedChild != null) {
+            final int nestedChildType = nestedChild.getType();
+            if (nestedChildType == JavadocTokenTypes.TEXT
+                && !nestedChild.getText().isBlank()) {
+                isTextPresentInsideHtmlTag = true;
+                break;
+            }
+            if (nestedChildType == JavadocTokenTypes.HTML_TAG
+                || nestedChildType == JavadocTokenTypes.HTML_ELEMENT) {
+                nestedHtmlElementsAndTags.add(nestedChild);
+            }
+            nestedChild = JavadocUtil.getNextSibling(nestedChild);
+        }
+        while (!nestedHtmlElementsAndTags.isEmpty()) {
+            isTextPresentInsideHtmlTag = isTextPresentInsideHtmlTag(
+                nestedHtmlElementsAndTags.remove());
+        }
+        return isTextPresentInsideHtmlTag;
     }
 
     /**
