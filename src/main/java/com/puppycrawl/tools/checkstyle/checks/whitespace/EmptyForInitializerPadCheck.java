@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -128,16 +129,16 @@ public class EmptyForInitializerPadCheck
             // empty for initializer. test pad before semi.
             final DetailAST semi = ast.getNextSibling();
             final int semiLineIdx = semi.getLineNo() - 1;
-            final String line = getLines()[semiLineIdx];
+            final int[] line = getLineCodePoints(semiLineIdx);
             final int before = semi.getColumnNo() - 1;
             // don't check if semi at beginning of line
-            if (!CommonUtil.hasWhitespaceBefore(before, line)) {
+            if (!CodePointUtil.hasWhitespaceBefore(before, line)) {
                 if (option == PadOption.NOSPACE
-                    && Character.isWhitespace(line.charAt(before))) {
+                    && CommonUtil.isCodePointWhitespace(line, before)) {
                     log(ast, MSG_PRECEDED, SEMICOLON);
                 }
                 else if (option == PadOption.SPACE
-                         && !Character.isWhitespace(line.charAt(before))) {
+                         && !CommonUtil.isCodePointWhitespace(line, before)) {
                     log(ast, MSG_NOT_PRECEDED, SEMICOLON);
                 }
             }
