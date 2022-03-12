@@ -8,7 +8,7 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT
 package com.puppycrawl.tools. // violation
     checkstyle.checks.whitespace.nolinewrap;
 
-import com.puppycrawl.tools.checkstyle.TreeWalker;
+import java.util.Calendar;
 
 import javax.accessibility. // violation
     AccessibleAttributeSequence;
