@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Responsible for walking an abstract syntax tree and notifying interested
- * checks at each each node.
+ * checks at each node.
  *
  */
 @FileStatefulCheck
