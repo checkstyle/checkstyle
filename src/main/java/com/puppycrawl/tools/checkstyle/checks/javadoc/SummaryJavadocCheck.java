@@ -333,16 +333,59 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @return an optional of inline summary tag node, empty optional if inline tag is not
      *         a summary tag.
      */
-    private static Optional<DetailNode> getInlineSummaryTag(DetailNode javadoc) {
+    private Optional<DetailNode> getInlineSummaryTag(DetailNode javadoc) {
         Optional<DetailNode> node = Arrays.stream(javadoc.getChildren())
                 .filter(SummaryJavadocCheck::isInlineTagPresent)
                 .findFirst()
                 .map(SummaryJavadocCheck::getInlineTagNodeWithinHtmlElement);
 
-        if (node.isPresent() && !isSummaryTag(node.get())) {
+        if (node.isPresent() && (!isSummaryTag(node.get()) || !isDefinedFirst(node.get()))) {
             node = Optional.empty();
         }
         return node;
+    }
+
+    /**
+     * Whether the {@code {@summary}} tag is defined first in the javadoc.
+     *
+     * @param inlineSummaryTag node of type {@link JavadocTokenTypes#JAVADOC_INLINE_TAG}
+     * @return {@code true} if the {@code {@summary}} tag is defined first in the javadoc
+     */
+    private boolean isDefinedFirst(DetailNode inlineSummaryTag) {
+        boolean isDefinedFirst = true;
+        DetailNode previousSibling = JavadocUtil.getPreviousSibling(inlineSummaryTag);
+        while (previousSibling != null && isDefinedFirst) {
+            final int siblingType = previousSibling.getType();
+            if (siblingType == JavadocTokenTypes.TEXT) {
+                final String previousSiblingText = previousSibling.getText();
+                if (!period.isEmpty() && previousSiblingText.contains(period)) {
+                    isDefinedFirst = false;
+                }
+            }
+            else if (siblingType == JavadocTokenTypes.HTML_ELEMENT) {
+                final DetailNode firstChild = JavadocUtil.getFirstChild(previousSibling);
+                final int firstChildType = firstChild.getType();
+                if (firstChildType == JavadocTokenTypes.PARAGRAPH
+                    || firstChildType == JavadocTokenTypes.HTML_TAG
+                    && isPreTag(firstChild)) {
+                    isDefinedFirst = false;
+                }
+            }
+            previousSibling = JavadocUtil.getPreviousSibling(previousSibling);
+        }
+        return isDefinedFirst;
+    }
+
+    /**
+     * Whether the HTML tag is a {@code <pre>} tag.
+     *
+     * @param htmlTag node of type {@link JavadocTokenTypes#HTML_TAG}
+     * @return {@code true} if the HTML tag is a {@code <pre>} tag
+     */
+    private static boolean isPreTag(DetailNode htmlTag) {
+        final DetailNode htmlTagName = JavadocUtil.findFirstToken(
+            JavadocUtil.getFirstChild(htmlTag), JavadocTokenTypes.HTML_TAG_NAME);
+        return "pre".equals(htmlTagName.getText());
     }
 
     /**
