@@ -514,7 +514,7 @@ class Test {
               <td>ignorePattern</td>
               <td>Specify pattern for lines to ignore.</td>
               <td><a href="property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^$"</code></td>
+              <td><code>"^(package|import) .*"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -573,6 +573,15 @@ class Test {
   &lt;property name="fileExtensions" value="xml, properties"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          To configure check to validate <code>import</code> and <code>package</code>
+          statements:
+        </p>
+        <source>
+&lt;module name="LineLength"&gt;
+  &lt;property name="ignorePattern" value="^$"/&gt;
+&lt;/module&gt;
+        </source>
       </subsection>
 
       <subsection name="Notes" id="LineLength_Notes">
@@ -586,7 +595,7 @@ class Test {
             or can set property <code>tabWidth</code> for <code>LineLength</code> alone.
           </li>
           <li>
-            Package and import statements (lines matching pattern
+            By default package and import statements (lines matching pattern
             <code>^(package|import) .*</code>) are not verified by
             this check.
           </li>
