@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 
 import java.util.List;
 
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
 
 public class InputNoWhitespaceAfterArrayDeclarations2
 {

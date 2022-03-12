@@ -23,12 +23,12 @@ package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.Calendar;
 
 /* This input file is intended to be used on strict configuration: max=0 */
 public class InputClassFanOutComplexityAnnotations { // violation
 
-    private int tokenType = TokenTypes.EXPR;
+    private int dayOfWeek = Calendar.MONDAY;
 
     public void foo1(@TypeAnnotation char a) {}
 
@@ -82,10 +82,10 @@ class OuterClass { // violation
 
     private static final String value = "4";
 
-    @TwoParametersAnnotation(value = "4", tokenType = 1)
+    @TwoParametersAnnotation(value = "4", dayOfWeek = 1)
     public static final String EMPTY_STRING = "";
 
-    @TwoParametersAnnotation(value = value, tokenType = TokenTypes.ANNOTATION)
+    @TwoParametersAnnotation(value = value, dayOfWeek = Calendar.TUESDAY)
     public static final String TAB = "\t";
 
 }
@@ -108,6 +108,6 @@ interface MyInterface {}
 
     String value();
 
-    int tokenType();
+    int dayOfWeek();
 
 }
