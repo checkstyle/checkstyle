@@ -34,7 +34,6 @@ import java.util.stream.Collectors;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
@@ -316,7 +315,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             visitTypeDeclarationToken(ast);
         }
         else if (type == TokenTypes.PACKAGE_DEF) {
-            packageName = extractQualifiedName(ast.getFirstChild().getNextSibling());
+            packageName = CheckUtil.extractQualifiedName(ast.getFirstChild().getNextSibling());
         }
     }
 
@@ -394,18 +393,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private void visitLocalAnonInnerClass(DetailAST literalNewAst) {
         anonInnerAstToTypeDeclDesc.put(literalNewAst, typeDeclarations.peek());
         anonInnerClassHolders.add(getBlockContainingLocalAnonInnerClass(literalNewAst));
-    }
-
-    /**
-     * Get name of package and super class of anon inner class by concatenating
-     * the identifier values under {@link TokenTypes#DOT}.
-     * Duplicated, until <a>https://github.com/checkstyle/checkstyle/issues/11201</a>
-     *
-     * @param ast ast to extract superclass or package name from
-     * @return qualified name
-     */
-    private static String extractQualifiedName(DetailAST ast) {
-        return FullIdent.createFullIdent(ast).getText();
     }
 
     /**
@@ -554,7 +541,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private TypeDeclDesc getSuperClassOfAnonInnerClass(DetailAST literalNewAst) {
         TypeDeclDesc obtainedClass = null;
-        final String shortNameOfClass = getShortNameOfAnonInnerClass(literalNewAst);
+        final String shortNameOfClass = CheckUtil.getShortNameOfAnonInnerClass(literalNewAst);
         if (packageName != null && shortNameOfClass.startsWith(packageName)) {
             final Optional<TypeDeclDesc> classWithCompletePackageName =
                     typeDeclAstToTypeDeclDesc.values()
@@ -576,26 +563,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             }
         }
         return obtainedClass;
-    }
-
-    /**
-     * Get the short name of super class of anonymous inner class.
-     * Example-
-     * <pre>
-     * TestClass.NestedClass obj = new Test().new NestedClass() {};
-     * // Short name will be Test.NestedClass
-     * </pre>
-     *
-     * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
-     * @return short name of base class of anonymous inner class
-     */
-    public static String getShortNameOfAnonInnerClass(DetailAST literalNewAst) {
-        DetailAST parentAst = literalNewAst.getParent();
-        while (TokenUtil.isOfType(parentAst, TokenTypes.LITERAL_NEW, TokenTypes.DOT)) {
-            parentAst = parentAst.getParent();
-        }
-        final DetailAST firstChild = parentAst.getFirstChild();
-        return extractQualifiedName(firstChild);
     }
 
     /**
@@ -665,41 +632,13 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             List<TypeDeclDesc> typeDeclWithSameName) {
         return Collections.min(typeDeclWithSameName, (first, second) -> {
             int diff = Integer.compare(
-                    typeDeclNameMatchingCount(outerTypeDeclName, second.getQualifiedName()),
-                    typeDeclNameMatchingCount(outerTypeDeclName, first.getQualifiedName()));
+                CheckUtil.typeDeclNameMatchingCount(outerTypeDeclName, second.getQualifiedName()),
+                CheckUtil.typeDeclNameMatchingCount(outerTypeDeclName, first.getQualifiedName()));
             if (diff == 0) {
                 diff = Integer.compare(first.getDepth(), second.getDepth());
             }
             return diff;
         });
-    }
-
-    /**
-     * Calculates and returns the type declaration name matching count.
-     *
-     * <p>
-     * Suppose our pattern class is {@code foo.a.b} and class to be matched is
-     * {@code foo.a.ball} then type declaration name matching count would be calculated by
-     * comparing every character, and updating main counter when we hit "." to prevent matching
-     * "a.b" with "a.ball". In this case type declaration name matching count
-     * would be equal to 6 and not 7 (b of ball is not counted).
-     * </p>
-     * Duplicated, until <a>https://github.com/checkstyle/checkstyle/issues/11201</a>
-     *
-     * @param patternClass class against which the given class has to be matched
-     * @param classToBeMatched class to be matched
-     * @return class name matching count
-     */
-    private static int typeDeclNameMatchingCount(String patternClass, String classToBeMatched) {
-        final char packageSeparator = PACKAGE_SEPARATOR.charAt(0);
-        final int length = Math.min(classToBeMatched.length(), patternClass.length());
-        int result = 0;
-        for (int i = 0; i < length && patternClass.charAt(i) == classToBeMatched.charAt(i); ++i) {
-            if (patternClass.charAt(i) == packageSeparator) {
-                result = i;
-            }
-        }
-        return result;
     }
 
     /**
@@ -715,36 +654,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         if (!typeDeclarations.isEmpty()) {
             outerClassQualifiedName = typeDeclarations.peek().getQualifiedName();
         }
-        return getQualifiedTypeDeclarationName(packageName, outerClassQualifiedName, className);
-    }
-
-    /**
-     * Get the qualified name of type declaration by combining {@code packageName},
-     * {@code outerClassQualifiedName} and {@code className}.
-     * Duplicated, until <a>https://github.com/checkstyle/checkstyle/issues/11201</a>
-     *
-     * @param packageName packageName
-     * @param outerClassQualifiedName outerClassQualifiedName
-     * @param className className
-     * @return the qualified name of type declaration by combining {@code packageName},
-     *         {@code outerClassQualifiedName} and {@code className}
-     */
-    private static String getQualifiedTypeDeclarationName(String packageName,
-            String outerClassQualifiedName, String className) {
-        final String qualifiedClassName;
-
-        if (outerClassQualifiedName == null) {
-            if (packageName == null) {
-                qualifiedClassName = className;
-            }
-            else {
-                qualifiedClassName = packageName + PACKAGE_SEPARATOR + className;
-            }
-        }
-        else {
-            qualifiedClassName = outerClassQualifiedName + PACKAGE_SEPARATOR + className;
-        }
-        return qualifiedClassName;
+        return CheckUtil
+            .getQualifiedTypeDeclarationName(packageName, outerClassQualifiedName, className);
     }
 
     /**
