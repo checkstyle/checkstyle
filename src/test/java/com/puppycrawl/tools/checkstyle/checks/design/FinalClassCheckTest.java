@@ -27,7 +27,6 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class FinalClassCheckTest
     extends AbstractModuleTestSupport {
@@ -136,15 +135,6 @@ public class FinalClassCheckTest
         assertWithMessage("Default acceptable tokens are invalid")
             .that(obj.getAcceptableTokens())
             .isEqualTo(expected);
-    }
-
-    @Test
-    public void testQualifiedClassName() throws Exception {
-        final String actual = TestUtil.invokeStaticMethod(FinalClassCheck.class,
-                "getQualifiedClassName", "", null, "ClassName");
-        assertWithMessage("unexpected result")
-            .that(actual)
-            .isEqualTo("ClassName");
     }
 
     @Test
