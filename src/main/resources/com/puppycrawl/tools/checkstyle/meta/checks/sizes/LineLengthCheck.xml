@@ -22,15 +22,23 @@
  or can set property {@code tabWidth} for {@code LineLength} alone.
  &lt;/li&gt;
  &lt;li&gt;
- Package and import statements (lines matching pattern {@code ^(package|import) .*})
+ By default package and import statements (lines matching pattern {@code (package|import) .*})
  are not verified by this check.
+ &lt;/li&gt;
+ &lt;li&gt;
+ Trailing comments are taken into consideration while calculating the line length.
+ &lt;pre&gt;
+ import java.util.regex.Pattern; // The length of this comment will be taken into consideration
+ &lt;/pre&gt;
+ In the example above the length of import is just 31 characters but total length will be
+ 94 characters.
  &lt;/li&gt;
  &lt;/ul&gt;</description>
          <properties>
             <property default-value="" name="fileExtensions" type="java.lang.String[]">
                <description>Specify file extensions that are accepted.</description>
             </property>
-            <property default-value="^$"
+            <property default-value="(package|import) .*"
                       name="ignorePattern"
                       type="java.util.regex.Pattern">
                <description>Specify pattern for lines to ignore.</description>

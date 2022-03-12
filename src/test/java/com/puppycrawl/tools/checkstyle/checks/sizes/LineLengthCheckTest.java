@@ -103,4 +103,27 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
 
     }
 
+    @Test
+    public void testLineLengthIgnoringPackageStatements() throws Exception {
+        final String[] expected = {
+            "12: " + getCheckMessage(MSG_KEY, 58, 59),
+            "17: " + getCheckMessage(MSG_KEY, 58, 77),
+            "24: " + getCheckMessage(MSG_KEY, 58, 77),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputLineLengthIgnoringPackageStatements.java"), expected);
+    }
+
+    @Test
+    public void testLineLengthIgnoringImportStatements() throws Exception {
+        final String[] expected = {
+            "11: " + getCheckMessage(MSG_KEY, 58, 71),
+            "20: " + getCheckMessage(MSG_KEY, 58, 77),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputLineLengthIgnoringImportStatements.java"), expected);
+    }
+
 }
