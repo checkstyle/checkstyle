@@ -1,0 +1,90 @@
+box:
+  id: maven:3.8.4-jdk-11
+  username: $DOCKERHUB_USER
+  password: $DOCKERHUB_TOKEN
+
+no-response-timeout: 10
+
+build:
+  steps:
+  - script:
+      name: setup maven local repo
+      code: |
+        export MAVEN_OPTS="-Dmaven.repo.local=${WERCKER_CACHE_DIR}"
+        mvn --version
+        echo "------"
+        if [[ $(grep "pull" .git/FETCH_HEAD | cat | wc -l) > 0 ]]; then
+          export PR=$(cat .git/FETCH_HEAD | cut -d ' ' -f 1 | cut -d '/' -f 3)
+          echo "PR:"$PR
+        fi
+        echo "------"
+        echo "Specify Maven Local location ${WERCKER_CACHE_DIR} for Gradle builds"
+        export GRADLE_OPTS="$GRADLE_OPTS -Dmaven.repo.local=${WERCKER_CACHE_DIR}"
+        echo "------"
+        du -hs ${WERCKER_CACHE_DIR}
+        echo "------"
+        du -hs ${WERCKER_CACHE_DIR}/* | sort -h
+
+  - script:
+      name: install jq
+      code: |
+        curl -L http://stedolan.github.io/jq/download/linux64/jq -o /usr/local/bin/jq
+        chmod +x /usr/local/bin/jq
+
+  - script:
+      name: install groovy
+      code: |
+         if [ ! -d ${WERCKER_CACHE_DIR}/groovy ]; then
+           GROOVY_LINK="https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/"
+           GROOVY_LINK=$GROOVY_LINK"apache-groovy-binary-2.4.7.zip"
+           wget -O ${WERCKER_CACHE_DIR}/groovy.zip $GROOVY_LINK;
+           unzip ${WERCKER_CACHE_DIR}/groovy.zip -d ${WERCKER_CACHE_DIR};
+           mv ${WERCKER_CACHE_DIR}/groovy-2.4.7 ${WERCKER_CACHE_DIR}/groovy
+         fi
+         export GROOVY_HOME=${WERCKER_CACHE_DIR}/groovy
+         PATH=$GROOVY_HOME/bin:$PATH
+         groovy -v
+
+  - script:
+      name: Build Checkstyle
+      code: |
+        SKIP_FILES1="appveyor.yml|codeship-*|circleci|travis"
+        SKIP_FILES2="|sonar-|fast-forward-merge.sh|LICENSE|LICENSE.apache20"
+        SKIP_FILES3="|README.md|release.sh|RIGHTS.antlr|intellij-idea-inspections.xml"
+        SKIP_FILES4="|org.eclipse.jdt.core.prefs|jsoref-spellchecker"
+        SKIP_FILES5="|check-only-javadoc-error.sh|eclipse-compiler-javac.sh|idea_inspection"
+        SKIP_FILES6="|test-spelling-unknown-words.sh|Jenkinsfile"
+        SKIP_FILES=$SKIP_FILES1$SKIP_FILES2$SKIP_FILES3$SKIP_FILES4$SKIP_FILES5$SKIP_FILES6
+        export RUN_JOB=1
+        source ./.ci/common.sh
+        # should_run_job will change RUN_JOB variable
+        should_run_job "recheck" $SKIP_FILES
+        if [[ $RUN_JOB == 1 ]]; then
+          mvn -e --no-transfer-progress clean install -Pno-validations
+        else
+          echo "build is skipped ..."
+        fi
+
+  - script:
+      name: Cleanup maven local repo
+      code: |
+        echo "git status"
+        git status
+        echo "------"
+        find ${WERCKER_CACHE_DIR} -type d -name "*SNAPSHOT" -ls -exec rm -rf {} +
+        echo "------"
+        du -hs ${WERCKER_CACHE_DIR}
+        echo "------"
+        du -hs ${WERCKER_CACHE_DIR}/* | sort -h
+        echo "------"
+        du -hs * | sort -h
+
+  - script:
+      name: git-status
+      code: |
+        if [[ $RUN_JOB == 1 ]]; then
+          echo "Command: ./.ci/wercker.sh git-status"
+          ./.ci/wercker.sh git-status
+        else
+          echo "build is skipped ..."
+        fi
