@@ -455,6 +455,44 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testLeftCurlyWithEmoji() throws Exception {
+        final String[] expected = {
+            "17:32: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 32),
+            "37:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+            "39:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+            "46:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+            "50:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+            "54:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 17),
+            "60:32: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 32),
+            "67:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+            "72:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "78:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+            "81:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+        };
+        verifyWithInlineConfigParser(getPath("InputLeftCurlyWithEmoji.java"), expected);
+    }
+
+    @Test
+    public void testLeftCurlyWithEmojiNewLine() throws Exception {
+        final String[] expected = {
+            "18:32: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 32),
+            "20:27: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 27),
+            "25:29: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 29),
+            "28:32: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 32),
+            "31:28: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 28),
+            "34:28: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 28),
+            "43:39: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 39),
+            "60:27: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 27),
+            "61:28: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 28),
+            "75:26: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 26),
+            "76:26: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 26),
+            "77:24: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 24),
+            "89:52: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 52),
+        };
+        verifyWithInlineConfigParser(getPath("InputLeftCurlyWithEmojiNl.java"), expected);
+    }
+
+    @Test
     public void testInvalidOption() throws Exception {
 
         try {
