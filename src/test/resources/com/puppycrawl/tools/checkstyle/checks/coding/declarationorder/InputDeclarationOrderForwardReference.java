@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.declarationorder;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.Calendar;
 
 public class InputDeclarationOrderForwardReference {
 
@@ -34,7 +34,7 @@ public class InputDeclarationOrderForwardReference {
     private static final String COMMON_PART = "common_part";
     public static final String FIRST = COMMON_PART + "2";
 
-    private static final String SECOND = String.valueOf(TokenTypes.ELIST) + FIRST;
+    private static final String SECOND = String.valueOf(Calendar.MONDAY) + FIRST;
     public static final String THIRD = FIRST;
 
     private static int ID = 5;
