@@ -8,7 +8,7 @@ tokens = IMPORT, STATIC_IMPORT, CLASS_DEF, METHOD_DEF, ENUM_DEF
 package com.puppycrawl.tools.
     checkstyle.checks.whitespace.nolinewrap;
 
-import com.puppycrawl.tools.checkstyle.TreeWalker;
+import java.util.Calendar;
 
 import javax.accessibility. // violation
     AccessibleAttributeSequence;
