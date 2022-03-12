@@ -1,7 +1,7 @@
 /*
 LineLength
 fileExtensions = (default)all files
-ignorePattern = (default)^$
+ignorePattern = (default)(package|import) .*
 max = 100
 
 
