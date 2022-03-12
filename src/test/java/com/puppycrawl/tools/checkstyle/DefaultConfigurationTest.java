@@ -42,6 +42,28 @@ public class DefaultConfigurationTest {
     }
 
     @Test
+    public void testGetAttributeName() {
+        final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
+        config.addAttribute("attribute", "value");
+        final String actual = Boolean.toString(config.getAttributeNames("attribute"));
+        final String expected = "true";
+        assertWithMessage("Invalid attribute name")
+            .that(actual)
+            .isEqualTo(expected);
+    }
+
+    @Test
+    public void testGetAttributeName1() {
+        final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
+        config.addAttribute("attribute", "value");
+        final String actual = Boolean.toString(config.getAttributeNames("golf"));
+        final String expected = "false";
+        assertWithMessage("Invalid attribute name")
+            .that(actual)
+            .isEqualTo(expected);
+    }
+
+    @Test
     public void testAddPropertyAndGetProperty() throws CheckstyleException {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
         config.addProperty("property", "first");

@@ -130,6 +130,47 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
     }
 
     /**
+     * Returns list of {@link Configuration} instance for the list of module name.
+     * This implementation uses {@link #getModuleById(String)} method inside.
+     *
+     * @param moduleIds list of module id.
+     * @return list of {@link Configuration} instances present inside TreeWalker.
+     * @throws CheckstyleException if there is a problem retrieving the module by id.
+     */
+    protected static List<Configuration>
+        getModuleByIds(List<String> moduleIds) throws CheckstyleException {
+        final List<Configuration> result = new ArrayList<>();
+        for (String moduleId: moduleIds) {
+            result.addAll(getModuleById(moduleId));
+        }
+        return result;
+    }
+
+    /**
+     * Returns list of {@link Configuration} instances for the the modules
+     * matching id inside TreeWalker.
+     *
+     * @param moduleId list of module id.
+     * @return list of {@link Configuration} instances inside TreeWalker for the given module ids.
+     * @throws CheckstyleException if there is a problem retrieving the module or config.
+     */
+    protected static List<Configuration>
+        getModuleById(String moduleId) throws CheckstyleException {
+        final List<Configuration> result = new ArrayList<>();
+        for (Configuration currentConfig : CONFIGURATION.getChildren()) {
+            if ("TreeWalker".equals(currentConfig.getName())) {
+                for (Configuration moduleConfig : currentConfig.getChildren()) {
+                    if (moduleConfig.getAttributeNames("id")
+                            && moduleConfig.getAttribute("id").equals(moduleId)) {
+                        result.add(moduleConfig);
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
      * Returns a list of all {@link Configuration} instances for the given module name.
      *
      * @param moduleName module name.

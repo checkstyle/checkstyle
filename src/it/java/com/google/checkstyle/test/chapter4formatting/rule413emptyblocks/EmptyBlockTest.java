@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class EmptyBlockTest extends AbstractGoogleModuleTestSupport {
 
@@ -87,6 +88,16 @@ public class EmptyBlockTest extends AbstractGoogleModuleTestSupport {
 
         final Configuration checkConfig = getModuleConfig("EmptyBlock");
         final String filePath = getPath("InputEmptyBlock.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
+
+    @Test
+    public void testEmptyBlockRightCurlyAlone() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final Configuration checkConfig = getModuleConfig("EmptyBlock");
+        final String filePath = getPath("InputRightCurlyAloneOrEmptyNoViolations.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
