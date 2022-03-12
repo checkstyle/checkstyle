@@ -86,7 +86,7 @@ public class ViolationTest {
         assumeFalse(language.isEmpty() || Locale.ENGLISH.getLanguage().equals(language),
                 "Custom locale not set");
         final Violation violation = createSampleViolation();
-        assertWithMessage("Unsupported language: {}", DEFAULT_LOCALE)
+        assertWithMessage("Unsupported language: %s", DEFAULT_LOCALE)
                 .that(violation.getViolation())
                 .isNotEqualTo("Empty statement.");
     }
