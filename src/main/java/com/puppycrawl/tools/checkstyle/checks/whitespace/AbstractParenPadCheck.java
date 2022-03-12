@@ -24,6 +24,7 @@ import java.util.Locale;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -85,18 +86,17 @@ public abstract class AbstractParenPadCheck
      * @param ast the token representing a left parentheses
      */
     protected void processLeft(DetailAST ast) {
-        final String line = getLines()[ast.getLineNo() - 1];
-        final int[] codePoints = line.codePoints().toArray();
+        final int[] line = getLineCodePoints(ast.getLineNo() - 1);
         final int after = ast.getColumnNo() + 1;
 
-        if (after < codePoints.length) {
+        if (after < line.length) {
             final boolean hasWhitespaceAfter =
-                    CommonUtil.isCodePointWhitespace(codePoints, after);
+                    CommonUtil.isCodePointWhitespace(line, after);
             if (option == PadOption.NOSPACE && hasWhitespaceAfter) {
                 log(ast, MSG_WS_FOLLOWED, OPEN_PARENTHESIS);
             }
             else if (option == PadOption.SPACE && !hasWhitespaceAfter
-                     && line.charAt(after) != CLOSE_PARENTHESIS) {
+                     && line[after] != CLOSE_PARENTHESIS) {
                 log(ast, MSG_WS_NOT_FOLLOWED, OPEN_PARENTHESIS);
             }
         }
@@ -110,17 +110,16 @@ public abstract class AbstractParenPadCheck
     protected void processRight(DetailAST ast) {
         final int before = ast.getColumnNo() - 1;
         if (before >= 0) {
-            final String line = getLines()[ast.getLineNo() - 1];
-            final int[] codePoints = line.codePoints().toArray();
+            final int[] line = getLineCodePoints(ast.getLineNo() - 1);
             final boolean hasPrecedingWhitespace =
-                    CommonUtil.isCodePointWhitespace(codePoints, before);
+                    CommonUtil.isCodePointWhitespace(line, before);
 
             if (option == PadOption.NOSPACE && hasPrecedingWhitespace
-                && !CommonUtil.hasWhitespaceBefore(before, line)) {
+                && !CodePointUtil.hasWhitespaceBefore(before, line)) {
                 log(ast, MSG_WS_PRECEDED, CLOSE_PARENTHESIS);
             }
             else if (option == PadOption.SPACE && !hasPrecedingWhitespace
-                && line.charAt(before) != OPEN_PARENTHESIS) {
+                && line[before] != OPEN_PARENTHESIS) {
                 log(ast, MSG_WS_NOT_PRECEDED, CLOSE_PARENTHESIS);
             }
         }
