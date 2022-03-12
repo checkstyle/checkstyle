@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Responsible for walking an abstract syntax tree and notifying interested
- * checks at each each node.
+ * checks at each node.
  *
  */
 @FileStatefulCheck
@@ -416,7 +416,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     /**
      * Creates a new {@link SortedSet} with a deterministic order based on the
-     * Check's name before the default ordering.
+     * Checks name before the default ordering.
      *
      * @return The new {@link SortedSet}.
      */
