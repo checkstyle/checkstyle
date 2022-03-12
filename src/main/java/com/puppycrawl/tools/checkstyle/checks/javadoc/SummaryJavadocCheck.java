@@ -309,7 +309,9 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     @Override
     public void visitJavadocToken(DetailNode ast) {
         final Optional<DetailNode> inlineTag = getInlineTagNode(ast);
-        if (inlineTag.isPresent() && isSummaryTag(inlineTag.get())) {
+        if (inlineTag.isPresent()
+            && isSummaryTag(inlineTag.get())
+            && isDefinedFirst(inlineTag.get())) {
             validateSummaryTag(inlineTag.get());
         }
         else if (inlineTag.isPresent() && isInlineReturnTag(inlineTag.get())) {
@@ -354,6 +356,61 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             .filter(SummaryJavadocCheck::isInlineTagPresent)
             .findFirst()
             .map(SummaryJavadocCheck::getInlineTagNodeWithinHtmlElement);
+    }
+
+    /**
+     * Whether the {@code {@summary}} tag is defined first in the javadoc.
+     *
+     * @param inlineSummaryTag node of type {@link JavadocTokenTypes#JAVADOC_INLINE_TAG}
+     * @return {@code true} if the {@code {@summary}} tag is defined first in the javadoc
+     */
+    private static boolean isDefinedFirst(DetailNode inlineSummaryTag) {
+        boolean isDefinedFirst = true;
+        DetailNode previousSibling = JavadocUtil.getPreviousSibling(inlineSummaryTag);
+        while (previousSibling != null && isDefinedFirst) {
+            switch (previousSibling.getType()) {
+                case JavadocTokenTypes.TEXT:
+                    isDefinedFirst = previousSibling.getText().isBlank();
+                    break;
+                case JavadocTokenTypes.HTML_ELEMENT:
+                    isDefinedFirst = !isTextPresentInsideHtmlTag(previousSibling);
+                    break;
+                default:
+                    break;
+            }
+            previousSibling = JavadocUtil.getPreviousSibling(previousSibling);
+        }
+        return isDefinedFirst;
+    }
+
+    /**
+     * Whether some text is present inside the HTML element or tag.
+     *
+     * @param node DetailNode of type {@link JavadocTokenTypes#HTML_TAG}
+     *             or {@link JavadocTokenTypes#HTML_ELEMENT}
+     * @return {@code true} if some text is present inside the HTML element or tag
+     */
+    public static boolean isTextPresentInsideHtmlTag(DetailNode node) {
+        DetailNode nestedChild = JavadocUtil.getFirstChild(node);
+        if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+            nestedChild = JavadocUtil.getFirstChild(nestedChild);
+        }
+        boolean isTextPresentInsideHtmlTag = false;
+        while (nestedChild != null && !isTextPresentInsideHtmlTag) {
+            switch (nestedChild.getType()) {
+                case JavadocTokenTypes.TEXT:
+                    isTextPresentInsideHtmlTag = !nestedChild.getText().isBlank();
+                    break;
+                case JavadocTokenTypes.HTML_TAG:
+                case JavadocTokenTypes.HTML_ELEMENT:
+                    isTextPresentInsideHtmlTag = isTextPresentInsideHtmlTag(nestedChild);
+                    break;
+                default:
+                    break;
+            }
+            nestedChild = JavadocUtil.getNextSibling(nestedChild);
+        }
+        return isTextPresentInsideHtmlTag;
     }
 
     /**
