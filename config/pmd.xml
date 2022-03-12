@@ -338,8 +338,7 @@
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypes'
         or @SimpleName='TokenTypes' or @SimpleName='RequireThisCheck'
-        or @SimpleName='JavadocMethodCheck' or @SimpleName='JavaAstVisitor'
-        or @SimpleName='UnusedLocalVariableCheck']"/>
+        or @SimpleName='JavadocMethodCheck' or @SimpleName='JavaAstVisitor']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">
