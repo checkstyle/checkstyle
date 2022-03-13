@@ -19,10 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import java.util.stream.IntStream;
+
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -191,16 +194,16 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      * @param ast the token to check
      */
     private void processEnd(DetailAST ast) {
-        final String line = getLine(ast.getLineNo() - 1);
+        final int[] line = getLineCodePoints(ast.getLineNo() - 1);
         final int before = ast.getColumnNo() - 1;
         final int after = ast.getColumnNo() + 1;
 
-        if (before >= 0 && Character.isWhitespace(line.charAt(before))
+        if (before >= 0 && CommonUtil.isCodePointWhitespace(line, before)
                 && !containsWhitespaceBefore(before, line)) {
             log(ast, MSG_WS_PRECEDED, CLOSE_ANGLE_BRACKET);
         }
 
-        if (after < line.length()) {
+        if (after < line.length) {
             // Check if the last Generic, in which case must be a whitespace
             // or a '(),[.'.
             if (depth == 1) {
@@ -216,10 +219,10 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      * Process Nested generics.
      *
      * @param ast token
-     * @param line line content
+     * @param line unicode code points array of line
      * @param after position after
      */
-    private void processNestedGenerics(DetailAST ast, String line, int after) {
+    private void processNestedGenerics(DetailAST ast, int[] line, int after) {
         // In a nested Generic type, so can only be a '>' or ',' or '&'
 
         // In case of several extends definitions:
@@ -228,7 +231,8 @@ public class GenericWhitespaceCheck extends AbstractCheck {
         //                                          ^
         //   should be whitespace if followed by & -+
         //
-        final int indexOfAmp = line.indexOf('&', after);
+        final int indexOfAmp = IntStream.range(after, line.length)
+                .filter(index -> line[index] == '&').findFirst().orElse(-1);
         if (indexOfAmp >= 1
             && containsWhitespaceBetween(after, indexOfAmp, line)) {
             if (indexOfAmp - after == 0) {
@@ -238,7 +242,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
                 log(ast, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
             }
         }
-        else if (line.charAt(after) == ' ') {
+        else if (line[after] == ' ') {
             log(ast, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
         }
     }
@@ -247,11 +251,11 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      * Process Single-generic.
      *
      * @param ast token
-     * @param line line content
+     * @param line unicode code points array of line
      * @param after position after
      */
-    private void processSingleGeneric(DetailAST ast, String line, int after) {
-        final char charAfter = line.charAt(after);
+    private void processSingleGeneric(DetailAST ast, int[] line, int after) {
+        final char charAfter = Character.toChars(line[after])[0];
         if (isGenericBeforeMethod(ast) || isGenericBeforeCtor(ast)) {
             if (Character.isWhitespace(charAfter)) {
                 log(ast, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
@@ -303,7 +307,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      * @param ast the token to check
      */
     private void processStart(DetailAST ast) {
-        final String line = getLine(ast.getLineNo() - 1);
+        final int[] line = getLineCodePoints(ast.getLineNo() - 1);
         final int before = ast.getColumnNo() - 1;
         final int after = ast.getColumnNo() + 1;
 
@@ -321,19 +325,19 @@ public class GenericWhitespaceCheck extends AbstractCheck {
                     || grandparent.getType() == TokenTypes.METHOD_DEF
                     || isGenericBeforeCtor(ast)) {
                 // Require whitespace
-                if (!Character.isWhitespace(line.charAt(before))) {
+                if (!CommonUtil.isCodePointWhitespace(line, before)) {
                     log(ast, MSG_WS_NOT_PRECEDED, OPEN_ANGLE_BRACKET);
                 }
             }
             // Whitespace not required
-            else if (Character.isWhitespace(line.charAt(before))
+            else if (CommonUtil.isCodePointWhitespace(line, before)
                 && !containsWhitespaceBefore(before, line)) {
                 log(ast, MSG_WS_PRECEDED, OPEN_ANGLE_BRACKET);
             }
         }
 
-        if (after < line.length()
-                && Character.isWhitespace(line.charAt(after))) {
+        if (after < line.length
+                && CommonUtil.isCodePointWhitespace(line, after)) {
             log(ast, MSG_WS_FOLLOWED, OPEN_ANGLE_BRACKET);
         }
     }
@@ -344,13 +348,13 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      *
      * @param fromIndex the index to start the search from. Inclusive
      * @param toIndex the index to finish the search. Exclusive
-     * @param line the line to check
+     * @param line the unicode code points array of line to check
      * @return whether there are only whitespaces (or nothing)
      */
-    private static boolean containsWhitespaceBetween(int fromIndex, int toIndex, String line) {
+    private static boolean containsWhitespaceBetween(int fromIndex, int toIndex, int... line) {
         boolean result = true;
         for (int i = fromIndex; i < toIndex; i++) {
-            if (!Character.isWhitespace(line.charAt(i))) {
+            if (!CommonUtil.isCodePointWhitespace(line, i)) {
                 result = false;
                 break;
             }
@@ -361,13 +365,13 @@ public class GenericWhitespaceCheck extends AbstractCheck {
     /**
      * Returns whether the specified string contains only whitespace up to specified index.
      *
-     * @param before the index to start the search from. Inclusive
-     * @param line   the index to finish the search. Exclusive
+     * @param before the index to finish the search. Exclusive
+     * @param line   the unicode code points array of line to check
      * @return {@code true} if there are only whitespaces,
      *     false if there is nothing before or some other characters
      */
-    private static boolean containsWhitespaceBefore(int before, String line) {
-        return before != 0 && CommonUtil.hasWhitespaceBefore(before, line);
+    private static boolean containsWhitespaceBefore(int before, int... line) {
+        return before != 0 && CodePointUtil.hasWhitespaceBefore(before, line);
     }
 
     /**
