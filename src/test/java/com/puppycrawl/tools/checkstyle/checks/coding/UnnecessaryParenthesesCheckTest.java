@@ -127,19 +127,29 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testReturn() throws Exception {
+        final String[] expected = {
+                "20:59: " + getCheckMessage(MSG_RETURN),
+                "21:16: " + getCheckMessage(MSG_RETURN),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryParenthesesReturnValue.java"), expected);
+    }
+
+    @Test
     public void testUnnecessaryParenthesesSwitchExpression() throws Exception {
         final String[] expected = {
             "21:31: " + getCheckMessage(MSG_ASSIGN),
             "24:13: " + getCheckMessage(MSG_LITERAL, 2),
             "25:39: " + getCheckMessage(MSG_ASSIGN),
-            "30:18: " + getCheckMessage(MSG_ASSIGN),
+            "30:18: " + getCheckMessage(MSG_RETURN),
             "32:16: " + getCheckMessage(MSG_IDENT, "g"),
-            "36:18: " + getCheckMessage(MSG_ASSIGN),
+            "36:18: " + getCheckMessage(MSG_RETURN),
             "46:31: " + getCheckMessage(MSG_ASSIGN),
             "48:13: " + getCheckMessage(MSG_LITERAL, 2),
             "49:39: " + getCheckMessage(MSG_ASSIGN),
-            "53:18: " + getCheckMessage(MSG_ASSIGN),
-            "58:18: " + getCheckMessage(MSG_ASSIGN),
+            "53:18: " + getCheckMessage(MSG_RETURN),
+            "58:18: " + getCheckMessage(MSG_RETURN)
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
