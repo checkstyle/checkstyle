@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 /**
  * Contains utility methods for code point.
@@ -42,4 +43,33 @@ public final class CodePointUtil {
                 .allMatch(Character::isWhitespace);
     }
 
+    /**
+     * Removes trailing whitespaces.
+     *
+     * @param codePoints array of unicode code points
+     * @return unicode code points array with trailing whitespaces removed
+     */
+    public static int[] stripTrailing(int... codePoints) {
+
+        final int endIndex = IntStream.iterate(codePoints.length - 1, index -> index - 1)
+                .limit(codePoints.length)
+                .filter(index -> !Character.isWhitespace(codePoints[index]))
+                .findFirst()
+                .orElse(0);
+        return Arrays.copyOfRange(codePoints, 0, endIndex + 1);
+    }
+
+    /**
+     * Tests if the unicode code points array
+     * ends with the specified suffix.
+     *
+     * @param suffix the suffix
+     * @param codePoints the array of unicode code point to check
+     * @return {@code true}, if the unicode code points array ends with provided suffix
+     */
+    public static boolean endsWith(int[] codePoints, String suffix) {
+        return codePoints.length > suffix.length()
+            && Arrays.equals(Arrays.copyOfRange(codePoints, codePoints.length - suffix.length(),
+                codePoints.length), suffix.codePoints().toArray());
+    }
 }
