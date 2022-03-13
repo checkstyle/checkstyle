@@ -15,7 +15,7 @@ import java.util.function.Function;
 public class InputUnnecessaryParenthesesLambdas {
     int foo(int y) {
         MathOperation case1 = (x) -> x + x; // violation 'Unnecessary paren.* around lambda value'
-        MathOperation case2 = (x) -> { return x + x; }; // violation 'paren.* around lambda value'
+        MathOperation case2 = (x) -> { return x + x; };
         MathOperation case3 = (int x) -> x + x;
         MathOperation case4 = x -> x + x;
         MathOperation2 case5 = (a, b) -> a + b;
