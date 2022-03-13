@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 
 /**
  * <p>
@@ -464,11 +464,6 @@ public class FallThroughCheck extends AbstractCheck {
         final int endLineNo = nextCase.getLineNo();
         final int endColNo = nextCase.getColumnNo();
 
-        // Remember: The lines number returned from the AST is 1-based, but
-        // the lines number in this array are 0-based. So you will often
-        // see a "lineNo-1" etc.
-        final String[] lines = getLines();
-
         // Handle:
         //    case 1:
         //    /+ FALLTHRU +/ case 2:
@@ -478,8 +473,7 @@ public class FallThroughCheck extends AbstractCheck {
         //    default:
         //    /+ FALLTHRU +/}
         //
-        final String linePart = lines[endLineNo - 1].substring(0, endColNo);
-        if (matchesComment(reliefPattern, linePart, endLineNo)) {
+        if (matchesComment(reliefPattern, endLineNo)) {
             allThroughComment = true;
         }
         else {
@@ -496,8 +490,9 @@ public class FallThroughCheck extends AbstractCheck {
             //    }
             final int startLineNo = currentCase.getLineNo();
             for (int i = endLineNo - 2; i > startLineNo - 1; i--) {
-                if (!CommonUtil.isBlank(lines[i])) {
-                    allThroughComment = matchesComment(reliefPattern, lines[i], i + 1);
+                final int[] line = getLineCodePoints(i);
+                if (!CodePointUtil.isBlank(line)) {
+                    allThroughComment = matchesComment(reliefPattern, i + 1);
                     break;
                 }
             }
@@ -510,14 +505,18 @@ public class FallThroughCheck extends AbstractCheck {
      * possible match is within a comment.
      *
      * @param pattern The regular expression pattern to use.
-     * @param line The line of test to do the match on.
      * @param lineNo The line number in the file.
      * @return True if a match was found inside a comment.
      */
     // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @SuppressWarnings("deprecation")
-    private boolean matchesComment(Pattern pattern, String line, int lineNo) {
-        final Matcher matcher = pattern.matcher(line);
+    private boolean matchesComment(Pattern pattern, int lineNo) {
+        // Remember: The lines number returned from the AST is 1-based, but
+        // the lines number in this array are 0-based. So you will often
+        // see a "lineNo-1" etc.
+        final String[] lines = getLines();
+
+        final Matcher matcher = pattern.matcher(lines[lineNo - 1]);
         boolean matches = false;
 
         if (matcher.find()) {
