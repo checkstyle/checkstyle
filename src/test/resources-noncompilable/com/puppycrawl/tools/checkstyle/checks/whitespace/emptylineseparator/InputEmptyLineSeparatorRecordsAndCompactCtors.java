@@ -1,5 +1,5 @@
 //non-compiled with javac: Compilable with Java14
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; // violation
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; // violation ''package' should be separated from previous line'
 
 /* Config:
  * allowNoEmptyLineBetweenFields = false
@@ -12,31 +12,31 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; //
  */
 public class InputEmptyLineSeparatorRecordsAndCompactCtors {
     record InBetween1(int x, int y) {}
-    record MyRecord1(String foo) { // violation
+    record MyRec1(String foo) { // violation ''RECORD_DEF' should be separated from previous line'
         public static final int FOO_CONST = 1;
-        public void method() {} // violation
-        public MyRecord1{} // violation
-        MyRecord1(int x){this("string");} // violation
-        static{} // violation
+        public void method() {} // violation ''METHOD_DEF' should be separated from previous line'
+        public MyRecord1{} // violation ''COMPACT_CTOR' should be separated from previous line'
+        MyRec1(int x){this("string");} // violation ''CTOR_DEF .* separated from previous line'
+        static{} // violation ''STATIC_INIT' should be separated from previous line'
     }
-    record InBetween2(int x, int y) {} // violation
-    class MyClass1 { // violation
+    record InBt2(int x, int y) {} // violation ''RECORD_DEF' should be separated from previous line;
+    class MyClass1 { // violation ''CLASS_DEF; should be separated from previous line'
         public static final int FOO_CONST = 1;
-        public void method() {} // violation
-        public MyClass1(){} // violation
-        MyClass1(String foo){} // violation
+        public void method() {} // violation ''METHOD_DEF' should be separated from previous line'
+        public MyClass1(){} // violation ''CTOR_DEF' should be separated from previous line'
+        MyClass1(String foo){} // violation ''CTOR_DEF' should be separated from previous line'
     }
 
-    record recordCompactCtors1(){
-        void method1(){}
-        public recordCompactCtors1{} // violation
-        void method2(){} // violation
+    record recordCompactCtors1() {
+        void method1() {}
+        public recCompCtors1 {} // violation ''COMPACT_CTOR' should be separated from previous line'
+        void method2(){} // violation ''METHOD_DEF' should be separated from previous line;
     }
 
     record recordCompactCtors2(){
         public static final int X = 1;
-        public recordCompactCtors2{} // violation
-        public static final int Y = 1; // violation
+        public recCompCtors2{} // violation ''COMPACT_CTOR' should be separated from previous line'
+        public final int Y = 1; // violation''COMPACT_CTOR' should be separated from previous line'
     }
 
     record MyRecord2(String foo) { // ok

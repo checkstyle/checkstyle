@@ -326,9 +326,9 @@ public class EmptyLineSeparatorCheckTest
         final String[] expected = {
             "21:30: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
             "26:5: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
-            "32:67: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
-            "41:48: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
-            "51:21: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "33:23: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "42:41: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "52:21: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorPreviousLineEmptiness.java"), expected);

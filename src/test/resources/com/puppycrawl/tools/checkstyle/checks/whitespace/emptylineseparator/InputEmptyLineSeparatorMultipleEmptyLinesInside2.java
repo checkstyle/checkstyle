@@ -50,4 +50,4 @@ public abstract class InputEmptyLineSeparatorMultipleEmptyLinesInside2
         // 2 empty lines above should cause violations
     }
 }
-class SecondClassReturnWithVeryVeryVeryLongName2{} // violation
+class SecClsRnWthVryVryVryLgNm2{} // violation ''CLASS_DEF' should be separated from previous line'

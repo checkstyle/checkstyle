@@ -26,7 +26,7 @@ public class InputEmptyLineSeparatorNewMethodDef {
         new ArrayList<String>() {
             {
                 add("String One");
-                add("String Two"); // violation
+                add("String Two"); // violation 'There is more than 1 empty line after this line'
 
 
                 add("String Three");
