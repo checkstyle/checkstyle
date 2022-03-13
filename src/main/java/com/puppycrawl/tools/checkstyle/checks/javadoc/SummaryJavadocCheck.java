@@ -249,8 +249,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private static final Pattern HTML_ELEMENTS =
             Pattern.compile("<[^>]*>");
 
-    /** Period literal. */
-    private static final String PERIOD = ".";
+    /** Default period literal. */
+    private static final String DEFAULT_PERIOD = ".";
 
     /** Summary tag text. */
     private static final String SUMMARY_TEXT = "@summary";
@@ -269,7 +269,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     /**
      * Specify the period symbol at the end of first javadoc sentence.
      */
-    private String period = PERIOD;
+    private String period = DEFAULT_PERIOD;
 
     /**
      * Setter to specify the regexp for forbidden summary fragments.
@@ -333,16 +333,59 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @return an optional of inline summary tag node, empty optional if inline tag is not
      *         a summary tag.
      */
-    private static Optional<DetailNode> getInlineSummaryTag(DetailNode javadoc) {
+    private Optional<DetailNode> getInlineSummaryTag(DetailNode javadoc) {
         Optional<DetailNode> node = Arrays.stream(javadoc.getChildren())
                 .filter(SummaryJavadocCheck::isInlineTagPresent)
                 .findFirst()
                 .map(SummaryJavadocCheck::getInlineTagNodeWithinHtmlElement);
 
-        if (node.isPresent() && !isSummaryTag(node.get())) {
+        if (node.isPresent() && (!isSummaryTag(node.get()) || !isDefinedFirst(node.get()))) {
             node = Optional.empty();
         }
         return node;
+    }
+
+    /**
+     * Whether the {@code {@summary}} tag is defined first in the javadoc.
+     *
+     * @param inlineSummaryTag node of type {@link JavadocTokenTypes#JAVADOC_INLINE_TAG}
+     * @return {@code true} if the {@code {@summary}} tag is defined first in the javadoc
+     */
+    private boolean isDefinedFirst(DetailNode inlineSummaryTag) {
+        boolean isDefinedFirst = true;
+        DetailNode previousSibling = JavadocUtil.getPreviousSibling(inlineSummaryTag);
+        while (previousSibling != null && isDefinedFirst) {
+            final int siblingType = previousSibling.getType();
+            if (siblingType == JavadocTokenTypes.TEXT) {
+                final String previousSiblingText = previousSibling.getText();
+                if (!period.isEmpty() && previousSiblingText.contains(period)) {
+                    isDefinedFirst = false;
+                }
+            }
+            else if (siblingType == JavadocTokenTypes.HTML_ELEMENT) {
+                final DetailNode firstChild = JavadocUtil.getFirstChild(previousSibling);
+                final int firstChildType = firstChild.getType();
+                if (firstChildType == JavadocTokenTypes.PARAGRAPH
+                    || firstChildType == JavadocTokenTypes.HTML_TAG
+                    && isPreTag(firstChild)) {
+                    isDefinedFirst = false;
+                }
+            }
+            previousSibling = JavadocUtil.getPreviousSibling(previousSibling);
+        }
+        return isDefinedFirst;
+    }
+
+    /**
+     * Whether the HTML tag is a {@code <pre>} tag.
+     *
+     * @param htmlTag node of type {@link JavadocTokenTypes#HTML_TAG}
+     * @return {@code true} if the HTML tag is a {@code <pre>} tag
+     */
+    private static boolean isPreTag(DetailNode htmlTag) {
+        final DetailNode htmlTagName = JavadocUtil.findFirstToken(
+            JavadocUtil.getFirstChild(htmlTag), JavadocTokenTypes.HTML_TAG_NAME);
+        return "pre".equals(htmlTagName.getText());
     }
 
     /**
@@ -607,9 +650,12 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @param ast Javadoc root node.
      * @return first sentence.
      */
-    private static String getFirstSentence(DetailNode ast) {
+    private String getFirstSentence(DetailNode ast) {
         final StringBuilder result = new StringBuilder(256);
-        final String periodSuffix = PERIOD + ' ';
+        String periodSuffix = period + ' ';
+        if ("。".equals(period)) {
+            periodSuffix = period;
+        }
         for (DetailNode child : ast.getChildren()) {
             final String text;
             if (child.getChildren().length == 0) {
