@@ -215,12 +215,11 @@ public class NoWhitespaceBeforeCheck
 
         if ((before == -1 || CommonUtil.isCodePointWhitespace(line, before))
                 && !isInEmptyForInitializerOrCondition(ast)) {
-            boolean flag = !allowLineBreaks;
+            final boolean hasNoWhitespaceBefore = !allowLineBreaks
+                || before > -1
+                && !CodePointUtil.hasWhitespaceBefore(before, line);
             // verify all characters before '.' are whitespace
-            if (before > -1 && !CodePointUtil.hasWhitespaceBefore(before, line)) {
-                flag = true;
-            }
-            if (flag) {
+            if (hasNoWhitespaceBefore) {
                 log(ast, MSG_KEY, ast.getText());
             }
         }
