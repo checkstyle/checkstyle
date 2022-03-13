@@ -15,6 +15,13 @@
              value="${project.basedir}/config/checkstyle_input_suppressions.xml"/>
   </module>
 
+  <module name="RegexpSingleline">
+    <property name="id" value="noCheckstyleInInputs"/>
+    <property name="format" value="import com.puppycrawl.tools.checkstyle"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="message" value="Inputs should not reference checkstyle's own files"/>
+  </module>
+
   <module name="TreeWalker">
     <module name="Regexp">
       <property name="id" value="StyleValidationCommentInInputs"/>
