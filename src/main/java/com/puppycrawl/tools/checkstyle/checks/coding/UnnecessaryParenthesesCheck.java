@@ -582,11 +582,11 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         // warning about an immediate child node in visitToken, so we don't
         // need to log another one here.
         if (parentToSkip != ast && isExprSurrounded(ast)) {
-            if (assignDepth >= 1) {
-                log(ast, MSG_ASSIGN);
-            }
-            else if (ast.getParent().getType() == TokenTypes.LITERAL_RETURN) {
+            if (ast.getParent().getType() == TokenTypes.LITERAL_RETURN) {
                 log(ast, MSG_RETURN);
+            }
+            else if (assignDepth >= 1) {
+                log(ast, MSG_ASSIGN);
             }
             else {
                 log(ast, MSG_EXPR);
