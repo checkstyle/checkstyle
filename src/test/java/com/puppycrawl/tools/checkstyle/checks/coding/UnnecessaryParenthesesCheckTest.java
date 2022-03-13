@@ -127,19 +127,33 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testReturn() throws Exception {
+        final String[] expected = {
+            "21:33: " + getCheckMessage(MSG_RETURN),
+            "22:16: " + getCheckMessage(MSG_RETURN),
+            "25:16: " + getCheckMessage(MSG_RETURN),
+            "28:16: " + getCheckMessage(MSG_RETURN),
+            "31:16: " + getCheckMessage(MSG_RETURN),
+            "36:16: " + getCheckMessage(MSG_RETURN),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryParenthesesReturnValue.java"), expected);
+    }
+
+    @Test
     public void testUnnecessaryParenthesesSwitchExpression() throws Exception {
         final String[] expected = {
             "21:31: " + getCheckMessage(MSG_ASSIGN),
             "24:13: " + getCheckMessage(MSG_LITERAL, 2),
             "25:39: " + getCheckMessage(MSG_ASSIGN),
-            "30:18: " + getCheckMessage(MSG_ASSIGN),
+            "30:18: " + getCheckMessage(MSG_RETURN),
             "32:16: " + getCheckMessage(MSG_IDENT, "g"),
-            "36:18: " + getCheckMessage(MSG_ASSIGN),
+            "36:18: " + getCheckMessage(MSG_RETURN),
             "46:31: " + getCheckMessage(MSG_ASSIGN),
             "48:13: " + getCheckMessage(MSG_LITERAL, 2),
             "49:39: " + getCheckMessage(MSG_ASSIGN),
-            "53:18: " + getCheckMessage(MSG_ASSIGN),
-            "58:18: " + getCheckMessage(MSG_ASSIGN),
+            "53:18: " + getCheckMessage(MSG_RETURN),
+            "58:18: " + getCheckMessage(MSG_RETURN),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
