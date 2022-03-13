@@ -11,16 +11,16 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
 */
 
 //non-compiled with javac: Compilable with Java14
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; // violation
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; // violation ''package' should be separated from previous line'
 
 public class InputEmptyLineSeparatorRecordsAndCompactCtorsNoEmptyLines {
-    public void foo() { // violation
+    public void foo() { // violation 'There is more than 1 empty line'
 
 
     }
 
     public record MyRecord1(){
-        public MyRecord1{ // violation
+        public MyRecord1{ // violation 'There is more than 1 empty line'
 
 
         }
