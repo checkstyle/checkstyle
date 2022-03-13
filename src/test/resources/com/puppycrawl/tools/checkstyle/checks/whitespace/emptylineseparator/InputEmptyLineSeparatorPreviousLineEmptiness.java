@@ -18,18 +18,19 @@ public class InputEmptyLineSeparatorPreviousLineEmptiness {
     private int base;
 
     static {
-        MULTIPLICATOR = 5; // violation
+        MULTIPLICATOR = 5; // violation 'There is more than 1 empty line after this line'
 
 
     }
 
-    { // violation
+    { // violation 'There is more than 1 empty line after this line'
 
 
         base = 33;
     }
 
-    public InputEmptyLineSeparatorPreviousLineEmptiness(int base) { // violation
+    InputEmptyLineSeparatorPreviousLineEmptiness(
+            int base) { // violation 'There is more than 1 empty line after this line'
 
 
         this.base = base;
@@ -38,7 +39,7 @@ public class InputEmptyLineSeparatorPreviousLineEmptiness {
     public InputEmptyLineSeparatorPreviousLineEmptiness() {
     }
 
-    public static int increment(int value) { // violation
+    public int increment(int value) { // violation 'There is more than 1 empty line after this line'
 
 
         return value * MULTIPLICATOR + 1;
@@ -48,7 +49,7 @@ public class InputEmptyLineSeparatorPreviousLineEmptiness {
     }
 
 
-    void foo3() { // violation
+    void foo3() { // violation 'There is more than 1 empty line after this line'
 
 
     }
