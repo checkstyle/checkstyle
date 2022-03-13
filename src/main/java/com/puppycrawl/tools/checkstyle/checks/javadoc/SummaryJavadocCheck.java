@@ -650,9 +650,12 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @param ast Javadoc root node.
      * @return first sentence.
      */
-    private static String getFirstSentence(DetailNode ast) {
+    private String getFirstSentence(DetailNode ast) {
         final StringBuilder result = new StringBuilder(256);
-        final String periodSuffix = DEFAULT_PERIOD + ' ';
+        String periodSuffix = period + ' ';
+        if ("。".equals(period)) {
+            periodSuffix = period;
+        }
         for (DetailNode child : ast.getChildren()) {
             final String text;
             if (child.getChildren().length == 0) {

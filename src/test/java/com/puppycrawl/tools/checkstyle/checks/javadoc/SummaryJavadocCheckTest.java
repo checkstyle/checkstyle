@@ -230,4 +230,15 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
                 getPath("inputs/package-info.java"), expected);
     }
 
+    @Test
+    public void testCustomPeriodSymbol() throws Exception {
+        final String[] expected = {
+            "18: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "25: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputSummaryJavadocCustomPeriodSymbol.java"), expected);
+    }
+
 }
