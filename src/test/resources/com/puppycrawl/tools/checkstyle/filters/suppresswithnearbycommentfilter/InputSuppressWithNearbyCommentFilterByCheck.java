@@ -1,9 +1,9 @@
 /*
 SuppressWithNearbyCommentFilter
 commentFormat = @cs-: (\\w+) \\(\\w+\\)
-checkFormat = (default).*
+checkFormat = MemberNameCheck
 messageFormat = (default)(null)
-idFormat = $1
+idFormat = (default)(null)
 influenceFormat = (default)0
 checkCPP = (default)true
 checkC = (default)true
@@ -35,7 +35,7 @@ illegalClassNames = (default)Error, Exception, RuntimeException, Throwable, java
 */
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
 
-public class InputSuppressWithNearbyCommentFilterById {
+public class InputSuppressWithNearbyCommentFilterByCheck {
 
     // filtered violation below
     private int A1; // @cs-: ignore (reason)

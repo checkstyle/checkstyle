@@ -1,8 +1,8 @@
 /*
 SuppressWithNearbyCommentFilter
 commentFormat = (default)SUPPRESS CHECKSTYLE (\\w+)
-checkFormat = (default).*
-messageFormat = (default)(null)
+checkFormat = IllegalCatchCheck
+messageFormat = ^$1 ololo*$
 idFormat = (default)(null)
 influenceFormat = (default)0
 checkCPP = (default)true
@@ -41,20 +41,20 @@ package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
  *
  * @author Mick Killianey
  */
-public class InputSuppressWithNearbyCommentFilter {
-    // filtered violation below
+public class InputSuppressWithNearbyCommentFilterUsingTagMessageRegexp {
+    // violation below
     private int A1;  // SUPPRESS CHECKSTYLE MemberNameCheck
 
-    // filtered violation below
+    // violation below
     private int A2;  /* SUPPRESS CHECKSTYLE MemberNameCheck */
-    /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int A3; // filtered violation
+    /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int A3; // violation
 
-    // filtered violation below
+    // violation below
     private int B1;  // SUPPRESS CHECKSTYLE MemberNameCheck
 
-    // filtered violation below
+    // violation below
     private int B2;  /* SUPPRESS CHECKSTYLE MemberNameCheck */
-    /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int B3; // filtered violation
+    /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int B3; // violation
 
     private int C1; // violation
     // ALLOW MemberName ON NEXT LINE
@@ -112,8 +112,8 @@ public class InputSuppressWithNearbyCommentFilter {
     }
 }
 
-class Magic {
-    // filtered violation below
+class Magic9 {
+    // violation below
     /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int A2;/* SUPPRESS CHECKSTYLE MemberName ol */
     private int A1; // violation
 }
