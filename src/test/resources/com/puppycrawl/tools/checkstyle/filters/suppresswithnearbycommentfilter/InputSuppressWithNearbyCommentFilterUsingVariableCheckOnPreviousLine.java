@@ -1,10 +1,10 @@
 /*
 SuppressWithNearbyCommentFilter
-commentFormat = (default)SUPPRESS CHECKSTYLE (\\w+)
-checkFormat = (default).*
+commentFormat = ALLOW (\\w+) ON PREVIOUS LINE
+checkFormat = $1
 messageFormat = (default)(null)
 idFormat = (default)(null)
-influenceFormat = (default)0
+influenceFormat = -1
 checkCPP = (default)true
 checkC = (default)true
 
@@ -41,20 +41,20 @@ package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
  *
  * @author Mick Killianey
  */
-public class InputSuppressWithNearbyCommentFilter {
-    // filtered violation below
+public class InputSuppressWithNearbyCommentFilterUsingVariableCheckOnPreviousLine {
+    // violation below
     private int A1;  // SUPPRESS CHECKSTYLE MemberNameCheck
 
-    // filtered violation below
+    // violation below
     private int A2;  /* SUPPRESS CHECKSTYLE MemberNameCheck */
-    /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int A3; // filtered violation
+    /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int A3; // violation
 
-    // filtered violation below
+    // violation below
     private int B1;  // SUPPRESS CHECKSTYLE MemberNameCheck
 
-    // filtered violation below
+    // violation below
     private int B2;  /* SUPPRESS CHECKSTYLE MemberNameCheck */
-    /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int B3; // filtered violation
+    /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int B3; // violation
 
     private int C1; // violation
     // ALLOW MemberName ON NEXT LINE
@@ -62,7 +62,7 @@ public class InputSuppressWithNearbyCommentFilter {
     private int C3; // violation
 
     private int D1; // violation
-    private int D2; // violation
+    private int D2; // filtered violation
     // ALLOW MemberName ON PREVIOUS LINE
     private int D3; // violation
 
@@ -112,8 +112,8 @@ public class InputSuppressWithNearbyCommentFilter {
     }
 }
 
-class Magic {
-    // filtered violation below
+class Magic6 {
+    // violation below
     /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int A2;/* SUPPRESS CHECKSTYLE MemberName ol */
     private int A1; // violation
 }

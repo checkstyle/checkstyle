@@ -4,7 +4,7 @@ commentFormat = (default)SUPPRESS CHECKSTYLE (\\w+)
 checkFormat = (default).*
 messageFormat = (default)(null)
 idFormat = (default)(null)
-influenceFormat = (default)0
+influenceFormat = +1
 checkCPP = (default)true
 checkC = (default)true
 
@@ -41,7 +41,7 @@ package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
  *
  * @author Mick Killianey
  */
-public class InputSuppressWithNearbyCommentFilter {
+public class InputSuppressWithNearbyCommentFilterInfluenceFormat {
     // filtered violation below
     private int A1;  // SUPPRESS CHECKSTYLE MemberNameCheck
 
@@ -112,8 +112,8 @@ public class InputSuppressWithNearbyCommentFilter {
     }
 }
 
-class Magic {
+class Magic8 {
     // filtered violation below
     /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int A2;/* SUPPRESS CHECKSTYLE MemberName ol */
-    private int A1; // violation
+    private int A1; // filtered violation
 }
