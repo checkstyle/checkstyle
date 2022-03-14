@@ -8,7 +8,7 @@ volumes:
 
 steps:
 - name: restore-cache
-  image: &default-image maven:3.8.4-openjdk-11
+  image: maven:3.8.4-openjdk-11
   failure: ignore
   volumes:
   - name: m2-cache
@@ -17,7 +17,7 @@ steps:
   - ./.ci/drone-io.sh restore-maven-cache
 
 - name: checkstyle-and-sevntu
-  image: *default-image
+  image: maven:3.8.4-openjdk-11
   environment:
     MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
   volumes:
@@ -27,7 +27,7 @@ steps:
   - ./.ci/validation.sh checkstyle-and-sevntu
 
 - name: spotbugs-and-pmd
-  image: *default-image
+  image: maven:3.8.4-openjdk-11
   environment:
     MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
   volumes:
@@ -46,7 +46,7 @@ volumes:
 
 steps:
 - name: restore-cache
-  image: &default-image maven:3.8.4-openjdk-11
+  image: maven:3.8.4-openjdk-11
   failure: ignore
   volumes:
   - name: m2-cache
@@ -55,7 +55,7 @@ steps:
   - ./.ci/drone-io.sh restore-maven-cache
 
 - name: site
-  image: *default-image
+  image: maven:3.8.4-openjdk-11
   environment:
     MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
   volumes:
@@ -75,7 +75,7 @@ volumes:
 
 steps:
 - name: restore-cache
-  image: &default-image maven:3.8.4-openjdk-11
+  image: maven:3.8.4-openjdk-11
   failure: ignore
   volumes:
   - name: m2-cache
@@ -84,7 +84,7 @@ steps:
   - ./.ci/drone-io.sh restore-maven-cache
 
 - name: release-dry-run
-  image: *default-image
+  image: maven:3.8.4-openjdk-11
   environment:
     MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
   volumes:
@@ -94,7 +94,7 @@ steps:
   - ./.ci/validation.sh release-dry-run
 
 - name: assembly-run-all-jar
-  image: *default-image
+  image: maven:3.8.4-openjdk-11
   environment:
     MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
   volumes:
@@ -113,7 +113,7 @@ volumes:
 
 steps:
 - name: restore-cache
-  image: &default-image maven:3.8.4-openjdk-11
+  image: maven:3.8.4-openjdk-11
   failure: ignore
   volumes:
   - name: m2-cache
@@ -122,7 +122,7 @@ steps:
   - ./.ci/drone-io.sh restore-maven-cache
 
 - name: releasenotes-gen
-  image: *default-image
+  image: maven:3.8.4-openjdk-11
   environment:
     READ_ONLY_TOKEN:
       from_secret: READ_ONLY_TOKEN
@@ -139,17 +139,17 @@ name: non-mvn_javac
 
 steps:
 - name: check-chmod
-  image: &default-image maven:3.8.4-openjdk-11
+  image: maven:3.8.4-openjdk-11
   commands:
   - ./.ci/checkchmod.sh
 
 - name: check-since-version
-  image: *default-image
+  image: maven:3.8.4-openjdk-11
   commands:
   - ./.ci/validation.sh check-since-version
 
 - name: javac11
-  image: *default-image
+  image: maven:3.8.4-openjdk-11
   commands:
   - ./.ci/validation.sh javac11
 
@@ -183,7 +183,7 @@ volumes:
 
 steps:
 - name: restore-cache
-  image: &default-image maven:3.8.4-openjdk-11
+  image: maven:3.8.4-openjdk-11
   failure: ignore
   volumes:
   - name: m2-cache
@@ -202,7 +202,7 @@ steps:
   - ./.ci/validation.sh jdk14-assembly-site
 
 - name: assembly/site with OpenJDK11
-  image: *default-image
+  image: maven:3.8.4-openjdk-11
   environment:
     MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
   volumes:
@@ -213,7 +213,7 @@ steps:
      mvn -e --no-transfer-progress site -Dlinkcheck.skip=true"
 
 - name: no-error-test-sbe
-  image: *default-image
+  image: maven:3.8.4-openjdk-11
   environment:
     MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
   volumes:

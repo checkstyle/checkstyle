@@ -69,6 +69,16 @@ public class EmptyForIteratorPadCheckTest
     }
 
     @Test
+    public void testWithEmoji() throws Exception {
+        final String[] expected = {
+            "24:40: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyForIteratorPadWithEmoji.java"), expected);
+
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final EmptyForIteratorPadCheck emptyForIteratorPadCheckObj = new EmptyForIteratorPadCheck();
         final int[] actual = emptyForIteratorPadCheckObj.getAcceptableTokens();

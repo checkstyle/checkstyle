@@ -51,7 +51,7 @@ class InputEmptyForInitializerPad
         for ( ; i < 1; i++ ) {
         }
 
-        for (; i < 2; i++ ) { // violation
+        for (; i < 2; i++ ) { // violation '';' is not preceded with whitespace'
         }
 
         for (

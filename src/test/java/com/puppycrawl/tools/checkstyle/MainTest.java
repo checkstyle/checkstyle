@@ -32,7 +32,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -424,11 +423,10 @@ public class MainTest {
      *
      * @param systemErr the system error stream
      * @param systemOut the system output stream
-     * @throws Exception if there is an error.
      */
     @Test
     public void testNonClosedSystemStreams(@SysErr Capturable systemErr,
-           @SysOut Capturable systemOut) throws Exception {
+           @SysOut Capturable systemOut) {
         try (ShouldNotBeClosedStream stream = new ShouldNotBeClosedStream()) {
             System.setOut(stream);
             System.setErr(stream);
@@ -1877,8 +1875,8 @@ public class MainTest {
 
         private boolean isClosed;
 
-        /* package */ ShouldNotBeClosedStream() throws UnsupportedEncodingException {
-            super(new ByteArrayOutputStream(), false, StandardCharsets.UTF_8.name());
+        /* package */ ShouldNotBeClosedStream() {
+            super(new ByteArrayOutputStream(), false, StandardCharsets.UTF_8);
         }
 
         @Override

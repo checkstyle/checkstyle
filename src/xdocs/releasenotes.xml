@@ -10,13 +10,108 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.0">
+      <div class="releaseDate">27.02.2022</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            upgrade minimal required jdk version to 11.
+            Author: rnveach, pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9146">#9146</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            WhitespaceAfter does not work on &#39;switch&#39; and lambda statements.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11298">#11298</a>
+          </li>
+          <li>
+            WhitespaceAfter should support `ELLIPSIS` token.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11116">#11116</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            FinalClass should exempt private-only constructor classes that are
+            extended by another class in the same compilation unit.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/10859">#10859</a>
+          </li>
+          <li>
+            False Negative: RedundantModifierCheck.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11268">#11268</a>
+          </li>
+          <li>
+            EmptyLineSeparator: false negative in Enum and interface fields.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/11241">#11241</a>
+          </li>
+          <li>
+            NPE in gui.MainFrameModel#getLastDirectory.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11294">#11294</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Pitest: add new mutator REMOVE_CONDITIONALS.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/6320">#6320</a>
+          </li>
+          <li>
+            Update doc for FinalParameters.
+            Author: Taniya
+            <a href="https://github.com/checkstyle/checkstyle/issues/7588">#7588</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Binita Kumari
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Replace usages of deprecated method AccessibleObject.isAccessible.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/11309">#11309</a>
+          </li>
+          <li>
+            Update doc for ReturnCount.
+            Author: Binita Kumari
+            <a href="https://github.com/checkstyle/checkstyle/issues/7657">#7657</a>
+          </li>
+          <li>
+            Add icon to the GUI window.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11292">#11292</a>
+          </li>
+          <li>
+            Add &#39;since&#39; property to &#39;@Deprecated&#39; annotation.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11289">#11289</a>
+          </li>
+          <li>
+            doc: update requirements to jdk 11.
+            Author: pbludov
+          </li>
+          <li>
+            remove extra checkstyle build in no-exception-test.sh.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11281">#11281</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 9.3">
       <div class="releaseDate">30.01.2022</div>
       <p>New:</p>
         <ul>
           <li>
             Support patterns in switch (preview-feature in Java 17) as described by JEP 406.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/10848">#10848</a>
           </li>
           <li>
@@ -29,7 +124,7 @@
         <ul>
           <li>
             OutOfMemory following CheckStyle 9.X upgrade.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/10934">#10934</a>
           </li>
           <li>
@@ -79,12 +174,12 @@
           </li>
           <li>
             Run regression testing in CI over openjdk17.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/11185">#11185</a>
           </li>
           <li>
             Let &#39;site&#39; Github action to generate javadoc.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/11228">#11228</a>
           </li>
           <li>
@@ -99,7 +194,7 @@
           </li>
           <li>
             Update `bump-license-year.sh` to use `g4` file extension..
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/11203">#11203</a>
           </li>
           <li>
@@ -185,12 +280,12 @@
           </li>
           <li>
             Version 9.x Reports Whitespace Before Paren After String with Emojis.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/11001">#11001</a>
           </li>
           <li>
             TrailingCommentsCheck ignores first comment character.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/10997">#10997</a>
           </li>
         </ul>
@@ -237,7 +332,7 @@
           </li>
           <li>
             Remove `illegal-access=warn` workaround for JDK16.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/11067">#11067</a>
           </li>
           <li>
@@ -318,7 +413,7 @@
         <ul>
           <li>
             Record inside interface is treated as method.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/10978">#10978</a>
           </li>
         </ul>
@@ -343,7 +438,7 @@
           <li>
             Version 9.x reports NoWhitespaceBefore error on semicolon or comma
             after string with emoji.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/10920">#10920</a>
           </li>
           <li>
@@ -488,7 +583,7 @@
           </li>
           <li>
             WhitespaceAround misrecognizes white spaces after emojis.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/10837">#10837</a>
           </li>
         </ul>

@@ -7,7 +7,7 @@ NoWhitespaceBeforeCaseDefaultColon
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebeforecasedefaultcolon;
 
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.Calendar;
 
 public class InputNoWhitespaceBeforeCaseDefaultColon {
     {
@@ -62,10 +62,10 @@ public class InputNoWhitespaceBeforeCaseDefaultColon {
                 break;
         }
 
-        switch (TokenTypes.ABSTRACT) {
-            case TokenTypes.TYPECAST : // violation
+        switch (Calendar.MONDAY) {
+            case Calendar.TUESDAY    : // violation
                 break;
-            case TokenTypes.ARRAY_DECLARATOR:
+            case Calendar.WEDNESDAY:
                 break;
             default:
                 break;

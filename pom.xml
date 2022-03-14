@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.0-SNAPSHOT</version>
+  <version>10.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -200,12 +200,12 @@
     <surefire.options />
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.9.3</antlr4.version>
-    <maven.site.plugin.version>3.10.0</maven.site.plugin.version>
+    <maven.site.plugin.version>3.11.0</maven.site.plugin.version>
     <maven.spotbugs.plugin.version>4.2.3</maven.spotbugs.plugin.version>
-    <maven.pmd.plugin.version>3.15.0</maven.pmd.plugin.version>
-    <pmd.version>6.42.0</pmd.version>
+    <maven.pmd.plugin.version>3.16.0</maven.pmd.plugin.version>
+    <pmd.version>6.43.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.7</maven.jacoco.plugin.version>
-    <mockito.version>4.3.1</mockito.version>
+    <mockito.version>4.4.0</mockito.version>
     <saxon.version>10.6</saxon.version>
     <maven.checkstyle.plugin.version>3.1.2</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.41.0</maven.sevntu.checkstyle.plugin.version>
@@ -229,7 +229,7 @@
     <dependency>
       <groupId>com.tngtech.archunit</groupId>
       <artifactId>archunit-junit5</artifactId>
-      <version>0.22.0</version>
+      <version>0.23.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -250,7 +250,7 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>31.0.1-jre</version>
+      <version>31.1-jre</version>
     </dependency>
     <dependency>
       <groupId>org.apache.ant</groupId>
@@ -286,7 +286,7 @@
     <dependency>
       <groupId>org.junit-pioneer</groupId>
       <artifactId>junit-pioneer</artifactId>
-      <version>1.5.0</version>
+      <version>1.6.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -316,7 +316,7 @@
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>5.13.0.202109080827-r</version>
+      <version>6.1.0.202203080745-r</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -377,7 +377,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>3.3.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-release-plugin</artifactId>
@@ -577,7 +577,7 @@
       <plugin>
         <groupId>org.gaul</groupId>
         <artifactId>modernizer-maven-plugin</artifactId>
-        <version>2.3.0</version>
+        <version>2.4.0</version>
         <configuration>
           <javaVersion>8</javaVersion>
           <includeTestClasses>false</includeTestClasses>
@@ -1097,7 +1097,7 @@
       <plugin>
         <groupId>org.sonatype.plugins</groupId>
         <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>1.6.8</version>
+        <version>1.6.12</version>
         <extensions>true</extensions>
         <configuration>
           <!-- serverId is ID of a <server> section from Maven's settings.xml
@@ -1498,6 +1498,28 @@
                 <exclude>**/JavadocPropertiesGenerator.class</exclude>
                 <!-- generated classes, unfortunately use problematic api -->
                 <exclude>**/JavadocParser.class</exclude>
+                <!-- reason at https://github.com/checkstyle/checkstyle/issues/7759 -->
+                <exclude>**/RegexpCheck.class</exclude>
+                <!-- no code in file, no AST to log -->
+                <exclude>**/NoCodeInFileCheck.class</exclude>
+                <!-- until https://github.com/checkstyle/checkstyle/issues/5770 -->
+                <exclude>**/AbstractJavadocCheck.class</exclude>
+                <exclude>**/AtclauseOrderCheck.class</exclude>
+                <exclude>**/JavadocBlockTagLocationCheck.class</exclude>
+                <exclude>**/JavadocMethodCheck.class</exclude>
+                <exclude>**/JavadocMissingLeadingAsteriskCheck.class</exclude>
+                <exclude>**/JavadocMissingWhitespaceAfterAsteriskCheck.class</exclude>
+                <exclude>**/JavadocParagraphCheck.class</exclude>
+                <exclude>**/JavadocStyleCheck.class</exclude>
+                <exclude>**/JavadocTagContinuationIndentationCheck.class</exclude>
+                <exclude>**/JavadocTypeCheck.class</exclude>
+                <exclude>**/MissingDeprecatedCheck.class</exclude>
+                <exclude>**/NonEmptyAtclauseDescriptionCheck.class</exclude>
+                <exclude>**/RequireEmptyLineBeforeBlockTagGroupCheck.class</exclude>
+                <exclude>**/SingleLineJavadocCheck.class</exclude>
+                <exclude>**/SummaryJavadocCheck.class</exclude>
+                <exclude>**/WriteTagCheck.class</exclude>
+                <exclude>**/JavadocMetadataScraper.class</exclude>
               </excludes>
             </configuration>
           </execution>
@@ -1517,10 +1539,6 @@
                 <exclude>**/MainTest.class</exclude>
                 <!-- tests need forbidden apis to test the main code fully -->
                 <exclude>**/XpathFileGeneratorAuditListenerTest.class</exclude>
-                <!-- These tests uses java.lang.reflect.AccessibleObject.isAccessible
-                  which has no Java 8 compatible workaround. -->
-                <exclude>**/AllChecksTest.class</exclude>
-                <exclude>**/XdocsPagesTest.class</exclude>
                 <!-- Needed for testing deprecated API. -->
                 <exclude>**/DefaultConfigurationTest.class</exclude>
                 <!-- Inline Config cannot be supported. -->
@@ -1587,6 +1605,8 @@
                 <exclude>**/WriteTagCheckTest.class</exclude>
 
                 <exclude>**/AbstractJavadocCheckTest.class</exclude>
+
+                <exclude>**/MetadataGeneratorUtilTest.class</exclude>
               </excludes>
             </configuration>
           </execution>
@@ -1629,7 +1649,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>3.2.1</version>
+        <version>3.2.2</version>
       </plugin>
 
       <plugin>
@@ -1872,6 +1892,7 @@
             <excludedLink>http://maven.apache.org/plugins/maven-linkcheck-plugin/</excludedLink>
             <!-- permanent 403 -->
             <excludedLink>https://www.ej-technologies.com/*</excludedLink>
+            <excludedLink>https://travis-ci.com/</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
@@ -2236,8 +2257,7 @@
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
-                <!-- result in 115 extra survived items, too much to keep in ignore list -->
-                <!-- <mutator>REMOVE_CONDITIONALS</mutator> -->
+                <mutator>REMOVE_CONDITIONALS</mutator>
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2252,7 +2272,7 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>100</mutationThreshold>
+              <mutationThreshold>99</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -2876,6 +2896,7 @@
                 <param>com.puppycrawl.tools.checkstyle.Definitions*</param>
                 <param>com.puppycrawl.tools.checkstyle.XMLLogger*</param>
                 <param>com.puppycrawl.tools.checkstyle.SarifLogger*</param>
+                <param>com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger*</param>
                 <param>com.puppycrawl.tools.checkstyle.PackageObjectFactory*</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertiesExpander*</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertyCacheFile*</param>
@@ -2903,6 +2924,7 @@
                 <param>com.puppycrawl.tools.checkstyle.DefinitionsTest</param>
                 <param>com.puppycrawl.tools.checkstyle.XMLLoggerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.SarifLoggerTest</param>
+                <param>com.puppycrawl.tools.checkstyle.MetadataGeneratorLoggerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.PackageObjectFactoryTest</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertiesExpanderTest</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertyCacheFileTest</param>
@@ -2912,6 +2934,8 @@
                 <param>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParseTreeTest</param>
                 <!-- this test is required for Checker -->
                 <param>com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilterTest</param>
+                <!-- This test is the primary user of metadataGeneratorLogger -->
+                <param>com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtilTest</param>
               </targetTests>
               <coverageThreshold>99</coverageThreshold>
               <mutationThreshold>95</mutationThreshold>
@@ -3288,6 +3312,9 @@
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheckTest
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheckTest

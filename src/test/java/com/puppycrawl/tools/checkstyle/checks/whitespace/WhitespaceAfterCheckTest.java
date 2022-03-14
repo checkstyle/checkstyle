@@ -191,11 +191,54 @@ public class WhitespaceAfterCheckTest
     public void testVarargs() throws Exception {
         final String[] expected = {
             "14:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
-            "17:67: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
-            "20:42: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
-            "27:45: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
-            "36:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "18:25: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "21:36: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "28:40: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "37:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
         };
         verifyWithInlineConfigParser(getPath("InputWhitespaceAfterVarargs.java"), expected);
+    }
+
+    @Test
+    public void testSwitchStatements() throws Exception {
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "switch"),
+            "31:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "switch"),
+            "33:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
+            "40:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "switch"),
+            "41:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
+            "42:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
+            "49:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "switch"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputWhitespaceAfterSwitchStatements.java"),
+                expected);
+    }
+
+    @Test
+    public void testLambdaExpressions() throws Exception {
+        final String[] expected = {
+            "17:29: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
+            "19:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
+            "28:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "->"),
+        };
+
+        verifyWithInlineConfigParser(getPath("InputWhitespaceAfterLambdaExpressions.java"),
+                expected);
+    }
+
+    @Test
+    public void testWhitespaceAfterWithEmoji() throws Exception {
+        final String[] expected = {
+            "13:48: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "13:52: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "29:32: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "38:23: " + getCheckMessage(MSG_WS_TYPECAST, ";"),
+            "48:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "48:53: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputWhitespaceAfterWithEmoji.java"), expected);
     }
 }

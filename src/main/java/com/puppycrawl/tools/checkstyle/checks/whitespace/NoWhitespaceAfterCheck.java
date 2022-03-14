@@ -373,9 +373,9 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         int whitespaceColumnNo, int whitespaceLineNo) {
         final boolean result;
         final int astLineNo = ast.getLineNo();
-        final String line = getLine(astLineNo - 1);
-        if (astLineNo == whitespaceLineNo && whitespaceColumnNo < line.length()) {
-            result = Character.isWhitespace(line.charAt(whitespaceColumnNo));
+        final int[] line = getLineCodePoints(astLineNo - 1);
+        if (astLineNo == whitespaceLineNo && whitespaceColumnNo < line.length) {
+            result = CommonUtil.isCodePointWhitespace(line, whitespaceColumnNo);
         }
         else {
             result = !allowLineBreaks;

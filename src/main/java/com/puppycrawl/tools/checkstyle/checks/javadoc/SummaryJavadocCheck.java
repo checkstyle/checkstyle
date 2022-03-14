@@ -22,11 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.Set;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -251,10 +249,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private static final Pattern HTML_ELEMENTS =
             Pattern.compile("<[^>]*>");
 
-    /**
-     * This regexp is used to extract the content of a summary javadoc tag.
-     */
-    private static final Pattern SUMMARY_PATTERN = Pattern.compile("\\{@summary ([\\S\\s]+)}");
     /** Period literal. */
     private static final String PERIOD = ".";
 
@@ -309,8 +303,9 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        if (containsSummaryTag(ast)) {
-            validateSummaryTag(ast);
+        final Optional<DetailNode> inlineSummaryTag = getInlineSummaryTag(ast);
+        if (inlineSummaryTag.isPresent()) {
+            validateSummaryTag(inlineSummaryTag.get());
         }
         else if (!startsWithInheritDoc(ast)) {
             final String summaryDoc = getSummarySentence(ast);
@@ -332,18 +327,22 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Checks if summary tag present.
+     * Gets the inline summary tag.
      *
      * @param javadoc javadoc root node.
-     * @return {@code true} if first sentence contains @summary tag.
+     * @return an optional of inline summary tag node, empty optional if inline tag is not
+     *         a summary tag.
      */
-    private static boolean containsSummaryTag(DetailNode javadoc) {
-        final Optional<DetailNode> node = Arrays.stream(javadoc.getChildren())
+    private static Optional<DetailNode> getInlineSummaryTag(DetailNode javadoc) {
+        Optional<DetailNode> node = Arrays.stream(javadoc.getChildren())
                 .filter(SummaryJavadocCheck::isInlineTagPresent)
                 .findFirst()
                 .map(SummaryJavadocCheck::getInlineTagNodeWithinHtmlElement);
 
-        return node.isPresent() && isSummaryTag(node.get());
+        if (node.isPresent() && !isSummaryTag(node.get())) {
+            node = Optional.empty();
+        }
+        return node;
     }
 
     /**
@@ -387,13 +386,13 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Checks if the first tag inside ast is summary tag.
+     * Checks if the javadoc inline tag is {@code {@summary}} tag.
      *
-     * @param javadoc root node.
-     * @return {@code true} if first tag is summary tag.
+     * @param javadocInlineTag node of type {@link JavadocTokenTypes#JAVADOC_INLINE_TAG}
+     * @return {@code true} if inline tag is summary tag.
      */
-    private static boolean isSummaryTag(DetailNode javadoc) {
-        final DetailNode[] child = javadoc.getChildren();
+    private static boolean isSummaryTag(DetailNode javadocInlineTag) {
+        final DetailNode[] child = javadocInlineTag.getChildren();
 
         // Checking size of ast is not required, since ast contains
         // children of Inline Tag, as at least 2 children will be present which are
@@ -405,39 +404,63 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     /**
      * Checks the inline summary (if present) for {@code period} at end and forbidden fragments.
      *
-     * @param ast javadoc root node.
+     * @param inlineSummaryTag node of type {@link JavadocTokenTypes#JAVADOC_INLINE_TAG}
      */
-    private void validateSummaryTag(DetailNode ast) {
-        final String inlineSummary = getInlineSummary();
+    private void validateSummaryTag(DetailNode inlineSummaryTag) {
+        final String inlineSummary = getContentOfInlineCustomTag(inlineSummaryTag);
         final String summaryVisible = getVisibleContent(inlineSummary);
         if (summaryVisible.isEmpty()) {
-            log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
+            log(inlineSummaryTag.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
         }
         else if (!period.isEmpty()) {
-            if (isPeriodAtEnd(summaryVisible, period)) {
-                log(ast.getLineNumber(), MSG_SUMMARY_MISSING_PERIOD);
+            if (isPeriodNotAtEnd(summaryVisible, period)) {
+                log(inlineSummaryTag.getLineNumber(), MSG_SUMMARY_MISSING_PERIOD);
             }
             else if (containsForbiddenFragment(inlineSummary)) {
-                log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
+                log(inlineSummaryTag.getLineNumber(), MSG_SUMMARY_JAVADOC);
             }
         }
     }
 
     /**
-     * Gets entire content of summary tag.
+     * Gets the content of inline custom tag.
      *
-     * @return summary sentence of javadoc root node.
+     * @param inlineTag inline tag node.
+     * @return String consisting of the content of inline custom tag.
      */
-    private String getInlineSummary() {
-        final DetailAST blockCommentAst = getBlockCommentAst();
-        final String javadocText = blockCommentAst.getFirstChild().getText();
-        final Matcher matcher = SUMMARY_PATTERN.matcher(javadocText);
-        String comment = "";
-        if (matcher.find()) {
-            comment = matcher.group(1);
+    public static String getContentOfInlineCustomTag(DetailNode inlineTag) {
+        final DetailNode[] childrenOfInlineTag = inlineTag.getChildren();
+        final StringBuilder customTagContent = new StringBuilder(256);
+        final int indexOfContentOfSummaryTag = 3;
+        if (childrenOfInlineTag.length != indexOfContentOfSummaryTag) {
+            DetailNode currentNode = childrenOfInlineTag[indexOfContentOfSummaryTag];
+            while (currentNode.getType() != JavadocTokenTypes.JAVADOC_INLINE_TAG_END) {
+                extractInlineTagContent(currentNode, customTagContent);
+                currentNode = JavadocUtil.getNextSibling(currentNode);
+            }
         }
-        return JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN.matcher(comment)
-                .replaceAll("");
+        return customTagContent.toString();
+    }
+
+    /**
+     * Extracts the content of inline custom tag recursively.
+     *
+     * @param node DetailNode
+     * @param customTagContent content of custom tag
+     */
+    private static void extractInlineTagContent(DetailNode node,
+        StringBuilder customTagContent) {
+        final DetailNode[] children = node.getChildren();
+        if (children.length == 0) {
+            customTagContent.append(node.getText());
+        }
+        else {
+            for (DetailNode child : children) {
+                if (child.getType() != JavadocTokenTypes.LEADING_ASTERISK) {
+                    extractInlineTagContent(child, customTagContent);
+                }
+            }
+        }
     }
 
     /**
@@ -452,13 +475,13 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Checks if the string ends with period.
+     * Checks if the string does not end with period.
      *
      * @param sentence string to check for period at end.
      * @param period string to check within sentence.
-     * @return {@code true} if sentence ends with period.
+     * @return {@code true} if sentence does not end with period.
      */
-    private static boolean isPeriodAtEnd(String sentence, String period) {
+    private static boolean isPeriodNotAtEnd(String sentence, String period) {
         final String summarySentence = sentence.trim();
         return summarySentence.lastIndexOf(period) != summarySentence.length() - 1;
     }

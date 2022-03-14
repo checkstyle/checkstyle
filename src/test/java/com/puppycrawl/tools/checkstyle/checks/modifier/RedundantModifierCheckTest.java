@@ -21,10 +21,12 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck.MSG_KEY;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -126,6 +128,7 @@ public class RedundantModifierCheckTest
 
         final String[] expected = {
             "22:17: " + getCheckMessage(MSG_KEY, "public"),
+            "24:13: " + getCheckMessage(MSG_KEY, "public"),
             "26:21: " + getCheckMessage(MSG_KEY, "public"),
             "37:12: " + getCheckMessage(MSG_KEY, "public"),
             "45:17: " + getCheckMessage(MSG_KEY, "public"),
@@ -149,10 +152,27 @@ public class RedundantModifierCheckTest
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.RESOURCE,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
         };
         assertWithMessage("Invalid acceptable tokens")
             .that(actual)
             .isEqualTo(expected);
+    }
+
+    @Test
+    public void testWrongTokenType() {
+        final RedundantModifierCheck obj = new RedundantModifierCheck();
+        final DetailAstImpl ast = new DetailAstImpl();
+        ast.initialize(TokenTypes.LITERAL_NULL, "null");
+
+        final IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
+            obj.visitToken(ast);
+        }, "IllegalStateException was expected");
+
+        assertWithMessage("Expected and actual violation messages do not match")
+                .that(exception.getMessage())
+                .isEqualTo("Unexpected token type: " + ast.getType());
     }
 
     @Test
@@ -273,8 +293,44 @@ public class RedundantModifierCheckTest
             "13:5: " + getCheckMessage(MSG_KEY, "static"),
             "13:12: " + getCheckMessage(MSG_KEY, "public"),
             "16:9: " + getCheckMessage(MSG_KEY, "public"),
+            "19:5: " + getCheckMessage(MSG_KEY, "public"),
+            "19:12: " + getCheckMessage(MSG_KEY, "static"),
+            "22:5: " + getCheckMessage(MSG_KEY, "public"),
+            "22:12: " + getCheckMessage(MSG_KEY, "abstract"),
+            "22:21: " + getCheckMessage(MSG_KEY, "static"),
+            "26:1: " + getCheckMessage(MSG_KEY, "abstract"),
+            "28:5: " + getCheckMessage(MSG_KEY, "public"),
+            "28:12: " + getCheckMessage(MSG_KEY, "static"),
+            "32:9: " + getCheckMessage(MSG_KEY, "public"),
+            "32:16: " + getCheckMessage(MSG_KEY, "static"),
+            "34:13: " + getCheckMessage(MSG_KEY, "public"),
+            "34:20: " + getCheckMessage(MSG_KEY, "static"),
+            "37:13: " + getCheckMessage(MSG_KEY, "public"),
+            "37:20: " + getCheckMessage(MSG_KEY, "static"),
+            "40:13: " + getCheckMessage(MSG_KEY, "public"),
+            "40:20: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(getPath(
                 "InputRedundantModifierNestedDef.java"), expected);
+    }
+
+    @Test
+    public void testRecords() throws Exception {
+        final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_KEY, "static"),
+            "16:9: " + getCheckMessage(MSG_KEY, "final"),
+            "16:15: " + getCheckMessage(MSG_KEY, "static"),
+            "21:9: " + getCheckMessage(MSG_KEY, "static"),
+            "27:9: " + getCheckMessage(MSG_KEY, "final"),
+            "27:15: " + getCheckMessage(MSG_KEY, "static"),
+            "32:13: " + getCheckMessage(MSG_KEY, "static"),
+            "38:1: " + getCheckMessage(MSG_KEY, "final"),
+            "40:5: " + getCheckMessage(MSG_KEY, "final"),
+            "43:5: " + getCheckMessage(MSG_KEY, "static"),
+            "47:9: " + getCheckMessage(MSG_KEY, "final"),
+            "47:15: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRedundantModifierRecords.java"), expected);
     }
 }

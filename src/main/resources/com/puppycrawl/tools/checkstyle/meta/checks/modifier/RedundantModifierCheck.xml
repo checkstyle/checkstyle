@@ -21,7 +21,7 @@
  Final modifier on methods of final and anonymous classes.
  &lt;/li&gt;
  &lt;li&gt;
- Inner {@code interface} declarations that are declared as {@code static}.
+ Type declarations nested under interfaces that are declared as {@code public} or {@code static}.
  &lt;/li&gt;
  &lt;li&gt;
  Class constructors.
@@ -29,15 +29,17 @@
  &lt;li&gt;
  Nested {@code enum} definitions that are declared as {@code static}.
  &lt;/li&gt;
+ &lt;li&gt;
+ {@code record} definitions that are declared as {@code final} and nested
+ {@code record} definitions that are declared as {@code static}.
+ &lt;/li&gt;
  &lt;/ol&gt;
  &lt;p&gt;
- Interfaces by definition are abstract so the {@code abstract}
- modifier on the interface is redundant.
+ interfaces by definition are abstract so the {@code abstract} modifier is redundant on them.
  &lt;/p&gt;
- &lt;p&gt;Classes inside of interfaces by definition are public and static,
- so the {@code public} and {@code static} modifiers
- on the inner classes are redundant. On the other hand, classes
- inside of interfaces can be abstract or non abstract.
+ &lt;p&gt;Type declarations nested under interfaces by definition are public and static,
+ so the {@code public} and {@code static} modifiers on nested type declarations are redundant.
+ On the other hand, classes inside of interfaces can be abstract or non abstract.
  So, {@code abstract} modifier is allowed.
  &lt;/p&gt;
  &lt;p&gt;Fields in interfaces and annotations are automatically
@@ -47,6 +49,12 @@
  &lt;p&gt;As annotations are a form of interface, their fields are also
  automatically public, static and final just as their
  annotation fields are automatically public and abstract.&lt;/p&gt;
+
+ &lt;p&gt;A record class is implicitly final and cannot be abstract, these restrictions emphasize
+ that the API of a record class is defined solely by its state description, and
+ cannot be enhanced later by another class. Nested records are implicitly static. This avoids an
+ immediately enclosing instance which would silently add state to the record class.
+ See &lt;a href="https://openjdk.java.net/jeps/395"&gt;JEP 395&lt;/a&gt; for more info.&lt;/p&gt;
 
  &lt;p&gt;Enums by definition are static implicit subclasses of java.lang.Enum&amp;#60;E&amp;#62;.
  So, the {@code static} modifier on the enums is redundant. In addition,
@@ -108,7 +116,7 @@
  }
  &lt;/pre&gt;</description>
          <properties>
-            <property default-value="METHOD_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,INTERFACE_DEF,CTOR_DEF,CLASS_DEF,ENUM_DEF,RESOURCE"
+            <property default-value="METHOD_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,INTERFACE_DEF,CTOR_DEF,CLASS_DEF,ENUM_DEF,RESOURCE,ANNOTATION_DEF,RECORD_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">

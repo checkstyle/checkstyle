@@ -548,27 +548,30 @@ public interface RoadFeature {
           <li>Interface and annotation definitions.</li>
           <li>Final modifier on methods of final and anonymous classes.</li>
           <li>
-            Inner <code>interface</code> declarations that are declared
-            as <code>static</code>.
+            Type declarations nested under interfaces that are declared as <code>public</code>
+            or <code>static</code>.
           </li>
           <li>Class constructors.</li>
           <li>
             Nested <code>enum</code> definitions that are declared
             as <code>static</code>.
           </li>
+          <li>
+            <code>record</code> definitions that are declared as <code>final</code> and nested
+            <code>record</code> definitions that are declared as <code>static</code>.
+          </li>
         </ol>
 
         <p>
-          Interfaces by definition are abstract so the <code>abstract</code>
-          modifier on the interface is redundant.
+          interfaces by definition are abstract so the <code>abstract</code> modifier is
+          redundant on them.
         </p>
 
         <p>
-          Classes inside of interfaces by definition are public and static,
-          so the <code>public</code> and <code>static</code> modifiers
-          on the inner classes are redundant. On the other hand, classes
-          inside of interfaces can be abstract or non abstract.
-          So, <code>abstract</code> modifier is allowed.
+          Type declarations nested under interfaces by definition are public and static,
+          so the <code>public</code> and <code>static</code> modifiers on nested type
+          declarations are redundant. On the other hand, classes inside of interfaces can
+          be abstract or non abstract. So, <code>abstract</code> modifier is allowed.
         </p>
 
         <p>
@@ -581,6 +584,14 @@ public interface RoadFeature {
           As annotations are a form of interface, their fields are also
           automatically public, static and final just as their
           annotation fields are automatically public and abstract.
+        </p>
+
+        <p>
+          A record class is implicitly final and cannot be abstract, these restrictions emphasize
+          that the API of a record class is defined solely by its state description, and cannot be
+          enhanced later by another class. Nested records are implicitly static. This avoids an
+          immediately enclosing instance which would silently add state to the record class.
+          See <a href="https://openjdk.java.net/jeps/395">JEP 395</a> for more info.
         </p>
 
         <p>
@@ -689,6 +700,10 @@ public class ClassExtending extends ClassExample {
                   ENUM_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE">
                   RESOURCE</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                ANNOTATION_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                RECORD_DEF</a>
                 .
               </td>
               <td>
@@ -708,6 +723,10 @@ public class ClassExtending extends ClassExample {
                   ENUM_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE">
                   RESOURCE</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                ANNOTATION_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                RECORD_DEF</a>
                 .
               </td>
               <td>3.0</td>

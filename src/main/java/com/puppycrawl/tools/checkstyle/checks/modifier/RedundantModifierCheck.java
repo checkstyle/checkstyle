@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Final modifier on methods of final and anonymous classes.
  * </li>
  * <li>
- * Inner {@code interface} declarations that are declared as {@code static}.
+ * Type declarations nested under interfaces that are declared as {@code public} or {@code static}.
  * </li>
  * <li>
  * Class constructors.
@@ -56,15 +56,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Nested {@code enum} definitions that are declared as {@code static}.
  * </li>
+ * <li>
+ * {@code record} definitions that are declared as {@code final} and nested
+ * {@code record} definitions that are declared as {@code static}.
+ * </li>
  * </ol>
  * <p>
- * Interfaces by definition are abstract so the {@code abstract}
- * modifier on the interface is redundant.
+ * interfaces by definition are abstract so the {@code abstract} modifier is redundant on them.
  * </p>
- * <p>Classes inside of interfaces by definition are public and static,
- * so the {@code public} and {@code static} modifiers
- * on the inner classes are redundant. On the other hand, classes
- * inside of interfaces can be abstract or non abstract.
+ * <p>Type declarations nested under interfaces by definition are public and static,
+ * so the {@code public} and {@code static} modifiers on nested type declarations are redundant.
+ * On the other hand, classes inside of interfaces can be abstract or non abstract.
  * So, {@code abstract} modifier is allowed.
  * </p>
  * <p>Fields in interfaces and annotations are automatically
@@ -74,6 +76,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>As annotations are a form of interface, their fields are also
  * automatically public, static and final just as their
  * annotation fields are automatically public and abstract.</p>
+ *
+ * <p>A record class is implicitly final and cannot be abstract, these restrictions emphasize
+ * that the API of a record class is defined solely by its state description, and
+ * cannot be enhanced later by another class. Nested records are implicitly static. This avoids an
+ * immediately enclosing instance which would silently add state to the record class.
+ * See <a href="https://openjdk.java.net/jeps/395">JEP 395</a> for more info.</p>
  *
  * <p>Enums by definition are static implicit subclasses of java.lang.Enum&#60;E&#62;.
  * So, the {@code static} modifier on the enums is redundant. In addition,
@@ -155,7 +163,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
  * ENUM_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE">
- * RESOURCE</a>.
+ * RESOURCE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+ * ANNOTATION_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+ * RECORD_DEF</a>.
  * </li>
  * </ul>
  * <p>
@@ -225,36 +237,57 @@ public class RedundantModifierCheck
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.RESOURCE,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
         };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.INTERFACE_DEF) {
-            checkInterfaceModifiers(ast);
+        switch (ast.getType()) {
+            case TokenTypes.INTERFACE_DEF:
+            case TokenTypes.ANNOTATION_DEF:
+                checkInterfaceModifiers(ast);
+                break;
+            case TokenTypes.ENUM_DEF:
+                checkForRedundantModifier(ast, TokenTypes.LITERAL_STATIC);
+                break;
+            case TokenTypes.CTOR_DEF:
+                checkConstructorModifiers(ast);
+                break;
+            case TokenTypes.METHOD_DEF:
+                processMethods(ast);
+                break;
+            case TokenTypes.RESOURCE:
+                processResources(ast);
+                break;
+            case TokenTypes.RECORD_DEF:
+                checkForRedundantModifier(ast, TokenTypes.FINAL, TokenTypes.LITERAL_STATIC);
+                break;
+            case TokenTypes.CLASS_DEF:
+            case TokenTypes.VARIABLE_DEF:
+            case TokenTypes.ANNOTATION_FIELD_DEF:
+                break;
+            default:
+                throw new IllegalStateException("Unexpected token type: " + ast.getType());
         }
-        else if (ast.getType() == TokenTypes.ENUM_DEF) {
-            checkEnumDef(ast);
+
+        if (isInterfaceOrAnnotationMember(ast)) {
+            processInterfaceOrAnnotation(ast);
+        }
+    }
+
+    /**
+     * Check modifiers of constructor.
+     *
+     * @param ctorDefAst ast node of type {@link TokenTypes#CTOR_DEF}
+     */
+    private void checkConstructorModifiers(DetailAST ctorDefAst) {
+        if (isEnumMember(ctorDefAst)) {
+            checkEnumConstructorModifiers(ctorDefAst);
         }
         else {
-            if (ast.getType() == TokenTypes.CTOR_DEF) {
-                if (isEnumMember(ast)) {
-                    checkEnumConstructorModifiers(ast);
-                }
-                else {
-                    checkClassConstructorModifiers(ast);
-                }
-            }
-            else if (ast.getType() == TokenTypes.METHOD_DEF) {
-                processMethods(ast);
-            }
-            else if (ast.getType() == TokenTypes.RESOURCE) {
-                processResources(ast);
-            }
-
-            if (isInterfaceOrAnnotationMember(ast)) {
-                processInterfaceOrAnnotation(ast);
-            }
+            checkClassConstructorModifiers(ctorDefAst);
         }
     }
 
@@ -286,20 +319,6 @@ public class RedundantModifierCheck
         TokenUtil.findFirstTokenByPredicate(
             modifiers, mod -> mod.getType() != TokenTypes.ANNOTATION
         ).ifPresent(modifier -> log(modifier, MSG_KEY, modifier.getText()));
-    }
-
-    /**
-     * Checks whether enum has proper modifiers.
-     *
-     * @param ast enum definition.
-     */
-    private void checkEnumDef(DetailAST ast) {
-        if (isInterfaceOrAnnotationMember(ast)) {
-            processInterfaceOrAnnotation(ast);
-        }
-        else {
-            checkForRedundantModifier(ast, TokenTypes.LITERAL_STATIC);
-        }
     }
 
     /**
@@ -409,14 +428,17 @@ public class RedundantModifierCheck
      * Checks if given ast has a redundant modifier.
      *
      * @param ast ast
-     * @param modifierType The modifier to check for.
+     * @param modifierTypes The modifiers to check for.
      */
-    private void checkForRedundantModifier(DetailAST ast, int modifierType) {
+    private void checkForRedundantModifier(DetailAST ast, int... modifierTypes) {
         Optional.ofNullable(ast.findFirstToken(TokenTypes.MODIFIERS))
             .ifPresent(modifiers -> {
-                TokenUtil.forEachChild(modifiers, modifierType, modifier -> {
-                    log(modifier, MSG_KEY, modifier.getText());
-                });
+                for (DetailAST childAst = modifiers.getFirstChild();
+                     childAst != null; childAst = childAst.getNextSibling()) {
+                    if (TokenUtil.isOfType(childAst, modifierTypes)) {
+                        log(childAst, MSG_KEY, childAst.getText());
+                    }
+                }
             });
     }
 

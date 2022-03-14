@@ -19,17 +19,19 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
-import java.util.regex.Matcher;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * <p>
@@ -182,12 +184,6 @@ public final class MissingOverrideCheck extends AbstractCheck {
     public static final String MSG_KEY_ANNOTATION_MISSING_OVERRIDE =
         "annotation.missing.override";
 
-    /** {@link Override Override} annotation name. */
-    private static final String OVERRIDE = "Override";
-
-    /** Fully-qualified {@link Override Override} annotation name. */
-    private static final String FQ_OVERRIDE = "java.lang." + OVERRIDE;
-
     /** Compiled regexp to match Javadoc tags with no argument and {}. */
     private static final Pattern MATCH_INHERIT_DOC =
             CommonUtil.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
@@ -217,20 +213,19 @@ public final class MissingOverrideCheck extends AbstractCheck {
     }
 
     @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public int[] getRequiredTokens() {
         return new int[]
         {TokenTypes.METHOD_DEF, };
     }
 
-    // -@cs[CyclomaticComplexity] Too complex to break apart.
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     @Override
     public void visitToken(final DetailAST ast) {
-        final TextBlock javadoc =
-            getFileContents().getJavadocBefore(ast.getLineNo());
-
-        final boolean containsTag = containsJavadocTag(javadoc);
+        final boolean containsTag = containsInheritDocTag(ast);
         if (containsTag && !JavadocTagInfo.INHERIT_DOC.isValidOn(ast)) {
             log(ast, MSG_KEY_TAG_NOT_VALID_ON,
                 JavadocTagInfo.INHERIT_DOC.getText());
@@ -250,36 +245,39 @@ public final class MissingOverrideCheck extends AbstractCheck {
 
             if (check
                 && containsTag
-                && !AnnotationUtil.containsAnnotation(ast, OVERRIDE)
-                && !AnnotationUtil.containsAnnotation(ast, FQ_OVERRIDE)) {
+                && !AnnotationUtil.hasOverrideAnnotation(ast)) {
                 log(ast, MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
             }
         }
     }
 
     /**
-     * Checks to see if the text block contains a inheritDoc tag.
+     * Checks to see if the ast contains a inheritDoc tag.
      *
-     * @param javadoc the javadoc of the AST
+     * @param ast method AST node
      * @return true if contains the tag
      */
-    private static boolean containsJavadocTag(final TextBlock javadoc) {
-        boolean javadocTag = false;
-
-        if (javadoc != null) {
-            final String[] lines = javadoc.getText();
-
-            for (final String line : lines) {
-                final Matcher matchInheritDoc =
-                    MATCH_INHERIT_DOC.matcher(line);
-
-                if (matchInheritDoc.find()) {
-                    javadocTag = true;
-                    break;
-                }
-            }
+    private static boolean containsInheritDocTag(DetailAST ast) {
+        final DetailAST modifiers = ast.getFirstChild();
+        final DetailAST startNode;
+        if (modifiers.hasChildren()) {
+            startNode = Optional.ofNullable(ast.getFirstChild()
+                    .findFirstToken(TokenTypes.ANNOTATION))
+                .orElse(modifiers);
         }
-        return javadocTag;
+        else {
+            startNode = ast.findFirstToken(TokenTypes.TYPE);
+        }
+        final Optional<String> javadoc =
+            Stream.iterate(startNode.getLastChild(), Objects::nonNull,
+                    DetailAST::getPreviousSibling)
+            .filter(node -> node.getType() == TokenTypes.BLOCK_COMMENT_BEGIN)
+            .map(DetailAST::getFirstChild)
+            .map(DetailAST::getText)
+            .filter(JavadocUtil::isJavadocComment)
+            .findFirst();
+        return javadoc.isPresent()
+                && MATCH_INHERIT_DOC.matcher(javadoc.get()).find();
     }
 
 }

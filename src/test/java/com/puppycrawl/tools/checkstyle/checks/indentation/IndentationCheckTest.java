@@ -585,6 +585,43 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAnnotationArrayInitWithEmoji() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("arrayInitIndent", "0");
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "0");
+        checkConfig.addProperty("tabWidth", "8");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 4, "0, 41, 43"),
+            "30:9: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 8, "4, 29, 31"),
+            "32:3: " + getCheckMessage(MSG_ERROR,
+                    "annotation array initialization rcurly", 2, 4),
+            "42:7: " + getCheckMessage(MSG_ERROR,
+                    "member def type", 6, "4"),
+            "47:7: " + getCheckMessage(MSG_ERROR,
+                    "annotation array initialization lcurly", 6, "2"),
+            "48:11: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 10, "2, 6, 8"),
+            "49:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 12, "2, 6, 8"),
+            "50:21: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 20, "2, 6, 8"),
+            "52:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 4, "2, 6, 8"),
+        };
+        final String fileName = getPath("InputIndentationAnnArrInitWithEmoji.java");
+        verifyWarns(checkConfig, fileName, expected);
+
+    }
+
+    @Test
     public void testOddAnnotations()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
@@ -1255,6 +1292,32 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
         // Test input for this test case is not checked due to issue #693.
         verify(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testArrayInitWithEmoji() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("arrayInitIndent", "2");
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String fileName = getPath("InputIndentationArrayInitIndentWithEmoji.java");
+        final String[] expected = {
+            "19:6: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization",
+               5, "4, 6, 52, 54"),
+            "24:9: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization",
+               8, "4, 6, 35, 37"),
+            "25:11: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization",
+               10, "4, 6, 35, 37"),
+            "30:11: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization lcurly",
+               10, "4, 6, 19, 21, 25"),
+        };
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test

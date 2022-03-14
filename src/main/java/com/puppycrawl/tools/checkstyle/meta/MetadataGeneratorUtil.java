@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.meta;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -32,7 +33,9 @@ import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /** Class which handles all the metadata generation and writing calls. */
@@ -46,11 +49,12 @@ public final class MetadataGeneratorUtil {
      * Generate metadata from the module source files available in the input argument path.
      *
      * @param path arguments
+     * @param out OutputStream for error messages
      * @param moduleFolders folders to check
      * @throws IOException ioException
      * @throws CheckstyleException checkstyleException
      */
-    public static void generate(String path, String... moduleFolders)
+    public static void generate(String path, OutputStream out, String... moduleFolders)
             throws IOException, CheckstyleException {
         JavadocMetadataScraper.resetModuleDetailsStore();
 
@@ -58,13 +62,18 @@ public final class MetadataGeneratorUtil {
         checker.setModuleClassLoader(Checker.class.getClassLoader());
         final DefaultConfiguration scraperCheckConfig =
                         new DefaultConfiguration(JavadocMetadataScraper.class.getName());
-        final DefaultConfiguration defaultConfiguration = new DefaultConfiguration("configuration");
+        final DefaultConfiguration defaultConfiguration =
+                new DefaultConfiguration("configuration");
         final DefaultConfiguration treeWalkerConfig =
                 new DefaultConfiguration(TreeWalker.class.getName());
         defaultConfiguration.addProperty("charset", StandardCharsets.UTF_8.name());
         defaultConfiguration.addChild(treeWalkerConfig);
         treeWalkerConfig.addChild(scraperCheckConfig);
         checker.configure(defaultConfiguration);
+
+        checker.addListener(new MetadataGeneratorLogger(out,
+                AutomaticBean.OutputStreamOptions.NONE));
+
         dumpMetadata(checker, path, moduleFolders);
     }
 
@@ -94,7 +103,6 @@ public final class MetadataGeneratorUtil {
                         .collect(Collectors.toList()));
             }
         }
-
         checker.process(validFiles);
     }
 }

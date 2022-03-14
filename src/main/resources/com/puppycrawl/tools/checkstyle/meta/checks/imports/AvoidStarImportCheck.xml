@@ -19,7 +19,8 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="" name="excludes" type="java.lang.String[]">
-               <description>Specify packages where star imports are allowed.</description>
+               <description>Specify packages where starred class imports are
+ allowed and classes where starred static member imports are allowed.</description>
             </property>
             <property default-value="false" name="allowClassImports" type="boolean">
                <description>Control whether to allow starred class

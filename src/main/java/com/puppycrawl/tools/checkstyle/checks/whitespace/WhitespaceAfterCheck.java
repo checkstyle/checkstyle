@@ -57,7 +57,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
  * DO_WHILE</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
- * ELLIPSIS</a>.
+ * ELLIPSIS</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
+ * LITERAL_SWITCH</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+ * LAMBDA</a>.
  * </li>
  * </ul>
  * <p>
@@ -153,6 +157,8 @@ public class WhitespaceAfterCheck
             TokenTypes.LITERAL_FOR,
             TokenTypes.DO_WHILE,
             TokenTypes.ELLIPSIS,
+            TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LAMBDA,
         };
     }
 
@@ -165,13 +171,13 @@ public class WhitespaceAfterCheck
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.TYPECAST) {
             final DetailAST targetAST = ast.findFirstToken(TokenTypes.RPAREN);
-            final String line = getLine(targetAST.getLineNo() - 1);
+            final int[] line = getLineCodePoints(targetAST.getLineNo() - 1);
             if (!isFollowedByWhitespace(targetAST, line)) {
                 log(targetAST, MSG_WS_TYPECAST);
             }
         }
         else {
-            final String line = getLine(ast.getLineNo() - 1);
+            final int[] line = getLineCodePoints(ast.getLineNo() - 1);
             if (!isFollowedByWhitespace(ast, line)) {
                 final Object[] message = {ast.getText()};
                 log(ast, MSG_WS_NOT_FOLLOWED, message);
@@ -183,17 +189,16 @@ public class WhitespaceAfterCheck
      * Checks whether token is followed by a whitespace.
      *
      * @param targetAST Ast token.
-     * @param line The line associated with the ast token.
+     * @param line Unicode code points array of line associated with the ast token.
      * @return true if ast token is followed by a whitespace.
      */
-    private static boolean isFollowedByWhitespace(DetailAST targetAST, String line) {
+    private static boolean isFollowedByWhitespace(DetailAST targetAST, int... line) {
         final int after =
             targetAST.getColumnNo() + targetAST.getText().length();
         boolean followedByWhitespace = true;
 
-        if (after < line.codePointCount(0, line.length())) {
-            final int[] codePoints = line.codePoints().toArray();
-            final int codePoint = codePoints[after];
+        if (after < line.length) {
+            final int codePoint = line[after];
 
             followedByWhitespace = codePoint == ';'
                 || codePoint == ')'
