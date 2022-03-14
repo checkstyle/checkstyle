@@ -114,8 +114,7 @@ public class InputSummaryJavadocInlineForbidden {
      * Sentence starts as a plain text sentence
      * {@summary ... but ends in the summary tag}
      */
-    // violation 2 lines above 'Summary .* missing an ending period.'
-    // until https://github.com/checkstyle/checkstyle/issues/11213
+    // violation 2 lines above 'Summary of Javadoc is missing an ending period.'
     public class TestClass {}
 
     /**
