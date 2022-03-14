@@ -13,6 +13,9 @@ blocks:
       prologue:
         commands:
           - checkout
+          - |
+            cache delete m2
+            cache store m2 $HOME/.m2
           - cache restore m2
           - eval "export M2_CACHE_SIZE=$(du -s $HOME/.m2 | cut -f1)"
           - sudo apt-get update
