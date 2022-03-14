@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -209,21 +210,16 @@ public class NoWhitespaceBeforeCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        final String line = getLine(ast.getLineNo() - 1);
+        final int[] line = getLineCodePoints(ast.getLineNo() - 1);
         final int before = ast.getColumnNo() - 1;
-        final int[] codePoints = line.codePoints().toArray();
 
-        if ((before == -1 || CommonUtil.isCodePointWhitespace(codePoints, before))
+        if ((before == -1 || CommonUtil.isCodePointWhitespace(line, before))
                 && !isInEmptyForInitializerOrCondition(ast)) {
-            boolean flag = !allowLineBreaks;
-            // verify all characters before '.' are whitespace
-            for (int i = 0; i <= before - 1; i++) {
-                if (!CommonUtil.isCodePointWhitespace(codePoints, i)) {
-                    flag = true;
-                    break;
-                }
-            }
-            if (flag) {
+            final boolean hasNoWhitespaceBefore = !allowLineBreaks
+                || before > -1
+                && !CodePointUtil.hasWhitespaceBefore(before, line);
+
+            if (hasNoWhitespaceBefore) {
                 log(ast, MSG_KEY, ast.getText());
             }
         }
