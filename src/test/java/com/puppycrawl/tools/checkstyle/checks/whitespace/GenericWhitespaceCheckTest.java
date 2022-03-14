@@ -152,6 +152,19 @@ public class GenericWhitespaceCheckTest
     }
 
     @Test
+    public void testGenericWhitespaceWithEmoji() throws Exception {
+        final String[] expected = {
+            "35:2: " + getCheckMessage(MSG_WS_PRECEDED, '>'),
+            "40:35: " + getCheckMessage(MSG_WS_PRECEDED, '<'),
+            "40:42: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "44:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, '<'),
+            "45:53: " + getCheckMessage(MSG_WS_PRECEDED, '<'),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputGenericWhitespaceWithEmoji.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final GenericWhitespaceCheck genericWhitespaceCheckObj = new GenericWhitespaceCheck();
         final int[] actual = genericWhitespaceCheckObj.getAcceptableTokens();
