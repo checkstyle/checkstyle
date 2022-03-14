@@ -53,79 +53,79 @@ public class SuppressWithNearbyCommentFilterTest
     extends AbstractModuleTestSupport {
 
     private static final String[] ALL_MESSAGES = {
-        "14:17: "
+        "46:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
-        "15:17: "
+        "49:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "A2", "^[a-z][a-zA-Z0-9]*$"),
-        "16:59: "
+        "50:59: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "A3", "^[a-z][a-zA-Z0-9]*$"),
-        "18:17: "
+        "53:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "B1", "^[a-z][a-zA-Z0-9]*$"),
-        "19:17: "
+        "56:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "B2", "^[a-z][a-zA-Z0-9]*$"),
-        "20:59: "
+        "57:59: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "B3", "^[a-z][a-zA-Z0-9]*$"),
-        "22:17: "
+        "59:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "C1", "^[a-z][a-zA-Z0-9]*$"),
-        "24:17: "
+        "61:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "C2", "^[a-z][a-zA-Z0-9]*$"),
-        "25:17: "
+        "62:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "C3", "^[a-z][a-zA-Z0-9]*$"),
-        "27:17: "
+        "64:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "D1", "^[a-z][a-zA-Z0-9]*$"),
-        "28:17: "
+        "65:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "D2", "^[a-z][a-zA-Z0-9]*$"),
-        "30:17: "
+        "67:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "D3", "^[a-z][a-zA-Z0-9]*$"),
-        "32:30: "
+        "69:30: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "e1", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-        "33:17: "
+        "70:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "E2", "^[a-z][a-zA-Z0-9]*$"),
-        "34:17: "
+        "73:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "E3", "^[a-z][a-zA-Z0-9]*$"),
-        "35:30: "
+        "74:30: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "e4", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-        "36:17: "
+        "75:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "E5", "^[a-z][a-zA-Z0-9]*$"),
-        "37:30: "
+        "76:30: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "e6", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-        "38:17: "
+        "77:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "E7", "^[a-z][a-zA-Z0-9]*$"),
-        "39:17: "
+        "78:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "E8", "^[a-z][a-zA-Z0-9]*$"),
-        "40:30: "
+        "80:30: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "e9", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-        "64:23: "
+        "100:23: "
             + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
-        "66:23: "
+        "102:23: "
             + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Throwable"),
-        "73:11: "
+        "109:11: "
             + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
-        "80:59: "
+        "117:59: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "A2", "^[a-z][a-zA-Z0-9]*$"),
-        "81:17: "
+        "118:17: "
             + getCheckMessage(AbstractNameCheck.class,
                 MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
     };
@@ -144,158 +144,136 @@ public class SuppressWithNearbyCommentFilterTest
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration filterConfig =
-            createModuleConfig(SuppressWithNearbyCommentFilter.class);
         final String[] suppressed = {
-            "14:17: "
+            "46:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
-            "15:17: "
+            "49:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A2", "^[a-z][a-zA-Z0-9]*$"),
-            "16:59: "
+            "50:59: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A3", "^[a-z][a-zA-Z0-9]*$"),
-            "18:17: "
+            "53:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "B1", "^[a-z][a-zA-Z0-9]*$"),
-            "19:17: "
+            "56:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "B2", "^[a-z][a-zA-Z0-9]*$"),
-            "20:59: "
+            "57:59: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "B3", "^[a-z][a-zA-Z0-9]*$"),
-            "80:59: "
+            "117:59: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A2", "^[a-z][a-zA-Z0-9]*$"),
         };
-        verifySuppressed(filterConfig, suppressed);
+        verifySuppressedWithParser(
+            getPath("InputSuppressWithNearbyCommentFilter.java"), suppressed);
     }
 
     @Test
     public void testCheckC() throws Exception {
-        final DefaultConfiguration filterConfig =
-            createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addProperty("checkC", "false");
         final String[] suppressed = {
-            "14:17: "
+            "46:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
-            "18:17: "
+            "53:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "B1", "^[a-z][a-zA-Z0-9]*$"),
         };
-        verifySuppressed(filterConfig, suppressed);
+        verifySuppressedWithParser(
+            getPath("InputSuppressWithNearbyCommentFilterCheckC.java"), suppressed);
     }
 
     @Test
     public void testCheckCpp() throws Exception {
-        final DefaultConfiguration filterConfig =
-            createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addProperty("checkCPP", "false");
         final String[] suppressed = {
-            "15:17: "
+            "49:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A2", "^[a-z][a-zA-Z0-9]*$"),
-            "16:59: "
+            "50:59: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A3", "^[a-z][a-zA-Z0-9]*$"),
-            "19:17: "
+            "56:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "B2", "^[a-z][a-zA-Z0-9]*$"),
-            "20:59: "
+            "57:59: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "B3", "^[a-z][a-zA-Z0-9]*$"),
-            "80:59: "
+            "117:59: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A2", "^[a-z][a-zA-Z0-9]*$"),
         };
-        verifySuppressed(filterConfig, suppressed);
+        verifySuppressedWithParser(
+            getPath("InputSuppressWithNearbyCommentFilterCheckCpp.java"), suppressed);
     }
 
     @Test
     public void testUsingVariableMessage() throws Exception {
-        final DefaultConfiguration filterConfig =
-            createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addProperty("commentFormat", "ALLOW CATCH (\\w+) BECAUSE");
-        filterConfig.addProperty("checkFormat", "IllegalCatchCheck");
-        filterConfig.addProperty("messageFormat", "$1");
-        filterConfig.addProperty("influenceFormat", "-1");
         final String[] suppressed = {
-            "66:23: "
+            "102:23: "
                 + getCheckMessage(IllegalCatchCheck.class,
                     IllegalCatchCheck.MSG_KEY, "Throwable"),
-            "73:11: "
+            "109:11: "
                 + getCheckMessage(IllegalCatchCheck.class,
                     IllegalCatchCheck.MSG_KEY, "Exception"),
         };
-        verifySuppressed(filterConfig, suppressed);
+        verifySuppressedWithParser(
+            getPath("InputSuppressWithNearbyCommentFilterUsingVariableMessage.java"), suppressed);
     }
 
     @Test
     public void testUsingNonMatchingVariableMessage() throws Exception {
-        final DefaultConfiguration filterConfig =
-            createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addProperty("commentFormat", "ALLOW CATCH (\\w+) BECAUSE");
-        filterConfig.addProperty("checkFormat", "IllegalCatchCheck");
-        filterConfig.addProperty("messageFormat", "NonMatchingMessage");
-        filterConfig.addProperty("influenceFormat", "-1");
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
-        verifySuppressed(filterConfig, suppressed);
+        verifySuppressedWithParser(
+            getPath("InputSuppressWithNearbyCommentFilterUsingNonMatchingVariableMessage.java"),
+            suppressed);
     }
 
     @Test
     public void testUsingVariableCheckOnNextLine() throws Exception {
-        final DefaultConfiguration filterConfig =
-            createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addProperty("commentFormat", "ALLOW (\\w+) ON NEXT LINE");
-        filterConfig.addProperty("checkFormat", "$1");
-        filterConfig.addProperty("influenceFormat", "1");
         final String[] suppressed = {
-            "24:17: "
+            "61:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "C2", "^[a-z][a-zA-Z0-9]*$"),
         };
-        verifySuppressed(filterConfig, suppressed);
+        verifySuppressedWithParser(
+            getPath("InputSuppressWithNearbyCommentFilterUsingVariableCheckOnNextLine.java"),
+            suppressed);
     }
 
     @Test
     public void testUsingVariableCheckOnPreviousLine() throws Exception {
-        final DefaultConfiguration filterConfig =
-            createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addProperty("commentFormat", "ALLOW (\\w+) ON PREVIOUS LINE");
-        filterConfig.addProperty("checkFormat", "$1");
-        filterConfig.addProperty("influenceFormat", "-1");
         final String[] suppressed = {
-            "28:17: "
+            "65:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "D2", "^[a-z][a-zA-Z0-9]*$"),
         };
-        verifySuppressed(filterConfig, suppressed);
+        verifySuppressedWithParser(
+            getPath("InputSuppressWithNearbyCommentFilterUsingVariableCheckOnPreviousLine.java"),
+            suppressed);
     }
 
     @Test
     public void testVariableCheckOnVariableNumberOfLines() throws Exception {
-        final DefaultConfiguration filterConfig =
-            createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addProperty("commentFormat", "ALLOW (\\w+) UNTIL THIS LINE([+-]\\d+)");
-        filterConfig.addProperty("checkFormat", "$1");
-        filterConfig.addProperty("influenceFormat", "$2");
         final String[] suppressed = {
-            "35:30: "
+            "74:30: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "e4", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-            "36:17: "
+            "75:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "E5", "^[a-z][a-zA-Z0-9]*$"),
-            "38:17: "
+            "77:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "E7", "^[a-z][a-zA-Z0-9]*$"),
-            "39:17: "
+            "78:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "E8", "^[a-z][a-zA-Z0-9]*$"),
         };
-        verifySuppressed(filterConfig, suppressed);
+        verifySuppressedWithParser(
+            getPath("InputSuppressWithNearbyCommentFilterVariableCheckOnVariableNumberOfLines"
+                        + ".java"),
+            suppressed);
     }
 
     @Test
@@ -308,6 +286,19 @@ public class SuppressWithNearbyCommentFilterTest
         assertWithMessage("Error: " + ev.getMessage())
                 .that(ev.isSuccessful())
                 .isTrue();
+    }
+
+    private void verifySuppressedWithParser(String fileName, String... suppressed)
+            throws Exception {
+        verifyFilterWithInlineConfigParser(fileName, ALL_MESSAGES,
+                                           removeSuppressed(ALL_MESSAGES, suppressed));
+    }
+
+    private void verifySuppressedWithParser(String fileName, String[] messages,
+                                            String... suppressed)
+            throws Exception {
+        verifyFilterWithInlineConfigParser(fileName, messages,
+                                           removeSuppressed(messages, suppressed));
     }
 
     private void verifySuppressed(Configuration moduleConfig,
@@ -371,37 +362,35 @@ public class SuppressWithNearbyCommentFilterTest
 
     @Test
     public void testInfluenceFormat() throws Exception {
-        final DefaultConfiguration filterConfig =
-                createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addProperty("influenceFormat", "+1");
-
         final String[] suppressed = {
-            "14:17: "
+            "46:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
-            "15:17: "
+            "49:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A2", "^[a-z][a-zA-Z0-9]*$"),
-            "16:59: "
+            "50:59: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A3", "^[a-z][a-zA-Z0-9]*$"),
-            "18:17: "
+            "53:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "B1", "^[a-z][a-zA-Z0-9]*$"),
-            "19:17: "
+            "56:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "B2", "^[a-z][a-zA-Z0-9]*$"),
-            "20:59: "
+            "57:59: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "B3", "^[a-z][a-zA-Z0-9]*$"),
-            "80:59: "
+            "117:59: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A2", "^[a-z][a-zA-Z0-9]*$"),
-            "81:17: "
+            "118:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
         };
-        verifySuppressed(filterConfig, suppressed);
+        verifySuppressedWithParser(
+            getPath("InputSuppressWithNearbyCommentFilterInfluenceFormat.java"),
+            suppressed);
     }
 
     @Test
@@ -473,258 +462,237 @@ public class SuppressWithNearbyCommentFilterTest
 
     @Test
     public void testUsingTagMessageRegexp() throws Exception {
-        final DefaultConfiguration filterConfig =
-            createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addProperty("commentFormat", "SUPPRESS CHECKSTYLE (\\w+)");
-        filterConfig.addProperty("checkFormat", "IllegalCatchCheck");
-        filterConfig.addProperty("messageFormat", "^$1 ololo*$");
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
-        verifySuppressed(filterConfig, suppressed);
+        verifySuppressedWithParser(
+            getPath("InputSuppressWithNearbyCommentFilterUsingTagMessageRegexp.java"),
+            suppressed);
     }
 
     @Test
     public void testSuppressByCheck() throws Exception {
-        final DefaultConfiguration filterConfig =
-            createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addProperty("commentFormat", "@cs-: (\\w+) \\(\\w+\\)");
-        filterConfig.addProperty("checkFormat", "MemberNameCheck");
-        filterConfig.addProperty("influenceFormat", "0");
         final String[] suppressedViolationMessages = {
-            "5:17: "
+            "41:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
-            "9:9: "
+            "47:9: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
+            "52:57: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "ID3", "^[a-z][a-zA-Z0-9]*$"),
         };
         final String[] expectedViolationMessages = {
-            "5:17: "
+            "41:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
-            "7:30: "
+            "44:30: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "abc", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-            "9:9: "
+            "47:9: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
-            "11:18: "
+            "50:18: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "ID", "^[a-z][a-zA-Z0-9]*$"),
-            "15:17: "
+            "52:57: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "ID3", "^[a-z][a-zA-Z0-9]*$"),
+            "55:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "DEF", "^[a-z][a-zA-Z0-9]*$"),
-            "16:17: "
+            "58:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "XYZ", "^[a-z][a-zA-Z0-9]*$"),
         };
 
-        verifySuppressed(filterConfig,
-            getPath("InputSuppressWithNearbyCommentFilterById.java"),
-            expectedViolationMessages, suppressedViolationMessages);
+        verifySuppressedWithParser(getPath("InputSuppressWithNearbyCommentFilterByCheck.java"),
+                                   expectedViolationMessages, suppressedViolationMessages);
     }
 
     @Test
     public void testSuppressById() throws Exception {
-        final DefaultConfiguration filterConfig =
-            createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addProperty("commentFormat", "@cs-: (\\w+) \\(\\w+\\)");
-        filterConfig.addProperty("idFormat", "$1");
-        filterConfig.addProperty("influenceFormat", "0");
         final String[] suppressedViolationMessages = {
-            "5:17: "
+            "41:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
-            "9:9: "
+            "47:9: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
+            "52:57: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "ID3", "^[a-z][a-zA-Z0-9]*$"),
         };
         final String[] expectedViolationMessages = {
-            "5:17: "
+            "41:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
-            "7:30: "
+            "44:30: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "abc", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-            "9:9: "
+            "47:9: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
-            "11:18: "
+            "50:18: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "ID", "^[a-z][a-zA-Z0-9]*$"),
-            "15:17: "
+            "52:57: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "ID3", "^[a-z][a-zA-Z0-9]*$"),
+            "55:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "DEF", "^[a-z][a-zA-Z0-9]*$"),
-            "16:17: "
+            "58:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "XYZ", "^[a-z][a-zA-Z0-9]*$"),
         };
 
-        verifySuppressed(filterConfig,
-            getPath("InputSuppressWithNearbyCommentFilterById.java"),
-            expectedViolationMessages, suppressedViolationMessages);
+        verifySuppressedWithParser(getPath("InputSuppressWithNearbyCommentFilterById.java"),
+                                   expectedViolationMessages, suppressedViolationMessages);
     }
 
     @Test
     public void testSuppressByCheckAndId() throws Exception {
-        final DefaultConfiguration filterConfig =
-            createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addProperty("commentFormat", "@cs-: (\\w+) \\(\\w+\\)");
-        filterConfig.addProperty("checkFormat", "MemberNameCheck");
-        filterConfig.addProperty("idFormat", "$1");
-        filterConfig.addProperty("influenceFormat", "0");
         final String[] suppressedViolationMessages = {
-            "5:17: "
+            "41:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
-            "9:9: "
+            "47:9: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
+            "52:57: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "ID3", "^[a-z][a-zA-Z0-9]*$"),
         };
         final String[] expectedViolationMessages = {
-            "5:17: "
+            "41:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
-            "7:30: "
+            "44:30: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "abc", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-            "9:9: "
+            "47:9: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
-            "11:18: "
+            "50:18: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "ID", "^[a-z][a-zA-Z0-9]*$"),
-            "15:17: "
+            "52:57: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "ID3", "^[a-z][a-zA-Z0-9]*$"),
+            "55:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "DEF", "^[a-z][a-zA-Z0-9]*$"),
-            "16:17: "
+            "58:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "XYZ", "^[a-z][a-zA-Z0-9]*$"),
         };
 
-        verifySuppressed(filterConfig,
-            getPath("InputSuppressWithNearbyCommentFilterById.java"),
-            expectedViolationMessages, suppressedViolationMessages);
+        verifySuppressedWithParser(
+            getPath("InputSuppressWithNearbyCommentFilterByCheckAndId.java"),
+                                   expectedViolationMessages, suppressedViolationMessages);
     }
 
     @Test
     public void testSuppressByCheckAndNonMatchingId() throws Exception {
-        final DefaultConfiguration filterConfig =
-            createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addProperty("commentFormat", "@cs-: (\\w+) \\(\\w+\\)");
-        filterConfig.addProperty("checkFormat", "MemberNameCheck");
-        filterConfig.addProperty("idFormat", "emberNa");
-        filterConfig.addProperty("influenceFormat", "0");
         final String[] suppressedViolationMessages = CommonUtil.EMPTY_STRING_ARRAY;
         final String[] expectedViolationMessages = {
-            "5:17: "
+            "41:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
-            "7:30: "
+            "44:30: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "abc", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-            "9:9: "
+            "47:9: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
-            "11:18: "
+            "50:18: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "ID", "^[a-z][a-zA-Z0-9]*$"),
-            "13:57: "
+            "52:57: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "ID3", "^[a-z][a-zA-Z0-9]*$"),
-            "15:17: "
+            "55:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "DEF", "^[a-z][a-zA-Z0-9]*$"),
-            "16:17: "
+            "58:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "XYZ", "^[a-z][a-zA-Z0-9]*$"),
         };
 
-        verifySuppressed(filterConfig,
-            getPath("InputSuppressWithNearbyCommentFilterById.java"),
+        verifySuppressedWithParser(
+            getPath("InputSuppressWithNearbyCommentFilterByCheckAndNonMatchingId.java"),
             expectedViolationMessages, suppressedViolationMessages);
     }
 
     @Test
     public void tesSuppressByIdAndMessage() throws Exception {
-        final DefaultConfiguration filterConfig =
-            createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addProperty("commentFormat", "@cs-: (\\w+) \\(allow (\\w+)\\)");
-        filterConfig.addProperty("idFormat", "$1");
-        filterConfig.addProperty("messageFormat", "$2");
-        filterConfig.addProperty("influenceFormat", "0");
         final String[] suppressedViolationMessages = {
-            "15:17: "
+            "55:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "DEF", "^[a-z][a-zA-Z0-9]*$"),
         };
         final String[] expectedViolationMessages = {
-            "5:17: "
+            "41:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
-            "7:30: "
+            "44:30: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "abc", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-            "9:9: "
+            "47:9: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
-            "11:18: "
+            "50:18: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "ID", "^[a-z][a-zA-Z0-9]*$"),
-            "13:57: "
+            "52:57: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "ID3", "^[a-z][a-zA-Z0-9]*$"),
-            "15:17: "
+            "55:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "DEF", "^[a-z][a-zA-Z0-9]*$"),
-            "16:17: "
+            "58:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "XYZ", "^[a-z][a-zA-Z0-9]*$"),
         };
 
-        verifySuppressed(filterConfig,
-            getPath("InputSuppressWithNearbyCommentFilterById.java"),
+        verifySuppressedWithParser(
+            getPath("InputSuppressWithNearbyCommentFilterByIdAndMessage.java"),
             expectedViolationMessages, suppressedViolationMessages);
     }
 
     @Test
     public void tesSuppressByCheckAndMessage() throws Exception {
-        final DefaultConfiguration filterConfig =
-            createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        filterConfig.addProperty("commentFormat", "@cs-: (\\w+) \\(allow (\\w+)\\)");
-        filterConfig.addProperty("checkFormat", "MemberNameCheck");
-        filterConfig.addProperty("messageFormat", "$2");
-        filterConfig.addProperty("influenceFormat", "0");
         final String[] suppressedViolationMessages = {
-            "15:17: "
+            "55:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "DEF", "^[a-z][a-zA-Z0-9]*$"),
         };
         final String[] expectedViolationMessages = {
-            "5:17: "
+            "41:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
-            "7:30: "
+            "44:30: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "abc", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-            "9:9: "
+            "47:9: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
-            "11:18: "
+            "50:18: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "ID", "^[a-z][a-zA-Z0-9]*$"),
-            "13:57: "
+            "52:57: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "ID3", "^[a-z][a-zA-Z0-9]*$"),
-            "15:17: "
+            "55:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "DEF", "^[a-z][a-zA-Z0-9]*$"),
-            "16:17: "
+            "58:17: "
                 + getCheckMessage(AbstractNameCheck.class,
                     MSG_INVALID_PATTERN, "XYZ", "^[a-z][a-zA-Z0-9]*$"),
         };
 
-        verifySuppressed(filterConfig,
-            getPath("InputSuppressWithNearbyCommentFilterById.java"),
+        verifySuppressedWithParser(
+            getPath("InputSuppressWithNearbyCommentFilterByCheckAndMessage.java"),
             expectedViolationMessages, suppressedViolationMessages);
     }
 

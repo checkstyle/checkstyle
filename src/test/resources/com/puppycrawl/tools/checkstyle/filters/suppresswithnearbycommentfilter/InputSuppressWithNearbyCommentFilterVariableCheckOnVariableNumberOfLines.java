@@ -1,10 +1,10 @@
 /*
 SuppressWithNearbyCommentFilter
-commentFormat = (default)SUPPRESS CHECKSTYLE (\\w+)
-checkFormat = (default).*
+commentFormat = ALLOW (\\w+) UNTIL THIS LINE([+-]\\d+)
+checkFormat = $1
 messageFormat = (default)(null)
 idFormat = (default)(null)
-influenceFormat = (default)0
+influenceFormat = $2
 checkCPP = (default)true
 checkC = (default)true
 
@@ -41,20 +41,20 @@ package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
  *
  * @author Mick Killianey
  */
-public class InputSuppressWithNearbyCommentFilter {
-    // filtered violation below
+public class InputSuppressWithNearbyCommentFilterVariableCheckOnVariableNumberOfLines {
+    // violation below
     private int A1;  // SUPPRESS CHECKSTYLE MemberNameCheck
 
-    // filtered violation below
+    // violation below
     private int A2;  /* SUPPRESS CHECKSTYLE MemberNameCheck */
-    /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int A3; // filtered violation
+    /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int A3; // violation
 
-    // filtered violation below
+    // violation below
     private int B1;  // SUPPRESS CHECKSTYLE MemberNameCheck
 
-    // filtered violation below
+    // violation below
     private int B2;  /* SUPPRESS CHECKSTYLE MemberNameCheck */
-    /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int B3; // filtered violation
+    /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int B3; // violation
 
     private int C1; // violation
     // ALLOW MemberName ON NEXT LINE
@@ -71,12 +71,12 @@ public class InputSuppressWithNearbyCommentFilter {
 
     // violation below
     private int E3;    // ALLOW ConstantName UNTIL THIS LINE+2
-    private static final int e4 = 0; // violation
-    private int E5; // violation
+    private static final int e4 = 0; // filtered violation
+    private int E5; // filtered violation
     private static final int e6 = 0; // violation
-    private int E7; // violation
+    private int E7; // filtered violation
     private int E8;    /* ALLOW MemberName UNTIL THIS LINE-3 */
-    // violation above
+    // filtered violation above
     private static final int e9 = 0; // violation
 
     // ALLOW Unused UNTIL THIS LINE+5
@@ -112,8 +112,8 @@ public class InputSuppressWithNearbyCommentFilter {
     }
 }
 
-class Magic {
-    // filtered violation below
+class Magic7 {
+    // violation below
     /* SUPPRESS CHECKSTYLE MemberNameCheck */ private int A2;/* SUPPRESS CHECKSTYLE MemberName ol */
     private int A1; // violation
 }
