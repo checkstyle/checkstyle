@@ -10,14 +10,14 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoccontentlocation;
 public interface InputJavadocContentLocationFirstLine {
 
     /**
-     * Text. // violation above
+     * Text. // violation above 'Javadoc content should start from the same line as /\*\*.'
      */
     void violation();
 
     /** Text. // OK
      */
     void ok();
-    // violation below
+    // violation below 'Javadoc content should start from the same line as /\*\*.'
     /**
      *
      * Third line.
