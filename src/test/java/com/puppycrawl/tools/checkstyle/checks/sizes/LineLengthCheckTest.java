@@ -99,7 +99,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
             "16: " + getCheckMessage(MSG_KEY, 100, 149),
         };
 
-        verify(checkerConfig, getPath("InputLineLengthUnicodeChars.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputLineLengthUnicodeChars.java"), expected);
 
     }
 
