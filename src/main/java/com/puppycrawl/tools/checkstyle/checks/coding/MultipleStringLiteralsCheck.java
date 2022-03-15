@@ -70,6 +70,43 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * &lt;module name=&quot;MultipleStringLiterals&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *  public class MyClass {
+ *      String a = "StringContents";
+ *
+ *      public void myTest() {
+ *          String a1 = "StringContents"; // violation
+ *          String a2 = "DoubleString" + "DoubleString"; // violation
+ *          String a3 = "SingleString"; // OK
+ *          String a4 = ", " + ", " + ", "; // violation
+ *      }
+ *
+ *     @SuppressWarnings("unchecked")
+ *     public void myTest1(){}
+ *
+ *     @SuppressWarnings("unchecked") // OK
+ *     public void myTest2(){}
+ *  }
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass {
+ *   String a = "StringContents";
+ *   public void myTest() {
+ *     String a1 = "StringContents"; // violation, "StringContents" occurred twice
+ *     String a2 = "DoubleString" + "DoubleString"; // violation, "DoubleString" occurs twice
+ *     String a3 = "SingleString"; // OK
+ *     String a4 = ", " + ", " + ", "; // violation, ", " occurs three times
+ *   }
+ *   &#64;SuppressWarnings("unchecked")
+ *   public void myTest1(){}
+ *   &#64;SuppressWarnings("unchecked") // OK, duplicate strings are ignored in annotations
+ *   public void myTest2(){}
+ * }
+ * </pre>
  * <p>
  * To configure the check so that it allows two occurrences of each string:
  * </p>
@@ -77,6 +114,43 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
  *   &lt;property name=&quot;allowedDuplicates&quot; value=&quot;2&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *  public class MyClass {
+ *      String a = "StringContents";
+ *
+ *      public void myTest() {
+ *          String a1 = "StringContents"; // OK
+ *          String a2 = "DoubleString" + "DoubleString"; // OK
+ *          String a3 = "SingleString"; // OK
+ *          String a4 = ", " + ", " + ", "; // violation
+ *      }
+ *
+ *     @SuppressWarnings("unchecked")
+ *     public void myTest1(){}
+ *
+ *     @SuppressWarnings("unchecked") // OK
+ *     public void myTest2(){}
+ *  }
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass {
+ *   String a = "StringContents";
+ *   public void myTest() {
+ *     String a1 = "StringContents"; // OK, two occurrences are allowed
+ *     String a2 = "DoubleString" + "DoubleString"; // OK, two occurrences are allowed
+ *     String a3 = "SingleString"; // OK
+ *     String a4 = ", " + ", " + ", "; // violation, three occurrences are NOT allowed
+ *   }
+ *   &#64;SuppressWarnings("unchecked")
+ *   public void myTest1(){}
+ *   &#64;SuppressWarnings("unchecked") // OK, duplicate strings are ignored in annotations
+ *   public void myTest2(){}
+ * }
  * </pre>
  * <p>
  * To configure the check so that it ignores ", " and empty strings:
@@ -87,6 +161,42 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     value='^((&quot;&quot;)|(&quot;, &quot;))$'/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *  public class MyClass {
+ *      String a = "StringContents";
+ *      public void myTest() {
+ *          String a1 = "StringContents"; // violation
+ *          String a2 = "DoubleString" + "DoubleString"; // violation
+ *          String a3 = "SingleString"; // OK
+ *          String a4 = ", " + ", " + ", "; // OK
+ *      }
+ *
+ *     @SuppressWarnings("unchecked")
+ *     public void myTest1(){}
+ *
+ *     @SuppressWarnings("unchecked") // OK
+ *     public void myTest2(){}
+ *  }
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass {
+ *   String a = "StringContents";
+ *   public void myTest() {
+ *     String a1 = "StringContents"; // violation, "StringContents" occurred twice
+ *     String a2 = "DoubleString" + "DoubleString"; // violation, "DoubleString" occurs twice
+ *     String a3 = "SingleString"; // OK
+ *     String a4 = ", " + ", " + ", "; // OK, two occurrences of ", " are allowed
+ *   }
+ *   &#64;SuppressWarnings("unchecked")
+ *   public void myTest1(){}
+ *   &#64;SuppressWarnings("unchecked") // OK, duplicate strings are ignored in annotations
+ *   public void myTest2(){}
+ * }
+ * </pre>
  * <p>
  * To configure the check so that it flags duplicate strings in all syntactical contexts,
  * even in annotations like {@code @SuppressWarnings("unchecked")}:
@@ -95,6 +205,42 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
  *   &lt;property name=&quot;ignoreOccurrenceContext&quot; value=&quot;&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *  public class MyClass {
+ *      String a = "StringContents";
+ *      public void myTest() {
+ *          String a1 = "StringContents"; // violation
+ *          String a2 = "DoubleString" + "DoubleString"; // violation
+ *          String a3 = "SingleString"; // OK
+ *          String a4 = ", " + ", " + ", "; // violation
+ *      }
+ *
+ *     @SuppressWarnings("unchecked")
+ *     public void myTest1(){}
+ *
+ *     @SuppressWarnings("unchecked") // violation
+ *     public void myTest2(){}
+ *  }
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass {
+ *   String a = "StringContents";
+ *   public void myTest() {
+ *     String a1 = "StringContents"; // violation, "StringContents" occurred twice
+ *     String a2 = "DoubleString" + "DoubleString"; // violation, "DoubleString" occurs twice
+ *     String a3 = "SingleString"; // OK
+ *     String a4 = ", " + ", " + ", "; // violation, ", " occurs three times
+ *   }
+ *   &#64;SuppressWarnings("unchecked")
+ *   public void myTest1(){}
+ *   &#64;SuppressWarnings("unchecked") // violation, "unchecked" occur twice in annotations
+ *   public void myTest2(){}
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
