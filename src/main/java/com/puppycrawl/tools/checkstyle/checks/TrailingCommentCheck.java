@@ -243,7 +243,7 @@ public class TrailingCommentCheck extends AbstractCheck {
     private void checkSingleLineComment(DetailAST ast) {
         final int lineNo = ast.getLineNo();
         final String comment = ast.getFirstChild().getText();
-        final String line = getLines()[lineNo - 1];
+        final String line = getLine(lineNo - 1);
         final String lineBefore = line.substring(0, ast.getColumnNo());
 
         if (!format.matcher(lineBefore).find() && !isLegalCommentContent(comment)) {
@@ -261,7 +261,7 @@ public class TrailingCommentCheck extends AbstractCheck {
         final DetailAST firstChild = ast.getFirstChild();
         final DetailAST lastChild = ast.getLastChild();
         final String comment = firstChild.getText();
-        String line = getLines()[lineNo - 1];
+        String line = getLine(lineNo - 1);
 
         if (line.length() > lastChild.getColumnNo() + 1) {
             line = line.substring(lastChild.getColumnNo() + 2);
@@ -269,7 +269,7 @@ public class TrailingCommentCheck extends AbstractCheck {
 
         line = FORMAT_LINE.matcher(line).replaceAll("");
 
-        final String lineBefore = getLines()[lineNo - 1].substring(0, ast.getColumnNo());
+        final String lineBefore = getLine(lineNo - 1).substring(0, ast.getColumnNo());
         final boolean isCommentAtEndOfLine = ast.getLineNo() != lastChild.getLineNo()
                 || CommonUtil.isBlank(line);
         final boolean isLegalBlockComment = isLegalCommentContent(comment)
