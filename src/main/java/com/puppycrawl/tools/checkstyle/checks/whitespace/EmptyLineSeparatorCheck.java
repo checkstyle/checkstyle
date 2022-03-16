@@ -811,7 +811,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         // 3 is the number of the pre-previous line because the numbering starts from zero.
         final int number = 3;
         if (lineNo >= number) {
-            final String prePreviousLine = getLines()[lineNo - number];
+            final String prePreviousLine = getLine(lineNo - number);
             result = CommonUtil.isBlank(prePreviousLine);
         }
         return result;
@@ -889,7 +889,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         final int lineNo = token.getLineNo();
         if (lineNo != 1) {
             // [lineNo - 2] is the number of the previous line as the numbering starts from zero.
-            final String lineBefore = getLines()[lineNo - 2];
+            final String lineBefore = getLine(lineNo - 2);
             result = CommonUtil.isBlank(lineBefore);
         }
         return result;
@@ -902,11 +902,11 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true, if token is comment, which starting in beginning of line.
      */
     private boolean isCommentInBeginningOfLine(DetailAST comment) {
-        // [comment.getLineNo() - 1] is the number of the previous line as the numbering starts
+        // comment.getLineNo() - 1 is the number of the previous line as the numbering starts
         // from zero.
         boolean result = false;
         if (comment != null) {
-            final String lineWithComment = getLines()[comment.getLineNo() - 1].trim();
+            final String lineWithComment = getLine(comment.getLineNo() - 1).trim();
             result = lineWithComment.startsWith("//") || lineWithComment.startsWith("/*");
         }
         return result;
