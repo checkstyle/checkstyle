@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -249,8 +251,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private static final Pattern HTML_ELEMENTS =
             Pattern.compile("<[^>]*>");
 
-    /** Period literal. */
-    private static final String PERIOD = ".";
+    /** Default period literal. */
+    private static final String DEFAULT_PERIOD = ".";
 
     /** Summary tag text. */
     private static final String SUMMARY_TEXT = "@summary";
@@ -269,7 +271,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     /**
      * Specify the period symbol at the end of first javadoc sentence.
      */
-    private String period = PERIOD;
+    private String period = DEFAULT_PERIOD;
 
     /**
      * Setter to specify the regexp for forbidden summary fragments.
@@ -339,10 +341,71 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 .findFirst()
                 .map(SummaryJavadocCheck::getInlineTagNodeWithinHtmlElement);
 
-        if (node.isPresent() && !isSummaryTag(node.get())) {
+        if (node.isPresent() && (!isSummaryTag(node.get()) || !isDefinedFirst(node.get()))) {
             node = Optional.empty();
         }
         return node;
+    }
+
+    /**
+     * Whether the {@code {@summary}} tag is defined first in the javadoc.
+     *
+     * @param inlineSummaryTag node of type {@link JavadocTokenTypes#JAVADOC_INLINE_TAG}
+     * @return {@code true} if the {@code {@summary}} tag is defined first in the javadoc
+     */
+    private static boolean isDefinedFirst(DetailNode inlineSummaryTag) {
+        boolean isDefinedFirst = true;
+        DetailNode previousSibling = JavadocUtil.getPreviousSibling(inlineSummaryTag);
+        while (previousSibling != null && isDefinedFirst) {
+            final int siblingType = previousSibling.getType();
+            if (siblingType == JavadocTokenTypes.TEXT) {
+                if (!previousSibling.getText().isBlank()) {
+                    isDefinedFirst = false;
+                }
+            }
+            else if (siblingType == JavadocTokenTypes.HTML_ELEMENT
+                && isTextPresentInsideHtmlTag(previousSibling)) {
+                isDefinedFirst = false;
+            }
+            previousSibling = JavadocUtil.getPreviousSibling(previousSibling);
+        }
+        return isDefinedFirst;
+    }
+
+    /**
+     * Whether some text is present inside the HTML element or tag.
+     *
+     * @param node DetailNode of type {@link JavadocTokenTypes#HTML_TAG}
+     *             or {@link JavadocTokenTypes#HTML_ELEMENT}
+     * @return {@code true} if some text is present inside the HTML element or tag
+     */
+    public static boolean isTextPresentInsideHtmlTag(DetailNode node) {
+        boolean isTextPresentInsideHtmlTag = false;
+        final List<DetailNode> nestedHtmlElementsAndTags = new ArrayList<>();
+        DetailNode nestedChild = JavadocUtil.getFirstChild(node);
+        if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+            nestedChild = JavadocUtil.getFirstChild(nestedChild);
+        }
+        while (nestedChild != null) {
+            final int nestedChildType = nestedChild.getType();
+            if (nestedChildType == JavadocTokenTypes.TEXT
+                && !nestedChild.getText().isBlank()) {
+                isTextPresentInsideHtmlTag = true;
+                break;
+            }
+            if (nestedChildType == JavadocTokenTypes.HTML_TAG
+                || nestedChildType == JavadocTokenTypes.HTML_ELEMENT) {
+                nestedHtmlElementsAndTags.add(nestedChild);
+            }
+            nestedChild = JavadocUtil.getNextSibling(nestedChild);
+        }
+        if (!isTextPresentInsideHtmlTag) {
+            isTextPresentInsideHtmlTag = nestedHtmlElementsAndTags.stream()
+                .takeWhile(childNode -> !isTextPresentInsideHtmlTag(childNode))
+                .findFirst()
+                .isPresent();
+        }
+        return isTextPresentInsideHtmlTag;
     }
 
     /**
@@ -609,7 +672,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     private static String getFirstSentence(DetailNode ast) {
         final StringBuilder result = new StringBuilder(256);
-        final String periodSuffix = PERIOD + ' ';
+        final String periodSuffix = DEFAULT_PERIOD + ' ';
         for (DetailNode child : ast.getChildren()) {
             final String text;
             if (child.getChildren().length == 0) {
