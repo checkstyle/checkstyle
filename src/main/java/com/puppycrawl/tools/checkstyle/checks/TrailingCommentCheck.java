@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -243,8 +244,9 @@ public class TrailingCommentCheck extends AbstractCheck {
     private void checkSingleLineComment(DetailAST ast) {
         final int lineNo = ast.getLineNo();
         final String comment = ast.getFirstChild().getText();
-        final String line = getLines()[lineNo - 1];
-        final String lineBefore = line.substring(0, ast.getColumnNo());
+        final int[] lineBeforeCodePoints =
+                Arrays.copyOfRange(getLineCodePoints(lineNo - 1), 0, ast.getColumnNo());
+        final String lineBefore = new String(lineBeforeCodePoints, 0, lineBeforeCodePoints.length);
 
         if (!format.matcher(lineBefore).find() && !isLegalCommentContent(comment)) {
             log(ast, MSG_KEY);
@@ -261,15 +263,19 @@ public class TrailingCommentCheck extends AbstractCheck {
         final DetailAST firstChild = ast.getFirstChild();
         final DetailAST lastChild = ast.getLastChild();
         final String comment = firstChild.getText();
-        String line = getLines()[lineNo - 1];
+        int[] lineCodePoints = getLineCodePoints(lineNo - 1);
 
-        if (line.length() > lastChild.getColumnNo() + 1) {
-            line = line.substring(lastChild.getColumnNo() + 2);
+        if (lineCodePoints.length > lastChild.getColumnNo() + 1) {
+            lineCodePoints = Arrays.copyOfRange(lineCodePoints,
+                    lastChild.getColumnNo() + 2, lineCodePoints.length);
         }
 
+        String line = new String(lineCodePoints, 0, lineCodePoints.length);
         line = FORMAT_LINE.matcher(line).replaceAll("");
 
-        final String lineBefore = getLines()[lineNo - 1].substring(0, ast.getColumnNo());
+        final int[] lineBeforeCodePoints = Arrays.copyOfRange(
+                        getLineCodePoints(lineNo - 1), 0, ast.getColumnNo());
+        final String lineBefore = new String(lineBeforeCodePoints, 0, lineBeforeCodePoints.length);
         final boolean isCommentAtEndOfLine = ast.getLineNo() != lastChild.getLineNo()
                 || CommonUtil.isBlank(line);
         final boolean isLegalBlockComment = isLegalCommentContent(comment)

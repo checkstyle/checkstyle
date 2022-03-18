@@ -119,4 +119,19 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputTrailingCommentWithNoPrecedingWhitespace.java"), expected);
     }
+
+    @Test
+    public void testWithEmoji() throws Exception {
+        final String[] expected = {
+            "13:24: " + getCheckMessage(MSG_KEY),
+            "15:27: " + getCheckMessage(MSG_KEY),
+            "21:33: " + getCheckMessage(MSG_KEY),
+            "25:13: " + getCheckMessage(MSG_KEY),
+            "27:16: " + getCheckMessage(MSG_KEY),
+            "28:24: " + getCheckMessage(MSG_KEY),
+            "33:37: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputTrailingCommentWithEmoji.java"), expected);
+    }
 }
