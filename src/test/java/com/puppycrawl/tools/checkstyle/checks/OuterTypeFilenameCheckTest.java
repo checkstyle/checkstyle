@@ -46,7 +46,8 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
             TokenTypes.RECORD_DEF,
         };
         assertWithMessage("Required tokens array differs from expected")
-                .that(checkObj.getRequiredTokens()).isEqualTo(expected);
+                .that(checkObj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test

@@ -355,7 +355,8 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                     .isInstanceOf(IllegalArgumentException.class);
             assertWithMessage("Error message is unexpected")
                 .that(ex)
-                .hasCauseThat().hasMessageThat()
+                .hasCauseThat()
+                .hasMessageThat()
                 .isEqualTo("Expression or annotation array initializer AST expected: "
                         + "Method Def[0x0]");
         }
@@ -390,7 +391,8 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                     .isInstanceOf(IllegalArgumentException.class);
             assertWithMessage("Error message is unexpected")
                 .that(ex)
-                .hasCauseThat().hasMessageThat()
+                .hasCauseThat()
+                .hasMessageThat()
                 .isEqualTo("Unexpected container AST: Parent ast[0x0]");
         }
     }

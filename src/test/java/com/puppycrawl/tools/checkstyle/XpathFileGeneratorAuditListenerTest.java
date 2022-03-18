@@ -96,7 +96,8 @@ public class XpathFileGeneratorAuditListenerTest {
         listener.auditFinished(null);
         final String actual = out.toString();
         assertWithMessage("Output should be empty")
-            .that(actual).isEmpty();
+            .that(actual)
+            .isEmpty();
     }
 
     @Test
@@ -109,7 +110,8 @@ public class XpathFileGeneratorAuditListenerTest {
         listener.auditFinished(null);
         final String actual = out.toString();
         assertWithMessage("Output should be empty")
-            .that(actual).isEmpty();
+            .that(actual)
+            .isEmpty();
     }
 
     @Test
@@ -122,7 +124,8 @@ public class XpathFileGeneratorAuditListenerTest {
         listener.auditFinished(null);
         final String actual = out.toString();
         assertWithMessage("Output should be empty")
-            .that(actual).isEmpty();
+            .that(actual)
+            .isEmpty();
     }
 
     @Test

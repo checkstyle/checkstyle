@@ -64,7 +64,8 @@ public class AvoidDoubleBraceInitializationCheckTest extends AbstractModuleTestS
             TokenTypes.OBJBLOCK,
         };
         assertWithMessage("Acceptable required tokens are invalid")
-                .that(check.getAcceptableTokens()).isEqualTo(expected);
+                .that(check.getAcceptableTokens())
+                .isEqualTo(expected);
         assertWithMessage("Default required tokens are invalid")
                 .that(check.getDefaultTokens())
                 .isEqualTo(expected);
