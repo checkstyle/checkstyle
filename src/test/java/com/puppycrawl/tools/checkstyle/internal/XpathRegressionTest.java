@@ -111,7 +111,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "InnerTypeLast",
             "InterfaceTypeParameterName",
             "JavaNCSS",
-            "IllegalImport",
             "LocalFinalVariableName",
             "LocalVariableName",
             "MagicNumber",
