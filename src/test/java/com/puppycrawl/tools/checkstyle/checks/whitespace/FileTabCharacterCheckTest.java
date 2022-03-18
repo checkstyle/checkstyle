@@ -52,12 +52,12 @@ public class FileTabCharacterCheckTest
         final String[] expected = {
             "22:25: " + getCheckMessage(MSG_CONTAINS_TAB),
             "148:35: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "149:64: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "157:9: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "158:10: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "159:1: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "160:3: " + getCheckMessage(MSG_CONTAINS_TAB),
-            "161:3: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "151:28: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "159:9: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "160:10: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "161:1: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "162:3: " + getCheckMessage(MSG_CONTAINS_TAB),
+            "163:3: " + getCheckMessage(MSG_CONTAINS_TAB),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFileTabCharacterSimple1.java"),
