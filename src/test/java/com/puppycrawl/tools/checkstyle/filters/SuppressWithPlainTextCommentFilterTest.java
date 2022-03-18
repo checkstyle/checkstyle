@@ -26,8 +26,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacter
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -640,12 +638,6 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         checkerConfig.addProperty("fileExtensions", fileExtension);
 
         verify(checkerConfig, getPath(fileNameWithExtension), violationMessages);
-    }
-
-    private static String[] removeSuppressed(String[] from, String... remove) {
-        final Collection<String> coll = Arrays.stream(from).collect(Collectors.toList());
-        coll.removeAll(Arrays.asList(remove));
-        return coll.toArray(CommonUtil.EMPTY_STRING_ARRAY);
     }
 
 }
