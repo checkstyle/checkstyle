@@ -184,7 +184,8 @@ public class IllegalTokenTextCheckTest
             assertWithMessage(TokenUtil.getTokenName(tokenType) + " should not be allowed"
                     + " in this check as its text is a constant"
                     + " (IllegalTokenCheck should be used for such cases).")
-                            .that(tokenTypesWithMutableText.contains(tokenType)).isTrue();
+                            .that(tokenTypesWithMutableText.contains(tokenType))
+                            .isTrue();
         }
     }
 

@@ -727,7 +727,8 @@ public class XdocsPagesTest {
 
         assertWithMessage(
                 fileName + " section '" + sectionName + "' should show properties: " + properties)
-                        .that(properties).isEmpty();
+            .that(properties)
+            .isEmpty();
     }
 
     private static void fixCapturedProperties(String sectionName, Object instance, Class<?> clss,
@@ -1418,7 +1419,8 @@ public class XdocsPagesTest {
 
         assertWithMessage(fileName + " section '" + sectionName
                 + "' has unknown text in 'Example of Usage': " + text)
-            .that(text).isEmpty();
+            .that(text)
+            .isEmpty();
 
         boolean hasCheckstyle = false;
         boolean hasGoogle = false;
@@ -1595,7 +1597,8 @@ public class XdocsPagesTest {
 
             assertWithMessage(
                     fileName + " requires the following check(s) to appear: " + styleChecks)
-                            .that(styleChecks).isEmpty();
+                .that(styleChecks)
+                .isEmpty();
         }
     }
 
