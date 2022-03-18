@@ -22,10 +22,6 @@ package com.puppycrawl.tools.checkstyle.filters;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck.MSG_JAVADOC_MISSING;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -150,12 +146,6 @@ public class SuppressWarningsFilterTest
             throws Exception {
         verifyFilterWithInlineConfigParser(fileName, messages,
                                            removeSuppressed(messages, suppressed));
-    }
-
-    private static String[] removeSuppressed(String[] from, String... remove) {
-        final Collection<String> coll = Arrays.stream(from).collect(Collectors.toList());
-        coll.removeAll(Arrays.asList(remove));
-        return coll.toArray(CommonUtil.EMPTY_STRING_ARRAY);
     }
 
 }
