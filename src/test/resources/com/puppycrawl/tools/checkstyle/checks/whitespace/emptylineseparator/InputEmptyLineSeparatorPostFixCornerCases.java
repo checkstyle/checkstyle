@@ -15,8 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 public class InputEmptyLineSeparatorPostFixCornerCases {
 
     protected void foo1() throws Exception {
-        int a = 25;
-        // violation above
+        int a = 25; // violation 'There is more than 1 empty line after this line'
 
 
         foo(a);
@@ -29,8 +28,8 @@ public class InputEmptyLineSeparatorPostFixCornerCases {
     protected void foo() {
 
         Object[] defaults = new Object[] {
-                "String One",
-                // violation above
+                "String One", // violation 'There is more than 1 empty line after this line'
+
 
 
                 "String Two",
@@ -39,8 +38,8 @@ public class InputEmptyLineSeparatorPostFixCornerCases {
     }
 
     protected void foo2() {
-        Object[] defaults = new Object[] { // violation below
-            "String One", 13,
+        Object[] defaults = new Object[] {
+            "String One", 13, // violation  'There is more than 1 empty line after this line'
 
 
             "String Two", // violation above this line.
