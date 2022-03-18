@@ -19,7 +19,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.filetabcharacter;
 final class InputFileTabCharacterSimple
 {
     // Long line ----------------------------------------------------------------
-    // Contains a tab ->	<- // violation
+    // Contains a tab ->	<- // violation 'File contains tab characters (this is the first instance)'
     // Contains trailing whitespace ->
 
     // Name format tests
