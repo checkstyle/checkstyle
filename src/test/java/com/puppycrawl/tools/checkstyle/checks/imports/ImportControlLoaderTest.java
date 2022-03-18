@@ -72,7 +72,8 @@ public class ImportControlLoaderTest {
                 .isInstanceOf(MalformedURLException.class);
             assertWithMessage("Invalid exception message")
                 .that(ex)
-                .hasCauseThat().hasMessageThat()
+                .hasCauseThat()
+                .hasMessageThat()
                 .isEqualTo("unknown protocol: aaa");
         }
     }
@@ -137,7 +138,8 @@ public class ImportControlLoaderTest {
                 .isInstanceOf(CheckstyleException.class);
             assertWithMessage("Invalid exception message: " + ex.getCause().getMessage())
                     .that(ex)
-                    .hasCauseThat().hasMessageThat()
+                    .hasCauseThat()
+                    .hasMessageThat()
                     .startsWith("unable to read");
         }
     }

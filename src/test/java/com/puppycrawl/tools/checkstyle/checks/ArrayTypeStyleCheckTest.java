@@ -40,7 +40,8 @@ public class ArrayTypeStyleCheckTest
         final ArrayTypeStyleCheck checkObj = new ArrayTypeStyleCheck();
         final int[] expected = {TokenTypes.ARRAY_DECLARATOR};
         assertWithMessage("Required tokens differs from expected")
-                .that(checkObj.getRequiredTokens()).isEqualTo(expected);
+                .that(checkObj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test

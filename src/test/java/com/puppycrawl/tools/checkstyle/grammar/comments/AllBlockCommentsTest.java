@@ -56,7 +56,8 @@ public class AllBlockCommentsTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, path, expected);
         assertWithMessage("All comments should be empty")
-            .that(ALL_COMMENTS).isEmpty();
+            .that(ALL_COMMENTS)
+            .isEmpty();
     }
 
     public static class BlockCommentListenerCheck extends AbstractCheck {

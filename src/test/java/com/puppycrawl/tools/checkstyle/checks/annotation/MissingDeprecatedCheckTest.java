@@ -45,7 +45,8 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
         };
 
         assertWithMessage("Default javadoc tokens are invalid")
-                .that(missingDeprecatedCheck.getDefaultJavadocTokens()).isEqualTo(expected);
+                .that(missingDeprecatedCheck.getDefaultJavadocTokens())
+                .isEqualTo(expected);
     }
 
     @Test
@@ -55,7 +56,8 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
             JavadocTokenTypes.JAVADOC,
         };
         assertWithMessage("Default required javadoc tokens are invalid")
-                .that(checkObj.getRequiredJavadocTokens()).isEqualTo(expected);
+                .that(checkObj.getRequiredJavadocTokens())
+                .isEqualTo(expected);
     }
 
     /**

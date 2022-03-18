@@ -58,7 +58,8 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final List<Pattern> headerRegexps = TestUtil.getInternalState(instance, "headerRegexps");
 
         assertWithMessage("When header is null regexps should not be set")
-                .that(headerRegexps).isEmpty();
+                .that(headerRegexps)
+                .isEmpty();
     }
 
     /**
@@ -74,7 +75,8 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final List<Pattern> headerRegexps = TestUtil.getInternalState(instance, "headerRegexps");
 
         assertWithMessage("When header is empty regexps should not be set")
-                .that(headerRegexps).isEmpty();
+                .that(headerRegexps)
+                .isEmpty();
     }
 
     /**
