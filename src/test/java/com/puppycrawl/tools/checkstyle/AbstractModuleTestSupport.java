@@ -47,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
 public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport {
@@ -564,6 +565,21 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             messageBundle = packageName + "." + messages;
         }
         return messageBundle;
+    }
+
+    /**
+     * Remove suppressed violation messages from actual violation messages.
+     *
+     * @param actualViolations actual violation messages
+     * @param suppressedViolations suppressed violation messages
+     * @return an array of actual violation messages minus suppressed violation messages
+     */
+    protected static String[] removeSuppressed(String[] actualViolations,
+                                               String... suppressedViolations) {
+        final List<String> actualViolationsList =
+            Arrays.stream(actualViolations).collect(Collectors.toList());
+        actualViolationsList.removeAll(Arrays.asList(suppressedViolations));
+        return actualViolationsList.toArray(CommonUtil.EMPTY_STRING_ARRAY);
     }
 
 }

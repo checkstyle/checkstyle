@@ -24,10 +24,8 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MS
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -410,12 +408,6 @@ public class SuppressWithNearbyCommentFilterTest
         verify(checkerConfig,
                 fileName,
                 removeSuppressed(expectedViolations, suppressedViolations));
-    }
-
-    private static String[] removeSuppressed(String[] from, String... remove) {
-        final Collection<String> coll = Arrays.stream(from).collect(Collectors.toList());
-        coll.removeAll(Arrays.asList(remove));
-        return coll.toArray(CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
