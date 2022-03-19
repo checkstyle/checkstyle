@@ -586,7 +586,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
 
     /**
      * Checks if there is a type declaration with same name as the super class.
-     * Duplicated, until <a>https://github.com/checkstyle/checkstyle/issues/11201</a>
      *
      * @param superClassName name of the super class
      * @return true if there is another type declaration with same name.
@@ -622,7 +621,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     /**
      * For all type declarations with the same name as the superclass, gets the nearest type
      * declaration.
-     * Duplicated, until <a>https://github.com/checkstyle/checkstyle/issues/11201</a>
      *
      * @param outerTypeDeclName outer type declaration of anonymous inner class
      * @param typeDeclWithSameName typeDeclarations which have the same name as the super class
@@ -660,7 +658,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
 
     /**
      * Get qualified type declaration name from type ast.
-     * Duplicated, until <a>https://github.com/checkstyle/checkstyle/issues/11201</a>
      *
      * @param typeDeclAst type declaration ast
      * @return qualified name of type declaration
