@@ -211,16 +211,16 @@ public class NoWhitespaceBeforeCheck
     @Override
     public void visitToken(DetailAST ast) {
         final int[] line = getLineCodePoints(ast.getLineNo() - 1);
-        final int before = ast.getColumnNo() - 1;
+        final int columnNoBeforeToken = ast.getColumnNo() - 1;
+        final boolean isFirstToken = columnNoBeforeToken == -1;
 
-        if ((before == -1 || CommonUtil.isCodePointWhitespace(line, before))
+        if ((isFirstToken || CommonUtil.isCodePointWhitespace(line, columnNoBeforeToken))
                 && !isInEmptyForInitializerOrCondition(ast)) {
-            boolean flag = !allowLineBreaks;
-            // verify all characters before '.' are whitespace
-            if (before > -1 && !CodePointUtil.hasWhitespaceBefore(before, line)) {
-                flag = true;
-            }
-            if (flag) {
+            final boolean isViolation = !allowLineBreaks
+                    || !isFirstToken
+                    && !CodePointUtil.hasWhitespaceBefore(columnNoBeforeToken, line);
+
+            if (isViolation) {
                 log(ast, MSG_KEY, ast.getText());
             }
         }
