@@ -298,7 +298,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.9</version>
+      <version>3.9.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -1543,8 +1543,6 @@
                 <exclude>**/DefaultConfigurationTest.class</exclude>
                 <!-- Inline Config cannot be supported. -->
                 <exclude>**/UniquePropertiesCheckTest.class</exclude>
-
-                <exclude>**/LineLengthCheckTest.class</exclude>
 
                 <exclude>**/RegexpCheckTest.class</exclude>
 
