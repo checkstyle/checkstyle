@@ -19,16 +19,19 @@ class InputJavadocParagraphIncorrect {
     /**
      * Some Javadoc.<P> // 2 violations
      *
-     * <p>  Some Javadoc. // violation
+     * <p>  Some Javadoc. // violation '\Q tag should be placed immediately before the first word,
+     * with no space after.\E'
      *
      * @since 8.0
      */
     public static final byte NUL = 0;
 
     /**
-     * Some <p>Javadoc. // violation
+     * Some <p>Javadoc. // violation '\Q tag should be placed immediately before the first word,
+     * with no space after.\E'
      *
-     * <p>    Some Javadoc. // violation
+     * <p>    Some Javadoc. // violation '\Q tag should be placed immediately before the first
+     * word, with no space after.\E'
      *
      * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
      *     Documentation about GWT emulated source</a>
@@ -39,7 +42,7 @@ class InputJavadocParagraphIncorrect {
      * <p>  // 2 violations
      * <p><p>  // 2 violations
      * <p>/^WARN/   Some Javadoc.<p>*/  // 2 violations
-     class InnerInputJavadocParagraphIncorrect {
+    class InnerInputJavadocParagraphIncorrect {
 
         /**
          * Some Javadoc./WARN/<p>  // 2 violations
@@ -51,7 +54,7 @@ class InputJavadocParagraphIncorrect {
         /**<p>
          * /^WARN/ Some Javadoc. // 2 violations above
          *
-         * <P> // violation
+         * <P> // violation '\Q Empty line should be followed by <p> tag on the next line.\E'
          * /^WARN/
          * <p> // 2 violations
          *  /^WARN/ Some Javadoc.<p> // 2 violations
@@ -63,10 +66,12 @@ class InputJavadocParagraphIncorrect {
 
     InnerInputJavadocParagraphIncorrect anon = new InnerInputJavadocParagraphIncorrect() {
 
-            /**
-         * <p>Some Javadoc. // violation
+        /**
+         * <p>Some Javadoc. // violation '\Q Empty line should be followed by <p> tag on the next
+         * line.\E'
          *
-         * Some Javadoc. // violation above
+         * Some Javadoc. // violation above '\Q tag should be placed immediately before the first
+         * word, with no space after.\E'
          *
          * @since 8.0
          */
@@ -75,7 +80,8 @@ class InputJavadocParagraphIncorrect {
         /**
          * /WARN/  Some Javadoc.<p> // 2 violations
          *
-         *  <p>  Some Javadoc. // violation
+         *  <p>  Some Javadoc. // violation '\Q tag should be placed immediately before the first
+         *  word, with no space after.\E'
          *
          * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
          *     Documentation about <p> GWT emulated source</a> // 2 violations
@@ -83,11 +89,13 @@ class InputJavadocParagraphIncorrect {
         boolean emulated() {return false;}
 
         /**
-         * Double newline. // violation below
+         * Double newline. // violation below '\Q tag should be placed immediately before the
+         * first word, with no space after.\E'
          *
          *
-         * Some Javadoc. //DOUBLE WARN AT TWO PREVIOUS LINES // violation above
+         * Some Javadoc. // violation above //DOUBLE WARN AT TWO PREVIOUS LINES // '\Q tag should
+         * be placed immediately before the first word, with no space after.\E'
          */
-         void doubleNewline() {}
+        void doubleNewline() {}
     };
 }
