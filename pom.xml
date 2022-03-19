@@ -1546,8 +1546,7 @@
 
                 <exclude>**/RegexpCheckTest.class</exclude>
 
-                <exclude>**/SuppressionSingleFilterTest.class</exclude>
-
+                <!-- test need to be updated -->
                 <exclude>**/AllSinglelineCommentsTest.class</exclude>
 
                 <exclude>**/FileSetCheckTest.class</exclude>
@@ -1556,54 +1555,68 @@
 
                 <exclude>**/OrderedPropertiesCheckTest.class</exclude>
 
+                <!-- test needs to be updated -->
                 <exclude>**/SuppressionCommentFilterTest.class</exclude>
 
                 <exclude>**/RegexpMultilineCheckTest.class</exclude>
 
+                <!-- remain test methods should be updated -->
                 <exclude>**/EmptyLineSeparatorCheckTest.class</exclude>
 
+                <!-- stay in old way as format of input files is very special -->
                 <exclude>**/IndentationCheckTest.class</exclude>
 
+                <!-- two methods use old method as Input file must be completely empty -->
                 <exclude>**/NoCodeInFileCheckTest.class</exclude>
 
                 <exclude>**/TreeWalkerTest.class</exclude>
 
+                <!-- content of file does not matter at all -->
                 <exclude>**/RegexpOnFilenameCheckTest.class</exclude>
 
                 <exclude>**/CheckerTest.class</exclude>
 
+                <!-- content header is conflicting with Input inline header -->
                 <exclude>**/HeaderCheckTest.class</exclude>
-
-                <exclude>**/SuppressWarningsFilterTest.class</exclude>
+                <!-- content header is conflicting with Input inline header -->
+                <exclude>**/RegexpHeaderCheckTest.class</exclude>
 
                 <exclude>**/SuppressWarningsHolderTest.class</exclude>
 
+                <!-- test should be updated -->
                 <exclude>**/ImportControlCheckTest.class</exclude>
 
+                <!-- input files are not java files, bdd need support for other comment types -->
                 <exclude>**/SuppressWithPlainTextCommentFilterTest.class</exclude>
 
                 <exclude>**/AbstractCheckTest.class</exclude>
 
-                <exclude>**/RegexpHeaderCheckTest.class</exclude>
-
+                <!-- test should be updated -->
                 <exclude>**/ImportOrderCheckTest.class</exclude>
 
                 <exclude>**/DetailAstImplTest.class</exclude>
 
+                <!-- tests need to be updated -->
                 <exclude>**/SuppressWithNearbyCommentFilterTest.class</exclude>
 
                 <exclude>**/AbstractModuleTestSupport.class</exclude>
 
+                <!-- test should be updated -->
                 <exclude>**/CommentsIndentationCheckTest.class</exclude>
 
+                <!-- test need to be updated -->
                 <exclude>**/SuppressionFilterTest.class</exclude>
 
+                <!-- intrnal module for grammar testing -->
                 <exclude>**/AllBlockCommentsTest.class</exclude>
 
+                <!-- tests should be updated -->
                 <exclude>**/WriteTagCheckTest.class</exclude>
 
+                <!-- tests should be updated -->
                 <exclude>**/AbstractJavadocCheckTest.class</exclude>
 
+                <!-- is not Check or Filter, it is internal module -->
                 <exclude>**/MetadataGeneratorUtilTest.class</exclude>
               </excludes>
             </configuration>
