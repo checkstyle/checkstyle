@@ -48,43 +48,14 @@
   <suppress id="StyleValidationCommentInInputs"
             files="packageobjectfactory[\\/].*.java"/>
 
-  <!-- until https://github.com/checkstyle/checkstyle/issues/10737 -->
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilter.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilterSuppressById.java"/>
-
+  <!-- SuppressionXpathFilterTest, SuppressionXpathSingleFilterTest and XpathFilterElementTest
+       use assertions directly instead of using them through parser or the traditional
+       verify method -->
   <suppress id="StyleValidationCommentInInputs"
             files="filters[\\/]suppressionxpathfilter[\\/]InputSuppressionXpathFilter.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="filters[\\/]suppressionxpathsinglefilter[\\/]InputSuppressionXpathSingleFilter.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="filters[\\/]suppresswarningsfilter[\\/]InputSuppressWarningsFilterById.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="filters[\\/]suppresswarningsfilter[\\/]InputSuppressWarningsFilter.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="filters[\\/]suppresswithnearbycommentfilter[\\/]InputSuppressWithNearbyCommentFilterById.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="filters[\\/]suppresswithnearbycommentfilter[\\/]InputSuppressWithNearbyCommentFilter.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="filters[\\/]suppresswithplaintextcommentfilter[\\/]InputSuppressWithPlainTextCommentFilterCustomMessageFormat.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="filters[\\/]suppresswithplaintextcommentfilter[\\/]InputSuppressWithPlainTextCommentFilterSuppressById.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="filters[\\/]suppresswithplaintextcommentfilter[\\/]InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="filters[\\/]suppresswithplaintextcommentfilter[\\/]InputSuppressWithPlainTextCommentFilterWithDefaultCfg.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="filters[\\/]xpathfilterelement[\\/]InputXpathFilterElementSuppressByXpath.java"/>
