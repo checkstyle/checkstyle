@@ -19,7 +19,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.filetabcharacter;
 final class InputFileTabCharacterSimple1
 {
     // Long line ----------------------------------------------------------------
-    // Contains a tab ->	<- // violation
+    // Contains a tab ->	<- // violation 'Line contains a tab character'
     // Contains trailing whitespace ->
 
     // Name format tests
@@ -145,8 +145,10 @@ final class InputFileTabCharacterSimple1
     private static final int BAD__NAME = 3;
 
     // A very, very long line that is OK because it matches the regexp "^.*is OK.*regexp.*$"
-    // long line that has a tab ->	<- and would be OK if tab counted as 1 char // violation
-    // tabs that count as one char because of their position ->	<-   ->	<-, OK // violation
+    // long line that has a tab ->	<- and would be // violation 'Line contains a tab character'
+    // OK if tab counted as 1 char
+    // tabs that count as one char because
+    // of their position ->	<-   ->	<-, OK // violation 'Line contains a tab character'
 
     /** some lines to test the violation column after tabs */
     void errorColumnAfterTabs()
@@ -154,11 +156,11 @@ final class InputFileTabCharacterSimple1
         // with tab-width 8 all statements below start at the same column,
         // with different combinations of ' ' and '\t' before the statement
                 int tab0 =1;
-        	int tab1 =1; // violation
-         	int tab2 =1; // violation
-		int tab3 =1; // violation
-  	  	int tab4 =1; // violation
-  	        int tab5 =1; // violation
+        	int tab1 =1; // violation 'Line contains a tab character'
+         	int tab2 =1; // violation 'Line contains a tab character'
+		int tab3 =1; // violation 'Line contains a tab character'
+  	  	int tab4 =1; // violation 'Line contains a tab character'
+  	        int tab5 =1; // violation 'Line contains a tab character'
     }
 
     // MEMME:

@@ -41,7 +41,8 @@ public class PatternVariableNameCheckTest
         final int[] expected = {TokenTypes.PATTERN_VARIABLE_DEF};
 
         assertWithMessage("Default acceptable tokens are invalid")
-                .that(patternVariableNameCheck.getAcceptableTokens()).isEqualTo(expected);
+                .that(patternVariableNameCheck.getAcceptableTokens())
+                .isEqualTo(expected);
     }
 
     @Test

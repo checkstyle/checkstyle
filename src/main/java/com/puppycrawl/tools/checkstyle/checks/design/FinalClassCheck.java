@@ -28,8 +28,8 @@ import java.util.Optional;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -151,7 +151,7 @@ public class FinalClassCheck
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.PACKAGE_DEF:
-                packageName = extractQualifiedName(ast.getFirstChild().getNextSibling());
+                packageName = CheckUtil.extractQualifiedName(ast.getFirstChild().getNextSibling());
                 break;
 
             case TokenTypes.ANNOTATION_DEF:
@@ -248,16 +248,6 @@ public class FinalClassCheck
     }
 
     /**
-     * Get name of class (with qualified package if specified) in {@code ast}.
-     *
-     * @param ast ast to extract class name from
-     * @return qualified name
-     */
-    private static String extractQualifiedName(DetailAST ast) {
-        return FullIdent.createFullIdent(ast).getText();
-    }
-
-    /**
      * Register to outer super class of given classAst that
      * given classAst is extending them.
      *
@@ -294,42 +284,32 @@ public class FinalClassCheck
                 .filter(entry -> entry.getKey().endsWith(dotAndClassName))
                 .map(Map.Entry::getValue)
                 .min((first, second) -> {
-                    int diff = Integer.compare(
-                            classNameMatchingCount(superClassName, second.getQualifiedName()),
-                            classNameMatchingCount(superClassName, first.getQualifiedName()));
-                    if (diff == 0) {
-                        diff = Integer.compare(first.getDepth(), second.getDepth());
-                    }
-                    return diff;
+                    return getClassDeclarationNameMatchingCountDiff(superClassName, first, second);
                 })
                 .orElse(null);
     }
 
     /**
-     * Calculates and returns the class name matching count.
+     * Get the difference between class declaration name matching count. If the difference between
+     * them is zero, then their depth is compared to obtain the result.
      *
-     * <p>
-     * Suppose our pattern class is {@code foo.a.b} and class to be matched is
-     * {@code foo.a.ball} then classNameMatchingCount would be calculated by comparing every
-     * character, and updating main counter when we hit "."
-     * to prevent matching "a.b" with "a.ball". In this case classNameMatchingCount would
-     * be equal to 6 and not 7 (b of ball is not counted).
-     * </p>
-     *
-     * @param patternClass class against which the given class has to be matched
-     * @param classToBeMatched class to be matched
-     * @return class name matching count
+     * @param superClassName name of the super class
+     * @param firstClass first input class
+     * @param secondClass second input class
+     * @return difference between class declaration name matching count
      */
-    private static int classNameMatchingCount(String patternClass, String classToBeMatched) {
-        final char packageSeparator = PACKAGE_SEPARATOR.charAt(0);
-        final int length = Math.min(classToBeMatched.length(), patternClass.length());
-        int result = 0;
-        for (int i = 0; i < length && patternClass.charAt(i) == classToBeMatched.charAt(i); ++i) {
-            if (patternClass.charAt(i) == packageSeparator) {
-                result = i;
-            }
+    private static int getClassDeclarationNameMatchingCountDiff(String superClassName,
+                                                                ClassDesc firstClass,
+                                                                ClassDesc secondClass) {
+        int diff = Integer.compare(
+            CheckUtil
+                .typeDeclarationNameMatchingCount(superClassName, secondClass.getQualifiedName()),
+            CheckUtil
+                .typeDeclarationNameMatchingCount(superClassName, firstClass.getQualifiedName()));
+        if (diff == 0) {
+            diff = Integer.compare(firstClass.getDepth(), secondClass.getDepth());
         }
-        return result;
+        return diff;
     }
 
     /**
@@ -358,35 +338,8 @@ public class FinalClassCheck
         if (!classes.isEmpty()) {
             outerClassQualifiedName = classes.peek().getQualifiedName();
         }
-        return getQualifiedClassName(packageName, outerClassQualifiedName, className);
-    }
-
-    /**
-     * Calculate qualified class name(package + class name) laying inside given
-     * outer class.
-     *
-     * @param packageName package name, empty string on default package
-     * @param outerClassQualifiedName qualified name(package + class) of outer class,
-     *                           null if doesn't exist
-     * @param className class name
-     * @return qualified class name(package + class name)
-     */
-    private static String getQualifiedClassName(String packageName, String outerClassQualifiedName,
-                                                String className) {
-        final String qualifiedClassName;
-
-        if (outerClassQualifiedName == null) {
-            if (packageName.isEmpty()) {
-                qualifiedClassName = className;
-            }
-            else {
-                qualifiedClassName = packageName + PACKAGE_SEPARATOR + className;
-            }
-        }
-        else {
-            qualifiedClassName = outerClassQualifiedName + PACKAGE_SEPARATOR + className;
-        }
-        return qualifiedClassName;
+        return CheckUtil
+            .getQualifiedTypeDeclarationName(packageName, outerClassQualifiedName, className);
     }
 
     /**
@@ -399,7 +352,7 @@ public class FinalClassCheck
         String superClassName = null;
         final DetailAST classExtend = classAst.findFirstToken(TokenTypes.EXTENDS_CLAUSE);
         if (classExtend != null) {
-            superClassName = extractQualifiedName(classExtend.getFirstChild());
+            superClassName = CheckUtil.extractQualifiedName(classExtend.getFirstChild());
         }
         return superClassName;
     }

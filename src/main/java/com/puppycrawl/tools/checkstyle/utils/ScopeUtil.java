@@ -44,16 +44,20 @@ public final class ScopeUtil {
      */
     public static Scope getDeclaredScopeFromMods(DetailAST aMods) {
         Scope result = null;
-        for (DetailAST token = aMods.getFirstChild(); token != null;
+        for (DetailAST token = aMods.getFirstChild(); token != null && result == null;
                 token = token.getNextSibling()) {
-            if ("public".equals(token.getText())) {
-                result = Scope.PUBLIC;
-            }
-            else if ("protected".equals(token.getText())) {
-                result = Scope.PROTECTED;
-            }
-            else if ("private".equals(token.getText())) {
-                result = Scope.PRIVATE;
+            switch (token.getType()) {
+                case TokenTypes.LITERAL_PUBLIC:
+                    result = Scope.PUBLIC;
+                    break;
+                case TokenTypes.LITERAL_PROTECTED:
+                    result = Scope.PROTECTED;
+                    break;
+                case TokenTypes.LITERAL_PRIVATE:
+                    result = Scope.PRIVATE;
+                    break;
+                default:
+                    break;
             }
         }
         return result;

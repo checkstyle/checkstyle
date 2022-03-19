@@ -21,12 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
-import java.nio.charset.StandardCharsets;
-
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
 public class LineLengthCheckTest extends AbstractModuleTestSupport {
 
@@ -87,20 +84,38 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void countUnicodePointsOnce() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(LineLengthCheck.class);
-        checkConfig.addProperty("max", "100");
-        // we need to set charset to let test pass when default charset is not UTF-8
-        final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
-        checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
-
         final String[] expected = {
             "15: " + getCheckMessage(MSG_KEY, 100, 149),
             "16: " + getCheckMessage(MSG_KEY, 100, 149),
         };
+        verifyWithInlineConfigParser(getPath("InputLineLengthUnicodeChars.java"), expected);
 
-        verify(checkerConfig, getPath("InputLineLengthUnicodeChars.java"), expected);
+    }
 
+    @Test
+    public void testLineLengthIgnoringPackageStatements() throws Exception {
+        final String[] expected = {
+            "13: " + getCheckMessage(MSG_KEY, 75, 76),
+            "22: " + getCheckMessage(MSG_KEY, 75, 86),
+            "26: " + getCheckMessage(MSG_KEY, 75, 76),
+            "34: " + getCheckMessage(MSG_KEY, 75, 77),
+        };
+
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputLineLengthIgnoringPackageStatements.java"), expected);
+    }
+
+    @Test
+    public void testLineLengthIgnoringImportStatements() throws Exception {
+        final String[] expected = {
+            "12: " + getCheckMessage(MSG_KEY, 75, 79),
+            "21: " + getCheckMessage(MSG_KEY, 75, 81),
+            "25: " + getCheckMessage(MSG_KEY, 75, 84),
+            "33: " + getCheckMessage(MSG_KEY, 75, 77),
+        };
+
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputLineLengthIgnoringImportStatements.java"), expected);
     }
 
 }

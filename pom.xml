@@ -1544,8 +1544,6 @@
                 <!-- Inline Config cannot be supported. -->
                 <exclude>**/UniquePropertiesCheckTest.class</exclude>
 
-                <exclude>**/LineLengthCheckTest.class</exclude>
-
                 <exclude>**/RegexpCheckTest.class</exclude>
 
                 <exclude>**/SuppressionSingleFilterTest.class</exclude>
@@ -3321,6 +3319,12 @@
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheckTest
                 </param>
               </targetTests>
               <excludedTestClasses>

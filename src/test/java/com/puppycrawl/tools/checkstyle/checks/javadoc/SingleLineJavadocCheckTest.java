@@ -39,7 +39,8 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
         final SingleLineJavadocCheck checkObj = new SingleLineJavadocCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
         assertWithMessage("Default acceptable tokens are invalid")
-                .that(checkObj.getAcceptableTokens()).isEqualTo(expected);
+                .that(checkObj.getAcceptableTokens())
+                .isEqualTo(expected);
     }
 
     @Test

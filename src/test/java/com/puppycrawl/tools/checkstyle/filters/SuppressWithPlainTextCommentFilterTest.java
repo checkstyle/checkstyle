@@ -26,8 +26,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacter
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -57,59 +55,39 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
     @Test
     public void testFilterWithDefaultConfig() throws Exception {
-        final DefaultConfiguration filterCfg =
-            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
-
-        final DefaultConfiguration checkCfg = createModuleConfig(FileTabCharacterCheck.class);
-        checkCfg.addProperty("eachLine", "true");
-
         final String[] suppressed = {
-            "5:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_FILE_CONTAINS_TAB),
-            "10:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "20:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "28:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         final String[] violationMessages = {
-            "5:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_FILE_CONTAINS_TAB),
-            "8:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "10:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "20:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "24:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "28:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
-        verifySuppressed(
-            "InputSuppressWithPlainTextCommentFilterWithDefaultCfg.java",
-            removeSuppressed(violationMessages, suppressed),
-            filterCfg, checkCfg
-        );
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithPlainTextCommentFilterWithDefaultCfg.java"),
+            violationMessages, removeSuppressed(violationMessages, suppressed));
     }
 
     @Test
     public void testChangeOffAndOnFormat() throws Exception {
-        final DefaultConfiguration filterCfg =
-            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
-        filterCfg.addProperty("onCommentFormat", "cs-on");
-        filterCfg.addProperty("offCommentFormat", "cs-off");
-
-        final DefaultConfiguration checkCfg = createModuleConfig(FileTabCharacterCheck.class);
-        checkCfg.addProperty("eachLine", "true");
-
         final String[] suppressed = {
-            "5:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_FILE_CONTAINS_TAB),
-            "10:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "11:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "13:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "20:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "27:30: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         final String[] violationMessage = {
-            "5:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_FILE_CONTAINS_TAB),
-            "8:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "10:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "11:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "20:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "24:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "27:30: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "30:13: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
-        verifySuppressed(
-            "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
-            removeSuppressed(violationMessage, suppressed),
-            filterCfg, checkCfg
-        );
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java"),
+            violationMessage, removeSuppressed(violationMessage, suppressed));
     }
 
     @Test
@@ -378,21 +356,6 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
     @Test
     public void testSuppressByCheck() throws Exception {
-        final DefaultConfiguration filterCfg =
-            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
-        filterCfg.addProperty("offCommentFormat", "CSOFF (\\w+) \\(\\w+\\)");
-        filterCfg.addProperty("onCommentFormat", "CSON (\\w+)");
-        filterCfg.addProperty("checkFormat", "FileTabCharacterCheck");
-
-        final DefaultConfiguration regexpCheckCfg = createModuleConfig(RegexpSinglelineCheck.class);
-        regexpCheckCfg.addProperty("id", "ignore");
-        regexpCheckCfg.addProperty("format", ".*[a-zA-Z][0-9].*");
-
-        final DefaultConfiguration fileTabCheckCfg =
-            createModuleConfig(FileTabCharacterCheck.class);
-        fileTabCheckCfg.addProperty("eachLine", "true");
-        fileTabCheckCfg.addProperty("id", "foo");
-
         final String[] suppressedViolationMessages = {
             "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
@@ -675,12 +638,6 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         checkerConfig.addProperty("fileExtensions", fileExtension);
 
         verify(checkerConfig, getPath(fileNameWithExtension), violationMessages);
-    }
-
-    private static String[] removeSuppressed(String[] from, String... remove) {
-        final Collection<String> coll = Arrays.stream(from).collect(Collectors.toList());
-        coll.removeAll(Arrays.asList(remove));
-        return coll.toArray(CommonUtil.EMPTY_STRING_ARRAY);
     }
 
 }

@@ -27,13 +27,13 @@ public class InputUnnecessaryParenthesesCheckSwitchExpression {
       }
       case 3 -> {
         MathOp2 g = (int a, int b) -> {
-          return (a + b); // violation 'Unnecessary parentheses around assignment right-hand side'
+          return (a + b); // violation 'Unnecessary parentheses around return value'
         };
         yield (g); // violation 'Unnecessary parentheses around identifier 'g''
       }
       default -> {
         MathOp2 h = (int x, int y) -> {
-          return (x + y); // violation 'Unnecessary parentheses around assignment right-hand side'
+          return (x + y); // violation 'Unnecessary parentheses around return value'
         };
         yield h;
       }
@@ -50,12 +50,12 @@ public class InputUnnecessaryParenthesesCheckSwitchExpression {
       }
       case 3 -> {
         MathOp2 g = (int a, int b) -> {
-          return (a + b + 2); // violation 'Unnecessary parentheses around assignment right.*side'
+          return (a + b + 2); // violation 'Unnecessary parentheses around return value'
         };
       }
       default -> {
         MathOp2 h = (int x, int y) -> {
-          return (x + y); // violation 'Unnecessary parentheses around assignment right-hand side'
+          return (x + y); // violation 'Unnecessary parentheses around return value'
         };
       }
     }

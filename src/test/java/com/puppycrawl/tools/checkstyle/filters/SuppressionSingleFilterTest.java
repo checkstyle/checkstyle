@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.filters;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -31,7 +30,7 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
     private static final String FORMAT = "TODO$";
     private static final String MESSAGE = getCheckMessage(RegexpSinglelineCheck.class,
         "regexp.exceeded", FORMAT);
-    private static final String[] VIOLATION = {
+    private static final String[] ALL_MESSAGES = {
         "25: " + MESSAGE,
     };
 
@@ -42,107 +41,76 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
-
-        verifySuppressed(config, getPath("InputSuppressionSingleFilter2.java"), null,
-                CommonUtil.EMPTY_STRING_ARRAY);
+        final String[] suppressed = {
+            "25: " + MESSAGE,
+        };
+        verifySuppressedWithParser(getPath("InputSuppressionSingleFilter2.java"), suppressed);
     }
 
     @Test
     public void testMatching() throws Exception {
-        final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
-        config.addProperty("files", "InputSuppressionSingleFilter3");
-        config.addProperty("checks", "RegexpSingleline");
-        config.addProperty("lines", "25");
-
-        verifySuppressed(config, getPath("InputSuppressionSingleFilter3.java"), null,
-                CommonUtil.EMPTY_STRING_ARRAY);
+        final String[] suppressed = {
+            "25: " + MESSAGE,
+        };
+        verifySuppressedWithParser(getPath("InputSuppressionSingleFilter3.java"), suppressed);
     }
 
     @Test
     public void testNonMatchingLineNumber() throws Exception {
-        final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
-        config.addProperty("lines", "100");
-
-        verifySuppressed(config, getPath("InputSuppressionSingleFilter4.java"), null, VIOLATION);
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        verifySuppressedWithParser(getPath("InputSuppressionSingleFilter4.java"), suppressed);
     }
 
     @Test
     public void testNonMatchingColumnNumber() throws Exception {
-        final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
-        config.addProperty("columns", "100");
-
-        verifySuppressed(config, getPath("InputSuppressionSingleFilter5.java"), null, VIOLATION);
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        verifySuppressedWithParser(getPath("InputSuppressionSingleFilter5.java"), suppressed);
     }
 
     @Test
     public void testNonMatchingFileRegexp() throws Exception {
-        final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
-        config.addProperty("files", "BAD");
-
-        verifySuppressed(config, getPath("InputSuppressionSingleFilter6.java"), null, VIOLATION);
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        verifySuppressedWithParser(getPath("InputSuppressionSingleFilter6.java"), suppressed);
     }
 
     @Test
     public void testNonMatchingModuleId() throws Exception {
-        final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
-        config.addProperty("id", "BAD");
-
-        verifySuppressed(config, getPath("InputSuppressionSingleFilter7.java"), null, VIOLATION);
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        verifySuppressedWithParser(getPath("InputSuppressionSingleFilter7.java"), suppressed);
     }
 
     @Test
     public void testMatchingModuleId() throws Exception {
-        final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
-        config.addProperty("id", "id");
-
-        verifySuppressed(config, getPath("InputSuppressionSingleFilter10.java"), "id",
-                CommonUtil.EMPTY_STRING_ARRAY);
+        final String[] suppressed = {
+            "25: " + MESSAGE,
+        };
+        verifySuppressedWithParser(getPath("InputSuppressionSingleFilter10.java"), suppressed);
     }
 
     @Test
     public void testNonMatchingChecks() throws Exception {
-        final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
-        config.addProperty("checks", "BAD");
-
-        verifySuppressed(config, getPath("InputSuppressionSingleFilter8.java"), null, VIOLATION);
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        verifySuppressedWithParser(getPath("InputSuppressionSingleFilter8.java"), suppressed);
     }
 
     @Test
     public void testNotMatchingMessage() throws Exception {
-        final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
-        config.addProperty("message", "BAD");
-
-        verifySuppressed(config, getPath("InputSuppressionSingleFilter9.java"), null,
-                VIOLATION);
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        verifySuppressedWithParser(getPath("InputSuppressionSingleFilter9.java"), suppressed);
     }
 
     @Test
     public void testMatchMessage() throws Exception {
-        final DefaultConfiguration config = createModuleConfig(SuppressionSingleFilter.class);
-        config.addProperty("message", "(TODO)");
-
-        verifySuppressed(config, getPath("InputSuppressionSingleFilter.java"), null,
-                CommonUtil.EMPTY_STRING_ARRAY);
+        final String[] suppressed = {
+            "25: " + MESSAGE,
+        };
+        verifySuppressedWithParser(getPath("InputSuppressionSingleFilter.java"), suppressed);
     }
 
-    private void verifySuppressed(DefaultConfiguration config, String fileName, String id,
-            String... expectedViolations) throws Exception {
-        final DefaultConfiguration regexpConfig = createModuleConfig(RegexpSinglelineCheck.class);
-        regexpConfig.addProperty("format", FORMAT);
-        regexpConfig.addProperty("minimum", "0");
-        regexpConfig.addProperty("maximum", "0");
-
-        if (id != null) {
-            regexpConfig.addProperty("id", id);
-        }
-
-        final DefaultConfiguration checkerConfig = createRootConfig(regexpConfig);
-        checkerConfig.addChild(config);
-
-        verify(checkerConfig, fileName, expectedViolations);
-        verifyFilterWithInlineConfigParser(
-                fileName, VIOLATION, expectedViolations);
+    private void verifySuppressedWithParser(String fileName, String... suppressed)
+            throws Exception {
+        verifyFilterWithInlineConfigParser(fileName, ALL_MESSAGES,
+                                           removeSuppressed(ALL_MESSAGES, suppressed));
     }
 
 }
