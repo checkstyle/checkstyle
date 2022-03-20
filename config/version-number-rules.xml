@@ -11,6 +11,12 @@
     </ignoreVersion>
   </ignoreVersions>
   <rules>
+    <rule groupId="com.github.caciocavallosilano" artifactId="cacio-tta">
+      <ignoreVersions>
+        <!-- Version 1.17 is build with Java17 bytecode, but we should be compatible with Java11  -->
+        <ignoreVersion type="exact">1.17</ignoreVersion>
+      </ignoreVersions>
+    </rule>
     <rule groupId="com.google.guava" artifactId="guava">
       <ignoreVersions>
         <ignoreVersion type="regex">.*-android</ignoreVersion>
