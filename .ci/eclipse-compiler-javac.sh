@@ -5,11 +5,11 @@ if [ -z "$1" ]; then
     echo "No parameters supplied!"
     echo "Usage %0 <CLASSPATH> [RELEASE]"
     echo "    CLASSPATH:  The classpath of the project and it's libraries to compile (required)."
-    echo "    RELEASE:    The optional Java release. Default is 1.8."
+    echo "    RELEASE:    The optional Java release. Default is 11."
     exit 1
 fi
 
-JAVA_RELEASE=${2:-1.8}
+JAVA_RELEASE=${2:-11}
 
 ECLIPSE_URL="http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/eclipse/downloads/drops4"
 ECJ_MAVEN_VERSION=$(wget --quiet -O- "$ECLIPSE_URL/?C=M;O=D" | grep -o "R-[^/]*" | head -n1)
