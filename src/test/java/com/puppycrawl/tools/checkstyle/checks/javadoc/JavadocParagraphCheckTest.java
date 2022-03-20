@@ -19,17 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_LINE_BEFORE;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_MISPLACED_TAG;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_REDUNDANT_PARAGRAPH;
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_TAG_AFTER;
-
-import org.junit.jupiter.api.Test;
-
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import org.junit.jupiter.api.Test;
+
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.*;
 
 public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
 
@@ -85,8 +81,8 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
             "56: " + getCheckMessage(MSG_LINE_BEFORE),
             "57: " + getCheckMessage(MSG_MISPLACED_TAG),
             "57: " + getCheckMessage(MSG_LINE_BEFORE),
-            "67: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
-            "68: " + getCheckMessage(MSG_TAG_AFTER),
+            "67: " + getCheckMessage(MSG_LINE_BEFORE),
+            "69: " + getCheckMessage(MSG_TAG_AFTER),
             "76: " + getCheckMessage(MSG_MISPLACED_TAG),
             "76: " + getCheckMessage(MSG_LINE_BEFORE),
             "78: " + getCheckMessage(MSG_MISPLACED_TAG),
@@ -107,20 +103,17 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
             "20: " + getCheckMessage(MSG_LINE_BEFORE),
             "29: " + getCheckMessage(MSG_LINE_BEFORE),
             "38: " + getCheckMessage(MSG_LINE_BEFORE),
-            "38: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
+            "39: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
             "39: " + getCheckMessage(MSG_LINE_BEFORE),
-            "40: " + getCheckMessage(MSG_LINE_BEFORE),
             "41: " + getCheckMessage(MSG_LINE_BEFORE),
             "45: " + getCheckMessage(MSG_LINE_BEFORE),
-            "51: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
-            "56: " + getCheckMessage(MSG_LINE_BEFORE),
+            "56: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
             "57: " + getCheckMessage(MSG_LINE_BEFORE),
-            "67: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
             "68: " + getCheckMessage(MSG_TAG_AFTER),
             "76: " + getCheckMessage(MSG_LINE_BEFORE),
             "81: " + getCheckMessage(MSG_LINE_BEFORE),
-            "87: " + getCheckMessage(MSG_TAG_AFTER),
-            "88: " + getCheckMessage(MSG_TAG_AFTER),
+            "86: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR),
+            "88: " + getCheckMessage(MSG_LINE_BEFORE),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocParagraphIncorrect2.java"), expected);
