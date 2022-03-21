@@ -1,8 +1,8 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
-/**
+/** // violation ''/*' should be separated from previous line'
  * Some javadoc here.
  */
-// violation
+
 
 import java.util.Map;
 
