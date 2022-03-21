@@ -48,12 +48,10 @@ public class AllSinglelineCommentsTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAllSinglelineComments() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(SinglelineCommentListenerCheck.class);
         final String path = getPath("InputFullOfSinglelineComments.java");
         lineSeparator = CheckUtil.getLineSeparatorForFile(path, StandardCharsets.UTF_8);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, path, expected);
+        verifyWithInlineConfigParser(path, expected);
         assertWithMessage("All comments should be empty")
             .that(ALL_COMMENTS)
             .isEmpty();
@@ -83,8 +81,8 @@ public class AllSinglelineCommentsTest extends AbstractModuleTestSupport {
 
         @Override
         public void init() {
-            final int lines = 63;
-            for (int i = 0; i < lines; i++) {
+            final int lines = 70;
+            for (int i = 7; i < lines; i++) {
                 ALL_COMMENTS.add(i + lineSeparator);
             }
             ALL_COMMENTS.add(String.valueOf(lines));
