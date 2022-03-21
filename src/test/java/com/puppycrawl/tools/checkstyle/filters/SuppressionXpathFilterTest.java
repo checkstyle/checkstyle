@@ -20,25 +20,31 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Collections;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.JavaParser;
-import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 import nl.jqno.equalsverifier.Warning;
 
 public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
+
+    private static final String PATTERN = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+
+    private static final String[] ALL_MESSAGES = {
+        "20:29: " + getCheckMessage(ConstantNameCheck.class,
+                                    MSG_INVALID_PATTERN, "bad_name", PATTERN),
+    };
 
     @Override
     protected String getPackageLocation() {
@@ -47,41 +53,29 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAcceptOne() throws Exception {
-        final boolean optional = false;
-        final SuppressionXpathFilter filter =
-                createSuppressionXpathFilter(getPath("InputSuppressionXpathFilterNone.xml"),
-                        optional);
-
-        final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null, "ATest.java", null, null);
-
-        assertWithMessage(
-                    "TreeWalker audit event should be accepted when there are no suppressions")
-                .that(filter.accept(ev))
-                .isTrue();
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyFilterWithInlineConfigParser(getPath("InputSuppressionXpathFilterAcceptOne.java"),
+                                           ALL_MESSAGES,
+                                           removeSuppressed(ALL_MESSAGES, suppressed));
     }
 
     @Test
     public void testAcceptTwo() throws Exception {
-        final boolean optional = false;
-        final SuppressionXpathFilter filter = createSuppressionXpathFilter(
-                getPath("InputSuppressionXpathFilterIdAndQuery.xml"), optional);
-        final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null, "file1.java", null, null);
-
-        assertWithMessage("TreeWalker audit event should be accepted")
-                .that(filter.accept(ev))
-                .isTrue();
+        final String[] expected = {
+            "20:29: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
+                                        "different_name_than_suppression", PATTERN),
+        };
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyFilterWithInlineConfigParser(getPath("InputSuppressionXpathFilterAcceptTwo.java"),
+                                           expected, removeSuppressed(expected, suppressed));
     }
 
     @Test
     public void testAcceptOnNullFile() throws Exception {
-        final String fileName = null;
-        final boolean optional = false;
-        final SuppressionXpathFilter filter = createSuppressionXpathFilter(fileName, optional);
-
-        final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null, "AnyJava.java", null, null);
-        assertWithMessage("TreeWalker audit event on null file should be accepted, but was not")
-                .that(filter.accept(ev))
-                .isTrue();
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressionXpathFilterAcceptOnNullFile.java"), ALL_MESSAGES,
+            removeSuppressed(ALL_MESSAGES, suppressed));
     }
 
     @Test
@@ -117,46 +111,29 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testExistingSuppressionFileWithTrueOptional() throws Exception {
-        final boolean optional = true;
-        final SuppressionXpathFilter filter =
-                createSuppressionXpathFilter(getPath("InputSuppressionXpathFilterNone.xml"),
-                        optional);
-
-        final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null, "AnyJava.java", null, null);
-
-        assertWithMessage("Suppression file with true optional was not accepted")
-                .that(filter.accept(ev))
-                .isTrue();
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressionXpathFilterAcceptWithOptionalTrue.java"), ALL_MESSAGES,
+            removeSuppressed(ALL_MESSAGES, suppressed));
     }
 
     @Test
     public void testNonExistentSuppressionFileWithTrueOptional() throws Exception {
-        final String fileName = "src/test/resources/com/puppycrawl/tools/checkstyle/filters/"
-                + "non_existent_suppression_file.xml";
-        final boolean optional = true;
-        final SuppressionXpathFilter filter = createSuppressionXpathFilter(fileName, optional);
-
-        final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null, "AnyFile.java", null, null);
-
-        assertWithMessage("Should except event when suppression file does not exist")
-                .that(filter.accept(ev))
-                .isTrue();
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressionXpathFilterNonExistentFileWithTrueOptional.java"),
+            ALL_MESSAGES, removeSuppressed(ALL_MESSAGES, suppressed));
     }
 
     @Test
     public void testReject() throws Exception {
-        final boolean optional = false;
-        final SuppressionXpathFilter filter = createSuppressionXpathFilter(
-                        getPath("InputSuppressionXpathFilterIdAndQuery.xml"), optional);
-        final File file = new File(getPath("InputSuppressionXpathFilter.java"));
-        final Violation message = new Violation(3, 0, TokenTypes.CLASS_DEF, "", "",
-                null, null, "777", getClass(), null);
-        final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null, "file1.java",
-                message, JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
-
-        assertWithMessage("TreeWalker audit event should be rejected")
-                .that(filter.accept(ev))
-                .isFalse();
+        final String[] suppressed = {
+            "20:29: " + getCheckMessage(ConstantNameCheck.class,
+                                        MSG_INVALID_PATTERN, "bad_name", PATTERN),
+        };
+        verifyFilterWithInlineConfigParser(getPath("InputSuppressionXpathFilterReject.java"),
+                                           ALL_MESSAGES,
+                                           removeSuppressed(ALL_MESSAGES, suppressed));
     }
 
     @Test
@@ -194,82 +171,35 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFalseEncodeString() throws Exception {
-        final boolean optional = false;
-        final SuppressionXpathFilter filter = createSuppressionXpathFilter(
-                getPath("InputSuppressionXpathFilterEscapeString.xml"), optional);
-        final File file = new File(getPath("InputSuppressionXpathFilterEscapeString.java"));
+        final String[] expected = {
+            "17:29: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "19:29: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "21:29: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+        };
 
-        assertWithMessage("TreeWalker audit event should be rejected")
-                .that(filter.accept(createTreeWalkerAudit(8, 23, TokenTypes.STRING_LITERAL, file)))
-                .isFalse();
+        final String[] suppressed = {
+            "17:29: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "21:29: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+        };
 
-        assertWithMessage("TreeWalker audit event should be rejected")
-                .that(filter.accept(createTreeWalkerAudit(10, 22, TokenTypes.STRING_LITERAL, file)))
-                .isFalse();
-
-        assertWithMessage("TreeWalker audit event should be rejected")
-                .that(filter.accept(createTreeWalkerAudit(12, 27, TokenTypes.STRING_LITERAL, file)))
-                .isFalse();
-
-        assertWithMessage("TreeWalker audit event should be rejected")
-                .that(filter.accept(createTreeWalkerAudit(14, 25, TokenTypes.STRING_LITERAL, file)))
-                .isFalse();
-
-        assertWithMessage("TreeWalker audit event should be rejected")
-                .that(filter.accept(createTreeWalkerAudit(16, 25, TokenTypes.STRING_LITERAL, file)))
-                .isFalse();
-
-        assertWithMessage("TreeWalker audit event should be rejected")
-                .that(filter.accept(createTreeWalkerAudit(18, 25, TokenTypes.STRING_LITERAL, file)))
-                .isFalse();
-
-        assertWithMessage("TreeWalker audit event should be rejected")
-                .that(filter.accept(createTreeWalkerAudit(20, 22, TokenTypes.STRING_LITERAL, file)))
-                .isFalse();
-
-        assertWithMessage("TreeWalker audit event should be rejected")
-                .that(filter.accept(createTreeWalkerAudit(22, 28, TokenTypes.STRING_LITERAL, file)))
-                .isFalse();
-
-        assertWithMessage("TreeWalker audit event should be rejected")
-                .that(filter.accept(createTreeWalkerAudit(24, 28, TokenTypes.STRING_LITERAL, file)))
-                .isFalse();
+        verifyFilterWithInlineConfigParser(getPath("InputSuppressionXpathFilterEscapeString.java"),
+                                           expected, removeSuppressed(expected, suppressed));
     }
 
     @Test
     public void testFalseEncodeChar() throws Exception {
-        final boolean optional = false;
-        final SuppressionXpathFilter filter = createSuppressionXpathFilter(
-                getPath("InputSuppressionXpathFilterEscapeChar.xml"), optional);
-        final File file = new File(getPath("InputSuppressionXpathFilterEscapeChar.java"));
+        final String[] expected = {
+            "17:25: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "19:25: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "21:25: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+        };
 
-        assertWithMessage("TreeWalker audit event should be rejected")
-                .that(filter.accept(createTreeWalkerAudit(8, 13, TokenTypes.CHAR_LITERAL, file)))
-                .isFalse();
+        final String[] suppressed = {
+            "17:25: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "19:25: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+        };
 
-        assertWithMessage("TreeWalker audit event should be rejected")
-                .that(filter.accept(createTreeWalkerAudit(10, 13, TokenTypes.CHAR_LITERAL, file)))
-                .isFalse();
-
-        assertWithMessage("TreeWalker audit event should be rejected")
-                .that(filter.accept(createTreeWalkerAudit(12, 13, TokenTypes.CHAR_LITERAL, file)))
-                .isFalse();
-
-        assertWithMessage("TreeWalker audit event should be rejected")
-                .that(filter.accept(createTreeWalkerAudit(14, 13, TokenTypes.CHAR_LITERAL, file)))
-                .isFalse();
-
-        assertWithMessage("TreeWalker audit event should be rejected")
-                .that(filter.accept(createTreeWalkerAudit(16, 13, TokenTypes.CHAR_LITERAL, file)))
-                .isFalse();
-    }
-
-    private static TreeWalkerAuditEvent createTreeWalkerAudit(int lineNo, int columnNo,
-                                                              int tokenTypes, File file)
-            throws IOException, CheckstyleException {
-        final Violation message = new Violation(lineNo, columnNo, tokenTypes, "", "",
-                null, null, "777", SuppressionXpathFilterTest.class, null);
-        return new TreeWalkerAuditEvent(null, "Test.java", message,
-                JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
+        verifyFilterWithInlineConfigParser(getPath("InputSuppressionXpathFilterEscapeChar.java"),
+                                           expected, removeSuppressed(expected, suppressed));
     }
 }
