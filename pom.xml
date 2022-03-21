@@ -1548,8 +1548,6 @@
 
                 <exclude>**/SuppressionSingleFilterTest.class</exclude>
 
-                <exclude>**/AllSinglelineCommentsTest.class</exclude>
-
                 <exclude>**/FileSetCheckTest.class</exclude>
 
                 <exclude>**/AbstractFileSetCheckTest.class</exclude>
