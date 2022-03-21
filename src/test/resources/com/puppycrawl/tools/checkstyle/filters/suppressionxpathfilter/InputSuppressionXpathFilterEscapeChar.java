@@ -1,17 +1,22 @@
+/*
+SuppressionXpathFilter
+file = (file)InputSuppressionXpathFilterEscapeChar.xml
+optional = (default)false
+
+com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck
+allowEscapesForControlCharacters = (default)false
+allowByTailComment = (default)false
+allowIfAllCharactersEscaped = (default)false
+allowNonPrintableEscapes = (default)false
+
+*/
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
 
-/*
- * Config: Default.
- */
 public class InputSuppressionXpathFilterEscapeChar {
 
-    char a = '&'; // violation
+    char escapedChar1 = '\u03bc'; // filtered violation
 
-    char b = '\"'; // violation
+    char escapedChar2 = '\u0055'; // filtered violation
 
-    char c = '\''; // violation
-
-    char d = '<'; // violation
-
-    char e = '>'; // violation
+    char escapedChar3 = '\u041a'; // violation
 }
