@@ -4,34 +4,23 @@
         "https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd">
 <suppressions>
     <suppress-xpath
-            files="Test.java"
-            id="777"
-            query="//CLASS_DEF[./IDENT[@text='InputSuppressionXpathFilterEscapeChar']]/OBJBLOCK/
-                    VARIABLE_DEF[./IDENT[@text='a']]/ASSIGN/EXPR/CHAR_LITERAL
-                        [@text='&apos;&apos;&amp;&apos;&apos;']"/>
+            files="InputSuppressionXpathFilterEscapeChar.java"
+            checks="IllegalTokenTextCheck"
+            query="/COMPILATION_UNIT/CLASS_DEF[./IDENT
+            [@text='InputSuppressionXpathFilterEscapeChar']]/OBJBLOCK/VARIABLE_DEF
+            [./IDENT[@text='c']]/ASSIGN/EXPR/CHAR_LITERAL
+            [@text='&apos;&apos;\&apos;&apos;&apos;&apos;']"/>
     <suppress-xpath
-            files="Test.java"
-            id="777"
-            query="//CLASS_DEF[./IDENT[@text='InputSuppressionXpathFilterEscapeChar']]/OBJBLOCK/
-                   VARIABLE_DEF[./IDENT[@text='b']]/ASSIGN/EXPR/CHAR_LITERAL
-                       [@text='&apos;&apos;\&quot;&apos;&apos;']"/>
+            files="InputSuppressionXpathFilterEscapeChar.java"
+            checks="IllegalTokenTextCheck"
+            query="/COMPILATION_UNIT/CLASS_DEF[./IDENT
+            [@text='InputSuppressionXpathFilterEscapeChar']]/OBJBLOCK/VARIABLE_DEF
+            [./IDENT[@text='d']]/ASSIGN/EXPR/CHAR_LITERAL[@text='&apos;&apos;&lt;&apos;&apos;']"/>
     <suppress-xpath
-            files="Test.java"
-            id="777"
-            query="//CLASS_DEF[./IDENT[@text='InputSuppressionXpathFilterEscapeChar']]/OBJBLOCK/
-                    VARIABLE_DEF[./IDENT[@text='c']]/ASSIGN/EXPR/CHAR_LITERAL
-                        [@text='&apos;&apos;\&apos;&apos;&apos;&apos;']"/>
-    <suppress-xpath
-            files="Test.java"
-            id="777"
-            query="//CLASS_DEF[./IDENT[@text='InputSuppressionXpathFilterEscapeChar']]/OBJBLOCK/
-                    VARIABLE_DEF[./IDENT[@text='d']]/ASSIGN/EXPR/CHAR_LITERAL
-                        [@text='&apos;&apos;&lt;&apos;&apos;']"/>
-    <suppress-xpath
-            files="Test.java"
-            id="777"
-            query="/COMPILATION_UNIT/CLASS_DEF
-                    [./IDENT[@text='InputSuppressionXpathFilterEscapeChar']]/OBJBLOCK/
-                    VARIABLE_DEF[./IDENT[@text='e']]/ASSIGN/EXPR/CHAR_LITERAL
-                        [@text='&apos;&apos;&gt;&apos;&apos;']"/>
+            files="InputSuppressionXpathFilterEscapeChar.java"
+            checks="IllegalTokenTextCheck"
+            query="/COMPILATION_UNIT/CLASS_DEF[./IDENT
+            [@text='InputSuppressionXpathFilterEscapeChar']]/OBJBLOCK/VARIABLE_DEF
+            [./IDENT[@text='e']]/ASSIGN/EXPR/
+            CHAR_LITERAL[@text='&apos;&apos;&gt;&apos;&apos;']"/>
 </suppressions>
