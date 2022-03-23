@@ -19,11 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_OBJECT_ARRAY;
-import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
-import java.io.IOException;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck;
+import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY;
+
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
@@ -35,7 +37,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import org.junitpioneer.jupiter.DefaultLocale;
 
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import nl.jqno.equalsverifier.EqualsVerifier;
@@ -51,47 +52,6 @@ import nl.jqno.equalsverifier.EqualsVerifierReport;
 public class ViolationTest {
 
     private static final Locale DEFAULT_LOCALE = Locale.getDefault();
-
-    /**
-     * Verifies that the language specified with the system property {@code user.language} exists.
-     */
-    @Test
-    public void testLanguageIsValid() {
-        final String language = DEFAULT_LOCALE.getLanguage();
-        assumeFalse(language.isEmpty(), "Locale not set");
-        assertWithMessage("Invalid language")
-                .that(Locale.getISOLanguages())
-                .asList()
-                .contains(language);
-    }
-
-    /**
-     * Verifies that the country specified with the system property {@code user.country} exists.
-     */
-    @Test
-    public void testCountryIsValid() {
-        final String country = DEFAULT_LOCALE.getCountry();
-        assumeFalse(country.isEmpty(), "Locale not set");
-        assertWithMessage("Invalid country")
-                .that(Locale.getISOCountries())
-                .asList()
-                .contains(country);
-    }
-
-    /**
-     * Verifies that if the language is specified explicitly (and it is not English),
-     * the violation does not use the default value.
-     */
-    @Test
-    public void testLocaleIsSupported() {
-        final String language = DEFAULT_LOCALE.getLanguage();
-        assumeFalse(language.isEmpty() || Locale.ENGLISH.getLanguage().equals(language),
-                "Custom locale not set");
-        final Violation violation = createSampleViolation();
-        assertWithMessage("Unsupported language: %s", DEFAULT_LOCALE)
-                .that(violation.getViolation())
-                .isNotEqualTo("Empty statement.");
-    }
 
     @Test
     public void testEqualsAndHashCode() {
@@ -130,19 +90,58 @@ public class ViolationTest {
     }
 
     @Test
-    public void testMessageInEnglish() {
-        final Violation violation = createSampleViolation();
-        Violation.setLocale(Locale.ENGLISH);
+    public void testMessageInManyLanguages() {
 
-        assertWithMessage("Invalid violation")
-            .that(violation.getViolation())
-            .isEqualTo("Empty statement.");
+        final Locale[] locales = {
+            Locale.ROOT, Locale.FRENCH, new Locale("PT"), new Locale("ES"), Locale.GERMAN,
+            new Locale("FI"), Locale.JAPANESE, new Locale("TR"), Locale.CHINESE
+        };
+
+        final String[] messages = new String[locales.length];
+
+        for (int i = 0; i < locales.length; i++) {
+            Violation.setDefaultLocale(locales[i]);
+            messages[i] = AbstractModuleTestSupport
+                .getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY);
+        }
+
+        for (int i = 0; i < locales.length; i++) {
+
+            Violation.setDefaultLocale(locales[i]);
+            final Violation violation = createSampleViolation();
+
+            Violation.setDefaultLocale(locales[(i + 1) % locales.length]);
+
+            assertEquals(messages[i], violation.getViolation(), "Invalid violation");
+            assertEquals(locales[i], violation.getLocale(), "Invalid locale");
+        }
     }
 
     @Test
-    public void testBundleReloadUrlNull() throws IOException {
-        final Violation.Utf8Control control = new Violation.Utf8Control();
-        final ResourceBundle bundle = control.newBundle(
+    public void testMessageInUnknownLocale() {
+        final Locale unknown = new Locale("WW");
+        Locale.setDefault(unknown);
+        Violation.setDefaultLocale(unknown);
+
+        final Violation violation = createSampleViolation();
+
+        assertEquals("Empty statement.", violation.getViolation(), "Invalid violation");
+        assertEquals(unknown, violation.getLocale(), "Invalid locale");
+    }
+
+    @Test
+    public void testSetDefaultLocale() {
+        Violation.setDefaultLocale(Locale.FRENCH);
+        assertEquals(Locale.FRENCH, Violation.getDefaultLocale(), "Invalid locale");
+        Violation.setDefaultLocale(Locale.JAPANESE);
+        assertEquals(Locale.JAPANESE, Violation.getDefaultLocale(), "Invalid locale");
+        Violation.setDefaultLocale(Locale.ENGLISH);
+        assertEquals(Locale.ROOT, Violation.getDefaultLocale(), "Invalid locale");
+    }
+
+    @Test
+    public void testBundleReloadUrlNull() throws Exception {
+        final ResourceBundle bundle = BundleCache.UTF8_CONTROL.newBundle(
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 Locale.ENGLISH, "java.class",
                 Thread.currentThread().getContextClassLoader(), true);
@@ -157,7 +156,7 @@ public class ViolationTest {
      * @noinspection resource, IOResourceOpenedButNotSafelyClosed
      */
     @Test
-    public void testBundleReloadUrlNotNull() throws IOException {
+    public void testBundleReloadUrlNotNull() throws Exception {
         final AtomicBoolean closed = new AtomicBoolean();
 
         final InputStream inputStream = new InputStream() {
@@ -189,8 +188,7 @@ public class ViolationTest {
             }
         });
 
-        final Violation.Utf8Control control = new Violation.Utf8Control();
-        final ResourceBundle bundle = control.newBundle(
+        final ResourceBundle bundle = BundleCache.UTF8_CONTROL.newBundle(
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages", Locale.ENGLISH,
                 "java.class", new TestUrlsClassLoader(url), true);
 
@@ -211,7 +209,7 @@ public class ViolationTest {
      * @noinspection resource, IOResourceOpenedButNotSafelyClosed
      */
     @Test
-    public void testBundleReloadUrlNotNullFalseReload() throws IOException {
+    public void testBundleReloadUrlNotNullFalseReload() throws Exception {
         final AtomicBoolean closed = new AtomicBoolean();
 
         final InputStream inputStream = new InputStream() {
@@ -243,8 +241,7 @@ public class ViolationTest {
             }
         });
 
-        final Violation.Utf8Control control = new Violation.Utf8Control();
-        final ResourceBundle bundle = control.newBundle(
+        final ResourceBundle bundle = BundleCache.UTF8_CONTROL.newBundle(
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages", Locale.ENGLISH,
                 "java.class", new TestUrlsClassLoader(url), false);
 
@@ -260,7 +257,7 @@ public class ViolationTest {
     }
 
     @Test
-    public void testBundleReloadUrlNotNullStreamNull() throws IOException {
+    public void testBundleReloadUrlNotNullStreamNull() throws Exception {
         final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL u) {
@@ -268,8 +265,7 @@ public class ViolationTest {
             }
         });
 
-        final Violation.Utf8Control control = new Violation.Utf8Control();
-        final ResourceBundle bundle = control.newBundle(
+        final ResourceBundle bundle = BundleCache.UTF8_CONTROL.newBundle(
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 Locale.ENGLISH, "java.class",
                 new TestUrlsClassLoader(url), true);
@@ -279,41 +275,9 @@ public class ViolationTest {
     }
 
     @Test
-    public void testMessageInFrench() {
-        final Violation violation = createSampleViolation();
-        Violation.setLocale(Locale.FRENCH);
-
-        assertWithMessage("Invalid violation")
-            .that(violation.getViolation())
-            .isEqualTo("Instruction vide.");
-    }
-
-    @DefaultLocale("fr")
-    @Test
-    public void testEnforceEnglishLanguageBySettingUnitedStatesLocale() {
-        Violation.setLocale(Locale.US);
-        final Violation violation = createSampleViolation();
-
-        assertWithMessage("Invalid violation")
-            .that(violation.getViolation())
-            .isEqualTo("Empty statement.");
-    }
-
-    @DefaultLocale("fr")
-    @Test
-    public void testEnforceEnglishLanguageBySettingRootLocale() {
-        Violation.setLocale(Locale.ROOT);
-        final Violation violation = createSampleViolation();
-
-        assertWithMessage("Invalid violation")
-            .that(violation.getViolation())
-            .isEqualTo("Empty statement.");
-    }
-
-    @DefaultLocale("fr")
-    @Test
     public void testGetKey() {
-        Violation.setLocale(Locale.US);
+        Locale.setDefault(Locale.FRENCH);
+        Violation.setDefaultLocale(Locale.US);
         final Violation violation = createSampleViolation();
 
         assertWithMessage("Invalid violation key")
@@ -321,10 +285,10 @@ public class ViolationTest {
             .isEqualTo("empty.statement");
     }
 
-    @DefaultLocale("fr")
     @Test
-    public void testCleatBundleCache() {
-        Violation.setLocale(Locale.ROOT);
+    public void testClearBundleCache() {
+        Locale.setDefault(Locale.FRENCH);
+        Violation.setDefaultLocale(Locale.ROOT);
         final Violation violation = createSampleViolation();
 
         assertWithMessage("Invalid violation")
@@ -332,13 +296,13 @@ public class ViolationTest {
             .isEqualTo("Empty statement.");
 
         final Map<String, ResourceBundle> bundleCache =
-                TestUtil.getInternalStaticState(Violation.class, "BUNDLE_CACHE");
+                TestUtil.getInternalStaticState(BundleCache.class, "BUNDLE_CACHE");
 
         assertWithMessage("Invalid bundle cache size")
             .that(bundleCache)
             .hasSize(1);
 
-        Violation.setLocale(Locale.CHINA);
+        Violation.setDefaultLocale(Locale.CHINA);
 
         assertWithMessage("Invalid bundle cache size")
             .that(bundleCache)
@@ -347,12 +311,16 @@ public class ViolationTest {
 
     @Test
     public void testTokenType() {
-        final Violation violation1 = new Violation(1, 1, TokenTypes.CLASS_DEF,
-                "messages.properties", "key", null, SeverityLevel.ERROR, null,
-                getClass(), null);
-        final Violation violation2 = new Violation(1, 1, TokenTypes.OBJBLOCK,
-                "messages.properties", "key", EMPTY_OBJECT_ARRAY, SeverityLevel.ERROR, null,
-                getClass(), null);
+        final Violation violation1 = Violation.createDetailedViolation(1, 1, 1,
+                                                                       TokenTypes.CLASS_DEF, "messages.properties",
+                                                                       "key", EMPTY_STRING_ARRAY,
+                                                                       SeverityLevel.ERROR, null, getClass(),
+                                                                       null);
+        final Violation violation2 = Violation.createDetailedViolation(1, 1, 1,
+                                                                       TokenTypes.OBJBLOCK, "messages.properties",
+                                                                       "key", EMPTY_STRING_ARRAY,
+                                                                       SeverityLevel.ERROR, null, getClass(),
+                                                                       null);
 
         assertWithMessage("Invalid token type")
             .that(violation1.getTokenType())
@@ -364,9 +332,11 @@ public class ViolationTest {
 
     @Test
     public void testGetColumnCharIndex() {
-        final Violation violation1 = new Violation(1, 1, 123,
-                TokenTypes.CLASS_DEF, "messages.properties", "key", null, SeverityLevel.ERROR,
-                null, getClass(), null);
+        final Violation violation1 = Violation.createDetailedViolation(1, 1, 123,
+                                                                       TokenTypes.CLASS_DEF, "messages.properties",
+                                                                       "key", EMPTY_STRING_ARRAY,
+                                                                       SeverityLevel.ERROR, null, getClass(),
+                                                                       null);
 
         assertWithMessage("Invalid column char index")
             .that(violation1.getColumnCharIndex())
@@ -431,25 +401,31 @@ public class ViolationTest {
     }
 
     private static Violation createSampleViolationWithId(String id) {
-        return new Violation(1, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
-                "empty.statement", EMPTY_OBJECT_ARRAY, id, Violation.class, null);
+        return Violation.createLineViolation(1,
+                                             "com.puppycrawl.tools.checkstyle.checks.coding.messages",
+                                             "empty.statement", EMPTY_STRING_ARRAY, id, Violation.class,
+                                             null);
     }
 
     private static Violation createSampleViolationWithLine(int line) {
-        return new Violation(line, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
-                "empty.statement", EMPTY_OBJECT_ARRAY, "module", Violation.class, null);
+        return Violation.createLineViolation(line,
+                                             "com.puppycrawl.tools.checkstyle.checks.coding.messages",
+                                             "empty.statement", EMPTY_STRING_ARRAY, "module",
+                                             Violation.class, null);
     }
 
     private static Violation createSampleViolationWithColumn(int column) {
-        return new Violation(1, column,
-                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
-                EMPTY_OBJECT_ARRAY, "module", Violation.class, null);
+        return Violation.createDetailedViolation(1, column, column, 0,
+                                                 "com.puppycrawl.tools.checkstyle.checks.coding.messages",
+                                                 "empty.statement",
+                                                 EMPTY_STRING_ARRAY, SeverityLevel.ERROR, "module",
+                                                 Violation.class, null);
     }
 
     @AfterEach
     public void tearDown() {
-        Violation.clearCache();
-        Violation.setLocale(DEFAULT_LOCALE);
+        Locale.setDefault(DEFAULT_LOCALE);
+        Violation.setDefaultLocale(DEFAULT_LOCALE);
     }
 
     /**

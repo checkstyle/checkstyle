@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.AbstractPathTestSupport.addEndOfLine;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
+import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
@@ -542,8 +543,9 @@ public class MainTest {
         assertMainReturnCode(2, "-c", getPath("InputMainConfig-classname2-error.xml"),
                     getPath("InputMain.java"));
         final Violation errorCounterTwoMessage = new Violation(1,
-                Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
-                new String[] {String.valueOf(2)}, null, getClass(), null);
+                                                               Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER_1,
+                                                               EMPTY_STRING_ARRAY, null, getClass(),
+                                                               null);
         final Violation invalidPatternMessageMain = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
                 "name.invalidPattern", new String[] {"InputMain", "^[a-z0-9]*$"},
@@ -579,8 +581,10 @@ public class MainTest {
         assertMainReturnCode(1, "-c", getPath("InputMainConfig-classname2-error.xml"),
                     getPath("InputMain1.java"));
         final Violation errorCounterTwoMessage = new Violation(1,
-                Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
-                new String[] {String.valueOf(1)}, null, getClass(), null);
+                                                               Definitions.CHECKSTYLE_BUNDLE,
+                                                               Main.ERROR_COUNTER_1,
+                                                               EMPTY_STRING_ARRAY, null, getClass(),
+                                                               null);
         final Violation invalidPatternMessageMain = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
                 "name.invalidPattern", new String[] {"InputMain1", "^[a-z0-9]*$"},

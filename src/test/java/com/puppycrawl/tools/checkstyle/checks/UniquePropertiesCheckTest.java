@@ -41,6 +41,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -71,7 +72,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_KEY, "general.exception", 2),
+            "3: " + getCheckMessage(MSG_KEY, Checker.EXCEPTION_MSG, 2, 3),
             "5: " + getCheckMessage(MSG_KEY, "DefaultLogger.auditStarted", 2),
             "11: " + getCheckMessage(MSG_KEY, "onlineManual", 3),
             "22: " + getCheckMessage(MSG_KEY, "time stamp", 3),
