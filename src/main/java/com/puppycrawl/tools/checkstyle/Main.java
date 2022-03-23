@@ -42,7 +42,6 @@ import java.util.stream.Collectors;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -69,6 +68,11 @@ public final class Main {
      * message in the "messages.properties" file.
      */
     public static final String ERROR_COUNTER = "Main.errorCounter";
+    /**
+     * A key pointing to the error counter
+     * message in the "messages.properties" file when the counter is 1.
+     */
+    public static final String ERROR_COUNTER_1 = "Main.errorCounter1";
     /**
      * A key pointing to the load properties exception
      * message in the "messages.properties" file.
@@ -141,9 +145,17 @@ public final class Main {
         finally {
             // return exit code base on validation of Checker
             if (errorCounter > 0) {
-                final Violation errorCounterViolation = new Violation(1,
+                final Violation errorCounterViolation;
+                if (errorCounter == 1) {
+                    errorCounterViolation = Violation.createGeneralMessage(
+                        Definitions.CHECKSTYLE_BUNDLE, ERROR_COUNTER_1,
+                        CommonUtil.EMPTY_STRING_ARRAY, null, Main.class, null);
+                }
+                else {
+                    errorCounterViolation = Violation.createGeneralMessage(
                         Definitions.CHECKSTYLE_BUNDLE, ERROR_COUNTER,
                         new String[] {String.valueOf(errorCounter)}, null, Main.class, null);
+                }
                 // print error count statistic to error output stream,
                 // output stream might be used by validation report content
                 System.err.println(errorCounterViolation.getViolation());
@@ -430,7 +442,7 @@ public final class Main {
             properties.load(stream);
         }
         catch (final IOException ex) {
-            final Violation loadPropertiesExceptionMessage = new Violation(1,
+            final Violation loadPropertiesExceptionMessage = Violation.createGeneralMessage(
                     Definitions.CHECKSTYLE_BUNDLE, LOAD_PROPERTIES_EXCEPTION,
                     new String[] {file.getAbsolutePath()}, null, Main.class, null);
             throw new CheckstyleException(loadPropertiesExceptionMessage.getViolation(), ex);

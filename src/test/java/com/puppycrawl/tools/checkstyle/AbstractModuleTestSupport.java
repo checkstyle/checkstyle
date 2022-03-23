@@ -37,9 +37,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.google.common.collect.Maps;
+import com.puppycrawl.tools.checkstyle.api.BundleCache;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
@@ -233,9 +235,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param expectedFiltered an array of expected config with filters.
      * @throws Exception if exception occurs during verification process.
      */
-    protected final void verifyFilterWithInlineConfigParser(String filePath,
-                                                            String[] expectedUnfiltered,
-                                                            String... expectedFiltered)
+    protected final void verifyFilterWithInlineConfigParser(
+        String filePath,
+        String[] expectedUnfiltered,
+        String... expectedFiltered)
             throws Exception {
         final TestInputConfiguration testInputConfiguration =
                 InlineConfigParser.parseWithFilteredViolations(filePath);
@@ -356,10 +359,12 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param expectedViolations a map of expected violations per files.
      * @throws Exception if exception occurs during verification process.
      */
-    protected final void verify(Checker checker,
-                          File[] processedFiles,
-                          Map<String, List<String>> expectedViolations)
-            throws Exception {
+    protected final void verify(
+        Checker checker,
+        File[] processedFiles,
+        Map<String, List<String>> expectedViolations)
+        throws Exception
+    {
         stream.flush();
         stream.reset();
         final List<File> theFiles = new ArrayList<>();
@@ -367,7 +372,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final int errs = checker.process(theFiles);
 
         // process each of the lines
-        final Map<String, List<String>> actualViolations = getActualViolations(errs);
+        final Map<String, List<String>> actualViolations =
+            getActualViolations(expectedViolations.keySet(), errs);
         final Map<String, List<String>> realExpectedViolations =
                 Maps.filterValues(expectedViolations, input -> !input.isEmpty());
 
@@ -427,9 +433,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param testInputViolations List of TestInputViolation objects.
      * @throws Exception if exception occurs during verification process.
      */
-    private void verifyViolations(Configuration config,
-                                  String file,
-                                  List<TestInputViolation> testInputViolations)
+    private void verifyViolations(
+        Configuration config,
+        String file,
+        List<TestInputViolation> testInputViolations)
             throws Exception {
         final List<String> actualViolations = getActualViolationsForFile(config, file);
         final List<Integer> actualViolationLines = actualViolations.stream()
@@ -464,7 +471,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final List<File> files = Collections.singletonList(new File(file));
         final Checker checker = createChecker(config);
         final Map<String, List<String>> actualViolations =
-                getActualViolations(checker.process(files));
+            getActualViolations(Collections.singleton(file), checker.process(files));
         checker.destroy();
         return actualViolations.getOrDefault(file, new ArrayList<>());
     }
@@ -474,36 +481,104 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * Each file is mapped to their corresponding violation messages. Reads input stream for these
      * messages using instance of {@link InputStreamReader}.
      *
+     * @param expectedFileNames The file names that are expected to be seen.
      * @param errorCount count of errors after checking set of files against {@link Checker}.
      * @return a {@link Map} object containing file names and the corresponding violation messages.
      * @throws IOException exception can occur when reading input stream.
      */
-    private Map<String, List<String>> getActualViolations(int errorCount) throws IOException {
+    private Map<String, List<String>> getActualViolations(
+        Set<String> expectedFileNames,
+        int errorCount)
+        throws IOException
+    {
+        final String auditFinished = auditFinishedString();
         // process each of the lines
-        try (ByteArrayInputStream inputStream =
-                new ByteArrayInputStream(stream.toByteArray());
+        try (ByteArrayInputStream inputStream = new ByteArrayInputStream(stream.toByteArray());
             LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             final Map<String, List<String>> actualViolations = new HashMap<>();
-            for (String line = lnr.readLine(); line != null && lnr.getLineNumber() <= errorCount;
-                 line = lnr.readLine()) {
-                // have at least 2 characters before the splitting colon,
-                // to not split after the drive letter on windows
+            String line = lnr.readLine();
+            for (int errorsFound = 0; line != null && errorsFound < errorCount; errorsFound++) {
+
+                // If the line does not seems to be an error heading, skip it.
+                if (!isLikeMessageHeader(line, auditFinished, expectedFileNames)) {
+                    line = lnr.readLine();
+                    continue;
+                }
+
+                // Have at least 2 characters before the splitting colon, to not split after the
+                // drive letter on windows. Split the file name and the actual message violation.
+
                 final String[] actualViolation = line.split("(?<=.{2}):", 2);
                 final String actualViolationFileName = actualViolation[0];
-                final String actualViolationMessage = actualViolation[1];
 
+                final StringBuilder actualViolationMessage = new StringBuilder(actualViolation[1]);
+
+                // Messages can span multiple lines (like stacktraces). So, read the next line in
+                // advance and if it does not seems to be a new message, presume that it is the
+                // next line of the current one and append it to the actualViolationMessage. If it
+                // seems to be a new message, it will be used in the next for's iteration.
+                line = lnr.readLine();
+                boolean hasStackTrace = false;
+                while (line != null &&
+                    !isLikeMessageHeader(line, auditFinished, expectedFileNames)) {
+                    if (!isStackTraceElement(line)) {
+                        if (!line.trim().isEmpty()) {
+                            actualViolationMessage.append('\n').append(line);
+                        }
+                    }
+                    else if (!hasStackTrace) {
+                        hasStackTrace = true;
+                        actualViolationMessage.append("\nSTACKTRACE");
+                    }
+                    line = lnr.readLine();
+                }
+
+                // Get the List on the Map, creating it if needed.
                 List<String> actualViolationsPerFile =
-                        actualViolations.get(actualViolationFileName);
+                    actualViolations.get(actualViolationFileName);
                 if (actualViolationsPerFile == null) {
                     actualViolationsPerFile = new ArrayList<>();
                     actualViolations.put(actualViolationFileName, actualViolationsPerFile);
                 }
-                actualViolationsPerFile.add(actualViolationMessage);
+
+                // Put the violation on the map.
+                actualViolationsPerFile.add(actualViolationMessage.toString());
             }
 
             return actualViolations;
         }
+    }
+
+    private static String auditFinishedString() {
+        final ResourceBundle resourceBundle = BundleCache.getBundle(
+            Definitions.CHECKSTYLE_BUNDLE,
+            Violation.getDefaultLocale(),
+            BundleCache.class.getClassLoader());
+        final String pattern = resourceBundle.getString(DefaultLogger.AUDIT_FINISHED_MESSAGE);
+        final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
+
+        return formatter.format(CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    private static boolean isStackTraceElement(String line) {
+        return line.startsWith("\tat") || line.startsWith("Caused by: ");
+    }
+
+    private static boolean isLikeMessageHeader(
+        String line,
+        String auditFinished,
+        Set<String> expectedFileNames) {
+        if (line.equals(auditFinished)) return true;
+
+        // Have at least 2 characters before the splitting colon,
+        // to not split after the drive letter on windows.
+        String[] parts = line.split("(?<=.{2}):", 2);
+        return parts.length == 2
+            && !parts[0].contains("\t")
+            && !parts[0].equals("Caused by")
+            && (parts[0].contains("/") || parts[0].contains("\\")
+            || expectedFileNames.contains(parts[0]));
     }
 
     /**
@@ -527,7 +602,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param arguments the arguments of message in 'messages.properties' file.
      * @return The message of the check with the arguments applied.
      */
-    protected static String getCheckMessage(
+    public static String getCheckMessage(
             Class<?> clazz, String messageKey, Object... arguments) {
         return internalGetCheckMessage(getMessageBundle(clazz.getName()), messageKey, arguments);
     }
@@ -545,9 +620,9 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             String messageBundle, String messageKey, Object... arguments) {
         final ResourceBundle resourceBundle = ResourceBundle.getBundle(
                 messageBundle,
-                Locale.getDefault(),
+                Violation.getDefaultLocale(),
                 Thread.currentThread().getContextClassLoader(),
-                new Violation.Utf8Control());
+                BundleCache.UTF8_CONTROL);
         final String pattern = resourceBundle.getString(messageKey);
         final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
         return formatter.format(arguments);

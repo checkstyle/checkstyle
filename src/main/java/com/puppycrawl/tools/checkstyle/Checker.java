@@ -21,8 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -333,26 +331,22 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         }
         catch (final IOException ioe) {
             log.debug("IOException occurred.", ioe);
-            fileMessages.add(new Violation(1,
-                    Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
-                    new String[] {ioe.getMessage()}, null, getClass(), null));
+            fileMessages.add(Violation.createGeneralMessage(
+                Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
+                new String[] {ioe.getMessage(), CommonUtil.getStackTrace(ioe)},
+                null, getClass(), null));
         }
         // -@cs[IllegalCatch] There is no other way to obey haltOnException field
-        catch (Exception ex) {
+        catch (final Throwable ex) {
             if (haltOnException) {
                 throw ex;
             }
 
             log.debug("Exception occurred.", ex);
 
-            final StringWriter sw = new StringWriter();
-            final PrintWriter pw = new PrintWriter(sw, true);
-
-            ex.printStackTrace(pw);
-
-            fileMessages.add(new Violation(1,
+            fileMessages.add(Violation.createGeneralMessage(
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
-                    new String[] {sw.getBuffer().toString()},
+                    new String[] {ex.getMessage(), CommonUtil.getStackTrace(ex)},
                     null, getClass(), null));
         }
         return fileMessages;
@@ -361,8 +355,8 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     /**
      * Check if all before execution file filters accept starting the file.
      *
-     * @param fileName
-     *            the file to be audited
+     * @param fileName the file to be audited
+     *
      * @return {@code true} if the file is accepted.
      */
     private boolean acceptFileStarted(String fileName) {
@@ -373,8 +367,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     /**
      * Notify all listeners about the beginning of a file audit.
      *
-     * @param fileName
-     *            the file to be audited
+     * @param fileName the file to be audited
      */
     @Override
     public void fireFileStarted(String fileName) {
@@ -412,8 +405,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     /**
      * Notify all listeners about the end of a file audit.
      *
-     * @param fileName
-     *            the audited file
+     * @param fileName the file to be audited
      */
     @Override
     public void fireFileFinished(String fileName) {
@@ -427,7 +419,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     @Override
     protected void finishLocalSetup() throws CheckstyleException {
         final Locale locale = new Locale(localeLanguage, localeCountry);
-        Violation.setLocale(locale);
+        Violation.setDefaultLocale(locale);
 
         if (moduleFactory == null) {
             if (moduleClassLoader == null) {
