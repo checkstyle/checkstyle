@@ -3311,6 +3311,10 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheckTest
                 </param>
+                <!--  35% coverage, 29% mutation in CodePointUtil-->
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheckTest
+                </param>
                 <!-- 2% mutation in ScopeUtil -->
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheckTest
