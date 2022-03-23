@@ -19,12 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import java.util.Arrays;
 import java.util.Locale;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -220,18 +222,18 @@ public class SeparatorWrapCheck
         final String text = ast.getText();
         final int colNo = ast.getColumnNo();
         final int lineNo = ast.getLineNo();
-        final String currentLine = getLines()[lineNo - 1];
-        final String substringAfterToken =
-                currentLine.substring(colNo + text.length()).trim();
-        final String substringBeforeToken =
-                currentLine.substring(0, colNo).trim();
+        final int[] currentLine = getLineCodePoints(lineNo - 1);
+        final int[] substringAfterToken = CodePointUtil.trim(Arrays.copyOfRange(currentLine,
+                colNo + text.length(), currentLine.length));
+        final int[] substringBeforeToken =
+                CodePointUtil.trim(Arrays.copyOfRange(currentLine, 0, colNo));
 
         if (option == WrapOption.EOL
-                && substringBeforeToken.isEmpty()) {
+                && substringBeforeToken.length == 0) {
             log(ast, MSG_LINE_PREVIOUS, text);
         }
         else if (option == WrapOption.NL
-                 && substringAfterToken.isEmpty()) {
+                 && substringAfterToken.length == 0) {
             log(ast, MSG_LINE_NEW, text);
         }
     }

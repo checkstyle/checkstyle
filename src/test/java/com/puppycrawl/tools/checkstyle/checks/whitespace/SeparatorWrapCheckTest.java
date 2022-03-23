@@ -117,4 +117,18 @@ public class SeparatorWrapCheckTest
                 getPath("InputSeparatorWrapForArrayDeclarator.java"), expected);
     }
 
+    @Test
+    public void testWithEmoji() throws Exception {
+        final String[] expected = {
+            "13:39: " + getCheckMessage(MSG_LINE_NEW, '['),
+            "16:57: " + getCheckMessage(MSG_LINE_NEW, '['),
+            "19:39: " + getCheckMessage(MSG_LINE_NEW, "..."),
+            "26:19: " + getCheckMessage(MSG_LINE_NEW, '.'),
+            "39:50: " + getCheckMessage(MSG_LINE_NEW, ','),
+            "41:50: " + getCheckMessage(MSG_LINE_NEW, "::"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputSeparatorWrapWithEmoji.java"), expected);
+    }
+
 }
