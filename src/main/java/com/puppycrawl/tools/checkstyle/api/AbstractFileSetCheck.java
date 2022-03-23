@@ -35,21 +35,11 @@ public abstract class AbstractFileSetCheck
     extends AbstractViolationReporter
     implements FileSetCheck {
 
-    /**
-     * The check context.
-     *
-     * @noinspection ThreadLocalNotStaticFinal
-     */
-    private final ThreadLocal<FileContext> context = ThreadLocal.withInitial(FileContext::new);
-
     /** The dispatcher errors are fired to. */
     private MessageDispatcher messageDispatcher;
 
     /** Specify the file type extension of files to process. */
     private String[] fileExtensions = CommonUtil.EMPTY_STRING_ARRAY;
-
-    /** The tab width for column reporting. */
-    private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;
 
     /**
      * Called to process a file that matches the specified file extensions.
@@ -67,11 +57,6 @@ public abstract class AbstractFileSetCheck
     }
 
     @Override
-    public void destroy() {
-        context.remove();
-    }
-
-    @Override
     public void beginProcessing(String charset) {
         // No code by default, should be overridden only by demand at subclasses
     }
@@ -79,15 +64,14 @@ public abstract class AbstractFileSetCheck
     @Override
     public final SortedSet<Violation> process(File file, FileText fileText)
             throws CheckstyleException {
-        final SortedSet<Violation> violations = context.get().violations;
-        context.get().fileContents = new FileContents(fileText);
-        violations.clear();
+        setFileContents(new FileContents(fileText));
+        clearViolations();
         // Process only what interested in
         if (CommonUtil.matchesFileExtension(file, fileExtensions)) {
             processFiltered(file, fileText);
         }
-        final SortedSet<Violation> result = new TreeSet<>(violations);
-        violations.clear();
+        final SortedSet<Violation> result = new TreeSet<>(getViolations());
+        clearViolations();
         return result;
     }
 
@@ -109,33 +93,6 @@ public abstract class AbstractFileSetCheck
      */
     protected final MessageDispatcher getMessageDispatcher() {
         return messageDispatcher;
-    }
-
-    /**
-     * Returns the sorted set of {@link Violation}.
-     *
-     * @return the sorted set of {@link Violation}.
-     */
-    public SortedSet<Violation> getViolations() {
-        return new TreeSet<>(context.get().violations);
-    }
-
-    /**
-     * Set the file contents associated with the tree.
-     *
-     * @param contents the manager
-     */
-    public final void setFileContents(FileContents contents) {
-        context.get().fileContents = contents;
-    }
-
-    /**
-     * Returns the file contents associated with the file.
-     *
-     * @return the file contents
-     */
-    protected final FileContents getFileContents() {
-        return context.get().fileContents;
     }
 
     /**
@@ -173,63 +130,6 @@ public abstract class AbstractFileSetCheck
     }
 
     /**
-     * Get tab width to report audit events with.
-     *
-     * @return the tab width to report audit events with
-     */
-    protected final int getTabWidth() {
-        return tabWidth;
-    }
-
-    /**
-     * Set the tab width to report audit events with.
-     *
-     * @param tabWidth an {@code int} value
-     */
-    public final void setTabWidth(int tabWidth) {
-        this.tabWidth = tabWidth;
-    }
-
-    /**
-     * Adds the sorted set of {@link Violation} to the message collector.
-     *
-     * @param violations the sorted set of {@link Violation}.
-     */
-    protected void addViolations(SortedSet<Violation> violations) {
-        context.get().violations.addAll(violations);
-    }
-
-    @Override
-    public final void log(int line, String key, Object... args) {
-        context.get().violations.add(
-                new Violation(line,
-                        getMessageBundle(),
-                        key,
-                        args,
-                        getSeverityLevel(),
-                        getId(),
-                        getClass(),
-                        getCustomMessages().get(key)));
-    }
-
-    @Override
-    public final void log(int lineNo, int colNo, String key,
-            Object... args) {
-        final int col = 1 + CommonUtil.lengthExpandedTabs(
-                context.get().fileContents.getLine(lineNo - 1), colNo, tabWidth);
-        context.get().violations.add(
-                new Violation(lineNo,
-                        col,
-                        getMessageBundle(),
-                        key,
-                        args,
-                        getSeverityLevel(),
-                        getId(),
-                        getClass(),
-                        getCustomMessages().get(key)));
-    }
-
-    /**
      * Notify all listeners about the errors in a file.
      * Calls {@code MessageDispatcher.fireErrors()} with
      * all logged errors and then clears errors' list.
@@ -237,22 +137,8 @@ public abstract class AbstractFileSetCheck
      * @param fileName the audited file
      */
     protected final void fireErrors(String fileName) {
-        final SortedSet<Violation> errors = new TreeSet<>(context.get().violations);
-        context.get().violations.clear();
+        final SortedSet<Violation> errors = new TreeSet<>(getViolations());
+        clearViolations();
         messageDispatcher.fireErrors(fileName, errors);
     }
-
-    /**
-     * The actual context holder.
-     */
-    private static class FileContext {
-
-        /** The sorted set for collecting violations. */
-        private final SortedSet<Violation> violations = new TreeSet<>();
-
-        /** The current file contents. */
-        private FileContents fileContents;
-
-    }
-
 }

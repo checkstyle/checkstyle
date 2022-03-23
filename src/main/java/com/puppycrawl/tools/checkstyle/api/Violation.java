@@ -19,67 +19,105 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.io.Serializable;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Objects;
-import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
-import java.util.ResourceBundle.Control;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Represents a violation that can be localised. The translations come from
- * message.properties files. The underlying implementation uses
- * java.text.MessageFormat.
+ * {@code message.properties} files. The underlying implementation uses
+ * {@link java.text.MessageFormat}.
+ *
+ * <p>The actual violation messages are read in {@code message.properties} files
+ * for English-messages, if not custom-provided. Those files might also feature
+ * translation into other languages as {@code message_de.properties},
+ * {@code message_pt.properties} files and so on.</p>
+ *
+ * <p>This class is immutable. So, each instance of this class holds the data
+ * necessary for locating the violation. I.E., which was the line, the column, the
+ * token type involved, the class responsible for its processing and so on. And
+ * obviously, the violation message itself and its {@link Locale}.</p>
+ *
+ * @implNote
+ * Also, it is important to note that the {@link Locale} and the message are defined
+ * in actual messages just when an instance is created. Although It could be useful
+ * to just set the template message during the instantiation and then reading it in
+ * whatever {@link Locale} needed afterwards, this could potentially offend the
+ * class' immutability and might have the side-effect of subtly and unexpectedly
+ * breaking {@link #equals(Object)}, {@link #compareTo(Violation)} and
+ * {@link hashCode()}. Although that might be fixable, it is a too small benefit in
+ * practice being worth the trouble.
  *
  * @noinspection SerializableHasSerializationMethods, ClassWithTooManyConstructors
  */
 public final class Violation
     implements Comparable<Violation>, Serializable {
 
-    /** A unique serial version identifier. */
-    private static final long serialVersionUID = 5675176836184862150L;
+    /**
+     * A unique serial version identifier.
+     */
+    private static final long serialVersionUID = 5675176836184862151L;
 
     /**
-     * A cache that maps bundle names to ResourceBundles.
-     * Avoids repetitive calls to ResourceBundle.getBundle().
+     * The default severity level if one is not specified.
      */
-    private static final Map<String, ResourceBundle> BUNDLE_CACHE =
-        Collections.synchronizedMap(new HashMap<>());
-
-    /** The default severity level if one is not specified. */
     private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;
 
-    /** The locale to localise violations to. **/
-    private static Locale sLocale = Locale.getDefault();
+    /**
+     * The locale to localize violations to.
+     **/
+    private static ThreadLocal<Locale> sLocale = ThreadLocal.withInitial(Locale::getDefault);
 
-    /** The line number. **/
+    /**
+     * The locale to localize the violation.
+     **/
+    private final Locale locale;
+
+    // Perhaps add the fileName here in the future?
+
+    /**
+     * The violation text.
+     **/
+    private final String violationText;
+
+    /**
+     * The line number.
+     **/
     private final int lineNo;
-    /** The column number. **/
+
+    /**
+     * The column number.
+     **/
     private final int columnNo;
-    /** The column char index. **/
+
+    /**
+     * The column char index.
+     **/
     private final int columnCharIndex;
-    /** The token type constant. See {@link TokenTypes}. **/
+
+    /**
+     * The token type constant. See {@link TokenTypes}.
+     **/
     private final int tokenType;
 
-    /** The severity level. **/
+    /**
+     * The severity level.
+     **/
     private final SeverityLevel severityLevel;
 
-    /** The id of the module generating the violation. */
-    private final String moduleId;
+    /**
+     * The id of the module generating the violation. Can be null.
+     */
+    private final String moduleId; // Change to never be null in the future.
 
-    /** Key for the violation format. **/
+    /**
+     * Key for the violation format.
+     **/
     private final String key;
 
     /**
@@ -87,193 +125,226 @@ public final class Violation
      *
      * @noinspection NonSerializableFieldInSerializableClass
      */
-    private final Object[] args;
+    private final Object[] args; // Change to String[] in the future.
 
-    /** Name of the resource bundle to get violations from. **/
-    private final String bundle;
-
-    /** Class of the source for this Violation. */
-    private final Class<?> sourceClass;
-
-    /** A custom violation overriding the default violation from the bundle. */
-    private final String customMessage;
+    /**
+     * Class name of the source for this Violation.
+     */
+    private final String sourceName;
 
     /**
      * Creates a new {@code Violation} instance.
      *
-     * @param lineNo line number associated with the violation
-     * @param columnNo column number associated with the violation
+     * @param lineNo          line number associated with the violation
+     * @param columnNo        column number associated with the violation
      * @param columnCharIndex column char index associated with the violation
-     * @param tokenType token type of the event associated with violation. See {@link TokenTypes}
-     * @param bundle resource bundle name
-     * @param key the key to locate the translation
-     * @param args arguments for the translation
-     * @param severityLevel severity level for the violation
-     * @param moduleId the id of the module the violation is associated with
-     * @param sourceClass the Class that is the source of the violation
-     * @param customMessage optional custom violation overriding the default
+     * @param tokenType       token type of the event associated with violation. See
+     *                        {@link TokenTypes}
+     * @param bundle          resource bundle name
+     * @param key             the key to locate the translation
+     * @param args            arguments for the translation
+     * @param severityLevel   severity level for the violation
+     * @param moduleId        the id of the module the violation is associated with
+     * @param sourceClass     the Class that is the source of the violation
+     * @param customMessage   optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
-    public Violation(int lineNo,
-                            int columnNo,
-                            int columnCharIndex,
-                            int tokenType,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            SeverityLevel severityLevel,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            String customMessage) {
-        this.lineNo = lineNo;
-        this.columnNo = columnNo;
-        this.columnCharIndex = columnCharIndex;
-        this.tokenType = tokenType;
-        this.key = key;
+    @Deprecated // FOR REMOVAL!
+    public Violation(
+        int lineNo,
+        int columnNo,
+        int columnCharIndex,
+        int tokenType,
+        String bundle,
+        String key,
+        Object[] args,
+        SeverityLevel severityLevel,
+        String moduleId,
+        Class<?> sourceClass,
+        String customMessage) {
+        this(sLocale.get(), lineNo, columnNo, columnCharIndex, tokenType,
 
-        if (args == null) {
-            this.args = null;
-        }
-        else {
-            this.args = Arrays.copyOf(args, args.length);
-        }
-        this.bundle = bundle;
-        this.severityLevel = severityLevel;
-        this.moduleId = moduleId;
-        this.sourceClass = sourceClass;
-        this.customMessage = customMessage;
+             // This mess is temporary. We should refactor tests that set to null things that
+             // shouldn't be null and also see if somebody still uses this constructor.
+             // After that, we should delete this mess and the entire constructor altogether.
+             bundle == null ? "" : bundle,
+             key == null ? "" : key,
+             args == null ? CommonUtil.EMPTY_STRING_ARRAY : args,
+             severityLevel == null ? DEFAULT_SEVERITY : severityLevel,
+             moduleId,
+             sourceClass == null ? Violation.class : sourceClass,
+             (bundle == null && customMessage == null) ? "" : customMessage);
     }
 
     /**
      * Creates a new {@code Violation} instance.
      *
-     * @param lineNo line number associated with the violation
-     * @param columnNo column number associated with the violation
-     * @param tokenType token type of the event associated with violation. See {@link TokenTypes}
-     * @param bundle resource bundle name
-     * @param key the key to locate the translation
-     * @param args arguments for the translation
+     * @param lineNo        line number associated with the violation
+     * @param columnNo      column number associated with the violation
+     * @param tokenType     token type of the event associated with violation. See
+     *                      {@link TokenTypes}
+     * @param bundle        resource bundle name
+     * @param key           the key to locate the translation
+     * @param args          arguments for the translation
      * @param severityLevel severity level for the violation
-     * @param moduleId the id of the module the violation is associated with
-     * @param sourceClass the Class that is the source of the violation
+     * @param moduleId      the id of the module the violation is associated with
+     * @param sourceClass   the Class that is the source of the violation
      * @param customMessage optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
+     * @deprecated Prefer to use the static builder methods.
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
-    public Violation(int lineNo,
-                            int columnNo,
-                            int tokenType,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            SeverityLevel severityLevel,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            String customMessage) {
-        this(lineNo, columnNo, columnNo, tokenType, bundle, key, args, severityLevel, moduleId,
-                sourceClass, customMessage);
+    @Deprecated // FOR REMOVAL!
+    public Violation(
+        int lineNo,
+        int columnNo,
+        int tokenType,
+        String bundle,
+        String key,
+        Object[] args,
+        SeverityLevel severityLevel,
+        String moduleId,
+        Class<?> sourceClass,
+        String customMessage) {
+        this(sLocale.get(), lineNo, columnNo, columnNo, tokenType,
+
+             // This mess is temporary. We should refactor tests that set to null things that
+             // shouldn't be null and also see if somebody still uses this constructor.
+             // After that, we should delete this mess and the entire constructor altogether.
+             bundle == null ? "" : bundle,
+             key == null ? "" : key,
+             args == null ? CommonUtil.EMPTY_STRING_ARRAY : args,
+             severityLevel == null ? DEFAULT_SEVERITY : severityLevel,
+             moduleId,
+             sourceClass == null ? Violation.class : sourceClass,
+             (bundle == null && customMessage == null) ? "" : customMessage);
     }
 
     /**
      * Creates a new {@code Violation} instance.
      *
-     * @param lineNo line number associated with the violation
-     * @param columnNo column number associated with the violation
-     * @param bundle resource bundle name
-     * @param key the key to locate the translation
-     * @param args arguments for the translation
+     * @param lineNo        line number associated with the violation
+     * @param columnNo      column number associated with the violation
+     * @param bundle        resource bundle name
+     * @param key           the key to locate the translation
+     * @param args          arguments for the translation
      * @param severityLevel severity level for the violation
-     * @param moduleId the id of the module the violation is associated with
-     * @param sourceClass the Class that is the source of the violation
+     * @param moduleId      the id of the module the violation is associated with
+     * @param sourceClass   the Class that is the source of the violation
      * @param customMessage optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
+     * @deprecated Prefer to use the static builder methods.
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
-    public Violation(int lineNo,
-                            int columnNo,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            SeverityLevel severityLevel,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            String customMessage) {
-        this(lineNo, columnNo, 0, bundle, key, args, severityLevel, moduleId, sourceClass,
-                customMessage);
+    @Deprecated // FOR REMOVAL!
+    public Violation(
+        int lineNo,
+        int columnNo,
+        String bundle,
+        String key,
+        Object[] args,
+        SeverityLevel severityLevel,
+        String moduleId,
+        Class<?> sourceClass,
+        String customMessage) {
+        this(sLocale.get(), lineNo, columnNo, columnNo, 0,
+
+             // This mess is temporary. We should refactor tests that set to null things that
+             // shouldn't be null and also see if somebody still uses this constructor.
+             // After that, we should delete this mess and the entire constructor altogether.
+             bundle == null ? "" : bundle,
+             key == null ? "" : key,
+             args == null ? CommonUtil.EMPTY_STRING_ARRAY : args,
+             severityLevel == null ? DEFAULT_SEVERITY : severityLevel,
+             moduleId,
+             sourceClass == null ? Violation.class : sourceClass,
+             (bundle == null && customMessage == null) ? "" : customMessage);
     }
 
     /**
      * Creates a new {@code Violation} instance.
      *
-     * @param lineNo line number associated with the violation
-     * @param columnNo column number associated with the violation
-     * @param bundle resource bundle name
-     * @param key the key to locate the translation
-     * @param args arguments for the translation
-     * @param moduleId the id of the module the violation is associated with
-     * @param sourceClass the Class that is the source of the violation
+     * @param lineNo        line number associated with the violation
+     * @param columnNo      column number associated with the violation
+     * @param bundle        resource bundle name
+     * @param key           the key to locate the translation
+     * @param args          arguments for the translation
+     * @param moduleId      the id of the module the violation is associated with
+     * @param sourceClass   the Class that is the source of the violation
      * @param customMessage optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
+     * @deprecated Prefer to use the static builder methods.
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
-    public Violation(int lineNo,
-                            int columnNo,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            String customMessage) {
-        this(lineNo,
-                columnNo,
-             bundle,
-             key,
-             args,
+    @Deprecated // FOR REMOVAL!
+    public Violation(
+        int lineNo,
+        int columnNo,
+        String bundle,
+        String key,
+        Object[] args,
+        String moduleId,
+        Class<?> sourceClass,
+        String customMessage) {
+        this(sLocale.get(), lineNo, columnNo, columnNo, 0,
+
+             // This mess is temporary. We should refactor tests that set to null things that
+             // shouldn't be null and also see if somebody still uses this constructor.
+             // After that, we should delete this mess and the entire constructor altogether.
+             bundle == null ? "" : bundle,
+             key == null ? "" : key,
+             args == null ? CommonUtil.EMPTY_STRING_ARRAY : args,
              DEFAULT_SEVERITY,
              moduleId,
-             sourceClass,
-             customMessage);
+             sourceClass == null ? Violation.class : sourceClass,
+             (bundle == null && customMessage == null) ? "" : customMessage);
     }
 
     /**
      * Creates a new {@code Violation} instance.
      *
-     * @param lineNo line number associated with the violation
-     * @param bundle resource bundle name
-     * @param key the key to locate the translation
-     * @param args arguments for the translation
+     * @param lineNo        line number associated with the violation
+     * @param bundle        resource bundle name
+     * @param key           the key to locate the translation
+     * @param args          arguments for the translation
      * @param severityLevel severity level for the violation
-     * @param moduleId the id of the module the violation is associated with
-     * @param sourceClass the source class for the violation
+     * @param moduleId      the id of the module the violation is associated with
+     * @param sourceClass   the source class for the violation
      * @param customMessage optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
+     * @deprecated Prefer to use the static builder methods.
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
-    public Violation(int lineNo,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            SeverityLevel severityLevel,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            String customMessage) {
-        this(lineNo, 0, bundle, key, args, severityLevel, moduleId,
-                sourceClass, customMessage);
+    @Deprecated // FOR REMOVAL!
+    public Violation(
+        int lineNo,
+        String bundle,
+        String key,
+        Object[] args,
+        SeverityLevel severityLevel,
+        String moduleId,
+        Class<?> sourceClass,
+        String customMessage) {
+        this(sLocale.get(), lineNo, 0, 0, 0, bundle, key, args, severityLevel, moduleId,
+             sourceClass, customMessage);
     }
 
     /**
      * Creates a new {@code Violation} instance. The column number
      * defaults to 0.
      *
-     * @param lineNo line number associated with the violation
-     * @param bundle name of a resource bundle that contains audit event violations
-     * @param key the key to locate the translation
-     * @param args arguments for the translation
-     * @param moduleId the id of the module the violation is associated with
-     * @param sourceClass the name of the source for the violation
+     * @param lineNo        line number associated with the violation
+     * @param bundle        name of a resource bundle that contains audit event violations
+     * @param key           the key to locate the translation
+     * @param args          arguments for the translation
+     * @param moduleId      the id of the module the violation is associated with
+     * @param sourceClass   the name of the source for the violation
      * @param customMessage optional custom violation overriding the default
+     * @deprecated Prefer to use the static builder methods.
      */
+
+    @Deprecated
     public Violation(
         int lineNo,
         String bundle,
@@ -282,8 +353,200 @@ public final class Violation
         String moduleId,
         Class<?> sourceClass,
         String customMessage) {
-        this(lineNo, 0, bundle, key, args, DEFAULT_SEVERITY, moduleId,
-                sourceClass, customMessage);
+        this(sLocale.get(), lineNo, 0, 0, 0,
+
+             // This mess is temporary. We should refactor tests that set to null things that
+             // shouldn't be null and also see if somebody still uses this constructor.
+             // After that, we should delete this mess and the entire constructor altogether.
+             bundle == null ? "" : bundle,
+             key == null ? "" : key,
+             args == null ? CommonUtil.EMPTY_STRING_ARRAY : args,
+             DEFAULT_SEVERITY,
+             moduleId,
+             sourceClass == null ? Violation.class : sourceClass,
+             (bundle == null && customMessage == null) ? "" : customMessage);
+    }
+
+    /**
+     * Creates a new {@code Violation} instance.
+     *
+     * @param locale          The locale associated with the violation.
+     * @param lineNo          The line number associated with the violation.
+     * @param columnNo        The column number associated with the violation.
+     * @param columnCharIndex The column char index associated with the violation.
+     * @param tokenType       The token type of the event associated with violation. See
+     *                        {@link TokenTypes}.
+     * @param bundle          The resource bundle name.
+     *                        Can be {@code null} if the {@code customMessage} isn't {@code null}.
+     * @param key             The key to locate the translation.
+     * @param args            The arguments for the translation.
+     * @param severityLevel   The severity level for the violation.
+     * @param moduleId        The id of the module the violation is associated with. Can be
+     *                        {@code null}.
+     * @param sourceClass     The {@link Class} that is the source of the violation.
+     * @param customMessage   Optional custom violation overriding the default.
+     *                        Can be {@code null} if the {@code bundle} isn't {@code null}.
+     * @throws IllegalArgumentException If {@code locale}, {@code key}, {@code args},
+     *                                  {@code severityLevel} or {@code sourceClass} are {@code
+     *                                  null} or if {@code bundle} and
+     *                                  {@code customMessage} are both {@code null}.
+     * @noinspection ConstructorWithTooManyParameters
+     */
+    // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
+    private Violation(
+        Locale locale,
+        int lineNo,
+        int columnNo,
+        int columnCharIndex,
+        int tokenType,
+        String bundle,
+        String key,
+        Object[] args, // Change to String[] in the future.
+        SeverityLevel severityLevel,
+        String moduleId,
+        Class<?> sourceClass,
+        String customMessage) {
+        if (locale == null) {
+            throw new IllegalArgumentException("Misusing the Violation class - locale is null");
+        }
+        if (key == null) {
+            throw new IllegalArgumentException("Misusing the Violation class - key is null");
+        }
+        if (args == null) {
+            throw new IllegalArgumentException("Misusing the Violation class - args is null");
+        }
+        if (sourceClass == null) {
+            throw new IllegalArgumentException(
+                "Misusing the Violation class - sourceClass is null");
+        }
+        if (severityLevel == null) {
+            throw new IllegalArgumentException(
+                "Misusing the Violation class - severityLevel is null");
+        }
+        if (bundle == null && customMessage == null) {
+            throw new IllegalArgumentException(
+                "Misusing the Violation class - bundle and customMessage ae null");
+        }
+
+        this.locale = locale;
+        this.lineNo = lineNo;
+        this.columnNo = columnNo;
+        this.columnCharIndex = columnCharIndex;
+        this.tokenType = tokenType;
+        this.key = key;
+        this.args = Arrays.copyOf(args, args.length);
+        this.severityLevel = severityLevel;
+        this.moduleId = moduleId;
+        this.sourceName = sourceClass.getName();
+        this.violationText = prepareViolationText(
+            bundle, locale, sourceClass, key, args, customMessage);
+    }
+
+    /**
+     * Creates a new {@code Violation} instance with all the details about its location
+     * set to be empty. This is intended for general level messages rather than one
+     * in some specific line of some source file.
+     *
+     * @param bundle        resource bundle name
+     * @param key           the key to locate the translation
+     * @param args          arguments for the translation
+     * @param moduleId      the id of the module the violation is associated with
+     * @param sourceClass   the Class that is the source of the violation
+     * @param customMessage optional custom violation overriding the default
+     * @return An instance of a {@code Violation}.
+     */
+    public static Violation createGeneralMessage(
+        String bundle,
+        String key,
+        String[] args,
+        String moduleId,
+        Class<?> sourceClass,
+        String customMessage) {
+        return new Violation(
+            sLocale.get(),
+            0, // lineNo
+            0, // columnNo
+            0, // columnCharIndex
+            0, // tokenType
+            bundle, key, args,
+            DEFAULT_SEVERITY,
+            moduleId, sourceClass, customMessage);
+    }
+
+    /**
+     * Creates a new {@code Violation} instance with its location set to a particular
+     * line, but without column information.
+     *
+     * @param lineNo        line number associated with the violation
+     * @param bundle        resource bundle name
+     * @param key           the key to locate the translation
+     * @param args          arguments for the translation
+     * @param moduleId      the id of the module the violation is associated with
+     * @param sourceClass   the Class that is the source of the violation
+     * @param customMessage optional custom violation overriding the default
+     * @return An instance of a {@code Violation}.
+     */
+    public static Violation createLineViolation(
+        int lineNo,
+        String bundle,
+        String key,
+        Object[] args, // Change to String[] in the future.
+        String moduleId,
+        Class<?> sourceClass,
+        String customMessage) {
+        return new Violation(
+            sLocale.get(),
+            lineNo,
+            0, // columnNo
+            0, // columnCharIndex
+            0, // tokenType
+            bundle, key, args,
+            DEFAULT_SEVERITY,
+            moduleId, sourceClass, customMessage);
+    }
+
+    /**
+     * Creates a new {@code Violation} instance with all the detail data.
+     *
+     * @param lineNo          line number associated with the violation
+     * @param columnNo        column number associated with the violation
+     * @param columnCharIndex column char index associated with the violation
+     * @param tokenType       token type of the event associated with violation. See
+     *                        {@link TokenTypes}
+     * @param bundle          resource bundle name
+     * @param key             the key to locate the translation
+     * @param args            arguments for the translation
+     * @param severityLevel   severity level for the violation
+     * @param moduleId        the id of the module the violation is associated with
+     * @param sourceClass     the Class that is the source of the violation
+     * @param customMessage   optional custom violation overriding the default
+     * @return An instance of a {@code Violation}.
+     * @throws IllegalArgumentException If locale or fileName are {@code null}.
+     */
+    public static Violation createDetailedViolation(
+        int lineNo,
+        int columnNo,
+        int columnCharIndex,
+        int tokenType,
+        String bundle,
+        String key,
+        Object[] args, // Change to String[] in the future.
+        SeverityLevel severityLevel,
+        String moduleId,
+        Class<?> sourceClass,
+        String customMessage) {
+        return new Violation(sLocale.get(), lineNo, columnNo, columnCharIndex, tokenType,
+                             bundle, key, args, severityLevel, moduleId, sourceClass,
+                             customMessage);
+    }
+
+    /**
+     * Gets the locale for this Violation.
+     *
+     * @return the locale for this Violation
+     */
+    public Locale getLocale() {
+        return locale;
     }
 
     /**
@@ -334,7 +597,7 @@ public final class Violation
     /**
      * Returns id of module.
      *
-     * @return the module identifier.
+     * @return the module identifier. Can be null.
      */
     public String getModuleId() {
         return moduleId;
@@ -356,7 +619,18 @@ public final class Violation
      * @return the name of the source for this Violation
      */
     public String getSourceName() {
-        return sourceClass.getName();
+        return sourceName;
+    }
+
+    /**
+     * Sets a locale to use for localization.
+     *
+     * @param locale the locale to use for localization
+     * @deprecated Use the {@link #setDefaultLocale(Locale)} method instead.
+     */
+    @Deprecated // FOR REMOVAL!
+    public static void setLocale(Locale locale) {
+        setDefaultLocale(locale);
     }
 
     /**
@@ -364,25 +638,33 @@ public final class Violation
      *
      * @param locale the locale to use for localization
      */
-    public static void setLocale(Locale locale) {
-        clearCache();
+    public static void setDefaultLocale(Locale locale) {
+        if (locale == null) {
+            throw new IllegalArgumentException("Locale can't be null");
+        }
+        BundleCache.clear();
         if (Locale.ENGLISH.getLanguage().equals(locale.getLanguage())) {
-            sLocale = Locale.ROOT;
+            sLocale.set(Locale.ROOT);
         }
         else {
-            sLocale = locale;
+            sLocale.set(locale);
         }
     }
 
-    /** Clears the cache. */
-    public static void clearCache() {
-        BUNDLE_CACHE.clear();
+    /**
+     * Gets a locale to use for localization.
+     *
+     * @return the locale to use for localization
+     */
+    public static Locale getDefaultLocale() {
+        return sLocale.get();
     }
 
     /**
      * Indicates whether some other object is "equal to" this one.
      * Suppression on enumeration is needed so code stays consistent.
      *
+     * @param object The object to which this one should be compared.
      * @noinspection EqualsCalledOnEnumConstant
      */
     // -@cs[CyclomaticComplexity] equals - a lot of fields to check.
@@ -395,56 +677,55 @@ public final class Violation
             return false;
         }
         final Violation violation = (Violation) object;
-        return Objects.equals(lineNo, violation.lineNo)
-                && Objects.equals(columnNo, violation.columnNo)
-                && Objects.equals(columnCharIndex, violation.columnCharIndex)
-                && Objects.equals(tokenType, violation.tokenType)
-                && Objects.equals(severityLevel, violation.severityLevel)
-                && Objects.equals(moduleId, violation.moduleId)
-                && Objects.equals(key, violation.key)
-                && Objects.equals(bundle, violation.bundle)
-                && Objects.equals(sourceClass, violation.sourceClass)
-                && Objects.equals(customMessage, violation.customMessage)
-                && Arrays.equals(args, violation.args);
+        return Objects.equals(locale, violation.locale)
+            && Objects.equals(lineNo, violation.lineNo)
+            && Objects.equals(columnNo, violation.columnNo)
+            && Objects.equals(columnCharIndex, violation.columnCharIndex)
+            && Objects.equals(tokenType, violation.tokenType)
+            && Objects.equals(severityLevel, violation.severityLevel)
+            && Objects.equals(moduleId, violation.moduleId)
+            && Objects.equals(key, violation.key)
+            && Objects.equals(sourceName, violation.sourceName)
+            && Objects.equals(violationText, violation.violationText)
+            && Arrays.equals(args, violation.args);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lineNo, columnNo, columnCharIndex, tokenType, severityLevel, moduleId,
-                key, bundle, sourceClass, customMessage, Arrays.hashCode(args));
+        return Objects.hash(locale, lineNo, columnNo, columnCharIndex, tokenType, severityLevel,
+                            moduleId, key, sourceName, violationText, Arrays.hashCode(args));
     }
 
     ////////////////////////////////////////////////////////////////////////////
     // Interface Comparable methods
     ////////////////////////////////////////////////////////////////////////////
 
+    private static String nonNull(String value) {
+        if (value == null) return "";
+        return value;
+    }
+
     @Override
     public int compareTo(Violation other) {
-        final int result;
-
-        if (lineNo == other.lineNo) {
-            if (columnNo == other.columnNo) {
-                if (Objects.equals(moduleId, other.moduleId)) {
-                    result = getViolation().compareTo(other.getViolation());
-                }
-                else if (moduleId == null) {
-                    result = -1;
-                }
-                else if (other.moduleId == null) {
-                    result = 1;
-                }
-                else {
-                    result = moduleId.compareTo(other.moduleId);
-                }
-            }
-            else {
-                result = Integer.compare(columnNo, other.columnNo);
-            }
+        final int result1 = locale.toString().compareTo(other.locale.toString());
+        final int result2 = nonNull(moduleId).compareTo(nonNull(other.moduleId));
+        final int toReturn;
+        if (result1 != 0) {
+            toReturn = result1;
+        }
+        else if (lineNo != other.lineNo) {
+            toReturn = Integer.compare(lineNo, other.lineNo);
+        }
+        else if (columnNo != other.columnNo) {
+            toReturn = Integer.compare(columnNo, other.columnNo);
+        }
+        else if (result2 != 0) {
+            toReturn = result2;
         }
         else {
-            result = Integer.compare(lineNo, other.lineNo);
+            toReturn = violationText.compareTo(other.violationText);
         }
-        return result;
+        return toReturn;
     }
 
     /**
@@ -453,15 +734,40 @@ public final class Violation
      * @return the translated violation
      */
     public String getViolation() {
-        String violation = getCustomViolation();
+        return violationText;
+    }
 
-        if (violation == null) {
+    /**
+     * Gets the translated violation.
+     *
+     * @param bundle resource bundle name
+     * @param locale The locale associated with the violation
+     * @param sourceClass the Class that is the source of the violation
+     * @param key the key to locate the translation
+     * @param args arguments for the translation
+     * @param customMessage optional custom violation overriding the default
+     * @return the translated violation
+     */
+    private static String prepareViolationText(
+        String bundle,
+        Locale locale,
+        Class<?> sourceClass,
+        String key,
+        Object[] args,
+        String customMessage) {
+        String violation;
+        if (customMessage != null) {
+            final MessageFormat formatter = new MessageFormat(customMessage, Locale.ROOT);
+            violation = formatter.format(args);
+        }
+        else {
             try {
                 // Important to use the default class loader, and not the one in
                 // the GlobalProperties object. This is because the class loader in
                 // the GlobalProperties is specified by the user for resolving
                 // custom classes.
-                final ResourceBundle resourceBundle = getBundle(bundle);
+                final ResourceBundle resourceBundle = BundleCache
+                    .getBundle(bundle, locale, sourceClass.getClassLoader());
                 final String pattern = resourceBundle.getString(key);
                 final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
                 violation = formatter.format(args);
@@ -469,74 +775,11 @@ public final class Violation
             catch (final MissingResourceException ignored) {
                 // If the Check author didn't provide i18n resource bundles
                 // and logs audit event violations directly, this will return
-                // the author's original violation
+                // the author's original violation.
                 final MessageFormat formatter = new MessageFormat(key, Locale.ROOT);
                 violation = formatter.format(args);
             }
         }
         return violation;
     }
-
-    /**
-     * Returns the formatted custom violation if one is configured.
-     *
-     * @return the formatted custom violation or {@code null}
-     *          if there is no custom violation
-     */
-    private String getCustomViolation() {
-        String violation = null;
-        if (customMessage != null) {
-            final MessageFormat formatter = new MessageFormat(customMessage, Locale.ROOT);
-            violation = formatter.format(args);
-        }
-        return violation;
-    }
-
-    /**
-     * Find a ResourceBundle for a given bundle name. Uses the classloader
-     * of the class emitting this violation, to be sure to get the correct
-     * bundle.
-     *
-     * @param bundleName the bundle name
-     * @return a ResourceBundle
-     */
-    private ResourceBundle getBundle(String bundleName) {
-        return BUNDLE_CACHE.computeIfAbsent(bundleName, name -> {
-            return ResourceBundle.getBundle(
-                name, sLocale, sourceClass.getClassLoader(), new Utf8Control());
-        });
-    }
-
-    /**
-     * <p>
-     * Custom ResourceBundle.Control implementation which allows explicitly read
-     * the properties files as UTF-8.
-     * </p>
-     */
-    public static class Utf8Control extends Control {
-
-        @Override
-        public ResourceBundle newBundle(String baseName, Locale locale, String format,
-                 ClassLoader loader, boolean reload) throws IOException {
-            // The below is a copy of the default implementation.
-            final String bundleName = toBundleName(baseName, locale);
-            final String resourceName = toResourceName(bundleName, "properties");
-            final URL url = loader.getResource(resourceName);
-            ResourceBundle resourceBundle = null;
-            if (url != null) {
-                final URLConnection connection = url.openConnection();
-                if (connection != null) {
-                    connection.setUseCaches(!reload);
-                    try (Reader streamReader = new InputStreamReader(connection.getInputStream(),
-                            StandardCharsets.UTF_8)) {
-                        // Only this line is changed to make it read property files as UTF-8.
-                        resourceBundle = new PropertyResourceBundle(streamReader);
-                    }
-                }
-            }
-            return resourceBundle;
-        }
-
-    }
-
 }
