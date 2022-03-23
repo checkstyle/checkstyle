@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle.utils;
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
@@ -636,6 +638,20 @@ public final class CommonUtil {
             }
         }
         return isInt;
+    }
+
+    /**
+     * Captures the stack trace of some exception into a string.
+     * @param ex The exception which the stack trace's should be caught.
+     * @return A string containing the exception's stack tarce.
+     * @throws IllegalArgumentException If {@code ex} is {@code null}.
+     */
+    public static String getStackTrace(Throwable ex) {
+        if (ex == null) throw new IllegalArgumentException("ex is null");
+        final StringWriter sw = new StringWriter();
+        final PrintWriter pw = new PrintWriter(sw, true);
+        ex.printStackTrace(pw);
+        return sw.getBuffer().toString();
     }
 
     /**

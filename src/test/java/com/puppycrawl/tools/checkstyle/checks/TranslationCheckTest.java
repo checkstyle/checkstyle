@@ -256,9 +256,10 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         assertWithMessage("expected number of errors to fire")
             .that(dispatcher.savedErrors.size())
             .isEqualTo(1);
-        final Violation violation = new Violation(1,
-                Definitions.CHECKSTYLE_BUNDLE, "general.exception",
-                new String[] {exception.getMessage()}, null, getClass(), null);
+        final Violation violation = Violation.createGeneralMessage(
+            Definitions.CHECKSTYLE_BUNDLE, Checker.EXCEPTION_MSG,
+            new String[] {exception.getMessage(), CommonUtil.getStackTrace(exception)},
+            null, getClass(), null);
         assertWithMessage("Invalid violation")
             .that(dispatcher.savedErrors.iterator().next().getViolation())
             .isEqualTo(violation.getViolation());
@@ -266,12 +267,21 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
 
     @Test
     public void testLogIllegalArgumentException() throws Exception {
+        final Exception exception = new IllegalArgumentException("Malformed \\uxxxx encoding.");
         final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         checkConfig.addProperty("baseName", "^bad.*$");
+
+        Violation generalException = Violation.createGeneralMessage(
+            Definitions.CHECKSTYLE_BUNDLE, Checker.EXCEPTION_MSG,
+            new String[] {
+                exception.getMessage(),
+                exception.toString() + "\nSTACKTRACE"
+            },
+            null, getClass(), null);
+
         final String[] expected = {
-            "0: " + new Violation(1, Definitions.CHECKSTYLE_BUNDLE, "general.exception",
-                new String[] {"Malformed \\uxxxx encoding." }, null, getClass(),
-                    null).getViolation(), "1: " + getCheckMessage(MSG_KEY, "test"),
+            "0: " + generalException.getViolation(),
+            "1: " + getCheckMessage(MSG_KEY, "test")
         };
         final File[] propertyFiles = {
             new File(getPath("bad.properties")),

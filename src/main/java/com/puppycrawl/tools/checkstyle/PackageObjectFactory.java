@@ -209,7 +209,7 @@ public class PackageObjectFactory implements ModuleFactory {
                         + STRING_SEPARATOR + nameCheck + STRING_SEPARATOR
                         + joinPackageNamesWithClassName(nameCheck, packages);
             }
-            final Violation exceptionMessage = new Violation(1,
+            final Violation exceptionMessage = Violation.createGeneralMessage(
                 Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
                 new String[] {name, attemptedNames}, null, getClass(), null);
             throw new CheckstyleException(exceptionMessage.getViolation());
@@ -285,7 +285,7 @@ public class PackageObjectFactory implements ModuleFactory {
             final String optionalNames = fullModuleNames.stream()
                     .sorted()
                     .collect(Collectors.joining(STRING_SEPARATOR));
-            final Violation exceptionMessage = new Violation(1,
+            final Violation exceptionMessage = Violation.createGeneralMessage(
                     Definitions.CHECKSTYLE_BUNDLE, AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE,
                     new String[] {name, optionalNames}, null, getClass(), null);
             throw new CheckstyleException(exceptionMessage.getViolation());

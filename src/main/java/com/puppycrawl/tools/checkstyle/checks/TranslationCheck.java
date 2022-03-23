@@ -43,6 +43,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
@@ -318,8 +319,11 @@ public class TranslationCheck extends AbstractFileSetCheck {
     private void validateUserSpecifiedLanguageCodes(Set<String> languageCodes) {
         for (String code : languageCodes) {
             if (!isValidLanguageCode(code)) {
-                final Violation msg = new Violation(1, TRANSLATION_BUNDLE,
-                        WRONG_LANGUAGE_CODE_KEY, new Object[] {code}, getId(), getClass(), null);
+                final Violation msg = Violation.createGeneralMessage(TRANSLATION_BUNDLE,
+                                                                     WRONG_LANGUAGE_CODE_KEY,
+                                                                     new String[] {code}, getId(),
+                                                                     getClass(),
+                                                                     null);
                 final String exceptionMessage = String.format(Locale.ROOT,
                         "%s [%s]", msg.getViolation(), TranslationCheck.class.getSimpleName());
                 throw new IllegalArgumentException(exceptionMessage);
@@ -578,7 +582,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
                 final MessageDispatcher dispatcher = getMessageDispatcher();
                 final String path = fileKey.getKey().getAbsolutePath();
                 dispatcher.fireFileStarted(path);
-                for (Object key : missingKeys) {
+                for (String key : missingKeys) {
                     log(1, MSG_KEY, key);
                 }
                 fireErrors(path);
@@ -618,16 +622,15 @@ public class TranslationCheck extends AbstractFileSetCheck {
         final String[] args;
         final String key;
         if (exception instanceof NoSuchFileException) {
-            args = null;
+            args = CommonUtil.EMPTY_STRING_ARRAY;
             key = "general.fileNotFound";
         }
         else {
-            args = new String[] {exception.getMessage()};
-            key = "general.exception";
+            args = new String[] {exception.getMessage(), CommonUtil.getStackTrace(exception)};
+            key = Checker.EXCEPTION_MSG;
         }
         final Violation message =
-            new Violation(
-                0,
+            Violation.createGeneralMessage(
                 Definitions.CHECKSTYLE_BUNDLE,
                 key,
                 args,
