@@ -48,12 +48,8 @@
   <suppress id="StyleValidationCommentInInputs"
             files="packageobjectfactory[\\/].*.java"/>
 
-  <!-- SuppressionXpathSingleFilterTest and XpathFilterElementTest
-       use assertions directly instead of using them through parser or the traditional
-       verify method -->
-  <suppress id="StyleValidationCommentInInputs"
-            files="filters[\\/]suppressionxpathsinglefilter[\\/]InputSuppressionXpathSingleFilter.java"/>
-
+  <!-- XpathFilterElementTest uses assertions directly instead of using them through parser
+  or the traditional verify method -->
   <suppress id="StyleValidationCommentInInputs"
             files="filters[\\/]xpathfilterelement[\\/]InputXpathFilterElementSuppressByXpath.java"/>
 
