@@ -51,30 +51,30 @@ public class InputFallThrough2
                 return;
             }
             // fallthru
-        case 7: // violation
+        case 7: // violation 'Fall through from previous branch of the switch statement.'
             try (final Resource resource = new Resource()) {
             }
             // fallthru
-        case 8: // violation
+        case 8: // violation 'Fall through from previous branch of the switch statement.'
             try (final Resource resource = new Resource()) {
             }
             finally {
             }
             // fallthru
-        case 9: // violation
+        case 9: // violation 'Fall through from previous branch of the switch statement.'
             try (final Resource resource = new Resource()) {
             }
             catch (Exception ex) {
             }
             // fallthru
-        case 10: // violation
+        case 10: // violation 'Fall through from previous branch of the switch statement.'
             try (final Resource resource = new Resource()) {
                 return;
             }
             catch (Exception ex) {
             }
             // fallthru
-        default: // violation
+        default: // violation 'Fall through from previous branch of the switch statement.'
             break;
         }
     }
