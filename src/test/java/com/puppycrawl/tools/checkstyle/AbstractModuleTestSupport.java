@@ -420,6 +420,37 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Executes given config on a list of files only. Does not verify violations.
+     *
+     * @param moduleConfig check configuration
+     * @param fileName names of files to process
+     * @param expectedViolations a map of expected violations per files.
+     * @param suppressedViolations suppressed violation messages
+     * @throws Exception if there is a problem during checker configuration
+     */
+    protected final void execute(Configuration moduleConfig, String fileName,
+                                 String[] expectedViolations, String... suppressedViolations)
+            throws Exception {
+
+        final Checker checker = createChecker(moduleConfig);
+        final List<File> files = Arrays.stream(new String[] {fileName})
+            .map(File::new)
+            .collect(Collectors.toList());
+        final List<File> violations =
+            Arrays.stream(new String[] {Arrays.toString(expectedViolations)})
+            .map(File::new)
+            .collect(Collectors.toList());
+        final List<File> suppressed =
+            Arrays.stream(new String[] {Arrays.toString(suppressedViolations)})
+            .map(File::new)
+            .collect(Collectors.toList());
+        checker.process(files);
+        checker.process(violations);
+        checker.process(suppressed);
+        checker.destroy();
+    }
+
+    /**
      * Performs verification of violation lines.
      *
      * @param config parsed config.
