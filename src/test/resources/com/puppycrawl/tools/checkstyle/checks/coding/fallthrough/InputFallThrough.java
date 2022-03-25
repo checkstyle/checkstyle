@@ -19,7 +19,7 @@ public class InputFallThrough
                 break;
             case 2:
                 i++;
-            case 3: // violation
+            case 3: // violation 'Fall through from previous branch of the switch statement.'
                 i++;
                 break;
             case 4:
@@ -43,7 +43,7 @@ public class InputFallThrough
             case 11: {
                 i++;
             }
-            case 12: // violation
+            case 12: // violation 'Fall through from previous branch of the switch statement.'
                 if (false)
                     break;
                 else
@@ -52,13 +52,13 @@ public class InputFallThrough
                 if (true) {
                     return;
                 }
-            case 14: // violation
+            case 14: // violation 'Fall through from previous branch of the switch statement.'
                 if (true) {
                     return;
                 } else {
                     //do nothing
                 }
-            case 15: // violation
+            case 15: // violation 'Fall through from previous branch of the switch statement.'
                 do {
                     System.identityHashCode("something");
                     return;
@@ -75,7 +75,7 @@ public class InputFallThrough
                 while(cond) {
                     break;
                 }
-            case 19: // violation
+            case 19: // violation 'Fall through from previous branch of the switch statement.'
                 try {
                     i++;
                     break;
@@ -92,7 +92,7 @@ public class InputFallThrough
                 } catch (Error e) {
                     return;
                 }
-            case 21: // violation
+            case 21: // violation 'Fall through from previous branch of the switch statement.'
                 try {
                     i++;
                 } catch (RuntimeException e) {
@@ -184,7 +184,7 @@ public class InputFallThrough
               if (true) {
                   return;
               }
-          case 14: // violation
+          case 14: // violation 'Fall through from previous branch of the switch statement.'
               if (true) {
                   return;
               } else {
@@ -374,14 +374,14 @@ public class InputFallThrough
           case 0:
               i++; /* Continue with next case */
 
-          case 1: // violation
+          case 1: // violation 'Fall through from previous branch of the switch statement.'
               i++;
           /* Continue with next case */
-          case 2: // violation
+          case 2: // violation 'Fall through from previous branch of the switch statement.'
               i++;
-          /* Continue with next case */case 3: // violation
+          /* Continue with next case */case 3: // violation 'Fall through from prev.*'
                 break;
-          case 4: // violation
+          case 4: // violation 'Fall through from the last branch of the switch statement.'
               i++;
           /* Continue with next case */
           }
@@ -421,7 +421,7 @@ public class InputFallThrough
                 switch (hashCode()) { // causing NullPointerException in the past
                     case 1:
                 }
-            default: // violation
+            default: // violation 'Fall through from previous branch of the switch statement.'
         }
     }
 
@@ -429,7 +429,7 @@ public class InputFallThrough
         switch(hashCode()) {
         case 1:
             switch(hashCode()){}
-        case 2: // violation
+        case 2: // violation 'Fall through from previous branch of the switch statement.'
             System.lineSeparator();
             break;
         }
@@ -441,7 +441,7 @@ public class InputFallThrough
             if (true) {
                 System.lineSeparator();
             }
-        case 2: // violation
+        case 2: // violation 'Fall through from previous branch of the switch statement.'
             System.lineSeparator();
             break;
         }
@@ -451,7 +451,7 @@ public class InputFallThrough
         switch(hashCode()) {
         case 1: System.lineSeparator();
 
-        case 2: // violation
+        case 2: // violation 'Fall through from previous branch of the switch statement.'
             System.lineSeparator();
             break;
         }
@@ -487,9 +487,9 @@ public class InputFallThrough
         int i = 0;
         switch (i) {
         case 0: case 1: i *= i; // fall through
-        case 2: case 3: i *= i; // violation
-        case 4: case 5: i *= i; // violation
-        case 6: case 7: i *= i; // violation
+        case 2: case 3: i *= i; // violation 'Fall through from prev.* br.* switch statement.'
+        case 4: case 5: i *= i; // violation 'Fall through from prev.* br.* switch statement.'
+        case 6: case 7: i *= i; // violation 'Fall through from prev.* br.* switch statement.'
             break;
         default:
             throw new RuntimeException();

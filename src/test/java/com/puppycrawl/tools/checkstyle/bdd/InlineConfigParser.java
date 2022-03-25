@@ -122,7 +122,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck",
             "com.puppycrawl.tools.checkstyle.checks.TranslationCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck",
