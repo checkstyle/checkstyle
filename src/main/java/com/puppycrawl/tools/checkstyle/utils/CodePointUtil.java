@@ -55,4 +55,32 @@ public final class CodePointUtil {
                 .allMatch(Character::isWhitespace);
     }
 
+    /**
+     * Removes trailing whitespaces.
+     *
+     * @param codePoints array of unicode code points
+     * @return unicode code points array with trailing whitespaces removed
+     */
+    public static int[] stripTrailing(int... codePoints) {
+        int lastIndex = codePoints.length;
+        while (CommonUtil.isCodePointWhitespace(codePoints, lastIndex - 1)) {
+            lastIndex--;
+        }
+        return Arrays.copyOfRange(codePoints, 0, lastIndex);
+    }
+
+    /**
+     * Tests if the unicode code points array
+     * ends with the specified suffix.
+     *
+     * @param suffix the suffix
+     * @param codePoints the array of unicode code points to check
+     * @return {@code true}, if the unicode code points array ends with provided suffix
+     */
+    public static boolean endsWith(int[] codePoints, String suffix) {
+        final int startIndex = codePoints.length - suffix.length();
+        return startIndex > -1 && Arrays.equals(Arrays
+                    .copyOfRange(codePoints, startIndex, codePoints.length),
+                    suffix.codePoints().toArray());
+    }
 }
