@@ -1564,10 +1564,9 @@
                 <!-- content of file does not matter at all -->
                 <exclude>**/RegexpOnFilenameCheckTest.class</exclude>
 
-                <!-- all bellow until https://github.com/checkstyle/checkstyle/issues/11446 -->
-
                 <!-- usage of custom internal module, 'execute' method should be used -->
                 <exclude>**/FileSetCheckTest.class</exclude>
+                
                 <exclude>**/AbstractFileSetCheckTest.class</exclude>
 
                 <exclude>**/DetailAstImplTest.class</exclude>
