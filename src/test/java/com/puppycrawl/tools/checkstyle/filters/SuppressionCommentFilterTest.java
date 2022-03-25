@@ -311,7 +311,7 @@ public class SuppressionCommentFilterTest
 
         final DefaultConfiguration checkerConfig = createRootConfig(treewalkerConfig);
 
-        verify(checkerConfig, fileName,
+        execute(checkerConfig, fileName,
                 removeSuppressed(expectedViolations, suppressedViolations));
     }
 
