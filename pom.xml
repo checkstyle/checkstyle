@@ -201,7 +201,7 @@
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.9.3</antlr4.version>
     <maven.site.plugin.version>3.11.0</maven.site.plugin.version>
-    <maven.spotbugs.plugin.version>4.5.3.0</maven.spotbugs.plugin.version>
+    <maven.spotbugs.plugin.version>4.6.0.0</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.16.0</maven.pmd.plugin.version>
     <pmd.version>6.43.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.7</maven.jacoco.plugin.version>
@@ -214,7 +214,7 @@
     </maven.sevntu-checkstyle-check.checkstyle.version>
     <maven.versions.plugin.version>2.10.0</maven.versions.plugin.version>
     <java.version>11</java.version>
-    <pitest.plugin.version>1.7.4</pitest.plugin.version>
+    <pitest.plugin.version>1.7.5</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
     <pitest.plugin.threads>4</pitest.plugin.threads>
@@ -298,7 +298,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.9.1</version>
+      <version>3.10</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -579,7 +579,7 @@
         <artifactId>modernizer-maven-plugin</artifactId>
         <version>2.4.0</version>
         <configuration>
-          <javaVersion>8</javaVersion>
+          <javaVersion>${java.version}</javaVersion>
           <includeTestClasses>false</includeTestClasses>
         </configuration>
         <executions>
@@ -1541,66 +1541,81 @@
                 <exclude>**/XpathFileGeneratorAuditListenerTest.class</exclude>
                 <!-- Needed for testing deprecated API. -->
                 <exclude>**/DefaultConfigurationTest.class</exclude>
-                <!-- Inline Config cannot be supported. -->
+                <!-- is not Check or Filter, it is internal module -->
+                <exclude>**/MetadataGeneratorUtilTest.class</exclude>
+
+                <!-- Inline Config cannot be supported, bdd need support for other comment types -->
                 <exclude>**/UniquePropertiesCheckTest.class</exclude>
-
-                <exclude>**/RegexpCheckTest.class</exclude>
-
-                <exclude>**/SuppressionSingleFilterTest.class</exclude>
-
-                <exclude>**/FileSetCheckTest.class</exclude>
-
-                <exclude>**/AbstractFileSetCheckTest.class</exclude>
-
                 <exclude>**/OrderedPropertiesCheckTest.class</exclude>
 
+                <!-- some tests are not for java files, need support of different header comment -->
                 <exclude>**/RegexpMultilineCheckTest.class</exclude>
+                <exclude>**/RegexpCheckTest.class</exclude>
 
-                <exclude>**/EmptyLineSeparatorCheckTest.class</exclude>
-
-                <exclude>**/IndentationCheckTest.class</exclude>
-
-                <exclude>**/NoCodeInFileCheckTest.class</exclude>
-
-                <exclude>**/TreeWalkerTest.class</exclude>
-
-                <exclude>**/RegexpOnFilenameCheckTest.class</exclude>
-
-                <exclude>**/CheckerTest.class</exclude>
-
-                <exclude>**/HeaderCheckTest.class</exclude>
-
-                <exclude>**/SuppressWarningsFilterTest.class</exclude>
-
-                <exclude>**/SuppressWarningsHolderTest.class</exclude>
-
-                <exclude>**/ImportControlCheckTest.class</exclude>
-
+                <!-- input files are not java files, bdd need support for other comment types -->
                 <exclude>**/SuppressWithPlainTextCommentFilterTest.class</exclude>
 
-                <exclude>**/AbstractCheckTest.class</exclude>
+                <!-- stay in old way as format of input files is very special -->
+                <exclude>**/IndentationCheckTest.class</exclude>
 
-                <exclude>**/RegexpHeaderCheckTest.class</exclude>
+                <!-- two methods use old method as Input file must be completely empty -->
+                <exclude>**/NoCodeInFileCheckTest.class</exclude>
 
-                <exclude>**/ImportOrderCheckTest.class</exclude>
+                <!-- content of file does not matter at all -->
+                <exclude>**/RegexpOnFilenameCheckTest.class</exclude>
+
+                <!-- all bellow until https://github.com/checkstyle/checkstyle/issues/11446 -->
+
+                <!-- usage of custom internal module, 'execute' method should be used -->
+                <exclude>**/FileSetCheckTest.class</exclude>
+                <exclude>**/AbstractFileSetCheckTest.class</exclude>
 
                 <exclude>**/DetailAstImplTest.class</exclude>
 
-                <exclude>**/SuppressWithNearbyCommentFilterTest.class</exclude>
+                <exclude>**/TreeWalkerTest.class</exclude>
 
-                <exclude>**/AbstractModuleTestSupport.class</exclude>
-
-                <exclude>**/CommentsIndentationCheckTest.class</exclude>
-
-                <exclude>**/SuppressionFilterTest.class</exclude>
+                <exclude>**/CheckerTest.class</exclude>
 
                 <exclude>**/AllBlockCommentsTest.class</exclude>
 
+                <!-- remain test methods should be updated -->
+                <exclude>**/EmptyLineSeparatorCheckTest.class</exclude>
+
+                <!-- content header is conflicting with Input inline header -->
+                <exclude>**/HeaderCheckTest.class</exclude>
+                <!-- content header is conflicting with Input inline header -->
+                <exclude>**/RegexpHeaderCheckTest.class</exclude>
+
+                <!-- remain test methods should be updated -->
+                <exclude>**/SuppressWarningsHolderTest.class</exclude>
+
+                <!-- test should be updated -->
+                <exclude>**/ImportControlCheckTest.class</exclude>
+
+                <!-- test should be updated -->
+                <exclude>**/AbstractCheckTest.class</exclude>
+
+                <!-- test should be updated -->
+                <exclude>**/ImportOrderCheckTest.class</exclude>
+
+                <!-- tests need to be updated -->
+                <exclude>**/SuppressWithNearbyCommentFilterTest.class</exclude>
+
+                <!-- this class contain forbidden verify method -->
+                <exclude>**/AbstractModuleTestSupport.class</exclude>
+
+                <!-- test should be updated -->
+                <exclude>**/CommentsIndentationCheckTest.class</exclude>
+
+                <!-- test need to be updated -->
+                <exclude>**/SuppressionFilterTest.class</exclude>
+
+                <!-- tests should be updated -->
                 <exclude>**/WriteTagCheckTest.class</exclude>
 
+                <!-- tests should be updated -->
                 <exclude>**/AbstractJavadocCheckTest.class</exclude>
 
-                <exclude>**/MetadataGeneratorUtilTest.class</exclude>
               </excludes>
             </configuration>
           </execution>
@@ -1676,7 +1691,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jxr-plugin</artifactId>
-        <version>3.1.1</version>
+        <version>3.2.0</version>
       </plugin>
 
       <plugin>
@@ -3289,6 +3304,9 @@
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheckTest
                 </param>
                 <!-- 2% mutation in ScopeUtil -->
                 <param>

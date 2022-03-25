@@ -1,17 +1,26 @@
+/*
+SuppressionXpathFilter
+file = (file)InputSuppressionXpathFilterEscapeChar.xml
+optional = (default)false
+
+com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck
+format = [^a-zA-z0-9]*
+ignoreCase = (default)false
+message = (default)
+tokens = CHAR_LITERAL
+
+*/
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
 
-/*
- * Config: Default.
- */
 public class InputSuppressionXpathFilterEscapeChar {
 
     char a = '&'; // violation
 
     char b = '\"'; // violation
 
-    char c = '\''; // violation
+    char c = '\''; // filtered violation
 
-    char d = '<'; // violation
+    char d = '<'; // filtered violation
 
-    char e = '>'; // violation
+    char e = '>'; // filtered violation
 }

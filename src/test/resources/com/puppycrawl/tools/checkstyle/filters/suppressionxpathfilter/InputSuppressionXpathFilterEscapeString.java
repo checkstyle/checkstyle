@@ -1,23 +1,32 @@
+/*
+SuppressionXpathFilter
+file = (file)InputSuppressionXpathFilterEscapeString.xml
+optional = (default)false
+
+com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck
+format = [^a-zA-z0-9]*
+ignoreCase = (default)false
+message = (default)
+tokens = STRING_LITERAL
+
+*/
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
 
-/*
- * Config: Default.
- */
 public class InputSuppressionXpathFilterEscapeString {
 
-    String quoteChar = "\"escaped\""; // violation
+    String quoteChar = "\"escaped\""; // filtered violation
 
-    String lessChar = "<escaped"; // violation
+    String lessChar = "<escaped"; // filtered violation
 
-    String ampersandChar = "&escaped"; // violation
+    String ampersandChar = "&escaped"; // filtered violation
 
-    String greaterChar = ">escaped"; // violation
+    String greaterChar = ">escaped"; // filtered violation
 
-    String newLineChar = "escaped\n"; // violation
+    String newLineChar = "escaped\n"; // filtered violation
 
-    String specialChar = "escaped\r"; // violation
+    String specialChar = "escaped\r"; // filtered violation
 
-    String aposChar = "'escaped'"; // violation
+    String aposChar = "'escaped'"; // filtered violation
 
     String unicodeCharOne = "语言处理Char"; // violation
 
