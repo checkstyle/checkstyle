@@ -333,8 +333,7 @@
     <properties>
       <!-- *TokenTypes are special classes that are big due to a lot of description comments.
            RequireThisCheck has to work with and identify many frames.
-           JavadocMethodCheck is in the process of being rewritten.
-           UnusedLocalVariable is present until https://github.com/checkstyle/checkstyle/issues/11201 -->
+           JavadocMethodCheck is in the process of being rewritten. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypes'
         or @SimpleName='TokenTypes' or @SimpleName='RequireThisCheck'
