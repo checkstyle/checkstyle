@@ -197,6 +197,7 @@ public class FileTextTest extends AbstractPathTestSupport {
         final FileText fileText = new FileText(new File(filepath), charset.name());
         final FileText copy = new FileText(fileText);
         assertWithMessage("Should not be null")
-                .that(copy.getCharset()).isNotNull();
+                .that(copy.getCharset())
+                .isNotNull();
     }
 }

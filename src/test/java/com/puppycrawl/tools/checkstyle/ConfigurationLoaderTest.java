@@ -738,11 +738,13 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                             IgnoredModulesOptions.OMIT);
 
             assertWithMessage("should have properties")
-                    .that(config.getPropertyNames()).asList()
+                    .that(config.getPropertyNames())
+                    .asList()
                     .contains("severity");
 
             assertWithMessage("should have properties")
-                    .that(config.getPropertyNames()).asList()
+                    .that(config.getPropertyNames())
+                    .asList()
                     .contains("fileExtensions");
 
             assertWithMessage("")
@@ -761,11 +763,13 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             final Configuration[] grandchildren = children[0].getChildren();
 
             assertWithMessage("")
-                    .that(children[0].getPropertyNames()).asList()
+                    .that(children[0].getPropertyNames())
+                    .asList()
                     .contains("severity");
 
             assertWithMessage("")
-                    .that(grandchildren[0].getPropertyNames()).asList()
+                    .that(grandchildren[0].getPropertyNames())
+                    .asList()
                     .contains("query");
         }
     }

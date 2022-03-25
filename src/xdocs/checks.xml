@@ -162,6 +162,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/whitespace/chainedmethodcallwrap.html#ChainedMethodCallWrap">
+                ChainedMethodCallWrap
+              </a>
+            </td>
+            <td>Checks whether method calls specified by identifier pattern are wrapped onto
+              the subsequent line(s). Line wrapping means to insert line breaks in code to make
+              it more readable and adhere to line length standards.</td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/metrics/classdataabstractioncoupling.html#ClassDataAbstractionCoupling">
                 ClassDataAbstractionCoupling
               </a>
