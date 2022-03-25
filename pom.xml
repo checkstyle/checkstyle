@@ -3187,6 +3187,7 @@
                 <param>com.puppycrawl.tools.checkstyle.api.*</param>
                 <!-- 1% mutation in FullIdent -->
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest</param>
+                <parma>com.puppycrawl.tools.checkstyle.checks.whitespace.ChainedMethodCallWrapCheckTest</parma>
               </targetTests>
               <excludedTestClasses>
                 <param>*.Input*</param>
