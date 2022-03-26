@@ -221,7 +221,7 @@
     <pitest.junit5.plugin.version>0.15</pitest.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
     <junit.version>5.8.2</junit.version>
-    <forbiddenapis.version>3.2</forbiddenapis.version>
+    <forbiddenapis.version>3.3</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
   </properties>
 
@@ -3307,6 +3307,10 @@
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheckTest
+                </param>
+                <!-- 35% coverage, 29% mutation in CodePointUtil -->
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheckTest
                 </param>
                 <!-- 2% mutation in ScopeUtil -->
                 <param>
