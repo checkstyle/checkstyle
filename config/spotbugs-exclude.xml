@@ -77,7 +77,6 @@
     <!-- These fields are restricted caches which must remain populated until the process ends. -->
     <Bug pattern="PMB_POSSIBLE_MEMORY_BLOAT"/>
     <Or>
-      <Class name="com.puppycrawl.tools.checkstyle.PackageObjectFactory"/>
       <Class name="com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder"/>
     </Or>
   </Match>
