@@ -283,15 +283,7 @@ public class SuppressionCommentFilterTest
                 removeSuppressed(messages, suppressed));
     }
 
-    private void verifySuppressed(Configuration moduleConfig, String fileName,
-            String... aSuppressed)
-            throws Exception {
-        verifySuppressed(moduleConfig, getPath(fileName),
-               ALL_MESSAGES, aSuppressed);
-    }
-
-    private void verifySuppressed(Configuration moduleConfig, String fileName,
-            String[] expectedViolations, String... suppressedViolations) throws Exception {
+    private void verifySuppressed(Configuration moduleConfig, String fileName) throws Exception {
         final DefaultConfiguration memberNameCheckConfig =
                 createModuleConfig(MemberNameCheck.class);
         memberNameCheckConfig.addProperty("id", "ignore");
@@ -311,8 +303,7 @@ public class SuppressionCommentFilterTest
 
         final DefaultConfiguration checkerConfig = createRootConfig(treewalkerConfig);
 
-        verify(checkerConfig, fileName,
-                removeSuppressed(expectedViolations, suppressedViolations));
+        execute(checkerConfig, fileName);
     }
 
     @Test
@@ -386,8 +377,7 @@ public class SuppressionCommentFilterTest
         filterConfig.addProperty("checkFormat", "e[l");
 
         try {
-            final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
-            verifySuppressed(filterConfig, "InputSuppressionCommentFilter10.java", suppressed);
+            verifySuppressed(filterConfig, "InputSuppressionCommentFilter10.java");
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
@@ -406,8 +396,7 @@ public class SuppressionCommentFilterTest
         filterConfig.addProperty("messageFormat", "e[l");
 
         try {
-            final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
-            verifySuppressed(filterConfig, "InputSuppressionCommentFilter11.java", suppressed);
+            verifySuppressed(filterConfig, "InputSuppressionCommentFilter11.java");
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
