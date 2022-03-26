@@ -188,4 +188,15 @@ public class FinalClassCheckTest
         verifyWithInlineConfigParser(getPath("InputFinalClassInterface.java"), expected);
     }
 
+    @Test
+    public void testFinalClassAnonymousInnerClass() throws Exception {
+        final String[] expected = {
+            "11:9: " + getCheckMessage(MSG_KEY, "b"),
+            "27:9: " + getCheckMessage(MSG_KEY, "m"),
+            "40:9: " + getCheckMessage(MSG_KEY, "q"),
+            "52:13: " + getCheckMessage(MSG_KEY, "b"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalClassAnonymousInnerClass.java"), expected);
+    }
+
 }
