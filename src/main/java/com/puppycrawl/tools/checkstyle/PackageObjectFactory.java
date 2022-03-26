@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.IOException;
+import java.util.AbstractMap;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -95,7 +96,7 @@ public class PackageObjectFactory implements ModuleFactory {
     public static final String STRING_SEPARATOR = ", ";
 
     /** Map of Checkstyle module names to their fully qualified names. */
-    private static final Map<String, String> NAME_TO_FULL_MODULE_NAME = new HashMap<>();
+    private static final Map<String, String> NAME_TO_FULL_MODULE_NAME;
 
     /** A list of package names to prepend to class names. */
     private final Set<String> packages;
@@ -110,7 +111,26 @@ public class PackageObjectFactory implements ModuleFactory {
     private ModuleLoadOption moduleLoadOption;
 
     static {
-        fillShortToFullModuleNamesMap();
+        final Map<String, String> moduleNames = new HashMap<>();
+        moduleNames.putAll(fillChecksFromAnnotationPackage());
+        moduleNames.putAll(fillChecksFromBlocksPackage());
+        moduleNames.putAll(fillChecksFromCodingPackage());
+        moduleNames.putAll(fillChecksFromDesignPackage());
+        moduleNames.putAll(fillChecksFromHeaderPackage());
+        moduleNames.putAll(fillChecksFromImportsPackage());
+        moduleNames.putAll(fillChecksFromIndentationPackage());
+        moduleNames.putAll(fillChecksFromJavadocPackage());
+        moduleNames.putAll(fillChecksFromMetricsPackage());
+        moduleNames.putAll(fillChecksFromModifierPackage());
+        moduleNames.putAll(fillChecksFromNamingPackage());
+        moduleNames.putAll(fillChecksFromRegexpPackage());
+        moduleNames.putAll(fillChecksFromSizesPackage());
+        moduleNames.putAll(fillChecksFromWhitespacePackage());
+        moduleNames.putAll(fillModulesFromChecksPackage());
+        moduleNames.putAll(fillModulesFromFilefiltersPackage());
+        moduleNames.putAll(fillModulesFromFiltersPackage());
+        moduleNames.putAll(fillModulesFromCheckstylePackage());
+        NAME_TO_FULL_MODULE_NAME = Collections.unmodifiableMap(moduleNames);
     }
 
     /**
@@ -398,531 +418,623 @@ public class PackageObjectFactory implements ModuleFactory {
     }
 
     /**
-     * Fill short-to-full module names map.
-     */
-    private static void fillShortToFullModuleNamesMap() {
-        fillChecksFromAnnotationPackage();
-        fillChecksFromBlocksPackage();
-        fillChecksFromCodingPackage();
-        fillChecksFromDesignPackage();
-        fillChecksFromHeaderPackage();
-        fillChecksFromImportsPackage();
-        fillChecksFromIndentationPackage();
-        fillChecksFromJavadocPackage();
-        fillChecksFromMetricsPackage();
-        fillChecksFromModifierPackage();
-        fillChecksFromNamingPackage();
-        fillChecksFromRegexpPackage();
-        fillChecksFromSizesPackage();
-        fillChecksFromWhitespacePackage();
-        fillModulesFromChecksPackage();
-        fillModulesFromFilefiltersPackage();
-        fillModulesFromFiltersPackage();
-        fillModulesFromCheckstylePackage();
-    }
-
-    /**
      * Fill short-to-full module names map with Checks from annotation package.
+     *
+     *  @return map of package names
      */
-    private static void fillChecksFromAnnotationPackage() {
-        NAME_TO_FULL_MODULE_NAME.put("AnnotationLocationCheck",
-                BASE_PACKAGE + ".checks.annotation.AnnotationLocationCheck");
-        NAME_TO_FULL_MODULE_NAME.put("AnnotationOnSameLineCheck",
-                BASE_PACKAGE + ".checks.annotation.AnnotationOnSameLineCheck");
-        NAME_TO_FULL_MODULE_NAME.put("AnnotationUseStyleCheck",
-                BASE_PACKAGE + ".checks.annotation.AnnotationUseStyleCheck");
-        NAME_TO_FULL_MODULE_NAME.put("MissingDeprecatedCheck",
-                BASE_PACKAGE + ".checks.annotation.MissingDeprecatedCheck");
-        NAME_TO_FULL_MODULE_NAME.put("MissingOverrideCheck",
-                BASE_PACKAGE + ".checks.annotation.MissingOverrideCheck");
-        NAME_TO_FULL_MODULE_NAME.put("PackageAnnotationCheck",
-                BASE_PACKAGE + ".checks.annotation.PackageAnnotationCheck");
-        NAME_TO_FULL_MODULE_NAME.put("SuppressWarningsCheck",
-                BASE_PACKAGE + ".checks.annotation.SuppressWarningsCheck");
+    private static Map<String, String> fillChecksFromAnnotationPackage() {
+        return Stream.of(
+                new AbstractMap.SimpleEntry<>("AnnotationLocationCheck", BASE_PACKAGE
+                    + ".checks.annotation.AnnotationLocationCheck"),
+                new AbstractMap.SimpleEntry<>("AnnotationOnSameLineCheck", BASE_PACKAGE
+                    + ".checks.annotation.AnnotationOnSameLineCheck"),
+                new AbstractMap.SimpleEntry<>("AnnotationUseStyleCheck", BASE_PACKAGE
+                    + ".checks.annotation.AnnotationUseStyleCheck"),
+                new AbstractMap.SimpleEntry<>("MissingDeprecatedCheck", BASE_PACKAGE
+                    + ".checks.annotation.MissingDeprecatedCheck"),
+                new AbstractMap.SimpleEntry<>("MissingOverrideCheck", BASE_PACKAGE
+                    + ".checks.annotation.MissingOverrideCheck"),
+                new AbstractMap.SimpleEntry<>("PackageAnnotationCheck", BASE_PACKAGE
+                    + ".checks.annotation.PackageAnnotationCheck"),
+                new AbstractMap.SimpleEntry<>("SuppressWarningsCheck", BASE_PACKAGE
+                    + ".checks.annotation.SuppressWarningsCheck"))
+            .collect(Collectors.collectingAndThen(
+                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue),
+                Collections::unmodifiableMap));
     }
 
     /**
      * Fill short-to-full module names map with Checks from blocks package.
+     *
+     * @return map of package names
      */
-    private static void fillChecksFromBlocksPackage() {
-        NAME_TO_FULL_MODULE_NAME.put("AvoidNestedBlocksCheck",
-                BASE_PACKAGE + ".checks.blocks.AvoidNestedBlocksCheck");
-        NAME_TO_FULL_MODULE_NAME.put("EmptyBlockCheck",
-                BASE_PACKAGE + ".checks.blocks.EmptyBlockCheck");
-        NAME_TO_FULL_MODULE_NAME.put("EmptyCatchBlockCheck",
-                BASE_PACKAGE + ".checks.blocks.EmptyCatchBlockCheck");
-        NAME_TO_FULL_MODULE_NAME.put("LeftCurlyCheck",
-                BASE_PACKAGE + ".checks.blocks.LeftCurlyCheck");
-        NAME_TO_FULL_MODULE_NAME.put("NeedBracesCheck",
-                BASE_PACKAGE + ".checks.blocks.NeedBracesCheck");
-        NAME_TO_FULL_MODULE_NAME.put("RightCurlyCheck",
-                BASE_PACKAGE + ".checks.blocks.RightCurlyCheck");
+    private static Map<String, String> fillChecksFromBlocksPackage() {
+        return Stream.of(
+                new AbstractMap.SimpleEntry<>("AvoidNestedBlocksCheck", BASE_PACKAGE
+                    + ".checks.blocks.AvoidNestedBlocksCheck"),
+                new AbstractMap.SimpleEntry<>("EmptyBlockCheck", BASE_PACKAGE
+                    + ".checks.blocks.EmptyBlockCheck"),
+                new AbstractMap.SimpleEntry<>("EmptyCatchBlockCheck", BASE_PACKAGE
+                    + ".checks.blocks.EmptyCatchBlockCheck"),
+                new AbstractMap.SimpleEntry<>("LeftCurlyCheck", BASE_PACKAGE
+                    + ".checks.blocks.LeftCurlyCheck"),
+                new AbstractMap.SimpleEntry<>("NeedBracesCheck", BASE_PACKAGE
+                    + ".checks.blocks.NeedBracesCheck"),
+                new AbstractMap.SimpleEntry<>("RightCurlyCheck", BASE_PACKAGE
+                    + ".checks.blocks.RightCurlyCheck"))
+            .collect(Collectors.collectingAndThen(
+                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue),
+                Collections::unmodifiableMap));
     }
 
     /**
      * Fill short-to-full module names map with Checks from coding package.
+     *
+     * @return map of package names
      */
     // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
     // -@cs[JavaNCSS] splitting this method is not reasonable.
-    private static void fillChecksFromCodingPackage() {
-        NAME_TO_FULL_MODULE_NAME.put("ArrayTrailingCommaCheck",
-                BASE_PACKAGE + ".checks.coding.ArrayTrailingCommaCheck");
-        NAME_TO_FULL_MODULE_NAME.put("AvoidDoubleBraceInitializationCheck",
-                BASE_PACKAGE + ".checks.coding.AvoidDoubleBraceInitializationCheck");
-        NAME_TO_FULL_MODULE_NAME.put("AvoidInlineConditionalsCheck",
-                BASE_PACKAGE + ".checks.coding.AvoidInlineConditionalsCheck");
-        NAME_TO_FULL_MODULE_NAME.put("AvoidNoArgumentSuperConstructorCallCheck",
-                BASE_PACKAGE + ".checks.coding.AvoidNoArgumentSuperConstructorCallCheck");
-        NAME_TO_FULL_MODULE_NAME.put("CovariantEqualsCheck",
-                BASE_PACKAGE + ".checks.coding.CovariantEqualsCheck");
-        NAME_TO_FULL_MODULE_NAME.put("DeclarationOrderCheck",
-                BASE_PACKAGE + ".checks.coding.DeclarationOrderCheck");
-        NAME_TO_FULL_MODULE_NAME.put("DefaultComesLastCheck",
-                BASE_PACKAGE + ".checks.coding.DefaultComesLastCheck");
-        NAME_TO_FULL_MODULE_NAME.put("EmptyStatementCheck",
-                BASE_PACKAGE + ".checks.coding.EmptyStatementCheck");
-        NAME_TO_FULL_MODULE_NAME.put("EqualsAvoidNullCheck",
-                BASE_PACKAGE + ".checks.coding.EqualsAvoidNullCheck");
-        NAME_TO_FULL_MODULE_NAME.put("EqualsHashCodeCheck",
-                BASE_PACKAGE + ".checks.coding.EqualsHashCodeCheck");
-        NAME_TO_FULL_MODULE_NAME.put("ExplicitInitializationCheck",
-                BASE_PACKAGE + ".checks.coding.ExplicitInitializationCheck");
-        NAME_TO_FULL_MODULE_NAME.put("FallThroughCheck",
-                BASE_PACKAGE + ".checks.coding.FallThroughCheck");
-        NAME_TO_FULL_MODULE_NAME.put("FinalLocalVariableCheck",
-                BASE_PACKAGE + ".checks.coding.FinalLocalVariableCheck");
-        NAME_TO_FULL_MODULE_NAME.put("HiddenFieldCheck",
-                BASE_PACKAGE + ".checks.coding.HiddenFieldCheck");
-        NAME_TO_FULL_MODULE_NAME.put("IllegalCatchCheck",
-                BASE_PACKAGE + ".checks.coding.IllegalCatchCheck");
-        NAME_TO_FULL_MODULE_NAME.put("IllegalInstantiationCheck",
-                BASE_PACKAGE + ".checks.coding.IllegalInstantiationCheck");
-        NAME_TO_FULL_MODULE_NAME.put("IllegalThrowsCheck",
-                BASE_PACKAGE + ".checks.coding.IllegalThrowsCheck");
-        NAME_TO_FULL_MODULE_NAME.put("IllegalTokenCheck",
-                BASE_PACKAGE + ".checks.coding.IllegalTokenCheck");
-        NAME_TO_FULL_MODULE_NAME.put("IllegalTokenTextCheck",
-                BASE_PACKAGE + ".checks.coding.IllegalTokenTextCheck");
-        NAME_TO_FULL_MODULE_NAME.put("IllegalTypeCheck",
-                BASE_PACKAGE + ".checks.coding.IllegalTypeCheck");
-        NAME_TO_FULL_MODULE_NAME.put("InnerAssignmentCheck",
-                BASE_PACKAGE + ".checks.coding.InnerAssignmentCheck");
-        NAME_TO_FULL_MODULE_NAME.put("MagicNumberCheck",
-                BASE_PACKAGE + ".checks.coding.MagicNumberCheck");
-        NAME_TO_FULL_MODULE_NAME.put("MissingCtorCheck",
-                BASE_PACKAGE + ".checks.coding.MissingCtorCheck");
-        NAME_TO_FULL_MODULE_NAME.put("MissingSwitchDefaultCheck",
-                BASE_PACKAGE + ".checks.coding.MissingSwitchDefaultCheck");
-        NAME_TO_FULL_MODULE_NAME.put("ModifiedControlVariableCheck",
-                BASE_PACKAGE + ".checks.coding.ModifiedControlVariableCheck");
-        NAME_TO_FULL_MODULE_NAME.put("MultipleStringLiteralsCheck",
-                BASE_PACKAGE + ".checks.coding.MultipleStringLiteralsCheck");
-        NAME_TO_FULL_MODULE_NAME.put("MultipleVariableDeclarationsCheck",
-                BASE_PACKAGE + ".checks.coding.MultipleVariableDeclarationsCheck");
-        NAME_TO_FULL_MODULE_NAME.put("NestedForDepthCheck",
-                BASE_PACKAGE + ".checks.coding.NestedForDepthCheck");
-        NAME_TO_FULL_MODULE_NAME.put("NestedIfDepthCheck",
-                BASE_PACKAGE + ".checks.coding.NestedIfDepthCheck");
-        NAME_TO_FULL_MODULE_NAME.put("NestedTryDepthCheck",
-                BASE_PACKAGE + ".checks.coding.NestedTryDepthCheck");
-        NAME_TO_FULL_MODULE_NAME.put("NoCloneCheck",
-                BASE_PACKAGE + ".checks.coding.NoCloneCheck");
-        NAME_TO_FULL_MODULE_NAME.put("NoEnumTrailingCommaCheck",
-                BASE_PACKAGE + ".checks.coding.NoEnumTrailingCommaCheck");
-        NAME_TO_FULL_MODULE_NAME.put("NoFinalizerCheck",
-                BASE_PACKAGE + ".checks.coding.NoFinalizerCheck");
-        NAME_TO_FULL_MODULE_NAME.put("OneStatementPerLineCheck",
-                BASE_PACKAGE + ".checks.coding.OneStatementPerLineCheck");
-        NAME_TO_FULL_MODULE_NAME.put("OverloadMethodsDeclarationOrderCheck",
-                BASE_PACKAGE + ".checks.coding.OverloadMethodsDeclarationOrderCheck");
-        NAME_TO_FULL_MODULE_NAME.put("PackageDeclarationCheck",
-                BASE_PACKAGE + ".checks.coding.PackageDeclarationCheck");
-        NAME_TO_FULL_MODULE_NAME.put("ParameterAssignmentCheck",
-                BASE_PACKAGE + ".checks.coding.ParameterAssignmentCheck");
-        NAME_TO_FULL_MODULE_NAME.put("RequireThisCheck",
-                BASE_PACKAGE + ".checks.coding.RequireThisCheck");
-        NAME_TO_FULL_MODULE_NAME.put("ReturnCountCheck",
-                BASE_PACKAGE + ".checks.coding.ReturnCountCheck");
-        NAME_TO_FULL_MODULE_NAME.put("SimplifyBooleanExpressionCheck",
-                BASE_PACKAGE + ".checks.coding.SimplifyBooleanExpressionCheck");
-        NAME_TO_FULL_MODULE_NAME.put("SimplifyBooleanReturnCheck",
-                BASE_PACKAGE + ".checks.coding.SimplifyBooleanReturnCheck");
-        NAME_TO_FULL_MODULE_NAME.put("StringLiteralEqualityCheck",
-                BASE_PACKAGE + ".checks.coding.StringLiteralEqualityCheck");
-        NAME_TO_FULL_MODULE_NAME.put("SuperCloneCheck",
-                BASE_PACKAGE + ".checks.coding.SuperCloneCheck");
-        NAME_TO_FULL_MODULE_NAME.put("SuperFinalizeCheck",
-                BASE_PACKAGE + ".checks.coding.SuperFinalizeCheck");
-        NAME_TO_FULL_MODULE_NAME.put("UnnecessaryParenthesesCheck",
-                BASE_PACKAGE + ".checks.coding.UnnecessaryParenthesesCheck");
-        NAME_TO_FULL_MODULE_NAME.put("UnnecessarySemicolonAfterOuterTypeDeclarationCheck",
-                BASE_PACKAGE
-                        + ".checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheck");
-        NAME_TO_FULL_MODULE_NAME.put("UnnecessarySemicolonAfterTypeMemberDeclarationCheck",
-                BASE_PACKAGE
-                    + ".checks.coding.UnnecessarySemicolonAfterTypeMemberDeclarationCheck");
-        NAME_TO_FULL_MODULE_NAME.put("UnnecessarySemicolonInEnumerationCheck",
-                BASE_PACKAGE + ".checks.coding.UnnecessarySemicolonInEnumerationCheck");
-        NAME_TO_FULL_MODULE_NAME.put("UnnecessarySemicolonInTryWithResourcesCheck",
-                BASE_PACKAGE + ".checks.coding.UnnecessarySemicolonInTryWithResourcesCheck");
-        NAME_TO_FULL_MODULE_NAME.put("VariableDeclarationUsageDistanceCheck",
-                BASE_PACKAGE + ".checks.coding.VariableDeclarationUsageDistanceCheck");
-        NAME_TO_FULL_MODULE_NAME.put("NoArrayTrailingCommaCheck",
-                BASE_PACKAGE + ".checks.coding.NoArrayTrailingCommaCheck");
-        NAME_TO_FULL_MODULE_NAME.put("MatchXpathCheck",
-                BASE_PACKAGE + ".checks.coding.MatchXpathCheck");
-        NAME_TO_FULL_MODULE_NAME.put("UnusedLocalVariableCheck",
-                BASE_PACKAGE + ".checks.coding.UnusedLocalVariableCheck");
+    private static Map<String, String> fillChecksFromCodingPackage() {
+        // noinspection RedundantTypeArguments
+        return Stream.<AbstractMap.SimpleEntry<String, String>>of(
+                new AbstractMap.SimpleEntry<>("ArrayTrailingCommaCheck", BASE_PACKAGE
+                    + ".checks.coding.ArrayTrailingCommaCheck"),
+                new AbstractMap.SimpleEntry<>("AvoidDoubleBraceInitializationCheck", BASE_PACKAGE
+                    + ".checks.coding.AvoidDoubleBraceInitializationCheck"),
+                new AbstractMap.SimpleEntry<>("AvoidInlineConditionalsCheck", BASE_PACKAGE
+                    + ".checks.coding.AvoidInlineConditionalsCheck"),
+                new AbstractMap
+                    .SimpleEntry<>("AvoidNoArgumentSuperConstructorCallCheck", BASE_PACKAGE
+                    + ".checks.coding.AvoidNoArgumentSuperConstructorCallCheck"),
+                new AbstractMap.SimpleEntry<>("CovariantEqualsCheck", BASE_PACKAGE
+                    + ".checks.coding.CovariantEqualsCheck"),
+                new AbstractMap.SimpleEntry<>("DeclarationOrderCheck", BASE_PACKAGE
+                    + ".checks.coding.DeclarationOrderCheck"),
+                new AbstractMap.SimpleEntry<>("DefaultComesLastCheck", BASE_PACKAGE
+                    + ".checks.coding.DefaultComesLastCheck"),
+                new AbstractMap.SimpleEntry<>("EmptyStatementCheck", BASE_PACKAGE
+                    + ".checks.coding.EmptyStatementCheck"),
+                new AbstractMap.SimpleEntry<>("EqualsAvoidNullCheck", BASE_PACKAGE
+                    + ".checks.coding.EqualsAvoidNullCheck"),
+                new AbstractMap.SimpleEntry<>("EqualsHashCodeCheck", BASE_PACKAGE
+                    + ".checks.coding.EqualsHashCodeCheck"),
+                new AbstractMap.SimpleEntry<>("ExplicitInitializationCheck", BASE_PACKAGE
+                    + ".checks.coding.ExplicitInitializationCheck"),
+                new AbstractMap.SimpleEntry<>("FallThroughCheck", BASE_PACKAGE
+                    + ".checks.coding.FallThroughCheck"),
+                new AbstractMap.SimpleEntry<>("FinalLocalVariableCheck", BASE_PACKAGE
+                    + ".checks.coding.FinalLocalVariableCheck"),
+                new AbstractMap.SimpleEntry<>("HiddenFieldCheck", BASE_PACKAGE
+                    + ".checks.coding.HiddenFieldCheck"),
+                new AbstractMap.SimpleEntry<>("IllegalCatchCheck", BASE_PACKAGE
+                    + ".checks.coding.IllegalCatchCheck"),
+                new AbstractMap.SimpleEntry<>("IllegalInstantiationCheck", BASE_PACKAGE
+                    + ".checks.coding.IllegalInstantiationCheck"),
+                new AbstractMap.SimpleEntry<>("IllegalThrowsCheck", BASE_PACKAGE
+                    + ".checks.coding.IllegalThrowsCheck"),
+                new AbstractMap.SimpleEntry<>("IllegalTokenCheck", BASE_PACKAGE
+                    + ".checks.coding.IllegalTokenCheck"),
+                new AbstractMap.SimpleEntry<>("IllegalTokenTextCheck", BASE_PACKAGE
+                    + ".checks.coding.IllegalTokenTextCheck"),
+                new AbstractMap.SimpleEntry<>("IllegalTypeCheck", BASE_PACKAGE
+                    + ".checks.coding.IllegalTypeCheck"),
+                new AbstractMap.SimpleEntry<>("InnerAssignmentCheck", BASE_PACKAGE
+                    + ".checks.coding.InnerAssignmentCheck"),
+                new AbstractMap.SimpleEntry<>("MagicNumberCheck", BASE_PACKAGE
+                    + ".checks.coding.MagicNumberCheck"),
+                new AbstractMap.SimpleEntry<>("MissingCtorCheck", BASE_PACKAGE
+                    + ".checks.coding.MissingCtorCheck"),
+                new AbstractMap.SimpleEntry<>("MissingSwitchDefaultCheck", BASE_PACKAGE
+                    + ".checks.coding.MissingSwitchDefaultCheck"),
+                new AbstractMap.SimpleEntry<>("ModifiedControlVariableCheck", BASE_PACKAGE
+                    + ".checks.coding.ModifiedControlVariableCheck"),
+                new AbstractMap.SimpleEntry<>("MultipleStringLiteralsCheck", BASE_PACKAGE
+                    + ".checks.coding.MultipleStringLiteralsCheck"),
+                new AbstractMap.SimpleEntry<>("MultipleVariableDeclarationsCheck", BASE_PACKAGE
+                    + ".checks.coding.MultipleVariableDeclarationsCheck"),
+                new AbstractMap.SimpleEntry<>("NestedForDepthCheck", BASE_PACKAGE
+                    + ".checks.coding.NestedForDepthCheck"),
+                new AbstractMap.SimpleEntry<>("NestedIfDepthCheck", BASE_PACKAGE
+                    + ".checks.coding.NestedIfDepthCheck"),
+                new AbstractMap.SimpleEntry<>("NestedTryDepthCheck", BASE_PACKAGE
+                    + ".checks.coding.NestedTryDepthCheck"),
+                new AbstractMap.SimpleEntry<>("NoCloneCheck", BASE_PACKAGE
+                    + ".checks.coding.NoCloneCheck"),
+                new AbstractMap.SimpleEntry<>("NoEnumTrailingCommaCheck", BASE_PACKAGE
+                    + ".checks.coding.NoEnumTrailingCommaCheck"),
+                new AbstractMap.SimpleEntry<>("NoFinalizerCheck", BASE_PACKAGE
+                    + ".checks.coding.NoFinalizerCheck"),
+                new AbstractMap.SimpleEntry<>("OneStatementPerLineCheck", BASE_PACKAGE
+                    + ".checks.coding.OneStatementPerLineCheck"),
+                new AbstractMap.SimpleEntry<>("OverloadMethodsDeclarationOrderCheck", BASE_PACKAGE
+                    + ".checks.coding.OverloadMethodsDeclarationOrderCheck"),
+                new AbstractMap.SimpleEntry<>("PackageDeclarationCheck", BASE_PACKAGE
+                    + ".checks.coding.PackageDeclarationCheck"),
+                new AbstractMap.SimpleEntry<>("ParameterAssignmentCheck", BASE_PACKAGE
+                    + ".checks.coding.ParameterAssignmentCheck"),
+                new AbstractMap.SimpleEntry<>("RequireThisCheck", BASE_PACKAGE
+                    + ".checks.coding.RequireThisCheck"),
+                new AbstractMap.SimpleEntry<>("ReturnCountCheck", BASE_PACKAGE
+                    + ".checks.coding.ReturnCountCheck"),
+                new AbstractMap.SimpleEntry<>("SimplifyBooleanExpressionCheck", BASE_PACKAGE
+                    + ".checks.coding.SimplifyBooleanExpressionCheck"),
+                new AbstractMap.SimpleEntry<>("SimplifyBooleanReturnCheck", BASE_PACKAGE
+                    + ".checks.coding.SimplifyBooleanReturnCheck"),
+                new AbstractMap.SimpleEntry<>("StringLiteralEqualityCheck", BASE_PACKAGE
+                    + ".checks.coding.StringLiteralEqualityCheck"),
+                new AbstractMap.SimpleEntry<>("SuperCloneCheck", BASE_PACKAGE
+                    + ".checks.coding.SuperCloneCheck"),
+                new AbstractMap.SimpleEntry<>("SuperFinalizeCheck", BASE_PACKAGE
+                    + ".checks.coding.SuperFinalizeCheck"),
+                new AbstractMap.SimpleEntry<>("UnnecessaryParenthesesCheck", BASE_PACKAGE
+                    + ".checks.coding.UnnecessaryParenthesesCheck"),
+                new AbstractMap.SimpleEntry
+                    <>("UnnecessarySemicolonAfterOuterTypeDeclarationCheck", BASE_PACKAGE
+                    + ".checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheck"),
+                new AbstractMap.SimpleEntry
+                    <>("UnnecessarySemicolonAfterTypeMemberDeclarationCheck",
+                       BASE_PACKAGE
+                           + ".checks.coding.UnnecessarySemicolonAfterTypeMemberDeclarationCheck"),
+                new AbstractMap.SimpleEntry
+                    <>("UnnecessarySemicolonInEnumerationCheck",
+                       BASE_PACKAGE
+                           + ".checks.coding.UnnecessarySemicolonInEnumerationCheck"),
+                new AbstractMap
+                    .SimpleEntry<>("UnnecessarySemicolonInTryWithResourcesCheck", BASE_PACKAGE
+                    + ".checks.coding.UnnecessarySemicolonInTryWithResourcesCheck"),
+                new AbstractMap.SimpleEntry<>("VariableDeclarationUsageDistanceCheck", BASE_PACKAGE
+                    + ".checks.coding.VariableDeclarationUsageDistanceCheck"),
+                new AbstractMap.SimpleEntry<>("NoArrayTrailingCommaCheck", BASE_PACKAGE
+                    + ".checks.coding.NoArrayTrailingCommaCheck"),
+                new AbstractMap.SimpleEntry<>("MatchXpathCheck", BASE_PACKAGE
+                    + ".checks.coding.MatchXpathCheck"),
+                new AbstractMap.SimpleEntry<>("UnusedLocalVariableCheck", BASE_PACKAGE
+                    + ".checks.coding.UnusedLocalVariableCheck"))
+            .collect(Collectors.collectingAndThen(
+                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue),
+                Collections::unmodifiableMap));
     }
 
     /**
      * Fill short-to-full module names map with Checks from design package.
+     *
+     * @return map of package names
      */
-    private static void fillChecksFromDesignPackage() {
-        NAME_TO_FULL_MODULE_NAME.put("DesignForExtensionCheck",
-                BASE_PACKAGE + ".checks.design.DesignForExtensionCheck");
-        NAME_TO_FULL_MODULE_NAME.put("FinalClassCheck",
-                BASE_PACKAGE + ".checks.design.FinalClassCheck");
-        NAME_TO_FULL_MODULE_NAME.put("HideUtilityClassConstructorCheck",
-                BASE_PACKAGE + ".checks.design.HideUtilityClassConstructorCheck");
-        NAME_TO_FULL_MODULE_NAME.put("InnerTypeLastCheck",
-                BASE_PACKAGE + ".checks.design.InnerTypeLastCheck");
-        NAME_TO_FULL_MODULE_NAME.put("InterfaceIsTypeCheck",
-                BASE_PACKAGE + ".checks.design.InterfaceIsTypeCheck");
-        NAME_TO_FULL_MODULE_NAME.put("MutableExceptionCheck",
-                BASE_PACKAGE + ".checks.design.MutableExceptionCheck");
-        NAME_TO_FULL_MODULE_NAME.put("OneTopLevelClassCheck",
-                BASE_PACKAGE + ".checks.design.OneTopLevelClassCheck");
-        NAME_TO_FULL_MODULE_NAME.put("ThrowsCountCheck",
-                BASE_PACKAGE + ".checks.design.ThrowsCountCheck");
-        NAME_TO_FULL_MODULE_NAME.put("VisibilityModifierCheck",
-                BASE_PACKAGE + ".checks.design.VisibilityModifierCheck");
+    private static Map<String, String> fillChecksFromDesignPackage() {
+        return Stream.of(
+                new AbstractMap.SimpleEntry<>("DesignForExtensionCheck", BASE_PACKAGE
+                    + ".checks.design.DesignForExtensionCheck"),
+                new AbstractMap.SimpleEntry<>("FinalClassCheck", BASE_PACKAGE
+                    + ".checks.design.FinalClassCheck"),
+                new AbstractMap.SimpleEntry<>("HideUtilityClassConstructorCheck", BASE_PACKAGE
+                    + ".checks.design.HideUtilityClassConstructorCheck"),
+                new AbstractMap.SimpleEntry<>("InnerTypeLastCheck", BASE_PACKAGE
+                    + ".checks.design.InnerTypeLastCheck"),
+                new AbstractMap.SimpleEntry<>("InterfaceIsTypeCheck", BASE_PACKAGE
+                    + ".checks.design.InterfaceIsTypeCheck"),
+                new AbstractMap.SimpleEntry<>("MutableExceptionCheck", BASE_PACKAGE
+                    + ".checks.design.MutableExceptionCheck"),
+                new AbstractMap.SimpleEntry<>("OneTopLevelClassCheck", BASE_PACKAGE
+                    + ".checks.design.OneTopLevelClassCheck"),
+                new AbstractMap.SimpleEntry<>("ThrowsCountCheck", BASE_PACKAGE
+                    + ".checks.design.ThrowsCountCheck"),
+                new AbstractMap.SimpleEntry<>("VisibilityModifierCheck", BASE_PACKAGE
+                    + ".checks.design.VisibilityModifierCheck"))
+            .collect(Collectors.collectingAndThen(
+                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue),
+                Collections::unmodifiableMap));
     }
 
     /**
      * Fill short-to-full module names map with Checks from header package.
+     *
+     * @return map of package names
      */
-    private static void fillChecksFromHeaderPackage() {
-        NAME_TO_FULL_MODULE_NAME.put("HeaderCheck",
-                BASE_PACKAGE + ".checks.header.HeaderCheck");
-        NAME_TO_FULL_MODULE_NAME.put("RegexpHeaderCheck",
-                BASE_PACKAGE + ".checks.header.RegexpHeaderCheck");
+    private static Map<String, String> fillChecksFromHeaderPackage() {
+        return Stream.of(
+                new AbstractMap.SimpleEntry<>("HeaderCheck", BASE_PACKAGE
+                    + ".checks.header.HeaderCheck"),
+                new AbstractMap.SimpleEntry<>("RegexpHeaderCheck", BASE_PACKAGE
+                    + ".checks.header.RegexpHeaderCheck"))
+            .collect(Collectors.collectingAndThen(
+                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue),
+                Collections::unmodifiableMap));
     }
 
     /**
      * Fill short-to-full module names map with Checks from imports package.
+     *
+     * @return map of package names
      */
-    private static void fillChecksFromImportsPackage() {
-        NAME_TO_FULL_MODULE_NAME.put("AvoidStarImportCheck",
-                BASE_PACKAGE + ".checks.imports.AvoidStarImportCheck");
-        NAME_TO_FULL_MODULE_NAME.put("AvoidStaticImportCheck",
-                BASE_PACKAGE + ".checks.imports.AvoidStaticImportCheck");
-        NAME_TO_FULL_MODULE_NAME.put("CustomImportOrderCheck",
-                BASE_PACKAGE + ".checks.imports.CustomImportOrderCheck");
-        NAME_TO_FULL_MODULE_NAME.put("IllegalImportCheck",
-                BASE_PACKAGE + ".checks.imports.IllegalImportCheck");
-        NAME_TO_FULL_MODULE_NAME.put("ImportControlCheck",
-                BASE_PACKAGE + ".checks.imports.ImportControlCheck");
-        NAME_TO_FULL_MODULE_NAME.put("ImportOrderCheck",
-                BASE_PACKAGE + ".checks.imports.ImportOrderCheck");
-        NAME_TO_FULL_MODULE_NAME.put("RedundantImportCheck",
-                BASE_PACKAGE + ".checks.imports.RedundantImportCheck");
-        NAME_TO_FULL_MODULE_NAME.put("UnusedImportsCheck",
-                BASE_PACKAGE + ".checks.imports.UnusedImportsCheck");
+    private static Map<String, String> fillChecksFromImportsPackage() {
+        return Stream.of(
+                new AbstractMap.SimpleEntry<>("AvoidStarImportCheck", BASE_PACKAGE
+                    + ".checks.imports.AvoidStarImportCheck"),
+                new AbstractMap.SimpleEntry<>("AvoidStaticImportCheck", BASE_PACKAGE
+                    + ".checks.imports.AvoidStaticImportCheck"),
+                new AbstractMap.SimpleEntry<>("CustomImportOrderCheck", BASE_PACKAGE
+                    + ".checks.imports.CustomImportOrderCheck"),
+                new AbstractMap.SimpleEntry<>("IllegalImportCheck", BASE_PACKAGE
+                    + ".checks.imports.IllegalImportCheck"),
+                new AbstractMap.SimpleEntry<>("ImportControlCheck", BASE_PACKAGE
+                    + ".checks.imports.ImportControlCheck"),
+                new AbstractMap.SimpleEntry<>("ImportOrderCheck", BASE_PACKAGE
+                    + ".checks.imports.ImportOrderCheck"),
+                new AbstractMap.SimpleEntry<>("RedundantImportCheck", BASE_PACKAGE
+                    + ".checks.imports.RedundantImportCheck"),
+                new AbstractMap.SimpleEntry<>("UnusedImportsCheck", BASE_PACKAGE
+                    + ".checks.imports.UnusedImportsCheck"))
+            .collect(Collectors.collectingAndThen(
+                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue),
+                Collections::unmodifiableMap));
     }
 
     /**
      * Fill short-to-full module names map with Checks from indentation package.
+     *
+     * @return map of package names
      */
-    private static void fillChecksFromIndentationPackage() {
-        NAME_TO_FULL_MODULE_NAME.put("CommentsIndentationCheck",
-                BASE_PACKAGE + ".checks.indentation.CommentsIndentationCheck");
-        NAME_TO_FULL_MODULE_NAME.put("IndentationCheck",
-                BASE_PACKAGE + ".checks.indentation.IndentationCheck");
+    private static Map<String, String> fillChecksFromIndentationPackage() {
+        return Stream.of(
+                new AbstractMap.SimpleEntry<>("CommentsIndentationCheck", BASE_PACKAGE
+                    + ".checks.indentation.CommentsIndentationCheck"),
+                new AbstractMap.SimpleEntry<>("IndentationCheck", BASE_PACKAGE
+                    + ".checks.indentation.IndentationCheck"))
+            .collect(Collectors.collectingAndThen(
+                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue),
+                Collections::unmodifiableMap));
     }
 
     /**
      * Fill short-to-full module names map with Checks from javadoc package.
+     *
+     * @return map of package names
      */
-    private static void fillChecksFromJavadocPackage() {
-        NAME_TO_FULL_MODULE_NAME.put("AtclauseOrderCheck",
-                BASE_PACKAGE + ".checks.javadoc.AtclauseOrderCheck");
-        NAME_TO_FULL_MODULE_NAME.put("InvalidJavadocPositionCheck",
-                BASE_PACKAGE + ".checks.javadoc.InvalidJavadocPositionCheck");
-        NAME_TO_FULL_MODULE_NAME.put("JavadocBlockTagLocationCheck",
-                BASE_PACKAGE + ".checks.javadoc.JavadocBlockTagLocationCheck");
-        NAME_TO_FULL_MODULE_NAME.put("JavadocContentLocationCheck",
-                BASE_PACKAGE + ".checks.javadoc.JavadocContentLocationCheck");
-        NAME_TO_FULL_MODULE_NAME.put("JavadocMethodCheck",
-                BASE_PACKAGE + ".checks.javadoc.JavadocMethodCheck");
-        NAME_TO_FULL_MODULE_NAME.put("JavadocMissingLeadingAsteriskCheck",
-                BASE_PACKAGE + ".checks.javadoc.JavadocMissingLeadingAsteriskCheck");
-        NAME_TO_FULL_MODULE_NAME.put("JavadocMissingWhitespaceAfterAsteriskCheck",
-                BASE_PACKAGE + ".checks.javadoc.JavadocMissingWhitespaceAfterAsteriskCheck");
-        NAME_TO_FULL_MODULE_NAME.put("JavadocPackageCheck",
-                BASE_PACKAGE + ".checks.javadoc.JavadocPackageCheck");
-        NAME_TO_FULL_MODULE_NAME.put("JavadocParagraphCheck",
-                BASE_PACKAGE + ".checks.javadoc.JavadocParagraphCheck");
-        NAME_TO_FULL_MODULE_NAME.put("JavadocStyleCheck",
-                BASE_PACKAGE + ".checks.javadoc.JavadocStyleCheck");
-        NAME_TO_FULL_MODULE_NAME.put("JavadocTagContinuationIndentationCheck",
-                BASE_PACKAGE + ".checks.javadoc.JavadocTagContinuationIndentationCheck");
-        NAME_TO_FULL_MODULE_NAME.put("JavadocTypeCheck",
-                BASE_PACKAGE + ".checks.javadoc.JavadocTypeCheck");
-        NAME_TO_FULL_MODULE_NAME.put("JavadocVariableCheck",
-                BASE_PACKAGE + ".checks.javadoc.JavadocVariableCheck");
-        NAME_TO_FULL_MODULE_NAME.put("MissingJavadocMethodCheck",
-                BASE_PACKAGE + ".checks.javadoc.MissingJavadocMethodCheck");
-        NAME_TO_FULL_MODULE_NAME.put("MissingJavadocPackageCheck",
-                BASE_PACKAGE + ".checks.javadoc.MissingJavadocPackageCheck");
-        NAME_TO_FULL_MODULE_NAME.put("MissingJavadocTypeCheck",
-                BASE_PACKAGE + ".checks.javadoc.MissingJavadocTypeCheck");
-        NAME_TO_FULL_MODULE_NAME.put("NonEmptyAtclauseDescriptionCheck",
-                BASE_PACKAGE + ".checks.javadoc.NonEmptyAtclauseDescriptionCheck");
-        NAME_TO_FULL_MODULE_NAME.put("RequireEmptyLineBeforeBlockTagGroupCheck",
-                BASE_PACKAGE + ".checks.javadoc.RequireEmptyLineBeforeBlockTagGroupCheck");
-        NAME_TO_FULL_MODULE_NAME.put("SingleLineJavadocCheck",
-                BASE_PACKAGE + ".checks.javadoc.SingleLineJavadocCheck");
-        NAME_TO_FULL_MODULE_NAME.put("SummaryJavadocCheck",
-                BASE_PACKAGE + ".checks.javadoc.SummaryJavadocCheck");
-        NAME_TO_FULL_MODULE_NAME.put("WriteTagCheck",
-                BASE_PACKAGE + ".checks.javadoc.WriteTagCheck");
+    private static Map<String, String> fillChecksFromJavadocPackage() {
+        return Stream.of(
+                new AbstractMap.SimpleEntry<>("AtclauseOrderCheck", BASE_PACKAGE
+                    + ".checks.javadoc.AtclauseOrderCheck"),
+                new AbstractMap.SimpleEntry<>("InvalidJavadocPositionCheck", BASE_PACKAGE
+                    + ".checks.javadoc.InvalidJavadocPositionCheck"),
+                new AbstractMap.SimpleEntry<>("JavadocBlockTagLocationCheck", BASE_PACKAGE
+                    + ".checks.javadoc.JavadocBlockTagLocationCheck"),
+                new AbstractMap.SimpleEntry<>("JavadocContentLocationCheck", BASE_PACKAGE
+                    + ".checks.javadoc.JavadocContentLocationCheck"),
+                new AbstractMap.SimpleEntry<>("JavadocMethodCheck", BASE_PACKAGE
+                    + ".checks.javadoc.JavadocMethodCheck"),
+                new AbstractMap.SimpleEntry<>("JavadocMissingLeadingAsteriskCheck", BASE_PACKAGE
+                    + ".checks.javadoc.JavadocMissingLeadingAsteriskCheck"),
+                new AbstractMap
+                    .SimpleEntry<>("JavadocMissingWhitespaceAfterAsteriskCheck", BASE_PACKAGE
+                        + ".checks.javadoc.JavadocMissingWhitespaceAfterAsteriskCheck"),
+                new AbstractMap.SimpleEntry<>("JavadocPackageCheck", BASE_PACKAGE
+                    + ".checks.javadoc.JavadocPackageCheck"),
+                new AbstractMap.SimpleEntry<>("JavadocParagraphCheck", BASE_PACKAGE
+                    + ".checks.javadoc.JavadocParagraphCheck"),
+                new AbstractMap.SimpleEntry<>("JavadocStyleCheck", BASE_PACKAGE
+                    + ".checks.javadoc.JavadocStyleCheck"),
+                new AbstractMap
+                    .SimpleEntry<>("JavadocTagContinuationIndentationCheck", BASE_PACKAGE
+                    + ".checks.javadoc.JavadocTagContinuationIndentationCheck"),
+                new AbstractMap.SimpleEntry<>("JavadocTypeCheck", BASE_PACKAGE
+                    + ".checks.javadoc.JavadocTypeCheck"),
+                new AbstractMap.SimpleEntry<>("JavadocVariableCheck", BASE_PACKAGE
+                    + ".checks.javadoc.JavadocVariableCheck"),
+                new AbstractMap.SimpleEntry<>("MissingJavadocMethodCheck", BASE_PACKAGE
+                    + ".checks.javadoc.MissingJavadocMethodCheck"),
+                new AbstractMap.SimpleEntry<>("MissingJavadocPackageCheck", BASE_PACKAGE
+                    + ".checks.javadoc.MissingJavadocPackageCheck"),
+                new AbstractMap.SimpleEntry<>("MissingJavadocTypeCheck", BASE_PACKAGE
+                    + ".checks.javadoc.MissingJavadocTypeCheck"),
+                new AbstractMap.SimpleEntry<>("NonEmptyAtclauseDescriptionCheck", BASE_PACKAGE
+                    + ".checks.javadoc.NonEmptyAtclauseDescriptionCheck"),
+                new AbstractMap
+                    .SimpleEntry<>("RequireEmptyLineBeforeBlockTagGroupCheck", BASE_PACKAGE
+                    + ".checks.javadoc.RequireEmptyLineBeforeBlockTagGroupCheck"),
+                new AbstractMap.SimpleEntry<>("SingleLineJavadocCheck", BASE_PACKAGE
+                    + ".checks.javadoc.SingleLineJavadocCheck"),
+                new AbstractMap.SimpleEntry<>("SummaryJavadocCheck", BASE_PACKAGE
+                    + ".checks.javadoc.SummaryJavadocCheck"),
+                new AbstractMap.SimpleEntry<>("WriteTagCheck", BASE_PACKAGE
+                    + ".checks.javadoc.WriteTagCheck"))
+            .collect(Collectors.collectingAndThen(
+                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue),
+                Collections::unmodifiableMap));
     }
 
     /**
      * Fill short-to-full module names map with Checks from metrics package.
+     *
+     * @return map of package names
      */
-    private static void fillChecksFromMetricsPackage() {
-        NAME_TO_FULL_MODULE_NAME.put("BooleanExpressionComplexityCheck",
-                BASE_PACKAGE + ".checks.metrics.BooleanExpressionComplexityCheck");
-        NAME_TO_FULL_MODULE_NAME.put("ClassDataAbstractionCouplingCheck",
-                BASE_PACKAGE + ".checks.metrics.ClassDataAbstractionCouplingCheck");
-        NAME_TO_FULL_MODULE_NAME.put("ClassFanOutComplexityCheck",
-                BASE_PACKAGE + ".checks.metrics.ClassFanOutComplexityCheck");
-        NAME_TO_FULL_MODULE_NAME.put("CyclomaticComplexityCheck",
-                BASE_PACKAGE + ".checks.metrics.CyclomaticComplexityCheck");
-        NAME_TO_FULL_MODULE_NAME.put("JavaNCSSCheck",
-                BASE_PACKAGE + ".checks.metrics.JavaNCSSCheck");
-        NAME_TO_FULL_MODULE_NAME.put("NPathComplexityCheck",
-                BASE_PACKAGE + ".checks.metrics.NPathComplexityCheck");
+    private static Map<String, String> fillChecksFromMetricsPackage() {
+        return Stream.of(
+                new AbstractMap.SimpleEntry<>("BooleanExpressionComplexityCheck", BASE_PACKAGE
+                    + ".checks.metrics.BooleanExpressionComplexityCheck"),
+                new AbstractMap.SimpleEntry<>("ClassDataAbstractionCouplingCheck", BASE_PACKAGE
+                    + ".checks.metrics.ClassDataAbstractionCouplingCheck"),
+                new AbstractMap.SimpleEntry<>("ClassFanOutComplexityCheck", BASE_PACKAGE
+                    + ".checks.metrics.ClassFanOutComplexityCheck"),
+                new AbstractMap.SimpleEntry<>("CyclomaticComplexityCheck", BASE_PACKAGE
+                    + ".checks.metrics.CyclomaticComplexityCheck"),
+                new AbstractMap.SimpleEntry<>("JavaNCSSCheck", BASE_PACKAGE
+                    + ".checks.metrics.JavaNCSSCheck"),
+                new AbstractMap.SimpleEntry<>("NPathComplexityCheck", BASE_PACKAGE
+                    + ".checks.metrics.NPathComplexityCheck"))
+            .collect(Collectors.collectingAndThen(
+                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue),
+                Collections::unmodifiableMap));
     }
 
     /**
      * Fill short-to-full module names map with Checks from modifier package.
+     *
+     * @return map of package names
      */
-    private static void fillChecksFromModifierPackage() {
-        NAME_TO_FULL_MODULE_NAME.put("ClassMemberImpliedModifierCheck",
-            BASE_PACKAGE + ".checks.modifier.ClassMemberImpliedModifierCheck");
-        NAME_TO_FULL_MODULE_NAME.put("InterfaceMemberImpliedModifierCheck",
-            BASE_PACKAGE + ".checks.modifier.InterfaceMemberImpliedModifierCheck");
-        NAME_TO_FULL_MODULE_NAME.put("ModifierOrderCheck",
-                BASE_PACKAGE + ".checks.modifier.ModifierOrderCheck");
-        NAME_TO_FULL_MODULE_NAME.put("RedundantModifierCheck",
-                BASE_PACKAGE + ".checks.modifier.RedundantModifierCheck");
+    private static Map<String, String> fillChecksFromModifierPackage() {
+        return Stream.of(
+                new AbstractMap.SimpleEntry<>("ClassMemberImpliedModifierCheck", BASE_PACKAGE
+                    + ".checks.modifier.ClassMemberImpliedModifierCheck"),
+                new AbstractMap.SimpleEntry<>("InterfaceMemberImpliedModifierCheck", BASE_PACKAGE
+                    + ".checks.modifier.InterfaceMemberImpliedModifierCheck"),
+                new AbstractMap.SimpleEntry<>("ModifierOrderCheck", BASE_PACKAGE
+                    + ".checks.modifier.ModifierOrderCheck"),
+                new AbstractMap.SimpleEntry<>("RedundantModifierCheck", BASE_PACKAGE
+                    + ".checks.modifier.RedundantModifierCheck"))
+            .collect(Collectors.collectingAndThen(
+                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue),
+                Collections::unmodifiableMap));
     }
 
     /**
      * Fill short-to-full module names map with Checks from naming package.
+     *
+     * @return map of package names
      */
-    private static void fillChecksFromNamingPackage() {
-        NAME_TO_FULL_MODULE_NAME.put("AbbreviationAsWordInNameCheck",
-                BASE_PACKAGE + ".checks.naming.AbbreviationAsWordInNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("AbstractClassNameCheck",
-                BASE_PACKAGE + ".checks.naming.AbstractClassNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("CatchParameterNameCheck",
-                BASE_PACKAGE + ".checks.naming.CatchParameterNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("ClassTypeParameterNameCheck",
-                BASE_PACKAGE + ".checks.naming.ClassTypeParameterNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("ConstantNameCheck",
-                BASE_PACKAGE + ".checks.naming.ConstantNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("InterfaceTypeParameterNameCheck",
-                BASE_PACKAGE + ".checks.naming.InterfaceTypeParameterNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("LambdaParameterNameCheck",
-                BASE_PACKAGE + ".checks.naming.LambdaParameterNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("LocalFinalVariableNameCheck",
-                BASE_PACKAGE + ".checks.naming.LocalFinalVariableNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("LocalVariableNameCheck",
-                BASE_PACKAGE + ".checks.naming.LocalVariableNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("MemberNameCheck",
-                BASE_PACKAGE + ".checks.naming.MemberNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("MethodNameCheck",
-                BASE_PACKAGE + ".checks.naming.MethodNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("MethodTypeParameterNameCheck",
-                BASE_PACKAGE + ".checks.naming.MethodTypeParameterNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("PackageNameCheck",
-                BASE_PACKAGE + ".checks.naming.PackageNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("ParameterNameCheck",
-                BASE_PACKAGE + ".checks.naming.ParameterNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("RecordComponentNameCheck",
-                BASE_PACKAGE + ".checks.naming.RecordComponentNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("RecordTypeParameterNameCheck",
-                BASE_PACKAGE + ".checks.naming.RecordTypeParameterNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("StaticVariableNameCheck",
-                BASE_PACKAGE + ".checks.naming.StaticVariableNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("TypeNameCheck",
-                BASE_PACKAGE + ".checks.naming.TypeNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("PatternVariableNameCheck",
-                BASE_PACKAGE + ".checks.naming.PatternVariableNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("IllegalIdentifierNameCheck",
-            BASE_PACKAGE + ".checks.naming.IllegalIdentifierNameCheck");
+    private static Map<String, String> fillChecksFromNamingPackage() {
+        return Stream.of(
+                new AbstractMap.SimpleEntry<>("AbbreviationAsWordInNameCheck", BASE_PACKAGE
+                    + ".checks.naming.AbbreviationAsWordInNameCheck"),
+                new AbstractMap.SimpleEntry<>("AbstractClassNameCheck", BASE_PACKAGE
+                    + ".checks.naming.AbstractClassNameCheck"),
+                new AbstractMap.SimpleEntry<>("CatchParameterNameCheck", BASE_PACKAGE
+                    + ".checks.naming.CatchParameterNameCheck"),
+                new AbstractMap.SimpleEntry<>("ClassTypeParameterNameCheck", BASE_PACKAGE
+                    + ".checks.naming.ClassTypeParameterNameCheck"),
+                new AbstractMap.SimpleEntry<>("ConstantNameCheck", BASE_PACKAGE
+                    + ".checks.naming.ConstantNameCheck"),
+                new AbstractMap.SimpleEntry<>("InterfaceTypeParameterNameCheck", BASE_PACKAGE
+                    + ".checks.naming.InterfaceTypeParameterNameCheck"),
+                new AbstractMap.SimpleEntry<>("LambdaParameterNameCheck", BASE_PACKAGE
+                    + ".checks.naming.LambdaParameterNameCheck"),
+                new AbstractMap.SimpleEntry<>("LocalFinalVariableNameCheck", BASE_PACKAGE
+                    + ".checks.naming.LocalFinalVariableNameCheck"),
+                new AbstractMap.SimpleEntry<>("LocalVariableNameCheck", BASE_PACKAGE
+                    + ".checks.naming.LocalVariableNameCheck"),
+                new AbstractMap.SimpleEntry<>("MemberNameCheck", BASE_PACKAGE
+                    + ".checks.naming.MemberNameCheck"),
+                new AbstractMap.SimpleEntry<>("MethodNameCheck", BASE_PACKAGE
+                    + ".checks.naming.MethodNameCheck"),
+                new AbstractMap.SimpleEntry<>("MethodTypeParameterNameCheck", BASE_PACKAGE
+                    + ".checks.naming.MethodTypeParameterNameCheck"),
+                new AbstractMap.SimpleEntry<>("PackageNameCheck", BASE_PACKAGE
+                    + ".checks.naming.PackageNameCheck"),
+                new AbstractMap.SimpleEntry<>("ParameterNameCheck", BASE_PACKAGE
+                    + ".checks.naming.ParameterNameCheck"),
+                new AbstractMap.SimpleEntry<>("RecordComponentNameCheck", BASE_PACKAGE
+                    + ".checks.naming.RecordComponentNameCheck"),
+                new AbstractMap.SimpleEntry<>("RecordTypeParameterNameCheck", BASE_PACKAGE
+                    + ".checks.naming.RecordTypeParameterNameCheck"),
+                new AbstractMap.SimpleEntry<>("StaticVariableNameCheck", BASE_PACKAGE
+                    + ".checks.naming.StaticVariableNameCheck"),
+                new AbstractMap.SimpleEntry<>("TypeNameCheck", BASE_PACKAGE
+                    + ".checks.naming.TypeNameCheck"),
+                new AbstractMap.SimpleEntry<>("PatternVariableNameCheck", BASE_PACKAGE
+                    + ".checks.naming.PatternVariableNameCheck"),
+                new AbstractMap.SimpleEntry<>("IllegalIdentifierNameCheck", BASE_PACKAGE
+                    + ".checks.naming.IllegalIdentifierNameCheck"))
+            .collect(Collectors.collectingAndThen(
+                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue),
+                Collections::unmodifiableMap));
     }
 
     /**
      * Fill short-to-full module names map with Checks from regexp package.
+     *
+     * @return map of package names
      */
-    private static void fillChecksFromRegexpPackage() {
-        NAME_TO_FULL_MODULE_NAME.put("RegexpCheck",
-                BASE_PACKAGE + ".checks.regexp.RegexpCheck");
-        NAME_TO_FULL_MODULE_NAME.put("RegexpMultilineCheck",
-                BASE_PACKAGE + ".checks.regexp.RegexpMultilineCheck");
-        NAME_TO_FULL_MODULE_NAME.put("RegexpOnFilenameCheck",
-                BASE_PACKAGE + ".checks.regexp.RegexpOnFilenameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("RegexpSinglelineCheck",
-                BASE_PACKAGE + ".checks.regexp.RegexpSinglelineCheck");
-        NAME_TO_FULL_MODULE_NAME.put("RegexpSinglelineJavaCheck",
-                BASE_PACKAGE + ".checks.regexp.RegexpSinglelineJavaCheck");
+    private static Map<String, String> fillChecksFromRegexpPackage() {
+        return Stream.of(
+                new AbstractMap.SimpleEntry<>("RegexpCheck", BASE_PACKAGE
+                    + ".checks.regexp.RegexpCheck"),
+                new AbstractMap.SimpleEntry<>("RegexpMultilineCheck", BASE_PACKAGE
+                    + ".checks.regexp.RegexpMultilineCheck"),
+                new AbstractMap.SimpleEntry<>("RegexpOnFilenameCheck", BASE_PACKAGE
+                    + ".checks.regexp.RegexpOnFilenameCheck"),
+                new AbstractMap.SimpleEntry<>("RegexpSinglelineCheck", BASE_PACKAGE
+                    + ".checks.regexp.RegexpSinglelineCheck"),
+                new AbstractMap.SimpleEntry<>("RegexpSinglelineJavaCheck", BASE_PACKAGE
+                    + ".checks.regexp.RegexpSinglelineJavaCheck"))
+            .collect(Collectors.collectingAndThen(
+                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue),
+                Collections::unmodifiableMap));
     }
 
     /**
      * Fill short-to-full module names map with Checks from sizes package.
+     *
+     * @return map of package names
      */
-    private static void fillChecksFromSizesPackage() {
-        NAME_TO_FULL_MODULE_NAME.put("AnonInnerLengthCheck",
-                BASE_PACKAGE + ".checks.sizes.AnonInnerLengthCheck");
-        NAME_TO_FULL_MODULE_NAME.put("ExecutableStatementCountCheck",
-                BASE_PACKAGE + ".checks.sizes.ExecutableStatementCountCheck");
-        NAME_TO_FULL_MODULE_NAME.put("FileLengthCheck",
-                BASE_PACKAGE + ".checks.sizes.FileLengthCheck");
-        NAME_TO_FULL_MODULE_NAME.put("LambdaBodyLengthCheck",
-                BASE_PACKAGE + ".checks.sizes.LambdaBodyLengthCheck");
-        NAME_TO_FULL_MODULE_NAME.put("LineLengthCheck",
-                BASE_PACKAGE + ".checks.sizes.LineLengthCheck");
-        NAME_TO_FULL_MODULE_NAME.put("MethodCountCheck",
-                BASE_PACKAGE + ".checks.sizes.MethodCountCheck");
-        NAME_TO_FULL_MODULE_NAME.put("MethodLengthCheck",
-                BASE_PACKAGE + ".checks.sizes.MethodLengthCheck");
-        NAME_TO_FULL_MODULE_NAME.put("OuterTypeNumberCheck",
-                BASE_PACKAGE + ".checks.sizes.OuterTypeNumberCheck");
-        NAME_TO_FULL_MODULE_NAME.put("ParameterNumberCheck",
-                BASE_PACKAGE + ".checks.sizes.ParameterNumberCheck");
-        NAME_TO_FULL_MODULE_NAME.put("RecordComponentNumberCheck",
-                BASE_PACKAGE + ".checks.sizes.RecordComponentNumberCheck");
+    private static Map<String, String> fillChecksFromSizesPackage() {
+        return Stream.of(
+                new AbstractMap.SimpleEntry<>("AnonInnerLengthCheck", BASE_PACKAGE
+                    + ".checks.sizes.AnonInnerLengthCheck"),
+                new AbstractMap.SimpleEntry<>("ExecutableStatementCountCheck", BASE_PACKAGE
+                    + ".checks.sizes.ExecutableStatementCountCheck"),
+                new AbstractMap.SimpleEntry<>("FileLengthCheck", BASE_PACKAGE
+                    + ".checks.sizes.FileLengthCheck"),
+                new AbstractMap.SimpleEntry<>("LambdaBodyLengthCheck", BASE_PACKAGE
+                    + ".checks.sizes.LambdaBodyLengthCheck"),
+                new AbstractMap.SimpleEntry<>("LineLengthCheck", BASE_PACKAGE
+                    + ".checks.sizes.LineLengthCheck"),
+                new AbstractMap.SimpleEntry<>("MethodCountCheck", BASE_PACKAGE
+                    + ".checks.sizes.MethodCountCheck"),
+                new AbstractMap.SimpleEntry<>("MethodLengthCheck", BASE_PACKAGE
+                    + ".checks.sizes.MethodLengthCheck"),
+                new AbstractMap.SimpleEntry<>("OuterTypeNumberCheck", BASE_PACKAGE
+                    + ".checks.sizes.OuterTypeNumberCheck"),
+                new AbstractMap.SimpleEntry<>("ParameterNumberCheck", BASE_PACKAGE
+                    + ".checks.sizes.ParameterNumberCheck"),
+                new AbstractMap.SimpleEntry<>("RecordComponentNumberCheck", BASE_PACKAGE
+                    + ".checks.sizes.RecordComponentNumberCheck"))
+            .collect(Collectors.collectingAndThen(
+                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue),
+                Collections::unmodifiableMap));
     }
 
     /**
      * Fill short-to-full module names map with Checks from whitespace package.
+     *
+     * @return map of package names
      */
-    private static void fillChecksFromWhitespacePackage() {
-        NAME_TO_FULL_MODULE_NAME.put("EmptyForInitializerPadCheck",
-                BASE_PACKAGE + ".checks.whitespace.EmptyForInitializerPadCheck");
-        NAME_TO_FULL_MODULE_NAME.put("EmptyForIteratorPadCheck",
-                BASE_PACKAGE + ".checks.whitespace.EmptyForIteratorPadCheck");
-        NAME_TO_FULL_MODULE_NAME.put("EmptyLineSeparatorCheck",
-                BASE_PACKAGE + ".checks.whitespace.EmptyLineSeparatorCheck");
-        NAME_TO_FULL_MODULE_NAME.put("FileTabCharacterCheck",
-                BASE_PACKAGE + ".checks.whitespace.FileTabCharacterCheck");
-        NAME_TO_FULL_MODULE_NAME.put("GenericWhitespaceCheck",
-                BASE_PACKAGE + ".checks.whitespace.GenericWhitespaceCheck");
-        NAME_TO_FULL_MODULE_NAME.put("MethodParamPadCheck",
-                BASE_PACKAGE + ".checks.whitespace.MethodParamPadCheck");
-        NAME_TO_FULL_MODULE_NAME.put("NoLineWrapCheck",
-                BASE_PACKAGE + ".checks.whitespace.NoLineWrapCheck");
-        NAME_TO_FULL_MODULE_NAME.put("NoWhitespaceAfterCheck",
-                BASE_PACKAGE + ".checks.whitespace.NoWhitespaceAfterCheck");
-        NAME_TO_FULL_MODULE_NAME.put("NoWhitespaceBeforeCheck",
-                BASE_PACKAGE + ".checks.whitespace.NoWhitespaceBeforeCheck");
-        NAME_TO_FULL_MODULE_NAME.put("NoWhitespaceBeforeCaseDefaultColonCheck",
-                BASE_PACKAGE + ".checks.whitespace.NoWhitespaceBeforeCaseDefaultColonCheck");
-        NAME_TO_FULL_MODULE_NAME.put("OperatorWrapCheck",
-                BASE_PACKAGE + ".checks.whitespace.OperatorWrapCheck");
-        NAME_TO_FULL_MODULE_NAME.put("ParenPadCheck",
-                BASE_PACKAGE + ".checks.whitespace.ParenPadCheck");
-        NAME_TO_FULL_MODULE_NAME.put("SeparatorWrapCheck",
-                BASE_PACKAGE + ".checks.whitespace.SeparatorWrapCheck");
-        NAME_TO_FULL_MODULE_NAME.put("SingleSpaceSeparatorCheck",
-                BASE_PACKAGE + ".checks.whitespace.SingleSpaceSeparatorCheck");
-        NAME_TO_FULL_MODULE_NAME.put("TypecastParenPadCheck",
-                BASE_PACKAGE + ".checks.whitespace.TypecastParenPadCheck");
-        NAME_TO_FULL_MODULE_NAME.put("WhitespaceAfterCheck",
-                BASE_PACKAGE + ".checks.whitespace.WhitespaceAfterCheck");
-        NAME_TO_FULL_MODULE_NAME.put("WhitespaceAroundCheck",
-                BASE_PACKAGE + ".checks.whitespace.WhitespaceAroundCheck");
+    private static Map<String, String> fillChecksFromWhitespacePackage() {
+        return Stream.of(
+                new AbstractMap
+                    .SimpleEntry<>("EmptyForInitializerPadCheck", BASE_PACKAGE
+                    + ".checks.whitespace.EmptyForInitializerPadCheck"),
+                new AbstractMap.SimpleEntry<>("EmptyForIteratorPadCheck", BASE_PACKAGE
+                    + ".checks.whitespace.EmptyForIteratorPadCheck"),
+                new AbstractMap.SimpleEntry<>("EmptyLineSeparatorCheck", BASE_PACKAGE
+                    + ".checks.whitespace.EmptyLineSeparatorCheck"),
+                new AbstractMap.SimpleEntry<>("FileTabCharacterCheck", BASE_PACKAGE
+                    + ".checks.whitespace.FileTabCharacterCheck"),
+                new AbstractMap.SimpleEntry<>("GenericWhitespaceCheck", BASE_PACKAGE
+                    + ".checks.whitespace.GenericWhitespaceCheck"),
+                new AbstractMap.SimpleEntry<>("MethodParamPadCheck", BASE_PACKAGE
+                    + ".checks.whitespace.MethodParamPadCheck"),
+                new AbstractMap.SimpleEntry<>("NoLineWrapCheck", BASE_PACKAGE
+                    + ".checks.whitespace.NoLineWrapCheck"),
+                new AbstractMap.SimpleEntry<>("NoWhitespaceAfterCheck", BASE_PACKAGE
+                    + ".checks.whitespace.NoWhitespaceAfterCheck"),
+                new AbstractMap.SimpleEntry<>("NoWhitespaceBeforeCheck", BASE_PACKAGE
+                    + ".checks.whitespace.NoWhitespaceBeforeCheck"),
+                new AbstractMap
+                    .SimpleEntry<>("NoWhitespaceBeforeCaseDefaultColonCheck", BASE_PACKAGE
+                    + ".checks.whitespace.NoWhitespaceBeforeCaseDefaultColonCheck"),
+                new AbstractMap.SimpleEntry<>("OperatorWrapCheck", BASE_PACKAGE
+                    + ".checks.whitespace.OperatorWrapCheck"),
+                new AbstractMap.SimpleEntry<>("ParenPadCheck", BASE_PACKAGE
+                    + ".checks.whitespace.ParenPadCheck"),
+                new AbstractMap.SimpleEntry<>("SeparatorWrapCheck", BASE_PACKAGE
+                    + ".checks.whitespace.SeparatorWrapCheck"),
+                new AbstractMap.SimpleEntry<>("SingleSpaceSeparatorCheck", BASE_PACKAGE
+                    + ".checks.whitespace.SingleSpaceSeparatorCheck"),
+                new AbstractMap.SimpleEntry<>("TypecastParenPadCheck", BASE_PACKAGE
+                    + ".checks.whitespace.TypecastParenPadCheck"),
+                new AbstractMap.SimpleEntry<>("WhitespaceAfterCheck", BASE_PACKAGE
+                    + ".checks.whitespace.WhitespaceAfterCheck"),
+                new AbstractMap.SimpleEntry<>("WhitespaceAroundCheck", BASE_PACKAGE
+                    + ".checks.whitespace.WhitespaceAroundCheck"))
+            .collect(Collectors.collectingAndThen(
+                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue),
+                Collections::unmodifiableMap));
     }
 
     /**
      * Fill short-to-full module names map with modules from checks package.
+     *
+     * @return map of package names
      */
-    private static void fillModulesFromChecksPackage() {
-        NAME_TO_FULL_MODULE_NAME.put("ArrayTypeStyleCheck",
-                BASE_PACKAGE + ".checks.ArrayTypeStyleCheck");
-        NAME_TO_FULL_MODULE_NAME.put("AvoidEscapedUnicodeCharactersCheck",
-                BASE_PACKAGE + ".checks.AvoidEscapedUnicodeCharactersCheck");
-        NAME_TO_FULL_MODULE_NAME.put("DescendantTokenCheck",
-                BASE_PACKAGE + ".checks.DescendantTokenCheck");
-        NAME_TO_FULL_MODULE_NAME.put("FinalParametersCheck",
-                BASE_PACKAGE + ".checks.FinalParametersCheck");
-        NAME_TO_FULL_MODULE_NAME.put("NewlineAtEndOfFileCheck",
-                BASE_PACKAGE + ".checks.NewlineAtEndOfFileCheck");
-        NAME_TO_FULL_MODULE_NAME.put("NoCodeInFileCheck",
-                BASE_PACKAGE + ".checks.NoCodeInFileCheck");
-        NAME_TO_FULL_MODULE_NAME.put("OuterTypeFilenameCheck",
-                BASE_PACKAGE + ".checks.OuterTypeFilenameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("OrderedPropertiesCheck",
-                BASE_PACKAGE + ".checks.OrderedPropertiesCheck");
-        NAME_TO_FULL_MODULE_NAME.put("SuppressWarningsHolder",
-                BASE_PACKAGE + ".checks.SuppressWarningsHolder");
-        NAME_TO_FULL_MODULE_NAME.put("TodoCommentCheck",
-                BASE_PACKAGE + ".checks.TodoCommentCheck");
-        NAME_TO_FULL_MODULE_NAME.put("TrailingCommentCheck",
-                BASE_PACKAGE + ".checks.TrailingCommentCheck");
-        NAME_TO_FULL_MODULE_NAME.put("TranslationCheck",
-                BASE_PACKAGE + ".checks.TranslationCheck");
-        NAME_TO_FULL_MODULE_NAME.put("UncommentedMainCheck",
-                BASE_PACKAGE + ".checks.UncommentedMainCheck");
-        NAME_TO_FULL_MODULE_NAME.put("UniquePropertiesCheck",
-                BASE_PACKAGE + ".checks.UniquePropertiesCheck");
-        NAME_TO_FULL_MODULE_NAME.put("UpperEllCheck",
-                BASE_PACKAGE + ".checks.UpperEllCheck");
+    private static Map<String, String> fillModulesFromChecksPackage() {
+        return Stream.of(
+                new AbstractMap.SimpleEntry<>("ArrayTypeStyleCheck",
+                                              BASE_PACKAGE + ".checks.ArrayTypeStyleCheck"),
+                new AbstractMap.SimpleEntry<>("AvoidEscapedUnicodeCharactersCheck",
+                                              BASE_PACKAGE
+                                                  + ".checks.AvoidEscapedUnicodeCharactersCheck"),
+                new AbstractMap.SimpleEntry<>("DescendantTokenCheck",
+                                              BASE_PACKAGE + ".checks.DescendantTokenCheck"),
+                new AbstractMap.SimpleEntry<>("FinalParametersCheck",
+                                              BASE_PACKAGE + ".checks.FinalParametersCheck"),
+                new AbstractMap.SimpleEntry<>("NewlineAtEndOfFileCheck",
+                                              BASE_PACKAGE + ".checks.NewlineAtEndOfFileCheck"),
+                new AbstractMap.SimpleEntry<>("NoCodeInFileCheck",
+                                              BASE_PACKAGE + ".checks.NoCodeInFileCheck"),
+                new AbstractMap.SimpleEntry<>("OuterTypeFilenameCheck",
+                                              BASE_PACKAGE + ".checks.OuterTypeFilenameCheck"),
+                new AbstractMap.SimpleEntry<>("OrderedPropertiesCheck",
+                                              BASE_PACKAGE + ".checks.OrderedPropertiesCheck"),
+                new AbstractMap.SimpleEntry<>("SuppressWarningsHolder",
+                                              BASE_PACKAGE + ".checks.SuppressWarningsHolder"),
+                new AbstractMap.SimpleEntry<>("TodoCommentCheck",
+                                              BASE_PACKAGE + ".checks.TodoCommentCheck"),
+                new AbstractMap.SimpleEntry<>("TrailingCommentCheck",
+                                              BASE_PACKAGE + ".checks.TrailingCommentCheck"),
+                new AbstractMap.SimpleEntry<>("TranslationCheck",
+                                              BASE_PACKAGE + ".checks.TranslationCheck"),
+                new AbstractMap.SimpleEntry<>("UncommentedMainCheck",
+                                              BASE_PACKAGE + ".checks.UncommentedMainCheck"),
+                new AbstractMap.SimpleEntry<>("UniquePropertiesCheck",
+                                              BASE_PACKAGE + ".checks.UniquePropertiesCheck"),
+                new AbstractMap.SimpleEntry<>("UpperEllCheck",
+                                              BASE_PACKAGE + ".checks.UpperEllCheck"))
+            .collect(Collectors.collectingAndThen(
+                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue),
+                Collections::unmodifiableMap));
     }
 
     /**
      * Fill short-to-full module names map with modules from filefilters package.
+     *
+     * @return map of package names
      */
-    private static void fillModulesFromFilefiltersPackage() {
-        NAME_TO_FULL_MODULE_NAME.put("BeforeExecutionExclusionFileFilter",
-                BASE_PACKAGE + ".filefilters.BeforeExecutionExclusionFileFilter");
+    private static Map<String, String> fillModulesFromFilefiltersPackage() {
+        return Collections.singletonMap("BeforeExecutionExclusionFileFilter", BASE_PACKAGE
+            + ".filefilters.BeforeExecutionExclusionFileFilter");
     }
 
     /**
      * Fill short-to-full module names map with modules from filters package.
+     *
+     * @return map of package names
      */
-    private static void fillModulesFromFiltersPackage() {
-        NAME_TO_FULL_MODULE_NAME.put("SeverityMatchFilter",
-                BASE_PACKAGE + ".filters.SeverityMatchFilter");
-        NAME_TO_FULL_MODULE_NAME.put("SuppressWithPlainTextCommentFilter",
-            BASE_PACKAGE + ".filters.SuppressWithPlainTextCommentFilter");
-        NAME_TO_FULL_MODULE_NAME.put("SuppressionCommentFilter",
-                BASE_PACKAGE + ".filters.SuppressionCommentFilter");
-        NAME_TO_FULL_MODULE_NAME.put("SuppressionFilter",
-                BASE_PACKAGE + ".filters.SuppressionFilter");
-        NAME_TO_FULL_MODULE_NAME.put("SuppressionSingleFilter",
-                BASE_PACKAGE + ".filters.SuppressionSingleFilter");
-        NAME_TO_FULL_MODULE_NAME.put("SuppressionXpathFilter",
-                BASE_PACKAGE + ".filters.SuppressionXpathFilter");
-        NAME_TO_FULL_MODULE_NAME.put("SuppressionXpathSingleFilter",
-                BASE_PACKAGE + ".filters.SuppressionXpathSingleFilter");
-        NAME_TO_FULL_MODULE_NAME.put("SuppressWarningsFilter",
-                BASE_PACKAGE + ".filters.SuppressWarningsFilter");
-        NAME_TO_FULL_MODULE_NAME.put("SuppressWithNearbyCommentFilter",
-                BASE_PACKAGE + ".filters.SuppressWithNearbyCommentFilter");
+    private static Map<String, String> fillModulesFromFiltersPackage() {
+        return Stream.of(
+                new AbstractMap.SimpleEntry<>("SeverityMatchFilter", BASE_PACKAGE
+                    + ".filters.SeverityMatchFilter"),
+                new AbstractMap.SimpleEntry<>("SuppressWithPlainTextCommentFilter", BASE_PACKAGE
+                    + ".filters.SuppressWithPlainTextCommentFilter"),
+                new AbstractMap.SimpleEntry<>("SuppressionCommentFilter", BASE_PACKAGE
+                    + ".filters.SuppressionCommentFilter"),
+                new AbstractMap.SimpleEntry<>("SuppressionFilter", BASE_PACKAGE
+                    + ".filters.SuppressionFilter"),
+                new AbstractMap.SimpleEntry<>("SuppressionSingleFilter", BASE_PACKAGE
+                    + ".filters.SuppressionSingleFilter"),
+                new AbstractMap.SimpleEntry<>("SuppressionXpathFilter", BASE_PACKAGE
+                    + ".filters.SuppressionXpathFilter"),
+                new AbstractMap.SimpleEntry<>("SuppressionXpathSingleFilter", BASE_PACKAGE
+                    + ".filters.SuppressionXpathSingleFilter"),
+                new AbstractMap.SimpleEntry<>("SuppressWarningsFilter", BASE_PACKAGE
+                    + ".filters.SuppressWarningsFilter"),
+                new AbstractMap.SimpleEntry<>("SuppressWithNearbyCommentFilter", BASE_PACKAGE
+                    + ".filters.SuppressWithNearbyCommentFilter"))
+            .collect(Collectors.collectingAndThen(
+                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue),
+                Collections::unmodifiableMap));
     }
 
     /**
      * Fill short-to-full module names map with modules from checkstyle package.
+     *
+     * @return map of package names
      */
-    private static void fillModulesFromCheckstylePackage() {
-        NAME_TO_FULL_MODULE_NAME.put("Checker", BASE_PACKAGE + ".Checker");
-        NAME_TO_FULL_MODULE_NAME.put("TreeWalker", BASE_PACKAGE + ".TreeWalker");
+    private static Map<String, String> fillModulesFromCheckstylePackage() {
+        return Stream.of(
+                new AbstractMap.SimpleEntry<>("Checker", BASE_PACKAGE + ".Checker"),
+                new AbstractMap.SimpleEntry<>("TreeWalker", BASE_PACKAGE + ".TreeWalker"))
+            .collect(Collectors.collectingAndThen(
+                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue),
+                Collections::unmodifiableMap));
     }
 
 }
