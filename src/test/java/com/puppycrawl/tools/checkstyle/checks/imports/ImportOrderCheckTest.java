@@ -517,7 +517,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("groups", "/^javax");
 
         try {
-            execute(checkConfig, getPath(getPath("InputImportOrder5.java")));
+            execute(checkConfig, getPath("InputImportOrder5.java"));
             assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {
