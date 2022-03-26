@@ -647,9 +647,9 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
                                                                TypeDeclDesc secondTypeDecl) {
         int diff = Integer.compare(
             CheckUtil.typeDeclarationNameMatchingCount(
-                outerTypeDeclName, secondTypeDecl.getQualifiedName()),
+                outerTypeDeclName, secondTypeDecl.getQualifiedName(), true),
             CheckUtil.typeDeclarationNameMatchingCount(
-                outerTypeDeclName, firstTypeDecl.getQualifiedName()));
+                outerTypeDeclName, firstTypeDecl.getQualifiedName(), true));
         if (diff == 0) {
             diff = Integer.compare(firstTypeDecl.getDepth(), secondTypeDecl.getDepth());
         }
