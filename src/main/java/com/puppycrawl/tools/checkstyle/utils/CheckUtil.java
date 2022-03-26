@@ -605,16 +605,35 @@ public final class CheckUtil {
      * would be equal to 6 and not 7 (b of ball is not counted).
      * </p>
      *
+     * <p>
+     * Only set {@code isSearchedClassSuperClassOfAnonymousInnerClass} to {@code true} if the class
+     * being searched for is the super class of an anonymous inner class. Suppose our pattern class
+     * is {@code Main.j} and class to be matched is {@code Main.j.a.b}, the matching count is this
+     * case would be 6 instead of being 5. Even if we didn't hit package separator which was our
+     * main criteria for updating count in previous case, the count is updated as if searched class
+     * is super class of anonymous inner class then nested class can also be the target class which
+     * isn't true in case of extending classes as you can't extend a nested class.
+     * </p>
+     *
      * @param patternClass class against which the given class has to be matched
      * @param classToBeMatched class to be matched
+     * @param isSearchedClassSuperClassOfAnonymousInnerClass Is the class being searched super
+     *                                                       class of an anonymous inner class and
+     *                                                       in that case, the pattern class is the
+     *                                                       outer class of the anonymous
+     *                                                       inner class
      * @return class name matching count
      */
     public static int typeDeclarationNameMatchingCount(String patternClass,
-                                                       String classToBeMatched) {
+            String classToBeMatched, boolean isSearchedClassSuperClassOfAnonymousInnerClass) {
         final int length = Math.min(classToBeMatched.length(), patternClass.length());
         int result = 0;
         for (int i = 0; i < length && patternClass.charAt(i) == classToBeMatched.charAt(i); ++i) {
-            if (patternClass.charAt(i) == PACKAGE_SEPARATOR) {
+            if (patternClass.charAt(i) == PACKAGE_SEPARATOR
+                || isSearchedClassSuperClassOfAnonymousInnerClass
+                && i == length - 1
+                && classToBeMatched.length() > i + 1
+                && classToBeMatched.charAt(i + 1) == PACKAGE_SEPARATOR) {
                 result = i;
             }
         }
