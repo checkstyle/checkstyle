@@ -1598,9 +1598,6 @@
                 <!-- test should be updated -->
                 <exclude>**/AbstractCheckTest.class</exclude>
 
-                <!-- test should be updated -->
-                <exclude>**/ImportOrderCheckTest.class</exclude>
-
                 <!-- tests need to be updated -->
                 <exclude>**/SuppressWithNearbyCommentFilterTest.class</exclude>
 
