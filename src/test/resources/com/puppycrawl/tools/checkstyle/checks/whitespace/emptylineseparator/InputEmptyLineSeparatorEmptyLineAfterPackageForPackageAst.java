@@ -9,7 +9,7 @@ tokens = PACKAGE_DEF
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
-/** // violation
+/** // violation ''/\*' should be separated from previous line'
  * violation expected at line above.
  *
  */
