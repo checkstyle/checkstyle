@@ -10,6 +10,141 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.1">
+      <div class="releaseDate">27.03.2022</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            LineLengthCheck ignores length of import and package statements.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/10907">#10907</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            RedundantModifier should include RECORD_DEF in acceptable tokens.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11259">#11259</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            All checks that use 'AbstractCheck#getLine()' should check code
+            points instead of characters for spacing.
+            Author: MUzairS15
+            <a href="https://github.com/checkstyle/checkstyle/issues/10924">#10924</a>
+          </li>
+          <li>
+            False positive: SummaryJavadocCheck.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11213">#11213</a>
+          </li>
+          <li>
+            Inline @return tag does not pass SummaryJavadocCheck.
+            Author: Octavia Togami
+            <a href="https://github.com/checkstyle/checkstyle/issues/10776">#10776</a>
+          </li>
+          <li>
+            UnnecessaryParentheses reports incorrect violation message for return value in lambdas.
+            Author: Otto Kaaij
+            <a href="https://github.com/checkstyle/checkstyle/issues/11357">#11357</a>
+          </li>
+          <li>
+            Enhance logging approach of SummaryJavadocCheck and use AST-based
+            approach to get content of inline tag.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11030">#11030</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Binita Kumari, Kevin222004, Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Update Tests to use new verify method that use inlined config in Input files.
+            Author: Kevin222004, Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/11446">#11446</a>
+          </li>
+          <li>
+            Conver test for SuppressionXpathSingleFilterTest to use inlined config in Input files.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11439">#11439</a>
+          </li>
+          <li>
+            Conver test for SuppressionXpathFilterTest to use inlined config in Input files.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11438">#11438</a>
+          </li>
+          <li>
+            Specify violation messages in input files.
+            Author: FaraazB, AmrDeveloper, Kevin222004, Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+          <li>
+            Update doc for MultipleStringLiterals.
+            Author: ExApricity
+            <a href="https://github.com/checkstyle/checkstyle/issues/7650">#7650</a>
+          </li>
+          <li>
+            Move methods common in UnusedLocalVariableCheck and FinalClassCheck to util.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11201">#11201</a>
+          </li>
+          <li>
+            Remove suppressions for original verify method or explain in comment.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/10390">#10390</a>
+          </li>
+          <li>
+            Migrate to Inline Config Parser for filters.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/10737">#10737</a>
+          </li>
+          <li>
+            Test inputs should be completely standalone.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/4845">#4845</a>
+          </li>
+          <li>
+            spelling: Fix double word in TreeWalker.
+            Author: Ricardo Vogel
+          </li>
+          <li>
+            Checkstyle should force logging of AST in checks that require it.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/10933">#10933</a>
+          </li>
+          <li>
+            refactor check for override annotation - add util method.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/11333">#11333</a>
+          </li>
+          <li>
+            Fix existing cases of 'getFileContents()' usage.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/11166">#11166</a>
+          </li>
+          <li>
+            JavadocMetadataScraper fails silently if it can&#39;t write the XML files.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/10747">#10747</a>
+          </li>
+          <li>
+            AvoidStarImport: update documentation with example for mix of properties.
+            Author: AmrDeveloper
+            <a href="https://github.com/checkstyle/checkstyle/issues/11352">#11352</a>
+          </li>
+          <li>
+            doc: mention that excludes can be class names.
+            Author: Tobias Nießen
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.0">
       <div class="releaseDate">27.02.2022</div>
       <p>Breaking backward compatibility:</p>
