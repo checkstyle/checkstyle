@@ -108,25 +108,51 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testFirstSentence() throws Exception {
+    public void testFirstSentenceOne() throws Exception {
         final String[] expected = {
             "23: " + getCheckMessage(MSG_NO_PERIOD),
             "48: " + getCheckMessage(MSG_NO_PERIOD),
             "65: " + getCheckMessage(MSG_NO_PERIOD),
             "70: " + getCheckMessage(MSG_NO_PERIOD),
             "75: " + getCheckMessage(MSG_NO_PERIOD),
-            "166: " + getCheckMessage(MSG_NO_PERIOD),
-            "199: " + getCheckMessage(MSG_NO_PERIOD),
-            "325: " + getCheckMessage(MSG_NO_PERIOD),
-            "335: " + getCheckMessage(MSG_NO_PERIOD),
-            "339: " + getCheckMessage(MSG_NO_PERIOD),
-            "346: " + getCheckMessage(MSG_NO_PERIOD),
-            "358: " + getCheckMessage(MSG_NO_PERIOD),
-            "371: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyle2.java"), expected);
+                getPath("InputJavadocStyle2a.java"), expected);
+    }
+
+    @Test
+    public void testFirstSentenceTwo() throws Exception {
+        final String[] expected = {
+            "66: " + getCheckMessage(MSG_NO_PERIOD),
+            "99: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyle2b.java"), expected);
+    }
+
+    @Test
+    public void testFirstSentenceThree() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyle2c.java"), expected);
+    }
+
+    @Test
+    public void testFirstSentenceFour() throws Exception {
+        final String[] expected = {
+            "40: " + getCheckMessage(MSG_NO_PERIOD),
+            "50: " + getCheckMessage(MSG_NO_PERIOD),
+            "54: " + getCheckMessage(MSG_NO_PERIOD),
+            "61: " + getCheckMessage(MSG_NO_PERIOD),
+            "73: " + getCheckMessage(MSG_NO_PERIOD),
+            "86: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyle2d.java"), expected);
     }
 
     @Test
