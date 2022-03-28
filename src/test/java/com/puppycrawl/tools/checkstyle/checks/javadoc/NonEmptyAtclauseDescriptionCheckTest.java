@@ -56,7 +56,7 @@ public class NonEmptyAtclauseDescriptionCheckTest
     }
 
     @Test
-    public void testCheck() throws Exception {
+    public void testCheckOne() throws Exception {
         final String[] expected = {
             // this is a case with description that is sequences of spaces
             "37: " + getCheckMessage(MSG_KEY),
@@ -76,15 +76,21 @@ public class NonEmptyAtclauseDescriptionCheckTest
             "95: " + getCheckMessage(MSG_KEY),
             "96: " + getCheckMessage(MSG_KEY),
             "97: " + getCheckMessage(MSG_KEY),
-            "110: " + getCheckMessage(MSG_KEY),
-            "111: " + getCheckMessage(MSG_KEY),
-            "112: " + getCheckMessage(MSG_KEY),
-            "113: " + getCheckMessage(MSG_KEY),
-            "114: " + getCheckMessage(MSG_KEY),
-            "143: " + getCheckMessage(MSG_KEY),
-            "152: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(getPath("InputNonEmptyAtclauseDescription.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputNonEmptyAtclauseDescriptionOne.java"), expected);
     }
 
+    @Test
+    public void testCheckTwo() throws Exception {
+        final String[] expected = {
+            "16: " + getCheckMessage(MSG_KEY),
+            "17: " + getCheckMessage(MSG_KEY),
+            "18: " + getCheckMessage(MSG_KEY),
+            "19: " + getCheckMessage(MSG_KEY),
+            "20: " + getCheckMessage(MSG_KEY),
+            "51: " + getCheckMessage(MSG_KEY),
+            "60: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(getPath("InputNonEmptyAtclauseDescriptionTwo.java"), expected);
+    }
 }
