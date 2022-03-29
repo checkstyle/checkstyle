@@ -7,9 +7,21 @@ removeFolderWithProtectedFiles() {
 }
 
 function getCheckstylePomVersion {
-  echo "$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
-                      -Dexec.args='${project.version}' \
-                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)"
+  CS_VERSION_FILE='/tmp/cs_version_file'
+  mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
+                        -Dexec.args='${project.version}' \
+                        --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec \
+                         > $CS_VERSION_FILE
+  # checks last command error code
+  if [[ $? != 0 ]]
+  then
+    cat $CS_VERSION_FILE >&2
+    echo "--------------------------------------------" >&2
+    echo "| Attempt to get checkstyle version failed |" >&2
+    echo "--------------------------------------------" >&2
+    exit 1
+  fi
+  echo $(cat $CS_VERSION_FILE)
 }
 
 function checkout_from {
