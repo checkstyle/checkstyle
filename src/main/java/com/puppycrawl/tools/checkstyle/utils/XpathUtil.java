@@ -39,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.xpath.ElementNode;
 import com.puppycrawl.tools.checkstyle.xpath.RootNode;
 import net.sf.saxon.Configuration;
 import net.sf.saxon.om.Item;
+import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.sxpath.XPathDynamicContext;
 import net.sf.saxon.sxpath.XPathEvaluator;
 import net.sf.saxon.sxpath.XPathExpression;
@@ -204,4 +205,21 @@ public final class XpathUtil {
         }
     }
 
+    /**
+     * Returns list of nodes matching xpath expression given node context.
+     *
+     * @param xpath Xpath expression
+     * @param rootNode {@code NodeInfo} node context
+     * @return list of nodes matching xpath expression given node context
+     * @throws XPathException if Xpath cannot be parsed
+     */
+    public static List<NodeInfo> getXpathItems(String xpath, AbstractNode rootNode)
+            throws XPathException {
+        final XPathEvaluator xpathEvaluator = new XPathEvaluator(Configuration.newConfiguration());
+        final XPathExpression xpathExpression = xpathEvaluator.createExpression(xpath);
+        final XPathDynamicContext xpathDynamicContext = xpathExpression
+                .createDynamicContext(rootNode);
+        final List<Item> items = xpathExpression.evaluate(xpathDynamicContext);
+        return items.stream().map(item -> (NodeInfo) item).collect(Collectors.toList());
+    }
 }
