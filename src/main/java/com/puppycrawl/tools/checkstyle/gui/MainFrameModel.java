@@ -204,16 +204,15 @@ public class MainFrameModel {
                 reloadActionEnabled = true;
                 final DetailAST parseTree;
 
-                switch (parseMode) {
-                    case PLAIN_JAVA:
-                        parseTree = JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS);
-                        break;
-                    case JAVA_WITH_COMMENTS:
-                    case JAVA_WITH_JAVADOC_AND_COMMENTS:
-                        parseTree = JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS);
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Unknown mode: " + parseMode);
+                if (parseMode == ParseMode.PLAIN_JAVA) {
+                    parseTree = JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS);
+                }
+                else if (parseMode == ParseMode.JAVA_WITH_COMMENTS
+                        || parseMode == ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS) {
+                    parseTree = JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS);
+                }
+                else {
+                    throw new IllegalArgumentException("Unknown mode: " + parseMode);
                 }
 
                 parseTreeTableModel.setParseTree(parseTree);

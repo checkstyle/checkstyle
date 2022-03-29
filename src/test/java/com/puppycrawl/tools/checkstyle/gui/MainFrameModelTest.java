@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.gui;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -241,6 +242,20 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
         assertWithMessage("MainFrame should not accept non-existent file")
                 .that(MainFrameModel.shouldAcceptFile(nonExistentFile))
                 .isFalse();
+    }
+
+    @Test
+    public void testOpenFileForUnknownParseMode() throws IOException {
+        final File javaFile = new File(getPath(FILE_NAME_TEST_DATA));
+        final ParseMode mock = mock(ParseMode.class);
+        model.setParseMode(mock);
+        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> {
+            model.openFile(javaFile);
+        });
+        assertWithMessage("Invalid error message")
+                .that(ex)
+                .hasMessageThat()
+                .startsWith("Unknown mode:");
     }
 
 }
