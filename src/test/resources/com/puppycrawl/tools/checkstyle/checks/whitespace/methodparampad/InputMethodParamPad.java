@@ -18,59 +18,59 @@ public class InputMethodParamPad
         super();
     }
 
-    public InputMethodParamPad (int aParam) // violation
+    public InputMethodParamPad (int aParam) // violation ''(' is preceded with whitespace'
     {
-        super (); // violation
+        super (); // violation ''(' is preceded with whitespace'
     }
 
     public InputMethodParamPad
-        (double aParam) // violation
+        (double aParam) // violation ''(' should be on the previous line'
     {
         super
-            (); // violation
+            (); // violation ''(' should be on the previous line'
     }
 
     public void method()
     {
     }
 
-    public void method (int aParam) // violation
+    public void method (int aParam) // violation ''(' is preceded with whitespace'
     {
     }
 
     public void method
-        (double aParam) // violation
+        (double aParam) // violation ''(' should be on the previous line'
     {
         // invoke constructor
         InputMethodParamPad pad = new InputMethodParamPad();
-        pad = new InputMethodParamPad (); // violation
+        pad = new InputMethodParamPad (); // violation ''(' is preceded with whitespace'
         pad = new InputMethodParamPad
-            (); // violation
+            (); // violation ''(' should be on the previous line'
 
         // call method
         method();
-        method (); // violation
+        method (); // violation ''(' is preceded with whitespace'
         method
-            (); // violation
+            (); // violation ''(' should be on the previous line'
     }
 
     public void dottedCalls()
     {
         this.method();
-        this.method (); // violation
+        this.method (); // violation ''(' is preceded with whitespace'
         this.method
-            (); // violation
+            (); // violation ''(' should be on the previous line'
 
         InputMethodParamPad p = new InputMethodParamPad();
         p.method();
-        p.method (); // violation
+        p.method (); // violation ''(' is preceded with whitespace'
         p.method
-            (); // violation
+            (); // violation ''(' should be on the previous line'
 
         java.lang.Integer.parseInt("0");
-        java.lang.Integer.parseInt ("0"); // violation
+        java.lang.Integer.parseInt ("0"); // violation ''(' is preceded with whitespace'
         java.lang.Integer.parseInt
-            ("0"); // violation
+            ("0"); // violation ''(' should be on the previous line'
     }
 
     public void newArray()
@@ -81,12 +81,12 @@ public class InputMethodParamPad
     }
 
     enum TestEnum {
-        FIRST () // violation
+        FIRST () // violation ''(' is preceded with whitespace'
             {
             },
 
         SECOND
-            () // violation
+            () // violation ''(' should be on the previous line'
         {
         }
     }

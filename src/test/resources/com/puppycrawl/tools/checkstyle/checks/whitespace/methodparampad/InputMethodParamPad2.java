@@ -18,9 +18,9 @@ public class InputMethodParamPad2
         super();
     }
 
-    public InputMethodParamPad2 (int aParam) // violation
+    public InputMethodParamPad2 (int aParam) // violation ''(' is preceded with whitespace'
     {
-        super (); // violation
+        super (); // violation ''(' is preceded with whitespace'
     }
 
     public InputMethodParamPad2
@@ -34,7 +34,7 @@ public class InputMethodParamPad2
     {
     }
 
-    public void method (int aParam) // violation
+    public void method (int aParam) // violation ''(' is preceded with whitespace'
     {
     }
 
@@ -43,13 +43,13 @@ public class InputMethodParamPad2
     {
         // invoke constructor
         InputMethodParamPad pad = new InputMethodParamPad();
-        pad = new InputMethodParamPad (); // violation
+        pad = new InputMethodParamPad (); // violation ''(' is preceded with whitespace'
         pad = new InputMethodParamPad
             ();
 
         // call method
         method();
-        method (); // violation
+        method (); // violation ''(' is preceded with whitespace'
         method
             ();
     }
@@ -57,18 +57,18 @@ public class InputMethodParamPad2
     public void dottedCalls()
     {
         this.method();
-        this.method (); // violation
+        this.method (); // violation ''(' is preceded with whitespace'
         this.method
             ();
 
         InputMethodParamPad p = new InputMethodParamPad();
         p.method();
-        p.method (); // violation
+        p.method (); // violation ''(' is preceded with whitespace'
         p.method
             ();
 
         java.lang.Integer.parseInt("0");
-        java.lang.Integer.parseInt ("0"); // violation
+        java.lang.Integer.parseInt ("0"); // violation ''(' is preceded with whitespace'
         java.lang.Integer.parseInt
             ("0");
     }
@@ -81,7 +81,7 @@ public class InputMethodParamPad2
     }
 
     enum TestEnum {
-        FIRST () // violation
+        FIRST () // violation ''(' is preceded with whitespace'
             {
             },
 
