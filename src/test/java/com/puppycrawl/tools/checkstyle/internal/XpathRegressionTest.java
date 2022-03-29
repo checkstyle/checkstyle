@@ -134,7 +134,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "SuperFinalize",
             "SuppressWarnings",
             "ThrowsCount",
-            "TypeName",
             "VisibilityModifier"
     );
 
