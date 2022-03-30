@@ -2906,6 +2906,8 @@ class Bar {
                   ELLIPSIS</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
                   LITERAL_SWITCH</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
+                LITERAL_TRY</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
                   LAMBDA</a>
                   .
@@ -2934,6 +2936,8 @@ class Bar {
                   ELLIPSIS</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
                   LITERAL_SWITCH</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
+                LITERAL_TRY</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
                   LAMBDA</a>
                   .
@@ -2966,6 +2970,10 @@ public void myTest() {
 
     for (;;){}               // OK
     for(;;){}                // violation, space after 'for' is required
+
+    try(InputStream ignored = System.in) {} // violation ''try' is not followed by whitespace'
+    try // OK
+            (InputStream ignored = System.in) {}
 }
           </pre>
         </div>
