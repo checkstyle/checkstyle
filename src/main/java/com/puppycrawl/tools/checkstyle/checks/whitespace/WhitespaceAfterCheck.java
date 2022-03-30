@@ -60,6 +60,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * ELLIPSIS</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
  * LITERAL_SWITCH</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
+ * LITERAL_TRY</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
  * LAMBDA</a>.
  * </li>
@@ -105,6 +107,30 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  *         for(;;) {} // OK
  *     }
+ * </pre>
+ * <p>
+ * To configure the check for whitespace only after LITERAL_TRY tokens:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;WhitespaceAfter&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class TryStatement {
+ *     public static void main(String[] args) throws IOException {
+ *       try(InputStream ignored = System.in) { // violation ''try' is not followed by whitespace'
+ *       }
+ *     }
+ * }
+ *
+ * public class TryStatement {
+ *     public static void main(String[] args) throws IOException {
+ *       try (InputStream ignored = System.in) { // OK
+ *       }
+ *     }
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -158,6 +184,7 @@ public class WhitespaceAfterCheck
             TokenTypes.DO_WHILE,
             TokenTypes.ELLIPSIS,
             TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_TRY,
             TokenTypes.LAMBDA,
         };
     }
