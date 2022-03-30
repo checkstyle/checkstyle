@@ -1,5 +1,8 @@
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 public class InputWhitespaceAfterBad {
     public void check1(int x,int y){ //warn
         for(int a=1,b=2;a<5;a++,b--); // warn
@@ -25,5 +28,10 @@ public class InputWhitespaceAfterBad {
             default:
                 break;
         }
+    }
+
+    public void check4() throws IOException {
+            try(InputStream ignored = System.in) { // warn
+            }
     }
 }
