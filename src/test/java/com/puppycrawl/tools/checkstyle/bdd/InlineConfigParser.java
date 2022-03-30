@@ -91,6 +91,10 @@ public final class InlineConfigParser {
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
 
+    /** Inlined config is not supported for non java files. */
+    private static final Set<String> PERMANENT_SUPPRESSED_CHECKS = new HashSet<>(Arrays.asList(
+            "com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck"));
+
     /**
      * Checks in which violation message is not specified in input file and have more than
      * one violation message key.
@@ -106,7 +110,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck",
             "com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck",
-            "com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck",
