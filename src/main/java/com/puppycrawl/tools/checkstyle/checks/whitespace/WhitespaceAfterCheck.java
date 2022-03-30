@@ -60,6 +60,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * ELLIPSIS</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
  * LITERAL_SWITCH</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
+ * LITERAL_TRY</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
  * LAMBDA</a>.
  * </li>
@@ -85,6 +87,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *      for (;;){}               // OK
  *      for(;;){}                // violation, space after 'for' is required
  *      }
+ *
+ * public class TryStatement {
+ *     public static void main(String[] args) throws IOException {
+ *       try(InputStream ignored = System.in) { // violation ''try' is not followed by whitespace'
+ *       }
+ *     }
+ * }
+ *
+ * public class TryStatement {
+ *     public static void main(String[] args) throws IOException {
+ *       try // OK
+ *       (InputStream ignored = System.in) {}
+ *     }
+ * }
  * </pre>
  * <p>
  * To configure the check for whitespace only after COMMA and SEMI tokens:
@@ -158,6 +174,7 @@ public class WhitespaceAfterCheck
             TokenTypes.DO_WHILE,
             TokenTypes.ELLIPSIS,
             TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_TRY,
             TokenTypes.LAMBDA,
         };
     }
