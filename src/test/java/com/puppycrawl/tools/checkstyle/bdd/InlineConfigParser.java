@@ -91,10 +91,6 @@ public final class InlineConfigParser {
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
 
-    /** Inlined config is not supported for non java files. */
-    private static final Set<String> PERMANENT_SUPPRESSED_CHECKS = new HashSet<>(Arrays.asList(
-            "com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck"));
-
     /**
      * Checks in which violation message is not specified in input file and have more than
      * one violation message key.
@@ -135,6 +131,10 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck"));
+
+    /** Inlined config is not supported for non java files. */
+    private static final Set<String> PERMANENT_SUPPRESSED_CHECKS = new HashSet<>(Arrays.asList(
+            "com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck"));
 
     /** Stop instances being created. **/
     private InlineConfigParser() {
@@ -322,6 +322,7 @@ public final class InlineConfigParser {
         final List<ModuleInputConfiguration> moduleLists = inputConfigBuilder.getChildrenModules();
         final boolean specifyViolationMessage = moduleLists.size() == 1
                 && !SUPPRESSED_CHECKS.contains(moduleLists.get(0).getModuleName())
+                && !PERMANENT_SUPPRESSED_CHECKS.contains(moduleLists.get(0).getModuleName())
                 && getNumberOfMessages(moduleLists.get(0).getModuleName()) > 1;
         for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
             setViolations(inputConfigBuilder, lines,
