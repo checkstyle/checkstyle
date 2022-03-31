@@ -6,14 +6,14 @@ RedundantImport
 
 package com.puppycrawl.tools.checkstyle.checks.imports.redundantimport;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.*; // violation
-import com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.InputRedundantImportBug; // violation
+import com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.*; // violation 'Redundant import from the same package'
+import com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.InputRedundantImportBug; // violation 'Redundant import from the same package'
 import java.io.*;
-import java.lang.*; // violation
-import java.lang.String; // violation
+import java.lang.*; // violation 'Redundant import from the java.lang package'
+import java.lang.String; // violation 'Redundant import from the java.lang package'
 
 import java.util.List;
-import java.util.List; // violation
+import java.util.List; // violation 'Duplicate import to line 15'
 import java.util.Iterator;
 import java.util.Enumeration;
 import java.util.Arrays;
@@ -25,7 +25,7 @@ import javax.swing.BorderFactory;
 import static java.io.File.listRoots;
 
 import static javax.swing.WindowConstants.*;
-import static javax.swing.WindowConstants.*; // violation
+import static javax.swing.WindowConstants.*; // violation 'Duplicate import to line 27'
 import static java.io.File.createTempFile;
 import static java.io.File.pathSeparator;
 
