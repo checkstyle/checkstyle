@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
+import com.puppycrawl.tools.checkstyle.utils.AbstractTypeDeclarationDescription;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -206,18 +207,18 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * Pops the type out of the stack while leaving the type
      * in visitor pattern.
      */
-    private final Deque<TypeDeclDesc> typeDeclarations;
+    private final Deque<TypeDeclarationDescription> typeDeclarations;
 
     /**
-     * Maps type declaration ast to their respective TypeDeclDesc objects.
+     * Maps type declaration ast to their respective TypeDeclarationDescription objects.
      */
-    private final Map<DetailAST, TypeDeclDesc> typeDeclAstToTypeDeclDesc;
+    private final Map<DetailAST, TypeDeclarationDescription> typeDeclAstToTypeDeclDesc;
 
     /**
-     * Maps local anonymous inner class to the TypeDeclDesc object
+     * Maps local anonymous inner class to the TypeDeclarationDescription object
      * containing it.
      */
-    private final Map<DetailAST, TypeDeclDesc> anonInnerAstToTypeDeclDesc;
+    private final Map<DetailAST, TypeDeclarationDescription> anonInnerAstToTypeDeclDesc;
 
     /**
      * Set of tokens of type {@link UnusedLocalVariableCheck#CONTAINERS_FOR_ANON_INNERS}
@@ -378,7 +379,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private void visitTypeDeclarationToken(DetailAST typeDeclAst) {
         if (isNonLocalTypeDeclaration(typeDeclAst)) {
             final String qualifiedName = getQualifiedTypeDeclarationName(typeDeclAst);
-            final TypeDeclDesc currTypeDecl = new TypeDeclDesc(qualifiedName, depth, typeDeclAst);
+            final TypeDeclarationDescription currTypeDecl
+                = new TypeDeclarationDescription(qualifiedName, depth, typeDeclAst);
             depth++;
             typeDeclarations.push(currTypeDecl);
             typeDeclAstToTypeDeclDesc.put(typeDeclAst, currTypeDecl);
@@ -506,7 +508,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
 
     /**
      * Add instance variables and class variables to the
-     * {@link TypeDeclDesc#instanceAndClassVarStack}.
+     * {@link TypeDeclarationDescription#instanceAndClassVarStack}.
      *
      * @param varDefAst ast node of type {@link TokenTypes#VARIABLE_DEF}
      */
@@ -534,16 +536,16 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Get the {@link TypeDeclDesc} of the super class of anonymous inner class.
+     * Get the {@link TypeDeclarationDescription} of the super class of anonymous inner class.
      *
      * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
-     * @return {@link TypeDeclDesc} of the super class of anonymous inner class
+     * @return {@link TypeDeclarationDescription} of the super class of anonymous inner class
      */
-    private TypeDeclDesc getSuperClassOfAnonInnerClass(DetailAST literalNewAst) {
-        TypeDeclDesc obtainedClass = null;
+    private TypeDeclarationDescription getSuperClassOfAnonInnerClass(DetailAST literalNewAst) {
+        TypeDeclarationDescription obtainedClass = null;
         final String shortNameOfClass = CheckUtil.getShortNameOfAnonInnerClass(literalNewAst);
         if (packageName != null && shortNameOfClass.startsWith(packageName)) {
-            final Optional<TypeDeclDesc> classWithCompletePackageName =
+            final Optional<TypeDeclarationDescription> classWithCompletePackageName =
                     typeDeclAstToTypeDeclDesc.values()
                     .stream()
                     .filter(typeDeclDesc -> {
@@ -555,7 +557,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             }
         }
         else {
-            final List<TypeDeclDesc> typeDeclWithSameName = typeDeclWithSameName(shortNameOfClass);
+            final List<TypeDeclarationDescription> typeDeclWithSameName
+                = typeDeclWithSameName(shortNameOfClass);
             if (!typeDeclWithSameName.isEmpty()) {
                 obtainedClass = getTheNearestClass(
                         anonInnerAstToTypeDeclDesc.get(literalNewAst).getQualifiedName(),
@@ -573,12 +576,12 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param variablesStack stack of all the relevant variables in the scope
      * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
      */
-    private void modifyVariablesStack(TypeDeclDesc obtainedClass,
-            Deque<VariableDesc> variablesStack,
-            DetailAST literalNewAst) {
+    private void modifyVariablesStack(TypeDeclarationDescription obtainedClass,
+                                      Deque<VariableDesc> variablesStack,
+                                      DetailAST literalNewAst) {
         if (obtainedClass != null) {
             final Deque<VariableDesc> instAndClassVarDeque = typeDeclAstToTypeDeclDesc
-                    .get(obtainedClass.getTypeDeclAst())
+                    .get(obtainedClass.getTypeDeclarationAst())
                     .getUpdatedCopyOfVarStack(literalNewAst);
             instAndClassVarDeque.forEach(variablesStack::push);
         }
@@ -590,7 +593,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param superClassName name of the super class
      * @return true if there is another type declaration with same name.
      */
-    private List<TypeDeclDesc> typeDeclWithSameName(String superClassName) {
+    private List<TypeDeclarationDescription> typeDeclWithSameName(String superClassName) {
         return typeDeclAstToTypeDeclDesc.values().stream()
                 .filter(typeDeclDesc -> {
                     return hasSameNameAsSuperClass(superClassName, typeDeclDesc);
@@ -606,7 +609,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @return {@code true} if the qualified name of {@code typeDeclDesc}
      *         matches the super class name
      */
-    private boolean hasSameNameAsSuperClass(String superClassName, TypeDeclDesc typeDeclDesc) {
+    private boolean hasSameNameAsSuperClass(String superClassName,
+                                            TypeDeclarationDescription typeDeclDesc) {
         final boolean result;
         if (packageName == null && typeDeclDesc.getDepth() == 0) {
             result = typeDeclDesc.getQualifiedName().equals(superClassName);
@@ -626,8 +630,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param typeDeclWithSameName typeDeclarations which have the same name as the super class
      * @return the nearest class
      */
-    private static TypeDeclDesc getTheNearestClass(String outerTypeDeclName,
-            List<TypeDeclDesc> typeDeclWithSameName) {
+    private static TypeDeclarationDescription getTheNearestClass(String outerTypeDeclName,
+        List<TypeDeclarationDescription> typeDeclWithSameName) {
         return Collections.min(typeDeclWithSameName, (first, second) -> {
             return getTypeDeclarationNameMatchingCountDiff(outerTypeDeclName, first, second);
         });
@@ -643,13 +647,12 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @return difference between type declaration name matching count
      */
     private static int getTypeDeclarationNameMatchingCountDiff(String outerTypeDeclName,
-                                                               TypeDeclDesc firstTypeDecl,
-                                                               TypeDeclDesc secondTypeDecl) {
+        TypeDeclarationDescription firstTypeDecl, TypeDeclarationDescription secondTypeDecl) {
         int diff = Integer.compare(
             CheckUtil.typeDeclarationNameMatchingCount(
-                outerTypeDeclName, secondTypeDecl.getQualifiedName()),
+                outerTypeDeclName, secondTypeDecl.getQualifiedName(), true),
             CheckUtil.typeDeclarationNameMatchingCount(
-                outerTypeDeclName, firstTypeDecl.getQualifiedName()));
+                outerTypeDeclName, firstTypeDecl.getQualifiedName(), true));
         if (diff == 0) {
             diff = Integer.compare(firstTypeDecl.getDepth(), secondTypeDecl.getDepth());
         }
@@ -712,7 +715,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             visitIdentToken(ast, variablesStack);
         }
         else if (isInsideLocalAnonInnerClass(ast)) {
-            final TypeDeclDesc obtainedClass = getSuperClassOfAnonInnerClass(ast);
+            final TypeDeclarationDescription obtainedClass = getSuperClassOfAnonInnerClass(ast);
             modifyVariablesStack(obtainedClass, variablesStack, ast);
         }
     }
@@ -958,22 +961,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * or {@link TokenTypes#ENUM_DEF} or {@link TokenTypes#ANNOTATION_DEF}
      * or {@link TokenTypes#RECORD_DEF} is considered as a type declaration.
      */
-    private static class TypeDeclDesc {
-
-        /**
-         * Complete type declaration name with package name and outer type declaration name.
-         */
-        private final String qualifiedName;
-
-        /**
-         * Depth of nesting of type declaration.
-         */
-        private final int depth;
-
-        /**
-         * Type declaration ast node.
-         */
-        private final DetailAST typeDeclAst;
+    private static class TypeDeclarationDescription extends AbstractTypeDeclarationDescription {
 
         /**
          * A stack of type declaration's instance and static variables.
@@ -981,46 +969,16 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         private final Deque<VariableDesc> instanceAndClassVarStack;
 
         /**
-         * Create a new TypeDeclDesc instance.
+         * Create a new TypeDeclarationDescription instance.
          *
          * @param qualifiedName qualified name
          * @param depth depth of nesting
          * @param typeDeclAst type declaration ast node
          */
-        /* package */ TypeDeclDesc(String qualifiedName, int depth,
-                DetailAST typeDeclAst) {
-            this.qualifiedName = qualifiedName;
-            this.depth = depth;
-            this.typeDeclAst = typeDeclAst;
+        /* package */ TypeDeclarationDescription(String qualifiedName, int depth,
+                                                 DetailAST typeDeclAst) {
+            super(qualifiedName, depth, typeDeclAst);
             instanceAndClassVarStack = new ArrayDeque<>();
-        }
-
-        /**
-         * Get the complete type declaration name i.e. type declaration name with package name
-         * and outer type declaration name.
-         *
-         * @return qualified class name
-         */
-        public String getQualifiedName() {
-            return qualifiedName;
-        }
-
-        /**
-         * Get the depth of type declaration.
-         *
-         * @return the depth of nesting of type declaration
-         */
-        public int getDepth() {
-            return depth;
-        }
-
-        /**
-         * Get the type declaration ast node.
-         *
-         * @return ast node of the type declaration
-         */
-        public DetailAST getTypeDeclAst() {
-            return typeDeclAst;
         }
 
         /**
