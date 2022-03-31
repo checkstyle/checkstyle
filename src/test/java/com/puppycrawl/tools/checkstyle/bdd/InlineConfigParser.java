@@ -132,8 +132,13 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck"));
 
-    /** Inlined config is not supported for non java files. */
+    /**
+     *  Inlined configs can not be used in non-java checks, as Inlined config is java style
+     *  multiline comment.
+     *  Such check files needs to be permanently suppressed.
+     */
     private static final Set<String> PERMANENT_SUPPRESSED_CHECKS = new HashSet<>(Arrays.asList(
+            // Inlined config is not supported for non java files.
             "com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck"));
 
     /** Stop instances being created. **/
