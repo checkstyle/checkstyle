@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AbstractTypeDeclarationDescription;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -110,8 +111,14 @@ public class FinalClassCheck
     /** Keeps ClassDesc objects for all inner classes. */
     private Map<String, ClassDesc> innerClasses;
 
-    /** Keeps ClassDesc objects for stack of declared classes. */
-    private Deque<ClassDesc> classes;
+    /**
+     * Maps anonymous inner class's {@link TokenTypes#LITERAL_NEW} node to
+     * the outer type declaration's fully qualified name.
+     */
+    private Map<DetailAST, String> anonInnerClassToOuterTypeDecl;
+
+    /** Keeps AbstractTypeDeclarationDescription object for stack of declared type descriptions. */
+    private Deque<AbstractTypeDeclarationDescription> typeDeclarations;
 
     /** Full qualified name of the package. */
     private String packageName;
@@ -142,8 +149,9 @@ public class FinalClassCheck
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        classes = new ArrayDeque<>();
+        typeDeclarations = new ArrayDeque<>();
         innerClasses = new HashMap<>();
+        anonInnerClassToOuterTypeDecl = new HashMap<>();
         packageName = "";
     }
 
@@ -158,6 +166,9 @@ public class FinalClassCheck
             case TokenTypes.ENUM_DEF:
             case TokenTypes.INTERFACE_DEF:
             case TokenTypes.RECORD_DEF:
+                final TypeDeclarationDescription description = new TypeDeclarationDescription(
+                    getQualifiedTypeDeclarationName(ast), typeDeclarations.size(), ast);
+                typeDeclarations.push(description);
                 break;
 
             case TokenTypes.CLASS_DEF:
@@ -170,12 +181,9 @@ public class FinalClassCheck
 
             case TokenTypes.LITERAL_NEW:
                 if (ast.getFirstChild() != null
-                        && ast.getLastChild().getType() == TokenTypes.OBJBLOCK) {
-                    for (ClassDesc classDesc : classes) {
-                        if (doesNameOfClassMatchAnonymousInnerClassName(ast, classDesc)) {
-                            classDesc.registerAnonymousInnerClass();
-                        }
-                    }
+                    && ast.getLastChild().getType() == TokenTypes.OBJBLOCK) {
+                    anonInnerClassToOuterTypeDecl.put(ast, typeDeclarations.peek()
+                        .getQualifiedName());
                 }
                 break;
 
@@ -190,9 +198,9 @@ public class FinalClassCheck
      * @param ast the token to process
      */
     private void visitClass(DetailAST ast) {
-        final String qualifiedClassName = getQualifiedClassName(ast);
-        final ClassDesc currClass = new ClassDesc(qualifiedClassName, classes.size(), ast);
-        classes.push(currClass);
+        final String qualifiedClassName = getQualifiedTypeDeclarationName(ast);
+        final ClassDesc currClass = new ClassDesc(qualifiedClassName, typeDeclarations.size(), ast);
+        typeDeclarations.push(currClass);
         innerClasses.put(qualifiedClassName, currClass);
     }
 
@@ -204,7 +212,8 @@ public class FinalClassCheck
     private void visitCtor(DetailAST ast) {
         if (!ScopeUtil.isInEnumBlock(ast) && !ScopeUtil.isInRecordBlock(ast)) {
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-            final ClassDesc desc = classes.getFirst();
+            // Can be only of type ClassDesc, preceding if statements guarantee it.
+            final ClassDesc desc = (ClassDesc) typeDeclarations.getFirst();
             if (modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null) {
                 desc.registerNonPrivateCtor();
             }
@@ -216,17 +225,18 @@ public class FinalClassCheck
 
     @Override
     public void leaveToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.CLASS_DEF) {
-            classes.pop();
+        if (TokenUtil.isTypeDeclaration(ast.getType())) {
+            typeDeclarations.pop();
         }
         if (TokenUtil.isRootNode(ast.getParent())) {
+            anonInnerClassToOuterTypeDecl.forEach(this::registerAnonymousInnerClassToSuperClass);
             // First pass: mark all classes that have derived inner classes
             innerClasses.forEach(this::registerNestedSubclassToOuterSuperClasses);
             // Second pass: report violation for all classes that should be declared as final
             innerClasses.forEach((qualifiedClassName, classDesc) -> {
                 if (shouldBeDeclaredAsFinal(classDesc)) {
                     final String className = getClassNameFromQualifiedName(qualifiedClassName);
-                    log(classDesc.getClassAst(), MSG_KEY, className);
+                    log(classDesc.getTypeDeclarationAst(), MSG_KEY, className);
                 }
             });
         }
@@ -241,7 +251,7 @@ public class FinalClassCheck
     private static boolean shouldBeDeclaredAsFinal(ClassDesc desc) {
         return desc.isWithPrivateCtor()
                 && !(desc.isDeclaredAsAbstract()
-                    || desc.isWithAnonymousInnerClass())
+                    || desc.isSuperClassOfAnonymousInnerClass())
                 && !desc.isDeclaredAsFinal()
                 && !desc.isWithNonPrivateCtor()
                 && !desc.isWithNestedSubclass();
@@ -256,10 +266,10 @@ public class FinalClassCheck
      */
     private void registerNestedSubclassToOuterSuperClasses(String qualifiedClassName,
                                                            ClassDesc currentClass) {
-        final String superClassName = getSuperClassName(currentClass.getClassAst());
+        final String superClassName = getSuperClassName(currentClass.getTypeDeclarationAst());
         if (superClassName != null) {
             final ClassDesc nearest =
-                    getNearestClassWithSameName(superClassName, qualifiedClassName);
+                    getNearestClassWithSameName(superClassName, qualifiedClassName, false);
             if (nearest == null) {
                 Optional.ofNullable(innerClasses.get(superClassName))
                         .ifPresent(ClassDesc::registerNestedSubclass);
@@ -271,20 +281,75 @@ public class FinalClassCheck
     }
 
     /**
+     * Register to the super class of anonymous inner class that the given class is instantiated
+     * by an anonymous inner class.
+     *
+     * @param literalNewAst ast node of {@link TokenTypes#LITERAL_NEW} representing anonymous inner
+     *                      class
+     * @param outerTypeDeclName Fully qualified name of the outer type declaration of anonymous
+     *                          inner class
+     */
+    private void registerAnonymousInnerClassToSuperClass(DetailAST literalNewAst,
+                                                         String outerTypeDeclName) {
+        final String superClassName = CheckUtil.getShortNameOfAnonInnerClass(literalNewAst);
+        final ClassDesc superClassDesc = getNearestClassWithSameName(
+            superClassName, outerTypeDeclName, true);
+        if (superClassDesc == null) {
+            Optional.ofNullable(innerClasses.get(superClassName))
+                .ifPresent(ClassDesc::registerSuperClassOfAnonymousInnerClass);
+        }
+        else {
+            superClassDesc.registerSuperClassOfAnonymousInnerClass();
+        }
+    }
+
+    /**
      * Checks if there is a class with same name.
      *
+     * <p>The parameter {@code isSearchedClsSuperClsOfAnonInnerClass} exists because if the class
+     * being searched for is the super class of anonymous inner class, the rules of evaluation are
+     * a bit different, consider the following example-
+     * <pre>
+     * {@code
+     * public class Main {
+     *     static class a {
+     *         static class b {
+     *         }
+     *     }
+     *
+     *     class j {
+     *         a.b object = new a.b() { // Object of Main.j.a.b and not of Main.a.b
+     *         };
+     *
+     *         static class a {
+     *             static class b {
+     *             }
+     *         }
+     *     }
+     * }
+     * }
+     * </pre>
+     * If the parameter wasn't set to {@code true} then the logic would have falsely evaluated
+     * {@code Main.a.b} to be the super class of the anonymous inner class. Set this to
+     * {@code false} only if the class being searched for is not the super class of anonymous
+     * inner class.
+     *
      * @param className name of the class
-     * @param superClassName name of the super class
+     * @param superOrOuterClassName name of the super class or the outer class
+     * @param isSearchedClsSuperClsOfAnonInnerClass Is the class being searched super class of an
+     *                                              anonymous inner class
      * @return true if there is another class with same name.
      * @noinspection CallToStringConcatCanBeReplacedByOperator
      */
-    private ClassDesc getNearestClassWithSameName(String className, String superClassName) {
+    private ClassDesc getNearestClassWithSameName(String className, String superOrOuterClassName,
+                                                  boolean isSearchedClsSuperClsOfAnonInnerClass) {
         final String dotAndClassName = PACKAGE_SEPARATOR.concat(className);
         return innerClasses.entrySet().stream()
                 .filter(entry -> entry.getKey().endsWith(dotAndClassName))
                 .map(Map.Entry::getValue)
                 .min((first, second) -> {
-                    return getClassDeclarationNameMatchingCountDiff(superClassName, first, second);
+                    return getClassDeclarationNameMatchingCountDiff(superOrOuterClassName, first,
+                         second, isSearchedClsSuperClsOfAnonInnerClass);
                 })
                 .orElse(null);
     }
@@ -293,19 +358,23 @@ public class FinalClassCheck
      * Get the difference between class declaration name matching count. If the difference between
      * them is zero, then their depth is compared to obtain the result.
      *
-     * @param superClassName name of the super class
+     * @param superOrOuterClassName name of the super class or the outer class
      * @param firstClass first input class
      * @param secondClass second input class
+     * @param isSearchedClsSuperClsOfAnonInnerClass Is the class being searched super class of an
+     *                                              anonymous inner class
      * @return difference between class declaration name matching count
      */
-    private static int getClassDeclarationNameMatchingCountDiff(String superClassName,
-                                                                ClassDesc firstClass,
-                                                                ClassDesc secondClass) {
+    private static int getClassDeclarationNameMatchingCountDiff(String superOrOuterClassName,
+                                                 ClassDesc firstClass, ClassDesc secondClass,
+                                                 boolean isSearchedClsSuperClsOfAnonInnerClass) {
         int diff = Integer.compare(
-            CheckUtil
-                .typeDeclarationNameMatchingCount(superClassName, secondClass.getQualifiedName()),
-            CheckUtil
-                .typeDeclarationNameMatchingCount(superClassName, firstClass.getQualifiedName()));
+            CheckUtil.typeDeclarationNameMatchingCount(superOrOuterClassName,
+                                                       secondClass.getQualifiedName(),
+                                                       isSearchedClsSuperClsOfAnonInnerClass),
+            CheckUtil.typeDeclarationNameMatchingCount(superOrOuterClassName,
+                                                       firstClass.getQualifiedName(),
+                                                       isSearchedClsSuperClsOfAnonInnerClass));
         if (diff == 0) {
             diff = Integer.compare(firstClass.getDepth(), secondClass.getDepth());
         }
@@ -313,33 +382,20 @@ public class FinalClassCheck
     }
 
     /**
-     * Check if class name matches with anonymous inner class name.
+     * Get qualified type declaration name from given type declaration Ast.
      *
-     * @param ast current ast.
-     * @param classDesc class to match.
-     * @return true if current class name matches anonymous inner
-     *         class name.
+     * @param typeDeclarationAst type declaration for which qualified name is being fetched
+     * @return qualified name of a type declaration
      */
-    private static boolean doesNameOfClassMatchAnonymousInnerClassName(DetailAST ast,
-                                                               ClassDesc classDesc) {
-        final String[] className = classDesc.getQualifiedName().split("\\.");
-        return ast.getFirstChild().getText().equals(className[className.length - 1]);
-    }
-
-    /**
-     * Get qualified class name from given class Ast.
-     *
-     * @param classAst class to get qualified class name
-     * @return qualified class name of a class
-     */
-    private String getQualifiedClassName(DetailAST classAst) {
-        final String className = classAst.findFirstToken(TokenTypes.IDENT).getText();
-        String outerClassQualifiedName = null;
-        if (!classes.isEmpty()) {
-            outerClassQualifiedName = classes.peek().getQualifiedName();
+    private String getQualifiedTypeDeclarationName(DetailAST typeDeclarationAst) {
+        final String className = typeDeclarationAst.findFirstToken(TokenTypes.IDENT).getText();
+        String outerTypeDeclarationQualifiedName = null;
+        if (!typeDeclarations.isEmpty()) {
+            outerTypeDeclarationQualifiedName = typeDeclarations.peek().getQualifiedName();
         }
-        return CheckUtil
-            .getQualifiedTypeDeclarationName(packageName, outerClassQualifiedName, className);
+        return CheckUtil.getQualifiedTypeDeclarationName(packageName,
+                                                         outerTypeDeclarationQualifiedName,
+                                                         className);
     }
 
     /**
@@ -367,23 +423,38 @@ public class FinalClassCheck
         return qualifiedName.substring(qualifiedName.lastIndexOf(PACKAGE_SEPARATOR) + 1);
     }
 
+    /**
+     * Maintains information about the type of declaration.
+     * Any ast node of type {@link TokenTypes#INTERFACE_DEF}
+     * or {@link TokenTypes#ENUM_DEF} or {@link TokenTypes#ANNOTATION_DEF}
+     * or {@link TokenTypes#RECORD_DEF} is considered as a type declaration.
+     * Node of type {@link TokenTypes#CLASS_DEF} is not handled by TypeDeclarationDescription, there
+     * is a separate handler for it called {@link ClassDesc}.
+     */
+    private static class TypeDeclarationDescription extends AbstractTypeDeclarationDescription {
+
+        /**
+         * Create a new TypeDeclarationDescription instance.
+         *
+         * @param qualifiedName Complete type declaration name with package name and outer type
+         *                      declaration name.
+         * @param depth Depth of nesting of type declaration
+         * @param typeDeclarationAst Type declaration ast node
+         */
+        protected TypeDeclarationDescription(String qualifiedName, int depth,
+                                             DetailAST typeDeclarationAst) {
+            super(qualifiedName, depth, typeDeclarationAst);
+        }
+    }
+
     /** Maintains information about class' ctors. */
-    private static final class ClassDesc {
-
-        /** Corresponding node. */
-        private final DetailAST classAst;
-
-        /** Qualified class name(with package). */
-        private final String qualifiedName;
+    private static final class ClassDesc extends AbstractTypeDeclarationDescription {
 
         /** Is class declared as final. */
         private final boolean declaredAsFinal;
 
         /** Is class declared as abstract. */
         private final boolean declaredAsAbstract;
-
-        /** Class nesting level. */
-        private final int depth;
 
         /** Does class have non-private ctors. */
         private boolean withNonPrivateCtor;
@@ -394,8 +465,8 @@ public class FinalClassCheck
         /** Does class have nested subclass. */
         private boolean withNestedSubclass;
 
-        /** Does class have anonymous inner class. */
-        private boolean withAnonymousInnerClass;
+        /** Is the class super class of an anonymous inner class. */
+        private boolean superClassOfAnonymousInnerClass;
 
         /**
          *  Create a new ClassDesc instance.
@@ -405,30 +476,10 @@ public class FinalClassCheck
          *  @param classAst classAst node
          */
         /* package */ ClassDesc(String qualifiedName, int depth, DetailAST classAst) {
-            this.qualifiedName = qualifiedName;
-            this.depth = depth;
-            this.classAst = classAst;
+            super(qualifiedName, depth, classAst);
             final DetailAST modifiers = classAst.findFirstToken(TokenTypes.MODIFIERS);
             declaredAsFinal = modifiers.findFirstToken(TokenTypes.FINAL) != null;
             declaredAsAbstract = modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;
-        }
-
-        /**
-         * Get qualified class name.
-         *
-         * @return qualified class name
-         */
-        private String getQualifiedName() {
-            return qualifiedName;
-        }
-
-        /**
-         * Get the classAst node.
-         *
-         * @return classAst node
-         */
-        public DetailAST getClassAst() {
-            return classAst;
         }
 
         /** Adds private ctor. */
@@ -447,17 +498,8 @@ public class FinalClassCheck
         }
 
         /** Adds anonymous inner class. */
-        private void registerAnonymousInnerClass() {
-            withAnonymousInnerClass = true;
-        }
-
-        /**
-         *  Returns class nesting level.
-         *
-         *  @return class nesting level
-         */
-        private int getDepth() {
-            return depth;
+        private void registerSuperClassOfAnonymousInnerClass() {
+            superClassOfAnonymousInnerClass = true;
         }
 
         /**
@@ -506,12 +548,12 @@ public class FinalClassCheck
         }
 
         /**
-         * Does class have an anonymous inner class.
+         * Is the class super class of an anonymous inner class.
          *
-         * @return true if class has anonymous inner class
+         * @return {@code true} if the class is the super class of an anonymous inner class.
          */
-        private boolean isWithAnonymousInnerClass() {
-            return withAnonymousInnerClass;
+        private boolean isSuperClassOfAnonymousInnerClass() {
+            return superClassOfAnonymousInnerClass;
         }
 
     }
