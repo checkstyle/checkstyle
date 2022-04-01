@@ -93,6 +93,7 @@ public class MainFrame extends JFrame {
         treeTable = new TreeTable(model.getParseTreeTableModel());
         treeTable.setEditor(textArea);
         treeTable.setLinePositionList(model.getLinesToPosition());
+        treeTable.setName("treeTable");
         final JScrollPane treeTableScrollPane = new JScrollPane(treeTable);
 
         final JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
@@ -102,6 +103,7 @@ public class MainFrame extends JFrame {
         splitPane.setResizeWeight(0.7);
 
         xpathTextArea = new JTextArea("Xpath", 7, 0);
+        xpathTextArea.setName("xpathTextArea");
         xpathTextArea.setVisible(false);
         final JPanel xpathAreaPanel = new JPanel();
         xpathAreaPanel.setLayout(new BorderLayout());
@@ -123,6 +125,7 @@ public class MainFrame extends JFrame {
      */
     private JPanel createButtonsPanel() {
         final JButton openFileButton = new JButton(new FileSelectionAction());
+        openFileButton.setName("openFileButton");
         openFileButton.setMnemonic(KeyEvent.VK_O);
         openFileButton.setText("Open File");
 
@@ -132,6 +135,7 @@ public class MainFrame extends JFrame {
         reloadFileButton.setText("Reload File");
 
         final JComboBox<ParseMode> modesCombobox = new JComboBox<>(ParseMode.values());
+        modesCombobox.setName("modesCombobox");
         modesCombobox.setSelectedIndex(0);
         modesCombobox.addActionListener(event -> {
             model.setParseMode((ParseMode) modesCombobox.getSelectedItem());
@@ -166,9 +170,11 @@ public class MainFrame extends JFrame {
      */
     private JPanel createXpathButtonsPanel() {
         final JButton expandButton = new JButton(new ExpandCollapseAction());
+        expandButton.setName("expandButton");
         expandButton.setText("Expand/Collapse");
 
         final JButton findNodeButton = new JButton(new FindNodeByXpathAction());
+        findNodeButton.setName("findNodeButton");
         findNodeButton.setText("Find node by Xpath");
 
         final JPanel xpathButtonsPanel = new JPanel();
