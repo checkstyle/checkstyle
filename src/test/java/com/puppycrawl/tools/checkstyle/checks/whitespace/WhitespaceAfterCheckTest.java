@@ -129,6 +129,17 @@ public class WhitespaceAfterCheckTest
     }
 
     @Test
+    public void testLiteralFinally() throws Exception {
+        final String[] expected = {
+            "14:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "finally"),
+            "17:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "finally"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputWhitespaceAfterLiteralFinally.java"),
+            expected);
+    }
+
+    @Test
     public void testLiteralDo() throws Exception {
         final String[] expected = {
             "70:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "do"),
