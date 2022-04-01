@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.EventObject;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -42,7 +43,11 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.tree.TreePath;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
+import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
+import com.puppycrawl.tools.checkstyle.xpath.RootNode;
 import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
+import net.sf.saxon.trans.XPathException;
 
 /**
  * This example shows how to create a simple TreeTable component,
@@ -158,10 +163,7 @@ public final class TreeTable extends JTable {
     private void generateXpath() {
         if (tree.getLastSelectedPathComponent() instanceof DetailAST) {
             final DetailAST ast = (DetailAST) tree.getLastSelectedPathComponent();
-            final int beginPos = 4;
-            String xpath = XpathQueryGenerator.generateXpathQuery(ast);
-            final int length = xpath.length();
-            xpath = xpath.substring(beginPos, length);
+            final String xpath = XpathQueryGenerator.generateXpathQuery(ast);
             xpathEditor.setText(xpath);
         }
         else {
@@ -194,59 +196,71 @@ public final class TreeTable extends JTable {
     }
 
     /**
-     * Search node by Xpath.
-     *
-     * @param root {@code DetailAST} root ast element
-     * @param xpath {@code String} xpath query
-     * @param nodes {@code Deque<DetailAST>} stack of nodes in selection path
-     * @return {@code boolean} node found or not
-     */
-    private static boolean search(DetailAST root, String xpath, Deque<DetailAST> nodes) {
-        boolean result = false;
-        if (xpath.equals(XpathQueryGenerator.generateXpathQuery(root))) {
-            nodes.push(root);
-            result = true;
-        }
-        else {
-            DetailAST child = root.getFirstChild();
-            while (child != null) {
-                if (search(child, xpath, nodes)) {
-                    nodes.push(root);
-                    result = true;
-                    break;
-                }
-                child = child.getNextSibling();
-            }
-        }
-        return result;
-    }
-
-    /**
      * Select Node by Xpath.
      */
     public void selectNodeByXpath() {
         final DetailAST rootAST = (DetailAST) tree.getModel().getRoot();
         if (rootAST.hasChildren()) {
-            final String xpath = "/EOF" + xpathEditor.getText();
+            final String xpath = xpathEditor.getText();
             final Deque<DetailAST> nodes = new ArrayDeque<>();
-            if (search(rootAST, xpath, nodes)) {
-                TreePath path = new TreePath(nodes.pop());
-                while (!nodes.isEmpty()) {
-                    path = path.pathByAddingChild(nodes.pop());
-                    if (!tree.isExpanded(path)) {
-                        tree.expandPath(path);
-                    }
-                    tree.setSelectionPath(path);
-                    makeCodeSelection();
-                }
+
+            try {
+                final List<DetailAST> xPathItems =
+                        XpathUtil.getXpathItems(xpath, new RootNode(rootAST))
+                                .stream()
+                                .map(item -> ((AbstractNode) item).getUnderlyingNode())
+                                .collect(Collectors.toList());
+                nodes.addAll(xPathItems);
+            }
+            catch (XPathException exception) {
+                xpathEditor.setText(xpathEditor.getText() + "\n^ " + exception.getMessage());
+            }
+
+            if (nodes.isEmpty()) {
+                xpathEditor.setText("\nNo elements matching XPath query '"
+                        + xpath + "' found.");
             }
             else {
-                xpathEditor.setText(xpathEditor.getText() + "\n^ wrong xpath query");
+                for (DetailAST node : nodes) {
+                    expandTreeTableByPath(node);
+                    makeCodeSelection();
+                }
+                xpathEditor.setText(getAllMatchingXpathQueriesText(nodes));
             }
+
         }
         else {
             xpathEditor.setText("No file Opened");
         }
+    }
+
+    /**
+     * Expands path in tree table to given node so that user can
+     * see the node.
+     *
+     * @param node node to expand table by
+     */
+    private void expandTreeTableByPath(DetailAST node) {
+        TreePath path = new TreePath(node);
+        path = path.pathByAddingChild(node);
+        if (!tree.isExpanded(path)) {
+            tree.expandPath(path);
+        }
+        tree.setSelectionPath(path);
+    }
+
+    /**
+     * Generates a String with all matching XPath queries separated
+     * by newlines.
+     *
+     * @param nodes deque of nodes to generate queries for
+     * @return complete text of all XPath expressions separated by newlines.
+     */
+    private static String getAllMatchingXpathQueriesText(Deque<DetailAST> nodes) {
+        return nodes.stream()
+                .map(XpathQueryGenerator::generateXpathQuery)
+                .map(query -> query + "\n")
+                .collect(Collectors.joining());
     }
 
     /**
