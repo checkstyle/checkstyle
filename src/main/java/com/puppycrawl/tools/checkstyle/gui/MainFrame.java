@@ -93,6 +93,7 @@ public class MainFrame extends JFrame {
         treeTable = new TreeTable(model.getParseTreeTableModel());
         treeTable.setEditor(textArea);
         treeTable.setLinePositionList(model.getLinesToPosition());
+        treeTable.setName("treeTable");
         final JScrollPane treeTableScrollPane = new JScrollPane(treeTable);
 
         final JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
