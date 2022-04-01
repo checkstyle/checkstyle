@@ -118,7 +118,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck",
             "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck",
-            "com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck",
@@ -137,7 +136,8 @@ public final class InlineConfigParser {
      */
     private static final Set<String> PERMANENT_SUPPRESSED_CHECKS = Set.of(
             // Inlined config is not supported for non java files.
-            "com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck"
+            "com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck",
+            "com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck"
     );
 
     /** Stop instances being created. **/
