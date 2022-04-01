@@ -26,4 +26,12 @@ public class InputWhitespaceAfterBad {
                 break;
         }
     }
+
+    public void check4 () {
+        try {
+            System.out.println("finally");
+        } finally{ // warn
+            System.out.println("Finished");
+        }
+    }
 }

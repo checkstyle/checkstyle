@@ -54,6 +54,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * LITERAL_DO</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
  * LITERAL_FOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
+ * LITERAL_FINALLY</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
  * DO_WHILE</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
@@ -84,7 +86,23 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  *      for (;;){}               // OK
  *      for(;;){}                // violation, space after 'for' is required
- *      }
+ *
+ *      try {}
+ *      finally { // OK
+ *        System.out.println("finally");}
+ *
+ *      try {}
+ *      finally{ // violation ''finally' is not followed by whitespace'
+ *        System.out.println("finally");}
+ *
+ *      try {} catch(Exception e){}
+ *      finally { // OK
+ *      System.out.println("finally");}
+ *
+ *      try {} catch(Exception e){}
+ *      finally{ // violation ''finally' is not followed by whitespace'
+ *      System.out.println("finally");}
+ *   }
  * </pre>
  * <p>
  * To configure the check for whitespace only after COMMA and SEMI tokens:
@@ -155,6 +173,7 @@ public class WhitespaceAfterCheck
             TokenTypes.LITERAL_WHILE,
             TokenTypes.LITERAL_DO,
             TokenTypes.LITERAL_FOR,
+            TokenTypes.LITERAL_FINALLY,
             TokenTypes.DO_WHILE,
             TokenTypes.ELLIPSIS,
             TokenTypes.LITERAL_SWITCH,
