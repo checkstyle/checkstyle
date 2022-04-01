@@ -139,7 +139,8 @@ public final class InlineConfigParser {
      */
     private static final Set<String> PERMANENT_SUPPRESSED_CHECKS = Set.of(
             // Inlined config is not supported for non java files.
-            "com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck");
+            "com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck"
+    );
 
     /** Stop instances being created. **/
     private InlineConfigParser() {
