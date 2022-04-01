@@ -197,6 +197,13 @@
       <allow class="com.puppycrawl.tools.checkstyle.JavaParser"/>
       <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
     </file>
+    <file name="TreeTable" regex="true">
+      <allow class="java.util.stream.Collectors"/>
+      <allow class="com.puppycrawl.tools.checkstyle.utils.XpathUtil"/>
+      <allow class="com.puppycrawl.tools.checkstyle.xpath.AbstractNode"/>
+      <allow class="net.sf.saxon.trans.XPathException"/>
+      <allow class="com.puppycrawl.tools.checkstyle.xpath.RootNode"/>
+    </file>
   </subpackage>
 
   <subpackage name="meta">
