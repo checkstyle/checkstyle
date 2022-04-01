@@ -25,7 +25,7 @@ public class InputFallThrough2 {
                     // some work
                     break;
                 }
-            case C: // violation
+            case C: // violation 'Fall through from previous branch of the switch statement.'
                 break;
         }
 
@@ -40,18 +40,18 @@ public class InputFallThrough2 {
                 if (true) {
                     return;
                 }
-            case 4: // violation
+            case 4: // violation 'Fall through from previous branch of the switch statement.'
                 if (var2 == 2) {
                     break;
                 }
-            case 5: // violation
+            case 5: // violation 'Fall through from previous branch of the switch statement.'
                 if (var2 == 1) {
 
                 }
                 else if (true) {
                     return;
                 }
-            case 6: // violation
+            case 6: // violation 'Fall through from previous branch of the switch statement.'
                 if (var2 > 1) {
                     break;
                 }
@@ -65,14 +65,14 @@ public class InputFallThrough2 {
                 else if (true) {
                     return;
                 }
-            case 8: // violation
+            case 8: // violation 'Fall through from previous branch of the switch statement.'
                 if(var2 == 5) {
                     System.identityHashCode("0xB16B00B5");
                 }
                 else {
                     break;
                 }
-            case 9: // violation
+            case 9: // violation 'Fall through from previous branch of the switch statement.'
                 if(var2 == 5) {
                     System.identityHashCode("0xCAFED00D");
                 }
@@ -85,15 +85,15 @@ public class InputFallThrough2 {
                 switch (var3) {
                     case 0xCAFEBABE:
                         String.CASE_INSENSITIVE_ORDER.equals("0x1CEB00DA");
-                    default: // violation
+                    default: // violation 'Fall through from prev.* br.* switch statement.'
                         String.CASE_INSENSITIVE_ORDER.equals("");
                 }
                 if(true) {
                     break;
                 }
-            case 11: // violation
+            case 11: // violation 'Fall through from previous branch of the switch statement.'
                 if(false) {break;}
-            case 12: // violation
+            case 12: // violation 'Fall through from previous branch of the switch statement.'
                 if(true);
                 break;
             default:
