@@ -102,16 +102,12 @@ public class PackageAnnotationCheck extends AbstractCheck {
         return getRequiredTokens();
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     @Override
     public void visitToken(final DetailAST ast) {
         final boolean containsAnnotation =
             AnnotationUtil.containsAnnotation(ast);
-        final boolean inPackageInfo =
-            getFileContents().inPackageInfo();
 
-        if (containsAnnotation && !inPackageInfo) {
+        if (containsAnnotation && !inPackageInfo()) {
             log(ast, MSG_KEY);
         }
     }

@@ -3344,11 +3344,14 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheckTest
                 </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheckTest
+                </param>
               </targetTests>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
-              <coverageThreshold>99</coverageThreshold>
+              <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
