@@ -19,6 +19,7 @@ branches:
     - master
 
 install:
+  - ./.ci/travis.sh install-custom-jdk
   - ./.ci/travis.sh install-custom-mvn
 
 jobs:
@@ -59,9 +60,9 @@ jobs:
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
-    - jdk: openjdk11
-      env:
+    - env:
         - DESC="NoErrorTest - Hibernate Search"
+        - CUSTOM_JDK_VERSION="temurin-17-jdk"
         - CUSTOM_MVN_VERSION="3.8.4"
         - M2_HOME="$PWD/apache-maven-${CUSTOM_MVN_VERSION}"
         - PATH="$M2_HOME/bin:$PATH"
@@ -122,6 +123,7 @@ script:
   - ./.ci/travis.sh init-m2-repo
   - ./.ci/travis.sh run-command "$CMD"
   - ./.ci/travis.sh remove-custom-mvn
+  - ./.ci/travis.sh remove-custom-jdk
   - ./.ci/travis.sh git-diff
   - ./.ci/travis.sh ci-temp-check
 
