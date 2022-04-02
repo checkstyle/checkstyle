@@ -19,13 +19,18 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -526,6 +531,36 @@ public final class CheckUtil {
     }
 
     /**
+     * Get line numbers that are used in code.
+     *
+     * @param ast root node
+     * @return set of line numbers used in AST
+     */
+    public static Set<Integer> getUsedLineNumbers(DetailAST ast) {
+        final Deque<DetailAST> nodes = new ArrayDeque<>();
+        nodes.add(ast);
+        final Set<Integer> usedLines = new HashSet<>();
+        while (!nodes.isEmpty()) {
+            final DetailAST node = nodes.removeFirst();
+            final int lineNo = node.getLineNo();
+            // text block and block comment require special treatment,
+            // since they can span more than one line
+            if (node.getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN
+                || node.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                IntStream.rangeClosed(lineNo, node.getLastChild().getLineNo())
+                    .forEach(usedLines::add);
+            }
+            else {
+                usedLines.add(lineNo);
+                Stream.iterate(
+                    node.getLastChild(), Objects::nonNull, DetailAST::getPreviousSibling
+                ).forEach(nodes::addFirst);
+            }
+        }
+        return usedLines;
+    }
+
+    /**
      * Strip initial newline and preceding whitespace on each line from text block content.
      * In order to be consistent with how javac handles this task, we have modeled this
      * implementation after the code from:
@@ -680,4 +715,5 @@ public final class CheckUtil {
         final DetailAST firstChild = parentAst.getFirstChild();
         return extractQualifiedName(firstChild);
     }
+
 }

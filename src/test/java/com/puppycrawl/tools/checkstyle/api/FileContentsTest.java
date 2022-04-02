@@ -256,28 +256,6 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testInPackageInfo() {
-        final FileContents fileContents = new FileContents(new FileText(
-                new File("filename.package-info.java"),
-                Collections.singletonList("  //   ")));
-
-        assertWithMessage("Should return true when in package info")
-                .that(fileContents.inPackageInfo())
-                .isTrue();
-    }
-
-    @Test
-    public void testNotInPackageInfo() {
-        final FileContents fileContents = new FileContents(new FileText(
-                new File("filename.java"),
-                Collections.singletonList("  //   ")));
-
-        assertWithMessage("Should return false when not in package info")
-                .that(fileContents.inPackageInfo())
-                .isFalse();
-    }
-
-    @Test
     public void testGetJavadocBefore() {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.singletonList("    ")));

@@ -299,6 +299,15 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     }
 
     /**
+     * Checks if the current file is a package-info.java file.
+     *
+     * @return true if the package file.
+     */
+    public final boolean inPackageInfo() {
+        return context.get().fileContents.getFileName().endsWith("package-info.java");
+    }
+
+    /**
      * Returns code point representation of file text from given line number.
      *
      * @param index index of the line

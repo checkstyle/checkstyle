@@ -23,12 +23,13 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -583,25 +584,21 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @param ast the ast to check.
      * @return list of line numbers for empty lines.
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     private List<Integer> getEmptyLines(DetailAST ast) {
-        final DetailAST lastToken = ast.getLastChild().getLastChild();
-        int lastTokenLineNo = 0;
-        if (lastToken != null) {
-            // -1 as count starts from 0
-            // -2 as last token line cannot be empty, because it is a RCURLY
-            lastTokenLineNo = lastToken.getLineNo() - 2;
+        final Set<Integer> usedLines = CheckUtil.getUsedLineNumbers(ast);
+        final List<Integer> result = new ArrayList<>();
+        DetailAST endNode = ast.getLastChild();
+        if (endNode.hasChildren()) {
+            endNode = endNode.getLastChild();
         }
-        final List<Integer> emptyLines = new ArrayList<>();
-        final FileContents fileContents = getFileContents();
-
-        for (int lineNo = ast.getLineNo(); lineNo <= lastTokenLineNo; lineNo++) {
-            if (fileContents.lineIsBlank(lineNo)) {
-                emptyLines.add(lineNo);
+        for (int lineNumber = ast.getLineNo();
+             lineNumber < endNode.getLineNo();
+             lineNumber++) {
+            if (!usedLines.contains(lineNumber)) {
+                result.add(lineNumber);
             }
         }
-        return emptyLines;
+        return result;
     }
 
     /**
@@ -641,11 +638,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @param ast token
      * @param nextToken next token
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     private void processPackage(DetailAST ast, DetailAST nextToken) {
         if (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)) {
-            if (getFileContents().getFileName().endsWith("package-info.java")) {
+            if (inPackageInfo()) {
                 if (!ast.getFirstChild().hasChildren() && !isPrecededByJavadoc(ast)) {
                     log(ast, MSG_SHOULD_BE_SEPARATED, ast.getText());
                 }
@@ -823,7 +818,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @param token token.
      * @return true if token have empty line after.
      */
-    private boolean hasEmptyLineAfter(DetailAST token) {
+    private static boolean hasEmptyLineAfter(DetailAST token) {
         DetailAST lastToken = token.getLastChild().getLastChild();
         if (lastToken == null) {
             lastToken = token.getLastChild();
@@ -832,11 +827,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (TokenUtil.isCommentType(nextToken.getType())) {
             nextToken = nextToken.getNextSibling();
         }
-        // Start of the next token
-        final int nextBegin = nextToken.getLineNo();
         // End of current token.
         final int currentEnd = lastToken.getLineNo();
-        return hasEmptyLine(currentEnd + 1, nextBegin - 1);
+        return hasEmptyLine(currentEnd + 1, nextToken);
     }
 
     /**
@@ -854,26 +847,23 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     }
 
     /**
-     * Checks, whether there are empty lines within the specified line range. Line numbering is
-     * started from 1 for parameter values
+     * Checks, whether there are empty lines between given line and next token.
      *
      * @param startLine number of the first line in the range
-     * @param endLine number of the second line in the range
+     * @param nextNode next token in AST
      * @return {@code true} if found any blank line within the range, {@code false}
      *         otherwise
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
-    private boolean hasEmptyLine(int startLine, int endLine) {
-        // Initial value is false - blank line not found
-        boolean result = false;
-        final FileContents fileContents = getFileContents();
-        for (int line = startLine; line <= endLine; line++) {
-            // Check, if the line is blank. Lines are numbered from 0, so subtract 1
-            if (fileContents.lineIsBlank(line - 1)) {
-                result = true;
-                break;
-            }
+    private static boolean hasEmptyLine(int startLine, DetailAST nextNode) {
+        final boolean result;
+        final int lineAboveNode = nextNode.getLineNo() - 1;
+        if (startLine > lineAboveNode) {
+            result = false;
+        }
+        else {
+            final Set<Integer> usedLinesNumbers = CheckUtil.getUsedLineNumbers(nextNode);
+            result = !usedLinesNumbers.contains(startLine)
+                || !usedLinesNumbers.contains(lineAboveNode);
         }
         return result;
     }
