@@ -158,6 +158,8 @@ bykey
 bytecode
 Cacheable
 cachefile
+cacio
+caciocavallosilano
 callstack
 camelcase
 casegroup
@@ -271,6 +273,7 @@ CSON
 css
 cstyle
 csv
+ctc
 ctor
 ctx
 customimportorder
@@ -506,6 +509,7 @@ googlesource
 govstrangefolder
 gradle
 gradlew
+graphicsenv
 Grenner
 grep
 grepped
@@ -681,6 +685,8 @@ jgit
 jgrasp
 jguru
 jhu
+jide
+jidesoft
 jira
 jitpack
 jjva
@@ -1310,11 +1316,13 @@ trailingcomment
 treelayout
 treemap
 treeset
+treetable
 treewalker
 TRequest
 tschneeberger
 tstamp
 tt
+tta
 ttf
 ttype
 tvf
@@ -1414,6 +1422,7 @@ wiki
 wikipedia
 wiktionary
 windowsservercore
+wnd
 WOC
 woff
 wontfix
