@@ -59,7 +59,7 @@ jobs:
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
-    - jdk: openjdk11
+    - jdk: openjdk17
       env:
         - DESC="NoErrorTest - Hibernate Search"
         - CUSTOM_MVN_VERSION="3.8.4"
