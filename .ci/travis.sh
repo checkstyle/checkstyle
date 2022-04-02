@@ -28,6 +28,19 @@ init-m2-repo)
   fi
   ;;
 
+install-jdk-17)
+  curl -s https://packages.adoptium.net/artifactory/api/gpg/key/public |
+    sudo tee /usr/share/keyrings/adoptium.asc
+
+  echo "deb [signed-by=/usr/share/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" |
+    sudo tee /etc/apt/sources.list.d/adoptium.list
+
+  cat /etc/apt/sources.list.d/adoptium.list
+
+  sudo apt-get update
+  sudo apt-get install temurin-17-jdk
+  ;;
+
 install-custom-mvn)
   if [[ -n "${CUSTOM_MVN_VERSION}" ]]; then
     echo "Download Maven ${CUSTOM_MVN_VERSION}....";
