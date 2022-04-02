@@ -18,6 +18,7 @@ Aconfig
 adb
 addons
 adf
+adoptium
 adoptopenjdk
 adr
 AFBR
@@ -60,6 +61,7 @@ arraycopy
 arraytrailingcomma
 arraytypestyle
 artifactory
+asc
 asda
 ASF
 ASingle
@@ -237,6 +239,7 @@ codeclimate
 codeconventions
 codecov
 codehaus
+codename
 codeql
 codeselectorpresentation
 codeship
@@ -507,6 +510,7 @@ googleecommon
 googlegroups
 googlesource
 govstrangefolder
+gpg
 gradle
 gradlew
 graphicsenv
@@ -738,6 +742,7 @@ kbd
 kclee
 KDoc
 keygen
+keyrings
 Kochurkin
 konstantinos
 Kordas
@@ -783,6 +788,7 @@ Loughran
 lparen
 lpb
 lpl
+lsb
 lucene
 lui
 luiframework
@@ -1284,6 +1290,7 @@ td
 teamcity
 technotes
 tected
+temurin
 Testik
 testmodules
 textlevel
