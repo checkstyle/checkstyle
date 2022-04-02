@@ -19,16 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import java.util.ArrayDeque;
 import java.util.BitSet;
-import java.util.Deque;
-import java.util.Objects;
-import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -269,26 +266,9 @@ public class MethodLengthCheck extends AbstractCheck {
      * @return number of used lines of code
      */
     private static int countUsedLines(DetailAST ast) {
-        final Deque<DetailAST> nodes = new ArrayDeque<>();
-        nodes.add(ast);
         final BitSet usedLines = new BitSet();
         final int startLineNo = ast.getLineNo();
-        while (!nodes.isEmpty()) {
-            final DetailAST node = nodes.removeFirst();
-            final int lineIndex = node.getLineNo() - startLineNo;
-            // text block requires special treatment,
-            // since it is the only non-comment token that can span more than one line
-            if (node.getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
-                final int endLineIndex = node.getLastChild().getLineNo() - startLineNo;
-                usedLines.set(lineIndex, endLineIndex + 1);
-            }
-            else {
-                usedLines.set(lineIndex);
-                Stream.iterate(
-                    node.getLastChild(), Objects::nonNull, DetailAST::getPreviousSibling
-                ).forEach(nodes::addFirst);
-            }
-        }
+        CheckUtil.forEachUsedLineNumber(ast, lineNo -> usedLines.set(lineNo - startLineNo));
         return usedLines.cardinality();
     }
 

@@ -20,13 +20,19 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import java.io.File;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
+import java.util.function.IntConsumer;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -524,6 +530,34 @@ public final class CheckUtil {
             }
         }
         return illegalClassNames;
+    }
+
+    /**
+     * Iterates over used line numbers inside given ast node.
+     *
+     * @param ast root node
+     * @param lineNumberConsumer action for every used line number
+     */
+    public static void forEachUsedLineNumber(DetailAST ast, IntConsumer lineNumberConsumer) {
+        final Deque<DetailAST> nodes = new ArrayDeque<>();
+        nodes.add(ast);
+        while (!nodes.isEmpty()) {
+            final DetailAST node = nodes.removeFirst();
+            final int lineNo = node.getLineNo();
+            // text block and block comment require special treatment,
+            // since they can span more than one line
+            if (node.getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN
+                || node.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                IntStream.rangeClosed(lineNo, node.getLastChild().getLineNo())
+                    .forEach(lineNumberConsumer);
+            }
+            else {
+                lineNumberConsumer.accept(lineNo);
+                Stream.iterate(
+                    node.getLastChild(), Objects::nonNull, DetailAST::getPreviousSibling
+                ).forEach(nodes::addFirst);
+            }
+        }
     }
 
     /**

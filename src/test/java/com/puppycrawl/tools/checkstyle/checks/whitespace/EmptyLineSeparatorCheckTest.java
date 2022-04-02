@@ -514,6 +514,22 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testEmptyLineSeparatorTextBlocks() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addProperty("allowMultipleEmptyLinesInsideClassMembers", "false");
+        checkConfig.addProperty("tokens",
+            "STATIC_INIT,INSTANCE_INIT,METHOD_DEF,CTOR_DEF,COMPACT_CTOR_DEF");
+        final String[] expected = {
+            "26:22: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "45:4: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+        };
+
+        verify(checkConfig,
+                getNonCompilablePath("InputEmptyLineSeparatorTextBlocks.java"),
+                expected);
+    }
+
+    @Test
     public void testEmptyLineSeparatorRecordsAndCompactCtorsNoEmptyLines() throws Exception {
 
         final String[] expected = {
