@@ -26,4 +26,9 @@ public class InputWhitespaceAfterGood {
                 break;
         }
     }
+
+    public void check4() throws java.io.IOException {
+        try (java.io.InputStream ignored = System.in) {}
+        try {} catch(Exception e){}
+    }
 }
