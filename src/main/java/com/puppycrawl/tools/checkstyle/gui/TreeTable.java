@@ -241,7 +241,7 @@ public final class TreeTable extends JTable {
                 }
             }
             else {
-                xpathEditor.setText(xpathEditor.getText() + "\n^ wrong xpath query");
+                xpathEditor.setText(xpathEditor.getText() + "\nWrong xpath query");
             }
         }
         else {
