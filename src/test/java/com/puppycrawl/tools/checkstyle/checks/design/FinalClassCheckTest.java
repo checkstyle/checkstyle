@@ -143,6 +143,7 @@ public class FinalClassCheckTest
             "19:5: " + getCheckMessage(MSG_KEY, "SameName"),
             "45:9: " + getCheckMessage(MSG_KEY, "SameName"),
             "69:13: " + getCheckMessage(MSG_KEY, "B"),
+            "84:9: " + getCheckMessage(MSG_KEY, "c"),
         };
         verifyWithInlineConfigParser(getPath("InputFinalClassInnerAndNestedClass.java"), expected);
     }
@@ -186,6 +187,48 @@ public class FinalClassCheckTest
             "15:5: " + getCheckMessage(MSG_KEY, "DerivedClass"),
         };
         verifyWithInlineConfigParser(getPath("InputFinalClassInterface.java"), expected);
+    }
+
+    @Test
+    public void testFinalClassAnonymousInnerClass() throws Exception {
+        final String[] expected = {
+            "11:9: " + getCheckMessage(MSG_KEY, "b"),
+            "27:9: " + getCheckMessage(MSG_KEY, "m"),
+            "40:9: " + getCheckMessage(MSG_KEY, "q"),
+            "52:13: " + getCheckMessage(MSG_KEY, "b"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalClassAnonymousInnerClass.java"), expected);
+    }
+
+    @Test
+    public void testFinalClassNestedInInterface() throws Exception {
+        final String[] expected = {
+            "24:5: " + getCheckMessage(MSG_KEY, "b"),
+            "28:13: " + getCheckMessage(MSG_KEY, "m"),
+            "50:5: " + getCheckMessage(MSG_KEY, "c"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputFinalClassNestedInInterfaceWithAnonInnerClass.java"), expected);
+    }
+
+    @Test
+    public void testFinalClassNestedInEnum() throws Exception {
+        final String[] expected = {
+            "13:9: " + getCheckMessage(MSG_KEY, "j"),
+            "27:9: " + getCheckMessage(MSG_KEY, "n"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalClassNestedInEnumWithAnonInnerClass.java"),
+                                     expected);
+    }
+
+    @Test
+    public void testFinalClassNestedInRecord() throws Exception {
+        final String[] expected = {
+            "13:9: " + getCheckMessage(MSG_KEY, "c"),
+            "31:13: " + getCheckMessage(MSG_KEY, "j"),
+        };
+        verifyWithInlineConfigParser(getNonCompilablePath("InputFinalClassNestedInRecord.java"),
+                                     expected);
     }
 
 }
