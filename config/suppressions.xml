@@ -101,7 +101,6 @@
     files="[\\/]src[\\/]xdocs[\\/]beginning_development.xml"/>
 
   <!-- these are legacy use cases until #11166 -->
-  <suppress id="noUsageOfGetFileContentsMethod" files="PackageAnnotationCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="FallThroughCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="PackageDeclarationCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="ImportControlCheck.java"/>
@@ -111,7 +110,6 @@
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocTypeCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocVariableCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="MissingJavadocMethodCheck.java"/>
-  <suppress id="noUsageOfGetFileContentsMethod" files="MissingJavadocPackageCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="MissingJavadocTypeCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="WriteTagCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpCheck.java"/>
@@ -119,7 +117,6 @@
   <suppress id="noUsageOfGetFileContentsMethod" files="MethodLengthCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="EmptyLineSeparatorCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="AvoidEscapedUnicodeCharactersCheck.java"/>
-  <suppress id="noUsageOfGetFileContentsMethod" files="OuterTypeFilenameCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocMetadataScraper.java"/>
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/5234 -->
