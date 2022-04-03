@@ -680,4 +680,14 @@ public final class CheckUtil {
         final DetailAST firstChild = parentAst.getFirstChild();
         return extractQualifiedName(firstChild);
     }
+
+    /**
+     * Checks if the given file name is a package-info.java file.
+     *
+     * @param fileName name of the file.
+     * @return true if the package file.
+     */
+    public static boolean inPackageInfo(String fileName) {
+        return fileName.endsWith("package-info.java");
+    }
 }

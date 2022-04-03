@@ -324,13 +324,4 @@ public final class FileContents implements CommentListener {
         return Collections.unmodifiableMap(clangComments);
     }
 
-    /**
-     * Checks if the current file is a package-info.java file.
-     *
-     * @return true if the package file.
-     */
-    public boolean inPackageInfo() {
-        return getFileName().endsWith("package-info.java");
-    }
-
 }
