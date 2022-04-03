@@ -595,7 +595,7 @@ public final class CheckUtil {
     }
 
     /**
-     * Calculates and returns the type declaration name matching count.
+     * Calculates and returns the class name matching count.
      *
      * <p>
      * Suppose our pattern class is {@code foo.a.b} and class to be matched is
@@ -609,12 +609,48 @@ public final class CheckUtil {
      * @param classToBeMatched class to be matched
      * @return class name matching count
      */
-    public static int typeDeclarationNameMatchingCount(String patternClass,
-                                                       String classToBeMatched) {
+    public static int classNameMatchingCount(String patternClass,
+                                             String classToBeMatched) {
         final int length = Math.min(classToBeMatched.length(), patternClass.length());
         int result = 0;
         for (int i = 0; i < length && patternClass.charAt(i) == classToBeMatched.charAt(i); ++i) {
             if (patternClass.charAt(i) == PACKAGE_SEPARATOR) {
+                result = i;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Calculates and returns the type declaration matching count when {@code classToBeMatched} is
+     * considered to be super class of an anonymous inner class.
+     *
+     * <p>
+     * Suppose our pattern class is {@code Main.j} and class to be matched is
+     * {@code Main.j.a.b} then type declaration name matching count would be calculated by
+     * comparing every character, and updating main counter when we hit "." or when it is the last
+     * character of the pattern class and certain conditions are met. This is done so that matching
+     * count is 6 instead of 5. This is due to the fact that pattern class can contain anonymous
+     * inner class object of a nested class which isn't true in case of extending classes as you
+     * can't extend nested classes.
+     * </p>
+     *
+     * @param patternTypeDeclaration type declaration against which the given type declaration has
+     *                               to be matched
+     * @param typeDeclarationToBeMatched type declaration to be matched
+     * @return type declaration matching count
+     */
+    public static int typeDeclarationMatchingCountAnonSuperClass(String patternTypeDeclaration,
+        String typeDeclarationToBeMatched) {
+        final int length = Math
+            .min(typeDeclarationToBeMatched.length(), patternTypeDeclaration.length());
+        int result = 0;
+        for (int i = 0; i < length
+            && patternTypeDeclaration.charAt(i) == typeDeclarationToBeMatched.charAt(i); ++i) {
+            if (patternTypeDeclaration.charAt(i) == PACKAGE_SEPARATOR
+                || i == length - 1
+                && typeDeclarationToBeMatched.length() > i + 1
+                && typeDeclarationToBeMatched.charAt(i + 1) == PACKAGE_SEPARATOR) {
                 result = i;
             }
         }
