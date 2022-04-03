@@ -60,6 +60,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * ELLIPSIS</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
  * LITERAL_SWITCH</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
+ * LITERAL_TRY</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
  * LAMBDA</a>.
  * </li>
@@ -84,6 +86,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  *      for (;;){}               // OK
  *      for(;;){}                // violation, space after 'for' is required
+ *
+ *      try (InputStream ignored = System.in) {} // OK
+ *      try(InputStream ignored = System.in) {} // violation ''try' is not followed by whitespace'
+ *
+ *      try {} catch (Exception e){} // OK
+ *      try{} catch (Exception e){} // violation ''try' is not followed by whitespace'
  *      }
  * </pre>
  * <p>
@@ -158,6 +166,7 @@ public class WhitespaceAfterCheck
             TokenTypes.DO_WHILE,
             TokenTypes.ELLIPSIS,
             TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_TRY,
             TokenTypes.LAMBDA,
         };
     }
