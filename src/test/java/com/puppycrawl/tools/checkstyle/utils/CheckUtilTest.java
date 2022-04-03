@@ -31,6 +31,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
@@ -441,6 +443,29 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Result is not expected")
             .that(actual)
             .isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+        "package-info.java",
+        "filename.package-info.java"
+    })
+    public void testInPackageInfo(String fileName) {
+        assertWithMessage("Should return true when in package info")
+            .that(CheckUtil.inPackageInfo(fileName))
+            .isTrue();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+        "package-info1.java",
+        "package-info",
+        ""
+    })
+    public void testNotInPackageInfo(String fileName) {
+        assertWithMessage("Should return false when not in package info")
+            .that(CheckUtil.inPackageInfo(fileName))
+            .isFalse();
     }
 
     private DetailAST getNodeFromFile(int type) throws Exception {
