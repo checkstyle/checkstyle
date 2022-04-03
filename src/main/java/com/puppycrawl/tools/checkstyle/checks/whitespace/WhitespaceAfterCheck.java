@@ -92,7 +92,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  *      try {} catch (Exception e){} // OK
  *      try{} catch (Exception e){} // violation ''try' is not followed by whitespace'
- * }
+ *  }
  * </pre>
  * <p>
  * To configure the check for whitespace only after COMMA and SEMI tokens:
