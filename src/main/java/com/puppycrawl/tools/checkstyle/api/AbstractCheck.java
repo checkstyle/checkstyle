@@ -299,6 +299,15 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     }
 
     /**
+     * Returns full path to the file.
+     *
+     * @return full path to file.
+     */
+    public final String getFilePath() {
+        return context.get().fileContents.getFileName();
+    }
+
+    /**
      * Returns code point representation of file text from given line number.
      *
      * @param index index of the line
