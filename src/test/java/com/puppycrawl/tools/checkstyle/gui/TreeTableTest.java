@@ -26,7 +26,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 
+import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 import javax.swing.tree.TreePath;
@@ -108,4 +110,105 @@ public class TreeTableTest extends AbstractGuiTestSupport {
                 .isTrue();
     }
 
+    @Test
+    public void testFindNodesAllClassDefs() throws IOException {
+        final MainFrame mainFrame = new MainFrame();
+        mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
+        final JButton findNodeButton = findComponentByName(mainFrame, "findNodeButton");
+        final JTextArea xpathTextArea = findComponentByName(mainFrame, "xpathTextArea");
+        xpathTextArea.setText("//CLASS_DEF");
+        findNodeButton.doClick();
+
+        final String expected = "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputTreeTableXpathAreaPanel']]\n"
+                + "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputTreeTableXpathAreaPanel']]"
+                + "/OBJBLOCK/CLASS_DEF"
+                + "[./IDENT[@text='Inner']]\n";
+
+        assertWithMessage("Expected and actual XPath queries should match.")
+                .that(xpathTextArea.getText())
+                .isEqualTo(expected);
+    }
+
+    @Test
+    public void testFindNodesIdent() throws IOException {
+        final MainFrame mainFrame = new MainFrame();
+        mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
+        final JButton findNodeButton = findComponentByName(mainFrame, "findNodeButton");
+        final JTextArea xpathTextArea = findComponentByName(mainFrame, "xpathTextArea");
+        xpathTextArea.setText("//IDENT");
+        findNodeButton.doClick();
+
+        final String expected = "/COMPILATION_UNIT/CLASS_DEF/IDENT"
+                + "[@text='InputTreeTableXpathAreaPanel']\n"
+                + "/COMPILATION_UNIT/PACKAGE_DEF/DOT/IDENT[@text='treetable']\n"
+                + "/COMPILATION_UNIT/PACKAGE_DEF/DOT[./IDENT[@text='treetable']]/DOT/IDENT"
+                + "[@text='gui']\n"
+                + "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputTreeTableXpathAreaPanel']]"
+                + "/OBJBLOCK/CLASS_DEF/IDENT[@text='Inner']\n"
+                + "/COMPILATION_UNIT/PACKAGE_DEF/DOT[./IDENT[@text='treetable']]/DOT[./IDENT"
+                + "[@text='gui']]/DOT/IDENT[@text='checkstyle']\n"
+                + "/COMPILATION_UNIT/PACKAGE_DEF/DOT[./IDENT[@text='treetable']]/DOT[./IDENT"
+                + "[@text='gui']]/DOT[./IDENT[@text='checkstyle']]/DOT/IDENT[@text='tools']\n"
+                + "/COMPILATION_UNIT/PACKAGE_DEF/DOT[./IDENT[@text='treetable']]/DOT[./IDENT"
+                + "[@text='gui']]"
+                + "/DOT[./IDENT[@text='checkstyle']]/DOT[./IDENT[@text='tools']]/DOT/IDENT"
+                + "[@text='com']\n"
+                + "/COMPILATION_UNIT/PACKAGE_DEF/DOT[./IDENT[@text='treetable']]/DOT[./IDENT"
+                + "[@text='gui']]"
+                + "/DOT[./IDENT[@text='checkstyle']]/DOT[./IDENT[@text='tools']]/DOT[./IDENT"
+                + "[@text='com']]/IDENT[@text='puppycrawl']\n";
+
+        assertWithMessage("Expected and actual XPath queries should match.")
+                .that(xpathTextArea.getText())
+                .isEqualTo(expected);
+    }
+
+    @Test
+    public void testFindNodesMissingElements() throws IOException {
+        final MainFrame mainFrame = new MainFrame();
+        mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
+        final JButton findNodeButton = findComponentByName(mainFrame, "findNodeButton");
+        final JTextArea xpathTextArea = findComponentByName(mainFrame, "xpathTextArea");
+        xpathTextArea.setText("//LITERAL_TRY");
+        findNodeButton.doClick();
+
+        final String expected = "No elements matching XPath query '//LITERAL_TRY' found.";
+
+        assertWithMessage("Unexpected XPath text area text")
+                .that(xpathTextArea.getText())
+                .isEqualTo(expected);
+    }
+
+    @Test
+    public void testFindNodesUnexpectedTokenAtStart() throws IOException {
+        final MainFrame mainFrame = new MainFrame();
+        mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
+        final JButton findNodeButton = findComponentByName(mainFrame, "findNodeButton");
+        final JTextArea xpathTextArea = findComponentByName(mainFrame, "xpathTextArea");
+        xpathTextArea.setText("!*7^");
+        findNodeButton.doClick();
+
+        final String expected = "!*7^\nUnexpected token \"!\" at start of expression";
+
+        assertWithMessage("Unexpected XPath text area text")
+                .that(xpathTextArea.getText())
+                .isEqualTo(expected);
+    }
+
+    @Test
+    public void testFindNodesInvalidCharacterInExpression() throws IOException {
+        final MainFrame mainFrame = new MainFrame();
+        mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
+        final JButton findNodeButton = findComponentByName(mainFrame, "findNodeButton");
+        final JTextArea xpathTextArea = findComponentByName(mainFrame, "xpathTextArea");
+        xpathTextArea.setText("//CLASS_DEF^");
+        findNodeButton.doClick();
+
+        final String expected = "//CLASS_DEF^\nInvalid character '^' in expression";
+
+        assertWithMessage("Unexpected XPath text area text")
+                .that(xpathTextArea.getText())
+                .isEqualTo(expected);
+    }
 }
