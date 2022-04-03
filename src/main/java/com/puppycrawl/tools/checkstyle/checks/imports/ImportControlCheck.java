@@ -516,12 +516,10 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
         return new int[] {TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT, };
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     @Override
     public void beginTree(DetailAST rootAST) {
         currentImportControl = null;
-        processCurrentFile = path.matcher(getFileContents().getFileName()).find();
+        processCurrentFile = path.matcher(getFileName()).find();
         fileName = getFileContents().getText().getFile().getName();
 
         final int period = fileName.lastIndexOf('.');

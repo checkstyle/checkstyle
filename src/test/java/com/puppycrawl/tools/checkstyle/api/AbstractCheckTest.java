@@ -379,6 +379,19 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testGetFileName() {
+        final String fileName = "myFile.java";
+        final FileContents fileContents = new FileContents(new FileText(
+            new File(fileName),
+            Collections.singletonList("  //   ")));
+        final DummyAbstractCheck check = new DummyAbstractCheck();
+        check.setFileContents(fileContents);
+        assertWithMessage("Should return true when in package info")
+            .that(check.getFileName())
+            .isEqualTo(fileName);
+    }
+
+    @Test
     public void testCheck() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ViolationAstCheck.class);
 
