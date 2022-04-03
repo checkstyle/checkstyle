@@ -57,6 +57,8 @@ public class WhitespaceAfterTest extends AbstractGoogleModuleTestSupport {
             "23:26: " + getCheckMessage(clazz, message, "->"),
             "24:9: " + getCheckMessage(clazz, message, "switch"),
             "31:9: " + getCheckMessage(clazz, message, "try"),
+            "37:9: " + getCheckMessage(clazz, message, "finally"),
+            "40:9: " + getCheckMessage(clazz, message, "finally"),
         };
         final Configuration checkConfig = getModuleConfig("WhitespaceAfter");
         final String filePath = getPath("InputWhitespaceAfterBad.java");
