@@ -521,7 +521,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
     @Override
     public void beginTree(DetailAST rootAST) {
         currentImportControl = null;
-        processCurrentFile = path.matcher(getFileContents().getFileName()).find();
+        processCurrentFile = path.matcher(getFileName()).find();
         fileName = getFileContents().getText().getFile().getName();
 
         final int period = fileName.lastIndexOf('.');
