@@ -167,6 +167,16 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUnusedLocalVarInAnonInnerClasses2() throws Exception {
+        final String[] expected = {
+            "20:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputUnusedLocalVariableAnonInnerClasses2.java"),
+            expected);
+    }
+
+    @Test
     public void testUnusedLocalVarGenericAnonInnerClasses() throws Exception {
         final String[] expected = {
             "13:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "l"),
