@@ -183,7 +183,7 @@ public class MainFrameTest extends AbstractGuiTestSupport {
         findNodeButton.doClick();
         assertWithMessage("Unexpected XPath text area text")
                 .that(xpathTextArea.getText())
-                .isEqualTo("Xpath\n^ wrong xpath query");
+                .isEqualTo("No elements matching XPath query 'Xpath' found.");
     }
 
 }
