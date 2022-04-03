@@ -90,8 +90,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *      try (InputStream ignored = System.in) {} // OK
  *      try(InputStream ignored = System.in) {} // violation ''try' is not followed by whitespace'
  *
- *      try {} catch(Exception e){} // OK
- *      try{} catch(Exception e){} // violation ''try' is not followed by whitespace'
+ *      try {} catch (Exception e){} // OK
+ *      try{} catch (Exception e){} // violation ''try' is not followed by whitespace'
  * }
  * </pre>
  * <p>
