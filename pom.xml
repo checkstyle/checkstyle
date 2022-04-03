@@ -1596,9 +1596,6 @@
 
                 <exclude>**/AllBlockCommentsTest.class</exclude>
 
-                <!-- test needs to be updated -->
-                <exclude>**/SuppressionCommentFilterTest.class</exclude>
-
                 <!-- remain test methods should be updated -->
                 <exclude>**/EmptyLineSeparatorCheckTest.class</exclude>
 
