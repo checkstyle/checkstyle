@@ -33,14 +33,12 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
-import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import nl.jqno.equalsverifier.EqualsVerifier;
@@ -283,38 +281,6 @@ public class SuppressionCommentFilterTest
                 removeSuppressed(messages, suppressed));
     }
 
-    private void verifySuppressed(Configuration moduleConfig, String fileName,
-            String... aSuppressed)
-            throws Exception {
-        verifySuppressed(moduleConfig, getPath(fileName),
-               ALL_MESSAGES, aSuppressed);
-    }
-
-    private void verifySuppressed(Configuration moduleConfig, String fileName,
-            String[] expectedViolations, String... suppressedViolations) throws Exception {
-        final DefaultConfiguration memberNameCheckConfig =
-                createModuleConfig(MemberNameCheck.class);
-        memberNameCheckConfig.addProperty("id", "ignore");
-
-        final DefaultConfiguration constantNameCheckConfig =
-            createModuleConfig(ConstantNameCheck.class);
-        constantNameCheckConfig.addProperty("id", null);
-
-        final DefaultConfiguration treewalkerConfig = createModuleConfig(TreeWalker.class);
-        treewalkerConfig.addChild(memberNameCheckConfig);
-        treewalkerConfig.addChild(constantNameCheckConfig);
-        treewalkerConfig.addChild(createModuleConfig(IllegalCatchCheck.class));
-
-        if (moduleConfig != null) {
-            treewalkerConfig.addChild(moduleConfig);
-        }
-
-        final DefaultConfiguration checkerConfig = createRootConfig(treewalkerConfig);
-
-        verify(checkerConfig, fileName,
-                removeSuppressed(expectedViolations, suppressedViolations));
-    }
-
     @Test
     public void testEqualsAndHashCodeOfTagClass() {
         final Object tag = getTagsAfterExecutionOnDefaultFilter("//CHECKSTYLE:OFF").get(0);
@@ -381,13 +347,18 @@ public class SuppressionCommentFilterTest
 
     @Test
     public void testInvalidCheckFormat() throws Exception {
+        final DefaultConfiguration treeWalkerConfig =
+            createModuleConfig(TreeWalker.class);
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressionCommentFilter.class);
         filterConfig.addProperty("checkFormat", "e[l");
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(ConstantNameCheck.class);
+        treeWalkerConfig.addChild(filterConfig);
+        treeWalkerConfig.addChild(checkConfig);
 
         try {
-            final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
-            verifySuppressed(filterConfig, "InputSuppressionCommentFilter10.java", suppressed);
+            execute(treeWalkerConfig, getPath("InputSuppressionCommentFilter10.java"));
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
@@ -401,13 +372,18 @@ public class SuppressionCommentFilterTest
 
     @Test
     public void testInvalidMessageFormat() throws Exception {
+        final DefaultConfiguration treeWalkerConfig =
+            createModuleConfig(TreeWalker.class);
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressionCommentFilter.class);
         filterConfig.addProperty("messageFormat", "e[l");
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(ConstantNameCheck.class);
+        treeWalkerConfig.addChild(filterConfig);
+        treeWalkerConfig.addChild(checkConfig);
 
         try {
-            final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
-            verifySuppressed(filterConfig, "InputSuppressionCommentFilter11.java", suppressed);
+            execute(treeWalkerConfig, getPath("InputSuppressionCommentFilter11.java"));
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
