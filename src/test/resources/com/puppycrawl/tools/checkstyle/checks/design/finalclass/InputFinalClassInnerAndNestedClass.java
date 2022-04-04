@@ -74,3 +74,16 @@ enum foo {
     }
 }
 
+class foo2 {
+    class c { // ok
+        private c() {
+        }
+    }
+
+    class a extends c {
+        class c { // violation
+            private c() {
+            }
+        }
+    }
+}
