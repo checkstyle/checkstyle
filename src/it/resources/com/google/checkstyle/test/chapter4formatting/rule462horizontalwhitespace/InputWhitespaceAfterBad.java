@@ -30,4 +30,9 @@ public class InputWhitespaceAfterBad {
     public void check4() throws java.io.IOException {
         try(java.io.InputStream ignored = System.in;) { } // warn
     }
+
+    public void check5() {
+        try {} finally{ System.out.println("Hi"); } // warn
+        try {} catch (Exception e){} finally{ System.out.println("Hi"); } // warn
+    }
 }
