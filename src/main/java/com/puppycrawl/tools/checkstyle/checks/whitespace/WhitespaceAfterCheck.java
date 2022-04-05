@@ -62,6 +62,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * LITERAL_SWITCH</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
  * LITERAL_TRY</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+ * LITERAL_CATCH</a>
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
  * LAMBDA</a>.
  * </li>
@@ -92,6 +94,22 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  *      try {} catch (Exception e){} // OK
  *      try{} catch (Exception e){} // violation ''try' is not followed by whitespace'
+ *
+ *      try {
+ *          Integer.parseInt(args[0]);
+ *      } catch (NumberFormatException e) { // OK
+ *          System.out.println("not a number");
+ *      }
+ *
+ *      try {
+ *          Integer.parseInt(args[0]);
+ *      } catch(NumberFormatException e) { // violation ''catch' is not followed by whitespace'
+ *          System.out.println("not a number");
+ *      }
+ *
+ *      try {}catch (Exception e){} // OK
+ *
+ *      try {}catch(Exception e){} // violation ''catch' is not followed by whitespace'
  *  }
  * </pre>
  * <p>
@@ -167,6 +185,7 @@ public class WhitespaceAfterCheck
             TokenTypes.ELLIPSIS,
             TokenTypes.LITERAL_SWITCH,
             TokenTypes.LITERAL_TRY,
+            TokenTypes.LITERAL_CATCH,
             TokenTypes.LAMBDA,
         };
     }
