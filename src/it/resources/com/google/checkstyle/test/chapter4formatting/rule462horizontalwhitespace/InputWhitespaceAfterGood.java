@@ -31,4 +31,9 @@ public class InputWhitespaceAfterGood {
         try (java.io.InputStream ignored = System.in) {}
         try {} catch(Exception e){}
     }
+
+    public void check5() {
+        try {} finally {}
+        try {} catch (Exception e){} finally {}
+    }
 }
