@@ -31,4 +31,13 @@ public class InputWhitespaceAfterGood {
         try (java.io.InputStream ignored = System.in) {}
         try {} catch(Exception e){}
     }
+
+    public void check5(String[] args) {
+        try {
+            Integer.parseInt(args[0]);
+        } catch (NumberFormatException e) {
+            System.out.println("not a number");
+    }
+        try {}catch (Exception e){}
+    }
 }

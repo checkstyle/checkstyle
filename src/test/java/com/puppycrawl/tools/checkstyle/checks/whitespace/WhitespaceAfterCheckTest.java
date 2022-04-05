@@ -160,6 +160,17 @@ public class WhitespaceAfterCheckTest
     }
 
     @Test
+    public void testLiteralCatch() throws Exception {
+        final String[] expected = {
+            "20:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "catch"),
+            "26:15: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "catch"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputWhitespaceAfterLiteralCatch.java"),
+            expected);
+    }
+
+    @Test
     public void testEmptyForIterator() throws Exception {
         final String[] expected = {
             "18:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
