@@ -34,13 +34,11 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
-import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -377,48 +375,21 @@ public class SuppressWithNearbyCommentFilterTest
                                            removeSuppressed(messages, suppressed));
     }
 
-    private void verifySuppressed(Configuration moduleConfig,
-            String... aSuppressed)
-            throws Exception {
-        verifySuppressed(moduleConfig, getPath("InputSuppressWithNearbyCommentFilter.java"),
-               ALL_MESSAGES, aSuppressed);
-    }
-
-    private void verifySuppressed(Configuration moduleConfig, String fileName,
-            String[] expectedViolations, String... suppressedViolations) throws Exception {
-        final DefaultConfiguration memberNameCheckConfig =
-                createModuleConfig(MemberNameCheck.class);
-        memberNameCheckConfig.addProperty("id", "ignore");
-
-        final DefaultConfiguration constantNameCheckConfig =
-            createModuleConfig(ConstantNameCheck.class);
-        constantNameCheckConfig.addProperty("id", null);
-
-        final DefaultConfiguration treewalkerConfig = createModuleConfig(TreeWalker.class);
-        treewalkerConfig.addChild(memberNameCheckConfig);
-        treewalkerConfig.addChild(constantNameCheckConfig);
-        treewalkerConfig.addChild(createModuleConfig(IllegalCatchCheck.class));
-
-        if (moduleConfig != null) {
-            treewalkerConfig.addChild(moduleConfig);
-        }
-
-        final DefaultConfiguration checkerConfig = createRootConfig(treewalkerConfig);
-
-        verify(checkerConfig,
-                fileName,
-                removeSuppressed(expectedViolations, suppressedViolations));
-    }
-
     @Test
     public void testInvalidInfluenceFormat() throws Exception {
+        final DefaultConfiguration treeWalkerConfig =
+            createModuleConfig(TreeWalker.class);
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addProperty("influenceFormat", "a");
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(MemberNameCheck.class);
+        treeWalkerConfig.addChild(filterConfig);
+        treeWalkerConfig.addChild(checkConfig);
 
         try {
-            final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
-            verifySuppressed(filterConfig, suppressed);
+            execute(treeWalkerConfig,
+                    getPath("InputSuppressWithNearbyCommentFilterByCheckAndInfluence.java"));
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
@@ -466,13 +437,19 @@ public class SuppressWithNearbyCommentFilterTest
 
     @Test
     public void testInvalidCheckFormat() throws Exception {
+        final DefaultConfiguration treeWalkerConfig =
+            createModuleConfig(TreeWalker.class);
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressWithNearbyCommentFilter.class);
         filterConfig.addProperty("checkFormat", "a[l");
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(MemberNameCheck.class);
+        treeWalkerConfig.addChild(filterConfig);
+        treeWalkerConfig.addChild(checkConfig);
 
         try {
-            final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
-            verifySuppressed(filterConfig, suppressed);
+            execute(treeWalkerConfig,
+                    getPath("InputSuppressWithNearbyCommentFilterByCheckAndInfluence.java"));
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
