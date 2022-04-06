@@ -5,14 +5,14 @@ public class SuppressionXpathRegressionThrowsCount3 {
             ArrayIndexOutOfBoundsException,
             StringIndexOutOfBoundsException,
             IllegalStateException,
-            NullPointerException { // warn, max allowed is 4
+            NullPointerException {
         // body
     }
 
     public void myFunc() throws ArithmeticException,
             NumberFormatException { // ok
         // body
-    }
+    } // warn
 
     private void privateFunc() throws CloneNotSupportedException,
             ClassNotFoundException,

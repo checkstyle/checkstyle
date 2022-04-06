@@ -1,9 +1,9 @@
 package org.checkstyle.suppressionxpathfilter.throwscount;
 
 public class SuppressionXpathRegressionThrowsCount2 {
-    public void myFunction() throws IllegalStateException,
+    public void myFunction() throws IllegalStateException, // warn, max allowed is 2
             ArrayIndexOutOfBoundsException,
-            NullPointerException { // warn, max allowed is 2
+            NullPointerException {
         // body
     }
 
