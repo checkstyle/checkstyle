@@ -44,14 +44,14 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ThrowsCountCheck.class);
         final String[] expectedViolation = {
-                "4:30: " + getCheckMessage(ThrowsCountCheck.class,
-                        ThrowsCountCheck.MSG_KEY, 5,4),
+            "4:30: " + getCheckMessage(ThrowsCountCheck.class,
+                        ThrowsCountCheck.MSG_KEY, 5, 4),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
-                    +"/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionThrowsCount1']]"
-                    +"/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
-                    +"/LITERAL_THROWS[./IDENT[@text='CloneNotSupportedException']]"
+                    + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionThrowsCount1']]"
+                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
+                    + "/LITERAL_THROWS[./IDENT[@text='CloneNotSupportedException']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -68,14 +68,14 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("max", "2");
 
         final String[] expectedViolation = {
-                "4:30: " + getCheckMessage(ThrowsCountCheck.class,
-                        ThrowsCountCheck.MSG_KEY,3,2),
+            "4:30: " + getCheckMessage(ThrowsCountCheck.class,
+                        ThrowsCountCheck.MSG_KEY, 3, 2),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
-                    +"/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionThrowsCount2']]"
-                    +"/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
-                    +"/LITERAL_THROWS[./IDENT[@text='IllegalStateException']]"
+                    + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionThrowsCount2']]"
+                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
+                    + "/LITERAL_THROWS[./IDENT[@text='IllegalStateException']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -92,10 +92,10 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("ignorePrivateMethods", "false");
 
         final String[] expectedViolation = {
-                "15:32: " + getCheckMessage(ThrowsCountCheck.class,
-                        ThrowsCountCheck.MSG_KEY,5,4),
-                "21:10: " + getCheckMessage(ThrowsCountCheck.class,
-                        ThrowsCountCheck.MSG_KEY,5,4),
+            "15:32: " + getCheckMessage(ThrowsCountCheck.class,
+                        ThrowsCountCheck.MSG_KEY, 5, 4),
+            "21:10: " + getCheckMessage(ThrowsCountCheck.class,
+                        ThrowsCountCheck.MSG_KEY, 5, 4),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
