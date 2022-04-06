@@ -28,6 +28,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.grammar.CommentListener;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -328,9 +329,11 @@ public final class FileContents implements CommentListener {
      * Checks if the current file is a package-info.java file.
      *
      * @return true if the package file.
+     * @deprecated use {@link CheckUtil#isPackageInfo(String)}
+     *              and {@link AbstractCheck#getFilePath()} instead.
      */
+    @Deprecated(since = "10.2")
     public boolean inPackageInfo() {
         return getFileName().endsWith("package-info.java");
     }
-
 }

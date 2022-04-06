@@ -130,7 +130,7 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        fileName = getFileName();
+        fileName = getSourceFileName();
         seenFirstToken = false;
         hasPublic = false;
         wrongType = null;
@@ -167,10 +167,8 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
      *
      * @return source file name.
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
-    private String getFileName() {
-        String name = getFileContents().getFileName();
+    private String getSourceFileName() {
+        String name = getFilePath();
         name = name.substring(name.lastIndexOf(File.separatorChar) + 1);
         return FILE_EXTENSION_PATTERN.matcher(name).replaceAll("");
     }

@@ -24,6 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
  * <p>
@@ -102,16 +103,12 @@ public class PackageAnnotationCheck extends AbstractCheck {
         return getRequiredTokens();
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     @Override
     public void visitToken(final DetailAST ast) {
         final boolean containsAnnotation =
             AnnotationUtil.containsAnnotation(ast);
-        final boolean inPackageInfo =
-            getFileContents().inPackageInfo();
 
-        if (containsAnnotation && !inPackageInfo) {
+        if (containsAnnotation && !CheckUtil.isPackageInfo(getFilePath())) {
             log(ast, MSG_KEY);
         }
     }
