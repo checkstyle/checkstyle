@@ -85,20 +85,23 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionThrowsCount2.java"));
+                new File(getPath("SuppressionXpathRegressionThrowsCount3.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ThrowsCountCheck.class);
 
         moduleConfig.addProperty("ignorePrivateMethods", "false");
 
         final String[] expectedViolation = {
-            "15:32: " + getCheckMessage(ThrowsCountCheck.class,
+            "4:30: " + getCheckMessage(ThrowsCountCheck.class,
                         ThrowsCountCheck.MSG_KEY, 5, 4),
-            "21:10: " + getCheckMessage(ThrowsCountCheck.class,
+            "17:32: " + getCheckMessage(ThrowsCountCheck.class,
                         ThrowsCountCheck.MSG_KEY, 5, 4),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
+                        + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionThrowsCount3']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
+                        + "/LITERAL_THROWS[./IDENT[@text='CloneNotSupportedException']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
