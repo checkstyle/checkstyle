@@ -36,4 +36,9 @@ public class InputWhitespaceAfterGood {
         try {} finally {}
         try {} catch (Exception e){} finally {}
     }
+
+    public void check6() {
+        synchronized (this) { }
+        synchronized (this) { }
+    }
 }
