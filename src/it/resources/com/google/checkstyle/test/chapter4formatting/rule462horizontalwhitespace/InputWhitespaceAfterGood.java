@@ -29,7 +29,7 @@ public class InputWhitespaceAfterGood {
 
     public void check4() throws java.io.IOException {
         try (java.io.InputStream ignored = System.in) {}
-        try {} catch(Exception e){}
+        try {} catch (Exception e){}
     }
 
     public void check5() {
