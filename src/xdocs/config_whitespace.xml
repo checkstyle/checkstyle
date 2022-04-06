@@ -2902,6 +2902,8 @@ class Bar {
                   LITERAL_FOR</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
                   LITERAL_FINALLY</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+                  LITERAL_CATCH</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
                   DO_WHILE</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
@@ -2934,6 +2936,8 @@ class Bar {
                   LITERAL_FOR</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
                   LITERAL_FINALLY</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+                  LITERAL_CATCH</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
                   DO_WHILE</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
@@ -2986,6 +2990,9 @@ public void myTest() {
 
     try {} catch (Error e){} finally {} // OK
     try {} catch (Error e){} finally{} // violation ''finally' is not followed by whitespace'
+
+    try {} catch (Exception e){} // OK
+    try {} catch(Exception e){} // violation ''catch' is not followed by whitespace'
 }
           </pre>
         </div>
