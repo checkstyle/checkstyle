@@ -35,4 +35,8 @@ public class InputWhitespaceAfterBad {
         try {} finally{} // warn
         try {} catch (Exception e){} finally{} // warn
     }
+    public void check6() {
+        synchronized(this) { } // warn
+        synchronized (this) { }
+    }
 }
