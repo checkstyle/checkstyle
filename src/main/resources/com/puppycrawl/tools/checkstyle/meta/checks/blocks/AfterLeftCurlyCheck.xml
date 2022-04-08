@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.AfterLeftCurlyCheck"
+             name="AfterLeftCurly"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks for the presence of empty lines after left curly braces (&lt;code&gt;'{'&lt;/code&gt;) for code blocks.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="true"
+                      name="blankLine"
+                      type="boolean">
+               <description>Enforce the presence of an empty line after left curly brace (&lt;code&gt;'{'&lt;/code&gt;).</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="after.left.curly.empty.line"/>
+            <message-key key="after.left.curly.no.empty.line"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
