@@ -56,6 +56,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * LITERAL_FOR</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
  * LITERAL_FINALLY</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+ * LITERAL_CATCH</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
  * DO_WHILE</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
@@ -100,6 +102,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  *      try {} catch (Error e){} finally {} // OK
  *      try {} catch (Error e){} finally{} // violation ''finally' is not followed by whitespace'
+ *
+ *      try {} catch (Exception e){} // OK
+ *      try {} catch(Exception e){} // violation ''catch' is not followed by whitespace'
  *  }
  * </pre>
  * <p>
@@ -172,6 +177,7 @@ public class WhitespaceAfterCheck
             TokenTypes.LITERAL_DO,
             TokenTypes.LITERAL_FOR,
             TokenTypes.LITERAL_FINALLY,
+            TokenTypes.LITERAL_CATCH,
             TokenTypes.DO_WHILE,
             TokenTypes.ELLIPSIS,
             TokenTypes.LITERAL_SWITCH,
