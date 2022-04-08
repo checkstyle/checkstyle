@@ -453,6 +453,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.blocks.EmptyCatchBlockCheck");
         NAME_TO_FULL_MODULE_NAME.put("LeftCurlyCheck",
                 BASE_PACKAGE + ".checks.blocks.LeftCurlyCheck");
+        NAME_TO_FULL_MODULE_NAME.put("AfterLeftCurlyCheck",
+                BASE_PACKAGE + ".checks.blocks.AfterLeftCurlyCheck");
         NAME_TO_FULL_MODULE_NAME.put("NeedBracesCheck",
                 BASE_PACKAGE + ".checks.blocks.NeedBracesCheck");
         NAME_TO_FULL_MODULE_NAME.put("RightCurlyCheck",
