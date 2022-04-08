@@ -73,6 +73,45 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;module name="MethodLength"/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass {
+ *     public MyClass() {  // constructor (line 1)
+ *
+ *          // line 3
+ *          // line 4
+ *
+ *          /&#42; line 6
+ *              ...
+ *             line 150  &#42;&#47;
+ *     } // violation, the total number of lines is 151 (more than the default 150 lines)
+ *       // empty lines and comments (both single-line and block comments) are counted towards
+ *
+ *     public void firstExample() { // line 1
+ *
+ *         // single-line comment (line 3)
+ *
+ *         /&#42;
+ *             block comment  (line 6)
+ *         &#42;&#47;
+ *     } // OK, the total number of lines is 8 (less than the default 150 lines)
+ *       // empty lines and comments (both single-line and block comments) are counted towards
+ *
+ *     public void secondExample() { // line 1
+ *
+ *         // line 3
+ *         // line 4
+ *         // line 5
+ *
+ *         /&#42; line 7
+ *             ...
+ *            line 150  &#42;&#47;
+ *     } // violation, the total number of lines is 151 (more than the default value 150 lines)
+ *       // empty lines and comments (both single-line and block comments) are counted towards
+ * }
+ * </pre>
+ * <p>
  * To configure the check so that it accepts methods with at most 60 lines:
  * </p>
  * <pre>
@@ -80,6 +119,47 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="tokens" value="METHOD_DEF"/&gt;
  *   &lt;property name="max" value="60"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyTest {
+ *     public MyTest()  {  // constructor (line 1)
+ *         // line 2
+ *         // line 3
+ *         // line 4
+ *         ...
+ *         // line 60
+ *     } // OK, the length of constructor is 61 lines but will be ignored
+ *       // (constructor is not mentioned in the tokens)
+ *
+ *     public void firstExample() { // line 1
+ *         // line 2
+ *         // line 3
+ *         // line 4
+ *
+ *         /&#42; line 6
+ *            line 7
+ *            line 8 &#42;&#47;
+ *     } // OK, the total number of lines is 9 (less than 60 lines)
+ *       // empty lines and comments (both single-line and block comments) are also counted towards
+ *
+ *     public void singleLineCommentExample() { // line 1
+ *             // line 2
+ *             ...
+ *             // line 59
+ *             // line 60
+ *     } // violation, the total number of lines is 61 (greater than 60 lines)
+ *       // comments (single-line and block) and empty lines are also counted towards
+ *
+ *     public void blockCommentExample() { // line 1
+ *             /&#42; line 2
+ *                ...
+ *                line 60 &#42;&#47;
+ *     } // violation, the total number of lines is 61 (greater than 60 lines)
+ *       // comments (single-line and block) and empty lines are also counted towards
+ * }
  * </pre>
  * <p>
  * To configure the check so that it accepts methods with at most 60 lines,
@@ -91,6 +171,35 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="max" value="60"/&gt;
  *   &lt;property name="countEmpty" value="false"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public void singleLineCommentExample() {  // line 1
+ *
+ *     // line 3
+ *     // line 4
+ *     ...
+ *     // line 60
+ * } // OK, the total number of lines is 2 (less than 60)
+ *   // the empty lines and single-line comments are not counted towards
+ *
+ * public void blockCommentExample() { // line 1
+ *     /&#42; line 2
+ *        ...
+ *        line 60 &#42;&#47;
+ * } // OK, the total number of lines is 2 (less than 60)
+ *   // the block comments are not counted towards
+ *
+ * public void myExample() { // line 1
+ *     System.out.println("Line 2");
+ *     System.out.println("Line 3");
+ *               ...
+ *     System.out.println("Line 59");
+ *     System.out.println("Line 60");
+ * } // violation, the total number of lines is 61 (greater than 60)
+ *   // where empty lines and comments (both single-line and block comments) are not counted toward
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
