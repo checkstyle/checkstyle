@@ -515,8 +515,4 @@
           checks="LocalVariableNameCheck"
           query="//METHOD_DEF[./IDENT[@text='getLineNumbersFromExpected']]
                 //VARIABLE_DEF/IDENT[@text='i']"/>
-  <suppress-xpath
-          files="AbstractItModuleTestSupport.java"
-          checks="LocalVariableNameCheck"
-          query="//METHOD_DEF[./IDENT[@text='verify']]//VARIABLE_DEF/IDENT[@text='i']"/>
 </suppressions>
