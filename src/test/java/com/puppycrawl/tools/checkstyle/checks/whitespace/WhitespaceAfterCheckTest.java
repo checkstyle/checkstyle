@@ -150,6 +150,18 @@ public class WhitespaceAfterCheckTest
     }
 
     @Test
+    public void testLiteralSynchronized() throws Exception {
+        final String[] expected = {
+            "13:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "synchronized"),
+            "31:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "synchronized"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputWhitespaceAfterLiteralSynchronized.java"),
+                expected);
+    }
+
+    @Test
     public void testDoWhile() throws Exception {
         final String[] expected = {
             "25:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "while"),

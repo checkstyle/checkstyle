@@ -64,6 +64,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * ELLIPSIS</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
  * LITERAL_SWITCH</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
+ * LITERAL_SYNCHRONIZED</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
  * LITERAL_TRY</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
@@ -105,6 +107,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  *      try {} catch (Exception e){} // OK
  *      try {} catch(Exception e){} // violation ''catch' is not followed by whitespace'
+ *
+ *      synchronized(this) { } // violation ''synchronized' is not followed by whitespace'
+ *      synchronized (this) { } // ok
  *  }
  * </pre>
  * <p>
@@ -181,6 +186,7 @@ public class WhitespaceAfterCheck
             TokenTypes.DO_WHILE,
             TokenTypes.ELLIPSIS,
             TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_SYNCHRONIZED,
             TokenTypes.LITERAL_TRY,
             TokenTypes.LAMBDA,
         };
