@@ -282,8 +282,8 @@ public final class TokenUtil {
      */
     public static boolean isOfType(int type, int... types) {
         boolean matching = false;
-        for (int t : types) {
-            if (t == type) {
+        for (int foundType : types) {
+            if (foundType == type) {
                 matching = true;
                 break;
             }
