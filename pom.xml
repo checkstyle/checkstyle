@@ -1499,7 +1499,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.2.2</version>
         <configuration>
-          <argLine>-Dfile.encoding=UTF-8 @{surefire.options}</argLine>
+          <argLine>-Dfile.encoding=UTF-8 ${surefire.options}</argLine>
           <systemPropertyVariables>
             <jacoco-agent.destfile>${project.build.directory}/jacoco.exec</jacoco-agent.destfile>
             <!-- Virtual AWT driver for GUI unit tests -->
