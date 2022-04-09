@@ -68,12 +68,13 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("max", "2");
 
         final String[] expectedViolation = {
-            "4:30: " + getCheckMessage(ThrowsCountCheck.class,
+            "5:34: " + getCheckMessage(ThrowsCountCheck.class,
                         ThrowsCountCheck.MSG_KEY, 3, 2),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                     + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionThrowsCount2']]"
+                    + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='myInterface']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
                     + "/LITERAL_THROWS[./IDENT[@text='IllegalStateException']]"
         );
