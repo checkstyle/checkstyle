@@ -75,6 +75,11 @@ strategy:
       image: 'ubuntu-20.04'
       cmd: "./.ci/validation.sh test-tr"
 
+    # unit tests in Russian locale (openjdk11)
+    'test-ru':
+      image: 'ubuntu-20.04'
+      cmd: "./.ci/validation.sh test-ru"
+
     # OpenJDK11 verify
     'OpenJDK11 verify':
       image: 'ubuntu-20.04'
