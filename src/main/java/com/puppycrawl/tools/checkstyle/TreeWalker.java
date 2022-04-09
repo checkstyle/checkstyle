@@ -35,7 +35,7 @@ import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
@@ -117,8 +117,8 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
         try {
             module = moduleFactory.createModule(name);
-            if (module instanceof AutomaticBean) {
-                final AutomaticBean bean = (AutomaticBean) module;
+            if (module instanceof AbstractAutomaticBean) {
+                final AbstractAutomaticBean bean = (AbstractAutomaticBean) module;
                 bean.contextualize(childContext);
                 bean.configure(childConf);
             }

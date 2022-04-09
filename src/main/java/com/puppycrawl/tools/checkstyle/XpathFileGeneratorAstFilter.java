@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
 
@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
  * for {@code XpathFileGeneratorAuditListener}.
  * See issue #102 https://github.com/checkstyle/checkstyle/issues/102
  */
-public class XpathFileGeneratorAstFilter extends AutomaticBean implements TreeWalkerFilter {
+public class XpathFileGeneratorAstFilter extends AbstractAutomaticBean implements TreeWalkerFilter {
 
     /** The delimiter between xpath queries. */
     private static final String DELIMITER = " | \n";

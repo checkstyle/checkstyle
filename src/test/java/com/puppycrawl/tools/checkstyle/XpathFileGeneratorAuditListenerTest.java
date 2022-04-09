@@ -30,7 +30,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
@@ -88,8 +88,8 @@ public class XpathFileGeneratorAuditListenerTest {
     @Test
     public void testFinishLocalSetup() {
         final OutputStream out = new ByteArrayOutputStream();
-        final XpathFileGeneratorAuditListener listener =
-                new XpathFileGeneratorAuditListener(out, AutomaticBean.OutputStreamOptions.CLOSE);
+        final XpathFileGeneratorAuditListener listener = new
+            XpathFileGeneratorAuditListener(out, AbstractAutomaticBean.OutputStreamOptions.CLOSE);
 
         listener.finishLocalSetup();
         listener.auditStarted(null);
@@ -103,8 +103,8 @@ public class XpathFileGeneratorAuditListenerTest {
     @Test
     public void testFileStarted() {
         final OutputStream out = new ByteArrayOutputStream();
-        final XpathFileGeneratorAuditListener listener =
-                new XpathFileGeneratorAuditListener(out, AutomaticBean.OutputStreamOptions.CLOSE);
+        final XpathFileGeneratorAuditListener listener = new
+            XpathFileGeneratorAuditListener(out, AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         final AuditEvent ev = new AuditEvent(this, "Test.java", null);
         listener.fileStarted(ev);
         listener.auditFinished(null);
@@ -117,8 +117,8 @@ public class XpathFileGeneratorAuditListenerTest {
     @Test
     public void testFileFinished() {
         final OutputStream out = new ByteArrayOutputStream();
-        final XpathFileGeneratorAuditListener listener =
-                new XpathFileGeneratorAuditListener(out, AutomaticBean.OutputStreamOptions.CLOSE);
+        final XpathFileGeneratorAuditListener listener = new
+            XpathFileGeneratorAuditListener(out, AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         final AuditEvent ev = new AuditEvent(this, "Test.java", null);
         listener.fileFinished(ev);
         listener.auditFinished(null);
@@ -131,8 +131,8 @@ public class XpathFileGeneratorAuditListenerTest {
     @Test
     public void testAddException() {
         final OutputStream out = new ByteArrayOutputStream();
-        final XpathFileGeneratorAuditListener logger =
-                new XpathFileGeneratorAuditListener(out, AutomaticBean.OutputStreamOptions.CLOSE);
+        final XpathFileGeneratorAuditListener logger = new
+            XpathFileGeneratorAuditListener(out, AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final Violation violation =
                 new Violation(1, 1,
@@ -238,9 +238,9 @@ public class XpathFileGeneratorAuditListenerTest {
 
     @Test
     public void testCloseStream() {
-        final XpathFileGeneratorAuditListener listener =
-                new XpathFileGeneratorAuditListener(outStream,
-                        AutomaticBean.OutputStreamOptions.CLOSE);
+        final XpathFileGeneratorAuditListener listener = new
+            XpathFileGeneratorAuditListener(outStream,
+                                            AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         listener.finishLocalSetup();
         listener.auditStarted(null);
         listener.auditFinished(null);
@@ -252,9 +252,9 @@ public class XpathFileGeneratorAuditListenerTest {
 
     @Test
     public void testNoCloseStream() {
-        final XpathFileGeneratorAuditListener listener =
-                new XpathFileGeneratorAuditListener(outStream,
-                        AutomaticBean.OutputStreamOptions.NONE);
+        final XpathFileGeneratorAuditListener listener = new
+            XpathFileGeneratorAuditListener(outStream,
+                                            AbstractAutomaticBean.OutputStreamOptions.NONE);
         listener.finishLocalSetup();
         listener.auditStarted(null);
         listener.auditFinished(null);
@@ -311,7 +311,8 @@ public class XpathFileGeneratorAuditListenerTest {
         final TestByteArrayOutputStream out = new TestByteArrayOutputStream();
 
         final XpathFileGeneratorAuditListener listener =
-                new XpathFileGeneratorAuditListener(out, AutomaticBean.OutputStreamOptions.CLOSE);
+            new XpathFileGeneratorAuditListener(out,
+                                                AbstractAutomaticBean.OutputStreamOptions.CLOSE);
 
         for (AuditEvent event : events) {
             listener.addError(event);
