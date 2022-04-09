@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -383,10 +382,11 @@ public enum JavadocTagInfo {
     private static final Map<String, JavadocTagInfo> NAME_TO_TAG;
 
     static {
-        TEXT_TO_TAG = Collections.unmodifiableMap(Arrays.stream(values())
-            .collect(Collectors.toMap(JavadocTagInfo::getText, Function.identity())));
-        NAME_TO_TAG = Collections.unmodifiableMap(Arrays.stream(values())
-            .collect(Collectors.toMap(JavadocTagInfo::getName, Function.identity())));
+        final JavadocTagInfo[] values = values();
+        TEXT_TO_TAG = Arrays.stream(values)
+            .collect(Collectors.toUnmodifiableMap(JavadocTagInfo::getText, Function.identity()));
+        NAME_TO_TAG = Arrays.stream(values)
+            .collect(Collectors.toUnmodifiableMap(JavadocTagInfo::getName, Function.identity()));
 
         // Arrays sorting for binary search
         Arrays.sort(DEF_TOKEN_TYPES);
