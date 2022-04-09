@@ -53,35 +53,34 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     private static final String DOT = ".";
 
     /** Class names to ignore. */
-    private static final Set<String> DEFAULT_EXCLUDED_CLASSES = Collections.unmodifiableSet(
-        Arrays.stream(new String[] {
-            // reserved type name
-            "var",
-            // primitives
-            "boolean", "byte", "char", "double", "float", "int",
-            "long", "short", "void",
-            // wrappers
-            "Boolean", "Byte", "Character", "Double", "Float",
-            "Integer", "Long", "Short", "Void",
-            // java.lang.*
-            "Object", "Class",
-            "String", "StringBuffer", "StringBuilder",
-            // Exceptions
-            "ArrayIndexOutOfBoundsException", "Exception",
-            "RuntimeException", "IllegalArgumentException",
-            "IllegalStateException", "IndexOutOfBoundsException",
-            "NullPointerException", "Throwable", "SecurityException",
-            "UnsupportedOperationException",
-            // java.util.*
-            "List", "ArrayList", "Deque", "Queue", "LinkedList",
-            "Set", "HashSet", "SortedSet", "TreeSet",
-            "Map", "HashMap", "SortedMap", "TreeMap",
-            "Override", "Deprecated", "SafeVarargs", "SuppressWarnings", "FunctionalInterface",
-            "Collection", "EnumSet", "LinkedHashMap", "LinkedHashSet", "Optional",
-            "OptionalDouble", "OptionalInt", "OptionalLong",
-            // java.util.stream.*
-            "DoubleStream", "IntStream", "LongStream", "Stream",
-        }).collect(Collectors.toSet()));
+    private static final Set<String> DEFAULT_EXCLUDED_CLASSES = Set.of(
+        // reserved type name
+        "var",
+        // primitives
+        "boolean", "byte", "char", "double", "float", "int",
+        "long", "short", "void",
+        // wrappers
+        "Boolean", "Byte", "Character", "Double", "Float",
+        "Integer", "Long", "Short", "Void",
+        // java.lang.*
+        "Object", "Class",
+        "String", "StringBuffer", "StringBuilder",
+        // Exceptions
+        "ArrayIndexOutOfBoundsException", "Exception",
+        "RuntimeException", "IllegalArgumentException",
+        "IllegalStateException", "IndexOutOfBoundsException",
+        "NullPointerException", "Throwable", "SecurityException",
+        "UnsupportedOperationException",
+        // java.util.*
+        "List", "ArrayList", "Deque", "Queue", "LinkedList",
+        "Set", "HashSet", "SortedSet", "TreeSet",
+        "Map", "HashMap", "SortedMap", "TreeMap",
+        "Override", "Deprecated", "SafeVarargs", "SuppressWarnings", "FunctionalInterface",
+        "Collection", "EnumSet", "LinkedHashMap", "LinkedHashSet", "Optional",
+        "OptionalDouble", "OptionalInt", "OptionalLong",
+        // java.util.stream.*
+        "DoubleStream", "IntStream", "LongStream", "Stream"
+    );
 
     /** Package names to ignore. */
     private static final Set<String> DEFAULT_EXCLUDED_PACKAGES = Collections.emptySet();
@@ -150,8 +149,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      * @param excludedClasses the list of classes to ignore.
      */
     public final void setExcludedClasses(String... excludedClasses) {
-        this.excludedClasses =
-            Arrays.stream(excludedClasses).collect(Collectors.toUnmodifiableSet());
+        this.excludedClasses = Set.of(excludedClasses);
     }
 
     /**
@@ -182,8 +180,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
                 "the following values are not valid identifiers: " + invalidIdentifiers);
         }
 
-        this.excludedPackages =
-            Arrays.stream(excludedPackages).collect(Collectors.toUnmodifiableSet());
+        this.excludedPackages = Set.of(excludedPackages);
     }
 
     @Override
