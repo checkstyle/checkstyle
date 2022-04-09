@@ -346,6 +346,7 @@ dsm
 Dsonar
 Dspotbugs
 Dstrict
+Dsurefire
 Dtag
 Dtest
 Dubinin
