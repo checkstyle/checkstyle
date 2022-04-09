@@ -84,10 +84,13 @@ public class ViolationTest {
      */
     @Test
     public void testLocaleIsSupported() {
+        System.out.println("1: " + DEFAULT_LOCALE);
         final String language = DEFAULT_LOCALE.getLanguage();
+        System.out.println("2: " + language);
         assumeFalse(language.isEmpty() || Locale.ENGLISH.getLanguage().equals(language),
                 "Custom locale not set");
         final Violation violation = createSampleViolation();
+        System.out.println("3: " + violation.getViolation());
         assertWithMessage("Unsupported language: %s", DEFAULT_LOCALE)
                 .that(violation.getViolation())
                 .isNotEqualTo("Empty statement.");
