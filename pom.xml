@@ -1629,7 +1629,7 @@
               <includes>
                 <include>site.xml</include>
               </includes>
-              <systemId>.ci/decoration-1.8.0.xsd</systemId>
+              <systemId>config/decoration-1.8.0.xsd</systemId>
             </validationSet>
             <validationSet>
               <validating>true</validating>
