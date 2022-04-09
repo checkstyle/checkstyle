@@ -75,8 +75,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      * @return the header lines to check against.
      */
     protected List<String> getHeaderLines() {
-        final List<String> copy = new ArrayList<>(readerLines);
-        return Collections.unmodifiableList(copy);
+        return List.copyOf(readerLines);
     }
 
     /**
