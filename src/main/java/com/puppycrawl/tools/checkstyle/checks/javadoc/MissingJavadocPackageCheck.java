@@ -24,8 +24,8 @@ import java.util.Optional;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
@@ -99,12 +99,9 @@ public class MissingJavadocPackageCheck extends AbstractCheck {
         return true;
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     @Override
     public void visitToken(DetailAST ast) {
-        final FileContents contents = getFileContents();
-        if (contents.inPackageInfo() && !hasJavadoc(ast)) {
+        if (CheckUtil.isPackageInfo(getFilePath()) && !hasJavadoc(ast)) {
             log(ast, MSG_PKG_JAVADOC_MISSING);
         }
     }
