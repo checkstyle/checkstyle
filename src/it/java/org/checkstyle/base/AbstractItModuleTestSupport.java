@@ -250,7 +250,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
             for (int index = 0; index < expected.length; index++) {
                 final String expectedResult = messageFileName + ":" + expected[index];
                 final String actual = lnr.readLine();
-                assertWithMessage("error message %s", index)
+                assertWithMessage("error message %s does not match expected message", index)
                     .that(actual)
                     .isEqualTo(expectedResult);
 
