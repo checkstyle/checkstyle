@@ -73,24 +73,100 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;module name="MethodLength"/&gt;
  * </pre>
  * <p>
- * To configure the check so that it accepts methods with at most 60 lines:
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyClass {
+ *   public MyClass() {  // constructor (line 1)
+ *        /&#42; line 2
+ *            ...
+ *           line 150 &#42;/
+ *   } // line 151, violation, as it is over 150
+ *     // comments and empty lines are counted towards
+ *
+ *   public void firstExample() { // line 1
+ *       //  line 2
+ *       /&#42;  line 3
+ *           line 4 &#42;/
+ *   } // line 5, OK, as it is less than 150
+ *     // comments and empty lines are counted towards
+ *
+ *   public void secondExample() { // line 1
+ *       /&#42; line 2
+ *           ...
+ *          line 150 &#42;/
+ *   } // line 151, violation, as it is over 150
+ *     // comments and empty lines are counted towards
+ * }
+ * </pre>
+ * <p>
+ * To configure the check so that it accepts methods with at most 4 lines:
  * </p>
  * <pre>
  * &lt;module name="MethodLength"&gt;
  *   &lt;property name="tokens" value="METHOD_DEF"/&gt;
- *   &lt;property name="max" value="60"/&gt;
+ *   &lt;property name="max" value="4"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * To configure the check so that it accepts methods with at most 60 lines,
+ * Example:
+ * </p>
+ * <pre>
+ * public class MyTest {
+ *   public MyTest()  {  // constructor (line 1)
+ *       // line 2
+ *       // line 3
+ *       // line 4
+ *   } // line 5, OK, constructor is not mentioned in the tokens
+ *
+ *   public void firstExample() { // line 1
+ *       // line 2
+ *       // line 3
+ *   } // line 4, OK, as it allows at most 4 lines
+ *     // comments and empty lines are counted towards
+ *
+ *   public void singleLineCommentExample() { // line 1
+ *        // line 2
+ *        // line 3
+ *        // line 4
+ *   } // line 5, violation, as it is over 4 lines
+ *     // comments and empty lines are counted towards
+ *
+ *   public void blockCommentExample() { // line 1
+ *        /&#42; line 2
+ *           line 3
+ *           line 4 &#42;/
+ *   } // line 5, violation, as it is over 4 lines
+ *     // comments and empty lines are counted towards
+ * }
+ * </pre>
+ * <p>
+ * To configure the check so that it accepts methods with at most 4 lines,
  * not counting empty lines and comments:
  * </p>
  * <pre>
  * &lt;module name="MethodLength"&gt;
  *   &lt;property name="tokens" value="METHOD_DEF"/&gt;
- *   &lt;property name="max" value="60"/&gt;
+ *   &lt;property name="max" value="4"/&gt;
  *   &lt;property name="countEmpty" value="false"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public void firstExample() {  // line 1
+ *
+ *    // line 3
+ *    // line 4
+ * } // line 5, OK, as comments and empty lines are not counted towards
+ *
+ * public void secondExample() { // line 1
+ *     System.out.println("Line 2");
+ *     System.out.println("Line 3");
+ *     System.out.println("Line 4");
+ * } // line 5, violation, as it is over 4 lines
+ *   // where empty lines and comments are not counted toward
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
