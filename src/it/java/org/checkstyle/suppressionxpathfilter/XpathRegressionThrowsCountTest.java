@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -96,7 +95,7 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
             "10:32: " + getCheckMessage(ThrowsCountCheck.class,
                         ThrowsCountCheck.MSG_KEY, 5, 4),
         };
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                     + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionThrowsCount3']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='privateFunc']]"
