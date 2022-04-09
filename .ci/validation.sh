@@ -168,8 +168,7 @@ test-tr)
   ;;
 
 test-ru)
-  mvn -e -X --no-transfer-progress clean integration-test failsafe:verify \
-    -DargLine='-Duser.language=ru -Duser.country=RU -Xms1024m -Xmx2048m'
+  mvn -e -X --no-transfer-progress clean integration-test failsafe:verify -DargLine='-Duser.language=ru -Duser.country=RU -Xms1024m -Xmx2048m'
   ;;
 
 versions)
