@@ -247,10 +247,11 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
             LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             int previousLineNumber = 0;
-            for (int i = 0; i < expected.length; i++) {
-                final String expectedResult = messageFileName + ":" + expected[i];
+            for (int index = 0; index < expected.length; index++) {
+                final String expectedResult = messageFileName + ":" + expected[index];
                 final String actual = lnr.readLine();
-                assertWithMessage("error message %s", i)
+                assertWithMessage("Error message at position %s of 'expected' does "
+                        + "not match actual message", index)
                     .that(actual)
                     .isEqualTo(expectedResult);
 
