@@ -20,8 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -29,7 +27,6 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -266,47 +263,44 @@ public class RequireThisCheck extends AbstractCheck {
     public static final String MSG_VARIABLE = "require.this.variable";
 
     /** Set of all declaration tokens. */
-    private static final Set<Integer> DECLARATION_TOKENS = Collections.unmodifiableSet(
-        Arrays.stream(new Integer[] {
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.ANNOTATION_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.PARAMETER_DEF,
-            TokenTypes.TYPE_ARGUMENT,
-            TokenTypes.RECORD_DEF,
-            TokenTypes.RECORD_COMPONENT_DEF,
-        }).collect(Collectors.toSet()));
+    private static final Set<Integer> DECLARATION_TOKENS = Set.of(
+        TokenTypes.VARIABLE_DEF,
+        TokenTypes.CTOR_DEF,
+        TokenTypes.METHOD_DEF,
+        TokenTypes.CLASS_DEF,
+        TokenTypes.ENUM_DEF,
+        TokenTypes.ANNOTATION_DEF,
+        TokenTypes.INTERFACE_DEF,
+        TokenTypes.PARAMETER_DEF,
+        TokenTypes.TYPE_ARGUMENT,
+        TokenTypes.RECORD_DEF,
+        TokenTypes.RECORD_COMPONENT_DEF
+    );
     /** Set of all assign tokens. */
-    private static final Set<Integer> ASSIGN_TOKENS = Collections.unmodifiableSet(
-        Arrays.stream(new Integer[] {
-            TokenTypes.ASSIGN,
-            TokenTypes.PLUS_ASSIGN,
-            TokenTypes.STAR_ASSIGN,
-            TokenTypes.DIV_ASSIGN,
-            TokenTypes.MOD_ASSIGN,
-            TokenTypes.SR_ASSIGN,
-            TokenTypes.BSR_ASSIGN,
-            TokenTypes.SL_ASSIGN,
-            TokenTypes.BAND_ASSIGN,
-            TokenTypes.BXOR_ASSIGN,
-        }).collect(Collectors.toSet()));
+    private static final Set<Integer> ASSIGN_TOKENS = Set.of(
+        TokenTypes.ASSIGN,
+        TokenTypes.PLUS_ASSIGN,
+        TokenTypes.STAR_ASSIGN,
+        TokenTypes.DIV_ASSIGN,
+        TokenTypes.MOD_ASSIGN,
+        TokenTypes.SR_ASSIGN,
+        TokenTypes.BSR_ASSIGN,
+        TokenTypes.SL_ASSIGN,
+        TokenTypes.BAND_ASSIGN,
+        TokenTypes.BXOR_ASSIGN
+    );
     /** Set of all compound assign tokens. */
-    private static final Set<Integer> COMPOUND_ASSIGN_TOKENS = Collections.unmodifiableSet(
-        Arrays.stream(new Integer[] {
-            TokenTypes.PLUS_ASSIGN,
-            TokenTypes.STAR_ASSIGN,
-            TokenTypes.DIV_ASSIGN,
-            TokenTypes.MOD_ASSIGN,
-            TokenTypes.SR_ASSIGN,
-            TokenTypes.BSR_ASSIGN,
-            TokenTypes.SL_ASSIGN,
-            TokenTypes.BAND_ASSIGN,
-            TokenTypes.BXOR_ASSIGN,
-        }).collect(Collectors.toSet()));
+    private static final Set<Integer> COMPOUND_ASSIGN_TOKENS = Set.of(
+        TokenTypes.PLUS_ASSIGN,
+        TokenTypes.STAR_ASSIGN,
+        TokenTypes.DIV_ASSIGN,
+        TokenTypes.MOD_ASSIGN,
+        TokenTypes.SR_ASSIGN,
+        TokenTypes.BSR_ASSIGN,
+        TokenTypes.SL_ASSIGN,
+        TokenTypes.BAND_ASSIGN,
+        TokenTypes.BXOR_ASSIGN
+    );
 
     /** Frame for the currently processed AST. */
     private final Deque<AbstractFrame> current = new ArrayDeque<>();
