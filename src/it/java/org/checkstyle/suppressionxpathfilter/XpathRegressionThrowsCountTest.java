@@ -49,9 +49,10 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionThrowsCount1']]"
+                    + "/INTERFACE_DEF[./IDENT[@text='SuppressionXpathRegressionThrowsCount1']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
                     + "/LITERAL_THROWS[./IDENT[@text='CloneNotSupportedException']]"
+
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -68,15 +69,15 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("max", "2");
 
         final String[] expectedViolation = {
-            "5:34: " + getCheckMessage(ThrowsCountCheck.class,
+            "4:30: " + getCheckMessage(ThrowsCountCheck.class,
                         ThrowsCountCheck.MSG_KEY, 3, 2),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionThrowsCount2']]"
-                    + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='myInterface']]"
+                    + "/INTERFACE_DEF[./IDENT[@text='SuppressionXpathRegressionThrowsCount2']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
                     + "/LITERAL_THROWS[./IDENT[@text='IllegalStateException']]"
+
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -93,14 +94,15 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
         moduleConfig.addProperty("ignorePrivateMethods", "false");
 
         final String[] expectedViolation = {
-            "10:32: " + getCheckMessage(ThrowsCountCheck.class,
+            "4:32: " + getCheckMessage(ThrowsCountCheck.class,
                         ThrowsCountCheck.MSG_KEY, 5, 4),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionThrowsCount3']]"
+                    + "/INTERFACE_DEF[./IDENT[@text='SuppressionXpathRegressionThrowsCount3']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='privateFunc']]"
                     + "/LITERAL_THROWS[./IDENT[@text='CloneNotSupportedException']]"
+
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
