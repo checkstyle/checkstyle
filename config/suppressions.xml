@@ -66,7 +66,7 @@
   <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]InlineConfigParser\.java"/>
 
   <!-- we need that set of converters -->
-  <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>
+  <suppress checks="ClassDataAbstractionCoupling" files="AbstractAutomaticBean\.java"/>
   <!-- they are aggregators of logic, usage a several of classes are ok -->
   <suppress checks="ClassDataAbstractionCoupling"
              files="(Checker|Main|CheckstyleAntTask|JavadocDetailNodeParser|ElementNode)\.java"/>
