@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.api;
+package com.puppycrawl.tools.checkstyle;
 
 import java.util.Locale;
 
@@ -26,17 +26,6 @@ import java.util.Locale;
  *
  */
 public enum Scope {
-
-    /** Nothing scope. */
-    NOTHING,
-    /** Public scope. */
-    PUBLIC,
-    /** Protected scope. */
-    PROTECTED,
-    /** Package or default scope. */
-    PACKAGE,
-    /** Private scope. */
-    PRIVATE,
     /** Anonymous inner scope. */
     ANONINNER;
 
@@ -74,5 +63,4 @@ public enum Scope {
     public static Scope getInstance(String scopeName) {
         return valueOf(Scope.class, scopeName.trim().toUpperCase(Locale.ENGLISH));
     }
-
 }

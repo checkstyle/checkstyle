@@ -49,10 +49,10 @@
             </property>
             <property default-value="public"
                       name="scope"
-                      type="com.puppycrawl.tools.checkstyle.api.Scope">
+                      type="com.puppycrawl.tools.checkstyle.Scope">
                <description>Specify the visibility scope where Javadoc comments are checked.</description>
             </property>
-            <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
+            <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.Scope">
                <description>Specify the visibility scope where Javadoc comments are
  not checked.</description>
             </property>
