@@ -98,7 +98,7 @@
       <property name="annotationPattern" value="[A-Z][a-zA-Z0-9]*" />
       <property name="utilityClassPattern" value="[A-Z][a-zA-Z0-9]*Util" />
       <!-- Definitions and XmlLoader.LoadExternalDtdFeatureProvider aren't utility classes.
-           AutomaticBean is part of API, we can not change a name.
+           AbstractAutomaticBean is part of API, we can not change a name.
            JavadocTokenTypes and TokenTypes aren't utility classes. They are
              token definition classes. Also, they are part of the API. -->
       <property name="violationSuppressXPath"
@@ -106,7 +106,7 @@
                            or @SimpleName='LoadExternalDtdFeatureProvider'
                            or @SimpleName='JavadocTokenTypes'
                            or @SimpleName='TokenTypes'
-                           or @SimpleName='AutomaticBean']"/>
+                           or @SimpleName='AbstractAutomaticBean']"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/ConfusingTernary">
