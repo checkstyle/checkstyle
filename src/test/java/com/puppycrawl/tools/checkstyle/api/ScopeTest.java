@@ -24,8 +24,10 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
 
+import com.puppycrawl.tools.checkstyle.Scope;
+
 /**
- * Test cases for {@link Scope} enumeration.
+ * Test cases for {@link AccessModifier} enumeration.
  */
 public class ScopeTest {
 
@@ -35,16 +37,16 @@ public class ScopeTest {
      */
     @Test
     public void testScopeValueOf() {
-        final Scope scope = Scope.valueOf("PRIVATE");
+        final AccessModifier scope = AccessModifier.valueOf("PRIVATE");
         assertWithMessage("Invalid scope")
             .that(scope)
-            .isEqualTo(Scope.PRIVATE);
+            .isEqualTo(AccessModifier.PRIVATE);
     }
 
     @Test
     public void testMisc() {
-        final Scope scope = Scope.getInstance("public");
-        assertWithMessage("Scope must not be null")
+        final Scope scope = AccessModifier.getInstance("public");
+        assertWithMessage("AccessModifier must not be null")
             .that(scope)
             .isNotNull();
         assertWithMessage("Invalid scope toString")
@@ -55,35 +57,35 @@ public class ScopeTest {
             .isEqualTo("public");
 
         try {
-            Scope.getInstance("unknown");
+            AccessModifier.getInstance("unknown");
             assertWithMessage("exception expected").fail();
         }
         catch (IllegalArgumentException ex) {
             assertWithMessage("Invalid error message")
                 .that(ex.getMessage())
-                .isEqualTo("No enum constant com.puppycrawl.tools.checkstyle.api.Scope.UNKNOWN");
+                .isEqualTo("No enum constant com.puppycrawl.tools.checkstyle.AccessModifier.UNKNOWN");
         }
     }
 
     @Test
     public void testMixedCaseSpaces() {
         assertWithMessage("Invalid scope")
-            .that(Scope.getInstance("NothinG "))
-            .isEqualTo(Scope.NOTHING);
+            .that(AccessModifier.getInstance("NothinG "))
+            .isEqualTo(AccessModifier.NOTHING);
         assertWithMessage("Invalid scope")
-            .that(Scope.getInstance(" PuBlic"))
-            .isEqualTo(Scope.PUBLIC);
+            .that(AccessModifier.getInstance(" PuBlic"))
+            .isEqualTo(AccessModifier.PUBLIC);
         assertWithMessage("Invalid scope")
-            .that(Scope.getInstance(" ProteCted"))
-            .isEqualTo(Scope.PROTECTED);
+            .that(AccessModifier.getInstance(" ProteCted"))
+            .isEqualTo(AccessModifier.PROTECTED);
         assertWithMessage("Invalid scope")
-            .that(Scope.getInstance("    PackAge "))
-            .isEqualTo(Scope.PACKAGE);
+            .that(AccessModifier.getInstance("    PackAge "))
+            .isEqualTo(AccessModifier.PACKAGE);
         assertWithMessage("Invalid scope")
-            .that(Scope.getInstance("privaTe   "))
-            .isEqualTo(Scope.PRIVATE);
+            .that(AccessModifier.getInstance("privaTe   "))
+            .isEqualTo(AccessModifier.PRIVATE);
         assertWithMessage("Invalid scope")
-            .that(Scope.getInstance("AnonInner"))
+            .that(AccessModifier.getInstance("AnonInner"))
             .isEqualTo(Scope.ANONINNER);
     }
 
@@ -91,41 +93,41 @@ public class ScopeTest {
     @Test
     public void testMixedCaseSpacesWithDifferentLocale() {
         assertWithMessage("Invalid scope")
-            .that(Scope.getInstance("NothinG "))
-            .isEqualTo(Scope.NOTHING);
+            .that(AccessModifier.getInstance("NothinG "))
+            .isEqualTo(AccessModifier.NOTHING);
         assertWithMessage("Invalid scope")
-            .that(Scope.getInstance(" PuBlic"))
-            .isEqualTo(Scope.PUBLIC);
+            .that(AccessModifier.getInstance(" PuBlic"))
+            .isEqualTo(AccessModifier.PUBLIC);
         assertWithMessage("Invalid scope")
-            .that(Scope.getInstance(" ProteCted"))
-            .isEqualTo(Scope.PROTECTED);
+            .that(AccessModifier.getInstance(" ProteCted"))
+            .isEqualTo(AccessModifier.PROTECTED);
         assertWithMessage("Invalid scope")
-            .that(Scope.getInstance("    PackAge "))
-            .isEqualTo(Scope.PACKAGE);
+            .that(AccessModifier.getInstance("    PackAge "))
+            .isEqualTo(AccessModifier.PACKAGE);
         assertWithMessage("Invalid scope")
-            .that(Scope.getInstance("privaTe   "))
-            .isEqualTo(Scope.PRIVATE);
+            .that(AccessModifier.getInstance("privaTe   "))
+            .isEqualTo(AccessModifier.PRIVATE);
         assertWithMessage("Invalid scope")
-            .that(Scope.getInstance("AnonInner"))
+            .that(AccessModifier.getInstance("AnonInner"))
             .isEqualTo(Scope.ANONINNER);
     }
 
     @Test
     public void testIsInAnonInner() {
         assertWithMessage("Invalid subscope")
-                .that(Scope.NOTHING.isIn(Scope.ANONINNER))
+                .that(AccessModifier.NOTHING.isIn(Scope.ANONINNER))
                 .isTrue();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PUBLIC.isIn(Scope.ANONINNER))
+                .that(AccessModifier.PUBLIC.isIn(Scope.ANONINNER))
                 .isTrue();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PROTECTED.isIn(Scope.ANONINNER))
+                .that(AccessModifier.PROTECTED.isIn(Scope.ANONINNER))
                 .isTrue();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PACKAGE.isIn(Scope.ANONINNER))
+                .that(AccessModifier.PACKAGE.isIn(Scope.ANONINNER))
                 .isTrue();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PRIVATE.isIn(Scope.ANONINNER))
+                .that(AccessModifier.PRIVATE.isIn(Scope.ANONINNER))
                 .isTrue();
         assertWithMessage("Invalid subscope")
                 .that(Scope.ANONINNER.isIn(Scope.ANONINNER))
@@ -135,110 +137,110 @@ public class ScopeTest {
     @Test
     public void testIsInPrivate() {
         assertWithMessage("Invalid subscope")
-                .that(Scope.NOTHING.isIn(Scope.PRIVATE))
+                .that(AccessModifier.NOTHING.isIn(AccessModifier.PRIVATE))
                 .isTrue();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PUBLIC.isIn(Scope.PRIVATE))
+                .that(AccessModifier.PUBLIC.isIn(AccessModifier.PRIVATE))
                 .isTrue();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PROTECTED.isIn(Scope.PRIVATE))
+                .that(AccessModifier.PROTECTED.isIn(AccessModifier.PRIVATE))
                 .isTrue();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PACKAGE.isIn(Scope.PRIVATE))
+                .that(AccessModifier.PACKAGE.isIn(AccessModifier.PRIVATE))
                 .isTrue();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PRIVATE.isIn(Scope.PRIVATE))
+                .that(AccessModifier.PRIVATE.isIn(AccessModifier.PRIVATE))
                 .isTrue();
         assertWithMessage("Invalid subscope")
-                .that(Scope.ANONINNER.isIn(Scope.PRIVATE))
+                .that(Scope.ANONINNER.isIn(AccessModifier.PRIVATE))
                 .isFalse();
     }
 
     @Test
     public void testIsInPackage() {
         assertWithMessage("Invalid subscope")
-                .that(Scope.NOTHING.isIn(Scope.PACKAGE))
+                .that(AccessModifier.NOTHING.isIn(AccessModifier.PACKAGE))
                 .isTrue();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PUBLIC.isIn(Scope.PACKAGE))
+                .that(AccessModifier.PUBLIC.isIn(AccessModifier.PACKAGE))
                 .isTrue();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PROTECTED.isIn(Scope.PACKAGE))
+                .that(AccessModifier.PROTECTED.isIn(AccessModifier.PACKAGE))
                 .isTrue();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PACKAGE.isIn(Scope.PACKAGE))
+                .that(AccessModifier.PACKAGE.isIn(AccessModifier.PACKAGE))
                 .isTrue();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PRIVATE.isIn(Scope.PACKAGE))
+                .that(AccessModifier.PRIVATE.isIn(AccessModifier.PACKAGE))
                 .isFalse();
         assertWithMessage("Invalid subscope")
-                .that(Scope.ANONINNER.isIn(Scope.PACKAGE))
+                .that(Scope.ANONINNER.isIn(AccessModifier.PACKAGE))
                 .isFalse();
     }
 
     @Test
     public void testIsInProtected() {
         assertWithMessage("Invalid subscope")
-                .that(Scope.NOTHING.isIn(Scope.PROTECTED))
+                .that(AccessModifier.NOTHING.isIn(AccessModifier.PROTECTED))
                 .isTrue();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PUBLIC.isIn(Scope.PROTECTED))
+                .that(AccessModifier.PUBLIC.isIn(AccessModifier.PROTECTED))
                 .isTrue();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PROTECTED.isIn(Scope.PROTECTED))
+                .that(AccessModifier.PROTECTED.isIn(AccessModifier.PROTECTED))
                 .isTrue();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PACKAGE.isIn(Scope.PROTECTED))
+                .that(AccessModifier.PACKAGE.isIn(AccessModifier.PROTECTED))
                 .isFalse();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PRIVATE.isIn(Scope.PROTECTED))
+                .that(AccessModifier.PRIVATE.isIn(AccessModifier.PROTECTED))
                 .isFalse();
         assertWithMessage("Invalid subscope")
-                .that(Scope.ANONINNER.isIn(Scope.PROTECTED))
+                .that(Scope.ANONINNER.isIn(AccessModifier.PROTECTED))
                 .isFalse();
     }
 
     @Test
     public void testIsInPublic() {
         assertWithMessage("Invalid subscope")
-                .that(Scope.NOTHING.isIn(Scope.PUBLIC))
+                .that(AccessModifier.NOTHING.isIn(AccessModifier.PUBLIC))
                 .isTrue();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PUBLIC.isIn(Scope.PUBLIC))
+                .that(AccessModifier.PUBLIC.isIn(AccessModifier.PUBLIC))
                 .isTrue();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PROTECTED.isIn(Scope.PUBLIC))
+                .that(AccessModifier.PROTECTED.isIn(AccessModifier.PUBLIC))
                 .isFalse();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PACKAGE.isIn(Scope.PUBLIC))
+                .that(AccessModifier.PACKAGE.isIn(AccessModifier.PUBLIC))
                 .isFalse();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PRIVATE.isIn(Scope.PUBLIC))
+                .that(AccessModifier.PRIVATE.isIn(AccessModifier.PUBLIC))
                 .isFalse();
         assertWithMessage("Invalid subscope")
-                .that(Scope.ANONINNER.isIn(Scope.PUBLIC))
+                .that(Scope.ANONINNER.isIn(AccessModifier.PUBLIC))
                 .isFalse();
     }
 
     @Test
     public void testIsInNothing() {
         assertWithMessage("Invalid subscope")
-                .that(Scope.NOTHING.isIn(Scope.NOTHING))
+                .that(AccessModifier.NOTHING.isIn(AccessModifier.NOTHING))
                 .isTrue();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PUBLIC.isIn(Scope.NOTHING))
+                .that(AccessModifier.PUBLIC.isIn(AccessModifier.NOTHING))
                 .isFalse();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PROTECTED.isIn(Scope.NOTHING))
+                .that(AccessModifier.PROTECTED.isIn(AccessModifier.NOTHING))
                 .isFalse();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PACKAGE.isIn(Scope.NOTHING))
+                .that(AccessModifier.PACKAGE.isIn(AccessModifier.NOTHING))
                 .isFalse();
         assertWithMessage("Invalid subscope")
-                .that(Scope.PRIVATE.isIn(Scope.NOTHING))
+                .that(AccessModifier.PRIVATE.isIn(AccessModifier.NOTHING))
                 .isFalse();
         assertWithMessage("Invalid subscope")
-                .that(Scope.ANONINNER.isIn(Scope.NOTHING))
+                .that(Scope.ANONINNER.isIn(AccessModifier.NOTHING))
                 .isFalse();
     }
 

@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.Scope;
+import com.puppycrawl.tools.checkstyle.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
@@ -85,13 +85,13 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </li>
  * <li>
  * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
+ * Type is {@code com.puppycrawl.tools.checkstyle.Scope}.
  * Default value is {@code public}.
  * </li>
  * <li>
  * Property {@code excludeScope} - Specify the visibility scope where Javadoc comments are
  * not checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
+ * Type is {@code com.puppycrawl.tools.checkstyle.Scope}.
  * Default value is {@code null}.
  * </li>
  * <li>

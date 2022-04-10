@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.Scope;
+import com.puppycrawl.tools.checkstyle.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ScopeUtilTest {
