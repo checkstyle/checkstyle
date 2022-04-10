@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 import java.util.Optional;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.Scope;
+import com.puppycrawl.tools.checkstyle.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**

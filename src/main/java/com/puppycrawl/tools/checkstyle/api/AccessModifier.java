@@ -20,25 +20,23 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.Locale;
+import com.puppycrawl.tools.checkstyle.Scope;
 
 /**
- * Represents a Java visibility scope.
+ * Represents a Java visibility access modifier.
  *
  */
-public enum Scope {
-
-    /** Nothing scope. */
+public enum AccessModifier {
+    /** Nothing access modifier. */
     NOTHING,
-    /** Public scope. */
+    /** Public access modifier. */
     PUBLIC,
-    /** Protected scope. */
+    /** Protected access modifier. */
     PROTECTED,
-    /** Package or default scope. */
+    /** Package or default access modifier. */
     PACKAGE,
-    /** Private scope. */
-    PRIVATE,
-    /** Anonymous inner scope. */
-    ANONINNER;
+    /** Private access modifier. */
+    PRIVATE;
 
     @Override
     public String toString() {
@@ -61,8 +59,20 @@ public enum Scope {
      * @param scope a {@code Scope} value
      * @return if {@code this} is a subscope of {@code scope}.
      */
-    public boolean isIn(Scope scope) {
+    public boolean isIn(AccessModifier scope) {
         return compareTo(scope) <= 0;
+    }
+
+    /**
+     * Checks if this scope is a subscope of another scope.
+     * Example: NOTHING is a subscope of ANONINNER.
+     *
+     * @param accessModifier a {@code Scope} value
+     * @return if {@code this} is a subscope of {@code scope}.
+     */
+    
+    public boolean isIn(Scope accessModifier) {
+        return compareTo(accessModifier) <= 0;
     }
 
     /**
@@ -74,5 +84,4 @@ public enum Scope {
     public static Scope getInstance(String scopeName) {
         return valueOf(Scope.class, scopeName.trim().toUpperCase(Locale.ENGLISH));
     }
-
 }
