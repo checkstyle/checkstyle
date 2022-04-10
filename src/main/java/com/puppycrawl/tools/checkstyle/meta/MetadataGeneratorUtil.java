@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /** Class which handles all the metadata generation and writing calls. */
@@ -71,8 +71,8 @@ public final class MetadataGeneratorUtil {
         treeWalkerConfig.addChild(scraperCheckConfig);
         checker.configure(defaultConfiguration);
 
-        checker.addListener(new MetadataGeneratorLogger(out,
-                AutomaticBean.OutputStreamOptions.NONE));
+        checker.addListener(new MetadataGeneratorLogger(
+            out, AbstractAutomaticBean.OutputStreamOptions.NONE));
 
         dumpMetadata(checker, path, moduleFolders);
     }

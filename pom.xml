@@ -3378,7 +3378,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest</param>
               </targetTests>
               <excludedTestClasses>
-                <param>*.Input*</param>
+                <param>com.puppycrawl.tools.checkstyle.api.AutomaticBean</param>
               </excludedTestClasses>
               <excludedMethods>
                 <!-- destroy method was added in case module had to free up resources
