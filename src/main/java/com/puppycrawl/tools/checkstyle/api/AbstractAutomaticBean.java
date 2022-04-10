@@ -53,8 +53,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * calling the bean's setters for all configuration attributes.
  */
 // -@cs[AbstractClassName] We can not brake compatibility with previous versions.
-@Deprecated
-public abstract class AutomaticBean
+public abstract class AbstractAutomaticBean
     implements Configurable, Contextualizable {
 
     /**
