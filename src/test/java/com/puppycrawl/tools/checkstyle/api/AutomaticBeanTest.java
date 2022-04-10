@@ -32,6 +32,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DefaultContext;
+import com.puppycrawl.tools.checkstyle.Scope;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 

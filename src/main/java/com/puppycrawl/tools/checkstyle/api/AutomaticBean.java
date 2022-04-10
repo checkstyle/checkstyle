@@ -45,6 +45,7 @@ import org.apache.commons.beanutils.converters.IntegerConverter;
 import org.apache.commons.beanutils.converters.LongConverter;
 import org.apache.commons.beanutils.converters.ShortConverter;
 
+import com.puppycrawl.tools.checkstyle.Scope;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
