@@ -48,8 +48,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * Class for scraping module metadata from the corresponding class' class-level javadoc.
  */
-// suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-@SuppressWarnings("deprecation")
 @FileStatefulCheck
 public class JavadocMetadataScraper extends AbstractJavadocCheck {
 
@@ -188,8 +186,6 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
         return getAcceptableJavadocTokens();
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     @Override
     public void beginJavadocTree(DetailNode rootAst) {
         if (isTopLevelClassJavadoc()) {
@@ -200,7 +196,6 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
             exampleSectionStartIdx = -1;
             parentSectionStartIdx = -1;
 
-            final String filePath = getFileContents().getFileName();
             String moduleName = getModuleSimpleName();
             final String checkModuleExtension = "Check";
             if (moduleName.endsWith(checkModuleExtension)) {
@@ -208,7 +203,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
                         .substring(0, moduleName.length() - checkModuleExtension.length());
             }
             moduleDetails.setName(moduleName);
-            moduleDetails.setFullQualifiedName(getPackageName(filePath));
+            moduleDetails.setFullQualifiedName(getPackageName(getFilePath()));
             moduleDetails.setModuleType(getModuleType());
         }
     }
@@ -596,10 +591,8 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      *
      * @return simple module name
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     private String getModuleSimpleName() {
-        final String fullFileName = getFileContents().getFileName();
+        final String fullFileName = getFilePath();
         final String[] pathTokens = FILE_SEPARATOR_PATTERN.split(fullFileName);
         final String fileName = pathTokens[pathTokens.length - 1];
         return fileName.substring(0, fileName.length() - JAVA_FILE_EXTENSION.length());

@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -641,11 +642,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @param ast token
      * @param nextToken next token
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     private void processPackage(DetailAST ast, DetailAST nextToken) {
         if (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)) {
-            if (getFileContents().getFileName().endsWith("package-info.java")) {
+            if (CheckUtil.isPackageInfo(getFilePath())) {
                 if (!ast.getFirstChild().hasChildren() && !isPrecededByJavadoc(ast)) {
                     log(ast, MSG_SHOULD_BE_SEPARATED, ast.getText());
                 }

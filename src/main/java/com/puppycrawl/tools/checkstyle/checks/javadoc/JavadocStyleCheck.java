@@ -416,13 +416,11 @@ public class JavadocStyleCheck
      * @param ast a given node.
      * @return whether we should check a given node.
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     private boolean shouldCheck(final DetailAST ast) {
         boolean check = false;
 
         if (ast.getType() == TokenTypes.PACKAGE_DEF) {
-            check = getFileContents().inPackageInfo();
+            check = CheckUtil.isPackageInfo(getFilePath());
         }
         else if (!ScopeUtil.isInCodeBlock(ast)) {
             final Scope customScope = ScopeUtil.getScope(ast);
@@ -447,15 +445,13 @@ public class JavadocStyleCheck
      * @see #checkFirstSentenceEnding(DetailAST, TextBlock)
      * @see #checkHtmlTags(DetailAST, TextBlock)
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     private void checkComment(final DetailAST ast, final TextBlock comment) {
         if (comment == null) {
             // checking for missing docs in JavadocStyleCheck is not consistent
             // with the rest of CheckStyle...  Even though, I didn't think it
             // made sense to make another check just to ensure that the
             // package-info.java file actually contains package Javadocs.
-            if (getFileContents().inPackageInfo()) {
+            if (CheckUtil.isPackageInfo(getFilePath())) {
                 log(ast, MSG_JAVADOC_MISSING);
             }
         }
