@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.filefilters;
 
 import java.util.regex.Pattern;
 
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
 
 /**
@@ -89,7 +89,7 @@ import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
  *
  * @since 7.2
  */
-public final class BeforeExecutionExclusionFileFilter extends AutomaticBean
+public final class BeforeExecutionExclusionFileFilter extends AbstractAutomaticBean
         implements BeforeExecutionFileFilter {
 
     /** Define regular expression to match the file name against. */
