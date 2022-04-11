@@ -27,8 +27,8 @@ import java.io.OutputStream;
 
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
@@ -38,8 +38,8 @@ public class MetadataGeneratorLoggerTest {
     @Test
     public void testIgnoreSeverityLevel() {
         final OutputStream outputStream = new ByteArrayOutputStream();
-        final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
-                AutomaticBean.OutputStreamOptions.CLOSE);
+        final MetadataGeneratorLogger logger = new
+            MetadataGeneratorLogger(outputStream, AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         final AuditEvent event = new AuditEvent(this, "fileName",
                 new Violation(1, 2, "bundle", "key",
                         null, SeverityLevel.IGNORE, null, getClass(), "customViolation"));
@@ -54,8 +54,8 @@ public class MetadataGeneratorLoggerTest {
     @Test
     public void testAddException() {
         final OutputStream outputStream = new ByteArrayOutputStream();
-        final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
-                AutomaticBean.OutputStreamOptions.CLOSE);
+        final MetadataGeneratorLogger logger = new
+            MetadataGeneratorLogger(outputStream, AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         final AuditEvent event = new AuditEvent(1);
         logger.addException(event, new IllegalStateException("Test Exception"));
         logger.auditFinished(event);
@@ -68,8 +68,9 @@ public class MetadataGeneratorLoggerTest {
     public void testClose() throws IOException {
         try (CloseAndFlushTestByteArrayOutputStream outputStream =
                      new CloseAndFlushTestByteArrayOutputStream()) {
-            final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
-                    AutomaticBean.OutputStreamOptions.CLOSE);
+            final MetadataGeneratorLogger logger = new
+                MetadataGeneratorLogger(outputStream,
+                                        AbstractAutomaticBean.OutputStreamOptions.CLOSE);
             logger.auditFinished(new AuditEvent(1));
             assertWithMessage("Unexpected close count")
                     .that(outputStream.getCloseCount())
@@ -81,8 +82,9 @@ public class MetadataGeneratorLoggerTest {
     public void testCloseOutputStreamOptionNone() throws IOException {
         try (CloseAndFlushTestByteArrayOutputStream outputStream =
                      new CloseAndFlushTestByteArrayOutputStream()) {
-            final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
-                    AutomaticBean.OutputStreamOptions.NONE);
+            final MetadataGeneratorLogger logger = new
+                MetadataGeneratorLogger(outputStream,
+                                        AbstractAutomaticBean.OutputStreamOptions.NONE);
             final AuditEvent event = new AuditEvent(1);
             logger.auditFinished(event);
             assertWithMessage("Unexpected close count")
@@ -95,8 +97,9 @@ public class MetadataGeneratorLoggerTest {
     public void testFlushStreams() throws Exception {
         try (CloseAndFlushTestByteArrayOutputStream outputStream =
                      new CloseAndFlushTestByteArrayOutputStream()) {
-            final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
-                    AutomaticBean.OutputStreamOptions.NONE);
+            final MetadataGeneratorLogger logger = new
+                MetadataGeneratorLogger(outputStream,
+                                        AbstractAutomaticBean.OutputStreamOptions.NONE);
             final AuditEvent event = new AuditEvent(1);
             logger.auditStarted(event);
             logger.fileFinished(event);

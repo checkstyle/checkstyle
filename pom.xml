@@ -3378,7 +3378,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest</param>
               </targetTests>
               <excludedTestClasses>
-                <param>*.Input*</param>
+                <param>com.puppycrawl.tools.checkstyle.api.AutomaticBeanTest</param>
               </excludedTestClasses>
               <excludedMethods>
                 <!-- destroy method was added in case module had to free up resources
@@ -3387,6 +3387,7 @@
                 Ones we start multi-threading implementation we should remove this exclude.
                 If we remove this destroy we would have to remove all of them as they are chained
                 together, so we just exclude it from pitest check. -->
+                <param>com.puppycrawl.tools.checkstyle.api.AutomaticBeanTest.</param>
                 <param>destroy</param>
               </excludedMethods>
               <coverageThreshold>100</coverageThreshold>

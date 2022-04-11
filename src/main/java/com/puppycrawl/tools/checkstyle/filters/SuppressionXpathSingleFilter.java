@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 
 /**
  * <p>
@@ -409,7 +409,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  *
  * @since 8.18
  */
-public class SuppressionXpathSingleFilter extends AutomaticBean implements
+public class SuppressionXpathSingleFilter extends AbstractAutomaticBean implements
         TreeWalkerFilter {
     /**
      * XpathFilterElement instance.
