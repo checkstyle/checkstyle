@@ -27,13 +27,13 @@ import java.nio.charset.StandardCharsets;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 
 /**
  * Generates <b>suppressions.xml</b> file, based on violations occurred.
  * See issue #102 https://github.com/checkstyle/checkstyle/issues/102
  */
-public class XpathFileGeneratorAuditListener extends AutomaticBean implements AuditListener {
+public class XpathFileGeneratorAuditListener extends AbstractAutomaticBean implements AuditListener {
 
     /** The " quote character. */
     private static final String QUOTE_CHAR = "\"";

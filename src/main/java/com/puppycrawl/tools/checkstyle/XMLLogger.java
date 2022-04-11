@@ -32,7 +32,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 // -@cs[AbbreviationAsWordInName] We can not change it as,
 // check's name is part of API (used in configurations).
 public class XMLLogger
-    extends AutomaticBean
+    extends AbstractAutomaticBean
     implements AuditListener {
 
     /** Decimal radix. */
