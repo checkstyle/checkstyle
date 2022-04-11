@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
@@ -65,7 +65,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * @since 3.2
  */
 public class SeverityMatchFilter
-    extends AutomaticBean
+    extends AbstractAutomaticBean
     implements Filter {
 
     /** Specify the severity level of this filter. */
