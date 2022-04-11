@@ -140,6 +140,20 @@ public class WhitespaceAfterCheckTest
     }
 
     @Test
+    public void testLiteralReturn() throws Exception {
+        final String[] expected = {
+            "13:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "return"),
+            "17:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "return"),
+            "21:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "return"),
+            "25:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "return"),
+            "29:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "return"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputWhitespaceAfterLiteralReturn.java"),
+            expected);
+    }
+
+    @Test
     public void testLiteralDo() throws Exception {
         final String[] expected = {
             "70:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "do"),
