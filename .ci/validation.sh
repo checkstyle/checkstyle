@@ -257,7 +257,7 @@ no-error-xwiki)
   # Build custom Checkstyle rules
   mvn -e --no-transfer-progress -f \
     xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
-    install -DskipTests -Dcheckstyle.version=${CS_POM_VERSION}
+    install -DskipTests -Dcheckstyle.version=${CS_POM_VERSION} -Dantlr4.version=4.10
   # Validate xwiki-commons
   mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
   # Install various required poms and extensions
