@@ -250,14 +250,15 @@ no-violation-test-josm)
 
 no-error-xwiki)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
-  echo version:$CS_POM_VERSION
+  ANTLR4_VERSION="$(getMavenProperty 'antlr4.version')"
+  echo "version:${CS_POM_VERSION} antlr4:${ANTLR4_VERSION}"
   mvn -e --no-transfer-progress clean install -Pno-validations
   checkout_from "https://github.com/xwiki/xwiki-commons.git"
   cd .ci-temp/xwiki-commons
   # Build custom Checkstyle rules
   mvn -e --no-transfer-progress -f \
     xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
-    install -DskipTests -Dcheckstyle.version=${CS_POM_VERSION}
+    install -DskipTests -Dcheckstyle.version=${CS_POM_VERSION} -Dantlr4.version=${ANTLR4_VERSION}
   # Validate xwiki-commons
   mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
   # Install various required poms and extensions
