@@ -35,8 +35,7 @@ import com.puppycrawl.tools.checkstyle.DefaultContext;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-@Deprecated
-public class AutomaticBeanTest {
+public class AbstractAutomaticBeanTest {
 
     @Test
     public void testConfigureNoSuchAttribute() {
@@ -46,18 +45,18 @@ public class AutomaticBeanTest {
         try {
             testBean.configure(conf);
             assertWithMessage("Exception is expected")
-                .fail();
+                    .fail();
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Exceptions cause should be null")
-                .that(ex)
-                .hasCauseThat()
-                .isNull();
+                    .that(ex)
+                    .hasCauseThat()
+                    .isNull();
             assertWithMessage("Invalid exception message")
-                .that(ex)
-                .hasMessageThat()
-                .isEqualTo("Property 'NonExistent' does not exist,"
-                               + " please check the documentation");
+                    .that(ex)
+                    .hasMessageThat()
+                    .isEqualTo("Property 'NonExistent' does not exist,"
+                            + " please check the documentation");
         }
     }
 
@@ -69,18 +68,18 @@ public class AutomaticBeanTest {
         try {
             testBean.configure(conf);
             assertWithMessage("Exception is expected")
-                .fail();
+                    .fail();
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Exceptions cause should be null")
-                .that(ex)
-                .hasCauseThat()
-                .isNull();
+                    .that(ex)
+                    .hasCauseThat()
+                    .isNull();
             assertWithMessage("Invalid exception message")
-                .that(ex)
-                .hasMessageThat()
-                .isEqualTo("Property 'privateField' does not exist,"
-                               + " please check the documentation");
+                    .that(ex)
+                    .hasMessageThat()
+                    .isEqualTo("Property 'privateField' does not exist,"
+                            + " please check the documentation");
         }
     }
 
@@ -92,16 +91,16 @@ public class AutomaticBeanTest {
         try {
             testBean.setupChild(new DefaultConfiguration("dummy"));
             assertWithMessage("Exception is expected")
-                .fail();
+                    .fail();
         }
         catch (CheckstyleException ex) {
             final String expectedMessage = "dummy is not allowed as a child in bean config. "
-                + "Please review 'Parent Module' section for this Check"
-                + " in web documentation if Check is standard.";
+                    + "Please review 'Parent Module' section for this Check"
+                    + " in web documentation if Check is standard.";
             assertWithMessage("Invalid exception message")
-                .that(ex)
-                .hasMessageThat()
-                .isEqualTo(expectedMessage);
+                    .that(ex)
+                    .hasMessageThat()
+                    .isEqualTo(expectedMessage);
         }
     }
 
@@ -115,15 +114,15 @@ public class AutomaticBeanTest {
         try {
             testBean.setupChild(childConf);
             assertWithMessage("expecting checkstyle exception")
-                .fail();
+                    .fail();
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Invalid exception message")
-                .that(ex)
-                .hasMessageThat()
-                .isEqualTo("childConf is not allowed as a "
-                               + "child in parentConf. Please review 'Parent Module' section "
-                               + "for this Check in web documentation if Check is standard.");
+                    .that(ex)
+                    .hasMessageThat()
+                    .isEqualTo("childConf is not allowed as a "
+                            + "child in parentConf. Please review 'Parent Module' section "
+                            + "for this Check in web documentation if Check is standard.");
         }
     }
 
@@ -135,18 +134,18 @@ public class AutomaticBeanTest {
         try {
             testBean.contextualize(context);
             assertWithMessage("InvocationTargetException is expected")
-                .fail();
+                    .fail();
         }
         catch (CheckstyleException ex) {
             final String expected = "Cannot set property ";
             assertWithMessage("Invalid exception cause, should be: ReflectiveOperationException")
-                .that(ex)
-                .hasCauseThat()
-                .isInstanceOf(ReflectiveOperationException.class);
+                    .that(ex)
+                    .hasCauseThat()
+                    .isInstanceOf(ReflectiveOperationException.class);
             assertWithMessage("Invalid exception message, should start with: " + expected)
-                .that(ex)
-                .hasMessageThat()
-                .startsWith(expected);
+                    .that(ex)
+                    .hasMessageThat()
+                    .startsWith(expected);
         }
     }
 
@@ -158,18 +157,18 @@ public class AutomaticBeanTest {
         try {
             testBean.contextualize(context);
             assertWithMessage("InvocationTargetException is expected")
-                .fail();
+                    .fail();
         }
         catch (CheckstyleException ex) {
             final String expected = "illegal value ";
             assertWithMessage("Invalid exception cause, should be: ConversionException")
-                .that(ex)
-                .hasCauseThat()
-                .isInstanceOf(ConversionException.class);
+                    .that(ex)
+                    .hasCauseThat()
+                    .isInstanceOf(ConversionException.class);
             assertWithMessage("Invalid exception message, should start with: " + expected)
-                .that(ex)
-                .hasMessageThat()
-                .startsWith(expected);
+                    .that(ex)
+                    .hasMessageThat()
+                    .startsWith(expected);
         }
     }
 
@@ -182,13 +181,13 @@ public class AutomaticBeanTest {
         try {
             testBean.setExceptionalMethod("someValue");
             assertWithMessage("exception expected")
-                .fail();
+                    .fail();
         }
         catch (IllegalStateException ex) {
             assertWithMessage("Invalid exception message")
-                .that(ex)
-                .hasMessageThat()
-                .isEqualTo("null,wrongVal,0,someValue");
+                    .that(ex)
+                    .hasMessageThat()
+                    .isEqualTo("null,wrongVal,0,someValue");
         }
     }
 
@@ -198,8 +197,8 @@ public class AutomaticBeanTest {
         TestUtil.invokeStaticMethod(AbstractAutomaticBean.class,
                                     "registerIntegralTypes", convertUtilsBean);
         assertWithMessage("Number of converters registered differs from expected")
-            .that(convertUtilsBean.getRegisterCount())
-            .isEqualTo(81);
+                .that(convertUtilsBean.getRegisterCount())
+                .isEqualTo(81);
     }
 
     @Test
@@ -225,27 +224,27 @@ public class AutomaticBeanTest {
 
         final String message = "invalid result";
         assertWithMessage(message)
-            .that(bean.strings)
-            .asList()
-            .containsExactly("a", "b", "c")
-            .inOrder();
+                .that(bean.strings)
+                .asList()
+                .containsExactly("a", "b", "c")
+                .inOrder();
         assertWithMessage(message)
-            .that(bean.pattern.pattern())
-            .isEqualTo(".*");
+                .that(bean.pattern.pattern())
+                .isEqualTo(".*");
         assertWithMessage(message)
-            .that(bean.severityLevel)
-            .isEqualTo(SeverityLevel.ERROR);
+                .that(bean.severityLevel)
+                .isEqualTo(SeverityLevel.ERROR);
         assertWithMessage(message)
-            .that(bean.scope)
-            .isEqualTo(Scope.PUBLIC);
+                .that(bean.scope)
+                .isEqualTo(Scope.PUBLIC);
         assertWithMessage(message)
-            .that(bean.uri)
-            .isEqualTo(new URI("http://github.com"));
+                .that(bean.uri)
+                .isEqualTo(new URI("http://github.com"));
         assertWithMessage(message)
-            .that(bean.accessModifiers)
-            .asList()
-            .containsExactly(AccessModifierOption.PUBLIC, AccessModifierOption.PRIVATE)
-            .inOrder();
+                .that(bean.accessModifiers)
+                .asList()
+                .containsExactly(AccessModifierOption.PUBLIC, AccessModifierOption.PRIVATE)
+                .inOrder();
     }
 
     @Test
@@ -256,8 +255,8 @@ public class AutomaticBeanTest {
         bean.configure(config);
 
         assertWithMessage("invalid result")
-            .that(bean.uri)
-            .isNull();
+                .that(bean.uri)
+                .isNull();
     }
 
     @Test
@@ -269,13 +268,13 @@ public class AutomaticBeanTest {
         try {
             bean.configure(config);
             assertWithMessage("Exception is expected")
-                .fail();
+                    .fail();
         }
         catch (CheckstyleException ex) {
             assertWithMessage("Error message is not expected")
-                .that(ex)
-                .hasMessageThat()
-                .isEqualTo("illegal value 'BAD' for property 'uri'");
+                    .that(ex)
+                    .hasMessageThat()
+                    .isEqualTo("illegal value 'BAD' for property 'uri'");
         }
     }
 
@@ -392,7 +391,7 @@ public class AutomaticBeanTest {
          */
         public void setAccessModifiers(AccessModifierOption... accessModifiers) {
             this.accessModifiers = Arrays.copyOf(accessModifiers,
-                                                 accessModifiers.length);
+                    accessModifiers.length);
         }
 
         @Override
