@@ -374,7 +374,8 @@ public class OperatorWrapCheck
      * @return {@code true} if node matches
      */
     private static boolean isAssignToVariable(DetailAST node) {
-        return TokenUtil.isOfType(node.getParent(), TokenTypes.VARIABLE_DEF, TokenTypes.RESOURCE);
+        return TokenUtil.isOfType(node.getParent(), TokenTypes.VARIABLE_DEF,
+                                     TokenTypes.RESOURCE);
     }
 
     /**
@@ -450,7 +451,8 @@ public class OperatorWrapCheck
             result = adjustParens(rightNode, DetailAST::getPreviousSibling);
         }
 
-        if (!TokenUtil.isOfType(result, TokenTypes.ARRAY_INIT, TokenTypes.ANNOTATION_ARRAY_INIT)) {
+        if (!TokenUtil.isOfType(result, TokenTypes.ARRAY_INIT,
+                                   TokenTypes.ANNOTATION_ARRAY_INIT)) {
             while (result.getFirstChild() != null) {
                 result = result.getFirstChild();
             }
