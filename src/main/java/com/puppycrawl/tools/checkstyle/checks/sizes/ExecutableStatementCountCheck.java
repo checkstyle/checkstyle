@@ -164,7 +164,7 @@ public final class ExecutableStatementCountCheck
         if (isContainerNode(ast)) {
             visitContainerNode(ast);
         }
-        else if (TokenUtil.isOfType(ast, TokenTypes.SLIST)) {
+        else if (ast != null && TokenUtil.isOfType(ast, TokenTypes.SLIST)) {
             visitSlist(ast);
         }
         else {
