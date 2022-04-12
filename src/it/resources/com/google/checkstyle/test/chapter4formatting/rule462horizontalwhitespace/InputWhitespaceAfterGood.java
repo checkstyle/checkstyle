@@ -44,4 +44,7 @@ public class InputWhitespaceAfterGood {
     public void check7() {
         synchronized (this) { }
     }
+
+    interface check8 { int add (int x); }
+    public static check8 One() { return (x) -> 2; }
 }
