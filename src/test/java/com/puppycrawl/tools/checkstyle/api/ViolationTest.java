@@ -78,21 +78,6 @@ public class ViolationTest {
                 .contains(country);
     }
 
-    /**
-     * Verifies that if the language is specified explicitly (and it is not English),
-     * the violation does not use the default value.
-     */
-    @Test
-    public void testLocaleIsSupported() {
-        final String language = DEFAULT_LOCALE.getLanguage();
-        assumeFalse(language.isEmpty() || Locale.ENGLISH.getLanguage().equals(language),
-                "Custom locale not set");
-        final Violation violation = createSampleViolation();
-        assertWithMessage("Unsupported language: %s", DEFAULT_LOCALE)
-                .that(violation.getViolation())
-                .isNotEqualTo("Empty statement.");
-    }
-
     @Test
     public void testEqualsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(Violation.class)
