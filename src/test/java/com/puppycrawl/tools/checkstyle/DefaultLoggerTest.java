@@ -241,26 +241,6 @@ public class DefaultLoggerTest {
                 .contains(country);
     }
 
-    /**
-     * Verifies that if the language is specified explicitly (and it is not English),
-     * the message does not use the default value.
-     */
-    @Test
-    public void testLocaleIsSupported() throws Exception {
-        final String language = DEFAULT_LOCALE.getLanguage();
-        assumeFalse(language.isEmpty() || Locale.ENGLISH.getLanguage().equals(language),
-                "Custom locale not set");
-        final Class<?> localizedMessage = getDefaultLoggerClass().getDeclaredClasses()[0];
-        final Object messageCon = localizedMessage.getConstructor(String.class, String[].class)
-                .newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE, null);
-        final Method message = messageCon.getClass().getDeclaredMethod("getMessage");
-        final Object constructor = localizedMessage.getConstructor(String.class)
-                .newInstance(DefaultLogger.ADD_EXCEPTION_MESSAGE);
-        assertWithMessage("Unsupported language: " + DEFAULT_LOCALE)
-                .that(message.invoke(constructor))
-                .isEqualTo("Error auditing {0}");
-    }
-
     @DefaultLocale("fr")
     @Test
     public void testCleatBundleCache() throws Exception {
