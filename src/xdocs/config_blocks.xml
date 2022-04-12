@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <document xmlns="http://maven.apache.org/XDOC/2.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
 
   <head>
     <title>Block Checks</title>
@@ -15,6 +15,106 @@
         <param name="toDepth" value="1"/>
       </macro>
     </section>
+
+    <section name="After Left Curly Check">
+      <p>Since Checkstyle 10.2</p>
+      <subsection name="Description" id="AfterLeftCurly_Description">
+        <p>
+          Checks for the presence of an empty line after left curly braces
+          (<code>'{'</code>) for code blocks.
+        </p>
+
+        <p>
+          Rationale: Code standards might define if there should or should be not
+          an empty line after left curly braces.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="AfterLeftCurly_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>blankLine</td>
+              <td>Force the presence of blank line after curly braces
+                (<code>'{'</code>) for code blocks.
+              </td>
+              <td>
+                <a href="property_types.html#boolean">boolean</a>
+              </td>
+              <td>
+                <code>true</code>
+              </td>
+              <td>10.2</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="AfterLeftCurly_Examples">
+        <p>To configure the check:</p>
+        <source>
+          &lt;module name=&quot;AfterLeftCurly&quot;/&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+          public class Foo { // violation
+          private final int someVariable = 1;
+          private interface Bar { // ok
+
+          }
+          }
+        </source>
+        <p>To configure the check to not allow empty line after curly braces
+          (<code>'{'</code>) for code blocks. :
+        </p>
+        <source>
+          &lt;module name=&quot;AvoidNestedBlocks&quot;&gt;
+          &lt;property name=&quot;blankLine&quot; value=&quot;false&quot;/&gt;
+          &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+          public class Foo { // ok
+          private final int someVariable = 1;
+          private interface Bar { // violation
+
+          }
+          }
+        </source>
+      </subsection>
+
+      <subsection name="Violation Messages" id="AfterLeftCurly_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22after.left.curly%22">
+              after.left.curly
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="AfterLeftCurly_Package">
+        <p>com.puppycrawl.tools.checkstyle.checks.blocks</p>
+      </subsection>
+
+      <subsection name="Parent Module" id="AfterLeftCurly_Parent_Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
 
     <section name="AvoidNestedBlocks">
       <p>Since Checkstyle 3.1</p>
@@ -32,22 +132,22 @@
           For example, this check finds the obsolete braces in
         </p>
         <source>
-public void guessTheOutput()
-{
-  int whichIsWhich = 0;
-  {
-    whichIsWhich = 2;
-  }
-  System.out.println("value = " + whichIsWhich);
-}
+          public void guessTheOutput()
+          {
+          int whichIsWhich = 0;
+          {
+          whichIsWhich = 2;
+          }
+          System.out.println("value = " + whichIsWhich);
+          }
         </source>
 
-        <p> and debugging / refactoring leftovers such as </p>
+        <p>and debugging / refactoring leftovers such as</p>
         <source>
-// if (conditionThatIsNotUsedAnyLonger)
-{
-  System.out.println("unconditional");
-}
+          // if (conditionThatIsNotUsedAnyLonger)
+          {
+          System.out.println("unconditional");
+          }
         </source>
 
         <p>
@@ -72,8 +172,12 @@ public void guessTheOutput()
             <tr>
               <td>allowInSwitchCase</td>
               <td>Allow nested blocks if they are the only child of a switch case.</td>
-              <td><a href="property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
+              <td>
+                <a href="property_types.html#boolean">boolean</a>
+              </td>
+              <td>
+                <code>false</code>
+              </td>
               <td>3.2</td>
             </tr>
           </table>
@@ -83,56 +187,56 @@ public void guessTheOutput()
       <subsection name="Examples" id="AvoidNestedBlocks_Examples">
         <p>To configure the check:</p>
         <source>
-&lt;module name=&quot;AvoidNestedBlocks&quot;/&gt;
+          &lt;module name=&quot;AvoidNestedBlocks&quot;/&gt;
         </source>
         <p>Example:</p>
         <source>
-public void foo() {
-  int myInteger = 0;
-  {                      // violation
-    myInteger = 2;
-  }
-  System.out.println("myInteger = " + myInteger);
+          public void foo() {
+          int myInteger = 0;
+          { // violation
+          myInteger = 2;
+          }
+          System.out.println("myInteger = " + myInteger);
 
-  switch (a) {
-    case 1:
-      {                    // violation
-        System.out.println("Case 1");
-        break;
-      }
-    case 2:
-      System.out.println("Case 2");     // OK
-      break;
-  }
-}
+          switch (a) {
+          case 1:
+          { // violation
+          System.out.println("Case 1");
+          break;
+          }
+          case 2:
+          System.out.println("Case 2"); // OK
+          break;
+          }
+          }
         </source>
         <p>To configure the check to allow nested blocks in switch case:</p>
         <source>
-&lt;module name=&quot;AvoidNestedBlocks&quot;&gt;
-  &lt;property name=&quot;allowInSwitchCase&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;AvoidNestedBlocks&quot;&gt;
+          &lt;property name=&quot;allowInSwitchCase&quot; value=&quot;true&quot;/&gt;
+          &lt;/module&gt;
         </source>
         <p>Example:</p>
         <source>
-public void foo() {
-  int myInteger = 0;
-  {                      // violation
-    myInteger = 2;
-  }
-  System.out.println("myInteger = " + myInteger);
+          public void foo() {
+          int myInteger = 0;
+          { // violation
+          myInteger = 2;
+          }
+          System.out.println("myInteger = " + myInteger);
 
-  switch (a)
-  {
-    case 1:
-      {                    // OK
-        System.out.println("Case 1");
-        break;
-      }
-    case 2:
-      System.out.println("Case 2");     // OK
-      break;
-  }
-}
+          switch (a)
+          {
+          case 1:
+          { // OK
+          System.out.println("Case 1");
+          break;
+          }
+          case 2:
+          System.out.println("Case 2"); // OK
+          break;
+          }
+          }
         </source>
       </subsection>
 
@@ -140,11 +244,13 @@ public void foo() {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidNestedBlocks">
-            Sun Style</a>
+              Sun Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidNestedBlocks">
-            Checkstyle Style</a>
+              Checkstyle Style
+            </a>
           </li>
         </ul>
       </subsection>
@@ -153,7 +259,8 @@ public void foo() {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22block.nested%22">
-            block.nested</a>
+              block.nested
+            </a>
           </li>
         </ul>
         <p>
@@ -163,27 +270,29 @@ public void foo() {
       </subsection>
 
       <subsection name="Package" id="AvoidNestedBlocks_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+        <p>com.puppycrawl.tools.checkstyle.checks.blocks</p>
       </subsection>
 
       <subsection name="Parent Module" id="AvoidNestedBlocks_Parent_Module">
-        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
       </subsection>
     </section>
 
     <section name="EmptyBlock">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="EmptyBlock_Description">
-        <p> Checks for empty blocks. This check does not validate sequential blocks. </p>
+        <p>Checks for empty blocks. This check does not validate sequential blocks.</p>
 
-        <p> Sequential blocks won't be checked. Also, no violations for fallthrough: </p>
+        <p>Sequential blocks won't be checked. Also, no violations for fallthrough:</p>
         <source>
-switch (a) {
-  case 1:                          // no violation
-  case 2:                          // no violation
-  case 3: someMethod(); { }        // no violation
-  default: break;
-}
+          switch (a) {
+          case 1: // no violation
+          case 2: // no violation
+          case 3: someMethod(); { } // no violation
+          default: break;
+          }
         </source>
 
         <p>
@@ -205,8 +314,12 @@ switch (a) {
             <tr>
               <td>option</td>
               <td>specify the policy on block contents.</td>
-              <td><a href="property_types.html#BlockOption">BlockOption</a></td>
-              <td><code>statement</code></td>
+              <td>
+                <a href="property_types.html#BlockOption">BlockOption</a>
+              </td>
+              <td>
+                <code>statement</code>
+              </td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -215,60 +328,110 @@ switch (a) {
               <td>
                 subset of tokens
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
-                  LITERAL_WHILE</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
-                  LITERAL_TRY</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
-                  LITERAL_CATCH</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
-                  LITERAL_FINALLY</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
-                  LITERAL_DO</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
-                  LITERAL_IF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
-                  LITERAL_ELSE</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
-                  LITERAL_FOR</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
-                  INSTANCE_INIT</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
-                  STATIC_INIT</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
-                  LITERAL_SWITCH</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
-                  LITERAL_SYNCHRONIZED</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
-                  LITERAL_CASE</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DEFAULT">
-                  LITERAL_DEFAULT</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">
-                  ARRAY_INIT</a>
+                  LITERAL_WHILE
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
+                  LITERAL_TRY
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+                  LITERAL_CATCH
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
+                  LITERAL_FINALLY
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
+                  LITERAL_DO
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+                  LITERAL_IF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+                  LITERAL_ELSE
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+                  LITERAL_FOR
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+                  INSTANCE_INIT
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+                  STATIC_INIT
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
+                  LITERAL_SWITCH
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
+                  LITERAL_SYNCHRONIZED
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
+                  LITERAL_CASE
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DEFAULT">
+                  LITERAL_DEFAULT
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">
+                  ARRAY_INIT
+                </a>
                 .
               </td>
               <td>
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
-                  LITERAL_WHILE</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
-                  LITERAL_TRY</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
-                  LITERAL_FINALLY</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
-                  LITERAL_DO</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
-                  LITERAL_IF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
-                  LITERAL_ELSE</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
-                  LITERAL_FOR</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
-                  INSTANCE_INIT</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
-                  STATIC_INIT</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
-                  LITERAL_SWITCH</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
-                  LITERAL_SYNCHRONIZED</a>
+                  LITERAL_WHILE
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
+                  LITERAL_TRY
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
+                  LITERAL_FINALLY
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
+                  LITERAL_DO
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+                  LITERAL_IF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+                  LITERAL_ELSE
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+                  LITERAL_FOR
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+                  INSTANCE_INIT
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+                  STATIC_INIT
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
+                  LITERAL_SWITCH
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
+                  LITERAL_SYNCHRONIZED
+                </a>
                 .
               </td>
               <td>3.0</td>
@@ -278,76 +441,77 @@ switch (a) {
       </subsection>
 
       <subsection name="Examples" id="EmptyBlock_Examples">
-        <p> To configure the check: </p>
+        <p>To configure the check:</p>
         <source>
-&lt;module name=&quot;EmptyBlock&quot;/&gt;
+          &lt;module name=&quot;EmptyBlock&quot;/&gt;
         </source>
         <p>
           Example:
         </p>
         <source>
-public class Test {
-  private void emptyLoop() {
-    for (int i = 0; i &#60; 10; i++) { // violation
-    }
+          public class Test {
+          private void emptyLoop() {
+          for (int i = 0; i &#60; 10; i++) { // violation
+          }
 
-    try { // violation
+          try { // violation
 
-    } catch (Exception e) {
-      // ignored
-    }
-  }
-}
+          } catch (Exception e) {
+          // ignored
+          }
+          }
+          }
         </source>
         <p>
-          To configure the check for the <code>text</code>
-          policy and only <code> try</code> blocks:
+          To configure the check for the
+          <code>text</code>
+          policy and only <code>try</code> blocks:
         </p>
         <source>
-&lt;module name=&quot;EmptyBlock&quot;&gt;
-  &lt;property name=&quot;option&quot; value=&quot;text&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;EmptyBlock&quot;&gt;
+          &lt;property name=&quot;option&quot; value=&quot;text&quot;/&gt;
+          &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
+          &lt;/module&gt;
         </source>
-        <p> Example: </p>
+        <p>Example:</p>
         <source>
-public class Test {
-  private void emptyLoop() {
-    for (int i = 0; i &#60; 10; i++) {
-      // ignored
-    }
+          public class Test {
+          private void emptyLoop() {
+          for (int i = 0; i &#60; 10; i++) {
+          // ignored
+          }
 
-    // violation on next line
-    try {
+          // violation on next line
+          try {
 
-    } catch (Exception e) {
-      // ignored
-    }
-  }
-}
+          } catch (Exception e) {
+          // ignored
+          }
+          }
+          }
         </source>
         <p>
           To configure the check for default in switch block:
         </p>
         <source>
-&lt;module name=&quot;EmptyBlock&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;EmptyBlock&quot;&gt;
+          &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
+          &lt;/module&gt;
         </source>
-        <p> Example: </p>
+        <p>Example:</p>
         <source>
-public class Test {
-  private void test(int a) {
-    switch (a) {
-      case 1: someMethod();
-      default: // OK, as there is no block
-    }
-    switch (a) {
-      case 1: someMethod();
-      default: {} // violation
-    }
-  }
-}
+          public class Test {
+          private void test(int a) {
+          switch (a) {
+          case 1: someMethod();
+          default: // OK, as there is no block
+          }
+          switch (a) {
+          case 1: someMethod();
+          default: {} // violation
+          }
+          }
+          }
         </source>
       </subsection>
 
@@ -355,15 +519,18 @@ public class Test {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyBlock">
-            Google Style</a>
+              Google Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyBlock">
-            Sun Style</a>
+              Sun Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyBlock">
-            Checkstyle Style</a>
+              Checkstyle Style
+            </a>
           </li>
         </ul>
       </subsection>
@@ -372,11 +539,13 @@ public class Test {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22block.empty%22">
-            block.empty</a>
+              block.empty
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22block.noStatement%22">
-            block.noStatement</a>
+              block.noStatement
+            </a>
           </li>
         </ul>
         <p>
@@ -386,11 +555,13 @@ public class Test {
       </subsection>
 
       <subsection name="Package" id="EmptyBlock_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+        <p>com.puppycrawl.tools.checkstyle.checks.blocks</p>
       </subsection>
 
       <subsection name="Parent Module" id="EmptyBlock_Parent_Module">
-        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
       </subsection>
     </section>
 
@@ -427,8 +598,12 @@ public class Test {
                 Specify the RegExp for the name of the variable associated with exception.
                 If check meets variable name matching specified value - empty block is suppressed.
               </td>
-              <td><a href="property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^$&quot;</code></td>
+              <td>
+                <a href="property_types.html#Pattern">Pattern</a>
+              </td>
+              <td>
+                <code>&quot;^$&quot;</code>
+              </td>
               <td>6.4</td>
             </tr>
             <tr>
@@ -438,8 +613,12 @@ public class Test {
                 If check meets comment inside empty catch block matching specified format - empty
                 block is suppressed. If it is multi-line comment - only its first line is analyzed.
               </td>
-              <td><a href="property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;.*&quot;</code></td>
+              <td>
+                <a href="property_types.html#Pattern">Pattern</a>
+              </td>
+              <td>
+                <code>&quot;.*&quot;</code>
+              </td>
               <td>6.4</td>
             </tr>
           </table>
@@ -451,103 +630,104 @@ public class Test {
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;EmptyCatchBlock&quot;/&gt;
+          &lt;module name=&quot;EmptyCatchBlock&quot;/&gt;
         </source>
         <p>
           Example:
         </p>
         <source>
-try {
-  throw new RuntimeException();
-} catch (RuntimeException expected) {
-} // violation
+          try {
+          throw new RuntimeException();
+          } catch (RuntimeException expected) {
+          } // violation
 
-try {
-  throw new RuntimeException();
-} catch (RuntimeException ignore) {
-  // no handling
-} // ok, catch block has comment
+          try {
+          throw new RuntimeException();
+          } catch (RuntimeException ignore) {
+          // no handling
+          } // ok, catch block has comment
 
-try {
-  throw new RuntimeException();
-} catch (RuntimeException o) {
-} // violation
+          try {
+          throw new RuntimeException();
+          } catch (RuntimeException o) {
+          } // violation
 
-try {
-  throw new RuntimeException();
-} catch (RuntimeException ex) {
-  // This is expected
-} // ok
+          try {
+          throw new RuntimeException();
+          } catch (RuntimeException ex) {
+          // This is expected
+          } // ok
         </source>
         <p>
           To configure the check to suppress empty catch block if exception's variable name is
-          <code>expected</code> or <code>ignore</code> or there's any comment inside:
+          <code>expected</code>
+          or <code>ignore</code> or there's any comment inside:
         </p>
         <source>
-&lt;module name=&quot;EmptyCatchBlock&quot;&gt;
-  &lt;property name=&quot;exceptionVariableName&quot; value=&quot;expected|ignore&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
+          &lt;property name=&quot;exceptionVariableName&quot; value=&quot;expected|ignore&quot;/&gt;
+          &lt;/module&gt;
         </source>
         <p>
           Such empty blocks would be both suppressed:
         </p>
         <source>
-try {
-  throw new RuntimeException();
-} catch (RuntimeException expected) {
-} // ok
+          try {
+          throw new RuntimeException();
+          } catch (RuntimeException expected) {
+          } // ok
 
-try {
-  throw new RuntimeException();
-} catch (RuntimeException ignore) {
-  // no handling
-} // ok
+          try {
+          throw new RuntimeException();
+          } catch (RuntimeException ignore) {
+          // no handling
+          } // ok
 
-try {
-  throw new RuntimeException();
-} catch (RuntimeException o) {
-} // violation
+          try {
+          throw new RuntimeException();
+          } catch (RuntimeException o) {
+          } // violation
 
-try {
-  throw new RuntimeException();
-} catch (RuntimeException ex) {
-  // This is expected
-} // ok
+          try {
+          throw new RuntimeException();
+          } catch (RuntimeException ex) {
+          // This is expected
+          } // ok
         </source>
         <p>
           To configure the check to suppress empty catch block if single-line comment inside
-           is &quot;//This is expected&quot;:
+          is &quot;//This is expected&quot;:
         </p>
         <source>
-&lt;module name=&quot;EmptyCatchBlock&quot;&gt;
-  &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
+          &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
+          &lt;/module&gt;
         </source>
         <p>
           Such empty block would be suppressed:
         </p>
         <source>
-try {
-  throw new RuntimeException();
-} catch (RuntimeException expected) {
-} // violation
+          try {
+          throw new RuntimeException();
+          } catch (RuntimeException expected) {
+          } // violation
 
-try {
-  throw new RuntimeException();
-} catch (RuntimeException ignore) {
-  // no handling
-} // violation
+          try {
+          throw new RuntimeException();
+          } catch (RuntimeException ignore) {
+          // no handling
+          } // violation
 
-try {
-  throw new RuntimeException();
-} catch (RuntimeException o) {
-} // violation
+          try {
+          throw new RuntimeException();
+          } catch (RuntimeException o) {
+          } // violation
 
-try {
-  throw new RuntimeException();
-} catch (RuntimeException ex) {
-  // This is expected
-} // ok
+          try {
+          throw new RuntimeException();
+          } catch (RuntimeException ex) {
+          // This is expected
+          } // ok
         </source>
         <p>
           To configure the check to suppress empty catch block if single-line comment inside
@@ -555,55 +735,55 @@ try {
           variable name is &quot;myException&quot; (any option is matching):
         </p>
         <source>
-&lt;module name=&quot;EmptyCatchBlock&quot;&gt;
-  &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
-  &lt;property name=&quot;exceptionVariableName&quot; value=&quot;myException&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;EmptyCatchBlock&quot;&gt;
+          &lt;property name=&quot;commentFormat&quot; value=&quot;This is expected&quot;/&gt;
+          &lt;property name=&quot;exceptionVariableName&quot; value=&quot;myException&quot;/&gt;
+          &lt;/module&gt;
         </source>
         <p>
           Such empty blocks would be suppressed:
         </p>
         <source>
-try {
-  throw new RuntimeException();
-} catch (RuntimeException e) {
-  //This is expected
-}
-...
-try {
-  throw new RuntimeException();
-} catch (RuntimeException e) {
-  //   This is expected
-}
-...
-try {
-  throw new RuntimeException();
-} catch (RuntimeException e) {
-  // This is expected
-  // some another comment
-}
-...
-try {
-  throw new RuntimeException();
-} catch (RuntimeException e) {
-  /* This is expected */
-}
-...
-try {
-  throw new RuntimeException();
-} catch (RuntimeException e) {
-  /*
-  *
-  * This is expected
-  * some another comment
-  */
-}
-...
-try {
-  throw new RuntimeException();
-} catch (RuntimeException myException) {
+          try {
+          throw new RuntimeException();
+          } catch (RuntimeException e) {
+          //This is expected
+          }
+          ...
+          try {
+          throw new RuntimeException();
+          } catch (RuntimeException e) {
+          // This is expected
+          }
+          ...
+          try {
+          throw new RuntimeException();
+          } catch (RuntimeException e) {
+          // This is expected
+          // some another comment
+          }
+          ...
+          try {
+          throw new RuntimeException();
+          } catch (RuntimeException e) {
+          /* This is expected */
+          }
+          ...
+          try {
+          throw new RuntimeException();
+          } catch (RuntimeException e) {
+          /*
+          *
+          * This is expected
+          * some another comment
+          */
+          }
+          ...
+          try {
+          throw new RuntimeException();
+          } catch (RuntimeException myException) {
 
-}
+          }
         </source>
       </subsection>
 
@@ -611,11 +791,13 @@ try {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyCatchBlock">
-            Google Style</a>
+              Google Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyCatchBlock">
-            Checkstyle Style</a>
+              Checkstyle Style
+            </a>
           </li>
         </ul>
       </subsection>
@@ -624,7 +806,8 @@ try {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22catch.block.empty%22">
-            catch.block.empty</a>
+              catch.block.empty
+            </a>
           </li>
         </ul>
         <p>
@@ -634,11 +817,13 @@ try {
       </subsection>
 
       <subsection name="Package" id="EmptyCatchBlock_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+        <p>com.puppycrawl.tools.checkstyle.checks.blocks</p>
       </subsection>
 
       <subsection name="Parent Module" id="EmptyCatchBlock_Parent_Module">
-        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
       </subsection>
     </section>
 
@@ -663,16 +848,25 @@ try {
             </tr>
             <tr>
               <td>option</td>
-              <td>Specify the policy on placement of a left curly brace (<code>'{'</code>).</td>
-              <td><a href="property_types.html#LeftCurlyOption">LeftCurlyOption</a></td>
-              <td><code>eol</code></td>
+              <td>Specify the policy on placement of a left curly brace (<code>'{'</code>).
+              </td>
+              <td>
+                <a href="property_types.html#LeftCurlyOption">LeftCurlyOption</a>
+              </td>
+              <td>
+                <code>eol</code>
+              </td>
               <td>3.0</td>
             </tr>
             <tr>
               <td>ignoreEnums</td>
               <td>Allow to ignore enums when left curly brace policy is EOL.</td>
-              <td><a href="property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
+              <td>
+                <a href="property_types.html#boolean">boolean</a>
+              </td>
+              <td>
+                <code>true</code>
+              </td>
               <td>6.9</td>
             </tr>
             <tr>
@@ -680,105 +874,199 @@ try {
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                  ANNOTATION_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                  CLASS_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                  CTOR_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
-                  ENUM_CONSTANT_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                  ENUM_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                  INTERFACE_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
-                  LAMBDA</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
-                  LITERAL_CASE</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
-                  LITERAL_CATCH</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DEFAULT">
-                  LITERAL_DEFAULT</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
-                  LITERAL_DO</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
-                  LITERAL_ELSE</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
-                  LITERAL_FINALLY</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
-                  LITERAL_FOR</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
-                  LITERAL_IF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
-                  LITERAL_SWITCH</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
-                  LITERAL_SYNCHRONIZED</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
-                  LITERAL_TRY</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
-                  LITERAL_WHILE</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#OBJBLOCK">
-                  OBJBLOCK</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
-                  STATIC_INIT</a>
-                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
-                  RECORD_DEF</a>
-                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
-                  COMPACT_CTOR_DEF</a>
+                  ANNOTATION_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                  ENUM_CONSTANT_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                  LAMBDA
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
+                  LITERAL_CASE
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+                  LITERAL_CATCH
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DEFAULT">
+                  LITERAL_DEFAULT
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
+                  LITERAL_DO
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+                  LITERAL_ELSE
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
+                  LITERAL_FINALLY
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+                  LITERAL_FOR
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+                  LITERAL_IF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
+                  LITERAL_SWITCH
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
+                  LITERAL_SYNCHRONIZED
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
+                  LITERAL_TRY
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+                  LITERAL_WHILE
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#OBJBLOCK">
+                  OBJBLOCK
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+                  STATIC_INIT
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                  RECORD_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                  COMPACT_CTOR_DEF
+                </a>
                 .
               </td>
 
               <td>
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                  ANNOTATION_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                  CLASS_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                  CTOR_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
-                  ENUM_CONSTANT_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                  ENUM_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                  INTERFACE_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
-                  LAMBDA</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
-                  LITERAL_CASE</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
-                  LITERAL_CATCH</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DEFAULT">
-                  LITERAL_DEFAULT</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
-                  LITERAL_DO</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
-                  LITERAL_ELSE</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
-                  LITERAL_FINALLY</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
-                  LITERAL_FOR</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
-                  LITERAL_IF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
-                  LITERAL_SWITCH</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
-                  LITERAL_SYNCHRONIZED</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
-                  LITERAL_TRY</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
-                  LITERAL_WHILE</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#OBJBLOCK">
-                  OBJBLOCK</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
-                  STATIC_INIT</a>
-                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
-                  RECORD_DEF</a>
-                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
-                  COMPACT_CTOR_DEF</a>
+                  ANNOTATION_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                  ENUM_CONSTANT_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                  LAMBDA
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
+                  LITERAL_CASE
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+                  LITERAL_CATCH
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DEFAULT">
+                  LITERAL_DEFAULT
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
+                  LITERAL_DO
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+                  LITERAL_ELSE
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
+                  LITERAL_FINALLY
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+                  LITERAL_FOR
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+                  LITERAL_IF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
+                  LITERAL_SWITCH
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
+                  LITERAL_SYNCHRONIZED
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
+                  LITERAL_TRY
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+                  LITERAL_WHILE
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#OBJBLOCK">
+                  OBJBLOCK
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+                  STATIC_INIT
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                  RECORD_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                  COMPACT_CTOR_DEF
+                </a>
                 .
               </td>
               <td>3.0</td>
@@ -788,81 +1076,81 @@ try {
       </subsection>
 
       <subsection name="Examples" id="LeftCurly_Examples">
-        <p> To configure the check: </p>
+        <p>To configure the check:</p>
         <source>
-&lt;module name=&quot;LeftCurly&quot;/&gt;
+          &lt;module name=&quot;LeftCurly&quot;/&gt;
         </source>
         <source>
-class Test
-{ // Violation - '{' should be on the previous line
-  private interface TestInterface
-  { // Violation - '{' should be on the previous line
-  }
+          class Test
+          { // Violation - '{' should be on the previous line
+          private interface TestInterface
+          { // Violation - '{' should be on the previous line
+          }
 
-  private
-  class
-  MyClass { // OK
-  }
+          private
+          class
+          MyClass { // OK
+          }
 
-  enum Colors {RED, // OK
-    BLUE,
-    GREEN;
-  }
-}
+          enum Colors {RED, // OK
+          BLUE,
+          GREEN;
+          }
+          }
         </source>
         <p>
           To configure the check to apply the <code>nl</code> policy to
           type blocks:
         </p>
         <source>
-&lt;module name=&quot;LeftCurly&quot;&gt;
-  &lt;property name=&quot;option&quot; value=&quot;nl&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF,INTERFACE_DEF&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;LeftCurly&quot;&gt;
+          &lt;property name=&quot;option&quot; value=&quot;nl&quot;/&gt;
+          &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF,INTERFACE_DEF&quot;/&gt;
+          &lt;/module&gt;
         </source>
         <source>
-class Test
-{ // OK
-  private interface TestInterface
-  { // OK
-  }
+          class Test
+          { // OK
+          private interface TestInterface
+          { // OK
+          }
 
-  private
-  class
-  MyClass { // Violation - '{' should be on a new line
-  }
+          private
+          class
+          MyClass { // Violation - '{' should be on a new line
+          }
 
-  enum Colors {RED, // OK
-    BLUE,
-    GREEN;
-  }
-}
+          enum Colors {RED, // OK
+          BLUE,
+          GREEN;
+          }
+          }
         </source>
         <p>
           An example of how to configure the check to validate enum definitions:
         </p>
         <source>
-&lt;module name="LeftCurly"&gt;
-  &lt;property name="ignoreEnums" value="false"/&gt;
-&lt;/module&gt;
+          &lt;module name="LeftCurly"&gt;
+          &lt;property name="ignoreEnums" value="false"/&gt;
+          &lt;/module&gt;
         </source>
         <source>
-class Test
-{ // Violation - '{' should be on the previous line
-  private interface TestInterface
-  { // Violation - '{' should be on the previous line
-  }
+          class Test
+          { // Violation - '{' should be on the previous line
+          private interface TestInterface
+          { // Violation - '{' should be on the previous line
+          }
 
-  private
-  class
-  MyClass { // OK
-  }
+          private
+          class
+          MyClass { // OK
+          }
 
-  enum Colors {RED, // Violation - '{' should have line break after
-  BLUE,
-  GREEN;
-  }
-}
+          enum Colors {RED, // Violation - '{' should have line break after
+          BLUE,
+          GREEN;
+          }
+          }
         </source>
       </subsection>
 
@@ -870,15 +1158,18 @@ class Test
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeftCurly">
-            Google Style</a>
+              Google Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeftCurly">
-            Sun Style</a>
+              Sun Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeftCurly">
-            Checkstyle Style</a>
+              Checkstyle Style
+            </a>
           </li>
         </ul>
       </subsection>
@@ -887,15 +1178,18 @@ class Test
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.break.after%22">
-            line.break.after</a>
+              line.break.after
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.new%22">
-            line.new</a>
+              line.new
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.previous%22">
-            line.previous</a>
+              line.previous
+            </a>
           </li>
         </ul>
         <p>
@@ -905,18 +1199,20 @@ class Test
       </subsection>
 
       <subsection name="Package" id="LeftCurly_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+        <p>com.puppycrawl.tools.checkstyle.checks.blocks</p>
       </subsection>
 
       <subsection name="Parent Module" id="LeftCurly_Parent_Module">
-        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
       </subsection>
     </section>
 
     <section name="NeedBraces">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="NeedBraces_Description">
-        <p> Checks for braces around code blocks. </p>
+        <p>Checks for braces around code blocks.</p>
       </subsection>
 
       <subsection name="Properties" id="NeedBraces_Properties">
@@ -932,15 +1228,23 @@ class Test
             <tr>
               <td>allowSingleLineStatement</td>
               <td>allow single-line statements without braces.</td>
-              <td><a href="property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
+              <td>
+                <a href="property_types.html#boolean">boolean</a>
+              </td>
+              <td>
+                <code>false</code>
+              </td>
               <td>6.5</td>
             </tr>
             <tr>
               <td>allowEmptyLoopBody</td>
               <td>allow loops with empty bodies.</td>
-              <td><a href="property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
+              <td>
+                <a href="property_types.html#boolean">boolean</a>
+              </td>
+              <td>
+                <code>false</code>
+              </td>
               <td>6.12.1</td>
             </tr>
             <tr>
@@ -948,35 +1252,59 @@ class Test
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
-                  LITERAL_DO</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
-                  LITERAL_ELSE</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
-                  LITERAL_FOR</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
-                  LITERAL_IF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
-                  LITERAL_WHILE</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
-                  LITERAL_CASE</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DEFAULT">
-                  LITERAL_DEFAULT</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
-                  LAMBDA</a>
+                  LITERAL_DO
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+                  LITERAL_ELSE
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+                  LITERAL_FOR
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+                  LITERAL_IF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+                  LITERAL_WHILE
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
+                  LITERAL_CASE
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DEFAULT">
+                  LITERAL_DEFAULT
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                  LAMBDA
+                </a>
                 .
               </td>
 
               <td>
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
-                  LITERAL_DO</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
-                  LITERAL_ELSE</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
-                  LITERAL_FOR</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
-                  LITERAL_IF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
-                  LITERAL_WHILE</a>
+                  LITERAL_DO
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+                  LITERAL_ELSE
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+                  LITERAL_FOR
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+                  LITERAL_IF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+                  LITERAL_WHILE
+                </a>
                 .
               </td>
               <td>3.0</td>
@@ -986,101 +1314,102 @@ class Test
       </subsection>
 
       <subsection name="Examples" id="NeedBraces_Examples">
-        <p> To configure the check: </p>
+        <p>To configure the check:</p>
         <source>
-&lt;module name=&quot;NeedBraces&quot;/&gt;
+          &lt;module name=&quot;NeedBraces&quot;/&gt;
         </source>
         <p>Example:</p>
         <source>
-if (obj.isValid()) return true; // violation, single-line statements not allowed without braces
-if (true) {                     // OK
-    return true;
-} else                          // violation, single-line statements not allowed without braces
-    return false;
-for (int i = 0; i &lt; 5; i++) {   // OK
-     ++count;
-}
-do                              // violation, single-line statements not allowed without braces
-    ++count;
-while (false);
-for (int j = 0; j &lt; 10; j++); // violation, empty loop body not allowed
-for(int i = 0; i &lt; 10; value.incrementValue()); // violation, empty loop body not allowed
-while (counter &lt; 10)          // violation, single-line statements not allowed without braces
-    ++count;
-while (value.incrementValue() &lt; 5); // violation, empty loop body not allowed
-switch (num) {
-  case 1: counter++; break;         // OK
-}
+          if (obj.isValid()) return true; // violation, single-line statements not allowed without braces
+          if (true) { // OK
+          return true;
+          } else // violation, single-line statements not allowed without braces
+          return false;
+          for (int i = 0; i &lt; 5; i++) { // OK
+          ++count;
+          }
+          do // violation, single-line statements not allowed without braces
+          ++count;
+          while (false);
+          for (int j = 0; j &lt; 10; j++); // violation, empty loop body not allowed
+          for(int i = 0; i &lt; 10; value.incrementValue()); // violation, empty loop body not allowed
+          while (counter &lt; 10) // violation, single-line statements not allowed without braces
+          ++count;
+          while (value.incrementValue() &lt; 5); // violation, empty loop body not allowed
+          switch (num) {
+          case 1: counter++; break; // OK
+          }
         </source>
         <p>
           To configure the check for <code>if</code> and
-          <code> else</code> blocks:
+          <code>else</code>
+          blocks:
         </p>
         <source>
-&lt;module name=&quot;NeedBraces&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, LITERAL_ELSE&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;NeedBraces&quot;&gt;
+          &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, LITERAL_ELSE&quot;/&gt;
+          &lt;/module&gt;
         </source>
         <p>Example:</p>
         <source>
-if (obj.isValid()) return true; // violation, single-line statements not allowed without braces
-if (true) {                     // OK
-    return true;
-} else                          // violation, single-line statements not allowed without braces
-    return false;
-for (int i = 0; i &lt; 5; i++) {   // OK
-     ++count;
-}
-do                              // OK
-    ++count;
-while (false);
-for (int j = 0; j &lt; 10; j++);   // OK
-for(int i = 0; i &lt; 10; value.incrementValue()); // OK
-while (counter &lt; 10)                            // OK
-    ++count;
-while (value.incrementValue() &lt; 5); // OK
-switch (num) {
-  case 1: counter++; break;         // OK
-}
+          if (obj.isValid()) return true; // violation, single-line statements not allowed without braces
+          if (true) { // OK
+          return true;
+          } else // violation, single-line statements not allowed without braces
+          return false;
+          for (int i = 0; i &lt; 5; i++) { // OK
+          ++count;
+          }
+          do // OK
+          ++count;
+          while (false);
+          for (int j = 0; j &lt; 10; j++); // OK
+          for(int i = 0; i &lt; 10; value.incrementValue()); // OK
+          while (counter &lt; 10) // OK
+          ++count;
+          while (value.incrementValue() &lt; 5); // OK
+          switch (num) {
+          case 1: counter++; break; // OK
+          }
         </source>
         <p>
           To configure the check to allow single-line statements
           (<code>if, while, do-while, for</code>) without braces:
         </p>
         <source>
-&lt;module name=&quot;NeedBraces&quot;&gt;
-  &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;tokens&quot;
-         value=&quot;LITERAL_IF, LITERAL_WHILE, LITERAL_DO, LITERAL_FOR&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;NeedBraces&quot;&gt;
+          &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
+          &lt;property name=&quot;tokens&quot;
+          value=&quot;LITERAL_IF, LITERAL_WHILE, LITERAL_DO, LITERAL_FOR&quot;/&gt;
+          &lt;/module&gt;
         </source>
 
         <p>
           Example:
         </p>
         <source>
-if (obj.isValid()) return true;  // OK
-if (true) {                      // OK
-    return true;
-} else                           // OK
-    return false;
-for (int i = 0; i &lt; 5; i++) {    // OK
-    ++count;
-}
-do                               // OK
-   ++count;
-while (false);
-for (int j = 0; j &lt; 10; j++);                   // violation, empty loop body not allowed
-for(int i = 0; i &lt; 10; value.incrementValue()); // violation, empty loop body not allowed
-while (counter &lt; 10)                 // OK
-   ++count;
-while (value.incrementValue() &lt; 5);  // violation, empty loop body not allowed
-switch (num) {
-  case 1: counter++; break;          // OK
-}
-while (obj.isValid()) return true;   // OK
-do this.notify(); while (o != null); // OK
-for (int i = 0; ; ) this.notify();   // OK
+          if (obj.isValid()) return true; // OK
+          if (true) { // OK
+          return true;
+          } else // OK
+          return false;
+          for (int i = 0; i &lt; 5; i++) { // OK
+          ++count;
+          }
+          do // OK
+          ++count;
+          while (false);
+          for (int j = 0; j &lt; 10; j++); // violation, empty loop body not allowed
+          for(int i = 0; i &lt; 10; value.incrementValue()); // violation, empty loop body not allowed
+          while (counter &lt; 10) // OK
+          ++count;
+          while (value.incrementValue() &lt; 5); // violation, empty loop body not allowed
+          switch (num) {
+          case 1: counter++; break; // OK
+          }
+          while (obj.isValid()) return true; // OK
+          do this.notify(); while (o != null); // OK
+          for (int i = 0; ; ) this.notify(); // OK
         </source>
 
         <p>
@@ -1088,94 +1417,94 @@ for (int i = 0; ; ) this.notify();   // OK
           without braces:
         </p>
         <source>
-&lt;module name=&quot;NeedBraces&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CASE, LITERAL_DEFAULT&quot;/&gt;
-  &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;NeedBraces&quot;&gt;
+          &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CASE, LITERAL_DEFAULT&quot;/&gt;
+          &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
+          &lt;/module&gt;
         </source>
 
         <p>
           Next statements won't be violated by check:
         </p>
         <source>
-if (obj.isValid()) return true; // OK
-if (true) {                     // OK
-    return true;
-} else                          // OK
-    return false;
-for (int i = 0; i &lt; 5; i++) {   // OK
-     ++count;
-}
-do                              // OK
-    ++count;
-while (false);
-for (int j = 0; j &lt; 10; j++);   // OK
-for(int i = 0; i &lt; 10; value.incrementValue()); // OK
-while (counter &lt; 10)                            // OK
-   ++count;
-while (value.incrementValue() &lt; 5); // OK
-switch (num) {
-  case 1: counter++; break;         // OK
-  case 6: counter += 10; break;     // OK
-  default: counter = 100; break;    // OK
-}
+          if (obj.isValid()) return true; // OK
+          if (true) { // OK
+          return true;
+          } else // OK
+          return false;
+          for (int i = 0; i &lt; 5; i++) { // OK
+          ++count;
+          }
+          do // OK
+          ++count;
+          while (false);
+          for (int j = 0; j &lt; 10; j++); // OK
+          for(int i = 0; i &lt; 10; value.incrementValue()); // OK
+          while (counter &lt; 10) // OK
+          ++count;
+          while (value.incrementValue() &lt; 5); // OK
+          switch (num) {
+          case 1: counter++; break; // OK
+          case 6: counter += 10; break; // OK
+          default: counter = 100; break; // OK
+          }
         </source>
         <p>
           To configure the check to allow loops (<code>while, for</code>) with empty bodies:
         </p>
         <source>
-&lt;module name=&quot;NeedBraces&quot;&gt;
-  &lt;property name=&quot;allowEmptyLoopBody&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_WHILE, LITERAL_FOR&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;NeedBraces&quot;&gt;
+          &lt;property name=&quot;allowEmptyLoopBody&quot; value=&quot;true&quot;/&gt;
+          &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_WHILE, LITERAL_FOR&quot;/&gt;
+          &lt;/module&gt;
         </source>
 
         <p>
-            Example:
+          Example:
         </p>
         <source>
-if (obj.isValid()) return true; // OK
-if (true) {                     // OK
-    return true;
-} else                          // OK
-    return false;
-for (int i = 0; i &lt; 5; i++) {   // OK
-     ++count;
-}
-do                              // OK
-    ++count;
-while (false);
-for (int j = 0; j &lt; 10; j++);   // OK
-for(int i = 0; i &lt; 10; value.incrementValue()); // OK
-while (counter &lt; 10)           // violation, single-line statements not allowed without braces
-   ++count;
-while (value.incrementValue() &lt; 5); // OK
-switch (num) {
-case 1: counter++; break;           // OK
-}
+          if (obj.isValid()) return true; // OK
+          if (true) { // OK
+          return true;
+          } else // OK
+          return false;
+          for (int i = 0; i &lt; 5; i++) { // OK
+          ++count;
+          }
+          do // OK
+          ++count;
+          while (false);
+          for (int j = 0; j &lt; 10; j++); // OK
+          for(int i = 0; i &lt; 10; value.incrementValue()); // OK
+          while (counter &lt; 10) // violation, single-line statements not allowed without braces
+          ++count;
+          while (value.incrementValue() &lt; 5); // OK
+          switch (num) {
+          case 1: counter++; break; // OK
+          }
         </source>
         <p>
           To configure the check to lambdas:
         </p>
         <source>
-&lt;module name=&quot;NeedBraces&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LAMBDA&quot;/&gt;
-  &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;NeedBraces&quot;&gt;
+          &lt;property name=&quot;tokens&quot; value=&quot;LAMBDA&quot;/&gt;
+          &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
+          &lt;/module&gt;
         </source>
         <p>
           Results in following:
         </p>
         <source>
-allowedFuture.addCallback(result -> assertEquals("Invalid response",
-  EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result), // violation, lambda spans 2 lines
-  ex -> fail(ex.getMessage())); // OK
+          allowedFuture.addCallback(result -> assertEquals("Invalid response",
+          EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result), // violation, lambda spans 2 lines
+          ex -> fail(ex.getMessage())); // OK
 
-allowedFuture.addCallback(result -> {
-  return assertEquals("Invalid response",
-    EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result);
-  }, // OK
-  ex -> fail(ex.getMessage()));
+          allowedFuture.addCallback(result -> {
+          return assertEquals("Invalid response",
+          EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result);
+          }, // OK
+          ex -> fail(ex.getMessage()));
         </source>
       </subsection>
 
@@ -1183,15 +1512,18 @@ allowedFuture.addCallback(result -> {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
-            Google Style</a>
+              Google Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
-            Sun Style</a>
+              Sun Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
-            Checkstyle Style</a>
+              Checkstyle Style
+            </a>
           </li>
         </ul>
       </subsection>
@@ -1200,7 +1532,8 @@ allowedFuture.addCallback(result -> {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22needBraces%22">
-            needBraces</a>
+              needBraces
+            </a>
           </li>
         </ul>
         <p>
@@ -1210,11 +1543,13 @@ allowedFuture.addCallback(result -> {
       </subsection>
 
       <subsection name="Package" id="NeedBraces_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+        <p>com.puppycrawl.tools.checkstyle.checks.blocks</p>
       </subsection>
 
       <subsection name="Parent Module" id="NeedBraces_Parent_Module">
-        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
       </subsection>
     </section>
 
@@ -1246,9 +1581,14 @@ allowedFuture.addCallback(result -> {
             </tr>
             <tr>
               <td>option</td>
-              <td>Specify the policy on placement of a right curly brace (<code>'}'</code>).</td>
-              <td><a href="property_types.html#RightCurlyOption">RightCurlyOption</a></td>
-              <td><code>same</code></td>
+              <td>Specify the policy on placement of a right curly brace (<code>'}'</code>).
+              </td>
+              <td>
+                <a href="property_types.html#RightCurlyOption">RightCurlyOption</a>
+              </td>
+              <td>
+                <code>same</code>
+              </td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -1256,54 +1596,98 @@ allowedFuture.addCallback(result -> {
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
-                  LITERAL_TRY</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
-                  LITERAL_CATCH</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
-                  LITERAL_FINALLY</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
-                  LITERAL_IF</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
-                  LITERAL_ELSE</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                  CLASS_DEF</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                  CTOR_DEF</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
-                  LITERAL_FOR</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
-                  LITERAL_WHILE</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
-                  LITERAL_DO</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
-                  STATIC_INIT</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
-                  INSTANCE_INIT</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                  ANNOTATION_DEF</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                  ENUM_DEF</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                  INTERFACE_DEF</a>
-                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
-                  RECORD_DEF</a>
-                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
-                  COMPACT_CTOR_DEF</a>
+                  LITERAL_TRY
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+                  LITERAL_CATCH
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
+                  LITERAL_FINALLY
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+                  LITERAL_IF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+                  LITERAL_ELSE
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+                  LITERAL_FOR
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+                  LITERAL_WHILE
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
+                  LITERAL_DO
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+                  STATIC_INIT
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+                  INSTANCE_INIT
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                  ANNOTATION_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                  RECORD_DEF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                  COMPACT_CTOR_DEF
+                </a>
                 .
               </td>
               <td>
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
-                  LITERAL_TRY</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
-                  LITERAL_CATCH</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
-                  LITERAL_FINALLY</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
-                  LITERAL_IF</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
-                  LITERAL_ELSE</a>
+                  LITERAL_TRY
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+                  LITERAL_CATCH
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
+                  LITERAL_FINALLY
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+                  LITERAL_IF
+                </a>
+                ,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+                  LITERAL_ELSE
+                </a>
                 .
               </td>
               <td>3.0</td>
@@ -1313,142 +1697,147 @@ allowedFuture.addCallback(result -> {
       </subsection>
 
       <subsection name="Examples" id="RightCurly_Examples">
-        <p> To configure the check: </p>
+        <p>To configure the check:</p>
         <source>
-&lt;module name=&quot;RightCurly&quot;/&gt;
+          &lt;module name=&quot;RightCurly&quot;/&gt;
         </source>
 
-        <p>Example: </p>
+        <p>Example:</p>
         <source>
-public class Test {
+          public class Test {
 
-  public void test() {
+          public void test() {
 
-    if (foo) {
-      bar();
-    }           // violation, right curly must be in the same line as the 'else' keyword
-    else {
-      bar();
-    }
+          if (foo) {
+          bar();
+          } // violation, right curly must be in the same line as the 'else' keyword
+          else {
+          bar();
+          }
 
-    if (foo) {
-      bar();
-    } else {     // OK
-      bar();
-    }
+          if (foo) {
+          bar();
+          } else { // OK
+          bar();
+          }
 
-    if (foo) { bar(); } int i = 0;  // violation
-                  // ^^^ statement is not allowed on same line after curly right brace
+          if (foo) { bar(); } int i = 0; // violation
+          // ^^^ statement is not allowed on same line after curly right brace
 
-    if (foo) { bar(); }            // OK
-    int i = 0;
+          if (foo) { bar(); } // OK
+          int i = 0;
 
-    try {
-      bar();
-    }           // violation, rightCurly must be in the same line as 'catch' keyword
-    catch (Exception e) {
-      bar();
-    }
+          try {
+          bar();
+          } // violation, rightCurly must be in the same line as 'catch' keyword
+          catch (Exception e) {
+          bar();
+          }
 
-    try {
-      bar();
-    } catch (Exception e) { // OK
-      bar();
-    }
+          try {
+          bar();
+          } catch (Exception e) { // OK
+          bar();
+          }
 
-  }                         // OK
+          } // OK
 
-  public void testSingleLine() { bar(); } // OK, because singleline is allowed
-}
-        </source>
-
-        <p>
-          To configure the check with policy <code>alone</code> for <code> else</code> and <a
-             href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-          METHOD_DEF</a>
-          tokens:
-        </p>
-        <source>
-&lt;module name=&quot;RightCurly&quot;&gt;
-  &lt;property name=&quot;option&quot; value=&quot;alone&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_ELSE, METHOD_DEF&quot;/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>Example: </p>
-        <source>
-public class Test {
-
-  public void test() {
-
-    if (foo) {
-      bar();
-    } else { bar(); }   // violation, right curly must be alone on line
-
-    if (foo) {
-      bar();
-    } else {
-      bar();
-    }                   // OK
-
-    try {
-      bar();
-    } catch (Exception e) { // OK because config is set to token METHOD_DEF and LITERAL_ELSE
-      bar();
-    }
-
-  }                         // OK
-
-  public void violate() { bar; } // violation, singleline is not allowed here
-
-  public void ok() {
-    bar();
-  }                              // OK
-}
+          public void testSingleLine() { bar(); } // OK, because singleline is allowed
+          }
         </source>
 
         <p>
-          To configure the check with policy <code>alone_or_singleline</code> for <code> if</code>
-          and <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-          METHOD_DEF</a>
+          To configure the check with policy <code>alone</code> for <code>else</code> and
+          <a
+                  href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+            METHOD_DEF
+          </a>
           tokens:
         </p>
         <source>
-&lt;module name=&quot;RightCurly&quot;&gt;
-  &lt;property name=&quot;option&quot; value=&quot;alone_or_singleline&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, METHOD_DEF&quot;/&gt;
-&lt;/module&gt;
+          &lt;module name=&quot;RightCurly&quot;&gt;
+          &lt;property name=&quot;option&quot; value=&quot;alone&quot;/&gt;
+          &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_ELSE, METHOD_DEF&quot;/&gt;
+          &lt;/module&gt;
         </source>
 
-        <p>Example: </p>
+        <p>Example:</p>
         <source>
-public class Test {
+          public class Test {
 
-  public void test() {
+          public void test() {
 
-    if (foo) {
-      bar();
-    } else {        // violation, right curly must be alone on line
-      bar();
-    }
+          if (foo) {
+          bar();
+          } else { bar(); } // violation, right curly must be alone on line
 
-    if (foo) {
-      bar();
-    }               // OK
-    else {
-      bar();
-    }
+          if (foo) {
+          bar();
+          } else {
+          bar();
+          } // OK
 
-    try {
-      bar();
-    } catch (Exception e) {        // OK because config did not set token LITERAL_TRY
-      bar();
-    }
+          try {
+          bar();
+          } catch (Exception e) { // OK because config is set to token METHOD_DEF and LITERAL_ELSE
+          bar();
+          }
 
-  }                                // OK
+          } // OK
 
-  public void violate() { bar(); } // OK , because singleline
-}
+          public void violate() { bar; } // violation, singleline is not allowed here
+
+          public void ok() {
+          bar();
+          } // OK
+          }
+        </source>
+
+        <p>
+          To configure the check with policy <code>alone_or_singleline</code> for
+          <code>if</code>
+          and
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+            METHOD_DEF
+          </a>
+          tokens:
+        </p>
+        <source>
+          &lt;module name=&quot;RightCurly&quot;&gt;
+          &lt;property name=&quot;option&quot; value=&quot;alone_or_singleline&quot;/&gt;
+          &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, METHOD_DEF&quot;/&gt;
+          &lt;/module&gt;
+        </source>
+
+        <p>Example:</p>
+        <source>
+          public class Test {
+
+          public void test() {
+
+          if (foo) {
+          bar();
+          } else { // violation, right curly must be alone on line
+          bar();
+          }
+
+          if (foo) {
+          bar();
+          } // OK
+          else {
+          bar();
+          }
+
+          try {
+          bar();
+          } catch (Exception e) { // OK because config did not set token LITERAL_TRY
+          bar();
+          }
+
+          } // OK
+
+          public void violate() { bar(); } // OK , because singleline
+          }
         </source>
       </subsection>
 
@@ -1456,15 +1845,18 @@ public class Test {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
-            Google Style</a>
+              Google Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
-            Sun Style</a>
+              Sun Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
-            Checkstyle Style</a>
+              Checkstyle Style
+            </a>
           </li>
         </ul>
       </subsection>
@@ -1473,15 +1865,18 @@ public class Test {
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.alone%22">
-            line.alone</a>
+              line.alone
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.break.before%22">
-            line.break.before</a>
+              line.break.before
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.same%22">
-            line.same</a>
+              line.same
+            </a>
           </li>
         </ul>
         <p>
@@ -1491,11 +1886,13 @@ public class Test {
       </subsection>
 
       <subsection name="Package" id="RightCurly_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+        <p>com.puppycrawl.tools.checkstyle.checks.blocks</p>
       </subsection>
 
       <subsection name="Parent Module" id="RightCurly_Parent_Module">
-        <p> <a href="config.html#TreeWalker">TreeWalker</a> </p>
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
       </subsection>
     </section>
   </body>

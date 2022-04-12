@@ -41,6 +41,10 @@
             </td>
           </tr>
           <tr>
+            <td><a href="config_blocks.html#AfterLeftCurly">AfterLeftCurly</a></td>
+            <td>Checks the presence of empty lines after left curly braces (<code>'{'</code>) for code blocks. .</td>
+          </tr>
+          <tr>
             <td><a href="config_annotation.html#AnnotationLocation">AnnotationLocation</a></td>
             <td>Checks location of annotation on language elements.</td>
           </tr>
