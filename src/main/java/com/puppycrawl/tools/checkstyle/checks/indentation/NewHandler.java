@@ -72,7 +72,7 @@ public class NewHandler extends AbstractExpressionHandler {
     @Override
     public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
         final int offset;
-        if (TokenUtil.isOfType(child.getMainAst(), TokenTypes.OBJBLOCK)) {
+        if (TokenUtil.isOfTypeOne(child.getMainAst(), TokenTypes.OBJBLOCK)) {
             offset = getBasicOffset();
         }
         else {
@@ -128,11 +128,12 @@ public class NewHandler extends AbstractExpressionHandler {
     private boolean doesChainedMethodNeedsLineWrapping() {
         DetailAST ast = mainAst.getParent();
 
-        while (TokenUtil.isOfType(ast, TokenTypes.DOT, TokenTypes.METHOD_CALL, TokenTypes.EXPR)) {
+        while (TokenUtil.isOfTypeThird(ast, TokenTypes.DOT, TokenTypes.METHOD_CALL,
+                                       TokenTypes.EXPR)) {
             ast = ast.getParent();
         }
 
-        return TokenUtil.isOfType(ast, TokenTypes.ASSIGN, TokenTypes.LITERAL_RETURN);
+        return TokenUtil.isOfTypeSecond(ast, TokenTypes.ASSIGN, TokenTypes.LITERAL_RETURN);
     }
 
 }

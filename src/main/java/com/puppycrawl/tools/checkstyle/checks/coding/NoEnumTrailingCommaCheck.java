@@ -131,7 +131,7 @@ public class NoEnumTrailingCommaCheck extends AbstractCheck {
     public void visitToken(DetailAST detailAST) {
         final DetailAST enumBlock = detailAST.findFirstToken(TokenTypes.OBJBLOCK);
         TokenUtil.findFirstTokenByPredicate(enumBlock,
-            node -> TokenUtil.isOfType(node, TokenTypes.SEMI, TokenTypes.RCURLY))
+            node -> TokenUtil.isOfTypeSecond(node, TokenTypes.SEMI, TokenTypes.RCURLY))
             .map(DetailAST::getPreviousSibling)
             .filter(token -> token.getType() == TokenTypes.COMMA)
             .ifPresent(comma -> log(comma, MSG_KEY));

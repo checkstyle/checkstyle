@@ -164,7 +164,7 @@ public final class ExecutableStatementCountCheck
         if (isContainerNode(ast)) {
             visitContainerNode(ast);
         }
-        else if (TokenUtil.isOfType(ast, TokenTypes.SLIST)) {
+        else if (TokenUtil.isOfTypeOne(ast, TokenTypes.SLIST)) {
             visitSlist(ast);
         }
         else {
@@ -177,7 +177,7 @@ public final class ExecutableStatementCountCheck
         if (isContainerNode(ast)) {
             leaveContainerNode(ast);
         }
-        else if (!TokenUtil.isOfType(ast, TokenTypes.SLIST)) {
+        else if (!TokenUtil.isOfTypeOne(ast, TokenTypes.SLIST)) {
             throw new IllegalStateException(ast.toString());
         }
     }

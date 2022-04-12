@@ -124,7 +124,7 @@ public class NoWhitespaceBeforeCaseDefaultColonCheck
      * @return true, if colon case is inside a switch block.
      */
     private static boolean isInSwitch(DetailAST colonAst) {
-        return TokenUtil.isOfType(colonAst.getParent(), TokenTypes.LITERAL_CASE,
+        return TokenUtil.isOfTypeSecond(colonAst.getParent(), TokenTypes.LITERAL_CASE,
                 TokenTypes.LITERAL_DEFAULT);
     }
 

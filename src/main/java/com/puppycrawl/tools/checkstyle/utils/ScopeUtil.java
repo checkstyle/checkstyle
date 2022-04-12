@@ -319,7 +319,7 @@ public final class ScopeUtil {
         // variable declaration?
         if (node.getType() == TokenTypes.VARIABLE_DEF) {
             final DetailAST parent = node.getParent();
-            localVariableDef = TokenUtil.isOfType(parent, TokenTypes.SLIST,
+            localVariableDef = TokenUtil.isOfTypeThird(parent, TokenTypes.SLIST,
                                 TokenTypes.FOR_INIT, TokenTypes.FOR_EACH_CLAUSE);
         }
         // catch parameter?

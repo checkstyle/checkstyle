@@ -700,7 +700,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @param nextToken next token
      */
     private void processImport(DetailAST ast, DetailAST nextToken) {
-        if (!TokenUtil.isOfType(nextToken, TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT)
+        if (!TokenUtil.isOfTypeSecond(nextToken, TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT)
             && !hasEmptyLineAfter(ast)) {
             log(nextToken, MSG_SHOULD_BE_SEPARATED, nextToken.getText());
         }
@@ -729,7 +729,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     private boolean isViolatingEmptyLineBetweenFieldsPolicy(DetailAST detailAST) {
         return detailAST.getType() != TokenTypes.RCURLY
                 && (!allowNoEmptyLineBetweenFields
-                    || !TokenUtil.isOfType(detailAST, TokenTypes.COMMA, TokenTypes.VARIABLE_DEF));
+                    || !TokenUtil.isOfTypeSecond(detailAST,
+                                              TokenTypes.COMMA, TokenTypes.VARIABLE_DEF));
     }
 
     /**
@@ -750,7 +751,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private void checkComments(DetailAST token) {
         if (!allowMultipleEmptyLines) {
-            if (TokenUtil.isOfType(token,
+            if (TokenUtil.isOfTypeFourth(token,
                 TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT,
                 TokenTypes.STATIC_IMPORT, TokenTypes.STATIC_INIT)) {
                 DetailAST previousNode = token.getPreviousSibling();

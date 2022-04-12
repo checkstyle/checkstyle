@@ -242,7 +242,7 @@ public class UnusedImportsCheck extends AbstractCheck {
 
     @Override
     public void leaveToken(DetailAST ast) {
-        if (TokenUtil.isOfType(ast, TokenTypes.OBJBLOCK, TokenTypes.SLIST)) {
+        if (TokenUtil.isOfTypeSecond(ast, TokenTypes.OBJBLOCK, TokenTypes.SLIST)) {
             currentFrame = currentFrame.pop();
         }
     }
@@ -272,7 +272,7 @@ public class UnusedImportsCheck extends AbstractCheck {
                 || parentType == TokenTypes.METHOD_DEF;
 
         final boolean isQualifiedIdent = parentType == TokenTypes.DOT
-                && !TokenUtil.isOfType(ast.getPreviousSibling(), TokenTypes.DOT)
+                && !TokenUtil.isOfTypeOne(ast.getPreviousSibling(), TokenTypes.DOT)
                 && ast.getNextSibling() != null;
 
         if (TokenUtil.isTypeDeclaration(parentType)) {
