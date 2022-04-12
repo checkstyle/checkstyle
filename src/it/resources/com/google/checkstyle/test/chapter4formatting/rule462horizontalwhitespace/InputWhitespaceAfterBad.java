@@ -26,4 +26,22 @@ public class InputWhitespaceAfterBad {
                 break;
         }
     }
+
+    public void check4() throws java.io.IOException {
+        try(java.io.InputStream ignored = System.in;) { } // warn
+    }
+
+    public void check5() {
+        try {} finally{} // warn
+        try {} catch (Exception e){} finally{} // warn
+    }
+
+    public void check6() {
+        try {} catch(Exception e){} // warn
+    }
+
+    public void check7() {
+        synchronized(this) { } // warn
+        synchronized (this) { }
+    }
 }

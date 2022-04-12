@@ -27,7 +27,6 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.AstTreeStringPrinter;
 import com.puppycrawl.tools.checkstyle.JavaParser;
@@ -39,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.xpath.ElementNode;
 import com.puppycrawl.tools.checkstyle.xpath.RootNode;
 import net.sf.saxon.Configuration;
 import net.sf.saxon.om.Item;
+import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.sxpath.XPathDynamicContext;
 import net.sf.saxon.sxpath.XPathEvaluator;
 import net.sf.saxon.sxpath.XPathExpression;
@@ -102,12 +102,11 @@ public final class XpathUtil {
      * Only these tokens support text attribute because they make our xpath queries more accurate.
      * These token types are listed below.
      * */
-    private static final Set<Integer> TOKEN_TYPES_WITH_TEXT_ATTRIBUTE =
-        Stream.of(
+    private static final Set<Integer> TOKEN_TYPES_WITH_TEXT_ATTRIBUTE = Set.of(
             TokenTypes.IDENT, TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL,
             TokenTypes.NUM_LONG, TokenTypes.NUM_INT, TokenTypes.NUM_DOUBLE, TokenTypes.NUM_FLOAT,
-            TokenTypes.TEXT_BLOCK_CONTENT, TokenTypes.COMMENT_CONTENT)
-        .collect(Collectors.toSet());
+            TokenTypes.TEXT_BLOCK_CONTENT, TokenTypes.COMMENT_CONTENT
+        );
 
     /**
      * This regexp is used to convert new line to newline tag.
@@ -184,14 +183,10 @@ public final class XpathUtil {
      */
     public static String printXpathBranch(String xpath, File file) throws CheckstyleException,
             IOException {
-        final XPathEvaluator xpathEvaluator = new XPathEvaluator(Configuration.newConfiguration());
         try {
             final RootNode rootNode = new RootNode(JavaParser.parseFile(file,
                 JavaParser.Options.WITH_COMMENTS));
-            final XPathExpression xpathExpression = xpathEvaluator.createExpression(xpath);
-            final XPathDynamicContext xpathDynamicContext =
-                xpathExpression.createDynamicContext(rootNode);
-            final List<Item> matchingItems = xpathExpression.evaluate(xpathDynamicContext);
+            final List<NodeInfo> matchingItems = getXpathItems(xpath, rootNode);
             return matchingItems.stream()
                 .map(item -> ((AbstractNode) item).getUnderlyingNode())
                 .map(AstTreeStringPrinter::printBranch)
@@ -204,4 +199,23 @@ public final class XpathUtil {
         }
     }
 
+    /**
+     * Returns list of nodes matching xpath expression given node context.
+     *
+     * @param xpath Xpath expression
+     * @param rootNode {@code NodeInfo} node context
+     * @return list of nodes matching xpath expression given node context
+     * @throws XPathException if Xpath cannot be parsed
+     */
+    public static List<NodeInfo> getXpathItems(String xpath, AbstractNode rootNode)
+            throws XPathException {
+        final XPathEvaluator xpathEvaluator = new XPathEvaluator(Configuration.newConfiguration());
+        final XPathExpression xpathExpression = xpathEvaluator.createExpression(xpath);
+        final XPathDynamicContext xpathDynamicContext = xpathExpression
+                .createDynamicContext(rootNode);
+        final List<Item> items = xpathExpression.evaluate(xpathDynamicContext);
+        return items.stream()
+                .map(NodeInfo.class::cast)
+                .collect(Collectors.toUnmodifiableList());
+    }
 }

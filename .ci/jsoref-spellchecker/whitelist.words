@@ -18,6 +18,7 @@ Aconfig
 adb
 addons
 adf
+adoptium
 adoptopenjdk
 adr
 AFBR
@@ -60,6 +61,7 @@ arraycopy
 arraytrailingcomma
 arraytypestyle
 artifactory
+asc
 asda
 ASF
 ASingle
@@ -158,6 +160,8 @@ bykey
 bytecode
 Cacheable
 cachefile
+cacio
+caciocavallosilano
 callstack
 camelcase
 casegroup
@@ -235,6 +239,7 @@ codeclimate
 codeconventions
 codecov
 codehaus
+codename
 codeql
 codeselectorpresentation
 codeship
@@ -271,6 +276,7 @@ CSON
 css
 cstyle
 csv
+ctc
 ctor
 ctx
 customimportorder
@@ -301,7 +307,7 @@ delims
 DENORMALIZER
 Depedency
 dependabot
-Deque
+deque
 descendanttoken
 descr
 Deserializable
@@ -504,8 +510,10 @@ googleecommon
 googlegroups
 googlesource
 govstrangefolder
+gpg
 gradle
 gradlew
+graphicsenv
 Grenner
 grep
 grepped
@@ -604,7 +612,7 @@ invalidinherit
 invalidjavadocposition
 ioe
 ioffset
-IPohr
+IPonr
 IPv
 isindex
 isrutf
@@ -681,6 +689,8 @@ jgit
 jgrasp
 jguru
 jhu
+jide
+jidesoft
 jira
 jitpack
 jjva
@@ -732,6 +742,7 @@ kbd
 kclee
 KDoc
 keygen
+keyrings
 Kochurkin
 konstantinos
 Kordas
@@ -777,6 +788,7 @@ Loughran
 lparen
 lpb
 lpl
+lsb
 lucene
 lui
 luiframework
@@ -830,6 +842,7 @@ modifierorder
 Mohnen
 mojohaus
 moks
+mondeja
 moradan
 mozilla
 MRELEASE
@@ -944,6 +957,7 @@ numberperline
 numericliterals
 nutsandbolts
 nvuillam
+OAuth
 objblock
 oburn
 OCP
@@ -1277,6 +1291,7 @@ td
 teamcity
 technotes
 tected
+temurin
 Testik
 testmodules
 textlevel
@@ -1309,11 +1324,13 @@ trailingcomment
 treelayout
 treemap
 treeset
+treetable
 treewalker
 TRequest
 tschneeberger
 tstamp
 tt
+tta
 ttf
 ttype
 tvf
@@ -1362,6 +1379,7 @@ username
 usr
 UTests
 utf
+uth
 UUID
 UWF
 uxxxx
@@ -1413,6 +1431,7 @@ wiki
 wikipedia
 wiktionary
 windowsservercore
+wnd
 WOC
 woff
 wontfix

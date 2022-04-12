@@ -113,15 +113,12 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "LocalFinalVariableName",
             "LocalVariableName",
             "MagicNumber",
-            "MemberName",
             "MethodLength",
-            "MethodName",
             "MethodTypeParameterName",
             "ModifiedControlVariable",
             "ModifierOrder",
             "MultipleStringLiterals",
             "MutableException",
-            "OperatorWrap",
             "PackageName",
             "ParameterAssignment",
             "ParameterName",
@@ -132,12 +129,9 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "SimplifyBooleanExpression",
             "SimplifyBooleanReturn",
             "StaticVariableName",
-            "StringLiteralEquality",
             "SuperClone",
             "SuperFinalize",
             "SuppressWarnings",
-            "ThrowsCount",
-            "TypeName",
             "VisibilityModifier"
     );
 

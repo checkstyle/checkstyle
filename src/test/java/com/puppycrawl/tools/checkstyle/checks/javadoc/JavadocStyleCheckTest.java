@@ -69,7 +69,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testDefaultSettings()
+    public void testJavadocStyleDefaultSettingsOne()
             throws Exception {
         final String[] expected = {
             "23: " + getCheckMessage(MSG_NO_PERIOD),
@@ -88,49 +88,105 @@ public class JavadocStyleCheckTest
             "76:31: " + getCheckMessage(MSG_EXTRA_HTML, "</code> // violation"),
             "77: " + getCheckMessage(MSG_INCOMPLETE_TAG, "    * should fail <"),
             "92:39: " + getCheckMessage(MSG_EXTRA_HTML, "</img> // violation"),
-            "161:8: " + getCheckMessage(MSG_UNCLOSED_HTML, "<blockquote> // violation"),
-            "166: " + getCheckMessage(MSG_NO_PERIOD),
-            "199: " + getCheckMessage(MSG_NO_PERIOD),
-            "293:21: " + getCheckMessage(MSG_EXTRA_HTML, "</string> // violation"),
-            "314:33: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code> // violation"),
-            "325: " + getCheckMessage(MSG_NO_PERIOD),
-            "331:11: " + getCheckMessage(MSG_UNCLOSED_HTML,
-                    "<b>Note:<b> it's unterminated tag.</p> // violation"),
-            "335: " + getCheckMessage(MSG_NO_PERIOD),
-            "339: " + getCheckMessage(MSG_NO_PERIOD),
-            "346: " + getCheckMessage(MSG_NO_PERIOD),
-            "358: " + getCheckMessage(MSG_NO_PERIOD),
-            "371: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyle1.java"), expected);
+                getPath("InputJavadocStyleDefaultSettingsOne.java"), expected);
     }
 
     @Test
-    public void testFirstSentence() throws Exception {
+    public void testJavadocStyleDefaultSettingsTwo()
+            throws Exception {
+        final String[] expected = {
+            "61:8: " + getCheckMessage(MSG_UNCLOSED_HTML, "<blockquote> // violation"),
+            "66: " + getCheckMessage(MSG_NO_PERIOD),
+            "98: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleDefaultSettingsTwo.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleDefaultSettingsThree()
+            throws Exception {
+        final String[] expected = {
+            "103:21: " + getCheckMessage(MSG_EXTRA_HTML, "</string> // violation"),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleDefaultSettingsThree.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleDefaultSettingsFour()
+            throws Exception {
+        final String[] expected = {
+            "29:33: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code> // violation"),
+            "40: " + getCheckMessage(MSG_NO_PERIOD),
+            "46:11: " + getCheckMessage(MSG_UNCLOSED_HTML,
+                                         "<b>Note:<b> it's unterminated tag.</p> // violation"),
+            "50: " + getCheckMessage(MSG_NO_PERIOD),
+            "54: " + getCheckMessage(MSG_NO_PERIOD),
+            "61: " + getCheckMessage(MSG_NO_PERIOD),
+            "73: " + getCheckMessage(MSG_NO_PERIOD),
+            "86: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleDefaultSettingsFour.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleFirstSentenceOne() throws Exception {
         final String[] expected = {
             "23: " + getCheckMessage(MSG_NO_PERIOD),
             "48: " + getCheckMessage(MSG_NO_PERIOD),
             "65: " + getCheckMessage(MSG_NO_PERIOD),
             "70: " + getCheckMessage(MSG_NO_PERIOD),
             "75: " + getCheckMessage(MSG_NO_PERIOD),
-            "166: " + getCheckMessage(MSG_NO_PERIOD),
-            "199: " + getCheckMessage(MSG_NO_PERIOD),
-            "325: " + getCheckMessage(MSG_NO_PERIOD),
-            "335: " + getCheckMessage(MSG_NO_PERIOD),
-            "339: " + getCheckMessage(MSG_NO_PERIOD),
-            "346: " + getCheckMessage(MSG_NO_PERIOD),
-            "358: " + getCheckMessage(MSG_NO_PERIOD),
-            "371: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyle2.java"), expected);
+                getPath("InputJavadocStyleFirstSentenceOne.java"), expected);
     }
 
     @Test
-    public void testFirstSentenceFormat() throws Exception {
+    public void testJavadocStyleFirstSentenceTwo() throws Exception {
+        final String[] expected = {
+            "66: " + getCheckMessage(MSG_NO_PERIOD),
+            "99: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleFirstSentenceTwo.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleFirstSentenceThree() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleFirstSentenceThree.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleFirstSentenceFour() throws Exception {
+        final String[] expected = {
+            "40: " + getCheckMessage(MSG_NO_PERIOD),
+            "50: " + getCheckMessage(MSG_NO_PERIOD),
+            "54: " + getCheckMessage(MSG_NO_PERIOD),
+            "61: " + getCheckMessage(MSG_NO_PERIOD),
+            "73: " + getCheckMessage(MSG_NO_PERIOD),
+            "86: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleFirstSentenceFour.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleFirstSentenceFormatOne() throws Exception {
         final String[] expected = {
             "23: " + getCheckMessage(MSG_NO_PERIOD),
             "33: " + getCheckMessage(MSG_NO_PERIOD),
@@ -139,18 +195,44 @@ public class JavadocStyleCheckTest
             "65: " + getCheckMessage(MSG_NO_PERIOD),
             "70: " + getCheckMessage(MSG_NO_PERIOD),
             "75: " + getCheckMessage(MSG_NO_PERIOD),
-            "166: " + getCheckMessage(MSG_NO_PERIOD),
-            "199: " + getCheckMessage(MSG_NO_PERIOD),
-            "325: " + getCheckMessage(MSG_NO_PERIOD),
-            "335: " + getCheckMessage(MSG_NO_PERIOD),
-            "339: " + getCheckMessage(MSG_NO_PERIOD),
-            "346: " + getCheckMessage(MSG_NO_PERIOD),
-            "358: " + getCheckMessage(MSG_NO_PERIOD),
-            "371: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyle3.java"), expected);
+                getPath("InputJavadocStyleFirstSentenceFormatOne.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleFirstSentenceFormatTwo() throws Exception {
+        final String[] expected = {
+            "66: " + getCheckMessage(MSG_NO_PERIOD),
+            "99: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleFirstSentenceFormatTwo.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleFirstSentenceFormatThree() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleFirstSentenceFormatThree.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleFirstSentenceFormatFour() throws Exception {
+        final String[] expected = {
+            "40: " + getCheckMessage(MSG_NO_PERIOD),
+            "50: " + getCheckMessage(MSG_NO_PERIOD),
+            "54: " + getCheckMessage(MSG_NO_PERIOD),
+            "61: " + getCheckMessage(MSG_NO_PERIOD),
+            "73: " + getCheckMessage(MSG_NO_PERIOD),
+            "86: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleFirstSentenceFormatFour.java"), expected);
     }
 
     @Test

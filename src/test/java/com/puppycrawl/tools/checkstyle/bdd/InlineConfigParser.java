@@ -106,7 +106,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck",
             "com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck",
-            "com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck",
@@ -118,12 +117,9 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck",
             "com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck",
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck",
             "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck",
-            "com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck",
             "com.puppycrawl.tools.checkstyle.checks.TranslationCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck",
@@ -132,6 +128,17 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck"));
+
+    /**
+     *  Inlined configs can not be used in non-java checks, as Inlined config is java style
+     *  multiline comment.
+     *  Such check files needs to be permanently suppressed.
+     */
+    private static final Set<String> PERMANENT_SUPPRESSED_CHECKS = Set.of(
+            // Inlined config is not supported for non java files.
+            "com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck",
+            "com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck"
+    );
 
     /** Stop instances being created. **/
     private InlineConfigParser() {
@@ -319,6 +326,7 @@ public final class InlineConfigParser {
         final List<ModuleInputConfiguration> moduleLists = inputConfigBuilder.getChildrenModules();
         final boolean specifyViolationMessage = moduleLists.size() == 1
                 && !SUPPRESSED_CHECKS.contains(moduleLists.get(0).getModuleName())
+                && !PERMANENT_SUPPRESSED_CHECKS.contains(moduleLists.get(0).getModuleName())
                 && getNumberOfMessages(moduleLists.get(0).getModuleName()) > 1;
         for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
             setViolations(inputConfigBuilder, lines,

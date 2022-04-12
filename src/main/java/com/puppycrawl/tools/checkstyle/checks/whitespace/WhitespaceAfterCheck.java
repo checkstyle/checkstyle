@@ -54,12 +54,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * LITERAL_DO</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
  * LITERAL_FOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
+ * LITERAL_FINALLY</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+ * LITERAL_CATCH</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
  * DO_WHILE</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
  * ELLIPSIS</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
  * LITERAL_SWITCH</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
+ * LITERAL_SYNCHRONIZED</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
+ * LITERAL_TRY</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
  * LAMBDA</a>.
  * </li>
@@ -84,7 +92,25 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  *      for (;;){}               // OK
  *      for(;;){}                // violation, space after 'for' is required
- *      }
+ *
+ *      try (InputStream ignored = System.in) {} // OK
+ *      try(InputStream ignored = System.in) {} // violation ''try' is not followed by whitespace'
+ *
+ *      try {} catch (Exception e){} // OK
+ *      try{} catch (Exception e){} // violation ''try' is not followed by whitespace'
+ *
+ *      try {} finally {} // OK
+ *      try {} finally{} // violation ''finally' is not followed by whitespace'
+ *
+ *      try {} catch (Error e){} finally {} // OK
+ *      try {} catch (Error e){} finally{} // violation ''finally' is not followed by whitespace'
+ *
+ *      try {} catch (Exception e){} // OK
+ *      try {} catch(Exception e){} // violation ''catch' is not followed by whitespace'
+ *
+ *      synchronized(this) { } // violation ''synchronized' is not followed by whitespace'
+ *      synchronized (this) { } // ok
+ *  }
  * </pre>
  * <p>
  * To configure the check for whitespace only after COMMA and SEMI tokens:
@@ -155,9 +181,13 @@ public class WhitespaceAfterCheck
             TokenTypes.LITERAL_WHILE,
             TokenTypes.LITERAL_DO,
             TokenTypes.LITERAL_FOR,
+            TokenTypes.LITERAL_FINALLY,
+            TokenTypes.LITERAL_CATCH,
             TokenTypes.DO_WHILE,
             TokenTypes.ELLIPSIS,
             TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_SYNCHRONIZED,
+            TokenTypes.LITERAL_TRY,
             TokenTypes.LAMBDA,
         };
     }
