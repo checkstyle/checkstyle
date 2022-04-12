@@ -1402,6 +1402,20 @@ public void someFunctionWithInvalidStyle() {
   //...
 }
         </source>
+        <p>It is possible to suppress all the checkstyle warnings with no arguments
+          <code>" "</code>:
+        </p>
+        <source>
+@SuppressWarnings()
+int a;
+        </source>
+        <p>This will prevent from invocation of the TypecastParenPad:</p>
+        <source>
+@SuppressWarnings("TypecastParenPad")
+public static void foo1(Object str) {
+String myString = str;
+}
+        </source>
 
       </subsection>
 
