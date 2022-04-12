@@ -102,6 +102,22 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </pre>
  * <p>
+ * It is possible to suppress all the checkstyle warnings with no arguments {@code " "}:
+ * </p>
+ * <pre>
+ * &#64;SuppressWarnings()
+ *  int a;
+ * </pre>
+ * <p>
+ * This will prevent from invocation of the TypecastParenPad:
+ * </p>
+ * <pre>
+ * &#64;SuppressWarnings("TypecastParenPad")
+ * public static void foo1(Object str) {
+ * String myString = str;
+ * }
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  *
