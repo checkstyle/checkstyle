@@ -304,6 +304,57 @@ public final class TokenUtil {
     }
 
     /**
+     * Determines if the AST belongs to the given first parameter.
+     *
+     * @param ast the AST node to check
+     * @param first the acceptable token
+     *
+     * @return true if type matches one of the given parameter.
+     */
+    public static boolean isOfType(DetailAST ast, int first) {
+        return ast != null && isOfType(ast.getType(), first);
+    }
+
+    /**
+     * Determines if the AST belongs to the given first and second parameters.
+     *
+     * @param ast the AST node to check
+     * @param first the acceptable token
+     * @param second the acceptable token
+     * @return true if type matches one of the given parameter.
+     */
+    public static boolean isOfType(DetailAST ast, int first, int second) {
+        return ast != null && isOfType(ast.getType(), first, second);
+    }
+
+    /**
+     * Determines if the AST belongs to the given first, second and third parameters.
+     *
+     * @param ast the AST node to check
+     * @param first the acceptable token
+     * @param second the acceptable token
+     * @param third the acceptable token
+     * @return true if type matches one of the given parameter.
+     */
+    public static boolean isOfType(DetailAST ast, int first, int second, int third) {
+        return ast != null && isOfType(ast.getType(), first, second, third);
+    }
+
+    /**
+     * Determines if the AST belongs to the given first, second, third and forth parameters.
+     *
+     * @param ast the AST node to check
+     * @param first the acceptable token
+     * @param second the acceptable token
+     * @param third the acceptable token
+     * @param forth the acceptable token
+     * @return true if type matches one of the given parameter.
+     */
+    public static boolean isOfType(DetailAST ast, int first, int second, int third, int forth) {
+        return ast != null && isOfType(ast.getType(), first, second, third, forth);
+    }
+
+    /**
      * Determines if given AST is a root node, i.e. if the type
      * of the token we are checking is {@code COMPILATION_UNIT}.
      *
