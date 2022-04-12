@@ -395,4 +395,203 @@ public class TokenUtilTest {
                 .isFalse();
     }
 
+    @Test
+    public void testAreOnSameLine() {
+        final int type = TokenTypes.COMPILATION_UNIT;
+        final DetailAstImpl astForTest = new DetailAstImpl();
+        final DetailAstImpl astForTest2 = new DetailAstImpl();
+        astForTest.setType(type);
+        astForTest2.setType(type);
+        final boolean result = TokenUtil.areOnSameLine(astForTest, astForTest2);
+
+        assertWithMessage("Token type did not matc")
+            .that(result)
+            .isTrue();
+    }
+
+    @Test
+    public void testIsOfTypeTypesTrue() {
+        final int type = TokenTypes.LITERAL_CATCH;
+        final DetailAstImpl astForTest = new DetailAstImpl();
+        astForTest.setType(type);
+        final boolean result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_TRY,
+                                                   TokenTypes.LITERAL_CATCH,
+                                                   TokenTypes.LITERAL_FINALLY,
+                                                   TokenTypes.LITERAL_IF,
+                                                   TokenTypes.LITERAL_ELSE);
+        final boolean result2 = TokenUtil.isOfType(astForTest, TokenTypes.LITERAL_TRY,
+                                                   TokenTypes.LITERAL_CATCH,
+                                                   TokenTypes.LITERAL_FINALLY,
+                                                   TokenTypes.LITERAL_IF,
+                                                   TokenTypes.LITERAL_ELSE);
+
+        assertWithMessage("Token type did not match")
+            .that(result1)
+            .isTrue();
+        assertWithMessage("Token type did not match")
+            .that(result2)
+            .isTrue();
+    }
+
+    @Test
+    public void testIsOfTypeTypesFalse() {
+        final int type = TokenTypes.LITERAL_TRY;
+        final DetailAstImpl astForTest = new DetailAstImpl();
+        astForTest.setType(type);
+        final boolean result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_TRY,
+                                                   TokenTypes.LITERAL_CATCH,
+                                                   TokenTypes.LITERAL_FINALLY,
+                                                   TokenTypes.LITERAL_IF,
+                                                   TokenTypes.LITERAL_ELSE);
+        final boolean result2 = TokenUtil.isOfType(astForTest, TokenTypes.LITERAL_TRY,
+                                                   TokenTypes.LITERAL_CATCH,
+                                                   TokenTypes.LITERAL_FINALLY,
+                                                   TokenTypes.LITERAL_IF,
+                                                   TokenTypes.LITERAL_ELSE);
+
+        assertWithMessage("Token type did not match")
+            .that(result1)
+            .isTrue();
+        assertWithMessage("Token type did not match")
+            .that(result2)
+            .isTrue();
+    }
+
+    @Test
+    public void testIsOfTypeFirstTrue() {
+        final int type = TokenTypes.LITERAL_FOR;
+        final DetailAstImpl astForTest = new DetailAstImpl();
+        astForTest.setType(type);
+        final boolean result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_FOR);
+        final boolean result2 = TokenUtil.isOfType(astForTest, TokenTypes.LITERAL_FOR);
+
+        assertWithMessage("Token type did not match")
+            .that(result1)
+            .isTrue();
+        assertWithMessage("Token type did not match")
+            .that(result2)
+            .isTrue();
+    }
+
+    @Test
+    public void testIsOfTypeFirstFalse() {
+        final int type = TokenTypes.LITERAL_CATCH;
+        final DetailAstImpl astForTest1 = new DetailAstImpl();
+        final DetailAstImpl astForTest2 = null;
+        astForTest1.setType(type);
+        final boolean result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_FOR);
+        final boolean result2 = TokenUtil.isOfType(astForTest1, TokenTypes.LITERAL_FOR);
+        final boolean result3 = TokenUtil.isOfType(astForTest2, TokenTypes.LITERAL_FOR);
+
+        assertWithMessage("Token type should not match")
+            .that(result1)
+            .isFalse();
+        assertWithMessage("Token type should not match")
+            .that(result2)
+            .isFalse();
+        assertWithMessage("Token type should not match")
+            .that(result3)
+            .isFalse();
+    }
+
+    @Test
+    public void testIsOfTypeSecondTrue() {
+        final int type = TokenTypes.LITERAL_CATCH;
+        final DetailAstImpl astForTest = new DetailAstImpl();
+        astForTest.setType(type);
+        final boolean result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_IF,
+                                                   TokenTypes.LITERAL_CATCH);
+        final boolean result2 = TokenUtil.isOfType(astForTest, TokenTypes.LITERAL_IF,
+                                                   TokenTypes.LITERAL_CATCH);
+
+        assertWithMessage("Token type did not match")
+            .that(result1)
+            .isTrue();
+        assertWithMessage("Token type did not match")
+            .that(result2)
+            .isTrue();
+    }
+
+    @Test
+    public void testIsOfTypeSecondFalse() {
+        final int type = TokenTypes.LITERAL_CATCH;
+        final DetailAstImpl astForTest1 = new DetailAstImpl();
+        final DetailAstImpl astForTest2 = null;
+        astForTest1.setType(type);
+        final boolean result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_IF,
+                                                   TokenTypes.LITERAL_ELSE);
+        final boolean result2 = TokenUtil.isOfType(astForTest1, TokenTypes.LITERAL_IF,
+                                                   TokenTypes.LITERAL_ELSE);
+        final boolean result3 = TokenUtil.isOfType(astForTest2, TokenTypes.LITERAL_IF,
+                                                   TokenTypes.LITERAL_ELSE);
+
+        assertWithMessage("Token type should not match")
+            .that(result1)
+            .isFalse();
+        assertWithMessage("Token type should not match")
+            .that(result2)
+            .isFalse();
+        assertWithMessage("Token type should not match")
+            .that(result3)
+            .isFalse();
+    }
+
+    @Test
+    public void testIsOfTypeThreeTrue() {
+        final int type = TokenTypes.LITERAL_CATCH;
+        final DetailAstImpl astForTest = new DetailAstImpl();
+        astForTest.setType(type);
+        final boolean result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_TRY,
+                                                   TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE,
+                                                   TokenTypes.LITERAL_CATCH);
+        final boolean result2 = TokenUtil.isOfType(astForTest, TokenTypes.LITERAL_TRY,
+                                                   TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE,
+                                                   TokenTypes.LITERAL_CATCH);
+
+        assertWithMessage("Token type did not match")
+            .that(result1)
+            .isTrue();
+        assertWithMessage("Token type did not match")
+            .that(result2)
+            .isTrue();
+    }
+
+    @Test
+    public void testIsOfTypeThreeFalse() {
+        final int type = TokenTypes.LITERAL_FOR;
+        final DetailAstImpl astForTest1 = new DetailAstImpl();
+        final DetailAstImpl astForTest2 = null;
+        astForTest1.setType(type);
+        final boolean result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_TRY,
+                                                   TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE,
+                                                   TokenTypes.LITERAL_CATCH);
+        final boolean result2 = TokenUtil.isOfType(astForTest1, TokenTypes.LITERAL_TRY,
+                                                   TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE,
+                                                   TokenTypes.LITERAL_CATCH);
+        final boolean result3 = TokenUtil.isOfType(astForTest2, TokenTypes.LITERAL_TRY,
+                                                   TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE,
+                                                   TokenTypes.LITERAL_CATCH);
+
+        assertWithMessage("Token type should not match")
+            .that(result1)
+            .isFalse();
+        assertWithMessage("Token type should not match")
+            .that(result2)
+            .isFalse();
+        assertWithMessage("Token type should not match")
+            .that(result3)
+            .isFalse();
+    }
+
+    @Test
+    public void testIsRootNode() {
+        final int type = TokenTypes.COMPILATION_UNIT;
+        final DetailAstImpl astForTest = new DetailAstImpl();
+        astForTest.setType(type);
+        final boolean result = TokenUtil.isRootNode(astForTest);
+
+        assertWithMessage("Token type did not matc")
+            .that(result)
+            .isTrue();
+    }
 }
