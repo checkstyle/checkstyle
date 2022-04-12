@@ -44,4 +44,8 @@ public class InputWhitespaceAfterGood {
     public void check7() {
         synchronized (this) { }
     }
+
+    public int check8() {
+        return -1;
+    }
 }
