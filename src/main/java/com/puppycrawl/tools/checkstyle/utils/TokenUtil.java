@@ -303,6 +303,22 @@ public final class TokenUtil {
         return ast != null && isOfType(ast.getType(), types);
     }
 
+    public static boolean isOfType(DetailAST ast, int first) {
+        return ast != null && isOfType(ast.getType(), first);
+    }
+
+    public static boolean isOfType(DetailAST ast, int first, int second) {
+        return ast != null && isOfType(ast.getType(), first, second);
+    }
+
+    public static boolean isOfType(DetailAST ast, int first, int second, int third) {
+        return ast != null && isOfType(ast.getType(), first,second, third);
+    }
+
+    public static boolean isOfType(DetailAST ast, int first, int second, int third, int forth) {
+        return ast != null && isOfType(ast.getType(), first,second, third, forth);
+    }
+
     /**
      * Determines if given AST is a root node, i.e. if the type
      * of the token we are checking is {@code COMPILATION_UNIT}.
