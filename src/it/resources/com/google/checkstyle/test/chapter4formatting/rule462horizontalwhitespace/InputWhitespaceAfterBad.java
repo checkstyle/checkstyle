@@ -44,4 +44,8 @@ public class InputWhitespaceAfterBad {
         synchronized(this) { } // warn
         synchronized (this) { }
     }
+
+    public String check8() {
+        return("a" + "b"); // warn
+    }
 }
