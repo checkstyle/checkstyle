@@ -16,14 +16,14 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 class InputLeftCurlyMethodTestNewLine2
 { // ok
     void InputLeftCurlyMethod() {}
-    void InputLeftCurlyMethod(String aOne) { // violation
+    void InputLeftCurlyMethod(String aOne) { // violation ''{' at column 44 should be on a new line'
     }
     void InputLeftCurlyMethod(int aOne)
     { // ok
     }
 
     void method1() {}
-    void method2() { // violation
+    void method2() { // violation ''{' at column 20 should be on a new line'
     }
     void method3()
     { // ok
@@ -36,7 +36,7 @@ class InputLeftCurlyMethodTestNewLine2
     { // ok
     }
     void method6(String aOne,
-                 String aTwo) { // violation
+                 String aTwo) { // violation ''{' at column 31 should be on a new line'
     }
 }
 
@@ -45,7 +45,7 @@ enum InputLeftCurlyMethodEnumTestNewLine2
     CONSTANT1()
     { // ok
         void method1() {}
-        void method2() { // violation
+        void method2() { // violation ''{' at column 24 should be on a new line'
         }
         void method3()
         { // ok
@@ -58,11 +58,11 @@ enum InputLeftCurlyMethodEnumTestNewLine2
         { // ok
         }
         void method6(String aOne,
-                     String aTwo) { // violation
+                     String aTwo) { // violation ''{' at column 35 should be on a new line'
         }
     },
 
-    CONSTANT2() { // violation
+    CONSTANT2() { // violation ''{' at column 17 should be on a new line'
 
     },
 
@@ -76,7 +76,7 @@ enum InputLeftCurlyMethodEnumTestNewLine2
     }
 
     void method1() {}
-    void method2() { // violation
+    void method2() { // violation ''{' at column 20 should be on a new line'
     }
     void method3()
     { // ok
@@ -89,6 +89,6 @@ enum InputLeftCurlyMethodEnumTestNewLine2
     { // ok
     }
     void method6(String aOne,
-                 String aTwo) { // violation
+                 String aTwo) { // violation ''{' at column 31 should be on a new line'
     }
 }

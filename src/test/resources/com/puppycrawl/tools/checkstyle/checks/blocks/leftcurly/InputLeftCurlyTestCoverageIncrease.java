@@ -18,7 +18,7 @@ public class InputLeftCurlyTestCoverageIncrease {
 
 
     private interface PrivateInterface
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         public String CA = "CONST A";
         String CB = "CONST b";
 
@@ -27,7 +27,7 @@ public class InputLeftCurlyTestCoverageIncrease {
     }
 
     interface PackageInnerInterface
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         public String CA = "CONST A";
         String CB = "CONST b";
 
@@ -36,7 +36,7 @@ public class InputLeftCurlyTestCoverageIncrease {
     }
 
     protected interface ProtectedInnerInterface
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         public String CA = "CONST A";
         String CB = "CONST b";
 
@@ -45,7 +45,7 @@ public class InputLeftCurlyTestCoverageIncrease {
     }
 
     public interface PublicInnerInterface
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         public String CA = "CONST A";
         String CB = "CONST b";
 
@@ -59,25 +59,25 @@ public class InputLeftCurlyTestCoverageIncrease {
   {
     }
     class
-    MyClass2 { // violation
+    MyClass2 { // violation ''{' at column 14 should be on a new line'
     }
 
     private
     interface
-    MyInterface1 { // violation
+    MyInterface1 { // violation ''{' at column 18 should be on a new line'
     }
 
     interface
-    MyInterface2 { // violation
+    MyInterface2 { // violation ''{' at column 18 should be on a new line'
     }
 
     protected
     enum
-    MyEnum { // violation
+    MyEnum { // violation ''{' at column 12 should be on a new line'
     }
 
     private
     @interface
-    MyAnnotation { // violation
+    MyAnnotation { // violation ''{' at column 18 should be on a new line'
     }
 }
