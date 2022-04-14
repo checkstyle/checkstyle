@@ -14,54 +14,54 @@ tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, \
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 public class InputLeftCurlyDefaultTestNlow
-{ // violation
+{ // violation ''{' at column 1 should be on the previous line'
     private interface PrivateInterface
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
     }
 
     interface PackageInnerInterface
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
     }
 
     protected interface ProtectedInnerInterface
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
     }
 
     public interface PublicInnerInterface
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
     }
 
     private
     class
-    MyClass1 { // violation
+    MyClass1 { // violation ''{' at column 14 should be on a new line'
     }
 
     class
-    MyClass2 { // violation
+    MyClass2 { // violation ''{' at column 14 should be on a new line'
     }
 
     private
     interface
-    MyInterface1 { // violation
+    MyInterface1 { // violation ''{' at column 18 should be on a new line'
     }
 
     interface
-    MyInterface2 { // violation
+    MyInterface2 { // violation ''{' at column 18 should be on a new line'
     }
 
     protected
     enum
-    MyEnum { // violation
+    MyEnum { // violation ''{' at column 12 should be on a new line'
     }
 
     private
     @interface
-    MyAnnotation { // violation
+    MyAnnotation { // violation ''{' at column 18 should be on a new line'
     }
 
     @Deprecated
     public
-    class MyClass3 { // violation
+    class MyClass3 { // violation ''{' at column 20 should be on a new line'
     }
 
     public class MyClass4 { // ok
