@@ -19,7 +19,7 @@ public class InputLeftCurlyTestNlowSwitch {
         int x = 1;
         switch (x) {
             case 0:
-            { // violation
+            { // violation ''{' at column 13 should be on the previous line'
                 break;
             }
             case (1
