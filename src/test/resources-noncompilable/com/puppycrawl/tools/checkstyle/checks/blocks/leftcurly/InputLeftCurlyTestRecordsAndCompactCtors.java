@@ -19,9 +19,9 @@ import org.w3c.dom.Node;
 public class InputLeftCurlyTestRecordsAndCompactCtors {
 
     record MyTestRecord(String string, Record rec)
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         private boolean inRecord(Object obj)
-        { // violation
+        { // violation ''{' at column 9 should be on the previous line'
             int value = 0;
             if (obj instanceof Integer i) {
                 value = i;
@@ -31,16 +31,16 @@ public class InputLeftCurlyTestRecordsAndCompactCtors {
     }
 
     record MyTestRecord2()
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         MyTestRecord2(String one, String two, String three)
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
             this();
         }
     }
 
     record MyTestRecord3(Integer i, Node node) {
         public MyTestRecord3
-        { // violation
+        { // violation ''{' at column 9 should be on the previous line'
             int x = 5;
         }
 
@@ -53,7 +53,7 @@ public class InputLeftCurlyTestRecordsAndCompactCtors {
     }
 
     record MyTestRecord5()
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         static MyTestRecord mtr =
                 new MyTestRecord("my string", new MyTestRecord4());
     }

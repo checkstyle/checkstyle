@@ -17,23 +17,23 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 public class InputLeftCurlyTestSwitchExpressions {
     int howMany1(int k) {
         switch (k)
-        { // violation
+        { // violation ''{' at column 9 should be on the previous line'
             case 1:
-                { // violation
+                { // violation ''{' at column 17 should be on the previous line'
 
             }
 
             case 2:
-                { // violation
+                { // violation ''{' at column 17 should be on the previous line'
 
             }
 
             case 3:
-                { // violation
+                { // violation ''{' at column 17 should be on the previous line'
 
             }
             default:
-                {   // violation
+                {   // violation ''{' at column 17 should be on the previous line'
 
             }
         }
@@ -42,22 +42,22 @@ public class InputLeftCurlyTestSwitchExpressions {
 
     int howMany2(int k) {
         return switch (k)
-                { // violation
+                { // violation ''{' at column 17 should be on the previous line'
             case 1 ->
-                    {
-                yield 2; // violation above
+                    { // violation ''{' at column 21 should be on the previous line'
+                yield 2;
             }
             case 2 ->
-                    {
-                yield 3; // violation above
+                    { // violation ''{' at column 21 should be on the previous line'
+                yield 3;
             }
             case 3 ->
-                    {
-                yield 4; // violation above
+                    { // violation ''{' at column 21 should be on the previous line'
+                yield 4;
             }
             default ->
-                    {
-                yield k; // violation above
+                    { // violation ''{' at column 21 should be on the previous line'
+                yield k;
             }
         };
     }
