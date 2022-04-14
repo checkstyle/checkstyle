@@ -44,17 +44,17 @@ class InputLeftCurlyTestNlWithAnnotations
     }
 }
 
-@TestClassAnnotation
-class InputLeftCurlyAnnotations2TestNlWithAnnotations { // violation
+@TestClassAnnotation // violation below ''{' at column 55 should be on a new line'
+class InputLeftCurlyAnnotations2TestNlWithAnnotations {
     private static final int X = 10;
     @Override
-    public boolean equals(Object other) { // violation
+    public boolean equals(Object other) { // violation ''{' at column 41 should be on a new line'
         return false;
     }
 
     @Override
     @SuppressWarnings("unused")
-    public int hashCode() { // violation
+    public int hashCode() { // violation ''{' at column 27 should be on a new line'
         int a = 10;
         return 1;
     }
@@ -76,5 +76,5 @@ class InputLeftCurlyAnnotations2TestNlWithAnnotations { // violation
 }
 
 @Target(ElementType.TYPE)
-@interface TestClassTestNlWithAnnotation { // violation
+@interface TestClassTestNlWithAnnotation { // violation ''{' at column 42 should be on a new line'
 }

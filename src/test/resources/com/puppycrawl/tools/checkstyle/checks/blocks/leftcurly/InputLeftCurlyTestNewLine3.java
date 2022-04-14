@@ -28,7 +28,7 @@ class InputLeftCurlyTestNewLine3
                 { // ok
                     break;
                 }
-                else if (x < 0) { // violation
+                else if (x < 0) { // violation ''{' at column 33 should be on a new line'
                     ;
                 }
                 else
@@ -93,13 +93,13 @@ class InputLeftCurlyTestNewLine3
     void method2()
     { // ok
         boolean flag = true;
-        if (flag) { // violation
+        if (flag) { // violation ''{' at column 19 should be on a new line'
             System.identityHashCode("heh");
             flag = !flag; } String.CASE_INSENSITIVE_ORDER.
               equals("Xe-xe");
         // it is ok to have rcurly on the same line as previous
         // statement if lcurly on the same line.
-        if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); } // violation
+        if (flag) { String.valueOf("ok"); } // violation ''{' at column 19 should be on a new line'
     }
 }
 
@@ -144,8 +144,8 @@ class FooInnerTestNewLine3
  * False positive
  *
  */
-class Absent_CustomFieldSerializer3TestNewLine3 { // violation
-
+class Absent_CustomFieldSerializer3TestNewLine3 {
+    // violation above ''{' at column 49 should be on a new line'
     public static void serialize() {} // Expected nothing but was "'}' should be alone on a line."
 }
 
@@ -160,14 +160,14 @@ interface EmptyInterface3TestNewLine3 {}
 
 class ClassWithStaticInitializersTestNewLine3
 { // ok
-    static { // violation
+    static { // violation ''{' at column 12 should be on a new line'
     }
     static
     {}
 
     static class Inner
     { // ok
-        static { // violation
+        static { // violation ''{' at column 16 should be on a new line'
             int i = 1;
         }
     }
