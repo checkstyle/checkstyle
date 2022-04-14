@@ -21,7 +21,7 @@ public class InputLeftCurlyTestNlSwitch
         int x = 1;
         switch (x)
         {
-            case 0: { // violation
+            case 0: { // violation ''{' at column 21 should be on a new line'
                 break;
             }
             case (1
@@ -53,7 +53,7 @@ public class InputLeftCurlyTestNlSwitch
         switch (x)
         {
             case 0
-            :{ // violation
+            :{ // violation ''{' at column 14 should be on a new line'
                 break;
             }
             default:

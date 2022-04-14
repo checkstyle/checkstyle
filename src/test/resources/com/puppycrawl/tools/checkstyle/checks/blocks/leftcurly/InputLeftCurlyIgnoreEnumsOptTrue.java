@@ -17,8 +17,8 @@ public class InputLeftCurlyIgnoreEnumsOptTrue {
     enum Colors {RED, // ok
         BLUE,
         GREEN;
-
-        @Override public String toString() { return ""; }; // violation
+        // violation below ''{' at column 44 should have line break after'
+        @Override public String toString() { return ""; };
     }
 
     enum Languages {
