@@ -14,26 +14,26 @@ tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, \
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 class InputLeftCurlyMethod
-{ // violation
+{ // violation ''{' at column 1 should be on the previous line'
     InputLeftCurlyMethod() {}
     InputLeftCurlyMethod(String aOne) { // ok
     }
     InputLeftCurlyMethod(int aOne)
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
     }
 
     void method1() {}
     void method2() { // ok
     }
     void method3()
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
     }
     void                                                               method4()
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
     }
     void method5(String aOne,
                  String aTwo)
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
     }
     void method6(String aOne,
                  String aTwo) { // ok
@@ -41,21 +41,21 @@ class InputLeftCurlyMethod
 }
 
 enum InputLeftCurlyMethodEnum
-{ // violation
+{ // violation ''{' at column 1 should be on the previous line'
     CONSTANT1("hello")
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         void method1() {}
         void method2() { // ok
         }
         void method3()
-        { // violation
+        { // violation ''{' at column 9 should be on the previous line'
         }
         void                                                               method4()
-        { // violation
+        { // violation ''{' at column 9 should be on the previous line'
         }
         void method5(String aOne,
                      String aTwo)
-        { // violation
+        { // violation ''{' at column 9 should be on the previous line'
         }
         void method6(String aOne,
                      String aTwo) { // ok
@@ -67,11 +67,11 @@ enum InputLeftCurlyMethodEnum
     },
 
     CONSTANT3("hellohellohellohellohellohellohellohellohellohellohellohellohellohello")
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
     };
 
     private InputLeftCurlyMethodEnum(String value)
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
 
     }
 
@@ -79,14 +79,14 @@ enum InputLeftCurlyMethodEnum
     void method2() { // ok
     }
     void method3()
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
     }
     void                                                               method4()
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
     }
     void method5(String aOne,
                  String aTwo)
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
     }
     void method6(String aOne,
                  String aTwo) { // ok
