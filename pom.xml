@@ -3524,6 +3524,10 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheckTest
                 </param>
+                <!-- TokenUtil#asBitSet -->
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheckTest
+                </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheckTest
                 </param>

@@ -864,7 +864,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
     /** Examine the order of all the imports and log any violations. */
     private void finishImportList() {
         String currentGroup = getFirstGroup();
-        int currentGroupNumber = customOrderRules.indexOf(currentGroup);
+        int currentGroupNumber = customOrderRules.lastIndexOf(currentGroup);
         ImportDetails previousImportObjectFromCurrentGroup = null;
         String previousImportFromCurrentGroup = null;
 
@@ -892,7 +892,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
                         validateMissedEmptyLine(previousImportObjectFromCurrentGroup,
                                 importObject, fullImportIdent);
                         currentGroup = nextGroup;
-                        currentGroupNumber = customOrderRules.indexOf(nextGroup);
+                        currentGroupNumber = customOrderRules.lastIndexOf(nextGroup);
                         previousImportFromCurrentGroup = fullImportIdent;
                     }
                     else {
