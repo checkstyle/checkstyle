@@ -41,7 +41,7 @@
                        type="boolean">
                <description>Ignore magic numbers in annotation elements defaults.</description>
             </property>
-            <property default-value="TYPECAST,METHOD_CALL,EXPR,ARRAY_INIT,UNARY_MINUS,UNARY_PLUS,ELIST,STAR,ASSIGN,PLUS,MINUS,DIV,LITERAL_NEW"
+            <property default-value="ARRAY_INIT,ASSIGN,DIV,ELIST,EXPR,LITERAL_NEW,METHOD_CALL,MINUS,PLUS,STAR,TYPECAST,UNARY_MINUS,UNARY_PLUS"
                        name="constantWaiverParentToken"
                        type="java.lang.String[]"
                        validation-type="tokenTypesSet">
