@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"
-             name="JavadocMethod"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="JavadocMethod"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks the Javadoc of a method or constructor.
  &lt;/p&gt;
@@ -62,8 +62,8 @@
  &lt;/pre&gt;</description>
          <properties>
             <property default-value="Override"
-                      name="allowedAnnotations"
-                      type="java.lang.String[]">
+                       name="allowedAnnotations"
+                       type="java.lang.String[]">
                <description>Specify the list of annotations
  that allow missed documentation.</description>
             </property>
@@ -71,8 +71,8 @@
                <description>Control whether to validate {@code throws} tags.</description>
             </property>
             <property default-value="public, protected, package, private"
-                      name="accessModifiers"
-                      type="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]">
+                       name="accessModifiers"
+                       type="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]">
                <description>Specify the access modifiers where Javadoc comments are
  checked.</description>
             </property>
@@ -85,9 +85,9 @@
  when a method returns non-void type and does not have a {@code return} tag in the javadoc.</description>
             </property>
             <property default-value="METHOD_DEF,CTOR_DEF,ANNOTATION_FIELD_DEF,COMPACT_CTOR_DEF"
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
+                       name="tokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
          </properties>

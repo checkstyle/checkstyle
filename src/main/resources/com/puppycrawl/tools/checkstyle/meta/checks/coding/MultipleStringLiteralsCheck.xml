@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck"
-             name="MultipleStringLiterals"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="MultipleStringLiterals"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks for multiple occurrences of the same string literal within a single file.
  &lt;/p&gt;
@@ -17,14 +17,14 @@
  to allow without generating a warning.</description>
             </property>
             <property default-value="^$"
-                      name="ignoreStringsRegexp"
-                      type="java.util.regex.Pattern">
+                       name="ignoreStringsRegexp"
+                       type="java.util.regex.Pattern">
                <description>Specify RegExp for ignored strings (with quotation marks).</description>
             </property>
             <property default-value="ANNOTATION"
-                      name="ignoreOccurrenceContext"
-                      type="java.lang.String[]"
-                      validation-type="tokenTypesSet">
+                       name="ignoreOccurrenceContext"
+                       type="java.lang.String[]"
+                       validation-type="tokenTypesSet">
                <description>Specify token type names where duplicate
  strings are ignored even if they don't match ignoredStringsRegexp. This allows you to
  exclude syntactical contexts like annotations or static initializers from the check.</description>

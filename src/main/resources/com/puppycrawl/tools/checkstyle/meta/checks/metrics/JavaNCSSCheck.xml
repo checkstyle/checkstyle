@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck"
-             name="JavaNCSS"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="JavaNCSS"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Determines complexity of methods, classes and files by counting
  the Non Commenting Source Statements (NCSS). This check adheres to the

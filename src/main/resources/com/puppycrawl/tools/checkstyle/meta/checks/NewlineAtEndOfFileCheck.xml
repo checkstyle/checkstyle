@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"
-             name="NewlineAtEndOfFile"
-             parent="com.puppycrawl.tools.checkstyle.Checker">
+              name="NewlineAtEndOfFile"
+              parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;p&gt;
  Checks whether files end with a line separator.
  &lt;/p&gt;
@@ -49,8 +49,8 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="lf_cr_crlf"
-                      name="lineSeparator"
-                      type="com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption">
+                       name="lineSeparator"
+                       type="com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption">
                <description>Specify the type of line separator.</description>
             </property>
             <property default-value="" name="fileExtensions" type="java.lang.String[]">

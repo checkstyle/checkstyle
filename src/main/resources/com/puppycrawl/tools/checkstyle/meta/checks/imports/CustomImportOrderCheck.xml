@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"
-             name="CustomImportOrder"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="CustomImportOrder"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that the groups of import declarations appear in the order specified
  by the user. If there is an import but its group is not specified in the
@@ -106,35 +106,35 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value=""
-                      name="customImportOrderRules"
-                      type="java.lang.String">
+                       name="customImportOrderRules"
+                       type="java.lang.String">
                <description>Specify format of order declaration
  customizing by user.</description>
             </property>
             <property default-value="^(java|javax)\."
-                      name="standardPackageRegExp"
-                      type="java.util.regex.Pattern">
+                       name="standardPackageRegExp"
+                       type="java.util.regex.Pattern">
                <description>Specify RegExp for STANDARD_JAVA_PACKAGE group imports.</description>
             </property>
             <property default-value=".*"
-                      name="thirdPartyPackageRegExp"
-                      type="java.util.regex.Pattern">
+                       name="thirdPartyPackageRegExp"
+                       type="java.util.regex.Pattern">
                <description>Specify RegExp for THIRD_PARTY_PACKAGE group imports.</description>
             </property>
             <property default-value="^$"
-                      name="specialImportsRegExp"
-                      type="java.util.regex.Pattern">
+                       name="specialImportsRegExp"
+                       type="java.util.regex.Pattern">
                <description>Specify RegExp for SPECIAL_IMPORTS group imports.</description>
             </property>
             <property default-value="true"
-                      name="separateLineBetweenGroups"
-                      type="boolean">
+                       name="separateLineBetweenGroups"
+                       type="boolean">
                <description>Force empty line separator between
  import groups.</description>
             </property>
             <property default-value="false"
-                      name="sortImportsInGroupAlphabetically"
-                      type="boolean">
+                       name="sortImportsInGroupAlphabetically"
+                       type="boolean">
                <description>Force grouping alphabetically,
  in &lt;a href="https://en.wikipedia.org/wiki/ASCII#Order"&gt;ASCII sort order&lt;/a&gt;.</description>
             </property>

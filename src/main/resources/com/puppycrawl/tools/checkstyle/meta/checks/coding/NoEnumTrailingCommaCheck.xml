@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NoEnumTrailingCommaCheck"
-             name="NoEnumTrailingComma"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="NoEnumTrailingComma"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
   Checks that enum definition does not contain a trailing comma.
   Rationale: JLS allows trailing commas in arrays and enumerations, but does not allow

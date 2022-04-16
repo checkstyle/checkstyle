@@ -2,15 +2,15 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.LambdaParameterNameCheck"
-             name="LambdaParameterName"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="LambdaParameterName"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks lambda parameter names.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="^[a-z][a-zA-Z0-9]*$"
-                      name="format"
-                      type="java.util.regex.Pattern">
+                       name="format"
+                       type="java.util.regex.Pattern">
                <description>Specifies valid identifiers.</description>
             </property>
          </properties>

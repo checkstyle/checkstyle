@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"
-             name="ImportOrder"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="ImportOrder"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks the ordering/grouping of imports. Features are:
  &lt;/p&gt;
@@ -35,8 +35,8 @@
  &lt;/ul&gt;</description>
          <properties>
             <property default-value="under"
-                      name="option"
-                      type="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption">
+                       name="option"
+                       type="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption">
                <description>specify policy on the relative order between type imports and static
  imports.</description>
             </property>
@@ -70,8 +70,8 @@
  It affects both type imports and static imports.</description>
             </property>
             <property default-value=""
-                      name="staticGroups"
-                      type="java.util.regex.Pattern[]">
+                       name="staticGroups"
+                       type="java.util.regex.Pattern[]">
                <description>specify list of &lt;b&gt;static&lt;/b&gt; import groups (every group
  identified either by a common prefix string, or by a regular expression enclosed in forward
  slashes (e.g. {@code /regexp/}). All static imports, which does not match any group, falls into
@@ -80,21 +80,21 @@
  {@code option} is set to {@code top} or {@code bottom}.</description>
             </property>
             <property default-value="false"
-                      name="sortStaticImportsAlphabetically"
-                      type="boolean">
+                       name="sortStaticImportsAlphabetically"
+                       type="boolean">
                <description>control whether
  &lt;b&gt;static imports&lt;/b&gt; located at &lt;b&gt;top&lt;/b&gt; or &lt;b&gt;bottom&lt;/b&gt; are sorted within the group.</description>
             </property>
             <property default-value="false"
-                      name="useContainerOrderingForStatic"
-                      type="boolean">
+                       name="useContainerOrderingForStatic"
+                       type="boolean">
                <description>control whether to use container
  ordering (Eclipse IDE term) for static imports or not.</description>
             </property>
             <property default-value="STATIC_IMPORT"
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
+                       name="tokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
          </properties>

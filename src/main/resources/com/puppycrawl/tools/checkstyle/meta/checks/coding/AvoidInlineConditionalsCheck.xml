@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.AvoidInlineConditionalsCheck"
-             name="AvoidInlineConditionals"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="AvoidInlineConditionals"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Detects inline conditionals. Here is one example of an inline conditional:
  &lt;/p&gt;

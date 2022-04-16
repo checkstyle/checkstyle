@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck"
-             name="FileTabCharacter"
-             parent="com.puppycrawl.tools.checkstyle.Checker">
+              name="FileTabCharacter"
+              parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;p&gt;
  Checks that there are no tab characters ({@code '\t'}) in the source code.
  &lt;/p&gt;

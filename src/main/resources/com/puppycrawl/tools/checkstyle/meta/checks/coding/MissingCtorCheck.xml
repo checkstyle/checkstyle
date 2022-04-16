@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck"
-             name="MissingCtor"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="MissingCtor"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that classes (except abstract ones) define a constructor and don't rely
  on the default one.
