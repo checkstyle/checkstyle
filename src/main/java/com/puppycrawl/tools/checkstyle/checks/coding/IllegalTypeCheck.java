@@ -19,13 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.BitSet;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.PropertyType;
@@ -385,7 +383,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * This property does not affect method calls nor method references nor record components.
      */
     @XdocsPropertyType(PropertyType.TOKEN_ARRAY)
-    private List<Integer> memberModifiers = Collections.emptyList();
+    private BitSet memberModifiers = new BitSet();
 
     /** Specify RegExp for illegal abstract class names. */
     private Pattern illegalAbstractClassNameFormat = Pattern.compile("^(.*[.])?Abstract.*$");
@@ -515,7 +513,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
         boolean result = false;
         for (DetailAST modifier = modifiers.getFirstChild(); modifier != null;
                  modifier = modifier.getNextSibling()) {
-            if (memberModifiers.contains(modifier.getType())) {
+            if (memberModifiers.get(modifier.getType())) {
                 result = true;
                 break;
             }
@@ -853,11 +851,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @param modifiers String contains modifiers.
      */
     public void setMemberModifiers(String modifiers) {
-        memberModifiers = Stream.of(modifiers.split(","))
-            .map(String::trim)
-            .filter(token -> !token.isEmpty())
-            .map(TokenUtil::getTokenId)
-            .collect(Collectors.toList());
+        memberModifiers = TokenUtil.asBitSet(modifiers.split(","));
     }
 
 }

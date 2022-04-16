@@ -377,12 +377,12 @@ public class UnusedImportsCheck extends AbstractCheck {
     }
 
     /**
-     * Extracts a list of texts matching a {@link Pattern} from a
+     * Extracts a set of texts matching a {@link Pattern} from a
      * {@link String}.
      *
      * @param identifier The String to match the pattern against
      * @param pattern The Pattern used to extract the texts
-     * @return A list of texts which matched the pattern
+     * @return A set of texts which matched the pattern
      */
     private static Set<String> matchPattern(String identifier, Pattern pattern) {
         final Set<String> references = new HashSet<>();

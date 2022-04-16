@@ -72,7 +72,7 @@ public final class CheckUtil {
     }
 
     /**
-     * Retrieves a list of class names, removing 'Check' from the end if the class is
+     * Retrieves a set of class names, removing 'Check' from the end if the class is
      * a checkstyle check.
      *
      * @param checks class instances.
