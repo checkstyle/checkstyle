@@ -19,8 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -116,7 +115,7 @@ public class AvoidDoubleBraceInitializationCheck extends AbstractCheck {
     /**
      * List of token types that are used in {@link #HAS_MEMBERS} predicate.
      */
-    private static final List<Integer> IGNORED_TYPES = Arrays.asList(
+    private static final Set<Integer> IGNORED_TYPES = Set.of(
         TokenTypes.INSTANCE_INIT,
         TokenTypes.SEMI,
         TokenTypes.LCURLY,
