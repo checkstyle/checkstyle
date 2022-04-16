@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck"
-             name="PackageDeclaration"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="PackageDeclaration"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Ensures that a class has a package declaration, and (optionally) whether
  the package name matches the directory name for the source file.

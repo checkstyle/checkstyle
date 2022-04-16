@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck"
-             name="IllegalThrows"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="IllegalThrows"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that specified types are not declared to be thrown.
  Declaring that a method throws {@code java.lang.Error} or
@@ -11,13 +11,13 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="Error, RuntimeException, Throwable, java.lang.Error, java.lang.RuntimeException, java.lang.Throwable"
-                      name="illegalClassNames"
-                      type="java.lang.String[]">
+                       name="illegalClassNames"
+                       type="java.lang.String[]">
                <description>Specify throw class names to reject.</description>
             </property>
             <property default-value="finalize"
-                      name="ignoredMethodNames"
-                      type="java.lang.String[]">
+                       name="ignoredMethodNames"
+                       type="java.lang.String[]">
                <description>Specify names of methods to ignore.</description>
             </property>
             <property default-value="true" name="ignoreOverriddenMethods" type="boolean">

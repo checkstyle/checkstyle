@@ -2,17 +2,17 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationOnSameLineCheck"
-             name="AnnotationOnSameLine"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="AnnotationOnSameLine"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that annotations are located on the same line with their targets.
  Verifying with this check is not good practice, but it is using by some style guides.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,METHOD_DEF,CTOR_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF"
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
+                       name="tokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
          </properties>

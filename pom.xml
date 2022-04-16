@@ -206,7 +206,7 @@
     <pmd.version>6.44.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.8</maven.jacoco.plugin.version>
     <mockito.version>4.4.0</mockito.version>
-    <saxon.version>10.6</saxon.version>
+    <saxon.version>11.1.1</saxon.version>
     <maven.checkstyle.plugin.version>3.1.2</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.41.0</maven.sevntu.checkstyle.plugin.version>
     <maven.sevntu-checkstyle-check.checkstyle.version>

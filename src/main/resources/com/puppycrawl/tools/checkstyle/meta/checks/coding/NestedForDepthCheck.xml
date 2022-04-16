@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck"
-             name="NestedForDepth"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="NestedForDepth"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Restricts nested {@code for} blocks to a specified depth.
  &lt;/p&gt;</description>

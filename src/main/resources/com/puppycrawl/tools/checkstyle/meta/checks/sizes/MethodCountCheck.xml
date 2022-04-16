@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck"
-             name="MethodCount"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="MethodCount"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks the number of methods declared in each type declaration by access modifier
  or total count.
@@ -61,9 +61,9 @@
                <description>Specify the maximum number of {@code public} methods allowed.</description>
             </property>
             <property default-value="CLASS_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,INTERFACE_DEF,ANNOTATION_DEF,RECORD_DEF"
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
+                       name="tokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
          </properties>

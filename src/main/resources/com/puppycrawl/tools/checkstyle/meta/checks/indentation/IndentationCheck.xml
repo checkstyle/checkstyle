@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"
-             name="Indentation"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="Indentation"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks correct indentation of Java code.
  &lt;/p&gt;

@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"
-             name="JavadocPackage"
-             parent="com.puppycrawl.tools.checkstyle.Checker">
+              name="JavadocPackage"
+              parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;p&gt;
  Checks that each Java package has a Javadoc file used for commenting.
  By default it only allows a {@code package-info.java} file,
@@ -17,8 +17,8 @@
                <description>Allow legacy {@code package.html} file to be used.</description>
             </property>
             <property default-value=".java"
-                      name="fileExtensions"
-                      type="java.lang.String[]">
+                       name="fileExtensions"
+                       type="java.lang.String[]">
                <description>Specify the file type extension of files to process.</description>
             </property>
          </properties>

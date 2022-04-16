@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.InterfaceIsTypeCheck"
-             name="InterfaceIsType"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="InterfaceIsType"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Implements Joshua Bloch, Effective Java, Item 17 -
  Use Interfaces only to define types.

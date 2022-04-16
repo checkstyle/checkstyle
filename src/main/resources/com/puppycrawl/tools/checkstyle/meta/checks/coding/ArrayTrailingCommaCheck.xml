@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheck"
-             name="ArrayTrailingComma"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="ArrayTrailingComma"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that array initialization contains a trailing comma.
  &lt;/p&gt;
@@ -69,8 +69,8 @@
  &lt;/pre&gt;</description>
          <properties>
             <property default-value="false"
-                      name="alwaysDemandTrailingComma"
-                      type="boolean">
+                       name="alwaysDemandTrailingComma"
+                       type="boolean">
                <description>Control whether to always check for a trailing
  comma, even when an array is inline.</description>
             </property>

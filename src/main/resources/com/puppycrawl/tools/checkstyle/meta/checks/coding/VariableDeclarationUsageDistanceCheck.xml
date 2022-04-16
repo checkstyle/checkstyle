@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck"
-             name="VariableDeclarationUsageDistance"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="VariableDeclarationUsageDistance"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks the distance between declaration of variable and its first usage.
  Note : Variable declaration/initialization statements are not counted while calculating length.
@@ -14,8 +14,8 @@
  of variable and its first usage. Values should be greater than 0.</description>
             </property>
             <property default-value=""
-                      name="ignoreVariablePattern"
-                      type="java.util.regex.Pattern">
+                       name="ignoreVariablePattern"
+                       type="java.util.regex.Pattern">
                <description>Define RegExp to ignore distance calculation
  for variables listed in this pattern.</description>
             </property>

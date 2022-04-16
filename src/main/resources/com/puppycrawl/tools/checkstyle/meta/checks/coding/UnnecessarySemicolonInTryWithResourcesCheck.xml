@@ -2,15 +2,15 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheck"
-             name="UnnecessarySemicolonInTryWithResources"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="UnnecessarySemicolonInTryWithResources"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks if unnecessary semicolon is used in last resource declaration.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="true"
-                      name="allowWhenNoBraceAfterSemicolon"
-                      type="boolean">
+                       name="allowWhenNoBraceAfterSemicolon"
+                       type="boolean">
                <description>Allow unnecessary semicolon if closing paren is not on the same line.</description>
             </property>
          </properties>

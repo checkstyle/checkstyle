@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck"
-             name="ArrayTypeStyle"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="ArrayTypeStyle"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks the style of array type definitions.
  Some like Java style: {@code public static void main(String[] args)}
