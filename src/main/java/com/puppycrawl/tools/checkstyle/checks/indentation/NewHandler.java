@@ -128,7 +128,8 @@ public class NewHandler extends AbstractExpressionHandler {
     private boolean doesChainedMethodNeedsLineWrapping() {
         DetailAST ast = mainAst.getParent();
 
-        while (TokenUtil.isOfType(ast, TokenTypes.DOT, TokenTypes.METHOD_CALL, TokenTypes.EXPR)) {
+        while (TokenUtil.isOfType(ast, TokenTypes.DOT, TokenTypes.METHOD_CALL,
+                                  TokenTypes.EXPR)) {
             ast = ast.getParent();
         }
 
