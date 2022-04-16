@@ -407,7 +407,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     /**
      * Setter to specify abbreviations that must be skipped for checking.
      *
-     * @param allowedAbbreviations an array of abbreviations that must be
+     * @param allowedAbbreviations abbreviations that must be
      *        skipped from checking.
      */
     public void setAllowedAbbreviations(String... allowedAbbreviations) {

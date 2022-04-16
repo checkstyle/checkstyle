@@ -488,7 +488,7 @@ public class DescendantTokenCheck extends AbstractCheck {
     /**
      * Setter to specify set of tokens with limited occurrences as descendants.
      *
-     * @param limitedTokensParam - list of tokens to ignore.
+     * @param limitedTokensParam tokens to ignore.
      */
     public void setLimitedTokens(String... limitedTokensParam) {
         limitedTokens = new int[limitedTokensParam.length];
