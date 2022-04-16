@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
@@ -29,6 +30,7 @@ import java.util.ResourceBundle;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -324,6 +326,31 @@ public final class TokenUtil {
         final boolean isTrue = tokenType == TokenTypes.LITERAL_TRUE;
         final boolean isFalse = tokenType == TokenTypes.LITERAL_FALSE;
         return isTrue || isFalse;
+    }
+
+    /**
+     * Creates a new {@code BitSet} from array of tokens.
+     *
+     * @param tokens to initialize the BitSet
+     * @return tokens as BitSet
+     */
+    public static BitSet asBitSet(int... tokens) {
+        return IntStream.of(tokens)
+                .collect(BitSet::new, BitSet::set, BitSet::or);
+    }
+
+    /**
+     * Creates a new {@code BitSet} from array of tokens.
+     *
+     * @param tokens to initialize the BitSet
+     * @return tokens as BitSet
+     */
+    public static BitSet asBitSet(String... tokens) {
+        return Arrays.stream(tokens)
+                .map(String::trim)
+                .filter(Predicate.not(String::isEmpty))
+                .mapToInt(TokenUtil::getTokenId)
+                .collect(BitSet::new, BitSet::set, BitSet::or);
     }
 
 }

@@ -67,7 +67,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code 3}.
  * </li>
  * <li>
- * Property {@code allowedAbbreviations} - Specify list of abbreviations that must be skipped for
+ * Property {@code allowedAbbreviations} - Specify abbreviations that must be skipped for
  * checking. Abbreviations should be separated by comma.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
@@ -333,7 +333,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
             DEFAULT_ALLOWED_ABBREVIATIONS_LENGTH;
 
     /**
-     * Specify list of abbreviations that must be skipped for checking. Abbreviations
+     * Specify abbreviations that must be skipped for checking. Abbreviations
      * should be separated by comma.
      */
     private Set<String> allowedAbbreviations = new HashSet<>();
@@ -407,10 +407,10 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to specify list of abbreviations that must be skipped for checking.
+     * Setter to specify abbreviations that must be skipped for checking.
      * Abbreviations should be separated by comma.
      *
-     * @param allowedAbbreviations an string of abbreviations that must be
+     * @param allowedAbbreviations abbreviations that must be
      *        skipped from checking, each abbreviation separated by comma.
      */
     public void setAllowedAbbreviations(String... allowedAbbreviations) {

@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.ArrayDeque;
-import java.util.Arrays;
+import java.util.BitSet;
 import java.util.Deque;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -150,14 +151,12 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
     private static final String ILLEGAL_TYPE_OF_TOKEN = "Illegal type of token: ";
 
     /** Operations which can change control variable in update part of the loop. */
-    private static final Set<Integer> MUTATION_OPERATIONS =
-        Arrays.stream(new Integer[] {
+    private static final BitSet MUTATION_OPERATIONS = TokenUtil.asBitSet(
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
             TokenTypes.DEC,
             TokenTypes.INC,
-            TokenTypes.ASSIGN,
-        }).collect(Collectors.toSet());
+            TokenTypes.ASSIGN);
 
     /** Stack of block parameters. */
     private final Deque<Deque<String>> variableStack = new ArrayDeque<>();
@@ -437,7 +436,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
         findChildrenOfExpressionType(forUpdateListAST).stream()
             .filter(iteratingExpressionAST -> {
-                return MUTATION_OPERATIONS.contains(iteratingExpressionAST.getType());
+                return MUTATION_OPERATIONS.get(iteratingExpressionAST.getType());
             }).forEach(iteratingExpressionAST -> {
                 final DetailAST oneVariableOperatorChild = iteratingExpressionAST.getFirstChild();
                 iteratorVariables.add(oneVariableOperatorChild.getText());
