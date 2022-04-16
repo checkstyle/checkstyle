@@ -20,9 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -93,7 +92,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code allowedAnnotations} - Specify the list of annotations that allow
+ * Property {@code allowedAnnotations} - Specify annotations that allow
  * missed documentation. Only short names are allowed, e.g. {@code Generated}.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code Generated}.
@@ -268,10 +267,10 @@ public class JavadocTypeCheck
     private boolean allowUnknownTags;
 
     /**
-     * Specify the list of annotations that allow missed documentation.
+     * Specify annotations that allow missed documentation.
      * Only short names are allowed, e.g. {@code Generated}.
      */
-    private List<String> allowedAnnotations = Collections.singletonList("Generated");
+    private Set<String> allowedAnnotations = Set.of("Generated");
 
     /**
      * Setter to specify the visibility scope where Javadoc comments are checked.
@@ -329,13 +328,13 @@ public class JavadocTypeCheck
     }
 
     /**
-     * Setter to specify the list of annotations that allow missed documentation.
+     * Setter to specify annotations that allow missed documentation.
      * Only short names are allowed, e.g. {@code Generated}.
      *
      * @param userAnnotations user's value.
      */
     public void setAllowedAnnotations(String... userAnnotations) {
-        allowedAnnotations = Arrays.asList(userAnnotations);
+        allowedAnnotations = Set.of(userAnnotations);
     }
 
     @Override
