@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -194,7 +194,7 @@ public class AvoidStarImportCheck
      * Specify packages where starred class imports are
      * allowed and classes where starred static member imports are allowed.
      */
-    private final List<String> excludes = new ArrayList<>();
+    private final Set<String> excludes = new HashSet<>();
 
     /**
      * Control whether to allow starred class imports like
