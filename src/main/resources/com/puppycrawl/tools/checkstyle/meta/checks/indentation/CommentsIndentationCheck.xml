@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck"
-             name="CommentsIndentation"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="CommentsIndentation"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Controls the indentation between comments and surrounding code.
  Comments are indented at the same level as the surrounding code.
@@ -13,9 +13,9 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="SINGLE_LINE_COMMENT,BLOCK_COMMENT_BEGIN"
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
+                       name="tokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
          </properties>

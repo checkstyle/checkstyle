@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck"
-             name="RequireThis"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="RequireThis"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that references to instance variables and methods of the present
  object are explicitly of the form "this.varName" or "this.methodName(args)"

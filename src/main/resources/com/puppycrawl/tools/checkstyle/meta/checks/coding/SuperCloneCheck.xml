@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.SuperCloneCheck"
-             name="SuperClone"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="SuperClone"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that an overriding {@code clone()} method invokes {@code super.clone()}.
  Does not check native methods, as they have no possible java defined implementation.

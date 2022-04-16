@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck"
-             name="AbbreviationAsWordInName"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="AbbreviationAsWordInName"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Validates abbreviations (consecutive capital letters) length in
  identifier name, it also allows to enforce camel case naming. Please read more at
@@ -35,8 +35,8 @@
  and methods names, ... ).</description>
             </property>
             <property default-value=""
-                      name="allowedAbbreviations"
-                      type="java.lang.String[]">
+                       name="allowedAbbreviations"
+                       type="java.lang.String[]">
                <description>Specify list of abbreviations that must be skipped for
  checking. Abbreviations should be separated by comma.</description>
             </property>
@@ -55,9 +55,9 @@
  annotation (that usually mean inherited name).</description>
             </property>
             <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,ANNOTATION_FIELD_DEF,PARAMETER_DEF,VARIABLE_DEF,METHOD_DEF,PATTERN_VARIABLE_DEF,RECORD_DEF,RECORD_COMPONENT_DEF"
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
+                       name="tokens"
+                       type="java.lang.String[]"
+                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
          </properties>

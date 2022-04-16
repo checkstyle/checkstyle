@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck"
-             name="NestedTryDepth"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="NestedTryDepth"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Restricts nested try-catch-finally blocks to a specified depth.
  &lt;/p&gt;</description>

@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck"
-             name="ModifiedControlVariable"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="ModifiedControlVariable"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that for loop control variables are not modified
  inside the for block. An example is:
@@ -38,8 +38,8 @@
  &lt;/pre&gt;</description>
          <properties>
             <property default-value="false"
-                      name="skipEnhancedForLoopVariable"
-                      type="boolean">
+                       name="skipEnhancedForLoopVariable"
+                       type="boolean">
                <description>Control whether to check
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2"&gt;
  enhanced for-loop&lt;/a&gt; variable.</description>

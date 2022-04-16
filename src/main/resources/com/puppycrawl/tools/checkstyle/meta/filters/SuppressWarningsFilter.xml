@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter"
-              name="SuppressWarningsFilter"
-              parent="com.puppycrawl.tools.checkstyle.Checker">
+               name="SuppressWarningsFilter"
+               parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;p&gt;
  Filter {@code SuppressWarningsFilter} uses annotation
  {@code SuppressWarnings} to suppress audit events.

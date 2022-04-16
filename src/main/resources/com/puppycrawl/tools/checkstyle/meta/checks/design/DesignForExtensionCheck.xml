@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck"
-             name="DesignForExtension"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="DesignForExtension"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that classes are designed for extension (subclass creation).
  &lt;/p&gt;
@@ -123,14 +123,14 @@
  &lt;/pre&gt;</description>
          <properties>
             <property default-value="After, AfterClass, Before, BeforeClass, Test"
-                      name="ignoredAnnotations"
-                      type="java.lang.String[]">
+                       name="ignoredAnnotations"
+                       type="java.lang.String[]">
                <description>Specify annotations which allow the check to
  skip the method from validation.</description>
             </property>
             <property default-value=".*"
-                      name="requiredJavadocPhrase"
-                      type="java.util.regex.Pattern">
+                       name="requiredJavadocPhrase"
+                       type="java.util.regex.Pattern">
                <description>Specify the comment text pattern which qualifies a
  method as designed for extension. Supports multi-line regex.</description>
             </property>

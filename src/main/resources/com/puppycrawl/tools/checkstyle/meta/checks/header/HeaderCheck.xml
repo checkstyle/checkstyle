@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
-             name="Header"
-             parent="com.puppycrawl.tools.checkstyle.Checker">
+              name="Header"
+              parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;p&gt;
  Checks that a source file begins with a specified header.
  Property {@code headerFile} specifies a file that contains the required header.

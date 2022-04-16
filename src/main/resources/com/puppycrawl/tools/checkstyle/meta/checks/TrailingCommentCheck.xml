@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck"
-             name="TrailingComment"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="TrailingComment"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  The check to ensure that lines with code do not end with comment.
  For the case of {@code //} comments that means that the only thing that should precede

@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck"
-             name="TodoComment"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="TodoComment"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks for {@code TODO:} comments. Actually it is a generic
  &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html"&gt;

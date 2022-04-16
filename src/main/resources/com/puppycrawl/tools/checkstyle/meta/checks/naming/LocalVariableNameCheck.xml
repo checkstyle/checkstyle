@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck"
-             name="LocalVariableName"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="LocalVariableName"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that local, non-{@code final} variable names conform to a specified pattern.
  A catch parameter is considered to be
@@ -11,13 +11,13 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="^[a-z][a-zA-Z0-9]*$"
-                      name="format"
-                      type="java.util.regex.Pattern">
+                       name="format"
+                       type="java.util.regex.Pattern">
                <description>Specifies valid identifiers.</description>
             </property>
             <property default-value="false"
-                      name="allowOneCharVarInForLoop"
-                      type="boolean">
+                       name="allowOneCharVarInForLoop"
+                       type="boolean">
                <description>Allow one character variable name in
  &lt;a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html"&gt;
  initialization expressions&lt;/a&gt;

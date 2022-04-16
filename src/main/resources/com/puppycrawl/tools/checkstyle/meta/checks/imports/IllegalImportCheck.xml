@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck"
-             name="IllegalImport"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="IllegalImport"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks for imports from a set of illegal packages.
  &lt;/p&gt;

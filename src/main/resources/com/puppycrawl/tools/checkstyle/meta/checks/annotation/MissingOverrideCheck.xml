@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck"
-             name="MissingOverride"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="MissingOverride"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Verifies that the {@code @Override} annotation is present
  when the {@code @inheritDoc} javadoc tag is present.

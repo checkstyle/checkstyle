@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.AvoidDoubleBraceInitializationCheck"
-             name="AvoidDoubleBraceInitialization"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="AvoidDoubleBraceInitialization"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Detects double brace initialization.
  &lt;/p&gt;

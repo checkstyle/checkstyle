@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck"
-             name="SimplifyBooleanReturn"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="SimplifyBooleanReturn"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks for over-complicated boolean return statements.
  For example the following code

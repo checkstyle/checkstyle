@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck"
-             name="AvoidNestedBlocks"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="AvoidNestedBlocks"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Finds nested blocks (blocks that are used freely in the code).
  &lt;/p&gt;

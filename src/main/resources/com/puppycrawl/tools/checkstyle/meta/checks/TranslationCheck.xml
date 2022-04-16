@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"
-             name="Translation"
-             parent="com.puppycrawl.tools.checkstyle.Checker">
+              name="Translation"
+              parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;p&gt;
  Ensures the correct translation of code by checking property files for consistency
  regarding their keys. Two property files describing one and the same context
@@ -56,24 +56,24 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value=".properties"
-                      name="fileExtensions"
-                      type="java.lang.String[]">
+                       name="fileExtensions"
+                       type="java.lang.String[]">
                <description>Specify file type extension to identify
  translation files. Setting this property is typically only required if your
  translation files are preprocessed and the original files do not have
  the extension {@code .properties}</description>
             </property>
             <property default-value="^messages.*$"
-                      name="baseName"
-                      type="java.util.regex.Pattern">
+                       name="baseName"
+                       type="java.util.regex.Pattern">
                <description>Specify
  &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ResourceBundle.html"&gt;
  Base name&lt;/a&gt; of resource bundles which contain message resources.
  It helps the check to distinguish config and localization resources.</description>
             </property>
             <property default-value=""
-                      name="requiredTranslations"
-                      type="java.lang.String[]">
+                       name="requiredTranslations"
+                       type="java.lang.String[]">
                <description>Specify language codes of required
  translations which must exist in project.</description>
             </property>

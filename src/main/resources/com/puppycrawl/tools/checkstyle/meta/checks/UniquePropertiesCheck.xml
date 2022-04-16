@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck"
-             name="UniqueProperties"
-             parent="com.puppycrawl.tools.checkstyle.Checker">
+              name="UniqueProperties"
+              parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;p&gt;
  Detects duplicated keys in properties files.
  &lt;/p&gt;
@@ -14,8 +14,8 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value=".properties"
-                      name="fileExtensions"
-                      type="java.lang.String[]">
+                       name="fileExtensions"
+                       type="java.lang.String[]">
                <description>Specify file type extension of the files to check.</description>
             </property>
          </properties>

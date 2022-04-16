@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"
-             name="DeclarationOrder"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="DeclarationOrder"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that the parts of a class, record, or interface declaration appear in the order
  suggested by the

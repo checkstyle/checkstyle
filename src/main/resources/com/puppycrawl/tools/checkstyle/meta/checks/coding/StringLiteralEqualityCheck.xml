@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck"
-             name="StringLiteralEquality"
-             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="StringLiteralEquality"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that string literals are not used with &lt;code&gt;==&lt;/code&gt; or &lt;code&gt;&amp;#33;=&lt;/code&gt;.
  Since &lt;code&gt;==&lt;/code&gt; will compare the object references, not the actual value of the strings,
