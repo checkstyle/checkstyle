@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -52,26 +54,26 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code target} - Specify the list of block tags targeted.
+ * Property {@code target} - Specify the set of block tags targeted.
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenTypesSet}.
  * Default value is
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
  * CLASS_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
- * INTERFACE_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
- * ENUM_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
- * METHOD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+ * COMPACT_CTOR_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
  * CTOR_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
- * VARIABLE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+ * ENUM_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+ * INTERFACE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
  * RECORD_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
- * COMPACT_CTOR_DEF</a>.
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+ * VARIABLE_DEF</a>.
  * </li>
  * <li>
  * Property {@code tagOrder} - Specify the order by tags.
@@ -170,10 +172,10 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
     };
 
     /**
-     * Specify the list of block tags targeted.
+     * Specify the set of block tags targeted.
      */
     @XdocsPropertyType(PropertyType.TOKEN_ARRAY)
-    private List<Integer> target = Arrays.asList(
+    private Set<Integer> target = Set.of(
         TokenTypes.CLASS_DEF,
         TokenTypes.INTERFACE_DEF,
         TokenTypes.ENUM_DEF,
@@ -190,16 +192,15 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
     private List<String> tagOrder = Arrays.asList(DEFAULT_ORDER);
 
     /**
-     * Setter to specify the list of block tags targeted.
+     * Setter to specify the set of block tags targeted.
      *
      * @param targets user's targets.
      */
     public void setTarget(String... targets) {
-        final List<Integer> customTarget = new ArrayList<>();
-        for (String temp : targets) {
-            customTarget.add(TokenUtil.getTokenId(temp.trim()));
-        }
-        target = customTarget;
+        target = Arrays.stream(targets)
+            .map(String::trim)
+            .map(TokenUtil::getTokenId)
+            .collect(Collectors.toUnmodifiableSet());
     }
 
     /**
