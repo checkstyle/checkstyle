@@ -19,18 +19,18 @@ public class InputLeftCurlyTestEolSwitch {
         int x = 1;
         switch (x) {
             case 0:
-            { // violation
+            { // violation ''{' at column 13 should be on the previous line'
                 break;
             }
             case (1+0):
-            { // violation
+            { // violation ''{' at column 13 should be on the previous line'
                 break;
             }
             case 2: {
                 break;
             }
             default:
-            { // violation
+            { // violation ''{' at column 13 should be on the previous line'
                 break;
             }
             case 3:
@@ -44,12 +44,12 @@ public class InputLeftCurlyTestEolSwitch {
                 break;
             case (5
                 +1):
-            { // violation
+            { // violation ''{' at column 13 should be on the previous line'
                 break;
             }
             case 7
                 :
-            { // violation
+            { // violation ''{' at column 13 should be on the previous line'
                 break;
             }
         }

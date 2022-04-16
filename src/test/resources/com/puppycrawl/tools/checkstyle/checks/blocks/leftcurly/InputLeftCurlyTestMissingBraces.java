@@ -14,16 +14,16 @@ tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, \
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 class InputLeftCurlyTestMissingBraces
-{ // violation
+{ // violation ''{' at column 1 should be on the previous line'
     /** @return helper func **/
     boolean condition()
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         return false;
     }
 
     /** Test do/while loops **/
     void testDoWhile()
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         // Valid
         do {
             testDoWhile();
@@ -36,7 +36,7 @@ class InputLeftCurlyTestMissingBraces
 
     /** Test while loops **/
     void testWhile()
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         // Valid
         while (condition()) {
             testWhile();
@@ -53,7 +53,7 @@ class InputLeftCurlyTestMissingBraces
 
     /** Test for loops **/
     void testFor()
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         // Valid
         for (int i = 1; i < 5; i++) {
             testFor();
@@ -71,7 +71,7 @@ class InputLeftCurlyTestMissingBraces
 
     /** Test if constructs **/
     public void testIf()
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         // Valid
         if (condition()) {
             testIf();
@@ -107,7 +107,7 @@ class InputLeftCurlyTestMissingBraces
     }
 
     void whitespaceAfterSemi()
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         //reject
         int i = 1;int j = 2;
 

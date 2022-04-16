@@ -13,9 +13,9 @@ tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, \
 
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
-
-public class InputLeftCurlyTestSwitchExpressionsNewLine { // violation
-    int howMany1(int k) { // violation
+// violation below ''{' at column 57 should be on a new line'
+public class InputLeftCurlyTestSwitchExpressionsNewLine {
+    int howMany1(int k) { // violation ''{' at column 25 should be on a new line'
         switch (k)
         {
             case 1:
@@ -40,7 +40,7 @@ public class InputLeftCurlyTestSwitchExpressionsNewLine { // violation
         return k;
     }
 
-    int howMany2(int k) { // violation
+    int howMany2(int k) { // violation ''{' at column 25 should be on a new line'
         return switch (k)
                 {
             case 1 ->
@@ -51,7 +51,7 @@ public class InputLeftCurlyTestSwitchExpressionsNewLine { // violation
                     {
                 yield 3;
             }
-            case 3 -> { // violation
+            case 3 -> { // violation ''{' at column 23 should be on a new line'
                 yield 4;
             }
             default ->
