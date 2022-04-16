@@ -787,7 +787,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static DetailAST findScopeOfVariable(DetailAST variableDef) {
         final DetailAST result;
         final DetailAST parentAst = variableDef.getParent();
-        if (TokenUtil.isOfType(parentAst, TokenTypes.SLIST, TokenTypes.OBJBLOCK)) {
+        if (TokenUtil.isOfTypeSecond(parentAst, TokenTypes.SLIST, TokenTypes.OBJBLOCK)) {
             result = parentAst;
         }
         else {
@@ -824,7 +824,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         final DetailAST parent = identAst.getParent();
         final DetailAST grandParent = parent.getParent();
         return TokenUtil.isOfType(parent, INCREMENT_AND_DECREMENT_TOKENS)
-                && TokenUtil.isOfType(grandParent, TokenTypes.EXPR)
+                && TokenUtil.isOfTypeOne(grandParent, TokenTypes.EXPR)
                 && !isIncrementOrDecrementVariableUsed(grandParent);
     }
 
@@ -837,7 +837,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @return true if variable nested in exprAst is used
      */
     private static boolean isIncrementOrDecrementVariableUsed(DetailAST exprAst) {
-        return TokenUtil.isOfType(exprAst.getParent(),
+        return TokenUtil.isOfTypeThird(exprAst.getParent(),
                 TokenTypes.ELIST, TokenTypes.INDEX_OP, TokenTypes.ASSIGN)
                 && exprAst.getParent().getParent().getType() != TokenTypes.FOR_ITERATOR;
     }

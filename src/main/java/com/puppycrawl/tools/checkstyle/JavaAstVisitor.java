@@ -1702,7 +1702,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final DetailAstImpl dot = create(ctx.DOT());
         final DetailAstImpl primaryTypeNoArray = visit(ctx.type);
         dot.addChild(primaryTypeNoArray);
-        if (TokenUtil.isOfType(primaryTypeNoArray, TokenTypes.DOT)) {
+        if (TokenUtil.isOfTypeOne(primaryTypeNoArray, TokenTypes.DOT)) {
             // We append '[]' to the qualified name 'TYPE' `ast
             ctx.arrayDeclarator()
                     .forEach(child -> primaryTypeNoArray.addChild(visit(child)));
