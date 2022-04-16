@@ -167,16 +167,16 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
             "88:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "94:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "102:19: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 19),
-            "111:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
-            "114:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "123:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
-            "125:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "134:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
-            "136:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "138:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
-            "153:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
-            "162:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
-            "169:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "112:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "115:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "124:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "126:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "135:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "137:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "139:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+            "154:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "163:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "170:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLeftCurlyTestDefault3.java"), expected);
@@ -229,9 +229,9 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     public void testNlWithAnnotations() throws Exception {
         final String[] expected = {
             "48:55: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 55),
-            "51:41: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 41),
-            "57:27: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 27),
-            "79:42: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 42),
+            "52:41: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 41),
+            "58:27: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 27),
+            "80:42: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 42),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLeftCurlyTestNlWithAnnotations.java"), expected);
@@ -262,14 +262,14 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
             "39:22: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 22),
             "41:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 17),
             "48:33: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 33),
-            "49:21: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 21),
-            "52:29: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 29),
-            "52:34: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 34),
-            "58:37: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 37),
-            "64:12: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 12),
-            "67:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "69:19: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 19),
-            "79:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "50:21: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 21),
+            "53:29: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 29),
+            "53:34: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 34),
+            "59:37: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 37),
+            "65:12: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 12),
+            "68:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "71:19: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 19),
+            "81:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLeftCurlyTestLineBreakAfter.java"), expected);

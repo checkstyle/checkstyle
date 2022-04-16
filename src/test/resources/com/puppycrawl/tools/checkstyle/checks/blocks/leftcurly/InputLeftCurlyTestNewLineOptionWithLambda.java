@@ -15,13 +15,13 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 public class InputLeftCurlyTestNewLineOptionWithLambda
 { // ok
-    static Runnable r1 = () -> { // violation
+    static Runnable r1 = () -> { // violation ''{' at column 32 should be on a new line'
         String.valueOf("Hello world one!");
     };
 
     static Runnable r2 = () -> String.valueOf("Hello world two!");
-
-    static Runnable r3 = () -> {String.valueOf("Hello world two!");}; // violation
+    // violation below ''{' at column 32 should be on a new line'
+    static Runnable r3 = () -> {String.valueOf("ok");};
 
     static Runnable r4 = () ->
     { // ok
