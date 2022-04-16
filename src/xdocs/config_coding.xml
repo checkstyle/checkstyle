@@ -3695,32 +3695,32 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
               </td>
               <td>
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">
-                TYPECAST</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
-                METHOD_CALL</a>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">
+                ARRAY_INIT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">
+                ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV">
+                DIV</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELIST">
+                ELIST</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">
                 EXPR</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">
-                ARRAY_INIT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
+                LITERAL_NEW</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
+                METHOD_CALL</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS">
+                MINUS</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS">
+                PLUS</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR">
+                STAR</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">
+                TYPECAST</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">
                 UNARY_MINUS</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">
                 UNARY_PLUS</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELIST">
-                ELIST</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR">
-                STAR</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">
-                ASSIGN</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS">
-                PLUS</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS">
-                MINUS</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV">
-                DIV</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
-                LITERAL_NEW</a>
               </td>
               <td>6.11</td>
             </tr>

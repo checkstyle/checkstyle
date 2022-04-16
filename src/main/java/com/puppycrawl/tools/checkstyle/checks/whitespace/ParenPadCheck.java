@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import java.util.Arrays;
+import java.util.BitSet;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -219,16 +219,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
-     * The array of Acceptable Tokens.
+     * Tokens that this check handles.
      */
-    private final int[] acceptableTokens;
+    private final BitSet acceptableTokens;
 
     /**
-     * Initializes and sorts acceptableTokens to make binary search over it possible.
+     * Initializes acceptableTokens.
      */
     public ParenPadCheck() {
-        acceptableTokens = makeAcceptableTokens();
-        Arrays.sort(acceptableTokens);
+        acceptableTokens = TokenUtil.asBitSet(makeAcceptableTokens());
     }
 
     @Override
@@ -369,7 +368,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
      * @return true if the ast is in AcceptableTokens.
      */
     private boolean isAcceptableToken(DetailAST ast) {
-        return Arrays.binarySearch(acceptableTokens, ast.getType()) >= 0;
+        return acceptableTokens.get(ast.getType());
     }
 
     /**

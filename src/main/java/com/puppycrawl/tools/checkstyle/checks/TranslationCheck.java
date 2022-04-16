@@ -302,7 +302,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     /**
      * Setter to specify language codes of required translations which must exist in project.
      *
-     * @param translationCodes a comma separated list of language codes.
+     * @param translationCodes language codes.
      */
     public void setRequiredTranslations(String... translationCodes) {
         requiredTranslations = Arrays.stream(translationCodes).collect(Collectors.toSet());

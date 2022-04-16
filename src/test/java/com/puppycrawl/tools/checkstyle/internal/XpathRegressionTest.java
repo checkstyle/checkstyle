@@ -58,7 +58,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     // Javadoc checks are not compatible with SuppressionXpathFilter
     // till https://github.com/checkstyle/checkstyle/issues/5770
-    // then all of them should be added to the list of incompatible checks
+    // then all of them should be added to #INCOMPATIBLE_CHECK_NAMES
     // and this field should be removed
     public static final Set<String> INCOMPATIBLE_JAVADOC_CHECK_NAMES = Set.of(
                     "AtclauseOrder",

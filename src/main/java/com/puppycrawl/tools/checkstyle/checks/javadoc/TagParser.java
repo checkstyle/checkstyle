@@ -45,7 +45,7 @@ import java.util.List;
  */
 class TagParser {
 
-    /** List of HtmlTags found on the input line of text. */
+    /** HtmlTags found on the input line of text. */
     private final List<HtmlTag> tags = new LinkedList<>();
 
     /**

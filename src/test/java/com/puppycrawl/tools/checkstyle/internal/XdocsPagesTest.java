@@ -67,7 +67,6 @@ import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader.IgnoredModulesOptions;
 import com.puppycrawl.tools.checkstyle.ModuleFactory;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
-import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
@@ -121,7 +120,7 @@ public class XdocsPagesTest {
             getProperties(AbstractJavadocCheck.class);
     private static final Set<String> FILESET_PROPERTIES = getProperties(AbstractFileSetCheck.class);
 
-    private static final List<String> UNDOCUMENTED_PROPERTIES = List.of(
+    private static final Set<String> UNDOCUMENTED_PROPERTIES = Set.of(
             "Checker.classLoader",
             "Checker.classloader",
             "Checker.moduleClassLoader",
@@ -134,7 +133,7 @@ public class XdocsPagesTest {
             "SuppressionCommentFilter.fileContents"
     );
 
-    private static final List<String> PROPERTIES_ALLOWED_GET_TYPES_FROM_METHOD = List.of(
+    private static final Set<String> PROPERTIES_ALLOWED_GET_TYPES_FROM_METHOD = Set.of(
             // static field (all upper case)
             "SuppressWarningsHolder.aliasList",
             // loads string into memory similar to file
@@ -155,7 +154,7 @@ public class XdocsPagesTest {
     // ignore the not yet properly covered modules while testing newly added ones
     // add proper sections to the coverage report and integration tests
     // and then remove this list eventually
-    private static final List<String> IGNORED_SUN_MODULES = List.of(
+    private static final Set<String> IGNORED_SUN_MODULES = Set.of(
             "ArrayTypeStyle",
             "AvoidNestedBlocks",
             "AvoidStarImport",
@@ -1059,7 +1058,7 @@ public class XdocsPagesTest {
                 result = value.toString();
             }
             else if (fieldClass == int[].class) {
-                result = getIntArrayPropertyValue(field, value);
+                result = getIntArrayPropertyValue(value);
             }
             else if (fieldClass == double[].class) {
                 result = Arrays.toString((double[]) value).replace("[", "").replace("]", "")
@@ -1190,84 +1189,30 @@ public class XdocsPagesTest {
     /**
      * Returns the name of the bean property's default value for the int array class.
      *
-     * @param field The bean property's field.
-     * @param fieldValue The bean property's value.
+     * @param value The bean property's value.
      * @return String form of property's default value.
      */
-    private static String getIntArrayPropertyValue(Field field, Object fieldValue) {
-        Object value = fieldValue;
-        String result;
+    private static String getIntArrayPropertyValue(Object value) {
+        final IntStream stream;
         if (value instanceof Collection) {
             final Collection<?> collection = (Collection<?>) value;
-            final int[] newArray = new int[collection.size()];
-            final Iterator<?> iterator = collection.iterator();
-            int index = 0;
-
-            while (iterator.hasNext()) {
-                newArray[index] = (Integer) iterator.next();
-                index++;
-            }
-
-            value = newArray;
+            stream = collection.stream()
+                    .mapToInt(number -> (int) number);
         }
-
-        if (isPropertyTokenType(field)) {
-            boolean first = true;
-
-            if (value instanceof BitSet) {
-                final BitSet list = (BitSet) value;
-                final StringBuilder sb = new StringBuilder(20);
-
-                for (int i = 0; i < list.size(); i++) {
-                    if (list.get(i)) {
-                        if (first) {
-                            first = false;
-                        }
-                        else {
-                            sb.append(", ");
-                        }
-
-                        sb.append(TokenUtil.getTokenName(i));
-                    }
-                }
-
-                result = sb.toString();
-            }
-            else {
-                final StringBuilder sb = new StringBuilder(20);
-
-                for (int i = 0; i < Array.getLength(value); i++) {
-                    if (first) {
-                        first = false;
-                    }
-                    else {
-                        sb.append(", ");
-                    }
-
-                    sb.append(TokenUtil.getTokenName((int) Array.get(value, i)));
-                }
-
-                result = sb.toString();
-            }
+        else if (value instanceof BitSet) {
+            stream = ((BitSet) value).stream();
         }
         else {
-            result = Arrays.toString((int[]) value).replace("[", "").replace("]", "");
+            stream = Arrays.stream((int[]) value);
         }
+        String result = stream
+                .mapToObj(TokenUtil::getTokenName)
+                .sorted()
+                .collect(Collectors.joining(", "));
         if (result.isEmpty()) {
             result = "{}";
         }
         return result;
-    }
-
-    /**
-     * Checks if the given property is takes token names as a type.
-     *
-     * @param field The backed field of the section/module being worked on.
-     * @return {@code true} if the property is takes token names as a type.
-     */
-    private static boolean isPropertyTokenType(Field field) {
-        final XdocsPropertyType propertyType = field.getDeclaredAnnotation(XdocsPropertyType.class);
-        return propertyType != null && propertyType.value() == PropertyType.TOKEN_ARRAY;
     }
 
     /**

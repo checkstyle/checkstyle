@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -101,8 +100,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </pre>
  * <ul>
  * <li>
- * Property {@code allowedAnnotations} - Specify the list of annotations
- * that allow missed documentation.
+ * Property {@code allowedAnnotations} - Specify annotations that allow missed documentation.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code Override}.
  * </li>
@@ -386,8 +384,8 @@ public class JavadocMethodCheck extends AbstractCheck {
      */
     private boolean allowMissingReturnTag;
 
-    /** Specify the list of annotations that allow missed documentation. */
-    private List<String> allowedAnnotations = Collections.singletonList("Override");
+    /** Specify annotations that allow missed documentation. */
+    private Set<String> allowedAnnotations = Set.of("Override");
 
     /**
      * Setter to control whether to validate {@code throws} tags.
@@ -399,12 +397,12 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to specify the list of annotations that allow missed documentation.
+     * Setter to specify annotations that allow missed documentation.
      *
      * @param userAnnotations user's value.
      */
     public void setAllowedAnnotations(String... userAnnotations) {
-        allowedAnnotations = Arrays.asList(userAnnotations);
+        allowedAnnotations = Set.of(userAnnotations);
     }
 
     /**

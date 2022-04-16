@@ -53,27 +53,27 @@
             </tr>
             <tr>
               <td>target</td>
-              <td>Specify the list of block tags targeted.</td>
+              <td>Specify block tags targeted.</td>
               <td>subset of tokens
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
               </td>
               <td>
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
                   CLASS_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                  INTERFACE_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                  ENUM_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                  COMPACT_CTOR_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
                   CTOR_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                  RECORD_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
                   VARIABLE_DEF</a>
-                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
-                  RECORD_DEF</a>
-                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
-                  COMPACT_CTOR_DEF</a>
               </td>
               <td>6.0</td>
             </tr>
@@ -694,7 +694,7 @@ public int checkReturnTag(final int aTagIndex,
             </tr>
             <tr>
               <td>allowedAnnotations</td>
-              <td>Specify the list of annotations that allow missed documentation.</td>
+              <td>Specify annotations that allow missed documentation.</td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
               <td><code>Override</code></td>
               <td>6.0</td>
@@ -2098,7 +2098,7 @@ public class Test {
             <tr>
               <td>allowedAnnotations</td>
               <td>
-                Specify the list of annotations that allow missed documentation.
+                Specify annotations that allow missed documentation.
                 Only short names are allowed, e.g. <code>Generated</code>.
               </td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
@@ -2532,7 +2532,7 @@ public boolean isSomething()
             </tr>
             <tr>
               <td>allowedAnnotations</td>
-              <td>Configure the list of annotations that allow missed documentation.</td>
+              <td>Configure annotations that allow missed documentation.</td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
               <td><code>Override</code></td>
               <td>8.21</td>
@@ -2884,7 +2884,7 @@ package com.checkstyle.api; // violation
             <tr>
               <td>skipAnnotations</td>
               <td>
-                specify the list of annotations that allow missed documentation.
+                specify annotations that allow missed documentation.
                 Only short names are allowed, e.g. <code>Generated</code>.
               </td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
