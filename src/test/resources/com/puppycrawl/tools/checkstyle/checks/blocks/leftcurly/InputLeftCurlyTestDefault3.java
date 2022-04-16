@@ -14,29 +14,29 @@ tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, \
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 class InputLeftCurlyTestDefault3
-{ // violation
+{ // violation ''{' at column 1 should be on the previous line'
     /** @see test method **/
     int foo() throws InterruptedException
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         int x = 1;
         int a = 2;
         while (true)
-        { // violation
+        { // violation ''{' at column 9 should be on the previous line'
             try
-            { // violation
+            { // violation ''{' at column 13 should be on the previous line'
                 if (x > 0)
-                { // violation
+                { // violation ''{' at column 17 should be on the previous line'
                     break;
                 }
                 else if (x < 0) { // ok
                     ;
                 }
                 else
-                { // violation
+                { // violation ''{' at column 17 should be on the previous line'
                     break;
                 }
                 switch (a)
-                { // violation
+                { // violation ''{' at column 17 should be on the previous line'
                 case 0:
                     break;
                 default:
@@ -44,19 +44,19 @@ class InputLeftCurlyTestDefault3
                 }
             }
             catch (Exception e)
-            { // violation
+            { // violation ''{' at column 13 should be on the previous line'
                 break;
             }
             finally
-            { // violation
+            { // violation ''{' at column 13 should be on the previous line'
                 break;
             }
         }
 
         synchronized (this)
-        { // violation
+        { // violation ''{' at column 9 should be on the previous line'
             do
-            { // violation
+            { // violation ''{' at column 13 should be on the previous line'
                 x = 2;
             } while (x == 2);
         }
@@ -65,7 +65,7 @@ class InputLeftCurlyTestDefault3
                  ); // Bizarre, but legal
 
         for (int k = 0; k < 1; k++)
-        { // violation
+        { // violation ''{' at column 9 should be on the previous line'
             String innerBlockVariable = "";
         }
 
@@ -78,28 +78,28 @@ class InputLeftCurlyTestDefault3
 
     // Test static initialiser
     static
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         int x = 1; // should not require any javadoc
     }
 
 
 
     public enum GreetingsEnum
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         HELLO,
         GOODBYE
     };
 
     void method2()
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         boolean flag = true;
         if (flag) { // ok
             System.identityHashCode("heh");
             flag = !flag; } String.CASE_INSENSITIVE_ORDER.
               equals("Xe-xe");
-        // it is ok to have rcurly on the same line as previous
-        // statement if lcurly on the same line.
-        if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); } // violation
+
+        // violation below ''{' at column 19 should have line break after'
+        if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); }
     }
 }
 
@@ -108,10 +108,10 @@ class InputLeftCurlyTestDefault3
  * a statement or the body of a constructor.
  */
 class FooCtor
-{ // violation
+{ // violation ''{' at column 1 should be on the previous line'
         int i;
         public FooCtor()
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
                 i = 1;
     }}
 
@@ -120,9 +120,9 @@ class FooCtor
 * a statement or the body of a method.
 */
 class FooMethod
-{ // violation
+{ // violation ''{' at column 1 should be on the previous line'
         public void fooMethod()
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
                 int i = 1;
     }}
 
@@ -131,11 +131,11 @@ class FooMethod
 * a statement or the body of a named class.
 */
 class FooInner
-{ // violation
+{ // violation ''{' at column 1 should be on the previous line'
         class InnerFoo
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
                 public void fooInnerMethod ()
-        { // violation
+        { // violation ''{' at column 9 should be on the previous line'
 
                 }
     }}
@@ -150,7 +150,7 @@ class Absent_CustomFieldSerializer3 { // ok
 }
 
 class Absent_CustomFieldSerializer4
-{ // violation
+{ // violation ''{' at column 1 should be on the previous line'
     public Absent_CustomFieldSerializer4() {}
 }
 
@@ -159,14 +159,14 @@ class EmptyClass2 {}
 interface EmptyInterface3 {}
 
 class ClassWithStaticInitializers
-{ // violation
+{ // violation ''{' at column 1 should be on the previous line'
     static { // ok
     }
     static
     {}
 
     static class Inner
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         static { // ok
             int i = 1;
         }

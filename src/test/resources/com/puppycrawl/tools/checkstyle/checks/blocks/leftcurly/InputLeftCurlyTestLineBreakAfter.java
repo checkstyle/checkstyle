@@ -19,34 +19,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 class InputLeftCurlyTestLineBreakAfter
-{ // violation
+{ // violation ''{' at column 1 should be on the previous line'
     /** @see test method **/
     int foo() throws InterruptedException
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         int x = 1;
         int a = 2;
         while (true)
-        { // violation
+        { // violation ''{' at column 9 should be on the previous line'
             try
-            { // violation
+            { // violation ''{' at column 13 should be on the previous line'
                 if (x > 0)
-                { // violation
+                { // violation ''{' at column 17 should be on the previous line'
                     break;
                 }
                 else if (x < 0) {
                     ;
                 }
-                else { break; } // violation
+                else { break; } // violation ''{' at column 22 should have line break after'
                 switch (a)
-                { // violation
+                { // violation ''{' at column 17 should be on the previous line'
                 case 0:
                     break;
                 default:
                     break;
                 }
             }
-            catch (Exception e) { break; } // violation
-            finally { break; } // violation
+            catch (Exception e) { ; } // violation ''{' at column 33 should have line break after'
+            finally { break; } // violation ''{' at column 21 should have line break after'
         }
 
         synchronized (this) { do { x = 2; } while (x == 2); } // 2 violations
@@ -54,19 +54,19 @@ class InputLeftCurlyTestLineBreakAfter
         synchronized (this) {
             do {} while (x == 2);
         }
-
-        for (int k = 0; k < 1; k++) { String innerBlockVariable = ""; } // violation
+        // violation below ''{' at column 37 should have line break after'
+        for (int k = 0; k < 1; k++) { String innerBlockVariable = ""; }
 
         for (int k = 0; k < 1; k++) {}
                 return a;
     }
 
-    static { int x = 1; } // violation
+    static { int x = 1; } // violation ''{' at column 12 should have line break after'
 
     void method2()
-    { // violation
+    { // violation ''{' at column 5 should be on the previous line'
         boolean flag = false;
-        if (flag) { String.valueOf("foo"); } // violation
+        if (flag) { int k = 0; } // violation ''{' at column 19 should have line break after'
     }
 }
 
@@ -76,7 +76,7 @@ class Absent_CustomFieldSerializer1 {
 }
 
 class Absent_CustomFieldSerializer2
-{ // violation
+{ // violation ''{' at column 1 should be on the previous line'
     public Absent_CustomFieldSerializer2() {}
 }
 

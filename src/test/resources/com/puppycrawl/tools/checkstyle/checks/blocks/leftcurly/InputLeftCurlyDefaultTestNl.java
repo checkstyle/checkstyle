@@ -33,40 +33,40 @@ public class InputLeftCurlyDefaultTestNl
 
     private
     class
-    MyClass1 { // violation
+    MyClass1 { // violation ''{' at column 14 should be on a new line'
     }
 
     class
-    MyClass2 { // violation
+    MyClass2 { // violation ''{' at column 14 should be on a new line'
     }
 
     private
     interface
-    MyInterface1 { // violation
+    MyInterface1 { // violation ''{' at column 18 should be on a new line'
     }
 
     interface
-    MyInterface2 { // violation
+    MyInterface2 { // violation ''{' at column 18 should be on a new line'
     }
 
     protected
     enum
-    MyEnum { // violation
+    MyEnum { // violation ''{' at column 12 should be on a new line'
     }
 
     private
     @interface
-    MyAnnotation { // violation
+    MyAnnotation { // violation ''{' at column 18 should be on a new line'
     }
 
     @Deprecated
     public
-    class MyClass3 { // violation
+    class MyClass3 { // violation ''{' at column 20 should be on a new line'
     }
 
-    public class MyClass4 { // violation
-        void method() { // violation
-            while(true) {/*foo*/} // violation
+    public class MyClass4 { // violation ''{' at column 27 should be on a new line'
+        void method() { // violation ''{' at column 23 should be on a new line'
+            while(true) {/*foo*/} // violation ''{' at column 25 should be on a new line'
         }
     }
 }
