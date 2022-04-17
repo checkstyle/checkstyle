@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -385,7 +384,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * This property does not affect method calls nor method references nor record components.
      */
     @XdocsPropertyType(PropertyType.TOKEN_ARRAY)
-    private List<Integer> memberModifiers = Collections.emptyList();
+    private Set<Integer> memberModifiers = Set.of();
 
     /** Specify RegExp for illegal abstract class names. */
     private Pattern illegalAbstractClassNameFormat = Pattern.compile("^(.*[.])?Abstract.*$");
@@ -857,7 +856,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
             .map(String::trim)
             .filter(token -> !token.isEmpty())
             .map(TokenUtil::getTokenId)
-            .collect(Collectors.toList());
+            .collect(Collectors.toUnmodifiableSet());
     }
 
 }

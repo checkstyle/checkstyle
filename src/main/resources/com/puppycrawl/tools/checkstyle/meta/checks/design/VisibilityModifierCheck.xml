@@ -28,7 +28,7 @@
  Check also has options making it less strict:
  &lt;/p&gt;
  &lt;p&gt;
- &lt;b&gt;ignoreAnnotationCanonicalNames&lt;/b&gt;- the list of annotations which ignore
+ &lt;b&gt;ignoreAnnotationCanonicalNames&lt;/b&gt;- the set of annotations which ignore
  variables in consideration. If user will provide short annotation name that
  type will match to any named the same type without consideration of package.
  &lt;/p&gt;
