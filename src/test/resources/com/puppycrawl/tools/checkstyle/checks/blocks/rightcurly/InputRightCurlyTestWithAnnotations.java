@@ -198,6 +198,7 @@ class InputRightCurlyTestWithAnnotations
             add("YYLEX");
             add("AR5E");
         }});} // 2 violations
+
     void foo23(java.util.HashSet<String> set) {
     }
 
