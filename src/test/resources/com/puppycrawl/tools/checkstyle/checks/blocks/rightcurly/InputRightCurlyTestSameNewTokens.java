@@ -13,7 +13,7 @@ public class InputRightCurlyTestSameNewTokens {
     enum TestEnum{} // ok
 
     enum TestEnum1{
-        SOME_VALUE;} // violation
+        SOME_VALUE;} // violation ''}' at column 20 should have line break before'
 
     enum TestEnum2 { SOME_VALUE; } // ok
 
