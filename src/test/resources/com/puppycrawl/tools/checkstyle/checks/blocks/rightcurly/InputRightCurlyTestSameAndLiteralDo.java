@@ -67,12 +67,12 @@ public class InputRightCurlyTestSameAndLiteralDo {
 
     public void foo5() {
         do {
-        } // violation
+        } // violation ''}' at column 17 should be on the same line with while'
         while (true);
     }
 
     public void foo6() {
-        do {} // violation
+        do {} // violation ''}' at column 17 should be on the same line with while'
         while (true);
     }
 
@@ -88,7 +88,7 @@ public class InputRightCurlyTestSameAndLiteralDo {
 
         {
 
-        } // violation
+        } // violation ''}' at column 9 should be on the same line with else if'
 
         while
 
