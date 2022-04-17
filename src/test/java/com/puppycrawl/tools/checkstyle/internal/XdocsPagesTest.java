@@ -1212,43 +1212,17 @@ public class XdocsPagesTest {
         }
 
         if (isPropertyTokenType(field)) {
-            boolean first = true;
-
+            final IntStream stream;
             if (value instanceof BitSet) {
-                final BitSet list = (BitSet) value;
-                final StringBuilder sb = new StringBuilder(20);
-
-                for (int i = 0; i < list.size(); i++) {
-                    if (list.get(i)) {
-                        if (first) {
-                            first = false;
-                        }
-                        else {
-                            sb.append(", ");
-                        }
-
-                        sb.append(TokenUtil.getTokenName(i));
-                    }
-                }
-
-                result = sb.toString();
+                stream = ((BitSet) value).stream();
             }
             else {
-                final StringBuilder sb = new StringBuilder(20);
-
-                for (int i = 0; i < Array.getLength(value); i++) {
-                    if (first) {
-                        first = false;
-                    }
-                    else {
-                        sb.append(", ");
-                    }
-
-                    sb.append(TokenUtil.getTokenName((int) Array.get(value, i)));
-                }
-
-                result = sb.toString();
+                stream = Arrays.stream((int[]) value);
             }
+            result = stream
+                    .mapToObj(TokenUtil::getTokenName)
+                    .sorted()
+                    .collect(Collectors.joining(", "));
         }
         else {
             result = Arrays.toString((int[]) value).replace("[", "").replace("]", "");
