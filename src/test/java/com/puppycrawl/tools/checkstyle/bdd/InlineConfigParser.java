@@ -97,7 +97,6 @@ public final class InlineConfigParser {
      * Until <a>https://github.com/checkstyle/checkstyle/issues/11214</a>
      */
     private static final Set<String> SUPPRESSED_CHECKS = new HashSet<>(Arrays.asList(
-            "com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck",
             "com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck",
