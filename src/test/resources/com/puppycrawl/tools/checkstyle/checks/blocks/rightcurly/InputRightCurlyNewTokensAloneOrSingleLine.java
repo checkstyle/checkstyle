@@ -13,7 +13,7 @@ public class InputRightCurlyNewTokensAloneOrSingleLine {
     enum TestEnum{} // ok
 
     enum TestEnum1{
-        SOME_VALUE;} // violation
+        SOME_VALUE;} // violation ''}' at column 20 should be alone on a line'
 
     enum TestEnum2 { SOME_VALUE; } // ok
 
