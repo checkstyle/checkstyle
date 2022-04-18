@@ -20,11 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import java.util.ArrayDeque;
+import java.util.BitSet;
 import java.util.Deque;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -273,24 +271,23 @@ public class MethodLengthCheck extends AbstractCheck {
     private static int countUsedLines(DetailAST ast) {
         final Deque<DetailAST> nodes = new ArrayDeque<>();
         nodes.add(ast);
-        final Set<Integer> usedLines = new HashSet<>();
+        final BitSet usedLines = new BitSet();
         while (!nodes.isEmpty()) {
             final DetailAST node = nodes.removeFirst();
             final int lineNo = node.getLineNo();
             // text block requires special treatment,
             // since it is the only non-comment token that can span more than one line
             if (node.getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
-                IntStream.rangeClosed(lineNo, node.getLastChild().getLineNo())
-                    .forEach(usedLines::add);
+                usedLines.set(lineNo, node.getLastChild().getLineNo() + 1);
             }
             else {
-                usedLines.add(lineNo);
+                usedLines.set(lineNo);
                 Stream.iterate(
                     node.getLastChild(), Objects::nonNull, DetailAST::getPreviousSibling
                 ).forEach(nodes::addFirst);
             }
         }
-        return usedLines.size();
+        return usedLines.cardinality();
     }
 
     /**

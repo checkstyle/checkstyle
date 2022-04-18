@@ -20,8 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.Optional;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -261,7 +262,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private static final String RETURN_TEXT = "@return";
 
     /** Set of allowed Tokens tags in summary java doc. */
-    private static final Set<Integer> ALLOWED_TYPES = Set.of(
+    private static final BitSet ALLOWED_TYPES = TokenUtil.asBitSet(
                     JavadocTokenTypes.WS,
                     JavadocTokenTypes.DESCRIPTION,
                     JavadocTokenTypes.TEXT);
@@ -668,22 +669,19 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @return violation string.
      */
     private static String getSummarySentence(DetailNode ast) {
-        boolean flag = true;
         final StringBuilder result = new StringBuilder(256);
         for (DetailNode child : ast.getChildren()) {
-            if (ALLOWED_TYPES.contains(child.getType())) {
+            if (child.getType() == JavadocTokenTypes.JAVADOC_TAG) {
+                break;
+            }
+            if (child.getType() != JavadocTokenTypes.EOF
+                    && ALLOWED_TYPES.get(child.getType())) {
                 result.append(child.getText());
             }
             else if (child.getType() == JavadocTokenTypes.HTML_ELEMENT
                     && CommonUtil.isBlank(result.toString().trim())) {
                 result.append(getStringInsideTag(result.toString(),
                         child.getChildren()[0].getChildren()[0]));
-            }
-            else if (child.getType() == JavadocTokenTypes.JAVADOC_TAG) {
-                flag = false;
-            }
-            if (!flag) {
-                break;
             }
         }
         return result.toString().trim();

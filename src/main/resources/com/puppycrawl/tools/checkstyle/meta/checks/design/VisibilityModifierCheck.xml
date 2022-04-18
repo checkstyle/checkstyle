@@ -99,7 +99,7 @@
             <property default-value="com.google.common.annotations.VisibleForTesting, org.junit.ClassRule, org.junit.Rule"
                        name="ignoreAnnotationCanonicalNames"
                        type="java.lang.String[]">
-               <description>Specify the list of annotations canonical
+               <description>Specify the set of annotations canonical
  names which ignore variables in consideration.</description>
             </property>
          </properties>
