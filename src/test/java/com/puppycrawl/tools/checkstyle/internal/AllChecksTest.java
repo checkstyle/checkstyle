@@ -25,6 +25,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -35,7 +36,6 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
@@ -467,13 +467,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     private static void validateDefaultTokens(Configuration checkConfig, AbstractCheck check,
                                               Set<String> configTokens) {
 
-        final Set<Integer> defaultTokensSet = IntStream.of(check.getDefaultTokens())
-            .boxed()
-            .collect(Collectors.toSet());
-
-        final Set<Integer> requiredTokensSet = IntStream.of(check.getRequiredTokens())
-            .boxed()
-            .collect(Collectors.toSet());
+        final BitSet defaultTokensSet = TokenUtil.asBitSet(check.getDefaultTokens());
+        final BitSet requiredTokensSet = TokenUtil.asBitSet(check.getRequiredTokens());
 
         if (defaultTokensSet.equals(requiredTokensSet)) {
             configTokens.addAll(
