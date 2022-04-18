@@ -19,8 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.BitSet;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -84,8 +83,8 @@ public class InnerTypeLastCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "arrangement.members.before.inner";
 
-    /** List of class member tokens. */
-    private static final List<Integer> CLASS_MEMBER_TOKENS = Arrays.asList(
+    /** Set of class member tokens. */
+    private static final BitSet CLASS_MEMBER_TOKENS = TokenUtil.asBitSet(
             TokenTypes.VARIABLE_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
@@ -131,7 +130,7 @@ public class InnerTypeLastCheck extends AbstractCheck {
             DetailAST nextSibling = ast.getNextSibling();
             while (nextSibling != null) {
                 if (!ScopeUtil.isInCodeBlock(ast)
-                    && CLASS_MEMBER_TOKENS.contains(nextSibling.getType())) {
+                        && CLASS_MEMBER_TOKENS.get(nextSibling.getType())) {
                     log(nextSibling, MSG_KEY);
                 }
                 nextSibling = nextSibling.getNextSibling();
