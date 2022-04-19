@@ -106,7 +106,7 @@ public final class FileContents implements CommentListener {
      * @return the name of the file
      */
     public String getFileName() {
-        return text.getFile().toString();
+        return text.getFile().getName();
     }
 
     @Override
@@ -334,6 +334,6 @@ public final class FileContents implements CommentListener {
      */
     @Deprecated(since = "10.2")
     public boolean inPackageInfo() {
-        return getFileName().endsWith("package-info.java");
+        return "package-info.java".equals(getFileName());
     }
 }
