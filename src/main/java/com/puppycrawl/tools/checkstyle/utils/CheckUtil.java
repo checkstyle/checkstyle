@@ -689,8 +689,9 @@ public final class CheckUtil {
      * @return true if the package file.
      */
     public static boolean isPackageInfo(String filePath) {
-        int length = "package-info.java".length();
-        return filePath.endsWith("package-info.java") && ("package-info.java".equals(filePath)
+        String target = "package-info.java";
+        int length = target.length();
+        return filePath.endsWith(target) && (target.equals(filePath)
                 || filePath.substring(0, filePath.length() - length).endsWith(File.separator)
                 || filePath.charAt(filePath.length() - 1 - length) == '.');
     }
