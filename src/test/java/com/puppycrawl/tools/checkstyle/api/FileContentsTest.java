@@ -264,6 +264,20 @@ public class FileContentsTest {
         assertWithMessage("Should return true when in package info")
                 .that(fileContents.inPackageInfo())
                 .isTrue();
+
+        final FileContents contents = new FileContents(new FileText(
+                new File("package-info.java"),
+                Collections.singletonList("  //   ")));
+        assertWithMessage("Should return true when in package info")
+                .that(contents.inPackageInfo())
+                .isTrue();
+
+        final FileContents contents2 = new FileContents(new FileText(
+                new File("D:" + File.separator +  "package-info.java"),
+                Collections.singletonList("  //   ")));
+        assertWithMessage("Should return true when in package info")
+                .that(contents2.inPackageInfo())
+                .isTrue();
     }
 
     @Test
@@ -274,6 +288,14 @@ public class FileContentsTest {
 
         assertWithMessage("Should return false when not in package info")
                 .that(fileContents.inPackageInfo())
+                .isFalse();
+
+        final FileContents contents = new FileContents(new FileText(
+                new File("some-package-info.java"),
+                Collections.singletonList("  //   ")));
+
+        assertWithMessage("Should return false when not in package info")
+                .that(contents.inPackageInfo())
                 .isFalse();
     }
 
