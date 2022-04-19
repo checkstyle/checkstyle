@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -334,6 +335,11 @@ public final class FileContents implements CommentListener {
      */
     @Deprecated(since = "10.2")
     public boolean inPackageInfo() {
-        return getFileName().endsWith("package-info.java");
+        final String filePath = getFileName();
+        final String target = "package-info.java";
+        final int length = target.length();
+        return filePath.endsWith(target) && (target.equals(filePath)
+                || filePath.substring(0, filePath.length() - length).endsWith(File.separator)
+                || filePath.charAt(filePath.length() - 1 - length) == '.');
     }
 }
