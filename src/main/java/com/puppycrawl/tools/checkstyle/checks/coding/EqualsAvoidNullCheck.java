@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
@@ -558,7 +559,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
         private final Set<FieldFrame> children = new HashSet<>();
 
         /** Set of fields. */
-        private final Set<DetailAST> fields = new HashSet<>();
+        private final Set<DetailAST> fields = new LinkedHashSet<>();
 
         /** Set of equals calls. */
         private final Set<DetailAST> methodCalls = new HashSet<>();
