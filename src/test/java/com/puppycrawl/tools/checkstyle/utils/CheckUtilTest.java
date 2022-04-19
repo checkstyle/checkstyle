@@ -443,6 +443,33 @@ public class CheckUtilTest extends AbstractPathTestSupport {
             .isEqualTo(expected);
     }
 
+    @Test
+    public void testIsPackageInfo() {
+        assertWithMessage("Should return true when is package info")
+                .that(CheckUtil.isPackageInfo("package-info.java"))
+                .isTrue();
+
+        assertWithMessage("Should return true when is package info: " + "D:" + File.separator + "package-info.java")
+                .that(CheckUtil.isPackageInfo("D:" + File.separator + "package-info.java"))
+                .isTrue();
+    }
+
+    @Test
+    public void testIsNotPackageInfo() {
+        assertWithMessage("Should return true when is package info")
+                .that(CheckUtil.isPackageInfo("filename.java"))
+                .isFalse();
+
+        assertWithMessage("Should return true when is package info")
+                .that(CheckUtil.isPackageInfo("some-package-info.java"))
+                .isFalse();
+
+        assertWithMessage("Should return true when is package info")
+                .that(CheckUtil.isPackageInfo(""))
+                .isFalse();
+
+    }
+
     private DetailAST getNodeFromFile(int type) throws Exception {
         return getNode(JavaParser.parseFile(new File(getPath("InputCheckUtilTest.java")),
             JavaParser.Options.WITH_COMMENTS), type);
