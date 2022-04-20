@@ -20,7 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
@@ -557,8 +559,8 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
         /** Set of frame's children. */
         private final Set<FieldFrame> children = new HashSet<>();
 
-        /** Set of fields. */
-        private final Set<DetailAST> fields = new HashSet<>();
+        /** Map of field name to field DetailAst. */
+        private final Map<String, DetailAST> fieldNameToAst = new HashMap<>();
 
         /** Set of equals calls. */
         private final Set<DetailAST> methodCalls = new HashSet<>();
@@ -630,7 +632,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
          */
         public void addField(DetailAST field) {
             if (field.findFirstToken(TokenTypes.IDENT) != null) {
-                fields.add(field);
+                fieldNameToAst.put(getFieldName(field), field);
             }
         }
 
@@ -668,14 +670,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
          * @return true if this FieldFrame contains instance field field.
          */
         public DetailAST findField(String name) {
-            DetailAST resultField = null;
-            for (DetailAST field: fields) {
-                if (getFieldName(field).equals(name)) {
-                    resultField = field;
-                    break;
-                }
-            }
-            return resultField;
+            return fieldNameToAst.get(name);
         }
 
         /**
