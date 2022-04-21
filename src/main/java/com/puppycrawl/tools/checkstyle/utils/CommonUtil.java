@@ -30,6 +30,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.BitSet;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -46,6 +47,8 @@ public final class CommonUtil {
     /** Default tab width for column reporting. */
     public static final int DEFAULT_TAB_WIDTH = 8;
 
+    /** For cases where no tokens should be accepted. */
+    public static final BitSet EMPTY_BIT_SET = new BitSet();
     /** Copied from org.apache.commons.lang3.ArrayUtils. */
     public static final String[] EMPTY_STRING_ARRAY = new String[0];
     /** Copied from org.apache.commons.lang3.ArrayUtils. */

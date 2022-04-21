@@ -19,9 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -54,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code null}.
  * </li>
  * <li>
- * Property {@code skipAnnotations} - specify the list of annotations that allow missed
+ * Property {@code skipAnnotations} - specify annotations that allow missed
  * documentation. Only short names are allowed, e.g. {@code Generated}.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code Generated}.
@@ -175,10 +173,10 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
     private Scope excludeScope;
 
     /**
-     * Specify the list of annotations that allow missed documentation.
+     * Specify annotations that allow missed documentation.
      * Only short names are allowed, e.g. {@code Generated}.
      */
-    private List<String> skipAnnotations = Collections.singletonList("Generated");
+    private Set<String> skipAnnotations = Set.of("Generated");
 
     /**
      * Setter to specify the visibility scope where Javadoc comments are checked.
@@ -199,13 +197,13 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to specify the list of annotations that allow missed documentation.
+     * Setter to specify annotations that allow missed documentation.
      * Only short names are allowed, e.g. {@code Generated}.
      *
      * @param userAnnotations user's value.
      */
     public void setSkipAnnotations(String... userAnnotations) {
-        skipAnnotations = Arrays.asList(userAnnotations);
+        skipAnnotations = Set.of(userAnnotations);
     }
 
     @Override
