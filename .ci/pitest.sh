@@ -4,12 +4,22 @@ set -e
 
 ###############################
 function checkPitestReport() {
-  ignored=("$@")
+  local -n ignored=$1
   fail=0
   SEARCH_REGEXP="(span  class='survived'|class='uncovered'><pre>)"
   grep -irE "$SEARCH_REGEXP" target/pit-reports \
      | sed -E 's/.*\/([A-Za-z]+.java.html)/\1/' | LC_ALL=C sort > target/actual.txt
   printf "%s\n" "${ignored[@]}" | sed '/^$/d' | LC_ALL=C sort > target/ignored.txt
+  if [ -n "$2" ] ; then
+      local -n unstableMutations=$2
+      printf "%s\n" "${unstableMutations[@]}" | sed '/^$/d' | LC_ALL=C sort > target/unstable.txt
+      if grep -Fxf target/unstable.txt target/actual.txt > target/unstableMatching.txt ; then
+          echo "Following unstable mutations were encountered:"
+          cat target/unstableMatching.txt
+          grep -xvFf target/unstableMatching.txt target/actual.txt > target/tempActual.txt
+          cat target/tempActual.txt > target/actual.txt
+      fi;
+  fi;
   if [ "$(diff --unified -w target/ignored.txt target/actual.txt)" != "" ] ; then
       fail=1
       echo "Actual:" ;
@@ -45,7 +55,7 @@ pitest-annotation|pitest-design \
 |pitest-java-ast-visitor)
   mvn --no-transfer-progress -e -P$1 clean test-compile org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
-  checkPitestReport "${ignoredItems[@]}"
+  checkPitestReport ignoredItems
   ;;
 
 # till #9351
@@ -54,7 +64,7 @@ pitest-main)
   declare -a ignoredItems=(
   "Main.java.html:<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>"
   );
-  checkPitestReport "${ignoredItems[@]}"
+  checkPitestReport ignoredItems
   ;;
 
 pitest-header)
@@ -63,7 +73,7 @@ pitest-header)
   "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>                    isMatch = headerLineNo == headerSize</span></pre></td></tr>"
   "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>                            || isMatch(line, headerLineNo);</span></pre></td></tr>"
   );
-  checkPitestReport "${ignoredItems[@]}"
+  checkPitestReport ignoredItems
   ;;
 
 pitest-imports)
@@ -73,7 +83,7 @@ pitest-imports)
   "PkgImportControl.java.html:<td class='covered'><pre><span  class='survived'>        if (regex || parent.regex) {</span></pre></td></tr>"
   "PkgImportControl.java.html:<td class='covered'><pre><span  class='survived'>        if (regex) {</span></pre></td></tr>"
   );
-  checkPitestReport "${ignoredItems[@]}"
+  checkPitestReport ignoredItems
   ;;
 
 pitest-common)
@@ -89,7 +99,7 @@ pitest-common)
   "PackageObjectFactory.java.html:<td class='covered'><pre><span  class='survived'>        if (!name.contains(PACKAGE_SEPARATOR)) {</span></pre></td></tr>"
   "PackageObjectFactory.java.html:<td class='covered'><pre><span  class='survived'>                if (thirdPartyNameToFullModuleNames == null) {</span></pre></td></tr>"
   );
-  checkPitestReport "${ignoredItems[@]}"
+  checkPitestReport ignoredItems
   ;;
 
 
@@ -102,7 +112,7 @@ pitest-ant)
   "CheckstyleAntTask.java.html:<td class='covered'><pre><span  class='survived'>            log(&#34;Total execution took &#34; + (endTime - startTime) + TIME_SUFFIX,</span></pre></td></tr>"
   "CheckstyleAntTask.java.html:<td class='covered'><pre><span  class='survived'>        log(&#34;To locate the files took &#34; + (endTime - startTime) + TIME_SUFFIX,</span></pre></td></tr>"
   );
-  checkPitestReport "${ignoredItems[@]}"
+  checkPitestReport ignoredItems
   ;;
 
 pitest-indentation)
@@ -132,7 +142,7 @@ pitest-indentation)
   "SynchronizedHandler.java.html:<td class='covered'><pre><span  class='survived'>            checkWrappingIndentation(getMainAst(),</span></pre></td></tr>"
   "TryHandler.java.html:<td class='covered'><pre><span  class='survived'>            checkTryResParen(getTryResLparen(), &#34;lparen&#34;);</span></pre></td></tr>"
   );
-  checkPitestReport "${ignoredItems[@]}"
+  checkPitestReport ignoredItems
   ;;
 
 pitest-javadoc)
@@ -142,7 +152,7 @@ pitest-javadoc)
   "AbstractJavadocCheck.java.html:<td class='covered'><pre><span  class='survived'>        finishJavadocTree(root);</span></pre></td></tr>"
   "TagParser.java.html:<td class='covered'><pre><span  class='survived'>                while (column &#60; currentLine.length()</span></pre></td></tr>"
   );
-  checkPitestReport "${ignoredItems[@]}"
+  checkPitestReport ignoredItems
   ;;
 
 pitest-coding)
@@ -197,7 +207,11 @@ pitest-coding)
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (!isVarInOperatorDeclaration &#38;&#38; operator.getType() == TokenTypes.LITERAL_IF) {</span></pre></td></tr>"
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>        while (result</span></pre></td></tr>"
   );
-  checkPitestReport "${ignoredItems[@]}"
+  # Until https://github.com/checkstyle/checkstyle/issues/11427
+  declare -a unstableItems=(
+  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (returnedVariable) {</span></pre></td></tr>"
+  );
+  checkPitestReport ignoredItems unstableItems
   ;;
 
 # pitesttyle-gui)
