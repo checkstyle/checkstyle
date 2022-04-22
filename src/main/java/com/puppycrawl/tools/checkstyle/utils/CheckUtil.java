@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
