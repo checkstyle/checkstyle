@@ -40,7 +40,7 @@ public class XpathRegressionOneTopLevelClassTest extends AbstractXpathTestSuppor
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionOneTopLevelClass.java"));
+                new File(getPath("SuppressionXpathRegressionOneTopLevelClassFirst.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(OneTopLevelClassCheck.class);
@@ -58,5 +58,28 @@ public class XpathRegressionOneTopLevelClassTest extends AbstractXpathTestSuppor
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
+    }
+
+    @Test
+    public void testTwo() throws Exception {
+        final File fileToProcess =
+            new File(getPath("SuppressionXpathRegressionOneTopLevelClassSecond.java"));
+
+        final DefaultConfiguration moduleConfig =
+            createModuleConfig(OneTopLevelClassCheck.class);
+
+        final String[] expectedViolation = {
+            "7:1: " + getCheckMessage(OneTopLevelClassCheck.class,
+                                      OneTopLevelClassCheck.MSG_KEY, "ViolationClass"),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/ENUM_DEF[./IDENT[@text='ViolationClass']]",
+            "/COMPILATION_UNIT/ENUM_DEF[./IDENT[@text='ViolationClass']]/MODIFIERS",
+            "/COMPILATION_UNIT/ENUM_DEF[./IDENT[@text='ViolationClass']]/ENUM"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                         expectedXpathQueries);
     }
 }
