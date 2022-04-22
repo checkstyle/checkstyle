@@ -290,6 +290,14 @@ public class FileContentsTest {
         assertWithMessage("Should return false when not in package info")
                 .that(contents.inPackageInfo())
                 .isFalse();
+
+        final FileContents contents2 = new FileContents(new FileText(
+                new File(""),
+                Collections.singletonList("  //   ")));
+
+        assertWithMessage("Should return false when not in package info")
+                .that(contents2.inPackageInfo())
+                .isFalse();
     }
 
     @Test

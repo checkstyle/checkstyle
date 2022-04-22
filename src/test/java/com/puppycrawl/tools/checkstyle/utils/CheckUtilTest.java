@@ -463,6 +463,11 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Should return true when is package info")
                 .that(CheckUtil.isPackageInfo("some-package-info.java"))
                 .isFalse();
+
+        assertWithMessage("Should return true when is package info")
+                .that(CheckUtil.isPackageInfo(""))
+                .isFalse();
+
     }
 
     private DetailAST getNodeFromFile(int type) throws Exception {
