@@ -446,10 +446,6 @@ public class CheckUtilTest extends AbstractPathTestSupport {
     @Test
     public void testIsPackageInfo() {
         assertWithMessage("Should return true when is package info")
-                .that(CheckUtil.isPackageInfo("filename.package-info.java"))
-                .isTrue();
-
-        assertWithMessage("Should return true when is package info")
                 .that(CheckUtil.isPackageInfo("package-info.java"))
                 .isTrue();
 

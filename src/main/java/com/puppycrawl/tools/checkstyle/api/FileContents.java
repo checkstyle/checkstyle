@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -107,7 +106,7 @@ public final class FileContents implements CommentListener {
      * @return the name of the file
      */
     public String getFileName() {
-        return text.getFile().toString();
+        return text.getFile().getName();
     }
 
     @Override
@@ -335,11 +334,6 @@ public final class FileContents implements CommentListener {
      */
     @Deprecated(since = "10.2")
     public boolean inPackageInfo() {
-        final String filePath = getFileName();
-        final String target = "package-info.java";
-        final int length = target.length();
-        return filePath.endsWith(target) && (target.equals(filePath)
-                || filePath.substring(0, filePath.length() - length).endsWith(File.separator)
-                || filePath.charAt(filePath.length() - 1 - length) == '.');
+        return "package-info.java".equals(getFileName());
     }
 }

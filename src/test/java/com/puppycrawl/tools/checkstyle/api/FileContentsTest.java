@@ -258,7 +258,7 @@ public class FileContentsTest {
     @Test
     public void testInPackageInfo() {
         final FileContents fileContents = new FileContents(new FileText(
-                new File("filename.package-info.java"),
+                new File("package-info.java"),
                 Collections.singletonList("  //   ")));
 
         assertWithMessage("Should return true when in package info")
@@ -266,17 +266,10 @@ public class FileContentsTest {
                 .isTrue();
 
         final FileContents contents = new FileContents(new FileText(
-                new File("package-info.java"),
-                Collections.singletonList("  //   ")));
-        assertWithMessage("Should return true when in package info")
-                .that(contents.inPackageInfo())
-                .isTrue();
-
-        final FileContents contents2 = new FileContents(new FileText(
                 new File("D:" + File.separator + "package-info.java"),
                 Collections.singletonList("  //   ")));
         assertWithMessage("Should return true when in package info")
-                .that(contents2.inPackageInfo())
+                .that(contents.inPackageInfo())
                 .isTrue();
     }
 
