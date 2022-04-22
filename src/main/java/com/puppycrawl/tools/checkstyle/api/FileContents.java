@@ -334,6 +334,6 @@ public final class FileContents implements CommentListener {
      */
     @Deprecated(since = "10.2")
     public boolean inPackageInfo() {
-        return getFileName().endsWith("package-info.java");
+        return text.getFile().getName().equals("package-info.java");
     }
 }
