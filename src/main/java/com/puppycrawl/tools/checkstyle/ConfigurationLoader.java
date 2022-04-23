@@ -168,7 +168,6 @@ public final class ConfigurationLoader {
      * from constructor and inner class isn't static.
      *
      * @return map between local resources and dtd ids.
-     * @noinspection MethodOnlyUsedFromInnerClass
      */
     private static Map<String, String> createIdToResourceNameMap() {
         final Map<String, String> map = new HashMap<>();
@@ -347,7 +346,7 @@ public final class ConfigurationLoader {
      * @throws CheckstyleException if the string contains an opening
      *                           {@code ${} without a closing
      *                           {@code }}
-     * @noinspection MethodWithMultipleReturnPoints, MethodOnlyUsedFromInnerClass
+     * @noinspection MethodWithMultipleReturnPoints
      */
     private static String replaceProperties(
             String value, PropertyResolver props, String defaultValue)

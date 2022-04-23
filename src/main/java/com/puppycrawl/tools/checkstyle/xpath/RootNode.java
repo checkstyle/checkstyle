@@ -152,7 +152,6 @@ public class RootNode extends AbstractNode {
      *
      * @param axisNumber element from {@code AxisInfo}
      * @return {@code AxisIterator} object
-     * @noinspection resource, IOResourceOpenedButNotSafelyClosed
      */
     @Override
     public AxisIterator iterateAxis(int axisNumber) {

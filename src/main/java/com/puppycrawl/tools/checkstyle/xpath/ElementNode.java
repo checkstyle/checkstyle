@@ -234,7 +234,6 @@ public class ElementNode extends AbstractNode {
      *
      * @param axisNumber element from {@code AxisInfo}
      * @return {@code AxisIterator} object
-     * @noinspection resource, IOResourceOpenedButNotSafelyClosed
      */
     @Override
     public AxisIterator iterateAxis(int axisNumber) {
@@ -343,7 +342,6 @@ public class ElementNode extends AbstractNode {
      * class has non-empty {@code close()} method.
      *
      * @return iterator
-     * @noinspection resource, IOResourceOpenedButNotSafelyClosed
      */
     private AxisIterator getPrecedingSiblingsIterator() {
         final AxisIterator result;
@@ -365,7 +363,6 @@ public class ElementNode extends AbstractNode {
      * class has non-empty {@code close()} method.
      *
      * @return iterator
-     * @noinspection resource, IOResourceOpenedButNotSafelyClosed
      */
     private AxisIterator getFollowingSiblingsIterator() {
         final AxisIterator result;
