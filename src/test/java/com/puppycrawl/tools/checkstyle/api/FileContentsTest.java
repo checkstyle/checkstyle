@@ -258,7 +258,7 @@ public class FileContentsTest {
     @Test
     public void testInPackageInfo() {
         final FileContents fileContents = new FileContents(new FileText(
-                new File("filename.package-info.java"),
+                new File("package-info.java"),
                 Collections.singletonList("  //   ")));
 
         assertWithMessage("Should return true when in package info")
@@ -269,7 +269,7 @@ public class FileContentsTest {
     @Test
     public void testNotInPackageInfo() {
         final FileContents fileContents = new FileContents(new FileText(
-                new File("filename.java"),
+                new File("some-package-info.java"),
                 Collections.singletonList("  //   ")));
 
         assertWithMessage("Should return false when not in package info")
