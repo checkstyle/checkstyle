@@ -649,7 +649,8 @@
                    enabled_by_default="false"/>
   <inspection_tool class="AnonymousClassVariableHidesContainingMethodVariable" enabled="true"
                    level="WARNING" enabled_by_default="true"/>
-  <inspection_tool class="AnonymousFunctionJS" enabled="true" level="ERROR"
+  <!-- Anonymous Javascript functions are good for self executing and callbacks. -->
+  <inspection_tool class="AnonymousFunctionJS" enabled="true" level="WARNING"
                    enabled_by_default="true"/>
   <inspection_tool class="AnonymousHasLambdaAlternative" enabled="true" level="WARNING"
                    enabled_by_default="true"/>
