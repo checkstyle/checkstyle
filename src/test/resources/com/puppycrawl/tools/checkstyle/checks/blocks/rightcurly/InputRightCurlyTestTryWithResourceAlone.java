@@ -24,13 +24,14 @@ class InputRightCurlyTestTryWithResourceAlone {
                 BufferedReader br2 = new BufferedReader(br1))
         {
             ;
-        } catch (IOException e) // violation
+        } catch (IOException e) // violation ''}' at column 9 should be alone on a line'
         {
             ;
         }
         try (BufferedReader br1 = new BufferedReader(null);
-                BufferedReader br2 = new BufferedReader(br1)) { ; } // violation
-        catch (IOException e) { ; } // violation
+                // violation below ''}' at column 67 should be alone on a line'
+                BufferedReader br2 = new BufferedReader(br1)) { ; }
+        catch (IOException e) { ; } // violation ''}' at column 35 should be alone on a line'
         try (BufferedReader br1 = new BufferedReader(null);
 
                 BufferedReader br2 = new BufferedReader(br1)) {} catch (IOException e) { ; }
@@ -39,10 +40,11 @@ class InputRightCurlyTestTryWithResourceAlone {
             ;
         }
         try (BufferedReader br1 = new BufferedReader(null);
-                BufferedReader br2 = new BufferedReader(br1)) { ; } // violation
+                // violation below ''}' at column 67 should be alone on a line'
+                BufferedReader br2 = new BufferedReader(br1)) { ; }
         try (BufferedReader br1 = new BufferedReader(null)) {
-            ; } // violation
+            ; } // violation ''}' at column 15 should be alone on a line'
         try (BufferedReader br1 = new BufferedReader(null)) {
-            } int i; // violation
+            } int i; // violation ''}' at column 13 should be alone on a line'
     }
 }

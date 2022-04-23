@@ -25,5 +25,5 @@ class InputRightCurlyTestSingleLineClass
         }
 
     }
-
-class UniqEmptyClassTestSingleLineClass {private int a;} // violation
+// violation below ''}' at column 56 should be alone on a line'
+class UniqEmptyClassTestSingleLineClass {private int a;}
