@@ -4592,24 +4592,19 @@
                    enabled_by_default="true"/>
   <inspection_tool class="TestMethodWithoutAssertion" enabled="true" level="ERROR"
                    enabled_by_default="true">
-    <!-- after https://github.com/powermock/powermock/issues/830
-             all junit4 methods should be removed -->
     <option name="assertionMethods"
-            value="org.junit.Assert,assert.*|fail.*, ,
-    ,org.junit.jupiter.api.Assertions,assert.*|fail.*, ,
-    ,junit.framework.Assert,assert.*|fail.*, ,
+            value="org.junit.jupiter.api.Assertions,assert.*|fail.*, ,
     ,org.mockito.Mockito,verify.*, ,
     ,org.mockito.InOrder,verify, ,
-    ,org.junit.rules.ExpectedException,expect.*, ,
     ,org.hamcrest.MatcherAssert,assertThat, ,
     ,com.google.common.truth.Truth,assert.*, ,
     ,com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport,verify.*, ,
     ,com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport,verify.*, ,
+    ,com.puppycrawl.tools.checkstyle.AbstractXmlTestSupport,verifyXml.*, ,
     ,com.google.checkstyle.test.base.AbstractModuleTestSupport,verify.*, ,
     ,com.puppycrawl.tools.checkstyle.internal.TestUtil,assert.*, ,
     ,nl.jqno.equalsverifier.EqualsVerifier,verify.*, ,
-    ,org.checkstyle.base.AbstractItModuleTestSupport,verify.*, ,
-    ,org.powermock.api.mockito.PowerMockito,verify.*"/>
+    ,org.checkstyle.base.AbstractItModuleTestSupport,verify.*"/>
     <option name="assertKeywordIsAssertion" value="false"/>
   </inspection_tool>
   <inspection_tool class="TestNGDataProvider" enabled="true" level="ERROR"
