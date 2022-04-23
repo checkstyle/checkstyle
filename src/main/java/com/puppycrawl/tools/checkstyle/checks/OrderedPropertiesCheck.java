@@ -236,8 +236,6 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
         /**
          * Puts the value into list by its key.
          *
-         * @noinspection UseOfPropertiesAsHashtable
-         *
          * @param key the hashtable key
          * @param value the value
          * @return the previous value of the specified key in this hashtable,
