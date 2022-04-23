@@ -54,7 +54,7 @@ import com.google.common.reflect.Reflection;
 import com.google.common.reflect.TypeToken;
 import com.tngtech.archunit.thirdparty.com.google.common.annotations.GwtIncompatible;
 import junit.framework.AssertionFailedError;
-import net.bytebuddy.description.modifier.Visibility;
+
 
 /**
  * Tester that runs automated sanity tests for any given class. A typical use case is to test static
@@ -942,6 +942,12 @@ public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken { //
     }
 
     class ItemReporter {
+    }
+
+    interface Visibility {
+
+        Visibility PACKAGE_PRIVATE = null;
+
     }
 
 }
