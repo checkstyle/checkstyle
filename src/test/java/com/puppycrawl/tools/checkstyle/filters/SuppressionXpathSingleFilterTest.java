@@ -327,6 +327,34 @@ public class SuppressionXpathSingleFilterTest
         }
     }
 
+    @Test
+    public void testAllNullConfiguration() throws Exception {
+        final String[] expected = {
+            "18:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
+        };
+
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyFilterWithInlineConfigParser(
+                getPath("InputSuppressionXpathSingleFilterAllNullConfiguration.java"),
+                expected, removeSuppressed(expected, suppressed));
+    }
+
+    @Test
+    public void testAllFilledConfiguration() throws Exception {
+        final String[] expected = {
+                "20:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
+        };
+
+        final String[] suppressed = {
+                "20:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
+        };
+
+        verifyFilterWithInlineConfigParser(
+                getPath("InputSuppressionXpathSingleFilterAllFilledConfiguration.java"),
+                expected, removeSuppressed(expected,suppressed));
+    }
+
     private static SuppressionXpathSingleFilter createSuppressionXpathSingleFilter(
             String files, String checks, String message, String moduleId, String query) {
         final SuppressionXpathSingleFilter filter = new SuppressionXpathSingleFilter();
