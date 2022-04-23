@@ -177,7 +177,22 @@ public class XpathFilterElement implements TreeWalkerFilter {
     public boolean accept(TreeWalkerAuditEvent event) {
         return !isFileNameAndModuleAndModuleNameMatching(event)
                 || !isMessageNameMatching(event)
-                || !isXpathQueryMatching(event);
+                || !isXpathQueryMatching(event)
+                || isAllNull();
+    }
+
+    /**
+     * Check if all properties are set to null.
+     *
+     * @return true if all properties are set to null
+     */
+
+    private boolean isAllNull() {
+        return fileRegexp == null
+                && moduleId == null
+                && checkRegexp == null
+                && messageRegexp == null
+                && xpathExpression == null;
     }
 
     /**
