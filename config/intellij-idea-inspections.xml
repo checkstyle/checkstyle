@@ -3086,7 +3086,8 @@
                    enabled_by_default="true"/>
   <inspection_tool class="MethodOnlyUsedFromInnerClass" enabled="true" level="ERROR"
                    enabled_by_default="true">
-    <option name="ignoreMethodsAccessedFromAnonymousClass" value="false"/>
+    <!-- Better to keep anonymous classes as small as possible. -->
+    <option name="ignoreMethodsAccessedFromAnonymousClass" value="true"/>
     <option name="ignoreStaticMethodsFromNonStaticInnerClass" value="false"/>
     <option name="onlyReportStaticMethods" value="false"/>
   </inspection_tool>
