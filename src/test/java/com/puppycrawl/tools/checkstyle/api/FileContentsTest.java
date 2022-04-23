@@ -22,17 +22,24 @@ package com.puppycrawl.tools.checkstyle.api;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-public class FileContentsTest {
+public class FileContentsTest extends AbstractPathTestSupport {
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/api/filecontents";
+    }
 
     @Test
     public void testTextFileName() {
@@ -256,9 +263,9 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testInPackageInfo() {
+    public void testInPackageInfo() throws IOException {
         final FileContents fileContents = new FileContents(new FileText(
-                new File("filename.package-info.java"),
+                new File(getPath("package-info.java")),
                 Collections.singletonList("  //   ")));
 
         assertWithMessage("Should return true when in package info")
@@ -267,9 +274,9 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testNotInPackageInfo() {
+    public void testNotInPackageInfo() throws IOException {
         final FileContents fileContents = new FileContents(new FileText(
-                new File("filename.java"),
+                new File(getPath("some-package-info.java")),
                 Collections.singletonList("  //   ")));
 
         assertWithMessage("Should return false when not in package info")
