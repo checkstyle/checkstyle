@@ -397,7 +397,7 @@
               </td>
               <td>
                 Provides analysis per pull request as GitHub
-                <a href="https://docs.github.com/en/rest/reference/checks#check-runs">
+                <a href="https://docs.github.com/en/rest/checks">
                   Check Run</a>
                 annotations. Supports CheckStyle config files.
               </td>
