@@ -95,18 +95,11 @@ public final class JavadocUtil {
      */
     public static JavadocTags getJavadocTags(TextBlock textBlock,
             JavadocTagType tagType) {
-        final boolean getBlockTags = tagType == JavadocTagType.ALL
-                                         || tagType == JavadocTagType.BLOCK;
-        final boolean getInlineTags = tagType == JavadocTagType.ALL
-                                          || tagType == JavadocTagType.INLINE;
-
         final List<TagInfo> tags = new ArrayList<>();
-
-        if (getBlockTags) {
+        if (tagType == JavadocTagType.ALL || tagType == JavadocTagType.BLOCK) {
             tags.addAll(BlockTagUtil.extractBlockTags(textBlock.getText()));
         }
-
-        if (getInlineTags) {
+        if (tagType == JavadocTagType.ALL || tagType == JavadocTagType.INLINE) {
             tags.addAll(InlineTagUtil.extractInlineTags(textBlock.getText()));
         }
 
