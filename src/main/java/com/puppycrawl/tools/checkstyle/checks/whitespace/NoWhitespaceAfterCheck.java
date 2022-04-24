@@ -91,6 +91,26 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class Test {
+ *
+ *   public void dotOperator(String s) {
+ *     Integer.parseInt(s); // Ok
+ *     Integer. parseInt(s); // violation, '.' is followed by whitespace.
+ *   }
+ *
+ *   public void arrayDec() {
+ *     int[] arr = arr; // Ok
+ *     int [] arr = arr; // violation, int is followed by whitespace
+ *   }
+ *
+ *   public void bitwiseNot(int a) {
+ *     a = ~ a; // violation '~' is followed by whitespace
+ *     a = ~a; // Ok
+ *   }
+ * }
+ * </pre>
  * <p>To configure the check to forbid linebreaks after a DOT token:
  * </p>
  * <pre>
@@ -98,6 +118,26 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
  *   &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class Test {
+ *
+ *   public void dotOperator(String s) {
+ *     Integer.parseInt(s); // Ok
+ *     Integer. parseInt(s); // violation, '.' is followed by whitespace
+ *   }
+ *
+ *   public void arrayDec() {
+ *     int[] arr = arr; // Ok
+ *     int [] arr = arr; // Ok
+ *   }
+ *
+ *   public void bitwiseNot(int a) {
+ *     a = ~ a; // Ok
+ *     a = ~a; // Ok
+ *   }
+ * }
  * </pre>
  * <p>
  * If the annotation is between the type and the array, the check will skip validation for spaces:
