@@ -295,14 +295,11 @@ public class InnerAssignmentCheck
      * @return whether the context of the assignment AST indicates the idiom
      */
     private static boolean isInLoopIdiom(DetailAST ast) {
-        boolean result = false;
-        if (isComparison(ast.getParent())) {
-            result = isInContext(ast.getParent(),
+        return isComparison(ast.getParent())
+            && isInContext(ast.getParent(),
                 ALLOWED_ASSIGNMENT_IN_COMPARISON_CONTEXT,
                 LOOP_IDIOM_IGNORED_PARENTS
             );
-        }
-        return result;
     }
 
     /**
