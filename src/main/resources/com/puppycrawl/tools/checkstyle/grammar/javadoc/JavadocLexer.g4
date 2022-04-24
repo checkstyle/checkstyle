@@ -403,7 +403,7 @@ fragment
 FragmentReference: ([a-zA-Z0-9_-] | '.')+
       | ([a-zA-Z0-9_-] | '.')* '#' [a-zA-Z0-9_-]+ ( '(' (([a-zA-Z0-9_-] | '.')+ | ',' | ' ')* ')' )?
       ;
-//case insensitive alphabet
+//case-insensitive alphabet
 fragment A:('a'|'A');
 fragment B:('b'|'B');
 fragment C:('c'|'C');

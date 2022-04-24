@@ -30,14 +30,14 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
 
     public void foooooooooooooooooooooooooooooooooooooooooo() { }
 
-     /////////////////////////////// warn (a single line border to separate a group of methods)
+     /////////////////////////////// warn (a single-line border to separate a group of methods)
 
     public void foo7() {
         int a = 0;
 // warn
     }
 
-    /////////////////////////////// (a single line border to separate a group of methods)
+    /////////////////////////////// (a single-line border to separate a group of methods)
 
     public void foo8() {}
 

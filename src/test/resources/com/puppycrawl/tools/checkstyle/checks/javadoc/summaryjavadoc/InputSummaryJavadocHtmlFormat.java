@@ -52,7 +52,7 @@ public class InputSummaryJavadocHtmlFormat {
      */
     private void foo14() {} // ok
 
-    /** <b>{@summary Normal single line Javadoc.}</b> */
+    /** <b>{@summary Normal single-line Javadoc.}</b> */
     private void foo16() {} // ok
 }
 

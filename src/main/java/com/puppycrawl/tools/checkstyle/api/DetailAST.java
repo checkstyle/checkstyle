@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 /**
- * A interface of Checkstyle's AST nodes for traversing trees generated from the
+ * An interface of Checkstyle's AST nodes for traversing trees generated from the
  * Java code. The main purpose of this interface is to abstract away ANTLR
  * specific classes from API package so other libraries won't require it.
  *
@@ -29,7 +29,7 @@ package com.puppycrawl.tools.checkstyle.api;
 public interface DetailAST {
 
     /**
-     * Returns the number of child nodes one level below this node. That is is
+     * Returns the number of child nodes one level below this node. That is,
      * does not recurse down the tree.
      *
      * @return the number of child nodes

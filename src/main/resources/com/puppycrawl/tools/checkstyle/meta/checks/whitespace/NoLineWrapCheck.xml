@@ -5,7 +5,7 @@
               name="NoLineWrap"
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;Checks that chosen statements are not line-wrapped.
- By default this Check restricts wrapping import and package statements,
+ By default, this Check restricts wrapping import and package statements,
  but it's possible to check any statement.
  &lt;/p&gt;</description>
          <properties>

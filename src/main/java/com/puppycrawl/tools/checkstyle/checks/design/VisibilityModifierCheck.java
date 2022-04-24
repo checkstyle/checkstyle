@@ -60,7 +60,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <p>
  * <b>ignoreAnnotationCanonicalNames</b>- the list of annotations which ignore
- * variables in consideration. If user will provide short annotation name that
+ * variables in consideration. If user want to provide short annotation name that
  * type will match to any named the same type without consideration of package.
  * </p>
  * <p>
@@ -76,7 +76,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <ul>
  * <li>It's declared as final</li>
  * <li>Has either a primitive type or instance of class user defined to be immutable
- * (such as String, ImmutableCollection from Guava and etc)</li>
+ * (such as String, ImmutableCollection from Guava, etc.)</li>
  * </ul>
  * <p>
  * Classes known to be immutable are listed in <b>immutableClassCanonicalNames</b>
@@ -660,7 +660,7 @@ public class VisibilityModifierCheck
 
     /**
      * Checks imported type. If type's canonical name was not specified in
-     * <b>immutableClassCanonicalNames</b>, but it's short name collides with one from
+     * <b>immutableClassCanonicalNames</b>, but its short name collides with one from
      * <b>immutableClassShortNames</b> - removes it from the last one.
      *
      * @param importAst {@link TokenTypes#IMPORT Import}
@@ -819,7 +819,7 @@ public class VisibilityModifierCheck
     /**
      * Checks if current field is immutable:
      * has final modifier and either a primitive type or instance of class
-     * known to be immutable (such as String, ImmutableCollection from Guava and etc).
+     * known to be immutable (such as String, ImmutableCollection from Guava, etc.).
      * Classes known to be immutable are listed in
      * {@link VisibilityModifierCheck#immutableClassCanonicalNames}
      *
@@ -904,12 +904,12 @@ public class VisibilityModifierCheck
     }
 
     /**
-     * Checks whether all of generic type arguments are immutable.
+     * Checks whether all generic type arguments are immutable.
      * If at least one argument is mutable, we assume that the whole list of type arguments
      * is mutable.
      *
      * @param typeArgsClassNames type arguments class names.
-     * @return true if all of generic type arguments are immutable.
+     * @return true if all generic type arguments are immutable.
      */
     private boolean areImmutableTypeArguments(List<String> typeArgsClassNames) {
         return typeArgsClassNames.stream().noneMatch(

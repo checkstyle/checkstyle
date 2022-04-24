@@ -49,9 +49,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * deprecation should be present.
  * </p>
  * <p>
- * Package deprecation is a exception to the rule of always using the
+ * Package deprecation is an exception to the rule of always using the
  * javadoc tag and annotation to deprecate.  It is not clear if the javadoc
- * tool will support it or not as newer versions keep flip flopping on if
+ * tool will support it or not as newer versions keep flip-flopping on if
  * it is supported or will cause an error. See
  * <a href="https://bugs.openjdk.java.net/browse/JDK-8160601">JDK-8160601</a>.
  * The deprecated javadoc tag is currently the only way to say why the package

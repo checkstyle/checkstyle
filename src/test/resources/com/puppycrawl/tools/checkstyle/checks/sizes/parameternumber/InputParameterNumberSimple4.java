@@ -202,7 +202,7 @@ final class InputParameterNumberSimple4
     }
 }
 
-/** Test class for variable naming in for each clauses. */
+/** Test class for variable naming in for each clause. */
 class InputSimple24
 {
     /** Some more Javadoc. */

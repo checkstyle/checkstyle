@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 /**
- * User interface classes for CheckStyle. Currently this is mainly a gui to aid
+ * User interface classes for CheckStyle. Currently, this is mainly a gui to aid
  * Check developers.
  *
  * <p>This is definitely work in progress. Here are some ideas where

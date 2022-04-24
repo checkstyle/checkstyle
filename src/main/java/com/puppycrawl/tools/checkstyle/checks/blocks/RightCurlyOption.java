@@ -72,7 +72,7 @@ public enum RightCurlyOption {
      * <p>Examples:</p>
      *
      * <pre>
-     * public long getId() {return id;<b>}</b> // this is OK, it is single line
+     * public long getId() {return id;<b>}</b> // this is OK, it is single-line
      *
      * // try-catch-finally blocks
      * try {

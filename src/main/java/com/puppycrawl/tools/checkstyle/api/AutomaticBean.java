@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * A Java Bean that implements the component lifecycle interfaces by
  * calling the bean's setters for all configuration attributes.
  */
-// -@cs[AbstractClassName] We can not brake compatibility with previous versions.
+// -@cs[AbstractClassName] We can not break compatibility with previous versions.
 public abstract class AutomaticBean
     implements Configurable, Contextualizable {
 
@@ -233,7 +233,7 @@ public abstract class AutomaticBean
         catch (final InvocationTargetException | IllegalAccessException
                 | NoSuchMethodException ex) {
             // There is no way to catch IllegalAccessException | NoSuchMethodException
-            // as we do PropertyUtils.getPropertyDescriptor before beanUtils.copyProperty
+            // as we do PropertyUtils.getPropertyDescriptor before beanUtils.copyProperty,
             // so we have to join these exceptions with InvocationTargetException
             // to satisfy UTs coverage
             final String message = String.format(Locale.ROOT,
@@ -294,7 +294,7 @@ public abstract class AutomaticBean
         }
     }
 
-    /** A converter that converts strings to patterns. */
+    /** A converter that converts a string to a pattern. */
     private static class PatternConverter implements Converter {
 
         @SuppressWarnings("unchecked")
@@ -353,7 +353,7 @@ public abstract class AutomaticBean
     /**
      * A converter that does not care whether the array elements contain String
      * characters like '*' or '_'. The normal ArrayConverter class has problems
-     * with this characters.
+     * with these characters.
      */
     private static class RelaxedStringArrayConverter implements Converter {
 

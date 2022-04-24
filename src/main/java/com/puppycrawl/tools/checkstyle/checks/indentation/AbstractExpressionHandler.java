@@ -177,10 +177,10 @@ public abstract class AbstractExpressionHandler {
     }
 
     /**
-     * Searches in given sub-tree (including given node) for the token
-     * which represents first symbol for this sub-tree in file.
+     * Searches in given subtree (including given node) for the token
+     * which represents first symbol for this subtree in file.
      *
-     * @param ast a root of sub-tree in which the search should be performed.
+     * @param ast a root of subtree in which the search should be performed.
      * @return a token which occurs first in the file.
      * @noinspection WeakerAccess
      */
@@ -307,7 +307,7 @@ public abstract class AbstractExpressionHandler {
     }
 
     /**
-     * Check the indentation for a single line.
+     * Check the indentation for a single-line.
      *
      * @param ast           the abstract syntax tree to check
      * @param indentLevel   the indentation level
@@ -319,7 +319,7 @@ public abstract class AbstractExpressionHandler {
         final int start = getLineStart(line);
         final int columnNumber = expandedTabsColumnNo(ast);
         // if must match is set, it is a violation if the line start is not
-        // at the correct indention level; otherwise, it is an only an
+        // at the correct indention level; otherwise, it is an only a
         // violation if this statement starts the line and it is less than
         // the correct indentation level
         if (mustMatch && !indentLevel.isAcceptable(start)

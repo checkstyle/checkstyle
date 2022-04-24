@@ -263,8 +263,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         boolean skip = true;
 
         // if the first child is a wrapper element instead of the first table row containing
-        // the table head
-        //   set element to populate properties for to the current elements first child
+        // the table headset
+        //   element to populate properties for to the current elements first child
         Node child = XmlUtil.getFirstChildElement(subSection);
         if (child.hasAttributes() && child.getAttributes().getNamedItem("class") != null
                 && "wrapper".equals(child.getAttributes().getNamedItem("class")

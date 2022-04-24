@@ -202,7 +202,7 @@
     </module>
     <module name="MoveVariableInsideIfCheck" />
     <module name="RequireFailForTryCatchInJunit" />
-    <!-- we are not ready to activate this Check, too much violations
+    <!-- we are not ready to activate this Check, too many violations
        and it requires bunch of refactoring -->
     <module name="com.github.sevntu.checkstyle.checks.coding.Jsr305AnnotationsCheck">
       <property name="severity" value="ignore"/>

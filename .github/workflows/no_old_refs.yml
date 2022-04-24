@@ -1,5 +1,5 @@
 #####################################################################################
-# Github Action to check references to closed issues in code.
+# GitHub Action to check references to closed issues in code.
 #
 # Workflow starts when:
 # 1) push on master branch

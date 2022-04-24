@@ -25,7 +25,7 @@
       </p>
 
       <p>
-        Our issue tracker system is at Github -
+        Our issue tracker system is at GitHub -
         <a href="https://github.com/checkstyle/checkstyle/issues">
         https://github.com/checkstyle/checkstyle/issues</a>.
       </p>
@@ -161,7 +161,7 @@ expected level should be 12. [Indentation]
         Please provide a clear and detailed description of the problem and describe what
         you would want to happen instead. Relevant chunks of code and config that you currently
         have will definitely facilitate understanding. Any other context or
-        screenshots which elaborate further on the relevance and rational behind
+        screenshots which elaborate further on the relevance and rationale behind
         the new feature may also be added.
       </p>
 

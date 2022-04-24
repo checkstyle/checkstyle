@@ -199,7 +199,7 @@ final class InputPackageNameSimple1
     }
 }
 
-/** Test class for variable naming in for each clauses. */
+/** Test class for variable naming in for each clause. */
 class InputPackageNameSimple3
 {
     /** Some more Javadoc. */

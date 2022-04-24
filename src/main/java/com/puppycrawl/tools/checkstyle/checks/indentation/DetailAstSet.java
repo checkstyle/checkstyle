@@ -87,7 +87,7 @@ public class DetailAstSet {
     }
 
     /**
-     * Check if the this set of ast is empty.
+     * Check if this set of ast is empty.
      *
      * @return true if empty, false otherwise
      */

@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
  * <p>
- * Checks that a specified pattern matches a single line in any file type.
+ * Checks that a specified pattern matches a single-line in any file type.
  * </p>
  * <p>
  * Rationale: This check can be used to prototype checks and to find common bad

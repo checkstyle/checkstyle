@@ -118,7 +118,7 @@ public final class JavadocUtil {
 
             // Add the starting line of the comment to the line number to get the actual line number
             // in the source.
-            // Lines are one-indexed, so need a off-by-one correction.
+            // Lines are one-indexed, so need an off-by-one correction.
             final int line = textBlock.getStartLineNo() + tag.getPosition().getLine() - 1;
 
             if (JavadocTagInfo.isValidName(tag.getName())) {
@@ -231,7 +231,7 @@ public final class JavadocUtil {
      *
      * @param node DetailNode
      * @param type token type
-     * @return true if node contains any node of type type among children on any deep level.
+     * @return true if node contains any node of type among children on any deep level.
      */
     public static boolean containsInBranch(DetailNode node, int type) {
         boolean result = true;

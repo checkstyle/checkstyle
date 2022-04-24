@@ -237,7 +237,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             }
         }
 
-        // Ensure that all lists are up to date
+        // Ensure that all lists are up-to-date
         final Set<String> allChecks = new HashSet<>(simpleCheckNames);
         allChecks.removeAll(INCOMPATIBLE_JAVADOC_CHECK_NAMES);
         allChecks.removeAll(INCOMPATIBLE_CHECK_NAMES);
@@ -274,7 +274,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                         .that(Files.exists(javaPath))
                         .isTrue();
 
-                // input files should named correctly
+                // input files should be named correctly
                 validateInputDirectory(dir);
             }
         }

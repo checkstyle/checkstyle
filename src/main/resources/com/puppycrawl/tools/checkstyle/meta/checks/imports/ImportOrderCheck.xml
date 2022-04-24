@@ -24,7 +24,7 @@
  lexicographic order
  &lt;/li&gt;
  &lt;li&gt;
- sorts according to case: ensures that the comparison between imports is case sensitive, in
+ sorts according to case: ensures that the comparison between imports is case-sensitive, in
  &lt;a href="https://en.wikipedia.org/wiki/ASCII#Order"&gt;ASCII sort order&lt;/a&gt;
  &lt;/li&gt;
  &lt;li&gt;
@@ -41,7 +41,7 @@
  imports.</description>
             </property>
             <property default-value="" name="groups" type="java.util.regex.Pattern[]">
-               <description>specify list of &lt;b&gt;type import&lt;/b&gt; groups (every group identified
+               <description>specify list of &lt;b&gt;type import&lt;/b&gt; groups. Every group identified
  either by a common prefix string, or by a regular expression enclosed in forward slashes
  (e.g. {@code /regexp/}). All type imports, which does not match any group, falls into an
  additional group, located at the end.
@@ -64,17 +64,17 @@
  or {@code bottom} and when property {@code staticGroups} is enabled.</description>
             </property>
             <property default-value="true" name="caseSensitive" type="boolean">
-               <description>control whether string comparison should be case
- sensitive or not. Case sensitive sorting is in
+               <description>control whether string comparison should be
+ case-sensitive or not. Case-sensitive sorting is in
  &lt;a href="https://en.wikipedia.org/wiki/ASCII#Order"&gt;ASCII sort order&lt;/a&gt;.
  It affects both type imports and static imports.</description>
             </property>
             <property default-value=""
                        name="staticGroups"
                        type="java.util.regex.Pattern[]">
-               <description>specify list of &lt;b&gt;static&lt;/b&gt; import groups (every group
+               <description>specify list of &lt;b&gt;static&lt;/b&gt; import groups. Every group
  identified either by a common prefix string, or by a regular expression enclosed in forward
- slashes (e.g. {@code /regexp/}). All static imports, which does not match any group, falls into
+ slashes (e.g. {@code /regexp/}). All static imports, which does not match any group, fall into
  an additional group, located at the end. Thus, the empty list of static groups (the default
  value) means one group for all static imports. This property has effect only when the property
  {@code option} is set to {@code top} or {@code bottom}.</description>

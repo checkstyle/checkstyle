@@ -47,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * ATTENTION: empty line separator is required between token siblings,
  * not after line where token is found.
- * If token does not have same type sibling then empty line
+ * If token does not have a sibling of the same type, then empty line
  * is required at its end (for example for CLASS_DEF it is after '}').
  * Also, trailing comments are skipped.
  * </p>
@@ -536,7 +536,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             if (postFixNode.isPresent()) {
                 // A post fix AST will always have a sibling METHOD CALL
                 // METHOD CALL will at least have two children
-                // The first first child is DOT in case of POSTFIX which have at least 2 children
+                // The first child is DOT in case of POSTFIX which have at least 2 children
                 // First child of DOT again puts us back to normal AST tree which will
                 // recurse down below from here
                 final DetailAST firstChildAfterPostFix = postFixNode.get();
@@ -878,7 +878,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if a token has a empty line before.
+     * Checks if a token has an empty line before.
      *
      * @param token token.
      * @return true, if token have empty line before.

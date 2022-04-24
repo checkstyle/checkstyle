@@ -541,7 +541,7 @@ public void method();
 &#47;**
   * This comment is OK because it starts from the second line.
   *&#47;
-&#47;** This comment is OK because it is on the single line. *&#47;
+&#47;** This comment is OK because it is on the single-line. *&#47;
         </source>
 
         <p>
@@ -647,14 +647,14 @@ public void method();
         <p>
           ATTENTION: Checkstyle does not have information about hierarchy of exception types
           so usage of base class is considered as separate exception type.
-          As workaround you need to specify both types in javadoc (parent and exact type).
+          As workaround, you need to specify both types in javadoc (parent and exact type).
         </p>
 
         <p>
           Javadoc is not required on a method that is tagged with the
-          <code>@Override</code> annotation. However under
+          <code>@Override</code> annotation. However, under
           Java 5 it is not possible to mark a method required for an
-          interface (this was <i>corrected</i> under Java 6). Hence
+          interface (this was <i>corrected</i> under Java 6). Hence,
           Checkstyle supports using the convention of using a single
           <code>{@inheritDoc}</code> tag instead of all the
           other tags.
@@ -1210,7 +1210,7 @@ class TestClass {
       <subsection name="Description" id="JavadocPackage_Description">
         <p>
           Checks that each Java package has a Javadoc file used for
-          commenting. By default it only allows a <code>package-info.java</code> file, but can be
+          commenting. By default, it only allows a <code>package-info.java</code> file, but can be
           configured to allow a <code>package.html</code>
           file.
         </p>
@@ -2483,9 +2483,9 @@ private int logger; // OK
 
         <p>
           Javadoc is not required on a method that is tagged with the
-          <code>@Override</code> annotation. However under
+          <code>@Override</code> annotation. However, under
           Java 5 it is not possible to mark a method required for an
-          interface (this was <i>corrected</i> under Java 6). Hence
+          interface (this was <i>corrected</i> under Java 6). Hence,
           Checkstyle supports using the convention of using a single
           <code>{@inheritDoc}</code> tag instead of all the
           other tags.
@@ -3335,7 +3335,7 @@ public boolean testMethod(int firstParam) {
       <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="SingleLineJavadoc_Description">
         <p>
-           Checks that a Javadoc block can fit in a single line and doesn't
+           Checks that a Javadoc block can fit in a single-line and doesn't
            contain block tags. Javadoc comment that contains at least one block tag
            should be formatted in a few lines.
         </p>
@@ -3720,7 +3720,7 @@ public class Test extends Exception {
 }
         </source>
         <p>
-          To ensure that summary do not contain phrase like "This method returns", use
+          To ensure that summary does not contain phrase like "This method returns", use
           following config:
         </p>
         <source>

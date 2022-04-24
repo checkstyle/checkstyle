@@ -69,7 +69,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p>
  * You can also use a {@code checkstyle} prefix to prevent compiler from
- * processing this annotations. For example this will prevent ConstantNameCheck:
+ * processing these annotations. For example this will prevent ConstantNameCheck:
  * </p>
  * <pre>
  * &#64;SuppressWarnings("checkstyle:constantname")
@@ -81,7 +81,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * suffix if present.
  * </p>
  * <p>
- * If {@code aliasList} property was provided you can use your own names e.g below
+ * If {@code aliasList} property was provided you can use your own names e.g. below
  * code will work if there was provided a {@code ParameterNumberCheck=paramnum} in
  * the {@code aliasList}:
  * </p>
@@ -594,7 +594,7 @@ public class SuppressWarningsHolder
         }
 
         /**
-         * Gets he source name of the suppressed check.
+         * Gets the source name of the suppressed check.
          *
          * @return the source name of the suppressed check
          */

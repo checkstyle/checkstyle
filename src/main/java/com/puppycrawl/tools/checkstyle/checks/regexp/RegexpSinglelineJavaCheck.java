@@ -28,12 +28,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * Checks that a specified pattern matches a single line in Java files.
+ * Checks that a specified pattern matches a single-line in Java files.
  * </p>
  * <p>
  * This class is variation on
  * <a href="https://checkstyle.org/config_regexp.html#RegexpSingleline">RegexpSingleline</a>
- * for detecting single lines that match a supplied regular expression in Java files.
+ * for detecting single-lines that match a supplied regular expression in Java files.
  * It supports suppressing matches in Java comments.
  * </p>
  * <ul>

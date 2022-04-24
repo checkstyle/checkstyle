@@ -32,7 +32,7 @@
           It differs from them in that it works in multiline mode.
           Its regular expression can span multiple lines and it checks this
           against the whole file at once.
-          The others work in singleline mode.
+          The others work in single-line mode.
           Their single or multiple regular expressions can only span one line.
           They check each of these against each line in the file in turn.
         </p>
@@ -260,7 +260,7 @@
         <p>Note the following:</p>
         <ul>
           <li>\A means the start of the file.</li>
-          <li>The date can be any 4 digit number.</li>
+          <li>The date can be any 4-digit number.</li>
         </ul>
 
         <source>
@@ -384,7 +384,7 @@ public static final int A_SETPOINT = 1;
         <ul>
           <li>Line 2 and 13 contain the file name. These are checked to
             make sure they are the same, and that they match the class name.</li>
-          <li>The date can be any 4 digit number.</li>
+          <li>The date can be any 4-digit number.</li>
         </ul>
 
         <source>
@@ -786,7 +786,7 @@ void method() {
           specific extensions supplied.
           Once files are matched against the fileExtensions, the match property is then
           used in conjunction with the patterns to determine if the check is looking
-          for a match or mis-match on those files. If the fileNamePattern is
+          for a match or mismatch on those files. If the fileNamePattern is
           supplied, the matching is only applied to the fileNamePattern and not the
           folderPattern. If no fileNamePattern is supplied, then matching is applied
           to the folderPattern only and will result in all files in a folder to be
@@ -841,7 +841,7 @@ void method() {
             </tr>
             <tr>
               <td>match</td>
-              <td>Control whether to look for a match or mis-match on the file name, if the
+              <td>Control whether to look for a match or mismatch on the file name, if the
               fileNamePattern is supplied, otherwise it is applied on the folderPattern.</td>
               <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
@@ -1045,7 +1045,7 @@ src/main/main_class.java  //violation, file names should be in Camel Case
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="RegexpSingleline_Description">
         <p>
-          Checks that a specified pattern matches a single line in any file type.
+          Checks that a specified pattern matches a single-line in any file type.
         </p>
 
         <p>
@@ -1270,12 +1270,12 @@ CREATE DATABASE MyDB;
       <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="RegexpSinglelineJava_Description">
         <p>
-          Checks that a specified pattern matches a single line in Java files.
+          Checks that a specified pattern matches a single-line in Java files.
         </p>
         <p>
           This class is variation on
           <a href="config_regexp.html#RegexpSingleline">RegexpSingleline</a> for detecting
-          single lines that match a supplied regular expression in Java files. It supports
+          single-lines that match a supplied regular expression in Java files. It supports
           suppressing matches in Java comments.
         </p>
       </subsection>

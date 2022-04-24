@@ -51,7 +51,7 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
      * If a visit method is not overridden, we should explain why we do not 'visit' the
      * parse tree at this node and construct an AST. Reasons could include that we have
      * no terminal symbols (tokens) in the corresponding production rule, or that
-     * we handle the construction of this particular AST in it's parent node. If we
+     * we handle the construction of this particular AST in its parent node. If we
      * have a production rule where we have terminal symbols (tokens), but we do not build
      * an AST from tokens in the rule context, the rule is extraneous.
      */

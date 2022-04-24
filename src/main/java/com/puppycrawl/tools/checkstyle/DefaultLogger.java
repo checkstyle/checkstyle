@@ -150,7 +150,7 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
 
     /**
      * Print an Emacs compliant line on the error stream.
-     * If the column number is non zero, then also display it.
+     * If the column number is non-zero, then also display it.
      *
      * @see AuditListener
      **/

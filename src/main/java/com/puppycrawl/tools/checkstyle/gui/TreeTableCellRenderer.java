@@ -44,7 +44,7 @@ class TreeTableCellRenderer extends JTree implements
     /** Tree table to render. */
     private final TreeTable treeTable;
 
-    /** Last table/tree row asked to renderer. */
+    /** Last table/tree row asked to render. */
     private int visibleRow;
 
     /**

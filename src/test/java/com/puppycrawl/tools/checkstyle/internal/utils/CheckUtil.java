@@ -199,7 +199,7 @@ public final class CheckUtil {
     }
 
     /**
-     * Get's the check's messages.
+     * Gets the check's messages.
      *
      * @param module class to examine.
      * @param deepScan scan subclasses.
@@ -247,7 +247,7 @@ public final class CheckUtil {
      * Should the class be deep scanned for messages.
      *
      * @param superModule The class to examine.
-     * @return {@code true} if the class should be deep scanned.
+     * @return {@code true} if the class should be deeply scanned.
      */
     private static boolean shouldScanDeepClassForMessages(Class<?> superModule) {
         return superModule == AbstractNameCheck.class

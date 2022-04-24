@@ -200,7 +200,7 @@ final class InputFileLength3 // ok
     }
 }
 
-/** Test class for variable naming in for each clauses. */
+/** Test class for variable naming in for each clause. */
 class InputSimple23
 {
     /** Some more Javadoc. */

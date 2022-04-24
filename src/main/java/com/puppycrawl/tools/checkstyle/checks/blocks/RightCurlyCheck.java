@@ -318,7 +318,7 @@ public class RightCurlyCheck extends AbstractCheck {
      *
      * @param details for validation.
      * @return violation message or empty string
-     *     if there was not violation during validation.
+     *     if there was no violation during validation.
      */
     private String validate(Details details) {
         String violation = "";

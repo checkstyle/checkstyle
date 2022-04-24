@@ -377,7 +377,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * Update assigned variables in a temporary stack.
      */
     private void updateCurrentScopeAssignedVariables() {
-        // -@cs[MoveVariableInsideIf] assignment value is a modification call so it can't be moved
+        // -@cs[MoveVariableInsideIf] assignment value is a modification call, so it can't be moved
         final Deque<DetailAST> poppedScopeAssignedVariableData =
                 currentScopeAssignedVariables.pop();
         final Deque<DetailAST> currentScopeAssignedVariableData =

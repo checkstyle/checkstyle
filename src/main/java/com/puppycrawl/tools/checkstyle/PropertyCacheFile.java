@@ -274,7 +274,7 @@ public final class PropertyCacheFile {
             }
             catch (CheckstyleException | IOException ex) {
                 // if exception happened (configuration resource was not found, connection is not
-                // available, resource is broken, etc), we need to calculate hash sum based on
+                // available, resource is broken, etc.), we need to calculate hash sum based on
                 // exception object content in order to check whether problem is resolved later
                 // and/or the configuration is changed.
                 final String contentHashSum = getHashCodeBasedOnObjectContent(ex);

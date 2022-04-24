@@ -51,7 +51,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * lexicographic order
  * </li>
  * <li>
- * sorts according to case: ensures that the comparison between imports is case sensitive, in
+ * sorts according to case: ensures that the comparison between imports is case-sensitive, in
  * <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>
  * </li>
  * <li>
@@ -68,7 +68,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code under}.
  * </li>
  * <li>
- * Property {@code groups} - specify list of <b>type import</b> groups (every group identified
+ * Property {@code groups} - specify list of <b>type import</b> groups. Every group identified
  * either by a common prefix string, or by a regular expression enclosed in forward slashes
  * (e.g. {@code /regexp/}). All type imports, which does not match any group, falls into an
  * additional group, located at the end.
@@ -99,17 +99,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code caseSensitive} - control whether string comparison should be case
- * sensitive or not. Case sensitive sorting is in
+ * Property {@code caseSensitive} - control whether string comparison should be
+ * case-sensitive or not. Case-sensitive sorting is in
  * <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
  * It affects both type imports and static imports.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code staticGroups} - specify list of <b>static</b> import groups (every group
+ * Property {@code staticGroups} - specify list of <b>static</b> import groups. Every group
  * identified either by a common prefix string, or by a regular expression enclosed in forward
- * slashes (e.g. {@code /regexp/}). All static imports, which does not match any group, falls into
+ * slashes (e.g. {@code /regexp/}). All static imports, which does not match any group, fall into
  * an additional group, located at the end. Thus, the empty list of static groups (the default
  * value) means one group for all static imports. This property has effect only when the property
  * {@code option} is set to {@code top} or {@code bottom}.
@@ -206,7 +206,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <pre>
  * import static java.lang.System.out;
- * import static java.lang.Math; // violation, alphabetical case sensitive ASCII order, 'M' &lt; 'S'
+ * import static java.lang.Math; // violation, alphabetical case-sensitive ASCII order, 'M' &lt; 'S'
  * import java.io.IOException;
  *
  * import java.net.URL; // violation, extra separation before import
@@ -253,9 +253,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <pre>
  * import static java.io.File.createTempFile;
- * import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'i' &lt; 'l'
+ * import static java.lang.Math.abs; // OK, alphabetical case-sensitive ASCII order, 'i' &lt; 'l'
  * import java.lang.Math.sqrt; // OK, follows property 'Option' value 'above'
- * import java.io.File; // violation, alphabetical case sensitive ASCII order, 'i' &lt; 'l'
+ * import java.io.File; // violation, alphabetical case-sensitive ASCII order, 'i' &lt; 'l'
  *
  * import java.io.IOException; // violation, extra separation in 'java' import group
  *
@@ -388,7 +388,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </pre>
  * <pre>
  * import static java.lang.Math.PI;
- * import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
+ * import static java.lang.Math.abs; // OK, alphabetical case-sensitive ASCII order, 'P' &lt; 'a'
  * import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphabetical order
  *
  * import java.util.Set; // violation, extra separation in import group
@@ -581,7 +581,7 @@ public class ImportOrderCheck
     private static final Pattern[] EMPTY_PATTERN_ARRAY = new Pattern[0];
 
     /**
-     * Specify list of <b>type import</b> groups (every group identified either by a common prefix
+     * Specify list of <b>type import</b> groups. Every group identified either by a common prefix
      * string, or by a regular expression enclosed in forward slashes (e.g. {@code /regexp/}).
      * All type imports, which does not match any group, falls into an additional group,
      * located at the end. Thus, the empty list of type groups (the default value) means one group
@@ -590,9 +590,9 @@ public class ImportOrderCheck
     private Pattern[] groups = EMPTY_PATTERN_ARRAY;
 
     /**
-     * Specify list of <b>static</b> import groups (every group identified either by a common prefix
+     * Specify list of <b>static</b> import groups. Every group identified either by a common prefix
      * string, or by a regular expression enclosed in forward slashes (e.g. {@code /regexp/}).
-     * All static imports, which does not match any group, falls into an additional group, located
+     * All static imports, which does not match any group, fall into an additional group, located
      * at the end. Thus, the empty list of static groups (the default value) means one group for all
      * static imports. This property has effect only when the property {@code option} is set to
      * {@code top} or {@code bottom}.
@@ -621,7 +621,7 @@ public class ImportOrderCheck
     private boolean ordered = true;
 
     /**
-     * Control whether string comparison should be case sensitive or not. Case sensitive
+     * Control whether string comparison should be case-sensitive or not. Case-sensitive
      * sorting is in <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
      * It affects both type imports and static imports.
      */
@@ -635,7 +635,7 @@ public class ImportOrderCheck
     private String lastImport;
     /** If last import was static. */
     private boolean lastImportStatic;
-    /** Whether there was any imports. */
+    /** Whether there were any imports. */
     private boolean beforeFirstImport;
     /**
      * Whether static and type import groups should be split apart.
@@ -674,7 +674,7 @@ public class ImportOrderCheck
     }
 
     /**
-     * Setter to specify list of <b>type import</b> groups (every group identified either by a
+     * Setter to specify list of <b>type import</b> groups. Every group identified either by a
      * common prefix string, or by a regular expression enclosed in forward slashes
      * (e.g. {@code /regexp/}). All type imports, which does not match any group, falls into an
      * additional group, located at the end. Thus, the empty list of type groups (the default value)
@@ -687,9 +687,9 @@ public class ImportOrderCheck
     }
 
     /**
-     * Setter to specify list of <b>static</b> import groups (every group identified either by a
+     * Setter to specify list of <b>static</b> import groups. Every group identified either by a
      * common prefix string, or by a regular expression enclosed in forward slashes
-     * (e.g. {@code /regexp/}). All static imports, which does not match any group, falls into an
+     * (e.g. {@code /regexp/}). All static imports, which does not match any group, fall into an
      * additional group, located at the end. Thus, the empty list of static groups (the default
      * value) means one group for all static imports. This property has effect only when
      * the property {@code option} is set to {@code top} or {@code bottom}.
@@ -739,13 +739,13 @@ public class ImportOrderCheck
     }
 
     /**
-     * Setter to control whether string comparison should be case sensitive or not.
-     * Case sensitive sorting is in
+     * Setter to control whether string comparison should be case-sensitive or not.
+     * Case-sensitive sorting is in
      * <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
      * It affects both type imports and static imports.
      *
      * @param caseSensitive
-     *            whether string comparison should be case sensitive.
+     *            whether string comparison should be case-sensitive.
      */
     public void setCaseSensitive(boolean caseSensitive) {
         this.caseSensitive = caseSensitive;
@@ -997,14 +997,14 @@ public class ImportOrderCheck
      * static imports comparison method</a> in Eclipse.
      * </p>
      *
-     * @param importName1 first import name.
-     * @param importName2 second import name.
-     * @param caseSensitive whether the comparison of fully qualified import names is case
-     *                      sensitive.
+     * @param importName1 first import name
+     * @param importName2 second import name
+     * @param caseSensitive whether the comparison of fully qualified import names is
+     *                      case-sensitive
      * @return the value {@code 0} if str1 is equal to str2; a value
      *         less than {@code 0} if str is less than the str2 (container order
      *         or lexicographical); and a value greater than {@code 0} if str1 is greater than str2
-     *         (container order or lexicographically).
+     *         (container order or lexicographically)
      */
     private static int compareContainerOrder(String importName1, String importName2,
                                              boolean caseSensitive) {
@@ -1108,15 +1108,15 @@ public class ImportOrderCheck
      * Compares two strings.
      *
      * @param string1
-     *            the first string.
+     *            the first string
      * @param string2
-     *            the second string.
+     *            the second string
      * @param caseSensitive
-     *            whether the comparison is case sensitive.
+     *            whether the comparison is case-sensitive
      * @return the value {@code 0} if string1 is equal to string2; a value
      *         less than {@code 0} if string1 is lexicographically less
      *         than the string2; and a value greater than {@code 0} if
-     *         string1 is lexicographically greater than string2.
+     *         string1 is lexicographically greater than string2
      */
     private static int compare(String string1, String string2,
             boolean caseSensitive) {

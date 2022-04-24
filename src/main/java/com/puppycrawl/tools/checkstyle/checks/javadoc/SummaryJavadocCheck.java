@@ -113,7 +113,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * }
  * </pre>
  * <p>
- * To ensure that summary do not contain phrase like "This method returns",
+ * To ensure that summary does not contain phrase like "This method returns",
  * use following config:
  * </p>
  * <pre>
@@ -240,7 +240,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     public static final String MSG_SUMMARY_MISSING_PERIOD = "summary.javaDoc.missing.period";
 
     /**
-     * This regexp is used to convert multiline javadoc to single line without stars.
+     * This regexp is used to convert multiline javadoc to single-line without stars.
      */
     private static final Pattern JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN =
             Pattern.compile("\n[ ]+(\\*)|^[ ]+(\\*)");

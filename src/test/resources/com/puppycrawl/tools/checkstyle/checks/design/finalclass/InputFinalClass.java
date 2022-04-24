@@ -75,7 +75,7 @@ interface Evaluable
     double eval(double a, double b);
 }
 
-// abstract class without it's own abstract method decl
+// abstract class without its own abstract method decl
 abstract class Operation2 implements Evaluable
 {
 

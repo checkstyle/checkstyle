@@ -232,7 +232,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * It is suppressed if all specified attributes match against the audit event.
  * </p>
  * <p>
- * ATTENTION: filtering by message is dependant on runtime locale.
+ * ATTENTION: filtering by message is dependent on runtime locale.
  * If project is running in different languages it is better to avoid filtering by message.
  * </p>
  * <p>
@@ -243,7 +243,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * <p>
  * Currently, xpath queries support one type of attribute {@code @text}. {@code @text} -
  * addresses to the text value of the node. For example: variable name, annotation name,
- * text content and etc. Only the following token types support {@code @text} attribute:
+ * text content, etc. Only the following token types support {@code @text} attribute:
  * {@code TokenTypes.IDENT}, {@code TokenTypes.STRING_LITERAL}, {@code TokenTypes.CHAR_LITERAL},
  * {@code TokenTypes.NUM_LONG}, {@code TokenTypes.NUM_INT}, {@code TokenTypes.NUM_DOUBLE},
  * {@code TokenTypes.NUM_FLOAT}.

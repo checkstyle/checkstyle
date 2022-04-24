@@ -34,7 +34,7 @@ class InputAvoidNestedBlocksDefault
 
         // case statements are a bit complicated,
         // they do not have its own variable scope by default.
-        // Hence it may be ok in some development teams to allow
+        // Hence, it may be ok in some development teams to allow
         // nested blocks if they are the complete case body.
         switch (x)
         {

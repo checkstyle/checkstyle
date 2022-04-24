@@ -29,7 +29,7 @@
  &lt;/p&gt;
  &lt;p&gt;
  &lt;b&gt;ignoreAnnotationCanonicalNames&lt;/b&gt;- the list of annotations which ignore
- variables in consideration. If user will provide short annotation name that
+ variables in consideration. If user want to provide short annotation name that
  type will match to any named the same type without consideration of package.
  &lt;/p&gt;
  &lt;p&gt;
@@ -45,7 +45,7 @@
  &lt;ul&gt;
  &lt;li&gt;It's declared as final&lt;/li&gt;
  &lt;li&gt;Has either a primitive type or instance of class user defined to be immutable
- (such as String, ImmutableCollection from Guava and etc)&lt;/li&gt;
+ (such as String, ImmutableCollection from Guava, etc.)&lt;/li&gt;
  &lt;/ul&gt;
  &lt;p&gt;
  Classes known to be immutable are listed in &lt;b&gt;immutableClassCanonicalNames&lt;/b&gt;

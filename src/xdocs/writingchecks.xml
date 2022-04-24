@@ -278,7 +278,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
       </p>
 
       <p>
-        Hence Checkstyle&#39;s AST classes do not have any
+        Hence, Checkstyle&#39;s AST classes do not have any
         methods that implement checking functionality. Instead,
         Checkstyle&#39;s
         <a href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">TreeWalker</a>
@@ -335,7 +335,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
       </p>
 
       <p>
-        Hence we need to register the Check for the token types
+        Hence, we need to register the Check for the token types
         CLASS_DEF and INTERFACE_DEF. The TreeWalker will only call
         visitToken for these token types. Because the requirements of
         our tasks are so simple, there is no need to implement the other

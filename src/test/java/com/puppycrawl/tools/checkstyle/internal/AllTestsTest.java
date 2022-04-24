@@ -180,7 +180,7 @@ public class AllTestsTest {
         boolean found = false;
 
         for (int depth = 0; depth < 4; depth++) {
-            // -@cs[MoveVariableInsideIf] assignment value is modified later so it can't be
+            // -@cs[MoveVariableInsideIf] assignment value is modified later, so it can't be
             // moved
             final String folderPath = packge;
             slash = packge.lastIndexOf(File.separatorChar);

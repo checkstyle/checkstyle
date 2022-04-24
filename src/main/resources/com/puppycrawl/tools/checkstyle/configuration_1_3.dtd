@@ -36,7 +36,7 @@
 >
 
 <!--
-   Can be used to replaced some generic Checkstyle messages with a custom
+   Can be used to replace some generic Checkstyle messages with a custom
    messages.
 
    The 'key' attribute specifies for which actual Checkstyle message the

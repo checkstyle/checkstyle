@@ -215,8 +215,8 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
      * because this one is invalid. We must recommend placing a blank line to separate &#64;param
      * from the first javadoc asterisks.
      *
-     * @param tagNode the at tag node to check if there is nothing before it.
-     * @return true if there no text before the tagNode.
+     * @param tagNode the at tag node to check if there is nothing before it
+     * @return true if there is no text before the tagNode
      */
     private static boolean isOnlyTagInWholeJavadoc(DetailNode tagNode) {
         final List<Integer> previousNodeTypes = new ArrayList<>();

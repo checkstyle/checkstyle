@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * This enum defines the various Javadoc tags and there properties.
+ * This enum defines the various Javadoc tags and their properties.
  *
  * <p>
  * This class was modeled after documentation located at
@@ -524,7 +524,7 @@ public enum JavadocTagInfo {
      * The Javadoc Type.
      *
      * <p>For example a {@code @param} tag is a block tag while a
-     * {@code {@link}} tag is a inline tag.
+     * {@code {@link}} tag is an inline tag.
      *
      */
     public enum Type {

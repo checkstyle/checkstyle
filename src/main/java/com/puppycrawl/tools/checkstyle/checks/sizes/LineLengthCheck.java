@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * or can set property {@code tabWidth} for {@code LineLength} alone.
  * </li>
  * <li>
- * By default package and import statements (lines matching pattern {@code ^(package|import) .*})
+ * By default, package and import statements (lines matching pattern {@code ^(package|import) .*})
  * are not verified by this check.
  * </li>
  * <li>

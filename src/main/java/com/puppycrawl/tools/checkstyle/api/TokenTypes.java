@@ -602,7 +602,7 @@ public final class TokenTypes {
         JavaLanguageLexer.ARRAY_DECLARATOR;
 
     /**
-     * An extends clause.  This appear as part of class and interface
+     * An extends clause.  This appears as part of class and interface
      * definitions.  This element appears even if the
      * {@code extends} keyword is not explicitly used.  The child
      * is an optional identifier.
@@ -2623,7 +2623,7 @@ public final class TokenTypes {
         JavaLanguageLexer.LITERAL_WHILE;
 
     /**
-     * The {@code do} keyword.  Note the the while token does not
+     * The {@code do} keyword.  Note that the while token does not
      * appear as part of the do-while construct.
      *
      * <p>For example:</p>
@@ -2761,7 +2761,7 @@ public final class TokenTypes {
     /**
      * The {@code return} keyword.  The first child is an
      * optional expression for the return value.  The last child is a
-     * semi colon.
+     * semicolon.
      *
      * <p>For example:</p>
      * <pre>
@@ -4834,7 +4834,7 @@ public final class TokenTypes {
     /**
      * An annotation field declaration.  The notable children are modifiers,
      * field type, field name and an optional default value (a conditional
-     * compile-time constant expression). Default values may also by
+     * compile-time constant expression). Default values may also be
      * annotations.
      *
      * <p>For example:</p>
@@ -5488,7 +5488,7 @@ public final class TokenTypes {
     public static final int LAMBDA = JavaLanguageLexer.LAMBDA;
 
     /**
-     * Beginning of single line comment: '//'.
+     * Beginning of single-line comment: '//'.
      *
      * <pre>
      * +--SINGLE_LINE_COMMENT
@@ -5549,7 +5549,7 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * //this is single line comment
+     * //this is single-line comment
      *
      * /&#42;
      * this is multiline comment
@@ -5558,7 +5558,7 @@ public final class TokenTypes {
      * <p>parses as:</p>
      * <pre>
      * |--SINGLE_LINE_COMMENT -&gt; //
-     * |   `--COMMENT_CONTENT -&gt; this is single line comment\n
+     * |   `--COMMENT_CONTENT -&gt; this is single-line comment\n
      * |--BLOCK_COMMENT_BEGIN -&gt; /&#42;
      * |   |--COMMENT_CONTENT -&gt; \n\t\t\tthis is multiline comment\n\t\t
      * |   `--BLOCK_COMMENT_END -&gt; &#42;/

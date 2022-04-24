@@ -470,7 +470,7 @@ public final class ReturnCountCheck extends AbstractCheck {
         /**
          * Creates new method context.
          *
-         * @param checking should we check this method or not.
+         * @param checking should we check this method or not
          */
         /* package */ Context(boolean checking) {
             this.checking = checking;

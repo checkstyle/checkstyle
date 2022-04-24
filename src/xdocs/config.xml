@@ -259,7 +259,7 @@
         properties that changes the way how Checkstyle behaves. For example,
         if you want to change the language of the output of Checkstyle, it
         can be done by changing the property checkstyle.locale.language. All
-        of the system properties can be found at the
+        the system properties can be found at the
         <a href="config_system_properties.html">system properties</a> page.
       </p>
 
@@ -853,7 +853,7 @@
         files from being processed by the utility. A Before Execution File Filter
         can accept or reject a file by its name. If all Before Execution File Filters
         accept a file, then Checker will process and validate the file.
-        If any Before Execution File Filter rejects an file, then Checker skips over
+        If any Before Execution File Filter rejects a file, then Checker skips over
         the file and acts like it does not exist.
         For more information, please visit the
         <a href="config_filefilters.html">file filters page</a>.
@@ -894,7 +894,7 @@
         com.puppycrawl.tools.checkstyle.filters</code>, and
         <code>com.puppycrawl.tools.checkstyle.checks</code> as
         well as any sub-packages of <code>com.puppycrawl.tools.checkstyle.checks</code> that
-        are distributed with Checkstyle. However standard checkstyle modules are loaded
+        are distributed with Checkstyle. However, standard checkstyle modules are loaded
         with the help of inner map of their names to fully qualified names.
       </p>
       <p>
@@ -906,7 +906,7 @@
       </p>
       <p>
         Note that the support for providing a <em>package names XML document</em>
-        via <a href="cmdline.html">command line</a> option or as a attribute
+        via <a href="cmdline.html">command line</a> option or as an attribute
         of an <a href="anttask.html">ant Checkstyle task</a> has been dropped
         with Checkstyle 5.0.
       </p>

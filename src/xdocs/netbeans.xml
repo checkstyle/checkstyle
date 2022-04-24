@@ -31,7 +31,7 @@
 
     <section name="Debug">
       <p>
-        Open the Check's source file by double click on it in a source tree as is shown:<br/><br/>
+        Open the Check's source file by double-click on it in a source tree as is shown:<br/><br/>
         <span class="wrapper block">
           <img alt="screenshot" src="images/gui_screenshot_select_check_netbeans.png"/>
         </span>

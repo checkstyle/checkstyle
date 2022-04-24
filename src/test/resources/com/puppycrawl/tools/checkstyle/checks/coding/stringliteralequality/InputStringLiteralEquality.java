@@ -27,7 +27,7 @@ public class InputStringLiteralEquality
         if ("Oliver" == "Oliver") // violation
         {
             // doesn't make much sense because this can be evaluated
-            // to true at compile time, but is flagged anyway
+            // to true at compile-time, but is flagged anyway
         }
 
         String compare = "Rick";

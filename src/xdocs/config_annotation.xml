@@ -530,7 +530,7 @@ class Bar implements Foo {
           Set this through the <code>trailingArrayComma</code> property.
         </p>
         <p>
-          By default the <code>ElementStyleOption</code> is set to <code>COMPACT_NO_ARRAY</code>,
+          By default, the <code>ElementStyleOption</code> is set to <code>COMPACT_NO_ARRAY</code>,
           the <code>TrailingArrayCommaOption</code> is set to <code>NEVER</code>,
           and the <code>ClosingParensOption</code> is set to <code>NEVER</code>.
         </p>
@@ -721,9 +721,9 @@ class TestTwo {
           deprecation should be present.
         </p>
         <p>
-          Package deprecation is a exception to the rule of always using the
+          Package deprecation is an exception to the rule of always using the
           javadoc tag and annotation to deprecate.  It is not clear if the
-          javadoc tool will support it or not as newer versions keep flip flopping
+          javadoc tool will support it or not as newer versions keep flip-flopping
           on if it is supported or will cause an error.
           See <a href="https://bugs.openjdk.java.net/browse/JDK-8160601">
           JDK-8160601</a>.
@@ -1368,7 +1368,7 @@ package com.example.annotations.packageannotation; //ok
 private int J;
         </source>
         <p>You can also use a <code>checkstyle</code> prefix to prevent compiler from
-           processing this annotations.
+           processing these annotations.
            For example this will prevent ConstantNameCheck:
         </p>
         <source>
@@ -1380,7 +1380,7 @@ private static final int m = 0;
           matched against class name of the checker in lower case and without <code>Check</code>
           suffix if present.
         </p>
-        <p>If <code>aliasList</code> property was provided you can use your own names e.g below
+        <p>If <code>aliasList</code> property was provided you can use your own names e.g. below
              code will work if there was provided a <code>ParameterNumberCheck=paramnum</code> in
              the <code>aliasList</code>:
         </p>
