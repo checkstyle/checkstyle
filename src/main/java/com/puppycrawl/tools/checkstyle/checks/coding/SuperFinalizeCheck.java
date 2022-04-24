@@ -39,6 +39,21 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
  * <pre>
  * &lt;module name=&quot;SuperFinalize&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *     protected void finalize() throws Throwable {
+ *        try {
+ *            System.out.println("Finalize of Sub Class"); // Release resources, perform cleanup
+ *        } catch(Throwable t){
+ *            throw t;
+ *        } finally{
+ *            System.out.println("Calling finalize of Super Class");
+ *            super.finalize();
+ *        }
+ *     }
+ * }
+ * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
