@@ -7088,6 +7088,33 @@ class C {
         <source>
 &lt;module name=&quot;SuperFinalize&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+public class A {
+      protected void finalize() throws Throwable {
+          try{
+               System.out.println("Finalize of sub class"); //release resources, perform cleanup
+            } catch(Throwable t) {
+                throw t;
+            } finally { //OK, calls super.finalize
+                System.out.println("Calling finalize");
+                super.finalize();
+            }
+      }
+}
+class B {
+      protected void finalize() throws Throwable {
+            try{
+                //Statements;
+            } catch() {
+                //body;
+            }
+            finally { //causes violation does not call super.finalize
+            }
+      }
+}
+        </source>
+
       </subsection>
 
       <subsection name="Example of Usage" id="SuperFinalize_Example_of_Usage">
