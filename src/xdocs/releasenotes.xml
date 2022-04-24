@@ -10,6 +10,144 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.2">
+      <div class="releaseDate">24.04.2022</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            Add new AbstractCheck#getFilePath method in api.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/11507">#11507</a>
+          </li>
+          <li>
+            WhitespaceAfter should support LITERAL_RETURN token.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/11536">#11536</a>
+          </li>
+          <li>
+            WhitespaceAfter should support LITERAL_SYNCHRONIZED token.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/11494">#11494</a>
+          </li>
+          <li>
+            WhitespaceAfter should support LITERAL_CATCH token.
+            Author: Binita Kumari
+            <a href="https://github.com/checkstyle/checkstyle/issues/11498">#11498</a>
+          </li>
+          <li>
+            WhitespaceAfter should support LITERAL_FINALLY token.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/11493">#11493</a>
+          </li>
+          <li>
+            WhitespaceAfter should support LITERAL_TRY token.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/11489">#11489</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            GUI can not find node by simple xpath.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/9004">#9004</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Test inputs should be completely standalone..
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/4845">#4845</a>
+          </li>
+          <li>
+            Split pitest-coding execution into two executions and investigate instability.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11528">#11528</a>
+          </li>
+          <li>
+            Solve fb-contrib errors.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/11140">#11140</a>
+          </li>
+          <li>
+            Specify violation messages in input files.
+            Author: ricardovogel, SarveshLimaye, Binita Kumari, Kaung Myat Htet, Abhinav,
+            Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+          <li>
+            minor: remove testLocaleIsSupported tests.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11544">#11544</a>
+          </li>
+          <li>
+            Update doc for MethodLength.
+            Author: Kaung Myat Htet
+            <a href="https://github.com/checkstyle/checkstyle/issues/11474">#11474</a>
+          </li>
+          <li>
+            Update Xpath unit tests to have at least two test methods.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/8151">#8151</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Kevin222004, Abhinav
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            'checkstyle_checks.xml' should not allow single letter variable names in for loops.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/11522">#11522</a>
+          </li>
+          <li>
+            minor: move xml-maven-plugin to config directory outside of ci.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/11530">#11530</a>
+          </li>
+          <li>
+            Large overhead from using streams in TokenUtil.isOfType.
+            Author: Sander Gielisse
+            <a href="https://github.com/checkstyle/checkstyle/issues/11370">#11370</a>
+          </li>
+          <li>
+            doc: Improve grammar in writingchecks.xml.
+            Author: Otto Kaaij
+          </li>
+          <li>
+            AbbreviationAsWordInName documentation need to extended.
+            Author: MUzairS15
+            <a href="https://github.com/checkstyle/checkstyle/issues/10889">#10889</a>
+          </li>
+          <li>
+            Update Tests to use new &#39;verifyXxxxxx&#39; method or
+            &#39;execute&#39; that use inlined config in Input files.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/11446">#11446</a>
+          </li>
+          <li>
+            Unit tests for Checkstyle GUI components.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11475">#11475</a>
+          </li>
+          <li>
+            Check no closed issue references workflow is not triggered on pull requests.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11442">#11442</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Fix existing cases of 'getFileContents()' usage.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/11166">#11166</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.1">
       <div class="releaseDate">27.03.2022</div>
       <p>Breaking backward compatibility:</p>
