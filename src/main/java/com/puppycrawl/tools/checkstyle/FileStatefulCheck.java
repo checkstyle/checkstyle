@@ -36,9 +36,9 @@ import java.lang.annotation.Target;
  * It means, that if a check holds a property of type "array of strings",
  * the property value will not be shared across check instances.
  * Instead, each check instance will hold its own array instance.
- * Checker does not guarantee that each file will have it's own thread -
+ * Checker does not guarantee that each file will have its own thread -
  * there might be a list of files, which will be executed on the same thread.
- * Checker does not guarantee that each file will have it's own check instance -
+ * Checker does not guarantee that each file will have its own check instance -
  * there might be a list of files, which will be checked by the same instance.
  * Note: Checks with such annotation will be executed in mode how all Checks worked
  * before MT mode is introduced.

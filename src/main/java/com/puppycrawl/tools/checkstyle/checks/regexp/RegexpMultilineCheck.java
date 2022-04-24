@@ -291,10 +291,10 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
     }
 
     /**
-     * Retrieves the compile flags for the regular expression being built based
+     * Retrieves the compile-flags for the regular expression being built based
      * on {@code matchAcrossLines}.
      *
-     * @return The compile flags.
+     * @return The compile-flags.
      */
     private int getRegexCompileFlags() {
         final int result;

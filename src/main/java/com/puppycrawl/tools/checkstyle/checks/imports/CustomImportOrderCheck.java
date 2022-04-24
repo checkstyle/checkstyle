@@ -74,10 +74,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * SPECIAL_IMPORTS.
  * </li>
  * <li>
- * STANDARD_JAVA_PACKAGE group. By default this group sets ordering of standard java/javax imports.
+ * STANDARD_JAVA_PACKAGE group. By default, this group sets ordering of standard java/javax imports.
  * </li>
  * <li>
- * SPECIAL_IMPORTS group. This group may contains some imports that have particular meaning for the
+ * SPECIAL_IMPORTS group. This group may contain some imports that have particular meaning for the
  * user.
  * </li>
  * </ol>
@@ -992,7 +992,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
      * @param currentImportObject
      *        current import.
      * @return
-     *        true, if current import separated from previous by more that one empty line.
+     *        true, if current import separated from previous by more than one empty line.
      */
     private boolean isSeparatedByExtraEmptyLine(ImportDetails previousImportObject,
                                                 ImportDetails currentImportObject) {

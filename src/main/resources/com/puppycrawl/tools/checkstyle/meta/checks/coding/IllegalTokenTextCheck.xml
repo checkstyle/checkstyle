@@ -6,7 +6,7 @@
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks specified tokens text for matching an illegal pattern.
- By default no tokens are specified.
+ By default, no tokens are specified.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="^$" name="format" type="java.util.regex.Pattern">

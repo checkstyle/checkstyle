@@ -10,8 +10,8 @@
  from the checks which implement FileSetCheck interface. In other words, the
  checks which have Checker as a parent module. The filter knows nothing about
  AST, it treats only plain text comments and extracts the information required
- for suppression from the plain text comments. Currently the filter supports
- only single line comments.
+ for suppression from the plain text comments. Currently, the filter supports
+ only single-line comments.
  &lt;/p&gt;
  &lt;p&gt;
  Please, be aware of the fact that, it is not recommended to use the filter

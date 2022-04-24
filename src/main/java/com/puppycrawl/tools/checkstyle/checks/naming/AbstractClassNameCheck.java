@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Rationale: Abstract classes are convenience base class implementations of
  * interfaces, not types as such. As such they should be named to indicate this.
- * Also if names of classes starts with 'Abstract' it's very convenient that
+ * Also, if names of classes starts with 'Abstract' it's very convenient that
  * they will have abstract modifier.
  * </p>
  * <ul>

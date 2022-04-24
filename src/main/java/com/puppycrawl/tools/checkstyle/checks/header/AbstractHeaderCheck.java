@@ -64,7 +64,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
         StandardCharsets.UTF_8.name()));
 
     /**
-     * Hook method for post processing header lines.
+     * Hook method for post-processing header lines.
      * This implementation does nothing.
      */
     protected abstract void postProcessHeaderLines();

@@ -411,11 +411,11 @@ import java.util.regex.Matcher; //#8
             STANDARD_JAVA_PACKAGE and SPECIAL_IMPORTS.
           </li>
           <li>
-            STANDARD_JAVA_PACKAGE group. By default this group sets ordering of standard
+            STANDARD_JAVA_PACKAGE group. By default, this group sets ordering of standard
             java/javax imports.
           </li>
           <li>
-            SPECIAL_IMPORTS group. This group may contains some imports that have particular
+            SPECIAL_IMPORTS group. This group may contain some imports that have particular
             meaning for the user.
           </li>
         </ol>
@@ -1308,7 +1308,7 @@ public class InputIllegalImport { }
           especially on large projects.
         </p>
         <p>
-          You can control imports based on the a package name or based on the file
+          You can control imports based on the package name or based on the file
           name. When controlling packages, all files and sub-packages in the declared
           package will be controlled by this check. To specify differences between a main package
           and a sub-package, you must define the sub-package inside the main package. When
@@ -1326,7 +1326,7 @@ public class InputIllegalImport { }
             <ul>
               <li>
                 The longest matching subpackage is found by starting with the root package
-                and examining if the any of the sub-packages or file definitions match the
+                and examining if any of the sub-packages or file definitions match the
                 current class' package or file name.
               </li>
               <li>
@@ -1363,7 +1363,7 @@ public class InputIllegalImport { }
         </ul>
 
         <p>
-          The DTD for a import control XML document is at <a
+          The DTD for an import control XML document is at <a
           href="/dtds/import_control_1_4.dtd">
           https://checkstyle.org/dtds/import_control_1_4.dtd</a>. It
           contains documentation on each of the elements and attributes.
@@ -1503,7 +1503,7 @@ public class InputIllegalImport { }
           This property defines strategy in a case when no matching allow/disallow rule was found.
           Property <code>strategyOnMismatch</code> is attribute of <code>import-control</code> and
           <code>subpackage</code> tags.
-          Property can have following values for <code>import-control</code> tag:
+          Property can have the following values for <code>import-control</code> tag:
         </p>
         <ul>
           <li>disallowed (default value) - if there is no matching allow/disallow rule in any of
@@ -1807,7 +1807,7 @@ import java.util.stream.IntStream;
           within each group are in lexicographic order</li>
           <li>
             sorts according to case: ensures that the comparison
-            between imports is case sensitive, in
+            between imports is case-sensitive, in
             <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>
           </li>
           <li>
@@ -1838,7 +1838,7 @@ import java.util.stream.IntStream;
             <tr>
               <td>groups</td>
               <td>
-                specify list of <b>type import</b> groups (every group identified either by a
+                specify list of <b>type import</b> groups. Every group identified either by a
                 common prefix string, or by a regular expression enclosed
                 in forward slashes (e.g. <code>/regexp/</code>). All type imports,
                 which does not match any group, falls into an additional group, located at the end.
@@ -1883,8 +1883,8 @@ import java.util.stream.IntStream;
             </tr>
             <tr>
               <td>caseSensitive</td>
-              <td>control whether string comparison should be case sensitive or not.
-                Case sensitive sorting is in
+              <td>control whether string comparison should be case-sensitive or not.
+                Case-sensitive sorting is in
                 <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
                 It affects both type imports and static imports.
               </td>
@@ -1895,10 +1895,10 @@ import java.util.stream.IntStream;
             <tr>
               <td>staticGroups</td>
               <td>
-                specify list of <b>static</b> import groups (every group identified either by a
+                specify list of <b>static</b> import groups. Every group identified either by a
                 common prefix string, or by a regular expression enclosed
                 in forward slashes (e.g. <code>/regexp/</code>). All static imports,
-                which does not match any group, falls into an additional group, located at the
+                which does not match any group, fall into an additional group, located at the
                 end. Thus, the empty list of static groups (the default value) means
                 one group for all static imports. This property has effect only when
                 the property <code>option</code> is set to <code>top</code> or
@@ -2007,7 +2007,7 @@ public class SomeClass { }
         </p>
         <source>
 import static java.lang.System.out;
-import static java.lang.Math; // violation, alphabetical case sensitive ASCII order, 'M' &lt; 'S'
+import static java.lang.Math; // violation, alphabetical case-sensitive ASCII order, 'M' &lt; 'S'
 import java.io.IOException;
 
 import java.net.URL; // violation, extra separation before import
@@ -2047,9 +2047,9 @@ public class SomeClass { }
         </p>
         <source>
 import static java.io.File.createTempFile;
-import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'i' &lt; 'l'
+import static java.lang.Math.abs; // OK, alphabetical case-sensitive ASCII order, 'i' &lt; 'l'
 import java.lang.Math.sqrt; // OK, follows property 'Option' value 'above'
-import java.io.File; // violation, alphabetical case sensitive ASCII order, 'i' &lt; 'l'
+import java.io.File; // violation, alphabetical case-sensitive ASCII order, 'i' &lt; 'l'
 
 import java.io.IOException; // violation, extra separation in 'java' import group
 
@@ -2176,7 +2176,7 @@ public class SomeClass { }
 
         <source>
 import static java.lang.Math.PI;
-import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
+import static java.lang.Math.abs; // OK, alphabetical case-sensitive ASCII order, 'P' &lt; 'a'
 import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphabetical order
 
 import java.util.Set; // violation, extra separation in import group
@@ -2498,11 +2498,11 @@ public class MyClass{ };
           <li>
             <b>Optionally:</b> it is referenced in Javadoc comments. This check
             is on by default, but it is considered bad practice to introduce
-            a compile time dependency for documentation purposes only.
+            a compile-time dependency for documentation purposes only.
             As an example, the import <code>java.util.List</code> would be
             considered referenced with the Javadoc comment
             <code>{@link List}</code>. The alternative to avoid introducing a
-            compile time dependency would be to write the Javadoc comment as
+            compile-time dependency would be to write the Javadoc comment as
             <code>{@link java.util.List}</code>.
           </li>
         </ul>

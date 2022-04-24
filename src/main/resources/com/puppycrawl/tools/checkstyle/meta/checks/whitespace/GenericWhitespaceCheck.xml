@@ -16,7 +16,7 @@
  &lt;li&gt; should be preceded with whitespace only
    in generic methods definitions.&lt;/li&gt;
  &lt;li&gt; should not be preceded with whitespace
-   when it is precede method name or constructor.&lt;/li&gt;
+   when it is preceded method name or constructor.&lt;/li&gt;
  &lt;li&gt; should not be preceded with whitespace when following type name.&lt;/li&gt;
  &lt;li&gt; should not be followed with whitespace in all cases.&lt;/li&gt;
  &lt;/ul&gt;

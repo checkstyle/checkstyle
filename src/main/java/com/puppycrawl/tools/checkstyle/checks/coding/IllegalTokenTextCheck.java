@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * <p>
  * Checks specified tokens text for matching an illegal pattern.
- * By default no tokens are specified.
+ * By default, no tokens are specified.
  * </p>
  * <ul>
  * <li>
@@ -237,7 +237,7 @@ public class IllegalTokenTextCheck
     /**
      * Setter to control whether to ignore case when matching.
      *
-     * @param caseInsensitive true if the match is case insensitive.
+     * @param caseInsensitive true if the match is case-insensitive.
      */
     public void setIgnoreCase(boolean caseInsensitive) {
         ignoreCase = caseInsensitive;

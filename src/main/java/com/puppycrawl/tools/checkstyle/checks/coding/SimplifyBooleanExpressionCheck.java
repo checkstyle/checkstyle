@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks for over-complicated boolean expressions. Currently finds code like
+ * Checks for over-complicated boolean expressions. Currently, it finds code like
  * {@code if (b == true)}, {@code b || true}, {@code !false},
  * {@code boolean a = q > 12 ? true : false},
  * etc.

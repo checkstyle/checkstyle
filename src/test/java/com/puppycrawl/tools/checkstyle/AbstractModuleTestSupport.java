@@ -488,7 +488,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             for (String line = lnr.readLine(); line != null && lnr.getLineNumber() <= errorCount;
                  line = lnr.readLine()) {
                 // have at least 2 characters before the splitting colon,
-                // to not split after the drive letter on windows
+                // to not split after the drive letter on Windows
                 final String[] actualViolation = line.split("(?<=.{2}):", 2);
                 final String actualViolationFileName = actualViolation[0];
                 final String actualViolationMessage = actualViolation[1];

@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
-  # this execution should stay on github actions due to time/ memory limits in other CI
+  # this execution should stay on GitHub actions due to time/ memory limits in other CI
   no-exception-openjdk17:
     runs-on: ubuntu-latest
     steps:

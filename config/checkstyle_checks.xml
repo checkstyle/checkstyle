@@ -474,7 +474,7 @@
     <module name="MissingCtor">
       <!--
         we will not use that fanatic validation, extra code is not good
-        But this Check will exists as it was created by community demand.
+        But this Check will exist as it was created by community demand.
       -->
       <property name="severity" value="ignore"/>
     </module>
@@ -710,7 +710,7 @@
       <!--
         we will not use that fanatic validation, extra modifiers pollute a code
         it is better to use extra validation(Check) that argument is reassigned
-        But this Check will exists as it was created by community demand.
+        But this Check will exist as it was created by community demand.
       -->
       <property name="severity" value="ignore"/>
     </module>

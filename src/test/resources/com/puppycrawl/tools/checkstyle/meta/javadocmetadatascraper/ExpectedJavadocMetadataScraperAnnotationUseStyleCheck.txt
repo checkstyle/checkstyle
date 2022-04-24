@@ -57,7 +57,7 @@ Description: <p>
  is provided. Set this through the {@code trailingArrayComma} property.
  </p>
  <p>
- By default the {@code ElementStyleOption} is set to {@code },
+ By default, the {@code ElementStyleOption} is set to {@code },
  the {@code TrailingArrayCommaOption} is set to {@code },
  and the {@code ClosingParensOption} is set to {@code }.
  </p>

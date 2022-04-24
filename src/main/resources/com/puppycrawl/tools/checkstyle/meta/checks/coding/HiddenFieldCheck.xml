@@ -20,7 +20,7 @@
  &lt;p&gt;
  where ${anyType} is any primitive type, class or interface name;
  ${name} is name of the variable that is being set and ${Name} its
- capitalized form that appears in the method name. By default it is expected
+ capitalized form that appears in the method name. By default, it is expected
  that setter returns void, i.e. ${returnType} is 'void'. For example
  &lt;/p&gt;
  &lt;pre&gt;

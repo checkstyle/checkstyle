@@ -102,7 +102,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;TrailingComment&quot;/&gt;
  * </pre>
  * <p>
- * To configure the check so it enforces only comment on a line:
+ * To configure the check to enforce only comment on a line:
  * </p>
  * <pre>
  * &lt;module name=&quot;TrailingComment&quot;&gt;
@@ -237,7 +237,7 @@ public class TrailingCommentCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if single line comment is legal.
+     * Checks if single-line comment is legal.
      *
      * @param ast Detail ast element to be checked.
      */

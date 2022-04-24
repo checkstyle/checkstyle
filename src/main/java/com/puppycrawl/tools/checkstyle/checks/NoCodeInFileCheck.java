@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * File with no text
  * </li>
  * <li>
- * File with single line comment(s)
+ * File with single-line comment(s)
  * </li>
  * <li>
  * File with a multi line comment(s).
@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Content of the files:
  * </p>
  * <pre>
- * // single line comment // violation
+ * // single-line comment // violation
  * </pre>
  * <pre>
  * /* // violation

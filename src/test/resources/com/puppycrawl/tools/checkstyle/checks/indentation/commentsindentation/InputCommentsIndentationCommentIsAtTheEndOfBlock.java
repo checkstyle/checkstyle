@@ -37,14 +37,14 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
 
     public void foooooooooooooooooooooooooooooooooooooooooo() { }
 
-     /////////////////////////////// violation (a single line border to separate a group of methods)
+     /////////////////////////////// violation (a single-line border to separate a group of methods)
 
     public void foo7() {
         int a = 0;
 // violation
     }
 
-    /////////////////////////////// (a single line border to separate a group of methods)
+    /////////////////////////////// (a single-line border to separate a group of methods)
 
     public void foo8() {}
 

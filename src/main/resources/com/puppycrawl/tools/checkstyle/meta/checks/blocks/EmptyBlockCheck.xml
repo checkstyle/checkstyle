@@ -20,7 +20,7 @@
  &lt;/pre&gt;
  &lt;p&gt;
  NOTE: This check processes LITERAL_CASE and LITERAL_DEFAULT separately.
- Verification empty block is done for single most nearest {@code case} or {@code default}.
+ Verification empty block is done for single nearest {@code case} or {@code default}.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="statement"

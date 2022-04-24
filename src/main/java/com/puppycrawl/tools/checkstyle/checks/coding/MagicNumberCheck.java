@@ -396,7 +396,7 @@ public class MagicNumberCheck extends AbstractCheck {
     }
 
     /**
-     * Is magic number some where at ast tree.
+     * Is magic number somewhere at ast tree.
      *
      * @param ast ast token
      * @param constantDefAST constant ast

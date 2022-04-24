@@ -89,7 +89,7 @@
           config/org.eclipse.jdt.core.prefs</a> file
         to
         <code>.settings</code> folder of cloned repository on your PC. Restart Eclipse.
-        Such folder does not exists in repository after clone and it is created by Eclipse
+        Such folder does not exist in repository after clone and it is created by Eclipse
         during project import. If folder not present please import checkstyle to Eclipse first.
       </p>
 
@@ -137,7 +137,7 @@
 
     <section name="Debug">
       <p>
-        Open the Check's source file by double click on it in a source tree as is shown:<br/><br/>
+        Open the Check's source file by double-click on it in a source tree as is shown:<br/><br/>
         <span class="wrapper block">
           <img alt="screenshot" src="images/gui_screenshot_select_check_eclipse.png"/>
         </span>

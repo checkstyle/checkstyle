@@ -46,8 +46,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <p>
  * Javadoc is not required on a method that is tagged with the {@code @Override} annotation.
- * However under Java 5 it is not possible to mark a method required for an interface (this
- * was <i>corrected</i> under Java 6). Hence Checkstyle supports using the convention of using
+ * However, under Java 5 it is not possible to mark a method required for an interface (this
+ * was <i>corrected</i> under Java 6). Hence, Checkstyle supports using the convention of using
  * a single {@code {@inheritDoc}} tag instead of all the other tags.
  * </p>
  * <p>

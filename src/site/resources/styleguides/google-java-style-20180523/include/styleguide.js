@@ -203,7 +203,7 @@ function CreateVerticalTOC(headings, masterLevel, lowestLevel, tbody_element) {
       }
     }
 
-    // If level is a masterLevel but it's specified to ignore links, skip it
+    // If level is a masterLevel, but it's specified to ignore links, skip it
     // and its children.
     if ((level == masterLevel) && (hasClass(heading, 'ignoreLink'))) {
       ignoreChildren = true;

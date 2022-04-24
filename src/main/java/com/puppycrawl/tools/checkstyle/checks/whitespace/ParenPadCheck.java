@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * forbidden. No check occurs at the right parenthesis after an empty for
  * iterator, at the left parenthesis before an empty for initialization, or at
  * the right parenthesis of a try-with-resources resource specification where
- * the last resource variable has a trailing semi-colon.
+ * the last resource variable has a trailing semicolon.
  * Use Check <a href="https://checkstyle.org/config_whitespace.html#EmptyForIteratorPad">
  * EmptyForIteratorPad</a> to validate empty for iterators and
  * <a href="https://checkstyle.org/config_whitespace.html#EmptyForInitializerPad">
@@ -307,10 +307,10 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     }
 
     /**
-     * Checks that a token is preceded by a semi-colon.
+     * Checks that a token is preceded by a semicolon.
      *
      * @param ast the token to check
-     * @return whether a token is preceded by a semi-colon
+     * @return whether a token is preceded by a semicolon
      */
     private static boolean hasPrecedingSemiColon(DetailAST ast) {
         return ast.getPreviousSibling().getType() == TokenTypes.SEMI;

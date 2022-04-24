@@ -1020,14 +1020,14 @@ public class XdocsPagesTest {
     }
 
     /**
-     * Get's the name of the bean property's default value for the class.
+     * Gets the name of the bean property's default value for the class.
      *
-     * @param sectionName The name of the section/module being worked on.
-     * @param propertyName The property name to work with.
-     * @param field The bean property's field.
-     * @param fieldClass The bean property's type.
-     * @param instance The class instance to work with.
-     * @return String form of property's default value.
+     * @param sectionName The name of the section/module being worked on
+     * @param propertyName The property name to work with
+     * @param field The bean property's field
+     * @param fieldClass The bean property's type
+     * @param instance The class instance to work with
+     * @return String form of property's default value
      */
     private static String getModulePropertyExpectedValue(String sectionName, String propertyName,
             Field field, Class<?> fieldClass, Object instance) throws Exception {
@@ -1106,10 +1106,10 @@ public class XdocsPagesTest {
     }
 
     /**
-     * Get's the name of the bean property's default value for the Pattern array class.
+     * Gets the name of the bean property's default value for the Pattern array class.
      *
-     * @param fieldValue The bean property's value.
-     * @return String form of property's default value.
+     * @param fieldValue The bean property's value
+     * @return String form of property's default value
      */
     private static String getPatternArrayPropertyValue(Object fieldValue) {
         Object value = fieldValue;
@@ -1149,11 +1149,11 @@ public class XdocsPagesTest {
     }
 
     /**
-     * Get's the name of the bean property's default value for the string array class.
+     * Gets the name of the bean property's default value for the string array class.
      *
-     * @param propertyName The bean property's name.
-     * @param value The bean property's value.
-     * @return String form of property's default value.
+     * @param propertyName The bean property's name
+     * @param value The bean property's value
+     * @return String form of property's default value
      */
     private static String getStringArrayPropertyValue(String propertyName, Object value) {
         String result;
@@ -1615,7 +1615,7 @@ public class XdocsPagesTest {
             int partIndex;
             for (partIndex = 0; partIndex < ruleNumberPartsAmount; partIndex++) {
                 if (lastRuleNumberPartsAmount <= partIndex) {
-                    // equal up to here and last rule has less parts,
+                    // equal up to here and last rule has fewer parts,
                     // thus order is correct, stop comparing
                     break;
                 }

@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks for illegal tokens. By default labels are prohibited.
+ * Checks for illegal tokens. By default, labels are prohibited.
  * </p>
  * <p>
  * Rationale: Certain language features can harm readability, lead to

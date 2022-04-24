@@ -20,7 +20,7 @@ public class InputDesignForExtensionOverridableMethods {
         private int foo4(int a, int b) {return a + b;}
 
         public void foo5() {
-            // single line comment is not counted as a content
+            // single-line comment is not counted as a content
         }
 
         public void foo6() {
@@ -36,7 +36,7 @@ public class InputDesignForExtensionOverridableMethods {
         }
 
         public int foo8(int a, int b) { // violation
-            // single line comment before content
+            // single-line comment before content
             return a + b;
         }
 
@@ -56,7 +56,7 @@ public class InputDesignForExtensionOverridableMethods {
 
         public int foo11(int a, int b) { // violation
             return a + b;
-            // single line comment after content
+            // single-line comment after content
         }
 
         public int foo12(int a, int b) { // violation

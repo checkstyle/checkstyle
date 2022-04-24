@@ -10,7 +10,7 @@
  forbidden. No check occurs at the right parenthesis after an empty for
  iterator, at the left parenthesis before an empty for initialization, or at
  the right parenthesis of a try-with-resources resource specification where
- the last resource variable has a trailing semi-colon.
+ the last resource variable has a trailing semicolon.
  Use Check &lt;a href="https://checkstyle.org/config_whitespace.html#EmptyForIteratorPad"&gt;
  EmptyForIteratorPad&lt;/a&gt; to validate empty for iterators and
  &lt;a href="https://checkstyle.org/config_whitespace.html#EmptyForInitializerPad"&gt;

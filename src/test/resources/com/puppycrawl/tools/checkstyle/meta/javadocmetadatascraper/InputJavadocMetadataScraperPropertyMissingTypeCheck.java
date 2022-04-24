@@ -16,7 +16,7 @@ package com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper;
  * File with no text
  * </li>
  * <li>
- * File with single line comment(s)
+ * File with single-line comment(s)
  * </li>
  * <li>
  * File with a multi line comment(s).

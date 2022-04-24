@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <p>
  * Rationale: If a method becomes very long it is hard to understand.
- * Therefore long methods should usually be refactored into several
+ * Therefore, long methods should usually be refactored into several
  * individual methods that focus on a specific task.
  * </p>
  * <ul>

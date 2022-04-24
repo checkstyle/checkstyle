@@ -530,7 +530,7 @@ public class UserService {
           suppressed if all specified attributes match against the audit event.
         </p>
         <p>
-          ATTENTION: filtering by message is dependant on runtime locale. If project is running
+          ATTENTION: filtering by message is dependent on runtime locale. If project is running
           in different languages it is better to avoid filtering by message.
         </p>
         <p>
@@ -1080,7 +1080,7 @@ files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
           event.
         </p>
         <p>
-          ATTENTION: filtering by message is dependant on runtime locale. If project is running
+          ATTENTION: filtering by message is dependent on runtime locale. If project is running
           in different languages it is better to avoid filtering by message.
         </p>
         <p>
@@ -1093,7 +1093,7 @@ files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
         <p>
           Currently, xpath queries support one type of attribute <code>@text</code>.
           <code>@text</code> - addresses to the text value of the node. For example: variable name,
-          annotation name, text content and etc.
+          annotation name, text content, etc.
           Only the following token types support <code>@text</code> attribute:
           <code>TokenTypes.IDENT</code>, <code>TokenTypes.STRING_LITERAL</code>,
           <code>TokenTypes.CHAR_LITERAL</code>, <code>TokenTypes.NUM_LONG</code>,
@@ -1842,7 +1842,7 @@ public class TestClass {
           <code>SuppressionCommentFilter</code>. In the contrary to it
           here, comments are not used comments but the builtin syntax of
           <code>@SuppressWarnings</code>. This can be perceived as a
-          more elegant solution than using comments. Also this approach
+          more elegant solution than using comments. Also, this approach
           maybe supported by various IDE.
         </p>
         <p>
@@ -2184,7 +2184,7 @@ public static void foo() {
         </source>
         <p>
           Example of how to configure the check to suppress more than one checks.
-          The influence format format is specified in the second regexp group.
+          The influence format is specified in the second regexp group.
         </p>
         <source>
 &lt;module name="SuppressWithNearbyCommentFilter&quot;&gt;
@@ -2229,8 +2229,8 @@ public class UserService {
           the checks which implement FileSetCheck interface. In other words, the checks
           which have Checker as a parent module. The filter knows nothing about AST,
           it treats only plain text comments and extracts the information required
-          for suppression from the plain text comments. Currently the filter supports
-          only single line comments.
+          for suppression from the plain text comments. Currently, the filter supports
+          only single-line comments.
         </p>
         <p>
           Please, be aware of the fact that, it is not recommended to use the filter

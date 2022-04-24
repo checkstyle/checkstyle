@@ -60,14 +60,14 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
 
 /**
- * An implementation of a ANT task for calling checkstyle. See the documentation
+ * An implementation of an ANT task for calling checkstyle. See the documentation
  * of the task for usage.
  */
 public class CheckstyleAntTask extends Task {
 
     /** Poor man's enum for an xml formatter. */
     private static final String E_XML = "xml";
-    /** Poor man's enum for an plain formatter. */
+    /** Poor man's enum for a plain formatter. */
     private static final String E_PLAIN = "plain";
 
     /** Suffix for time string. */
@@ -125,7 +125,7 @@ public class CheckstyleAntTask extends Task {
      * is a violation.
      *
      * @param propertyName the name of the property to set
-     *                      in the event of an failure.
+     *                      in the event of a failure.
      */
     public void setFailureProperty(String propertyName) {
         failureProperty = propertyName;
@@ -434,7 +434,7 @@ public class CheckstyleAntTask extends Task {
      * Create the Properties object based on the arguments specified
      * to the ANT task.
      *
-     * @return the properties for property expansion expansion
+     * @return the properties for property expansion
      * @throws BuildException if the properties file could not be loaded.
      */
     private Properties createOverridingProperties() {
@@ -507,7 +507,7 @@ public class CheckstyleAntTask extends Task {
     private List<File> getFilesToCheck() {
         final List<File> allFiles = new ArrayList<>();
         if (fileName != null) {
-            // oops we've got an additional one to process, don't
+            // oops, we've got an additional one to process, don't
             // forget it. No sweat, it's fully resolved via the setter.
             log("Adding standalone file for audit", Project.MSG_VERBOSE);
             allFiles.add(new File(fileName));
@@ -613,7 +613,7 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
-     * Poor mans enumeration for the formatter types.
+     * Poor man enumeration for the formatter types.
      */
     public static class FormatterType extends EnumeratedAttribute {
 
@@ -636,7 +636,7 @@ public class CheckstyleAntTask extends Task {
         private FormatterType type;
         /** The file to output to. */
         private File toFile;
-        /** Whether or not the write to the named file. */
+        /** Whether or not to write to the named file. */
         private boolean useFile = true;
 
         /**
@@ -660,7 +660,7 @@ public class CheckstyleAntTask extends Task {
         /**
          * Sets whether or not we write to a file if it is provided.
          *
-         * @param use whether not not to use provided file.
+         * @param use whether not to use provided file.
          */
         public void setUseFile(boolean use) {
             useFile = use;

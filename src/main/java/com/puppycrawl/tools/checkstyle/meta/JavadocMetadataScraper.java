@@ -415,7 +415,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
 
     /**
      * Create the description text with starting index as 0 and ending index would be the first
-     * valid non zero index amongst in the order of {@code propertySectionStartIdx},
+     * valid non-zero index amongst in the order of {@code propertySectionStartIdx},
      * {@code exampleSectionStartIdx} and {@code parentSectionStartIdx}.
      *
      * @return description text

@@ -39,7 +39,7 @@
         <p>
           Note that <code>&#x26;</code>, <code>|</code> and <code>^</code> are not checked
           if they are part of constructor or method call
-          because they can be applied to non boolean variables and
+          because they can be applied to non-boolean variables and
           Checkstyle does not know types of methods from different classes.
         </p>
       </subsection>
@@ -216,7 +216,7 @@ public class Test
         <p>
           Measures the number of instantiations of other
           classes within the given class or record. This type of coupling is not
-          caused by inheritance or the object oriented
+          caused by inheritance or the object-oriented
           paradigm. Generally speaking, any data type with other data
           types as members or local variable that is an instantiation
           (object) of another class has data abstraction coupling (DAC).
@@ -633,7 +633,7 @@ class Foo {
       <subsection name="Description" id="ClassFanOutComplexity_Description">
         <p>
           Checks the number of other types a given class/record/interface/enum/annotation
-          relies on. Also the square of this has been shown to indicate the amount of
+          relies on. Also, the square of this has been shown to indicate the amount of
           maintenance required in functional programs (on a file basis) at least.
         </p>
         <p>
@@ -1026,7 +1026,7 @@ class Foo {
           Checks cyclomatic complexity against a specified limit.
           It is a measure of the minimum number of
           possible paths through the source and therefore the number of
-          required tests, it is not a about quality of code!
+          required tests, it is not about quality of code!
           It is only applied to methods, c-tors,
           <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html">
           static initializers and instance initializers</a>.
@@ -1047,7 +1047,7 @@ class Foo {
           When it comes to code quality measurement by this metric
           level 10 is very good level as a ultimate target (that is hard to archive).
           Do not be ashamed to have complexity level 15 or even higher,
-          but keep it below 20 to catch really bad designed code automatically.
+          but keep it below 20 to catch really bad-designed code automatically.
         </p>
         <p>
           Please use Suppression to avoid violations on cases that could not be split in few
@@ -1546,7 +1546,7 @@ class Test2 {
         <p>
           The NPATH metric computes the number of possible execution
           paths through a function(method). It takes into account the nesting of
-          conditional statements and multi-part boolean expressions
+          conditional statements and multipart boolean expressions
           (A &amp;&amp; B, C || D, E ? F :G and their combinations).
         </p>
         <p>

@@ -145,7 +145,7 @@ public final class DetectorOptions {
         }
 
         /**
-         * Specifies the compile flags to compile a regular expression with
+         * Specifies the compile-flags to compile a regular expression with
          * and returns Builder object.
          *
          * @param val the format to use when matching lines.

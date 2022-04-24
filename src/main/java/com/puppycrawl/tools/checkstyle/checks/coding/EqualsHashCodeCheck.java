@@ -180,7 +180,7 @@ public class EqualsHashCodeCheck
      * Determines if an AST is a valid Equals method implementation.
      *
      * @param ast the AST to check
-     * @return true if the {code ast} is a Equals method.
+     * @return true if the {code ast} is an Equals method.
      */
     private static boolean isEqualsMethod(DetailAST ast) {
         final DetailAST modifiers = ast.getFirstChild();

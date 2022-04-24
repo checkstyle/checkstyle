@@ -433,7 +433,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether a methods is native.
+     * Checks whether a method is native.
      *
      * @param ast method definition token.
      * @return true if a methods is native.

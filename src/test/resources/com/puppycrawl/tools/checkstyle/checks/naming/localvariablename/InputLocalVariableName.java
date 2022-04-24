@@ -200,7 +200,7 @@ final class InputLocalVariableName
     }
 }
 
-/** Test class for variable naming in for each clauses. */
+/** Test class for variable naming in for each clause. */
 class InputLocalVariableName2
 {
     /** Some more Javadoc. */

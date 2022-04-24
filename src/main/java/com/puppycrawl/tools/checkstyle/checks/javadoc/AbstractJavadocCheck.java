@@ -88,7 +88,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     /**
      * This property determines if a check should log a violation upon encountering javadoc with
      * non-tight html. The default return value for this method is set to false since checks
-     * generally tend to be fine with non tight html. It can be set through config file if a check
+     * generally tend to be fine with non-tight html. It can be set through config file if a check
      * is to log violation upon encountering non-tight HTML in javadoc.
      *
      * @see ParseStatus#isNonTight()

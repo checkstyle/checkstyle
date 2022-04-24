@@ -10,7 +10,7 @@ public class SuppressionXpathRegressionOverloadMethodsDeclarationOrder1 {
         //do stuff
     }
 
-    //violation because overloads shoudn't be separated
+    //violation because overloads shouldn't be separated
     public void overloadMethod(String s, Boolean b, int i) { //warn
         //do stuff
     }

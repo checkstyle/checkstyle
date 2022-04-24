@@ -19,11 +19,11 @@ class InputSingleLineJavadocIgnoredTags {
      */
     void foo1() {}
 
-    /** @throws CheckstyleException if an problem occurs */
+    /** @throws CheckstyleException if a problem occurs */
     void foo2() {}
 
     /**
-     * @throws CheckstyleException if an problem occurs
+     * @throws CheckstyleException if a problem occurs
      */
     void foo3() {}
 

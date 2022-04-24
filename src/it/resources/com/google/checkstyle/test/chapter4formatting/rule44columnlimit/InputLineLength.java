@@ -183,7 +183,7 @@ final class InputLineLength
     }
 }
 
-/** Test class for variable naming in for each clauses. */
+/** Test class for variable naming in for each clause. */
 class InputSimple2
 {
     /** Some more Javadoc. */

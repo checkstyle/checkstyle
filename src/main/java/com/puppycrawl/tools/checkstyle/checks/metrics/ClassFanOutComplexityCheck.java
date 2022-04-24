@@ -24,7 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Checks the number of other types a given class/record/interface/enum/annotation
- * relies on. Also the square of this has been shown to indicate the amount
+ * relies on. Also, the square of this has been shown to indicate the amount
  * of maintenance required in functional programs (on a file basis) at least.
  * </p>
  * <p>

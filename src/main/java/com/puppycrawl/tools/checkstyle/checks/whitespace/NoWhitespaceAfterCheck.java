@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * ARRAY_DECLARATOR</a> and
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
  * INDEX_OP</a> tokens specially from other tokens. Actually it is checked that
- * there is no whitespace before this tokens, not after them. Space after the
+ * there is no whitespace before these tokens, not after them. Space after the
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATIONS">
  * ANNOTATIONS</a> before
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">

@@ -816,11 +816,11 @@
           </tr>
           <tr>
             <td><a href="config_regexp.html#RegexpSingleline">RegexpSingleline</a></td>
-            <td>Checks that a specified pattern matches a single line in any file type.</td>
+            <td>Checks that a specified pattern matches a single-line in any file type.</td>
           </tr>
           <tr>
             <td><a href="config_regexp.html#RegexpSinglelineJava">RegexpSinglelineJava</a></td>
-            <td>Checks that a specified pattern matches a single line in Java files.</td>
+            <td>Checks that a specified pattern matches a single-line in Java files.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#RequireThis">RequireThis</a></td>
@@ -859,7 +859,7 @@
           <tr>
             <td><a href="config_javadoc.html#SingleLineJavadoc">SingleLineJavadoc</a></td>
             <td>
-              Checks that a Javadoc block can fit in a single line and doesn't contain
+              Checks that a Javadoc block can fit in a single-line and doesn't contain
               block tags.</td>
           </tr>
           <tr>
@@ -1025,7 +1025,7 @@
     <section name="Holder Checks">
       <p>
         These checks aren't normal checks and are usually associated with a specialized filter
-        to gather information the filter can't get on it's own.
+        to gather information the filter can't get on its own.
       </p>
 
       <div class="wrapper">

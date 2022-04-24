@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <p>
  * Rationale: Exception instances should represent an error
- * condition. Having non final fields not only allows the state to be
+ * condition. Having non-final fields not only allows the state to be
  * modified by accident and therefore mask the original condition but
  * also allows developers to accidentally forget to set the initial state.
  * In both cases, code catching the exception could draw incorrect

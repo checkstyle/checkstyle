@@ -26,7 +26,7 @@
         <p>
           Rationale: If an anonymous inner class becomes very long it is hard
           to understand and to see the flow of the method where the class is
-          defined. Therefore long anonymous inner classes should usually be
+          defined. Therefore, long anonymous inner classes should usually be
           refactored into a named inner class. See also Bloch, Effective
           Java, p. 93.
         </p>
@@ -232,7 +232,7 @@
 
         <p>
           Rationale: If a source file becomes very long it is hard to
-          understand. Therefore long classes should usually be refactored
+          understand. Therefore, long classes should usually be refactored
           into several individual classes that focus on a specific task.
         </p>
       </subsection>
@@ -331,7 +331,7 @@
         <p>
           Rationale: Similar to anonymous inner classes, if lambda body becomes very long
           it is hard to understand and to see the flow of the method
-          where the lambda is defined. Therefore long lambda body
+          where the lambda is defined. Therefore, long lambda body
           should usually be extracted to method.
         </p>
       </subsection>
@@ -608,7 +608,7 @@ import java.util.Arrays; // ok
             or can set property <code>tabWidth</code> for <code>LineLength</code> alone.
           </li>
           <li>
-            By default package and import statements (lines matching pattern
+            By default, package and import statements (lines matching pattern
             <code>^(package|import) .*</code>) are not verified by
             this check.
           </li>
@@ -892,7 +892,7 @@ public class ExampleClass {
 
         <p>
           Rationale: If a method becomes very long it is hard to
-          understand. Therefore long methods should usually be refactored into
+          understand. Therefore, long methods should usually be refactored into
           several individual methods that focus on a specific task.
         </p>
       </subsection>

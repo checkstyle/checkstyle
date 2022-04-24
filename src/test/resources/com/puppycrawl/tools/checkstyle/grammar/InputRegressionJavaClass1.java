@@ -17,8 +17,8 @@ import javax.xml.*;
 public class InputRegressionJavaClass1 {
     //comments
 
-    // single line
-    /* multi on single line */
+    // single-line
+    /* multi on single-line */
     /* multi
      line */
     /** javadoc */

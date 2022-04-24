@@ -75,12 +75,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * ATTENTION: Checkstyle does not have information about hierarchy of exception types
  * so usage of base class is considered as separate exception type.
- * As workaround you need to specify both types in javadoc (parent and exact type).
+ * As workaround, you need to specify both types in javadoc (parent and exact type).
  * </p>
  * <p>
  * Javadoc is not required on a method that is tagged with the {@code @Override}
- * annotation. However under Java 5 it is not possible to mark a method required
- * for an interface (this was <i>corrected</i> under Java 6). Hence Checkstyle
+ * annotation. However, under Java 5 it is not possible to mark a method required
+ * for an interface (this was <i>corrected</i> under Java 6). Hence, Checkstyle
  * supports using the convention of using a single {@code {@inheritDoc}} tag
  * instead of all the other tags.
  * </p>
@@ -575,7 +575,7 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Validates whether the Javadoc has a short circuit tag. Currently this is
+     * Validates whether the Javadoc has a short circuit tag. Currently, this is
      * the inheritTag. Any violations are logged.
      *
      * @param ast the construct being checked
@@ -996,7 +996,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      */
     private void checkReturnTag(List<JavadocTag> tags, int lineNo,
         boolean reportExpectedTags) {
-        // Loop over tags finding return tags. After the first one, report an
+        // Loop over tags finding return tags. After the first one, report a
         // violation.
         boolean found = false;
         final ListIterator<JavadocTag> it = tags.listIterator();

@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * </p>
  * <p>
  * Note that {@code &amp;}, {@code |} and {@code ^} are not checked if they are part
- * of constructor or method call because they can be applied to non boolean
+ * of constructor or method call because they can be applied to non-boolean
  * variables and Checkstyle does not know types of methods from different classes.
  * </p>
  * <ul>
@@ -371,7 +371,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
         }
 
         /**
-         * Checks if we violates maximum allowed complexity.
+         * Checks if we violate maximum allowed complexity.
          *
          * @param ast a node we check now.
          */

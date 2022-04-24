@@ -52,7 +52,7 @@ public void guessTheOutput()
 
         <p>
           A case in a switch statement does not implicitly form a block.
-          Thus to be able to introduce local variables that have case
+          Thus, to be able to introduce local variables that have case
           scope it is necessary to open a nested block. This is
           supported, set the allowInSwitchCase property to true and
           include all statements of the case in the block.
@@ -188,7 +188,7 @@ switch (a) {
 
         <p>
           NOTE: This check processes LITERAL_CASE and LITERAL_DEFAULT separately.
-          Verification empty block is done for single most nearest {@code case} or {@code default}.
+          Verification empty block is done for single nearest {@code case} or {@code default}.
         </p>
       </subsection>
 
@@ -399,7 +399,7 @@ public class Test {
       <subsection name="Description" id="EmptyCatchBlock_Description">
         <p>
           Checks for empty catch blocks.
-          By default check allows empty catch block with any comment inside.
+          By default, check allows empty catch block with any comment inside.
         </p>
       </subsection>
 

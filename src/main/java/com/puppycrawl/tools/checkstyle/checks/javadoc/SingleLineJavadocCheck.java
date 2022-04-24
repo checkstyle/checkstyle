@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks that a Javadoc block can fit in a single line and doesn't contain block tags.
+ * Checks that a Javadoc block can fit in a single-line and doesn't contain block tags.
  * Javadoc comment that contains at least one block tag should be formatted in a few lines.
  * </p>
  * <ul>
@@ -310,10 +310,10 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Checks if comment is single line comment.
+     * Checks if comment is single-line comment.
      *
      * @param blockCommentStart the AST tree in which a block comment starts
-     * @return true, if comment is single line comment.
+     * @return true, if comment is single-line comment.
      */
     private static boolean isSingleLineJavadoc(DetailAST blockCommentStart) {
         final DetailAST blockCommentEnd = blockCommentStart.getLastChild();

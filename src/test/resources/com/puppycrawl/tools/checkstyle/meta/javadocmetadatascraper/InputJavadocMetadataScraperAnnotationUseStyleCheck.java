@@ -68,7 +68,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
  * is provided. Set this through the {@code trailingArrayComma} property.
  * </p>
  * <p>
- * By default the {@code ElementStyleOption} is set to {@code COMPACT_NO_ARRAY},
+ * By default, the {@code ElementStyleOption} is set to {@code COMPACT_NO_ARRAY},
  * the {@code TrailingArrayCommaOption} is set to {@code NEVER},
  * and the {@code ClosingParensOption} is set to {@code NEVER}.
  * </p>

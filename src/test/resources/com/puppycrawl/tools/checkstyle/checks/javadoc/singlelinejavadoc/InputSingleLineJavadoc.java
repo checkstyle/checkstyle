@@ -19,11 +19,11 @@ class InputSingleLineJavadoc {
      */
     void foo1() {}
 
-    /** @throws CheckstyleException if an problem occurs */ // violation
+    /** @throws CheckstyleException if a problem occurs */ // violation
     void foo2() {}
 
     /**
-     * @throws CheckstyleException if an problem occurs
+     * @throws CheckstyleException if a problem occurs
      */
     void foo3() {}
 

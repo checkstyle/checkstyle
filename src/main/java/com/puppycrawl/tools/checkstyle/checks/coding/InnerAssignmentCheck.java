@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * {@code String s = Integer.toString(i = 2);}.
  * </p>
  * <p>
- * Rationale: With the exception of loop idioms,
+ * Rationale: Except for the loop idioms,
  * all assignments should occur in their own top-level statement to increase readability.
  * With inner assignments like the one given above, it is difficult to see all places
  * where a variable is set.

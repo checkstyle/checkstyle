@@ -203,7 +203,7 @@ final class InputConstantNameSimple1
     }
 }
 
-/** Test class for variable naming in for each clauses. */
+/** Test class for variable naming in for each clause. */
 class InputConstantNameSimple21
 {
     /** Some more Javadoc. */

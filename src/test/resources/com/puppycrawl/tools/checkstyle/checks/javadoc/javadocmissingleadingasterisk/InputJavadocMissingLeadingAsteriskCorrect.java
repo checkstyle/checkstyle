@@ -22,7 +22,7 @@ public class InputJavadocMissingLeadingAsteriskCorrect {
   public int scalaStyle; // ok
 
   /**
-   ** More then one asterisk.
+   ** More than one asterisk.
    **/
   public int manyAsterisks; // ok
 

@@ -159,7 +159,7 @@ public class ParseTreeTableModel implements TreeModel {
     }
 
     /**
-     * Notify all listeners that have registered interest for
+     * Notify all listeners that have registered interest in
      * 'tree structure changed' event.  The event instance
      * is lazily created using the parameters passed into
      * the fire method.
@@ -191,7 +191,7 @@ public class ParseTreeTableModel implements TreeModel {
     }
 
     /**
-     * Indicates whether the the value for node {@code node},
+     * Indicates whether the value for node {@code node},
      * at column number {@code column} is editable.
      *
      * @param column the column number

@@ -25,7 +25,7 @@
  Programming Language Guide First Edition by Joshua Bloch pages 45-52.
  &lt;/p&gt;
  &lt;p&gt;
- Below are some of the rules/reasons why the clone method should be avoided.
+ Below are some rules/reasons why the clone method should be avoided.
  &lt;/p&gt;
  &lt;ul&gt;
  &lt;li&gt;

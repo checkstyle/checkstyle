@@ -393,7 +393,7 @@
     <xs:attribute name="img" type="xs:string">
       <xs:annotation>
         <xs:documentation source="version">1.0.0+</xs:documentation>
-        <xs:documentation source="description">The source location of an menu image.
+        <xs:documentation source="description">The source location of a menu image.
         </xs:documentation>
       </xs:annotation>
     </xs:attribute>

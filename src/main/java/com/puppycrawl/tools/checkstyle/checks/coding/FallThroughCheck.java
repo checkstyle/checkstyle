@@ -36,10 +36,10 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  * </p>
  * <p>
  * The check honors special comments to suppress the warning.
- * By default the texts
+ * By default, the texts
  * "fallthru", "fall thru", "fall-thru",
  * "fallthrough", "fall through", "fall-through"
- * "fallsthrough", "falls through", "falls-through" (case sensitive).
+ * "fallsthrough", "falls through", "falls-through" (case-sensitive).
  * The comment containing these words must be all on one line,
  * and must be on the last non-empty line before the {@code case} triggering
  * the warning or on the same line before the {@code case}(ugly, but possible).
@@ -269,8 +269,8 @@ public class FallThroughCheck extends AbstractCheck {
      * if allowed break, continue.
      *
      * @param ast root of given subtree
-     * @param useBreak should we consider break as terminator.
-     * @param useContinue should we consider continue as terminator.
+     * @param useBreak should we consider break as terminator
+     * @param useContinue should we consider continue as terminator
      * @return true if the subtree is terminated.
      */
     private boolean isTerminated(final DetailAST ast, boolean useBreak,
@@ -319,8 +319,8 @@ public class FallThroughCheck extends AbstractCheck {
      * if allowed break, continue.
      *
      * @param slistAst SLIST to check
-     * @param useBreak should we consider break as terminator.
-     * @param useContinue should we consider continue as terminator.
+     * @param useBreak should we consider break as terminator
+     * @param useContinue should we consider continue as terminator
      * @return true if SLIST is terminated.
      */
     private boolean checkSlist(final DetailAST slistAst, boolean useBreak,
@@ -340,8 +340,8 @@ public class FallThroughCheck extends AbstractCheck {
      * if allowed break, continue.
      *
      * @param ast IF to check
-     * @param useBreak should we consider break as terminator.
-     * @param useContinue should we consider continue as terminator.
+     * @param useBreak should we consider break as terminator
+     * @param useContinue should we consider continue as terminator
      * @return true if IF is terminated.
      */
     private boolean checkIf(final DetailAST ast, boolean useBreak,
@@ -380,9 +380,9 @@ public class FallThroughCheck extends AbstractCheck {
      * if allowed break, continue.
      *
      * @param ast loop to check
-     * @param useBreak should we consider break as terminator.
-     * @param useContinue should we consider continue as terminator.
-     * @return true if try/catch/finally block is terminated.
+     * @param useBreak should we consider break as terminator
+     * @param useContinue should we consider continue as terminator
+     * @return true if try/catch/finally block is terminated
      */
     private boolean checkTry(final DetailAST ast, boolean useBreak,
                              boolean useContinue) {
@@ -421,8 +421,8 @@ public class FallThroughCheck extends AbstractCheck {
      * if allowed break, continue.
      *
      * @param literalSwitchAst loop to check
-     * @param useContinue should we consider continue as terminator.
-     * @return true if switch is terminated.
+     * @param useContinue should we consider continue as terminator
+     * @return true if switch is terminated
      */
     private boolean checkSwitch(final DetailAST literalSwitchAst, boolean useContinue) {
         DetailAST caseGroup = literalSwitchAst.findFirstToken(TokenTypes.CASE_GROUP);
@@ -441,9 +441,9 @@ public class FallThroughCheck extends AbstractCheck {
      * if allowed break, continue.
      *
      * @param synchronizedAst synchronized block to check.
-     * @param useBreak should we consider break as terminator.
-     * @param useContinue should we consider continue as terminator.
-     * @return true if synchronized block is terminated.
+     * @param useBreak should we consider break as terminator
+     * @param useContinue should we consider continue as terminator
+     * @return true if synchronized block is terminated
      */
     private boolean checkSynchronized(final DetailAST synchronizedAst, boolean useBreak,
                                       boolean useContinue) {
@@ -453,7 +453,7 @@ public class FallThroughCheck extends AbstractCheck {
 
     /**
      * Determines if the fall through case between {@code currentCase} and
-     * {@code nextCase} is relieved by a appropriate comment.
+     * {@code nextCase} is relieved by an appropriate comment.
      *
      * @param currentCase AST of the case that falls through to the next case.
      * @param nextCase AST of the next case.

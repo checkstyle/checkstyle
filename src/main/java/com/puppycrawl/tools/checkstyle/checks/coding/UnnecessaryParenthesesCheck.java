@@ -62,7 +62,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * are not needed.
  * In the second case, parentheses are required as <em>q</em>, <em>r</em> are
  * of type {@code int} and <em>p</em> is of type {@code boolean}
- * and removing parentheses will give a compile time error. Even if <em>q</em>
+ * and removing parentheses will give a compile-time error. Even if <em>q</em>
  * and <em>r</em> were {@code boolean} still there will be no violation
  * raised as check is not "type aware".
  * </p>
@@ -498,7 +498,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
                         chopString(ast.getText()));
                 }
                 else if (type == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
-                    // Strip newline control characters to keep message as single line, add
+                    // Strip newline control characters to keep message as single-line, add
                     // quotes to make string consistent with STRING_LITERAL
                     final String logString = QUOTE
                         + NEWLINE.matcher(
