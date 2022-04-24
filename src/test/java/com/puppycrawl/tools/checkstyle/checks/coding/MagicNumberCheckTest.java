@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck.MSG_KEY;
 
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -31,6 +32,14 @@ public class MagicNumberCheckTest
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/magicnumber";
+    }
+
+    @Test
+    public void myTest()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumber_8.java"), expected);
     }
 
     @Test
