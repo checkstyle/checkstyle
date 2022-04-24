@@ -306,4 +306,10 @@ class SpecialCasesInForLoopTestTypecast
 
     int someStuff8
     []; // ok
+
+    int test6;
+    long test8 = (long ) test6; // violation
+    long test9 = (long)test6; // ok
+
+
 }

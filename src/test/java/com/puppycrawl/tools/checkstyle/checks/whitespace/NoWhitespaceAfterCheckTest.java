@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2022 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
@@ -80,6 +80,7 @@ public class NoWhitespaceAfterCheckTest
             "87:20: " + getCheckMessage(MSG_KEY, ")"),
             "89:13: " + getCheckMessage(MSG_KEY, ")"),
             "241:17: " + getCheckMessage(MSG_KEY, ")"),
+            "311:18 : " + getCheckMessage(MSG_KEY, ")"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestTypecast.java"), expected);

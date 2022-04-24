@@ -99,6 +99,19 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>To Configure the check to restrict the use of whitespace after TYPECAST:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;NoWhitespaceAfter&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;TYPECAST&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * int test6;
+ * long test8 = (long) test6;// violation,whitespace after '(long)' is not allowed
+ * long test9 = (long)test6;//OK
+ * </pre>
  * <p>
  * If the annotation is between the type and the array, the check will skip validation for spaces:
  * </p>
