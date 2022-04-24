@@ -19,9 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.BitSet;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -193,11 +191,11 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
     /** Fully-qualified {@link Deprecated Deprecated} annotation name. */
     private static final String FQ_DEPRECATED = "java.lang." + DEPRECATED;
 
-    /** List of token types to find parent of. */
-    private static final Set<Integer> TYPES_HASH_SET = new HashSet<>(Arrays.asList(
+    /** Token types to find parent of. */
+    private static final BitSet TYPES_HASH_SET = TokenUtil.asBitSet(
             TokenTypes.TYPE, TokenTypes.MODIFIERS, TokenTypes.ANNOTATION,
             TokenTypes.ANNOTATIONS, TokenTypes.ARRAY_DECLARATOR,
-            TokenTypes.TYPE_PARAMETERS, TokenTypes.DOT));
+            TokenTypes.TYPE_PARAMETERS, TokenTypes.DOT);
 
     @Override
     public int[] getDefaultJavadocTokens() {
@@ -262,7 +260,7 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
 
         while (true) {
             final int type = result.getType();
-            if (TYPES_HASH_SET.contains(type)) {
+            if (TYPES_HASH_SET.get(type)) {
                 result = result.getParent();
             }
             else if (type == TokenTypes.SINGLE_LINE_COMMENT) {

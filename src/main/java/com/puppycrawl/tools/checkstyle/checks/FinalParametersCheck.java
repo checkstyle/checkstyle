@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.util.Set;
+import java.util.BitSet;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -149,7 +149,7 @@ public class FinalParametersCheck extends AbstractCheck {
      * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
      * primitive datatypes</a>.
      */
-    private final Set<Integer> primitiveDataTypes = Set.of(
+    private final BitSet primitiveDataTypes = TokenUtil.asBitSet(
         TokenTypes.LITERAL_BYTE,
         TokenTypes.LITERAL_SHORT,
         TokenTypes.LITERAL_INT,
@@ -280,7 +280,7 @@ public class FinalParametersCheck extends AbstractCheck {
             final DetailAST arrayDeclarator = type
                     .findFirstToken(TokenTypes.ARRAY_DECLARATOR);
             if (arrayDeclarator == null
-                    && primitiveDataTypes.contains(parameterType.getType())) {
+                    && primitiveDataTypes.get(parameterType.getType())) {
                 result = true;
             }
         }
