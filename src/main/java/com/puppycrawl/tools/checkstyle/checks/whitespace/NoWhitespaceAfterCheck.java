@@ -99,6 +99,28 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class Test {
+ *   int a, b;
+ *   Test(int a, int b) {
+ *     this.
+ *         a = a; // violation, linebreak after '.' is not allowed
+ *     this.b = b; // OK
+ *   }
+ *
+ *   public void function() {}
+ *   public static void main(String[] args) {
+ *     Test ob = new Test(5, 7);
+ *     ob.
+ *       function(); // violation, linebreak after '.' is not allowed
+ *     ob.function(); // OK
+ *     ob.
+ *       a = 10; // violation, linebreak after '.' is not allowed
+ *     ob.b = 17; // OK
+ *   }
+ * }
+ * </pre>
  * <p>
  * If the annotation is between the type and the array, the check will skip validation for spaces:
  * </p>
