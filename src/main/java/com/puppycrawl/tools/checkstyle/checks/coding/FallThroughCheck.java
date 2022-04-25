@@ -455,6 +455,24 @@ public class FallThroughCheck extends AbstractCheck {
      * Determines if the fall through case between {@code currentCase} and
      * {@code nextCase} is relieved by an appropriate comment.
      *
+     * <p>Handles</p>
+     * <pre>
+     * case 1:
+     * /&#42; FALLTHRU &#42;/ case 2:
+     *
+     * switch(i) {
+     * default:
+     * /&#42; FALLTHRU &#42;/}
+     *
+     * case 1:
+     * // FALLTHRU
+     * case 2:
+     *
+     * switch(i) {
+     * default:
+     * // FALLTHRU
+     * </pre>
+     *
      * @param currentCase AST of the case that falls through to the next case.
      * @param nextCase AST of the next case.
      * @return True if a relief comment was found
@@ -463,30 +481,10 @@ public class FallThroughCheck extends AbstractCheck {
         boolean allThroughComment = false;
         final int endLineNo = nextCase.getLineNo();
 
-        // Handle:
-        //    case 1:
-        //    /+ FALLTHRU +/ case 2:
-        //    ....
-        // and
-        //    switch(i) {
-        //    default:
-        //    /+ FALLTHRU +/}
-        //
         if (matchesComment(reliefPattern, endLineNo)) {
             allThroughComment = true;
         }
         else {
-            // Handle:
-            //    case 1:
-            //    .....
-            //    // FALLTHRU
-            //    case 2:
-            //    ....
-            // and
-            //    switch(i) {
-            //    default:
-            //    // FALLTHRU
-            //    }
             final int startLineNo = currentCase.getLineNo();
             for (int i = endLineNo - 2; i > startLineNo - 1; i--) {
                 final int[] line = getLineCodePoints(i);
