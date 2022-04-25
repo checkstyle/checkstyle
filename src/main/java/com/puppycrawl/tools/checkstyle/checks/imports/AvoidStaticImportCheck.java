@@ -138,7 +138,7 @@ public class AvoidStaticImportCheck
      * to be excluded like {@code java.lang.System.out} for a variable or
      * {@code java.lang.Math.random} for a method. See notes section for details.
      *
-     * @param excludes a list of fully-qualified class names/specific
+     * @param excludes fully-qualified class names/specific
      *     static members where static imports are ok
      */
     public void setExcludes(String... excludes) {

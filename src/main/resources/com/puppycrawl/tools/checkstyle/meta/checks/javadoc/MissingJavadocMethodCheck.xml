@@ -44,7 +44,7 @@
             <property default-value="Override"
                        name="allowedAnnotations"
                        type="java.lang.String[]">
-               <description>Configure the list of annotations that allow missed
+               <description>Configure annotations that allow missed
  documentation.</description>
             </property>
             <property default-value="public"

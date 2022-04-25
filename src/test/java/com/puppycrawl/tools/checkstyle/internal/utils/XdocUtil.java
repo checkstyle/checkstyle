@@ -52,7 +52,7 @@ public final class XdocUtil {
     /**
      * Gets xdocs file paths.
      *
-     * @return a list of xdocs file paths.
+     * @return a set of xdocs file paths.
      * @throws IOException if an I/O error occurs.
      */
     public static Set<Path> getXdocsFilePaths() throws IOException {
@@ -69,8 +69,8 @@ public final class XdocUtil {
     /**
      * Gets xdocs documentation file paths.
      *
-     * @param files list of all xdoc files
-     * @return a list of xdocs config file paths.
+     * @param files set of all xdoc files
+     * @return a set of xdocs config file paths.
      */
     public static Set<Path> getXdocsConfigFilePaths(Set<Path> files) {
         final Set<Path> xdocs = new HashSet<>();
@@ -86,8 +86,8 @@ public final class XdocUtil {
     /**
      * Gets xdocs style file paths.
      *
-     * @param files list of all xdoc files
-     * @return a list of xdocs style file paths.
+     * @param files set of all xdoc files
+     * @return a set of xdocs style file paths.
      */
     public static Set<Path> getXdocsStyleFilePaths(Set<Path> files) {
         final Set<Path> xdocs = new HashSet<>();

@@ -1272,7 +1272,7 @@ class Test {
             <tr>
               <td>ignoreAnnotationCanonicalNames</td>
               <td>
-                Specify the list of annotations canonical names which ignore variables in
+                Specify annotations canonical names which ignore variables in
                 consideration.
               </td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
