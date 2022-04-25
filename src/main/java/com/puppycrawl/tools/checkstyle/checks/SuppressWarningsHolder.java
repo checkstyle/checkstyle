@@ -335,7 +335,7 @@ public class SuppressWarningsHolder
         }
         else {
             lastLine = nextAST.getLineNo();
-            lastColumn = nextAST.getColumnNo() - 1;
+            lastColumn = nextAST.getColumnNo();
         }
 
         final List<Entry> entries = ENTRIES.get();
