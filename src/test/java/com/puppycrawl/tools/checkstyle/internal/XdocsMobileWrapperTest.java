@@ -24,10 +24,8 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -38,15 +36,12 @@ import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 
 public class XdocsMobileWrapperTest {
 
-    private static final List<String> NODES_TO_WRAP = new ArrayList<>();
-
-    @BeforeEach
-    public void setUp() {
-        NODES_TO_WRAP.add("pre");
-        NODES_TO_WRAP.add("table");
-        NODES_TO_WRAP.add("svg");
-        NODES_TO_WRAP.add("img");
-    }
+    private static final Set<String> NODES_TO_WRAP = Set.of(
+        "pre",
+        "table",
+        "svg",
+        "img"
+    );
 
     @Test
     public void testAllCheckSectionMobileWrapper() throws Exception {
