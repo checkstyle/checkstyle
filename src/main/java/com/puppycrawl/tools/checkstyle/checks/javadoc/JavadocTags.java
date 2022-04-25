@@ -36,8 +36,8 @@ public final class JavadocTags {
     /**
      * Creates an instance.
      *
-     * @param tags the list of valid tags
-     * @param invalidTags the list of invalid tags
+     * @param tags valid tags
+     * @param invalidTags invalid tags
      */
     public JavadocTags(List<JavadocTag> tags, List<InvalidJavadocTag> invalidTags) {
         validTags = List.copyOf(tags);

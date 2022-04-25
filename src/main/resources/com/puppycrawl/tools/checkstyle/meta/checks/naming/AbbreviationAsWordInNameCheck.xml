@@ -37,7 +37,7 @@
             <property default-value=""
                        name="allowedAbbreviations"
                        type="java.lang.String[]">
-               <description>Specify list of abbreviations that must be skipped for
+               <description>Specify abbreviations that must be skipped for
  checking. Abbreviations should be separated by comma.</description>
             </property>
             <property default-value="true" name="ignoreFinal" type="boolean">

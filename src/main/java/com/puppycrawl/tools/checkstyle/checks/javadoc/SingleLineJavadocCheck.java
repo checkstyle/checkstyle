@@ -19,10 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -258,7 +255,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
      * block tags</a> which are ignored by the check.
      */
-    private List<String> ignoredTags = new ArrayList<>();
+    private Set<String> ignoredTags = Set.of();
 
     /**
      * Control whether
@@ -275,7 +272,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      * @param tags to be ignored by check.
      */
     public void setIgnoredTags(String... tags) {
-        ignoredTags = Arrays.stream(tags).collect(Collectors.toList());
+        ignoredTags = Set.of(tags);
     }
 
     /**

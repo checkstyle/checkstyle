@@ -64,8 +64,7 @@
             <property default-value="Override"
                        name="allowedAnnotations"
                        type="java.lang.String[]">
-               <description>Specify the list of annotations
- that allow missed documentation.</description>
+               <description>Specify annotations that allow missed documentation.</description>
             </property>
             <property default-value="false" name="validateThrows" type="boolean">
                <description>Control whether to validate {@code throws} tags.</description>

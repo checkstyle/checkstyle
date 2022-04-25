@@ -23,7 +23,7 @@ Property Type: java.lang.String[]
 Property DefaultValue: CLASS_DEF,INTERFACE_DEF,ENUM_DEF,METHOD_DEF,CTOR_DEF,VARIABLE_DEF,RECO<split>
 RD_DEF,COMPACT_CTOR_DEF
 Property ValidationType: tokenSet
-Property Description: Specify the list of block tags targeted.
+Property Description: Specify block tags targeted.
 Property Type: java.lang.String[]
 Property DefaultValue: @author, @deprecated, @exception, @param, @return, @see, @serial, @ser<split>
 ialData, @serialField, @since, @throws, @version

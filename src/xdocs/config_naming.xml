@@ -79,7 +79,7 @@
             </tr>
             <tr>
               <td>allowedAbbreviations</td>
-              <td>Specify list of abbreviations that must be skipped for checking.
+              <td>Specify abbreviations that must be skipped for checking.
               Abbreviations should be separated by comma.</td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
