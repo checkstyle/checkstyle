@@ -493,13 +493,9 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 final String actualViolationFileName = actualViolation[0];
                 final String actualViolationMessage = actualViolation[1];
 
-                List<String> actualViolationsPerFile =
-                        actualViolations.get(actualViolationFileName);
-                if (actualViolationsPerFile == null) {
-                    actualViolationsPerFile = new ArrayList<>();
-                    actualViolations.put(actualViolationFileName, actualViolationsPerFile);
-                }
-                actualViolationsPerFile.add(actualViolationMessage);
+                actualViolations
+                        .computeIfAbsent(actualViolationFileName, key -> new ArrayList<>())
+                        .add(actualViolationMessage);
             }
 
             return actualViolations;
