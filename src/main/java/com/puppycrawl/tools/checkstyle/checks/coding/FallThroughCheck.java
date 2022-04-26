@@ -387,12 +387,9 @@ public class FallThroughCheck extends AbstractCheck {
     private boolean checkTry(final DetailAST ast, boolean useBreak,
                              boolean useContinue) {
         final DetailAST finalStmt = ast.getLastChild();
-        boolean isTerminated = false;
-        if (finalStmt.getType() == TokenTypes.LITERAL_FINALLY) {
-            isTerminated = isTerminated(finalStmt.findFirstToken(TokenTypes.SLIST),
+        boolean isTerminated = finalStmt.getType() == TokenTypes.LITERAL_FINALLY
+            && isTerminated(finalStmt.findFirstToken(TokenTypes.SLIST),
                                 useBreak, useContinue);
-        }
-
         if (!isTerminated) {
             DetailAST firstChild = ast.getFirstChild();
 
@@ -509,15 +506,10 @@ public class FallThroughCheck extends AbstractCheck {
     @SuppressWarnings("deprecation")
     private boolean matchesComment(Pattern pattern, int lineNo) {
         final String line = getLine(lineNo - 1);
-
         final Matcher matcher = pattern.matcher(line);
-        boolean matches = false;
-
-        if (matcher.find()) {
-            matches = getFileContents().hasIntersectionWithComment(lineNo, matcher.start(),
+        return matcher.find()
+            && getFileContents().hasIntersectionWithComment(lineNo, matcher.start(),
                     lineNo, matcher.end());
-        }
-        return matches;
     }
 
 }
