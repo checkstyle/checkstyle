@@ -738,12 +738,9 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     public static boolean shouldCheckIdentWithMethodRefParent(DetailAST identAst) {
         final DetailAST parent = identAst.getParent();
-        boolean result = true;
-        if (parent.getType() == TokenTypes.METHOD_REF) {
-            result = parent.getFirstChild() == identAst
+        return parent.getType() != TokenTypes.METHOD_REF
+                || parent.getFirstChild() == identAst
                     && parent.getLastChild().getType() != TokenTypes.LITERAL_NEW;
-        }
-        return result;
     }
 
     /**

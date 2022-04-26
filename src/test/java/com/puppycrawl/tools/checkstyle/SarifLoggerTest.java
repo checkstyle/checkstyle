@@ -286,8 +286,8 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
             String expectedOutputFile,
             ByteArrayOutputStream actualOutputStream) throws IOException {
         final String expectedContent = readFile(expectedOutputFile);
-        final String actualContent = toLfLineEnding(new String(actualOutputStream.toByteArray(),
-                StandardCharsets.UTF_8));
+        final String actualContent =
+                toLfLineEnding(actualOutputStream.toString(StandardCharsets.UTF_8));
         assertWithMessage("sarif content should match")
             .that(actualContent)
             .isEqualTo(expectedContent);
