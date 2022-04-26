@@ -46,7 +46,7 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
      */
     protected static Document getOutputStreamXml(ByteArrayOutputStream outputStream)
             throws ParserConfigurationException {
-        final String xml = new String(outputStream.toByteArray(), StandardCharsets.UTF_8);
+        final String xml = outputStream.toString(StandardCharsets.UTF_8);
 
         return XmlUtil.getRawXml("audit output", xml, xml);
     }
