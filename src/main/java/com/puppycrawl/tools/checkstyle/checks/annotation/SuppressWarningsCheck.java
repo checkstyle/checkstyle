@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -216,13 +217,9 @@ public class SuppressWarningsCheck extends AbstractCheck {
                     warningHolder.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
             DetailAST warning;
 
-            if (token == null) {
-                warning = warningHolder.findFirstToken(TokenTypes.EXPR);
-            }
-            else {
-                // case like '@SuppressWarnings(value = UNUSED)'
-                warning = token.findFirstToken(TokenTypes.EXPR);
-            }
+            // case like '@SuppressWarnings(value = UNUSED)'
+            warning = Objects.requireNonNullElse(token, warningHolder)
+                    .findFirstToken(TokenTypes.EXPR);
 
             // rare case with empty array ex: @SuppressWarnings({})
             if (warning == null) {
@@ -309,14 +306,8 @@ public class SuppressWarningsCheck extends AbstractCheck {
             annotation.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
         final DetailAST annArrayInit;
 
-        if (annValuePair == null) {
-            annArrayInit =
-                    annotation.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
-        }
-        else {
-            annArrayInit =
-                    annValuePair.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
-        }
+        annArrayInit = Objects.requireNonNullElse(annValuePair, annotation)
+                .findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
 
         DetailAST warningsHolder = annotation;
         if (annArrayInit != null) {
