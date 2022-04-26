@@ -229,7 +229,7 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
          * Returns a copy of the keys.
          */
         @Override
-        public synchronized Enumeration<Object> keys() {
+        public Enumeration<Object> keys() {
             return Collections.enumeration(keyList);
         }
 
