@@ -153,12 +153,14 @@ public final class DefaultConfiguration implements Configuration {
      */
     public void addProperty(String propertyName, String value) {
         final String current = propertyMap.get(propertyName);
+        final String newValue;
         if (current == null) {
-            propertyMap.put(propertyName, value);
+            newValue = value;
         }
         else {
-            propertyMap.put(propertyName, current + "," + value);
+            newValue = current + "," + value;
         }
+        propertyMap.put(propertyName, newValue);
     }
 
     /**
