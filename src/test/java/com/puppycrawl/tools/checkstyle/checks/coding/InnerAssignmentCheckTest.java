@@ -70,6 +70,16 @@ public class InnerAssignmentCheckTest
     }
 
     @Test
+    public void testInnerAssignmentNotInLoopContext() throws Exception {
+        final String[] expected = {
+            "12:28: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputInnerAssignmentNotInLoopContext.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final InnerAssignmentCheck check = new InnerAssignmentCheck();
         assertWithMessage("Acceptable tokens should not be null")
