@@ -21,13 +21,13 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.ArrayDeque;
 import java.util.BitSet;
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -756,11 +756,11 @@ public class RequireThisCheck extends AbstractCheck {
         final DetailAST blockFrameNameIdent = currentFrame.getFrameNameIdent();
         final DetailAST definitionToken = blockFrameNameIdent.getParent();
         final DetailAST blockStartToken = definitionToken.findFirstToken(TokenTypes.SLIST);
-        final DetailAST blockEndToken = getBlockEndToken(blockFrameNameIdent, blockStartToken);
+        final DetailAST blockEndToken = getBlockEndToken(blockStartToken);
 
         boolean userDefinedArrangementOfThis = false;
 
-        final Set<DetailAST> variableUsagesInsideBlock =
+        final List<DetailAST> variableUsagesInsideBlock =
             getAllTokensWhichAreEqualToCurrent(definitionToken, ident,
                 blockEndToken.getLineNo());
 
@@ -778,27 +778,11 @@ public class RequireThisCheck extends AbstractCheck {
     /**
      * Returns the token which ends the code block.
      *
-     * @param blockNameIdent block name identifier.
      * @param blockStartToken token which starts the block.
      * @return the token which ends the code block.
      */
-    private static DetailAST getBlockEndToken(DetailAST blockNameIdent, DetailAST blockStartToken) {
-        DetailAST blockEndToken = null;
-        final DetailAST blockNameIdentParent = blockNameIdent.getParent();
-        if (blockNameIdentParent.getType() == TokenTypes.CASE_GROUP) {
-            blockEndToken = blockNameIdentParent.getNextSibling();
-        }
-        else {
-            final Set<DetailAST> rcurlyTokens = getAllTokensOfType(blockNameIdent,
-                    TokenTypes.RCURLY);
-            for (DetailAST currentRcurly : rcurlyTokens) {
-                final DetailAST parent = currentRcurly.getParent();
-                if (TokenUtil.areOnSameLine(blockStartToken, parent)) {
-                    blockEndToken = currentRcurly;
-                }
-            }
-        }
-        return blockEndToken;
+    private static DetailAST getBlockEndToken(DetailAST blockStartToken) {
+        return blockStartToken.getLastChild();
     }
 
     /**
@@ -812,9 +796,9 @@ public class RequireThisCheck extends AbstractCheck {
         final DetailAST blockFrameNameIdent = currentFrame.getFrameNameIdent();
         final DetailAST definitionToken = blockFrameNameIdent.getParent();
         final DetailAST blockStartToken = definitionToken.findFirstToken(TokenTypes.SLIST);
-        final DetailAST blockEndToken = getBlockEndToken(blockFrameNameIdent, blockStartToken);
+        final DetailAST blockEndToken = getBlockEndToken(blockStartToken);
 
-        final Set<DetailAST> returnsInsideBlock = getAllTokensOfType(definitionToken,
+        final List<DetailAST> returnsInsideBlock = getAllTokensOfType(definitionToken,
             TokenTypes.LITERAL_RETURN, blockEndToken.getLineNo());
 
         boolean returnedVariable = false;
@@ -965,7 +949,7 @@ public class RequireThisCheck extends AbstractCheck {
             }
             else {
                 final ClassFrame classFrame = (ClassFrame) findFrame(ast, true);
-                final Set<DetailAST> exprIdents = getAllTokensOfType(sibling, TokenTypes.IDENT);
+                final List<DetailAST> exprIdents = getAllTokensOfType(sibling, TokenTypes.IDENT);
                 overlapping = classFrame.containsFieldOrVariableDef(exprIdents, ast);
             }
         }
@@ -984,7 +968,7 @@ public class RequireThisCheck extends AbstractCheck {
         final DetailAST sibling = ast.getNextSibling();
         if (sibling != null && isAssignToken(parent.getType())) {
             final ClassFrame classFrame = (ClassFrame) findFrame(ast, true);
-            final Set<DetailAST> exprIdents = getAllTokensOfType(sibling, TokenTypes.IDENT);
+            final List<DetailAST> exprIdents = getAllTokensOfType(sibling, TokenTypes.IDENT);
             overlapping = classFrame.containsFieldOrVariableDef(exprIdents, ast);
         }
         return overlapping;
@@ -995,11 +979,11 @@ public class RequireThisCheck extends AbstractCheck {
      *
      * @param ast ast node.
      * @param tokenType token type.
-     * @return a set of all tokens of specific type starting with the current ast node.
+     * @return a list of all tokens of specific type starting with the current ast node.
      */
-    private static Set<DetailAST> getAllTokensOfType(DetailAST ast, int tokenType) {
+    private static List<DetailAST> getAllTokensOfType(DetailAST ast, int tokenType) {
         DetailAST vertex = ast;
-        final Set<DetailAST> result = new HashSet<>();
+        final List<DetailAST> result = new ArrayList<>();
         final Deque<DetailAST> stack = new ArrayDeque<>();
         while (vertex != null || !stack.isEmpty()) {
             if (!stack.isEmpty()) {
@@ -1025,13 +1009,13 @@ public class RequireThisCheck extends AbstractCheck {
      * @param ast ast node.
      * @param tokenType token type.
      * @param endLineNumber end line number.
-     * @return a set of all tokens of specific type starting with the current ast node and which
+     * @return a list of all tokens of specific type starting with the current ast node and which
      *         line number is lower or equal to the end line number.
      */
-    private static Set<DetailAST> getAllTokensOfType(DetailAST ast, int tokenType,
-                                                     int endLineNumber) {
+    private static List<DetailAST> getAllTokensOfType(DetailAST ast, int tokenType,
+                                                      int endLineNumber) {
         DetailAST vertex = ast;
-        final Set<DetailAST> result = new HashSet<>();
+        final List<DetailAST> result = new ArrayList<>();
         final Deque<DetailAST> stack = new ArrayDeque<>();
         while (vertex != null || !stack.isEmpty()) {
             if (!stack.isEmpty()) {
@@ -1058,13 +1042,14 @@ public class RequireThisCheck extends AbstractCheck {
      * @param ast ast node.
      * @param token token.
      * @param endLineNumber end line number.
-     * @return a set of tokens which are equal to current token starting with the current ast node
+     * @return a list of tokens which are equal to current token starting with the current ast node
      *         and which line number is lower or equal to the end line number.
      */
-    private static Set<DetailAST> getAllTokensWhichAreEqualToCurrent(DetailAST ast, DetailAST token,
-                                                                     int endLineNumber) {
+    private static List<DetailAST> getAllTokensWhichAreEqualToCurrent(DetailAST ast,
+                                                                      DetailAST token,
+                                                                      int endLineNumber) {
         DetailAST vertex = ast;
-        final Set<DetailAST> result = new HashSet<>();
+        final List<DetailAST> result = new ArrayList<>();
         final Deque<DetailAST> stack = new ArrayDeque<>();
         while (vertex != null || !stack.isEmpty()) {
             if (!stack.isEmpty()) {
@@ -1265,8 +1250,8 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private abstract static class AbstractFrame {
 
-        /** Set of name of variables declared in this frame. */
-        private final Set<DetailAST> varIdents;
+        /** List of name of variables declared in this frame. */
+        private final List<DetailAST> varIdents;
 
         /** Parent frame. */
         private final AbstractFrame parent;
@@ -1283,7 +1268,7 @@ public class RequireThisCheck extends AbstractCheck {
         protected AbstractFrame(AbstractFrame parent, DetailAST ident) {
             this.parent = parent;
             frameNameIdent = ident;
-            varIdents = new HashSet<>();
+            varIdents = new ArrayList<>();
         }
 
         /**
@@ -1360,17 +1345,17 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         /**
-         * Whether the set contains a declaration with the text of the specified
+         * Whether the list contains a declaration with the text of the specified
          * IDENT ast and it is declared in a proper position.
          *
-         * @param set the set of declarations.
+         * @param list  the list of declarations.
          * @param ident the specified IDENT ast.
-         * @return true if the set contains a declaration with the text of the specified
+         * @return true if the list contains a declaration with the text of the specified
          *         IDENT ast and it is declared in a proper position.
          */
-        protected boolean containsFieldOrVariableDef(Set<DetailAST> set, DetailAST ident) {
+        protected boolean containsFieldOrVariableDef(List<DetailAST> list, DetailAST ident) {
             boolean result = false;
-            for (DetailAST ast: set) {
+            for (DetailAST ast: list) {
                 if (isProperDefinition(ident, ast)) {
                     result = true;
                     break;
@@ -1442,14 +1427,14 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private static class ClassFrame extends AbstractFrame {
 
-        /** Set of idents of instance members declared in this frame. */
-        private final Set<DetailAST> instanceMembers;
-        /** Set of idents of instance methods declared in this frame. */
-        private final Set<DetailAST> instanceMethods;
-        /** Set of idents of variables declared in this frame. */
-        private final Set<DetailAST> staticMembers;
-        /** Set of idents of static methods declared in this frame. */
-        private final Set<DetailAST> staticMethods;
+        /** List of idents of instance members declared in this frame. */
+        private final List<DetailAST> instanceMembers;
+        /** List of idents of instance methods declared in this frame. */
+        private final List<DetailAST> instanceMethods;
+        /** List of idents of variables declared in this frame. */
+        private final List<DetailAST> staticMembers;
+        /** List of idents of static methods declared in this frame. */
+        private final List<DetailAST> staticMethods;
 
         /**
          * Creates new instance of ClassFrame.
@@ -1459,10 +1444,10 @@ public class RequireThisCheck extends AbstractCheck {
          */
         /* package */ ClassFrame(AbstractFrame parent, DetailAST ident) {
             super(parent, ident);
-            instanceMembers = new HashSet<>();
-            instanceMethods = new HashSet<>();
-            staticMembers = new HashSet<>();
-            staticMethods = new HashSet<>();
+            instanceMembers = new ArrayList<>();
+            instanceMethods = new ArrayList<>();
+            staticMembers = new ArrayList<>();
+            staticMethods = new ArrayList<>();
         }
 
         @Override
@@ -1596,17 +1581,17 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         /**
-         * Whether the set contains a method definition with the
-         *     same name and number of parameters.
+         * Whether the list contains a method definition with the
+         * same name and number of parameters.
          *
-         * @param set the set of definitions.
+         * @param list  the list of definitions.
          * @param ident the specified method call IDENT ast.
-         * @return true if the set contains a definition with the
-         *     same name and number of parameters.
+         * @return true if the list contains a definition with the
+         *         same name and number of parameters.
          */
-        private static boolean containsMethodDef(Set<DetailAST> set, DetailAST ident) {
+        private static boolean containsMethodDef(List<DetailAST> list, DetailAST ident) {
             boolean result = false;
-            for (DetailAST ast: set) {
+            for (DetailAST ast: list) {
                 if (isSimilarSignature(ident, ast)) {
                     result = true;
                     break;
