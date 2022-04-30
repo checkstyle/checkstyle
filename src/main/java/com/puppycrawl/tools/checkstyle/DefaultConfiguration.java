@@ -104,6 +104,11 @@ public final class DefaultConfiguration implements Configuration {
     }
 
     @Override
+    public String getPropertyNoError(String propertyName) {
+        return propertyMap.get(propertyName);
+    }
+
+    @Override
     public Configuration[] getChildren() {
         return children.toArray(
                 EMPTY_CONFIGURATION_ARRAY);
