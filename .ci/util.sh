@@ -8,9 +8,21 @@ removeFolderWithProtectedFiles() {
 
 function getMavenProperty {
   property="\${$1}"
-  echo "$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
-                      -Dexec.args="${property}" \
-                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)"
+  RESULT_FILE='/tmp/result_file'
+  set +e
+  mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
+                        -Dexec.args="${property}" \
+                        --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec \
+                         > RESULT_FILE
+  set -e
+  # checks last command error code
+  if [[ $? != 0 ]]
+  then
+    cat $RESULT_FILE >&2
+    echo ">>> Attempt to get property '${property}' failed" >&2
+    exit 1
+  fi
+  echo $(cat $RESULT_FILE)
 }
 
 function getCheckstylePomVersion {
