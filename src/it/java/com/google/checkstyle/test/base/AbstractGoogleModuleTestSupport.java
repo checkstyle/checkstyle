@@ -76,6 +76,28 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
         return moduleCreationOption;
     }
 
+    /**
+     * Creates {@link DefaultConfiguration} or the {@link Checker}.
+     * based on the the list of {@link Configuration}.
+     *
+     * @param configs list of {@link Configuration} instances.
+     * @return {@link DefaultConfiguration} for the {@link Checker}.
+     */
+    protected final DefaultConfiguration createTreeWalkerConfig(List<Configuration> configs) {
+        DefaultConfiguration result = null;
+
+        for (Configuration config : configs) {
+            if (result == null) {
+                result = (DefaultConfiguration) createTreeWalkerConfig(config).getChildren()[0];
+            }
+            else {
+                result.addChild(config);
+            }
+        }
+
+        return result;
+    }
+
     @Override
     protected DefaultConfiguration createModuleConfig(Class<?> clazz) {
         return new DefaultConfiguration(clazz.getName());
@@ -130,12 +152,59 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
     }
 
     /**
+     * Returns a list of all {@link Configuration} instances for the given module IDs.
+     *
+     * @param moduleIds module IDs.
+     * @return List of {@link Configuration} instances.
+     */
+    protected static List<Configuration> getModuleConfigsByIds(String... moduleIds) {
+        final List<Configuration> result = new ArrayList<>();
+        for (Configuration currentConfig : CONFIGURATION.getChildren()) {
+            if ("TreeWalker".equals(currentConfig.getName())) {
+                for (Configuration moduleConfig : currentConfig.getChildren()) {
+                    final String id = moduleConfig.getPropertyNoError("id");
+                    if (id != null && findIn(id, moduleIds)) {
+                        result.add(moduleConfig);
+                    }
+                }
+            }
+            else {
+                final String id = currentConfig.getPropertyNoError("id");
+                if (id != null && findIn(id, moduleIds)) {
+                    result.add(currentConfig);
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Finds the specific ID in a list of IDs.
+     *
+     * @param id The ID to find.
+     * @param moduleIds The list of module IDs.
+     * @return {@code true} if the ID is in the list.
+     */
+    private static boolean findIn(String id, String... moduleIds) {
+        boolean found = false;
+
+        for (String moduleId : moduleIds) {
+            if (id.equals(moduleId)) {
+                found = true;
+                break;
+            }
+        }
+
+        return found;
+    }
+
+    /**
      * Returns a list of all {@link Configuration} instances for the given module name.
      *
      * @param moduleName module name.
      * @return {@link Configuration} instance for the given module name.
      */
-    protected static List<Configuration> getModuleConfigs(String moduleName) {
+    private static List<Configuration> getModuleConfigs(String moduleName) {
         final List<Configuration> result = new ArrayList<>();
         for (Configuration currentConfig : CONFIGURATION.getChildren()) {
             if ("TreeWalker".equals(currentConfig.getName())) {

@@ -59,12 +59,12 @@ public class InputRightCurlyDoWhileAlone {
 
     public void foo5() {
         do {
-        } // ok - for alone
+        } // warn
         while (true);
     }
 
     public void foo6() {
-        do {} // ok - for alone
+        do {} // warn
         while (true);
     }
 
@@ -80,7 +80,7 @@ public class InputRightCurlyDoWhileAlone {
 
         {
 
-        } // ok - for alone
+        } // warn
 
         while
 
