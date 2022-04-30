@@ -1,5 +1,6 @@
 ---
 kind: pipeline
+type: docker
 name: checkstyle_spotbugs-pmd
 
 volumes:
@@ -38,6 +39,7 @@ steps:
 
 ---
 kind: pipeline
+type: docker
 name: site
 
 volumes:
@@ -67,6 +69,7 @@ steps:
 
 ---
 kind: pipeline
+type: docker
 name: dry-run_run-all
 
 volumes:
@@ -105,6 +108,7 @@ steps:
 
 ---
 kind: pipeline
+type: docker
 name: releasenotes
 
 volumes:
@@ -135,6 +139,7 @@ steps:
 
 ---
 kind: pipeline
+type: docker
 name: non-mvn_javac
 
 steps:
@@ -175,6 +180,7 @@ steps:
 
 ---
 kind: pipeline
+type: docker
 name: assembly-site_sbe
 
 volumes:
