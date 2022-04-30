@@ -59,13 +59,21 @@ public interface Configuration extends Serializable {
     String[] getPropertyNames();
 
     /**
-     * The property value for n property name.
+     * The property value for property name.
      *
      * @param name the property name
      * @return the value that is associated with name
      * @throws CheckstyleException if name is not a valid property name
      */
     String getProperty(String name) throws CheckstyleException;
+
+    /**
+     * The property value for the property name, even if the property doesn't exist.
+     *
+     * @param name the property name
+     * @return The value that is associated with name.
+     */
+    String getPropertyNoError(String name);
 
     /**
      * The set of child configurations.
