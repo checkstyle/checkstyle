@@ -32,6 +32,9 @@
   <suppress checks="AvoidModifiersForTypesCheck"
              files="MainTest\.java"/>
 
+  <!-- Suppressed alternative method of pulling partial configuration from file -->
+  <suppress checks="CheckstyleTestMakeup" files="[\\/]RightCurlyTest\.java"/>
+
   <!-- No need for constructor with cause -->
   <suppress checks="CauseParameterInException" files=".*MetadataGenerationException\.java"/>
 
