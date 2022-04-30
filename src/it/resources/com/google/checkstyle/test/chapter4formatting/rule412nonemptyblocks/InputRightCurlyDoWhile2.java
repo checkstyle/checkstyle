@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Test input for GitHub issue #3090.
  * https://github.com/checkstyle/checkstyle/issues/3090
  */
-public class InputRightCurlyDoWhileAlone {
+public class InputRightCurlyDoWhile2 {
 
     public void foo1() {
         do {
@@ -59,12 +59,12 @@ public class InputRightCurlyDoWhileAlone {
 
     public void foo5() {
         do {
-        } // ok - for alone
+        } // warn
         while (true);
     }
 
     public void foo6() {
-        do {} // ok - for alone
+        do {} // warn
         while (true);
     }
 
@@ -80,7 +80,7 @@ public class InputRightCurlyDoWhileAlone {
 
         {
 
-        } // ok - for alone
+        } // warn
 
         while
 

@@ -94,7 +94,7 @@ class FooCtor
     public FooCtor()
     {
         i = 1;
-    }} //ok
+    }} // warn
 
 /**
 * Test input for closing brace if that brace terminates
@@ -105,7 +105,7 @@ class FooMethod
     public void fooMethod()
     {
         int i = 1;
-    }} //ok
+    }} // warn
 
 /**
 * Test input for closing brace if that brace terminates

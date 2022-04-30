@@ -20,6 +20,7 @@
 package com.google.checkstyle.test.base;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 import org.checkstyle.base.AbstractItModuleTestSupport;
@@ -95,6 +96,18 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
      */
     protected static Configuration getModuleConfig(String moduleName, String moduleId) {
         return getModuleConfig(CONFIGURATION, moduleName, moduleId);
+    }
+
+    /**
+     * Returns a list of all {@link Configuration} instances for the given module IDs.
+     *
+     * @param moduleIds module IDs.
+     * @return List of {@link Configuration} instances.
+     * @throws CheckstyleException if there is an error with the config.
+     */
+    protected static List<Configuration> getModuleConfigsByIds(String... moduleIds)
+            throws CheckstyleException {
+        return getModuleConfigsByIds(CONFIGURATION, moduleIds);
     }
 
 }

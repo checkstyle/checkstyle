@@ -156,6 +156,76 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     }
 
     /**
+     * Returns a list of all {@link Configuration} instances for the given module IDs in the
+     * {@code masterConfig}.
+     *
+     * @param masterConfig The master configuration to pull results from.
+     * @param moduleIds module IDs.
+     * @return List of {@link Configuration} instances.
+     * @throws CheckstyleException if there is an error with the config.
+     */
+    protected static List<Configuration> getModuleConfigsByIds(Configuration masterConfig,
+            String... moduleIds) throws CheckstyleException {
+        final List<Configuration> result = new ArrayList<>();
+        for (Configuration currentConfig : masterConfig.getChildren()) {
+            if ("TreeWalker".equals(currentConfig.getName())) {
+                for (Configuration moduleConfig : currentConfig.getChildren()) {
+                    final String id = getProperty(moduleConfig, "id");
+                    if (id != null && isIn(id, moduleIds)) {
+                        result.add(moduleConfig);
+                    }
+                }
+            }
+            else {
+                final String id = getProperty(currentConfig, "id");
+                if (id != null && isIn(id, moduleIds)) {
+                    result.add(currentConfig);
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Finds the specific property {@code name} in the {@code config}.
+     *
+     * @param config The configuration to examine.
+     * @param name The property name to find.
+     * @return The property value or {@code null} if not found.
+     * @throws CheckstyleException if there is an error with the config.
+     */
+    private static String getProperty(Configuration config, String name)
+            throws CheckstyleException {
+        String result = null;
+
+        if (isIn(name, config.getPropertyNames())) {
+            result = config.getProperty(name);
+        }
+
+        return result;
+    }
+
+    /**
+     * Finds the specific ID in a list of IDs.
+     *
+     * @param find The ID to find.
+     * @param list The list of module IDs.
+     * @return {@code true} if the ID is in the list.
+     */
+    private static boolean isIn(String find, String... list) {
+        boolean found = false;
+
+        for (String item : list) {
+            if (find.equals(item)) {
+                found = true;
+                break;
+            }
+        }
+
+        return found;
+    }
+
+    /**
      * Returns a list of all {@link Configuration} instances for the given
      * module name pulled from the {@code masterConfig}.
      *
@@ -163,7 +233,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @param moduleName module name.
      * @return {@link Configuration} instance for the given module name.
      */
-    protected static List<Configuration> getModuleConfigs(Configuration masterConfig,
+    private static List<Configuration> getModuleConfigs(Configuration masterConfig,
             String moduleName) {
         final List<Configuration> result = new ArrayList<>();
         for (Configuration currentConfig : masterConfig.getChildren()) {
@@ -247,6 +317,29 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         rootConfig.addChild(twConf);
         twConf.addChild(config);
         return rootConfig;
+    }
+
+    /**
+     * Creates {@link DefaultConfiguration} or the Checker.
+     * based on the the list of {@link Configuration}.
+     *
+     * @param configs list of {@link Configuration} instances.
+     * @return {@link DefaultConfiguration} for the Checker.
+     */
+    protected static DefaultConfiguration createTreeWalkerConfig(
+            List<Configuration> configs) {
+        DefaultConfiguration result = null;
+
+        for (Configuration config : configs) {
+            if (result == null) {
+                result = (DefaultConfiguration) createTreeWalkerConfig(config).getChildren()[0];
+            }
+            else {
+                result.addChild(config);
+            }
+        }
+
+        return result;
     }
 
     /**
