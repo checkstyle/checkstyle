@@ -383,6 +383,7 @@ public class FallThroughCheck extends AbstractCheck {
      * @param useBreak should we consider break as terminator
      * @param useContinue should we consider continue as terminator
      * @return true if try/catch/finally block is terminated
+     * @noinspection SimplifiableIfStatement
      */
     private boolean checkTry(final DetailAST ast, boolean useBreak,
                              boolean useContinue) {
@@ -511,13 +512,9 @@ public class FallThroughCheck extends AbstractCheck {
         final String line = getLine(lineNo - 1);
 
         final Matcher matcher = pattern.matcher(line);
-        boolean matches = false;
-
-        if (matcher.find()) {
-            matches = getFileContents().hasIntersectionWithComment(lineNo, matcher.start(),
-                    lineNo, matcher.end());
-        }
-        return matches;
+        return matcher.find()
+                && getFileContents().hasIntersectionWithComment(
+                        lineNo, matcher.start(), lineNo, matcher.end());
     }
 
 }
