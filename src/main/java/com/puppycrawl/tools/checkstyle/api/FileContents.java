@@ -331,6 +331,7 @@ public final class FileContents implements CommentListener {
      * @return true if the package file.
      * @deprecated use {@link CheckUtil#isPackageInfo(String)} for the same functionality,
      *              or use {@link AbstractCheck#getFilePath()} to process your own standards.
+     * @noinspection DeprecatedIsStillUsed
      */
     @Deprecated(since = "10.2")
     public boolean inPackageInfo() {
