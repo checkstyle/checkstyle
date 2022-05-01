@@ -735,6 +735,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param identAst identAst
      * @return true if an ident with parent node of type {@link TokenTypes#METHOD_REF}
      *         should be checked or if the parent type is not {@link TokenTypes#METHOD_REF}
+     * @noinspection SimplifiableIfStatement
      */
     public static boolean shouldCheckIdentWithMethodRefParent(DetailAST identAst) {
         final DetailAST parent = identAst.getParent();
