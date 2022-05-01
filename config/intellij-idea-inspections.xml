@@ -650,7 +650,7 @@
   <inspection_tool class="AnonymousClassVariableHidesContainingMethodVariable" enabled="true"
                    level="WARNING" enabled_by_default="true"/>
   <!-- Anonymous Javascript functions are good for self executing and callbacks. -->
-  <inspection_tool class="AnonymousFunctionJS" enabled="true" level="WARNING"
+  <inspection_tool class="AnonymousFunctionJS" enabled="false" level="WARNING"
                    enabled_by_default="true"/>
   <inspection_tool class="AnonymousHasLambdaAlternative" enabled="true" level="WARNING"
                    enabled_by_default="true"/>
@@ -2386,6 +2386,9 @@
   </inspection_tool>
   <inspection_tool class="HtmlUnknownTarget" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
+  <!-- all links are to general web sites, we can not use https -->
+  <inspection_tool class="HttpUrlsUsage" enabled="false" level="WEAK WARNING"
+                   enabled_by_default="false" />
   <inspection_tool class="IOResource" enabled="true" level="WARNING" enabled_by_default="true">
     <scope name="Production" level="WARNING" enabled="true">
       <option name="ignoredTypesString"
@@ -3043,6 +3046,9 @@
   <!-- behavior is different from local execution, no violations on local -->
   <inspection_tool class="MavenModelInspection" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
+  <!-- we use maven plugin for this and github action bot -->
+  <inspection_tool class="MavenPackageUpdate" enabled="false" level="WARNING"
+                   enabled_by_default="false" />
   <inspection_tool class="MavenRedundantGroupId" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
   <inspection_tool class="MayBeConstant" enabled="false" level="WEAK WARNING"
@@ -3768,6 +3774,9 @@
     <option name="ignoreEmptySuperMethods" value="false"/>
     <option name="onlyReportWhenAnnotated" value="true"/>
   </inspection_tool>
+  <!-- temporal suppression until #11590 -->
+  <inspection_tool class="RegExpDuplicateCharacterInClass" enabled="false" level="WARNING"
+                   enabled_by_default="false" />
   <inspection_tool class="RemoveCurlyBracesFromTemplate" enabled="false" level="WEAK WARNING"
                    enabled_by_default="false"/>
   <inspection_tool class="RemoveEmptyClassBody" enabled="false" level="INFO"
@@ -4255,7 +4264,8 @@
   </inspection_tool>
   <inspection_tool class="StaticCallOnSubclass" enabled="true" level="WARNING"
                    enabled_by_default="true"/>
-  <inspection_tool class="StaticCollection" enabled="true" level="WARNING"
+  <!-- we use static collections to store data that is constant/final for all instances -->
+  <inspection_tool class="StaticCollection" enabled="false" level="WARNING"
                    enabled_by_default="true">
     <option name="m_ignoreWeakCollections" value="false"/>
   </inspection_tool>
@@ -4555,6 +4565,9 @@
   </inspection_tool>
   <inspection_tool class="SynchronizedOnLiteralObject" enabled="true" level="WARNING"
                    enabled_by_default="true"/>
+  <inspection_tool class="SyntaxError" enabled="true" level="ERROR" enabled_by_default="false">
+    <scope name="Checkstyle Inspection Scope" level="ERROR" enabled="true" />
+  </inspection_tool>
   <inspection_tool class="SystemExit" enabled="true" level="ERROR" enabled_by_default="true"/>
   <inspection_tool class="SystemGC" enabled="true" level="WARNING" enabled_by_default="true"/>
   <inspection_tool class="SystemGetenv" enabled="true" level="ERROR" enabled_by_default="true"/>
