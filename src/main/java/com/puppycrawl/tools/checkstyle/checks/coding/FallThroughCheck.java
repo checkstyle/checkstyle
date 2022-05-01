@@ -383,6 +383,7 @@ public class FallThroughCheck extends AbstractCheck {
      * @param useBreak should we consider break as terminator
      * @param useContinue should we consider continue as terminator
      * @return true if try/catch/finally block is terminated
+     * @noinspection SimplifiableIfStatement
      */
     private boolean checkTry(final DetailAST ast, boolean useBreak,
                              boolean useContinue) {
