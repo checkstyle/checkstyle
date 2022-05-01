@@ -2098,6 +2098,8 @@
             <!-- permanent 403 -->
             <excludedLink>https://www.ej-technologies.com/*</excludedLink>
             <excludedLink>https://travis-ci.com/</excludedLink>
+            <!-- permanent 403 -->
+            <excludedLink>https://docs.github.com/en/rest/checks</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
