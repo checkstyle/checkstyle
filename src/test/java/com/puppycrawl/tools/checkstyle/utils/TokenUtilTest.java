@@ -340,59 +340,121 @@ public class TokenUtilTest {
                 .isTrue();
     }
 
+    /**
+     * IsOfType{} method with 2 parameter is a general test and not used
+     * in Check UTs as we can't hit all conditions to achieve 100%
+     * Code Coverage.
+     */
     @Test
-    public void testIsOfTypeTrue() {
+    public void testIsOfTypeTwo() {
         final int type = TokenTypes.LITERAL_CATCH;
         final DetailAstImpl astForTest = new DetailAstImpl();
+        final DetailAstImpl astForTest2 = null;
         astForTest.setType(type);
-        final boolean result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_FOR,
-                                TokenTypes.LITERAL_IF, TokenTypes.LITERAL_CATCH);
-        final boolean result2 = TokenUtil.isOfType(astForTest, TokenTypes.LITERAL_FOR,
-                                TokenTypes.LITERAL_IF, TokenTypes.LITERAL_CATCH);
+        final boolean result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_IF,
+                                                   TokenTypes.LITERAL_CATCH);
+        final boolean result2 = TokenUtil.isOfType(astForTest, TokenTypes.LITERAL_IF,
+                                                   TokenTypes.LITERAL_ELSE);
+        final boolean result3 = TokenUtil.isOfType(astForTest2, TokenTypes.LITERAL_IF,
+                                                   TokenTypes.LITERAL_ELSE);
 
         assertWithMessage("Token type did not match")
-                .that(result1)
-                .isTrue();
-        assertWithMessage("Token type did not match")
-                .that(result2)
-                .isTrue();
+            .that(result1)
+            .isTrue();
+        assertWithMessage("Token type should not match")
+            .that(result2)
+            .isFalse();
+        assertWithMessage("Token type should not match")
+            .that(result3)
+            .isFalse();
     }
 
+    /**
+     * IsOfType{} method with 3 parameter is a general test and not used
+     * in Check UTs as we can't hit all conditions to achieve 100%
+     * Code Coverage.
+     */
     @Test
-    public void testIsOfTypeFalse() {
+    public void testIsOfTypeThree() {
+        final int type = TokenTypes.LITERAL_CATCH;
+        final DetailAstImpl astForTest = new DetailAstImpl();
+        final DetailAstImpl astForTest2 = null;
+        astForTest.setType(type);
+        final boolean result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_FOR,
+                                                   TokenTypes.LITERAL_IF, TokenTypes.LITERAL_CATCH);
+        final boolean result2 = TokenUtil.isOfType(astForTest, TokenTypes.LITERAL_FOR,
+                                                   TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE);
+        final boolean result3 = TokenUtil.isOfType(astForTest2, TokenTypes.LITERAL_FOR,
+                                                   TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE);
+
+        assertWithMessage("Token type did not match")
+            .that(result1)
+            .isTrue();
+        assertWithMessage("Token type should not match")
+            .that(result2)
+            .isFalse();
+        assertWithMessage("Token type should not match")
+            .that(result3)
+            .isFalse();
+    }
+
+    /**
+     * IsOfType{} method with 4 parameter is a general test and not used
+     * in Check UTs as we can't hit all conditions to achieve 100%
+     * Code Coverage.
+     */
+    @Test
+    public void testIsOfTypeFour() {
         final int type = TokenTypes.LITERAL_CATCH;
         final DetailAstImpl astForTest1 = new DetailAstImpl();
         final DetailAstImpl astForTest2 = null;
         astForTest1.setType(type);
-        final boolean result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_FOR,
-                                TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE);
-        final boolean result2 = TokenUtil.isOfType(astForTest1, TokenTypes.LITERAL_FOR,
-                                TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE);
-        final boolean result3 = TokenUtil.isOfType(astForTest2, TokenTypes.LITERAL_FOR,
-                                TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE);
+        final boolean result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_TRY,
+                                                   TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE,
+                                                   TokenTypes.LITERAL_CATCH);
+        final boolean result2 = TokenUtil.isOfType(astForTest1, TokenTypes.LITERAL_TRY,
+                                                   TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE,
+                                                   TokenTypes.LITERAL_FINALLY);
+        final boolean result3 = TokenUtil.isOfType(astForTest2, TokenTypes.LITERAL_TRY,
+                                                   TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE,
+                                                   TokenTypes.LITERAL_FINALLY);
 
+        assertWithMessage("Token type did not match")
+            .that(result1)
+            .isTrue();
         assertWithMessage("Token type should not match")
-                .that(result1)
-                .isFalse();
+            .that(result2)
+            .isFalse();
         assertWithMessage("Token type should not match")
-                .that(result2)
-                .isFalse();
-        assertWithMessage("Token type should not match")
-                .that(result3)
-                .isFalse();
+            .that(result3)
+            .isFalse();
     }
 
+    /**
+     * IsOfType{} method with more than 4 parameter is a general test and not used
+     * in Check UTs as we can't hit all conditions to achieve 100%
+     * Code Coverage.
+     */
     @Test
-    public void testIsBooleanLiteralType() {
-        assertWithMessage("Result is not expected")
-                .that(TokenUtil.isBooleanLiteralType(TokenTypes.LITERAL_TRUE))
-                .isTrue();
-        assertWithMessage("Result is not expected")
-                .that(TokenUtil.isBooleanLiteralType(TokenTypes.LITERAL_FALSE))
-                .isTrue();
-        assertWithMessage("Result is not expected")
-                .that(TokenUtil.isBooleanLiteralType(TokenTypes.LOR))
-                .isFalse();
-    }
+    public void testIsOfTypeTypes() {
+        final int type = TokenTypes.LITERAL_CATCH;
+        final DetailAstImpl astForTest1 = new DetailAstImpl();
+        astForTest1.setType(type);
+        final boolean result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_TRY,
+                                                   TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE,
+                                                   TokenTypes.LITERAL_CATCH,
+                                                   TokenTypes.LITERAL_FINALLY);
 
+        final boolean result2 = TokenUtil.isOfType(astForTest1, TokenTypes.LITERAL_TRY,
+                                                   TokenTypes.LITERAL_FOR,
+                                                   TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE,
+                                                   TokenTypes.LITERAL_FINALLY);
+
+        assertWithMessage("Token type did not match")
+            .that(result1)
+            .isTrue();
+        assertWithMessage("Token type should not match")
+            .that(result2)
+            .isFalse();
+    }
 }
