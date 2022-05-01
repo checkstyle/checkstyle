@@ -3774,6 +3774,9 @@
     <option name="ignoreEmptySuperMethods" value="false"/>
     <option name="onlyReportWhenAnnotated" value="true"/>
   </inspection_tool>
+  <!-- temporal suppression until #11590 -->
+  <inspection_tool class="RegExpDuplicateCharacterInClass" enabled="false" level="WARNING"
+                   enabled_by_default="false" />
   <inspection_tool class="RemoveCurlyBracesFromTemplate" enabled="false" level="WEAK WARNING"
                    enabled_by_default="false"/>
   <inspection_tool class="RemoveEmptyClassBody" enabled="false" level="INFO"
