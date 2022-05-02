@@ -67,7 +67,7 @@ public class InputRightCurlyTestAloneOrSingleline {
     }
 
     private void foo15() {
-        class A { int a; } var1++; // violation
+        class A { int a; } var1++; // violation ''}' at column 26 should be alone on a line'
         class B {  }
         if(true) {
 
@@ -80,23 +80,23 @@ public class InputRightCurlyTestAloneOrSingleline {
         if (false) {
         }
     }
-    // violation below
+    // violation below ''}' at column 42 should be alone on a line'
     void f17() { int var1 = 5; var2 = 6; } private void f18() {int var1 = 5; var2 = 6; }
 
     private void foo19() {int var1 = 5;
-        var2 = 6;} // violation
+        var2 = 6;} // violation ''}' at column 18 should be alone on a line'
 
     private String foo20() {
         do { var2 ++; }
         while (var2 < 15);
 
         while (var1 < 10) { var1++; }
-
-        do { var2++; var1++; } while (var2 < 15); return ""+0xCAFEBABE; // violation
+        // violation below ''}' at column 30 should be alone on a line'
+        do { var2++; var1++; } while (var2 < 15); return ""+0xCAFEBABE;
     }
 
-    private void foo21() {
-        new Object() { @Override protected void finalize() { "".toString(); }}; // violation
+    private void foo21() { // violation below ''}' at column 77 should be alone on a line'
+        new Object() { @Override protected void finalize() { "".toString(); }};
     }
 
     void foo22() {
@@ -104,9 +104,9 @@ public class InputRightCurlyTestAloneOrSingleline {
         try {
             int a = 5;
             toString();
-        } catch (Exception e) { // violation
+        } catch (Exception e) { // violation ''}' at column 9 should be alone on a line'
             throw new RuntimeException(e);
-        } finally { toString(); } // violation
+        } finally { toString(); } // violation ''}' at column 9 should be alone on a line'
     }
 
     void doDoubleBraceInitialization() {
@@ -116,11 +116,11 @@ public class InputRightCurlyTestAloneOrSingleline {
             put("polygene", "lubricants");
             put("alpha", "betical");
         }}; //NO violation
-
-        Thread t = new Thread() {@Override public void run() {super.run();}}; // violation
+        // violation below ''}' at column 75 should be alone on a line'
+        Thread t = new Thread() {@Override public void run() {super.run();}};
         // 2 violations below
         new Object() { @Override protected void finalize() { "".toString(); }  { int a = 5; }};
-        // violation below
+        // violation below ''}' at column 77 should be alone on a line'
         new Object() { @Override protected void finalize() { "".toString(); }  int b = 10; };
         // 2 violations below
         new Object() { protected void finalize() { hashCode(); }  { int c = 5; } int d = 8; };
@@ -129,14 +129,14 @@ public class InputRightCurlyTestAloneOrSingleline {
             put("Hello", "World");
             put("first", "second");
             put("polygene", "lubricants");
-            put("alpha", "betical");}  // violation
+            put("alpha", "betical");}  // violation ''}' at column 37 should be alone on a line'
         };
 
         java.util.Map<String, String> map3 = new java.util.LinkedHashMap<String, String>() {{
             put("Hello", "World");
             put("first", "second");
             put("polygene", "lubricants");
-            put("alpha", "betical");}}; // violation
+            put("alpha", "betical");}}; // violation ''}' at column 37 should be alone on a line'
 
         java.util.Map<String, String> map4 = new java.util.LinkedHashMap<String, String>() {{
             put("Hello", "World");
@@ -151,7 +151,7 @@ public class InputRightCurlyTestAloneOrSingleline {
             add("AB21/X");
             add("YYLEX");
             add("AR5E");
-        }});  // violation
+        }});  // violation ''}' at column 9 should be alone on a line'
 
         foo23(new java.util.HashSet<String>() {{
             add("XZ13s");
@@ -186,41 +186,41 @@ public class InputRightCurlyTestAloneOrSingleline {
         boolean flag = true;
         if (flag) {
             System.identityHashCode("heh");
-            flag = !flag; } String.CASE_INSENSITIVE_ORDER. // violation
-            equals("Xe-xe");
+            flag = !flag; } String. // violation ''}' at column 27 should be alone on a line'
+                CASE_INSENSITIVE_ORDER.equals("Xe-xe");
     }
 
     void foo30() {
         if (true) {
-            getClass();} // violation
+            getClass();} // violation ''}' at column 24 should be alone on a line'
 
         for (int i = 0; i == 0; i++) {
-            getClass();} // violation
+            getClass();} // violation ''}' at column 24 should be alone on a line'
 
         while (true) {
-            getClass();} // violation
+            getClass();} // violation ''}' at column 24 should be alone on a line'
     }
 
     public void emptyBlocks() {
         try {
             // comment
-        } catch (RuntimeException e) { // violation
+        } catch (RuntimeException e) { // violation ''}' at column 9 should be alone on a line'
             new Object();
-        } catch (Exception e) { // violation
+        } catch (Exception e) { // violation ''}' at column 9 should be alone on a line'
             // comment
-        } catch (Throwable e) { // violation
-        } finally { // violation
+        } catch (Throwable e) { // violation ''}' at column 9 should be alone on a line'
+        } finally { // violation ''}' at column 9 should be alone on a line'
             // comment
         }
 
         do {
-        } while (true); // violation
+        } while (true); // violation ''}' at column 9 should be alone on a line'
     }
 
     public void codeAfterLastRightCurly() {
         while (new Object().equals(new Object())) {
-        }; // violation
-        for (int i = 0; i < 1; i++) { new Object(); }; // violation
+        }; // violation ''}' at column 9 should be alone on a line'
+        for (int i = 0; i < 1; i++) { }; // violation ''}' at column 39 should be alone on a line'
     }
 
     public @interface TestAnnotation {}
@@ -228,7 +228,7 @@ public class InputRightCurlyTestAloneOrSingleline {
     public @interface TestAnnotation1{ String value(); }
 
     public @interface TestAnnotation2 {
-        String value();} // violation
+        String value();} // violation ''}' at column 24 should be alone on a line'
 
     public @interface TestAnnotation3 {
         String value();
@@ -240,7 +240,7 @@ public class InputRightCurlyTestAloneOrSingleline {
     interface Interface1
     {
         int i = 1;
-        public void meth1(); } // violation
+        public void meth1(); } // violation ''}' at column 30 should be alone on a line'
 
     interface Interface2
     { int i = 1; public void meth1(); }
