@@ -43,7 +43,7 @@
 
     <section name="Debug">
       <p>
-        Open the Check's source file by double click on it in a source tree as is shown:<br/><br/>
+        Open the Check's source file by double-click on it in a source tree as is shown:<br/><br/>
         <span class="wrapper block">
           <img alt="screenshot" src="images/gui_screenshot_select_check_idea.png"/>
         </span>
@@ -116,11 +116,11 @@
 
     <section name="Disable Auto Indent On Paste">
       <p>
-        IDEA has it's own rules of indentation when pasting code and it applies these rules to
+        IDEA has its own rules of indentation when pasting code and it applies these rules to
         all the lines of the copied code. This may result in wrong formatting of code in many
         checkstyle files. A simple solution to this problem is by using the key combinations
-        <code>Ctrl + Shift + Alt + V</code> or <code>Edit | Paste Simple</code>. However it is
-        recommended that this settings be changed by default as shown below
+        <code>Ctrl + Shift + Alt + V</code> or <code>Edit | Paste Simple</code>. However, it is
+        recommended that these settings be changed by default as shown below
         <span class="wrapper block">
           <img alt="Disable Auto Indent on Paste"
             src="images/gui_screenshot_disable_indent_paste_idea.png"/>

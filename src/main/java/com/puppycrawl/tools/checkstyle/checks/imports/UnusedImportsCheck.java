@@ -64,11 +64,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * <li>
  * <b>Optionally:</b> it is referenced in Javadoc comments. This check is on by
- * default, but it is considered bad practice to introduce a compile time
+ * default, but it is considered bad practice to introduce a compile-time
  * dependency for documentation purposes only. As an example, the import
  * {@code java.util.List} would be considered referenced with the Javadoc
- * comment {@code {@link List}}. The alternative to avoid introducing a compile
- * time dependency would be to write the Javadoc comment as {@code {&#64;link java.util.List}}.
+ * comment {@code {@link List}}. The alternative to avoid introducing a compile-time
+ * dependency would be to write the Javadoc comment as {@code {&#64;link java.util.List}}.
  * </li>
  * </ul>
  * <p>
@@ -361,10 +361,10 @@ public class UnusedImportsCheck extends AbstractCheck {
     }
 
     /**
-     * Returns a list of references found in a javadoc {@link JavadocTag}.
+     * Returns a list of references that found in a javadoc {@link JavadocTag}.
      *
      * @param tag The javadoc tag to parse
-     * @return A list of references found in this tag
+     * @return A list of references that found in this tag
      */
     private static Set<String> processJavadocTag(JavadocTag tag) {
         final Set<String> references = new HashSet<>();
@@ -377,12 +377,12 @@ public class UnusedImportsCheck extends AbstractCheck {
     }
 
     /**
-     * Extracts a list of texts matching a {@link Pattern} from a
+     * Extracts a set of texts matching a {@link Pattern} from a
      * {@link String}.
      *
      * @param identifier The String to match the pattern against
      * @param pattern The Pattern used to extract the texts
-     * @return A list of texts which matched the pattern
+     * @return A set of texts which matched the pattern
      */
     private static Set<String> matchPattern(String identifier, Pattern pattern) {
         final Set<String> references = new HashSet<>();

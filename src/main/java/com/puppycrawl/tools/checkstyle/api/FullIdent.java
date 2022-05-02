@@ -109,7 +109,7 @@ public final class FullIdent {
     }
 
     /**
-     * Checks an `ARRAY_DECLARATOR` ast to verify that it is not a
+     * Checks an `ARRAY_DECLARATOR` ast to verify that it is not an
      * array initialization, i.e. 'new int [2][2]'. We do this by
      * making sure that no 'EXPR' token exists in this branch.
      *

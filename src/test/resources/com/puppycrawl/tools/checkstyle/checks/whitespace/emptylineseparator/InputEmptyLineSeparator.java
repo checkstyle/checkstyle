@@ -21,7 +21,7 @@ import java.util.Collections;
 /* no violation: block comment after token*/
 
 import com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.InputEmptyLineSeparator;
-//no violation: single line comment after token
+//no violation: single-line comment after token
 
 import javax.swing.AbstractAction; /* no violation: no trailing comment
 */

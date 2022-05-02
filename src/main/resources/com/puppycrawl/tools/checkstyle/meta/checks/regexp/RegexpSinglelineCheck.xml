@@ -5,7 +5,7 @@
               name="RegexpSingleline"
               parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;p&gt;
- Checks that a specified pattern matches a single line in any file type.
+ Checks that a specified pattern matches a single-line in any file type.
  &lt;/p&gt;
  &lt;p&gt;
  Rationale: This check can be used to prototype checks and to find common bad

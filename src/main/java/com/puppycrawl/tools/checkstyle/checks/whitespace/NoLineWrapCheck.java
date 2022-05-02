@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>Checks that chosen statements are not line-wrapped.
- * By default this Check restricts wrapping import and package statements,
+ * By default, this Check restricts wrapping import and package statements,
  * but it's possible to check any statement.
  * </p>
  * <ul>
@@ -124,20 +124,20 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Example:
  * </p>
  * <pre>
- * public class // violation, class definition not wrapped in a single line
+ * public class // violation, class definition not wrapped in a single-line
  *   Foo {
  *
  *   public Foo() { // OK
  *   }
  *
- *   public static void // violation, method definition not wrapped in a single line
+ *   public static void // violation, method definition not wrapped in a single-line
  *     doSomething() {
  *   }
  * }
  *
  * public class Bar { // OK
  *
- *   public // violation, constructor definition not wrapped in a single line
+ *   public // violation, constructor definition not wrapped in a single-line
  *     Bar() {
  *   }
  *

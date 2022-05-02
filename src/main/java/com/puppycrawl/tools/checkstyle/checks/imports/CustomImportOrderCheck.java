@@ -74,10 +74,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * SPECIAL_IMPORTS.
  * </li>
  * <li>
- * STANDARD_JAVA_PACKAGE group. By default this group sets ordering of standard java/javax imports.
+ * STANDARD_JAVA_PACKAGE group. By default, this group sets ordering of standard java/javax imports.
  * </li>
  * <li>
- * SPECIAL_IMPORTS group. This group may contains some imports that have particular meaning for the
+ * SPECIAL_IMPORTS group. This group may contain some imports that have particular meaning for the
  * user.
  * </li>
  * </ol>
@@ -864,7 +864,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
     /** Examine the order of all the imports and log any violations. */
     private void finishImportList() {
         String currentGroup = getFirstGroup();
-        int currentGroupNumber = customOrderRules.indexOf(currentGroup);
+        int currentGroupNumber = customOrderRules.lastIndexOf(currentGroup);
         ImportDetails previousImportObjectFromCurrentGroup = null;
         String previousImportFromCurrentGroup = null;
 
@@ -892,7 +892,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
                         validateMissedEmptyLine(previousImportObjectFromCurrentGroup,
                                 importObject, fullImportIdent);
                         currentGroup = nextGroup;
-                        currentGroupNumber = customOrderRules.indexOf(nextGroup);
+                        currentGroupNumber = customOrderRules.lastIndexOf(nextGroup);
                         previousImportFromCurrentGroup = fullImportIdent;
                     }
                     else {
@@ -992,7 +992,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
      * @param currentImportObject
      *        current import.
      * @return
-     *        true, if current import separated from previous by more that one empty line.
+     *        true, if current import separated from previous by more than one empty line.
      */
     private boolean isSeparatedByExtraEmptyLine(ImportDetails previousImportObject,
                                                 ImportDetails currentImportObject) {

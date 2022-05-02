@@ -273,7 +273,7 @@ public class XMLLogger
                     break;
                 default:
                     if (Character.isISOControl(chr)) {
-                        // true escape characters need '&' before but it also requires XML 1.1
+                        // true escape characters need '&' before, but it also requires XML 1.1
                         // until https://github.com/checkstyle/checkstyle/issues/5168
                         sb.append("#x");
                         sb.append(Integer.toHexString(chr));

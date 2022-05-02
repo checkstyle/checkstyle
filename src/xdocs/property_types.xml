@@ -572,7 +572,7 @@
             <td><code>nlow</code></td>
             <td>
               If the statement/expression/declaration connected to the brace spans multiple lines,
-              then apply <code>nl</code> rule. Otherwise apply the <code>eol</code> rule.
+              then apply <code>nl</code> rule. Otherwise, apply the <code>eol</code> rule.
               <code>nlow</code> is a mnemonic for "new line on wrap".
               For the example above Checkstyle will enforce:
               <div class="wrapper">
@@ -746,7 +746,7 @@
 
               <div class="wrapper">
                 <pre>
-    public long getId() {return id;<b>}</b> // this is OK, it is single line
+    public long getId() {return id;<b>}</b> // this is OK, it is single-line
 
     // try-catch-finally blocks
     try {
@@ -808,7 +808,7 @@
 
     <section name="Scope">
       <p>This type represents a Java scope. Checks use this to determine which
-      methods/fields/classes will be examined by it's logic. The valid options are:</p>
+      methods/fields/classes will be examined by its logic. The valid options are:</p>
 
       <ul>
         <li><code>nothing</code></li>

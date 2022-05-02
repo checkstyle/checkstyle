@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 /**
- * A Component that needs context information from it's container(parent object) to work.
+ * A Component that needs context information from its container(parent object) to work.
  * The container will create a Context object and pass it to this
  * Contextualizable. Contextualization will occur before configuration.
  * Note: Configuring of object mean copy user defined properties to object.

@@ -21,7 +21,7 @@
              files="JavadocTokenTypes.java"/>
 
   <!-- JavadocTagInfo.java, JavadocTags.java, InvalidJavadocTag.java, JavadocTag.java will be
-  deprecated as we completely switch to ANTLR parser for javadoc. All of the mentioned classes
+  deprecated as we completely switch to ANTLR parser for javadoc. All the mentioned classes
   are required only for old javadoc parsers and their usage will be excluded from
   JavadocUtil.java and JavadocUtilTest.java. -->
   <suppress checks="ForbidCertainImports"

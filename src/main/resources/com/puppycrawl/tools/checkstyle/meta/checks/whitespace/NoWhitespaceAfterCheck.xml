@@ -17,7 +17,7 @@
  ARRAY_DECLARATOR&lt;/a&gt; and
  &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP"&gt;
  INDEX_OP&lt;/a&gt; tokens specially from other tokens. Actually it is checked that
- there is no whitespace before this tokens, not after them. Space after the
+ there is no whitespace before these tokens, not after them. Space after the
  &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATIONS"&gt;
  ANNOTATIONS&lt;/a&gt; before
  &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR"&gt;

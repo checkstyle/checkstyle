@@ -1,5 +1,5 @@
 #####################################################################################
-# Github Action to generate Checkstyle report.
+# GitHub Action to generate Checkstyle report.
 # 
 # Workflow starts when:
 # 1) issue comment - created

@@ -21,7 +21,7 @@ import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
  * Rationale: Same as for {@code SuppressionCommentFilter}. In the contrary to it here,
  * comments are not used comments but the builtin syntax of {@code @SuppressWarnings}.
  * This can be perceived as a more elegant solution than using comments.
- * Also this approach maybe supported by various IDE.
+ * Also, this approach maybe supported by various IDE.
  * </p>
  * <p>
  * Usage: This filter only works in conjunction with a

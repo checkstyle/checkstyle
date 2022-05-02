@@ -51,7 +51,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * where ${anyType} is any primitive type, class or interface name;
  * ${name} is name of the variable that is being set and ${Name} its
- * capitalized form that appears in the method name. By default it is expected
+ * capitalized form that appears in the method name. By default, it is expected
  * that setter returns void, i.e. ${returnType} is 'void'. For example
  * </p>
  * <pre>
@@ -657,7 +657,7 @@ public class HiddenFieldCheck
                 // or
                 //
                 // return type is not void, but it is the same as the class
-                // where method is declared and and mSetterCanReturnItsClass
+                // where method is declared and mSetterCanReturnItsClass
                 // is set to true
                 isSetterMethod = true;
             }
@@ -834,8 +834,8 @@ public class HiddenFieldCheck
         /**
          * Determines whether this FieldFrame contains an instance field.
          *
-         * @param field the field to check.
-         * @return true if this FieldFrame contains instance field field.
+         * @param field the field to check
+         * @return true if this FieldFrame contains instance field
          */
         public boolean containsInstanceField(String field) {
             return instanceFields.contains(field)
@@ -847,8 +847,8 @@ public class HiddenFieldCheck
         /**
          * Determines whether this FieldFrame contains a static field.
          *
-         * @param field the field to check.
-         * @return true if this FieldFrame contains static field field.
+         * @param field the field to check
+         * @return true if this FieldFrame contains static field
          */
         public boolean containsStaticField(String field) {
             return staticFields.contains(field)

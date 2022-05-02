@@ -16,7 +16,7 @@ import java.util.function.Function;
 
 /*
  * No violation are expected when checking this file by ParameterNameCheck as lambda parameters
- * are check by LambdaParameterNameCheck.
+ * are checked by LambdaParameterNameCheck.
  */
 
 public class InputParameterNameLambda {

@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
-import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -43,8 +43,8 @@ public final class AnnotationUtil {
     /** Fully-qualified {@link Override Override} annotation name. */
     private static final String FQ_OVERRIDE = "java.lang." + OVERRIDE;
 
-    /** List of simple and fully-qualified {@link Override Override} annotation names. */
-    private static final List<String> OVERRIDE_ANNOTATIONS = List.of(OVERRIDE, FQ_OVERRIDE);
+    /** Simple and fully-qualified {@link Override Override} annotation names. */
+    private static final Set<String> OVERRIDE_ANNOTATIONS = Set.of(OVERRIDE, FQ_OVERRIDE);
 
     /**
      * Private utility constructor.
@@ -110,7 +110,7 @@ public final class AnnotationUtil {
      *                      {@code false} otherwise.
      * @throws IllegalArgumentException when ast or annotations are null
      */
-    public static boolean containsAnnotation(DetailAST ast, List<String> annotations) {
+    public static boolean containsAnnotation(DetailAST ast, Set<String> annotations) {
         if (ast == null) {
             throw new IllegalArgumentException(THE_AST_IS_NULL);
         }

@@ -360,7 +360,7 @@ public class XpathQueryGenerator {
     }
 
     /**
-     * Encodes escape character for Xpath. Escape characters need '&amp;' before but it also
+     * Encodes escape character for Xpath. Escape characters need '&amp;' before, but it also
      * requires XML 1.1 until https://github.com/checkstyle/checkstyle/issues/5168.
      *
      * @param chr Character to check.

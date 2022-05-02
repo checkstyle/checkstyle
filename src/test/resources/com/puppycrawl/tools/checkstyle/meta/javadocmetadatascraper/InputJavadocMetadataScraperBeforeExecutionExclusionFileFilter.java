@@ -19,8 +19,8 @@ import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
  * </p>
  *
  * <p>
- * By default Checkstyle includes all files and sub-directories in a directory to be processed and
- * checked for violations. Users could have files that are in these sub-directories that shouldn't
+ * By default, Checkstyle includes all files and subdirectories in a directory to be processed and
+ * checked for violations. Users could have files that are in these subdirectories that shouldn't
  * be processed with their checkstyle configuration for various reasons, one of which is a valid
  * Java file that won't pass Checkstyle's parser. When Checkstyle tries to parse a Java file and
  * fails, it will throw an {@code Exception} and halt parsing any more files for violations.

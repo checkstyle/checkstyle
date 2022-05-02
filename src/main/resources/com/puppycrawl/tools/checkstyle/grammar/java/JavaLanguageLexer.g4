@@ -332,7 +332,7 @@ BLOCK_COMMENT_BEGIN:
     } -> channel(COMMENTS);
 
 SINGLE_LINE_COMMENT:
-    // Match single line comment delimiter
+    // Match single-line comment delimiter
     '//'
     {
         // Report comment

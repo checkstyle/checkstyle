@@ -6,7 +6,7 @@
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks for empty catch blocks.
- By default check allows empty catch block with any comment inside.
+ By default, check allows empty catch block with any comment inside.
  &lt;/p&gt;
  &lt;p&gt;
  There are two options to make validation more precise: &lt;b&gt;exceptionVariableName&lt;/b&gt; and

@@ -26,7 +26,7 @@ import java.lang.annotation.Target;
 
 /**
  * The type of property used in documentation and configuration files
- * for clarification of the user friendly type.
+ * for clarification of the user-friendly type.
  * For example, some string array property may represent a set of tokens.
  *
  * @noinspection AnnotationClass

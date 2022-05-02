@@ -155,7 +155,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
         staticTwoArgs("message", "arg");
     }
 
-//    void staticFoo() {} -> compile time error. Already defined in the scope.
+//    void staticFoo() {} -> compile-time error. Already defined in the scope.
 
     static void staticTwoArgs(String message1, String argument) {}
 
@@ -163,13 +163,13 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
 
     static void foo16() {
         long fieldFinal1 = 5L;
-// this.fieldFinal1 = fieldFinal1; // compile time error: cannot be referenced from a static context
+// this.fieldFinal1 = fieldFinal1; // compile-time error: cannot be referenced from a static context
         fieldFinal1 = 11L;
     }
 
     static void foo17() {
         String fieldStatic = "";
-// this.fieldStatic = fieldStatic; // compile time error: cannot be referenced from a static context
+// this.fieldStatic = fieldStatic; // compile-time error: cannot be referenced from a static context
         fieldStatic = "Hello, World!";
     }
 
@@ -312,13 +312,13 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
     }
 
     static void foo38() {
-//        this.fieldStatic = ""; <-- compile time error: cannot be referenced from a static context
+//        this.fieldStatic = ""; <-- compile-time error: cannot be referenced from a static context
         fieldStatic = "";
     }
 
     static void foo39() {
         boolean booleanField = true;
-// this.booleanField = !booleanField; compile time error: cannot be referenced from a static context
+// this.booleanField = !booleanField; compile-time error: cannot be referenced from a static context
         booleanField = !booleanField;
     }
 
@@ -332,13 +332,13 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
     }
 
     static {
-//        this.fieldStatic = ""; <-- compile time error: cannot be referenced from a static context
+//        this.fieldStatic = ""; <-- compile-time error: cannot be referenced from a static context
         fieldStatic = "";
     }
 
     {
 //        if we assign variable to a final variable in initialization block,
-//        it will lead to compile time error in constructor block: variable migh have been
+//        it will lead to compile-time error in constructor block: variable migh have been
 //        already assigned
 
 //        fieldFinal1 = 1;
@@ -352,7 +352,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
     static {
         fieldStatic = "";
         String field1 = "";
-//        this.field1 = field1; <-- compile time error: cannot be referenced from a static context
+//        this.field1 = field1; <-- compile-time error: cannot be referenced from a static context
         field1 = field1;
     }
 

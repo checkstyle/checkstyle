@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.Arrays;
+import java.util.BitSet;
 
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -85,32 +86,32 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenTypesSet}.
  * Default value is
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">
- * TYPECAST</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
- * METHOD_CALL</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">
- * EXPR</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">
  * ARRAY_INIT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">
+ * ASSIGN</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV">
+ * DIV</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELIST">
+ * ELIST</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">
+ * EXPR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
+ * LITERAL_NEW</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
+ * METHOD_CALL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS">
+ * MINUS</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS">
+ * PLUS</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR">
+ * STAR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">
+ * TYPECAST</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">
  * UNARY_MINUS</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">
- * UNARY_PLUS</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELIST">
- * ELIST</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR">
- * STAR</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">
- * ASSIGN</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS">
- * PLUS</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS">
- * MINUS</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV">
- * DIV</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
- * LITERAL_NEW</a>.
+ * UNARY_PLUS</a>.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -294,7 +295,7 @@ public class MagicNumberCheck extends AbstractCheck {
      * number literal to the enclosing constant definition.
      */
     @XdocsPropertyType(PropertyType.TOKEN_ARRAY)
-    private int[] constantWaiverParentToken = {
+    private BitSet constantWaiverParentToken = TokenUtil.asBitSet(
         TokenTypes.ASSIGN,
         TokenTypes.ARRAY_INIT,
         TokenTypes.EXPR,
@@ -307,8 +308,8 @@ public class MagicNumberCheck extends AbstractCheck {
         TokenTypes.STAR,
         TokenTypes.DIV,
         TokenTypes.PLUS,
-        TokenTypes.MINUS,
-    };
+        TokenTypes.MINUS
+    );
 
     /** Specify non-magic numbers. */
     private double[] ignoreNumbers = {-1, 0, 1, 2};
@@ -324,14 +325,6 @@ public class MagicNumberCheck extends AbstractCheck {
 
     /** Ignore magic numbers in annotation elements defaults. */
     private boolean ignoreAnnotationElementDefaults = true;
-
-    /**
-     * Constructor for MagicNumber Check.
-     * Sort the allowedTokensBetweenMagicNumberAndConstDef array for binary search.
-     */
-    public MagicNumberCheck() {
-        Arrays.sort(constantWaiverParentToken);
-    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -396,7 +389,7 @@ public class MagicNumberCheck extends AbstractCheck {
     }
 
     /**
-     * Is magic number some where at ast tree.
+     * Is magic number somewhere at ast tree.
      *
      * @param ast ast token
      * @param constantDefAST constant ast
@@ -407,7 +400,7 @@ public class MagicNumberCheck extends AbstractCheck {
         DetailAST astNode = ast.getParent();
         while (astNode != constantDefAST) {
             final int type = astNode.getType();
-            if (Arrays.binarySearch(constantWaiverParentToken, type) < 0) {
+            if (!constantWaiverParentToken.get(type)) {
                 found = true;
                 break;
             }
@@ -551,17 +544,13 @@ public class MagicNumberCheck extends AbstractCheck {
      * @param tokens The string representation of the tokens interested in
      */
     public void setConstantWaiverParentToken(String... tokens) {
-        constantWaiverParentToken = new int[tokens.length];
-        for (int i = 0; i < tokens.length; i++) {
-            constantWaiverParentToken[i] = TokenUtil.getTokenId(tokens[i]);
-        }
-        Arrays.sort(constantWaiverParentToken);
+        constantWaiverParentToken = TokenUtil.asBitSet(tokens);
     }
 
     /**
      * Setter to specify non-magic numbers.
      *
-     * @param list list of numbers to ignore.
+     * @param list numbers to ignore.
      */
     public void setIgnoreNumbers(double... list) {
         ignoreNumbers = new double[list.length];

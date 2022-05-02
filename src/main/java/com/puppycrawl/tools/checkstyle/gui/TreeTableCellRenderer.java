@@ -44,7 +44,7 @@ class TreeTableCellRenderer extends JTree implements
     /** Tree table to render. */
     private final TreeTable treeTable;
 
-    /** Last table/tree row asked to renderer. */
+    /** Last table/tree row asked to render. */
     private int visibleRow;
 
     /**
@@ -70,10 +70,7 @@ class TreeTableCellRenderer extends JTree implements
         final TreeCellRenderer tcr = getCellRenderer();
         if (tcr instanceof DefaultTreeCellRenderer) {
             final DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tcr;
-            // For 1.1 uncomment this, 1.2 has a bug that will cause an
-            // exception to be thrown if the border selection color is
-            // null.
-            // renderer.setBorderSelectionColor(null);
+            renderer.setBorderSelectionColor(null);
             renderer.setTextSelectionColor(UIManager.getColor("Table.selectionForeground"));
             renderer.setBackgroundSelectionColor(UIManager.getColor("Table.selectionBackground"));
         }

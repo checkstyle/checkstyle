@@ -41,7 +41,7 @@ public interface ExternalResourceHolder {
      * If 'getExternalResourceLocations()' return null, there will be
      * {@link NullPointerException} in {@link Checker}.
      * Such behaviour will signal that your module (check or filter) is designed incorrectly.
-     * It make sense to return an empty set from 'getExternalResourceLocations()'
+     * It makes sense to return an empty set from 'getExternalResourceLocations()'
      * only for composite modules like {@link com.puppycrawl.tools.checkstyle.TreeWalker}.
      *
      * @return a set of external configuration resource locations which are used by the module.

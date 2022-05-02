@@ -415,7 +415,7 @@ class TestAnonymousInnerClasses { // OK, class has an anonymous inner class.
         </p>
 
         <p>
-          Rationale: Instantiating utility classes does not make sense. Hence
+          Rationale: Instantiating utility classes does not make sense. Hence,
           the constructors should either be private or (if you want to allow
           subclassing) protected. A common mistake is forgetting to hide the
           default constructor.
@@ -746,7 +746,7 @@ public interface Test2 { // violation
 
         <p>
           Rationale: Exception instances should represent an error
-          condition. Having non final fields not only allows the state to be
+          condition. Having non-final fields not only allows the state to be
           modified by accident and therefore mask the original condition but
           also allows developers to accidentally forget to set the initial state.
           In both cases, code catching the exception could draw incorrect
@@ -835,7 +835,7 @@ public interface Test2 { // violation
           Official description of a 'top-level' term:<a
           href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-7.html#jls-7.6">
             7.6. Top Level Type Declarations</a>.
-          If file doesn't contains public class, interface, enum or annotation,
+          If file doesn't contain public class, interface, enum or annotation,
           top-level type is the first type in file.
         </p>
       </subsection>
@@ -1168,8 +1168,8 @@ class Test {
         </p>
         <p>
           <b>ignoreAnnotationCanonicalNames</b> - the list of annotations which ignore variables
-          in consideration. If user will provide short annotation name that type will match to any
-          named the same type without consideration of package.
+          in consideration. If user want to provide short annotation name that type
+          will match to any named the same type without consideration of package.
         </p>
         <p>
           <b>allowPublicFinalFields</b> - which allows public final fields.
@@ -1185,7 +1185,7 @@ class Test {
           <li>It's declared as final</li>
           <li>
             Has either a primitive type or instance of class user defined to be immutable
-            (such as String, ImmutableCollection from Guava and etc)
+            (such as String, ImmutableCollection from Guava, etc.)
           </li>
         </ul>
         <p>
@@ -1272,7 +1272,7 @@ class Test {
             <tr>
               <td>ignoreAnnotationCanonicalNames</td>
               <td>
-                Specify the list of annotations canonical names which ignore variables in
+                Specify annotations canonical names which ignore variables in
                 consideration.
               </td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>

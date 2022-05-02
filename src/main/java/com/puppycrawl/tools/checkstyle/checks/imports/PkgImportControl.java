@@ -194,7 +194,7 @@ class PkgImportControl extends AbstractImportControl {
         AbstractImportControl finestMatch = null;
         // Check if we are a match.
         if (matchesAtFront(forPkg)) {
-            // If there won't be match so I am the best there is.
+            // If there won't be match, so I am the best there is.
             finestMatch = this;
             // Check if any of the children match.
             for (AbstractImportControl child : children) {

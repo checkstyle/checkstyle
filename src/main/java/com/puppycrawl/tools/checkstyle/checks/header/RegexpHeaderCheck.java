@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.header;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.BitSet;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -29,6 +29,7 @@ import java.util.regex.PatternSyntaxException;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -71,7 +72,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * Different programming languages have different comment syntax rules,
  * but all of them start a comment with a non-word character.
- * Hence you can often use the non-word character class to abstract away
+ * Hence, you can often use the non-word character class to abstract away
  * the concrete comment syntax and allow checking the header for different
  * languages with a single header definition. For example, consider the following
  * header specification (note that this is not the full Apache license header):
@@ -225,9 +226,6 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
      */
     public static final String MSG_HEADER_MISMATCH = "header.mismatch";
 
-    /** Empty array to avoid instantiations. */
-    private static final int[] EMPTY_INT_ARRAY = new int[0];
-
     /** Regex pattern for a blank line. **/
     private static final String EMPTY_LINE_PATTERN = "^$";
 
@@ -238,17 +236,15 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
     private final List<Pattern> headerRegexps = new ArrayList<>();
 
     /** Specify the line numbers to repeat (zero or more times). */
-    private int[] multiLines = EMPTY_INT_ARRAY;
+    private BitSet multiLines = new BitSet();
 
     /**
      * Setter to specify the line numbers to repeat (zero or more times).
      *
-     * @param list comma separated list of line numbers to repeat in header.
+     * @param list line numbers to repeat in header.
      */
     public void setMultiLines(int... list) {
-        multiLines = new int[list.length];
-        System.arraycopy(list, 0, multiLines, 0, list.length);
-        Arrays.sort(multiLines);
+        multiLines = TokenUtil.asBitSet(list);
     }
 
     @Override
@@ -256,7 +252,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
         final int headerSize = getHeaderLines().size();
         final int fileSize = fileText.size();
 
-        if (headerSize - multiLines.length > fileSize) {
+        if (headerSize - multiLines.cardinality() > fileSize) {
             log(1, MSG_HEADER_MISSING);
         }
         else {
@@ -334,7 +330,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
      * @return if {@code lineNo} is one of the repeat header lines.
      */
     private boolean isMultiLine(int lineNo) {
-        return Arrays.binarySearch(multiLines, lineNo + 1) >= 0;
+        return multiLines.get(lineNo + 1);
     }
 
     @Override

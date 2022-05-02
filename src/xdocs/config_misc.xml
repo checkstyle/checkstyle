@@ -25,7 +25,7 @@
           C style: <code>public static void main(String args[])</code>.
         </p>
         <p>
-          By default the Check enforces Java style.
+          By default, the Check enforces Java style.
         </p>
         <p>
           This check strictly enforces only Java style for method return types
@@ -407,7 +407,7 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
 8       // violation (comment should have the same indentation level as line 7)
 9   }
         </source>
-        <p>Example #3: Comment is used as a single line border to separate groups of methods.</p>
+        <p>Example #3: Comment is used as a single-line border to separate groups of methods.</p>
         <source>
 1   /////////////////////////////// it is OK
 2
@@ -441,7 +441,7 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
           Example #5: Single line block comment is placed within an empty code block.
           Note, if comment is placed at the end of the empty code block, we have Checkstyle's
           limitations to clearly detect user intention of explanation target - above or below. The
-          only case we can assume as a violation is when a single line comment within the empty
+          only case we can assume as a violation is when a single-line comment within the empty
           code block has indentation level that is lower than the indentation level of the closing
           right curly brace.
         </p>
@@ -497,7 +497,7 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
           Example #8: Comment is placed within an empty case block.
           Note, if comment is placed at the end of the empty case block, we have Checkstyle's
           limitations to clearly detect user intention of explanation target - above or below. The
-          only case we can assume as a violation is when a single line comment within the empty case
+          only case we can assume as a violation is when a single-line comment within the empty case
           block has indentation level that is lower than the indentation level of the next case
           token.
         </p>
@@ -512,7 +512,7 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
         <source>
 1   String s1 = "Clean code!";
 2      s.toString().toString().toString();
-3   // single line
+3   // single-line
 4   // block
 5   // comment (it is OK)
 6   int a = 5;
@@ -603,7 +603,7 @@ return '&#92;ufeff' + content;           // OK, non-printable escape character.
           WARNING: This is a very powerful and flexible check, but, at the
           same time, it is low-level and very implementation-dependent because
           its results depend on the grammar we use to build abstract syntax
-          trees. Thus we recommend using other checks when they provide the
+          trees. Thus, we recommend using other checks when they provide the
           desired functionality. Essentially, this check just works on the level
           of an abstract syntax tree and knows nothing about language structures.
         </p>
@@ -1616,7 +1616,7 @@ This is a sample text file. // ok, this file is not specified in the config.
             File with no text
           </li>
           <li>
-            File with single line comment(s)
+            File with single-line comment(s)
           </li>
           <li>
             File with a multi line comment(s).
@@ -1638,7 +1638,7 @@ This is a sample text file. // ok, this file is not specified in the config.
           Content of the files:
         </p>
         <source>
-// single line comment // violation
+// single-line comment // violation
         </source>
         <source>
 /* // violation
@@ -1690,11 +1690,11 @@ This is a sample text file. // ok, this file is not specified in the config.
         </p>
         <p>
           Rationale: Sorted properties make it easy for people to find required properties by name
-          in file. It makes merges more easy. While there are no problems at runtime.
+          in file. This makes it easier to merge. While there are no problems at runtime.
           This check is valuable only on files with string resources where order of lines
           does not matter at all, but this can be improved.
           E.g.: checkstyle/src/main/resources/com/puppycrawl/tools/checkstyle/messages.properties
-          You may suppress warnings of this check for files that have an logical structure like
+          You may suppress warnings of this check for files that have a logical structure like
           build files or log4j configuration files. See SuppressionFilter.
           <code>
               &lt;suppress checks="OrderedProperties"
@@ -1746,18 +1746,18 @@ key.sub =k is 107 and dot is 46
 key.png =value - violation
         </source>
         <p>
-          We check order of key's only. Here we would like to use an Locale independent
-          order mechanism, an binary order. The order is case insensitive and ascending.
+          We check order of key's only. Here we would like to use a Locale independent
+          order mechanism and binary order. The order is case-insensitive and ascending.
         </p>
         <ul>
           <li>
-            The capital A is on 65 and the lowercase a is on position 97 on the ascii table.
+            The capital 'A' is on 65 and the lowercase 'a' is on position 97 on the ascii table.
           </li>
           <li>
             Key and key.sub are in correct order here, because only keys are relevant.
-            Therefore on line 5 you have only "key" an nothing behind.
+            Therefore, on line 5 you have only "key" and nothing behind.
             On line 6 you have "key." The dot is on position 46 which is higher than nothing.
-            key.png will reported as violation because "png" comes before "sub".
+            key.png will be reported as violation because "png" comes before "sub".
           </li>
         </ul>
 
@@ -2107,7 +2107,7 @@ d = e / f;        // Another comment for this line
         </source>
 
         <p>
-          To configure the check so it enforces only comment on a line:
+          To configure the check to enforce only comment on a line:
         </p>
         <source>
 &lt;module name=&quot;TrailingComment&quot;&gt;
@@ -2350,7 +2350,7 @@ messages.properties: Key 'ok' missing.
         </source>
         <p>
           As we can see from the configuration, the TranslationCheck was configured to check
-          an existence of 'es', 'fr' and 'de' translations. Lets assume that we have the resource
+          an existence of 'es', 'fr' and 'de' translations. Let's assume that we have the resource
           bundle:
         </p>
         <source>
@@ -2418,7 +2418,7 @@ messages_home_fr_CA_UNIX.properties
           Rationale: A <code>main</code> method is often used for debugging
           purposes. When debugging is finished, developers often forget
           to remove the method, which changes the API and increases the
-          size of the resulting class or JAR file. With the exception of
+          size of the resulting class or JAR file. Except for
           the real program entry points, all <code>main</code> methods should be
           removed or commented out of the sources.
         </p>

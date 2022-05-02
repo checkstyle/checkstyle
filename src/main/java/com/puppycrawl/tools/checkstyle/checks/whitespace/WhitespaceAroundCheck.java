@@ -737,7 +737,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * Check if it should be checked if previous token is separated from current by
      * whitespace.
      * This function is needed to recognise double brace initialization as valid,
-     * unfortunately its not possible to implement this functionality
+     * unfortunately it's not possible to implement this functionality
      * in isNotRelevantSituation method, because in this method when we return
      * true(is not relevant) ast is later doesn't check at all. For example:
      * new Properties() {{setProperty("double curly braces", "are not a style violation");

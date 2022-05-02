@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * Checks that non-whitespace characters are separated by no more than one
  * whitespace. Separating characters by tabs or multiple spaces will be
- * reported. Currently the check doesn't permit horizontal alignment. To inspect
+ * reported. Currently, the check doesn't permit horizontal alignment. To inspect
  * whitespaces before and after comments, set the property
  * {@code validateComments} to true.
  * </p>
@@ -276,7 +276,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      *
      * @param line Unicode code point array of line in the file to examine.
      * @param columnNo The column position in the {@code line} to examine.
-     * @return {@code true} if the previous text is a end comment block.
+     * @return {@code true} if the previous text is an end comment block.
      */
     private static boolean isBlockCommentEnd(int[] line, int columnNo) {
         final int[] strippedLine = CodePointUtil

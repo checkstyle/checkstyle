@@ -65,7 +65,7 @@ public final class XmlMetaReader {
      * Third party(e.g. SevNTU Checks) metadata files are prefixed with {@code checkstylemeta-}
      * to their file names.
      *
-     * @param thirdPartyPackages list of fully qualified third party package names(can be only a
+     * @param thirdPartyPackages fully qualified third party package names(can be only a
      *                           hint, e.g. for SevNTU it can be com.github.sevntu / com.github)
      * @return list of module details found in the classpath satisfying the above conditions
      * @throws IllegalStateException if there was a problem reading the module metadata files

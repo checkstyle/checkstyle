@@ -107,7 +107,7 @@ final class InputVisibilityModifierSimple
     private static final int BAD__NAME = 3;
 }
 
-/** Test class for variable naming in for each clauses. */
+/** Test class for variable naming in for each clause. */
 class InputVisibilityModifierSimple2
 {
     /** Some more Javadoc. */

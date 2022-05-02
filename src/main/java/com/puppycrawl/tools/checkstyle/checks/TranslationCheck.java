@@ -168,7 +168,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </pre>
  * <p>
  * As we can see from the configuration, the TranslationCheck was configured
- * to check an existence of 'es', 'fr' and 'de' translations. Lets assume that
+ * to check an existence of 'es', 'fr' and 'de' translations. Let's assume that
  * we have the resource bundle:
  * </p>
  * <pre>
@@ -302,7 +302,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     /**
      * Setter to specify language codes of required translations which must exist in project.
      *
-     * @param translationCodes a comma separated list of language codes.
+     * @param translationCodes language codes.
      */
     public void setRequiredTranslations(String... translationCodes) {
         requiredTranslations = Arrays.stream(translationCodes).collect(Collectors.toSet());
@@ -352,7 +352,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
 
     @Override
     protected void processFiltered(File file, FileText fileText) {
-        // We just collecting files for processing at finishProcessing()
+        // We are just collecting files for processing at finishProcessing()
         filesToProcess.add(file);
     }
 

@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -433,7 +434,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether a methods is native.
+     * Checks whether a method is native.
      *
      * @param ast method definition token.
      * @return true if a methods is native.
@@ -509,14 +510,8 @@ public class DesignForExtensionCheck extends AbstractCheck {
      */
     private static String getAnnotationName(DetailAST annotation) {
         final DetailAST dotAst = annotation.findFirstToken(TokenTypes.DOT);
-        final String name;
-        if (dotAst == null) {
-            name = annotation.findFirstToken(TokenTypes.IDENT).getText();
-        }
-        else {
-            name = dotAst.findFirstToken(TokenTypes.IDENT).getText();
-        }
-        return name;
+        final DetailAST parent = Objects.requireNonNullElse(dotAst, annotation);
+        return parent.findFirstToken(TokenTypes.IDENT).getText();
     }
 
     /**

@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * that application layering rules are not violated, especially on large projects.
  * </p>
  * <p>
- * You can control imports based on the a package name or based on the file name.
+ * You can control imports based on the package name or based on the file name.
  * When controlling packages, all files and sub-packages in the declared package
  * will be controlled by this check. To specify differences between a main package
  * and a sub-package, you must define the sub-package inside the main package.
@@ -56,7 +56,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <ul>
  * <li>
  * The longest matching subpackage is found by starting with the root package and
- * examining if the any of the sub-packages or file definitions match the current
+ * examining if any of the sub-packages or file definitions match the current
  * class' package or file name.
  * </li>
  * <li>
@@ -90,7 +90,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * The DTD for a import control XML document is at
+ * The DTD for an import control XML document is at
  * <a href="https://checkstyle.org/dtds/import_control_1_4.dtd">
  * https://checkstyle.org/dtds/import_control_1_4.dtd</a>.
  * It contains documentation on each of the elements and attributes.
@@ -190,7 +190,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * In the next examples usage of {@code strategyOnMismatch} property is shown.
  * This property defines strategy in a case when no matching allow/disallow rule was found.
  * Property {@code strategyOnMismatch} is attribute of {@code import-control} and
- * {@code subpackage} tags. Property can have following values for {@code import-control} tag:
+ * {@code subpackage} tags. Property can have the following values for {@code import-control} tag:
  * </p>
  * <ul>
  * <li>

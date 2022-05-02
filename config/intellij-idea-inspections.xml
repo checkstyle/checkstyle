@@ -15,7 +15,7 @@
   <inspection_tool class="AbstractClassNeverImplemented" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
   <!-- we are not limited in resources
-         and we a library so there are more usages outside of our code -->
+         and we are a library so there are more usages outside of our code -->
   <inspection_tool class="AbstractClassWithOnlyOneDirectInheritor" enabled="false" level="ERROR"
                    enabled_by_default="true"/>
   <inspection_tool class="AbstractClassWithoutAbstractMethods" enabled="true" level="ERROR"
@@ -649,7 +649,8 @@
                    enabled_by_default="false"/>
   <inspection_tool class="AnonymousClassVariableHidesContainingMethodVariable" enabled="true"
                    level="WARNING" enabled_by_default="true"/>
-  <inspection_tool class="AnonymousFunctionJS" enabled="true" level="ERROR"
+  <!-- Anonymous Javascript functions are good for self executing and callbacks. -->
+  <inspection_tool class="AnonymousFunctionJS" enabled="false" level="WARNING"
                    enabled_by_default="true"/>
   <inspection_tool class="AnonymousHasLambdaAlternative" enabled="true" level="WARNING"
                    enabled_by_default="true"/>
@@ -745,7 +746,7 @@
                    enabled_by_default="true">
     <option name="ignoreTransformationOfOriginalParameter" value="false"/>
   </inspection_tool>
-  <!-- we are legacy library with log history, to much items to fix, usage of Option
+  <!-- we are legacy library with log history, too many items to fix, usage of Option
     does not do the code any better in some cases. May be fixed some day in future -->
   <inspection_tool class="AssignmentToNull" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
@@ -1213,7 +1214,7 @@
     <option name="m_ignoreCloneableDueToInheritance" value="true"/>
   </inspection_tool>
   <!-- decision to suppress was only a matter of habit to see code in more old style
-         with extra curly braces, we might change our mind in future. -->
+         with extra curly braces, we might change our mind in the future. -->
   <inspection_tool class="CodeBlock2Expr" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
   <inspection_tool class="CoffeeScriptArgumentsOutsideFunction" enabled="false" level="ERROR"
@@ -1603,7 +1604,7 @@
     <option name="CHECK_DUPLICATE_KEYS" value="true"/>
     <option name="CHECK_DUPLICATE_KEYS_WITH_DIFFERENT_VALUES" value="true"/>
   </inspection_tool>
-  <!-- it will result in too much dependencies between classes, some case are only have the
+  <!-- it will result in too many dependencies between classes, some cases are only have the
     same value by chance, too much wont-fixes -->
   <inspection_tool class="DuplicateStringLiteralInspection" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
@@ -1613,7 +1614,7 @@
                    enabled_by_default="false"/>
   <inspection_tool class="DuplicatedDataProviderNames" enabled="true" level="WARNING"
                    enabled_by_default="true"/>
-  <!-- this duplication algorithm generate too much won't fixes -->
+  <!-- this duplication algorithm generate too much we won't fix -->
   <inspection_tool class="DuplicatedCode" enabled="false" level="ERROR" enabled_by_default="true">
     <scope name="Tests" level="ERROR" enabled="false"/>
   </inspection_tool>
@@ -1765,7 +1766,7 @@
                    enabled_by_default="true"/>
   <!-- there is false-positive, and rest cases are result of our loading modules by reflection
     that throws Error. Error is not always jvm problem,
-    bunch of libraries throw Error instead of Exception -->
+    a bunch of libraries throw Error instead of Exception -->
   <inspection_tool class="ErrorRethrown" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
   <!-- we do not use this tool -->
@@ -1986,6 +1987,9 @@
                    enabled_by_default="false"/>
   <inspection_tool class="GrUnresolvedAccess" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
+  <!-- disabled until #11592 -->
+  <inspection_tool class="GrazieInspection" enabled="false" level="TYPO"
+                   enabled_by_default="false" />
   <inspection_tool class="GroovyAccessToStaticFieldLockedOnInstance" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
   <inspection_tool class="GroovyAccessibility" enabled="false" level="ERROR"
@@ -2385,6 +2389,9 @@
   </inspection_tool>
   <inspection_tool class="HtmlUnknownTarget" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
+  <!-- all links are to general web sites, we can not use https -->
+  <inspection_tool class="HttpUrlsUsage" enabled="false" level="WEAK WARNING"
+                   enabled_by_default="false" />
   <inspection_tool class="IOResource" enabled="true" level="WARNING" enabled_by_default="true">
     <scope name="Production" level="WARNING" enabled="true">
       <option name="ignoredTypesString"
@@ -2720,7 +2727,7 @@
                    enabled_by_default="true"/>
   <inspection_tool class="JSUnresolvedFunction" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <!-- it produce false positives on references of globally available libraries -->
+  <!-- it produces false positives on references of globally available libraries -->
   <inspection_tool class="JSUnresolvedLibraryURL" enabled="false" level="ERROR"
                    enabled_by_default="true"/>
   <inspection_tool class="JSUnresolvedVariable" enabled="true" level="ERROR"
@@ -3042,6 +3049,9 @@
   <!-- behavior is different from local execution, no violations on local -->
   <inspection_tool class="MavenModelInspection" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
+  <!-- we use maven plugin for this and github action bot -->
+  <inspection_tool class="MavenPackageUpdate" enabled="false" level="WARNING"
+                   enabled_by_default="false" />
   <inspection_tool class="MavenRedundantGroupId" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
   <inspection_tool class="MayBeConstant" enabled="false" level="WEAK WARNING"
@@ -3054,7 +3064,7 @@
                    enabled_by_default="false"/>
   <inspection_tool class="MethodCanBeVariableArityMethod" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <!-- it it hard to follow this rule as it is better to keep whole logic in one Check class,
+  <!-- it is hard to follow this rule as it is better to keep whole logic in one Check class,
     we do follow cyclomatic complexity for methods -->
   <inspection_tool class="MethodCount" enabled="false" level="ERROR" enabled_by_default="false">
     <option name="m_limit" value="20"/>
@@ -3085,7 +3095,8 @@
                    enabled_by_default="true"/>
   <inspection_tool class="MethodOnlyUsedFromInnerClass" enabled="true" level="ERROR"
                    enabled_by_default="true">
-    <option name="ignoreMethodsAccessedFromAnonymousClass" value="false"/>
+    <!-- Better to keep anonymous classes as small as possible. -->
+    <option name="ignoreMethodsAccessedFromAnonymousClass" value="true"/>
     <option name="ignoreStaticMethodsFromNonStaticInnerClass" value="false"/>
     <option name="onlyReportStaticMethods" value="false"/>
   </inspection_tool>
@@ -3176,7 +3187,7 @@
                    enabled_by_default="true">
     <option name="limit" value="10"/>
   </inspection_tool>
-  <!-- we a single jar project by design, at least in the near future -->
+  <!-- we are a single jar project by design, at least in the near future -->
   <inspection_tool class="ModuleWithTooManyClasses" enabled="false" level="ERROR"
                    enabled_by_default="false">
     <option name="limit" value="100"/>
@@ -3766,6 +3777,9 @@
     <option name="ignoreEmptySuperMethods" value="false"/>
     <option name="onlyReportWhenAnnotated" value="true"/>
   </inspection_tool>
+  <!-- temporal suppression until #11590 -->
+  <inspection_tool class="RegExpDuplicateCharacterInClass" enabled="false" level="WARNING"
+                   enabled_by_default="false" />
   <inspection_tool class="RemoveCurlyBracesFromTemplate" enabled="false" level="WEAK WARNING"
                    enabled_by_default="false"/>
   <inspection_tool class="RemoveEmptyClassBody" enabled="false" level="INFO"
@@ -3880,10 +3894,10 @@
                    enabled_by_default="true"/>
   <inspection_tool class="SamePackageImport" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <!-- to much false positives as it does not consider fact that public method is called
+  <!-- too much false positives as it does not consider fact that public method is called
          from outside of the class, some values come from config files,
          also it highlights most of the static methods that are candidates
-         for utils package but we have not decided yet. -->
+         for utils package, but we have not decided yet. -->
   <inspection_tool class="SameParameterValue" enabled="false" level="WARNING"
                    enabled_by_default="false"/>
   <!-- it is ok as some methods are in role of configuration 'isEditable{ return false;} -->
@@ -4253,7 +4267,8 @@
   </inspection_tool>
   <inspection_tool class="StaticCallOnSubclass" enabled="true" level="WARNING"
                    enabled_by_default="true"/>
-  <inspection_tool class="StaticCollection" enabled="true" level="WARNING"
+  <!-- we use static collections to store data that is constant/final for all instances -->
+  <inspection_tool class="StaticCollection" enabled="false" level="WARNING"
                    enabled_by_default="true">
     <option name="m_ignoreWeakCollections" value="false"/>
   </inspection_tool>
@@ -4436,7 +4451,7 @@
         <option value="UseOfPropertiesAsHashtable"/>
         <!-- till #4862, #4864 -->
         <option value="ThisEscapedInObjectConstruction"/>
-        <!-- it will makes code too complicated in some cases -->
+        <!-- it will make code too complicated in some cases -->
         <option value="MultipleReturnPointsPerMethod"/>
         <!-- MT check markers are annotations -->
         <option value="AnnotationClass"/>
@@ -4455,7 +4470,7 @@
         <option value="NewClassNamingConvention"/>
         <!-- false positives -->
         <option value="JUnitTestClassNamingConvention"/>
-        <!-- usage of picocli library in Main.java case won't fixes -->
+        <!-- usage of picocli library in Main.java case we won't fix -->
         <option value="CanBeFinal"/>
       </list>
     </option>
@@ -4553,6 +4568,9 @@
   </inspection_tool>
   <inspection_tool class="SynchronizedOnLiteralObject" enabled="true" level="WARNING"
                    enabled_by_default="true"/>
+  <inspection_tool class="SyntaxError" enabled="true" level="ERROR" enabled_by_default="false">
+    <scope name="Checkstyle Inspection Scope" level="ERROR" enabled="true" />
+  </inspection_tool>
   <inspection_tool class="SystemExit" enabled="true" level="ERROR" enabled_by_default="true"/>
   <inspection_tool class="SystemGC" enabled="true" level="WARNING" enabled_by_default="true"/>
   <inspection_tool class="SystemGetenv" enabled="true" level="ERROR" enabled_by_default="true"/>
@@ -4592,24 +4610,19 @@
                    enabled_by_default="true"/>
   <inspection_tool class="TestMethodWithoutAssertion" enabled="true" level="ERROR"
                    enabled_by_default="true">
-    <!-- after https://github.com/powermock/powermock/issues/830
-             all junit4 methods should be removed -->
     <option name="assertionMethods"
-            value="org.junit.Assert,assert.*|fail.*, ,
-    ,org.junit.jupiter.api.Assertions,assert.*|fail.*, ,
-    ,junit.framework.Assert,assert.*|fail.*, ,
+            value="org.junit.jupiter.api.Assertions,assert.*|fail.*, ,
     ,org.mockito.Mockito,verify.*, ,
     ,org.mockito.InOrder,verify, ,
-    ,org.junit.rules.ExpectedException,expect.*, ,
     ,org.hamcrest.MatcherAssert,assertThat, ,
     ,com.google.common.truth.Truth,assert.*, ,
     ,com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport,verify.*, ,
     ,com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport,verify.*, ,
+    ,com.puppycrawl.tools.checkstyle.AbstractXmlTestSupport,verifyXml.*, ,
     ,com.google.checkstyle.test.base.AbstractModuleTestSupport,verify.*, ,
     ,com.puppycrawl.tools.checkstyle.internal.TestUtil,assert.*, ,
     ,nl.jqno.equalsverifier.EqualsVerifier,verify.*, ,
-    ,org.checkstyle.base.AbstractItModuleTestSupport,verify.*, ,
-    ,org.powermock.api.mockito.PowerMockito,verify.*"/>
+    ,org.checkstyle.base.AbstractItModuleTestSupport,verify.*"/>
     <option name="assertKeywordIsAssertion" value="false"/>
   </inspection_tool>
   <inspection_tool class="TestNGDataProvider" enabled="true" level="ERROR"

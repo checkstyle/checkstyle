@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * The NPATH metric computes the number of possible execution paths through a
  * function(method). It takes into account the nesting of conditional statements
- * and multi-part boolean expressions (A &amp;&amp; B, C || D, E ? F :G and
+ * and multipart boolean expressions (A &amp;&amp; B, C || D, E ? F :G and
  * their combinations).
  * </p>
  * <p>

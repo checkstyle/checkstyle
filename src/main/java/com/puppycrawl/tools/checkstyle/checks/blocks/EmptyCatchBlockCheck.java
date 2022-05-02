@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Checks for empty catch blocks.
- * By default check allows empty catch block with any comment inside.
+ * By default, check allows empty catch block with any comment inside.
  * </p>
  * <p>
  * There are two options to make validation more precise: <b>exceptionVariableName</b> and

@@ -19,12 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.Arrays;
+import java.util.BitSet;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -32,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * {@code String s = Integer.toString(i = 2);}.
  * </p>
  * <p>
- * Rationale: With the exception of loop idioms,
+ * Rationale: Except for the loop idioms,
  * all assignments should occur in their own top-level statement to increase readability.
  * With inner assignments like the one given above, it is difficult to see all places
  * where a variable is set.
@@ -134,7 +136,7 @@ public class InnerAssignmentCheck
     public static final String MSG_KEY = "assignment.inner.avoid";
 
     /**
-     * List of allowed AST types from an assignment AST node
+     * Allowed AST types from an assignment AST node
      * towards the root.
      */
     private static final int[][] ALLOWED_ASSIGNMENT_CONTEXT = {
@@ -151,7 +153,7 @@ public class InnerAssignmentCheck
     };
 
     /**
-     * List of allowed AST types from an assignment AST node
+     * Allowed AST types from an assignment AST node
      * towards the root.
      */
     private static final int[][] CONTROL_CONTEXT = {
@@ -163,7 +165,7 @@ public class InnerAssignmentCheck
     };
 
     /**
-     * List of allowed AST types from a comparison node (above an assignment)
+     * Allowed AST types from a comparison node (above an assignment)
      * towards the root.
      */
     private static final int[][] ALLOWED_ASSIGNMENT_IN_COMPARISON_CONTEXT = {
@@ -175,30 +177,25 @@ public class InnerAssignmentCheck
     /**
      * The token types that identify comparison operators.
      */
-    private static final int[] COMPARISON_TYPES = {
+    private static final BitSet COMPARISON_TYPES = TokenUtil.asBitSet(
         TokenTypes.EQUAL,
         TokenTypes.GE,
         TokenTypes.GT,
         TokenTypes.LE,
         TokenTypes.LT,
-        TokenTypes.NOT_EQUAL,
-    };
+        TokenTypes.NOT_EQUAL
+    );
 
     /**
      * The token types that are ignored while checking "loop-idiom".
      */
-    private static final int[] LOOP_IDIOM_IGNORED_PARENTS = {
+    private static final BitSet LOOP_IDIOM_IGNORED_PARENTS = TokenUtil.asBitSet(
         TokenTypes.LAND,
         TokenTypes.LOR,
         TokenTypes.LNOT,
         TokenTypes.BOR,
-        TokenTypes.BAND,
-    };
-
-    static {
-        Arrays.sort(COMPARISON_TYPES);
-        Arrays.sort(LOOP_IDIOM_IGNORED_PARENTS);
-    }
+        TokenTypes.BAND
+    );
 
     @Override
     public int[] getDefaultTokens() {
@@ -230,7 +227,7 @@ public class InnerAssignmentCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (!isInContext(ast, ALLOWED_ASSIGNMENT_CONTEXT)
+        if (!isInContext(ast, ALLOWED_ASSIGNMENT_CONTEXT, CommonUtil.EMPTY_BIT_SET)
                 && !isInNoBraceControlStatement(ast)
                 && !isInLoopIdiom(ast)) {
             log(ast, MSG_KEY);
@@ -264,7 +261,7 @@ public class InnerAssignmentCheck
      */
     private static boolean isInNoBraceControlStatement(DetailAST ast) {
         boolean result = false;
-        if (isInContext(ast, CONTROL_CONTEXT)) {
+        if (isInContext(ast, CONTROL_CONTEXT, CommonUtil.EMPTY_BIT_SET)) {
             final DetailAST expr = ast.getParent();
             final DetailAST exprNext = expr.getNextSibling();
             result = exprNext.getType() == TokenTypes.SEMI;
@@ -295,14 +292,10 @@ public class InnerAssignmentCheck
      * @return whether the context of the assignment AST indicates the idiom
      */
     private static boolean isInLoopIdiom(DetailAST ast) {
-        boolean result = false;
-        if (isComparison(ast.getParent())) {
-            result = isInContext(ast.getParent(),
-                ALLOWED_ASSIGNMENT_IN_COMPARISON_CONTEXT,
-                LOOP_IDIOM_IGNORED_PARENTS
-            );
-        }
-        return result;
+        return isComparison(ast.getParent())
+                    && isInContext(ast.getParent(),
+                            ALLOWED_ASSIGNMENT_IN_COMPARISON_CONTEXT,
+                            LOOP_IDIOM_IGNORED_PARENTS);
     }
 
     /**
@@ -313,7 +306,7 @@ public class InnerAssignmentCheck
      */
     private static boolean isComparison(DetailAST ast) {
         final int astType = ast.getType();
-        return Arrays.binarySearch(COMPARISON_TYPES, astType) >= 0;
+        return COMPARISON_TYPES.get(astType);
     }
 
     /**
@@ -326,7 +319,7 @@ public class InnerAssignmentCheck
      *
      * @return whether the parents nodes of ast match one of the allowed type paths.
      */
-    private static boolean isInContext(DetailAST ast, int[][] contextSet, int... skipTokens) {
+    private static boolean isInContext(DetailAST ast, int[][] contextSet, BitSet skipTokens) {
         boolean found = false;
         for (int[] element : contextSet) {
             DetailAST current = ast;
@@ -355,9 +348,9 @@ public class InnerAssignmentCheck
      * @param skipTokens token types to skip
      * @return first not ignored parent of ast
      */
-    private static DetailAST getParent(DetailAST ast, int... skipTokens) {
+    private static DetailAST getParent(DetailAST ast, BitSet skipTokens) {
         DetailAST result = ast.getParent();
-        while (Arrays.binarySearch(skipTokens, result.getType()) > -1) {
+        while (skipTokens.get(result.getType())) {
             result = result.getParent();
         }
         return result;

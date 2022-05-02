@@ -92,7 +92,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Checks different group orderings and imports which are out of those ones
+     * Checks different group orderings and imports which are out of those
      * specified in the configuration.
      */
     @Test

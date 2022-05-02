@@ -31,7 +31,7 @@ import javax.swing.tree.TreePath;
 /**
  * This is a wrapper class takes a TreeTableModel and implements
  * the table model interface. The implementation is trivial, with
- * all of the event dispatching support provided by the superclass:
+ * all the event dispatching support provided by the superclass:
  * the AbstractTableModel.
  *
  * <a href=

@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * More specifically, it checks that it is not preceded with whitespace,
  * or (if linebreaks are allowed) all characters on the line before are
  * whitespace. To allow linebreaks before a token, set property
- * {@code allowLineBreaks} to {@code true}. No check occurs before semi-colons in empty
+ * {@code allowLineBreaks} to {@code true}. No check occurs before semicolons in empty
  * for loop initializers or conditions.
  * </p>
  * <ul>

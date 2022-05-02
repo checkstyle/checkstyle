@@ -244,7 +244,7 @@ public class ParseTreeTablePresentation {
     }
 
     /**
-     * Indicates whether the the value for node {@code node}, at column number {@code column} is
+     * Indicates whether the value for node {@code node}, at column number {@code column} is
      * editable.
      *
      * @param column the column number

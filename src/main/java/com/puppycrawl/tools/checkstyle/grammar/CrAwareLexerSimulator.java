@@ -29,7 +29,7 @@ import org.antlr.v4.runtime.dfa.DFA;
 /**
  * Extends the LexerATNSimulator class in order to override
  * the 'consume()' method so that we can handle '\r' line
- * endings (pre-OSX macOs line endings) correctly in the
+ * endings (pre-OSX macOS line endings) correctly in the
  * ANTLR lexer.
  */
 public class CrAwareLexerSimulator extends LexerATNSimulator {

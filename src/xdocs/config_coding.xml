@@ -1488,10 +1488,10 @@ public class Test {
         </p>
         <p>
           The check honors special comments to suppress the warning.
-          By default the texts
+          By default, the texts
           "fallthru", "fall thru", "fall-thru",
           "fallthrough", "fall through", "fall-through"
-          "fallsthrough", "falls through", "falls-through" (case sensitive).
+          "fallsthrough", "falls through", "falls-through" (case-sensitive).
           The comment containing these words must be all on one line,
           and must be on the last non-empty line before the
           <code>case</code> triggering the warning or on
@@ -1880,7 +1880,7 @@ ${returnType} set${Name}(${anyType} ${name}) { ... }
         <p>
           where ${anyType} is any primitive type, class or interface name;
           ${name} is name of the variable that is being set and ${Name} its
-          capitalized form that appears in the method name. By default it is expected
+          capitalized form that appears in the method name. By default, it is expected
           that setter returns void, i.e. ${returnType} is 'void'. For example
         </p>
         <source>
@@ -2800,7 +2800,7 @@ public class Test {
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="IllegalToken_Description">
         <p>
-          Checks for illegal tokens. By default labels are prohibited.
+          Checks for illegal tokens. By default, labels are prohibited.
         </p>
 
         <p>
@@ -2914,7 +2914,7 @@ public native void myTest(); // violation
       <subsection name="Description" id="IllegalTokenText_Description">
         <p>
           Checks specified tokens text for matching an illegal pattern.
-          By default no tokens are specified.
+          By default, no tokens are specified.
         </p>
       </subsection>
 
@@ -3496,7 +3496,7 @@ public class Main {
         </p>
 
         <p>
-          Rationale: With the exception of loop idioms,
+          Rationale: Except for the loop idioms,
           all assignments should occur in their own top-level statement
           to increase readability. With inner assignments like the one given above, it is difficult
           to see all places where a variable is set.
@@ -3695,32 +3695,32 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
               </td>
               <td>
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">
-                TYPECAST</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
-                METHOD_CALL</a>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">
+                ARRAY_INIT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">
+                ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV">
+                DIV</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELIST">
+                ELIST</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">
                 EXPR</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">
-                ARRAY_INIT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
+                LITERAL_NEW</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
+                METHOD_CALL</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS">
+                MINUS</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS">
+                PLUS</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR">
+                STAR</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">
+                TYPECAST</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">
                 UNARY_MINUS</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">
                 UNARY_PLUS</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELIST">
-                ELIST</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR">
-                STAR</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">
-                ASSIGN</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS">
-                PLUS</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS">
-                MINUS</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV">
-                DIV</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
-                LITERAL_NEW</a>
               </td>
               <td>6.11</td>
             </tr>
@@ -3953,7 +3953,7 @@ class TestHashCode {
           <a href="https://www.saxonica.com/html/documentation10/expressions/">Xpath Syntax</a>.
           Information regarding Xpath functions can be found at
           <a href="https://www.saxonica.com/html/documentation10/functions/fn/">XSLT/XPath
-            Reference</a>. Note, that <b>@text</b> attribute can used only with token types that
+            Reference</a>. Note, that <b>@text</b> attribute can be used only with token types that
           are listed in
           <a href="https://github.com/checkstyle/checkstyle/search?q=%22TOKEN_TYPES_WITH_TEXT_ATTRIBUTE+%3D+Arrays.asList%22">
             XpathUtil</a>.
@@ -5337,7 +5337,7 @@ String[] foo4 = { "FOO", "BAR" }; // OK
           pages 45-52.
         </p>
         <p>
-          Below are some of the rules/reasons why the clone method should be avoided.
+          Below are some rules/reasons why the clone method should be avoided.
         </p>
         <ul>
           <li>
@@ -6676,7 +6676,7 @@ public class Test {
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="SimplifyBooleanExpression_Description">
         <p>
-          Checks for over-complicated boolean expressions. Currently finds
+          Checks for over-complicated boolean expressions. Currently, it finds
           code like <code> if (b == true)</code>, <code>b || true</code>, <code>!false</code>,
           <code>boolean a = q > 12 ? true : false</code>,
           etc.
@@ -7165,7 +7165,7 @@ if (p == (q &lt;= r)) {}
           are not needed.
           In the second case, parentheses are required as <em>q</em>, <em>r</em> are
           of type <code>int</code> and <em>p</em> is of type <code>boolean</code>
-          and removing parentheses will give a compile time error. Even if <em>q</em>
+          and removing parentheses will give a compile-time error. Even if <em>q</em>
           and <em>r</em> were <code>boolean</code> still there will be no violation
           raised as check is not "type aware".
         </p>

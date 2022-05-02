@@ -36,12 +36,12 @@
  &lt;p&gt;
  ATTENTION: Checkstyle does not have information about hierarchy of exception types
  so usage of base class is considered as separate exception type.
- As workaround you need to specify both types in javadoc (parent and exact type).
+ As workaround, you need to specify both types in javadoc (parent and exact type).
  &lt;/p&gt;
  &lt;p&gt;
  Javadoc is not required on a method that is tagged with the {@code @Override}
- annotation. However under Java 5 it is not possible to mark a method required
- for an interface (this was &lt;i&gt;corrected&lt;/i&gt; under Java 6). Hence Checkstyle
+ annotation. However, under Java 5 it is not possible to mark a method required
+ for an interface (this was &lt;i&gt;corrected&lt;/i&gt; under Java 6). Hence, Checkstyle
  supports using the convention of using a single {@code {@inheritDoc}} tag
  instead of all the other tags.
  &lt;/p&gt;
@@ -64,8 +64,7 @@
             <property default-value="Override"
                        name="allowedAnnotations"
                        type="java.lang.String[]">
-               <description>Specify the list of annotations
- that allow missed documentation.</description>
+               <description>Specify annotations that allow missed documentation.</description>
             </property>
             <property default-value="false" name="validateThrows" type="boolean">
                <description>Control whether to validate {@code throws} tags.</description>

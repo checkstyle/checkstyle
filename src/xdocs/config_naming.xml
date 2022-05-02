@@ -79,8 +79,7 @@
             </tr>
             <tr>
               <td>allowedAbbreviations</td>
-              <td>Specify list of abbreviations that must be skipped for checking.
-              Abbreviations should be separated by comma.</td>
+              <td>Specify abbreviations that must be skipped for checking.</td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>5.8</td>
@@ -394,7 +393,7 @@ public class MyClass {
         <p>
           Rationale: Abstract classes are convenience base class implementations of
           interfaces, not types as such. As such they should be named to indicate this.
-          Also if names of classes starts with 'Abstract' it's very convenient that
+          Also, if names of classes starts with 'Abstract' it's very convenient that
           they will have abstract modifier.
         </p>
       </subsection>
@@ -2257,7 +2256,7 @@ class MyClass {
           The default value of <code>format</code> for module <code>PackageName</code> has been
           chosen to match the requirements in the <a
           href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.5.3">Java
-          Language specification</a> and the Sun coding conventions. However
+          Language specification</a> and the Sun coding conventions. However,
           both underscores and uppercase letters are rather uncommon, so most
           configurations should probably assign value <code>^[a-z]+(\.[a-z][a-z0-9]*)*$</code> to
           <code>format</code> for module <code>PackageName</code>.

@@ -38,7 +38,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
 
     /**
      * Output stream to hold the test results. The IntelliJ IDEA issues the AutoCloseableResource
-     * warning here, so it need to be suppressed. The {@code ByteArrayOutputStream} does not hold
+     * warning here, so it needs to be suppressed. The {@code ByteArrayOutputStream} does not hold
      * any resources that need to be released.
      */
     private final CloseAndFlushTestByteArrayOutputStream outStream =
@@ -286,8 +286,8 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
             String expectedOutputFile,
             ByteArrayOutputStream actualOutputStream) throws IOException {
         final String expectedContent = readFile(expectedOutputFile);
-        final String actualContent = toLfLineEnding(new String(actualOutputStream.toByteArray(),
-                StandardCharsets.UTF_8));
+        final String actualContent =
+                toLfLineEnding(actualOutputStream.toString(StandardCharsets.UTF_8));
         assertWithMessage("sarif content should match")
             .that(actualContent)
             .isEqualTo(expectedContent);

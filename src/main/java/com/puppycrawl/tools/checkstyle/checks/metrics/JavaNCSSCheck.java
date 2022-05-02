@@ -423,7 +423,7 @@ public class JavaNCSSCheck extends AbstractCheck {
         if (tokenType == TokenTypes.EXPR) {
             countable = isExpressionCountable(ast);
         }
-        // check if an variable definition is countable
+        // check if a variable definition is countable
         else if (tokenType == TokenTypes.VARIABLE_DEF) {
             countable = isVariableDefCountable(ast);
         }

@@ -2,5 +2,5 @@
      all excludes should be specified in build configuration -->
 <component name="DependencyValidationManager">
   <scope name="Checkstyle Inspection Scope"
-      pattern="!file[checkstyle]:target//*&amp;&amp;!file:src/test/resources*//**&amp;&amp;!file:src/it/resources*//**&amp;&amp;!file:src/site/resources/js/google-analytics.js&amp;&amp;!file:src/site/resources/styleguides*//**&amp;&amp;!file:config/intellij-idea-inspections.properties&amp;&amp;!file[checkstyle]:.ci-temp//*&amp;&amp;!file[checkstyle]:bin//*&amp;&amp;!file[checkstyle]:.settings//*&amp;&amp;!file:.classpath&amp;&amp;!file:.project"/>
+      pattern="!file[checkstyle]:target//*&amp;&amp;!file:src/test/resources*//**&amp;&amp;!file:src/it/resources*//**&amp;&amp;!file:src/site/resources/js/google-analytics.js&amp;&amp;!file:src/site/resources/styleguides*//**&amp;&amp;!file:config/intellij-idea-inspections.properties&amp;&amp;!file[checkstyle]:.ci-temp//*&amp;&amp;!file[checkstyle]:bin//*&amp;&amp;!file[checkstyle]:.settings//*&amp;&amp;!file:.classpath&amp;&amp;!file:.project&amp;&amp;!file:.circleci/config.yml&amp;&amp;!file:.ci/openjdk-projects-to-test-on.config&amp;&amp;!file:.ci/projects-for-no-exception-javadoc.config"/>
 </component>

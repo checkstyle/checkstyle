@@ -194,7 +194,7 @@ final class InputParameterNameOne
     }
 }
 
-/** Test class for variable naming in for each clauses. */
+/** Test class for variable naming in for each clause. */
 class InputParameterNameOne2
 {
     /** Some more Javadoc. */

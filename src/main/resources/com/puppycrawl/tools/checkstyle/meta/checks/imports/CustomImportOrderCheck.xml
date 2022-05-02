@@ -45,10 +45,10 @@
  SPECIAL_IMPORTS.
  &lt;/li&gt;
  &lt;li&gt;
- STANDARD_JAVA_PACKAGE group. By default this group sets ordering of standard java/javax imports.
+ STANDARD_JAVA_PACKAGE group. By default, this group sets ordering of standard java/javax imports.
  &lt;/li&gt;
  &lt;li&gt;
- SPECIAL_IMPORTS group. This group may contains some imports that have particular meaning for the
+ SPECIAL_IMPORTS group. This group may contain some imports that have particular meaning for the
  user.
  &lt;/li&gt;
  &lt;/ol&gt;

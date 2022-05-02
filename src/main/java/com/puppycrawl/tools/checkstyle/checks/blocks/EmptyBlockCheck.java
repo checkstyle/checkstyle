@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </pre>
  * <p>
  * NOTE: This check processes LITERAL_CASE and LITERAL_DEFAULT separately.
- * Verification empty block is done for single most nearest {@code case} or {@code default}.
+ * Verification empty block is done for single nearest {@code case} or {@code default}.
  * </p>
  * <ul>
  * <li>

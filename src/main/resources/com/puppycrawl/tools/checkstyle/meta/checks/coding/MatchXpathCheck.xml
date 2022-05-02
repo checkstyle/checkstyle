@@ -20,7 +20,7 @@
  &lt;a href="https://www.saxonica.com/html/documentation10/expressions/"&gt;Xpath Syntax&lt;/a&gt;.
  Information regarding Xpath functions can be found at
  &lt;a href="https://www.saxonica.com/html/documentation10/functions/fn/"&gt;XSLT/XPath Reference&lt;/a&gt;.
- Note, that &lt;b&gt;@text&lt;/b&gt; attribute can used only with token types that are listed in
+ Note, that &lt;b&gt;@text&lt;/b&gt; attribute can be used only with token types that are listed in
  &lt;a href="https://github.com/checkstyle/checkstyle/search?q=%22TOKEN_TYPES_WITH_TEXT_ATTRIBUTE+%3D+Arrays.asList%22"&gt;
      XpathUtil&lt;/a&gt;.
  &lt;/p&gt;</description>

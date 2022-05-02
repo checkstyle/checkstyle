@@ -19,9 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,8 +44,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <p>
  * Javadoc is not required on a method that is tagged with the {@code @Override} annotation.
- * However under Java 5 it is not possible to mark a method required for an interface (this
- * was <i>corrected</i> under Java 6). Hence Checkstyle supports using the convention of using
+ * However, under Java 5 it is not possible to mark a method required for an interface (this
+ * was <i>corrected</i> under Java 6). Hence, Checkstyle supports using the convention of using
  * a single {@code {@inheritDoc}} tag instead of all the other tags.
  * </p>
  * <p>
@@ -78,7 +76,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code -1}.
  * </li>
  * <li>
- * Property {@code allowedAnnotations} - Configure the list of annotations that allow missed
+ * Property {@code allowedAnnotations} - Configure annotations that allow missed
  * documentation.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code Override}.
@@ -292,16 +290,16 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     /** Ignore method whose names are matching specified regex. */
     private Pattern ignoreMethodNamesRegex;
 
-    /** Configure the list of annotations that allow missed documentation. */
-    private List<String> allowedAnnotations = Collections.singletonList("Override");
+    /** Configure annotations that allow missed documentation. */
+    private Set<String> allowedAnnotations = Set.of("Override");
 
     /**
-     * Setter to configure the list of annotations that allow missed documentation.
+     * Setter to configure annotations that allow missed documentation.
      *
      * @param userAnnotations user's value.
      */
     public void setAllowedAnnotations(String... userAnnotations) {
-        allowedAnnotations = Arrays.asList(userAnnotations);
+        allowedAnnotations = Set.of(userAnnotations);
     }
 
     /**

@@ -45,7 +45,7 @@ import picocli.CommandLine.ParseResult;
  * with short descriptions (the first sentences) of TokenTypes constants.
  * Request: 724871
  * For IDE plugins (like the eclipse plugin) it would be useful to have
- * a programmatic access to the first sentence of the TokenType constants,
+ * programmatic access to the first sentence of the TokenType constants,
  * so they can use them in their configuration gui.
  *
  * @noinspection UseOfSystemOutOrSystemErr, unused, ClassIndependentOfModule

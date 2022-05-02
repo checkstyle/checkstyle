@@ -287,7 +287,7 @@ public final class ScopeUtil {
     }
 
     /**
-     * Returns whether a node is contained in the outer most type block.
+     * Returns whether a node is contained in the outermost type block.
      *
      * @param node the node to check
      * @return a {@code boolean} value

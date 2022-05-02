@@ -249,7 +249,7 @@ for (Iterator foo = very.long.line.iterator();
         <p>
           ATTENTION: empty line separator is required between token siblings,
           not after line where token is found.
-          If token does not have same type sibling then empty line
+          If token does not have a sibling of the same type, then empty line
           is required at its end (for example for CLASS_DEF it is after '}').
           Also, trailing comments are skipped.
         </p>
@@ -769,7 +769,7 @@ public class Test {
         </p>
         <ul>
           <li> should be preceded with whitespace only in generic methods definitions.</li>
-          <li> should not be preceded with whitespace when it is precede method name
+          <li> should not be preceded with whitespace when it is preceded method name
             or constructor.</li>
           <li> should not be preceded with whitespace when following type name.</li>
           <li> should not be followed with whitespace in all cases.</li>
@@ -1086,7 +1086,7 @@ public class Test {
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="NoLineWrap_Description">
         <p>
-          Checks that chosen statements are not line-wrapped. By default this
+          Checks that chosen statements are not line-wrapped. By default, this
           Check restricts wrapping import and package statements, but it's possible to check
           any statement.
         </p>
@@ -1222,20 +1222,20 @@ import static java.math. // OK
           Example:
         </p>
         <source>
-public class // violation, class definition not wrapped in a single line
+public class // violation, class definition not wrapped in a single-line
   Foo {
 
   public Foo() { // OK
   }
 
-  public static void // violation, method definition not wrapped in a single line
+  public static void // violation, method definition not wrapped in a single-line
     doSomething() {
   }
 }
 
 public class Bar { // OK
 
-  public // violation, constructor definition not wrapped in a single line
+  public // violation, constructor definition not wrapped in a single-line
     Bar() {
   }
 
@@ -1308,7 +1308,7 @@ import static java.math.BigInteger.ZERO;
           and
           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">INDEX_OP</a>
           tokens specially from other tokens. Actually it is checked that there is
-          no whitespace before this tokens, not after them.
+          no whitespace before these tokens, not after them.
           Space after the
           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATIONS">
                 ANNOTATIONS</a> before
@@ -1482,7 +1482,7 @@ public void foo(final char @NotNull [] param) {} // No violation
           (if linebreaks are allowed) all characters on the line before are
           whitespace. To allow linebreaks before a token, set property
           <code>allowLineBreaks</code> to <code>true</code>. No check occurs
-          before semi-colons in empty for loop initializers or conditions.
+          before semicolons in empty for loop initializers or conditions.
         </p>
       </subsection>
 
@@ -2086,7 +2086,7 @@ class Test {
           the right parenthesis after an empty for iterator, at the left
           parenthesis before an empty for initialization, or at the right
           parenthesis of a try-with-resources resource specification where
-          the last resource variable has a trailing semi-colon.
+          the last resource variable has a trailing semicolon.
           Use Check <a href="config_whitespace.html#EmptyForIteratorPad">
           EmptyForIteratorPad</a> to validate empty for iterators and
           <a href="config_whitespace.html#EmptyForInitializerPad">
@@ -2586,7 +2586,7 @@ class Test3 {
         <p>
           Checks that non-whitespace characters are separated by no more than one
           whitespace. Separating characters by tabs or multiple spaces will be
-          reported. Currently the check doesn't permit horizontal alignment. To inspect
+          reported. Currently, the check doesn't permit horizontal alignment. To inspect
           whitespaces before and after comments, set the property
           <code>validateComments</code> to true.
         </p>

@@ -28,7 +28,7 @@ package com.puppycrawl.tools.checkstyle.grammar;
 public interface CommentListener {
 
     /**
-     * Report the location of a single line comment that extends from the
+     * Report the location of a single-line comment that extends from the
      * given point to the end of the line. The type of comment is identified
      * by a String whose value depends on the language being parsed, but would
      * typically be the delimiter for the comment.

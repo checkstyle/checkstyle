@@ -39,11 +39,11 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * <p>Detects if keys in properties files are in correct order.</p>
  * <p>
  *   Rationale: Sorted properties make it easy for people to find required properties by name
- *   in file. It makes merges more easy. While there are no problems at runtime.
+ *   in file. This makes it easier to merge. While there are no problems at runtime.
  *   This check is valuable only on files with string resources where order of lines
  *   does not matter at all, but this can be improved.
  *   E.g.: checkstyle/src/main/resources/com/puppycrawl/tools/checkstyle/messages.properties
- *   You may suppress warnings of this check for files that have an logical structure like
+ *   You may suppress warnings of this check for files that have a logical structure like
  *   build files or log4j configuration files. See SuppressionFilter.
  *   {@code
  *   &lt;suppress checks="OrderedProperties"
@@ -69,14 +69,14 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * key.sub =k is 107 and dot is 46
  * key.png =value - violation
  * </pre>
- * <p>We check order of key's only. Here we would like to use an Locale independent
- * order mechanism, an binary order. The order is case insensitive and ascending.</p>
+ * <p>We check order of key's only. Here we would like to use a Locale independent
+ * order mechanism and binary order. The order is case-insensitive and ascending.</p>
  * <ul>
- *   <li>The capital A is on 65 and the lowercase a is on position 97 on the ascii table.</li>
+ *   <li>The capital 'A' is on 65 and the lowercase 'a' is on position 97 on the ascii table.</li>
  *   <li>Key and key.sub are in correct order here, because only keys are relevant.
- *   Therefore on line 5 you have only "key" an nothing behind.
+ *   Therefore, on line 5 you have only "key" and nothing behind.
  *   On line 6 you have "key." The dot is on position 46 which is higher than nothing.
- *   key.png will reported as violation because "png" comes before "sub".</li>
+ *   key.png will be reported as violation because "png" comes before "sub".</li>
  * </ul>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
@@ -160,7 +160,7 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
      * Method returns the index number where the key is detected (starting at 0).
      * To assure that we get the correct line it starts at the point
      * of the last occurrence.
-     * Also the previousProp should be in file before propKey.
+     * Also, the previousProp should be in file before propKey.
      *
      * @param startLineNo start searching at line
      * @param fileText {@link FileText} object contains the lines to process
@@ -221,7 +221,7 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
         private static final long serialVersionUID = 1L;
 
         /**
-         * Holding the keys in the same order than in the file.
+         * Holding the keys in the same order as in the file.
          */
         private final List<Object> keyList = new ArrayList<>();
 
@@ -229,14 +229,12 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
          * Returns a copy of the keys.
          */
         @Override
-        public synchronized Enumeration<Object> keys() {
+        public Enumeration<Object> keys() {
             return Collections.enumeration(keyList);
         }
 
         /**
          * Puts the value into list by its key.
-         *
-         * @noinspection UseOfPropertiesAsHashtable
          *
          * @param key the hashtable key
          * @param value the value

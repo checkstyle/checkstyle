@@ -200,7 +200,7 @@ final class InputTodoCommentSimple
     }
 }
 
-/** Test class for variable naming in for each clauses. */
+/** Test class for variable naming in for each clause. */
 class InputTodoCommentSimple2
 {
     /** Some more Javadoc. */

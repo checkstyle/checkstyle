@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <p>
  * Rationale: If a source file becomes very long it is hard to understand.
- * Therefore long classes should usually be refactored into several
+ * Therefore, long classes should usually be refactored into several
  * individual classes that focus on a specific task.
  * </p>
  * <ul>
