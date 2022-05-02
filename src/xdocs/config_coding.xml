@@ -7091,27 +7091,25 @@ class C {
         <p>Example:</p>
         <source>
 public class A {
-   @Override
       protected void finalize() throws Throwable {
           try{
-            System.out.println("Finalize of sub class");  //release resources, perform cleanup
+               System.out.println("Finalize of sub class"); //release resources, perform cleanup
             } catch(Throwable t) {
                 throw t;
-            } finally { // OK, calls super.finalize
+            } finally { //OK, calls super.finalize
                 System.out.println("Calling finalize");
                 super.finalize();
             }
       }
 }
 class B {
-   @Override
       protected void finalize() throws Throwable {
             try{
-                // Statements;
+                //Statements;
             } catch() {
                 //body;
             }
-            finally { // causes violation does not call super.finalize
+            finally { //causes violation does not call super.finalize
             }
       }
 }

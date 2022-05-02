@@ -42,10 +42,9 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
  * <p>Example:</p>
  * <pre>
  * public class A {
- *  @Override
- *      protected void finalize throws Throwable {
+ *      protected void finalize() throws Throwable {
  *          try{
- *              System.out.println("Fianlize of sub class"); //release resources, perform cleanup
+ *              System.out.println("Finalize of sub class"); //release resources, perform cleanup
  *          } catch(Throwable t) {
  *              throw t;
  *          } finally { //OK, calls super.finalize
@@ -55,7 +54,6 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
  *      }
  * }
  * class B {
- *  @Override
  *      protected void finalize() throws Throwable {
  *          try{
  *              //Statements;
