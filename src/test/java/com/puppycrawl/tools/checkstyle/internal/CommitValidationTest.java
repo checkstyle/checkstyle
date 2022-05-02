@@ -201,8 +201,8 @@ public class CommitValidationTest {
             result = 1;
         }
         else if (!trimRight.equals(message)) {
-            // single line of text (multiple new lines are allowed on end because of
-            // git (1 new line) and github's web ui (2 new lines))
+            // single-line of text (multiple new lines are allowed on end because of
+            // git (1 new line) and GitHub's web ui (2 new lines))
             result = 2;
         }
         else if (INVALID_POSTFIX_PATTERN.matcher(message).matches()) {

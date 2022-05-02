@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li> should be preceded with whitespace only
  *   in generic methods definitions.</li>
  * <li> should not be preceded with whitespace
- *   when it is precede method name or constructor.</li>
+ *   when it is preceded method name or constructor.</li>
  * <li> should not be preceded with whitespace when following type name.</li>
  * <li> should not be followed with whitespace in all cases.</li>
  * </ul>

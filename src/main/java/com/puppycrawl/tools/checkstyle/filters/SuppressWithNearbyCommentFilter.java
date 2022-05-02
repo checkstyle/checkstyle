@@ -235,7 +235,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </pre>
  * <p>
  * Example of how to configure the check to suppress more than one checks.
- * The influence format format is specified in the second regexp group.
+ * The influence format is specified in the second regexp group.
  * </p>
  * <pre>
  * &lt;module name="SuppressWithNearbyCommentFilter"&gt;

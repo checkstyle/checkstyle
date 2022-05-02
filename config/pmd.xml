@@ -10,7 +10,7 @@
 
   <rule ref="category/java/bestpractices.xml">
     <!-- We do not care about this minor overhead, we are not Android application and we do not
-         want to change visibility of methods. Package-private visibility should be avoid almost
+         want to change visibility of methods. Package-private visibility should be avoided almost
          always. -->
     <exclude name="AccessorMethodGeneration"/>
     <!-- The PMD mistakes the AbstractViolationReporter::log() as a debug log. -->
@@ -35,7 +35,7 @@
   </rule>
   <rule ref="category/java/bestpractices.xml/JUnitAssertionsShouldIncludeMessage">
     <properties>
-      <!-- The PMD check accepts only a string constant as the assert message.
+      <!-- The PMD check accepts only a string constant as the assertion message.
            This check uses a method call. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocCatchCheck']
@@ -221,7 +221,7 @@
          (preferable immutable) to transfer content from one part to another.
          There is no way to configure the rule (it has no properties). -->
     <exclude name="DataClass"/>
-    <!-- Too much alarms on the check classes, we will never move logic out of the check,
+    <!-- Too many alarms on the check classes, we will never move logic out of the check,
          each check is an independent logic container. -->
     <exclude name="GodClass"/>
     <!-- Too many violations, will be suppressed until we find out how use these metrics. -->
@@ -247,8 +247,8 @@
   </rule>
   <rule ref="category/java/design.xml/AvoidDeeplyNestedIfStmts">
     <properties>
-      <!-- The default is 3 but we try to use single point of exit from the method and that require
-           some extra IFs. -->
+      <!-- The default is 3, but we try to use single point of exit from the method and that
+       requires some extra IFs. -->
       <property name="problemDepth" value="4"/>
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='ClassResolver']
@@ -281,7 +281,7 @@
              If we split the block to several methods it will damage the readability.
            XMLLogger.encode, SarifLogger.escape, FallThroughCheck.isTerminated,
              ElementNode.iterateAxis, NoWhitespaceAfterCheck.getArrayDeclaratorPreviousElement
-             are also huge switches, they has to be monolithic.
+             are also huge switches, they had to be monolithic.
            SuppressFilterElement is a single constructor and can't be split easily -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='Main'

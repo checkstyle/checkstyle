@@ -110,7 +110,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &#47;**
  *   * This comment is OK because it starts from the second line.
  *   *&#47;
- * &#47;** This comment is OK because it is on the single line. *&#47;
+ * &#47;** This comment is OK because it is on the single-line. *&#47;
  * </pre>
  * <p>
  * To ensure that Javadoc content starts from the first line:

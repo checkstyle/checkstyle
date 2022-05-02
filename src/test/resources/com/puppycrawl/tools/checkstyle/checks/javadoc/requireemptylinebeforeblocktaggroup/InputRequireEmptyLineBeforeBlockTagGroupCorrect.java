@@ -20,14 +20,14 @@ class InputRequireEmptyLineBeforeBlockTagGroupCorrect {
     public static final byte NO_TAG = 0;
 
     /**
-     * This javadoc does has one tag, with an empty line. There should be no violations.
+     * This Javadoc has one tag, with an empty line. There should be no violations.
      *
      * @since 8.36 // ok
      */
     public static final byte ONE_TAG = 0;
 
     /**
-     * This javadoc does has one tag, with two empty lines before it. There should be no violations.
+     * This Javadoc has one tag, with two empty lines before it. There should be no violations.
      * Another independent check will verify if there is too much whitespace.
      *
      *
@@ -36,7 +36,7 @@ class InputRequireEmptyLineBeforeBlockTagGroupCorrect {
     public static final byte TWO_BLANK_LINES = 0;
 
     /**
-     * This javadoc has multiple tags, with an empty line before the. There should be no
+     * This Javadoc has multiple tags, with an empty line before them. There should be no
      * violations.
      *
      * @param input this is the first tag. // ok
@@ -58,7 +58,7 @@ class InputRequireEmptyLineBeforeBlockTagGroupCorrect {
     }
 
     /**
-     * @return this only has an tag. // ok
+     * @return this only has a tag. // ok
      */
     public static boolean test() {
         return false;

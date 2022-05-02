@@ -44,7 +44,7 @@ public class InputSummaryJavadocPeriodAtEnd {
 
     }
     /**
-     * This is test
+     * This is a test
      * Valid or invalid.
      */
     public void foo4(){

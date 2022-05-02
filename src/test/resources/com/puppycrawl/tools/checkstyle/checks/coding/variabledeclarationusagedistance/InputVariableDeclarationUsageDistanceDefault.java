@@ -541,7 +541,7 @@ public class InputVariableDeclarationUsageDistanceDefault {
     }
 
     //////////////////////////////////////////////////
-    // False positive. Will be fixed in future.
+    // False positive. Will be fixed in the future.
     //////////////////////////////////////////////////
     private TreeMapNode buildTree(Object[][] tree)
     {

@@ -10,7 +10,7 @@
  and some like C style: {@code public static void main(String args[])}.
  &lt;/p&gt;
  &lt;p&gt;
- By default the Check enforces Java style.
+ By default, the Check enforces Java style.
  &lt;/p&gt;
  &lt;p&gt;
  This check strictly enforces only Java style for method return types regardless

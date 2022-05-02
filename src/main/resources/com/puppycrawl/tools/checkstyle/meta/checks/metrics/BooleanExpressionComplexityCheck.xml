@@ -20,7 +20,7 @@
  &lt;/p&gt;
  &lt;p&gt;
  Note that {@code &amp;amp;}, {@code |} and {@code ^} are not checked if they are part
- of constructor or method call because they can be applied to non boolean
+ of constructor or method call because they can be applied to non-boolean
  variables and Checkstyle does not know types of methods from different classes.
  &lt;/p&gt;</description>
          <properties>

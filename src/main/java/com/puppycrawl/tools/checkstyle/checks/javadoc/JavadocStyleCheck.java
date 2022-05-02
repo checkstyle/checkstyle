@@ -702,7 +702,7 @@ public class JavadocStyleCheck
      * @return {@code true} if the HtmlTag is a single tag.
      */
     private static boolean isSingleTag(HtmlTag tag) {
-        // If its a singleton tag (<p>, <br>, etc.), ignore it
+        // If it's a singleton tag (<p>, <br>, etc.), ignore it
         // Can't simply not put them on the stack, since singletons
         // like <dt> and <dd> (unhappily) may either be terminated
         // or not terminated. Both options are legal.

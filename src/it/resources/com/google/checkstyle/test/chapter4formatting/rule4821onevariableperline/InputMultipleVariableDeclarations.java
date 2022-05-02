@@ -13,7 +13,7 @@ public class InputMultipleVariableDeclarations
     // line of VARIABLE_DEF is not the same as first line of the definition
     java.lang.String string; java.lang.String //warn
         strings[];
-    //both definitions is wrapped
+    //both definitions are wrapped
     java.lang. //warn
         String string1; java.lang.String
             strings1[];
@@ -39,7 +39,7 @@ public class InputMultipleVariableDeclarations
         // line of VARIABLE_DEF is not the same as first line of the definition
         java.lang.String string; java.lang.String //warn
             strings[];
-        //both definitions is wrapped
+        //both definitions are wrapped
         java.lang. //warn
             String string1; java.lang.String
                 strings1[];
@@ -65,7 +65,7 @@ public class InputMultipleVariableDeclarations
             // line of VARIABLE_DEF is not the same as first line of the definition
             java.lang.String string; java.lang.String //warn
                 strings[];
-            //both definitions is wrapped
+            //both definitions are wrapped
             java.lang. //warn
                 String string1; java.lang.String
                     strings1[];

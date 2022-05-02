@@ -380,12 +380,12 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      */
     private static String constructSubTreeText(DetailNode node, int childLeftLimit,
                                                int childRightLimit) {
-        final StringBuilder result = new StringBuilder(1024);
         DetailNode detailNode = node;
 
         final Deque<DetailNode> stack = new ArrayDeque<>();
         stack.addFirst(detailNode);
         final Set<DetailNode> visited = new HashSet<>();
+        final StringBuilder result = new StringBuilder(1024);
         while (!stack.isEmpty()) {
             detailNode = stack.getFirst();
             stack.removeFirst();
@@ -415,7 +415,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
 
     /**
      * Create the description text with starting index as 0 and ending index would be the first
-     * valid non zero index amongst in the order of {@code propertySectionStartIdx},
+     * valid non-zero index amongst in the order of {@code propertySectionStartIdx},
      * {@code exampleSectionStartIdx} and {@code parentSectionStartIdx}.
      *
      * @return description text

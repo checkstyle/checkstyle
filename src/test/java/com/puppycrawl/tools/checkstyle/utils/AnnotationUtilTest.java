@@ -22,9 +22,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -179,7 +177,7 @@ public class AnnotationUtilTest {
     @Test
     public void testContainsAnnotationListWithNullAst() {
         try {
-            AnnotationUtil.containsAnnotation(null, Collections.singletonList("Override"));
+            AnnotationUtil.containsAnnotation(null, Set.of("Override"));
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException ex) {
@@ -192,7 +190,7 @@ public class AnnotationUtilTest {
     @Test
     public void testContainsAnnotationListWithNullList() {
         final DetailAST ast = new DetailAstImpl();
-        final List<String> annotations = null;
+        final Set<String> annotations = null;
         try {
             AnnotationUtil.containsAnnotation(ast, annotations);
             assertWithMessage("IllegalArgumentException is expected").fail();
@@ -207,9 +205,9 @@ public class AnnotationUtilTest {
     @Test
     public void testContainsAnnotationListWithEmptyList() {
         final DetailAST ast = new DetailAstImpl();
-        final List<String> annotations = new ArrayList<>();
+        final Set<String> annotations = Set.of();
         final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);
-        assertWithMessage("An empty list should lead to a false result")
+        assertWithMessage("An empty set should lead to a false result")
             .that(result)
             .isFalse();
     }
@@ -220,7 +218,7 @@ public class AnnotationUtilTest {
         final DetailAstImpl modifiersAst = new DetailAstImpl();
         modifiersAst.setType(TokenTypes.MODIFIERS);
         ast.addChild(modifiersAst);
-        final List<String> annotations = Collections.singletonList("Override");
+        final Set<String> annotations = Set.of("Override");
         final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);
         assertWithMessage("An empty ast should lead to a false result")
             .that(result)
@@ -243,7 +241,7 @@ public class AnnotationUtilTest {
                 )
         );
         ast.addChild(modifiersAst);
-        final List<String> annotations = Collections.singletonList("Override");
+        final Set<String> annotations = Set.of("Override");
         final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);
         assertWithMessage("The dot-ident variation should also work")
                 .that(result)
@@ -266,7 +264,7 @@ public class AnnotationUtilTest {
                 )
         );
         ast.addChild(modifiersAst);
-        final List<String> annotations = Collections.singletonList("Deprecated");
+        final Set<String> annotations = Set.of("Deprecated");
         final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);
         assertWithMessage("No matching annotation found")
             .that(result)

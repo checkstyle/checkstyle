@@ -22,7 +22,7 @@
  or can set property {@code tabWidth} for {@code LineLength} alone.
  &lt;/li&gt;
  &lt;li&gt;
- By default package and import statements (lines matching pattern {@code ^(package|import) .*})
+ By default, package and import statements (lines matching pattern {@code ^(package|import) .*})
  are not verified by this check.
  &lt;/li&gt;
  &lt;li&gt;

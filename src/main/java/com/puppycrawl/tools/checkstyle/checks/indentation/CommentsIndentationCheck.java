@@ -82,7 +82,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * 9   }
  * </pre>
  * <p>
- * Example #3: Comment is used as a single line border to separate groups of methods.
+ * Example #3: Comment is used as a single-line border to separate groups of methods.
  * </p>
  * <pre>
  * 1   /////////////////////////////// it is OK
@@ -120,7 +120,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Note, if comment is placed at the end of the empty code block, we have
  * Checkstyle's limitations to clearly detect user intention of explanation
  * target - above or below. The only case we can assume as a violation is when
- * a single line comment within the empty code block has indentation level that
+ * a single-line comment within the empty code block has indentation level that
  * is lower than the indentation level of the closing right curly brace.
  * </p>
  * <pre>
@@ -180,7 +180,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Note, if comment is placed at the end of the empty case block, we have
  * Checkstyle's limitations to clearly detect user intention of explanation
  * target - above or below. The only case we can assume as a violation is when
- * a single line comment within the empty case block has indentation level that
+ * a single-line comment within the empty case block has indentation level that
  * is lower than the indentation level of the next case token.
  * </p>
  * <pre>
@@ -196,7 +196,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * 1   String s1 = "Clean code!";
  * 2      s.toString().toString().toString();
- * 3   // single line
+ * 3   // single-line
  * 4   // block
  * 5   // comment (it is OK)
  * 6   int a = 5;
@@ -388,7 +388,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
 
     /**
      * Checks whether the previous statement of a comment is a method call chain or
-     * string concatenation statement distributed over two ore more lines.
+     * string concatenation statement distributed over two or more lines.
      *
      * @param comment comment to check.
      * @return true if the previous statement is a distributed expression.
@@ -597,7 +597,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * Handles a comment which is placed within empty case block.
      * Note, if comment is placed at the end of the empty case block, we have Checkstyle's
      * limitations to clearly detect user intention of explanation target - above or below. The
-     * only case we can assume as a violation is when a single line comment within the empty case
+     * only case we can assume as a violation is when a single-line comment within the empty case
      * block has indentation level that is lower than the indentation level of the next case
      * token. For example:
      * <p>
@@ -611,7 +611,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * </p>
      *
      * @param prevStmt previous statement.
-     * @param comment single line comment.
+     * @param comment single-line comment.
      * @param nextStmt next statement.
      */
     private void handleCommentInEmptyCaseBlock(DetailAST prevStmt, DetailAST comment,
@@ -623,7 +623,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Handles 'fall through' single line comment.
+     * Handles 'fall through' single-line comment.
      * Note, 'fall through' and similar comments can have indentation level as next or previous
      * statement.
      * For example:
@@ -653,7 +653,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * </p>
      *
      * @param prevStmt previous statement.
-     * @param comment single line comment.
+     * @param comment single-line comment.
      * @param nextStmt next statement.
      */
     private void handleFallThroughComment(DetailAST prevStmt, DetailAST comment,
@@ -664,8 +664,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Handles a comment which is placed at the end of non empty code block.
-     * Note, if single line comment is placed at the end of non empty block the comment should have
+     * Handles a comment which is placed at the end of non-empty code block.
+     * Note, if single-line comment is placed at the end of non-empty block the comment should have
      * the same indentation level as the previous statement. For example:
      * <p>
      * {@code
@@ -726,7 +726,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * Handles a comment which is placed within the empty code block.
      * Note, if comment is placed at the end of the empty code block, we have Checkstyle's
      * limitations to clearly detect user intention of explanation target - above or below. The
-     * only case we can assume as a violation is when a single line comment within the empty
+     * only case we can assume as a violation is when a single-line comment within the empty
      * code block has indentation level that is lower than the indentation level of the closing
      * right curly brace. For example:
      * <p>
@@ -1090,7 +1090,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * }
      * </pre>
      *
-     * @param comment {@link TokenTypes#SINGLE_LINE_COMMENT single line comment}.
+     * @param comment {@link TokenTypes#SINGLE_LINE_COMMENT single-line comment}.
      * @param prevStmt previous code statement.
      * @param nextStmt next code statement.
      * @return true if comment and next code statement are indented at the same level.
@@ -1134,15 +1134,15 @@ public class CommentsIndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current single line comment is trailing comment, e.g.:
+     * Checks if current single-line comment is trailing comment, e.g.:
      * <p>
      * {@code
      * double d = 3.14; // some comment
      * }
      * </p>
      *
-     * @param singleLineComment {@link TokenTypes#SINGLE_LINE_COMMENT single line comment}.
-     * @return true if current single line comment is trailing comment.
+     * @param singleLineComment {@link TokenTypes#SINGLE_LINE_COMMENT single-line comment}.
+     * @return true if current single-line comment is trailing comment.
      */
     private boolean isTrailingSingleLineComment(DetailAST singleLineComment) {
         final String targetSourceLine = getLine(singleLineComment.getLineNo() - 1);
@@ -1186,7 +1186,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * </p>
      *
      * @param comment comment to check.
-     * @return true, if comment is inside inside a method call with same indentation.
+     * @return true, if comment is inside a method call with same indentation.
      */
     private static boolean areInSameMethodCallWithSameIndent(DetailAST comment) {
         return comment.getParent().getType() == TokenTypes.METHOD_CALL

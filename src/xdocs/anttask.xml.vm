@@ -214,7 +214,7 @@
               For efficiency, Checkstyle does not invoke modules with a configured severity of
               "ignore" (since their output would be ignored anyway). A small number of modules
               may choose to log above their configured severity level and so always need to be
-              invoked. This settings specifies that behaviour.
+              invoked. These settings specify that behaviour.
               Defaults to <code>&quot;false&quot;</code>.
             </td>
             <td>No</td>

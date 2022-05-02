@@ -405,7 +405,7 @@
             <tr>
               <td>
                 <a href="https://github.com/nikitasavinov/checkstyle-action#checkstyle-github-action">
-                Checkstyle Github Actions</a>
+                Checkstyle GitHub Actions</a>
               </td>
               <td>Nikita Savinov</td>
               <td><a href="https://github.com/marketplace/actions/run-java-checkstyle">
@@ -531,7 +531,7 @@
               <td>Nicolas Vuillamy</td>
               <td>Checkstyle supported out of the box</td>
               <td>Automatically detect 35 languages, 11 formats, 15 tooling formats and copy-pastes
-                  in your repository sources, and apply their related linters. Available as Github
+                  in your repository sources, and apply their related linters. Available as GitHub
                   Action, other CI tools and locally</td>
             </tr>
           </table>

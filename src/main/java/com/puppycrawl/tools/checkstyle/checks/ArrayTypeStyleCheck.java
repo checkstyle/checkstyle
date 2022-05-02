@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * and some like C style: {@code public static void main(String args[])}.
  * </p>
  * <p>
- * By default the Check enforces Java style.
+ * By default, the Check enforces Java style.
  * </p>
  * <p>
  * This check strictly enforces only Java style for method return types regardless

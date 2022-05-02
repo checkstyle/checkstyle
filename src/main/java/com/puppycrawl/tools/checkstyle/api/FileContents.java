@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public final class FileContents implements CommentListener {
 
     /**
-     * The pattern to match a single line comment containing only the comment
+     * The pattern to match a single-line comment containing only the comment
      * itself -- no code.
      */
     private static final String MATCH_SINGLELINE_COMMENT_PAT = "^\\s*//.*$";
@@ -116,7 +116,7 @@ public final class FileContents implements CommentListener {
     }
 
     /**
-     * Report the location of a single line comment.
+     * Report the location of a single-line comment.
      *
      * @param startLineNo the starting line number
      * @param startColNo the starting column number
@@ -193,7 +193,7 @@ public final class FileContents implements CommentListener {
     }
 
     /**
-     * Get a single line.
+     * Get a single-line.
      * For internal use only, as getText().get(lineNo) is just as
      * suitable for external use and avoids method duplication.
      *
@@ -238,7 +238,7 @@ public final class FileContents implements CommentListener {
      * Checks if the specified line is a single-line comment without code.
      *
      * @param lineNo  the line number to check
-     * @return if the specified line consists of only a single line comment
+     * @return if the specified line consists of only a single-line comment
      *         without code.
      **/
     public boolean lineIsComment(int lineNo) {
@@ -280,13 +280,13 @@ public final class FileContents implements CommentListener {
     }
 
     /**
-     * Checks if the specified position intersects with a single line comment.
+     * Checks if the specified position intersects with a single-line comment.
      *
      * @param startLineNo the starting line number
      * @param startColNo the starting column number
      * @param endLineNo the ending line number
      * @param endColNo the ending column number
-     * @return true if the positions intersects with a single line comment.
+     * @return true if the positions intersects with a single-line comment.
      */
     private boolean hasIntersectionWithSingleLineComment(int startLineNo, int startColNo,
             int endLineNo, int endColNo) {
@@ -305,7 +305,7 @@ public final class FileContents implements CommentListener {
     }
 
     /**
-     * Returns a map of all the single line comments. The key is a line number,
+     * Returns a map of all the single-line comments. The key is a line number,
      * the value is the comment {@link TextBlock} at the line.
      *
      * @return the Map of comments
@@ -331,9 +331,10 @@ public final class FileContents implements CommentListener {
      * @return true if the package file.
      * @deprecated use {@link CheckUtil#isPackageInfo(String)} for the same functionality,
      *              or use {@link AbstractCheck#getFilePath()} to process your own standards.
+     * @noinspection DeprecatedIsStillUsed
      */
     @Deprecated(since = "10.2")
     public boolean inPackageInfo() {
-        return getFileName().endsWith("package-info.java");
+        return "package-info.java".equals(text.getFile().getName());
     }
 }

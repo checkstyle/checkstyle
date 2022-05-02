@@ -95,7 +95,7 @@
       <p>
         To that end, we use a set of development tools that ensure that
         the quality of our code is kept at a fairly high level. Like
-        most projects today, we use JUnit to test our code. However we
+        most projects today, we use JUnit to test our code. However, we
         do take this one step further and measure the coverage of our
         unit tests using
 
@@ -112,7 +112,7 @@
 
       <p>
         Besides using unit testing, we obviously also use checkstyle to
-        check it's own code.
+        check its own code.
       </p>
 
       <p>
@@ -157,7 +157,7 @@
       <p>
         <b>ATTENTION:</b>The commit message must adhere to a certain format.
         It should be "Issue #Number: Brief single-line message", where NUMBER is the issue number
-        at Github
+        at GitHub
         (see
         <a href="https://github.com/checkstyle/checkstyle/commit/9303fd9d971eb55cdfd62686ba2f5698edb2c83e">
         an example</a>).
@@ -195,7 +195,7 @@
         Some (mostly important) issues are marked with the label
         <a href="https://github.com/checkstyle/checkstyle/labels/has%20bounty">has bounty</a>.
         By solving such problem, you will not only help the community,
-        but also get free beer (in monetary terms to your paypal account).
+        but also get free beer (in monetary terms to your PayPal account).
       </p>
 
       <p>

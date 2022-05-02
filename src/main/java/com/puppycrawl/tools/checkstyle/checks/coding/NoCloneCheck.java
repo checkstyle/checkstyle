@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Programming Language Guide First Edition by Joshua Bloch pages 45-52.
  * </p>
  * <p>
- * Below are some of the rules/reasons why the clone method should be avoided.
+ * Below are some rules/reasons why the clone method should be avoided.
  * </p>
  * <ul>
  * <li>

@@ -79,7 +79,7 @@ public class BaseCellEditor implements CellEditor {
     }
 
     /**
-     * Notifies all listeners that have registered interest for
+     * Notifies all listeners that have registered interest in
      * 'editing stopped' event.
      *
      * @see EventListenerList
@@ -97,7 +97,7 @@ public class BaseCellEditor implements CellEditor {
     }
 
     /**
-     * Notifies all listeners that have registered interest for
+     * Notifies all listeners that have registered interest in
      * 'editing canceled' event.
      *
      * @see EventListenerList

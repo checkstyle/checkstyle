@@ -131,7 +131,7 @@ class InputSummaryJavadocCorrect { // ok
 
         /**
          * JAXB Provider Use Only: Provides partial default
-         * implementations for some of the javax.xml.bind interfaces.
+         * implementations for some javax.xml.bind interfaces.
          */
         void foo5() {}
 

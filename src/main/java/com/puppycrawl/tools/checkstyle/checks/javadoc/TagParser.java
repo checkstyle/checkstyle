@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * <p>
  * Helper class used to parse HTML tags or generic type identifiers
- * from a single line of text. Just the beginning of the HTML tag
+ * from a single-line of text. Just the beginning of the HTML tag
  * is located.  No attempt is made to parse out the complete tag,
  * particularly since some of the tag parameters could be located
  * on the following line of text.  The {@code hasNextTag} and
@@ -34,7 +34,7 @@ import java.util.List;
  * </p>
  *
  * <p>
- * This class isn't really specific to HTML tags. Currently the only HTML
+ * This class isn't really specific to HTML tags. Currently, the only HTML
  * tag that this class looks specifically for is the HTML comment tag.
  * This class helps figure out if a tag exists and if it is well-formed.
  * It does not know whether it is valid HTML.  This class is also used for
@@ -45,7 +45,7 @@ import java.util.List;
  */
 class TagParser {
 
-    /** List of HtmlTags found on the input line of text. */
+    /** HtmlTags found on the input line of text. */
     private final List<HtmlTag> tags = new LinkedList<>();
 
     /**

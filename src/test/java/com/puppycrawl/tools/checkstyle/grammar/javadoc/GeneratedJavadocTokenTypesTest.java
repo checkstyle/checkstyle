@@ -40,9 +40,9 @@ public class GeneratedJavadocTokenTypesTest {
     /**
      * This method checks that the numbers generated for tokens in <tt>JavadocLexer.g4</tt> don't
      * change with the lexer grammar itself.
-     * <br>ANTLR maps all the lexer elements to compile time constants used internally by ANTLR.
+     * <br>ANTLR maps all the lexer elements to compile-time constants used internally by ANTLR.
      * Compatibility damage is incurred <i>(with respect to the previous checkstyle versions)
-     * </i> if these compile time constants keep changing with the grammar.
+     * </i> if these compile-time constants keep changing with the grammar.
      *
      * @see "https://github.com/checkstyle/checkstyle/issues/5139"
      * @see "https://github.com/checkstyle/checkstyle/issues/5186"
@@ -369,9 +369,9 @@ public class GeneratedJavadocTokenTypesTest {
     /**
      * This method checks that the numbers generated for rules in <tt>JavadocParser.g4</tt> don't
      * change with the Parser grammar itself.
-     * <br>ANTLR maps all the parser rules to compile time constants used internally by ANTLR.
+     * <br>ANTLR maps all the parser rules to compile-time constants used internally by ANTLR.
      * Compatibility damage is incurred <i>(with respect to the previous checkstyle versions)
-     * </i> if these compile time constants keep changing with the grammar.
+     * </i> if these compile-time constants keep changing with the grammar.
      *
      * @see "https://github.com/checkstyle/checkstyle/issues/5139"
      * @see "https://github.com/checkstyle/checkstyle/issues/5186"

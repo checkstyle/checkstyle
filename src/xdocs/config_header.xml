@@ -240,7 +240,7 @@ line 14: ^ \*/
         <p>
           Different programming languages have different comment syntax
           rules, but all of them start a comment with a non-word
-          character. Hence you can often use the non-word character
+          character. Hence, you can often use the non-word character
           class to abstract away the concrete comment syntax and allow
           checking the header for different languages with a single
           header definition. For example, consider the following header

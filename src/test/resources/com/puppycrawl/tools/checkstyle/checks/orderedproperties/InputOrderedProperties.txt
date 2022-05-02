@@ -1,3 +1,3 @@
-# txt files will not processed. It will report wrong order if processed.
+# txt files will not be processed. It will report wrong order if processed.
 val=val
 foo=foo

@@ -214,7 +214,7 @@
     </maven.sevntu-checkstyle-check.checkstyle.version>
     <maven.versions.plugin.version>2.10.0</maven.versions.plugin.version>
     <java.version>11</java.version>
-    <pitest.plugin.version>1.7.5</pitest.plugin.version>
+    <pitest.plugin.version>1.7.6</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
     <pitest.plugin.threads>4</pitest.plugin.threads>
@@ -1854,7 +1854,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>3.2.2</version>
+        <version>3.3.0</version>
       </plugin>
 
       <plugin>
@@ -2004,14 +2004,14 @@
             <excludedLink>https://travis-ci.org/checkstyle/checkstyle</excludedLink>
             <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
 
-            <!-- we did too much requests to github,
-                 now github reject all requests "429 Too Many Requests"
+            <!-- we did too many requests to GitHub,
+                 now GitHub reject all requests "429 Too Many Requests"
                  https://codeship.com/projects/124310/builds/12027213  -->
             <excludedLink>https://github.com/*</excludedLink>
             <!-- redirects to US page, it is better to stay international -->
             <excludedLink>https://help.github.com/*</excludedLink>
             <excludedLink>http://search.maven.org/*</excludedLink>
-            <!-- codehaus does not exists anymore -->
+            <!-- codehaus does not exist anymore -->
             <excludedLink>http://sonar-plugins.codehaus.org/maven-report</excludedLink>
             <excludedLink>
               http://www.mojohaus.org/sonar-maven-plugin/sonar-maven-plugin
@@ -2054,7 +2054,7 @@
             <excludedLink>https://plus.google.com/+CheckstyleJava</excludedLink>
             <!-- 302 redirect to
              https://marketplace.atlassian.com/apps/1214095/checkstyles-for-bitbucket-server/version-history
-             this link does not looks like permanent, it is better to keep the existing link -->
+             this link does not look like permanent, it is better to keep the existing link -->
             <excludedLink>
               https://marketplace.atlassian.com/apps/1214095/checkstyles-for-bitbucket-server
             </excludedLink>
@@ -2075,7 +2075,7 @@
             <!-- very frequent SocketTimeoutException : Read timed out -->
             <excludedLink>https://www.bountysource.com/*</excludedLink>
             <excludedLink>https://api.bountysource.com/*</excludedLink>
-            <!-- This URL become to require to login first to see content -->
+            <!-- This URL become to require to log in first to see content -->
             <excludedLink>https://bitbucket.org/atlassian/bamboo-checkstyle-plugin</excludedLink>
             <!-- link works but plugin's request always result in 404 -->
             <excludedLink>https://www.manning.com/books/java-development-with-ant</excludedLink>
@@ -2098,6 +2098,8 @@
             <!-- permanent 403 -->
             <excludedLink>https://www.ej-technologies.com/*</excludedLink>
             <excludedLink>https://travis-ci.com/</excludedLink>
+            <!-- permanent 403 -->
+            <excludedLink>https://docs.github.com/en/rest/checks</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
@@ -2181,7 +2183,7 @@
             </executions>
           </plugin>
 
-          <!-- Creates the all inclusive uber jar -->
+          <!-- Creates the all-inclusive uber jar -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-shade-plugin</artifactId>
@@ -3523,6 +3525,10 @@
                 <!-- 1% mutation in ScopeUtil -->
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheckTest
+                </param>
+                <!-- TokenUtil#asBitSet -->
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheckTest
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheckTest

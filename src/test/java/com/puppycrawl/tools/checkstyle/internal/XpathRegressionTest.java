@@ -58,7 +58,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     // Javadoc checks are not compatible with SuppressionXpathFilter
     // till https://github.com/checkstyle/checkstyle/issues/5770
-    // then all of them should be added to the list of incompatible checks
+    // then all of them should be added to #INCOMPATIBLE_CHECK_NAMES
     // and this field should be removed
     public static final Set<String> INCOMPATIBLE_JAVADOC_CHECK_NAMES = Set.of(
                     "AtclauseOrder",
@@ -237,7 +237,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             }
         }
 
-        // Ensure that all lists are up to date
+        // Ensure that all lists are up-to-date
         final Set<String> allChecks = new HashSet<>(simpleCheckNames);
         allChecks.removeAll(INCOMPATIBLE_JAVADOC_CHECK_NAMES);
         allChecks.removeAll(INCOMPATIBLE_CHECK_NAMES);
@@ -274,7 +274,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                         .that(Files.exists(javaPath))
                         .isTrue();
 
-                // input files should named correctly
+                // input files should be named correctly
                 validateInputDirectory(dir);
             }
         }

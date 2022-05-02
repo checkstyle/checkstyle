@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 /**
  * <p>
  * Checks that each Java package has a Javadoc file used for commenting.
- * By default it only allows a {@code package-info.java} file,
+ * By default, it only allows a {@code package-info.java} file,
  * but can be configured to allow a {@code package.html} file.
  * </p>
  * <p>

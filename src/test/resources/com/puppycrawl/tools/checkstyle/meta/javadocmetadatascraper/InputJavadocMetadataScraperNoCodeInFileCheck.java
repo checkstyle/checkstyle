@@ -21,7 +21,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
  * File with no text
  * </li>
  * <li>
- * File with single line comment(s)
+ * File with single-line comment(s)
  * </li>
  * <li>
  * File with a multi line comment(s).

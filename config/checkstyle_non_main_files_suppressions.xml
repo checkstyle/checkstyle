@@ -103,13 +103,11 @@
   <suppress id="numberOfTestCasesInXpath"
          files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]AbstractXpathTestSupport.java"/>
 
-  <!-- Until https://github.com/checkstyle/checkstyle/issues/8151 -->
+  <!-- Until https://github.com/checkstyle/checkstyle/issues/11549 -->
   <suppress id="numberOfTestCasesInXpath"
          files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionJavadocStyleTest.java"/>
   <suppress id="numberOfTestCasesInXpath"
          files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionJavadocStyleTest.java"/>
-  <suppress id="numberOfTestCasesInXpath"
-         files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionOneTopLevelClassTest.java"/>
 
   <!-- Until https://github.com/checkstyle/checkstyle/issues/9351 -->
   <suppress id="properMavenCommand" files=".*[\\/]pitest.sh"/>

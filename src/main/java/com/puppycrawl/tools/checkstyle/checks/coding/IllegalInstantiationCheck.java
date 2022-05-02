@@ -468,7 +468,7 @@ public class IllegalInstantiationCheck
     /**
      * Setter to specify fully qualified class names that should not be instantiated.
      *
-     * @param names a comma separate list of class names
+     * @param names class names
      */
     public void setClasses(String... names) {
         classes = Arrays.stream(names).collect(Collectors.toSet());

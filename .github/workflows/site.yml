@@ -1,5 +1,5 @@
 #####################################################################################
-# Github Action to generate Checkstyle site.
+# GitHub Action to generate Checkstyle site.
 #
 # Workflow starts when:
 # 1) issue comment - created, edited

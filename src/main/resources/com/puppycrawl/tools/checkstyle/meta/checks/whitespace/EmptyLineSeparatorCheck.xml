@@ -16,7 +16,7 @@
  &lt;p&gt;
  ATTENTION: empty line separator is required between token siblings,
  not after line where token is found.
- If token does not have same type sibling then empty line
+ If token does not have a sibling of the same type, then empty line
  is required at its end (for example for CLASS_DEF it is after '}').
  Also, trailing comments are skipped.
  &lt;/p&gt;

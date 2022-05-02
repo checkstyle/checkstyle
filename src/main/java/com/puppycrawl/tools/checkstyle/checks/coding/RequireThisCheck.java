@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.ArrayDeque;
+import java.util.BitSet;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -263,7 +264,7 @@ public class RequireThisCheck extends AbstractCheck {
     public static final String MSG_VARIABLE = "require.this.variable";
 
     /** Set of all declaration tokens. */
-    private static final Set<Integer> DECLARATION_TOKENS = Set.of(
+    private static final BitSet DECLARATION_TOKENS = TokenUtil.asBitSet(
         TokenTypes.VARIABLE_DEF,
         TokenTypes.CTOR_DEF,
         TokenTypes.METHOD_DEF,
@@ -277,7 +278,7 @@ public class RequireThisCheck extends AbstractCheck {
         TokenTypes.RECORD_COMPONENT_DEF
     );
     /** Set of all assign tokens. */
-    private static final Set<Integer> ASSIGN_TOKENS = Set.of(
+    private static final BitSet ASSIGN_TOKENS = TokenUtil.asBitSet(
         TokenTypes.ASSIGN,
         TokenTypes.PLUS_ASSIGN,
         TokenTypes.STAR_ASSIGN,
@@ -290,7 +291,7 @@ public class RequireThisCheck extends AbstractCheck {
         TokenTypes.BXOR_ASSIGN
     );
     /** Set of all compound assign tokens. */
-    private static final Set<Integer> COMPOUND_ASSIGN_TOKENS = Set.of(
+    private static final BitSet COMPOUND_ASSIGN_TOKENS = TokenUtil.asBitSet(
         TokenTypes.PLUS_ASSIGN,
         TokenTypes.STAR_ASSIGN,
         TokenTypes.DIV_ASSIGN,
@@ -318,7 +319,7 @@ public class RequireThisCheck extends AbstractCheck {
     /**
      * Setter to control whether to check references to fields.
      *
-     * @param checkFields should we check fields usage or not.
+     * @param checkFields should we check fields usage or not
      */
     public void setCheckFields(boolean checkFields) {
         this.checkFields = checkFields;
@@ -327,7 +328,7 @@ public class RequireThisCheck extends AbstractCheck {
     /**
      * Setter to control whether to check references to methods.
      *
-     * @param checkMethods should we check methods usage or not.
+     * @param checkMethods should we check methods usage or not
      */
     public void setCheckMethods(boolean checkMethods) {
         this.checkMethods = checkMethods;
@@ -336,7 +337,7 @@ public class RequireThisCheck extends AbstractCheck {
     /**
      * Setter to control whether to check only overlapping by variables or arguments.
      *
-     * @param validateOnlyOverlapping should we check only overlapping by variables or arguments.
+     * @param validateOnlyOverlapping should we check only overlapping by variables or arguments
      */
     public void setValidateOnlyOverlapping(boolean validateOnlyOverlapping) {
         this.validateOnlyOverlapping = validateOnlyOverlapping;
@@ -1158,7 +1159,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @return true if token is related to Definition Tokens.
      */
     private static boolean isDeclarationToken(int parentType) {
-        return DECLARATION_TOKENS.contains(parentType);
+        return DECLARATION_TOKENS.get(parentType);
     }
 
     /**
@@ -1168,7 +1169,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @return true if token is related to assign tokens.
      */
     private static boolean isAssignToken(int tokenType) {
-        return ASSIGN_TOKENS.contains(tokenType);
+        return ASSIGN_TOKENS.get(tokenType);
     }
 
     /**
@@ -1178,7 +1179,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @return true if token is related to compound assign tokens.
      */
     private static boolean isCompoundAssignToken(int tokenType) {
-        return COMPOUND_ASSIGN_TOKENS.contains(tokenType);
+        return COMPOUND_ASSIGN_TOKENS.get(tokenType);
     }
 
     /**

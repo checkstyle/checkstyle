@@ -10,13 +10,13 @@
   <exclude-pattern>.*/src/main/.*</exclude-pattern>
 
   <rule ref="config/pmd.xml">
-    <!-- We do throws Exception, as any exception that in not caught in test should fail
+    <!-- We do throw Exception, as any exception that in not caught in test should fail
       a test that is expected behavior and we like it as it follow fail-fast and helps
       to avoid extra catch blocks -->
     <exclude name="SignatureDeclareThrowsException"/>
     <!-- We need reflection in the tests to access some internal state. -->
     <exclude name="AvoidAccessibilityAlteration"/>
-    <!-- it madness to move all string values to common variables,
+    <!-- it's madness to move all string values to common variables,
       it will be hard to read test code -->
     <exclude name="AvoidDuplicateLiterals"/>
     <!-- we do not need javadoc on test code -->
@@ -45,7 +45,7 @@
     <exclude name="ExcessiveClassLength"/>
     <!-- we want to avoid wide throws signature, it is just test -->
     <exclude name="AvoidCatchingGenericException"/>
-    <!-- we do not want invest extra time to make logic ideal
+    <!-- we do not want to invest extra time to make logic ideal
        in test method, may be later... -->
     <exclude name="NPathComplexity"/>
     <!-- conflicts with checkstyle rule -->
@@ -64,7 +64,7 @@
       <property name="classReportLevel" value="1000"/>
       <!-- A big enough value to satisfy the most cases. -->
       <property name="methodReportLevel" value="100"/>
-      <!-- GeneratedJavaTokenTypesTest.testTokenNumbering' is simple but long as it recheck
+      <!-- GeneratedJavaTokenTypesTest.testTokenNumbering' is simple but long as it rechecks
              each token one by one. Same goes for
            GeneratedJavadocTokenTypesTest#testTokenNumbers.
            JavadocTokenTypesTest.TokenValues contains several asserts as it checks each
@@ -83,7 +83,7 @@
 
   <rule ref="category/java/design.xml/ExcessiveMethodLength">
     <properties>
-      <!-- GeneratedJavaTokenTypesTest.testTokenNumbering' is simple but long as it recheck
+      <!-- GeneratedJavaTokenTypesTest.testTokenNumbering' is simple but long as it rechecks
              each token one by one. Same goes for GeneratedJavadocTokenTypesTest#testTokenNumbers.
            ParenPadCheckTest.testNospaceWithComplexInput is intended to keep all in one method.
            JavadocTokenTypesTest.TokenValues contains several asserts as it checks each

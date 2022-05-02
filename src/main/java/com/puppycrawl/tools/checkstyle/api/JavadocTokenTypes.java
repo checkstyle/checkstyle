@@ -663,7 +663,7 @@ public final class JavadocTokenTypes {
      * uppercase characters or class names begin with an uppercase character, are made.
      * Also, <i>the reference</i> in a javadoc tag can consist just a package name or a
      * simple class name or even a full class name. Thus, PACKAGE_CLASS can represent a
-     * package name or a simple class name or a full class name i.e checkstyle doesn't
+     * package name or a simple class name or a full class name i.e. checkstyle doesn't
      * resolve references at present.
      *
      * <p><b>Example:</b></p>
@@ -1213,7 +1213,7 @@ public final class JavadocTokenTypes {
      * Rule types offset.
      * RULE_TYPES_OFFSET constant is used to split lexer tokens types and parser rules types.
      * We need unique numbers for all tokens,
-     * ANTLR do not need this and that is why this types are mixed by used values.
+     * ANTLR do not need this and that is why these types are mixed by used values.
      * All values we can take a look at
      * target/generated-sources/antlr/com/puppycrawl/tools/checkstyle/grammar/javadoc/JavadocParser.java
      * For example: LEADING_ASTERISK=1 and RULE_htmlElement = 1.

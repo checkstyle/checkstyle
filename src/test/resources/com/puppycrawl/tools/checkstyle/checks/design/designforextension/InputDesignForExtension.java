@@ -45,7 +45,7 @@ public abstract class InputDesignForExtension
 
     protected abstract void nonFinalButAbstract();
 
-    // this one is bad: neither abstract, final, or empty
+    // this one is bad: neither abstract, final, nor empty
 
     protected void doh() // violation
     {

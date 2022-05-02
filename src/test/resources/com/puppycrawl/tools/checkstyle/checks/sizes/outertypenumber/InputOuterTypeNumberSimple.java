@@ -199,7 +199,7 @@ final class InputOuterTypeNumberSimple
     }
 }
 
-/** Test class for variable naming in for each clauses. */
+/** Test class for variable naming in for each clause. */
 class InputOuterTypeNumberSimple2
 {
     /** Some more Javadoc. */

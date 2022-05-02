@@ -39,7 +39,7 @@ public interface FileSetCheck
 
     /**
      * Initialise the instance. This is the time to verify that everything
-     * required to perform it job.
+     * required to perform its job.
      */
     void init();
 

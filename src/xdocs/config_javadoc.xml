@@ -53,27 +53,27 @@
             </tr>
             <tr>
               <td>target</td>
-              <td>Specify the list of block tags targeted.</td>
+              <td>Specify block tags targeted.</td>
               <td>subset of tokens
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
               </td>
               <td>
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
                   CLASS_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                  INTERFACE_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                  ENUM_DEF</a>
-                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                  COMPACT_CTOR_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
                   CTOR_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                  RECORD_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
                   VARIABLE_DEF</a>
-                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
-                  RECORD_DEF</a>
-                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
-                  COMPACT_CTOR_DEF</a>
               </td>
               <td>6.0</td>
             </tr>
@@ -541,7 +541,7 @@ public void method();
 &#47;**
   * This comment is OK because it starts from the second line.
   *&#47;
-&#47;** This comment is OK because it is on the single line. *&#47;
+&#47;** This comment is OK because it is on the single-line. *&#47;
         </source>
 
         <p>
@@ -647,14 +647,14 @@ public void method();
         <p>
           ATTENTION: Checkstyle does not have information about hierarchy of exception types
           so usage of base class is considered as separate exception type.
-          As workaround you need to specify both types in javadoc (parent and exact type).
+          As workaround, you need to specify both types in javadoc (parent and exact type).
         </p>
 
         <p>
           Javadoc is not required on a method that is tagged with the
-          <code>@Override</code> annotation. However under
+          <code>@Override</code> annotation. However, under
           Java 5 it is not possible to mark a method required for an
-          interface (this was <i>corrected</i> under Java 6). Hence
+          interface (this was <i>corrected</i> under Java 6). Hence,
           Checkstyle supports using the convention of using a single
           <code>{@inheritDoc}</code> tag instead of all the
           other tags.
@@ -694,7 +694,7 @@ public int checkReturnTag(final int aTagIndex,
             </tr>
             <tr>
               <td>allowedAnnotations</td>
-              <td>Specify the list of annotations that allow missed documentation.</td>
+              <td>Specify annotations that allow missed documentation.</td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
               <td><code>Override</code></td>
               <td>6.0</td>
@@ -1210,7 +1210,7 @@ class TestClass {
       <subsection name="Description" id="JavadocPackage_Description">
         <p>
           Checks that each Java package has a Javadoc file used for
-          commenting. By default it only allows a <code>package-info.java</code> file, but can be
+          commenting. By default, it only allows a <code>package-info.java</code> file, but can be
           configured to allow a <code>package.html</code>
           file.
         </p>
@@ -2098,7 +2098,7 @@ public class Test {
             <tr>
               <td>allowedAnnotations</td>
               <td>
-                Specify the list of annotations that allow missed documentation.
+                Specify annotations that allow missed documentation.
                 Only short names are allowed, e.g. <code>Generated</code>.
               </td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
@@ -2483,9 +2483,9 @@ private int logger; // OK
 
         <p>
           Javadoc is not required on a method that is tagged with the
-          <code>@Override</code> annotation. However under
+          <code>@Override</code> annotation. However, under
           Java 5 it is not possible to mark a method required for an
-          interface (this was <i>corrected</i> under Java 6). Hence
+          interface (this was <i>corrected</i> under Java 6). Hence,
           Checkstyle supports using the convention of using a single
           <code>{@inheritDoc}</code> tag instead of all the
           other tags.
@@ -2532,7 +2532,7 @@ public boolean isSomething()
             </tr>
             <tr>
               <td>allowedAnnotations</td>
-              <td>Configure the list of annotations that allow missed documentation.</td>
+              <td>Configure annotations that allow missed documentation.</td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
               <td><code>Override</code></td>
               <td>8.21</td>
@@ -2884,7 +2884,7 @@ package com.checkstyle.api; // violation
             <tr>
               <td>skipAnnotations</td>
               <td>
-                specify the list of annotations that allow missed documentation.
+                specify annotations that allow missed documentation.
                 Only short names are allowed, e.g. <code>Generated</code>.
               </td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
@@ -3335,7 +3335,7 @@ public boolean testMethod(int firstParam) {
       <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="SingleLineJavadoc_Description">
         <p>
-           Checks that a Javadoc block can fit in a single line and doesn't
+           Checks that a Javadoc block can fit in a single-line and doesn't
            contain block tags. Javadoc comment that contains at least one block tag
            should be formatted in a few lines.
         </p>
@@ -3720,7 +3720,7 @@ public class Test extends Exception {
 }
         </source>
         <p>
-          To ensure that summary do not contain phrase like "This method returns", use
+          To ensure that summary does not contain phrase like "This method returns", use
           following config:
         </p>
         <source>

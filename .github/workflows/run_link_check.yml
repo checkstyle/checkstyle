@@ -1,5 +1,5 @@
 #####################################################################################
-# Github Action to run link checks.
+# GitHub Action to run link checks.
 #
 # Workflow starts when:
 # 1) push on master branch

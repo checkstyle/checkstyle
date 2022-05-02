@@ -204,7 +204,7 @@ final class InputMethodNameSimple
     }
 }
 
-/** Test class for variable naming in for each clauses. */
+/** Test class for variable naming in for each clause. */
 class InputMethodNameSimple2
 {
     /** Some more Javadoc. */

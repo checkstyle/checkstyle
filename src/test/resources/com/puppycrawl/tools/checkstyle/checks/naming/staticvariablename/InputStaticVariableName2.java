@@ -203,7 +203,7 @@ final class InputStaticVariableName2 // ok
     }
 }
 
-/** Test class for variable naming in for each clauses. */
+/** Test class for variable naming in for each clause. */
 class InputStaticVariableName4
 {
     /** Some more Javadoc. */

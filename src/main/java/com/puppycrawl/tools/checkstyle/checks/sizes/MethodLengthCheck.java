@@ -20,11 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import java.util.ArrayDeque;
+import java.util.BitSet;
 import java.util.Deque;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -39,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <p>
  * Rationale: If a method becomes very long it is hard to understand.
- * Therefore long methods should usually be refactored into several
+ * Therefore, long methods should usually be refactored into several
  * individual methods that focus on a specific task.
  * </p>
  * <ul>
@@ -273,24 +271,25 @@ public class MethodLengthCheck extends AbstractCheck {
     private static int countUsedLines(DetailAST ast) {
         final Deque<DetailAST> nodes = new ArrayDeque<>();
         nodes.add(ast);
-        final Set<Integer> usedLines = new HashSet<>();
+        final BitSet usedLines = new BitSet();
+        final int startLineNo = ast.getLineNo();
         while (!nodes.isEmpty()) {
             final DetailAST node = nodes.removeFirst();
-            final int lineNo = node.getLineNo();
+            final int lineIndex = node.getLineNo() - startLineNo;
             // text block requires special treatment,
             // since it is the only non-comment token that can span more than one line
             if (node.getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
-                IntStream.rangeClosed(lineNo, node.getLastChild().getLineNo())
-                    .forEach(usedLines::add);
+                final int endLineIndex = node.getLastChild().getLineNo() - startLineNo;
+                usedLines.set(lineIndex, endLineIndex + 1);
             }
             else {
-                usedLines.add(lineNo);
+                usedLines.set(lineIndex);
                 Stream.iterate(
                     node.getLastChild(), Objects::nonNull, DetailAST::getPreviousSibling
                 ).forEach(nodes::addFirst);
             }
         }
-        return usedLines.size();
+        return usedLines.cardinality();
     }
 
     /**

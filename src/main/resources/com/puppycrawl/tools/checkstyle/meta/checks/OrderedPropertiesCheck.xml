@@ -7,11 +7,11 @@
          <description>&lt;p&gt;Detects if keys in properties files are in correct order.&lt;/p&gt;
  &lt;p&gt;
    Rationale: Sorted properties make it easy for people to find required properties by name
-   in file. It makes merges more easy. While there are no problems at runtime.
+   in file. This makes it easier to merge. While there are no problems at runtime.
    This check is valuable only on files with string resources where order of lines
    does not matter at all, but this can be improved.
    E.g.: checkstyle/src/main/resources/com/puppycrawl/tools/checkstyle/messages.properties
-   You may suppress warnings of this check for files that have an logical structure like
+   You may suppress warnings of this check for files that have a logical structure like
    build files or log4j configuration files. See SuppressionFilter.
    {@code
    &amp;lt;suppress checks="OrderedProperties"

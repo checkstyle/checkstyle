@@ -82,7 +82,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * It is suppressed if all specified attributes match against the audit event.
  * </p>
  * <p>
- * ATTENTION: filtering by message is dependant on runtime locale.
+ * ATTENTION: filtering by message is dependent on runtime locale.
  * If project is running in different languages it is better to avoid filtering by message.
  * </p>
  * <p>

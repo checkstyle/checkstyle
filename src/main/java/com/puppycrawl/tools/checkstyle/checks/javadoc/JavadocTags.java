@@ -36,8 +36,8 @@ public final class JavadocTags {
     /**
      * Creates an instance.
      *
-     * @param tags the list of valid tags
-     * @param invalidTags the list of invalid tags
+     * @param tags valid tags
+     * @param invalidTags invalid tags
      */
     public JavadocTags(List<JavadocTag> tags, List<InvalidJavadocTag> invalidTags) {
         validTags = List.copyOf(tags);
@@ -48,6 +48,7 @@ public final class JavadocTags {
      *  Getter for validTags field.
      *
      *  @return validTags field
+     *  @noinspection RedundantUnmodifiable
      */
     public List<JavadocTag> getValidTags() {
         return Collections.unmodifiableList(validTags);
@@ -57,6 +58,7 @@ public final class JavadocTags {
      *  Getter for invalidTags field.
      *
      *  @return invalidTags field
+     *  @noinspection RedundantUnmodifiable
      */
     public List<InvalidJavadocTag> getInvalidTags() {
         return Collections.unmodifiableList(invalidTags);

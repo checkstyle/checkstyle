@@ -139,6 +139,7 @@ public final class DefaultConfiguration implements Configuration {
      * @param value the value of the property.
      * @deprecated This shall be removed in future releases. Please use
      *      {@code addProperty(String propertyName, String value)} instead.
+     * @noinspection DeprecatedIsStillUsed
      */
     @Deprecated(since = "8.45")
     public void addAttribute(String attributeName, String value) {
@@ -153,12 +154,14 @@ public final class DefaultConfiguration implements Configuration {
      */
     public void addProperty(String propertyName, String value) {
         final String current = propertyMap.get(propertyName);
+        final String newValue;
         if (current == null) {
-            propertyMap.put(propertyName, value);
+            newValue = value;
         }
         else {
-            propertyMap.put(propertyName, current + "," + value);
+            newValue = current + "," + value;
         }
+        propertyMap.put(propertyName, newValue);
     }
 
     /**

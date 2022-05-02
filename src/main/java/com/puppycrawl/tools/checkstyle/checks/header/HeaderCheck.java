@@ -20,10 +20,11 @@
 package com.puppycrawl.tools.checkstyle.checks.header;
 
 import java.io.File;
-import java.util.Arrays;
+import java.util.BitSet;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -148,11 +149,8 @@ public class HeaderCheck extends AbstractHeaderCheck {
      */
     public static final String MSG_MISMATCH = "header.mismatch";
 
-    /** Empty array to avoid instantiations. */
-    private static final int[] EMPTY_INT_ARRAY = new int[0];
-
     /** Specify the line numbers to ignore. */
-    private int[] ignoreLines = EMPTY_INT_ARRAY;
+    private BitSet ignoreLines = new BitSet();
 
     /**
      * Returns true if lineNo is header lines or false.
@@ -161,7 +159,7 @@ public class HeaderCheck extends AbstractHeaderCheck {
      * @return if {@code lineNo} is one of the ignored header lines.
      */
     private boolean isIgnoreLine(int lineNo) {
-        return Arrays.binarySearch(ignoreLines, lineNo) >= 0;
+        return ignoreLines.get(lineNo);
     }
 
     /**
@@ -180,12 +178,10 @@ public class HeaderCheck extends AbstractHeaderCheck {
     /**
      * Setter to specify the line numbers to ignore.
      *
-     * @param list comma separated list of line numbers to ignore in header.
+     * @param lines line numbers to ignore in header.
      */
-    public void setIgnoreLines(int... list) {
-        ignoreLines = new int[list.length];
-        System.arraycopy(list, 0, ignoreLines, 0, list.length);
-        Arrays.sort(ignoreLines);
+    public void setIgnoreLines(int... lines) {
+        ignoreLines = TokenUtil.asBitSet(lines);
     }
 
     @Override

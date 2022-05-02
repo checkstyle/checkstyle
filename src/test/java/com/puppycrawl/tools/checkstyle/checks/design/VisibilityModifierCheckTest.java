@@ -408,8 +408,8 @@ public class VisibilityModifierCheckTest
     }
 
     /**
-     * We can not cover this mutation because it force all imports to be non static,
-     * but static imports are ignored, so we will not see any affect on validation.
+     * We can not cover this mutation because it forces all imports to be non static,
+     * but static imports are ignored, so we will not see any effect on validation.
      * We could remove this method at all, and it will work correctly as we can not use
      * class with name "", but in this case internal collection will have short names
      * as "" that will not make problems, but will be weird in debug.

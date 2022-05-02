@@ -634,7 +634,7 @@ public class NeedBracesCheck extends AbstractCheck {
 
     /**
      * Checks if switch member (case or default statement) in a switch rule or
-     * case group is on a single line.
+     * case group is on a single-line.
      *
      * @param statement {@link TokenTypes#LITERAL_CASE case statement} or
      *     {@link TokenTypes#LITERAL_DEFAULT default statement}.
