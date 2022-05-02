@@ -95,25 +95,10 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     /**
      * Returns test logger.
      *
-     * @return logger test logger
+     * @return logger for tests
      */
     protected final BriefUtLogger getBriefUtLogger() {
         return new BriefUtLogger(stream);
-    }
-
-    /**
-     * Returns canonical path for the file with the given file name.
-     * The path is formed base on the non-compilable resources location.
-     * This implementation uses 'src/test/resources-noncompilable/'
-     * as a non-compilable resource location.
-     *
-     * @param filename file name.
-     * @return canonical path for the file with the given file name.
-     * @throws IOException if I/O exception occurs while forming the path.
-     */
-    protected final String getNonCompilablePath(String filename) throws IOException {
-        return new File("src/" + getResourceLocation() + "/resources-noncompilable/"
-                + getPackageLocation() + "/" + filename).getCanonicalPath();
     }
 
     /**
@@ -131,54 +116,54 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     }
 
     /**
-     * Creates {@link Checker} instance based on specified {@link Configuration}.
+     * Creates {@link Checker} instance based on the given {@link Configuration} instance.
      *
      * @param moduleConfig {@link Configuration} instance.
      * @param moduleCreationOption {@code IN_TREEWALKER} if the {@code moduleConfig} should be added
      *                                                  under {@link TreeWalker}.
-     * @return {@link Checker} instance.
+     * @return {@link Checker} instance based on the given {@link Configuration} instance.
      * @throws Exception if an exception occurs during checker configuration.
      */
     protected final Checker createChecker(Configuration moduleConfig,
-                                    ModuleCreationOption moduleCreationOption)
+                                 ModuleCreationOption moduleCreationOption)
             throws Exception {
-        final Configuration dc;
-
-        if (moduleCreationOption == ModuleCreationOption.IN_TREEWALKER) {
-            dc = createTreeWalkerConfig(moduleConfig);
-        }
-        else if (ROOT_MODULE_NAME.equals(moduleConfig.getName())) {
-            dc = moduleConfig;
-        }
-        else {
-            dc = createRootConfig(moduleConfig);
-        }
-
         final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         // make sure the tests always run with English error messages
         // so the tests don't fail in supported locales like German
         final Locale locale = Locale.ENGLISH;
         checker.setLocaleCountry(locale.getCountry());
         checker.setLocaleLanguage(locale.getLanguage());
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.configure(dc);
+
+        if (moduleCreationOption == ModuleCreationOption.IN_TREEWALKER) {
+            final Configuration dc = createTreeWalkerConfig(moduleConfig);
+            checker.configure(dc);
+        }
+        else if (ROOT_MODULE_NAME.equals(moduleConfig.getName())) {
+            checker.configure(moduleConfig);
+        }
+        else {
+            final Configuration dc = createRootConfig(moduleConfig);
+            checker.configure(dc);
+        }
         checker.addListener(getBriefUtLogger());
         return checker;
     }
 
     /**
-     * Creates {@link DefaultConfiguration} or the {@link Checker}.
-     * based on the given {@link Configuration}.
+     * Creates {@link DefaultConfiguration} for the {@link TreeWalker}
+     * based on the given {@link Configuration} instance.
      *
      * @param config {@link Configuration} instance.
-     * @return {@link DefaultConfiguration} for the {@link Checker}.
+     * @return {@link DefaultConfiguration} for the {@link TreeWalker}
+     *     based on the given {@link Configuration} instance.
      */
     protected final DefaultConfiguration createTreeWalkerConfig(Configuration config) {
         final DefaultConfiguration dc =
                 new DefaultConfiguration("configuration");
         final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
         // make sure that the tests always run with this charset
-        dc.addProperty("charset", "iso-8859-1");
+        dc.addProperty("charset", StandardCharsets.UTF_8.name());
         dc.addChild(twConf);
         twConf.addChild(config);
         return dc;
@@ -197,7 +182,20 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     }
 
     /**
-     * Performs verification of the file with given file name. Uses specified configuration.
+     * Returns canonical path for the file with the given file name.
+     * The path is formed base on the non-compilable resources location.
+     *
+     * @param filename file name.
+     * @return canonical path for the file with the given file name.
+     * @throws IOException if I/O exception occurs while forming the path.
+     */
+    protected final String getNonCompilablePath(String filename) throws IOException {
+        return new File("src/" + getResourceLocation() + "/resources-noncompilable/"
+                + getPackageLocation() + "/" + filename).getCanonicalPath();
+    }
+
+    /**
+     * Performs verification of the file with the given file name. Uses specified configuration.
      * Expected messages are represented by the array of strings, warning line numbers are
      * represented by the array of integers.
      * This implementation uses overloaded
@@ -218,7 +216,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     }
 
     /**
-     * Performs verification of files. Uses provided {@link Checker} instance.
+     * Performs verification of files.
+     * Uses provided {@link Checker} instance.
      *
      * @param checker {@link Checker} instance.
      * @param processedFiles files to process.
