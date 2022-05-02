@@ -22,10 +22,10 @@ class InputRightCurlyLeftTestDefault
                 if (x > 0)
                 {
                     break;
-                } // violation
+                } // violation ''}' at column 17 should be on the same line as .*/else'
                 else if (x < 0) {
                     ;
-                } // violation
+                } // violation ''}' at column 17 should be on the same line as .*/else'
                 else
                 {
                     break;
@@ -37,11 +37,11 @@ class InputRightCurlyLeftTestDefault
                 default:
                     break;
                 }
-            } // violation
+            } // violation ''}' at column 13 should be on the same line as .*/catch'
             catch (Exception e)
             {
                 break;
-            } // violation
+            } // violation ''}' at column 13 should be on the same line as .*/finally'
             finally
             {
                 break;
@@ -90,8 +90,8 @@ class InputRightCurlyLeftTestDefault
         boolean flag = true;
         if (flag) {
             System.identityHashCode("heh");
-            flag = !flag; } String.CASE_INSENSITIVE_ORDER. // violation
-              equals("Xe-xe");
+            flag = !flag; } String. // violation ''}' at column 27 should have line break before'
+                CASE_INSENSITIVE_ORDER.equals("Xe-xe");
         // it is ok to have rcurly on the same line as previous
         // statement if lcurly on the same line.
         if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); } // ok

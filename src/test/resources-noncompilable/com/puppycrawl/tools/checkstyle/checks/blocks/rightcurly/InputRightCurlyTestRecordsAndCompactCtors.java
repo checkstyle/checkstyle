@@ -24,22 +24,22 @@ public class InputRightCurlyTestRecordsAndCompactCtors {
 
     record MyTestRecord2() {
         MyTestRecord2(String one, String two, String three) {
-            this(); } // violation
+            this(); } // violation ''}' at column 21 should have line break before'
     }
 
     record MyTestRecord3(Integer i, Node node) {
         public MyTestRecord3{
-            int x = 5;} // violation
+            int x = 5;} // violation ''}' at column 23 should have line break before'
         public static void main(String... args) {
-            System.out.println("works!"); } // violation
+            System.out.print("ok"); } // violation ''}' at column 37 should have line break before'
     }
 
     record MyTestRecord4() {} // ok, same line
 
     record MyTestRecord5() {
         static MyTestRecord mtr =
-                new MyTestRecord("my string", new MyTestRecord4());} // violation
-
+                new MyTestRecord("my string", new MyTestRecord4());}
+                // violation above ''}' at column 68 should be alone on a line'
     class MyTestClass {
         private MyTestRecord mtr =
                 new MyTestRecord("my string", new MyTestRecord4());} // ok
