@@ -208,7 +208,7 @@
     <mockito.version>4.5.1</mockito.version>
     <saxon.version>11.3</saxon.version>
     <maven.checkstyle.plugin.version>3.1.2</maven.checkstyle.plugin.version>
-    <maven.sevntu.checkstyle.plugin.version>1.41.0</maven.sevntu.checkstyle.plugin.version>
+    <maven.sevntu.checkstyle.plugin.version>1.42.0</maven.sevntu.checkstyle.plugin.version>
     <maven.sevntu-checkstyle-check.checkstyle.version>
       9.1
     </maven.sevntu-checkstyle-check.checkstyle.version>
