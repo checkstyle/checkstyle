@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.xpath.iterators;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.tree.iter.AxisIterator;
 
@@ -33,7 +32,7 @@ public class ReverseListIterator implements AxisIterator {
     /**
      * List of nodes.
      */
-    private final List<AbstractNode> items;
+    private final List<? extends NodeInfo> items;
     /**
      * Current index.
      */
@@ -44,7 +43,7 @@ public class ReverseListIterator implements AxisIterator {
      *
      * @param items the list of nodes.
      */
-    public ReverseListIterator(List<AbstractNode> items) {
+    public ReverseListIterator(List<? extends NodeInfo> items) {
         if (items == null) {
             this.items = null;
             index = -1;
