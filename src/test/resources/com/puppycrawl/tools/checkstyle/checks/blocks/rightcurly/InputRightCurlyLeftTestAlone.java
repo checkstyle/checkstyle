@@ -54,7 +54,7 @@ class InputRightCurlyLeftTestAlone
             do
             {
                 x = 2;
-            } while (x == 2); // violation
+            } while (x == 2); // violation ''}' at column 13 should be alone on a line'
         }
 
         this.wait(666
@@ -91,11 +91,11 @@ class InputRightCurlyLeftTestAlone
         boolean flag = true;
         if (flag) {
             System.identityHashCode("heh");
-            flag = !flag; } String.CASE_INSENSITIVE_ORDER. // violation
-              equals("Xe-xe");
+            flag = !flag; } String. // violation ''}' at column 27 should be alone on a line'
+                CASE_INSENSITIVE_ORDER.equals("Xe-xe");
         // it is ok to have rcurly on the same line as previous
         // statement if lcurly on the same line.
-        if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); } // violation
+        if (flag) { String.valueOf(""); } // violation ''}' at column 41 should be alone on a line'
     }
 }
 
@@ -171,23 +171,24 @@ class ClassWithStaticInitializersTestAlone
     public void emptyBlocks() {
         try {
             // comment
-        } catch (RuntimeException e) { // violation
+        } catch (RuntimeException e) { // violation ''}' at column 9 should be alone on a line'
             new Object();
-        } catch (Exception e) { // violation
+        } catch (Exception e) { // violation ''}' at column 9 should be alone on a line'
             // comment
-        } catch (Throwable e) { // violation
-        } finally { // violation
+        } catch (Throwable e) { // violation ''}' at column 9 should be alone on a line'
+        } finally { // violation ''}' at column 9 should be alone on a line'
             // comment
         }
 
         do {
-        } while (true); // violation
+        } while (true); // violation ''}' at column 9 should be alone on a line'
     }
 
     public void codeAfterLastRightCurly() {
         while (new Object().equals(new Object())) {
-        }; // violation
-        for (int i = 0; i < 1; i++) { new Object(); }; // violation
+        }; // violation ''}' at column 9 should be alone on a line'
+        for (int i = 0; i < 1; i++) { new Object(); };
+        // violation above ''}' at column 53 should be alone on a line'
     }
 
     static final java.util.concurrent.ThreadFactory threadFactory
