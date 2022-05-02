@@ -233,6 +233,11 @@
     <allow class="com.puppycrawl.tools.checkstyle.xpath.AbstractNode"/>
     <allow pkg="com.puppycrawl.tools.checkstyle.xpath.iterators" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent" local-only="true"/>
+
+    <subpackage name="iterators">
+      <!-- These are more saxon utilities, and should not have anything checkstyle specific -->
+      <disallow pkg="com\.puppycrawl.*" regex="true"/>
+    </subpackage>
   </subpackage>
 
   <subpackage name="grammar">
