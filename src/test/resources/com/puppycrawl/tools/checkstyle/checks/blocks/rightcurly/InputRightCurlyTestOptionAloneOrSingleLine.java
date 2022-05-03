@@ -18,7 +18,7 @@ public class InputRightCurlyTestOptionAloneOrSingleLine {
 
     void method1() {
         Thread t = new Thread() {@Override public void run() {
-            int a; int b;} // violation
+            int a; int b;} // violation ''}' at column 26 should be alone on a line'
         };
     }
 
@@ -27,7 +27,7 @@ public class InputRightCurlyTestOptionAloneOrSingleLine {
             put("Hello", "World");
             put("first", "second");
             put("polygene", "lubricants");
-            put("alpha", "betical");} // violation
+            put("alpha", "betical");} // violation ''}' at column 37 should be alone on a line'
         };
 
         java.util.Map<String, String> map2 = new java.util.LinkedHashMap<String, String>() {{
@@ -35,7 +35,7 @@ public class InputRightCurlyTestOptionAloneOrSingleLine {
             put("first", "second");
             put("polygene", "lubricants");
             put("alpha", "betical");
-        }};; // violation
+        }};; // violation ''}' at column 9 should be alone on a line'
     }
 
     void method3() {
@@ -44,11 +44,11 @@ public class InputRightCurlyTestOptionAloneOrSingleLine {
             add("AB21/X");
             add("YYLEX");
             add("AR5E");
-        }}); // violation
+        }}); // violation ''}' at column 9 should be alone on a line'
     }
 
     int method4(int a) {
-        if (a>2) a*=10; return ++a; } // violation
+        if (a>2) a*=10; return ++a; } // violation ''}' at column 37 should be alone on a line'
 
     void method5(int a) {
         while (a > 5) { a--; } // ok
@@ -69,12 +69,12 @@ public class InputRightCurlyTestOptionAloneOrSingleLine {
 
     class TestClass4 { }
 
-    class TestClass5 { } { } // violation
+    class TestClass5 { } { } // violation ''}' at column 24 should be alone on a line'
 
     interface Interface1
     {
         int i = 1;
-        public void meth1(); } // violation
+        public void meth1(); } // violation ''}' at column 30 should be alone on a line'
 
     interface Interface2
     { int i = 1; public void meth1(); } // ok
