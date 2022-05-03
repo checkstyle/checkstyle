@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
@@ -142,13 +140,11 @@ public class LineWrappingHandler {
                 lastNode);
 
         final DetailAST firstLineNode = firstNodesOnLines.get(firstNodesOnLines.firstKey());
-        if (firstLineNode.getType() == TokenTypes.AT) {
-            checkForAnnotationIndentation(firstNodesOnLines, indentLevel);
-        }
-
+        DetailAST previousLine = null;
         if (ignoreFirstLine == LineWrappingOptions.IGNORE_FIRST_LINE) {
             // First node should be removed because it was already checked before.
             firstNodesOnLines.remove(firstNodesOnLines.firstKey());
+            previousLine = firstLineNode;
         }
 
         final int firstNodeIndent;
@@ -158,46 +154,133 @@ public class LineWrappingHandler {
         else {
             firstNodeIndent = startIndent;
         }
-        final int currentIndent = firstNodeIndent + indentLevel;
-
         for (DetailAST node : firstNodesOnLines.values()) {
-            final int currentType = node.getType();
-            if (checkForNullParameterChild(node) || checkForMethodLparenNewLine(node)) {
+            if (checkForNullParameterChild(node) || checkForMethodLparenNewLine(node)
+                    || isArrayInitElement(node)) {
                 continue;
             }
-            if (currentType == TokenTypes.RPAREN) {
-                logWarningMessage(node, firstNodeIndent);
+
+            if (!lineStartsWithComment(node)) {
+                checkFirstNodeOnLine(node, indentLevel, previousLine, firstNodeIndent);
             }
-            else if (!TokenUtil.isOfType(currentType, IGNORED_LIST)) {
-                logWarningMessage(node, currentIndent);
+
+            if (noAnnotationParameter(node)) {
+                previousLine = node;
             }
         }
     }
 
     /**
-     * Checks for annotation indentation.
+     * Checks if node is part of an annotation parameter.
      *
-     * @param firstNodesOnLines the nodes which are present in the beginning of each line.
-     * @param indentLevel line wrapping indentation.
+     * @param node Node to examine.
+     * @return false, if node is part of an annotation parameter
      */
-    public void checkForAnnotationIndentation(
-            NavigableMap<Integer, DetailAST> firstNodesOnLines, int indentLevel) {
-        final DetailAST firstLineNode = firstNodesOnLines.get(firstNodesOnLines.firstKey());
-        DetailAST node = firstLineNode.getParent();
-        while (node != null) {
-            if (node.getType() == TokenTypes.ANNOTATION) {
-                final DetailAST atNode = node.getFirstChild();
-                final NavigableMap<Integer, DetailAST> annotationLines =
-                        firstNodesOnLines.subMap(
-                                node.getLineNo(),
-                                true,
-                                getNextNodeLine(firstNodesOnLines, node),
-                                true
-                        );
-                checkAnnotationIndentation(atNode, annotationLines, indentLevel);
-            }
-            node = node.getNextSibling();
+    private static boolean noAnnotationParameter(DetailAST node) {
+        return onlyAnnotationIn(node)
+                || !isParentContainsTokenType(node, TokenTypes.ANNOTATION);
+    }
+
+    /**
+     * Examines, if {@code node} is part of an annotation array initialization.
+     *
+     * @param node Node to examine.
+     * @return true, if node is part of an annotation array initialization.
+     */
+    private static boolean isArrayInitElement(DetailAST node) {
+        return isParentContainsTokenType(node, TokenTypes.ANNOTATION_ARRAY_INIT);
+    }
+
+    /**
+     * Checks indentation of {@code node}.
+     *
+     * @param node First node on line to examine.
+     * @param indentLevel Indentation all wrapped lines should use.
+     * @param previousLine Node in previous line which isn't an annotation parameter.
+     * @param firstNodeIndent Indentation of first node in the examined sub tree.
+     */
+    private void checkFirstNodeOnLine(DetailAST node, int indentLevel, DetailAST previousLine,
+            final int firstNodeIndent) {
+        final int currentType = node.getType();
+
+        if (currentType == TokenTypes.RPAREN) {
+            logWarningMessage(node, firstNodeIndent);
         }
+        else if (!TokenUtil.isOfType(currentType, IGNORED_LIST)) {
+            if (previousLine == null) {
+                logWarningMessage(node, firstNodeIndent);
+            }
+            else if (isAnnotationOrLineAfterAnnotation(node, previousLine)) {
+                logStrictWarningMessage(node, firstNodeIndent);
+            }
+            else {
+                logWarningMessage(node, firstNodeIndent + indentLevel);
+            }
+        }
+    }
+
+    /**
+     * Checks if the line containing {@code node} starts with a block comment.
+     *
+     * @param node Node in line to examine.
+     * @return true, if line starts with a block comment.
+     */
+    private boolean lineStartsWithComment(DetailAST node) {
+        final boolean result;
+        final String line = indentCheck.getLine(node.getLineNo() - 1);
+        final int indexOfNonWhitespace = CommonUtil.indexOfNonWhitespace(line);
+        if (line.length() > indexOfNonWhitespace + 1) {
+            final String lineStart =
+                line.substring(indexOfNonWhitespace, indexOfNonWhitespace + 2);
+            result = "/*".equals(lineStart);
+        }
+        else {
+            result = false;
+        }
+        return result;
+    }
+
+    /**
+     * Examines if {@code node} is a non-parameter annotation or if the previous line of
+     * {@code node} is an annotation. Annotations which are parameters of other annotations return
+     * false.
+     *
+     * @param node Node to examine.
+     * @param previousLineNode Node in previous line which isn't an annotation parameter.
+     * @return true, if node is annotation or line after annotation.
+     */
+    private static boolean isAnnotationOrLineAfterAnnotation(DetailAST node,
+            DetailAST previousLineNode) {
+        final boolean result;
+        if (node.getType() == TokenTypes.AT) {
+            // node is annotation, check if annotation is parameter of other annotation
+            result = !isParentContainsTokenType(node.getParent(), TokenTypes.ANNOTATION)
+                && !isParentContainsTokenType(node.getParent(), TokenTypes.PARAMETER_DEF)
+                && !isParentContainsTokenType(node.getParent(), TokenTypes.TYPECAST);
+        }
+        else if (isParentContainsTokenType(node, TokenTypes.ANNOTATION)) {
+            // non-annotation node inside annotation
+            result = false;
+        }
+        else {
+            // non-annotation node outside an annotation
+            result = onlyAnnotationIn(previousLineNode)
+                    && !isParentContainsTokenType(node, TokenTypes.PARAMETER_DEF);
+        }
+        return result;
+    }
+
+    /**
+     * Checks if line contains only annotation elements.
+     *
+     * @param previousLineNode node to examine.
+     * @return true, if line contains only annotation elements.
+     */
+    private static boolean onlyAnnotationIn(DetailAST previousLineNode) {
+        return previousLineNode.getType() == TokenTypes.AT
+                && previousLineNode.getParent().getParent().getNextSibling() != null
+                && previousLineNode.getParent().getParent().getNextSibling().getLineNo()
+                    > previousLineNode.getLineNo();
     }
 
     /**
@@ -219,23 +302,6 @@ public class LineWrappingHandler {
     public static boolean checkForMethodLparenNewLine(DetailAST node) {
         final int parentType = node.getParent().getType();
         return parentType == TokenTypes.METHOD_DEF && node.getType() == TokenTypes.LPAREN;
-    }
-
-    /**
-     * Gets the next node line from the firstNodesOnLines map unless there is no next line, in
-     * which case, it returns the last line.
-     *
-     * @param firstNodesOnLines NavigableMap of lines and their first nodes.
-     * @param node the node for which to find the next node line
-     * @return the line number of the next line in the map
-     */
-    private static Integer getNextNodeLine(
-            NavigableMap<Integer, DetailAST> firstNodesOnLines, DetailAST node) {
-        Integer nextNodeLine = firstNodesOnLines.higherKey(node.getLastChild().getLineNo());
-        if (nextNodeLine == null) {
-            nextNodeLine = firstNodesOnLines.lastKey();
-        }
-        return nextNodeLine;
     }
 
     /**
@@ -287,75 +353,6 @@ public class LineWrappingHandler {
             }
         }
         return nodeToVisit;
-    }
-
-    /**
-     * Checks line wrapping into annotations.
-     *
-     * @param atNode block tag node.
-     * @param firstNodesOnLines map which contains
-     *     first nodes as values and line numbers as keys.
-     * @param indentLevel line wrapping indentation.
-     */
-    private void checkAnnotationIndentation(DetailAST atNode,
-            NavigableMap<Integer, DetailAST> firstNodesOnLines, int indentLevel) {
-        final int firstNodeIndent = getLineStart(atNode);
-        final int currentIndent = firstNodeIndent + indentLevel;
-        final Collection<DetailAST> values = firstNodesOnLines.values();
-        final DetailAST lastAnnotationNode = atNode.getParent().getLastChild();
-        final int lastAnnotationLine = lastAnnotationNode.getLineNo();
-
-        final Iterator<DetailAST> itr = values.iterator();
-        while (firstNodesOnLines.size() > 1) {
-            final DetailAST node = itr.next();
-
-            final DetailAST parentNode = node.getParent();
-            final boolean isArrayInitPresentInAncestors =
-                isParentContainsTokenType(node, TokenTypes.ANNOTATION_ARRAY_INIT);
-            final boolean isCurrentNodeCloseAnnotationAloneInLine =
-                node.getLineNo() == lastAnnotationLine
-                    && isEndOfScope(lastAnnotationNode, node);
-            if (!isArrayInitPresentInAncestors
-                    && (isCurrentNodeCloseAnnotationAloneInLine
-                    || node.getType() == TokenTypes.AT
-                    && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
-                        || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)
-                    || TokenUtil.areOnSameLine(node, atNode))) {
-                logWarningMessage(node, firstNodeIndent);
-            }
-            else if (!isArrayInitPresentInAncestors) {
-                logWarningMessage(node, currentIndent);
-            }
-            itr.remove();
-        }
-    }
-
-    /**
-     * Checks line for end of scope.  Handles occurrences of close braces and close parenthesis on
-     * the same line.
-     *
-     * @param lastAnnotationNode the last node of the annotation
-     * @param node the node indicating where to begin checking
-     * @return true if all the nodes up to the last annotation node are end of scope nodes
-     *         false otherwise
-     */
-    private static boolean isEndOfScope(final DetailAST lastAnnotationNode, final DetailAST node) {
-        DetailAST checkNode = node;
-        boolean endOfScope = true;
-        while (endOfScope && !checkNode.equals(lastAnnotationNode)) {
-            switch (checkNode.getType()) {
-                case TokenTypes.RCURLY:
-                case TokenTypes.RBRACK:
-                    while (checkNode.getNextSibling() == null) {
-                        checkNode = checkNode.getParent();
-                    }
-                    checkNode = checkNode.getNextSibling();
-                    break;
-                default:
-                    endOfScope = false;
-            }
-        }
-        return endOfScope;
     }
 
     /**
@@ -428,11 +425,7 @@ public class LineWrappingHandler {
      */
     private void logWarningMessage(DetailAST currentNode, int currentIndent) {
         if (indentCheck.isForceStrictCondition()) {
-            if (expandedTabsColumnNo(currentNode) != currentIndent) {
-                indentCheck.indentationLog(currentNode,
-                        IndentationCheck.MSG_ERROR, currentNode.getText(),
-                        expandedTabsColumnNo(currentNode), currentIndent);
-            }
+            logStrictWarningMessage(currentNode, currentIndent);
         }
         else {
             if (expandedTabsColumnNo(currentNode) < currentIndent) {
@@ -440,6 +433,20 @@ public class LineWrappingHandler {
                         IndentationCheck.MSG_ERROR, currentNode.getText(),
                         expandedTabsColumnNo(currentNode), currentIndent);
             }
+        }
+    }
+
+    /**
+     * Logs warning message if indentation is incorrect following strict rules.
+     *
+     * @param currentNode current node which probably invoked a violation.
+     * @param currentIndent correct indentation.
+     */
+    private void logStrictWarningMessage(DetailAST currentNode, int currentIndent) {
+        if (expandedTabsColumnNo(currentNode) != currentIndent) {
+            indentCheck.indentationLog(currentNode,
+                    IndentationCheck.MSG_ERROR, currentNode.getText(),
+                    expandedTabsColumnNo(currentNode), currentIndent);
         }
     }
 
