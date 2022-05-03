@@ -21,12 +21,12 @@ public class InputRightCurlyWithEmoji {
         try {
             if (x.equals("🎄🤣")) {
 
-            } // violation
-              // ''}' should be on the same line as the next part of a multi-block statement'
+            } // violation ''}' at column 13 should be on the same line as .*/else'
+
             else if (!x.equals("🎄🤣")) {
                 ;
-            } // violation
-              // ''}' should be on the same line as the next part of a multi-block statement'
+            } // violation ''}' at column 13 should be on the same line as .*/else'
+
             else {
                 x = "🎄🤣";
             } // ok
@@ -47,8 +47,8 @@ public class InputRightCurlyWithEmoji {
                 }
             }
         }
-        // violation above
-        // ''}' at column 9 should be on the same line as the next part of a multi-block statement'
+        // violation above ''}' at column 9 should be on the same line as .*/catch'
+
         catch (Exception e) {
         }
         while (x == "🎄") {

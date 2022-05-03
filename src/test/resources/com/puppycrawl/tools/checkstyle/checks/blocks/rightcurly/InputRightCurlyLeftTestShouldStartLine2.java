@@ -83,7 +83,7 @@ class InputRightCurlyLeftTestShouldStartLine2
     {
         HELLO,
         GOODBYE
-    }; // violation
+    }; // violation ''}' at column 5 should be alone on a line'
 
     void method2()
     {
@@ -194,12 +194,12 @@ class ClassWithStaticInitializersTestShouldStartLine2
         @Override
         public Thread newThread(final Runnable r) {
             return new Thread(r);
-        }}; // violation
+        }}; // violation ''}' at column 9 should be alone on a line'
 
     interface Interface1
     {
         int i = 1;
-        public void meth1(); } // violation
+        public void meth1(); } // violation ''}' at column 30 should be alone on a line'
 
     interface Interface2
     { int i = 1; public void meth1(); } // ok

@@ -34,20 +34,20 @@ class InputRightCurlyTestForceLineBreakBefore
                 }
             } catch (Exception e) { break; } finally { break; }
         }
-
-        synchronized (this) { do { x = 2; } while (x == 2); } // violation
+        // violation below ''}' at column 43 should be alone on a line'
+        synchronized (this) { do { x = 2; } while (x == 2); }
 
         synchronized (this) {
-            do {} while (x == 2); // violation
+            do {} while (x == 2); // violation ''}' at column 17 should be alone on a line'
         }
+        // violation below ''}' at column 71 should be alone on a line'
+        for (int k = 0; k < 1; k++) { String innerBlockVariable = ""; }
 
-        for (int k = 0; k < 1; k++) { String innerBlockVariable = ""; } // violation
-
-        for (int k = 0; k < 1; k++) {} // violation
+        for (int k = 0; k < 1; k++) {} // violation ''}' at column 38 should be alone on a line'
                 return a;
     }
 
-    static { int x = 1; } // violation
+    static { int x = 1; } // violation ''}' at column 25 should be alone on a line'
 
     void method2()
     {

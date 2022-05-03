@@ -13,14 +13,14 @@ class InputRightCurlyTestWithoutFinally
     void foo() throws InterruptedException
     {
 
-            try
-            {
+        try
+        {
 
-            } // violation
-            catch (Exception e)
-            {
-                return;
-            }
+        } // violation ''}' at col.* 9 should be on the same line as .*/catch'
+        catch (Exception e)
+        {
+            return;
+        }
 
         }
 
