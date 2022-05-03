@@ -363,9 +363,14 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param variablesStack stack of all the relevant variables in the scope
      */
     private static void visitIdentToken(DetailAST identAst, Deque<VariableDesc> variablesStack) {
-        final DetailAST parentAst = identAst.getParent();
-        if (!TokenUtil.isOfType(parentAst, UNACCEPTABLE_PARENT_OF_IDENT)
-                && shouldCheckIdentWithMethodRefParent(identAst)) {
+        final DetailAST parent = identAst.getParent();
+        final boolean isMethodReference = parent.getType() == TokenTypes.METHOD_REF
+                        && parent.getFirstChild() != identAst;
+        final boolean isInitOrConstructorReference =
+                parent.getLastChild().getType() == TokenTypes.LITERAL_NEW;
+
+        if (!TokenUtil.isOfType(parent, UNACCEPTABLE_PARENT_OF_IDENT) && !isMethodReference
+                && !isInitOrConstructorReference) {
             checkIdentifierAst(identAst, variablesStack);
         }
     }
@@ -726,25 +731,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private void customLeaveToken(DetailAST ast, Deque<VariableDesc> variablesStack) {
         logViolations(ast, variablesStack);
-    }
-
-    /**
-     * Whether an ident with parent node of type {@link TokenTypes#METHOD_REF}
-     * should be checked or not.
-     *
-     * @param identAst identAst
-     * @return true if an ident with parent node of type {@link TokenTypes#METHOD_REF}
-     *         should be checked or if the parent type is not {@link TokenTypes#METHOD_REF}
-     * @noinspection SimplifiableIfStatement
-     */
-    public static boolean shouldCheckIdentWithMethodRefParent(DetailAST identAst) {
-        final DetailAST parent = identAst.getParent();
-        boolean result = true;
-        if (parent.getType() == TokenTypes.METHOD_REF) {
-            result = parent.getFirstChild() == identAst
-                    && parent.getLastChild().getType() != TokenTypes.LITERAL_NEW;
-        }
-        return result;
     }
 
     /**
