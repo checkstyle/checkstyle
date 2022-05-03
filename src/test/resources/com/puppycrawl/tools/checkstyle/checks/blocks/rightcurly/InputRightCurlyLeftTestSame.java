@@ -23,10 +23,10 @@ class InputRightCurlyLeftTestSame
                 if (x > 0)
                 {
                     break;
-                } // violation
+                } // violation ''}' at column 17 should be on the same line as .*/else'
                 else if (x < 0) {
                     ;
-                } // violation
+                } // violation ''}' at column 17 should be on the same line as .*/else'
                 else
                 {
                     break;
@@ -38,11 +38,11 @@ class InputRightCurlyLeftTestSame
                 default:
                     break;
                 }
-            } // violation
+            } // violation ''}' at column 13 should be on the same line as .*/catch'
             catch (Exception e)
             {
                 break;
-            } // violation
+            } // violation ''}' at column 13 should be on the same line as .*/finally'
             finally
             {
                 break;
@@ -84,15 +84,15 @@ class InputRightCurlyLeftTestSame
     {
         HELLO,
         GOODBYE
-    }; // violation
+    }; // violation ''}' at column 5 should be alone on a line'
 
     void method2()
     {
         boolean flag = true;
         if (flag) {
             System.identityHashCode("heh");
-            flag = !flag; } String.CASE_INSENSITIVE_ORDER. // violation
-              equals("Xe-xe");
+            flag = !flag; } String. // violation ''}' at column 27 should have line break before'
+                CASE_INSENSITIVE_ORDER.equals("Xe-xe");
         // it is ok to have rcurly on the same line as previous
         // statement if lcurly on the same line.
         if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); } // ok
@@ -186,8 +186,8 @@ class ClassWithStaticInitializersTestSame
 
     public void codeAfterLastRightCurly() {
         while (new Object().equals(new Object())) {
-        }; // violation
-        for (int i = 0; i < 1; i++) { new Object(); }; // violation
+        }; // violation ''}' at column 9 should be alone on a line'
+        for (int i = 0; i < 1; i++) { ; }; // violation ''}' at col.* 41 should be alone on a line'
     }
 
     static final java.util.concurrent.ThreadFactory threadFactory
