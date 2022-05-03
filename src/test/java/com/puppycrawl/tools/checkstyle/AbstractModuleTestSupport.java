@@ -52,25 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
 public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport {
 
-    /**
-     * Enum to specify options for checker creation.
-     */
-    public enum ModuleCreationOption {
-
-        /**
-         * Points that the module configurations
-         * has to be added under {@link TreeWalker}.
-         */
-        IN_TREEWALKER,
-        /**
-         * Points that checker will be created as
-         * a root of default configuration.
-         */
-        IN_CHECKER,
-
-    }
-
-    private static final String ROOT_MODULE_NAME = "root";
+    protected static final String ROOT_MODULE_NAME = Checker.class.getSimpleName();
 
     private final ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
@@ -104,31 +86,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
-     * Find the module creation option to use for the module name.
-     *
-     * @param moduleName the module name.
-     * @return the module creation option.
-     */
-    protected ModuleCreationOption findModuleCreationOption(String moduleName) {
-        ModuleCreationOption moduleCreationOption = ModuleCreationOption.IN_CHECKER;
-
-        if (!ROOT_MODULE_NAME.equals(moduleName)) {
-            try {
-                final Class<?> moduleClass = Class.forName(moduleName);
-                if (ModuleReflectionUtil.isCheckstyleTreeWalkerCheck(moduleClass)
-                        || ModuleReflectionUtil.isTreeWalkerFilterModule(moduleClass)) {
-                    moduleCreationOption = ModuleCreationOption.IN_TREEWALKER;
-                }
-            }
-            catch (ClassNotFoundException ignore) {
-                // ignore exception, assume it is not part of TreeWalker
-            }
-        }
-
-        return moduleCreationOption;
-    }
-
-    /**
      * Creates {@link Checker} instance based on the given {@link Configuration} instance.
      *
      * @param moduleConfig {@link Configuration} instance.
@@ -137,39 +94,42 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     protected final Checker createChecker(Configuration moduleConfig)
             throws Exception {
-        final String name = moduleConfig.getName();
-
-        return createChecker(moduleConfig, findModuleCreationOption(name));
-    }
-
-    /**
-     * Creates {@link Checker} instance based on the given {@link Configuration} instance.
-     *
-     * @param moduleConfig {@link Configuration} instance.
-     * @param moduleCreationOption {@code IN_TREEWALKER} if the {@code moduleConfig} should be added
-     *                                                  under {@link TreeWalker}.
-     * @return {@link Checker} instance based on the given {@link Configuration} instance.
-     * @throws Exception if an exception occurs during checker configuration.
-     */
-    protected final Checker createChecker(Configuration moduleConfig,
-                                 ModuleCreationOption moduleCreationOption)
-            throws Exception {
+        final String moduleName = moduleConfig.getName();
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
 
-        if (moduleCreationOption == ModuleCreationOption.IN_TREEWALKER) {
+        if (ROOT_MODULE_NAME.equals(moduleName)) {
+            checker.configure(moduleConfig);
+        }
+        else {
+            final Class<?> moduleClass = Class.forName(moduleName);
+
+            addConfigToChecker(checker, moduleClass, moduleConfig);
+        }
+
+        checker.addListener(getBriefUtLogger());
+        return checker;
+    }
+
+    /**
+     * Identifies the way to add the {@code moduleConfig} to the {@code checker} instance.
+     *
+     * @param checker {@link Checker} instance.
+     * @param moduleClass {@link Class} of the module involved.
+     * @param moduleConfig {@link Configuration} instance.
+     * @throws Exception if an exception occurs during configuration.
+     */
+    protected void addConfigToChecker(Checker checker, Class<?> moduleClass,
+            Configuration moduleConfig) throws Exception {
+        if (ModuleReflectionUtil.isCheckstyleTreeWalkerCheck(moduleClass)
+                || ModuleReflectionUtil.isTreeWalkerFilterModule(moduleClass)) {
             final Configuration dc = createTreeWalkerConfig(moduleConfig);
             checker.configure(dc);
-        }
-        else if (ROOT_MODULE_NAME.equals(moduleConfig.getName())) {
-            checker.configure(moduleConfig);
         }
         else {
             final Configuration dc = createRootConfig(moduleConfig);
             checker.configure(dc);
         }
-        checker.addListener(getBriefUtLogger());
-        return checker;
     }
 
     /**
@@ -182,7 +142,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     protected static DefaultConfiguration createTreeWalkerConfig(Configuration config) {
         final DefaultConfiguration dc =
-                new DefaultConfiguration("configuration");
+                new DefaultConfiguration(ROOT_MODULE_NAME);
         final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
         // make sure that the tests always run with this charset
         dc.addProperty("charset", StandardCharsets.UTF_8.name());
