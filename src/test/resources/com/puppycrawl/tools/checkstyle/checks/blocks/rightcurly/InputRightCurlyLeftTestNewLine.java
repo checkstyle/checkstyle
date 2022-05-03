@@ -83,7 +83,7 @@ class InputRightCurlyLeftTestNewLine
     {
         HELLO,
         GOODBYE
-    }; // violation
+    }; // violation ''}' at column 5 should be alone on a line'
 
     void method2()
     {
@@ -141,17 +141,17 @@ class FooInnerTestNewLine
  */
 class Absent_CustomFieldSerializer3TestNewLine {
 
-    public static void serialize() {} // violation
+    public static void serialize() {} // violation ''}' at column 37 should be alone on a line'
 }
 
 class Absent_CustomFieldSerializer4TestNewLine
 {
-    public void Absent_CustomFieldSerializer4() {} // violation
+  void Absent_CustomFieldSerializer4() {} // violation ''}' at column 41 should be alone on a line'
 }
 
-class EmptyClass2TestNewLine {} // violation
+class EmptyClass2TestNewLine {} // violation ''}' at column 31 should be alone on a line'
 
-interface EmptyInterface3TestNewLine {} // violation
+interface EmptyInterface3TestNewLine {} // violation ''}' at column 39 should be alone on a line'
 
 class ClassWithStaticInitializersTestNewLine
 {
@@ -194,15 +194,15 @@ class ClassWithStaticInitializersTestNewLine
         @Override
         public Thread newThread(final Runnable r) {
             return new Thread(r);
-        }}; // violation
+        }}; // violation ''}' at column 9 should be alone on a line'
 
     interface Interface1
     {
         int i = 1;
-        public void meth1(); } // violation
+        public void meth1(); } // violation ''}' at column 30 should be alone on a line'
 
     interface Interface2
-    { int i = 1; public void meth1(); } // violation
+    { int i = 1; public void meth1(); } // violation ''}' at column 39 should be alone on a line'
 
     interface Interface3 {
         void display();
