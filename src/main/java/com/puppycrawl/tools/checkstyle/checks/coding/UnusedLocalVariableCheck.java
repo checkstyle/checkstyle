@@ -743,7 +743,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param dotAst dotAst
      * @return true if ident nested under dotAst should be checked
      */
-    public static boolean shouldCheckIdentTokenNestedUnderDot(DetailAST dotAst) {
+    private static boolean shouldCheckIdentTokenNestedUnderDot(DetailAST dotAst) {
 
         return TokenUtil.findFirstTokenByPredicate(dotAst,
                         childAst -> {
