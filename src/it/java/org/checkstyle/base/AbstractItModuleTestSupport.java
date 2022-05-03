@@ -45,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -85,20 +86,89 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     protected abstract ModuleCreationOption findModuleCreationOption(String moduleName);
 
     /**
-     * Creates {@link DefaultConfiguration} instance for the given module class.
-     *
-     * @param clazz module class.
-     * @return {@link DefaultConfiguration} instance.
-     */
-    protected abstract DefaultConfiguration createModuleConfig(Class<?> clazz);
-
-    /**
      * Returns test logger.
      *
      * @return logger for tests
      */
     protected final BriefUtLogger getBriefUtLogger() {
         return new BriefUtLogger(stream);
+    }
+
+    /**
+     * Creates a default module configuration {@link DefaultConfiguration} for a given object
+     * of type {@link Class}.
+     *
+     * @param clazz a {@link Class} type object.
+     * @return default module configuration for the given {@link Class} instance.
+     */
+    protected static DefaultConfiguration createModuleConfig(Class<?> clazz) {
+        return new DefaultConfiguration(clazz.getName());
+    }
+
+    /**
+     * Returns {@link Configuration} instance for the given module name pulled
+     * from the {@code masterConfig}.
+     *
+     * @param masterConfig The master configuration to examine.
+     * @param moduleName module name.
+     * @param moduleId module id.
+     * @return {@link Configuration} instance for the given module name.
+     * @throws IllegalStateException if there is a problem retrieving the module
+     *         or config.
+     */
+    protected static Configuration getModuleConfig(Configuration masterConfig, String moduleName,
+            String moduleId) {
+        final Configuration result;
+        final List<Configuration> configs = getModuleConfigs(masterConfig, moduleName);
+        if (configs.size() == 1) {
+            result = configs.get(0);
+        }
+        else if (configs.isEmpty()) {
+            throw new IllegalStateException("no instances of the Module was found: " + moduleName);
+        }
+        else if (moduleId == null) {
+            throw new IllegalStateException("multiple instances of the same Module are detected");
+        }
+        else {
+            result = configs.stream().filter(conf -> {
+                try {
+                    return conf.getProperty("id").equals(moduleId);
+                }
+                catch (CheckstyleException ex) {
+                    throw new IllegalStateException("problem to get ID attribute from " + conf, ex);
+                }
+            })
+            .findFirst()
+            .orElseThrow(() -> new IllegalStateException("problem with module config"));
+        }
+
+        return result;
+    }
+
+    /**
+     * Returns a list of all {@link Configuration} instances for the given
+     * module name pulled from the {@code masterConfig}.
+     *
+     * @param masterConfig The master configuration to examine.
+     * @param moduleName module name.
+     * @return {@link Configuration} instance for the given module name.
+     */
+    protected static List<Configuration> getModuleConfigs(Configuration masterConfig,
+            String moduleName) {
+        final List<Configuration> result = new ArrayList<>();
+        for (Configuration currentConfig : masterConfig.getChildren()) {
+            if ("TreeWalker".equals(currentConfig.getName())) {
+                for (Configuration moduleConfig : currentConfig.getChildren()) {
+                    if (moduleName.equals(moduleConfig.getName())) {
+                        result.add(moduleConfig);
+                    }
+                }
+            }
+            else if (moduleName.equals(currentConfig.getName())) {
+                result.add(currentConfig);
+            }
+        }
+        return result;
     }
 
     /**
@@ -158,9 +228,9 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @return {@link DefaultConfiguration} for the {@link TreeWalker}
      *     based on the given {@link Configuration} instance.
      */
-    protected final DefaultConfiguration createTreeWalkerConfig(Configuration config) {
+    protected static DefaultConfiguration createTreeWalkerConfig(Configuration config) {
         final DefaultConfiguration dc =
-                new DefaultConfiguration("configuration");
+                new DefaultConfiguration(ROOT_MODULE_NAME);
         final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
         // make sure that the tests always run with this charset
         dc.addProperty("charset", StandardCharsets.UTF_8.name());
