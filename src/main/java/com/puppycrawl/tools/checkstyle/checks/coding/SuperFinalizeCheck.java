@@ -44,11 +44,11 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
  * public class A {
  *      protected void finalize() throws Throwable {
  *         System.out.println("In finalize block");
- *          super.finalize(); //OK, calls super.finalize()
+ *          super.finalize(); // OK, calls super.finalize()
  *      }
  * }
  * public class B {
- *      protected void finalize() throws Throwable { //Violation
+ *      protected void finalize() throws Throwable { // violation
  *          System.out.println("In finalize block");
  *      }
  * }
