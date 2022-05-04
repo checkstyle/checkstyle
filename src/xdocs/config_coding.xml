@@ -7109,7 +7109,8 @@ class B {
             } catch() {
                 //body;
             }
-            finally { //causes violation does not call super.finalize
+            finally {
+            //violation does not call super.finalize
             }
       }
 }

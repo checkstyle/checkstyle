@@ -60,7 +60,8 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
  *          } catch() {
  *              //body;
  *          }
- *          finally { //causes violation does not call super.finalize
+ *          finally {
+ *          //violation does not call super.finalize
  *          }
  *      }
  * }
