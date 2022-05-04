@@ -16,7 +16,7 @@ class InputRightCurlyTestTryWithResourceSame {
         try (BufferedReader br1 = new BufferedReader(null);
                 BufferedReader br2 = new BufferedReader(br1)) {
             ;
-        } // violation
+        } // violation ''}' at column 9 should be on the same line as .*/catch'
         catch (IOException e) {
             ;
         }
@@ -29,7 +29,8 @@ class InputRightCurlyTestTryWithResourceSame {
             ;
         }
         try (BufferedReader br1 = new BufferedReader(null);
-                BufferedReader br2 = new BufferedReader(br1)) { ; } // violation
+                // violation below ''}' at column 67 should be on the same line as .*/catch'
+                BufferedReader br2 = new BufferedReader(br1)) { ; }
         catch (IOException e) { ; } // ok
         try (BufferedReader br1 = new BufferedReader(null);
                 BufferedReader br2 = new BufferedReader(br1)) {} catch (IOException e) { ; } // ok
@@ -40,8 +41,8 @@ class InputRightCurlyTestTryWithResourceSame {
         try (BufferedReader br1 = new BufferedReader(null);
                 BufferedReader br2 = new BufferedReader(br1)) { ; } // ok
         try (BufferedReader br1 = new BufferedReader(null)) {
-            ; } // violation
+            ; } // violation ''}' at column 15 should have line break before'
         try (BufferedReader br1 = new BufferedReader(null)) {
-            } int i; // violation
+            } int i; // violation ''}' at column 13 should be alone on a line'
     }
 }
