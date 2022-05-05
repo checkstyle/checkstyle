@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -48,20 +47,18 @@ public final class JavadocTags {
      *  Getter for validTags field.
      *
      *  @return validTags field
-     *  @noinspection RedundantUnmodifiable
      */
     public List<JavadocTag> getValidTags() {
-        return Collections.unmodifiableList(validTags);
+        return validTags;
     }
 
     /**
      *  Getter for invalidTags field.
      *
      *  @return invalidTags field
-     *  @noinspection RedundantUnmodifiable
      */
     public List<InvalidJavadocTag> getInvalidTags() {
-        return Collections.unmodifiableList(invalidTags);
+        return invalidTags;
     }
 
 }
