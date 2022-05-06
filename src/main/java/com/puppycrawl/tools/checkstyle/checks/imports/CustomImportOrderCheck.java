@@ -1128,11 +1128,12 @@ public class CustomImportOrderCheck extends AbstractCheck {
         RuleMatchForImport betterMatchCandidate = currentBestMatch;
         final Matcher matcher = regExp.matcher(importPath);
         while (matcher.find()) {
-            final int length = matcher.end() - matcher.start();
+            final int matchStart = matcher.start();
+            final int length = matcher.end() - matchStart;
             if (length > betterMatchCandidate.matchLength
                     || length == betterMatchCandidate.matchLength
-                        && matcher.start() < betterMatchCandidate.matchPosition) {
-                betterMatchCandidate = new RuleMatchForImport(group, length, matcher.start());
+                        && matchStart < betterMatchCandidate.matchPosition) {
+                betterMatchCandidate = new RuleMatchForImport(group, length, matchStart);
             }
         }
         return betterMatchCandidate;
