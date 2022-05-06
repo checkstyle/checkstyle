@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.meta;
 
 import java.io.File;
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
@@ -117,21 +118,22 @@ public final class XmlMetaWriter {
      */
     private static void createPropertySection(ModuleDetails moduleDetails, Element checkModule,
                                               Document doc) {
-        if (!moduleDetails.getProperties().isEmpty()) {
+        final List<ModulePropertyDetails> moduleProperties = moduleDetails.getProperties();
+        if (!moduleProperties.isEmpty()) {
             final Element properties = doc.createElement("properties");
             checkModule.appendChild(properties);
-            for (ModulePropertyDetails modulePropertyDetails : moduleDetails.getProperties()) {
+            for (ModulePropertyDetails modulePropertyDetails : moduleProperties) {
                 final Element property = doc.createElement("property");
                 properties.appendChild(property);
                 property.setAttribute(XML_TAG_NAME, modulePropertyDetails.getName());
                 property.setAttribute("type", modulePropertyDetails.getType());
-                if (modulePropertyDetails.getDefaultValue() != null) {
-                    property.setAttribute("default-value",
-                            modulePropertyDetails.getDefaultValue());
+                final String defaultValue = modulePropertyDetails.getDefaultValue();
+                if (defaultValue != null) {
+                    property.setAttribute("default-value", defaultValue);
                 }
-                if (modulePropertyDetails.getValidationType() != null) {
-                    property.setAttribute("validation-type",
-                            modulePropertyDetails.getValidationType());
+                final String validationType = modulePropertyDetails.getValidationType();
+                if (validationType != null) {
+                    property.setAttribute("validation-type", validationType);
                 }
                 final Element propertyDesc = doc.createElement(XML_TAG_DESCRIPTION);
                 propertyDesc.appendChild(doc.createCDATASection(

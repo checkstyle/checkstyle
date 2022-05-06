@@ -169,6 +169,15 @@
     <Method name="findLastChildWhichContainsSpecifiedToken"/>
     <Bug pattern="SLS_SUSPICIOUS_LOOP_SEARCH"/>
   </Match>
+  <Match>
+    <!-- Till https://github.com/mebigfatguy/fb-contrib/issues/329 -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
+      <Class name="com.puppycrawl.tools.checkstyle.TreeWalker"/>
+    </Or>
+    <Method name="getExternalResourceLocations"/>
+    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS"/>
+  </Match>
   <!-- After https://github.com/checkstyle/checkstyle/issues/11140
        there should be one section per one bug pattern, with list of allowed classes or methods -->
   <Match>
@@ -194,7 +203,6 @@
       OCP_OVERLY_CONCRETE_PARAMETER,
       OPM_OVERLY_PERMISSIVE_METHOD,
       PMB_INSTANCE_BASED_THREAD_LOCAL,
-      PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS,
       PSC_PRESIZE_COLLECTIONS,
       PSC_SUBOPTIMAL_COLLECTION_SIZING,
       S508C_SET_COMP_COLOR,
