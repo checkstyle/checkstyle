@@ -513,8 +513,9 @@ public class SuppressionCommentFilter
     private Tag findNearestMatch(TreeWalkerAuditEvent event) {
         Tag result = null;
         for (Tag tag : tags) {
-            if (tag.getLine() > event.getLine()
-                || tag.getLine() == event.getLine()
+            final int eventLine = event.getLine();
+            if (tag.getLine() > eventLine
+                || tag.getLine() == eventLine
                     && tag.getColumn() > event.getColumn()) {
                 break;
             }
