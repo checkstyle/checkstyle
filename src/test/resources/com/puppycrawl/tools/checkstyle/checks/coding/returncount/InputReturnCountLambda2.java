@@ -40,7 +40,7 @@ public class InputReturnCountLambda2 {
     }
 
     Optional<Object> methodWithThreeReturnInLambda(int number) {
-        return Optional.of(number).map(i -> { // violation
+        return Optional.of(number).map(i -> { // violation 'Return count is 3'
             if (i == 42) return true;
             else if (i == 7) return true;
             else return false;
