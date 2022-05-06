@@ -193,8 +193,9 @@ public final class IllegalCatchCheck extends AbstractCheck {
         DetailAST currentNode = excTypeParent.getFirstChild();
         while (currentNode != null) {
             final FullIdent ident = FullIdent.createFullIdent(currentNode);
-            if (illegalClassNames.contains(ident.getText())) {
-                log(detailAST, MSG_KEY, ident.getText());
+            final String identText = ident.getText();
+            if (illegalClassNames.contains(identText)) {
+                log(detailAST, MSG_KEY, identText);
             }
             currentNode = currentNode.getNextSibling();
         }

@@ -265,15 +265,16 @@ class TagParser {
             if (line < text.length) {
                 // skip beginning spaces and stars
                 final String currentLine = text[line];
-                while (column < currentLine.length()
+                final int currentLineLength = currentLine.length();
+                while (column < currentLineLength
                        && (Character.isWhitespace(currentLine.charAt(column))
                            || currentLine.charAt(column) == '*')) {
                     column++;
-                    if (column < currentLine.length()
+                    if (column < currentLineLength
                         && currentLine.charAt(column - 1) == '*'
                         && currentLine.charAt(column) == '/') {
                         // this is end of comment
-                        column = currentLine.length();
+                        column = currentLineLength;
                     }
                 }
             }
