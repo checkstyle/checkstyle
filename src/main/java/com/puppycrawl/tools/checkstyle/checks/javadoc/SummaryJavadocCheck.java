@@ -678,10 +678,13 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                     && ALLOWED_TYPES.get(child.getType())) {
                 result.append(child.getText());
             }
-            else if (child.getType() == JavadocTokenTypes.HTML_ELEMENT
-                    && CommonUtil.isBlank(result.toString().trim())) {
-                result.append(getStringInsideTag(result.toString(),
-                        child.getChildren()[0].getChildren()[0]));
+            else {
+                final String summary = result.toString();
+                if (child.getType() == JavadocTokenTypes.HTML_ELEMENT
+                        && CommonUtil.isBlank(summary)) {
+                    result.append(getStringInsideTag(summary,
+                            child.getChildren()[0].getChildren()[0]));
+                }
             }
         }
         return result.toString().trim();
