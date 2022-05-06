@@ -227,12 +227,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.tngtech.archunit</groupId>
-      <artifactId>archunit-junit5</artifactId>
-      <version>0.23.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>info.picocli</groupId>
       <artifactId>picocli</artifactId>
       <version>4.6.3</version>
@@ -287,6 +281,12 @@
       <groupId>org.junit-pioneer</groupId>
       <artifactId>junit-pioneer</artifactId>
       <version>1.7.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.tngtech.archunit</groupId>
+      <artifactId>archunit-junit5</artifactId>
+      <version>0.23.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
