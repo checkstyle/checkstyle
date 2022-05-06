@@ -239,8 +239,9 @@ public class SarifLogger extends AutomaticBean implements AuditListener {
      * @return the escaped value if necessary.
      */
     public static String escape(String value) {
-        final StringBuilder sb = new StringBuilder(value.length());
-        for (int i = 0; i < value.length(); i++) {
+        final int length = value.length();
+        final StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
             final char chr = value.charAt(i);
             switch (chr) {
                 case '"':

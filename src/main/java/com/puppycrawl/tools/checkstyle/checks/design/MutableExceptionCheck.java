@@ -98,7 +98,7 @@ public final class MutableExceptionCheck extends AbstractCheck {
     /** Should we check current class or not. */
     private boolean checking;
     /** Specify pattern for exception class names. */
-    private Pattern format = Pattern.compile(DEFAULT_FORMAT);
+    private Pattern format = extendedClassNameFormat;
 
     /**
      * Setter to specify pattern for extended class names.

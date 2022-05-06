@@ -143,17 +143,18 @@ public class RedundantImportCheck
         }
         else if (ast.getType() == TokenTypes.IMPORT) {
             final FullIdent imp = FullIdent.createFullIdentBelow(ast);
-            if (isFromPackage(imp.getText(), "java.lang")) {
-                log(ast, MSG_LANG, imp.getText());
+            final String importText = imp.getText();
+            if (isFromPackage(importText, "java.lang")) {
+                log(ast, MSG_LANG, importText);
             }
             // imports from unnamed package are not allowed,
             // so we are checking SAME rule only for named packages
-            else if (pkgName != null && isFromPackage(imp.getText(), pkgName)) {
-                log(ast, MSG_SAME, imp.getText());
+            else if (pkgName != null && isFromPackage(importText, pkgName)) {
+                log(ast, MSG_SAME, importText);
             }
             // Check for a duplicate import
-            imports.stream().filter(full -> imp.getText().equals(full.getText()))
-                .forEach(full -> log(ast, MSG_DUPLICATE, full.getLineNo(), imp.getText()));
+            imports.stream().filter(full -> importText.equals(full.getText()))
+                .forEach(full -> log(ast, MSG_DUPLICATE, full.getLineNo(), importText));
 
             imports.add(imp);
         }
