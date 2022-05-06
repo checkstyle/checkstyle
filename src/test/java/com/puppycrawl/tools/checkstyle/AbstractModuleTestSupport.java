@@ -123,12 +123,12 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             Configuration moduleConfig) throws Exception {
         if (ModuleReflectionUtil.isCheckstyleTreeWalkerCheck(moduleClass)
                 || ModuleReflectionUtil.isTreeWalkerFilterModule(moduleClass)) {
-            final Configuration dc = createTreeWalkerConfig(moduleConfig);
-            checker.configure(dc);
+            final Configuration config = createTreeWalkerConfig(moduleConfig);
+            checker.configure(config);
         }
         else {
-            final Configuration dc = createRootConfig(moduleConfig);
-            checker.configure(dc);
+            final Configuration config = createRootConfig(moduleConfig);
+            checker.configure(config);
         }
     }
 
@@ -141,14 +141,14 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      *     based on the given {@link Configuration} instance.
      */
     protected static DefaultConfiguration createTreeWalkerConfig(Configuration config) {
-        final DefaultConfiguration dc =
+        final DefaultConfiguration rootConfig =
                 new DefaultConfiguration(ROOT_MODULE_NAME);
         final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
         // make sure that the tests always run with this charset
-        dc.addProperty("charset", StandardCharsets.UTF_8.name());
-        dc.addChild(twConf);
+        rootConfig.addProperty("charset", StandardCharsets.UTF_8.name());
+        rootConfig.addChild(twConf);
         twConf.addChild(config);
-        return dc;
+        return rootConfig;
     }
 
     /**
@@ -158,11 +158,11 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @return {@link DefaultConfiguration} for the given {@link Configuration} instance.
      */
     protected static DefaultConfiguration createRootConfig(Configuration config) {
-        final DefaultConfiguration dc = new DefaultConfiguration(ROOT_MODULE_NAME);
+        final DefaultConfiguration rootConfig = new DefaultConfiguration(ROOT_MODULE_NAME);
         if (config != null) {
-            dc.addChild(config);
+            rootConfig.addChild(config);
         }
-        return dc;
+        return rootConfig;
     }
 
     /**

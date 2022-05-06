@@ -130,19 +130,29 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
             throw new IllegalStateException("multiple instances of the same Module are detected");
         }
         else {
-            result = configs.stream().filter(conf -> {
-                try {
-                    return conf.getProperty("id").equals(moduleId);
-                }
-                catch (CheckstyleException ex) {
-                    throw new IllegalStateException("problem to get ID attribute from " + conf, ex);
-                }
-            })
+            result = configs.stream().filter(conf -> isSameModuleId(conf, moduleId))
             .findFirst()
             .orElseThrow(() -> new IllegalStateException("problem with module config"));
         }
 
         return result;
+    }
+
+    /**
+     * Verifies if the configuration's ID matches the expected {@code moduleId}.
+     *
+     * @param conf The config to examine.
+     * @param moduleId The module ID to match against.
+     * @return {@code true} if it matches.
+     * @throws IllegalStateException If there is an issue with finding the ID.
+     */
+    private static boolean isSameModuleId(Configuration conf, String moduleId) {
+        try {
+            return conf.getProperty("id").equals(moduleId);
+        }
+        catch (CheckstyleException ex) {
+            throw new IllegalStateException("problem to get ID attribute from " + conf, ex);
+        }
     }
 
     /**
@@ -206,15 +216,15 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         checker.setLocaleLanguage(locale.getLanguage());
 
         if (moduleCreationOption == ModuleCreationOption.IN_TREEWALKER) {
-            final Configuration dc = createTreeWalkerConfig(moduleConfig);
-            checker.configure(dc);
+            final Configuration config = createTreeWalkerConfig(moduleConfig);
+            checker.configure(config);
         }
         else if (ROOT_MODULE_NAME.equals(moduleConfig.getName())) {
             checker.configure(moduleConfig);
         }
         else {
-            final Configuration dc = createRootConfig(moduleConfig);
-            checker.configure(dc);
+            final Configuration config = createRootConfig(moduleConfig);
+            checker.configure(config);
         }
         checker.addListener(getBriefUtLogger());
         return checker;
@@ -229,14 +239,14 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      *     based on the given {@link Configuration} instance.
      */
     protected static DefaultConfiguration createTreeWalkerConfig(Configuration config) {
-        final DefaultConfiguration dc =
+        final DefaultConfiguration rootConfig =
                 new DefaultConfiguration(ROOT_MODULE_NAME);
         final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
         // make sure that the tests always run with this charset
-        dc.addProperty("charset", StandardCharsets.UTF_8.name());
-        dc.addChild(twConf);
+        rootConfig.addProperty("charset", StandardCharsets.UTF_8.name());
+        rootConfig.addChild(twConf);
         twConf.addChild(config);
-        return dc;
+        return rootConfig;
     }
 
     /**
@@ -246,9 +256,9 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @return {@link DefaultConfiguration} for the given {@link Configuration} instance.
      */
     protected static DefaultConfiguration createRootConfig(Configuration config) {
-        final DefaultConfiguration dc = new DefaultConfiguration(ROOT_MODULE_NAME);
-        dc.addChild(config);
-        return dc;
+        final DefaultConfiguration rootConfig = new DefaultConfiguration(ROOT_MODULE_NAME);
+        rootConfig.addChild(config);
+        return rootConfig;
     }
 
     /**
