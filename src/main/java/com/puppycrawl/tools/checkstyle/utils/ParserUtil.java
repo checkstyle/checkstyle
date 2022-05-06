@@ -84,22 +84,26 @@ public final class ParserUtil {
         final DetailAstImpl blockComment = new DetailAstImpl();
         blockComment.initialize(TokenTypes.BLOCK_COMMENT_BEGIN, BLOCK_MULTIPLE_COMMENT_BEGIN);
 
-        blockComment.setColumnNo(token.getCharPositionInLine());
-        blockComment.setLineNo(token.getLine());
+        final int tokenCharPositionInLine = token.getCharPositionInLine();
+        final int tokenLine = token.getLine();
+        final String tokenText = token.getText();
+
+        blockComment.setColumnNo(tokenCharPositionInLine);
+        blockComment.setLineNo(tokenLine);
 
         final DetailAstImpl blockCommentContent = new DetailAstImpl();
         blockCommentContent.setType(TokenTypes.COMMENT_CONTENT);
 
         // Add length of '/*'
-        blockCommentContent.setColumnNo(token.getCharPositionInLine() + 2);
-        blockCommentContent.setLineNo(token.getLine());
-        blockCommentContent.setText(token.getText());
+        blockCommentContent.setColumnNo(tokenCharPositionInLine + 2);
+        blockCommentContent.setLineNo(tokenLine);
+        blockCommentContent.setText(tokenText);
 
         final DetailAstImpl blockCommentClose = new DetailAstImpl();
         blockCommentClose.initialize(TokenTypes.BLOCK_COMMENT_END, BLOCK_MULTIPLE_COMMENT_END);
 
         final Map.Entry<Integer, Integer> linesColumns = countLinesColumns(
-            token.getText(), token.getLine(), token.getCharPositionInLine() + 1);
+                tokenText, tokenLine, tokenCharPositionInLine + 1);
         blockCommentClose.setLineNo(linesColumns.getKey());
         blockCommentClose.setColumnNo(linesColumns.getValue());
 

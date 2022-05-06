@@ -96,9 +96,10 @@ public final class MetadataGeneratorUtil {
                 validFiles.addAll(
                         files.map(Path::toFile)
                         .filter(file -> {
-                            return file.getName().endsWith("SuppressWarningsHolder.java")
-                                    || file.getName().endsWith("Check.java")
-                                    || file.getName().endsWith("Filter.java");
+                            final String fileName = file.getName();
+                            return fileName.endsWith("SuppressWarningsHolder.java")
+                                    || fileName.endsWith("Check.java")
+                                    || fileName.endsWith("Filter.java");
                         })
                         .collect(Collectors.toList()));
             }

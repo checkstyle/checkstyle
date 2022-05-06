@@ -151,8 +151,9 @@ public class AvoidStaticImportCheck
             ast.getFirstChild().getNextSibling();
         final FullIdent name = FullIdent.createFullIdent(startingDot);
 
-        if (!isExempt(name.getText())) {
-            log(startingDot, MSG_KEY, name.getText());
+        final String nameText = name.getText();
+        if (!isExempt(nameText)) {
+            log(startingDot, MSG_KEY, nameText);
         }
     }
 

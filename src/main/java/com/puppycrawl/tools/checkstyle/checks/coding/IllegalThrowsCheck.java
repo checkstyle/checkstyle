@@ -209,8 +209,9 @@ public final class IllegalThrowsCheck extends AbstractCheck {
             DetailAST token = detailAST.getFirstChild();
             while (token != null) {
                 final FullIdent ident = FullIdent.createFullIdent(token);
-                if (illegalClassNames.contains(ident.getText())) {
-                    log(token, MSG_KEY, ident.getText());
+                final String identText = ident.getText();
+                if (illegalClassNames.contains(identText)) {
+                    log(token, MSG_KEY, identText);
                 }
                 token = token.getNextSibling();
             }
