@@ -19,7 +19,6 @@
 
 package org.checkstyle.base;
 
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
 public abstract class AbstractCheckstyleModuleTestSupport extends AbstractItModuleTestSupport {
@@ -42,11 +41,6 @@ public abstract class AbstractCheckstyleModuleTestSupport extends AbstractItModu
         }
 
         return moduleCreationOption;
-    }
-
-    @Override
-    protected DefaultConfiguration createModuleConfig(Class<?> clazz) {
-        return new DefaultConfiguration(clazz.getName());
     }
 
 }

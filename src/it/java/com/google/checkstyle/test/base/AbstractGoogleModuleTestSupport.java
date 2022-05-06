@@ -20,14 +20,11 @@
 package com.google.checkstyle.test.base;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 import org.checkstyle.base.AbstractItModuleTestSupport;
 
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -76,11 +73,6 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
         return moduleCreationOption;
     }
 
-    @Override
-    protected DefaultConfiguration createModuleConfig(Class<?> clazz) {
-        return new DefaultConfiguration(clazz.getName());
-    }
-
     /**
      * Returns {@link Configuration} instance for the given module name.
      * This implementation uses {@link #getModuleConfig(String, String)} method inside.
@@ -102,54 +94,7 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
      * @throws IllegalStateException if there is a problem retrieving the module or config.
      */
     protected static Configuration getModuleConfig(String moduleName, String moduleId) {
-        final Configuration result;
-        final List<Configuration> configs = getModuleConfigs(moduleName);
-        if (configs.size() == 1) {
-            result = configs.get(0);
-        }
-        else if (configs.isEmpty()) {
-            throw new IllegalStateException("no instances of the Module was found: " + moduleName);
-        }
-        else if (moduleId == null) {
-            throw new IllegalStateException("multiple instances of the same Module are detected");
-        }
-        else {
-            result = configs.stream().filter(conf -> {
-                try {
-                    return conf.getProperty("id").equals(moduleId);
-                }
-                catch (CheckstyleException ex) {
-                    throw new IllegalStateException("problem to get ID attribute from " + conf, ex);
-                }
-            })
-            .findFirst()
-            .orElseThrow(() -> new IllegalStateException("problem with module config"));
-        }
-
-        return result;
-    }
-
-    /**
-     * Returns a list of all {@link Configuration} instances for the given module name.
-     *
-     * @param moduleName module name.
-     * @return {@link Configuration} instance for the given module name.
-     */
-    protected static List<Configuration> getModuleConfigs(String moduleName) {
-        final List<Configuration> result = new ArrayList<>();
-        for (Configuration currentConfig : CONFIGURATION.getChildren()) {
-            if ("TreeWalker".equals(currentConfig.getName())) {
-                for (Configuration moduleConfig : currentConfig.getChildren()) {
-                    if (moduleName.equals(moduleConfig.getName())) {
-                        result.add(moduleConfig);
-                    }
-                }
-            }
-            else if (moduleName.equals(currentConfig.getName())) {
-                result.add(currentConfig);
-            }
-        }
-        return result;
+        return getModuleConfig(CONFIGURATION, moduleName, moduleId);
     }
 
 }
