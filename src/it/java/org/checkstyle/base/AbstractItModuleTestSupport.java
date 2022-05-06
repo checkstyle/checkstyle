@@ -130,19 +130,29 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
             throw new IllegalStateException("multiple instances of the same Module are detected");
         }
         else {
-            result = configs.stream().filter(conf -> {
-                try {
-                    return conf.getProperty("id").equals(moduleId);
-                }
-                catch (CheckstyleException ex) {
-                    throw new IllegalStateException("problem to get ID attribute from " + conf, ex);
-                }
-            })
+            result = configs.stream().filter(conf -> isSameModuleId(conf, moduleId))
             .findFirst()
             .orElseThrow(() -> new IllegalStateException("problem with module config"));
         }
 
         return result;
+    }
+
+    /**
+     * Verifies if the configuration's ID matches the expected {@code moduleId}.
+     *
+     * @param conf The config to examine.
+     * @param moduleId The module ID to match against.
+     * @return {@code true} if it matches.
+     * @throws IllegalStateException If there is an issue with finding the ID.
+     */
+    private static boolean isSameModuleId(Configuration conf, String moduleId) {
+        try {
+            return conf.getProperty("id").equals(moduleId);
+        }
+        catch (CheckstyleException ex) {
+            throw new IllegalStateException("problem to get ID attribute from " + conf, ex);
+        }
     }
 
     /**
