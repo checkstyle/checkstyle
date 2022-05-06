@@ -286,12 +286,6 @@ public class WriteTagCheck
         if (cmt != null) {
             checkTag(lineNo, cmt.getText());
         }
-        else if (tag != null) {
-            log(lineNo, MSG_MISSING_TAG, tag);
-        }
-        else if (tagFormat != null) {
-            log(lineNo, MSG_TAG_FORMAT, tagFormat);
-        }
 
     }
 
