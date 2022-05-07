@@ -1355,14 +1355,18 @@ package com.example.annotations.packageannotation; //ok
       </subsection>
 
       <subsection name="Examples" id="SuppressWarningsHolder_Examples">
-        <p>To prevent <code>FooCheck</code> violations from being reported write:</p>
-        <source>
-@SuppressWarnings("foo") interface I { }
-@SuppressWarnings("foo") enum E { }
-@SuppressWarnings("foo") InputSuppressWarningsFilter() { }
-        </source>
         <p>Some real check examples:</p>
         <p>This will prevent from invocation of the MemberNameCheck:</p>
+        <source>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+&lt;module name=&quot;MemberName&quot;/&gt;
+&lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>To configure filter to suppress audit events for annotations add:</p>
+        <source>
+&lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+        </source>
         <source>
 @SuppressWarnings({"membername"})
 private int J;
@@ -1371,6 +1375,16 @@ private int J;
            processing these annotations.
            For example this will prevent ConstantNameCheck:
         </p>
+        <source>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+&lt;module name=&quot;ConstantName&quot;/&gt;
+&lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>To configure filter to suppress audit events for annotations add:</p>
+        <source>
+&lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+        </source>
         <source>
 @SuppressWarnings("checkstyle:constantname")
 private static final int m = 0;
@@ -1385,6 +1399,16 @@ private static final int m = 0;
              the <code>aliasList</code>:
         </p>
         <source>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+&lt;module name=&quot;ParameterNumber&quot;/&gt;
+&lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>To configure filter to suppress audit events for annotations add:</p>
+        <source>
+&lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+        </source>
+        <source>
 @SuppressWarnings("paramnum")
 public void needsLotsOfParameters(@SuppressWarnings("unused") int a,
   int b, int c, int d, int e, int f, int g, int h) {
@@ -1397,9 +1421,19 @@ public void needsLotsOfParameters(@SuppressWarnings("unused") int a,
           <code>"all"</code>:
         </p>
         <source>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+&lt;module name=&quot;MemberName&quot;/&gt;
+&lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
+&lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>To configure filter to suppress audit events for annotations add:</p>
+        <source>
+&lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+        </source>
+        <source>
 @SuppressWarnings("all")
-public void someFunctionWithInvalidStyle() {
-  //...
+private int [] ARRAY;
 }
         </source>
 
