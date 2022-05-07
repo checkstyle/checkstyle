@@ -64,6 +64,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * This will prevent from invocation of the MemberNameCheck:
  * </p>
  * <pre>
+ * &lt;module name=&quot;TreeWalker&quot;&gt;
+ *   &lt;module name=&quot;MemberName&quot;/&gt;
+ * &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure filter to suppress audit events for annotations add:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+ * </pre>
+ * <pre>
  * &#64;SuppressWarnings({"membername"})
  * private int J;
  * </pre>
@@ -71,6 +83,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * You can also use a {@code checkstyle} prefix to prevent compiler from
  * processing these annotations. For example this will prevent ConstantNameCheck:
  * </p>
+ * <pre>
+ * &lt;module name=&quot;TreeWalker&quot;&gt;
+ *   &lt;module name=&quot;ConstantName&quot;/&gt;
+ * &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure filter to suppress audit events for annotations add:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+ * </pre>
  * <pre>
  * &#64;SuppressWarnings("checkstyle:constantname")
  * private static final int m = 0;
@@ -85,6 +109,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * code will work if there was provided a {@code ParameterNumberCheck=paramnum} in
  * the {@code aliasList}:
  * </p>
+ * <pre>
+ * &lt;module name=&quot;TreeWalker&quot;&gt;
+ *   &lt;module name=&quot;ParameterNumber&quot;/&gt;
+ * &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure filter to suppress audit events for annotations add:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+ * </pre>
  * <pre>
  * &#64;SuppressWarnings("paramnum")
  * public void needsLotsOfParameters(@SuppressWarnings("unused") int a,
