@@ -387,16 +387,14 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
         final Set<DetailNode> visited = new HashSet<>();
         final StringBuilder result = new StringBuilder(1024);
         while (!stack.isEmpty()) {
-            detailNode = stack.getFirst();
-            stack.removeFirst();
+            detailNode = stack.removeFirst();
 
-            if (!visited.contains(detailNode)) {
+            if (visited.add(detailNode)) {
                 final String childText = detailNode.getText();
                 if (detailNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
                         && !TOKEN_TEXT_PATTERN.matcher(childText).matches()) {
-                    result.insert(0, detailNode.getText());
+                    result.insert(0, childText);
                 }
-                visited.add(detailNode);
             }
 
             for (DetailNode child : detailNode.getChildren()) {
