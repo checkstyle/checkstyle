@@ -1364,6 +1364,16 @@ package com.example.annotations.packageannotation; //ok
         <p>Some real check examples:</p>
         <p>This will prevent from invocation of the MemberNameCheck:</p>
         <source>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+  &lt;module name=&quot;MemberName&quot;/&gt;
+&lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>To configure filter to suppress audit events for annotations add:</p>
+        <source>
+&lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+        </source>
+        <source>
 @SuppressWarnings({"membername"})
 private int J;
         </source>
@@ -1371,6 +1381,16 @@ private int J;
            processing these annotations.
            For example this will prevent ConstantNameCheck:
         </p>
+        <source>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+  &lt;module name=&quot;ConstantName&quot;/&gt;
+&lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>To configure filter to suppress audit events for annotations add:</p>
+        <source>
+&lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+        </source>
         <source>
 @SuppressWarnings("checkstyle:constantname")
 private static final int m = 0;
@@ -1384,6 +1404,16 @@ private static final int m = 0;
              code will work if there was provided a <code>ParameterNumberCheck=paramnum</code> in
              the <code>aliasList</code>:
         </p>
+        <source>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+  &lt;module name=&quot;ParameterNumber&quot;/&gt;
+&lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>To configure filter to suppress audit events for annotations add:</p>
+        <source>
+&lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+        </source>
         <source>
 @SuppressWarnings("paramnum")
 public void needsLotsOfParameters(@SuppressWarnings("unused") int a,
