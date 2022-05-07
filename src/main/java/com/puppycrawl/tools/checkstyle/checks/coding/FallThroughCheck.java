@@ -383,16 +383,12 @@ public class FallThroughCheck extends AbstractCheck {
      * @param useBreak should we consider break as terminator
      * @param useContinue should we consider continue as terminator
      * @return true if try/catch/finally block is terminated
-     * @noinspection SimplifiableIfStatement
      */
     private boolean checkTry(final DetailAST ast, boolean useBreak,
                              boolean useContinue) {
         final DetailAST finalStmt = ast.getLastChild();
-        boolean isTerminated = false;
-        if (finalStmt.getType() == TokenTypes.LITERAL_FINALLY) {
-            isTerminated = isTerminated(finalStmt.findFirstToken(TokenTypes.SLIST),
-                                useBreak, useContinue);
-        }
+        boolean isTerminated = finalStmt.getType() == TokenTypes.LITERAL_FINALLY
+                && isTerminated(finalStmt.findFirstToken(TokenTypes.SLIST), useBreak, useContinue);
 
         if (!isTerminated) {
             DetailAST firstChild = ast.getFirstChild();

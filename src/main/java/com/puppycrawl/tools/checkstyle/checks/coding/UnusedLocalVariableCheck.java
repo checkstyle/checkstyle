@@ -363,9 +363,18 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param variablesStack stack of all the relevant variables in the scope
      */
     private static void visitIdentToken(DetailAST identAst, Deque<VariableDesc> variablesStack) {
-        final DetailAST parentAst = identAst.getParent();
-        if (!TokenUtil.isOfType(parentAst, UNACCEPTABLE_PARENT_OF_IDENT)
-                && shouldCheckIdentWithMethodRefParent(identAst)) {
+        final DetailAST parent = identAst.getParent();
+        final boolean isMethodReferenceMethodName = parent.getType() == TokenTypes.METHOD_REF
+                && parent.getFirstChild() != identAst;
+        final boolean isConstructorReference = parent.getType() == TokenTypes.METHOD_REF
+                && parent.getLastChild().getType() == TokenTypes.LITERAL_NEW;
+        final boolean isInitializationType = parent.getType() == TokenTypes.LITERAL_NEW
+                && parent.getParent().getParent().getType() == TokenTypes.ASSIGN;
+
+        if (!isMethodReferenceMethodName
+                && !isConstructorReference
+                && !isInitializationType
+                && !TokenUtil.isOfType(parent, UNACCEPTABLE_PARENT_OF_IDENT)) {
             checkIdentifierAst(identAst, variablesStack);
         }
     }
@@ -729,31 +738,12 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Whether an ident with parent node of type {@link TokenTypes#METHOD_REF}
-     * should be checked or not.
-     *
-     * @param identAst identAst
-     * @return true if an ident with parent node of type {@link TokenTypes#METHOD_REF}
-     *         should be checked or if the parent type is not {@link TokenTypes#METHOD_REF}
-     * @noinspection SimplifiableIfStatement
-     */
-    public static boolean shouldCheckIdentWithMethodRefParent(DetailAST identAst) {
-        final DetailAST parent = identAst.getParent();
-        boolean result = true;
-        if (parent.getType() == TokenTypes.METHOD_REF) {
-            result = parent.getFirstChild() == identAst
-                    && parent.getLastChild().getType() != TokenTypes.LITERAL_NEW;
-        }
-        return result;
-    }
-
-    /**
      * Whether to check identifier token nested under dotAst.
      *
      * @param dotAst dotAst
      * @return true if ident nested under dotAst should be checked
      */
-    public static boolean shouldCheckIdentTokenNestedUnderDot(DetailAST dotAst) {
+    private static boolean shouldCheckIdentTokenNestedUnderDot(DetailAST dotAst) {
 
         return TokenUtil.findFirstTokenByPredicate(dotAst,
                         childAst -> {
