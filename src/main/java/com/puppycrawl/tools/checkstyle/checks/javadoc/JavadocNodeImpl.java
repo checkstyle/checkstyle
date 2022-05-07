@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
@@ -94,11 +95,9 @@ public class JavadocNodeImpl implements DetailNode {
 
     @Override
     public DetailNode[] getChildren() {
-        DetailNode[] nodeChildren = EMPTY_DETAIL_NODE_ARRAY;
-        if (children != null) {
-            nodeChildren = Arrays.copyOf(children, children.length);
-        }
-        return nodeChildren;
+        return Optional.ofNullable(children)
+                .map(array -> Arrays.copyOf(array, array.length))
+                .orElse(EMPTY_DETAIL_NODE_ARRAY);
     }
 
     @Override
