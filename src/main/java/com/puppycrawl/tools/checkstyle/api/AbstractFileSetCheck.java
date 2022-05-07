@@ -79,15 +79,15 @@ public abstract class AbstractFileSetCheck
     @Override
     public final SortedSet<Violation> process(File file, FileText fileText)
             throws CheckstyleException {
-        final SortedSet<Violation> violations = context.get().violations;
-        context.get().fileContents = new FileContents(fileText);
-        violations.clear();
+        final FileContext fileContext = context.get();
+        fileContext.fileContents = new FileContents(fileText);
+        fileContext.violations.clear();
         // Process only what interested in
         if (CommonUtil.matchesFileExtension(file, fileExtensions)) {
             processFiltered(file, fileText);
         }
-        final SortedSet<Violation> result = new TreeSet<>(violations);
-        violations.clear();
+        final SortedSet<Violation> result = new TreeSet<>(fileContext.violations);
+        fileContext.violations.clear();
         return result;
     }
 
@@ -215,9 +215,10 @@ public abstract class AbstractFileSetCheck
     @Override
     public final void log(int lineNo, int colNo, String key,
             Object... args) {
+        final FileContext fileContext = context.get();
         final int col = 1 + CommonUtil.lengthExpandedTabs(
-                context.get().fileContents.getLine(lineNo - 1), colNo, tabWidth);
-        context.get().violations.add(
+                fileContext.fileContents.getLine(lineNo - 1), colNo, tabWidth);
+        fileContext.violations.add(
                 new Violation(lineNo,
                         col,
                         getMessageBundle(),
@@ -237,8 +238,9 @@ public abstract class AbstractFileSetCheck
      * @param fileName the audited file
      */
     protected final void fireErrors(String fileName) {
-        final SortedSet<Violation> errors = new TreeSet<>(context.get().violations);
-        context.get().violations.clear();
+        final FileContext fileContext = context.get();
+        final SortedSet<Violation> errors = new TreeSet<>(fileContext.violations);
+        fileContext.violations.clear();
         messageDispatcher.fireErrors(fileName, errors);
     }
 

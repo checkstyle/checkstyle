@@ -234,12 +234,12 @@ public class SuppressWarningsHolder
         for (Entry entry : entries) {
             final boolean afterStart = isSuppressedAfterEventStart(line, column, entry);
             final boolean beforeEnd = isSuppressedBeforeEventEnd(line, column, entry);
+            final String checkName = entry.getCheckName();
             final boolean nameMatches =
-                ALL_WARNING_MATCHING_ID.equals(entry.getCheckName())
-                    || entry.getCheckName().equalsIgnoreCase(checkAlias);
-            final boolean idMatches = event.getModuleId() != null
-                && event.getModuleId().equals(entry.getCheckName());
-            if (afterStart && beforeEnd && (nameMatches || idMatches)) {
+                ALL_WARNING_MATCHING_ID.equals(checkName)
+                    || checkName.equalsIgnoreCase(checkAlias);
+            if (afterStart && beforeEnd
+                    && (nameMatches || checkName.equals(event.getModuleId()))) {
                 suppressed = true;
                 break;
             }
