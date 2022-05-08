@@ -206,7 +206,7 @@
     <file name="TreeTable" regex="true">
       <allow class="java.util.stream.Collectors"/>
       <allow class="com.puppycrawl.tools.checkstyle.utils.XpathUtil"/>
-      <allow class="com.puppycrawl.tools.checkstyle.xpath.AbstractNode"/>
+      <allow class="com.puppycrawl.tools.checkstyle.xpath.ElementNode"/>
       <allow class="com.puppycrawl.tools.checkstyle.xpath.RootNode"/>
       <allow class="net.sf.saxon.trans.XPathException"/>
     </file>
@@ -239,6 +239,12 @@
     <allow class="com.puppycrawl.tools.checkstyle.xpath.AbstractNode"/>
     <allow pkg="com.puppycrawl.tools.checkstyle.xpath.iterators" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent" local-only="true"/>
+
+    <file name="Abstract.*Node" regex="true">
+      <!-- These are more saxon utilities, and should not have anything checkstyle specific -->
+      <allow pkg="com.puppycrawl.tools.checkstyle.xpath.iterators"/>
+      <disallow pkg="com\.puppycrawl.*" regex="true"/>
+    </file>
 
     <subpackage name="iterators">
       <!-- These are more saxon utilities, and should not have anything checkstyle specific -->
