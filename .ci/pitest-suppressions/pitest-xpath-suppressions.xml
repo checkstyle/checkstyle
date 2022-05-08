@@ -10,24 +10,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>ElementNode.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.ElementNode</mutatedClass>
-    <mutatedMethod>getAttributeNode</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable attributeNode</description>
-    <lineContent>attributeNode = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ElementNode.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.ElementNode</mutatedClass>
-    <mutatedMethod>iterateAxis</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_8</mutator>
-    <description>RemoveSwitch 8 mutation</description>
-    <lineContent>switch (axisNumber) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>FollowingIterator.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.iterators.FollowingIterator</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
@@ -91,39 +73,21 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>RootNode.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.RootNode</mutatedClass>
-    <mutatedMethod>iterateAxis</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
-    <description>RemoveSwitch 1 mutation</description>
-    <lineContent>switch (axisNumber) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RootNode.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.RootNode</mutatedClass>
-    <mutatedMethod>iterateAxis</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_2</mutator>
-    <description>RemoveSwitch 2 mutation</description>
-    <lineContent>switch (axisNumber) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RootNode.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.RootNode</mutatedClass>
-    <mutatedMethod>iterateAxis</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_5</mutator>
-    <description>RemoveSwitch 5 mutation</description>
-    <lineContent>switch (axisNumber) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RootNode.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.RootNode</mutatedClass>
+    <sourceFile>AbstractElementNode.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractElementNode</mutatedClass>
     <mutatedMethod>iterateAxis</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_8</mutator>
     <description>RemoveSwitch 8 mutation</description>
     <lineContent>switch (axisNumber) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractElementNode.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractElementNode</mutatedClass>
+    <mutatedMethod>getPrecedingSiblings</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Collections::unmodifiableList with argument</description>
+    <lineContent>return Collections.unmodifiableList(siblings.subList(0, indexAmongSiblings));</lineContent>
   </mutation>
 
   <mutation unstable="false">
