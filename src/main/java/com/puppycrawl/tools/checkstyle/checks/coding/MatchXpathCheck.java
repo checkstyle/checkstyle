@@ -290,7 +290,7 @@ public class MatchXpathCheck extends AbstractCheck {
                     xpathExpression.createDynamicContext(rootNode);
             final List<Item> matchingItems = xpathExpression.evaluate(xpathDynamicContext);
             return matchingItems.stream()
-                    .map(item -> ((AbstractNode) item).getUnderlyingNode())
+                    .map(item -> (DetailAST) ((AbstractNode) item).getUnderlyingNode())
                     .collect(Collectors.toList());
         }
         catch (XPathException ex) {
