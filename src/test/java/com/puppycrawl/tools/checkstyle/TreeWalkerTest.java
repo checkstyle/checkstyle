@@ -501,8 +501,6 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalkerConfig.addChild(createModuleConfig(MemberNameCheck.class));
         treeWalkerConfig.addChild(filterConfig);
 
-        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-
         final String[] expected = {
             "9:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "P",
                     "^[a-z][a-zA-Z0-9]*$"),
@@ -510,7 +508,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                     "^[a-z][a-zA-Z0-9]*$"),
         };
 
-        verify(checkerConfig,
+        verify(treeWalkerConfig,
                 getPath("InputTreeWalkerSuppressionCommentFilter.java"),
                 expected);
     }
@@ -521,13 +519,11 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalkerConfig.addChild(createModuleConfig(WhitespaceAroundCheck.class));
         treeWalkerConfig.addChild(createModuleConfig(WhitespaceAfterCheck.class));
 
-        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-
         final String[] expected = {
             "6:9: " + getCheckMessage(WhitespaceAfterCheck.class, "ws.notFollowed", "if"),
         };
 
-        verify(checkerConfig,
+        verify(treeWalkerConfig,
                 getPath("InputTreeWalkerMultiCheckOrder.java"),
                 expected);
     }
@@ -620,14 +616,12 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalkerConfig.addChild(filterConfig);
         treeWalkerConfig.addChild(checkConfig);
 
-        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-
         // test is only valid when relative paths are given
         final String filePath = "src/test/resources/" + getPackageLocation()
                 + "/InputTreeWalkerSuppressionXpathFilterAbsolute.java";
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkerConfig, filePath, expected);
+        verify(treeWalkerConfig, filePath, expected);
     }
 
     @Test
