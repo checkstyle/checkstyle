@@ -50,19 +50,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To prevent {@code FooCheck} violations from being reported write:
- * </p>
- * <pre>
- * &#64;SuppressWarnings("foo") interface I { }
- * &#64;SuppressWarnings("foo") enum E { }
- * &#64;SuppressWarnings("foo") InputSuppressWarningsFilter() { }
- * </pre>
- * <p>
  * Some real check examples:
  * </p>
  * <p>
  * This will prevent from invocation of the MemberNameCheck:
  * </p>
+ * <pre>
+ * &lt;module name=&quot;TreeWalker&quot;&gt;
+ *   &lt;module name=&quot;MemberName&quot;/&gt;
+ *   &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+ * &lt;/module&gt;
+ * &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+ * </pre>
  * <pre>
  * &#64;SuppressWarnings({"membername"})
  * private int J;
@@ -71,6 +70,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * You can also use a {@code checkstyle} prefix to prevent compiler from
  * processing these annotations. For example this will prevent ConstantNameCheck:
  * </p>
+ * <pre>
+ * &lt;module name=&quot;TreeWalker&quot;&gt;
+ *   &lt;module name=&quot;ConstantName&quot;/&gt;
+ *   &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+ * &lt;/module&gt;
+ * &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+ * </pre>
  * <pre>
  * &#64;SuppressWarnings("checkstyle:constantname")
  * private static final int m = 0;
@@ -86,6 +92,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * the {@code aliasList}:
  * </p>
  * <pre>
+ * &lt;module name=&quot;TreeWalker&quot;&gt;
+ *   &lt;module name=&quot;ParameterNumber&quot;/&gt;
+ *   &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+ * &lt;/module&gt;
+ * &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+ * </pre>
+ * <pre>
  * &#64;SuppressWarnings("paramnum")
  * public void needsLotsOfParameters(@SuppressWarnings("unused") int a,
  *   int b, int c, int d, int e, int f, int g, int h) {
@@ -96,9 +109,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * It is possible to suppress all the checkstyle warnings with the argument {@code "all"}:
  * </p>
  * <pre>
+ * &lt;module name=&quot;TreeWalker&quot;&gt;
+ *   &lt;module name=&quot;MemberName&quot;/&gt;
+ *   &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
+ *   &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+ * &lt;/module&gt;
+ * &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+ * </pre>
+ * <pre>
  * &#64;SuppressWarnings("all")
- * public void someFunctionWithInvalidStyle() {
- *   //...
+ * private int [] ARRAY;
  * }
  * </pre>
  * <p>
