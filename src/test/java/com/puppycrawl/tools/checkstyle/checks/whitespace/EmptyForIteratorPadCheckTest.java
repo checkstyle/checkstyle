@@ -98,7 +98,7 @@ public class EmptyForIteratorPadCheckTest
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(createChecker(checkConfig),
+            verify(checkConfig,
                     getPath("InputEmptyForIteratorPad2.java"), expected);
             assertWithMessage("exception expected").fail();
         }
