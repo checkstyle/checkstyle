@@ -20,62 +20,11 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 /**
- * DetailNode is used to construct tree during parsing Javadoc comments.
- * Contains array of children, parent node and other useful fields.
+ * Base interface used for all ASTs of Checkstyle.
  *
- * @see com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl
- * @see com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
+ * @noinspection MarkerInterface
+ * @noinspectionreason MarkerInterface - This interface is currently just a starting point.
  */
-public interface DetailNode extends AbstractSyntaxTree {
-
-    /**
-     * Node type.
-     *
-     * @return node type.
-     * @see JavadocTokenTypes
-     */
-    int getType();
-
-    /**
-     * Node text.
-     *
-     * @return node text
-     */
-    String getText();
-
-    /**
-     * Node line number.
-     *
-     * @return node line number
-     */
-    int getLineNumber();
-
-    /**
-     * Node column number.
-     *
-     * @return node column number.
-     */
-    int getColumnNumber();
-
-    /**
-     * Array of children.
-     *
-     * @return array of children
-     */
-    DetailNode[] getChildren();
-
-    /**
-     * Parent node.
-     *
-     * @return parent node.
-     */
-    DetailNode getParent();
-
-    /**
-     * Node index among parent's children.
-     *
-     * @return index
-     */
-    int getIndex();
-
+public interface AbstractSyntaxTree {
+    // no methods yet
 }
