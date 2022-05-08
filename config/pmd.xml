@@ -117,12 +117,17 @@
   </rule>
   <rule ref="category/java/codestyle.xml/EmptyMethodInAbstractClassShouldBeAbstract">
     <properties>
-      <!-- Can not change the API. -->
+      <!--
+       Can not change the API.
+       AbstractRootNode is what a root node is.
+      -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='AbstractFileSetCheck'
         or @SimpleName='AbstractCheck' or @SimpleName='AbstractJavadocCheck'
         or @SimpleName='AbstractNode'
-        or @SimpleName='AbstractViolationReporter']"/>
+        or @SimpleName='AbstractViolationReporter']
+        | //ClassOrInterfaceDeclaration[@SimpleName='AbstractRootNode']
+          //MethodDeclaration[@Name='getParent' or @Name='getDepth']"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/UseUnderscoresInNumericLiterals">
@@ -268,7 +273,8 @@
            The methods visitToken/leaveToken are a big SWITCH block with a number of IF blocks.
              If we split the block to several methods it will damage the readability.
            XMLLogger.encode, SarifLogger.escape, FallThroughCheck.isTerminated,
-             ElementNode.iterateAxis, NoWhitespaceAfterCheck.getArrayDeclaratorPreviousElement
+             AbstractElementNode.iterateAxis,
+             NoWhitespaceAfterCheck.getArrayDeclaratorPreviousElement
              are also huge switches, they had to be monolithic.
            SuppressFilterElement is a single constructor and can't be split easily -->
       <property name="violationSuppressXPath"
@@ -288,7 +294,8 @@
         or @SimpleName='NPathComplexityCheck']//MethodDeclaration[@Name='leaveToken']
       | //ClassOrInterfaceDeclaration[@SimpleName='NoWhitespaceAfterCheck']
              //MethodDeclaration[@Name='getArrayDeclaratorPreviousElement']
-      | //ClassOrInterfaceDeclaration[@SimpleName='ElementNode' or @SimpleName='RootNode']
+      | //ClassOrInterfaceDeclaration[@SimpleName='AbstractElementNode'
+        or @SimpleName='AbstractRootNode']
              //MethodDeclaration[@Name='iterateAxis']
       | //ClassOrInterfaceDeclaration[@SimpleName='SuppressFilterElement']
              //ConstructorDeclaration
