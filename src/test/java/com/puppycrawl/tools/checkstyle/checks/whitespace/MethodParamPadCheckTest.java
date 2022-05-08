@@ -191,7 +191,7 @@ public class MethodParamPadCheckTest
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(createChecker(checkConfig), getPath("InputMethodParamPad4.java"), expected);
+            verify(checkConfig, getPath("InputMethodParamPad4.java"), expected);
             assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {

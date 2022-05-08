@@ -1334,11 +1334,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("throwsIndent", "4");
         final String fileName = getPath("InputIndentationChainedMethodCalls.java");
         final String[] expected = {
-            "32:5: " + getCheckMessage(IndentationCheck.class,
-                MSG_CHILD_ERROR, "method call", 4, 8),
-            "37:5: " + getCheckMessage(IndentationCheck.class, MSG_ERROR, ".", 4, 8),
-            "38:5: " + getCheckMessage(IndentationCheck.class, MSG_ERROR, ".", 4, 8),
-            "41:5: " + getCheckMessage(IndentationCheck.class, MSG_ERROR, "new", 4, 8),
+            "32:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "37:5: " + getCheckMessage(MSG_ERROR, ".", 4, 8),
+            "38:5: " + getCheckMessage(MSG_ERROR, ".", 4, 8),
+            "41:5: " + getCheckMessage(MSG_ERROR, "new", 4, 8),
         };
         verifyWarns(checkConfig, fileName, expected);
     }

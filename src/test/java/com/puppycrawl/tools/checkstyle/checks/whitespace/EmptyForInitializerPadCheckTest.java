@@ -122,7 +122,7 @@ public class EmptyForInitializerPadCheckTest
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(createChecker(checkConfig),
+            verifyWithInlineConfigParser(
                     getPath("InputEmptyForInitializerPad2.java"), expected);
             assertWithMessage("exception expected").fail();
         }

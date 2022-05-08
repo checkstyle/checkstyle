@@ -78,7 +78,7 @@ public class FileTabCharacterCheckTest
         final String[] expected = {
             "1: " + violation.getViolation(),
         };
-        verify(createChecker(checkConfig), path, expected);
+        verify(checkConfig, path, expected);
     }
 
 }
