@@ -5773,7 +5773,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/ElementNode.java</fileName>
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter name of AttributeNode.</message>
     <lineContent>private static final AttributeNode ATTRIBUTE_NODE_UNINITIALIZED = new AttributeNode(null, null);</lineContent>
@@ -5784,7 +5784,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/ElementNode.java</fileName>
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter nodes of OfNodes.</message>
     <lineContent>getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));</lineContent>
@@ -5795,7 +5795,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/ElementNode.java</fileName>
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter nodes of OfNodes.</message>
     <lineContent>getFollowingSiblings().toArray(EMPTY_ABSTRACT_NODE_ARRAY));</lineContent>
@@ -5818,24 +5818,24 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/ElementNode.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>attributeNode = null;</lineContent>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return result;</lineContent>
     <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull AttributeNode
+      type of expression: @Initialized @Nullable AttributeNode
+      method return type: @Initialized @NonNull AttributeNode
     </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/ElementNode.java</fileName>
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
     <lineContent>if (attributeNode == ATTRIBUTE_NODE_UNINITIALIZED) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/ElementNode.java</fileName>
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
     <lineContent>return result;</lineContent>
@@ -5846,21 +5846,21 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/ElementNode.java</fileName>
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
     <specifier>toarray.nullable.elements.not.newarray</specifier>
     <message>call of toArray on collection of non-null elements yields an array of possibly-null elements; omit the argument to toArray or make it an explicit array constructor</message>
     <lineContent>getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/ElementNode.java</fileName>
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
     <specifier>toarray.nullable.elements.not.newarray</specifier>
     <message>call of toArray on collection of non-null elements yields an array of possibly-null elements; omit the argument to toArray or make it an explicit array constructor</message>
     <lineContent>getFollowingSiblings().toArray(EMPTY_ABSTRACT_NODE_ARRAY));</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/RootNode.java</fileName>
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractRootNode.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter nodes of OfNodes.</message>
     <lineContent>getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));</lineContent>
@@ -5871,7 +5871,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/RootNode.java</fileName>
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractRootNode.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
     <lineContent>return null;</lineContent>
@@ -5882,7 +5882,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/RootNode.java</fileName>
+    <fileName>checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractRootNode.java</fileName>
     <specifier>toarray.nullable.elements.not.newarray</specifier>
     <message>call of toArray on collection of non-null elements yields an array of possibly-null elements; omit the argument to toArray or make it an explicit array constructor</message>
     <lineContent>getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));</lineContent>
