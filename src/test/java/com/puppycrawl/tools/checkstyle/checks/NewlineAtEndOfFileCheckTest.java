@@ -146,7 +146,7 @@ public class NewlineAtEndOfFileCheckTest
             "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
         };
         verify(
-            createChecker(checkConfig),
+            checkConfig,
             getPath("InputNewlineAtEndOfFileEmptyFile.txt"),
             expected);
     }
@@ -158,7 +158,7 @@ public class NewlineAtEndOfFileCheckTest
         checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(
-                createChecker(checkConfig),
+                checkConfig,
                 getPath("InputNewlineAtEndOfFileNewlineAtEnd.txt"),
                 expected);
     }
@@ -170,7 +170,7 @@ public class NewlineAtEndOfFileCheckTest
         checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF_CR_CRLF.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(
-                createChecker(checkConfig),
+                checkConfig,
                 getPath("InputNewlineAtEndOfFileNewlineAtEndLf.txt"),
                 expected);
     }
