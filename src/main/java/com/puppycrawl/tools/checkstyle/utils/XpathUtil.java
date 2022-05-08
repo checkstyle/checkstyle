@@ -188,7 +188,7 @@ public final class XpathUtil {
                 JavaParser.Options.WITH_COMMENTS));
             final List<NodeInfo> matchingItems = getXpathItems(xpath, rootNode);
             return matchingItems.stream()
-                .map(item -> ((AbstractNode) item).getUnderlyingNode())
+                .map(item -> ((ElementNode) item).getUnderlyingNode())
                 .map(AstTreeStringPrinter::printBranch)
                 .collect(Collectors.joining(DELIMITER));
         }
