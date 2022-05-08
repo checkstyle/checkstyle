@@ -25,9 +25,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacter
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.Definitions;
-import com.puppycrawl.tools.checkstyle.api.Violation;
 
 public class FileTabCharacterCheckTest
     extends AbstractModuleTestSupport {
@@ -62,23 +59,6 @@ public class FileTabCharacterCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputFileTabCharacterSimple1.java"),
             expected);
-    }
-
-    @Test
-    public void testBadFile() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(FileTabCharacterCheck.class);
-        checkConfig.addProperty("eachLine", "false");
-        final String path = getPath("Claira");
-        final String exceptionMessage = " (No such file or directory)";
-        final Violation violation = new Violation(1,
-                Definitions.CHECKSTYLE_BUNDLE, "general.exception",
-                new String[] {path + exceptionMessage}, null, getClass(), null);
-
-        final String[] expected = {
-            "1: " + violation.getViolation(),
-        };
-        verify(createChecker(checkConfig), path, expected);
     }
 
 }

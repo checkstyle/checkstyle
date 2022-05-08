@@ -27,7 +27,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCh
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -185,13 +184,10 @@ public class MethodParamPadCheckTest
 
     @Test
     public void testInvalidOption() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
-        checkConfig.addProperty("option", "invalid_option");
-
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(createChecker(checkConfig), getPath("InputMethodParamPad4.java"), expected);
+            verifyWithInlineConfigParser(getPath("InputMethodParamPad4.java"), expected);
             assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException ex) {

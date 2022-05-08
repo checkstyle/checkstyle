@@ -50,8 +50,7 @@ public class JavadocPackageCheckTest
             "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
         verify(
-            createChecker(checkConfig),
-            getPath("InputJavadocPackageBadCls.java"),
+            checkConfig,
             getPath("InputJavadocPackageBadCls.java"),
             expected);
     }
@@ -64,8 +63,7 @@ public class JavadocPackageCheckTest
             "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
         verify(
-            createChecker(checkConfig),
-            getPath("InputJavadocPackageBadCls2.java"),
+            checkConfig,
             getPath("InputJavadocPackageBadCls2.java"),
             expected);
     }
@@ -91,8 +89,7 @@ public class JavadocPackageCheckTest
         final String[] expected = {
             "1: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
         };
-        verify(createChecker(checkConfig),
-            getPath("bothfiles" + File.separator + "InputJavadocPackageBothIgnored.java"),
+        verify(checkConfig,
             getPath("bothfiles" + File.separator + "InputJavadocPackageBothIgnored.java"),
             expected);
     }
@@ -103,8 +100,7 @@ public class JavadocPackageCheckTest
         final String[] expected = {
             "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
-        verify(createChecker(checkConfig),
-            getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored.java"),
+        verify(checkConfig,
             getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored.java"), expected);
     }
 
@@ -122,9 +118,7 @@ public class JavadocPackageCheckTest
     public void testAnnotation() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(createChecker(checkConfig),
-            getPath("annotation"
-                    + File.separator + "package-info.java"),
+        verify(checkConfig,
             getPath("annotation"
                     + File.separator + "package-info.java"), expected);
     }
@@ -156,7 +150,7 @@ public class JavadocPackageCheckTest
         final Configuration checkConfig = createModuleConfig(JavadocPackageCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(
-            createChecker(checkConfig),
+            checkConfig,
             getPath("InputJavadocPackageNotJava.txt"),
             expected);
     }

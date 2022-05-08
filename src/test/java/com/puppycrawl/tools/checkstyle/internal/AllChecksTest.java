@@ -41,7 +41,6 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
@@ -281,8 +280,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 moduleConfig.addProperty("file", getPath(
                         "InputAllChecksImportControl.xml"));
             }
-            final Checker checker = createChecker(moduleConfig);
-            verify(checker, inputFilePath, expected);
+            verify(moduleConfig, inputFilePath, expected);
         }
     }
 
