@@ -52,12 +52,32 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;module name=&quot;EmptyForInitializerPad&quot;/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * for(; i < j; i++, j--);   //ok
+ * for( ; i < j; i++, j--);  //violation since whitespace
+ *                           //before semicolon
+ * for(
+ *      ; i < j; i++, j--);  //ok
+ * </pre>
+ * <p>
  * To configure the check to require white space at an empty for iterator:
  * </p>
  * <pre>
  * &lt;module name=&quot;EmptyForInitializerPad&quot;&gt;
  *   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * for( ; i < j; i++, j--);   //ok
+ * for(; i < j; i++, j--);  //violation since no whitespace
+ *                           //before semicolon
+ * for(
+ *      ; i < j; i++, j--);  //ok
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
