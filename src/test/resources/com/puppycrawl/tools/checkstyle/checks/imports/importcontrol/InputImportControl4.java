@@ -6,7 +6,7 @@ path = (default).*
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol; // violation
+package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol; // violation 'Missing an import control file'
 
 import java.awt.Image;
 import javax.swing.border.*;
