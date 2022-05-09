@@ -83,7 +83,7 @@ public final class XmlMetaReader {
             allMetadataSources.addAll(thirdPartyModuleFileNames);
         }
 
-        final List<ModuleDetails> result = new ArrayList<>();
+        final List<ModuleDetails> result = new ArrayList<>(allMetadataSources.size());
         for (String fileName : allMetadataSources) {
             final ModuleType moduleType;
             if (fileName.endsWith("FileFilter.xml")) {
@@ -173,9 +173,10 @@ public final class XmlMetaReader {
      * @return list of property details object created
      */
     private static List<ModulePropertyDetails> createProperties(Element properties) {
-        final List<ModulePropertyDetails> result = new ArrayList<>();
         final NodeList propertyList = properties.getElementsByTagName("property");
-        for (int i = 0; i < propertyList.getLength(); i++) {
+        final int propertyListLength = propertyList.getLength();
+        final List<ModulePropertyDetails> result = new ArrayList<>(propertyListLength);
+        for (int i = 0; i < propertyListLength; i++) {
             final ModulePropertyDetails propertyDetails = new ModulePropertyDetails();
             final Element prop = (Element) propertyList.item(i);
             propertyDetails.setName(getAttributeValue(prop, XML_TAG_NAME));
@@ -210,8 +211,9 @@ public final class XmlMetaReader {
         List<String> result = null;
         if (!children.isEmpty()) {
             final NodeList nodeList = children.get(0).getElementsByTagName(listOption);
-            final List<String> listContent = new ArrayList<>();
-            for (int j = 0; j < nodeList.getLength(); j++) {
+            final int nodeListLength = nodeList.getLength();
+            final List<String> listContent = new ArrayList<>(nodeListLength);
+            for (int j = 0; j < nodeListLength; j++) {
                 listContent.add(getAttributeValue((Element) nodeList.item(j), attribute));
             }
             result = listContent;
