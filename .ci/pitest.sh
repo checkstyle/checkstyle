@@ -10,16 +10,6 @@ function checkPitestReport() {
   grep -irE "$SEARCH_REGEXP" target/pit-reports \
      | sed -E 's/.*\/([A-Za-z]+.java.html)/\1/' | LC_ALL=C sort > target/actual.txt
   printf "%s\n" "${ignored[@]}" | sed '/^$/d' | LC_ALL=C sort > target/ignored.txt
-  if [ -n "$2" ] ; then
-      local -n unstableMutations=$2
-      printf "%s\n" "${unstableMutations[@]}" | sed '/^$/d' | LC_ALL=C sort > target/unstable.txt
-      if grep -Fxf target/unstable.txt target/actual.txt > target/unstableMatching.txt ; then
-          echo "Following unstable mutations were encountered:"
-          cat target/unstableMatching.txt
-          grep -xvFf target/unstableMatching.txt target/actual.txt > target/tempActual.txt
-          cat target/tempActual.txt > target/actual.txt
-      fi;
-  fi;
   if [ "$(diff --unified -w target/ignored.txt target/actual.txt)" != "" ] ; then
       fail=1
       echo "Actual:" ;
@@ -207,11 +197,7 @@ pitest-coding)
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (!isVarInOperatorDeclaration &#38;&#38; operator.getType() == TokenTypes.LITERAL_IF) {</span></pre></td></tr>"
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>        while (result</span></pre></td></tr>"
   );
-  # Until https://github.com/checkstyle/checkstyle/issues/11427
-  declare -a unstableItems=(
-  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (returnedVariable) {</span></pre></td></tr>"
-  );
-  checkPitestReport ignoredItems unstableItems
+  checkPitestReport ignoredItems
   ;;
 
 # pitesttyle-gui)
