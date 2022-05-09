@@ -817,14 +817,8 @@ public class RequireThisCheck extends AbstractCheck {
         final Set<DetailAST> returnsInsideBlock = getAllTokensOfType(definitionToken,
             TokenTypes.LITERAL_RETURN, blockEndToken.getLineNo());
 
-        boolean returnedVariable = false;
-        for (DetailAST returnToken : returnsInsideBlock) {
-            returnedVariable = isAstInside(returnToken, ident);
-            if (returnedVariable) {
-                break;
-            }
-        }
-        return returnedVariable;
+        return returnsInsideBlock.stream()
+            .anyMatch(returnToken -> isAstInside(returnToken, ident));
     }
 
     /**
