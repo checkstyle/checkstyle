@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Resolves external properties from an
@@ -46,11 +46,9 @@ public final class PropertiesExpander
         if (properties == null) {
             throw new IllegalArgumentException("cannot pass null");
         }
-        values = new HashMap<>(properties.size());
-        for (Enumeration<?> e = properties.propertyNames(); e.hasMoreElements();) {
-            final String name = (String) e.nextElement();
-            values.put(name, properties.getProperty(name));
-        }
+        values = properties.stringPropertyNames()
+                .stream()
+                .collect(Collectors.toMap(Function.identity(), properties::getProperty));
     }
 
     @Override
