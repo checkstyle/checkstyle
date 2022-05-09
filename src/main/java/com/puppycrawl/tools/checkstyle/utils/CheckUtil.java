@@ -513,7 +513,7 @@ public final class CheckUtil {
      * @return set of class names and short class names.
      */
     public static Set<String> parseClassNames(String... classNames) {
-        final Set<String> illegalClassNames = new HashSet<>();
+        final Set<String> illegalClassNames = new HashSet<>(classNames.length * 2);
         for (final String name : classNames) {
             illegalClassNames.add(name);
             final int lastDot = name.lastIndexOf('.');
