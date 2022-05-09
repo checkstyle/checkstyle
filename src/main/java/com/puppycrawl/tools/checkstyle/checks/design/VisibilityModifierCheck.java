@@ -880,7 +880,7 @@ public class VisibilityModifierCheck
      * @return a list of type parameters class names.
      */
     private static List<String> getTypeArgsClassNames(DetailAST typeArgs) {
-        final List<String> typeClassNames = new ArrayList<>();
+        final List<String> typeClassNames = new ArrayList<>(typeArgs.getChildCount() / 2);
         DetailAST type = typeArgs.findFirstToken(TokenTypes.TYPE_ARGUMENT);
         DetailAST sibling;
         do {
