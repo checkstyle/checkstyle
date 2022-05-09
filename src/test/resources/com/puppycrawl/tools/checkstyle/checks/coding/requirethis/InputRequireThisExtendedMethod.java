@@ -16,4 +16,12 @@ public class InputRequireThisExtendedMethod // ok
     public class Check {
         private Logger log1 = Logger.getLogger(getClass().getName());
     }
+
+    String ELIST;
+    String method(Object a) {
+        String ELIST = "abc";
+        ELIST = this.method(new Check() {
+        });
+        return "";
+    }
 }
