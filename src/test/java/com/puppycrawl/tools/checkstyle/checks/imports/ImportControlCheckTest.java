@@ -131,8 +131,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
         checkConfig.addProperty("file", getPath("InputImportControlBroken.xml"));
         try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verify(checkConfig, getPath("InputImportControl8.java"), expected);
+            execute(checkConfig, getPath("InputImportControl8.java"));
             assertWithMessage("Test should fail if exception was not thrown").fail();
         }
         catch (CheckstyleException ex) {
@@ -283,8 +282,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("file", getResourcePath("import-control_unknown.xml"));
 
         try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verify(checkConfig, getPath("InputImportControl18.java"), expected);
+            execute(checkConfig, getPath("InputImportControl18.java"));
             assertWithMessage("Test should fail if exception was not thrown").fail();
         }
         catch (CheckstyleException ex) {
@@ -337,11 +335,10 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final String filePath = File.createTempFile("empty", ".java", temporaryFolder).getPath();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkerConfig, filePath, expected);
+        execute(checkerConfig, filePath);
         // One more time to use cache.
-        verify(checkerConfig, filePath, expected);
+        execute(checkerConfig, filePath);
 
         final String contents = Files.readString(cacheFile.toPath());
         assertWithMessage("External resource is not present in cache")
