@@ -1,5 +1,5 @@
 ^/{80}$
-^/{2} checkstyle: Checks Java source code for adherence to a set of rules.$
+^/{2} checkstyle: Checks Java source code and other text files for adherence to a set of rules.$
 ^/{2} Copyright \(C\) \d\d\d\d-\d\d\d\d the original author or authors.$
 ^/{2}$
 ^/{2} This library is free software; you can redistribute it and/or$
