@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
+// checkstyle: Check Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2022 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
@@ -172,7 +172,8 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("ignoreLines", "");
         final String[] expected = {
             "2: " + getCheckMessage(MSG_MISMATCH,
-                    "// checkstyle: Checks Java source code for adherence to a set of rules."),
+                    "// checkstyle: Check Java source code and other text files for adherence to a"
+                        + " set of rules."),
         };
         verify(checkConfig, getPath("InputHeaderjava2.header"), expected);
     }
