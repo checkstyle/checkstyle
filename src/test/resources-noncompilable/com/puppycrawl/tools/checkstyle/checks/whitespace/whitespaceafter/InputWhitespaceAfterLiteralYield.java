@@ -1,0 +1,19 @@
+/*
+WhitespaceAfter
+tokens = LITERAL_YIELD
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
+
+public class InputWhitespaceAfterLiteralYield {
+   public static void main(String[] args) {
+     int a = switch (args[0]) {
+       case "got":
+         yield (1); // OK
+       case "my":
+         yield(3); // violation ''yield' is not followed by whitespace'
+     };
+   }
+}

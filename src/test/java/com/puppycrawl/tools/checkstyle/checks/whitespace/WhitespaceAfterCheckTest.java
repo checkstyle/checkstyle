@@ -163,6 +163,16 @@ public class WhitespaceAfterCheckTest
     }
 
     @Test
+    public void testLiteralYield() throws Exception {
+        final String[] expected = {
+            "16:10: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "yield"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputWhitespaceAfterLiteralYield.java"),
+                expected);
+    }
+
+    @Test
     public void testLiteralSynchronized() throws Exception {
         final String[] expected = {
             "13:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "synchronized"),
