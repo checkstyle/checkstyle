@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-//testvdfvcheckstyle: Checks Java source code for adherence to a set of rules.
+//testvdfvcheckstyle: Checks Java source code and other text files for adherence to a set of rules.
 //testvdfv Copyright (C) 2001-2020 the original author or authors.
 //testvdfv
 // This library is free software; you can redistribute it and/or
