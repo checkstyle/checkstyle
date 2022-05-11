@@ -1847,6 +1847,36 @@
           </validations>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>dev.dimlight</groupId>
+        <artifactId>shellcheck-maven-plugin</artifactId>
+        <version>0.4.1</version>
+        <executions>
+          <execution>
+            <id>simple-check</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <sourceDirs>
+                <sourceDir>
+                  <directory>${basedir}/.ci</directory>
+                  <includes>
+                    <include>**/*.sh</include>
+                  </includes>
+                </sourceDir>
+              </sourceDirs>
+                  <!-- set to true if you want the build to fail when you have warnings -->
+              <failBuildIfWarnings>true</failBuildIfWarnings>
+              <binaryResolutionMethod>download</binaryResolutionMethod>
+                  <!-- If set to true plugin execution will be skipped (you can also use the property skip.shellcheck) -->
+              <skip>false</skip>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
