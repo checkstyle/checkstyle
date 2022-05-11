@@ -58,6 +58,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * LITERAL_FINALLY</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_RETURN">
  * LITERAL_RETURN</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_YIELD">
+ * LITERAL_YIELD</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
  * LITERAL_CATCH</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
@@ -112,6 +114,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  *      synchronized(this) { } // violation ''synchronized' is not followed by whitespace'
  *      synchronized (this) { } // ok
+ *
+ *      int a = switch (args[0]) {
+ *        case "got":
+ *          yield (1); // OK
+ *        case "my":
+ *          yield(3); // violation ''yield' is not followed by whitespace'
+ *     }
  *  }
  *  public String testOne() {
  *      return ("a" + "b"); // OK
@@ -191,6 +200,7 @@ public class WhitespaceAfterCheck
             TokenTypes.LITERAL_FOR,
             TokenTypes.LITERAL_FINALLY,
             TokenTypes.LITERAL_RETURN,
+            TokenTypes.LITERAL_YIELD,
             TokenTypes.LITERAL_CATCH,
             TokenTypes.DO_WHILE,
             TokenTypes.ELLIPSIS,
