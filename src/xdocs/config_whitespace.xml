@@ -1418,24 +1418,13 @@ import static java.math.BigInteger.ZERO;
         <p>Example:</p>
         <source>
 class Test {
-  int a, b;
-  Test(int a, int b) {
-    this.
-        a = a; // violation, linebreak after '.' is not allowed
-    this.b = b; // OK
-  }
 
-  public void function() {}
-  public static void main(String[] args) {
-    Test ob = new Test(5, 7);
-    ob.
-      function(); // violation, linebreak after '.' is not allowed
-    ob.function(); // OK
-    ob.
-      a = 10; // violation, linebreak after '.' is not allowed
-    ob.b = 17; // OK
+  public static void arr_dec() {
+    int [] a; // violation, int is followed by whitespace
+    int[] b; // OK
   }
 }
+
         </source>
         <p>
           To configure the check to forbid linebreaks after a DOT token:
