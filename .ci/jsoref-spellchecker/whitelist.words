@@ -329,6 +329,7 @@ Dforbiddenapis
 Dgpg
 Dhttp
 Diachenko
+dimlight
 dirname
 Djacoco
 Dlinkcheck
@@ -1184,6 +1185,7 @@ SETLABELFOR
 SETPOINT
 sevntu
 SGSU
+shellcheck
 shengchen
 Shiell
 sickboy
