@@ -120,6 +120,7 @@ jobs:
         - USE_MAVEN_REPO="true"
 
 script:
+  - shellcheck ./.ci/*.sh
   - ./.ci/travis.sh init-m2-repo
   - ./.ci/travis.sh run-command "$CMD"
   - ./.ci/travis.sh remove-custom-mvn
