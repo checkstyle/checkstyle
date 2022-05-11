@@ -101,7 +101,7 @@ azurewebsites
 backend
 backport
 Backquote
-Backticks
+backticks
 BADN
 badpackage
 baeldung
@@ -504,6 +504,7 @@ gitattributes
 github
 githubusercontent
 Gjs
+globbing
 google
 googleapis
 googleblog
@@ -800,6 +801,7 @@ magicnumber
 mailhost
 mailto
 mainframemodel
+mapfile
 marazmatic
 markdownlint
 Massol
@@ -1184,6 +1186,8 @@ SETLABELFOR
 SETPOINT
 sevntu
 SGSU
+shellcheck
+shellcheckrc
 shengchen
 Shiell
 sickboy
@@ -1234,6 +1238,7 @@ stackoverflowerror
 stacktrace
 standalone
 staticvariablename
+stdin
 Stdlib
 stdout
 stedolan
