@@ -106,7 +106,8 @@
       <property name="tokens"
                value="COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_RETURN,
                     LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_FINALLY, DO_WHILE, ELLIPSIS,
-                    LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_CATCH, LAMBDA"/>
+                    LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_CATCH, LAMBDA,
+                    LITERAL_YIELD"/>
     </module>
     <module name="WhitespaceAround">
       <property name="allowEmptyConstructors" value="true"/>
@@ -124,7 +125,8 @@
                     NOT_EQUAL, PLUS, PLUS_ASSIGN, QUESTION, RCURLY, SL, SLIST, SL_ASSIGN, SR,
                     SR_ASSIGN, STAR, STAR_ASSIGN, LITERAL_ASSERT, TYPE_EXTENSION_AND"/>
       <message key="ws.notFollowed"
-              value="WhitespaceAround: ''{0}'' is not followed by whitespace. Empty blocks may only be represented as '{}' when not part of a multi-block statement (4.1.3)"/>
+              value="WhitespaceAround: ''{0}'' is not followed by whitespace. Empty blocks
+               may only be represented as '{}' when not part of a multi-block statement (4.1.3)"/>
       <message key="ws.notPreceded"
               value="WhitespaceAround: ''{0}'' is not preceded with whitespace."/>
     </module>
