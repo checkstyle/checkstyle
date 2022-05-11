@@ -71,6 +71,11 @@ jobs:
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
+    - env:
+        - DESC="Shellcheck"
+        - CMD="shellcheck ./.ci/*.sh"
+        - USE_MAVEN_REPO="false"
+
     - jdk: openjdk11
       env:
         - DESC="NoErrorTest - checkstyle's sevntu"
