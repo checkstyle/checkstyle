@@ -94,6 +94,26 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>Example:</p>
  * <pre>
  * class Test {
+ *
+ *   public static void arr_dec() {
+ *     int [] a; // violation, int is followed by whitespace
+ *     int[] b; // OK
+ *   }
+ * }
+ *
+ *
+ * </pre>
+ * <p>To configure the check to forbid linebreaks after a DOT token:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;NoWhitespaceAfter&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
+ *   &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class Test {
  *   int a, b;
  *   Test(int a, int b) {
  *     this.
@@ -112,25 +132,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *     ob.b = 17; // OK
  *   }
  * }
- * </pre>
- * <p>To configure the check to forbid linebreaks after a DOT token:
- * </p>
- * <pre>
- * &lt;module name=&quot;NoWhitespaceAfter&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
- *   &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
-class Test {
-
-  public static void arr_dec() {
-    int [] a; // violation, int is followed by whitespace
-    int[] b; // OK
-  }
-}
-
  * </pre>
  * <p>
  * If the annotation is between the type and the array, the check will skip validation for spaces:
