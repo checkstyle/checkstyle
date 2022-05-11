@@ -112,8 +112,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *      try {} catch (Exception e){} // OK
  *      try {} catch(Exception e){} // violation ''catch' is not followed by whitespace'
  *
+ *      synchronized (this) { } // OK
  *      synchronized(this) { } // violation ''synchronized' is not followed by whitespace'
- *      synchronized (this) { } // ok
  *  }
  *  public String testOne() {
  *      return ("a" + "b"); // OK
