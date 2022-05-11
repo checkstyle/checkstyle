@@ -3006,8 +3006,8 @@ public void myTest() {
     try {} catch (Exception e){} // OK
     try {} catch(Exception e){} // violation ''catch' is not followed by whitespace'
 
+    synchronized (this) { } // OK
     synchronized(this) { } // violation ''synchronized' is not followed by whitespace'
-    synchronized (this) { } // ok
 
     int a = switch (args[0]) {
        case "got":
