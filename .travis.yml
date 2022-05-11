@@ -25,6 +25,11 @@ install:
 jobs:
   fast_finish: true
   include:
+    - language: shell
+    - stage: shell check
+      name: checking syntax of shell script
+      script:
+        - bash -c 'shopt -s globstar nullglob; shellcheck ./.ci/*.sh' || true
 
     # this job do deploy maven repository
     # unit tests (openjdk11)
