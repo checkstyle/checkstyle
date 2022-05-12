@@ -221,6 +221,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * {@code line.same}
  * </li>
  * </ul>
+ * {@code line.break.after}
+ * </li>
+ * <li>
  *
  * @since 3.0
  */
@@ -246,6 +249,12 @@ public class RightCurlyCheck extends AbstractCheck {
     public static final String MSG_KEY_LINE_SAME = "line.same";
 
     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_LINE_BREAK_AFTER = "line.break.after";
+
+    /**
      * Specify the policy on placement of a right curly brace (<code>'}'</code>).
      */
     private RightCurlyOption option = RightCurlyOption.SAME;
@@ -263,35 +272,35 @@ public class RightCurlyCheck extends AbstractCheck {
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
-            TokenTypes.LITERAL_TRY,
-            TokenTypes.LITERAL_CATCH,
-            TokenTypes.LITERAL_FINALLY,
-            TokenTypes.LITERAL_IF,
-            TokenTypes.LITERAL_ELSE,
+                TokenTypes.LITERAL_TRY,
+                TokenTypes.LITERAL_CATCH,
+                TokenTypes.LITERAL_FINALLY,
+                TokenTypes.LITERAL_IF,
+                TokenTypes.LITERAL_ELSE,
         };
     }
 
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {
-            TokenTypes.LITERAL_TRY,
-            TokenTypes.LITERAL_CATCH,
-            TokenTypes.LITERAL_FINALLY,
-            TokenTypes.LITERAL_IF,
-            TokenTypes.LITERAL_ELSE,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.LITERAL_FOR,
-            TokenTypes.LITERAL_WHILE,
-            TokenTypes.LITERAL_DO,
-            TokenTypes.STATIC_INIT,
-            TokenTypes.INSTANCE_INIT,
-            TokenTypes.ANNOTATION_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.RECORD_DEF,
-            TokenTypes.COMPACT_CTOR_DEF,
+                TokenTypes.LITERAL_TRY,
+                TokenTypes.LITERAL_CATCH,
+                TokenTypes.LITERAL_FINALLY,
+                TokenTypes.LITERAL_IF,
+                TokenTypes.LITERAL_ELSE,
+                TokenTypes.CLASS_DEF,
+                TokenTypes.METHOD_DEF,
+                TokenTypes.CTOR_DEF,
+                TokenTypes.LITERAL_FOR,
+                TokenTypes.LITERAL_WHILE,
+                TokenTypes.LITERAL_DO,
+                TokenTypes.STATIC_INIT,
+                TokenTypes.INSTANCE_INIT,
+                TokenTypes.ANNOTATION_DEF,
+                TokenTypes.ENUM_DEF,
+                TokenTypes.INTERFACE_DEF,
+                TokenTypes.RECORD_DEF,
+                TokenTypes.COMPACT_CTOR_DEF,
         };
     }
 
@@ -330,6 +339,9 @@ public class RightCurlyCheck extends AbstractCheck {
         }
         else if (shouldBeAloneOnLine(option, details, getLine(details.rcurly.getLineNo() - 1))) {
             violation = MSG_KEY_LINE_ALONE;
+        }
+        else if (isRightcurlyFollowedBySemicolonHasLineBreakAfter(option, details)) {
+            violation = MSG_KEY_LINE_BREAK_AFTER;
         }
         return violation;
     }
@@ -373,10 +385,10 @@ public class RightCurlyCheck extends AbstractCheck {
                                                Details details,
                                                String targetSrcLine) {
         return bracePolicy == RightCurlyOption.ALONE
-                    && shouldBeAloneOnLineWithAloneOption(details, targetSrcLine)
+                && shouldBeAloneOnLineWithAloneOption(details, targetSrcLine)
                 || (bracePolicy == RightCurlyOption.ALONE_OR_SINGLELINE
-                    || details.shouldCheckLastRcurly)
-                    && shouldBeAloneOnLineWithNotAloneOption(details, targetSrcLine);
+                || details.shouldCheckLastRcurly)
+                && shouldBeAloneOnLineWithNotAloneOption(details, targetSrcLine);
     }
 
     /**
@@ -416,9 +428,9 @@ public class RightCurlyCheck extends AbstractCheck {
         final DetailAST rcurly = details.rcurly;
         final DetailAST nextToken = details.nextToken;
         return (nextToken == null || !TokenUtil.areOnSameLine(rcurly, nextToken)
-            || skipDoubleBraceInstInit(details))
-            && CommonUtil.hasWhitespaceBefore(details.rcurly.getColumnNo(),
-               targetSrcLine);
+                || skipDoubleBraceInstInit(details))
+                && CommonUtil.hasWhitespaceBefore(details.rcurly.getColumnNo(),
+                targetSrcLine);
     }
 
     /**
@@ -471,7 +483,7 @@ public class RightCurlyCheck extends AbstractCheck {
         }
 
         return TokenUtil.areOnSameLine(details.lcurly, details.rcurly)
-            && (nextToken == null || !TokenUtil.areOnSameLine(details.rcurly, nextToken)
+                && (nextToken == null || !TokenUtil.areOnSameLine(details.rcurly, nextToken)
                 || isRightcurlyFollowedBySemicolon(details));
     }
 
@@ -499,6 +511,19 @@ public class RightCurlyCheck extends AbstractCheck {
         return !TokenUtil.areOnSameLine(rightCurly, previousToken);
     }
 
+
+    private static boolean isRightcurlyFollowedBySemicolonHasLineBreakAfter(RightCurlyOption bracePolicy,
+                                                                            Details details) {
+        DetailAST tokenAfterNextToken = Details.getNextToken(details.nextToken);
+
+        if (tokenAfterNextToken != null) {
+            return bracePolicy == RightCurlyOption.SAME
+                    && isRightcurlyFollowedBySemicolon(details)
+                    && TokenUtil.areOnSameLine(details.rcurly, tokenAfterNextToken);
+        }
+        return false;
+    }
+
     /**
      * Structure that contains all details for validation.
      */
@@ -508,11 +533,11 @@ public class RightCurlyCheck extends AbstractCheck {
          * Token types that identify tokens that will never have SLIST in their AST.
          */
         private static final int[] TOKENS_WITH_NO_CHILD_SLIST = {
-            TokenTypes.CLASS_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.ANNOTATION_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.RECORD_DEF,
+                TokenTypes.CLASS_DEF,
+                TokenTypes.ENUM_DEF,
+                TokenTypes.ANNOTATION_DEF,
+                TokenTypes.INTERFACE_DEF,
+                TokenTypes.RECORD_DEF,
         };
 
         /** Right curly. */
