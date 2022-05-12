@@ -94,14 +94,21 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>Example:</p>
  * <pre>
  * class Test {
+ *   int a, b;
+ *   Test(int a, int b) {
+ *     this. a = a; // violation, whitespace after '.' is not allowed
+ *     this.b = b; // OK
+ *   }
  *
- *   public static void arr_dec() {
- *     int [] a; // violation, int is followed by whitespace
- *     int[] b; // OK
+ *   public void function() {}
+ *   public static void main(String[] args) {
+ *     Test ob = new Test(5, 7);
+ *     ob. function(); // violation, whitespace after '.' is not allowed
+ *     ob.function(); // OK
+ *     ob. a = 10; // violaion, whitespace after '.' is not allowed
+ *     ob.b = 17; // OK
  *   }
  * }
- *
- *
  * </pre>
  * <p>To configure the check to forbid linebreaks after a DOT token:
  * </p>
