@@ -882,17 +882,14 @@ public class VisibilityModifierCheck
     private static List<String> getTypeArgsClassNames(DetailAST typeArgs) {
         final List<String> typeClassNames = new ArrayList<>();
         DetailAST type = typeArgs.findFirstToken(TokenTypes.TYPE_ARGUMENT);
-        boolean isCanonicalName = isCanonicalName(type);
-        String typeName = getTypeName(type, isCanonicalName);
-        typeClassNames.add(typeName);
-        DetailAST sibling = type.getNextSibling();
-        while (sibling.getType() == TokenTypes.COMMA) {
-            type = sibling.getNextSibling();
-            isCanonicalName = isCanonicalName(type);
-            typeName = getTypeName(type, isCanonicalName);
+        DetailAST sibling;
+        do {
+            final boolean isCanonicalName = isCanonicalName(type);
+            final String typeName = getTypeName(type, isCanonicalName);
             typeClassNames.add(typeName);
             sibling = type.getNextSibling();
-        }
+            type = sibling.getNextSibling();
+        } while (sibling.getType() == TokenTypes.COMMA);
         return typeClassNames;
     }
 
