@@ -94,19 +94,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>Example:</p>
  * <pre>
  * class Test {
- *   int a, b;
- *   Test(int a, int b) {
- *     this. a = a; // violation, whitespace after '.' is not allowed
- *     this.b = b; // OK
+ *
+ *   public void dotOperator(String s) {
+ *     Integer.parseInt(s); // Ok
+ *     Integer. parseInt(s); // violation, '.' is followed by whitespace.
  *   }
  *
- *   public void function() {}
- *   public static void main(String[] args) {
- *     Test ob = new Test(5, 7);
- *     ob. function(); // violation, whitespace after '.' is not allowed
- *     ob.function(); // OK
- *     ob. a = 10; // violaion, whitespace after '.' is not allowed
- *     ob.b = 17; // OK
+ *   public void arrayDec() {
+ *     int[] arr = arr; // Ok
+ *     int [] arr = arr; // violation, int is followed by whitespace
+ *   }
+ *
+ *   public void bitwiseNot(int a) {
+ *     a = ~ a; // violation '~' is followed by whitespace
+ *     a = ~a; // Ok
  *   }
  * }
  * </pre>
@@ -121,22 +122,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>Example:</p>
  * <pre>
  * class Test {
- *   int a, b;
- *   Test(int a, int b) {
- *     this.
- *         a = a; // violation, linebreak after '.' is not allowed
- *     this.b = b; // OK
+ *
+ *   public void dotOperator(String s) {
+ *     Integer.parseInt(s); // Ok
+ *     Integer. parseInt(s); // violation, '.' is followed by whitespace
  *   }
  *
- *   public void function() {}
- *   public static void main(String[] args) {
- *     Test ob = new Test(5, 7);
- *     ob.
- *       function(); // violation, linebreak after '.' is not allowed
- *     ob.function(); // OK
- *     ob.
- *       a = 10; // violation, linebreak after '.' is not allowed
- *     ob.b = 17; // OK
+ *   public void arrayDec() {
+ *     int[] arr = arr; // Ok
+ *     int [] arr = arr; // Ok
+ *   }
+ *
+ *   public void bitwiseNot(int a) {
+ *     a = ~ a; // Ok
+ *     a = ~a; // Ok
  *   }
  * }
  * </pre>
