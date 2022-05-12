@@ -60,6 +60,17 @@ for (
         <source>
 &lt;module name=&quot;EmptyForInitializerPad&quot;/&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+for ( ; i &lt; 1; i++ );  // violation semicolon is preceded with whitespace
+for (; i &lt; 2; i++ );   // ok
+for (;i&lt;2;i++);        // ok
+for ( ;i&lt;2;i++);       // violation semicolon is preceded with whitespace
+for (
+      ; i &lt; 2; i++ );  // ok
+        </source>
 
         <p>
           To configure the check to require white space at an empty for
@@ -69,6 +80,17 @@ for (
 &lt;module name=&quot;EmptyForInitializerPad&quot;&gt;
   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+for ( ; i &lt; 2; i++ );   // ok
+for (; i &lt; 2; i++ );    // violation semicolon is not preceded with whitespace
+for (;i&lt;2;i++);         // violation semicolon is not preceded with whitespace
+for ( ;i&lt;2;i++);        // ok
+for (
+      ; i &lt; 2; i++ );   // ok
         </source>
       </subsection>
 
