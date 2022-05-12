@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -201,6 +202,12 @@ public class FallThroughCheck extends AbstractCheck {
      */
     public static final String MSG_FALL_THROUGH_LAST = "fall.through.last";
 
+    /**
+     * A list to put LABELED_STAT token type if there are any
+     * LABELED_STAT in switch statements
+     * */
+    private static ArrayList<String> labelList = new ArrayList<>();
+
     /** Control whether the last case group must be checked. */
     private boolean checkLastCaseGroup;
 
@@ -217,7 +224,10 @@ public class FallThroughCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.CASE_GROUP};
+        return new int[] {
+            TokenTypes.CASE_GROUP,
+            TokenTypes.LABELED_STAT
+        };
     }
 
     @Override
@@ -245,6 +255,28 @@ public class FallThroughCheck extends AbstractCheck {
         checkLastCaseGroup = value;
     }
 
+    /**
+     * Convert a given TokenTypes into string
+     * Only LABELED_STAT token would be added into labelList
+     *
+     * @param ast root of given subtree
+     * @return tokenText string of TokenTypes
+     */
+    private static String convertToString(DetailAST ast) {
+        final String tokenText;
+        switch (ast.getType()) {
+            case TokenTypes.LABELED_STAT:
+                String text = ast.getFirstChild().getText() + ast.getText();
+                tokenText = text.substring(0, text.length()-1);
+                labelList.add(tokenText);
+                break;
+            default:
+                tokenText = ast.getText();
+                break;
+        }
+        return tokenText;
+    }
+
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST nextGroup = ast.getNextSibling();
@@ -261,6 +293,10 @@ public class FallThroughCheck extends AbstractCheck {
                     log(nextGroup, MSG_FALL_THROUGH);
                 }
             }
+        }
+
+        if (ast.getType() == TokenTypes.LABELED_STAT) {
+            convertToString(ast);
         }
     }
 
@@ -283,7 +319,7 @@ public class FallThroughCheck extends AbstractCheck {
                 terminated = true;
                 break;
             case TokenTypes.LITERAL_BREAK:
-                terminated = useBreak;
+                terminated = useBreak || checkLabelBreak(ast);
                 break;
             case TokenTypes.LITERAL_CONTINUE:
                 terminated = useContinue;
@@ -333,6 +369,16 @@ public class FallThroughCheck extends AbstractCheck {
 
         return lastStmt != null
             && isTerminated(lastStmt, useBreak, useContinue);
+    }
+
+    private boolean checkLabelBreak(final DetailAST ast) {
+        DetailAST lastStmt = ast.getLastChild();
+        if (lastStmt.getType() == TokenTypes.SEMI) {
+            lastStmt = lastStmt.getPreviousSibling();
+        }
+
+        return lastStmt != null
+                && labelList.contains(convertToString(lastStmt));
     }
 
     /**

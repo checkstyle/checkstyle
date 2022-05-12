@@ -217,4 +217,11 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testLabelBreak() throws Exception {
+        final String[] expected = {
+            "36:9: " + getCheckMessage(MSG_FALL_THROUGH)
+        };
+        verifyWithInlineConfigParser(getPath("InputFallThroughLabelBreak.java"), expected);
+    }
 }
