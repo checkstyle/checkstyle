@@ -52,6 +52,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * If the annotation is between the type and the array, the check will skip validation for spaces
  * </p>
+ * <pre>
+ * public void foo(final char @NotNull [] param) {} // No violation
+ * </pre>
  * <ul>
  * <li>
  * Property {@code allowLineBreaks} - Control whether whitespace is allowed
@@ -153,9 +156,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *     a = ~a; // Ok
  *   }
  * }
- * </pre>
- * <pre>
- * public void foo(final char @NotNull [] param) {} // No violation
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}

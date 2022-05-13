@@ -1345,6 +1345,9 @@ import static java.math.BigInteger.ZERO;
          If the annotation is between the type and the array, the check will skip validation for
          spaces
         </p>
+        <source>
+public void foo(final char @NotNull [] param) {} // No violation
+        </source>
       </subsection>
 
       <subsection name="Properties" id="NoWhitespaceAfter_Properties">
@@ -1501,9 +1504,6 @@ class Test {
     a = ~a; // Ok
   }
 }
-        </source>
-        <source>
-public void foo(final char @NotNull [] param) {} // No violation
         </source>
       </subsection>
 

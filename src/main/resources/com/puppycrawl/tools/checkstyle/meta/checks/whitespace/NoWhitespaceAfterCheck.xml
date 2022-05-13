@@ -27,7 +27,10 @@
  &lt;/p&gt;
  &lt;p&gt;
  If the annotation is between the type and the array, the check will skip validation for spaces
- &lt;/p&gt;</description>
+ &lt;/p&gt;
+ &lt;pre&gt;
+ public void foo(final char @NotNull [] param) {} // No violation
+ &lt;/pre&gt;</description>
          <properties>
             <property default-value="true" name="allowLineBreaks" type="boolean">
                <description>Control whether whitespace is allowed
