@@ -95,9 +95,15 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * class Test {
  *
+ *    public void lineBreak(String x) {
+ *     Integer.
+ *     parseInt(x); // Ok
+ *     Integer.parseInt(x); // Ok
+ *   }
+ *
  *   public void dotOperator(String s) {
  *     Integer.parseInt(s); // Ok
- *     Integer. parseInt(s); // violation, '.' is followed by whitespace.
+ *     Integer. parseInt(s); // violation, '.' is followed by whitespace
  *   }
  *
  *   public void arrayDec() {
@@ -122,6 +128,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>Example:</p>
  * <pre>
  * class Test {
+ *
+ *   public void lineBreak(String x) {
+ *     Integer.
+ *     parseInt(x); // violation, '.' is followed by whitespace
+ *     Integer.parseInt(x); // Ok
+ *   }
  *
  *   public void dotOperator(String s) {
  *     Integer.parseInt(s); // Ok
