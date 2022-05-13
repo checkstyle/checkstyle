@@ -49,6 +49,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
  * INDEX_OP</a> will be ignored.
  * </p>
+ * <p>
+ * If the annotation is between the type and the array, the check will skip validation for spaces
+ * </p>
  * <ul>
  * <li>
  * Property {@code allowLineBreaks} - Control whether whitespace is allowed
@@ -97,7 +100,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  *    public void lineBreak(String x) {
  *     Integer.
- *     parseInt(x); // Ok
+ *         parseInt(x); // Ok
  *     Integer.parseInt(x); // Ok
  *   }
  *
@@ -131,7 +134,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  *   public void lineBreak(String x) {
  *     Integer.
- *     parseInt(x); // violation, '.' is followed by whitespace
+ *         parseInt(x); // violation, '.' is followed by whitespace
  *     Integer.parseInt(x); // Ok
  *   }
  *
@@ -151,9 +154,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   }
  * }
  * </pre>
- * <p>
- * If the annotation is between the type and the array, the check will skip validation for spaces:
- * </p>
  * <pre>
  * public void foo(final char @NotNull [] param) {} // No violation
  * </pre>

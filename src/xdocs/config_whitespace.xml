@@ -1341,6 +1341,10 @@ import static java.math.BigInteger.ZERO;
                 INDEX_OP</a>
           will be ignored.
         </p>
+        <p>
+         If the annotation is between the type and the array, the check will skip validation for
+         spaces
+        </p>
       </subsection>
 
       <subsection name="Properties" id="NoWhitespaceAfter_Properties">
@@ -1443,7 +1447,7 @@ class Test {
 
    public void lineBreak(String x) {
     Integer.
-    parseInt(x); // Ok
+        parseInt(x); // Ok
     Integer.parseInt(x); // Ok
   }
 
@@ -1478,7 +1482,7 @@ class Test {
 
   public void lineBreak(String x) {
     Integer.
-    parseInt(x); // violation, '.' is followed by whitespace
+        parseInt(x); // violation, '.' is followed by whitespace
     Integer.parseInt(x); // Ok
   }
 
@@ -1498,10 +1502,6 @@ class Test {
   }
 }
         </source>
-        <p>
-         If the annotation is between the type and the array, the check will skip validation for
-         spaces:
-        </p>
         <source>
 public void foo(final char @NotNull [] param) {} // No violation
         </source>
