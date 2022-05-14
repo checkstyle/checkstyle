@@ -6,6 +6,9 @@
 
 <suppressions>
 
+  <!-- Suppressed until https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/890 -->
+  <suppress checks="CheckstyleTestMakeup" files="[\\/]RightCurlyTest\.java"/>
+
   <!-- Fixing these cases will decrease code readability -->
   <suppress checks="MultipleStringLiteralsExtended"
              files="JavadocStyleCheck\.java|XMLLogger\.java|SarifLogger\.java"/>
