@@ -8,12 +8,9 @@
 
   <!-- Fixing these cases will decrease code readability -->
   <suppress checks="MultipleStringLiteralsExtended"
-             files="JavadocStyleCheck\.java|XMLLogger\.java|SarifLogger\.java"/>
+             files="JavadocStyleCheck\.java|XMLLogger\.java"/>
   <suppress checks="MultipleStringLiteralsExtended"
              files=".*[\\/]src[\\/](test|it)[\\/]"/>
-  <!-- ParseTreeBuilder is generated, to keep ease of generation violations are suppressed -->
-  <suppress checks="LineLengthExtended"
-             files="ParseTreeBuilder\.java"/>
 
   <!-- If we change declaration order, Illegal forward reference will appear.
   See https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/415 -->
@@ -28,14 +25,12 @@
              files="JavadocUtil\.java|JavadocUtilTest\.java"/>
 
   <!-- Tone down the checking for test code -->
-  <suppress checks="ForbidCertainImports"
-             files="DetailAstImplTest\.java"/>
   <suppress checks="SingleBreakOrContinue" files="[\\/]XdocsPagesTest\.java"/>
 
-  <!-- Main and MainTest are technically not part of the checkstyle library,
+  <!-- MainTest is technically not part of the checkstyle library,
   so static Loggers are okay there. -->
   <suppress checks="AvoidModifiersForTypesCheck"
-             files="Main\.java|MainTest\.java"/>
+             files="MainTest\.java"/>
 
   <!-- No need for constructor with cause -->
   <suppress checks="CauseParameterInException" files=".*MetadataGenerationException\.java"/>
