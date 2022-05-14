@@ -243,7 +243,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verify(createChecker(checkConfig, ModuleCreationOption.IN_TREEWALKER),
+            verify(createChecker(createTreeWalkerConfig(checkConfig)),
                     File.createTempFile("junit", null, temporaryFolder).getPath(), expected);
             assertWithMessage("CheckstyleException is expected").fail();
         }

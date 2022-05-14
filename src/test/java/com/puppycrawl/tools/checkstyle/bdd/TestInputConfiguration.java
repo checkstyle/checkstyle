@@ -27,12 +27,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 
 public final class TestInputConfiguration {
 
-    private static final String ROOT_MODULE_NAME = "root";
+    private static final String ROOT_MODULE_NAME = Checker.class.getSimpleName();
 
     private static final Set<String> CHECKER_CHILDREN = new HashSet<>(Arrays.asList(
             "com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter",
