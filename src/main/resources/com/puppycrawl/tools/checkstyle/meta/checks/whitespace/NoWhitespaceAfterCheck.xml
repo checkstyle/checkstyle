@@ -24,7 +24,13 @@
  ARRAY_DECLARATOR&lt;/a&gt; and
  &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP"&gt;
  INDEX_OP&lt;/a&gt; will be ignored.
- &lt;/p&gt;</description>
+ &lt;/p&gt;
+ &lt;p&gt;
+ If the annotation is between the type and the array, the check will skip validation for spaces
+ &lt;/p&gt;
+ &lt;pre&gt;
+ public void foo(final char @NotNull [] param) {} // No violation
+ &lt;/pre&gt;</description>
          <properties>
             <property default-value="true" name="allowLineBreaks" type="boolean">
                <description>Control whether whitespace is allowed
