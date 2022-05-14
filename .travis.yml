@@ -126,6 +126,7 @@ script:
   - ./.ci/travis.sh remove-adoptium-jdk
   - ./.ci/travis.sh git-diff
   - ./.ci/travis.sh ci-temp-check
+  - shellcheck ./.ci/*.sh
 
 after_success:
   - ./.ci/travis.sh run-command-after-success
