@@ -101,7 +101,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * class Test {
  *
- *    public void lineBreak(String x) {
+ *   public void lineBreak(String x) {
  *     Integer.
  *         parseInt(x); // Ok
  *     Integer.parseInt(x); // Ok
