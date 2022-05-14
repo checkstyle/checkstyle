@@ -59,7 +59,7 @@ public interface Configuration extends Serializable {
     String[] getPropertyNames();
 
     /**
-     * The property value for n property name.
+     * The property value for property name.
      *
      * @param name the property name
      * @return the value that is associated with name
