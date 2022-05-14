@@ -26,12 +26,10 @@
   <suppress checks="AbstractClassNameCheck"
              files="AbstractCheckTest.java|AbstractClassNameCheckTest.java|
                     |AbstractJavadocCheckTest.java|
-                    |AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java|
-                    |AbstractIteratorTest.java"/>
+                    |AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java"/>
 
   <!-- Tone down the checking for test code -->
-  <suppress checks="ExecutableStatementCount|JavaNCSS|BooleanExpressionComplexity|
-                    |NestedIfDepth|MethodLength"
+  <suppress checks="ExecutableStatementCount|JavaNCSS"
              files="[\\/]XdocsPagesTest\.java"/>
 
   <!-- The Check generates too many violations, fixing them will make code unmanageable. -->
@@ -113,7 +111,6 @@
   <suppress id="noUsageOfGetFileContentsMethod" files="WriteTagCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpSinglelineJavaCheck.java"/>
-  <suppress id="noUsageOfGetFileContentsMethod" files="MethodLengthCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="EmptyLineSeparatorCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="AvoidEscapedUnicodeCharactersCheck.java"/>
 

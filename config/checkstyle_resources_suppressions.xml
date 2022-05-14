@@ -69,8 +69,6 @@
   <suppress checks="OuterTypeFilename"
     files="rule522typenames[\\/]InputTypeName\.java"/>
   <suppress checks="OuterTypeFilename"
-    files="outertypefilename[\\/]InputOuterTypeFilenameNoPublic\.java"/>
-  <suppress checks="OuterTypeFilename"
     files="[\\/]package-info\.java"/>
   <suppress checks="OuterTypeFilename"
     files="src[\\/]it[\\/]resources[\\/].*[\\/]SuppressionXpathRegressionOuterTypeFilename.*\.java"/>
@@ -815,8 +813,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]xpath[\\/]xpathmapper[\\/]InputXpathMapperStringConcat\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilter11\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilter3\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilter4\.java"/>
@@ -830,8 +826,6 @@
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilter2\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilter8\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilter10\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilter5\.java"/>
   <suppress checks="FileLength"
