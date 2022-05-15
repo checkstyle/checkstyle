@@ -54,6 +54,8 @@ public class DefaultConfigurationTest {
             .isEqualTo("first,second");
     }
 
+    // until https://github.com/checkstyle/checkstyle/issues/11722
+    @Deprecated(since = "10.2")
     @Test
     public void testDeprecatedAttributeMethods() throws CheckstyleException {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
