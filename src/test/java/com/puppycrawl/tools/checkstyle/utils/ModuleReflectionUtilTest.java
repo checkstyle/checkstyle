@@ -179,6 +179,29 @@ public class ModuleReflectionUtilTest {
             .isEqualTo(1);
     }
 
+    @Test
+    public void testIdentification() {
+        assertWithMessage("Should return false when invalid class is passed by default")
+            .that(ModuleReflectionUtil
+                .isCheckstyleModule(InvalidWithDefaultConstructorClass.class))
+            .isFalse();
+
+        ModuleReflectionUtil.addNewModuleIdentification(
+                clazz -> clazz == InvalidWithDefaultConstructorClass.class);
+
+        assertWithMessage("Should return true with a new identification")
+            .that(ModuleReflectionUtil
+                .isCheckstyleModule(InvalidWithDefaultConstructorClass.class))
+            .isTrue();
+
+        ModuleReflectionUtil.resetIdentification();
+
+        assertWithMessage("Should return false when identification is reset")
+            .that(ModuleReflectionUtil
+                .isCheckstyleModule(InvalidWithDefaultConstructorClass.class))
+            .isFalse();
+    }
+
     private static class ValidCheckstyleClass extends AutomaticBean {
 
         // empty, use default constructor
@@ -373,6 +396,14 @@ public class ModuleReflectionUtilTest {
             return field;
         }
 
+        @Override
+        protected void finishLocalSetup() {
+            // dummy method
+        }
+
+    }
+
+    private static class InvalidWithDefaultConstructorClass extends AutomaticBean {
         @Override
         protected void finishLocalSetup() {
             // dummy method
