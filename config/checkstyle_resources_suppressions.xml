@@ -909,7 +909,7 @@
   <suppress checks="FileLength"
     files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule42blockindentation[\\/]InputIndentationCorrectFieldAndParameter\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule412nonemptyblocks[\\/]InputRightCurlyOtherAlone\.java"/>
+    files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule412nonemptyblocks[\\/]InputRightCurlyOther2\.java"/>
   <suppress checks="FileLength"
     files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule412nonemptyblocks[\\/]InputRightCurlyOther\.java"/>
   <suppress checks="FileLength"

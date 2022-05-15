@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
-class InputRightCurlyOtherAlone
+class InputRightCurlyOther2
 {
     /** @see test method **/
     int foo() throws InterruptedException
@@ -17,7 +17,7 @@ class InputRightCurlyOtherAlone
                 } else if (x < 0) {  //ok
 
                     ;
-                } //ok - for alone config
+                } // warning
                 else
                 {
                     break;
@@ -29,7 +29,7 @@ class InputRightCurlyOtherAlone
                 default:
                     break;
                 } //ok
-            } //ok - for alone config
+            } // warning
             catch (Exception e)
             {
                 break;
@@ -69,14 +69,14 @@ class InputRightCurlyOtherAlone
     {
         HELLO,
         GOODBYE
-    }; //warn
+    };
 
     void method2()
     {
         boolean flag = true;
         if (flag) {
             System.identityHashCode("heh");
-            flag = !flag; } System. //ok for alone config
+            flag = !flag; } System. // warn
               identityHashCode("Xe-xe");
 
 
@@ -94,7 +94,7 @@ class FooCtorAlone
     public FooCtorAlone()
     {
         i = 1;
-    }} //warn
+    }} // warn
 
 /**
 * Test input for closing brace if that brace terminates
@@ -105,7 +105,7 @@ class FooMethodAlone
     public void fooMethod()
     {
         int i = 1;
-    }} //warn
+    }} // warn
 
 /**
 * Test input for closing brace if that brace terminates
@@ -119,10 +119,10 @@ class FooInnerAlone
         {
 
         }
-    }} //warn
+    }}
 
 class EnumContainerAlone {
-    private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS } // warn
+    private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS }
 }
 
 class WithArraysAlone {
@@ -145,12 +145,12 @@ class WithArraysAlone {
 }
 
 class Interface {
-    public @interface TestAnnotation {} //warn
+    public @interface TestAnnotation {}
 
-    public @interface TestAnnotation1 { String someValue(); } //warn
+    public @interface TestAnnotation1 { String someValue(); }
 
     public @interface TestAnnotation2 {
-        String someValue();} //warn
+        String someValue();}
 
     public @interface TestAnnotation3 {
         String someValue();
@@ -160,12 +160,12 @@ class Interface {
     } //ok
 }
 
-enum TestEnum {} //warn
+enum TestEnum {}
 
-enum TestEnum1 { SOME_VALUE; } //warn
+enum TestEnum1 { SOME_VALUE; }
 
 enum TestEnum2 {
-    SOME_VALUE;} //warn
+    SOME_VALUE;}
 
 enum TestEnum3 {
     SOME_VALUE;
