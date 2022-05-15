@@ -42,7 +42,7 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
                 new File(getPath("SuppressionXpathRegressionEmptyBlockEmpty.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyBlockCheck.class);
-        moduleConfig.addAttribute("option", "TEXT");
+        moduleConfig.addProperty("option", "TEXT");
         final String[] expectedViolation = {
             "5:38: " + getCheckMessage(EmptyBlockCheck.class,
                 EmptyBlockCheck.MSG_KEY_BLOCK_EMPTY, "for"),
