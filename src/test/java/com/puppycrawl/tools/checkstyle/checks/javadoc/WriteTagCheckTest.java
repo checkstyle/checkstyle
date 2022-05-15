@@ -206,8 +206,26 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNoJavadocs() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputWriteTagNoJavadoc.java"), expected);
+    }
+
+    @Test
+    public void testNoJavadocsWithRequiredTag() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
+        checkConfig.addProperty("tag", "@incomplete");
         final String[] expected = {
-            "13: " + getCheckMessage(MSG_MISSING_TAG, "null"),
+            "13: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
+        };
+        verify(checkConfig, getPath("InputWriteTagNoJavadoc.java"), expected);
+    }
+
+    @Test
+    public void testNoJavadocsWithRequiredTagFormat() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
+        checkConfig.addProperty("tagFormat", "\\S");
+        final String[] expected = {
+            "13: " + getCheckMessage(MSG_TAG_FORMAT, "\\S"),
         };
         verify(checkConfig, getPath("InputWriteTagNoJavadoc.java"), expected);
     }
