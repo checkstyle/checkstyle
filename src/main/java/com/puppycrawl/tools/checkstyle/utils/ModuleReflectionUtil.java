@@ -24,6 +24,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 import java.util.Collection;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import com.google.common.reflect.ClassPath;
@@ -41,8 +42,41 @@ import com.puppycrawl.tools.checkstyle.api.RootModule;
  */
 public final class ModuleReflectionUtil {
 
+    /** Default identification predicate. */
+    private static final Predicate<Class<?>> DEFAULT_IDENTIFICATION_PREDICATE = clazz -> {
+        return isCheckstyleTreeWalkerCheck(clazz)
+                || isFileSetModule(clazz)
+                || isFilterModule(clazz)
+                || isFileFilterModule(clazz)
+                || isTreeWalkerFilterModule(clazz)
+                || isAuditListener(clazz)
+                || isRootModule(clazz);
+    };
+
+    /** Current identification predicate. */
+    private static Predicate<Class<?>> identificationPredicate = DEFAULT_IDENTIFICATION_PREDICATE;
+
     /** Prevent instantiation. */
     private ModuleReflectionUtil() {
+    }
+
+    /**
+     * Allows Checkstyle to understand more modules to work with it via a
+     * predicate. This creates a chain of predicates for identification
+     * purposes. If a prior predicate fails to identify a module, it will
+     * continue next on the chain until all say the class cannot be identified.
+     *
+     * @param newPredicate The provided predicate that will return {@code true}
+     *        if the class given to it is identified as a type of module,
+     *        otherwise {@code false} if it does not.
+     */
+    public static void addNewModuleIdentification(Predicate<Class<?>> newPredicate) {
+        identificationPredicate = newPredicate.or(identificationPredicate);
+    }
+
+    /** Resets the identification process Checkstyle uses to know if a class is a module. */
+    public static void resetIdentification() {
+        identificationPredicate = DEFAULT_IDENTIFICATION_PREDICATE;
     }
 
     /**
@@ -74,13 +108,7 @@ public final class ModuleReflectionUtil {
      */
     public static boolean isCheckstyleModule(Class<?> clazz) {
         return isValidCheckstyleClass(clazz)
-            && (isCheckstyleTreeWalkerCheck(clazz)
-                    || isFileSetModule(clazz)
-                    || isFilterModule(clazz)
-                    || isFileFilterModule(clazz)
-                    || isTreeWalkerFilterModule(clazz)
-                    || isAuditListener(clazz)
-                    || isRootModule(clazz));
+            && identificationPredicate.test(clazz);
     }
 
     /**
