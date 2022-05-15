@@ -36,6 +36,7 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
         return checkName;
     }
 
+    @Deprecated(since = "10.2")
     @Test
     public void testEmptyForLoopEmptyBlock() throws Exception {
         final File fileToProcess =

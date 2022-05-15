@@ -255,6 +255,7 @@ public class FileContentsTest {
                 .isEqualTo(new Comment(new String[] {"/** *"}, 2, 1, 6).toString());
     }
 
+    @Deprecated(since = "10.2")
     @Test
     public void testInPackageInfo() {
         final FileContents fileContents = new FileContents(new FileText(
@@ -266,6 +267,7 @@ public class FileContentsTest {
                 .isTrue();
     }
 
+    @Deprecated(since = "10.2")
     @Test
     public void testNotInPackageInfo() {
         final FileContents fileContents = new FileContents(new FileText(
