@@ -1,5 +1,5 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2022 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
@@ -882,17 +882,14 @@ public class VisibilityModifierCheck
     private static List<String> getTypeArgsClassNames(DetailAST typeArgs) {
         final List<String> typeClassNames = new ArrayList<>();
         DetailAST type = typeArgs.findFirstToken(TokenTypes.TYPE_ARGUMENT);
-        boolean isCanonicalName = isCanonicalName(type);
-        String typeName = getTypeName(type, isCanonicalName);
-        typeClassNames.add(typeName);
-        DetailAST sibling = type.getNextSibling();
-        while (sibling.getType() == TokenTypes.COMMA) {
-            type = sibling.getNextSibling();
-            isCanonicalName = isCanonicalName(type);
-            typeName = getTypeName(type, isCanonicalName);
+        DetailAST sibling;
+        do {
+            final boolean isCanonicalName = isCanonicalName(type);
+            final String typeName = getTypeName(type, isCanonicalName);
             typeClassNames.add(typeName);
             sibling = type.getNextSibling();
-        }
+            type = sibling.getNextSibling();
+        } while (sibling.getType() == TokenTypes.COMMA);
         return typeClassNames;
     }
 

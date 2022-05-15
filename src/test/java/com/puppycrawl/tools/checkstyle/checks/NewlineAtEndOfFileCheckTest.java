@@ -1,5 +1,5 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2022 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks;
 
@@ -146,7 +146,7 @@ public class NewlineAtEndOfFileCheckTest
             "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
         };
         verify(
-            createChecker(checkConfig),
+            checkConfig,
             getPath("InputNewlineAtEndOfFileEmptyFile.txt"),
             expected);
     }
@@ -158,7 +158,7 @@ public class NewlineAtEndOfFileCheckTest
         checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(
-                createChecker(checkConfig),
+                checkConfig,
                 getPath("InputNewlineAtEndOfFileNewlineAtEnd.txt"),
                 expected);
     }
@@ -170,7 +170,7 @@ public class NewlineAtEndOfFileCheckTest
         checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF_CR_CRLF.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(
-                createChecker(checkConfig),
+                checkConfig,
                 getPath("InputNewlineAtEndOfFileNewlineAtEndLf.txt"),
                 expected);
     }

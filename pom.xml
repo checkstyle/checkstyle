@@ -1735,6 +1735,7 @@
                 <exclude>**/MainTest.class</exclude>
                 <!-- tests need forbidden apis to test the main code fully -->
                 <exclude>**/XpathFileGeneratorAuditListenerTest.class</exclude>
+                <exclude>**/AllChecksTest.class</exclude>
                 <!-- Needed for testing deprecated API. -->
                 <exclude>**/DefaultConfigurationTest.class</exclude>
                 <!-- is not Check or Filter, it is internal module -->
@@ -1750,6 +1751,7 @@
 
                 <!-- input files are not java files, bdd need support for other comment types -->
                 <exclude>**/SuppressWithPlainTextCommentFilterTest.class</exclude>
+                <exclude>**/NewlineAtEndOfFileCheckTest.class</exclude>
 
                 <!-- stay in old way as format of input files is very special -->
                 <exclude>**/IndentationCheckTest.class</exclude>
@@ -1811,6 +1813,9 @@
 
                 <!-- tests should be updated -->
                 <exclude>**/AbstractJavadocCheckTest.class</exclude>
+
+                <!-- tests should be updated -->
+                <exclude>**/JavadocPackageCheckTest.class</exclude>
 
               </excludes>
             </configuration>

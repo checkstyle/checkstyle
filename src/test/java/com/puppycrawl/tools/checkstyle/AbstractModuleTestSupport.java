@@ -1,5 +1,5 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2022 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -52,25 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
 public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport {
 
-    /**
-     * Enum to specify options for checker creation.
-     */
-    public enum ModuleCreationOption {
-
-        /**
-         * Points that the module configurations
-         * has to be added under {@link TreeWalker}.
-         */
-        IN_TREEWALKER,
-        /**
-         * Points that checker will be created as
-         * a root of default configuration.
-         */
-        IN_CHECKER,
-
-    }
-
-    private static final String ROOT_MODULE_NAME = "root";
+    protected static final String ROOT_MODULE_NAME = Checker.class.getSimpleName();
 
     private final ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
@@ -79,7 +61,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      *
      * @return stream with log
      */
-    public ByteArrayOutputStream getStream() {
+    protected final ByteArrayOutputStream getStream() {
         return stream;
     }
 
@@ -88,7 +70,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      *
      * @return logger for tests
      */
-    public final BriefUtLogger getBriefUtLogger() {
+    protected final BriefUtLogger getBriefUtLogger() {
         return new BriefUtLogger(stream);
     }
 
@@ -110,55 +92,42 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @return {@link Checker} instance based on the given {@link Configuration} instance.
      * @throws Exception if an exception occurs during checker configuration.
      */
-    public final Checker createChecker(Configuration moduleConfig)
+    protected final Checker createChecker(Configuration moduleConfig)
             throws Exception {
-        ModuleCreationOption moduleCreationOption = ModuleCreationOption.IN_CHECKER;
-
         final String moduleName = moduleConfig.getName();
-        if (!ROOT_MODULE_NAME.equals(moduleName)) {
-            try {
-                final Class<?> moduleClass = Class.forName(moduleName);
-                if (ModuleReflectionUtil.isCheckstyleTreeWalkerCheck(moduleClass)
-                        || ModuleReflectionUtil.isTreeWalkerFilterModule(moduleClass)) {
-                    moduleCreationOption = ModuleCreationOption.IN_TREEWALKER;
-                }
-            }
-            catch (ClassNotFoundException ignore) {
-                // ignore exception, assume it is not part of TreeWalker
-            }
-        }
-
-        return createChecker(moduleConfig, moduleCreationOption);
-    }
-
-    /**
-     * Creates {@link Checker} instance based on the given {@link Configuration} instance.
-     *
-     * @param moduleConfig {@link Configuration} instance.
-     * @param moduleCreationOption {@code IN_TREEWALKER} if the {@code moduleConfig} should be added
-*                                              under {@link TreeWalker}.
-     * @return {@link Checker} instance based on the given {@link Configuration} instance.
-     * @throws Exception if an exception occurs during checker configuration.
-     */
-    public final Checker createChecker(Configuration moduleConfig,
-                                 ModuleCreationOption moduleCreationOption)
-            throws Exception {
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
 
-        if (moduleCreationOption == ModuleCreationOption.IN_TREEWALKER) {
-            final Configuration dc = createTreeWalkerConfig(moduleConfig);
-            checker.configure(dc);
-        }
-        else if (ROOT_MODULE_NAME.equals(moduleConfig.getName())) {
+        if (ROOT_MODULE_NAME.equals(moduleName)) {
             checker.configure(moduleConfig);
         }
         else {
-            final Configuration dc = createRootConfig(moduleConfig);
-            checker.configure(dc);
+            configureChecker(checker, moduleConfig);
         }
-        checker.addListener(new BriefUtLogger(stream));
+
+        checker.addListener(getBriefUtLogger());
         return checker;
+    }
+
+    /**
+     * Configures the {@code checker} instance with {@code moduleConfig}.
+     *
+     * @param checker {@link Checker} instance.
+     * @param moduleConfig {@link Configuration} instance.
+     * @throws Exception if an exception occurs during configuration.
+     */
+    protected void configureChecker(Checker checker, Configuration moduleConfig) throws Exception {
+        final Class<?> moduleClass = Class.forName(moduleConfig.getName());
+
+        if (ModuleReflectionUtil.isCheckstyleTreeWalkerCheck(moduleClass)
+                || ModuleReflectionUtil.isTreeWalkerFilterModule(moduleClass)) {
+            final Configuration config = createTreeWalkerConfig(moduleConfig);
+            checker.configure(config);
+        }
+        else {
+            final Configuration config = createRootConfig(moduleConfig);
+            checker.configure(config);
+        }
     }
 
     /**
@@ -170,14 +139,14 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      *     based on the given {@link Configuration} instance.
      */
     protected static DefaultConfiguration createTreeWalkerConfig(Configuration config) {
-        final DefaultConfiguration dc =
-                new DefaultConfiguration("configuration");
+        final DefaultConfiguration rootConfig =
+                new DefaultConfiguration(ROOT_MODULE_NAME);
         final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
         // make sure that the tests always run with this charset
-        dc.addProperty("charset", StandardCharsets.UTF_8.name());
-        dc.addChild(twConf);
+        rootConfig.addProperty("charset", StandardCharsets.UTF_8.name());
+        rootConfig.addChild(twConf);
         twConf.addChild(config);
-        return dc;
+        return rootConfig;
     }
 
     /**
@@ -187,18 +156,16 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @return {@link DefaultConfiguration} for the given {@link Configuration} instance.
      */
     protected static DefaultConfiguration createRootConfig(Configuration config) {
-        final DefaultConfiguration dc = new DefaultConfiguration(ROOT_MODULE_NAME);
+        final DefaultConfiguration rootConfig = new DefaultConfiguration(ROOT_MODULE_NAME);
         if (config != null) {
-            dc.addChild(config);
+            rootConfig.addChild(config);
         }
-        return dc;
+        return rootConfig;
     }
 
     /**
      * Returns canonical path for the file with the given file name.
      * The path is formed base on the non-compilable resources location.
-     * This implementation uses 'src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/'
-     * as a non-compilable resource location.
      *
      * @param filename file name.
      * @return canonical path for the file with the given file name.
@@ -212,8 +179,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     /**
      * Returns URI-representation of the path for the given file name.
      * The path is formed base on the root location.
-     * This implementation uses 'src/test/resources/com/puppycrawl/tools/checkstyle/'
-     * as a root location.
      *
      * @param filename file name.
      * @return URI-representation of the path for the file with the given file name.
@@ -278,14 +243,14 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * This implementation uses overloaded
      * {@link AbstractModuleTestSupport#verify(Checker, File[], String, String...)} method inside.
      *
-     * @param aConfig configuration.
+     * @param config configuration.
      * @param fileName file name to verify.
      * @param expected an array of expected messages.
      * @throws Exception if exception occurs during verification process.
      */
-    protected final void verify(Configuration aConfig, String fileName, String... expected)
+    protected final void verify(Configuration config, String fileName, String... expected)
             throws Exception {
-        verify(createChecker(aConfig), fileName, fileName, expected);
+        verify(createChecker(config), fileName, fileName, expected);
     }
 
     /**

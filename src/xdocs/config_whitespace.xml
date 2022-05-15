@@ -60,6 +60,17 @@ for (
         <source>
 &lt;module name=&quot;EmptyForInitializerPad&quot;/&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+for ( ; i &lt; 1; i++ );  // violation semicolon is preceded with whitespace
+for (; i &lt; 2; i++ );   // ok
+for (;i&lt;2;i++);        // ok
+for ( ;i&lt;2;i++);       // violation semicolon is preceded with whitespace
+for (
+      ; i &lt; 2; i++ );  // ok
+        </source>
 
         <p>
           To configure the check to require white space at an empty for
@@ -69,6 +80,17 @@ for (
 &lt;module name=&quot;EmptyForInitializerPad&quot;&gt;
   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+for ( ; i &lt; 2; i++ );   // ok
+for (; i &lt; 2; i++ );    // violation semicolon is not preceded with whitespace
+for (;i&lt;2;i++);         // violation semicolon is not preceded with whitespace
+for ( ;i&lt;2;i++);        // ok
+for (
+      ; i &lt; 2; i++ );   // ok
         </source>
       </subsection>
 
@@ -1319,6 +1341,13 @@ import static java.math.BigInteger.ZERO;
                 INDEX_OP</a>
           will be ignored.
         </p>
+        <p>
+         If the annotation is between the type and the array, the check will skip validation for
+         spaces
+        </p>
+        <source>
+public void foo(final char @NotNull [] param) {} // No violation
+        </source>
       </subsection>
 
       <subsection name="Properties" id="NoWhitespaceAfter_Properties">
@@ -1415,7 +1444,32 @@ import static java.math.BigInteger.ZERO;
         <source>
 &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+class Test {
 
+  public void lineBreak(String x) {
+    Integer.
+        parseInt(x); // Ok
+    Integer.parseInt(x); // Ok
+  }
+
+  public void dotOperator(String s) {
+    Integer.parseInt(s); // Ok
+    Integer. parseInt(s); // violation, '.' is followed by whitespace
+  }
+
+  public void arrayDec() {
+    int[] arr = arr; // Ok
+    int [] arr = arr; // violation, int is followed by whitespace
+  }
+
+  public void bitwiseNot(int a) {
+    a = ~ a; // violation '~' is followed by whitespace
+    a = ~a; // Ok
+  }
+}
+        </source>
         <p>
           To configure the check to forbid linebreaks after a DOT token:
         </p>
@@ -1425,12 +1479,31 @@ import static java.math.BigInteger.ZERO;
   &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
-        <p>
-         If the annotation is between the type and the array, the check will skip validation for
-         spaces:
-        </p>
+        <p>Example:</p>
         <source>
-public void foo(final char @NotNull [] param) {} // No violation
+class Test {
+
+  public void lineBreak(String x) {
+    Integer.
+        parseInt(x); // violation, '.' is followed by whitespace
+    Integer.parseInt(x); // Ok
+  }
+
+  public void dotOperator(String s) {
+    Integer.parseInt(s); // Ok
+    Integer. parseInt(s); // violation, '.' is followed by whitespace
+  }
+
+  public void arrayDec() {
+    int[] arr = arr; // Ok
+    int [] arr = arr; // Ok
+  }
+
+  public void bitwiseNot(int a) {
+    a = ~ a; // Ok
+    a = ~a; // Ok
+  }
+}
         </source>
       </subsection>
 
@@ -2904,6 +2977,8 @@ class Bar {
                   LITERAL_FINALLY</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_RETURN">
                   LITERAL_RETURN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_YIELD">
+                  LITERAL_YIELD</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
                   LITERAL_CATCH</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
@@ -2942,6 +3017,8 @@ class Bar {
                   LITERAL_FINALLY</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_RETURN">
                   LITERAL_RETURN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_YIELD">
+                  LITERAL_YIELD</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
                   LITERAL_CATCH</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
@@ -3002,14 +3079,24 @@ public void myTest() {
     try {} catch (Exception e){} // OK
     try {} catch(Exception e){} // violation ''catch' is not followed by whitespace'
 
+    synchronized (this) { } // OK
     synchronized(this) { } // violation ''synchronized' is not followed by whitespace'
-    synchronized (this) { } // ok
 }
 public String testOne() {
     return ("a" + "b"); // OK
 }
 public String testTwo() {
     return("a" + "b"); // violation 'return' is not followed by whitespace'
+}
+public static void main(String[] args) {
+  int a = switch (args[0]) {
+    case "got":
+      yield (1); // OK
+    case "my":
+      yield(3); // violation ''yield' is not followed by whitespace'
+    default:
+      yield 2;
+  };
 }
           </pre>
         </div>

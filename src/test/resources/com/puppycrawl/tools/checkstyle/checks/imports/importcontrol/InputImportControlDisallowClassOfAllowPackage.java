@@ -9,7 +9,7 @@ path = (default).*
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol;
 
 import java.util.Calendar;
-import java.util.Date; // violation
+import java.util.Date; // violation 'Disallowed import - java.util.Date'
 
 public class InputImportControlDisallowClassOfAllowPackage {
     public void test() {
