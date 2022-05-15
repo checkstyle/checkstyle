@@ -283,12 +283,16 @@ public class WriteTagCheck
         final int lineNo = ast.getLineNo();
         final TextBlock cmt =
             contents.getJavadocBefore(lineNo);
-        if (cmt == null) {
-            log(lineNo, MSG_MISSING_TAG, tag);
-        }
-        else {
+        if (cmt != null) {
             checkTag(lineNo, cmt.getText());
         }
+        else if (tag != null) {
+            log(lineNo, MSG_MISSING_TAG, tag);
+        }
+        else if (tagFormat != null) {
+            log(lineNo, MSG_TAG_FORMAT, tagFormat);
+        }
+
     }
 
     /**
