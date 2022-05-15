@@ -255,6 +255,8 @@ public class FileContentsTest {
                 .isEqualTo(new Comment(new String[] {"/** *"}, 2, 1, 6).toString());
     }
 
+    // until https://github.com/checkstyle/checkstyle/issues/11723
+    @Deprecated(since = "10.2")
     @Test
     public void testInPackageInfo() {
         final FileContents fileContents = new FileContents(new FileText(
@@ -266,6 +268,8 @@ public class FileContentsTest {
                 .isTrue();
     }
 
+    // until https://github.com/checkstyle/checkstyle/issues/11723
+    @Deprecated(since = "10.2")
     @Test
     public void testNotInPackageInfo() {
         final FileContents fileContents = new FileContents(new FileText(
