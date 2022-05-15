@@ -118,7 +118,9 @@ public class ImmutabilityTest {
      */
     private static final Set<String> SUPPRESSED_FIELDS_IN_UTIL_CLASSES = Set.of(
         "com.puppycrawl.tools.checkstyle.utils.TokenUtil.TOKEN_IDS",
-        "com.puppycrawl.tools.checkstyle.utils.XpathUtil.TOKEN_TYPES_WITH_TEXT_ATTRIBUTE"
+        "com.puppycrawl.tools.checkstyle.utils.XpathUtil.TOKEN_TYPES_WITH_TEXT_ATTRIBUTE",
+        "com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil.DEFAULT_IDENTIFICATION_PREDICATE",
+        "com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil.identificationPredicate"
     );
 
     /**
