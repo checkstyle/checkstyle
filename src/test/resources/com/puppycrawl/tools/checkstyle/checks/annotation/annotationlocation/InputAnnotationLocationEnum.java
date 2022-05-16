@@ -15,12 +15,12 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Target;
 
 @EnumAnnotation(value = "foo")
-  @EnumAnnotation // violation
-@EnumAnnotation("bar") enum InputAnnotationLocationEnum { // violation
+  @EnumAnnotation // violation indentation should not be given
+@EnumAnnotation("bar") enum InputAnnotationLocationEnum { // violation 'enum' should be on one line
 
     @EnumAnnotation(value = "foo")
-      @EnumAnnotation // violation
-    @EnumAnnotation("bar") ENUM_VALUE(); // violation
+      @EnumAnnotation // violation indentation should not be given
+    @EnumAnnotation("bar") ENUM_VALUE(); // violation 'ENUM_VALUE' should be on one line
 
     InputAnnotationLocationEnum() {
     }

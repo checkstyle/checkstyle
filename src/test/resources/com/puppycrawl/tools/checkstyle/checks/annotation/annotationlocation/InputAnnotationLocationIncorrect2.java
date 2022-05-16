@@ -22,7 +22,7 @@ class InputAnnotationLocationIncorrect2
     @MyAnnotation_12(value = "") public int b; // ok
 
     @MyAnn_22 // ok
-        @MyAnnotation_12 // violation
+        @MyAnnotation_12 // violation indentation should not be given
 (value = "")
     public int c;
 
@@ -30,20 +30,20 @@ class InputAnnotationLocationIncorrect2
     public int d;
 
     @MyAnn_22 // ok
-        @MyAnnotation_12 // violation
+        @MyAnnotation_12 // violation indentation should not be given
 (value = "")
     public InputAnnotationLocationIncorrect2() {}
 
     @MyAnnotation_12("foo") @MyAnn_22 void foo1() {} // ok
 
     @MyAnnotation_12(value = "") // ok
-       @MyAnn_22 // violation
+       @MyAnn_22 // violation indentation should not be given
     void foo2() {}
 
     @MyAnnotation_12(value = "") // ok
-        @MyAnn_22 // violation
-      @MyAnnotation_32 // violation
-          @MyAnnotation_42 // violation
+        @MyAnn_22 // violation indentation should not be given
+      @MyAnnotation_32 // violation indentation should not be given
+          @MyAnnotation_42 // violation indentation should not be given
     class InnerClass
     {
         @MyAnn_22 @MyAnnotation_12 // ok
@@ -53,7 +53,7 @@ class InputAnnotationLocationIncorrect2
         @MyAnnotation_12(value = "") public int b; // ok
 
         @MyAnn_22 // ok
-            @MyAnnotation_12 // violation
+            @MyAnnotation_12 // violation indentation should not be given
 (value = "")
         public int c;
 
@@ -66,16 +66,16 @@ class InputAnnotationLocationIncorrect2
             // comment
         }
         @MyAnnotation_12(value = "") // ok
-            @MyAnn_22 // violation
+            @MyAnn_22 // violation indentation should not be given
         void foo1() {}
 
         @MyAnnotation_12(value = "") // ok
-            @MyAnn_22 // violation
+            @MyAnn_22 // violation indentation should not be given
         void foo2() {}
     }
 
     @MyAnnotation_12(value = "") // ok
-       @MyAnn_22 // violation
+       @MyAnn_22 // violation indentation should not be given
     InnerClass anon = new InnerClass()
     {
         @MyAnn_22 @MyAnnotation_12(value = "") public int a; // ok
@@ -90,10 +90,10 @@ class InputAnnotationLocationIncorrect2
         public int d;
 
         @MyAnnotation_12(value = "") // ok
-           @MyAnn_22 void foo1() {} // violation
+           @MyAnn_22 void foo1() {} // violation 'void..' should be on one line
 
         @MyAnnotation_12(value = "") // ok
-          @MyAnn_22 // violation
+          @MyAnn_22 // violation indentation should not be given
         void foo2() {}
 
         @MyAnnotation_12(value = "") void foo42() {} // ok
@@ -103,7 +103,7 @@ class InputAnnotationLocationIncorrect2
 
    @MyAnnotation_12 // ok
 (value = "")
-@MyAnn_22 // violation
+@MyAnn_22 // violation should be before 'value'
 class Foo2 {
     public void method1(@MyAnnotation_32 @MyAnn_22 Object param1) { // ok
         try {

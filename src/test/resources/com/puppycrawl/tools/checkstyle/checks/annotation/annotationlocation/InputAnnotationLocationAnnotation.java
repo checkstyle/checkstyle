@@ -15,12 +15,12 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Target;
 
 @AnnotationAnnotation(value = "foo")
-  @AnnotationAnnotation // violation
-@AnnotationAnnotation("bar") @interface InputAnnotationLocationAnnotation { // violation
+  @AnnotationAnnotation // violation indentation should not be given
+@AnnotationAnnotation("bar") @interface InputAnnotationLocationAnnotation { // violation 'interface' should be on one line
 
     @AnnotationAnnotation(value = "foo")
-      @AnnotationAnnotation // violation
-    @AnnotationAnnotation("bar") String value(); // violation
+      @AnnotationAnnotation // violation indentation should not be given
+    @AnnotationAnnotation("bar") String value(); // violation 'AnnotationAnnotation' should be on one line
 
 }
 

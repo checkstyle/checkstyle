@@ -19,15 +19,15 @@ class InputAnnotationLocationSingleParameterless {
 
     @Annotation void singleParameterless() {}
 
-    @Annotation @Annotation void multipleParameterless() {} // violation
+    @Annotation @Annotation void multipleParameterless() {} // violation '@Annotation' should be alone on line
 
-    @Annotation("") void parameterized() {} // violation
+    @Annotation("") void parameterized() {} // violation 'void..' should be on different line
 
-    @Annotation(value = "") void namedParameterized() {} // violation
+    @Annotation(value = "") void namedParameterized() {} // violation 'void..' should be on different line
 
-    @Annotation @Annotation("") @Annotation(value = "") void multiple() {} // 2 violations
+    @Annotation @Annotation("") @Annotation(value = "") void multiple() {} // 2 violations, '@Annotation' should be alone on line
 
-    @Annotation("") @Annotation(value = "") void multipleParametrized() {} // 2 violations
+    @Annotation("") @Annotation(value = "") void multipleParametrized() {} // 2 violations, '@Annotation' should be alone on line
 
     void parameterlessSamelineInForEach() {
         for (@Annotation Object o : new Object[0]) break; //ok
