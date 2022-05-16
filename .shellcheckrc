@@ -1,0 +1,35 @@
+# until https://github.com/checkstyle/checkstyle/issues/11637
+
+disable=SC2086 # (info): Double quote to prevent globbing and word splitting.
+disable=SC2006 # (style): Use $(...) notation instead of legacy backticks ....
+disable=SC2046 # (warning): Quote this to prevent word splitting.
+disable=SC2207 # (warning): Prefer mapfile or read -a to split command output.
+disable=SC2002 # (style): Useless cat. Consider 'cmd < file | ..' or 'cmd file | ..' instead.
+disable=SC2061 # (warning): Quote the parameter to -name so the shell won't interpret it.
+disable=SC2035 # (info): Use ./glob or -- glob so names with dashes won't become options.
+disable=SC2236 # (style): Use -n instead of ! -z.
+disable=SC2016 # (info): Expressions don't expand in single quotes, use double quotes for that.
+disable=SC2185 # (info): Some finds don't have a default path. Specify '.' explicitly.
+disable=SC2155 # (warning): Declare and assign separately to avoid masking return values.
+disable=SC2071 # (error): > is for string comparisons. Use -gt instead.
+disable=SC2034 # (warning): RUN_JOB appears unused. Verify use (or export if used externally).
+disable=SC2216 # (warning): Piping to 'true', a command that doesn't read stdin.
+disable=SC2013 # (info): To read lines rather than words, pipe/redirect to a 'while read' loop.
+disable=SC2206 # (warning): Quote to prevent word splitting/globbing.
+disable=SC2143 # (style): Use grep -q instead of comparing output with [ -n .. ].
+disable=SC2004 # (style): $/${} is unnecessary on arithmetic variables.
+disable=SC2087 # (warning): Quote 'EOF' to make here document expansions happen on the server-side.
+disable=SC2102 # (info): Ranges can only match single chars (mentioned due to duplicates).
+disable=SC2242 # (error): Can only exit with status 0-255.
+disable=SC2115 # (warning): Use "${var:?}" to ensure this never expands to /* .
+disable=SC2128 # (warning): Expanding an array without an index only gives the first element.
+disable=SC2063 # (warning): Grep uses regex, but this looks like a glob.
+disable=SC2126 # (style): Consider using grep -c instead of grep|wc -l.
+disable=SC2088 # (warning): Tilde does not expand in quotes. Use $HOME.
+disable=SC2005 # (style): Useless echo? Instead of 'echo $(cmd)', just use 'cmd'.
+disable=SC2015 # (info): Note that A && B || C is not if-then-else. C may run when A is true.
+disable=SC2026 # (info): This word is outside of quotes.
+disable=SC2269 # (info): This variable is assigned to itself, so the assignment does nothing.
+disable=SC2230 # which is non-standard. Use builtin 'command -v' instead.
+disable=SC2153 # Possible misspelling: LINKED_ISSUES may not be assigned, but LINKED_ISSUE is.
+disable=SC1004 # This backslash+linefeed is literal.
