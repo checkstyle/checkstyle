@@ -1355,25 +1355,67 @@ package com.example.annotations.packageannotation; //ok
       </subsection>
 
       <subsection name="Examples" id="SuppressWarningsHolder_Examples">
-        <p>To prevent <code>FooCheck</code> violations from being reported write:</p>
+        <p>To use default module configuration:</p>
         <source>
-@SuppressWarnings("foo") interface I { }
-@SuppressWarnings("foo") enum E { }
-@SuppressWarnings("foo") InputSuppressWarningsFilter() { }
+&lt;module name=&quot;TreeWalker&quot;&gt;
+  &lt;module name=&quot;MemberName&quot;/&gt;
+  &lt;module name=&quot;ConstantName&quot;/&gt;
+  &lt;module name=&quot;ParameterNumber&quot;/&gt;
+  &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+&lt;/module&gt;
+&lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+        </source>
+        <source>
+Class Test {
+  @SuppressWarnings({"membername"}) private int J;  // ok
+  @SuppressWarnings({"constantname"})   private static final int m = 0;  // ok
+
+  @SuppressWarnings("paramnum")
+  public void needsLotsOfParameters1 int a,  // violation
+    int b, int c, int d, int e, int f, int g, int h) {
+    // ...
+  }
+}
         </source>
         <p>Some real check examples:</p>
-        <p>This will prevent from invocation of the MemberNameCheck:</p>
+        <p>This will prevent selected violations from MemberNameCheck:</p>
         <source>
-@SuppressWarnings({"membername"})
-private int J;
+&lt;module name=&quot;TreeWalker&quot;&gt;
+  &lt;module name=&quot;MemberName&quot;/&gt;
+  &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+&lt;/module&gt;
+&lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+        </source>
+        <source>
+class Test {
+
+   @SuppressWarnings({"membername"})
+   private int J; // violation suppressed
+
+   private int K; // violation
+
+}
         </source>
         <p>You can also use a <code>checkstyle</code> prefix to prevent compiler from
            processing these annotations.
-           For example this will prevent ConstantNameCheck:
+           For example this will prevent selected violations from ConstantNameCheck:
         </p>
         <source>
-@SuppressWarnings("checkstyle:constantname")
-private static final int m = 0;
+&lt;module name=&quot;TreeWalker&quot;&gt;
+  &lt;module name=&quot;ConstantName&quot;/&gt;
+  &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+&lt;/module&gt;
+&lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+        </source>
+        <source>
+class Test {
+
+   @SuppressWarnings("checkstyle:constantname")
+   private static final int m = 0; // violation suppressed
+
+   private static final int i = 0; // violation
+
+}
         </source>
 
         <p>The general rule is that the argument of the <code>@SuppressWarnings</code> will be
@@ -1385,10 +1427,28 @@ private static final int m = 0;
              the <code>aliasList</code>:
         </p>
         <source>
-@SuppressWarnings("paramnum")
-public void needsLotsOfParameters(@SuppressWarnings("unused") int a,
-  int b, int c, int d, int e, int f, int g, int h) {
-  ...
+&lt;module name=&quot;TreeWalker&quot;&gt;
+  &lt;module name=&quot;ParameterNumber&quot;/&gt;
+  &lt;module name=&quot;SuppressWarningsHolder&quot;&gt;
+    &lt;property name=&quot;aliasList&quot; value=
+      &quot;com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+&lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+        </source>
+        <source>
+class Test {
+
+   @SuppressWarnings("paramnum")
+   public void needsLotsOfParameters int a, // violation suppressed
+      int b, int c, int d, int e, int f, int g, int h) {
+      // ...
+   }
+
+   public void needsLotsOfParameters1 int a, // violation
+      int b, int c, int d, int e, int f, int g, int h) {
+      // ...
+   }
 }
         </source>
 
@@ -1397,9 +1457,20 @@ public void needsLotsOfParameters(@SuppressWarnings("unused") int a,
           <code>"all"</code>:
         </p>
         <source>
-@SuppressWarnings("all")
-public void someFunctionWithInvalidStyle() {
-  //...
+&lt;module name=&quot;TreeWalker&quot;&gt;
+  &lt;module name=&quot;MemberName&quot;/&gt;
+  &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
+  &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+&lt;/module&gt;
+&lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+        </source>
+        <source>
+class Test {
+
+   @SuppressWarnings("all")
+   private int [] ARRAY; // 2 violations suppressed
+
+   private int [] ARR; // 2 violations
 }
         </source>
 
