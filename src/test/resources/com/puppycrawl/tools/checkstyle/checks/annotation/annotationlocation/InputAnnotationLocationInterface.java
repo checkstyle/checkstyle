@@ -15,12 +15,12 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Target;
 
 @InterfaceAnnotation(value = "foo")
-  @InterfaceAnnotation // violation
-@InterfaceAnnotation("bar") interface InputAnnotationLocationInterface { // violation
+  @InterfaceAnnotation // violation incorrect indentation
+@InterfaceAnnotation("bar") interface InputAnnotationLocationInterface { // violation 'interface..' should be on one line
 
     @InterfaceAnnotation(value = "foo")
-      @InterfaceAnnotation // violation
-    @InterfaceAnnotation("bar") void method( // violation
+      @InterfaceAnnotation // violation incorrect indentation
+    @InterfaceAnnotation("bar") void method( // violation 'void..' should be on one line
         int param1,
         @InterfaceAnnotation(value = "foo")
           @InterfaceAnnotation

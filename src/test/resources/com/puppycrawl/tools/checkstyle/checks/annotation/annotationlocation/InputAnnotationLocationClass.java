@@ -15,16 +15,16 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Target;
 
 @ClassAnnotation(value = "foo")
-  @ClassAnnotation // violation
-@ClassAnnotation("bar") class InputAnnotationLocationClass { // violation
+  @ClassAnnotation // violation indentation should not be given
+@ClassAnnotation("bar") class InputAnnotationLocationClass { // violation 'class' should be on one line
 
     @ClassAnnotation(value = "foo")
-      @ClassAnnotation // violation
-    @ClassAnnotation("bar") Object field; // violation
+      @ClassAnnotation // violation indentation should not be given
+    @ClassAnnotation("bar") Object field; // violation 'Object field' should be on one line
 
     @ClassAnnotation(value = "foo")
-      @ClassAnnotation // violation
-    @ClassAnnotation("bar") InputAnnotationLocationClass() { // violation
+      @ClassAnnotation // violation indentation should not be given
+    @ClassAnnotation("bar") InputAnnotationLocationClass() { // violation 'InputAnnotationLocationClass' should be on one line
     }
 
 }

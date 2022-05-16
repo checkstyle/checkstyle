@@ -11,7 +11,7 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, PACKAGE_DEF, ENUM_CONSTANT_DEF, \
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
-@MyAnnotation11 @MyAnnotation12 @MyAnnotation13 // 3 violations
+@MyAnnotation11 @MyAnnotation12 @MyAnnotation13 // 3 violations, all annotations declared on the same line
 public class InputAnnotationLocationCustomAnnotationsDeclared {
 
     @MyAnnotation13 // ok
