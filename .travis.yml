@@ -21,6 +21,7 @@ branches:
 install:
   - ./.ci/travis.sh install-adoptium-jdk
   - ./.ci/travis.sh install-custom-mvn
+  - sudo apt install shellcheck
 
 jobs:
   fast_finish: true
@@ -70,6 +71,11 @@ jobs:
         - CMD2="./.ci/validation.sh no-error-hibernate-search"
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
+
+    - env:
+        - DESC="Shellcheck"
+        - CMD="shellcheck ./.ci/*.sh"
+        - USE_MAVEN_REPO="false"
 
     - jdk: openjdk11
       env:
