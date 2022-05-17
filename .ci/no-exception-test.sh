@@ -8,7 +8,7 @@ case $1 in
 guava-with-google-checks)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  echo CS_version: $CS_POM_VERSION
+  echo CS_version: "$CS_POM_VERSION"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
@@ -30,7 +30,7 @@ guava-with-google-checks)
 guava-with-sun-checks)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  echo CS_version: $CS_POM_VERSION
+  echo CS_version: "$CS_POM_VERSION"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
@@ -72,7 +72,7 @@ openjdk17-with-checks-nonjavadoc-error)
 no-exception-lucene-and-others-javadoc)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  echo 'CS_POM_VERSION='${CS_POM_VERSION}
+  echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cp .ci/projects-for-no-exception-javadoc.config .ci-temp/contribution/checkstyle-tester
   cd .ci-temp/contribution/checkstyle-tester
@@ -92,7 +92,7 @@ no-exception-lucene-and-others-javadoc)
 
 no-exception-cassandra-storm-tapestry-javadoc)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
-  echo 'CS_POM_VERSION='${CS_POM_VERSION}
+  echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   checkout_from https://github.com/checkstyle/contribution
   cp .ci/projects-for-no-exception-javadoc.config .ci-temp/contribution/checkstyle-tester
@@ -112,7 +112,7 @@ no-exception-cassandra-storm-tapestry-javadoc)
 
 no-exception-hadoop-apache-groovy-scouter-javadoc)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
-  echo 'CS_POM_VERSION='${CS_POM_VERSION}
+  echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   checkout_from https://github.com/checkstyle/contribution
   cp .ci/projects-for-no-exception-javadoc.config .ci-temp/contribution/checkstyle-tester
@@ -133,7 +133,7 @@ no-exception-hadoop-apache-groovy-scouter-javadoc)
 
 no-exception-only-javadoc)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
-  echo 'CS_POM_VERSION='${CS_POM_VERSION}
+  echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester

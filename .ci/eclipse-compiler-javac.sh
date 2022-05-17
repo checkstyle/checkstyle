@@ -17,16 +17,16 @@ echo "Latest eclipse release is $ECJ_MAVEN_VERSION"
 ECJ_JAR=$(wget --quiet -O- "$ECLIPSE_URL/$ECJ_MAVEN_VERSION/" | grep -o "ecj-[^\"]*" | head -n1)
 ECJ_PATH=~/.m2/repository/$ECJ_MAVEN_VERSION/$ECJ_JAR
 
-if [ ! -f $ECJ_PATH ]; then
+if [ ! -f "$ECJ_PATH" ]; then
     echo "$ECJ_PATH is not found, downloading ..."
     cd target
-    wget $ECLIPSE_URL/$ECJ_MAVEN_VERSION/$ECJ_JAR
+    wget $ECLIPSE_URL/"$ECJ_MAVEN_VERSION"/"$ECJ_JAR"
     echo "test jar after download:"
-    jar -tvf $ECJ_JAR > /dev/null
+    jar -tvf "$ECJ_JAR" > /dev/null
     echo "check compiler options"
     ECJ_OPTIONS=org/eclipse/jdt/internal/compiler/impl/CompilerOptions.class
     ECJ_OPTIONS_PATTERN='org.eclipse.jdt.core.compiler.problem.[^"]*'
-    jar -xf $ECJ_JAR $ECJ_OPTIONS
+    jar -xf "$ECJ_JAR" $ECJ_OPTIONS
     javap -constants $ECJ_OPTIONS | grep -o "$ECJ_OPTIONS_PATTERN" | sort > ecj.opt
     grep -o "^[^=#]*" ../config/org.eclipse.jdt.core.prefs | sort > cs.opt
     OPTIONS_DIFF=$(diff --unified cs.opt ecj.opt | cat)
@@ -37,7 +37,7 @@ if [ ! -f $ECJ_PATH ]; then
         exit 1
     fi
     mkdir -p $(dirname "$ECJ_PATH")
-    cp $ECJ_JAR $ECJ_PATH
+    cp "$ECJ_JAR" "$ECJ_PATH"
     cd ..
 fi
 
@@ -49,7 +49,7 @@ echo "Executing eclipse compiler, output is redirected to $RESULT_FILE..."
 echo "java -jar $ECJ_PATH -target ${JAVA_RELEASE} -source ${JAVA_RELEASE} -cp $1  ..."
 
 set +e
-java -jar $ECJ_PATH -target ${JAVA_RELEASE} -source ${JAVA_RELEASE} -encoding UTF-8 -cp $1 \
+java -jar "$ECJ_PATH" -target "${JAVA_RELEASE}" -source "${JAVA_RELEASE}" -encoding UTF-8 -cp "$1" \
         -d target/eclipse-compile \
         -properties config/org.eclipse.jdt.core.prefs \
         -enableJavadoc \
@@ -69,7 +69,7 @@ if [[ $EXIT_CODE != 0 ]]; then
 else
     # check compilation of resources, all WARN and INFO are ignored
     set +e
-    java -jar $ECJ_PATH -target ${JAVA_RELEASE} -source ${JAVA_RELEASE} -cp $1 \
+    java -jar "$ECJ_PATH" -target "${JAVA_RELEASE}" -source "${JAVA_RELEASE}" -cp "$1" \
             -d target/eclipse-compile \
             -nowarn \
             src/main/java \
