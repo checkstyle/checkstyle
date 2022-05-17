@@ -3,7 +3,7 @@
 set -e
 
 removeFolderWithProtectedFiles() {
-  find $1 -delete
+  find "$1" -delete
 }
 
 function getMavenProperty {
@@ -24,11 +24,11 @@ function checkout_from {
   cd .ci-temp
   if [ -d "$PROJECT" ]; then
     echo "Target project $PROJECT is already cloned, latest changes will be fetched"
-    cd $PROJECT
+    cd "$PROJECT"
     git fetch
     cd ../
   else
-    for i in 1 2 3 4 5; do git clone $CLONE_URL && break || sleep 15; done
+    for i in 1 2 3 4 5; do git clone "$CLONE_URL" && break || sleep 15; done
   fi
   cd ../
 }
