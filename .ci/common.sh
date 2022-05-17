@@ -43,16 +43,16 @@ function should_run_job {
 
          if [[ $DEBUG == "true" ]]; then
               echo "Head commit: $HEAD"
-              OUT=$(git branch -a --contains $HEAD)
+              OUT=$(git branch -a --contains "$HEAD")
               echo "Master contains head commit: $OUT"
-              OUT=$(git branch -a --contains $HEAD | grep " origin/master$" || true)
+              OUT=$(git branch -a --contains "$HEAD" | grep " origin/master$" || true)
               echo "Master contains head commit (filtered): $OUT"
          fi
 
          # We are not in master if master does not contain the head commit
-         if [[ $(git branch -a --contains $HEAD | grep " origin/master$" \
+         if [[ $(git branch -a --contains "$HEAD" | grep " origin/master$" \
                     | wc -c ) == 0 ]]; then
-              PREVIOUS_COMMIT=`git merge-base origin/master $HEAD`
+              PREVIOUS_COMMIT=`git merge-base origin/master "$HEAD"`
          fi
 
          echo "Previous Commit to start with: $PREVIOUS_COMMIT"
@@ -66,15 +66,15 @@ function should_run_job {
          fi
 
          if [[ $DEBUG == "true" ]]; then
-              OUT=`git diff --name-only $HEAD $PREVIOUS_COMMIT`
+              OUT=`git diff --name-only "$HEAD" "$PREVIOUS_COMMIT"`
               echo "Files between top commit and previous: $OUT"
-              OUT=`git diff --name-only $HEAD $PREVIOUS_COMMIT | grep -vE "$SKIP_FILES" | cat`
+              OUT=`git diff --name-only "$HEAD" "$PREVIOUS_COMMIT" | grep -vE "$SKIP_FILES" | cat`
               echo "Files should not skip: $OUT"
          fi
 
          # Identifies if the files involved in the commits between head and previous
          # is more than the list of skippable files
-         if [[ $(git diff --name-only $HEAD $PREVIOUS_COMMIT \
+         if [[ $(git diff --name-only "$HEAD" "$PREVIOUS_COMMIT" \
                     | grep -vE "$SKIP_FILES" | cat | wc -c | sed 's/^ *//' ) > 0 ]]; then
               SKIP_JOB_BY_FILES="false"
          else
