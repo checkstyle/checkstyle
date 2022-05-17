@@ -13,9 +13,9 @@ init-m2-repo)
     MVN_SETTINGS=${TRAVIS_HOME}/.m2/settings.xml
     if [[ -f ${MVN_SETTINGS} ]]; then
       if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
-        sed -i'' -e "/<mirrors>/,/<\/mirrors>/ d" $MVN_SETTINGS
+        sed -i'' -e "/<mirrors>/,/<\/mirrors>/ d" "$MVN_SETTINGS"
       else
-        xmlstarlet ed --inplace -d "//mirrors" $MVN_SETTINGS
+        xmlstarlet ed --inplace -d "//mirrors" "$MVN_SETTINGS"
       fi
     fi
     if [[ $USE_MAVEN_REPO == 'true' && ! -d "~/.m2" ]]; then
@@ -52,8 +52,8 @@ install-custom-mvn)
     echo "Download Maven ${CUSTOM_MVN_VERSION}....";
     URL="https://archive.apache.org/dist/maven/maven-3/"
     URL=$URL"${CUSTOM_MVN_VERSION}/binaries/apache-maven-${CUSTOM_MVN_VERSION}-bin.zip"
-    wget --progress=dot:giga $URL
-    unzip -q apache-maven-${CUSTOM_MVN_VERSION}-bin.zip
+    wget --progress=dot:giga "$URL"
+    unzip -q apache-maven-"${CUSTOM_MVN_VERSION}"-bin.zip
     export M2_HOME=$PWD/apache-maven-${CUSTOM_MVN_VERSION};
     export PATH=$M2_HOME/bin:$PATH;
   fi
@@ -61,8 +61,8 @@ install-custom-mvn)
 
 remove-custom-mvn)
   if [[ -n "${CUSTOM_MVN_VERSION}" ]]; then
-    rm apache-maven-${CUSTOM_MVN_VERSION}-bin.zip
-    rm -rf apache-maven-${CUSTOM_MVN_VERSION}
+    rm apache-maven-"${CUSTOM_MVN_VERSION}"-bin.zip
+    rm -rf apache-maven-"${CUSTOM_MVN_VERSION}"
   fi
   ;;
 
@@ -70,7 +70,7 @@ run-command)
   if [[ $RUN_JOB == 1 ]]; then
     echo "eval of CMD is starting";
     echo "CMD=$2";
-    eval $2;
+    eval "$2";
     echo "eval of CMD is completed";
   fi
   ;;
@@ -81,7 +81,7 @@ run-command-after-success)
      ]];
   then
       echo "CMD_AFTER_SUCCESS is starting";
-      eval $CMD_AFTER_SUCCESS;
+      eval "$CMD_AFTER_SUCCESS";
       echo "CMD_AFTER_SUCCESS is finished";
   fi
   ;;
