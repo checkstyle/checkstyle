@@ -84,6 +84,19 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCharacterSwitch() throws Exception {
+        final String[] expected = {
+            "19:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "30:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "38:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "44:17: " + getCheckMessage(MSG_FALL_THROUGH),
+            "48:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "63:13: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(getPath("InputFallThroughCharacterSwitch.java"), expected);
+    }
+
+    @Test
     public void testLastCaseGroup() throws Exception {
         final String[] expected = {
             "22:13: " + getCheckMessage(MSG_FALL_THROUGH),
