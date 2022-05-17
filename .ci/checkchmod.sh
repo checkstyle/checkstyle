@@ -13,7 +13,7 @@ if [[ ! -z $CHMOD ]]; then
     echo "Files that violates this rule:"
     for NAMEFILE in $CHMOD
     do
-        echo $NAMEFILE;
+        echo "$NAMEFILE";
     done
     exit 1;
 fi
@@ -25,7 +25,7 @@ if [[ ! -z $CHMOD ]]; then
     echo "Files that violates this rule:"
     for NAMEFILE in $CHMOD
     do
-        echo $NAMEFILE;
+        echo "$NAMEFILE";
     done
     exit 1;
 fi
