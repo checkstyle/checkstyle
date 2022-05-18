@@ -19,8 +19,6 @@
 
 package com.google.checkstyle.test.chapter5naming.rule527localvariablenames;
 
-import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
@@ -28,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class PatternVariableNameTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String MSG_KEY = "name.invalidPattern";
+    private static final String MSG = "Pattern variable name ''{0}'' must match pattern ''{1}''.";
 
     @Override
     protected String getPackageLocation() {
@@ -38,22 +36,21 @@ public class PatternVariableNameTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testPatternVariableName() throws Exception {
         final Configuration checkConfig = getModuleConfig("PatternVariableName");
-        final String format = checkConfig.getProperty("format");
-        final Map<String, String> messages = checkConfig.getMessages();
+        final String format = "^[a-z]([a-z0-9][a-zA-Z0-9]*)?$";
         final String[] expected = {
-            "11:39: " + getCheckMessage(messages, MSG_KEY, "OTHER", format),
-            "21:34: " + getCheckMessage(messages, MSG_KEY, "Count", format),
-            "36:36: " + getCheckMessage(messages, MSG_KEY, "aA", format),
-            "37:42: " + getCheckMessage(messages, MSG_KEY, "a1_a", format),
-            "40:34: " + getCheckMessage(messages, MSG_KEY, "A_A", format),
-            "41:43: " + getCheckMessage(messages, MSG_KEY, "aa2_a", format),
-            "53:37: " + getCheckMessage(messages, MSG_KEY, "_a", format),
-            "59:43: " + getCheckMessage(messages, MSG_KEY, "_aa", format),
-            "63:41: " + getCheckMessage(messages, MSG_KEY, "aa_", format),
-            "68:38: " + getCheckMessage(messages, MSG_KEY, "aaa$aaa", format),
-            "69:36: " + getCheckMessage(messages, MSG_KEY, "$aaaaaa", format),
-            "70:37: " + getCheckMessage(messages, MSG_KEY, "aaaaaa$", format),
-            "77:41: " + getCheckMessage(messages, MSG_KEY, "_A_aa_B", format),
+            "11:39: " + getCheckMessage(MSG, "OTHER", format),
+            "21:34: " + getCheckMessage(MSG, "Count", format),
+            "36:36: " + getCheckMessage(MSG, "aA", format),
+            "37:42: " + getCheckMessage(MSG, "a1_a", format),
+            "40:34: " + getCheckMessage(MSG, "A_A", format),
+            "41:43: " + getCheckMessage(MSG, "aa2_a", format),
+            "53:37: " + getCheckMessage(MSG, "_a", format),
+            "59:43: " + getCheckMessage(MSG, "_aa", format),
+            "63:41: " + getCheckMessage(MSG, "aa_", format),
+            "68:38: " + getCheckMessage(MSG, "aaa$aaa", format),
+            "69:36: " + getCheckMessage(MSG, "$aaaaaa", format),
+            "70:37: " + getCheckMessage(MSG, "aaaaaa$", format),
+            "77:41: " + getCheckMessage(MSG, "_A_aa_B", format),
 
         };
 

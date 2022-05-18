@@ -19,8 +19,6 @@
 
 package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
-import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
@@ -28,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class ClassTypeParameterNameTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String MSG_KEY = "name.invalidPattern";
+    private static final String MSG = "Class type name ''{0}'' must match pattern ''{1}''.";
 
     @Override
     protected String getPackageLocation() {
@@ -38,13 +36,12 @@ public class ClassTypeParameterNameTest extends AbstractGoogleModuleTestSupport 
     @Test
     public void testClassDefault() throws Exception {
         final Configuration configuration = getModuleConfig("ClassTypeParameterName");
-        final String format = configuration.getProperty("format");
-        final Map<String, String> messages = configuration.getMessages();
+        final String format = "(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)";
 
         final String[] expected = {
-            "5:36: " + getCheckMessage(messages, MSG_KEY, "t", format),
-            "13:14: " + getCheckMessage(messages, MSG_KEY, "foo", format),
-            "27:24: " + getCheckMessage(messages, MSG_KEY, "$foo", format),
+            "5:36: " + getCheckMessage(MSG, "t", format),
+            "13:14: " + getCheckMessage(MSG, "foo", format),
+            "27:24: " + getCheckMessage(MSG, "$foo", format),
         };
 
         final String filePath = getPath("InputClassTypeParameterName.java");
