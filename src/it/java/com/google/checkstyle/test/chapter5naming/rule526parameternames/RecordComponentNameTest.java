@@ -19,8 +19,6 @@
 
 package com.google.checkstyle.test.chapter5naming.rule526parameternames;
 
-import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
@@ -28,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class RecordComponentNameTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String MSG_KEY = "name.invalidPattern";
+    private static final String MSG = "Record component name ''{0}'' must match pattern ''{1}''.";
 
     @Override
     protected String getPackageLocation() {
@@ -38,11 +36,10 @@ public class RecordComponentNameTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testGeneralParameterName() throws Exception {
         final Configuration config = getModuleConfig("RecordComponentName");
-        final String format = config.getProperty("format");
-        final Map<String, String> messages = config.getMessages();
+        final String format = "^[a-z]([a-z0-9][a-zA-Z0-9]*)?$";
         final String[] expected = {
-            "8:47: " + getCheckMessage(messages, MSG_KEY, "_componentName", format),
-            "12:40: " + getCheckMessage(messages, MSG_KEY, "Capital", format),
+            "8:47: " + getCheckMessage(MSG, "_componentName", format),
+            "12:40: " + getCheckMessage(MSG, "Capital", format),
         };
 
         final String filePath = getNonCompilablePath("InputRecordComponentName.java");

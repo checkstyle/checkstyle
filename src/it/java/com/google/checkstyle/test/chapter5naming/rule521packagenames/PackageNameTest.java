@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class PackageNameTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String MSG_KEY = "name.invalidPattern";
+    private static final String MSG = "Package name ''{0}'' must match pattern ''{1}''.";
 
     @Override
     protected String getPackageLocation() {
@@ -57,8 +57,8 @@ public class PackageNameTest extends AbstractGoogleModuleTestSupport {
         final String packagePath =
                 "com.google.checkstyle.test.chapter5naming.rule521packageNamesCamelCase";
         final Configuration checkConfig = getModuleConfig("PackageName");
-        final String format = checkConfig.getProperty("format");
-        final String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
+        final String format = "^[a-z]+(\\.[a-z][a-z0-9]*)*$";
+        final String msg = getCheckMessage(MSG, packagePath, format);
 
         final String[] expected = {
             "1:9: " + msg,
@@ -74,8 +74,8 @@ public class PackageNameTest extends AbstractGoogleModuleTestSupport {
     public void testBadPackageName2() throws Exception {
         final String packagePath = "com.google.checkstyle.test.chapter5naming.rule521_packagenames";
         final Configuration checkConfig = getModuleConfig("PackageName");
-        final String format = checkConfig.getProperty("format");
-        final String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
+        final String format = "^[a-z]+(\\.[a-z][a-z0-9]*)*$";
+        final String msg = getCheckMessage(MSG, packagePath, format);
 
         final String[] expected = {
             "1:9: " + msg,
@@ -91,8 +91,8 @@ public class PackageNameTest extends AbstractGoogleModuleTestSupport {
     public void testBadPackageName3() throws Exception {
         final String packagePath = "com.google.checkstyle.test.chapter5naming.rule521$packagenames";
         final Configuration checkConfig = getModuleConfig("PackageName");
-        final String format = checkConfig.getProperty("format");
-        final String msg = getCheckMessage(checkConfig.getMessages(), MSG_KEY, packagePath, format);
+        final String format = "^[a-z]+(\\.[a-z][a-z0-9]*)*$";
+        final String msg = getCheckMessage(MSG, packagePath, format);
 
         final String[] expected = {
             "1:9: " + msg,

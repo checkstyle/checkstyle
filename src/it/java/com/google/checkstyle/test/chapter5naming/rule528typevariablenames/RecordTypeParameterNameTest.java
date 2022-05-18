@@ -19,8 +19,6 @@
 
 package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
-import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
@@ -28,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class RecordTypeParameterNameTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String MSG_KEY = "name.invalidPattern";
+    private static final String MSG = "Record type name ''{0}'' must match pattern ''{1}''.";
 
     @Override
     protected String getPackageLocation() {
@@ -38,13 +36,12 @@ public class RecordTypeParameterNameTest extends AbstractGoogleModuleTestSupport
     @Test
     public void testRecordDefault() throws Exception {
         final Configuration configuration = getModuleConfig("RecordTypeParameterName");
-        final String format = configuration.getProperty("format");
-        final Map<String, String> messages = configuration.getMessages();
+        final String format = "(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)";
 
         final String[] expected = {
-            "13:44: " + getCheckMessage(messages, MSG_KEY, "t", format),
-            "20:15: " + getCheckMessage(messages, MSG_KEY, "foo", format),
-            "35:25: " + getCheckMessage(messages, MSG_KEY, "foo", format),
+            "13:44: " + getCheckMessage(MSG, "t", format),
+            "20:15: " + getCheckMessage(MSG, "foo", format),
+            "35:25: " + getCheckMessage(MSG, "foo", format),
         };
 
         final String filePath = getNonCompilablePath("InputRecordTypeParameterName.java");
