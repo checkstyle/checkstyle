@@ -19,42 +19,32 @@
 
 package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
-import java.util.Map;
-
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class MethodTypeParameterNameTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String MSG_KEY = "name.invalidPattern";
-    private static String format;
+    private static final String MSG = "Method type name ''{0}'' must match pattern ''{1}''.";
 
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter5naming/rule528typevariablenames";
     }
 
-    @BeforeAll
-    public static void setConfigurationBuilder() throws CheckstyleException {
-        format = getModuleConfig("ClassTypeParameterName").getProperty("format");
-    }
-
     @Test
     public void testMethodDefault() throws Exception {
         final Configuration checkConfig = getModuleConfig("MethodTypeParameterName");
-        final Map<String, String> messages = checkConfig.getMessages();
+        final String format = "(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)";
 
         final String[] expected = {
-            "9:6: " + getCheckMessage(messages, MSG_KEY, "e_e", format),
-            "19:6: " + getCheckMessage(messages, MSG_KEY, "Tfo$o2T", format),
-            "23:6: " + getCheckMessage(messages, MSG_KEY, "foo_", format),
-            "28:10: " + getCheckMessage(messages, MSG_KEY, "_abc", format),
-            "37:14: " + getCheckMessage(messages, MSG_KEY, "T$", format),
-            "42:14: " + getCheckMessage(messages, MSG_KEY, "EE", format),
+            "9:6: " + getCheckMessage(MSG, "e_e", format),
+            "19:6: " + getCheckMessage(MSG, "Tfo$o2T", format),
+            "23:6: " + getCheckMessage(MSG, "foo_", format),
+            "28:10: " + getCheckMessage(MSG, "_abc", format),
+            "37:14: " + getCheckMessage(MSG, "T$", format),
+            "42:14: " + getCheckMessage(MSG, "EE", format),
         };
 
         final String filePath = getPath("InputMethodTypeParameterName.java");
