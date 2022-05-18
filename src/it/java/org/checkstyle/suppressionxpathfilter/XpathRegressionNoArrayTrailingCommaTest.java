@@ -40,7 +40,7 @@ public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSu
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionNoArrayTrailingCommaOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionNoArrayTrailingCommaOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoArrayTrailingCommaCheck.class);
@@ -64,7 +64,7 @@ public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSu
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionNoArrayTrailingCommaTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionNoArrayTrailingCommaTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoArrayTrailingCommaCheck.class);

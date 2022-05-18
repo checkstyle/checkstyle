@@ -41,7 +41,7 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
     @Test
     public void test1() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMethodName1.java"));
+                new File(getXpathPath("SuppressionXpathRegressionMethodName1.java"));
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
@@ -65,7 +65,7 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
     @Test
     public void test2() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMethodName2.java"));
+                new File(getXpathPath("SuppressionXpathRegressionMethodName2.java"));
 
         final String pattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
         final DefaultConfiguration moduleConfig =
@@ -91,7 +91,7 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
     @Test
     public void test3() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMethodName3.java"));
+                new File(getXpathPath("SuppressionXpathRegressionMethodName3.java"));
 
         final String pattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
         final DefaultConfiguration moduleConfig =

@@ -40,7 +40,7 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionFallThroughOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionFallThroughOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(FallThroughCheck.class);
@@ -67,7 +67,7 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionFallThroughTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionFallThroughTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(FallThroughCheck.class);

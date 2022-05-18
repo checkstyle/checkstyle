@@ -41,7 +41,7 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionAvoidDoubleBraceInitialization.java"));
+            getXpathPath("SuppressionXpathRegressionAvoidDoubleBraceInitialization.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
 
@@ -66,7 +66,7 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionAvoidDoubleBraceInitializationTwo.java"));
+            getXpathPath("SuppressionXpathRegressionAvoidDoubleBraceInitializationTwo.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
 

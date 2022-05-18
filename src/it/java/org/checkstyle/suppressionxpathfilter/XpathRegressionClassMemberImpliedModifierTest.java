@@ -39,8 +39,8 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionClassMemberImpliedModifierOne.java"));
+        final File fileToProcess = new File(
+                getXpathPath("SuppressionXpathRegressionClassMemberImpliedModifierOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ClassMemberImpliedModifierCheck.class);
@@ -68,8 +68,8 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionClassMemberImpliedModifierTwo.java"));
+        final File fileToProcess = new File(
+                getXpathPath("SuppressionXpathRegressionClassMemberImpliedModifierTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ClassMemberImpliedModifierCheck.class);

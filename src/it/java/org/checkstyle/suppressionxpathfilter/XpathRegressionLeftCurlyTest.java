@@ -42,7 +42,7 @@ public class XpathRegressionLeftCurlyTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionLeftCurlyOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionLeftCurlyOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(LeftCurlyCheck.class);
@@ -66,7 +66,7 @@ public class XpathRegressionLeftCurlyTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionLeftCurlyTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionLeftCurlyTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(LeftCurlyCheck.class);
@@ -91,7 +91,7 @@ public class XpathRegressionLeftCurlyTest extends AbstractXpathTestSupport {
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionLeftCurlyThree.java"));
+                new File(getXpathPath("SuppressionXpathRegressionLeftCurlyThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(LeftCurlyCheck.class);

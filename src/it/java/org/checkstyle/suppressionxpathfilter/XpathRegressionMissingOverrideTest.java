@@ -39,7 +39,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
     @Test
     public void testClass() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionMissingOverrideClass.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -70,7 +70,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
     @Test
     public void testInterface() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionMissingOverrideInterface.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -104,7 +104,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
     @Test
     public void testAnonymous() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionMissingOverrideAnonymous.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -141,7 +141,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
     @Test
     public void testInheritDocInvalid1() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionMissingOverrideInheritDocInvalid1.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -172,7 +172,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
     @Test
     public void testInheritDocInvalid2() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionMissingOverrideInheritDocInvalid2.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -203,7 +203,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
     @Test
     public void testJavaFiveCompatibility1() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionMissingOverrideClass.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -235,7 +235,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
     @Test
     public void testJavaFiveCompatibility2() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionMissingOverrideInterface.java"));
 
         final DefaultConfiguration moduleConfig =

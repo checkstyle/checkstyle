@@ -42,7 +42,7 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
     @Test
     public void testLeftFollowed() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionParenPadLeftFollowed.java"));
+                new File(getXpathPath("SuppressionXpathRegressionParenPadLeftFollowed.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ParenPadCheck.class);
@@ -65,7 +65,7 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
     @Test
     public void testLeftNotFollowed() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionParenPadLeftNotFollowed.java"));
+                new File(getXpathPath("SuppressionXpathRegressionParenPadLeftNotFollowed.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ParenPadCheck.class);
@@ -89,7 +89,7 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
     @Test
     public void testRightPreceded() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionParenPadRightPreceded.java"));
+                new File(getXpathPath("SuppressionXpathRegressionParenPadRightPreceded.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ParenPadCheck.class);
@@ -112,7 +112,7 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
     @Test
     public void testRightNotPreceded() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionParenPadRightNotPreceded.java"));
+                new File(getXpathPath("SuppressionXpathRegressionParenPadRightNotPreceded.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ParenPadCheck.class);

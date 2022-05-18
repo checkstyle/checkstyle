@@ -40,7 +40,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInvalidJavadocPositionOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionInvalidJavadocPositionOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(InvalidJavadocPositionCheck.class);
@@ -64,7 +64,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInvalidJavadocPositionTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionInvalidJavadocPositionTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(InvalidJavadocPositionCheck.class);
@@ -87,8 +87,8 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInvalidJavadocPositionThree.java"));
+        final File fileToProcess = new File(
+                getXpathPath("SuppressionXpathRegressionInvalidJavadocPositionThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(InvalidJavadocPositionCheck.class);
@@ -112,7 +112,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
     @Test
     public void testFour() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInvalidJavadocPositionFour.java"));
+                new File(getXpathPath("SuppressionXpathRegressionInvalidJavadocPositionFour.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(InvalidJavadocPositionCheck.class);
@@ -136,7 +136,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
     @Test
     public void testFive() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInvalidJavadocPositionFive.java"));
+                new File(getXpathPath("SuppressionXpathRegressionInvalidJavadocPositionFive.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(InvalidJavadocPositionCheck.class);
@@ -161,7 +161,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
     @Test
     public void testSix() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInvalidJavadocPositionSix.java"));
+                new File(getXpathPath("SuppressionXpathRegressionInvalidJavadocPositionSix.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(InvalidJavadocPositionCheck.class);

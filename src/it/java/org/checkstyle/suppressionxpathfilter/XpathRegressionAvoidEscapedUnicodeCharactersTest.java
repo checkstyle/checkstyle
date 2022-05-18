@@ -40,7 +40,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
             "SuppressionXpathRegressionAvoidEscapedUnicodeCharactersDefault.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -67,7 +67,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
 
     @Test
     public void testControlCharacters() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
             "SuppressionXpathRegressionAvoidEscapedUnicodeCharactersControlCharacters.java")
         );
 
@@ -98,7 +98,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
 
     @Test
     public void testTailComment() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
             "SuppressionXpathRegressionAvoidEscapedUnicodeCharactersTailComment.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -128,7 +128,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
 
     @Test
     public void testAllCharactersEscaped() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
             "SuppressionXpathRegressionAvoidEscapedUnicodeCharactersAllEscaped.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -158,7 +158,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
 
     @Test
     public void testNonPrintableCharacters() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
             "SuppressionXpathRegressionAvoidEscapedUnicodeCharactersNonPrintable.java"));
 
         final DefaultConfiguration moduleConfig =

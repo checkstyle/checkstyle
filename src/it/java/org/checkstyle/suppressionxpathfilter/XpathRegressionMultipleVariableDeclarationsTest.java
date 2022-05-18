@@ -40,7 +40,7 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionMultipleVariableDeclarationsOne.java"));
+                getXpathPath("SuppressionXpathRegressionMultipleVariableDeclarationsOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MultipleVariableDeclarationsCheck.class);
@@ -84,7 +84,7 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionMultipleVariableDeclarationsTwo.java"));
+                getXpathPath("SuppressionXpathRegressionMultipleVariableDeclarationsTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MultipleVariableDeclarationsCheck.class);

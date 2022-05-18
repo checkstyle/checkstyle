@@ -40,7 +40,7 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess = new File(getNonCompilablePath(
+        final File fileToProcess = new File(getXpathNonCompilablePath(
             "SuppressionXpathRegressionIllegalIdentifierNameTestOne.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -65,7 +65,7 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess = new File(getNonCompilablePath(
+        final File fileToProcess = new File(getXpathNonCompilablePath(
             "SuppressionXpathRegressionIllegalIdentifierNameTestTwo.java"));
 
         final DefaultConfiguration moduleConfig =

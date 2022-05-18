@@ -40,7 +40,7 @@ public class XpathRegressionOneTopLevelClassTest extends AbstractXpathTestSuppor
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionOneTopLevelClassFirst.java"));
+                new File(getXpathPath("SuppressionXpathRegressionOneTopLevelClassFirst.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(OneTopLevelClassCheck.class);
@@ -63,7 +63,7 @@ public class XpathRegressionOneTopLevelClassTest extends AbstractXpathTestSuppor
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-            new File(getPath("SuppressionXpathRegressionOneTopLevelClassSecond.java"));
+            new File(getXpathPath("SuppressionXpathRegressionOneTopLevelClassSecond.java"));
 
         final DefaultConfiguration moduleConfig =
             createModuleConfig(OneTopLevelClassCheck.class);

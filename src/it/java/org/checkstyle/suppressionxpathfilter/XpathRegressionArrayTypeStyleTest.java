@@ -38,7 +38,7 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
     @Test
     public void testVariable() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionArrayTypeStyleVariable.java"));
+                new File(getXpathPath("SuppressionXpathRegressionArrayTypeStyleVariable.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ArrayTypeStyleCheck.class);
@@ -61,7 +61,7 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
     @Test
     public void testMethodDef() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionArrayTypeStyleMethodDef.java"));
+                new File(getXpathPath("SuppressionXpathRegressionArrayTypeStyleMethodDef.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ArrayTypeStyleCheck.class);

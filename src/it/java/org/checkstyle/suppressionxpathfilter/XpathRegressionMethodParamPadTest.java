@@ -40,7 +40,7 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMethodParamPadOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionMethodParamPadOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MethodParamPadCheck.class);
@@ -63,7 +63,7 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMethodParamPadTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionMethodParamPadTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MethodParamPadCheck.class);
@@ -86,7 +86,7 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMethodParamPadThree.java"));
+                new File(getXpathPath("SuppressionXpathRegressionMethodParamPadThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MethodParamPadCheck.class);

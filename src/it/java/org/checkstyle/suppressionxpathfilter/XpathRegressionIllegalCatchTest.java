@@ -40,7 +40,7 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionIllegalCatchOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionIllegalCatchOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalCatchCheck.class);
@@ -64,7 +64,7 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionIllegalCatchTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionIllegalCatchTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalCatchCheck.class);

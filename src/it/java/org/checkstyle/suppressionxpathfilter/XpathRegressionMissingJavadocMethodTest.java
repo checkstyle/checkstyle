@@ -38,7 +38,7 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionMissingJavadocMethod1.java")
+            getXpathPath("SuppressionXpathRegressionMissingJavadocMethod1.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -75,7 +75,7 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionMissingJavadocMethod2.java")
+            getXpathPath("SuppressionXpathRegressionMissingJavadocMethod2.java")
         );
 
         final DefaultConfiguration moduleConfig =
