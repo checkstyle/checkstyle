@@ -19,14 +19,14 @@
 
 package com.google.checkstyle.test.chapter5naming.rule523methodnames;
 
-import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class MethodNameTest extends AbstractGoogleModuleTestSupport {
+
+    private static final String MSG = "Method name ''{0}'' must match pattern ''{1}''.";
 
     @Override
     protected String getPackageLocation() {
@@ -36,35 +36,33 @@ public class MethodNameTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testMethodName() throws Exception {
         final Configuration checkConfig = getModuleConfig("MethodName");
-        final String msgKey = "name.invalidPattern";
         final String format = "^[a-z][a-z0-9][a-zA-Z0-9_]*$";
-        final Map<String, String> messages = checkConfig.getMessages();
 
         final String[] expected = {
-            "11:10: " + getCheckMessage(messages, msgKey, "Foo", format),
-            "12:10: " + getCheckMessage(messages, msgKey, "fOo", format),
-            "14:10: " + getCheckMessage(messages, msgKey, "f$o", format),
-            "15:10: " + getCheckMessage(messages, msgKey, "f_oo", format),
-            "16:10: " + getCheckMessage(messages, msgKey, "f", format),
-            "17:10: " + getCheckMessage(messages, msgKey, "fO", format),
-            "21:14: " + getCheckMessage(messages, msgKey, "Foo", format),
-            "22:14: " + getCheckMessage(messages, msgKey, "fOo", format),
-            "24:14: " + getCheckMessage(messages, msgKey, "f$o", format),
-            "25:14: " + getCheckMessage(messages, msgKey, "f_oo", format),
-            "26:14: " + getCheckMessage(messages, msgKey, "f", format),
-            "27:14: " + getCheckMessage(messages, msgKey, "fO", format),
-            "32:14: " + getCheckMessage(messages, msgKey, "Foo", format),
-            "33:14: " + getCheckMessage(messages, msgKey, "fOo", format),
-            "35:14: " + getCheckMessage(messages, msgKey, "f$o", format),
-            "36:14: " + getCheckMessage(messages, msgKey, "f_oo", format),
-            "37:14: " + getCheckMessage(messages, msgKey, "f", format),
-            "38:14: " + getCheckMessage(messages, msgKey, "fO", format),
-            "44:10: " + getCheckMessage(messages, msgKey, "Foo", format),
-            "45:10: " + getCheckMessage(messages, msgKey, "fOo", format),
-            "47:10: " + getCheckMessage(messages, msgKey, "f$o", format),
-            "48:10: " + getCheckMessage(messages, msgKey, "f_oo", format),
-            "49:10: " + getCheckMessage(messages, msgKey, "f", format),
-            "50:10: " + getCheckMessage(messages, msgKey, "fO", format),
+            "11:10: " + getCheckMessage(MSG, "Foo", format),
+            "12:10: " + getCheckMessage(MSG, "fOo", format),
+            "14:10: " + getCheckMessage(MSG, "f$o", format),
+            "15:10: " + getCheckMessage(MSG, "f_oo", format),
+            "16:10: " + getCheckMessage(MSG, "f", format),
+            "17:10: " + getCheckMessage(MSG, "fO", format),
+            "21:14: " + getCheckMessage(MSG, "Foo", format),
+            "22:14: " + getCheckMessage(MSG, "fOo", format),
+            "24:14: " + getCheckMessage(MSG, "f$o", format),
+            "25:14: " + getCheckMessage(MSG, "f_oo", format),
+            "26:14: " + getCheckMessage(MSG, "f", format),
+            "27:14: " + getCheckMessage(MSG, "fO", format),
+            "32:14: " + getCheckMessage(MSG, "Foo", format),
+            "33:14: " + getCheckMessage(MSG, "fOo", format),
+            "35:14: " + getCheckMessage(MSG, "f$o", format),
+            "36:14: " + getCheckMessage(MSG, "f_oo", format),
+            "37:14: " + getCheckMessage(MSG, "f", format),
+            "38:14: " + getCheckMessage(MSG, "fO", format),
+            "44:10: " + getCheckMessage(MSG, "Foo", format),
+            "45:10: " + getCheckMessage(MSG, "fOo", format),
+            "47:10: " + getCheckMessage(MSG, "f$o", format),
+            "48:10: " + getCheckMessage(MSG, "f_oo", format),
+            "49:10: " + getCheckMessage(MSG, "f", format),
+            "50:10: " + getCheckMessage(MSG, "fO", format),
         };
 
         final String filePath = getPath("InputMethodName.java");

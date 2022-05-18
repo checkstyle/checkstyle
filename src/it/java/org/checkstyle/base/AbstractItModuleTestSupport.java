@@ -36,7 +36,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
@@ -473,22 +472,14 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     /**
      * Gets the check message 'as is' from appropriate 'messages.properties' file.
      *
-     * @param messages the map of messages to scan.
-     * @param messageKey the key of message in 'messages.properties' file.
+     * @param message the message.
      * @param arguments the arguments of message in 'messages.properties' file.
      * @return The message of the check with the arguments applied.
      */
-    protected static String getCheckMessage(Map<String, String> messages, String messageKey,
+    protected static String getCheckMessage(String message,
             Object... arguments) {
-        String checkMessage = null;
-        for (Map.Entry<String, String> entry : messages.entrySet()) {
-            if (messageKey.equals(entry.getKey())) {
-                final MessageFormat formatter = new MessageFormat(entry.getValue(), Locale.ROOT);
-                checkMessage = formatter.format(arguments);
-                break;
-            }
-        }
-        return checkMessage;
+        final MessageFormat formatter = new MessageFormat(message, Locale.ROOT);
+        return formatter.format(arguments);
     }
 
     /**

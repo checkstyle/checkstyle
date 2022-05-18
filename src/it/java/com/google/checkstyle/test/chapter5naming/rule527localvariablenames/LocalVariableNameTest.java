@@ -19,8 +19,6 @@
 
 package com.google.checkstyle.test.chapter5naming.rule527localvariablenames;
 
-import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
@@ -28,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public class LocalVariableNameTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String MSG_KEY = "name.invalidPattern";
+    private static final String MSG = "Local variable name ''{0}'' must match pattern ''{1}''.";
 
     @Override
     protected String getPackageLocation() {
@@ -38,19 +36,18 @@ public class LocalVariableNameTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testLocalVariableName() throws Exception {
         final Configuration checkConfig = getModuleConfig("LocalVariableName");
-        final String format = checkConfig.getProperty("format");
-        final Map<String, String> messages = checkConfig.getMessages();
+        final String format = "^[a-z]([a-z0-9][a-zA-Z0-9]*)?$";
         final String[] expected = {
-            "27:13: " + getCheckMessage(messages, MSG_KEY, "aA", format),
-            "28:13: " + getCheckMessage(messages, MSG_KEY, "a1_a", format),
-            "29:13: " + getCheckMessage(messages, MSG_KEY, "A_A", format),
-            "30:13: " + getCheckMessage(messages, MSG_KEY, "aa2_a", format),
-            "31:13: " + getCheckMessage(messages, MSG_KEY, "_a", format),
-            "32:13: " + getCheckMessage(messages, MSG_KEY, "_aa", format),
-            "33:13: " + getCheckMessage(messages, MSG_KEY, "aa_", format),
-            "34:13: " + getCheckMessage(messages, MSG_KEY, "aaa$aaa", format),
-            "35:13: " + getCheckMessage(messages, MSG_KEY, "$aaaaaa", format),
-            "36:13: " + getCheckMessage(messages, MSG_KEY, "aaaaaa$", format),
+            "27:13: " + getCheckMessage(MSG, "aA", format),
+            "28:13: " + getCheckMessage(MSG, "a1_a", format),
+            "29:13: " + getCheckMessage(MSG, "A_A", format),
+            "30:13: " + getCheckMessage(MSG, "aa2_a", format),
+            "31:13: " + getCheckMessage(MSG, "_a", format),
+            "32:13: " + getCheckMessage(MSG, "_aa", format),
+            "33:13: " + getCheckMessage(MSG, "aa_", format),
+            "34:13: " + getCheckMessage(MSG, "aaa$aaa", format),
+            "35:13: " + getCheckMessage(MSG, "$aaaaaa", format),
+            "36:13: " + getCheckMessage(MSG, "aaaaaa$", format),
         };
 
         final String filePath = getPath("InputLocalVariableNameSimple.java");
@@ -62,15 +59,14 @@ public class LocalVariableNameTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testOneChar() throws Exception {
         final Configuration checkConfig = getModuleConfig("LocalVariableName");
-        final String format = checkConfig.getProperty("format");
-        final Map<String, String> messages = checkConfig.getMessages();
+        final String format = "^[a-z]([a-z0-9][a-zA-Z0-9]*)?$";
         final String[] expected = {
-            "21:17: " + getCheckMessage(messages, MSG_KEY, "I_ndex", format),
-            "45:17: " + getCheckMessage(messages, MSG_KEY, "i_ndex", format),
-            "49:17: " + getCheckMessage(messages, MSG_KEY, "ii_i1", format),
-            "53:17: " + getCheckMessage(messages, MSG_KEY, "$index", format),
-            "57:17: " + getCheckMessage(messages, MSG_KEY, "in$dex", format),
-            "61:17: " + getCheckMessage(messages, MSG_KEY, "index$", format),
+            "21:17: " + getCheckMessage(MSG, "I_ndex", format),
+            "45:17: " + getCheckMessage(MSG, "i_ndex", format),
+            "49:17: " + getCheckMessage(MSG, "ii_i1", format),
+            "53:17: " + getCheckMessage(MSG, "$index", format),
+            "57:17: " + getCheckMessage(MSG, "in$dex", format),
+            "61:17: " + getCheckMessage(MSG, "index$", format),
         };
 
         final String filePath = getPath("InputLocalVariableNameOneCharVarName.java");
