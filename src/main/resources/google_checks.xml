@@ -16,7 +16,10 @@
     Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
  -->
 
-<module name = "Checker">
+<module name="Checker">
+  <!-- IMPORTANT: Allows use of SuppressWarnings annotation -->
+  <module name="SuppressWarningsFilter"/>
+
   <property name="charset" value="UTF-8"/>
 
   <property name="severity" value="warning"/>
@@ -47,6 +50,13 @@
   </module>
 
   <module name="TreeWalker">
+    <module name="SuppressWarningsHolder" />
+    <module name="SuppressionCommentFilter">
+      <property name="offCommentFormat" value="CHECKSTYLE.OFF\: ([\w\|]+)" />
+      <property name="onCommentFormat" value="CHECKSTYLE.ON\: ([\w\|]+)" />
+      <property name="checkFormat" value="$1" />
+    </module>
+
     <module name="OuterTypeFilename"/>
     <module name="IllegalTokenText">
       <property name="tokens" value="STRING_LITERAL, CHAR_LITERAL"/>
