@@ -1411,6 +1411,10 @@ public void someFunctionWithInvalidStyle() {
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsHolder">
             Checkstyle Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsHolder">
+            Google Style</a>
+          </li>
         </ul>
       </subsection>
 
