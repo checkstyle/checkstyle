@@ -40,7 +40,7 @@ public class XpathRegressionRedundantImportTest extends AbstractXpathTestSupport
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionRedundantImport1.java"));
+                new File(getXpathPath("SuppressionXpathRegressionRedundantImport1.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RedundantImportCheck.class);
         final String[] expectedViolation = {
@@ -58,7 +58,7 @@ public class XpathRegressionRedundantImportTest extends AbstractXpathTestSupport
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionRedundantImport2.java"));
+                new File(getXpathPath("SuppressionXpathRegressionRedundantImport2.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RedundantImportCheck.class);
         final String[] expectedViolation = {
@@ -75,7 +75,7 @@ public class XpathRegressionRedundantImportTest extends AbstractXpathTestSupport
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionRedundantImport3.java"));
+                new File(getXpathPath("SuppressionXpathRegressionRedundantImport3.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RedundantImportCheck.class);
         final String[] expectedViolation = {

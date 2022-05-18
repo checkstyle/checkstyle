@@ -41,7 +41,7 @@ public class XpathRegressionAvoidStaticImportTest
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
             "SuppressionXpathRegressionAvoidStaticImport1.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -61,7 +61,7 @@ public class XpathRegressionAvoidStaticImportTest
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
             "SuppressionXpathRegressionAvoidStaticImport2.java"));
 
         final DefaultConfiguration moduleConfig =

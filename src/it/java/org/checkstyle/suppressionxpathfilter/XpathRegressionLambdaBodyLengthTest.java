@@ -41,7 +41,7 @@ public class XpathRegressionLambdaBodyLengthTest
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
             "SuppressionXpathRegressionLambdaBodyLength1.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         final String[] expectedViolation = {
@@ -59,7 +59,7 @@ public class XpathRegressionLambdaBodyLengthTest
 
     @Test
     public void testMaxIsNotDefault() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
             "SuppressionXpathRegressionLambdaBodyLength2.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         moduleConfig.addProperty("max", "5");

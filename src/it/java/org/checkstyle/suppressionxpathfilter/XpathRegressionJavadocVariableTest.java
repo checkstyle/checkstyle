@@ -40,7 +40,7 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocVariableOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionJavadocVariableOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocVariableCheck.class);
@@ -69,7 +69,7 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocVariableTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionJavadocVariableTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocVariableCheck.class);

@@ -40,7 +40,7 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
     @Test
     public void testUpperEllOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionUpperEllFirst.java"));
+                new File(getXpathPath("SuppressionXpathRegressionUpperEllFirst.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UpperEllCheck.class);
@@ -67,7 +67,7 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
     @Test
     public void testUpperEllTwo() throws Exception {
         final File fileToProcess =
-            new File(getPath("SuppressionXpathRegressionUpperEllSecond.java"));
+            new File(getXpathPath("SuppressionXpathRegressionUpperEllSecond.java"));
 
         final DefaultConfiguration moduleConfig =
             createModuleConfig(UpperEllCheck.class);

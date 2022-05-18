@@ -38,7 +38,7 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionInterfaceMemberImpliedModifier1.java")
+            getXpathPath("SuppressionXpathRegressionInterfaceMemberImpliedModifier1.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -71,7 +71,7 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionInterfaceMemberImpliedModifier2.java")
+            getXpathPath("SuppressionXpathRegressionInterfaceMemberImpliedModifier2.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -104,7 +104,7 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
     @Test
     public void testThree() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionInterfaceMemberImpliedModifier3.java")
+            getXpathPath("SuppressionXpathRegressionInterfaceMemberImpliedModifier3.java")
         );
 
         final DefaultConfiguration moduleConfig =

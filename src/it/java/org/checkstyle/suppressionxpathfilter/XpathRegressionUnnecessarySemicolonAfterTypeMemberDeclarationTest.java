@@ -41,7 +41,7 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
             "SuppressionXpathRegressionUnnecessarySemicolonAfterTypeMemberDeclaration.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         final String[] expectedViolation = {
@@ -61,7 +61,7 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
 
     @Test
     public void testTokens() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
             "SuppressionXpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTokens"
                 + ".java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);

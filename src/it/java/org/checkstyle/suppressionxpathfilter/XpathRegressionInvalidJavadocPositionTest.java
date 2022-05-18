@@ -39,146 +39,134 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInvalidJavadocPositionOne.java"));
+        final File fileToProcess = new File(
+                getXpathPath("SuppressionXpathRegressionInvalidJavadocPositionOne.java"));
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(InvalidJavadocPositionCheck.class);
+        final DefaultConfiguration moduleConfig = createModuleConfig(
+                InvalidJavadocPositionCheck.class);
 
         final String[] expectedViolation = {
-            "4:1: " + getCheckMessage(InvalidJavadocPositionCheck.class,
-                InvalidJavadocPositionCheck.MSG_KEY),
+                "4:1: " + getCheckMessage(InvalidJavadocPositionCheck.class,
+                        InvalidJavadocPositionCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
-            "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionOne']]"
-                    + "/MODIFIERS/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
-                    + "[@text='* // warn\\n * Javadoc Comment\\n ']]"
-        );
+        final List<String> expectedXpathQueries = Collections
+                .singletonList("/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionOne']]"
+                        + "/MODIFIERS/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
+                        + "[@text='* // warn\\n * Javadoc Comment\\n ']]");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInvalidJavadocPositionTwo.java"));
+        final File fileToProcess = new File(
+                getXpathPath("SuppressionXpathRegressionInvalidJavadocPositionTwo.java"));
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(InvalidJavadocPositionCheck.class);
+        final DefaultConfiguration moduleConfig = createModuleConfig(
+                InvalidJavadocPositionCheck.class);
 
         final String[] expectedViolation = {
-            "5:1: " + getCheckMessage(InvalidJavadocPositionCheck.class,
-                InvalidJavadocPositionCheck.MSG_KEY),
+                "5:1: " + getCheckMessage(InvalidJavadocPositionCheck.class,
+                        InvalidJavadocPositionCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
-            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                    + "[@text='SuppressionXpathRegressionInvalidJavadocPositionTwo']]"
-                    + "/OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
-                    + "[@text='* // warn\\n * Javadoc comment\\n ']]"
-        );
+        final List<String> expectedXpathQueries = Collections
+                .singletonList("/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                        + "[@text='SuppressionXpathRegressionInvalidJavadocPositionTwo']]"
+                        + "/OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
+                        + "[@text='* // warn\\n * Javadoc comment\\n ']]");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInvalidJavadocPositionThree.java"));
+        final File fileToProcess = new File(
+                getXpathPath("SuppressionXpathRegressionInvalidJavadocPositionThree.java"));
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(InvalidJavadocPositionCheck.class);
+        final DefaultConfiguration moduleConfig = createModuleConfig(
+                InvalidJavadocPositionCheck.class);
 
         final String[] expectedViolation = {
-            "6:5: " + getCheckMessage(InvalidJavadocPositionCheck.class,
-                InvalidJavadocPositionCheck.MSG_KEY),
+                "6:5: " + getCheckMessage(InvalidJavadocPositionCheck.class,
+                        InvalidJavadocPositionCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
-            "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionThree']]/"
-                    + "OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
-                    + "[@text='* // warn\\n     * Javadoc comment\\n     ']]"
-        );
+        final List<String> expectedXpathQueries = Collections
+                .singletonList("/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionThree']]/"
+                        + "OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
+                        + "[@text='* // warn\\n     * Javadoc comment\\n     ']]");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
 
     @Test
     public void testFour() throws Exception {
-        final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInvalidJavadocPositionFour.java"));
+        final File fileToProcess = new File(
+                getXpathPath("SuppressionXpathRegressionInvalidJavadocPositionFour.java"));
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(InvalidJavadocPositionCheck.class);
+        final DefaultConfiguration moduleConfig = createModuleConfig(
+                InvalidJavadocPositionCheck.class);
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(InvalidJavadocPositionCheck.class,
-                InvalidJavadocPositionCheck.MSG_KEY),
+                "4:5: " + getCheckMessage(InvalidJavadocPositionCheck.class,
+                        InvalidJavadocPositionCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
-            "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionFour']]"
-                + "/OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
-                + "[@text='* // warn\\n     * Javadoc Comment\\n     ']]"
-        );
+        final List<String> expectedXpathQueries = Collections
+                .singletonList("/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionFour']]"
+                        + "/OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
+                        + "[@text='* // warn\\n     * Javadoc Comment\\n     ']]");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
 
     @Test
     public void testFive() throws Exception {
-        final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInvalidJavadocPositionFive.java"));
+        final File fileToProcess = new File(
+                getXpathPath("SuppressionXpathRegressionInvalidJavadocPositionFive.java"));
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(InvalidJavadocPositionCheck.class);
+        final DefaultConfiguration moduleConfig = createModuleConfig(
+                InvalidJavadocPositionCheck.class);
 
         final String[] expectedViolation = {
-            "5:9: " + getCheckMessage(InvalidJavadocPositionCheck.class,
-                InvalidJavadocPositionCheck.MSG_KEY),
+                "5:9: " + getCheckMessage(InvalidJavadocPositionCheck.class,
+                        InvalidJavadocPositionCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
-            "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionFive']]"
-                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
-                + "/SLIST/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
-                + "[@text='* // warn\\n         * Javadoc comment\\n         ']]"
-        );
+        final List<String> expectedXpathQueries = Collections
+                .singletonList("/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionFive']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
+                        + "/SLIST/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
+                        + "[@text='* // warn\\n         * Javadoc comment\\n         ']]");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
 
     @Test
     public void testSix() throws Exception {
-        final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInvalidJavadocPositionSix.java"));
+        final File fileToProcess = new File(
+                getXpathPath("SuppressionXpathRegressionInvalidJavadocPositionSix.java"));
 
-        final DefaultConfiguration moduleConfig =
-                createModuleConfig(InvalidJavadocPositionCheck.class);
+        final DefaultConfiguration moduleConfig = createModuleConfig(
+                InvalidJavadocPositionCheck.class);
 
         final String[] expectedViolation = {
-            "5:5: " + getCheckMessage(InvalidJavadocPositionCheck.class,
-                InvalidJavadocPositionCheck.MSG_KEY),
+                "5:5: " + getCheckMessage(InvalidJavadocPositionCheck.class,
+                        InvalidJavadocPositionCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
-            "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionSix']]"
-                + "/OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
-                + "[@text='* // warn\\n     * Javadoc Comment\\n     ']]"
-        );
+        final List<String> expectedXpathQueries = Collections
+                .singletonList("/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionSix']]"
+                        + "/OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
+                        + "[@text='* // warn\\n     * Javadoc Comment\\n     ']]");
 
-        runVerifications(moduleConfig, fileToProcess, expectedViolation,
-                expectedXpathQueries);
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
 }

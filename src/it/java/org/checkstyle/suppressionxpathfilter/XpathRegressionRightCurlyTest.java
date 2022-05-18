@@ -41,7 +41,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionRightCurlyOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionRightCurlyOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RightCurlyCheck.class);
@@ -64,7 +64,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionRightCurlyTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionRightCurlyTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RightCurlyCheck.class);
@@ -88,7 +88,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionRightCurlyThree.java"));
+                new File(getXpathPath("SuppressionXpathRegressionRightCurlyThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RightCurlyCheck.class);
@@ -112,7 +112,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
     @Test
     public void testFour() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionRightCurlyFour.java"));
+                new File(getXpathPath("SuppressionXpathRegressionRightCurlyFour.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RightCurlyCheck.class);

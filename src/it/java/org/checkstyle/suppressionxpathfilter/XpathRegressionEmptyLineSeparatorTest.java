@@ -39,7 +39,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionEmptyLineSeparator1.java")
+                getXpathPath("SuppressionXpathRegressionEmptyLineSeparator1.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -61,7 +61,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionEmptyLineSeparator2.java")
+                getXpathPath("SuppressionXpathRegressionEmptyLineSeparator2.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -83,7 +83,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
     @Test
     public void testThree() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionEmptyLineSeparator3.java")
+                getXpathPath("SuppressionXpathRegressionEmptyLineSeparator3.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -117,7 +117,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
     @Test
     public void testFour() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionEmptyLineSeparator4.java")
+                getXpathPath("SuppressionXpathRegressionEmptyLineSeparator4.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -141,7 +141,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
     @Test
     public void testFive() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionEmptyLineSeparator5.java")
+                getXpathPath("SuppressionXpathRegressionEmptyLineSeparator5.java")
         );
 
         final DefaultConfiguration moduleConfig =

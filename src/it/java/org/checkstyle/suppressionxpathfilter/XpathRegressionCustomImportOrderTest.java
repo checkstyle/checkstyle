@@ -40,7 +40,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCustomImportOrderOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionCustomImportOrderOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CustomImportOrderCheck.class);
@@ -64,7 +64,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCustomImportOrderTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionCustomImportOrderTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CustomImportOrderCheck.class);
@@ -86,7 +86,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCustomImportOrderThree.java"));
+                new File(getXpathPath("SuppressionXpathRegressionCustomImportOrderThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CustomImportOrderCheck.class);
@@ -108,7 +108,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
     @Test
     public void testFour() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCustomImportOrderFour.java"));
+                new File(getXpathPath("SuppressionXpathRegressionCustomImportOrderFour.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CustomImportOrderCheck.class);
@@ -131,7 +131,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
     @Test
     public void testFive() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCustomImportOrderFive.java"));
+                new File(getXpathPath("SuppressionXpathRegressionCustomImportOrderFive.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CustomImportOrderCheck.class);
@@ -154,7 +154,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
     @Test
     public void testSix() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCustomImportOrderSix.java"));
+                new File(getXpathPath("SuppressionXpathRegressionCustomImportOrderSix.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CustomImportOrderCheck.class);

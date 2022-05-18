@@ -39,7 +39,7 @@ public class XpathRegressionNoEnumTrailingCommaTest extends AbstractXpathTestSup
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionNoEnumTrailingCommaOne.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -61,7 +61,7 @@ public class XpathRegressionNoEnumTrailingCommaTest extends AbstractXpathTestSup
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionNoEnumTrailingCommaTwo.java"));
 
         final DefaultConfiguration moduleConfig =

@@ -40,7 +40,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     @Test
     public void testSingleLine() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCommentsIndentation"
+                new File(getXpathPath("SuppressionXpathRegressionCommentsIndentation"
                                         + "SingleLine.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -64,7 +64,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     @Test
     public void testBlock() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCommentsIndentation"
+                new File(getXpathPath("SuppressionXpathRegressionCommentsIndentation"
                                         + "Block.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -89,7 +89,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     @Test
     public void testSeparator() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCommentsIndentation"
+                new File(getXpathPath("SuppressionXpathRegressionCommentsIndentation"
                                         + "Separator.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -114,7 +114,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     @Test
     public void testDistributedStatement() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCommentsIndentation"
+                new File(getXpathPath("SuppressionXpathRegressionCommentsIndentation"
                                         + "DistributedStatement.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -139,7 +139,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     @Test
     public void testSingleLineBlock() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCommentsIndentation"
+                new File(getXpathPath("SuppressionXpathRegressionCommentsIndentation"
                                         + "SingleLineBlock.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -164,7 +164,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     @Test
     public void testNonEmptyCase() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCommentsIndentation"
+                new File(getXpathPath("SuppressionXpathRegressionCommentsIndentation"
                                         + "NonEmptyCase.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -189,7 +189,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     @Test
     public void testEmptyCase() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCommentsIndentation"
+                new File(getXpathPath("SuppressionXpathRegressionCommentsIndentation"
                                         + "EmptyCase.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -214,7 +214,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     @Test
     public void testWithinBlockStatement() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCommentsIndentation"
+                new File(getXpathPath("SuppressionXpathRegressionCommentsIndentation"
                                         + "WithinBlockStatement.java"));
 
         final DefaultConfiguration moduleConfig =

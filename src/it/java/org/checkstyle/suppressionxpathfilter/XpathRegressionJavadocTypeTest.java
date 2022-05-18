@@ -44,7 +44,7 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocTypeOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionJavadocTypeOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocTypeCheck.class);
@@ -73,7 +73,7 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocTypeTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionJavadocTypeTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocTypeCheck.class);
@@ -101,7 +101,7 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocTypeThree.java"));
+                new File(getXpathPath("SuppressionXpathRegressionJavadocTypeThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocTypeCheck.class);

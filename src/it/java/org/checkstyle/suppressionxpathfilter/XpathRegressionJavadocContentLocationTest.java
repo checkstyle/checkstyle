@@ -40,7 +40,7 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocContentLocationOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionJavadocContentLocationOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocContentLocationCheck.class);
@@ -64,7 +64,7 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocContentLocationTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionJavadocContentLocationTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocContentLocationCheck.class);

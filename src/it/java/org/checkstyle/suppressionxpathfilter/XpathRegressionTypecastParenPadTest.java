@@ -42,8 +42,8 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
 
     @Test
     public void testLeftFollowed() throws Exception {
-        final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionTypecastParenPadLeftFollowed.java"));
+        final File fileToProcess = new File(
+                getXpathPath("SuppressionXpathRegressionTypecastParenPadLeftFollowed.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(TypecastParenPadCheck.class);
@@ -68,8 +68,8 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
 
     @Test
     public void testLeftNotFollowed() throws Exception {
-        final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionTypecastParenPadLeftNotFollowed.java"));
+        final File fileToProcess = new File(
+                getXpathPath("SuppressionXpathRegressionTypecastParenPadLeftNotFollowed.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(TypecastParenPadCheck.class);
@@ -95,8 +95,8 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
 
     @Test
     public void testRightPreceded() throws Exception {
-        final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionTypecastParenPadRightPreceded.java"));
+        final File fileToProcess = new File(
+                getXpathPath("SuppressionXpathRegressionTypecastParenPadRightPreceded.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(TypecastParenPadCheck.class);
@@ -119,7 +119,7 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
     @Test
     public void testRightNotPreceded() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionTypecastParenPadRightNotPreceded.java"));
+                getXpathPath("SuppressionXpathRegressionTypecastParenPadRightNotPreceded.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(TypecastParenPadCheck.class);

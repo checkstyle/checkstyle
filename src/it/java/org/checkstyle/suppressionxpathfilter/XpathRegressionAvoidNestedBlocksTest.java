@@ -39,7 +39,7 @@ public class XpathRegressionAvoidNestedBlocksTest extends AbstractXpathTestSuppo
     @Test
     public void testEmpty() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionAvoidNestedBlocksEmpty.java"));
+                getXpathPath("SuppressionXpathRegressionAvoidNestedBlocksEmpty.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AvoidNestedBlocksCheck.class);
@@ -62,7 +62,7 @@ public class XpathRegressionAvoidNestedBlocksTest extends AbstractXpathTestSuppo
     @Test
     public void testVariableAssignment() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionAvoidNestedBlocksVariable.java"));
+                getXpathPath("SuppressionXpathRegressionAvoidNestedBlocksVariable.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AvoidNestedBlocksCheck.class);
@@ -85,7 +85,7 @@ public class XpathRegressionAvoidNestedBlocksTest extends AbstractXpathTestSuppo
     @Test
     public void testSwitchAllowInSwitchCaseFalse() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionAvoidNestedBlocksSwitch1.java"));
+                getXpathPath("SuppressionXpathRegressionAvoidNestedBlocksSwitch1.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AvoidNestedBlocksCheck.class);
@@ -117,7 +117,7 @@ public class XpathRegressionAvoidNestedBlocksTest extends AbstractXpathTestSuppo
     @Test
     public void testSwitchAllowInSwitchCaseTrue() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionAvoidNestedBlocksSwitch2.java"));
+                getXpathPath("SuppressionXpathRegressionAvoidNestedBlocksSwitch2.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AvoidNestedBlocksCheck.class);

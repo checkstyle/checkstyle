@@ -38,7 +38,7 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionNoFinalizer1.java"));
+                getXpathPath("SuppressionXpathRegressionNoFinalizer1.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoFinalizerCheck.class);
@@ -67,7 +67,7 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionNoFinalizer2.java"));
+                getXpathPath("SuppressionXpathRegressionNoFinalizer2.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoFinalizerCheck.class);

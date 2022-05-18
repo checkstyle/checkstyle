@@ -40,8 +40,8 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
 
     @Test
     public void testFollowed() throws Exception {
-        final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionEmptyForIteratorPadFollowed.java"));
+        final File fileToProcess = new File(
+                getXpathPath("SuppressionXpathRegressionEmptyForIteratorPadFollowed.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyForIteratorPadCheck.class);
@@ -66,8 +66,8 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
 
     @Test
     public void testNotFollowed() throws Exception {
-        final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionEmptyForIteratorPadNotFollowed.java"));
+        final File fileToProcess = new File(
+                getXpathPath("SuppressionXpathRegressionEmptyForIteratorPadNotFollowed.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyForIteratorPadCheck.class);

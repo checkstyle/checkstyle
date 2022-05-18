@@ -39,7 +39,7 @@ public class XpathRegressionJavadocStyleTest extends AbstractXpathTestSupport {
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess = new File(getPath("SuppressionXpathRegression"
+        final File fileToProcess = new File(getXpathPath("SuppressionXpathRegression"
                 + File.separator + "package-info.java"));
 
         final DefaultConfiguration moduleConfig =

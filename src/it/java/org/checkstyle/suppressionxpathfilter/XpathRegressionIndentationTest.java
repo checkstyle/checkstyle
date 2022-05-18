@@ -40,7 +40,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionIndentationTestOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionIndentationTestOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IndentationCheck.class);
@@ -75,7 +75,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
     @Test
     public void testBasicOffset() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionIndentationTestTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionIndentationTestTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IndentationCheck.class);
@@ -118,7 +118,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
     @Test
     public void testCaseIndent() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionIndentationTestThree.java"));
+                new File(getXpathPath("SuppressionXpathRegressionIndentationTestThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IndentationCheck.class);
@@ -155,7 +155,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
     @Test
     public void testLambda() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionIndentationLambdaTest1.java"));
+                new File(getXpathPath("SuppressionXpathRegressionIndentationLambdaTest1.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IndentationCheck.class);
@@ -187,7 +187,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
     @Test
     public void testLambda2() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionIndentationLambdaTest2.java"));
+                new File(getXpathPath("SuppressionXpathRegressionIndentationLambdaTest2.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IndentationCheck.class);
@@ -219,7 +219,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
     @Test
     public void testIfWithNoCurlies() throws Exception {
         final File fileToProcess =
-            new File(getPath("SuppressionXpathRegressionIndentationIfWithoutCurly.java"));
+            new File(getXpathPath("SuppressionXpathRegressionIndentationIfWithoutCurly.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IndentationCheck.class);
@@ -251,8 +251,8 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
 
     @Test
     public void testElseWithNoCurlies() throws Exception {
-        final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionIndentationElseWithoutCurly.java"));
+        final File fileToProcess = new File(
+                getXpathPath("SuppressionXpathRegressionIndentationElseWithoutCurly.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IndentationCheck.class);

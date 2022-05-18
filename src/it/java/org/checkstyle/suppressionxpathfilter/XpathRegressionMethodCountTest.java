@@ -38,7 +38,7 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionMethodCount1.java")
+            getXpathPath("SuppressionXpathRegressionMethodCount1.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -69,7 +69,7 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionMethodCount2.java")
+            getXpathPath("SuppressionXpathRegressionMethodCount2.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -100,7 +100,7 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
     @Test
     public void testThree() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionMethodCount1.java")
+            getXpathPath("SuppressionXpathRegressionMethodCount1.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -131,7 +131,7 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
     @Test
     public void testFour() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionMethodCount3.java")
+            getXpathPath("SuppressionXpathRegressionMethodCount3.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -162,7 +162,7 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
     @Test
     public void testFive() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionMethodCount4.java")
+            getXpathPath("SuppressionXpathRegressionMethodCount4.java")
         );
 
         final DefaultConfiguration moduleConfig =
