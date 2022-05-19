@@ -44,7 +44,7 @@ for MENTIONED_ISSUES_GREP_OUTPUT_LINE in $(cat $MENTIONED_ISSUES_GREP_OUTPUT); d
     echo "$LINK" >> $CLOSED_ISSUES
   fi
   if [ ! -z "$LINKED_ISSUES" ]; then
-    for LINKED_ISSUE in $(cat $LINKED_ISSUES); do
+    for LINKED_ISSUE in $(cat "$LINKED_ISSUES"); do
       if [ "$LINKED_ISSUE" = "$GITHUB_HOST/$ISSUE" ]; then
         echo "$LINK" >> $LINKED_ISSUES_MENTIONED
       fi
