@@ -65,6 +65,27 @@ public class BlockTagUtilTest {
     }
 
     @Test
+    public static void testExtractBlockTags() {
+        final String[] text = {
+            " *",
+            " * @bar def  ",
+            " * @version*/"};
+
+        final List<TagInfo> tags = BlockTagUtil.extractBlockTags(text);
+        assertWithMessage("Invalid tags size")
+            .that(tags)
+            .hasSize(1);
+
+        assertWithMessage("Invalid tag name")
+            .that(tags.get(0).getName())
+            .isEqualTo("bar");
+
+        assertWithMessage("Invalid tag value")
+            .that(tags.get(0).getValue())
+            .isEqualTo("def");
+    }
+
+    @Test
     public void testVersionStringFormat() {
         final String[] text = {
             "/** ",
