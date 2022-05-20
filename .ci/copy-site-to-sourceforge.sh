@@ -5,8 +5,8 @@ set -e
 PREV_RELEASE=$1
 RELEASE=$2
 
-echo "PREVIOUS RELEASE version:"$PREV_RELEASE
-echo "RELEASE version:"$RELEASE
+echo "PREVIOUS RELEASE version:""$PREV_RELEASE"
+echo "RELEASE version:""$RELEASE"
 
 if [[ -z $RELEASE ]]; then
   echo "Problem to calculate release version."
