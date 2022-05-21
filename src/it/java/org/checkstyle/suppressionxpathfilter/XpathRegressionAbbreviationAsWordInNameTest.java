@@ -39,7 +39,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
 
     @Test
     public void testAnnotation() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAbbreviationAsWordInNameAnnotation.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -62,7 +62,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
 
     @Test
     public void testAnnotationField() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAbbreviationAsWordInNameAnnotationField.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -85,7 +85,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
 
     @Test
     public void testClass() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAbbreviationAsWordInNameClass.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -108,7 +108,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
 
     @Test
     public void testEnum() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAbbreviationAsWordInNameEnum.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -131,7 +131,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
 
     @Test
     public void testField() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAbbreviationAsWordInNameField.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -154,7 +154,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
 
     @Test
     public void testInterface() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAbbreviationAsWordInNameInterface.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -177,7 +177,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
 
     @Test
     public void testMethod() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAbbreviationAsWordInNameMethod.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -200,7 +200,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
 
     @Test
     public void testParameter() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAbbreviationAsWordInNameParameter.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -224,7 +224,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
 
     @Test
     public void testVariable() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAbbreviationAsWordInNameVariable.java"));
 
         final DefaultConfiguration moduleConfig =

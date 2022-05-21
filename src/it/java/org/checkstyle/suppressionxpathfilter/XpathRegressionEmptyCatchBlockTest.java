@@ -41,7 +41,7 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionEmptyCatchBlock1.java"));
+            getXpathPath("SuppressionXpathRegressionEmptyCatchBlock1.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
 
@@ -62,7 +62,7 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionEmptyCatchBlock2.java"));
+            getXpathPath("SuppressionXpathRegressionEmptyCatchBlock2.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
 

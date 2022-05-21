@@ -40,7 +40,7 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionRequireThisOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionRequireThisOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RequireThisCheck.class);
@@ -65,7 +65,7 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionRequireThisTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionRequireThisTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RequireThisCheck.class);

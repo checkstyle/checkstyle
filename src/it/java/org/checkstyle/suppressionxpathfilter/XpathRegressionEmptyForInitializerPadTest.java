@@ -41,7 +41,7 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
     @Test
     public void testPreceded() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionEmptyForInitializerPadPreceded.java"));
+                getXpathPath("SuppressionXpathRegressionEmptyForInitializerPadPreceded.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyForInitializerPadCheck.class);
@@ -67,7 +67,7 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
     @Test
     public void testNotPreceded() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionEmptyForInitializerPadNotPreceded.java"));
+            getXpathPath("SuppressionXpathRegressionEmptyForInitializerPadNotPreceded.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyForInitializerPadCheck.class);

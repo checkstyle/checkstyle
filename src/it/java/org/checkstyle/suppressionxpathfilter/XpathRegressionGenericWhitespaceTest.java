@@ -41,7 +41,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
     @Test
     public void testProcessEnd() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionGenericWhitespaceEnd.java"));
+                getXpathPath("SuppressionXpathRegressionGenericWhitespaceEnd.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(GenericWhitespaceCheck.class);
@@ -66,7 +66,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
     @Test
     public void testProcessNestedGenericsOne() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionGenericWhitespaceNestedGenericsOne.java"));
+                getXpathPath("SuppressionXpathRegressionGenericWhitespaceNestedGenericsOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(GenericWhitespaceCheck.class);
@@ -91,7 +91,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
     @Test
     public void testProcessNestedGenericsTwo() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionGenericWhitespaceNestedGenericsTwo.java"));
+                getXpathPath("SuppressionXpathRegressionGenericWhitespaceNestedGenericsTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(GenericWhitespaceCheck.class);
@@ -115,8 +115,8 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
 
     @Test
     public void testProcessNestedGenericsThree() throws Exception {
-        final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionGenericWhitespaceNestedGenericsThree.java"));
+        final File fileToProcess = new File(getXpathPath(
+                "SuppressionXpathRegressionGenericWhitespaceNestedGenericsThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(GenericWhitespaceCheck.class);
@@ -141,7 +141,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
     @Test
     public void testProcessSingleGenericOne() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionGenericWhitespaceSingleGenericOne.java"));
+                getXpathPath("SuppressionXpathRegressionGenericWhitespaceSingleGenericOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(GenericWhitespaceCheck.class);
@@ -166,7 +166,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
     @Test
     public void testProcessSingleGenericTwo() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionGenericWhitespaceSingleGenericTwo.java"));
+                getXpathPath("SuppressionXpathRegressionGenericWhitespaceSingleGenericTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(GenericWhitespaceCheck.class);
@@ -189,7 +189,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
     @Test
     public void testProcessStartOne() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionGenericWhitespaceStartOne.java"));
+                getXpathPath("SuppressionXpathRegressionGenericWhitespaceStartOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(GenericWhitespaceCheck.class);
@@ -215,7 +215,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
     @Test
     public void testProcessStartTwo() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionGenericWhitespaceStartTwo.java"));
+                getXpathPath("SuppressionXpathRegressionGenericWhitespaceStartTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(GenericWhitespaceCheck.class);
@@ -245,7 +245,7 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
     @Test
     public void testProcessStartThree() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionGenericWhitespaceStartThree.java"));
+                getXpathPath("SuppressionXpathRegressionGenericWhitespaceStartThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(GenericWhitespaceCheck.class);

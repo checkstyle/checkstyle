@@ -38,7 +38,7 @@ public class XpathRegressionUnusedLocalVariableTest extends AbstractXpathTestSup
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionUnusedLocalVariableOne.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -73,7 +73,7 @@ public class XpathRegressionUnusedLocalVariableTest extends AbstractXpathTestSup
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionUnusedLocalVariableTwo.java"));
 
         final DefaultConfiguration moduleConfig =

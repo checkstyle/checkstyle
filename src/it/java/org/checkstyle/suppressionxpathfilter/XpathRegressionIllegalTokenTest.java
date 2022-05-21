@@ -40,7 +40,7 @@ public class XpathRegressionIllegalTokenTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionIllegalToken1.java"));
+                new File(getXpathPath("SuppressionXpathRegressionIllegalToken1.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenCheck.class);
         final String[] expectedViolation = {
@@ -61,7 +61,7 @@ public class XpathRegressionIllegalTokenTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionIllegalToken2.java"));
+                new File(getXpathPath("SuppressionXpathRegressionIllegalToken2.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenCheck.class);
 

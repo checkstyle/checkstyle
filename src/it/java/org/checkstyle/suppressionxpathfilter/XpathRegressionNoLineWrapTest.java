@@ -38,7 +38,7 @@ public class XpathRegressionNoLineWrapTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionNoLineWrap1.java")
+                getXpathPath("SuppressionXpathRegressionNoLineWrap1.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -59,7 +59,7 @@ public class XpathRegressionNoLineWrapTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionNoLineWrap2.java")
+                getXpathPath("SuppressionXpathRegressionNoLineWrap2.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -94,7 +94,7 @@ public class XpathRegressionNoLineWrapTest extends AbstractXpathTestSupport {
     @Test
     public void testThree() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionNoLineWrap3.java")
+                getXpathPath("SuppressionXpathRegressionNoLineWrap3.java")
         );
 
         final DefaultConfiguration moduleConfig =

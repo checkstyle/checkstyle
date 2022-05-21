@@ -41,7 +41,7 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionUncommentedMain.java"));
+                new File(getXpathPath("SuppressionXpathRegressionUncommentedMain.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UncommentedMainCheck.class);
@@ -70,7 +70,7 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionUncommentedMainTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionUncommentedMainTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UncommentedMainCheck.class);

@@ -39,7 +39,7 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
     @Test
     public void testEmptyForLoopEmptyBlock() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionEmptyBlockEmpty.java"));
+                new File(getXpathPath("SuppressionXpathRegressionEmptyBlockEmpty.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyBlockCheck.class);
         moduleConfig.addAttribute("option", "TEXT");
@@ -60,7 +60,7 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
     @Test
     public void testEmptyForLoopEmptyStatement() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionEmptyBlockEmpty.java"));
+                new File(getXpathPath("SuppressionXpathRegressionEmptyBlockEmpty.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyBlockCheck.class);
         final String[] expectedViolation = {

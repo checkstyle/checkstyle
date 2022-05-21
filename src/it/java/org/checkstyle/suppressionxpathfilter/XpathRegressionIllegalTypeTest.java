@@ -40,7 +40,7 @@ public class XpathRegressionIllegalTypeTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-            new File(getPath("SuppressionXpathRegressionIllegalTypeOne.java"));
+            new File(getXpathPath("SuppressionXpathRegressionIllegalTypeOne.java"));
         final DefaultConfiguration moduleConfig =
             createModuleConfig(IllegalTypeCheck.class);
         moduleConfig.addProperty("tokens", "METHOD_DEF");
@@ -63,7 +63,7 @@ public class XpathRegressionIllegalTypeTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-            new File(getPath("SuppressionXpathRegressionIllegalTypeTwo.java"));
+            new File(getXpathPath("SuppressionXpathRegressionIllegalTypeTwo.java"));
         final DefaultConfiguration moduleConfig =
             createModuleConfig(IllegalTypeCheck.class);
 

@@ -40,7 +40,7 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath(
+                new File(getXpathPath(
                         "SuppressionXpathRegressionAnnotationOnSameLineOne.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -82,7 +82,7 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath(
+                new File(getXpathPath(
                         "SuppressionXpathRegressionAnnotationOnSameLineTwo.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -118,7 +118,7 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath(
+                new File(getXpathPath(
                         "SuppressionXpathRegressionAnnotationOnSameLineThree.java"));
 
         final DefaultConfiguration moduleConfig =

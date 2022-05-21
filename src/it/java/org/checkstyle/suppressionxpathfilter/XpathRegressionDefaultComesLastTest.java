@@ -41,7 +41,7 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionDefaultComesLastOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionDefaultComesLastOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(DefaultComesLastCheck.class);
@@ -69,7 +69,7 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionDefaultComesLastTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionDefaultComesLastTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(DefaultComesLastCheck.class);

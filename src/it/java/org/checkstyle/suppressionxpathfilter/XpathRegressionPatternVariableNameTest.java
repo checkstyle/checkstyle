@@ -41,7 +41,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
+                new File(getXpathNonCompilablePath(
                         "SuppressionXpathRegressionPatternVariableName1.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -69,7 +69,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
+                new File(getXpathNonCompilablePath(
                         "SuppressionXpathRegressionPatternVariableName2.java"));
 
         final String nonDefaultPattern = "^_[a-zA-Z0-9]*$";
@@ -98,7 +98,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
+                new File(getXpathNonCompilablePath(
                         "SuppressionXpathRegressionPatternVariableName3.java"));
 
         final String nonDefaultPattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
@@ -127,7 +127,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
     @Test
     public void testFour() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
+                new File(getXpathNonCompilablePath(
                         "SuppressionXpathRegressionPatternVariableName4.java"));
 
         final String nonDefaultPattern = "^[a-z][_a-zA-Z0-9]{2,}$";

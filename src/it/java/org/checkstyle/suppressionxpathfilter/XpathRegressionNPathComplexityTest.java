@@ -42,7 +42,7 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionNPathComplexityOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionNPathComplexityOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NPathComplexityCheck.class);
@@ -72,7 +72,7 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionNPathComplexityTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionNPathComplexityTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NPathComplexityCheck.class);

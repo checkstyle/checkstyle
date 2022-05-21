@@ -40,7 +40,7 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionThrowsCount1.java"));
+                new File(getXpathPath("SuppressionXpathRegressionThrowsCount1.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ThrowsCountCheck.class);
         final String[] expectedViolation = {
@@ -62,7 +62,7 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionThrowsCount2.java"));
+                new File(getXpathPath("SuppressionXpathRegressionThrowsCount2.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ThrowsCountCheck.class);
 
@@ -87,7 +87,7 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionThrowsCount3.java"));
+                new File(getXpathPath("SuppressionXpathRegressionThrowsCount3.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ThrowsCountCheck.class);
 

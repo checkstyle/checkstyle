@@ -22,6 +22,7 @@ package org.checkstyle.suppressionxpathfilter;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -31,9 +32,9 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.checkstyle.base.AbstractCheckstyleModuleTestSupport;
 import org.junit.jupiter.api.io.TempDir;
 
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
@@ -43,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
 
-public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleTestSupport {
+public abstract class AbstractXpathTestSupport extends AbstractModuleTestSupport {
 
     private static final int DEFAULT_TAB_WIDTH = 4;
 
@@ -70,6 +71,32 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
         final String subpackage = getCheckName().toLowerCase(Locale.ENGLISH)
                 .replace("check", "");
         return "org/checkstyle/suppressionxpathfilter/" + subpackage;
+    }
+
+    /**
+     * Returns canonical path for the file with the given file name.
+     * The path is formed base on the non-compilable resources location.
+     *
+     * @param filename file name.
+     * @return canonical path for the file with the given file name.
+     * @throws IOException if I/O exception occurs while forming the path.
+     */
+    protected final String getXpathPath(String filename) throws IOException {
+        return new File("src/it/resources/" + getPackageLocation() + "/"
+                + filename).getCanonicalPath();
+    }
+
+    /**
+     * Returns canonical path for the file with the given file name.
+     * The path is formed base on the non-compilable resources location.
+     *
+     * @param filename file name.
+     * @return canonical path for the file with the given file name.
+     * @throws IOException if I/O exception occurs while forming the path.
+     */
+    protected final String getXpathNonCompilablePath(String filename) throws IOException {
+        return new File("src/it/resources-noncompilable/" + getPackageLocation() + "/"
+                + filename).getCanonicalPath();
     }
 
     /**
@@ -210,8 +237,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
         treeWalkerConfigWithXpath.addChild(createSuppressionXpathFilter(moduleConfig.getName(),
                 generatedXpathQueries));
 
-        final Integer[] warnList = getLinesWithWarn(fileToProcess.getPath());
-        verify(moduleConfig, fileToProcess.getPath(), expectedViolations, warnList);
+        verify(moduleConfig, fileToProcess.getPath(), expectedViolations);
         verifyXpathQueries(generatedXpathQueries, expectedXpathQueries);
         verify(treeWalkerConfigWithXpath, fileToProcess.getPath(), CommonUtil.EMPTY_STRING_ARRAY);
     }

@@ -41,7 +41,7 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionTodoCommentOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionTodoCommentOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(TodoCommentCheck.class);
@@ -63,7 +63,7 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionTodoCommentTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionTodoCommentTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(TodoCommentCheck.class);

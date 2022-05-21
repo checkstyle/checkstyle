@@ -42,7 +42,7 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionLambdaParameterName1.java"));
+                new File(getXpathPath("SuppressionXpathRegressionLambdaParameterName1.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(LambdaParameterNameCheck.class);
@@ -67,7 +67,7 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionLambdaParameterName2.java"));
+                new File(getXpathPath("SuppressionXpathRegressionLambdaParameterName2.java"));
 
         final String nonDefaultPattern = "^_[a-zA-Z0-9]*$";
 
