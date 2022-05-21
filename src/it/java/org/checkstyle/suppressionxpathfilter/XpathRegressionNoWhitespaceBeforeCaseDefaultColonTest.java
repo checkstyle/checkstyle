@@ -41,7 +41,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath(
+                new File(getXpathPath(
                         "SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonOne.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -65,7 +65,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath(
+                new File(getXpathPath(
                         "SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonTwo.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -90,7 +90,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath(
+                new File(getXpathPath(
                         "SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonThree.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -115,7 +115,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
     @Test
     public void testFour() throws Exception {
         final File fileToProcess =
-                new File(getPath(
+                new File(getXpathPath(
                         "SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonFour.java"));
 
         final DefaultConfiguration moduleConfig =

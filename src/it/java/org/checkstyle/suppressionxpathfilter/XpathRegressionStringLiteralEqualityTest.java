@@ -41,7 +41,7 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionStringLiteralEquality.java"));
+                new File(getXpathPath("SuppressionXpathRegressionStringLiteralEquality.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expectedViolation = {
@@ -67,7 +67,7 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionStringLiteralEquality1.java"));
+                new File(getXpathPath("SuppressionXpathRegressionStringLiteralEquality1.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expectedViolation = {
@@ -93,7 +93,7 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionStringLiteralEquality2.java"));
+                new File(getXpathPath("SuppressionXpathRegressionStringLiteralEquality2.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expectedViolation = {

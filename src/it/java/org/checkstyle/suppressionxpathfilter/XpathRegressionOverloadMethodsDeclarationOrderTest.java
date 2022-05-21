@@ -41,7 +41,7 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionOverloadMethodsDeclarationOrder1.java"));
+                getXpathPath("SuppressionXpathRegressionOverloadMethodsDeclarationOrder1.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
 
@@ -69,7 +69,7 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionOverloadMethodsDeclarationOrder2.java"));
+                getXpathPath("SuppressionXpathRegressionOverloadMethodsDeclarationOrder2.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
 

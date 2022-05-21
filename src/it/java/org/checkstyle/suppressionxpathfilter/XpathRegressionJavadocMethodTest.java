@@ -44,7 +44,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocMethodOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionJavadocMethodOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocMethodCheck.class);
@@ -72,7 +72,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocMethodTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionJavadocMethodTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocMethodCheck.class);
@@ -95,7 +95,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocMethodThree.java"));
+                new File(getXpathPath("SuppressionXpathRegressionJavadocMethodThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocMethodCheck.class);
@@ -122,7 +122,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
     @Test
     public void testFour() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocMethodFour.java"));
+                new File(getXpathPath("SuppressionXpathRegressionJavadocMethodFour.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocMethodCheck.class);
@@ -147,7 +147,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
     @Test
     public void testFive() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocMethodFive.java"));
+                new File(getXpathPath("SuppressionXpathRegressionJavadocMethodFive.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocMethodCheck.class);

@@ -39,7 +39,7 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionInterfaceIsType1.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -66,7 +66,7 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionInterfaceIsType2.java"));
 
         final DefaultConfiguration moduleConfig =

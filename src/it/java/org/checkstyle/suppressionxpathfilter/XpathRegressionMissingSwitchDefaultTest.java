@@ -41,7 +41,7 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMissingSwitchDefaultOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionMissingSwitchDefaultOne.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clss);
         final String[] expectedViolation = {
@@ -61,7 +61,7 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMissingSwitchDefaultTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionMissingSwitchDefaultTwo.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clss);
 

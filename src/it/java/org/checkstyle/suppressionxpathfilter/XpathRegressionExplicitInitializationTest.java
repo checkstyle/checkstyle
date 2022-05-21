@@ -40,7 +40,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionExplicitInitializationOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionExplicitInitializationOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ExplicitInitializationCheck.class);
@@ -63,7 +63,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionExplicitInitializationTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionExplicitInitializationTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ExplicitInitializationCheck.class);

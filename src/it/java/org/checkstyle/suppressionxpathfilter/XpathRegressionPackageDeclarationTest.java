@@ -40,7 +40,7 @@ public class XpathRegressionPackageDeclarationTest extends AbstractXpathTestSupp
     @Test
     public void test1() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath("SuppressionXpathRegression1.java"));
+                new File(getXpathNonCompilablePath("SuppressionXpathRegression1.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(PackageDeclarationCheck.class);
@@ -61,7 +61,7 @@ public class XpathRegressionPackageDeclarationTest extends AbstractXpathTestSupp
     @Test
     public void test2() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath("SuppressionXpathRegression2.java"));
+                new File(getXpathNonCompilablePath("SuppressionXpathRegression2.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(PackageDeclarationCheck.class);

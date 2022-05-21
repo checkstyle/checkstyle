@@ -39,7 +39,7 @@ public class XpathRegressionMissingJavadocPackageTest extends AbstractXpathTestS
 
     @Test
     public void testBlockComment() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "blockcomment/package-info.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -59,7 +59,7 @@ public class XpathRegressionMissingJavadocPackageTest extends AbstractXpathTestS
 
     @Test
     public void testNoJavadoc() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "nojavadoc/package-info.java"));
 
         final DefaultConfiguration moduleConfig =

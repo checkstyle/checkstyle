@@ -40,7 +40,7 @@ public class XpathRegressionNestedTryDepthTest extends AbstractXpathTestSupport 
     @Test
     public void testCorrect() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionNestedTryDepth.java"));
+                new File(getXpathPath("SuppressionXpathRegressionNestedTryDepth.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NestedTryDepthCheck.class);
@@ -64,7 +64,7 @@ public class XpathRegressionNestedTryDepthTest extends AbstractXpathTestSupport 
     @Test
     public void testMax() throws Exception {
         final File fileToProcess =
-            new File(getPath("SuppressionXpathRegressionNestedTryDepthMax.java"));
+            new File(getXpathPath("SuppressionXpathRegressionNestedTryDepthMax.java"));
 
         final DefaultConfiguration moduleConfig =
             createModuleConfig(NestedTryDepthCheck.class);

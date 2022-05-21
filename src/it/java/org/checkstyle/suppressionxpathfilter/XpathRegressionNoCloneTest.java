@@ -40,7 +40,7 @@ public class XpathRegressionNoCloneTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionNoCloneOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionNoCloneOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoCloneCheck.class);
@@ -68,7 +68,7 @@ public class XpathRegressionNoCloneTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionNoCloneTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionNoCloneTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoCloneCheck.class);

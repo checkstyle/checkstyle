@@ -41,8 +41,8 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionUnnecessarySemicolonInTryWithResources.java"));
+        final File fileToProcess = new File(getXpathPath(
+                "SuppressionXpathRegressionUnnecessarySemicolonInTryWithResources.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
         final String[] expectedViolation = {
@@ -62,7 +62,7 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
 
     @Test
     public void testAllowWhenNoBraceAfterSemicolon() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
             "SuppressionXpathRegressionUnnecessarySemicolonInTryWithResourcesNoBrace.java"
         ));
 

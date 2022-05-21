@@ -39,7 +39,7 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
 
     @Test
     public void testClass() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAnnotationLocationClass.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -70,7 +70,7 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
 
     @Test
     public void testInterface() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAnnotationLocationInterface.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -103,7 +103,7 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
 
     @Test
     public void testEnum() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAnnotationLocationEnum.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -136,7 +136,7 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
 
     @Test
     public void testMethod() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAnnotationLocationMethod.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -173,7 +173,7 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
 
     @Test
     public void testVariable() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAnnotationLocationVariable.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -210,7 +210,7 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
 
     @Test
     public void testConstructor() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAnnotationLocationCTOR.java"));
 
         final DefaultConfiguration moduleConfig =

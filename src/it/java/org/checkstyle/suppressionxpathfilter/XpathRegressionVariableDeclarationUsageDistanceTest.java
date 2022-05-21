@@ -38,7 +38,7 @@ public class XpathRegressionVariableDeclarationUsageDistanceTest extends Abstrac
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionVariableDeclarationUsageDistance1.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -78,7 +78,7 @@ public class XpathRegressionVariableDeclarationUsageDistanceTest extends Abstrac
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionVariableDeclarationUsageDistance2.java"));
 
         final DefaultConfiguration moduleConfig =

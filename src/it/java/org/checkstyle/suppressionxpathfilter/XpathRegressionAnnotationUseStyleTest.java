@@ -40,7 +40,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
 
     @Test
     public void testOne() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAnnotationUseStyleOne.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -67,7 +67,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
 
     @Test
     public void testTwo() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAnnotationUseStyleTwo.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -102,7 +102,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
 
     @Test
     public void testThree() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAnnotationUseStyleThree.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -139,7 +139,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
 
     @Test
     public void testFour() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAnnotationUseStyleFour.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -167,7 +167,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
 
     @Test
     public void testFive() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAnnotationUseStyleFive.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -203,7 +203,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
 
     @Test
     public void testSix() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAnnotationUseStyleSix.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -239,7 +239,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
 
     @Test
     public void testSeven() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAnnotationUseStyleSeven.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -266,7 +266,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
 
     @Test
     public void testEight() throws Exception {
-        final File fileToProcess = new File(getPath(
+        final File fileToProcess = new File(getXpathPath(
                 "SuppressionXpathRegressionAnnotationUseStyleEight.java"));
 
         final DefaultConfiguration moduleConfig =

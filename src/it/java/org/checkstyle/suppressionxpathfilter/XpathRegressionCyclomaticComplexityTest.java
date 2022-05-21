@@ -41,7 +41,7 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
     public void testOne() throws Exception {
 
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCyclomaticComplexityOne.java"));
+                new File(getXpathPath("SuppressionXpathRegressionCyclomaticComplexityOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CyclomaticComplexityCheck.class);
@@ -71,7 +71,7 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCyclomaticComplexityTwo.java"));
+                new File(getXpathPath("SuppressionXpathRegressionCyclomaticComplexityTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CyclomaticComplexityCheck.class);
