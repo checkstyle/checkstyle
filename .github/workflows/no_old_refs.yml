@@ -39,7 +39,7 @@ jobs:
           LINKED_ISSUES=${{ steps.links.outputs.issues }}
           LINKED_ISSUES_FORMATTED=/tmp/linked_issues
           CHECKSTYLE_ISSUE_URL="https:\/\/github.com\/checkstyle\/checkstyle\/issues\/"
-          if [ ! -z "$LINKED_ISSUES" ]; then
+          if [ -n "$LINKED_ISSUES" ]; then
             echo $LINKED_ISSUES | sed -e 's/,/\n/g' >> $LINKED_ISSUES_FORMATTED
             sed -i "s/^/$CHECKSTYLE_ISSUE_URL/" $LINKED_ISSUES_FORMATTED
           fi
