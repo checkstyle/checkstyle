@@ -14,7 +14,7 @@ MAIN_REPO="checkstyle/checkstyle"
 DEFAULT_BRANCH="master"
 
 # These are modified when event is of type pull_request
-if [ ! -z "$PR_HEAD_REPO_NAME" ]; then
+if [ -n "$PR_HEAD_REPO_NAME" ]; then
   MAIN_REPO=$PR_HEAD_REPO_NAME
   DEFAULT_BRANCH=$GITHUB_HEAD_REF
 fi
@@ -43,7 +43,7 @@ for MENTIONED_ISSUES_GREP_OUTPUT_LINE in $(cat $MENTIONED_ISSUES_GREP_OUTPUT); d
   if [ "$STATE" = "closed" ]; then
     echo "$LINK" >> $CLOSED_ISSUES
   fi
-  if [ ! -z "$LINKED_ISSUES" ]; then
+  if [ -n "$LINKED_ISSUES" ]; then
     for LINKED_ISSUE in $(cat "$LINKED_ISSUES"); do
       if [ "$LINKED_ISSUE" = "$GITHUB_HOST/$ISSUE" ]; then
         echo "$LINK" >> $LINKED_ISSUES_MENTIONED

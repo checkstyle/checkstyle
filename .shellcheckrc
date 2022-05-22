@@ -6,7 +6,6 @@ disable=SC2207 # (warning): Prefer mapfile or read -a to split command output.
 disable=SC2002 # (style): Useless cat. Consider 'cmd < file | ..' or 'cmd file | ..' instead.
 disable=SC2061 # (warning): Quote the parameter to -name so the shell won't interpret it.
 disable=SC2035 # (info): Use ./glob or -- glob so names with dashes won't become options.
-disable=SC2236 # (style): Use -n instead of ! -z.
 disable=SC2016 # (info): Expressions don't expand in single quotes, use double quotes for that.
 disable=SC2185 # (info): Some finds don't have a default path. Specify '.' explicitly.
 disable=SC2155 # (warning): Declare and assign separately to avoid masking return values.
