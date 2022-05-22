@@ -729,6 +729,9 @@
         <configuration>
           <source>${java.version}</source>
           <target>${java.version}</target>
+          <compilerArgs>
+            <arg>-Xpkginfo:always</arg>
+          </compilerArgs>
         </configuration>
         <!-- till https://github.com/checkstyle/checkstyle/issues/2160
         <executions>
