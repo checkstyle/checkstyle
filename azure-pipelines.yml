@@ -90,6 +90,11 @@ strategy:
       image: 'macOS-11'
       cmd: "JAVA_HOME=$JAVA_HOME_17_X64 mvn -e --no-transfer-progress verify"
 
+   # 'git diff' validation
+    'git-diff':
+      image: 'ubuntu-20.04'
+      cmd: "./.ci/validation.sh git-diff"
+
     # moved back to Travis till we find a way to keep secrets in azure
     # ensure that all modules are used in no exception configs
     # 'verify-no-exception-configs':
