@@ -130,7 +130,7 @@ script:
   - ./.ci/travis.sh run-command "$CMD"
   - ./.ci/travis.sh remove-custom-mvn
   - ./.ci/travis.sh remove-adoptium-jdk
-  - ./.ci/travis.sh git-diff
+  - ./.ci/validation.sh git-diff
   - ./.ci/travis.sh ci-temp-check
 
 after_success:
