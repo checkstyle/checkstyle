@@ -2991,6 +2991,8 @@ class Bar {
                   LITERAL_SYNCHRONIZED</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
                   LITERAL_TRY</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
+                  LITERAL_CASE</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
                   LAMBDA</a>
                   .
@@ -3031,6 +3033,8 @@ class Bar {
                   LITERAL_SYNCHRONIZED</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
                   LITERAL_TRY</a>
+                  , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
+                  LITERAL_CASE</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
                   LAMBDA</a>
                   .
