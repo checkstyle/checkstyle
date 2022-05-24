@@ -72,6 +72,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * LITERAL_SYNCHRONIZED</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
  * LITERAL_TRY</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
+ * LITERAL_CASE</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
  * LAMBDA</a>.
  * </li>
@@ -210,6 +212,7 @@ public class WhitespaceAfterCheck
             TokenTypes.LITERAL_SWITCH,
             TokenTypes.LITERAL_SYNCHRONIZED,
             TokenTypes.LITERAL_TRY,
+            TokenTypes.LITERAL_CASE,
             TokenTypes.LAMBDA,
         };
     }
