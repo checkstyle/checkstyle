@@ -70,6 +70,9 @@ public class XpathFilterElement implements TreeWalkerFilter {
     /** Xpath query. */
     private final String xpathQuery;
 
+    /** Indicates if all properties are set to Null. */
+    private final boolean areAllPropertiesNull;
+
     /**
      * Creates a {@code XpathElement} instance.
      *
@@ -118,6 +121,11 @@ public class XpathFilterElement implements TreeWalkerFilter {
                 throw new IllegalArgumentException("Unexpected xpath query: " + xpathQuery, ex);
             }
         }
+        areAllPropertiesNull = moduleId == null
+                             && fileRegexp == null
+                             && checkRegexp == null
+                             && messageRegexp == null
+                             && xpathExpression == null;
     }
 
     /**
@@ -171,13 +179,29 @@ public class XpathFilterElement implements TreeWalkerFilter {
                 throw new IllegalArgumentException("Incorrect xpath query: " + xpathQuery, ex);
             }
         }
+        areAllPropertiesNull = fileRegexp == null
+                             && checkRegexp == null
+                             && messageRegexp == null
+                             && moduleId == null
+                             && xpathExpression == null;
     }
 
     @Override
     public boolean accept(TreeWalkerAuditEvent event) {
         return !isFileNameAndModuleAndModuleNameMatching(event)
                 || !isMessageNameMatching(event)
-                || !isXpathQueryMatching(event);
+                || !isXpathQueryMatching(event)
+                || areAllPropertiesNull();
+    }
+
+    /**
+     * Check if all properties are set to null.
+     *
+     * @return true if all properties are set to null
+     */
+
+    private boolean areAllPropertiesNull() {
+        return areAllPropertiesNull;
     }
 
     /**
@@ -261,7 +285,8 @@ public class XpathFilterElement implements TreeWalkerFilter {
 
     @Override
     public int hashCode() {
-        return Objects.hash(filePattern, checkPattern, messagePattern, moduleId, xpathQuery);
+        return Objects.hash(filePattern, checkPattern, messagePattern,
+            moduleId, xpathQuery, areAllPropertiesNull);
     }
 
     @Override
@@ -277,7 +302,8 @@ public class XpathFilterElement implements TreeWalkerFilter {
                 && Objects.equals(checkPattern, xpathFilter.checkPattern)
                 && Objects.equals(messagePattern, xpathFilter.messagePattern)
                 && Objects.equals(moduleId, xpathFilter.moduleId)
-                && Objects.equals(xpathQuery, xpathFilter.xpathQuery);
+                && Objects.equals(xpathQuery, xpathFilter.xpathQuery)
+                && Objects.equals(areAllPropertiesNull, xpathFilter.areAllPropertiesNull);
     }
 
 }
