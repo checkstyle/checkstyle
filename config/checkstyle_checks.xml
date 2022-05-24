@@ -900,7 +900,9 @@
       <property name="validateComments" value="false"/>
     </module>
     <module name="TypecastParenPad"/>
-    <module name="WhitespaceAfter"/>
+    <module name="WhitespaceAfter">
+      <property name="tokens" value="ARRAY_DECLARATOR"/>
+    </module>
     <module name="WhitespaceAround"/>
 
   </module>
