@@ -216,6 +216,26 @@ public class WhitespaceAfterCheckTest
     }
 
     @Test
+    public void testLiteralCase() throws Exception {
+        final String[] expected = {
+            "15:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "case"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputWhitespaceAfterLiteralCase.java"),
+            expected);
+    }
+
+    @Test
+    public void testLiteralCase2() throws Exception {
+        final String[] expected = {
+            "13:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "case"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputWhitespaceAfterLiteralCase2.java"),
+            expected);
+    }
+
+    @Test
     public void testEmptyForIterator() throws Exception {
         final String[] expected = {
             "18:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),

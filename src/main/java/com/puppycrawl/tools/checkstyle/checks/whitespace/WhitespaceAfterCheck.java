@@ -210,6 +210,7 @@ public class WhitespaceAfterCheck
             TokenTypes.LITERAL_SWITCH,
             TokenTypes.LITERAL_SYNCHRONIZED,
             TokenTypes.LITERAL_TRY,
+            TokenTypes.LITERAL_CASE,
             TokenTypes.LAMBDA,
         };
     }
