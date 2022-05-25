@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -70,6 +71,9 @@ public class XpathFilterElement implements TreeWalkerFilter {
     /** Xpath query. */
     private final String xpathQuery;
 
+    /** Indicates if all properties are set to null. */
+    private final boolean isEmptyConfig;
+
     /**
      * Creates a {@code XpathElement} instance.
      *
@@ -82,42 +86,11 @@ public class XpathFilterElement implements TreeWalkerFilter {
      */
     public XpathFilterElement(String files, String checks,
                        String message, String moduleId, String query) {
-        filePattern = files;
-        if (files == null) {
-            fileRegexp = null;
-        }
-        else {
-            fileRegexp = Pattern.compile(files);
-        }
-        checkPattern = checks;
-        if (checks == null) {
-            checkRegexp = null;
-        }
-        else {
-            checkRegexp = CommonUtil.createPattern(checks);
-        }
-        messagePattern = message;
-        if (message == null) {
-            messageRegexp = null;
-        }
-        else {
-            messageRegexp = Pattern.compile(message);
-        }
-        this.moduleId = moduleId;
-        xpathQuery = query;
-        if (xpathQuery == null) {
-            xpathExpression = null;
-        }
-        else {
-            final XPathEvaluator xpathEvaluator = new XPathEvaluator(
-                    Configuration.newConfiguration());
-            try {
-                xpathExpression = xpathEvaluator.createExpression(xpathQuery);
-            }
-            catch (XPathException ex) {
-                throw new IllegalArgumentException("Unexpected xpath query: " + xpathQuery, ex);
-            }
-        }
+        this(Optional.ofNullable(files).map(Pattern::compile).orElse(null),
+             Optional.ofNullable(checks).map(CommonUtil::createPattern).orElse(null),
+             Optional.ofNullable(message).map(Pattern::compile).orElse(null),
+             moduleId,
+             query);
     }
 
     /**
@@ -171,11 +144,17 @@ public class XpathFilterElement implements TreeWalkerFilter {
                 throw new IllegalArgumentException("Incorrect xpath query: " + xpathQuery, ex);
             }
         }
+        isEmptyConfig = fileRegexp == null
+                             && checkRegexp == null
+                             && messageRegexp == null
+                             && moduleId == null
+                             && xpathExpression == null;
     }
 
     @Override
     public boolean accept(TreeWalkerAuditEvent event) {
-        return !isFileNameAndModuleAndModuleNameMatching(event)
+        return isEmptyConfig
+                || !isFileNameAndModuleAndModuleNameMatching(event)
                 || !isMessageNameMatching(event)
                 || !isXpathQueryMatching(event);
     }
@@ -261,7 +240,8 @@ public class XpathFilterElement implements TreeWalkerFilter {
 
     @Override
     public int hashCode() {
-        return Objects.hash(filePattern, checkPattern, messagePattern, moduleId, xpathQuery);
+        return Objects.hash(filePattern, checkPattern, messagePattern,
+            moduleId, xpathQuery, isEmptyConfig);
     }
 
     @Override
@@ -277,7 +257,8 @@ public class XpathFilterElement implements TreeWalkerFilter {
                 && Objects.equals(checkPattern, xpathFilter.checkPattern)
                 && Objects.equals(messagePattern, xpathFilter.messagePattern)
                 && Objects.equals(moduleId, xpathFilter.moduleId)
-                && Objects.equals(xpathQuery, xpathFilter.xpathQuery);
+                && Objects.equals(xpathQuery, xpathFilter.xpathQuery)
+                && Objects.equals(isEmptyConfig, xpathFilter.isEmptyConfig);
     }
 
 }
