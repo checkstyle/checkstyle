@@ -153,8 +153,8 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
             assertWithMessage("Exception is expected but got " + test).fail();
         }
         catch (IllegalArgumentException ex) {
-            assertWithMessage("Message should be: Unexpected xpath query")
-                    .that(ex.getMessage().contains("Unexpected xpath query"))
+            assertWithMessage("Message should be: Incorrect xpath query")
+                    .that(ex.getMessage().contains("Incorrect xpath query"))
                     .isTrue();
         }
     }
@@ -351,7 +351,8 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
                 xpathEvaluator.createExpression("//METHOD_DEF"),
                 xpathEvaluator.createExpression("//VARIABLE_DEF"))
                 .usingGetClass()
-                .withIgnoredFields("fileRegexp", "checkRegexp", "messageRegexp", "xpathExpression")
+                .withIgnoredFields("fileRegexp", "checkRegexp", "messageRegexp",
+                    "xpathExpression", "isEmptyConfig")
                 .report();
         assertWithMessage("Error: " + ev.getMessage())
                 .that(ev.isSuccessful())
