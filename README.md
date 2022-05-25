@@ -8,7 +8,6 @@ or set of validation rules (best practices).
 [![][teamcity img]][teamcity]
 [![][circleci img]][circleci]
 [![][cirrusci img]][cirrusci]
-[![][wercker img]][wercker]
 [![][coverage img]][coverage]
 [![][snyk img]][snyk]
 [![][semaphoreci img]][semaphoreci]
@@ -146,9 +145,6 @@ are in the file named "LICENSE.apache20" in this directory.
 
 [cirrusci]: https://cirrus-ci.com/github/checkstyle/checkstyle
 [cirrusci img]: https://api.cirrus-ci.com/github/checkstyle/checkstyle.svg?branch=master
-
-[wercker]: https://app.wercker.com/project/bykey/cd383127330ff96f89f1a78e8fd1a557
-[wercker img]: https://app.wercker.com/status/cd383127330ff96f89f1a78e8fd1a557/s/master
 
 [snyk]: https://snyk.io/test/github/checkstyle/checkstyle?targetFile=pom.xml
 [snyk img]: https://snyk.io/test/github/checkstyle/checkstyle/badge.svg

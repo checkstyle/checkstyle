@@ -1,5 +1,5 @@
 #!/bin/bash
-# Attention, there is no "-x" to avoid problems on Wercker
+# Attention, there is no "-x" to avoid problems on CircleCI
 set -e
 
 ###############################
