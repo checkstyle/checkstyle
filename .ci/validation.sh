@@ -768,9 +768,9 @@ no-exception-struts)
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
-  sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
-  sed -i'' 's/#apache-struts/apache-struts/' projects-for-wercker.properties
-  groovy ./diff.groovy --listOfProjects projects-for-wercker.properties \
+  sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
+  sed -i'' 's/#apache-struts/apache-struts/' projects-to-test-on.properties
+  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false \
       -Dcheckstyle.version=${CS_POM_VERSION}"
@@ -786,10 +786,10 @@ no-exception-checkstyle-sevntu)
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
-  sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
-  sed -i'' 's/#local-checkstyle/local-checkstyle/' projects-for-wercker.properties
-  sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-wercker.properties
-  groovy ./diff.groovy --listOfProjects projects-for-wercker.properties \
+  sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
+  sed -i'' 's/#local-checkstyle/local-checkstyle/' projects-to-test-on.properties
+  sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-to-test-on.properties
+  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false \
       -Dcheckstyle.version=${CS_POM_VERSION}"
@@ -804,10 +804,10 @@ no-exception-checkstyle-sevntu-javadoc)
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
-  sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
-  sed -i'' 's/#local-checkstyle/local-checkstyle/' projects-for-wercker.properties
-  sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-wercker.properties
-  groovy ./diff.groovy --listOfProjects projects-for-wercker.properties \
+  sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
+  sed -i'' 's/#local-checkstyle/local-checkstyle/' projects-to-test-on.properties
+  sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-to-test-on.properties
+  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-only-javadoc-error.xml  -p "$BRANCH" -r ../../..  \
       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false \
       -Dcheckstyle.version=${CS_POM_VERSION}"
@@ -822,9 +822,9 @@ no-exception-guava)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
-  sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
-  sed -i'' 's/#guava/guava/' projects-for-wercker.properties
-  groovy ./diff.groovy --listOfProjects projects-for-wercker.properties \
+  sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
+  sed -i'' 's/#guava/guava/' projects-to-test-on.properties
+  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false \
       -Dcheckstyle.version=${CS_POM_VERSION}"
@@ -840,7 +840,7 @@ no-exception-hibernate-orm)
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#hibernate-orm/hibernate-orm/' projects-to-test-on.properties
-  groovy ./diff.groovy --listOfProjects projects-for-wercker.properties \
+  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
        --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false \
       -Dcheckstyle.version=${CS_POM_VERSION}"
@@ -872,7 +872,7 @@ no-exception-spoon)
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spoon/spoon/' projects-to-test-on.properties
-  groovy ./diff.groovy --listOfProjects projects-for-wercker.properties \
+  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false \
       -Dcheckstyle.version=${CS_POM_VERSION}"
