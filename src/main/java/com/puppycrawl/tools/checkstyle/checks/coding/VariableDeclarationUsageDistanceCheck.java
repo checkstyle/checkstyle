@@ -428,21 +428,20 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     }
 
     /**
-     * Get name of instance whose method is called.
+     * Get name of instance whose method is called or the name of the method if it isn't called with
+     * explicit instance.
      *
-     * @param methodCallAst
-     *        DetailAST of METHOD_CALL.
-     * @return name of instance.
+     * @param methodCallFullIdent {@link FullIdent} of the method call ast
+     * @return name of instance or the method
      */
-    private static String getInstanceName(DetailAST methodCallAst) {
-        final String methodCallName =
-                FullIdent.createFullIdentBelow(methodCallAst).getText();
-        final int lastDotIndex = methodCallName.lastIndexOf('.');
-        String instanceName = "";
+    private static String getMethodOrInstanceName(FullIdent methodCallFullIdent) {
+        final String methodCallName = methodCallFullIdent.getText();
+        final int lastDotIndex = methodCallName.indexOf('.');
+        String methodOrInstanceName = methodCallName;
         if (lastDotIndex != -1) {
-            instanceName = methodCallName.substring(0, lastDotIndex);
+            methodOrInstanceName = methodCallName.substring(0, lastDotIndex);
         }
-        return instanceName;
+        return methodOrInstanceName;
     }
 
     /**
@@ -460,8 +459,14 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             DetailAST variableUsageAst, String variableName) {
         boolean result = true;
         boolean isUsedVariableDeclarationFound = false;
+        boolean isFirstMethodCallToBeExamined = true;
+        boolean isInitialMethodCalledWithInstance = false;
         DetailAST currentSiblingAst = variableUsageAst;
-        String initInstanceName = "";
+        String initialMethodOrInstanceName = "";
+
+        if (currentSiblingAst != null && currentSiblingAst.getType() != TokenTypes.EXPR) {
+            result = false;
+        }
 
         while (result
                 && !isUsedVariableDeclarationFound
@@ -470,17 +475,29 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 case TokenTypes.EXPR:
                     final DetailAST methodCallAst = currentSiblingAst.getFirstChild();
 
-                    if (methodCallAst.getType() == TokenTypes.METHOD_CALL) {
-                        final String instanceName =
-                            getInstanceName(methodCallAst);
-                        // method is called without instance
-                        if (instanceName.isEmpty()) {
+                    final FullIdent methodCallFullIdent =
+                        FullIdent.createFullIdentBelow(methodCallAst);
+                    final DetailAST methodCallIdent = methodCallFullIdent.getDetailAst();
+                    final boolean isMethodCalledFromNewObject =
+                        methodCallIdent.getParent().getType() == TokenTypes.LITERAL_NEW;
+
+                    if (methodCallAst.getType() == TokenTypes.METHOD_CALL
+                        && !isMethodCalledFromNewObject) {
+                        final String methodOrInstanceName =
+                            getMethodOrInstanceName(methodCallFullIdent);
+                        final boolean isMethodCalledWithInstance =
+                            isMethodCalledWithInstance(methodCallIdent);
+                        if (isFirstMethodCallToBeExamined) {
+                            isInitialMethodCalledWithInstance = isMethodCalledWithInstance;
+                            isFirstMethodCallToBeExamined = false;
+                        }
+                        else if (isMethodCalledWithInstance != isInitialMethodCalledWithInstance) {
                             result = false;
                         }
                         // differs from previous instance
-                        else if (!instanceName.equals(initInstanceName)) {
-                            if (initInstanceName.isEmpty()) {
-                                initInstanceName = instanceName;
+                        if (!methodOrInstanceName.equals(initialMethodOrInstanceName)) {
+                            if (initialMethodOrInstanceName.isEmpty()) {
+                                initialMethodOrInstanceName = methodOrInstanceName;
                             }
                             else {
                                 result = false;
@@ -488,7 +505,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                         }
                     }
                     else {
-                        // is not method call
                         result = false;
                     }
                     break;
@@ -509,6 +525,31 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             currentSiblingAst = currentSiblingAst.getPreviousSibling();
         }
 
+        return result;
+    }
+
+    /**
+     * Whether the method is called with an explicit instance. Eg-
+     * <pre>
+     * {@code obj.method(); // Called with an instance}
+     * {@code method();     // Called without an instance}
+     * </pre>
+     *
+     * @param methodCallIdent {@link DetailAST} of type {@link TokenTypes#IDENT} or
+     *                        {@link TokenTypes#LITERAL_THIS} or {@link TokenTypes#LITERAL_SUPER}
+     *                        which is used to identify the method call
+     * @return {@code true} if the method is called with an explicit instance.
+     */
+    private static boolean isMethodCalledWithInstance(DetailAST methodCallIdent) {
+        boolean result = false;
+        DetailAST parentAst = methodCallIdent.getParent();
+        while (!TokenUtil.isOfType(parentAst, TokenTypes.EXPR, TokenTypes.METHOD_CALL)) {
+            if (parentAst.getType() == TokenTypes.DOT) {
+                result = true;
+                break;
+            }
+            parentAst = parentAst.getParent();
+        }
         return result;
     }
 
