@@ -315,6 +315,14 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      */
     private static final int DEFAULT_DISTANCE = 3;
 
+    /** Method called with instance branch constant. */
+    private static final String METHOD_CALLED_WITH_INSTANCE_BRANCH =
+        "MethodCalledWithInstanceBranch";
+
+    /** Method called without an instance branch constant. */
+    private static final String METHOD_CALLED_WITHOUT_INSTANCE_BRANCH =
+        "MethodCalledWithoutInstanceBranch";
+
     /**
      * Specify distance between declaration of variable and its first usage.
      * Values should be greater than 0.
@@ -428,21 +436,20 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     }
 
     /**
-     * Get name of instance whose method is called.
+     * Get name of instance whose method is called or the name of the method if it isn't called with
+     * explicit instance.
      *
-     * @param methodCallAst
-     *        DetailAST of METHOD_CALL.
-     * @return name of instance.
+     * @param methodCallFullIdent {@link FullIdent} of the method call ast
+     * @return name of instance or the method
      */
-    private static String getInstanceName(DetailAST methodCallAst) {
-        final String methodCallName =
-                FullIdent.createFullIdentBelow(methodCallAst).getText();
-        final int lastDotIndex = methodCallName.lastIndexOf('.');
-        String instanceName = "";
+    private static String getMethodOrInstanceName(FullIdent methodCallFullIdent) {
+        final String methodCallName = methodCallFullIdent.getText();
+        final int lastDotIndex = methodCallName.indexOf('.');
+        String methodOrInstanceName = methodCallName;
         if (lastDotIndex != -1) {
-            instanceName = methodCallName.substring(0, lastDotIndex);
+            methodOrInstanceName = methodCallName.substring(0, lastDotIndex);
         }
-        return instanceName;
+        return methodOrInstanceName;
     }
 
     /**
@@ -461,7 +468,12 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         boolean result = true;
         boolean isUsedVariableDeclarationFound = false;
         DetailAST currentSiblingAst = variableUsageAst;
-        String initInstanceName = "";
+        String initialMethodOrInstanceName = "";
+        String previousBranchName = "";
+
+        if (currentSiblingAst != null && currentSiblingAst.getType() != TokenTypes.EXPR) {
+            result = false;
+        }
 
         while (result
                 && !isUsedVariableDeclarationFound
@@ -470,17 +482,28 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 case TokenTypes.EXPR:
                     final DetailAST methodCallAst = currentSiblingAst.getFirstChild();
 
-                    if (methodCallAst.getType() == TokenTypes.METHOD_CALL) {
-                        final String instanceName =
-                            getInstanceName(methodCallAst);
-                        // method is called without instance
-                        if (instanceName.isEmpty()) {
+                    final FullIdent methodCallFullIdent =
+                        FullIdent.createFullIdentBelow(methodCallAst);
+                    final DetailAST methodCallIdent = methodCallFullIdent.getDetailAst();
+                    final boolean isMethodCalledFromNewObject =
+                        methodCallIdent.getParent().getType() == TokenTypes.LITERAL_NEW;
+
+                    if (methodCallAst.getType() == TokenTypes.METHOD_CALL
+                        && !isMethodCalledFromNewObject) {
+                        final String methodOrInstanceName =
+                            getMethodOrInstanceName(methodCallFullIdent);
+                        final String branchToCheck = getBranchToCheck(methodCallIdent);
+
+                        if (previousBranchName.isEmpty()) {
+                            previousBranchName = branchToCheck;
+                        }
+                        else if (!previousBranchName.equals(branchToCheck)) {
                             result = false;
                         }
                         // differs from previous instance
-                        else if (!instanceName.equals(initInstanceName)) {
-                            if (initInstanceName.isEmpty()) {
-                                initInstanceName = instanceName;
+                        if (!methodOrInstanceName.equals(initialMethodOrInstanceName)) {
+                            if (initialMethodOrInstanceName.isEmpty()) {
+                                initialMethodOrInstanceName = methodOrInstanceName;
                             }
                             else {
                                 result = false;
@@ -488,7 +511,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                         }
                     }
                     else {
-                        // is not method call
                         result = false;
                     }
                     break;
@@ -510,6 +532,53 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         }
 
         return result;
+    }
+
+    /**
+     * Get the branch to check. There are two branches, {@code MethodCalledWithoutInstanceBranch}
+     * and {@code MethodCalledWithInstanceBranch}.
+     *
+     * @param methodCallIdent {@link DetailAST} of type {@link TokenTypes#IDENT} or
+     *                        {@link TokenTypes#LITERAL_THIS} or {@link TokenTypes#LITERAL_SUPER}
+     *                        which is used to identify the method call
+     * @return the branch to check.
+     */
+    private static String getBranchToCheck(DetailAST methodCallIdent) {
+        final String methodCalledWithoutInstanceBranch = METHOD_CALLED_WITHOUT_INSTANCE_BRANCH;
+        final String methodCalledWithInstanceBranch = METHOD_CALLED_WITH_INSTANCE_BRANCH;
+        final String branchToCheck;
+        if (isMethodCalledWithoutInstance(methodCallIdent)) {
+            branchToCheck = methodCalledWithoutInstanceBranch;
+        }
+        else {
+            branchToCheck = methodCalledWithInstanceBranch;
+        }
+        return branchToCheck;
+    }
+
+    /**
+     * Whether the method is called without an explicit instance. Eg-
+     * <pre>
+     * {@code obj.method(); // Called with an instance}
+     * {@code method();     // Called without an instance}
+     * </pre>
+     *
+     * @param methodCallIdent {@link DetailAST} of type {@link TokenTypes#IDENT} or
+     *                        {@link TokenTypes#LITERAL_THIS} or {@link TokenTypes#LITERAL_SUPER}
+     *                        which is used to identify the method call
+     * @return {@code true} if the method is called without an explicit instance.
+     */
+    private static boolean isMethodCalledWithoutInstance(DetailAST methodCallIdent) {
+        boolean result = false;
+        DetailAST parentAst = methodCallIdent.getParent();
+        while (!TokenUtil.isOfType(parentAst, TokenTypes.EXPR, TokenTypes.METHOD_CALL)) {
+            if (parentAst.getType() == TokenTypes.DOT) {
+                result = true;
+                break;
+            }
+            parentAst = parentAst.getParent();
+        }
+        return !result;
     }
 
     /**
