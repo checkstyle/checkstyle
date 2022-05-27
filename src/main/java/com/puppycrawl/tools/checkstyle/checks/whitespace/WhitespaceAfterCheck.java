@@ -137,7 +137,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <pre>
  * &lt;module name=&quot;WhitespaceAfter&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;COMMA, SEMI&quot;/&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;COMMA&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Example:</p>
