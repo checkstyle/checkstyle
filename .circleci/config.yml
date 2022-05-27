@@ -157,7 +157,6 @@ jobs:
     docker:
       - image: *default-image
     steps:
-      - checkout
       - run:
           command: |
             ./.ci/validation.sh git-diff
