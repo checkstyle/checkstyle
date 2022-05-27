@@ -1321,7 +1321,7 @@ import static java.math.BigInteger.ZERO;
           it checks that it is not followed by whitespace, or (if linebreaks
           are allowed) all characters on the line after are whitespace. To
           forbid linebreaks after a token, set property <code>allowLineBreaks</code> to <code>
-          false</code>.
+          true</code>.
         </p>
         <p>
           The check processes
@@ -1476,7 +1476,7 @@ class Test {
         <source>
 &lt;module name=&quot;NoWhitespaceAfter&quot;&gt;
   &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
-  &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;allowLineBreaks&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
