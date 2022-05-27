@@ -153,14 +153,6 @@ jobs:
       - run:
           command: |
             ./.ci/validation.sh no-warning-imports-java-design-patterns
-  git-diff:
-    docker:
-      - image: *default-image
-    steps:
-      - checkout
-      - run:
-          command: |
-            ./.ci/validation.sh git-diff
   sonarqube:
     docker:
       - image: *default-image
@@ -169,6 +161,15 @@ jobs:
       - run:
           command: |
             ./.ci/validation.sh sonarqube
+
+  git-diff:
+    docker:
+      - image: *default-image
+    steps:
+      - checkout
+      - run:
+          command: |
+            ./.ci/validation.sh git-diff
 
 workflows:
   version: 2
@@ -193,5 +194,5 @@ workflows:
       - no-exception-alot-of-projects
       - no-warning-imports-guava
       - no-warning-imports-java-design-patterns
-      - git-diff
       - sonarqube
+      - git-diff
