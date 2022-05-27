@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * More specifically, it checks that it is not followed by whitespace,
  * or (if linebreaks are allowed) all characters on the line after are
  * whitespace. To forbid linebreaks after a token, set property
- * {@code allowLineBreaks} to {@code false}.
+ * {@code allowLineBreaks} to {@code true}.
  * </p>
  * <p>
  * The check processes
