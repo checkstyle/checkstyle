@@ -123,4 +123,14 @@ public class ParameterNumberCheckTest
                 getPath("InputParameterNumber2.java"), expected);
     }
 
+    @Test
+    public void testIssue11641() throws Exception{
+        final String[] expected = {
+            "50:17: " + getCheckMessage(MSG_KEY, 7, 8),
+            "56:17: " + getCheckMessage(MSG_KEY, 7, 8),
+            "61:17: " + getCheckMessage(MSG_KEY, 7, 8),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNumberIssue11641.java"), expected);
+    }
 }
