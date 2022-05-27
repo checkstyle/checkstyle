@@ -555,8 +555,16 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     private static boolean isSurrounded(DetailAST ast) {
         // if previous sibling is left parenthesis,
         // next sibling can't be other than right parenthesis
+        // if the parent's tokentype is METHOD_CALL,
+        // check whether the parent's previous sibling is left parenthesis.
+
         final DetailAST prev = ast.getPreviousSibling();
-        return prev != null && prev.getType() == TokenTypes.LPAREN;
+        // assume parent should not be null
+        final DetailAST parent = ast.getParent();
+        return prev != null && prev.getType() == TokenTypes.LPAREN
+                || parent.getType() == TokenTypes.METHOD_CALL
+                    && parent.getPreviousSibling() != null
+                        && parent.getPreviousSibling().getType() == TokenTypes.LPAREN;
     }
 
     /**
