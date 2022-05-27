@@ -1008,7 +1008,6 @@ git-diff)
     printf "Top 300 lines of diff:\n"
     git diff | head -n 300
     sleep 5s
-    false
   fi
   ;;
 
