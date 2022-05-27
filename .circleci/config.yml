@@ -193,5 +193,4 @@ workflows:
       - no-exception-alot-of-projects
       - no-warning-imports-guava
       - no-warning-imports-java-design-patterns
-      - git-diff
       - sonarqube
