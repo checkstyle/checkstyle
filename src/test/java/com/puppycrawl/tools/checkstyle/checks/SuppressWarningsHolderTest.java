@@ -142,6 +142,16 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testGetDefaultName() {
+        assertWithMessage("Default name differs from expected")
+            .that(SuppressWarningsHolder.getDefaultName("SomeName"))
+            .isEqualTo("SomeName");
+        assertWithMessage("Default name differs from expected")
+            .that(SuppressWarningsHolder.getDefaultName("SomeNameCheck"))
+            .isEqualTo("SomeName");
+    }
+
+    @Test
     public void testSetAliasListEmpty() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
         holder.setAliasList("");
