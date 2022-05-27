@@ -556,7 +556,10 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         // if previous sibling is left parenthesis,
         // next sibling can't be other than right parenthesis
         final DetailAST prev = ast.getPreviousSibling();
-        return prev != null && prev.getType() == TokenTypes.LPAREN;
+        final DetailAST parent = ast.getParent();
+        return prev != null && prev.getType() == TokenTypes.LPAREN ||
+                parent != null && parent.getType() == TokenTypes.METHOD_CALL &&
+                        parent.getPreviousSibling()!= null && parent.getPreviousSibling().getType() == TokenTypes.LPAREN;
     }
 
     /**
