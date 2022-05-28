@@ -24,6 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import org.antlr.v4.runtime.Token;
 
 /**
  * <p>
@@ -243,7 +244,8 @@ public class ClassMemberImpliedModifierCheck
      * @return true if ast is in a class, enum, or record
      */
     private static boolean isInTypeBlock(DetailAST ast) {
-        return ScopeUtil.isInClassBlock(ast)
+        return ScopeUtil.isInObjBlock(ast)
+                || ScopeUtil.isInClassBlock(ast)
                 || ScopeUtil.isInEnumBlock(ast)
                 || ScopeUtil.isInRecordBlock(ast);
     }
