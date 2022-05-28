@@ -143,6 +143,26 @@ public class ClassMemberImpliedModifierCheckTest
     }
 
     @Test
+    public void testClassMemberImpliedModifierObjNestedRecord() throws Exception {
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath(
+                "InputClassMemberImpliedModifierObjNestedRecord.java"),
+            expected);
+    }
+
+    @Test
+    public void testClassMemberImpliedModifierObjNestedRecordNoViolation() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getNonCompilablePath(
+                "InputClassMemberImpliedModifierObjNestedRecordNoViolation.java"),
+            expected);
+    }
+
+    @Test
     public void testIllegalState() {
         final DetailAstImpl init = new DetailAstImpl();
         init.setType(TokenTypes.STATIC_INIT);
