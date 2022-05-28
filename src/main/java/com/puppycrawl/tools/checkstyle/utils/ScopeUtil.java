@@ -182,6 +182,29 @@ public final class ScopeUtil {
     }
 
     /**
+     * Returns whether a node is directly contained within an anonymous object block.
+     *
+     * @param node the node to check if directly contained within an anonymous object block.
+     * @return a {@code boolean} value
+     */
+    public static boolean isInObjBlock(DetailAST node) {
+        boolean returnValue = false;
+
+        // Loop up looking for a containing interface block
+        for (DetailAST token = node.getParent();
+             token != null;
+             token = token.getParent()) {
+            if (token.getType() == TokenTypes.OBJBLOCK
+                && token.getParent().getType() == TokenTypes.LITERAL_NEW) {
+                returnValue = true;
+                break;
+            }
+        }
+
+        return returnValue;
+    }
+
+    /**
      * Returns whether a node is directly contained within an annotation block.
      *
      * @param node the node to check if directly contained within an annotation block.
