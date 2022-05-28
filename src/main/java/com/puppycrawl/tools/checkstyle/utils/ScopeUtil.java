@@ -182,6 +182,16 @@ public final class ScopeUtil {
     }
 
     /**
+     * Returns whether a node is directly contained within an object block.
+     *
+     * @param node the node to check if directly contained within an object block.
+     * @return a {@code boolean} value
+     */
+    public static boolean isInObjBlock(DetailAST node) {
+        return isInBlockOf(node, TokenTypes.OBJBLOCK);
+    }
+
+    /**
      * Returns whether a node is directly contained within an annotation block.
      *
      * @param node the node to check if directly contained within an annotation block.
