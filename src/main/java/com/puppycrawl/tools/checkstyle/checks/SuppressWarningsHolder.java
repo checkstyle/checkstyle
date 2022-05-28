@@ -168,6 +168,23 @@ public class SuppressWarningsHolder
     }
 
     /**
+     * Returns the default name for the source name of a check, which is the
+     * source name with any dotted prefix or "Check" suffix
+     * romoved.
+     * @param sourceName the source name of the check (generally the class
+     *        name)
+     * @return the default name for the given check
+     */
+    public static String getDefaultName(String sourceName) {
+        int endIndex = sourceName.length();
+        if (sourceName.endsWith(CHECK_SUFFIX)) {
+            endIndex -= CHECK_SUFFIX.length();
+        }
+        final int startIndex = sourceName.lastIndexOf('.') + 1;
+        return sourceName.substring(startIndex, endIndex);
+    }
+
+    /**
      * Returns the alias for the source name of a check. If an alias has been
      * explicitly registered via {@link #setAliasList(String...)}, that
      * alias is returned; otherwise, the default alias is used.
@@ -176,10 +193,10 @@ public class SuppressWarningsHolder
      *        name)
      * @return the current alias for the given check
      */
-    public static String getAlias(String sourceName) {
-        String checkAlias = CHECK_ALIAS_MAP.get(sourceName);
+    public static String getAlias(String defaultName) {
+        String checkAlias = CHECK_ALIAS_MAP.get(defaultName);
         if (checkAlias == null) {
-            checkAlias = getDefaultAlias(sourceName);
+            checkAlias = getDefaultName(defaultName);
         }
         return checkAlias;
     }
@@ -227,7 +244,8 @@ public class SuppressWarningsHolder
     public static boolean isSuppressed(AuditEvent event) {
         final List<Entry> entries = ENTRIES.get();
         final String sourceName = event.getSourceName();
-        final String checkAlias = getAlias(sourceName);
+        final String defaultName = getDefaultName(sourceName);
+        final String checkAlias = getAlias(defaultName);
         final int line = event.getLine();
         final int column = event.getColumn();
         boolean suppressed = false;
@@ -237,7 +255,8 @@ public class SuppressWarningsHolder
             final String checkName = entry.getCheckName();
             final boolean nameMatches =
                 ALL_WARNING_MATCHING_ID.equals(checkName)
-                    || checkName.equalsIgnoreCase(checkAlias);
+                    || checkName.equalsIgnoreCase(checkAlias)
+                    || checkName.equalsIgnoreCase(defaultName);
             if (afterStart && beforeEnd
                     && (nameMatches || checkName.equals(event.getModuleId()))) {
                 suppressed = true;
