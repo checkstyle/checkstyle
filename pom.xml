@@ -3556,6 +3556,9 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheckTest
                 </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.modifier.ClassMemberImpliedModifierCheckTest
+                </param>
               </targetTests>
               <excludedTestClasses>
                 <param>*.Input*</param>
