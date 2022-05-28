@@ -243,7 +243,8 @@ public class ClassMemberImpliedModifierCheck
      * @return true if ast is in a class, enum, or record
      */
     private static boolean isInTypeBlock(DetailAST ast) {
-        return ScopeUtil.isInClassBlock(ast)
+        return ScopeUtil.isInObjBlock(ast)
+                || ScopeUtil.isInClassBlock(ast)
                 || ScopeUtil.isInEnumBlock(ast)
                 || ScopeUtil.isInRecordBlock(ast);
     }
