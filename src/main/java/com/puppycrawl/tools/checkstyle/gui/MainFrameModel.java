@@ -219,7 +219,7 @@ public class MainFrameModel {
                 parseTreeTableModel.setParseMode(parseMode);
                 final String[] sourceLines = getFileText(file).toLinesArray();
 
-                final List<Integer> linesToPositionTemp = new ArrayList<>();
+                final List<Integer> linesToPositionTemp = new ArrayList<>(sourceLines.length + 1);
                 // starts line counting at 1
                 linesToPositionTemp.add(0);
 
