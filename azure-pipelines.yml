@@ -104,6 +104,12 @@ strategy:
       cmd: "./.ci/validation.sh versions"
       onCronOnly: true
 
+    # 'git diff' validation
+    'git-diff':
+      image: 'ubuntu-20.04'
+      cmd: "./.ci/validation.sh git-diff"
+      skipCache: true
+
     # lint for .md files, OSX is used because there is problem to install gem on linux
     'markdownlint':
       image: 'macOS-10.15'
