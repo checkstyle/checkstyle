@@ -144,6 +144,8 @@ public class MainFrame extends JFrame {
         final JLabel modesLabel = new JLabel("Modes:", SwingConstants.RIGHT);
         final int leftIndentation = 10;
         modesLabel.setBorder(BorderFactory.createEmptyBorder(0, leftIndentation, 0, 0));
+        modesLabel.setDisplayedMnemonic(KeyEvent.VK_M);
+        modesLabel.setLabelFor(modesCombobox);
 
         final JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 2));
