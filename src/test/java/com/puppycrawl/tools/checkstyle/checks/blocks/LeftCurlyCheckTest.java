@@ -512,4 +512,15 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
         }
     }
 
+    @Test
+    public void testOptionNlow() throws Exception {
+        final String[] expected = {
+            "22:3: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 3),
+            "31:44: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 44),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyTestOptionNlow.java"), expected);
+    }
+
+
 }

@@ -177,6 +177,35 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * }
  * </pre>
  * <p>
+ * To configure the check to apply the {@code nlow} policy
+ *</p>
+ * <pre>
+ * &lt;module name=&quot;LeftCurly&quot;&gt;
+ *   &lt;property name=&quot;option&quot; value=&quot;nlow&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * public class InputLeftCurlyTestOptionNlow { // OK
+ *
+ *   public void foo1() {// OK
+ *   }
+ *
+ *   public void foo2()
+ *   { // Violation - '{' should be on the previous line
+ *   }
+ *
+ *   public void foo3(int value1, int value2,
+ *                    int value3, int value4)
+ *   { // OK
+ *   }
+ *
+ *   public void foo4(int value1, int value2,
+ *                    int value3, int value4) { // Violation - '{' should be on a new line
+ *   }
+ *
+ * }
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
