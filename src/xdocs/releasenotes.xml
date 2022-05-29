@@ -10,6 +10,124 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.3">
+      <div class="releaseDate">29.05.2022</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            WhitespaceAfter should support LITERAL_CASE token.
+            Author: as23415672
+            <a href="https://github.com/checkstyle/checkstyle/issues/11666">#11666</a>
+          </li>
+          <li>
+            WhitespaceAfter should support LITERAL_YIELD token.
+            Author: Binita Kumari
+            <a href="https://github.com/checkstyle/checkstyle/issues/11508">#11508</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            SuppressionXpathSingleFilter suppresses all violations when used with
+            the default configuration.
+            Author: as23415672
+            <a href="https://github.com/checkstyle/checkstyle/issues/11460">#11460</a>
+          </li>
+          <li>
+            SuppressWarnings: support not working on local variables.
+            Author: Ignem
+            <a href="https://github.com/checkstyle/checkstyle/issues/10043">#10043</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Wercker service will be shutdown on October 31st, 2022.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/11564">#11564</a>
+          </li>
+          <li>
+            Use Shellcheck to resolve violations code in Shell Script.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/11637">#11637</a>
+          </li>
+          <li>
+            NoSuchFileException during maven-compiler-plugin:3.10.1:testCompile.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11662">#11662</a>
+          </li>
+          <li>
+            Extend IT tests to able to load few modules from configs.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/7546">#7546</a>
+          </li>
+          <li>
+            use linter for bash scripts.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/5826">#5826</a>
+          </li>
+          <li>
+            Remove some hardcoding of specifics so Checkstyle can be more Extensible.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/11604">#11604</a>
+          </li>
+          <li>
+            Update doc for NoWhitespaceAfter.
+            Author: Shaman20
+            <a href="https://github.com/checkstyle/checkstyle/issues/7624">#7624</a>
+          </li>
+          <li>
+            Update Checkstyle&#39;s Copyright.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/11596">#11596</a>
+          </li>
+          <li>
+            Update doc for EmptyForInitializerPad.
+            Author: shubhamxshah
+            <a href="https://github.com/checkstyle/checkstyle/issues/7617">#7617</a>
+          </li>
+          <li>
+            Specify violation messages in input files..
+            Author: rnveach, shubhamxshah, Binita Kumari, Abhinav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+          <li>
+            Split pitest-coding execution into two executions and investigate instability.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11528">#11528</a>
+          </li>
+          <li>
+            Solve fb-contrib errors.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11140">#11140</a>
+          </li>
+          <li>
+            Resolve SimplifiableIfStatement inspection violations .
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/11588">#11588</a>
+          </li>
+          <li>
+            Resolve IDEA violations from Teamcity 2022.04 (Bundled IntelliJ IDEA 2021.2.3).
+            Author: pbludov, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11566">#11566</a>
+          </li>
+          <li>
+            Update doc for MethodParamPad.
+            Author: Shaman20
+            <a href="https://github.com/checkstyle/checkstyle/issues/7622">#7622</a>
+          </li>
+          <li>
+            Update Xpath unit tests to have at least two test methods.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/8151">#8151</a>
+          </li>
+          <li>
+            Fix methods for package-info file check.
+            Author: as23415672
+            <a href="https://github.com/checkstyle/checkstyle/issues/11531">#11531</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.2">
       <div class="releaseDate">24.04.2022</div>
       <p>New:</p>
