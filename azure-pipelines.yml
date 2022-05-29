@@ -98,6 +98,11 @@ strategy:
     #   skipCache: true
     #   needXmlstarlet: true
 
+    # 'git diff' validation
+    'git-diff':
+      image: 'ubuntu-20.04'
+      cmd: "./.ci/validation.sh git-diff"
+
     # versions to update
     'versions':
       image: 'ubuntu-20.04'
