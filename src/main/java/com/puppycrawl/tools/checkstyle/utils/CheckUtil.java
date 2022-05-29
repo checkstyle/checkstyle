@@ -22,11 +22,12 @@ package com.puppycrawl.tools.checkstyle.utils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -513,17 +514,10 @@ public final class CheckUtil {
      * @return set of class names and short class names.
      */
     public static Set<String> parseClassNames(String... classNames) {
-        final Set<String> illegalClassNames = new HashSet<>();
-        for (final String name : classNames) {
-            illegalClassNames.add(name);
-            final int lastDot = name.lastIndexOf('.');
-            if (lastDot != -1 && lastDot < name.length() - 1) {
-                final String shortName = name
-                        .substring(name.lastIndexOf('.') + 1);
-                illegalClassNames.add(shortName);
-            }
-        }
-        return illegalClassNames;
+        return Arrays.stream(classNames)
+                .flatMap(className -> Stream.of(className, CommonUtil.baseClassName(className)))
+                .filter(Predicate.not(String::isEmpty))
+                .collect(Collectors.toUnmodifiableSet());
     }
 
     /**
