@@ -58,6 +58,16 @@
     <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
   </Match>
   <Match>
+    <!-- There is some empty methods in AbstractCheck/AbstractJavadocCheck.
+         Making them abstract requires too much boilerplate in subclasses. -->
+    <Bug pattern="ACEM_ABSTRACT_CLASS_EMPTY_METHODS"/>
+  </Match>
+  <Match>
+    <!-- Till https://github.com/mebigfatguy/fb-contrib/issues/296
+         @Nullable annotation is good idea in general, but requires extra dependencies. -->
+    <Bug pattern="AI_ANNOTATION_ISSUES_NEEDS_NULLABLE"/>
+  </Match>
+  <Match>
     <!-- have never been a case for years, Eclipse does not show any other classes
            inherited from CommonASTWithHiddenTokens -->
     <Class name="com.puppycrawl.tools.checkstyle.DetailAstImpl" />
@@ -72,6 +82,10 @@
       <Bug pattern="BC_UNCONFIRMED_CAST"/>
       <Bug pattern="BC_UNCONFIRMED_CAST_OF_RETURN_VALUE"/>
     </Or>
+  </Match>
+  <Match>
+    <!-- Till https://github.com/mebigfatguy/fb-contrib/issues/309 -->
+    <Bug pattern="CE_CLASS_ENVY"/>
   </Match>
   <Match>
     <!-- These fields are restricted caches which must remain populated until the process ends. -->
@@ -191,11 +205,6 @@
        there should be one section per one bug pattern, with list of allowed classes or methods -->
   <Match>
     <Bug pattern="
-      ACEM_ABSTRACT_CLASS_EMPTY_METHODS,
-      AFBR_ABNORMAL_FINALLY_BLOCK_RETURN,
-      AI_ANNOTATION_ISSUES_NEEDS_NULLABLE,
-      CC_CYCLOMATIC_COMPLEXITY,
-      CE_CLASS_ENVY,
       CLI_CONSTANT_LIST_INDEX,
       EXS_EXCEPTION_SOFTENING_NO_CHECKED,
       EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS,
