@@ -61,11 +61,13 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "25:22: " + getCheckMessage(MSG_ASSIGN),
             "25:30: " + getCheckMessage(MSG_IDENT, "i"),
             "25:46: " + getCheckMessage(MSG_ASSIGN),
+            "25:33: " + getCheckMessage(MSG_EXPR),
             "29:17: " + getCheckMessage(MSG_LITERAL, "0"),
             "39:11: " + getCheckMessage(MSG_ASSIGN),
             "43:11: " + getCheckMessage(MSG_ASSIGN),
             "45:11: " + getCheckMessage(MSG_ASSIGN),
             "47:11: " + getCheckMessage(MSG_ASSIGN),
+            "47:11: " + getCheckMessage(MSG_EXPR),
             "48:16: " + getCheckMessage(MSG_IDENT, "a"),
             "49:14: " + getCheckMessage(MSG_IDENT, "a"),
             "49:20: " + getCheckMessage(MSG_IDENT, "b"),
@@ -257,4 +259,24 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
                 getPath("InputUnnecessaryParenthesesIfStatement2.java"), expected);
     }
 
+    @Test
+    public void testNestedCondition() throws Exception {
+        final String[] expected = {
+                "27:11: " + getCheckMessage(MSG_ASSIGN),
+                "30:11: " + getCheckMessage(MSG_ASSIGN),
+                "30:11: " + getCheckMessage(MSG_EXPR),
+                "32:11: " + getCheckMessage(MSG_ASSIGN),
+                "46:23: " + getCheckMessage(MSG_EXPR),
+                "50:27: " + getCheckMessage(MSG_EXPR),
+                "54:13: " + getCheckMessage(MSG_EXPR),
+                "58:16: " + getCheckMessage(MSG_ASSIGN),
+                "58:26: " + getCheckMessage(MSG_IDENT, "i"),
+                "58:29: " + getCheckMessage(MSG_EXPR),
+                "58:42: " + getCheckMessage(MSG_ASSIGN),
+                "62:11: " + getCheckMessage(MSG_ASSIGN),
+                "62:11: " + getCheckMessage(MSG_EXPR),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryParenthesesNestedCondition.java"), expected);
+    }
 }
