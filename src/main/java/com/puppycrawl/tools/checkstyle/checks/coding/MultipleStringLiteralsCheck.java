@@ -239,6 +239,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
      * @param ignoreStringsRegexp
      *        regular expression pattern for ignored strings
      * @noinspection WeakerAccess
+     * @noinspectionreason we avoid 'protected' when possible
      */
     public final void setIgnoreStringsRegexp(Pattern ignoreStringsRegexp) {
         if (ignoreStringsRegexp == null || ignoreStringsRegexp.pattern().isEmpty()) {

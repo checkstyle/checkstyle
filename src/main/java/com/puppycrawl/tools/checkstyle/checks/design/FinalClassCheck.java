@@ -276,10 +276,9 @@ public class FinalClassCheck
      * @param className name of the class
      * @param superClassName name of the super class
      * @return true if there is another class with same name.
-     * @noinspection CallToStringConcatCanBeReplacedByOperator
      */
     private ClassDesc getNearestClassWithSameName(String className, String superClassName) {
-        final String dotAndClassName = PACKAGE_SEPARATOR.concat(className);
+        final String dotAndClassName = PACKAGE_SEPARATOR + className;
         return innerClasses.entrySet().stream()
                 .filter(entry -> entry.getKey().endsWith(dotAndClassName))
                 .map(Map.Entry::getValue)

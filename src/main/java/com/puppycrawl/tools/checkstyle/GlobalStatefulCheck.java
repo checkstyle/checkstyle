@@ -38,7 +38,8 @@ import java.lang.annotation.Target;
  * This is similar to multi-file validation, which checkstyle does not support fully yet.
  * Please refer to https://github.com/checkstyle/checkstyle/issues/3540 for details.
  *
- * @noinspection AnnotationClass, ClassIndependentOfModule, unused, ClassOnlyUsedInOnePackage
+ * @noinspection AnnotationClass, ClassIndependentOfModule, ClassOnlyUsedInOnePackage
+ * @noinspectionreason we support only Java 11+
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

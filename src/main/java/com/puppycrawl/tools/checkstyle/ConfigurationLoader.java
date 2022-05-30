@@ -302,6 +302,7 @@ public final class ConfigurationLoader {
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
      * @noinspection WeakerAccess
+     * @noinspectionreason we avoid 'protected' when possible
      */
     public static Configuration loadConfiguration(InputSource configSource,
                                                   PropertyResolver overridePropsResolver,
@@ -348,40 +349,42 @@ public final class ConfigurationLoader {
      * @throws CheckstyleException if the string contains an opening
      *                           {@code ${} without a closing
      *                           {@code }}
-     * @noinspection MethodWithMultipleReturnPoints
      */
     private static String replaceProperties(
             String value, PropertyResolver props, String defaultValue)
             throws CheckstyleException {
+
+        final String result;
         if (value == null) {
-            return null;
+            result = null;
         }
+        else {
+            final List<String> fragments = new ArrayList<>();
+            final List<String> propertyRefs = new ArrayList<>();
+            parsePropertyString(value, fragments, propertyRefs);
 
-        final List<String> fragments = new ArrayList<>();
-        final List<String> propertyRefs = new ArrayList<>();
-        parsePropertyString(value, fragments, propertyRefs);
-
-        final StringBuilder sb = new StringBuilder(256);
-        final Iterator<String> fragmentsIterator = fragments.iterator();
-        final Iterator<String> propertyRefsIterator = propertyRefs.iterator();
-        while (fragmentsIterator.hasNext()) {
-            String fragment = fragmentsIterator.next();
-            if (fragment == null) {
-                final String propertyName = propertyRefsIterator.next();
-                fragment = props.resolve(propertyName);
+            final StringBuilder sb = new StringBuilder(256);
+            final Iterator<String> fragmentsIterator = fragments.iterator();
+            final Iterator<String> propertyRefsIterator = propertyRefs.iterator();
+            while (fragmentsIterator.hasNext()) {
+                String fragment = fragmentsIterator.next();
                 if (fragment == null) {
-                    if (defaultValue != null) {
-                        sb.replace(0, sb.length(), defaultValue);
-                        break;
+                    final String propertyName = propertyRefsIterator.next();
+                    fragment = props.resolve(propertyName);
+                    if (fragment == null) {
+                        if (defaultValue != null) {
+                            sb.replace(0, sb.length(), defaultValue);
+                            break;
+                        }
+                        throw new CheckstyleException(
+                                "Property ${" + propertyName + "} has not been set");
                     }
-                    throw new CheckstyleException(
-                        "Property ${" + propertyName + "} has not been set");
                 }
+                sb.append(fragment);
             }
-            sb.append(fragment);
+            result = sb.toString();
         }
-
-        return sb.toString();
+        return result;
     }
 
     /**

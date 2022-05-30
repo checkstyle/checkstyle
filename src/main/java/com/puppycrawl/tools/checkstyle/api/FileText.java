@@ -85,9 +85,9 @@ public final class FileText {
     /**
      * The full text contents of the file.
      *
-     * <p>Field is not final to ease reaching full test coverage.
      *
      * @noinspection FieldMayBeFinal
+     * @noinspectionreason ield is not final to ease reaching full test coverage.
      */
     private String fullText;
 
