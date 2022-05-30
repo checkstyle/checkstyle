@@ -2991,7 +2991,7 @@
         </plugins>
       </build>
     </profile>
-   <!-- Non-checks code profiles -->
+    <!-- Non-checks code profiles -->
     <profile>
       <id>pitest-ant</id>
       <properties>
