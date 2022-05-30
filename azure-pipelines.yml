@@ -159,6 +159,7 @@ steps:
     echo "BUILD_REASON:"$BUILD_REASON
     echo "cmd: "$(cmd)
     eval "$(cmd)"
+    "./.ci/travis.sh git-diff"
   condition: |
       or (
           ne(variables.ON_CRON_ONLY, 'true'),
