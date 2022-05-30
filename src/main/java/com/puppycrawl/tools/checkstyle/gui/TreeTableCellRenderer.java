@@ -41,6 +41,15 @@ class TreeTableCellRenderer extends JTree implements
      */
     private static final long serialVersionUID = 4324031590789321581L;
 
+    /** The text color for selected cells. */
+    private static final String COLOR_KEY_TABLE_SELECTION_FOREGROUND = "Table.selectionForeground";
+
+    /** The background color for selected cells. */
+    private static final String COLOR_KEY_TABLE_SELECTION_BACKGROUND = "Table.selectionBackground";
+
+    /** The background color for table. */
+    private static final String COLOR_KEY_TABLE_BACKGROUND = "Table.background";
+
     /** Tree table to render. */
     private final TreeTable treeTable;
 
@@ -71,8 +80,10 @@ class TreeTableCellRenderer extends JTree implements
         if (tcr instanceof DefaultTreeCellRenderer) {
             final DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tcr;
             renderer.setBorderSelectionColor(null);
-            renderer.setTextSelectionColor(UIManager.getColor("Table.selectionForeground"));
-            renderer.setBackgroundSelectionColor(UIManager.getColor("Table.selectionBackground"));
+            renderer.setTextSelectionColor(
+                    UIManager.getColor(COLOR_KEY_TABLE_SELECTION_FOREGROUND));
+            renderer.setBackgroundSelectionColor(
+                    UIManager.getColor(COLOR_KEY_TABLE_SELECTION_BACKGROUND));
         }
     }
 
@@ -120,13 +131,15 @@ class TreeTableCellRenderer extends JTree implements
             boolean isSelected,
             boolean hasFocus,
             int row, int column) {
+        final String colorKey;
         if (isSelected) {
-            setBackground(table.getSelectionBackground());
+            colorKey = COLOR_KEY_TABLE_SELECTION_BACKGROUND;
         }
         else {
-            setBackground(table.getBackground());
+            colorKey = COLOR_KEY_TABLE_BACKGROUND;
         }
 
+        setBackground(UIManager.getColor(colorKey));
         visibleRow = row;
         return this;
     }
