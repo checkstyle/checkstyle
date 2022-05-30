@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectOutputStream;
@@ -120,9 +119,9 @@ public final class PropertyCacheFile {
         // get the current config so if the file isn't found
         // the first time the hash will be added to output file
         configHash = getHashCodeBasedOnObjectContent(config);
-        final File file = new File(fileName);
-        if (file.exists()) {
-            try (InputStream inStream = Files.newInputStream(file.toPath())) {
+        final Path path = Path.of(fileName);
+        if (Files.exists(path)) {
+            try (InputStream inStream = Files.newInputStream(path)) {
                 details.load(inStream);
                 final String cachedConfigHash = details.getProperty(CONFIG_HASH_KEY);
                 if (!configHash.equals(cachedConfigHash)) {
