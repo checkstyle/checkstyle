@@ -128,7 +128,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name=&quot;NoWhitespaceAfter&quot;&gt;
  *   &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
- *   &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
+ *   &lt;property name=&quot;allowLineBreaks&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Example:</p>
