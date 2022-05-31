@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -225,7 +226,7 @@ public class FinalClassCheck
             // Second pass: report violation for all classes that should be declared as final
             innerClasses.forEach((qualifiedClassName, classDesc) -> {
                 if (shouldBeDeclaredAsFinal(classDesc)) {
-                    final String className = getClassNameFromQualifiedName(qualifiedClassName);
+                    final String className = CommonUtil.baseClassName(qualifiedClassName);
                     log(classDesc.getClassAst(), MSG_KEY, className);
                 }
             });
@@ -355,16 +356,6 @@ public class FinalClassCheck
             superClassName = CheckUtil.extractQualifiedName(classExtend.getFirstChild());
         }
         return superClassName;
-    }
-
-    /**
-     * Get class name from qualified name.
-     *
-     * @param qualifiedName qualified class name
-     * @return class name
-     */
-    private static String getClassNameFromQualifiedName(String qualifiedName) {
-        return qualifiedName.substring(qualifiedName.lastIndexOf(PACKAGE_SEPARATOR) + 1);
     }
 
     /** Maintains information about class' ctors. */
