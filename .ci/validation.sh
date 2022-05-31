@@ -868,8 +868,11 @@ no-exception-spoon)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
-  checkout_from https://github.com/checkstyle/contribution
-  cd .ci-temp/contribution/checkstyle-tester
+  mkdir -p .ci-temp
+  cd .ci-temp
+  git clone https://github.com/nick-mancuso/contribution.git
+  cd contribution/checkstyle-tester
+  git checkout fix-spoon
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spoon/spoon/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
