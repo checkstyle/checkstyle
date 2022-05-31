@@ -873,6 +873,7 @@ no-exception-spoon)
   git clone https://github.com/nick-mancuso/contribution.git
   cd contribution/checkstyle-tester
   git checkout fix-spoon
+
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spoon/spoon/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
