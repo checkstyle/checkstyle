@@ -50,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public abstract class AbstractClassCouplingCheck extends AbstractCheck {
 
     /** A package separator - "." */
-    private static final String DOT = ".";
+    private static final char DOT = '.';
 
     /** Class names to ignore. */
     private static final Set<String> DEFAULT_EXCLUDED_CLASSES = Set.of(
@@ -449,12 +449,12 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
          */
         private boolean isFromExcludedPackage(String candidateClassName) {
             String classNameWithPackage = candidateClassName;
-            if (!candidateClassName.contains(DOT)) {
+            if (candidateClassName.indexOf(DOT) < 0) {
                 classNameWithPackage = getClassNameWithPackage(candidateClassName)
                     .orElse("");
             }
             boolean isFromExcludedPackage = false;
-            if (classNameWithPackage.contains(DOT)) {
+            if (classNameWithPackage.indexOf(DOT) >= 0) {
                 final int lastDotIndex = classNameWithPackage.lastIndexOf(DOT);
                 final String candidatePackageName =
                     classNameWithPackage.substring(0, lastDotIndex);
