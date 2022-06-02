@@ -33,7 +33,8 @@ import java.lang.annotation.Target;
  * Checker guarantees that there will be exactly one check instance during the audit.
  * This also means, that all files will be processed by the same check instance.
  *
- * @noinspection AnnotationClass, ClassIndependentOfModule
+ * @noinspection AnnotationClass
+ * @noinspectionreason we support only Java 11+,
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

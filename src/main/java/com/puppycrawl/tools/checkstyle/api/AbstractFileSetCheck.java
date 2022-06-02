@@ -30,6 +30,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Provides common functionality for many FileSetChecks.
  *
  * @noinspection NoopMethodInAbstractClass
+ * @noinspectionreason We allow each check to define these methods, as needed. They
+ *     should be overridden only by demand in subclasses
  */
 public abstract class AbstractFileSetCheck
     extends AbstractViolationReporter
@@ -38,9 +40,9 @@ public abstract class AbstractFileSetCheck
     /**
      * The check context.
      *
-     * @noinspection ThreadLocalNotStaticFinal
      */
-    private final ThreadLocal<FileContext> context = ThreadLocal.withInitial(FileContext::new);
+    private static final ThreadLocal<FileContext> CONTEXT =
+            ThreadLocal.withInitial(FileContext::new);
 
     /** The dispatcher errors are fired to. */
     private MessageDispatcher messageDispatcher;
@@ -68,7 +70,7 @@ public abstract class AbstractFileSetCheck
 
     @Override
     public void destroy() {
-        context.remove();
+        CONTEXT.remove();
     }
 
     @Override
@@ -79,7 +81,7 @@ public abstract class AbstractFileSetCheck
     @Override
     public final SortedSet<Violation> process(File file, FileText fileText)
             throws CheckstyleException {
-        final FileContext fileContext = context.get();
+        final FileContext fileContext = CONTEXT.get();
         fileContext.fileContents = new FileContents(fileText);
         fileContext.violations.clear();
         // Process only what interested in
@@ -117,7 +119,7 @@ public abstract class AbstractFileSetCheck
      * @return the sorted set of {@link Violation}.
      */
     public SortedSet<Violation> getViolations() {
-        return new TreeSet<>(context.get().violations);
+        return new TreeSet<>(CONTEXT.get().violations);
     }
 
     /**
@@ -126,7 +128,7 @@ public abstract class AbstractFileSetCheck
      * @param contents the manager
      */
     public final void setFileContents(FileContents contents) {
-        context.get().fileContents = contents;
+        CONTEXT.get().fileContents = contents;
     }
 
     /**
@@ -135,7 +137,7 @@ public abstract class AbstractFileSetCheck
      * @return the file contents
      */
     protected final FileContents getFileContents() {
-        return context.get().fileContents;
+        return CONTEXT.get().fileContents;
     }
 
     /**
@@ -196,12 +198,12 @@ public abstract class AbstractFileSetCheck
      * @param violations the sorted set of {@link Violation}.
      */
     protected void addViolations(SortedSet<Violation> violations) {
-        context.get().violations.addAll(violations);
+        CONTEXT.get().violations.addAll(violations);
     }
 
     @Override
     public final void log(int line, String key, Object... args) {
-        context.get().violations.add(
+        CONTEXT.get().violations.add(
                 new Violation(line,
                         getMessageBundle(),
                         key,
@@ -215,7 +217,7 @@ public abstract class AbstractFileSetCheck
     @Override
     public final void log(int lineNo, int colNo, String key,
             Object... args) {
-        final FileContext fileContext = context.get();
+        final FileContext fileContext = CONTEXT.get();
         final int col = 1 + CommonUtil.lengthExpandedTabs(
                 fileContext.fileContents.getLine(lineNo - 1), colNo, tabWidth);
         fileContext.violations.add(
@@ -238,7 +240,7 @@ public abstract class AbstractFileSetCheck
      * @param fileName the audited file
      */
     protected final void fireErrors(String fileName) {
-        final FileContext fileContext = context.get();
+        final FileContext fileContext = CONTEXT.get();
         final SortedSet<Violation> errors = new TreeSet<>(fileContext.violations);
         fileContext.violations.clear();
         messageDispatcher.fireErrors(fileName, errors);

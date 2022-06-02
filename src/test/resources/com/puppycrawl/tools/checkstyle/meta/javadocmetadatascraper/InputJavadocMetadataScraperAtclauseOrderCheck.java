@@ -7,10 +7,6 @@ writeXmlOutput = false
 
 package com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 
 
