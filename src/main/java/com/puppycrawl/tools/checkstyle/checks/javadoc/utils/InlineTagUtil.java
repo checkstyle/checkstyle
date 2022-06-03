@@ -49,10 +49,10 @@ public final class InlineTagUtil {
     private static final Pattern NEWLINE_PATTERN = Pattern.compile("\\n");
 
     /** Line feed character. */
-    private static final String LINE_FEED = "\n";
+    private static final char LINE_FEED = '\n';
 
     /** Carriage return character. */
-    private static final String CARRIAGE_RETURN = "\r";
+    private static final char CARRIAGE_RETURN = '\r';
 
     /** Prevent instantiation. */
     private InlineTagUtil() {
@@ -67,7 +67,7 @@ public final class InlineTagUtil {
      */
     public static List<TagInfo> extractInlineTags(String... lines) {
         for (String line : lines) {
-            if (line.contains(LINE_FEED) || line.contains(CARRIAGE_RETURN)) {
+            if (line.indexOf(LINE_FEED) != -1 || line.indexOf(CARRIAGE_RETURN) != -1) {
                 throw new IllegalArgumentException("comment lines cannot contain newlines");
             }
         }
