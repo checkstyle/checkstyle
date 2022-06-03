@@ -412,17 +412,30 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 else {
                     entry = calculateDistanceInSingleScope(semicolonAst, variable);
                 }
-                final DetailAST variableUsageAst = entry.getKey();
-                final int dist = entry.getValue();
-                if (dist > allowedDistance
-                        && !isInitializationSequence(variableUsageAst, variable.getText())) {
-                    if (ignoreFinal) {
-                        log(ast, MSG_KEY_EXT, variable.getText(), dist, allowedDistance);
-                    }
-                    else {
-                        log(ast, MSG_KEY, variable.getText(), dist, allowedDistance);
-                    }
-                }
+                logViolation(ast, variable, entry);
+            }
+        }
+    }
+
+    /**
+     * Helper method to log a violation.
+     *
+     * @param ast ast node under inspection
+     * @param variable ast node of the type {@link TokenTypes#IDENT}
+     * @param entry entry which contains expression with variable usage and distance
+     */
+    private void logViolation(DetailAST ast, DetailAST variable, Entry<DetailAST, Integer> entry) {
+        final DetailAST variableUsageAst = entry.getKey();
+        final int dist = entry.getValue();
+        if (dist > allowedDistance
+            && (variableUsageAst != null
+            && variableUsageAst.getType() != TokenTypes.EXPR
+            || !isInitializationSequence(variableUsageAst, variable.getText()))) {
+            if (ignoreFinal) {
+                log(ast, MSG_KEY_EXT, variable.getText(), dist, allowedDistance);
+            }
+            else {
+                log(ast, MSG_KEY, variable.getText(), dist, allowedDistance);
             }
         }
     }
