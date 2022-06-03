@@ -404,6 +404,17 @@ site)
   mvn -e --no-transfer-progress clean site -Pno-validations
   ;;
 
+git-diff)
+  if [ "$(git status | grep 'Changes not staged\|Untracked files')" ]; then
+    printf "Please clean up or update .gitattributes file.\nGit status output:\n"
+    git status
+    printf "Top 300 lines of diff:\n"
+    git diff | head -n 300
+    sleep 5s
+    false
+  fi
+  ;;
+
 release-dry-run)
   if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ];then
     mvn -e --no-transfer-progress release:prepare -DdryRun=true --batch-mode \
