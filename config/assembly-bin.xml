@@ -19,10 +19,6 @@
     <fileSet>
       <useDefaultExcludes>true</useDefaultExcludes>
       <includes>
-        <include>config/checkstyle_checks.xml</include>
-        <include>config/import-control.xml</include>
-        <include>config/suppressions.xml</include>
-        <include>config/java.header</include>
         <include>LICENSE*</include>
         <include>README</include>
         <include>RIGHTS.antlr</include>
