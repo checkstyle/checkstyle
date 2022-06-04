@@ -15,9 +15,6 @@
       <useDefaultExcludes>true</useDefaultExcludes>
       <excludes>
         <exclude>target/**</exclude>
-        <exclude>*.launch</exclude>
-        <exclude>nbactions.xml</exclude>
-        <exclude>lib/**</exclude>
       </excludes>
     </fileSet>
   </fileSets>
