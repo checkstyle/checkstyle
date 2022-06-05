@@ -136,6 +136,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
      * Test contains asserts in callstack, but idea does not see them.
      *
      * @noinspection JUnitTestMethodWithNoAssertions
+     * @noinspectionreason asserts in callstack, but not in this method
      */
     @Test
     public void testAllCheckSectionJavaDocs() throws Exception {
@@ -697,7 +698,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         private static String getJavaDocText(DetailAST node) {
             final String text = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document>\n"
                     + node.getFirstChild().getText().replaceAll("(^|\\r?\\n)\\s*\\* ?", "\n")
-                            .replaceAll("\\n@noinspection.*\\r?\\n", "\n")
+                            .replaceAll("\\n?@noinspection.*\\r?\\n", "\n")
                             .trim() + "\n</document>";
             String result = null;
 

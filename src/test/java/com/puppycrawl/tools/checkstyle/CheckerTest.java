@@ -86,6 +86,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * CheckerTest.
  *
  * @noinspection ClassWithTooManyDependencies
+ * @noinspectionreason complex tests require a large number of imports
  */
 public class CheckerTest extends AbstractModuleTestSupport {
 
@@ -762,6 +763,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason see description
      */
     @Test
     public void testCatchErrorInProcessFilesMethod() throws Exception {
@@ -777,6 +779,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
              * Test is checking catch clause when exception is thrown.
              *
              * @noinspection ProhibitedExceptionThrown
+             * @noinspectionreason see description
              */
             @Override
             public long lastModified() {
@@ -812,6 +815,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason see description
      */
     @Test
     public void testCatchErrorWithNoFileName() throws Exception {
@@ -827,6 +831,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
              * Test is checking catch clause when exception is thrown.
              *
              * @noinspection ProhibitedExceptionThrown
+             * @noinspectionreason see description
              */
             @Override
             public long lastModified() {
@@ -1115,6 +1120,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason see description
      */
     @Test
     public void testCatchErrorWithCache() throws Exception {
@@ -1140,6 +1146,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
              * Test is checking catch clause when exception is thrown.
              *
              * @noinspection ProhibitedExceptionThrown
+             * @noinspectionreason see description
              */
             @Override
             public File getAbsoluteFile() {
@@ -1189,6 +1196,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason see description
      */
     @Test
     public void testCatchErrorWithCacheWithNoFileName() throws Exception {
@@ -1209,6 +1217,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
              * Test is checking catch clause when exception is thrown.
              *
              * @noinspection ProhibitedExceptionThrown
+             * @noinspectionreason see description
              */
             @Override
             public String getAbsolutePath() {
@@ -1256,6 +1265,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason see description
      */
     @Test
     public void testExceptionWithNoFileName() {
@@ -1269,6 +1279,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
              * Test is checking catch clause when exception is thrown.
              *
              * @noinspection ProhibitedExceptionThrown
+             * @noinspectionreason see description
              */
             @Override
             public String getAbsolutePath() {
@@ -1300,6 +1311,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason see description
      */
     @Test
     public void testExceptionWithCacheAndNoFileName() throws Exception {
@@ -1319,6 +1331,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
              * Test is checking catch clause when exception is thrown.
              *
              * @noinspection ProhibitedExceptionThrown
+             * @noinspectionreason see description
              */
             @Override
             public String getAbsolutePath() {
