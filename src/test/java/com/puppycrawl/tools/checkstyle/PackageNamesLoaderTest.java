@@ -44,6 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  * so the custom class loader we are using is safe.
  *
  * @noinspection ClassLoaderInstantiation
+ * @noinspectionreason see description
  */
 public class PackageNamesLoaderTest extends AbstractPathTestSupport {
 
@@ -231,6 +232,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
      * though we can't add/change the files for testing.
      *
      * @noinspection CustomClassloader
+     * @noinspectionreason see description
      */
     private static class TestUrlsClassLoader extends ClassLoader {
 
@@ -250,6 +252,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
      * Custom class loader is needed to throw an exception to test a catch statement.
      *
      * @noinspection CustomClassloader
+     * @noinspectionreason see description
      */
     private static class TestIoExceptionClassLoader extends ClassLoader {
         @Override

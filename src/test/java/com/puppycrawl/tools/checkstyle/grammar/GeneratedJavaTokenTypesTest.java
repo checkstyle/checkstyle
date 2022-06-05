@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
  * GeneratedJavaTokenTypesTest.
  *
  * @noinspection ClassIndependentOfModule
+ * @noinspectionreason architecture of test modules requires this structure
  */
 public class GeneratedJavaTokenTypesTest {
 

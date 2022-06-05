@@ -816,6 +816,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      *
      * @param classNames array of illegal variable types
      * @noinspection WeakerAccess
+     * @noinspectionreason we avoid 'protected' when possible
      */
     public void setIllegalClassNames(String... classNames) {
         illegalClassNames.clear();
@@ -827,6 +828,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      *
      * @param methodNames array of ignored method names
      * @noinspection WeakerAccess
+     * @noinspectionreason we avoid 'protected' when possible
      */
     public void setIgnoredMethodNames(String... methodNames) {
         ignoredMethodNames.clear();
@@ -838,6 +840,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      *
      * @param classNames array of legal abstract class names
      * @noinspection WeakerAccess
+     * @noinspectionreason we avoid 'protected' when possible
      */
     public void setLegalAbstractClassNames(String... classNames) {
         Collections.addAll(legalAbstractClassNames, classNames);

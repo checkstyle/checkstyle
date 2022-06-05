@@ -277,6 +277,7 @@ public class FinalClassCheck
      * @param superClassName name of the super class
      * @return true if there is another class with same name.
      * @noinspection CallToStringConcatCanBeReplacedByOperator
+     * @noinspectionreason operator causes pitest to fail
      */
     private ClassDesc getNearestClassWithSameName(String className, String superClassName) {
         final String dotAndClassName = PACKAGE_SEPARATOR.concat(className);
