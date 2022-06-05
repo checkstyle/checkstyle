@@ -1001,6 +1001,15 @@ no-warning-imports-java-design-patterns)
   fi
   ;;
 
+git-diff)
+  if [ "$(git status | grep 'Changes not staged\|Untracked files')" ]; then
+    printf "Please clean up or update .gitattributes file.\nGit status output:\n"
+    printf "Top 300 lines of diff:\n"
+    git diff | head -n 300
+    false
+  fi
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
