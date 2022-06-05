@@ -1321,7 +1321,7 @@ import static java.math.BigInteger.ZERO;
           it checks that it is not followed by whitespace, or (if linebreaks
           are allowed) all characters on the line after are whitespace. To
           forbid linebreaks after a token, set property <code>allowLineBreaks</code> to <code>
-          false</code>.
+          true</code>.
         </p>
         <p>
           The check processes
