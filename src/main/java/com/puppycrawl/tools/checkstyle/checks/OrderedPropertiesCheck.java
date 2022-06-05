@@ -26,6 +26,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.regex.Matcher;
@@ -123,7 +124,6 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
      *
      * @param file the file to be processed
      * @param fileText the contents of the file.
-     * @noinspection EnumerationCanBeIteration
      */
     @Override
     protected void processFiltered(File file, FileText fileText) {
@@ -138,11 +138,11 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
         String previousProp = "";
         int startLineNo = 0;
 
-        final Enumeration<Object> keys = properties.keys();
+        final Iterator<Object> propertyIterator = properties.keys().asIterator();
 
-        while (keys.hasMoreElements()) {
+        while (propertyIterator.hasNext()) {
 
-            final String propKey = (String) keys.nextElement();
+            final String propKey = (String) propertyIterator.next();
 
             if (String.CASE_INSENSITIVE_ORDER.compare(previousProp, propKey) > 0) {
 
