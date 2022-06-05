@@ -273,6 +273,8 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * @throws CheckstyleException if error condition within Checkstyle occurs.
      * @throws Error wraps any java.lang.Error happened during execution
      * @noinspection ProhibitedExceptionThrown
+     * @noinspectionreason There is no other way to deliver filename that was under
+     *     processing.
      */
     // -@cs[CyclomaticComplexity] no easy way to split this logic of processing the file
     private void processFiles(List<File> files) throws CheckstyleException {
@@ -322,6 +324,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * @return a sorted set of violations to be logged.
      * @throws CheckstyleException if error condition within Checkstyle occurs.
      * @noinspection ProhibitedExceptionThrown
+     * @noinspectionreason There is no other way to obey haltOnException field.
      */
     private SortedSet<Violation> processFile(File file) throws CheckstyleException {
         final SortedSet<Violation> fileMessages = new TreeSet<>();
@@ -455,6 +458,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * {@inheritDoc} Creates child module.
      *
      * @noinspection ChainOfInstanceofChecks
+     * @noinspectionreason we treat checks and filters differently
      */
     @Override
     protected void setupChild(Configuration childConf)

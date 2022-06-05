@@ -328,12 +328,6 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             .hasSize(1);
     }
 
-    /**
-     * Temp comment.
-     * until #11589
-     *
-     * @noinspection ResultOfMethodCallIgnored
-     */
     @Test
     public void testNonExistentResource() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
@@ -355,10 +349,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
                 .thenThrow(IOException.class);
 
             // apply new external resource to clear cache
-            final Set<String> resources = new HashSet<>();
             final String resource = getPath("InputPropertyCacheFile.header");
-            resources.add(resource);
-            cache.putExternalResources(resources);
+            cache.putExternalResources(Set.of(resource));
 
             assertWithMessage("Should return false in file is not in cache")
                     .that(cache.isInCache(myFile, 1))

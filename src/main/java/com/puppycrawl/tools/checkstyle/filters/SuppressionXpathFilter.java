@@ -503,10 +503,12 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </p>
  *
  * @since 8.6
- * @noinspection NonFinalFieldReferenceInEquals, NonFinalFieldReferencedInHashCode
  */
 public class SuppressionXpathFilter extends AutomaticBean implements
         TreeWalkerFilter, ExternalResourceHolder {
+
+    /** Set of individual xpath suppresses. */
+    private final Set<TreeWalkerFilter> filters = new HashSet<>();
 
     /** Specify the location of the <em>suppressions XML document</em> file. */
     private String file;
@@ -517,8 +519,6 @@ public class SuppressionXpathFilter extends AutomaticBean implements
      * the filter accepts all audit events.
      */
     private boolean optional;
-    /** Set of individual xpath suppresses. */
-    private Set<TreeWalkerFilter> filters = new HashSet<>();
 
     /**
      * Setter to specify the location of the <em>suppressions XML document</em> file.
@@ -578,17 +578,7 @@ public class SuppressionXpathFilter extends AutomaticBean implements
     @Override
     protected void finishLocalSetup() throws CheckstyleException {
         if (file != null) {
-            if (optional) {
-                if (FilterUtil.isFileExists(file)) {
-                    filters = SuppressionsLoader.loadXpathSuppressions(file);
-                }
-                else {
-                    filters = new HashSet<>();
-                }
-            }
-            else {
-                filters = SuppressionsLoader.loadXpathSuppressions(file);
-            }
+            filters.addAll(SuppressionsLoader.loadXpathSuppressions(file));
         }
     }
 
