@@ -2150,6 +2150,7 @@
         <linkcheck.skip>true</linkcheck.skip>
         <jdepend.skip>true</jdepend.skip>
         <modernizer.skip>true</modernizer.skip>
+        <tidy.skip>true</tidy.skip>
       </properties>
       <build>
         <plugins>
