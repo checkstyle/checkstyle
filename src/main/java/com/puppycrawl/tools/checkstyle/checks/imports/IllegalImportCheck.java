@@ -328,6 +328,7 @@ public class IllegalImportCheck
      *
      * @param from illegal packages
      * @noinspection WeakerAccess
+     * @noinspectionreason we avoid 'protected' when possible
      */
     public final void setIllegalPkgs(String... from) {
         illegalPkgs = from.clone();

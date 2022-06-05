@@ -295,6 +295,7 @@ public class LeftCurlyCheck
      *
      * @param ast the token to process
      * @noinspection SwitchStatementWithTooManyBranches
+     * @noinspectionreason see description
      */
     @Override
     public void visitToken(DetailAST ast) {
