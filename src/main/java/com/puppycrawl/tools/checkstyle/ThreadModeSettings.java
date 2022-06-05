@@ -25,6 +25,7 @@ import java.io.Serializable;
  * Thread mode settings for the checkstyle modules.
  *
  * @noinspection SerializableHasSerializationMethods
+ * @noinspectionreason we do not serialize class
  */
 public class ThreadModeSettings implements Serializable {
 

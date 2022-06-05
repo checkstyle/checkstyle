@@ -30,6 +30,7 @@ import java.lang.annotation.Target;
  * For example, some string array property may represent a set of tokens.
  *
  * @noinspection AnnotationClass
+ * @noinspectionreason we support only Java 11+
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
