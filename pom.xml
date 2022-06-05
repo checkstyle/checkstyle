@@ -1528,6 +1528,10 @@
               <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
             </manifest>
           </archive>
+          <excludes>
+            <exclude>**/Input*.*</exclude>
+            <exclude>**/Expected*.*</exclude>
+          </excludes>
         </configuration>
         <executions>
           <execution>
