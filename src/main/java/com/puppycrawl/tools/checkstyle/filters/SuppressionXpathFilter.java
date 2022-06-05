@@ -578,17 +578,13 @@ public class SuppressionXpathFilter extends AutomaticBean implements
     @Override
     protected void finishLocalSetup() throws CheckstyleException {
         if (file != null) {
+            filters.clear();
             if (optional) {
                 if (FilterUtil.isFileExists(file)) {
-                    filters.clear();
                     filters.addAll(SuppressionsLoader.loadXpathSuppressions(file));
-                }
-                else {
-                    filters.clear();
                 }
             }
             else {
-                filters.clear();
                 filters.addAll(SuppressionsLoader.loadXpathSuppressions(file));
             }
         }
