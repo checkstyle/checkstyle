@@ -188,6 +188,7 @@ public class JavadocDetailNodeParser {
      * @param parseTreeNode root node of ParseTree
      * @return root of DetailNode tree
      * @noinspection SuspiciousArrayCast
+     * @noinspectionreason design of parser forces us to use mutable node
      */
     private DetailNode convertParseTreeToDetailNode(ParseTree parseTreeNode) {
         final JavadocNodeImpl rootJavadocNode = createRootJavadocNode(parseTreeNode);

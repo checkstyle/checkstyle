@@ -62,6 +62,8 @@ public class LambdaHandler extends AbstractExpressionHandler {
      * {@inheritDoc}.
      *
      * @noinspection MethodWithMultipleReturnPoints
+     * @noinspectionreason indentation is complex and tightly coupled, thus making this
+     *     method difficult to refactor
      */
     @Override
     protected IndentLevel getIndentImpl() {

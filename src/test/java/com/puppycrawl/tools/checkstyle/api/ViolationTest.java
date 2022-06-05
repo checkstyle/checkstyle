@@ -47,6 +47,7 @@ import nl.jqno.equalsverifier.EqualsVerifierReport;
  * so the custom class loader we are using is safe.
  *
  * @noinspection ClassLoaderInstantiation
+ * @noinspectionreason Custom class loader is needed to pass URLs for testing
  */
 public class ViolationTest {
 
@@ -140,6 +141,7 @@ public class ViolationTest {
      * Ignore resource errors for testing.
      *
      * @noinspection resource, IOResourceOpenedButNotSafelyClosed
+     * @noinspectionreason see description
      */
     @Test
     public void testBundleReloadUrlNotNull() throws IOException {
@@ -194,6 +196,7 @@ public class ViolationTest {
      * Ignore resource errors for testing.
      *
      * @noinspection resource, IOResourceOpenedButNotSafelyClosed
+     * @noinspectionreason we can ignore errors for testing
      */
     @Test
     public void testBundleReloadUrlNotNullFalseReload() throws IOException {
@@ -442,6 +445,7 @@ public class ViolationTest {
      * though we can't add/change the files for testing.
      *
      * @noinspection CustomClassloader
+     * @noinspectionreason required to pass URLs to test methods
      */
     private static class TestUrlsClassLoader extends ClassLoader {
 

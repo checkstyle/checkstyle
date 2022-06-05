@@ -43,6 +43,8 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * Base class for Checks that process Javadoc comments.
  *
  * @noinspection NoopMethodInAbstractClass
+ * @noinspectionreason We allow each check to define these methods, as needed. They
+ *     should be overridden only by demand in subclasses
  */
 public abstract class AbstractJavadocCheck extends AbstractCheck {
 
@@ -78,9 +80,9 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     /**
      * The file context.
      *
-     * @noinspection ThreadLocalNotStaticFinal
      */
-    private final ThreadLocal<FileContext> context = ThreadLocal.withInitial(FileContext::new);
+    private static final ThreadLocal<FileContext> CONTEXT =
+            ThreadLocal.withInitial(FileContext::new);
 
     /** The javadoc tokens the check is interested in. */
     private final Set<Integer> javadocTokens = new HashSet<>();
@@ -226,6 +228,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * @param rootAst
      *        the root of the tree
      * @noinspection WeakerAccess
+     * @noinspectionreason we avoid 'protected' when possible
      */
     public void beginJavadocTree(DetailNode rootAst) {
         // No code by default, should be overridden only by demand at subclasses
@@ -237,6 +240,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * @param rootAst
      *        the root of the tree
      * @noinspection WeakerAccess
+     * @noinspectionreason we avoid 'protected' when possible
      */
     public void finishJavadocTree(DetailNode rootAst) {
         // No code by default, should be overridden only by demand at subclasses
@@ -296,13 +300,13 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     public final void visitToken(DetailAST blockCommentNode) {
         if (JavadocUtil.isJavadocComment(blockCommentNode)) {
             // store as field, to share with child Checks
-            context.get().blockCommentAst = blockCommentNode;
+            CONTEXT.get().blockCommentAst = blockCommentNode;
 
             final LineColumn treeCacheKey = new LineColumn(blockCommentNode.getLineNo(),
                     blockCommentNode.getColumnNo());
 
             final ParseStatus result = TREE_CACHE.get().computeIfAbsent(treeCacheKey, key -> {
-                return context.get().parser.parseJavadocAsDetailNode(blockCommentNode);
+                return CONTEXT.get().parser.parseJavadocAsDetailNode(blockCommentNode);
             });
 
             if (result.getParseErrorMessage() == null) {
@@ -331,7 +335,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * @return A block comment in the syntax tree.
      */
     protected DetailAST getBlockCommentAst() {
-        return context.get().blockCommentAst;
+        return CONTEXT.get().blockCommentAst;
     }
 
     /**
@@ -391,7 +395,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     @Override
     public void destroy() {
         super.destroy();
-        context.remove();
+        CONTEXT.remove();
         TREE_CACHE.remove();
     }
 
