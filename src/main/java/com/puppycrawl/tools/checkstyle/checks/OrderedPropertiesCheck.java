@@ -214,6 +214,8 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
      * Private property implementation that keeps order of properties like in file.
      *
      * @noinspection ClassExtendsConcreteCollection, SerializableHasSerializationMethods
+     * @noinspectionreason We require order from file to be maintained by {@code put} method,
+     *      we do not serialize this class
      */
     private static class SequencedProperties extends Properties {
 
