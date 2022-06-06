@@ -45,7 +45,7 @@ jobs:
     #    - CMD2="./.ci/validation.sh verify-no-exception-configs"
     #    - CMD="$CMD1 && $CMD2"
 
-    - jdk: openjdk11
+    - jdk: oraclejdk11
       env:
         - DESC="NoErrorTest - Postgresql JDBC Driver"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
