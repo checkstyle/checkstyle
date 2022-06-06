@@ -37,6 +37,7 @@ import java.util.EventObject;
  *
  * @see AuditListener
  * @noinspection SerializableHasSerializationMethods
+ * @noinspectionreason we do not serialize class
  */
 public final class AuditEvent
     extends EventObject {
