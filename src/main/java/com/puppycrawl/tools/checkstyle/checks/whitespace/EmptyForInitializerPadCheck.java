@@ -1,5 +1,5 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2022 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
@@ -52,12 +52,34 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;module name=&quot;EmptyForInitializerPad&quot;/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * for ( ; i &lt; 1; i++ );  // violation semicolon is preceded with whitespace
+ * for (; i &lt; 2; i++ );   // ok
+ * for (;i&lt;2;i++);        // ok
+ * for ( ;i&lt;2;i++);       // violation semicolon is preceded with whitespace
+ * for (
+ *       ; i &lt; 2; i++ );  // ok
+ * </pre>
+ * <p>
  * To configure the check to require white space at an empty for iterator:
  * </p>
  * <pre>
  * &lt;module name=&quot;EmptyForInitializerPad&quot;&gt;
  *   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * for ( ; i &lt; 2; i++ );   // ok
+ * for (; i &lt; 2; i++ );    // violation semicolon is not preceded with whitespace
+ * for (;i&lt;2;i++);         // violation semicolon is not preceded with whitespace
+ * for ( ;i&lt;2;i++);        // ok
+ * for (
+ *       ; i &lt; 2; i++ );   // ok
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}

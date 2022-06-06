@@ -1,5 +1,5 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2022 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.bdd;
 
@@ -100,7 +100,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck",
             "com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck",
             "com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck",
             "com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck",
@@ -120,8 +119,7 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck",
             "com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck",
-            "com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck"));
+            "com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck"));
 
     /**
      *  Inlined configs can not be used in non-java checks, as Inlined config is java style

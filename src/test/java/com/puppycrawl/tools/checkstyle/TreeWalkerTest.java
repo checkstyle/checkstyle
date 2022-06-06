@@ -1,5 +1,5 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2022 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle;
 
@@ -243,7 +243,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verify(createChecker(checkConfig, ModuleCreationOption.IN_TREEWALKER),
+            verify(createChecker(createTreeWalkerConfig(checkConfig)),
                     File.createTempFile("junit", null, temporaryFolder).getPath(), expected);
             assertWithMessage("CheckstyleException is expected").fail();
         }
@@ -501,8 +501,6 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalkerConfig.addChild(createModuleConfig(MemberNameCheck.class));
         treeWalkerConfig.addChild(filterConfig);
 
-        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-
         final String[] expected = {
             "9:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "P",
                     "^[a-z][a-zA-Z0-9]*$"),
@@ -510,7 +508,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                     "^[a-z][a-zA-Z0-9]*$"),
         };
 
-        verify(checkerConfig,
+        verify(treeWalkerConfig,
                 getPath("InputTreeWalkerSuppressionCommentFilter.java"),
                 expected);
     }
@@ -521,13 +519,11 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalkerConfig.addChild(createModuleConfig(WhitespaceAroundCheck.class));
         treeWalkerConfig.addChild(createModuleConfig(WhitespaceAfterCheck.class));
 
-        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-
         final String[] expected = {
             "6:9: " + getCheckMessage(WhitespaceAfterCheck.class, "ws.notFollowed", "if"),
         };
 
-        verify(checkerConfig,
+        verify(treeWalkerConfig,
                 getPath("InputTreeWalkerMultiCheckOrder.java"),
                 expected);
     }
@@ -620,14 +616,12 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalkerConfig.addChild(filterConfig);
         treeWalkerConfig.addChild(checkConfig);
 
-        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-
         // test is only valid when relative paths are given
         final String filePath = "src/test/resources/" + getPackageLocation()
                 + "/InputTreeWalkerSuppressionXpathFilterAbsolute.java";
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkerConfig, filePath, expected);
+        verify(treeWalkerConfig, filePath, expected);
     }
 
     @Test

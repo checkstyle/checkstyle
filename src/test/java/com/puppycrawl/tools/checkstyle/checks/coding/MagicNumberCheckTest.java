@@ -1,5 +1,5 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2022 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck.MSG
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MagicNumberCheckTest
     extends AbstractModuleTestSupport {
@@ -31,6 +32,24 @@ public class MagicNumberCheckTest
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/magicnumber";
+    }
+
+    @Test
+    public void testLocalVariables()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumber_8.java"), expected);
+    }
+
+    @Test
+    public void testLocalVariables2()
+            throws Exception {
+        final String[] expected = {
+            "25:17: " + getCheckMessage(MSG_KEY, "8"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumber_9.java"), expected);
     }
 
     @Test

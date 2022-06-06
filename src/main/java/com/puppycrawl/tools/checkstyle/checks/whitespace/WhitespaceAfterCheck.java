@@ -1,5 +1,5 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2022 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
@@ -58,6 +58,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * LITERAL_FINALLY</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_RETURN">
  * LITERAL_RETURN</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_YIELD">
+ * LITERAL_YIELD</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
  * LITERAL_CATCH</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
@@ -110,14 +112,24 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *      try {} catch (Exception e){} // OK
  *      try {} catch(Exception e){} // violation ''catch' is not followed by whitespace'
  *
+ *      synchronized (this) { } // OK
  *      synchronized(this) { } // violation ''synchronized' is not followed by whitespace'
- *      synchronized (this) { } // ok
  *  }
  *  public String testOne() {
  *      return ("a" + "b"); // OK
  *  }
  *  public String testTwo() {
  *      return("a" + "b"); // violation 'return' is not followed by whitespace'
+ *  }
+ *  public static void main(String[] args) {
+ *    int a = switch (args[0]) {
+ *      case "got":
+ *        yield (1); // OK
+ *      case "my":
+ *        yield(3); // violation ''yield' is not followed by whitespace'
+ *      default:
+ *        yield 2;
+ *    };
  *  }
  * </pre>
  * <p>
@@ -191,6 +203,7 @@ public class WhitespaceAfterCheck
             TokenTypes.LITERAL_FOR,
             TokenTypes.LITERAL_FINALLY,
             TokenTypes.LITERAL_RETURN,
+            TokenTypes.LITERAL_YIELD,
             TokenTypes.LITERAL_CATCH,
             TokenTypes.DO_WHILE,
             TokenTypes.ELLIPSIS,

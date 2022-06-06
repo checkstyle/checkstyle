@@ -1,5 +1,5 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2022 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
@@ -214,20 +214,16 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     public void testNoJavadocsWithRequiredTag() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         checkConfig.addProperty("tag", "@incomplete");
-        final String[] expected = {
-            "13: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
-        };
-        verify(checkConfig, getPath("InputWriteTagNoJavadoc.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputWriteTagNoJavadocNoTag.java"), expected);
     }
 
     @Test
     public void testNoJavadocsWithRequiredTagFormat() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         checkConfig.addProperty("tagFormat", "\\S");
-        final String[] expected = {
-            "13: " + getCheckMessage(MSG_TAG_FORMAT, "\\S"),
-        };
-        verify(checkConfig, getPath("InputWriteTagNoJavadoc.java"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputWriteTagNoJavadocNoTagFormat.java"), expected);
     }
 
     @Test
@@ -241,15 +237,10 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
                 + " COMPACT_CTOR_DEF, CTOR_DEF");
 
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "16: " + getCheckMessage(MSG_TAG_FORMAT, "@incomplete", "\\S"),
             "22: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", ".// violation"),
-            "28: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "31: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
-            "37: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "40: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
-            "47: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
-            "48: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "51: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
         };
         verify(checkConfig,

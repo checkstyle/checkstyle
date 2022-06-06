@@ -1,5 +1,5 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2022 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package org.checkstyle.base;
 
@@ -45,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -85,35 +86,99 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     protected abstract ModuleCreationOption findModuleCreationOption(String moduleName);
 
     /**
-     * Creates {@link DefaultConfiguration} instance for the given module class.
-     *
-     * @param clazz module class.
-     * @return {@link DefaultConfiguration} instance.
-     */
-    protected abstract DefaultConfiguration createModuleConfig(Class<?> clazz);
-
-    /**
      * Returns test logger.
      *
-     * @return logger test logger
+     * @return logger for tests
      */
     protected final BriefUtLogger getBriefUtLogger() {
         return new BriefUtLogger(stream);
     }
 
     /**
-     * Returns canonical path for the file with the given file name.
-     * The path is formed base on the non-compilable resources location.
-     * This implementation uses 'src/test/resources-noncompilable/'
-     * as a non-compilable resource location.
+     * Creates a default module configuration {@link DefaultConfiguration} for a given object
+     * of type {@link Class}.
      *
-     * @param filename file name.
-     * @return canonical path for the file with the given file name.
-     * @throws IOException if I/O exception occurs while forming the path.
+     * @param clazz a {@link Class} type object.
+     * @return default module configuration for the given {@link Class} instance.
      */
-    protected final String getNonCompilablePath(String filename) throws IOException {
-        return new File("src/" + getResourceLocation() + "/resources-noncompilable/"
-                + getPackageLocation() + "/" + filename).getCanonicalPath();
+    protected static DefaultConfiguration createModuleConfig(Class<?> clazz) {
+        return new DefaultConfiguration(clazz.getName());
+    }
+
+    /**
+     * Returns {@link Configuration} instance for the given module name pulled
+     * from the {@code masterConfig}.
+     *
+     * @param masterConfig The master configuration to examine.
+     * @param moduleName module name.
+     * @param moduleId module id.
+     * @return {@link Configuration} instance for the given module name.
+     * @throws IllegalStateException if there is a problem retrieving the module
+     *         or config.
+     */
+    protected static Configuration getModuleConfig(Configuration masterConfig, String moduleName,
+            String moduleId) {
+        final Configuration result;
+        final List<Configuration> configs = getModuleConfigs(masterConfig, moduleName);
+        if (configs.size() == 1) {
+            result = configs.get(0);
+        }
+        else if (configs.isEmpty()) {
+            throw new IllegalStateException("no instances of the Module was found: " + moduleName);
+        }
+        else if (moduleId == null) {
+            throw new IllegalStateException("multiple instances of the same Module are detected");
+        }
+        else {
+            result = configs.stream().filter(conf -> isSameModuleId(conf, moduleId))
+            .findFirst()
+            .orElseThrow(() -> new IllegalStateException("problem with module config"));
+        }
+
+        return result;
+    }
+
+    /**
+     * Verifies if the configuration's ID matches the expected {@code moduleId}.
+     *
+     * @param conf The config to examine.
+     * @param moduleId The module ID to match against.
+     * @return {@code true} if it matches.
+     * @throws IllegalStateException If there is an issue with finding the ID.
+     */
+    private static boolean isSameModuleId(Configuration conf, String moduleId) {
+        try {
+            return conf.getProperty("id").equals(moduleId);
+        }
+        catch (CheckstyleException ex) {
+            throw new IllegalStateException("problem to get ID attribute from " + conf, ex);
+        }
+    }
+
+    /**
+     * Returns a list of all {@link Configuration} instances for the given
+     * module name pulled from the {@code masterConfig}.
+     *
+     * @param masterConfig The master configuration to examine.
+     * @param moduleName module name.
+     * @return {@link Configuration} instance for the given module name.
+     */
+    protected static List<Configuration> getModuleConfigs(Configuration masterConfig,
+            String moduleName) {
+        final List<Configuration> result = new ArrayList<>();
+        for (Configuration currentConfig : masterConfig.getChildren()) {
+            if ("TreeWalker".equals(currentConfig.getName())) {
+                for (Configuration moduleConfig : currentConfig.getChildren()) {
+                    if (moduleName.equals(moduleConfig.getName())) {
+                        result.add(moduleConfig);
+                    }
+                }
+            }
+            else if (moduleName.equals(currentConfig.getName())) {
+                result.add(currentConfig);
+            }
+        }
+        return result;
     }
 
     /**
@@ -131,57 +196,57 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     }
 
     /**
-     * Creates {@link Checker} instance based on specified {@link Configuration}.
+     * Creates {@link Checker} instance based on the given {@link Configuration} instance.
      *
      * @param moduleConfig {@link Configuration} instance.
      * @param moduleCreationOption {@code IN_TREEWALKER} if the {@code moduleConfig} should be added
      *                                                  under {@link TreeWalker}.
-     * @return {@link Checker} instance.
+     * @return {@link Checker} instance based on the given {@link Configuration} instance.
      * @throws Exception if an exception occurs during checker configuration.
      */
     protected final Checker createChecker(Configuration moduleConfig,
-                                    ModuleCreationOption moduleCreationOption)
+                                 ModuleCreationOption moduleCreationOption)
             throws Exception {
-        final Configuration dc;
-
-        if (moduleCreationOption == ModuleCreationOption.IN_TREEWALKER) {
-            dc = createTreeWalkerConfig(moduleConfig);
-        }
-        else if (ROOT_MODULE_NAME.equals(moduleConfig.getName())) {
-            dc = moduleConfig;
-        }
-        else {
-            dc = createRootConfig(moduleConfig);
-        }
-
         final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         // make sure the tests always run with English error messages
         // so the tests don't fail in supported locales like German
         final Locale locale = Locale.ENGLISH;
         checker.setLocaleCountry(locale.getCountry());
         checker.setLocaleLanguage(locale.getLanguage());
-        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
-        checker.configure(dc);
+
+        if (moduleCreationOption == ModuleCreationOption.IN_TREEWALKER) {
+            final Configuration config = createTreeWalkerConfig(moduleConfig);
+            checker.configure(config);
+        }
+        else if (ROOT_MODULE_NAME.equals(moduleConfig.getName())) {
+            checker.configure(moduleConfig);
+        }
+        else {
+            final Configuration config = createRootConfig(moduleConfig);
+            checker.configure(config);
+        }
         checker.addListener(getBriefUtLogger());
         return checker;
     }
 
     /**
-     * Creates {@link DefaultConfiguration} or the {@link Checker}.
-     * based on the given {@link Configuration}.
+     * Creates {@link DefaultConfiguration} for the {@link TreeWalker}
+     * based on the given {@link Configuration} instance.
      *
      * @param config {@link Configuration} instance.
-     * @return {@link DefaultConfiguration} for the {@link Checker}.
+     * @return {@link DefaultConfiguration} for the {@link TreeWalker}
+     *     based on the given {@link Configuration} instance.
      */
-    protected final DefaultConfiguration createTreeWalkerConfig(Configuration config) {
-        final DefaultConfiguration dc =
-                new DefaultConfiguration("configuration");
+    protected static DefaultConfiguration createTreeWalkerConfig(Configuration config) {
+        final DefaultConfiguration rootConfig =
+                new DefaultConfiguration(ROOT_MODULE_NAME);
         final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
         // make sure that the tests always run with this charset
-        dc.addProperty("charset", "iso-8859-1");
-        dc.addChild(twConf);
+        rootConfig.addProperty("charset", StandardCharsets.UTF_8.name());
+        rootConfig.addChild(twConf);
         twConf.addChild(config);
-        return dc;
+        return rootConfig;
     }
 
     /**
@@ -191,13 +256,26 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @return {@link DefaultConfiguration} for the given {@link Configuration} instance.
      */
     protected static DefaultConfiguration createRootConfig(Configuration config) {
-        final DefaultConfiguration dc = new DefaultConfiguration(ROOT_MODULE_NAME);
-        dc.addChild(config);
-        return dc;
+        final DefaultConfiguration rootConfig = new DefaultConfiguration(ROOT_MODULE_NAME);
+        rootConfig.addChild(config);
+        return rootConfig;
     }
 
     /**
-     * Performs verification of the file with given file name. Uses specified configuration.
+     * Returns canonical path for the file with the given file name.
+     * The path is formed base on the non-compilable resources location.
+     *
+     * @param filename file name.
+     * @return canonical path for the file with the given file name.
+     * @throws IOException if I/O exception occurs while forming the path.
+     */
+    protected final String getNonCompilablePath(String filename) throws IOException {
+        return new File("src/" + getResourceLocation() + "/resources-noncompilable/"
+                + getPackageLocation() + "/" + filename).getCanonicalPath();
+    }
+
+    /**
+     * Performs verification of the file with the given file name. Uses specified configuration.
      * Expected messages are represented by the array of strings, warning line numbers are
      * represented by the array of integers.
      * This implementation uses overloaded
@@ -218,7 +296,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     }
 
     /**
-     * Performs verification of files. Uses provided {@link Checker} instance.
+     * Performs verification of files.
+     * Uses provided {@link Checker} instance.
      *
      * @param checker {@link Checker} instance.
      * @param processedFiles files to process.

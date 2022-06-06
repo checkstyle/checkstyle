@@ -1,5 +1,5 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2022 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
@@ -49,6 +49,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
  * INDEX_OP</a> will be ignored.
  * </p>
+ * <p>
+ * If the annotation is between the type and the array, the check will skip validation for spaces
+ * </p>
+ * <pre>
+ * public void foo(final char @NotNull [] param) {} // No violation
+ * </pre>
  * <ul>
  * <li>
  * Property {@code allowLineBreaks} - Control whether whitespace is allowed
@@ -91,6 +97,32 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class Test {
+ *
+ *   public void lineBreak(String x) {
+ *     Integer.
+ *         parseInt(x); // Ok
+ *     Integer.parseInt(x); // Ok
+ *   }
+ *
+ *   public void dotOperator(String s) {
+ *     Integer.parseInt(s); // Ok
+ *     Integer. parseInt(s); // violation, '.' is followed by whitespace
+ *   }
+ *
+ *   public void arrayDec() {
+ *     int[] arr = arr; // Ok
+ *     int [] arr = arr; // violation, int is followed by whitespace
+ *   }
+ *
+ *   public void bitwiseNot(int a) {
+ *     a = ~ a; // violation '~' is followed by whitespace
+ *     a = ~a; // Ok
+ *   }
+ * }
+ * </pre>
  * <p>To configure the check to forbid linebreaks after a DOT token:
  * </p>
  * <pre>
@@ -99,11 +131,31 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>
- * If the annotation is between the type and the array, the check will skip validation for spaces:
- * </p>
+ * <p>Example:</p>
  * <pre>
- * public void foo(final char @NotNull [] param) {} // No violation
+ * class Test {
+ *
+ *   public void lineBreak(String x) {
+ *     Integer.
+ *         parseInt(x); // violation, '.' is followed by whitespace
+ *     Integer.parseInt(x); // Ok
+ *   }
+ *
+ *   public void dotOperator(String s) {
+ *     Integer.parseInt(s); // Ok
+ *     Integer. parseInt(s); // violation, '.' is followed by whitespace
+ *   }
+ *
+ *   public void arrayDec() {
+ *     int[] arr = arr; // Ok
+ *     int [] arr = arr; // Ok
+ *   }
+ *
+ *   public void bitwiseNot(int a) {
+ *     a = ~ a; // Ok
+ *     a = ~a; // Ok
+ *   }
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}

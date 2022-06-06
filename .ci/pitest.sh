@@ -207,11 +207,7 @@ pitest-coding)
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (!isVarInOperatorDeclaration &#38;&#38; operator.getType() == TokenTypes.LITERAL_IF) {</span></pre></td></tr>"
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>        while (result</span></pre></td></tr>"
   );
-  # Until https://github.com/checkstyle/checkstyle/issues/11427
-  declare -a unstableItems=(
-  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (returnedVariable) {</span></pre></td></tr>"
-  );
-  checkPitestReport ignoredItems unstableItems
+  checkPitestReport ignoredItems
   ;;
 
 # pitesttyle-gui)

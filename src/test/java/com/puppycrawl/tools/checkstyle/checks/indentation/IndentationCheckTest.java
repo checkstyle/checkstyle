@@ -1,5 +1,5 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2022 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
@@ -1334,11 +1334,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("throwsIndent", "4");
         final String fileName = getPath("InputIndentationChainedMethodCalls.java");
         final String[] expected = {
-            "32:5: " + getCheckMessage(IndentationCheck.class,
-                MSG_CHILD_ERROR, "method call", 4, 8),
-            "37:5: " + getCheckMessage(IndentationCheck.class, MSG_ERROR, ".", 4, 8),
-            "38:5: " + getCheckMessage(IndentationCheck.class, MSG_ERROR, ".", 4, 8),
-            "41:5: " + getCheckMessage(IndentationCheck.class, MSG_ERROR, "new", 4, 8),
+            "32:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "37:5: " + getCheckMessage(MSG_ERROR, ".", 4, 8),
+            "38:5: " + getCheckMessage(MSG_ERROR, ".", 4, 8),
+            "41:5: " + getCheckMessage(MSG_ERROR, "new", 4, 8),
         };
         verifyWarns(checkConfig, fileName, expected);
     }

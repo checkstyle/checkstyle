@@ -1,5 +1,5 @@
-////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code for adherence to a set of rules.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2022 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
@@ -15,14 +15,14 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle;
 
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Resolves external properties from an
@@ -46,11 +46,9 @@ public final class PropertiesExpander
         if (properties == null) {
             throw new IllegalArgumentException("cannot pass null");
         }
-        values = new HashMap<>(properties.size());
-        for (Enumeration<?> e = properties.propertyNames(); e.hasMoreElements();) {
-            final String name = (String) e.nextElement();
-            values.put(name, properties.getProperty(name));
-        }
+        values = properties.stringPropertyNames()
+                .stream()
+                .collect(Collectors.toMap(Function.identity(), properties::getProperty));
     }
 
     @Override
