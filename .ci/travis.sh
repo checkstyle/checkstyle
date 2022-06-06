@@ -38,6 +38,7 @@ install-adoptium-jdk)
       sudo tee /etc/apt/sources.list.d/adoptium.list
     sudo apt-get update
     sudo apt-get install "${CUSTOM_ADOPTIUM_JDK}"
+    whereis javac
   fi
   ;;
 
