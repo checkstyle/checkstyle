@@ -20,6 +20,7 @@ branches:
 
 install:
   - ./.ci/travis.sh install-adoptium-jdk
+  - export JAVA_HOME=$(which java)
   - ./.ci/travis.sh install-custom-mvn
   - sudo apt install shellcheck
 
