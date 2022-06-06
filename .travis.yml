@@ -126,6 +126,7 @@ jobs:
         - USE_MAVEN_REPO="true"
 
 script:
+  - JAVA_HOME='/usr/lib/jvm/adoptopenjdk-11-hotspot-ppc64el'
   - ./.ci/travis.sh init-m2-repo
   - ./.ci/travis.sh run-command "$CMD"
   - ./.ci/travis.sh remove-custom-mvn
