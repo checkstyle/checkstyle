@@ -50,7 +50,7 @@ jobs:
         - DESC="NoErrorTest - Postgresql JDBC Driver"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
         - CMD2="./.ci/validation.sh no-error-pgjdbc"
-        - CMD="$CMD1 && $CMD2"
+        - CMD="whereis javac && $CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
     - jdk: openjdk11
