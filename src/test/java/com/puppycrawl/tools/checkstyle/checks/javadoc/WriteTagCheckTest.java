@@ -85,7 +85,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tagFormat", "\\S");
         final String[] expected = {
             "16: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                "This class needs more code... // violation"),
+                        "This class needs more code... // violation"),
         };
         verify(checkConfig, getPath("InputWriteTagIncomplete.java"), expected);
     }
@@ -129,11 +129,11 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tag", "@todo");
         checkConfig.addProperty("tagFormat", "\\S");
         checkConfig.addProperty("tokens",
-            "INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF");
+                "INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF");
         checkConfig.addProperty("severity", "ignore");
         final String[] expected = {
             "24: " + getCheckMessage(MSG_WRITE_TAG, "@todo",
-                    "Add a constructor comment  // violation"),
+                        "Add a constructor comment  // violation"),
             "35: " + getCheckMessage(MSG_WRITE_TAG, "@todo", "Add a comment  // violation"),
         };
         verify(checkConfig, getPath("InputWriteTagMethod.java"), expected);
@@ -189,16 +189,16 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tagFormat", ".*");
         checkConfig.addProperty("tagSeverity", "error");
         checkConfig.addProperty("tokens",
-            "ANNOTATION_DEF, ENUM_DEF, ANNOTATION_FIELD_DEF, ENUM_CONSTANT_DEF");
+                "ANNOTATION_DEF, ENUM_DEF, ANNOTATION_FIELD_DEF, ENUM_CONSTANT_DEF");
         final String[] expected = {
             "15: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                    "This enum needs more code... // violation"),
+                        "This enum needs more code... // violation"),
             "19: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                "This enum constant needs more code... // violation"),
+                        "This enum constant needs more code... // violation"),
             "25: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                "This annotation needs more code... // violation"),
+                        "This annotation needs more code... // violation"),
             "29: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
-                "This annotation field needs more code... // violation"),
+                        "This annotation field needs more code... // violation"),
         };
         verify(checkConfig, getPath("InputWriteTagEnumsAndAnnotations.java"), expected);
     }
@@ -206,10 +206,24 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNoJavadocs() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        final String[] expected = {
-            "13: " + getCheckMessage(MSG_MISSING_TAG, "null"),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputWriteTagNoJavadoc.java"), expected);
+    }
+
+    @Test
+    public void testNoJavadocsWithRequiredTag() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
+        checkConfig.addProperty("tag", "@incomplete");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputWriteTagNoJavadocNoTag.java"), expected);
+    }
+
+    @Test
+    public void testNoJavadocsWithRequiredTagFormat() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
+        checkConfig.addProperty("tagFormat", "\\S");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputWriteTagNoJavadocNoTagFormat.java"), expected);
     }
 
     @Test
@@ -219,23 +233,18 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tagSeverity", "error");
         checkConfig.addProperty("tagFormat", "\\S");
         checkConfig.addProperty("tokens",
-            "INTERFACE_DEF , CLASS_DEF , ENUM_DEF , ANNOTATION_DEF, RECORD_DEF,"
-                + " COMPACT_CTOR_DEF, CTOR_DEF");
+                "INTERFACE_DEF , CLASS_DEF , ENUM_DEF , ANNOTATION_DEF, RECORD_DEF,"
+                        + " COMPACT_CTOR_DEF, CTOR_DEF");
 
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "16: " + getCheckMessage(MSG_TAG_FORMAT, "@incomplete", "\\S"),
             "22: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", ".// violation"),
-            "28: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "31: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
-            "37: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "40: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
-            "47: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
-            "48: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "51: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
         };
         verify(checkConfig,
-            getNonCompilablePath("InputWriteTagRecordsAndCompactCtors.java"), expected);
+                getNonCompilablePath("InputWriteTagRecordsAndCompactCtors.java"), expected);
     }
 
     @Override
@@ -251,9 +260,9 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
         // process each of the lines
         try (ByteArrayInputStream localStream =
-                new ByteArrayInputStream(getStream().toByteArray());
-            LineNumberReader lnr = new LineNumberReader(
-                new InputStreamReader(localStream, StandardCharsets.UTF_8))) {
+                     new ByteArrayInputStream(getStream().toByteArray());
+             LineNumberReader lnr = new LineNumberReader(
+                     new InputStreamReader(localStream, StandardCharsets.UTF_8))) {
             for (int i = 0; i < expected.length; i++) {
                 final String expectedResult = messageFileName + ":" + expected[i];
                 final String actual = lnr.readLine();

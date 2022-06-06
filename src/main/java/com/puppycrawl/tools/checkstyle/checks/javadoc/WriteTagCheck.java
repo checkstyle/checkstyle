@@ -184,7 +184,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  */
 @StatelessCheck
 public class WriteTagCheck
-    extends AbstractCheck {
+        extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -282,13 +282,11 @@ public class WriteTagCheck
         final FileContents contents = getFileContents();
         final int lineNo = ast.getLineNo();
         final TextBlock cmt =
-            contents.getJavadocBefore(lineNo);
-        if (cmt == null) {
-            log(lineNo, MSG_MISSING_TAG, tag);
-        }
-        else {
+                contents.getJavadocBefore(lineNo);
+        if (cmt != null) {
             checkTag(lineNo, cmt.getText());
         }
+
     }
 
     /**
