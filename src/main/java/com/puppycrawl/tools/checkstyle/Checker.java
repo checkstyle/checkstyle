@@ -273,6 +273,8 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * @throws CheckstyleException if error condition within Checkstyle occurs.
      * @throws Error wraps any java.lang.Error happened during execution
      * @noinspection ProhibitedExceptionThrown
+     * @noinspectionreason There is no other way to deliver filename that was under
+     *     processing.
      */
     // -@cs[CyclomaticComplexity] no easy way to split this logic of processing the file
     private void processFiles(List<File> files) throws CheckstyleException {
