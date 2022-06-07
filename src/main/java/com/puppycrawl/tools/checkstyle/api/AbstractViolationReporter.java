@@ -27,6 +27,8 @@ import java.util.Map;
  * {@link Violation violations} that are created by the module.
  *
  * @noinspection NoopMethodInAbstractClass
+ * @noinspectionreason We allow each check to define these methods, as needed. They
+ *     should be overridden only by demand in subclasses
  */
 public abstract class AbstractViolationReporter
     extends AutomaticBean {
@@ -44,6 +46,7 @@ public abstract class AbstractViolationReporter
      * @see SeverityLevel
      * @see Violation#getSeverityLevel
      * @noinspection WeakerAccess
+     * @noinspectionreason we avoid 'protected' when possible
      */
     public final SeverityLevel getSeverityLevel() {
         return severityLevel;
@@ -65,6 +68,7 @@ public abstract class AbstractViolationReporter
      *
      *  @return  the check's severity level name.
      *  @noinspection WeakerAccess
+     *  @noinspectionreason we avoid 'protected' when possible
      */
     public final String getSeverity() {
         return severityLevel.getName();
