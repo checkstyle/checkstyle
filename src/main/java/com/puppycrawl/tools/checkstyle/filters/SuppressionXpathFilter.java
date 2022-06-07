@@ -584,7 +584,6 @@ public class SuppressionXpathFilter extends AutomaticBean implements
                 }
             }
             else {
-                filters.clear();
                 filters.addAll(SuppressionsLoader.loadXpathSuppressions(file));
             }
         }
