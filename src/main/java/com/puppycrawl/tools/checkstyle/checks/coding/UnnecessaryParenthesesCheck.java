@@ -106,12 +106,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
  * NUM_FLOAT</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
+ * STRING_LITERAL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NULL">
  * NUM_INT</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
  * NUM_LONG</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">
- * STRING_LITERAL</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NULL">
  * LITERAL_NULL</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FALSE">
  * LITERAL_FALSE</a>,
@@ -633,7 +633,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      *         symmetric and contiguous parentheses.
      */
     private static boolean isSymmetricContiguousParentheses(Deque<Integer> parenStack, int numOfRightParen) {
-        boolean result;
+        boolean result = false;
         if (parenStack.isEmpty()) {
             result = false;
         } else {
@@ -645,11 +645,6 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
                 } else {
                     result = false;
                 }
-            } else if (remainingLeftParen > 0) {
-                parenStack.push(remainingLeftParen);
-                result = false;
-            } else {
-                result = isSymmetricContiguousParentheses(parenStack, -1 * remainingLeftParen);
             }
         }
         return result;
