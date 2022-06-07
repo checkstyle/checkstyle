@@ -78,7 +78,6 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     /**
      * The file context.
      *
-     * @noinspection ThreadLocalNotStaticFinal
      */
     private final ThreadLocal<FileContext> context = ThreadLocal.withInitial(FileContext::new);
 

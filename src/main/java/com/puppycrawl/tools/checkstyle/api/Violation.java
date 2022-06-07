@@ -44,6 +44,8 @@ import java.util.ResourceBundle.Control;
  * java.text.MessageFormat.
  *
  * @noinspection SerializableHasSerializationMethods, ClassWithTooManyConstructors
+ * @noinspectionreason we do not serialize this class, immutable nature of class
+ *     requires a bunch of constructors
  */
 public final class Violation
     implements Comparable<Violation>, Serializable {
@@ -86,6 +88,7 @@ public final class Violation
      * Arguments for MessageFormat.
      *
      * @noinspection NonSerializableFieldInSerializableClass
+     * @noinspectionreason we do not serialize this class
      */
     private final Object[] args;
 
