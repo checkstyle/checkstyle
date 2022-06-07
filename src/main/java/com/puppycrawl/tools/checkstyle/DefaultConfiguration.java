@@ -138,6 +138,7 @@ public final class DefaultConfiguration implements Configuration {
      * @deprecated This shall be removed in future releases. Please use
      *      {@code addProperty(String propertyName, String value)} instead.
      * @noinspection DeprecatedIsStillUsed
+     * @noinspectionreason until removal, we must continue to cover method by tests
      */
     @Deprecated(since = "8.45")
     public void addAttribute(String attributeName, String value) {
