@@ -43,9 +43,9 @@ public class ArchUnitTest {
      * except for those which are annotated with {@code Override}. In the bytecode there is no
      * trace anymore if this method was annotated with {@code Override} or not (limitation of
      * Archunit), eventually we need to make checkstyle's Check on this.
-     * Test contains assertions in the callstack, but TeamCity inspection does not see them.
      *
      * @noinspection JUnitTestMethodWithNoAssertions
+     * @noinspectionreason asserts in callstack, but not in this method
      */
     @Test
     public void nonProtectedCheckMethodsTest() {
