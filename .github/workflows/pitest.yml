@@ -107,7 +107,7 @@ jobs:
           path: staging
           retention-days: 7
 
-  pitest-coding:
+  pitest-coding-1:
     runs-on: ubuntu-latest
     steps:
       - name: Setup local maven cache
@@ -117,9 +117,9 @@ jobs:
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
       - name: Checkout
         uses: actions/checkout@v2
-      - name: pitest-Coding
+      - name: pitest-Coding-1
         run: |
-          ./.ci/pitest.sh pitest-coding
+          ./.ci/pitest.sh pitest-coding-1
       - name: Stage results
         if: failure() || github.ref == 'refs/heads/master'
         run: |
@@ -128,7 +128,57 @@ jobs:
         if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
-          name: pitest-coding-coverage-report
+          name: pitest-coding-1-coverage-report
+          path: staging
+          retention-days: 7
+
+  pitest-coding-2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: pitest-Coding-2
+        run: |
+          ./.ci/pitest.sh pitest-coding-2
+      - name: Stage results
+        if: failure() || github.ref == 'refs/heads/master'
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure() || github.ref == 'refs/heads/master'
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest-coding-2-coverage-report
+          path: staging
+          retention-days: 7
+
+  pitest-coding-require-this-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: pitest-Coding-require-this-check
+        run: |
+          ./.ci/pitest.sh pitest-coding-require-this-check
+      - name: Stage results
+        if: failure() || github.ref == 'refs/heads/master'
+        run: |
+          mkdir staging && cp -r target/pit-reports/ staging
+      - name: Archive code coverage results
+        if: failure() || github.ref == 'refs/heads/master'
+        uses: actions/upload-artifact@v2
+        with:
+          name: pitest-coding-require-this-check-coverage-report
           path: staging
           retention-days: 7
 

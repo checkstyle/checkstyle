@@ -155,42 +155,9 @@ pitest-javadoc)
   checkPitestReport ignoredItems
   ;;
 
-pitest-coding)
+pitest-coding-1)
   mvn --no-transfer-progress -e -P"$1" clean test-compile org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
-  "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>                            &#38;&#38; isSameVariables(storedVariable, variable)</span></pre></td></tr>"
-  "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>                        == ast.getParent()) {</span></pre></td></tr>"
-  "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>                if (ast.getParent().getType() == TokenTypes.SWITCH_RULE</span></pre></td></tr>"
-  "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (astIterator.getType() == childType</span></pre></td></tr>"
-  "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (storedVariable != null &#38;&#38; isSameVariables(storedVariable, ast)) {</span></pre></td></tr>"
-  "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>            result = findLastChildWhichContainsSpecifiedToken(</span></pre></td></tr>"
-  "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>        return ast.getType() == TokenTypes.LITERAL_IF</span></pre></td></tr>"
-  "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>        return loop1 != null &#38;&#38; loop1 == loop2;</span></pre></td></tr>"
-  "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; ast.getType() == TokenTypes.PARAMETER_DEF) {</span></pre></td></tr>"
-  "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; firstChild.getType() == TokenTypes.IDENT) {</span></pre></td></tr>"
-  "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; methodAST.getType() == TokenTypes.METHOD_DEF</span></pre></td></tr>"
-  "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (method.getType() == TokenTypes.METHOD_DEF) {</span></pre></td></tr>"
-  "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>            return instanceFields.contains(field)</span></pre></td></tr>"
-  "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (ignoreSetter &#38;&#38; ast.getType() == TokenTypes.PARAMETER_DEF) {</span></pre></td></tr>"
-  "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (type == TokenTypes.CLASS_DEF</span></pre></td></tr>"
-  "IllegalInstantiationCheck.java.html:<td class='covered'><pre><span  class='survived'>            &#38;&#38; illegal.startsWith(JAVA_LANG)) {</span></pre></td></tr>"
-  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>                        &#38;&#38; currentStatement.getPreviousSibling().getType() == TokenTypes.RESOURCES;</span></pre></td></tr>"
-  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>                currentStatement.getPreviousSibling() != null</span></pre></td></tr>"
-  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>                if (countOfSemiInLambda.isEmpty()) {</span></pre></td></tr>"
-  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>            multiline = !TokenUtil.areOnSameLine(prevSibling, ast)</span></pre></td></tr>"
-  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (!hasResourcesPrevSibling &#38;&#38; isMultilineStatement(currentStatement)) {</span></pre></td></tr>"
-  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>                        &#38;&#38; ast.getParent().getType() != TokenTypes.LITERAL_CATCH) {</span></pre></td></tr>"
-  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>                if (isAnonymousClassDef(ast)) {</span></pre></td></tr>"
-  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>                if (toVisit == null) {</span></pre></td></tr>"
-  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>               &#38;&#38; parent.getType() != TokenTypes.CTOR_DEF</span></pre></td></tr>"
-  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>            &#38;&#38; lastChild.getType() == TokenTypes.OBJBLOCK;</span></pre></td></tr>"
-  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (definitionToken.getType() == TokenTypes.STATIC_INIT) {</span></pre></td></tr>"
-  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (elistToken != null &#38;&#38; ident.getText().equals(ast.getText())) {</span></pre></td></tr>"
-  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (lookForMethod &#38;&#38; containsMethod(nameToFind)</span></pre></td></tr>"
-  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (variableDeclarationFrame.getType() == FrameType.CLASS_FRAME) {</span></pre></td></tr>"
-  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (fieldUsageFrame.getType() == FrameType.BLOCK_FRAME) {</span></pre></td></tr>"
-  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (sibling != null &#38;&#38; isAssignToken(parent.getType())) {</span></pre></td></tr>"
-  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>        return left.getType() == right.getType() &#38;&#38; left.getText().equals(right.getText());</span></pre></td></tr>"
   "UnnecessaryParenthesesCheck.java.html:<td class='covered'><pre><span  class='survived'>            || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {</span></pre></td></tr>"
   "UnnecessaryParenthesesCheck.java.html:<td class='covered'><pre><span  class='survived'>        else if (type != TokenTypes.ASSIGN</span></pre></td></tr>"
   "UnnecessaryParenthesesCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (firstChild != null &#38;&#38; firstChild.getType() == TokenTypes.LPAREN) {</span></pre></td></tr>"
@@ -206,6 +173,49 @@ pitest-coding)
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (!firstUsageFound) {</span></pre></td></tr>"
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (!isVarInOperatorDeclaration &#38;&#38; operator.getType() == TokenTypes.LITERAL_IF) {</span></pre></td></tr>"
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>        while (result</span></pre></td></tr>"
+  );
+  checkPitestReport ignoredItems
+  ;;
+
+pitest-coding-2)
+  mvn --no-transfer-progress -e -P"$1" clean test-compile org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+  "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>                            &#38;&#38; isSameVariables(storedVariable, variable)</span></pre></td></tr>"
+  "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>                        == ast.getParent()) {</span></pre></td></tr>"
+  "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>                if (ast.getParent().getType() == TokenTypes.SWITCH_RULE</span></pre></td></tr>"
+  "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (astIterator.getType() == childType</span></pre></td></tr>"
+  "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>            result = findLastChildWhichContainsSpecifiedToken(</span></pre></td></tr>"
+  "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>        return ast.getType() == TokenTypes.LITERAL_IF</span></pre></td></tr>"
+  "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>        return loop1 != null &#38;&#38; loop1 == loop2;</span></pre></td></tr>"
+  "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; ast.getType() == TokenTypes.PARAMETER_DEF) {</span></pre></td></tr>"
+  "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; firstChild.getType() == TokenTypes.IDENT) {</span></pre></td></tr>"
+  "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; methodAST.getType() == TokenTypes.METHOD_DEF</span></pre></td></tr>"
+  "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (method.getType() == TokenTypes.METHOD_DEF) {</span></pre></td></tr>"
+  "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (ignoreSetter &#38;&#38; ast.getType() == TokenTypes.PARAMETER_DEF) {</span></pre></td></tr>"
+  "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (type == TokenTypes.CLASS_DEF</span></pre></td></tr>"
+  "IllegalInstantiationCheck.java.html:<td class='covered'><pre><span  class='survived'>            &#38;&#38; illegal.startsWith(JAVA_LANG)) {</span></pre></td></tr>"
+  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>                        &#38;&#38; currentStatement.getPreviousSibling().getType() == TokenTypes.RESOURCES;</span></pre></td></tr>"
+  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>                currentStatement.getPreviousSibling() != null</span></pre></td></tr>"
+  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>                if (countOfSemiInLambda.isEmpty()) {</span></pre></td></tr>"
+  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>            multiline = !TokenUtil.areOnSameLine(prevSibling, ast)</span></pre></td></tr>"
+  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (!hasResourcesPrevSibling &#38;&#38; isMultilineStatement(currentStatement)) {</span></pre></td></tr>"
+  );
+  checkPitestReport ignoredItems
+  ;;
+
+pitest-coding-require-this-check)
+  mvn --no-transfer-progress -e -P"$1" clean test-compile org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>                        &#38;&#38; ast.getParent().getType() != TokenTypes.LITERAL_CATCH) {</span></pre></td></tr>"
+  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>                if (isAnonymousClassDef(ast)) {</span></pre></td></tr>"
+  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>                if (toVisit == null) {</span></pre></td></tr>"
+  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>               &#38;&#38; parent.getType() != TokenTypes.CTOR_DEF</span></pre></td></tr>"
+  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>            &#38;&#38; lastChild.getType() == TokenTypes.OBJBLOCK;</span></pre></td></tr>"
+  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (definitionToken.getType() == TokenTypes.STATIC_INIT) {</span></pre></td></tr>"
+  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (variableDeclarationFrame.getType() == FrameType.CLASS_FRAME) {</span></pre></td></tr>"
+  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (fieldUsageFrame.getType() == FrameType.BLOCK_FRAME) {</span></pre></td></tr>"
+  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (sibling != null &#38;&#38; isAssignToken(parent.getType())) {</span></pre></td></tr>"
+  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>        return left.getType() == right.getType() &#38;&#38; left.getText().equals(right.getText());</span></pre></td></tr>"
   );
   checkPitestReport ignoredItems
   ;;
