@@ -49,6 +49,8 @@ import picocli.CommandLine.ParseResult;
  * so they can use them in their configuration gui.
  *
  * @noinspection UseOfSystemOutOrSystemErr, unused, ClassIndependentOfModule
+ * @noinspectionreason System.out and System.err are used for CLI, main method is "unused", architecture of
+ *      property generation requires this architecture
  */
 public final class JavadocPropertiesGenerator {
 
