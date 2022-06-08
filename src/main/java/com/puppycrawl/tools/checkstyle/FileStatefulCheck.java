@@ -43,7 +43,7 @@ import java.lang.annotation.Target;
  * Note: Checks with such annotation will be executed in mode how all Checks worked
  * before MT mode is introduced.
  *
- * @noinspection AnnotationClass, ClassIndependentOfModule
+ * @noinspection ClassIndependentOfModule
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
