@@ -7,7 +7,7 @@
          <description>&lt;p&gt;
  Checks for fall-through in {@code switch} statements.
  Finds locations where a {@code case} &lt;b&gt;contains&lt;/b&gt; Java code but lacks a
- {@code break}, {@code return}, {@code throw} or {@code continue} statement.
+ {@code break}, {@code return}, {@code yield}, {@code throw} or {@code continue} statement.
  &lt;/p&gt;
  &lt;p&gt;
  The check honors special comments to suppress the warning.
