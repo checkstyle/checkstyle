@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  * <p>
  * Checks for fall-through in {@code switch} statements.
  * Finds locations where a {@code case} <b>contains</b> Java code but lacks a
- * {@code break}, {@code return}, {@code throw} or {@code continue} statement.
+ * {@code break}, {@code return}, {@code yield}, {@code throw} or {@code continue} statement.
  * </p>
  * <p>
  * The check honors special comments to suppress the warning.
@@ -77,7 +77,7 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  *       case 1:
  *         i++;
  *       case 2: // violation, previous case contains code but lacks
- *               // break, return, throw or continue statement
+ *               // break, return, yield, throw or continue statement
  *         i++;
  *         break;
  *       case 3: // OK
@@ -96,6 +96,20 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  *         i++;
  *     }
  *   }
+ * }
+ * public int bar() {
+ *   int i = 0;
+ *   return switch (i) {
+ *     case 1:
+ *       i++;
+ *     case 2: // violation, previous case contains code but lacks
+ *             // break, return, yield, throw or continue statement
+ *     case 3: // OK, case does not contain code
+ *       i++;
+ *       yield 11;
+ *     default: // OK
+ *       yield -1;
+ *   };
  * }
  * </pre>
  * <p>
@@ -279,6 +293,7 @@ public class FallThroughCheck extends AbstractCheck {
 
         switch (ast.getType()) {
             case TokenTypes.LITERAL_RETURN:
+            case TokenTypes.LITERAL_YIELD:
             case TokenTypes.LITERAL_THROW:
                 terminated = true;
                 break;
