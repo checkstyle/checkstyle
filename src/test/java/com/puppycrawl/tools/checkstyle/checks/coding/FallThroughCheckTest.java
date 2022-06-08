@@ -230,4 +230,12 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testYield() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFallThrough3.java"),
+                expected);
+    }
+
 }
