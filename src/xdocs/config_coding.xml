@@ -1483,7 +1483,7 @@ public class Test {
           Checks for fall-through in <code>switch</code>
           statements. Finds locations where a <code>case</code>
           <b>contains</b> Java code but lacks a <code>break</code>, <code>return</code>,
-          <code>throw</code> or <code>continue</code>
+          <code>yield</code>, <code>throw</code> or <code>continue</code>
           statement.
         </p>
         <p>
@@ -1555,7 +1555,7 @@ public void foo() throws Exception {
       case 1:
         i++;
       case 2: // violation, previous case contains code but lacks
-              // break, return, throw or continue statement
+              // break, return, yield, throw or continue statement
         i++;
         break;
       case 3: // OK
@@ -1575,6 +1575,20 @@ public void foo() throws Exception {
 
     }
   }
+}
+public int bar() {
+  int i = 0;
+  return switch (i) {
+    case 1:
+      i++;
+    case 2: // violation, previous case contains code but lacks
+            // break, return, yield, throw or continue statement
+    case 3: // OK, case does not contain code
+      i++;
+      yield 11;
+    default: // OK
+      yield -1;
+  };
 }
         </source>
         <p>
