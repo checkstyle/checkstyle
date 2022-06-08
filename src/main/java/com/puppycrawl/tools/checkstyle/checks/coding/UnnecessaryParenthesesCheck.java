@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
@@ -104,12 +106,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
  * NUM_FLOAT</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
+ * STRING_LITERAL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NULL">
  * NUM_INT</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
  * NUM_LONG</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">
- * STRING_LITERAL</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NULL">
  * LITERAL_NULL</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FALSE">
  * LITERAL_FALSE</a>,
@@ -568,7 +570,84 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      *         parentheses.
      */
     private static boolean isExprSurrounded(DetailAST ast) {
-        return ast.getFirstChild().getType() == TokenTypes.LPAREN;
+        return ast.getFirstChild().getType() == TokenTypes.LPAREN
+                || isExprContainsSymmetricContiguousParentheses(ast);
+    }
+
+    /**
+     * Tests if the given expression contains symmetric and contiguous parentheses.
+     *
+     * @param ast a {@code DetailAST} whose type is
+     *        {@code TokenTypes.EXPR}.
+     * @return {@code true} if the expression contains
+     *         symmetric and contiguous parentheses.
+     */
+    private static boolean isExprContainsSymmetricContiguousParentheses(DetailAST ast) {
+        DetailAST firstChild = ast.getFirstChild();
+        if (firstChild == null) {
+            return false;
+        }
+
+        DetailAST grandChild = firstChild.getFirstChild();
+        int numOfLeftParen = 0;
+        int numOfRightParen = 0;
+        boolean result = false;
+        Deque<Integer> parenStack = new ArrayDeque<>();
+
+        while (grandChild != null) {
+            if (grandChild.getType() == TokenTypes.LPAREN) {
+                numOfLeftParen = 1;
+                while (grandChild.getNextSibling() != null
+                        && grandChild.getNextSibling().getType() == TokenTypes.LPAREN) {
+                    numOfLeftParen += 1;
+                    grandChild = grandChild.getNextSibling();
+                }
+                parenStack.push(numOfLeftParen);
+            }
+
+            if (grandChild.getType() == TokenTypes.RPAREN) {
+                numOfRightParen = 1;
+                while (grandChild.getNextSibling() != null
+                        && grandChild.getNextSibling().getType() == TokenTypes.RPAREN) {
+                    numOfRightParen += 1;
+                    grandChild = grandChild.getNextSibling();
+                }
+                result = isSymmetricContiguousParentheses(parenStack, numOfRightParen);
+                if (result) {
+                    break;
+                }
+            }
+
+            grandChild = grandChild.getNextSibling();
+        }
+        return result;
+    }
+
+    /**
+     * Check if the given expression contains symmetric and contiguous parentheses.
+     *
+     * @param parenStack stack stores the number of contiguous
+     *          the number of left parenthesis.
+     * @param numOfRightParen the humber of right parenthesis.
+     * @return {@code true} if the expression contains
+     *         symmetric and contiguous parentheses.
+     */
+    private static boolean isSymmetricContiguousParentheses(Deque<Integer> parenStack, int numOfRightParen) {
+        boolean result = false;
+        if (parenStack.isEmpty()) {
+            result = false;
+        } else {
+            int topLeftParen = parenStack.pop();
+            int remainingLeftParen = topLeftParen - numOfRightParen;
+            if (remainingLeftParen == 0) {
+                if (numOfRightParen > 1) {
+                    result = true;
+                } else {
+                    result = false;
+                }
+            }
+        }
+        return result;
     }
 
     /**

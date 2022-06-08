@@ -22,7 +22,7 @@ public class InputUnnecessaryParenthesesOperatorsAndCasts {
             (x) = (x + i + 100); // 2 violations
         }
 
-        for (int i = (0+1); (i) < ((6+6)); i += (1+0)) { // 3 violations
+        for (int i = (0+1); (i) < ((6+6)); i += (1+0)) { // 4 violations
             System.identityHashCode("hi");
         }
 
@@ -44,7 +44,7 @@ public class InputUnnecessaryParenthesesOperatorsAndCasts {
 
         x += (i + 100 + arg1); // violation 'Unnecessary parentheses around assignment right.*side'
         a = (a + b) * (c + d);
-        b = ((((a + b) * (c + d)))); // violation 'parentheses around assignment right.*side'
+        b = ((((a + b) * (c + d)))); // 2 violations
         c = (((a) <= b)) ? 0 : 1; // violation 'Unnecessary parentheses around identifier 'a''
         d = (a) + (b) * (600) / (int) (12.5f) + (int) (arg2); // 5 violations
         e = ("this") + ("that") + ("is" + "other"); // 2 violations
