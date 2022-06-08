@@ -629,8 +629,8 @@
                    enabled_by_default="false"/>
   <!-- this rule is inspection is only for old java, we are ok to use annotations -->
   <inspection_tool class="Annotation" enabled="false" level="ERROR" enabled_by_default="false"/>
-  <inspection_tool class="AnnotationClass" enabled="true" level="ERROR"
-                   enabled_by_default="true"/>
+  <inspection_tool class="AnnotationClass" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
   <inspection_tool class="AnnotationNamingConvention" enabled="true" level="WARNING"
                    enabled_by_default="true">
     <option name="m_regex" value="[A-Z][A-Za-z\d]*"/>
@@ -4453,8 +4453,6 @@
         <option value="ThisEscapedInObjectConstruction"/>
         <!-- it will make code too complicated in some cases -->
         <option value="MultipleReturnPointsPerMethod"/>
-        <!-- MT check markers are annotations -->
-        <option value="AnnotationClass"/>
         <!-- Suppression is only for TokenTypes class -->
         <option value="ClassWithTooManyDependents"/>
         <!-- XDocs UT is very long and complex -->

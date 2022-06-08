@@ -29,7 +29,6 @@ import java.lang.annotation.Target;
  * for clarification of the user-friendly type.
  * For example, some string array property may represent a set of tokens.
  *
- * @noinspection AnnotationClass
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
