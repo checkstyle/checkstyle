@@ -230,4 +230,14 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testYield() throws Exception {
+        final String[] expected = {
+            "19:9: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFallThrough3.java"),
+                expected);
+    }
+
 }
