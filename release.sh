@@ -56,7 +56,7 @@ cd ../../
 
 NEW_RELEASE=$(git describe --abbrev=0 | cut -d '-' -f 2)
 PREV_RELEASE=$(git describe --abbrev=0 --tags \
-        `git rev-list --tags --skip=1 --max-count=1` \
+        $(git rev-list --tags --skip=1 --max-count=1) \
     | cut -d '-' -f 2)
 FUTURE_RELEASE=$(xmlstarlet sel -N pom=http://maven.apache.org/POM/4.0.0 \
            -t -m pom:project -v pom:version pom.xml | sed "s/-SNAPSHOT//")
