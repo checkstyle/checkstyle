@@ -36,7 +36,6 @@ import java.util.EventObject;
  * </p>
  *
  * @see AuditListener
- * @noinspection SerializableHasSerializationMethods
  */
 public final class AuditEvent
     extends EventObject {
