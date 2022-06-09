@@ -197,7 +197,8 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
     /**
      * Properties subclass to store duplicated property keys in a separate map.
      *
-     * @noinspection ClassExtendsConcreteCollection, SerializableHasSerializationMethods
+     * @noinspection ClassExtendsConcreteCollection
+     * @noinspectionreason we require custom {@code put} method to find duplicate keys
      */
     private static class UniqueProperties extends Properties {
 
