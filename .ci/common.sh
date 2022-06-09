@@ -19,27 +19,27 @@ function should_run_job {
 
     if [[ $SKIP_JOB_BY_FILES != 'false' ]]; then
          if [[ $DEBUG == "true" ]]; then
-              OUT=`git branch -r`
+              OUT=$(git branch -r)
               echo "List of branches: $OUT"
-              OUT=`git log -10 --format="%h %B"`
+              OUT=$(git log -10 --format="%h %B")
               echo "Current Branch log: $OUT"
-              OUT=`git log origin/master -10 --format="%h %B"`
+              OUT=$(git log origin/master -10 --format="%h %B")
               echo "origin/master log: $OUT"
          fi
 
          # Travis merges the PR commit into origin/master
          # This identifies the PR's original commit
          # if it notices a merge commit
-         local HEAD=`git rev-parse HEAD`
+         local HEAD=$(git rev-parse HEAD)
 
          if git show --summary HEAD | grep ^Merge: ; then
-              HEAD=`git log -n 1 --no-merges --pretty=format:"%H"`
+              HEAD=$(git log -n 1 --no-merges --pretty=format:"%H")
          fi
 
          # Identify previous commit to know how much to examine
          # Script assumes we are only working with 1 commit if we are in master
          # Otherwise, it looks for the common ancestor with master
-         local PREVIOUS_COMMIT=`git rev-parse HEAD~1`
+         local PREVIOUS_COMMIT=$(git rev-parse HEAD~1)
 
          if [[ $DEBUG == "true" ]]; then
               echo "Head commit: $HEAD"
@@ -52,7 +52,7 @@ function should_run_job {
          # We are not in master if master does not contain the head commit
          if [[ $(git branch -a --contains "$HEAD" | grep " origin/master$" \
                     | wc -c ) == 0 ]]; then
-              PREVIOUS_COMMIT=`git merge-base origin/master "$HEAD"`
+              PREVIOUS_COMMIT=$(git merge-base origin/master "$HEAD")
          fi
 
          echo "Previous Commit to start with: $PREVIOUS_COMMIT"
@@ -66,9 +66,9 @@ function should_run_job {
          fi
 
          if [[ $DEBUG == "true" ]]; then
-              OUT=`git diff --name-only "$HEAD" "$PREVIOUS_COMMIT"`
+              OUT=$(git diff --name-only "$HEAD" "$PREVIOUS_COMMIT")
               echo "Files between top commit and previous: $OUT"
-              OUT=`git diff --name-only "$HEAD" "$PREVIOUS_COMMIT" | grep -vE "$SKIP_FILES" | cat`
+              OUT=$(git diff --name-only "$HEAD" "$PREVIOUS_COMMIT" | grep -vE "$SKIP_FILES" | cat)
               echo "Files should not skip: $OUT"
          fi
 
@@ -89,7 +89,7 @@ function should_run_job {
     local SKIP_JOB_BY_COMMIT="false"
 
     if [[ $DEBUG == "true" ]]; then
-         OUT=`git log -1 --format=%B`
+         OUT=$(git log -1 --format=%B)
          echo "Top commit message: $OUT"
     fi
 
