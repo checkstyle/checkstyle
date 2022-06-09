@@ -90,7 +90,7 @@ nondex)
   mvn -e --no-transfer-progress --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m' \
     -Dtest=!JavadocPropertiesGeneratorTest#testNonExistentArgument
   mkdir -p .ci-temp
-  cat `grep -RlE 'td class=.x' .nondex/ | cat` < /dev/null > .ci-temp/output.txt
+  cat $(grep -RlE 'td class=.x' .nondex/ | cat) < /dev/null > .ci-temp/output.txt
   RESULT=$(cat .ci-temp/output.txt | wc -c)
   cat .ci-temp/output.txt
   echo 'Size of output:'"$RESULT"
@@ -104,11 +104,11 @@ pr-age)
   # if it notices a merge commit
   if git show --summary HEAD | grep ^Merge: ;
   then
-    git reset --hard `git log -n 1 --no-merges --pretty=format:"%h"`
+    git reset --hard $(git log -n 1 --no-merges --pretty=format:"%h")
   fi
 
-  PR_MASTER=`git merge-base origin/master HEAD`
-  COMMITS_SINCE_MASTER=`git rev-list --count "$PR_MASTER"..origin/master`
+  PR_MASTER=$(git merge-base origin/master HEAD)
+  COMMITS_SINCE_MASTER=$(git rev-list --count "$PR_MASTER"..origin/master)
   MAX_ALLOWED=10
 
   echo "The PR is based on a master that is $COMMITS_SINCE_MASTER commit(s) old."
@@ -438,15 +438,15 @@ check-since-version)
   # Travis merges the PR commit into origin/master
   # This identifies the PR's original commit
   # if it notices a merge commit
-  HEAD=`git rev-parse HEAD`
+  HEAD=$(git rev-parse HEAD)
   if git show --summary HEAD | grep ^Merge: ; then
       echo "Merge detected."
-      HEAD=`git log -n 1 --no-merges --pretty=format:"%H"`
+      HEAD=$(git log -n 1 --no-merges --pretty=format:"%H")
   fi
   # Identify previous commit to know how much to examine
   # Script assumes we are only working with 1 commit if we are in master
   # Otherwise, it looks for the common ancestor with master
-  COMMIT=`git rev-parse "$HEAD"`
+   COMMIT=$(git rev-parse "$HEAD")
   echo "PR commit: $COMMIT"
 
   HEAD_NEW_FILES=$(git show "$COMMIT" | cat | grep -A 1 "\-\-\- /dev/null" | cat)
@@ -963,7 +963,7 @@ no-warning-imports-guava)
   groovy ./diff.groovy --listOfProjects $PROJECTS --patchConfig $CONFIG \
       --allowExcludes -p "$BRANCH" -r ../../.. \
       --mode single -xm "-Dcheckstyle.failsOnError=false -Dcheckstyle.version=${CS_POM_VERSION}"
-  RESULT=`grep -A 5 "&#160;Warning</td>" $REPORT | cat`
+  RESULT=$(grep -A 5 "&#160;Warning</td>" $REPORT | cat)
   cd ../../
   removeFolderWithProtectedFiles contribution
   if [ -z "$RESULT" ]; then
@@ -988,7 +988,7 @@ no-warning-imports-java-design-patterns)
   groovy ./diff.groovy --listOfProjects $PROJECTS --patchConfig $CONFIG \
       --allowExcludes -p "$BRANCH" -r ../../..\
       --mode single -xm "-Dcheckstyle.version=${CS_POM_VERSION}"
-  RESULT=`grep -A 5 "&#160;Warning</td>" $REPORT | cat`
+  RESULT=$(grep -A 5 "&#160;Warning</td>" $REPORT | cat)
   cd ../../
   removeFolderWithProtectedFiles contribution
   if [ -z "$RESULT" ]; then
