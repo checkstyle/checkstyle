@@ -1,6 +1,5 @@
 # until https://github.com/checkstyle/checkstyle/issues/11637
 
-disable=SC2006 # (style): Use $(...) notation instead of legacy backticks ....
 disable=SC2046 # (warning): Quote this to prevent word splitting.
 disable=SC2207 # (warning): Prefer mapfile or read -a to split command output.
 disable=SC2002 # (style): Useless cat. Consider 'cmd < file | ..' or 'cmd file | ..' instead.
