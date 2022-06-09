@@ -19,14 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import java.io.Serializable;
-
 /**
  * Thread mode settings for the checkstyle modules.
- *
- * @noinspection SerializableHasSerializationMethods
  */
-public class ThreadModeSettings implements Serializable {
+public class ThreadModeSettings {
 
     /** A checker module name. */
     public static final String CHECKER_MODULE_NAME = Checker.class.getSimpleName();
@@ -45,9 +41,6 @@ public class ThreadModeSettings implements Serializable {
     /** A single thread mode settings instance. */
     public static final ThreadModeSettings SINGLE_THREAD_MODE_INSTANCE =
             new ThreadModeSettings(1, 1);
-
-    /** A unique serial version identifier. */
-    private static final long serialVersionUID = 1L;
 
     /** The checker threads number. */
     private final int checkerThreadsNumber;
