@@ -97,7 +97,7 @@ jobs:
       - name: Copy site to AWS S3 Bucket
         run: |
           bash
-          TIME=`date +%Y%H%M%S`
+          TIME=$(date +%Y%H%M%S)
           FOLDER="${{needs.parse_pr_info.outputs.commit_sha}}_$TIME"
           SITE="./checkstyle/target/site"
           LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
