@@ -8,8 +8,8 @@ RELEASE=$(xmlstarlet sel -N pom=http://maven.apache.org/POM/4.0.0 \
            -t -m pom:project -v pom:version pom.xml | sed "s/-SNAPSHOT//")
 PREV_RELEASE=$(git describe --abbrev=0 $(git rev-list --tags --max-count=1) | sed "s/checkstyle-//")
 
-echo "PREVIOUS RELEASE version:"$PREV_RELEASE
-echo "RELEASE version:"$RELEASE
+echo "PREVIOUS RELEASE version:""$PREV_RELEASE"
+echo "RELEASE version:""$RELEASE"
 
 if [[ ! -f ~/.m2/token-checkstyle.txt ]]; then
   echo "File ~/.m2/token-checkstyle.txt with Github token is not found"
@@ -73,12 +73,12 @@ curl -i -H "Authorization: token $TKN" \
 
 echo "Publishing 'all' jar to Github"
 RELEASE_ID=$(curl -s -X GET \
-  https://api.github.com/repos/checkstyle/checkstyle/releases/tags/checkstyle-$NEW_RELEASE \
+  https://api.github.com/repos/checkstyle/checkstyle/releases/tags/checkstyle-"$NEW_RELEASE" \
   | jq ".id")
 curl -i -H "Authorization: token $TKN" \
   -H "Content-Type: application/zip" \
   --data-binary @"target/checkout/target/checkstyle-$NEW_RELEASE-all.jar" \
-  -X POST https://uploads.github.com/repos/checkstyle/checkstyle/releases/$RELEASE_ID/assets?name=checkstyle-$NEW_RELEASE-all.jar
+  -X POST https://uploads.github.com/repos/checkstyle/checkstyle/releases/"$RELEASE_ID"/assets?name=checkstyle-"$NEW_RELEASE"-all.jar
 
 echo "Close previous milestone at github"
 MILESTONE_ID=$(curl -s \
@@ -86,14 +86,14 @@ MILESTONE_ID=$(curl -s \
                 | jq ".[0] | .number")
 curl -i -H "Authorization: token $TKN" \
   -d "{ \"state\": \"closed\" }" \
-  -X PATCH https://api.github.com/repos/checkstyle/checkstyle/milestones/$MILESTONE_ID
+  -X PATCH https://api.github.com/repos/checkstyle/checkstyle/milestones/"$MILESTONE_ID"
 
 
 echo "Creation of new milestone ..."
 LAST_SUNDAY_DAY=$(cal -d $(date -d "next month" +"%Y-%m") \
                     | awk '/^ *[0-9]/ { d=$1 } END { print d }')
 LAST_SUNDAY_DATETIME=$(date -d "next month" +"%Y-%m")"-$LAST_SUNDAY_DAY""T08:00:00Z"
-echo $LAST_SUNDAY_DATETIME
+echo "$LAST_SUNDAY_DATETIME"
 curl -i -H "Authorization: token $TKN" \
   -d "{ \"title\": \"$FUTURE_RELEASE\", \
         \"state\": \"open\", \
