@@ -200,7 +200,7 @@ jobs:
          LABEL: ${{ needs.parse_body.outputs.report_label }}
        run: |
         bash
-        TIME=`date +%Y%H%M%S`
+        TIME=$(date +%Y%H%M%S)
         FOLDER="${{needs.parse_body.outputs.commit_sha}}_$TIME"
         DIFF="./contribution/checkstyle-tester/reports/diff"
         LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
