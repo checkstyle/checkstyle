@@ -74,7 +74,7 @@ jobs:
 
     - env:
         - DESC="Shellcheck"
-        - CMD="shellcheck ./.ci/*.sh"
+        - CMD="shellcheck ./.ci/*.sh && shellcheck release.sh"
         - USE_MAVEN_REPO="false"
 
     - jdk: openjdk11
