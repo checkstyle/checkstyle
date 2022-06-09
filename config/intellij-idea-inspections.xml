@@ -2804,7 +2804,7 @@
     <option name="IGNORE_JAVADOC_PERIOD" value="true"/>
     <option name="IGNORE_DUPLICATED_THROWS" value="false"/>
     <option name="IGNORE_POINT_TO_ITSELF" value="false"/>
-    <option name="myAdditionalJavadocTags" value=""/>
+    <option name="myAdditionalJavadocTags" value="noinspectionreason"/>
   </inspection_tool>
   <inspection_tool class="JavaFxColorRgb" enabled="false" level="WARNING"
                    enabled_by_default="false"/>
@@ -3966,7 +3966,10 @@
                         ,com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation,
                         ,com.puppycrawl.tools.checkstyle.gui.TreeTableCellRenderer,
                         ,com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter,
-                        ,com.puppycrawl.tools.checkstyle.gui.TreeTable"/>
+                        ,com.puppycrawl.tools.checkstyle.gui.TreeTable,
+                        ,com.puppycrawl.tools.checkstyle.api.Configuration,
+                        ,java.util.EventObject,
+                        ,java.util.Properties,"/>
     <option name="ignoreClassWithoutFields" value="true"/>
   </inspection_tool>
   <inspection_tool class="SerializableInnerClassHasSerialVersionUIDField" enabled="true"

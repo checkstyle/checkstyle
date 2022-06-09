@@ -920,6 +920,7 @@ noenumtrailingcomma
 nofinalizer
 NOI
 noinspection
+noinspectionreason
 nojavadoc
 nolinewrap
 nonascii
