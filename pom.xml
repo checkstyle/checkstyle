@@ -457,6 +457,10 @@
                 <name>noinspection</name>
                 <placement>X</placement>
               </tag>
+              <tag>
+                <name>noinspectionreason</name>
+                <placement>X</placement>
+              </tag>
             </tags>
           </configuration>
         </plugin>

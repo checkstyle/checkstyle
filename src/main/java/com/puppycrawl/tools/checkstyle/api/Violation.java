@@ -44,6 +44,9 @@ import java.util.ResourceBundle.Control;
  * java.text.MessageFormat.
  *
  * @noinspection SerializableHasSerializationMethods, ClassWithTooManyConstructors
+ * @noinspectionreason SerializableHasSerializationMethods - we do not serialize this class
+ * @noinspectionreason ClassWithTooManyConstructors - immutable nature of class requires a
+ *      bunch of constructors
  */
 public final class Violation
     implements Comparable<Violation>, Serializable {
@@ -86,6 +89,10 @@ public final class Violation
      * Arguments for MessageFormat.
      *
      * @noinspection NonSerializableFieldInSerializableClass
+     * @noinspectionreason NonSerializableFieldInSerializableClass - usage of
+     *      'Serializable' for this api class
+     *      is considered as mistake now, but we do not break api without
+     *      good reason
      */
     private final Object[] args;
 
