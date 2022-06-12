@@ -109,9 +109,6 @@
   <suppress id="numberOfTestCasesInXpath"
          files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionJavadocStyleTest.java"/>
 
-  <!-- Until https://github.com/checkstyle/checkstyle/issues/9351 -->
-  <suppress id="properMavenCommand" files=".*[\\/]pitest.sh"/>
-
   <!-- Empty files that are used as input for UT -->
   <suppress id="noEmptyFile"
              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]newlineatendoffile[\\/].*"/>
