@@ -58,7 +58,6 @@ pitest-annotation|pitest-design \
   checkPitestReport ignoredItems
   ;;
 
-# till #9351
 pitest-main)
   mvn --no-transfer-progress -e -P"$1" clean test-compile org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
