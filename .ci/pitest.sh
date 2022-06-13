@@ -227,7 +227,7 @@ pitest-coding-require-this-check)
 --list)
   echo "Supported profiles:"
   pomXmlPath="$(dirname "${0}")/../pom.xml"
-  sed -n -e 's/<id>\(pitest-\w\+\)<\/id>/\1/p' < "${pomXmlPath}" | sort
+  perl -wlne 'print $1 if m/<id>(pitest-.+?)<\/id>/' "${pomXmlPath}"
   ;;
 
 *)
