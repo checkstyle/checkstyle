@@ -660,10 +660,19 @@ public class MethodLimitCheck extends AbstractCheck
 
     <section name="Limitations">
       <p>
-        There are only a few, but important, limitations for Checkstyle:
+        There are only a few, but important, limitations for Checkstyle. These pertain to Java
+        specifically, as well as regular text files.
+      </p>
+      <p>
+        For Java,
       </p>
       <ul>
-        <li>Java
+        <li>
+          Code has to be compilable by <code>javac</code> to get valid violations.
+          If it is not, you can get hard to understand parse errors.
+        </li>
+        <li>
+          Java
           <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.5">
             tokens (identifiers, keywords)</a>
           should be written with
@@ -679,14 +688,25 @@ public class MethodLimitCheck extends AbstractCheck
           <a href="https://github.com/checkstyle/checkstyle/issues/10629">
           Issue #10629.</a>
         </li>
-        <li>To get valid violations, code has to be compilable.
-          If it is not, you can get hard to understand parse errors.</li>
         <li>You cannot determine the type of an expression.
         Example: "getValue() + getValue2()"</li>
         <li>You cannot determine the full inheritance hierarchy of type.</li>
-        <li>You cannot see the contents of other files. You have access to the
+      </ul>
+      <p>
+        In addition to Java files, there are similar limitations that apply to all
+        type of text files:
+      </p>
+      <ul>
+        <li>
+          Checkstyle cannot properly handle a file's binary
+          <a href="https://en.wikipedia.org/wiki/Byte_order_mark">
+          Byte Order Mark (BOM)</a>, like UTF8's Unicode \uFEFF.
+        </li>
+        <li>
+          You cannot see the contents of other files. You have access to the
           content of one file only during all Checks execution. All files
-          are processed one by one.</li>
+          are processed one by one.
+        </li>
       </ul>
       <p>
         This means that you cannot implement some code inspection
