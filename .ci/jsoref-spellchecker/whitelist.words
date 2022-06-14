@@ -230,6 +230,7 @@ Cloneable
 cloudbees
 clss
 cmdline
+cmp
 cmt
 CNAME
 Cnt
@@ -752,6 +753,7 @@ kbd
 kclee
 KDoc
 keygen
+keyname
 keyrings
 Kochurkin
 konstantinos
@@ -1036,6 +1038,7 @@ parenpad
 parrt
 parsetreetablepresentation
 Passembly
+passphrase
 pathcomplexity
 patreon
 patternvariablename
