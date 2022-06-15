@@ -78,6 +78,7 @@ public abstract class AbstractExpressionHandler {
      *
      * @return the expected indentation amount
      * @noinspection WeakerAccess
+     * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
      */
     public final IndentLevel getIndent() {
         if (indent == null) {
@@ -104,6 +105,7 @@ public abstract class AbstractExpressionHandler {
      *
      * @return suggested indentation for child
      * @noinspection WeakerAccess
+     * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
      */
     public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
         return new IndentLevel(getIndent(), getBasicOffset());
@@ -183,6 +185,7 @@ public abstract class AbstractExpressionHandler {
      * @param ast a root of subtree in which the search should be performed.
      * @return a token which occurs first in the file.
      * @noinspection WeakerAccess
+     * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
      */
     public static DetailAST getFirstToken(DetailAST ast) {
         DetailAST first = ast;
