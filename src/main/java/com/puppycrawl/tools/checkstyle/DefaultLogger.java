@@ -115,6 +115,7 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
      * @param messageFormatter formatter for the log message.
      * @throws IllegalArgumentException if stream options are null
      * @noinspection WeakerAccess
+     * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
      */
     public DefaultLogger(OutputStream infoStream,
                          OutputStreamOptions infoStreamOptions,

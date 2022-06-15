@@ -427,6 +427,7 @@ public class SuppressionCommentFilter
      *
      * @param fileContents the FileContents for this filter.
      * @noinspection WeakerAccess
+     * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
      */
     public void setFileContents(FileContents fileContents) {
         fileContentsReference = new WeakReference<>(fileContents);
