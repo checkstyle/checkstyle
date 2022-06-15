@@ -33,6 +33,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @see <a href="{@docRoot}/../writingchecks.html" target="_top">Writing
  * your own checks</a>
  * @noinspection NoopMethodInAbstractClass
+ * @noinspectionreason NoopMethodInAbstractClass - we allow each check to
+ *      define these methods, as needed. They should be overridden only
+ *      by demand in subclasses
  */
 public abstract class AbstractCheck extends AbstractViolationReporter {
 
@@ -40,6 +43,8 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * The check context.
      *
      * @noinspection ThreadLocalNotStaticFinal
+     * @noinspectionreason ThreadLocalNotStaticFinal - static context
+     *      is problematic for multithreading
      */
     private final ThreadLocal<FileContext> context = ThreadLocal.withInitial(FileContext::new);
 
@@ -91,6 +96,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      *
      * @param strRep the string representation of the tokens interested in
      * @noinspection WeakerAccess
+     * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
      */
     public final void setTokens(String... strRep) {
         Collections.addAll(tokens, strRep);
@@ -191,6 +197,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      *      Usage of this method is no longer accepted.
      *      Please use AST based methods instead.
      * @noinspection WeakerAccess
+     * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
      */
     @Deprecated(since = "9.3")
     public final FileContents getFileContents() {

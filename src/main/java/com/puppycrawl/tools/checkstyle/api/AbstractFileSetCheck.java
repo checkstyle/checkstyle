@@ -30,6 +30,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Provides common functionality for many FileSetChecks.
  *
  * @noinspection NoopMethodInAbstractClass
+ * @noinspectionreason NoopMethodInAbstractClass - we allow each
+ *      check to define these methods, as needed. They
+ *      should be overridden only by demand in subclasses
  */
 public abstract class AbstractFileSetCheck
     extends AbstractViolationReporter
@@ -39,6 +42,8 @@ public abstract class AbstractFileSetCheck
      * The check context.
      *
      * @noinspection ThreadLocalNotStaticFinal
+     * @noinspectionreason ThreadLocalNotStaticFinal - static context is
+     *      problematic for multithreading
      */
     private final ThreadLocal<FileContext> context = ThreadLocal.withInitial(FileContext::new);
 
