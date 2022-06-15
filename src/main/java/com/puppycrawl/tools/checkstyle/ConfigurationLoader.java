@@ -302,6 +302,7 @@ public final class ConfigurationLoader {
      * @return the check configurations
      * @throws CheckstyleException if an error occurs
      * @noinspection WeakerAccess
+     * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
      */
     public static Configuration loadConfiguration(InputSource configSource,
                                                   PropertyResolver overridePropsResolver,
