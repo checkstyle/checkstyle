@@ -137,6 +137,26 @@ steps:
   commands:
   - export PULL_REQUEST=$DRONE_PULL_REQUEST && ./.ci/releasenotes-gen.sh
 
+- name: tweet-releasenotes-gen
+  image: maven:3.8.4-openjdk-11
+  environment:
+    READ_ONLY_TOKEN:
+      from_secret: READ_ONLY_TOKEN
+    TWITTER_CONSUMER_KEY:
+      from_secret: TWITTER_CONSUMER_KEY
+    TWITTER_CONSUMER_SECRET:
+      from_secret: TWITTER_CONSUMER_SECRET
+    TWITTER_ACCESS_TOKEN:
+      from_secret: TWITTER_ACCESS_TOKEN
+    TWITTER_ACCESS_TOKEN_SECRET:
+      from_secret: TWITTER_ACCESS_TOKEN_SECRET
+    MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
+  volumes:
+    - name: m2-cache
+      path: /.m2
+  commands:
+    - export PULL_REQUEST=$DRONE_PULL_REQUEST && ./.ci/tweet-releasenotes.sh
+
 ---
 kind: pipeline
 type: docker
