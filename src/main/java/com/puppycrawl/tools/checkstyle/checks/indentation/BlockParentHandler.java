@@ -68,6 +68,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      * @param ast           the abstract syntax tree
      * @param parent        the parent handler
      * @noinspection WeakerAccess
+     * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
      */
     public BlockParentHandler(IndentationCheck indentCheck,
         String name, DetailAST ast, AbstractExpressionHandler parent) {
