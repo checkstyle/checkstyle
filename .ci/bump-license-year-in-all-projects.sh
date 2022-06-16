@@ -12,6 +12,10 @@ echo "PREV_YEAR=$PREV_YEAR"
 ./.ci/bump-license-year.sh "$PREV_YEAR" "$CURR_YEAR" .
 git add . && git commit -m "minor: bump year to $CURR_YEAR" && git push origin master
 
+on:
+  schedule: \
+      - cron:  '0 0 1 1 *'
+
 mkdir -p .ci-temp/bump-year
 cd .ci-temp/bump-year
 
