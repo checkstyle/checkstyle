@@ -554,9 +554,9 @@
               <td>Supports tracking Checkstyle statistics over time.</td>
             </tr>
             <tr>
-              <td><a href="https://vim.sourceforge.io/">Vim editor</a></td>
+              <td><a href="https://vim8.org/">Vim editor</a></td>
               <td>Xandy Johnson</td>
-              <td><a href="https://vim.sourceforge.io/scripts/script.php?script_id=448">
+              <td><a href="https://vim8.org/">
                   Plugin Homepage</a></td>
               <td>Vim file-type plug-in</td>
             </tr>
