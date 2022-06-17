@@ -23,7 +23,7 @@
  javadoc tag and annotation to deprecate.  It is not clear if the javadoc
  tool will support it or not as newer versions keep flip-flopping on if
  it is supported or will cause an error. See
- &lt;a href="https://bugs.openjdk.java.net/browse/JDK-8160601"&gt;JDK-8160601&lt;/a&gt;.
+ &lt;a href="https://bugs.openjdk.org/browse/JDK-8160601"&gt;JDK-8160601&lt;/a&gt;.
  The deprecated javadoc tag is currently the only way to say why the package
  is deprecated and what to use instead.  Until this is resolved, if you don't
  want to print violations on package-info, you can use a
@@ -32,7 +32,7 @@
  using SuppressionSingleFilter is:
  &lt;/p&gt;
  &lt;pre&gt;
- &amp;lt;!-- required till https://bugs.openjdk.java.net/browse/JDK-8160601 --&amp;gt;
+ &amp;lt;!-- required till https://bugs.openjdk.org/browse/JDK-8160601 --&amp;gt;
  &amp;lt;module name="SuppressionSingleFilter"&amp;gt;
      &amp;lt;property name="checks" value="MissingDeprecatedCheck"/&amp;gt;
      &amp;lt;property name="files" value="package-info\.java"/&amp;gt;
