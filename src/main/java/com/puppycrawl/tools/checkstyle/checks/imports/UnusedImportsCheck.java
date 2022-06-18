@@ -272,7 +272,8 @@ public class UnusedImportsCheck extends AbstractCheck {
                 || parentType == TokenTypes.METHOD_DEF;
 
         final boolean isQualifiedIdent = parentType == TokenTypes.DOT
-                && !TokenUtil.isOfType(ast.getPreviousSibling(), TokenTypes.DOT)
+                && !(ast.getPreviousSibling() != null
+                && TokenUtil.isOfType(ast.getPreviousSibling(), TokenTypes.DOT))
                 && ast.getNextSibling() != null;
 
         if (TokenUtil.isTypeDeclaration(parentType)) {

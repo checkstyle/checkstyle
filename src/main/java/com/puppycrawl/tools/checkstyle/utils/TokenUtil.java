@@ -275,6 +275,124 @@ public final class TokenUtil {
     }
 
     /**
+     * Determines if the token type belongs to the given type.
+     *
+     * @param ast the AST node to check
+     * @param first the acceptable token
+     *
+     * @return true if type matches to given type.
+     */
+    public static boolean isOfType(DetailAST ast, int first) {
+        return isOfType(ast.getType(), first);
+    }
+
+    /**
+     * Determines if the token type belongs to one of the given types.
+     *
+     * @param ast the AST node to check
+     * @param first the acceptable token
+     * @param second the acceptable token
+     * @return true if type matches one of the given types.
+     */
+    public static boolean isOfType(DetailAST ast, int first, int second) {
+        return isOfType(ast.getType(), first, second);
+    }
+
+    /**
+     * Determines if the token type belongs to one of the given types.
+     *
+     * @param ast the AST node to check
+     * @param first the acceptable token
+     * @param second the acceptable token
+     * @param third the acceptable token
+     * @return true if type matches one of the given types.
+     */
+    public static boolean isOfType(DetailAST ast, int first, int second, int third) {
+        return isOfType(ast.getType(), first, second, third);
+    }
+
+    /**
+     * Determines if the token type belongs to one of the given types.
+     *
+     * @param ast the AST node to check
+     * @param first the acceptable token
+     * @param second the acceptable token
+     * @param third the acceptable token
+     * @param fourth the acceptable token
+     * @return true if type matches one of the given types.
+     */
+    public static boolean isOfType(DetailAST ast, int first, int second, int third, int fourth) {
+        return isOfType(ast.getType(), first, second, third, fourth);
+    }
+
+    /**
+     * Determines if the AST belongs to the given types.
+     *
+     * @param ast the AST node to check
+     * @param types the acceptable types
+     *
+     * @return true if type matches one of the given types.
+     */
+    public static boolean isOfType(DetailAST ast, int... types) {
+        return isOfType(ast.getType(), types);
+    }
+
+    /**
+     * Determines if the token type belongs to one of the given type.
+     *
+     * @param type the Token Type to check
+     * @param first the acceptable token
+     *
+     * @return true if type equals to first
+     */
+    public static boolean isOfType(int type, int first) {
+        return type == first;
+    }
+
+    /**
+     * Determines if the token type belongs to one of the given types.
+     *
+     * @param type the Token Type to check
+     * @param first the acceptable token
+     * @param second the acceptable token
+     *
+     * @return true if type equals to first or second
+     */
+    public static boolean isOfType(int type, int first, int second) {
+        return type == first || type == second;
+    }
+
+    /**
+     * Determines if the token type belongs to one of the given types.
+     *
+     * @param type the Token Type to check
+     * @param first the acceptable token
+     * @param second the acceptable token
+     * @param third the acceptable token
+     *
+     * @return true if type equals to first or second or third
+     */
+    public static boolean isOfType(int type, int first, int second, int third) {
+        return type == first || type == second || type == third;
+    }
+
+    /**
+     * Determines if the token type belongs to one of the given types.
+     *
+     * @param type the Token Type to check
+     * @param first the acceptable token
+     * @param second the acceptable token
+     * @param third the acceptable token
+     * @param fourth the acceptable token
+     *
+     * @return true if type equals to first or second or third or fourth
+     */
+    public static boolean isOfType(int type, int first, int second,
+                                   int third, int fourth) {
+        return type == first || type == second || type == third || type == fourth;
+    }
+
+    /**
      * Determines if the token type belongs to the given types.
      *
      * @param type the Token Type to check
@@ -291,18 +409,6 @@ public final class TokenUtil {
             }
         }
         return matching;
-    }
-
-    /**
-     * Determines if the AST belongs to the given types.
-     *
-     * @param ast the AST node to check
-     * @param types the acceptable types
-     *
-     * @return true if type matches one of the given types.
-     */
-    public static boolean isOfType(DetailAST ast, int... types) {
-        return ast != null && isOfType(ast.getType(), types);
     }
 
     /**
