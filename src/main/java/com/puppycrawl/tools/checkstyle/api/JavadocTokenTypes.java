@@ -386,6 +386,8 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
+     *      replaced with Javadoc tag
      */
     public static final int JAVADOC_INLINE_TAG_START = JavadocParser.JAVADOC_INLINE_TAG_START;
 
@@ -406,6 +408,8 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
+     *      replaced with Javadoc tag
      */
     public static final int JAVADOC_INLINE_TAG_END = JavadocParser.JAVADOC_INLINE_TAG_END;
 
@@ -437,6 +441,8 @@ public final class JavadocTokenTypes {
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
+     *      replaced with Javadoc tag
      */
     public static final int CODE_LITERAL = JavadocParser.CODE_LITERAL;
 
@@ -479,6 +485,8 @@ public final class JavadocTokenTypes {
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
+     *      replaced with Javadoc tag
      */
     public static final int DOC_ROOT_LITERAL = JavadocParser.DOC_ROOT_LITERAL;
 
@@ -515,6 +523,8 @@ public final class JavadocTokenTypes {
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
+     *      replaced with Javadoc tag
      */
     public static final int LINK_LITERAL = JavadocParser.LINK_LITERAL;
 
@@ -543,6 +553,8 @@ public final class JavadocTokenTypes {
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
+     *      replaced with Javadoc tag
      */
     public static final int INHERIT_DOC_LITERAL = JavadocParser.INHERIT_DOC_LITERAL;
 
@@ -584,6 +596,8 @@ public final class JavadocTokenTypes {
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
+     *      replaced with Javadoc tag
      */
     public static final int LINKPLAIN_LITERAL = JavadocParser.LINKPLAIN_LITERAL;
 
@@ -615,6 +629,8 @@ public final class JavadocTokenTypes {
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
+     *      replaced with Javadoc tag
      */
     public static final int LITERAL_LITERAL = JavadocParser.LITERAL_LITERAL;
 
@@ -649,6 +665,8 @@ public final class JavadocTokenTypes {
      * Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
      * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
+     *      replaced with Javadoc tag
      */
     public static final int VALUE_LITERAL = JavadocParser.VALUE_LITERAL;
 
@@ -1317,6 +1335,9 @@ public final class JavadocTokenTypes {
      * </pre>
      *
      * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
+     *      replaced with Javadoc tag
      */
     public static final int JAVADOC_INLINE_TAG = JavadocParser.RULE_javadocInlineTag
             + RULE_TYPES_OFFSET;
@@ -1694,6 +1715,8 @@ public final class JavadocTokenTypes {
      * Html comment: <code>&lt;&#33;-- --&gt;</code>.
      *
      * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
+     *      replaced with Javadoc tag
      */
     public static final int HTML_COMMENT = JavadocParser.RULE_htmlComment
             + RULE_TYPES_OFFSET;

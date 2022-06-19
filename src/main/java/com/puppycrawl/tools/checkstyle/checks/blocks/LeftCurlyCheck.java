@@ -289,12 +289,13 @@ public class LeftCurlyCheck
     }
 
     /**
-     * We cannot reduce the number of branches in this switch statement,
-     * since many tokens require specific methods to find the first left
-     * curly.
+     * Visits token.
      *
      * @param ast the token to process
      * @noinspection SwitchStatementWithTooManyBranches
+     * @noinspectionreason SwitchStatementWithTooManyBranches - we cannot reduce
+     *      the number of branches in this switch statement, since many tokens
+     *      require specific methods to find the first left curly
      */
     @Override
     public void visitToken(DetailAST ast) {
