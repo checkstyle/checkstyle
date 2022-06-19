@@ -102,23 +102,34 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;TrailingComment&quot;/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * // OK
+ * if (&#47;&#42; OK &#42;&#47; x &#62; 5) {}
+ * int a = 5; // violation
+ * doSomething(
+ *   param1
+ * ); // OK, by default such trailing of method/code-block ending is allowed
+ * </pre>
+ * <p>
  * To configure the check to enforce only comment on a line:
  * </p>
  * <pre>
  * &lt;module name=&quot;TrailingComment&quot;&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;^\\s*$&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^\s*$&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example for trailing comments check to suppress specific trailing comment:
+ * Example:
  * </p>
  * <pre>
- * public class Test {
- *   int a; // SUPPRESS CHECKSTYLE
- *   int b; // NOPMD
- *   int c; // NOSONAR
- *   int d; // violation, not suppressed
- * }
+ * // OK
+ * if (&#47;&#42; OK, this comment does not end the line &#42;&#47; x &#62; 5) {}
+ * int a = 5; // violation, string before comment should match pattern "^\s*$"
+ * doSomething(
+ *   param1
+ * ); // violation, string before comment should match pattern "^\s*$"
  * </pre>
  * <p>
  * To configure check so that trailing comment with exact comments like "SUPPRESS CHECKSTYLE",
@@ -134,6 +145,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example for trailing comments check to suppress specific trailing comment:
+ * </p>
+ * <pre>
+ * public class Test {
+ *   int a; // SUPPRESS CHECKSTYLE
+ *   int b; // NOPMD
+ *   int c; // NOSONAR
+ *   int d; // violation, not suppressed
+ * }
+ * </pre>
+ * <p>
  * To configure check so that trailing comment starting with "SUPPRESS CHECKSTYLE", "NOPMD",
  * "NOSONAR" are suppressed:
  * </p>
@@ -147,6 +169,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name="query" value="//SINGLE_LINE_COMMENT
  *       [./COMMENT_CONTENT[starts-with(@text, ' NOSONAR')]]"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class Test {
+ *   int a; // SUPPRESS CHECKSTYLE - OK, comment starts with " SUPPRESS CHECKSTYLE"
+ *   int b; // NOPMD - OK, comment starts with " NOPMD"
+ *   int c; // NOSONAR - OK, comment starts with " NOSONAR"
+ *   int d; // violation, not suppressed
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
