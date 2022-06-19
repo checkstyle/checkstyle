@@ -40,6 +40,8 @@ import org.junit.jupiter.api.Test;
  * AllTestsTest.
  *
  * @noinspection ClassIndependentOfModule
+ * @noinspectionreason ClassIndependentOfModule - architecture of
+ *      test modules requires this structure
  */
 public class AllTestsTest {
 
