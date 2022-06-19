@@ -2107,25 +2107,36 @@ d = e / f;        // Another comment for this line
         </source>
 
         <p>
+          Example:
+        </p>
+        <source>
+// OK
+if (/* OK */ x > 5) {}
+int a = 5; // violation
+doSomething(
+  param1
+); // OK, by default such trailing of method/code-block ending is allowed
+        </source>
+
+        <p>
           To configure the check to enforce only comment on a line:
         </p>
         <source>
 &lt;module name=&quot;TrailingComment&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^\\s*$&quot;/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^\s*$&quot;/&gt;
 &lt;/module&gt;
         </source>
 
         <p>
-          Example for trailing comments check to suppress specific trailing comment:
+          Example:
         </p>
-
         <source>
-public class Test {
-int a; // SUPPRESS CHECKSTYLE
-int b; // NOPMD
-int c; // NOSONAR
-int d; // violation, not suppressed
-}
+// OK
+if (&#47;&#42; OK, this comment does not end the line &#42;&#47; x > 5) {}
+int a = 5; // violation, string before comment should match pattern "^\s*$"
+doSomething(
+  param1
+); // violation, string before comment should match pattern "^\s*$"
         </source>
 
         <p>
@@ -2133,33 +2144,55 @@ int d; // violation, not suppressed
           &quot;SUPPRESS CHECKSTYLE&quot;, &quot;NOPMD&quot;, &quot;NOSONAR&quot;
           are suppressed:
         </p>
-
         <source>
 &lt;module name=&quot;TrailingComment&quot;/&gt;
 &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-&lt;property name=&quot;checks&quot; value=&quot;TrailingCommentCheck&quot;/&gt;
-&lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
-[./COMMENT_CONTENT[@text=&apos; NOSONAR\n&apos; or @text=&apos; NOPMD\n&apos;
-or @text=&apos; SUPPRESS CHECKSTYLE\n&apos;]]&quot;/&gt;
+  &lt;property name=&quot;checks&quot; value=&quot;TrailingCommentCheck&quot;/&gt;
+  &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
+    [./COMMENT_CONTENT[@text=&apos; NOSONAR\n&apos; or @text=&apos; NOPMD\n&apos;
+    or @text=&apos; SUPPRESS CHECKSTYLE\n&apos;]]&quot;/&gt;
 &lt;/module&gt;
+        </source>
+
+        <p>
+          Example for trailing comments check to suppress specific trailing comment:
+        </p>
+        <source>
+public class Test {
+  int a; // SUPPRESS CHECKSTYLE
+  int b; // NOPMD
+  int c; // NOSONAR
+  int d; // violation, not suppressed
+}
         </source>
 
         <p>
           To configure check so that trailing comment starting with &quot;SUPPRESS CHECKSTYLE&quot;,
           &quot;NOPMD&quot;, &quot;NOSONAR&quot; are suppressed:
         </p>
-
         <source>
 &lt;module name=&quot;TrailingComment&quot;/&gt;
 &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
-&lt;property name=&quot;checks&quot; value=&quot;TrailingCommentCheck&quot;/&gt;
-&lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
-[./COMMENT_CONTENT[starts-with(@text, &apos; NOPMD&apos;)]]&quot;/&gt;
-&lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
-[./COMMENT_CONTENT[starts-with(@text, &apos; SUPPRESS CHECKSTYLE&apos;)]]&quot;/&gt;
-&lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
-[./COMMENT_CONTENT[starts-with(@text, &apos; NOSONAR&apos;)]]&quot;/&gt;
+  &lt;property name=&quot;checks&quot; value=&quot;TrailingCommentCheck&quot;/&gt;
+  &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
+    [./COMMENT_CONTENT[starts-with(@text, &apos; NOPMD&apos;)]]&quot;/&gt;
+  &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
+    [./COMMENT_CONTENT[starts-with(@text, &apos; SUPPRESS CHECKSTYLE&apos;)]]&quot;/&gt;
+  &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
+    [./COMMENT_CONTENT[starts-with(@text, &apos; NOSONAR&apos;)]]&quot;/&gt;
 &lt;/module&gt;
+        </source>
+
+        <p>
+          Example:
+        </p>
+        <source>
+public class Test {
+  int a; // SUPPRESS CHECKSTYLE - OK, comment starts with " SUPPRESS CHECKSTYLE"
+  int b; // NOPMD - OK, comment starts with " NOPMD"
+  int c; // NOSONAR - OK, comment starts with " NOSONAR"
+  int d; // violation, not suppressed
+}
         </source>
 
       </subsection>
