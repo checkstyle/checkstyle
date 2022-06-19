@@ -49,6 +49,9 @@ import picocli.CommandLine.ParseResult;
  * so they can use them in their configuration gui.
  *
  * @noinspection UseOfSystemOutOrSystemErr, unused, ClassIndependentOfModule
+ * @noinspectionreason UseOfSystemOutOrSystemErr - used for CLI output
+ * @noinspectionreason unused - main method is "unused" in code since it is driver method
+ * @noinspectionreason ClassIndependentOfModule - architecture of package requires this
  */
 public final class JavadocPropertiesGenerator {
 
