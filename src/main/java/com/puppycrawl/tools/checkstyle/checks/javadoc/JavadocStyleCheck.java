@@ -596,6 +596,8 @@ public class JavadocStyleCheck
      * @param comment the {@code TextBlock} which represents
      *                 the Javadoc comment.
      * @noinspection MethodWithMultipleReturnPoints
+     * @noinspectionreason MethodWithMultipleReturnPoints - check and method are
+     *      too complex to break apart
      */
     // -@cs[ReturnCount] Too complex to break apart.
     private void checkHtmlTags(final DetailAST ast, final TextBlock comment) {
