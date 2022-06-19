@@ -343,20 +343,6 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testReplacePropertiesNoReplace() throws Exception {
-        final String[] testValues = {null, "", "a", "$a", "{a",
-                                     "{a}", "a}", "$a}", "$", "a$b", };
-        final Properties props = initProperties();
-        for (String testValue : testValues) {
-            final String value = (String) getReplacePropertiesMethod().invoke(
-                null, testValue, new PropertiesExpander(props), null);
-            assertWithMessage("\"" + testValue + "\"")
-                .that(testValue)
-                .isEqualTo(value);
-        }
-    }
-
-    @Test
     public void testReplacePropertiesSyntaxError() throws Exception {
         final Properties props = initProperties();
         try {
