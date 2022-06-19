@@ -2031,6 +2031,7 @@
             <excludedLink>https://paypal.com/</excludedLink>
             <!-- temporal suppress till plugin update link in his source -->
             <excludedLink>http://www.mojohaus.org/exec-maven-plugin</excludedLink>
+            <excludedLink>http://www.mojohaus.org/versions-maven-plugin</excludedLink>
             <!-- SSL -->
             <excludedLink>https://travis-ci.org/</excludedLink>
             <excludedLink>https://travis-ci.org/checkstyle/checkstyle</excludedLink>
@@ -2132,6 +2133,8 @@
             <excludedLink>https://travis-ci.com/</excludedLink>
             <!-- permanent 403 -->
             <excludedLink>https://docs.github.com/en/rest/checks</excludedLink>
+            <!-- until https://github.com/checkstyle/checkstyle/issues/11754 -->
+            <excludedLink>https://checkstyle.sourceforge.io/version/6.18</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
