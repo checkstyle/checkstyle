@@ -591,7 +591,7 @@ public interface RoadFeature {
           that the API of a record class is defined solely by its state description, and cannot be
           enhanced later by another class. Nested records are implicitly static. This avoids an
           immediately enclosing instance which would silently add state to the record class.
-          See <a href="https://openjdk.java.net/jeps/395">JEP 395</a> for more info.
+          See <a href="https://openjdk.org/jeps/395">JEP 395</a> for more info.
         </p>
 
         <p>
