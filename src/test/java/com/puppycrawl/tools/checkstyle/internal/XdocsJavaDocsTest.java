@@ -133,9 +133,11 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * Test contains asserts in callstack, but idea does not see them.
+     * Validates check javadocs and xdocs for consistency.
      *
      * @noinspection JUnitTestMethodWithNoAssertions
+     * @noinspectionreason JUnitTestMethodWithNoAssertions - asserts in callstack,
+     *      but not in this method
      */
     @Test
     public void testAllCheckSectionJavaDocs() throws Exception {
