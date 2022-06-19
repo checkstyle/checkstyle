@@ -508,6 +508,8 @@ public class XdocsPagesTest {
      * Test contains asserts in callstack, but idea does not see them.
      *
      * @noinspection JUnitTestMethodWithNoAssertions
+     * @noinspectionreason JUnitTestMethodWithNoAssertions -asserts in callstack,
+     *      but not in this method
      */
     @Test
     public void testAllCheckSectionsEx() throws Exception {
