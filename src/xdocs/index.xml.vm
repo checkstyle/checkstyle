@@ -69,24 +69,6 @@
 
     </section>
 
-    <section name="Previous Version Documentation">
-      <p>
-        Current site contains documentation only for latest, released version.
-        We only support this latest version. We highly recommend read latest documentation first.
-        <br/>
-        However, you might need documentation for previous releases because you are still using
-        an older version and latest version describe some features that does not work for you.
-        <br/>
-        You can find documentation for most old versions using a URL format like
-        https://checkstyle.sourceforge.io/version/X.X where "X.X" is the version number.<br/>
-        Example:
-        <a href="https://checkstyle.sourceforge.io/version/6.18/">
-          https://checkstyle.sourceforge.io/version/6.18
-        </a>
-        for version 6.18.
-      </p>
-    </section>
-
     <section name="Development Cycle">
       <p>
         <b>Releases will happen at the end of each month</b>
@@ -552,13 +534,6 @@
               <td>Benoit Xhenseval</td>
               <td><a href="http://qalab.sourceforge.net/">QALab Home Page</a></td>
               <td>Supports tracking Checkstyle statistics over time.</td>
-            </tr>
-            <tr>
-              <td><a href="https://vim.sourceforge.io/">Vim editor</a></td>
-              <td>Xandy Johnson</td>
-              <td><a href="https://vim.sourceforge.io/scripts/script.php?script_id=448">
-                  Plugin Homepage</a></td>
-              <td>Vim file-type plug-in</td>
             </tr>
           </table>
         </div>
