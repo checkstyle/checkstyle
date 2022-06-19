@@ -354,9 +354,6 @@ public final class ConfigurationLoader {
     private static String replaceProperties(
             String value, PropertyResolver props, String defaultValue)
             throws CheckstyleException {
-        if (value == null) {
-            return null;
-        }
 
         final List<String> fragments = new ArrayList<>();
         final List<String> propertyRefs = new ArrayList<>();
@@ -522,15 +519,20 @@ public final class ConfigurationLoader {
             }
             else if (PROPERTY.equals(qName)) {
                 // extract value and name
-                final String value;
-                try {
-                    value = replaceProperties(attributes.getValue(VALUE),
-                        overridePropsResolver, attributes.getValue(DEFAULT));
+                final String attributesValue = attributes.getValue(VALUE);
+
+                String value = null;
+                if (attributesValue != null) {
+                    try {
+                        value = replaceProperties(attributesValue,
+                                overridePropsResolver, attributes.getValue(DEFAULT));
+                    }
+                    catch (final CheckstyleException ex) {
+                        // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
+                        throw new SAXException(ex);
+                    }
                 }
-                catch (final CheckstyleException ex) {
-                    // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
-                    throw new SAXException(ex);
-                }
+
                 final String name = attributes.getValue(NAME);
 
                 // add to attributes of configuration
