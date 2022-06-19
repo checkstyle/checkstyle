@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * create custom AST nodes and in 'JavaAstVisitor.java'.
  *
  * @noinspection FieldNotUsedInToString
+ * @noinspectionreason We require a specific string format for printing to CLI.
  */
 public final class DetailAstImpl implements DetailAST {
 

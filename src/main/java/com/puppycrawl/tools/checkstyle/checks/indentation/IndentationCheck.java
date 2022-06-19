@@ -245,7 +245,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </li>
  * </ul>
  *
- * @noinspection ThisEscapedInObjectConstruction
  * @since 3.1
  */
 @FileStatefulCheck
