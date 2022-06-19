@@ -41,6 +41,7 @@ import org.xml.sax.SAXException;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader.IgnoredModulesOptions;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.internal.utils.ConfigurationUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 /**
@@ -339,20 +340,6 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             assertWithMessage("attribute[" + attName + "]")
                 .that(attribute)
                 .isEqualTo(atts.getProperty(attName));
-        }
-    }
-
-    @Test
-    public void testReplacePropertiesNoReplace() throws Exception {
-        final String[] testValues = {null, "", "a", "$a", "{a",
-                                     "{a}", "a}", "$a}", "$", "a$b", };
-        final Properties props = initProperties();
-        for (String testValue : testValues) {
-            final String value = (String) getReplacePropertiesMethod().invoke(
-                null, testValue, new PropertiesExpander(props), null);
-            assertWithMessage("\"" + testValue + "\"")
-                .that(testValue)
-                .isEqualTo(value);
         }
     }
 
@@ -695,4 +682,49 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         }
     }
 
+    @Test
+    public void testConfigWithEmptyValueString() throws Exception {
+        final Configuration configuration = ConfigurationUtil.loadConfiguration(
+                getPath("InputConfigurationLoaderEmptyValueString.xml")
+        );
+        assertWithMessage("tabWidth value should be empty string")
+                .that(configuration.getProperty("tabWidth"))
+                .isEmpty();
+    }
+
+    @Test
+    public void testConfigWithMissingValueString() throws Exception {
+        final CheckstyleException exception = assertThrows(CheckstyleException.class, () -> {
+                ConfigurationUtil.loadConfiguration(
+                        getPath("InputConfigurationLoaderMissingValueString.xml")
+                );
+            }
+        );
+
+        final String expectedMessage = "Attribute \"value\" is required "
+                + "and must be specified for element type \"property\".";
+        assertWithMessage("Invalid exception cause message")
+                .that(exception)
+                .hasCauseThat()
+                .hasMessageThat()
+                .isEqualTo(expectedMessage);
+    }
+
+    @Test
+    public void testConfigWithMissingValueStringLiteral() throws Exception {
+        final CheckstyleException exception = assertThrows(CheckstyleException.class, () -> {
+                ConfigurationUtil.loadConfiguration(
+                        getPath("InputConfigurationLoaderMissingValueStringLiteral.xml")
+                );
+            }
+        );
+
+        final String expectedMessage = "Open quote is expected for attribute \"value\" "
+                + "associated with an  element type  \"property\".";
+        assertWithMessage("Invalid exception cause message")
+                .that(exception)
+                .hasCauseThat()
+                .hasMessageThat()
+                .isEqualTo(expectedMessage);
+    }
 }
