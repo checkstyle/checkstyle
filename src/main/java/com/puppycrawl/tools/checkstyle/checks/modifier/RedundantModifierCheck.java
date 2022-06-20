@@ -81,7 +81,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * that the API of a record class is defined solely by its state description, and
  * cannot be enhanced later by another class. Nested records are implicitly static. This avoids an
  * immediately enclosing instance which would silently add state to the record class.
- * See <a href="https://openjdk.java.net/jeps/395">JEP 395</a> for more info.</p>
+ * See <a href="https://openjdk.org/jeps/395">JEP 395</a> for more info.</p>
  *
  * <p>Enums by definition are static implicit subclasses of java.lang.Enum&#60;E&#62;.
  * So, the {@code static} modifier on the enums is redundant. In addition,

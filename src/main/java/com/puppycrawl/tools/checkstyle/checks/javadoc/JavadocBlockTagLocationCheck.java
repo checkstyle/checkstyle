@@ -99,7 +99,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * </pre>
  * <p>
  * To configure the check to verify tags from
- * <a href="https://openjdk.java.net/jeps/8068562">JEP 8068562</a> only:
+ * <a href="https://openjdk.org/jeps/8068562">JEP 8068562</a> only:
  * </p>
  * <pre>
  * &lt;module name="JavadocBlockTagLocation"&gt;
