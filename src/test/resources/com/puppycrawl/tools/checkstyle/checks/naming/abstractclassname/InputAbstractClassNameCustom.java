@@ -9,13 +9,15 @@ ignoreName = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.naming.abstractclassname;
 
-abstract public class InputAbstractClassNameCustom { // violation
+// violation below 'Name 'InputAbstractClassNameCustom' must match pattern '\^NonAbstract\.\+\$'.'
+abstract public class InputAbstractClassNameCustom {
 }
 
 abstract class NonAbstractClassNameCustom { // ok
 }
 
-abstract class AbstractClassOtherCustom { // violation
+// violation below 'Name 'AbstractClassOtherCustom' must match pattern '\^NonAbstract\.\+\$'.'
+abstract class AbstractClassOtherCustom {
     abstract class NonAbstractInnerClass { // ok
     }
 }
@@ -26,8 +28,8 @@ class NonAbstractClassCustom { // ok
 class AbstractClassCustom {
 }
 
-
-abstract class AbstractClassName2Custom { // violation
+// violation below 'Name 'AbstractClassName2Custom' must match pattern '\^NonAbstract\.\+\$'.'
+abstract class AbstractClassName2Custom {
     class AbstractInnerClass {
     }
 }
