@@ -15,7 +15,7 @@ abstract public class InputAbstractClassNameType { // ok
 abstract class NonAbstractClassNameType { // ok
 }
 
-class AbstractClassType { // violation
+class AbstractClassType { // violation 'Class 'AbstractClassType' must be declared as 'abstract'.'
     abstract class NonAbstractInnerClass { // ok
     }
 }
@@ -24,7 +24,7 @@ abstract class NonAbstractClassType { // ok
 }
 
 
-class AbstractClassTypes { // violation
+class AbstractClassTypes { // violation 'Class 'AbstractClassTypes' must be declared as 'abstract'.'
 }
 
 abstract class AbstractClassName2Type { // ok
