@@ -240,6 +240,7 @@ codeconventions
 codecov
 codehaus
 codename
+codenarc
 codeql
 codeselectorpresentation
 codeship
@@ -505,6 +506,7 @@ github
 githubusercontent
 Gjs
 globbing
+gmetrics
 google
 googleapis
 googleblog
@@ -512,6 +514,7 @@ googlecloudplatform
 googleecommon
 googlegroups
 googlesource
+Gorm
 govstrangefolder
 gpg
 gradle
@@ -520,6 +523,7 @@ graphicsenv
 Grenner
 grep
 grepped
+groovyism
 groupon
 grp
 Gsp
@@ -1158,6 +1162,7 @@ rtc
 Rtl
 ru
 ruleset
+rulesetfiles
 Ruslan
 rw
 rx
@@ -1176,6 +1181,7 @@ scp
 screenshot
 Scss
 sdk
+sdkman
 selfexplanatory
 Selkin
 semaphoreci
@@ -1481,6 +1487,7 @@ xmlns
 xmlp
 xmlstarlet
 Xmx
+Xor
 xpath
 xpathfilegenerator
 xpathfilegeneratorastfilter
