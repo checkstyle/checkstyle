@@ -51,6 +51,10 @@ jobs:
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Generate ${{ matrix.profile }} report
+        run: |
+          mvn -e --no-transfer-progress -P"${{ matrix.profile }}" clean test-compile \
+          org.pitest:pitest-maven:mutationCoverage
       - name: ${{ matrix.profile }}
         run: |
           ./.ci/pitest.sh ${{ matrix.profile }}
