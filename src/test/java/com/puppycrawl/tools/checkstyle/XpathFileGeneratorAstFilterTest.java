@@ -45,6 +45,7 @@ public class XpathFileGeneratorAstFilterTest {
                 null, XpathFileGeneratorAstFilterTest.class, null);
         final TreeWalkerAuditEvent event = new TreeWalkerAuditEvent(null, null, violation, null);
         final XpathFileGeneratorAstFilter filter = new XpathFileGeneratorAstFilter();
+        filter.finishLocalSetup();
 
         assertWithMessage("filter accepted")
                 .that(filter.accept(event))
@@ -65,6 +66,7 @@ public class XpathFileGeneratorAstFilterTest {
         final TreeWalkerAuditEvent event = createTreeWalkerAuditEvent(
                 "InputXpathFileGeneratorAstFilter.java", violation);
         final XpathFileGeneratorAstFilter filter = new XpathFileGeneratorAstFilter();
+        filter.finishLocalSetup();
 
         assertWithMessage("filter accepted")
                 .that(filter.accept(event))
@@ -87,6 +89,7 @@ public class XpathFileGeneratorAstFilterTest {
         final TreeWalkerAuditEvent event = createTreeWalkerAuditEvent(
                 "InputXpathFileGeneratorAstFilter.java", violation);
         final XpathFileGeneratorAstFilter filter = new XpathFileGeneratorAstFilter();
+        filter.finishLocalSetup();
 
         assertWithMessage("filter accepted")
                 .that(filter.accept(event))
@@ -108,6 +111,7 @@ public class XpathFileGeneratorAstFilterTest {
         final TreeWalkerAuditEvent event = createTreeWalkerAuditEvent(
                 "InputXpathFileGeneratorAstFilter.java", violation);
         final XpathFileGeneratorAstFilter filter = new XpathFileGeneratorAstFilter();
+        filter.finishLocalSetup();
         filter.setTabWidth(6);
 
         assertWithMessage("filter accepted")
@@ -141,6 +145,7 @@ public class XpathFileGeneratorAstFilterTest {
                 "InputXpathFileGeneratorAstFilter.java", violation);
 
         final XpathFileGeneratorAstFilter filter = new XpathFileGeneratorAstFilter();
+        filter.finishLocalSetup();
 
         assertWithMessage("State is not cleared on finishLocalSetup")
                 .that(TestUtil.isStatefulFieldClearedDuringLocalSetup(filter, event,
