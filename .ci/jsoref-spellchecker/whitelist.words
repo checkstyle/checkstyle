@@ -516,6 +516,7 @@ googlegroups
 googlesource
 Gorm
 govstrangefolder
+GPath
 gpg
 gradle
 gradlew
@@ -866,6 +867,7 @@ multiplevariabledeclarations
 Multiset
 multithreading
 mutableexception
+mutationtest
 MVC
 mvn
 mvnw
@@ -1210,6 +1212,8 @@ sivakumar
 Slawinski
 slf
 slist
+Slurper
+slurpersupport
 Sms
 smth
 snyk
