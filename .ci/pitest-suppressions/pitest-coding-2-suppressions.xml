@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>findLastChildWhichContainsSpecifiedToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (astIterator.getType() == childType</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>isCaseTokenWithAnotherCaseFollowing</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>result = findLastChildWhichContainsSpecifiedToken(</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>isIfTokenWithAnElseFollowing</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>return ast.getType() == TokenTypes.LITERAL_IF</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>isInTheSameLoop</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>return loop1 != null &amp;&amp; loop1 == loop2;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>updateUninitializedVariables</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; isSameVariables(storedVariable, variable)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>== ast.getParent()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (ast.getParent().getType() == TokenTypes.SWITCH_RULE</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>HiddenFieldCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck</mutatedClass>
+    <mutatedMethod>isIgnoredParamOfAbstractMethod</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; ast.getType() == TokenTypes.PARAMETER_DEF) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>HiddenFieldCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck</mutatedClass>
+    <mutatedMethod>isIgnoredParamOfAbstractMethod</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (method.getType() == TokenTypes.METHOD_DEF) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>HiddenFieldCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck</mutatedClass>
+    <mutatedMethod>isIgnoredSetterParam</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; methodAST.getType() == TokenTypes.METHOD_DEF</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>HiddenFieldCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck</mutatedClass>
+    <mutatedMethod>isIgnoredSetterParam</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (ignoreSetter &amp;&amp; ast.getType() == TokenTypes.PARAMETER_DEF) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>HiddenFieldCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck</mutatedClass>
+    <mutatedMethod>processLambda</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; firstChild.getType() == TokenTypes.IDENT) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>HiddenFieldCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck</mutatedClass>
+    <mutatedMethod>visitOtherTokens</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (type == TokenTypes.CLASS_DEF</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>HiddenFieldCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck</mutatedClass>
+    <mutatedMethod>visitOtherTokens</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (type == TokenTypes.CLASS_DEF</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalInstantiationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck</mutatedClass>
+    <mutatedMethod>isStandardClass</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; illegal.startsWith(JAVA_LANG)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
+    <mutatedMethod>checkIfSemicolonIsInDifferentLineThanPrevious</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>&amp;&amp; currentStatement.getPreviousSibling().getType() == TokenTypes.RESOURCES;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
+    <mutatedMethod>checkIfSemicolonIsInDifferentLineThanPrevious</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>currentStatement.getPreviousSibling() != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
+    <mutatedMethod>checkIfSemicolonIsInDifferentLineThanPrevious</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (!hasResourcesPrevSibling &amp;&amp; isMultilineStatement(currentStatement)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
+    <mutatedMethod>isMultilineStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>multiline = !TokenUtil.areOnSameLine(prevSibling, ast)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
+    <mutatedMethod>leaveToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (countOfSemiInLambda.isEmpty()) {</lineContent>
+  </mutation>
+</suppressedMutations>

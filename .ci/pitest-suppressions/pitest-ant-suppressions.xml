@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>CheckstyleAntTask.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
+    <mutatedMethod>execute</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.MathMutator</mutator>
+    <description>Replaced long subtraction with addition</description>
+    <lineContent>log(&quot;Total execution took &quot; + (endTime - startTime) + TIME_SUFFIX,</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CheckstyleAntTask.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
+    <mutatedMethod>processFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.MathMutator</mutator>
+    <description>Replaced long subtraction with addition</description>
+    <lineContent>log(&quot;To locate the files took &quot; + (endTime - startTime) + TIME_SUFFIX,</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CheckstyleAntTask.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
+    <mutatedMethod>processFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.MathMutator</mutator>
+    <description>Replaced long subtraction with addition</description>
+    <lineContent>log(&quot;To process the files took &quot; + (processingEndTime - processingStartTime)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CheckstyleAntTask.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask$Formatter</mutatedClass>
+    <mutatedMethod>createDefaultLogger</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (toFile == null || !useFile) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CheckstyleAntTask.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask$Formatter</mutatedClass>
+    <mutatedMethod>createXmlLogger</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (toFile == null || !useFile) {</lineContent>
+  </mutation>
+</suppressedMutations>
