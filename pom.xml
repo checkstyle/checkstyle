@@ -214,11 +214,11 @@
     </maven.sevntu-checkstyle-check.checkstyle.version>
     <maven.versions.plugin.version>2.11.0</maven.versions.plugin.version>
     <java.version>11</java.version>
-    <pitest.plugin.version>1.8.1</pitest.plugin.version>
+    <pitest.plugin.version>1.9.0</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
     <pitest.plugin.threads>4</pitest.plugin.threads>
-    <pitest.junit5.plugin.version>0.16</pitest.junit5.plugin.version>
+    <pitest.junit5.plugin.version>1.0.0</pitest.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
     <junit.version>5.8.2</junit.version>
     <forbiddenapis.version>3.3</forbiddenapis.version>
