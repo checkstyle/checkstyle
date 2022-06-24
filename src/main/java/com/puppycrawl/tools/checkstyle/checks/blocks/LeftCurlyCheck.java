@@ -151,6 +151,32 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * }
  * </pre>
  * <p>
+ * To configure the check to apply the {@code nlow} policy to type blocks:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;LeftCurly&quot;&gt;
+ *   &lt;property name=&quot;option&quot; value=&quot;nlow&quot;/&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF,INTERFACE_DEF&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * class Test
+ * { // Violation - '{' should be on the previous line
+ *   private interface TestInterface { // OK
+ *   }
+ *
+ *   private
+ *   class
+ *   MyClass { // Violation - '{' should be on a new line
+ *   }
+ *
+ *   enum Colors {RED, // OK
+ *     BLUE,
+ *     GREEN;
+ *   }
+ * }
+ * </pre>
+ * <p>
  * An example of how to configure the check to validate enum definitions:
  * </p>
  * <pre>
