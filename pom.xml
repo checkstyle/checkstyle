@@ -2934,6 +2934,8 @@
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.*</param>
+                <!-- JavadocMetadataScraper extends AbstractJavadocCheck -->
+                <param>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperTest</param>
               </targetTests>
               <excludedTestClasses>
                 <param>*.Input*</param>
