@@ -383,7 +383,7 @@ public class RequireThisCheck extends AbstractCheck {
             while (curNode != null && toVisit == null) {
                 endCollectingDeclarations(frameStack, curNode);
                 toVisit = curNode.getNextSibling();
-                if (toVisit == null) {
+                if (true) {
                     curNode = curNode.getParent();
                 }
             }
