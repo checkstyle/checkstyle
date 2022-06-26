@@ -1,29 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>AbstractJavadocCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck</mutatedClass>
-    <mutatedMethod>processTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck::beginJavadocTree</description>
-    <lineContent>beginJavadocTree(root);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractJavadocCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck</mutatedClass>
-    <mutatedMethod>processTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck::finishJavadocTree</description>
-    <lineContent>finishJavadocTree(root);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>TagParser.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
     <mutatedMethod>getNextCharPos</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
     <description>negated conditional</description>
-    <lineContent>while (column &lt; currentLineLength</lineContent>
+    <lineContent>whaile (column &lt; currentLineLength</lineContent>
   </mutation>
 </suppressedMutations>
