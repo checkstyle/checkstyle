@@ -255,7 +255,10 @@ public class FileContentsTest {
                 .isEqualTo(new Comment(new String[] {"/** *"}, 2, 1, 6).toString());
     }
 
-    // until https://github.com/checkstyle/checkstyle/issues/11723
+    /*
+     * This method is deprecated due to usage of deprecated FileContents#inPackageInfo
+     * we keep this method until https://github.com/checkstyle/checkstyle/issues/11723
+     */
     @Deprecated(since = "10.2")
     @Test
     public void testInPackageInfo() {
@@ -268,7 +271,10 @@ public class FileContentsTest {
                 .isTrue();
     }
 
-    // until https://github.com/checkstyle/checkstyle/issues/11723
+    /*
+     * This method is deprecated due to usage of deprecated FileContents#inPackageInfo
+     * we keep this method until https://github.com/checkstyle/checkstyle/issues/11723
+     */
     @Deprecated(since = "10.2")
     @Test
     public void testNotInPackageInfo() {
