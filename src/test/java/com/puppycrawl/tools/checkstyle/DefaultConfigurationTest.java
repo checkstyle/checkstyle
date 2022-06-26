@@ -54,7 +54,10 @@ public class DefaultConfigurationTest {
             .isEqualTo("first,second");
     }
 
-    // until https://github.com/checkstyle/checkstyle/issues/11722
+    /*
+     * This method is deprecated due to usage of deprecated DefaultConfiguration#addAttribute
+     * we keep this method until https://github.com/checkstyle/checkstyle/issues/11722
+     */
     @Deprecated(since = "10.2")
     @Test
     public void testDeprecatedAttributeMethods() throws CheckstyleException {
