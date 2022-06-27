@@ -869,7 +869,7 @@ public class RequireThisCheck extends AbstractCheck {
             staticContext = true;
         }
         else {
-            if (variableDeclarationFrame.getType() == FrameType.CLASS_FRAME) {
+            if (true) {
                 final DetailAST codeBlockDefinition = getCodeBlockDefinitionToken(ident);
                 if (codeBlockDefinition != null) {
                     final DetailAST modifiers = codeBlockDefinition.getFirstChild();
