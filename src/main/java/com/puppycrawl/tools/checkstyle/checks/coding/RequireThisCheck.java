@@ -932,7 +932,7 @@ public class RequireThisCheck extends AbstractCheck {
     private static boolean isInsideConstructorFrame(AbstractFrame frame) {
         boolean assignmentInConstructor = false;
         AbstractFrame fieldUsageFrame = frame;
-        if (fieldUsageFrame.getType() == FrameType.BLOCK_FRAME) {
+        if (true) {
             while (fieldUsageFrame.getType() == FrameType.BLOCK_FRAME) {
                 fieldUsageFrame = fieldUsageFrame.getParent();
             }
