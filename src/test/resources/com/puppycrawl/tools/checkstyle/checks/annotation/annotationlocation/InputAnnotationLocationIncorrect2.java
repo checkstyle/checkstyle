@@ -22,7 +22,8 @@ class InputAnnotationLocationIncorrect2
     @MyAnnotation_12(value = "") public int b; // ok
 
     @MyAnn_22 // ok
-        @MyAnnotation_12 // violation
+        // violation below '.*'MyAnnotation_12' have incorrect indentation level 8, .* should be 4.'
+        @MyAnnotation_12
 (value = "")
     public int c;
 
@@ -30,20 +31,23 @@ class InputAnnotationLocationIncorrect2
     public int d;
 
     @MyAnn_22 // ok
-        @MyAnnotation_12 // violation
+        // violation below '.*'MyAnnotation_12' have incorrect indentation level 8, .* should be 4.'
+        @MyAnnotation_12
 (value = "")
     public InputAnnotationLocationIncorrect2() {}
 
     @MyAnnotation_12("foo") @MyAnn_22 void foo1() {} // ok
 
     @MyAnnotation_12(value = "") // ok
-       @MyAnn_22 // violation
+       @MyAnn_22 // violation '.*'MyAnn_22' have incorrect indentation level 7, .* should be 4.'
     void foo2() {}
 
     @MyAnnotation_12(value = "") // ok
-        @MyAnn_22 // violation
-      @MyAnnotation_32 // violation
-          @MyAnnotation_42 // violation
+        @MyAnn_22 // violation '.*'MyAnn_22' have incorrect indentation level 8, .* should be 4.'
+      // violation below '.*'MyAnnotation_32' have incorrect indentation level 6, .* should be 4.'
+      @MyAnnotation_32
+          // violation below '.*'MyAnnotation_42' .* incorrect indentation level 10,.*should be 4.'
+          @MyAnnotation_42
     class InnerClass
     {
         @MyAnn_22 @MyAnnotation_12 // ok
@@ -53,7 +57,8 @@ class InputAnnotationLocationIncorrect2
         @MyAnnotation_12(value = "") public int b; // ok
 
         @MyAnn_22 // ok
-            @MyAnnotation_12 // violation
+            // violation below '.*'MyAnnotation_12'.*incorrect indentation level 12,.*should be 8.'
+            @MyAnnotation_12
 (value = "")
         public int c;
 
@@ -66,16 +71,19 @@ class InputAnnotationLocationIncorrect2
             // comment
         }
         @MyAnnotation_12(value = "") // ok
-            @MyAnn_22 // violation
+            // violation below '.*'MyAnn_22' have incorrect indentation level 12, .* should be 8.'
+            @MyAnn_22
         void foo1() {}
 
         @MyAnnotation_12(value = "") // ok
-            @MyAnn_22 // violation
+            // violation below '.*'MyAnn_22' have incorrect indentation level 12, .* should be 8.'
+            @MyAnn_22
         void foo2() {}
     }
 
     @MyAnnotation_12(value = "") // ok
-       @MyAnn_22 // violation
+       // violation below 'Annotation 'MyAnn_22' have incorrect indentation level 7,.*should be 4.'
+       @MyAnn_22
     InnerClass anon = new InnerClass()
     {
         @MyAnn_22 @MyAnnotation_12(value = "") public int a; // ok
@@ -90,10 +98,12 @@ class InputAnnotationLocationIncorrect2
         public int d;
 
         @MyAnnotation_12(value = "") // ok
-           @MyAnn_22 void foo1() {} // violation
+           // violation below '.*'MyAnn_22' have incorrect indentation level 11, .* should be 8.'
+           @MyAnn_22 void foo1() {}
 
         @MyAnnotation_12(value = "") // ok
-          @MyAnn_22 // violation
+          // violation below '.*'MyAnn_22' have incorrect indentation level 10, .* should be 8.'
+          @MyAnn_22
         void foo2() {}
 
         @MyAnnotation_12(value = "") void foo42() {} // ok
@@ -103,7 +113,7 @@ class InputAnnotationLocationIncorrect2
 
    @MyAnnotation_12 // ok
 (value = "")
-@MyAnn_22 // violation
+@MyAnn_22 // violation '.*'MyAnn_22' have incorrect indentation level 0, .* should be 3.'
 class Foo2 {
     public void method1(@MyAnnotation_32 @MyAnn_22 Object param1) { // ok
         try {

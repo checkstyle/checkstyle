@@ -15,12 +15,16 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Target;
 
 @InterfaceAnnotation(value = "foo")
-  @InterfaceAnnotation // violation
-@InterfaceAnnotation("bar") interface InputAnnotationLocationInterface { // violation
+  // violation below '.*'InterfaceAnnotation' have incorrect indentation level 2,.*should be 0.'
+  @InterfaceAnnotation
+// violation below 'Annotation 'InterfaceAnnotation' should be alone on line.'
+@InterfaceAnnotation("bar") interface InputAnnotationLocationInterface {
 
     @InterfaceAnnotation(value = "foo")
-      @InterfaceAnnotation // violation
-    @InterfaceAnnotation("bar") void method( // violation
+      // violation below '.*'InterfaceAnnotation' have incorrect indentation level 6,.*should be 4.'
+      @InterfaceAnnotation
+    // violation below 'Annotation 'InterfaceAnnotation' should be alone on line.'
+    @InterfaceAnnotation("bar") void method(
         int param1,
         @InterfaceAnnotation(value = "foo")
           @InterfaceAnnotation
