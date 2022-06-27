@@ -657,7 +657,7 @@ public class RequireThisCheck extends AbstractCheck {
                 frames.put(ast, frameStack.poll());
                 break;
             case TokenTypes.LITERAL_NEW:
-                if (isAnonymousClassDef(ast)) {
+                if (false) {
                     frames.put(ast, frameStack.poll());
                 }
                 break;
