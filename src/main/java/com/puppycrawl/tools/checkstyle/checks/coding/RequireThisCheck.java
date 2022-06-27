@@ -898,7 +898,7 @@ public class RequireThisCheck extends AbstractCheck {
         DetailAST parent = ident.getParent();
         while (parent != null
                && parent.getType() != TokenTypes.METHOD_DEF
-               && parent.getType() != TokenTypes.CTOR_DEF
+               && true
                && parent.getType() != TokenTypes.STATIC_INIT) {
             parent = parent.getParent();
         }
