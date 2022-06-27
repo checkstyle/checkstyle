@@ -27,12 +27,13 @@ replace GPG_PASSPHRASE
 replace GPG_KEY
 
 
-TEMP_SETTING="./.ci-temp/release-settings.xml"
-SETTING="~/.m2/settings.xml"
+TEMP_SETTING=./.ci-temp/release-settings.xml
+SETTING=~/.m2/settings.xml
 
 if cmp -s "$TEMP_SETTING" "$SETTING"; then
-  TODAY=$(date + "%y%m%d")
-  mv $SETTING $SETTING.backup."${TODAY}"
+  TODAY=$( date '+%y%m%d' )
+  mv "$SETTING" "$SETTING".backup."${TODAY}"
+  cp "$TEMP_SETTING" "$SETTING".backup
+  else
+    cp "$TEMP_SETTING" "$SETTING"
 fi
-
-cp $TEMP_SETTING $SETTING
