@@ -58,7 +58,8 @@ pitest-annotation|pitest-design \
 |pitest-meta \
 |pitest-tree-walker \
 |pitest-utils \
-|pitest-java-ast-visitor)
+|pitest-java-ast-visitor \
+|pitest-javadoc)
   declare -a ignoredItems=();
   checkPitestReport ignoredItems
   ;;
@@ -139,13 +140,6 @@ pitest-indentation)
   "SynchronizedHandler.java.html:<td class='covered'><pre><span  class='survived'>            checkSynchronizedExpr();</span></pre></td></tr>"
   "SynchronizedHandler.java.html:<td class='covered'><pre><span  class='survived'>            checkWrappingIndentation(getMainAst(),</span></pre></td></tr>"
   "TryHandler.java.html:<td class='covered'><pre><span  class='survived'>            checkTryResParen(getTryResLparen(), &#34;lparen&#34;);</span></pre></td></tr>"
-  );
-  checkPitestReport ignoredItems
-  ;;
-
-pitest-javadoc)
-  declare -a ignoredItems=(
-  "TagParser.java.html:<td class='covered'><pre><span  class='survived'>                while (column &#60; currentLineLength</span></pre></td></tr>"
   );
   checkPitestReport ignoredItems
   ;;
