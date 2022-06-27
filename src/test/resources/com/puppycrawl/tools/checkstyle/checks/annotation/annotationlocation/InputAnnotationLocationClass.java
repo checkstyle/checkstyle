@@ -15,16 +15,22 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Target;
 
 @ClassAnnotation(value = "foo")
-  @ClassAnnotation // violation
-@ClassAnnotation("bar") class InputAnnotationLocationClass { // violation
+  // violation below '.*'ClassAnnotation' have incorrect indentation level 2, .* should be 0.'
+  @ClassAnnotation
+// violation below 'Annotation 'ClassAnnotation' should be alone on line.'
+@ClassAnnotation("bar") class InputAnnotationLocationClass {
 
     @ClassAnnotation(value = "foo")
-      @ClassAnnotation // violation
-    @ClassAnnotation("bar") Object field; // violation
+      // violation below '.*'ClassAnnotation' have incorrect indentation level 6, .* should be 4.'
+      @ClassAnnotation
+    // violation below 'Annotation 'ClassAnnotation' should be alone on line.'
+    @ClassAnnotation("bar") Object field;
 
     @ClassAnnotation(value = "foo")
-      @ClassAnnotation // violation
-    @ClassAnnotation("bar") InputAnnotationLocationClass() { // violation
+    // violation below '.*'ClassAnnotation' have incorrect indentation level 6, .* should be 4.'
+      @ClassAnnotation
+    // violation below 'Annotation 'ClassAnnotation' should be alone on line.'
+    @ClassAnnotation("bar") InputAnnotationLocationClass() {
     }
 
 }
