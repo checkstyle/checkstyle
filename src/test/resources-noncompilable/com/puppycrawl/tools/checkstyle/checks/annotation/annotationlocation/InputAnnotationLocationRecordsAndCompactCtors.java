@@ -16,20 +16,25 @@ public class InputAnnotationLocationRecordsAndCompactCtors {
     @NonNull1 public record MyRecord1() { // ok, no param
     }
 
-    @SuppressWarnings("deprecation") public record MyRecord2() { // violation
+    // violation below 'Annotation 'SuppressWarnings' should be alone on line.'
+    @SuppressWarnings("deprecation") public record MyRecord2() {
     }
 
-    @SuppressWarnings("deprecation") record MyRecord3() { // violation
+    // violation below 'Annotation 'SuppressWarnings' should be alone on line.'
+    @SuppressWarnings("deprecation") record MyRecord3() {
     }
 
-    @SuppressWarnings("deprecation") public record MyRecord4() { // violation
-        @SuppressWarnings("deprecation")public MyRecord4{} // violation
+    // violation below 'Annotation 'SuppressWarnings' should be alone on line.'
+    @SuppressWarnings("deprecation") public record MyRecord4() {
+        // violation below 'Annotation 'SuppressWarnings' should be alone on line.'
+        @SuppressWarnings("deprecation")public MyRecord4{}
     }
 
     @SuppressWarnings("deprecation")
     public record MyRecord5() {
         record MyInnerRecord(){
-            @SuppressWarnings("Annotation")public MyInnerRecord{} // violation
+            // violation below 'Annotation 'SuppressWarnings' should be alone on line.'
+            @SuppressWarnings("Annotation")public MyInnerRecord{}
         }
     }
 
@@ -40,7 +45,8 @@ public class InputAnnotationLocationRecordsAndCompactCtors {
     @SuppressWarnings("deprecation") // ok
     public record MyRecord6() {
         record MyInnerRecord () {
-            @SuppressWarnings("Annotation")public MyInnerRecord { // violation
+            // violation below 'Annotation 'SuppressWarnings' should be alone on line.'
+            @SuppressWarnings("Annotation")public MyInnerRecord {
             }
         }
     }
@@ -51,7 +57,7 @@ public class InputAnnotationLocationRecordsAndCompactCtors {
      */
     public record MyRecord7() {
         record MyInnerRecord () {@SuppressWarnings("Annotation")public MyInnerRecord {
-            } // violation above
+            } // violation above 'Annotation 'SuppressWarnings' should be alone on line.'
         }
     }
 }
