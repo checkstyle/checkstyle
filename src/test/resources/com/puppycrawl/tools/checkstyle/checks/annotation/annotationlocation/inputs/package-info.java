@@ -9,6 +9,6 @@ tokens = PACKAGE_DEF
 */
 
 @PackageAnnotation(value = "foo")
-  @PackageAnnotation // violation
+   @PackageAnnotation // violation
 @PackageAnnotation("bar") package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation.inputs; // violation
 
