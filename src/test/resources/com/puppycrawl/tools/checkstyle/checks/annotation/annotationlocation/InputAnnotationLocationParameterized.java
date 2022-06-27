@@ -15,7 +15,7 @@ import java.lang.annotation.Repeatable;
 
 class InputAnnotationLocationParameterized {
 
-    @Annotation void singleParameterless() {} // violation
+    @Annotation void singleParameterless() {} // violation '.* should be alone on line.'
 
     @Annotation @Annotation void multipleParameterless() {} // 2 violations
 
@@ -25,7 +25,8 @@ class InputAnnotationLocationParameterized {
 
     @Annotation @Annotation("") @Annotation(value = "") void multiple() {} // 3 violations
 
-    @Annotation("") @Annotation(value = "") void multipleParametrized() {} // violation
+    // violation below 'Annotation 'Annotation' should be alone on line.'
+    @Annotation("") @Annotation(value = "") void multipleParametrized() {}
 
     @Repeatable(Annotations.class)
     @interface Annotation {

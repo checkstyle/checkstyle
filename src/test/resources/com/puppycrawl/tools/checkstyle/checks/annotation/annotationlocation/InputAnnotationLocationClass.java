@@ -15,16 +15,18 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Target;
 
 @ClassAnnotation(value = "foo")
-  @ClassAnnotation // violation
-@ClassAnnotation("bar") class InputAnnotationLocationClass { // violation
+  @ClassAnnotation // violation '.* incorrect .* level 2, .* should be 0.'
+// violation below 'Annotation 'ClassAnnotation' should be alone on line.'
+@ClassAnnotation("bar") class InputAnnotationLocationClass {
 
     @ClassAnnotation(value = "foo")
-      @ClassAnnotation // violation
-    @ClassAnnotation("bar") Object field; // violation
+      @ClassAnnotation // violation '.* incorrect .* level 6, .* should be 4.'
+    @ClassAnnotation("bar") Object field; // violation '.* should be alone on line.'
 
     @ClassAnnotation(value = "foo")
-      @ClassAnnotation // violation
-    @ClassAnnotation("bar") InputAnnotationLocationClass() { // violation
+      @ClassAnnotation // violation '.* incorrect .* level 6, .* should be 4.'
+    // violation below 'Annotation 'ClassAnnotation' should be alone on line.'
+    @ClassAnnotation("bar") InputAnnotationLocationClass() {
     }
 
 }
