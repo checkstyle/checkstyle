@@ -107,7 +107,7 @@ class TagParser {
                 position = parseTag(text, lineNo, nLines, position);
             }
             else {
-                position = getNextCharPos(text, position);
+                position = getNextPoint(text, position);
             }
             position = findChar(text, '<', position);
         }
@@ -224,7 +224,7 @@ class TagParser {
         toPoint = findChar(text, '>', toPoint);
         while (toPoint.getLineNo() < text.length && !text[toPoint.getLineNo()]
                 .substring(0, toPoint.getColumnNo() + 1).endsWith("-->")) {
-            toPoint = findChar(text, '>', getNextCharPos(text, toPoint));
+            toPoint = findChar(text, '>', getNextPoint(text, toPoint));
         }
         return toPoint;
     }
@@ -241,45 +241,28 @@ class TagParser {
         Point curr = new Point(from.getLineNo(), from.getColumnNo());
         while (curr.getLineNo() < text.length
                && text[curr.getLineNo()].charAt(curr.getColumnNo()) != character) {
-            curr = getNextCharPos(text, curr);
+            curr = getNextPoint(text, curr);
         }
 
         return curr;
     }
 
     /**
-     * Returns position of next comment character, skips
-     * whitespaces and asterisks.
+     * Increments column number to be examined, moves onto the next line when no
+     * more characters are available.
      *
      * @param text to search.
      * @param from location to search from
-     * @return location of the next character.
+     * @return next point to be examined
      */
-    private static Point getNextCharPos(String[] text, Point from) {
+    private static Point getNextPoint(String[] text, Point from) {
         int line = from.getLineNo();
         int column = from.getColumnNo() + 1;
         while (line < text.length && column >= text[line].length()) {
             // go to the next line
             line++;
             column = 0;
-            if (line < text.length) {
-                // skip beginning spaces and stars
-                final String currentLine = text[line];
-                final int currentLineLength = currentLine.length();
-                while (column < currentLineLength
-                       && (Character.isWhitespace(currentLine.charAt(column))
-                           || currentLine.charAt(column) == '*')) {
-                    column++;
-                    if (column < currentLineLength
-                        && currentLine.charAt(column - 1) == '*'
-                        && currentLine.charAt(column) == '/') {
-                        // this is end of comment
-                        column = currentLineLength;
-                    }
-                }
-            }
         }
-
         return new Point(line, column);
     }
 
