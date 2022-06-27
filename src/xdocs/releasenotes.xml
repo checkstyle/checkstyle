@@ -10,6 +10,135 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.3.1">
+      <div class="releaseDate">27.06.2022</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            FallThrough should recognize yield also.
+            Author: Hyeonmin Park
+            <a href="https://github.com/checkstyle/checkstyle/issues/11712">#11712</a>
+          </li>
+          <li>
+            FinalClassCheck: False positive with anonymous classes.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11365">#11365</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Automate creation of settings.xml file for release.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/11726">#11726</a>
+          </li>
+          <li>
+            Automate update of releasenotes.xml by content for new release.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/11729">#11729</a>
+          </li>
+          <li>
+            Automate twitter posts to use single shell command.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/11725">#11725</a>
+          </li>
+          <li>
+            Resolve Pitest Issues.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/7797">#7797</a>
+          </li>
+          <li>
+            dependency: bump pitest-maven from 1.8.1 to 1.9.0.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/11761">#11761</a>
+          </li>
+          <li>
+            Disable IDEA Inspection for  `AnnotationClass` .
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/11710">#11710</a>
+          </li>
+          <li>
+            Update doc for LeftCurly.
+            Author: Perin-Mangukiya
+            <a href="https://github.com/checkstyle/checkstyle/issues/7582">#7582</a>
+          </li>
+          <li>
+            Missed limitation: Checkstyle can&#39;t parse UTF8 Java File with
+UTF8 BOM.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/11698">#11698</a>
+          </li>
+          <li>
+            Specify violation messages in input files..
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+          <li>
+            Resolve IDEA violations from Teamcity 2022.04 (Bundled IntelliJ IDEA
+2021.2.3).
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11566">#11566</a>
+          </li>
+          <li>
+            Pitest: Create robust method of surviving mutation suppression.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11665">#11665</a>
+          </li>
+          <li>
+            update code base to have javadoc tag to explain noinspection tag
+content.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/11277">#11277</a>
+          </li>
+          <li>
+            Update doc for TrailingComment.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/7592">#7592</a>
+          </li>
+          <li>
+            Add codenarc to CI for groovy files .
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11734">#11734</a>
+          </li>
+          <li>
+            Move Backport section on index page to be update JRE_and_JDK .
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11735">#11735</a>
+          </li>
+          <li>
+            .ci/pitest.sh --list doesn&#39;t show all pitest profiles.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11730">#11730</a>
+          </li>
+          <li>
+            Split pitest-coding execution into 3 executions and investigate
+instability.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11528">#11528</a>
+          </li>
+          <li>
+            Use Shellcheck to resolve violations code in Shell Script.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/11637">#11637</a>
+          </li>
+          <li>
+            Add &#39;git diff&#39; validation after execution of verify phase to
+Azure.
+            Author: Rahul Khinchi
+            <a href="https://github.com/checkstyle/checkstyle/issues/11554">#11554</a>
+          </li>
+          <li>
+            Solve fb-contrib errors.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11140">#11140</a>
+          </li>
+          <li>
+            Checkstyle doesn&#39;t publish test source code.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/11681">#11681</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.3">
       <div class="releaseDate">29.05.2022</div>
       <p>New:</p>
