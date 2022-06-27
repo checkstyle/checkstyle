@@ -15,12 +15,12 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Target;
 
 @EnumAnnotation(value = "foo")
-  @EnumAnnotation // violation
-@EnumAnnotation("bar") enum InputAnnotationLocationEnum { // violation
+  @EnumAnnotation // violation '.* incorrect .* level 2, .* should be 0.'
+@EnumAnnotation("bar") enum InputAnnotationLocationEnum { // violation '.* should be alone on line.'
 
     @EnumAnnotation(value = "foo")
-      @EnumAnnotation // violation
-    @EnumAnnotation("bar") ENUM_VALUE(); // violation
+      @EnumAnnotation // violation '.* incorrect .* level 6, .* should be 4.'
+    @EnumAnnotation("bar") ENUM_VALUE(); // violation '.* should be alone on line.'
 
     InputAnnotationLocationEnum() {
     }

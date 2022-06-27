@@ -15,12 +15,13 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Target;
 
 @AnnotationAnnotation(value = "foo")
-  @AnnotationAnnotation // violation
-@AnnotationAnnotation("bar") @interface InputAnnotationLocationAnnotation { // violation
+  @AnnotationAnnotation // violation '.* incorrect .* level 2, .* should be 0.'
+// violation below 'Annotation 'AnnotationAnnotation' should be alone on line.'
+@AnnotationAnnotation("bar") @interface InputAnnotationLocationAnnotation {
 
     @AnnotationAnnotation(value = "foo")
-      @AnnotationAnnotation // violation
-    @AnnotationAnnotation("bar") String value(); // violation
+      @AnnotationAnnotation // violation '.* incorrect .* level 6, .* should be 4.'
+    @AnnotationAnnotation("bar") String value(); // violation '.* should be alone on line.'
 
 }
 
