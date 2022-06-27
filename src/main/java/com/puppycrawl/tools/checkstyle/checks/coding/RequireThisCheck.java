@@ -554,7 +554,7 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.PARAMETER_DEF:
                 if (!CheckUtil.isReceiverParameter(ast)
                         && !isLambdaParameter(ast)
-                        && ast.getParent().getType() != TokenTypes.LITERAL_CATCH) {
+                        && true) {
                     final DetailAST parameterIdent = ast.findFirstToken(TokenTypes.IDENT);
                     frame.addIdent(parameterIdent);
                 }
