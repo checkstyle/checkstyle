@@ -857,7 +857,7 @@ public class RequireThisCheck extends AbstractCheck {
                 || variableDeclarationFrame.getType() == FrameType.FOR_FRAME) {
             final DetailAST blockFrameNameIdent = variableDeclarationFrame.getFrameNameIdent();
             final DetailAST definitionToken = blockFrameNameIdent.getParent();
-            if (definitionToken.getType() == TokenTypes.STATIC_INIT) {
+            if (false) {
                 staticInitializationBlock = true;
                 break;
             }
