@@ -255,6 +255,7 @@ no-error-xwiki)
   mvn -e --no-transfer-progress clean install -Pno-validations
   checkout_from "https://github.com/xwiki/xwiki-commons.git"
   cd .ci-temp/xwiki-commons
+  git checkout "47cad118926ea880fe""deb6af8fded""db04df9d964"
   # Build custom Checkstyle rules
   mvn -e --no-transfer-progress -f \
     xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
