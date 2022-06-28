@@ -19,11 +19,12 @@ class InputAnnotationLocationSingleParameterless {
 
     @Annotation void singleParameterless() {}
 
-    @Annotation @Annotation void multipleParameterless() {} // violation
+    // violation below 'Annotation 'Annotation' should be alone on line.'
+    @Annotation @Annotation void multipleParameterless() {}
 
-    @Annotation("") void parameterized() {} // violation
+    @Annotation("") void parameterized() {} // violation '.* should be alone on line.'
 
-    @Annotation(value = "") void namedParameterized() {} // violation
+    @Annotation(value = "") void namedParameterized() {} // violation '.* should be alone on line.'
 
     @Annotation @Annotation("") @Annotation(value = "") void multiple() {} // 2 violations
 
