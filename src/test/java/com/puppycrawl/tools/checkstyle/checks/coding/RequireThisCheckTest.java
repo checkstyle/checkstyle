@@ -444,6 +444,14 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAnonymousInnerClass() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getPath("InputRequireThisAnonymousInnerClass.java"), expected);
+    }
+
+    @Test
     public void testUnusedMethod() throws Exception {
         final DetailAstImpl ident = new DetailAstImpl();
         ident.setText("testName");
