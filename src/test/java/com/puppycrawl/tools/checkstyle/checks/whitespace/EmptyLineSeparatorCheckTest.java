@@ -182,13 +182,20 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testJavadocCommentAfterPackageWithImports() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
         final String[] expected = {
-            "2:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "/*"),
+            "14:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "/*"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorJavadocCommentAfterPackage.java"),
                 expected);
+    }
+
+    @Test
+    public void testPackagePlacedOnFirstLine() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        execute(checkConfig,
+                getPath("InputEmptyLineSeparatorPackagePlacedOnFirstLine.java"));
+        assertWithMessage("There should be no violations.");
     }
 
     @Test
@@ -303,22 +310,27 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testPrePreviousLineEmptiness() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addProperty("allowMultipleEmptyLines", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-            getPath("InputEmptyLineSeparatorPrePreviousLineEmptiness.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorPrePreviousLineEmptiness.java"), expected);
     }
 
     @Test
     public void testPrePreviousLineIsEmpty() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "package"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorPrePreviousLineIsEmpty.java"), expected);
+    }
+
+    @Test
+    public void testPrePreviousLineIsEmpty2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
         checkConfig.addProperty("allowMultipleEmptyLines", "false");
-        final String[] expected = {
-            "3:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "package"),
-        };
-        verify(checkConfig,
-                getPath("InputEmptyLineSeparatorPrePreviousLineIsEmpty.java"), expected);
+        execute(checkConfig,
+                getPath("InputEmptyLineSeparatorPrePreviousLineIsEmpty2.java"));
+        assertWithMessage("'package' has more than 1 empty lines before.");
     }
 
     @Test
@@ -488,27 +500,25 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testEmptyLineSeparatorRecordsAndCompactCtors() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-
         final String[] expected = {
-            "2:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
-            "15:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "RECORD_DEF"),
-            "17:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
-            "18:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "COMPACT_CTOR_DEF"),
-            "19:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CTOR_DEF"),
-            "20:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "STATIC_INIT"),
-            "22:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "RECORD_DEF"),
-            "23:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
-            "25:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
-            "26:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CTOR_DEF"),
-            "27:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CTOR_DEF"),
-            "32:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "COMPACT_CTOR_DEF"),
-            "33:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
-            "38:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "COMPACT_CTOR_DEF"),
-            "39:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "14:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
+            "18:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "RECORD_DEF"),
+            "20:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "21:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "COMPACT_CTOR_DEF"),
+            "22:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CTOR_DEF"),
+            "23:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "STATIC_INIT"),
+            "25:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "RECORD_DEF"),
+            "26:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+            "28:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "29:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CTOR_DEF"),
+            "30:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CTOR_DEF"),
+            "35:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "COMPACT_CTOR_DEF"),
+            "36:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "41:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "COMPACT_CTOR_DEF"),
+            "42:9: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
         };
 
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
                 getNonCompilablePath("InputEmptyLineSeparatorRecordsAndCompactCtors.java"),
                 expected);
     }
