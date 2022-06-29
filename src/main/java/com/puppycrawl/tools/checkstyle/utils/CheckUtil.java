@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -563,10 +564,10 @@ public final class CheckUtil {
      * Helper method for stripIndentAndInitialNewLineFromTextBlock, to determine the smallest
      * indent in a text block string literal.
      *
-     * @param lines list of actual text block content, split by line.
+     * @param lines collection of actual text block content, split by line.
      * @return number of spaces representing the smallest indent in this text block.
      */
-    private static int getSmallestIndent(List<String> lines) {
+    private static int getSmallestIndent(Collection<String> lines) {
         return lines.stream()
             .mapToInt(CommonUtil::indexOfNonWhitespace)
             .min()

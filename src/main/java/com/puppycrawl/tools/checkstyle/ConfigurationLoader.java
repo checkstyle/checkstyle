@@ -24,6 +24,7 @@ import java.net.URI;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -387,18 +388,18 @@ public final class ConfigurationLoader {
 
     /**
      * Parses a string containing {@code ${xxx}} style property
-     * references into two lists. The first list is a collection
+     * references into two collections. The first one is a collection
      * of text fragments, while the other is a set of string property names.
-     * {@code null} entries in the first list indicate a property
-     * reference from the second list.
+     * {@code null} entries in the first collection indicate a property
+     * reference from the second collection.
      *
      * <p>Code copied from ant -
      * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
      *
      * @param value     Text to parse. Must not be {@code null}.
-     * @param fragments List to add text fragments to.
+     * @param fragments Collection to add text fragments to.
      *                  Must not be {@code null}.
-     * @param propertyRefs List to add property names to.
+     * @param propertyRefs Collection to add property names to.
      *                     Must not be {@code null}.
      *
      * @throws CheckstyleException if the string contains an opening
@@ -406,8 +407,8 @@ public final class ConfigurationLoader {
      *                           {@code }}
      */
     private static void parsePropertyString(String value,
-                                           List<String> fragments,
-                                           List<String> propertyRefs)
+                                           Collection<String> fragments,
+                                           Collection<String> propertyRefs)
             throws CheckstyleException {
         int prev = 0;
         // search for the next instance of $ from the 'prev' position

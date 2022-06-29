@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -442,7 +443,7 @@ public class JavadocTypeCheck
      * @param tagName the required tag name.
      * @param formatPattern regexp for the tag value.
      */
-    private void checkTag(DetailAST ast, List<JavadocTag> tags, String tagName,
+    private void checkTag(DetailAST ast, Iterable<JavadocTag> tags, String tagName,
                           Pattern formatPattern) {
         if (formatPattern != null) {
             boolean hasTag = false;
@@ -471,7 +472,7 @@ public class JavadocTypeCheck
      * @param recordComponentName the name of the type parameter
      */
     private void checkComponentParamTag(DetailAST ast,
-                                        List<JavadocTag> tags,
+                                        Collection<JavadocTag> tags,
                                         String recordComponentName) {
 
         final boolean found = tags
