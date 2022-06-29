@@ -103,6 +103,7 @@ public final class Main {
      * @param args the command line arguments.
      * @throws IOException if there is a problem with files access
      * @noinspection UseOfSystemOutOrSystemErr, CallToPrintStackTrace, CallToSystemExit
+     * @noinspectionreason driver for Checkstyle, requires all above inspections to be suppressed
      **/
     public static void main(String... args) throws IOException {
 
@@ -171,6 +172,7 @@ public final class Main {
      * @throws IOException if a file could not be read.
      * @throws CheckstyleException if something happens processing the files.
      * @noinspection UseOfSystemOutOrSystemErr
+     * @noinspectionreason we use System.out for CLI output
      */
     private static int execute(ParseResult parseResult, CliOptions options)
             throws IOException, CheckstyleException {
@@ -270,6 +272,7 @@ public final class Main {
      * @throws IOException if a file could not be read.
      * @throws CheckstyleException if something happens processing the files.
      * @noinspection UseOfSystemOutOrSystemErr
+     * @noinspectionreason we use System.out for CLI output
      */
     private static int runCli(CliOptions options, List<File> filesToProcess)
             throws IOException, CheckstyleException {
@@ -501,6 +504,7 @@ public final class Main {
      * @return output stream
      * @throws IOException might happen
      * @noinspection UseOfSystemOutOrSystemErr
+     * @noinspectionreason we use System.out for CLI output
      */
     @SuppressWarnings("resource")
     private static OutputStream getOutputStream(Path outputPath) throws IOException {
@@ -535,8 +539,8 @@ public final class Main {
      * Enumeration over the possible output formats.
      *
      * @noinspection PackageVisibleInnerClass
+     * @noinspectionreason we keep this enum package visible for tests
      */
-    // Package-visible for tests.
     enum OutputFormat {
         /** XML output format. */
         XML,
@@ -602,6 +606,7 @@ public final class Main {
      *
      * @noinspection unused, FieldMayBeFinal, CanBeFinal,
      *              MismatchedQueryAndUpdateOfCollection, LocalCanBeFinal
+     * @noinspectionreason usage of picocli requires suppression of above inspections
      */
     @Command(name = "checkstyle", description = "Checkstyle verifies that the specified "
             + "source code files adhere to the specified rules. By default, violations are "
@@ -627,19 +632,14 @@ public final class Main {
 
         /**
          * The checker threads number.
-         * Suppression: CanBeFinal - we use picocli and it use reflection to manage such fields
          * This option has been skipped for CLI options intentionally.
          *
-         * @noinspection CanBeFinal
          */
         private static final int CHECKER_THREADS_NUMBER = DEFAULT_THREAD_COUNT;
 
         /**
          * The tree walker threads number.
-         * Suppression: CanBeFinal - we use picocli and it use reflection to manage such fields
-         * This option has been skipped for CLI options intentionally.
          *
-         * @noinspection CanBeFinal
          */
         private static final int TREE_WALKER_THREADS_NUMBER = DEFAULT_THREAD_COUNT;
 
@@ -676,9 +676,9 @@ public final class Main {
 
         /**
          * Tab character length.
-         * Suppression: CanBeFinal - we use picocli and it use reflection to manage such fields
          *
          * @noinspection CanBeFinal
+         * @noinspectionreason we use picocli, and it uses reflection to manage such fields
          */
         @Option(names = {"-w", "--tabWidth"},
                 description = "Sets the length of the tab character. "
@@ -696,9 +696,9 @@ public final class Main {
 
         /**
          * Output format.
-         * Suppression: CanBeFinal - we use picocli and it use reflection to manage such fields
          *
          * @noinspection CanBeFinal
+         * @noinspectionreason we use picocli, and it uses reflection to manage such fields
          */
         @Option(names = "-f",
                 description = "Specifies the output format. Valid values: "
@@ -746,9 +746,9 @@ public final class Main {
 
         /**
          * Option that allows users to specify a list of paths to exclude.
-         * Suppression: CanBeFinal - we use picocli and it use reflection to manage such fields
          *
          * @noinspection CanBeFinal
+         * @noinspectionreason we use picocli, and it uses reflection to manage such fields
          */
         @Option(names = {"-e", "--exclude"},
                 description = "Directory/file to exclude from CheckStyle. The path can be the "
@@ -758,9 +758,9 @@ public final class Main {
 
         /**
          * Option that allows users to specify a regex of paths to exclude.
-         * Suppression: CanBeFinal - we use picocli and it use reflection to manage such fields
          *
          * @noinspection CanBeFinal
+         * @noinspectionreason we use picocli, and it uses reflection to manage such fields
          */
         @Option(names = {"-x", "--exclude-regexp"},
                 description = "Directory/file pattern to exclude from CheckStyle. Multiple "

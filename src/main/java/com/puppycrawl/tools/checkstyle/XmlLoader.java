@@ -45,6 +45,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * </p>
  *
  * @noinspection ThisEscapedInObjectConstruction
+ * @noinspectionreason only reference is used and not accessed until initialized
  */
 public class XmlLoader
     extends DefaultHandler {

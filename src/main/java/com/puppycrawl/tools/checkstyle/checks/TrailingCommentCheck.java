@@ -194,6 +194,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </ul>
  *
  * @noinspection HtmlTagCanBeJavadocTag
+ * @noinspectionreason encoded symbols were not decoded when replaced with Javadoc tag
  * @since 3.4
  */
 @StatelessCheck

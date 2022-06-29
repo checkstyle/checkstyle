@@ -120,6 +120,7 @@ public final class Violation
      * @param sourceClass the Class that is the source of the violation
      * @param customMessage optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
+     * @noinspectionreason Class is immutable, we need large amount of arguments.
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public Violation(int lineNo,
@@ -166,6 +167,7 @@ public final class Violation
      * @param sourceClass the Class that is the source of the violation
      * @param customMessage optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
+     * @noinspectionreason Class is immutable, we need large amount of arguments.
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public Violation(int lineNo,
@@ -195,6 +197,7 @@ public final class Violation
      * @param sourceClass the Class that is the source of the violation
      * @param customMessage optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
+     * @noinspectionreason Class is immutable, we need large amount of arguments.
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public Violation(int lineNo,
@@ -222,6 +225,7 @@ public final class Violation
      * @param sourceClass the Class that is the source of the violation
      * @param customMessage optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
+     * @noinspectionreason Class is immutable, we need large amount of arguments.
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public Violation(int lineNo,
@@ -255,6 +259,7 @@ public final class Violation
      * @param sourceClass the source class for the violation
      * @param customMessage optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
+     * @noinspectionreason Class is immutable, we need large amount of arguments.
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public Violation(int lineNo,
@@ -388,9 +393,9 @@ public final class Violation
 
     /**
      * Indicates whether some other object is "equal to" this one.
-     * Suppression on enumeration is needed so code stays consistent.
      *
      * @noinspection EqualsCalledOnEnumConstant
+     * @noinspectionreason Suppression on enumeration is needed so code stays consistent.
      */
     // -@cs[CyclomaticComplexity] equals - a lot of fields to check.
     @Override

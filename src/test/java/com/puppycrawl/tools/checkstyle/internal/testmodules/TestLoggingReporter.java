@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
  * TestLoggingReporter.
  *
  * @noinspection ClassOnlyUsedInOnePackage
+ * @noinspectionreason ClassOnlyUsedInOnePackage - class is internal tool, and only used in testing
  */
 public final class TestLoggingReporter extends AbstractViolationReporter {
 

@@ -582,9 +582,9 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
 
         /**
          * Indicates whether some other object is "equal to" this one.
-         * Suppression on enumeration is needed so code stays consistent.
          *
          * @noinspection EqualsCalledOnEnumConstant
+         * @noinspectionreason Suppression on enumeration is needed so code stays consistent.
          */
         @Override
         public boolean equals(Object other) {

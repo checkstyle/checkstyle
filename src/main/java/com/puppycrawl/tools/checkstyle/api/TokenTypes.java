@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
  * the circular dependency between packages.</p>
  *
  * @noinspection ClassWithTooManyDependents
+ * @noinspectionreason this class is a core part of our API
  */
 public final class TokenTypes {
 
@@ -1824,6 +1825,7 @@ public final class TokenTypes {
      *
      * @see FullIdent
      * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspectionreason encoded symbols were not decoded when replaced with Javadoc tag
      **/
     public static final int DOT = JavaLanguageLexer.DOT;
     /**
@@ -3595,6 +3597,7 @@ public final class TokenTypes {
      * @see #EXPR
      * @see #COLON
      * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspectionreason encoded symbols were not decoded when replaced with Javadoc tag
      **/
     public static final int QUESTION = JavaLanguageLexer.QUESTION;
     /**
@@ -3729,6 +3732,7 @@ public final class TokenTypes {
      *
      * @see #EXPR
      * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspectionreason encoded symbols were not decoded when replaced with Javadoc tag
      **/
     public static final int NOT_EQUAL = JavaLanguageLexer.NOT_EQUAL;
     /**
@@ -4175,6 +4179,7 @@ public final class TokenTypes {
      * Language Specification, &sect;15.15.6</a>
      * @see #EXPR
      * @noinspection HtmlTagCanBeJavadocTag
+     * @noinspectionreason encoded symbols were not decoded when replaced with Javadoc tag
      **/
     public static final int LNOT = JavaLanguageLexer.LNOT;
     /**
