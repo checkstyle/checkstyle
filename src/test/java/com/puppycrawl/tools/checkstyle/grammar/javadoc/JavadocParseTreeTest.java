@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport;
  * JavadocParseTreeTest.
  *
  * @noinspection ClassOnlyUsedInOnePackage
+ * @noinspectionreason ClassOnlyUsedInOnePackage - class is internal tool, and only used in testing
  */
 public class JavadocParseTreeTest extends AbstractTreeTestSupport {
 
