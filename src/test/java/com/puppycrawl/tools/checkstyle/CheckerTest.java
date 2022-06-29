@@ -764,6 +764,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason see description
      */
     @Test
     public void testCatchErrorInProcessFilesMethod() throws Exception {
@@ -816,6 +817,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason see description
      */
     @Test
     public void testCatchErrorWithNoFileName() throws Exception {
@@ -1121,6 +1123,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason see description
      */
     @Test
     public void testCatchErrorWithCache() throws Exception {
@@ -1197,6 +1200,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     *
      */
     @Test
     public void testCatchErrorWithCacheWithNoFileName() throws Exception {
@@ -1266,6 +1270,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason see description
      */
     @Test
     public void testExceptionWithNoFileName() {
@@ -1312,6 +1317,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason see description
      */
     @Test
     public void testExceptionWithCacheAndNoFileName() throws Exception {
