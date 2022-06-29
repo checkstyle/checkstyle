@@ -16,7 +16,7 @@
     Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
  -->
 
-<module name = "Checker">
+<module name="Checker">
   <module name="SuppressWarningsFilter"/>
 
   <property name="charset" value="UTF-8"/>
