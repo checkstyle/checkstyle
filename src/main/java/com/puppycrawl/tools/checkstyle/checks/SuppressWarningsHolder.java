@@ -39,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Maintains a set of check suppressions from {@code @SuppressWarnings} annotations.
  * It allows to prevent Checkstyle from reporting violations from parts of code that were
  * annotated with {@code @SuppressWarnings} and using name of the check to be excluded.
+ * It is possible to suppress all the checkstyle warnings with the argument {@code "all"}.
  * You can also define aliases for check names that need to be suppressed.
  * </p>
  * <ul>
@@ -50,30 +51,87 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To prevent {@code FooCheck} violations from being reported write:
+ * To use default module configuration:
  * </p>
  * <pre>
- * &#64;SuppressWarnings("foo") interface I { }
- * &#64;SuppressWarnings("foo") enum E { }
- * &#64;SuppressWarnings("foo") InputSuppressWarningsFilter() { }
+ * &lt;module name=&quot;TreeWalker&quot;&gt;
+ *   &lt;module name=&quot;MemberName&quot;/&gt;
+ *   &lt;module name=&quot;ConstantName&quot;/&gt;
+ *   &lt;module name=&quot;ParameterNumber&quot;/&gt;
+ *   &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
+ *
+ *   &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+ * &lt;/module&gt;
+ * &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+ * </pre>
+ * <pre>
+ * class Test {
+ *
+ *    private int K; // violation
+ *    &#64;SuppressWarnings({"membername"})
+ *    private int J;  // ok
+ *
+ *     private static final int i = 0; // violation
+ *     &#64;SuppressWarnings("checkstyle:constantname")
+ *     private static final int m = 0; // ok
+ *
+ *    public void needsLotsOfParameters int a, // violation
+ *      int b, int c, int d, int e, int f, int g, int h) {
+ *      // ...
+ *    }
+ *
+ *    &#64;SuppressWarnings("paramnum")
+ *    public void needsLotsOfParameters1 int a, // ok
+ *      int b, int c, int d, int e, int f, int g, int h) {
+ *      // ...
+ *    }
+ *
+ *    private int [] ARR; // 2 violations
+ *    &#64;SuppressWarnings("all")
+ *    private int [] ARRAY; // ok
+ * }
  * </pre>
  * <p>
- * Some real check examples:
- * </p>
- * <p>
- * This will prevent from invocation of the MemberNameCheck:
+ * This will prevent selected violations from MemberNameCheck:
  * </p>
  * <pre>
- * &#64;SuppressWarnings({"membername"})
- * private int J;
+ * &lt;module name=&quot;TreeWalker&quot;&gt;
+ *   &lt;module name=&quot;MemberName&quot;/&gt;
+ *
+ *   &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+ * &lt;/module&gt;
+ * &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+ * </pre>
+ * <pre>
+ * class Test {
+ *
+ *     private int K; // violation
+ *     &#64;SuppressWarnings({"membername"})
+ *     private int J; // violation suppressed
+ *
+ * }
  * </pre>
  * <p>
  * You can also use a {@code checkstyle} prefix to prevent compiler from
- * processing these annotations. For example this will prevent ConstantNameCheck:
+ * processing these annotations. For example this will prevent
+ * selected violations from ConstantNameCheck:
  * </p>
  * <pre>
- * &#64;SuppressWarnings("checkstyle:constantname")
- * private static final int m = 0;
+ * &lt;module name=&quot;TreeWalker&quot;&gt;
+ *   &lt;module name=&quot;ConstantName&quot;/&gt;
+ *
+ *   &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+ * &lt;/module&gt;
+ * &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+ * </pre>
+ * <pre>
+ * class Test {
+ *
+ *     private static final int i = 0; // violation
+ *     &#64;SuppressWarnings("checkstyle:constantname")
+ *     private static final int m = 0; // violation suppressed
+ *
+ * }
  * </pre>
  * <p>
  * The general rule is that the argument of the {@code @SuppressWarnings} will be
@@ -86,19 +144,30 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * the {@code aliasList}:
  * </p>
  * <pre>
- * &#64;SuppressWarnings("paramnum")
- * public void needsLotsOfParameters(@SuppressWarnings("unused") int a,
- *   int b, int c, int d, int e, int f, int g, int h) {
- *   ...
- * }
+ * &lt;module name=&quot;TreeWalker&quot;&gt;
+ *   &lt;module name=&quot;ParameterNumber&quot;/&gt;
+ *
+ *   &lt;module name=&quot;SuppressWarningsHolder&quot;&gt;
+ *     &lt;property name=&quot;aliasList&quot; value=
+ *       &quot;com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum&quot;/&gt;
+ *   &lt;/module&gt;
+ * &lt;/module&gt;
+ * &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
  * </pre>
- * <p>
- * It is possible to suppress all the checkstyle warnings with the argument {@code "all"}:
- * </p>
  * <pre>
- * &#64;SuppressWarnings("all")
- * public void someFunctionWithInvalidStyle() {
- *   //...
+ * class Test {
+ *
+ *     public void needsLotsOfParameters int a, // violation
+ *       int b, int c, int d, int e, int f, int g, int h) {
+ *       // ...
+ *     }
+ *
+ *     &#64;SuppressWarnings("paramnum")
+ *     public void needsLotsOfParameters1 int a, // violation suppressed
+ *       int b, int c, int d, int e, int f, int g, int h) {
+ *       //  ...
+ *     }
+ *
  * }
  * </pre>
  * <p>
