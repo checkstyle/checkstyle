@@ -202,7 +202,6 @@ pitest-coding-require-this-check)
   "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>                if (isAnonymousClassDef(ast)) {</span></pre></td></tr>"
   "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>               &#38;&#38; parent.getType() != TokenTypes.CTOR_DEF</span></pre></td></tr>"
   "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>            &#38;&#38; lastChild.getType() == TokenTypes.OBJBLOCK;</span></pre></td></tr>"
-  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (definitionToken.getType() == TokenTypes.STATIC_INIT) {</span></pre></td></tr>"
   "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (variableDeclarationFrame.getType() == FrameType.CLASS_FRAME) {</span></pre></td></tr>"
   "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (fieldUsageFrame.getType() == FrameType.BLOCK_FRAME) {</span></pre></td></tr>"
   "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (sibling != null &#38;&#38; isAssignToken(parent.getType())) {</span></pre></td></tr>"
