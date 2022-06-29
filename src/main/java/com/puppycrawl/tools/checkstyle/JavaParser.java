@@ -222,7 +222,7 @@ public final class JavaParser {
      * @param token to create the AST
      * @return DetailAST with SINGLE_LINE_COMMENT type
      */
-    private static DetailAST createSlCommentNode(CommonToken token) {
+    private static DetailAST createSlCommentNode(Token token) {
         final DetailAstImpl slComment = new DetailAstImpl();
         slComment.setType(TokenTypes.SINGLE_LINE_COMMENT);
         slComment.setText("//");

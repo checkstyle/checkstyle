@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -476,11 +477,11 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
      * the given {@link AuditEvent}. The nearest suppression is the suppression which scope
      * is before the line and column of the event.
      *
-     * @param suppressions {@link Suppression} instance.
+     * @param suppressions collection of {@link Suppression} instances.
      * @param event {@link AuditEvent} instance.
      * @return {@link Suppression} instance.
      */
-    private static Suppression getNearestSuppression(List<Suppression> suppressions,
+    private static Suppression getNearestSuppression(Collection<Suppression> suppressions,
                                                      AuditEvent event) {
         return suppressions
             .stream()

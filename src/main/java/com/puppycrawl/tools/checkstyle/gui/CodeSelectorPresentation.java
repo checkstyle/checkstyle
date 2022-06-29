@@ -43,7 +43,7 @@ public class CodeSelectorPresentation {
      * Constructor.
      *
      * @param ast ast node.
-     * @param lines2position list to map lines.
+     * @param lines2position positions of lines.
      * @noinspection AssignmentOrReturnOfFieldWithMutableType
      * @noinspectionreason AssignmentOrReturnOfFieldWithMutableType - mutability is
      *      expected in list of lines of code

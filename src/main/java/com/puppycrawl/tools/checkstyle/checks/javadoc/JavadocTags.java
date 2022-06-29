@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -38,7 +39,7 @@ public final class JavadocTags {
      * @param tags valid tags
      * @param invalidTags invalid tags
      */
-    public JavadocTags(List<JavadocTag> tags, List<InvalidJavadocTag> invalidTags) {
+    public JavadocTags(Collection<JavadocTag> tags, Collection<InvalidJavadocTag> invalidTags) {
         validTags = List.copyOf(tags);
         this.invalidTags = List.copyOf(invalidTags);
     }

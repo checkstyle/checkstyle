@@ -21,11 +21,13 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
+import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -652,14 +654,14 @@ public class JavadocMethodCheck extends AbstractCheck {
     /**
      * Calculates column number using Javadoc tag matcher.
      *
-     * @param javadocTagMatcher found javadoc tag matcher
+     * @param javadocTagMatchResult found javadoc tag match result
      * @param lineNumber line number of Javadoc tag in comment
      * @param startColumnNumber column number of Javadoc comment beginning
      * @return column number
      */
-    private static int calculateTagColumn(Matcher javadocTagMatcher,
+    private static int calculateTagColumn(MatchResult javadocTagMatchResult,
             int lineNumber, int startColumnNumber) {
-        int col = javadocTagMatcher.start(1) - 1;
+        int col = javadocTagMatchResult.start(1) - 1;
         if (lineNumber == 0) {
             col += startColumnNumber;
         }
@@ -828,16 +830,16 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Combine ExceptionInfo lists together by matching names.
+     * Combine ExceptionInfo collections together by matching names.
      *
-     * @param list1 list of ExceptionInfo
-     * @param list2 list of ExceptionInfo
+     * @param first the first collection of ExceptionInfo
+     * @param second the second collection of ExceptionInfo
      * @return combined list of ExceptionInfo
      */
-    private static List<ExceptionInfo> combineExceptionInfo(List<ExceptionInfo> list1,
-                                                     List<ExceptionInfo> list2) {
-        final List<ExceptionInfo> result = new ArrayList<>(list1);
-        for (ExceptionInfo exceptionInfo : list2) {
+    private static List<ExceptionInfo> combineExceptionInfo(Collection<ExceptionInfo> first,
+                                                            Iterable<ExceptionInfo> second) {
+        final List<ExceptionInfo> result = new ArrayList<>(first);
+        for (ExceptionInfo exceptionInfo : second) {
             if (result.stream().noneMatch(item -> isExceptionInfoSame(item, exceptionInfo))) {
                 result.add(exceptionInfo);
             }
@@ -940,12 +942,12 @@ public class JavadocMethodCheck extends AbstractCheck {
      * Returns true if required type found in type parameters.
      *
      * @param typeParams
-     *            list of type parameters
+     *            collection of type parameters
      * @param requiredTypeName
      *            name of required type
      * @return true if required type found in type parameters.
      */
-    private static boolean searchMatchingTypeParameter(List<DetailAST> typeParams,
+    private static boolean searchMatchingTypeParameter(Iterable<DetailAST> typeParams,
             String requiredTypeName) {
         // Loop looking for matching type param
         final Iterator<DetailAST> typeParamsIt = typeParams.iterator();
@@ -969,7 +971,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      * @param paramName name of parameter
      * @return true if parameter found and removed
      */
-    private static boolean removeMatchingParam(List<DetailAST> params, String paramName) {
+    private static boolean removeMatchingParam(Iterable<DetailAST> params, String paramName) {
         boolean found = false;
         final Iterator<DetailAST> paramIt = params.iterator();
         while (paramIt.hasNext()) {
@@ -1062,16 +1064,16 @@ public class JavadocMethodCheck extends AbstractCheck {
     /**
      * Verifies that documented exception is in throws.
      *
-     * @param throwsList list of throws
+     * @param throwsIterable collection of throws
      * @param documentedClassInfo documented exception class info
      * @param foundThrows previously found throws
      */
-    private static void processThrows(List<ExceptionInfo> throwsList,
+    private static void processThrows(Iterable<ExceptionInfo> throwsIterable,
                                       ClassInfo documentedClassInfo, Set<String> foundThrows) {
         ExceptionInfo foundException = null;
 
         // First look for matches on the exception name
-        for (ExceptionInfo exceptionInfo : throwsList) {
+        for (ExceptionInfo exceptionInfo : throwsIterable) {
             if (isClassNamesSame(exceptionInfo.getName().getText(),
                     documentedClassInfo.getName().getText())) {
                 foundException = exceptionInfo;
