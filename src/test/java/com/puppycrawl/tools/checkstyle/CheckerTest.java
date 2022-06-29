@@ -86,6 +86,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * CheckerTest.
  *
  * @noinspection ClassWithTooManyDependencies
+ * @noinspectionreason ClassWithTooManyDependencies - complex tests require a large number
+ *      of imports
  */
 public class CheckerTest extends AbstractModuleTestSupport {
 
@@ -777,6 +779,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
              * Test is checking catch clause when exception is thrown.
              *
              * @noinspection ProhibitedExceptionThrown
+             * @noinspectionreason ProhibitedExceptionThrown - There is no other way to obey
+             *      haltOnException field.
              */
             @Override
             public long lastModified() {
@@ -1189,6 +1193,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason see description
      */
     @Test
     public void testCatchErrorWithCacheWithNoFileName() throws Exception {
@@ -1256,6 +1261,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason see description
      */
     @Test
     public void testExceptionWithNoFileName() {
@@ -1269,6 +1275,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
              * Test is checking catch clause when exception is thrown.
              *
              * @noinspection ProhibitedExceptionThrown
+             * @noinspectionreason ProhibitedExceptionThrown - There is no other way to obey
+             *      haltOnException field.
              */
             @Override
             public String getAbsolutePath() {
@@ -1300,6 +1308,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason see description
      */
     @Test
     public void testExceptionWithCacheAndNoFileName() throws Exception {
