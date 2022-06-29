@@ -344,7 +344,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
     @Test
     public void testReplacePropertiesNoReplace() throws Exception {
-        final String[] testValues = {null, "", "a", "$a", "{a",
+        final String[] testValues = {"", "a", "$a", "{a",
                                      "{a}", "a}", "$a}", "$", "a$b", };
         final Properties props = initProperties();
         for (String testValue : testValues) {

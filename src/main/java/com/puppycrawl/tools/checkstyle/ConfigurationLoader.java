@@ -336,27 +336,21 @@ public final class ConfigurationLoader {
      * <p>Code copied from ant -
      * http://cvs.apache.org/viewcvs/jakarta-ant/src/main/org/apache/tools/ant/ProjectHelper.java
      *
-     * @param value The string to be scanned for property references.
-     *              May be {@code null}, in which case this
-     *              method returns immediately with no effect.
+     * @param value The string to be scanned for property references. Must
+     *              not be {@code null}.
      * @param props Mapping (String to String) of property names to their
      *              values. Must not be {@code null}.
      * @param defaultValue default to use if one of the properties in value
      *              cannot be resolved from props.
      *
-     * @return the original string with the properties replaced, or
-     *         {@code null} if the original string is {@code null}.
+     * @return the original string with the properties replaced.
      * @throws CheckstyleException if the string contains an opening
      *                           {@code ${} without a closing
      *                           {@code }}
-     * @noinspection MethodWithMultipleReturnPoints
      */
     private static String replaceProperties(
             String value, PropertyResolver props, String defaultValue)
             throws CheckstyleException {
-        if (value == null) {
-            return null;
-        }
 
         final List<String> fragments = new ArrayList<>();
         final List<String> propertyRefs = new ArrayList<>();
@@ -522,15 +516,19 @@ public final class ConfigurationLoader {
             }
             else if (PROPERTY.equals(qName)) {
                 // extract value and name
+                final String attributesValue = attributes.getValue(VALUE);
+
                 final String value;
                 try {
-                    value = replaceProperties(attributes.getValue(VALUE),
+                    value = replaceProperties(attributesValue,
                         overridePropsResolver, attributes.getValue(DEFAULT));
                 }
                 catch (final CheckstyleException ex) {
-                    // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
+                    // -@cs[IllegalInstantiation] SAXException is in the overridden
+                    // method signature
                     throw new SAXException(ex);
                 }
+
                 final String name = attributes.getValue(NAME);
 
                 // add to attributes of configuration
