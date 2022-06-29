@@ -30,6 +30,7 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -41,6 +42,7 @@ import org.xml.sax.SAXException;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader.IgnoredModulesOptions;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.internal.utils.ConfigurationUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 /**
@@ -344,7 +346,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
     @Test
     public void testReplacePropertiesNoReplace() throws Exception {
-        final String[] testValues = {null, "", "a", "$a", "{a",
+        final String[] testValues = {"", "a", "$a", "{a",
                                      "{a}", "a}", "$a}", "$", "a$b", };
         final Properties props = initProperties();
         for (String testValue : testValues) {
