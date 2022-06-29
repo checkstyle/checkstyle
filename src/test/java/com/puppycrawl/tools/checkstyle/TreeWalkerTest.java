@@ -76,6 +76,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * TreeWalkerTest.
  *
  * @noinspection ClassWithTooManyDependencies because we are less strict with tests.
+ * @noinspectionreason complex tests require a large number of imports
  */
 public class TreeWalkerTest extends AbstractModuleTestSupport {
 
