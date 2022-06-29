@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.xpath.iterators;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import net.sf.saxon.om.NodeInfo;
@@ -41,9 +42,9 @@ public class ReverseListIterator implements AxisIterator {
     /**
      * Constructor for {@code ReverseListIterator} class.
      *
-     * @param items the list of nodes.
+     * @param items the collection of nodes.
      */
-    public ReverseListIterator(List<? extends NodeInfo> items) {
+    public ReverseListIterator(Collection<? extends NodeInfo> items) {
         if (items == null) {
             this.items = null;
             index = -1;

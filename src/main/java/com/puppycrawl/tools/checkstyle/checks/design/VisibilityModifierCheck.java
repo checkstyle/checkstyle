@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -901,7 +902,7 @@ public class VisibilityModifierCheck
      * @param typeArgsClassNames type arguments class names.
      * @return true if all generic type arguments are immutable.
      */
-    private boolean areImmutableTypeArguments(List<String> typeArgsClassNames) {
+    private boolean areImmutableTypeArguments(Collection<String> typeArgsClassNames) {
         return typeArgsClassNames.stream().noneMatch(
             typeName -> {
                 return !immutableClassShortNames.contains(typeName)

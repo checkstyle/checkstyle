@@ -263,7 +263,7 @@ public class JavadocDetailNodeParser {
      * @return array of Javadoc nodes
      */
     private JavadocNodeImpl[]
-            createChildrenNodes(JavadocNodeImpl parentJavadocNode, ParseTree parseTreeNode) {
+            createChildrenNodes(DetailNode parentJavadocNode, ParseTree parseTreeNode) {
         final JavadocNodeImpl[] children =
                 new JavadocNodeImpl[parseTreeNode.getChildCount()];
 

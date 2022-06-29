@@ -178,6 +178,12 @@
     <Bug pattern="SLS_SUSPICIOUS_LOOP_SEARCH"/>
   </Match>
   <Match>
+    <!-- Better to use DetailAstImpl here to avoid needless dependency of API package. -->
+    <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor"/>
+    <Method name="addLastSibling"/>
+    <Bug pattern="OCP_OVERLY_CONCRETE_PARAMETER"/>
+  </Match>
+  <Match>
     <!-- Unable to resolve the item. -->
     <Class name="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
     <Method name="findLastChildWhichContainsSpecifiedToken"/>
@@ -217,7 +223,6 @@
       MOM_MISLEADING_OVERLOAD_MODEL,
       NFF_NON_FUNCTIONAL_FIELD,
       NMCS_NEEDLESS_MEMBER_COLLECTION_SYNCHRONIZATION,
-      OCP_OVERLY_CONCRETE_PARAMETER,
       OPM_OVERLY_PERMISSIVE_METHOD,
       PMB_INSTANCE_BASED_THREAD_LOCAL,
       SEO_SUBOPTIMAL_EXPRESSION_ORDER,

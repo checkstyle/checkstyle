@@ -244,11 +244,11 @@ public final class Main {
      * patterns supplied.
      *
      * @param path The path of the directory/file to check
-     * @param patternsToExclude The list of patterns to exclude from searching or being added as
-     *        files.
+     * @param patternsToExclude The collection of patterns to exclude from searching
+     *        or being added as files.
      * @return True if the directory/file matches one of the patterns.
      */
-    private static boolean isPathExcluded(String path, List<Pattern> patternsToExclude) {
+    private static boolean isPathExcluded(String path, Iterable<Pattern> patternsToExclude) {
         boolean result = false;
 
         for (Pattern pattern : patternsToExclude) {
