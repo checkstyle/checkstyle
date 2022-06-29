@@ -457,6 +457,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * {@inheritDoc} Creates child module.
      *
      * @noinspection ChainOfInstanceofChecks
+     * @noinspectionreason ChainOfInstanceofChecks - we treat checks and filters differently
      */
     @Override
     protected void setupChild(Configuration childConf)
