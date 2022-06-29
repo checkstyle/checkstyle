@@ -32,6 +32,7 @@ import net.sf.saxon.om.NodeInfo;
  * XpathIteratorUtil.
  *
  * @noinspection ClassOnlyUsedInOnePackage
+ * @noinspectionreason ClassOnlyUsedInOnePackage - class is internal tool, and only used in testing
  */
 public final class XpathIteratorUtil {
 
