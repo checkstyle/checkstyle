@@ -973,10 +973,10 @@ public class RequireThisCheck extends AbstractCheck {
     private boolean isOverlappingByLocalVariable(DetailAST ast) {
         boolean overlapping = false;
         final DetailAST parent = ast.getParent();
-        final DetailAST sibling = ast.getNextSibling();
-        if (sibling != null && isAssignToken(parent.getType())) {
+        if (isAssignToken(parent.getType())) {
             final ClassFrame classFrame = (ClassFrame) findFrame(ast, true);
-            final Set<DetailAST> exprIdents = getAllTokensOfType(sibling, TokenTypes.IDENT);
+            final Set<DetailAST> exprIdents =
+                getAllTokensOfType(ast.getNextSibling(), TokenTypes.IDENT);
             overlapping = classFrame.containsFieldOrVariableDef(exprIdents, ast);
         }
         return overlapping;
