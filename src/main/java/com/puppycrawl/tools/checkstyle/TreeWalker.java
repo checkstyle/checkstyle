@@ -108,6 +108,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      * {@inheritDoc} Creates child module.
      *
      * @noinspection ChainOfInstanceofChecks
+     * @noinspectionreason ChainOfInstanceofChecks - we treat checks and filters differently
      */
     @Override
     public void setupChild(Configuration childConf)
