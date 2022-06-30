@@ -951,7 +951,7 @@ public class RequireThisCheck extends AbstractCheck {
         boolean overlapping = false;
         final DetailAST parent = ast.getParent();
         final DetailAST sibling = ast.getNextSibling();
-        if (sibling != null && isAssignToken(parent.getType())) {
+        if (isAssignToken(parent.getType())) {
             if (isCompoundAssignToken(parent.getType())) {
                 overlapping = true;
             }
