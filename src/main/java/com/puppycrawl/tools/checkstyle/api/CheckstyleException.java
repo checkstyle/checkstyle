@@ -23,6 +23,8 @@ package com.puppycrawl.tools.checkstyle.api;
  * Represents an error condition within Checkstyle.
  *
  * @noinspection CheckedExceptionClass
+ * @noinspectionreason CheckedExceptionClass - we require checked exception since we terminate
+ *      execution if thrown
  */
 public class CheckstyleException extends Exception {
 
