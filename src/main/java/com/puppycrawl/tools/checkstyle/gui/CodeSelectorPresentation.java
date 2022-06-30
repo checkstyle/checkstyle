@@ -45,6 +45,8 @@ public class CodeSelectorPresentation {
      * @param ast ast node.
      * @param lines2position list to map lines.
      * @noinspection AssignmentOrReturnOfFieldWithMutableType
+     * @noinspectionreason AssignmentOrReturnOfFieldWithMutableType - mutability is
+     *      expected in list of lines of code
      */
     public CodeSelectorPresentation(DetailAST ast, List<Integer> lines2position) {
         node = ast;
@@ -57,6 +59,8 @@ public class CodeSelectorPresentation {
      * @param node DetailNode node.
      * @param lines2position list to map lines.
      * @noinspection AssignmentOrReturnOfFieldWithMutableType
+     * @noinspectionreason AssignmentOrReturnOfFieldWithMutableType - mutability is expected
+     *      in list of lines of code
      */
     public CodeSelectorPresentation(DetailNode node, List<Integer> lines2position) {
         this.node = node;

@@ -138,6 +138,7 @@ public final class DetectorOptions {
          * @param val for reporting violations.
          * @return Builder object.
          * @noinspection ReturnOfInnerClass
+         * @noinspectionreason ReturnOfInnerClass - builder is only used in enclosing class
          */
         public Builder reporter(AbstractViolationReporter val) {
             reporter = val;
@@ -151,6 +152,7 @@ public final class DetectorOptions {
          * @param val the format to use when matching lines.
          * @return Builder object.
          * @noinspection ReturnOfInnerClass
+         * @noinspectionreason ReturnOfInnerClass - builder is only used in enclosing class
          */
         public Builder compileFlags(int val) {
             compileFlags = val;
@@ -163,6 +165,7 @@ public final class DetectorOptions {
          * @param val the format to use when matching lines.
          * @return Builder object.
          * @noinspection ReturnOfInnerClass
+         * @noinspectionreason ReturnOfInnerClass - builder is only used in enclosing class
          */
         public Builder format(String val) {
             format = val;
@@ -175,6 +178,7 @@ public final class DetectorOptions {
          * @param val message to use when reporting a match.
          * @return Builder object.
          * @noinspection ReturnOfInnerClass
+         * @noinspectionreason ReturnOfInnerClass - builder is only used in enclosing class
          */
         public Builder message(String val) {
             message = val;
@@ -187,6 +191,7 @@ public final class DetectorOptions {
          * @param val the minimum allowed number of detections.
          * @return Builder object.
          * @noinspection ReturnOfInnerClass
+         * @noinspectionreason ReturnOfInnerClass - builder is only used in enclosing class
          */
         public Builder minimum(int val) {
             minimum = val;
@@ -199,6 +204,7 @@ public final class DetectorOptions {
          * @param val the maximum allowed number of detections.
          * @return Builder object.
          * @noinspection ReturnOfInnerClass
+         * @noinspectionreason ReturnOfInnerClass - builder is only used in enclosing class
          */
         public Builder maximum(int val) {
             maximum = val;
@@ -211,6 +217,7 @@ public final class DetectorOptions {
          * @param val whether to ignore case when matching.
          * @return Builder object.
          * @noinspection ReturnOfInnerClass, BooleanParameter
+         * @noinspectionreason ReturnOfInnerClass - builder is only used in enclosing class
          */
         public Builder ignoreCase(boolean val) {
             ignoreCase = val;
@@ -223,6 +230,7 @@ public final class DetectorOptions {
          * @param val the suppressor to use.
          * @return current instance
          * @noinspection ReturnOfInnerClass
+         * @noinspectionreason ReturnOfInnerClass - builder is only used in enclosing class
          */
         public Builder suppressor(MatchSuppressor val) {
             suppressor = val;

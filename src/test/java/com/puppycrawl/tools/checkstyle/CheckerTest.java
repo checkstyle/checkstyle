@@ -86,6 +86,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * CheckerTest.
  *
  * @noinspection ClassWithTooManyDependencies
+ * @noinspectionreason ClassWithTooManyDependencies - complex tests require a large number
+ *      of imports
  */
 public class CheckerTest extends AbstractModuleTestSupport {
 
