@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * TestFileSetCheck.
  *
  * @noinspection ClassOnlyUsedInOnePackage
+ * @noinspectionreason ClassOnlyUsedInOnePackage - class is internal tool, and only used in testing
  */
 public class TestFileSetCheck extends AbstractFileSetCheck {
 
