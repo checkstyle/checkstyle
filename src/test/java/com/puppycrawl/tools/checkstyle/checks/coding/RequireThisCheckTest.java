@@ -444,6 +444,14 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testLocalClassesInsideLambdas() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getPath("InputRequireThisLocalClassesInsideLambdas.java"),
+            expected);
+    }
+
+    @Test
     public void testUnusedMethod() throws Exception {
         final DetailAstImpl ident = new DetailAstImpl();
         ident.setText("testName");
