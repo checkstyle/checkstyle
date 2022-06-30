@@ -928,17 +928,11 @@ public class RequireThisCheck extends AbstractCheck {
      * @return true if the field usage frame is inside constructor frame.
      */
     private static boolean isInsideConstructorFrame(AbstractFrame frame) {
-        boolean assignmentInConstructor = false;
         AbstractFrame fieldUsageFrame = frame;
-        if (fieldUsageFrame.getType() == FrameType.BLOCK_FRAME) {
-            while (fieldUsageFrame.getType() == FrameType.BLOCK_FRAME) {
-                fieldUsageFrame = fieldUsageFrame.getParent();
-            }
-            if (fieldUsageFrame.getType() == FrameType.CTOR_FRAME) {
-                assignmentInConstructor = true;
-            }
+        while (fieldUsageFrame.getType() == FrameType.BLOCK_FRAME) {
+            fieldUsageFrame = fieldUsageFrame.getParent();
         }
-        return assignmentInConstructor;
+        return fieldUsageFrame.getType() == FrameType.CTOR_FRAME;
     }
 
     /**
