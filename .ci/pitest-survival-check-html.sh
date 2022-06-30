@@ -196,7 +196,6 @@ pitest-coding-require-this-check)
   "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>               &#38;&#38; parent.getType() != TokenTypes.CTOR_DEF</span></pre></td></tr>"
   "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>            &#38;&#38; lastChild.getType() == TokenTypes.OBJBLOCK;</span></pre></td></tr>"
   "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (variableDeclarationFrame.getType() == FrameType.CLASS_FRAME) {</span></pre></td></tr>"
-  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (fieldUsageFrame.getType() == FrameType.BLOCK_FRAME) {</span></pre></td></tr>"
   "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>        return left.getType() == right.getType() &#38;&#38; left.getText().equals(right.getText());</span></pre></td></tr>"
   );
   checkPitestReport ignoredItems
