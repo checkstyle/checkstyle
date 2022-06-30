@@ -848,28 +848,13 @@ public class RequireThisCheck extends AbstractCheck {
      * @param ident ident token.
      * @return true if field can be referenced from a static context.
      */
-    private boolean canBeReferencedFromStaticContext(DetailAST ident) {
-        AbstractFrame variableDeclarationFrame = findFrame(ident, false);
-        while (variableDeclarationFrame.getType() == FrameType.BLOCK_FRAME
-            || variableDeclarationFrame.getType() == FrameType.FOR_FRAME) {
-            variableDeclarationFrame = variableDeclarationFrame.getParent();
-        }
-
+    private static boolean canBeReferencedFromStaticContext(DetailAST ident) {
         boolean staticContext = false;
-
-        if (variableDeclarationFrame.getType() == FrameType.CLASS_FRAME) {
-            final DetailAST codeBlockDefinition = getCodeBlockDefinitionToken(ident);
-            if (codeBlockDefinition != null) {
-                final DetailAST modifiers = codeBlockDefinition.getFirstChild();
-                staticContext = codeBlockDefinition.getType() == TokenTypes.STATIC_INIT
-                    || modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
-            }
-        }
-        else {
-            final DetailAST frameNameIdent = variableDeclarationFrame.getFrameNameIdent();
-            final DetailAST definitionToken = frameNameIdent.getParent();
-            staticContext = definitionToken.findFirstToken(TokenTypes.MODIFIERS)
-                .findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+        final DetailAST codeBlockDefinition = getCodeBlockDefinitionToken(ident);
+        if (codeBlockDefinition != null) {
+            final DetailAST modifiers = codeBlockDefinition.getFirstChild();
+            staticContext = codeBlockDefinition.getType() == TokenTypes.STATIC_INIT
+                || modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
         }
         return !staticContext;
     }
