@@ -42,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.XmlLoader;
  * XmlUtil.
  *
  * @noinspection ClassOnlyUsedInOnePackage
+ * @noinspectionreason ClassOnlyUsedInOnePackage - class is internal tool, and only used in testing
  */
 public final class XmlUtil {
 
