@@ -2238,6 +2238,7 @@
                       </excludes>
                     </filter>
                   </filters>
+                  <createDependencyReducedPom>false</createDependencyReducedPom>
                   <shadedArtifactAttached>true</shadedArtifactAttached>
                   <shadedClassifierName>all</shadedClassifierName>
                   <transformers>
