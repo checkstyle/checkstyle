@@ -551,8 +551,7 @@ public class RequireThisCheck extends AbstractCheck {
                 break;
             case TokenTypes.PARAMETER_DEF:
                 if (!CheckUtil.isReceiverParameter(ast)
-                        && !isLambdaParameter(ast)
-                        && ast.getParent().getType() != TokenTypes.LITERAL_CATCH) {
+                        && !isLambdaParameter(ast)) {
                     final DetailAST parameterIdent = ast.findFirstToken(TokenTypes.IDENT);
                     frame.addIdent(parameterIdent);
                 }
@@ -590,8 +589,6 @@ public class RequireThisCheck extends AbstractCheck {
                 break;
             case TokenTypes.LITERAL_CATCH:
                 final AbstractFrame catchFrame = new CatchFrame(frame, ast);
-                catchFrame.addIdent(ast.findFirstToken(TokenTypes.PARAMETER_DEF).findFirstToken(
-                        TokenTypes.IDENT));
                 frameStack.addFirst(catchFrame);
                 break;
             case TokenTypes.LITERAL_FOR:
@@ -850,26 +847,37 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private boolean canBeReferencedFromStaticContext(DetailAST ident) {
         AbstractFrame variableDeclarationFrame = findFrame(ident, false);
+        boolean staticInitializationBlock = false;
         while (variableDeclarationFrame.getType() == FrameType.BLOCK_FRAME
-            || variableDeclarationFrame.getType() == FrameType.FOR_FRAME) {
+                || variableDeclarationFrame.getType() == FrameType.FOR_FRAME) {
+            final DetailAST blockFrameNameIdent = variableDeclarationFrame.getFrameNameIdent();
+            final DetailAST definitionToken = blockFrameNameIdent.getParent();
+            if (definitionToken.getType() == TokenTypes.STATIC_INIT) {
+                staticInitializationBlock = true;
+                break;
+            }
             variableDeclarationFrame = variableDeclarationFrame.getParent();
         }
 
         boolean staticContext = false;
-
-        if (variableDeclarationFrame.getType() == FrameType.CLASS_FRAME) {
-            final DetailAST codeBlockDefinition = getCodeBlockDefinitionToken(ident);
-            if (codeBlockDefinition != null) {
-                final DetailAST modifiers = codeBlockDefinition.getFirstChild();
-                staticContext = codeBlockDefinition.getType() == TokenTypes.STATIC_INIT
-                    || modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
-            }
+        if (staticInitializationBlock) {
+            staticContext = true;
         }
         else {
-            final DetailAST frameNameIdent = variableDeclarationFrame.getFrameNameIdent();
-            final DetailAST definitionToken = frameNameIdent.getParent();
-            staticContext = definitionToken.findFirstToken(TokenTypes.MODIFIERS)
-                .findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+            if (variableDeclarationFrame.getType() == FrameType.CLASS_FRAME) {
+                final DetailAST codeBlockDefinition = getCodeBlockDefinitionToken(ident);
+                if (codeBlockDefinition != null) {
+                    final DetailAST modifiers = codeBlockDefinition.getFirstChild();
+                    staticContext = codeBlockDefinition.getType() == TokenTypes.STATIC_INIT
+                        || modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+                }
+            }
+            else {
+                final DetailAST frameNameIdent = variableDeclarationFrame.getFrameNameIdent();
+                final DetailAST definitionToken = frameNameIdent.getParent();
+                staticContext = definitionToken.findFirstToken(TokenTypes.MODIFIERS)
+                        .findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+            }
         }
         return !staticContext;
     }
