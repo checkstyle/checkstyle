@@ -12,7 +12,7 @@ public class InputCommentsIndentationRecordsAndCompactCtors {
     public record MyRecord(int x) {
         public void myMethod() {
             String breaks = "J"
-                // violation
+                // violation '.* incorrect .* level 16, expected is 20, .* same .* as line 16.'
                     + "A"
                     // it is OK
                     + "V"
@@ -25,19 +25,19 @@ public class InputCommentsIndentationRecordsAndCompactCtors {
     public record MyOtherRecord() {
 // comment
 //  block
-// violation
+// violation '.* incorrect .* level 0, expected is 4, .* same .* as line 29.'
     }
 
-        ///////////// violation
+        ///////////// violation '.* incorrect .* level 8, expected is 4, .* same .* as line 32.'
     public record myOtherOtherRecord() {
 
     }
      class
         WrappedClass { }
-        // violation
+        // violation '.* incorrect .* level 8, expected is 5, .* same .* as line 40.'
 
 
      record
         WrappedRecord() { }
-        // violation
+        // violation '.* incorrect .* level 8, expected is 5, .* same .* as line 40.'
 }

@@ -21,7 +21,7 @@ public class InputCommentsIndentationCommentsAfterMethodCall {
                 // ok
                 .flatMap()
                 .flatMap();
-               // violation
+               // violation '.* incorrect .* level 15, expected is 8, .* same .* as line 20.'
     }
     public static InputCommentsIndentationCommentsAfterMethodCall flatMap(int i, int h) {
         return new InputCommentsIndentationCommentsAfterMethodCall();

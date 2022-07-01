@@ -17,7 +17,6 @@ public class InputCommentsIndentationSurroundingCode3
         if (true) {
             // here initialize some variables
             int k = 0; // trailing comment
-              // violation
             int b = 10;
             // sss
         }
@@ -27,12 +26,13 @@ public class InputCommentsIndentationSurroundingCode3
         if (true) {
             /* some */
             int k = 0;
-                /* violation */
+            // violation below '.* incorrect .* level 16, expected is 12, .* same .* as line 31.'
+                /* some comment */
             int b = 10;
-                /* violation
+                /* // violation '.* incorrect .* level 16, expected is 12, .* same .* as line 34.'
                  * */
             double d; /* trailing comment */
-                /* violation
+                /* // violation '.* incorrect .* level 16, expected is 12, .* same .* as line 38.'
              *
                 */
             boolean bb;
@@ -54,8 +54,7 @@ public class InputCommentsIndentationSurroundingCode3
         int a = 5, b = 3, v = 6;
         if (a == b
             && v == b || ( a ==1
-                           /// violation
-                       /* violation
+                       /* // violation '.* incorrect .* level 23, expected is 36, .* as line 59.'
                         * one fine day ... */
                                     && b == 1)   ) {
         }
@@ -94,7 +93,6 @@ public class InputCommentsIndentationSurroundingCode3
               // ...
               // block
               // ...
-              // violation
         String someStr = new String();
     }
 
@@ -102,7 +100,6 @@ public class InputCommentsIndentationSurroundingCode3
              // comment
              // ...
              // block
-             // violation
         // comment
         String someStr = new String();
     }
@@ -112,7 +109,6 @@ public class InputCommentsIndentationSurroundingCode3
                                  // ...
                                  // block
                                  // ...
-                                 // violation
         String someStr = new String();
     }
 
@@ -133,19 +129,21 @@ public class InputCommentsIndentationSurroundingCode3
     }
 
     public void foo11() {
-
-            /* empty */
+        // violation below '.* incorrect .* level 12, expected is 8, .* same .* as line 134.'
+            /* some comment */
         hashCode();
     }
 
     public void foo12() {
-    /* empty */
+        // violation below '.* incorrect .* level 4, expected is 8, .* same .* as line 140.'
+    /* some comment */
         hashCode();
     }
 
     public void foo13() {
         hashCode();
-    /* empty */
+        // violation below '.* incorrect .* level 4, expected is 8, .* same .* as line 144.'
+    /* some comment */
     }
 
     public void foo14() {
