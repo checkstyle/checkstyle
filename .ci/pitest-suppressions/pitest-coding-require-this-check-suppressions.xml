@@ -21,15 +21,6 @@
   <mutation unstable="false">
     <sourceFile>RequireThisCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
-    <mutatedMethod>collectDeclarations</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>&amp;&amp; ast.getParent().getType() != TokenTypes.LITERAL_CATCH) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RequireThisCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
     <mutatedMethod>endCollectingDeclarations</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
     <description>removed conditional - replaced equality check with false</description>
