@@ -12,6 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 public class InputRequireThisAnonymousEmpty {
 
     private int bar;
+    int a;
 
     interface AnonWithEmpty {
         public void fooEmpty();
@@ -55,5 +56,37 @@ public class InputRequireThisAnonymousEmpty {
                 foobar++; // violation
             }
         };
+    }
+
+    void method2() {
+        int a = 1;
+        InputRequireThisAnonymousEmpty obj =
+            new InputRequireThisAnonymousEmpty() {
+                void method() {
+                    a += 1;
+                }
+            };
+    }
+
+    void anotherMethod() {
+        int var1 = 12;
+        int var2 = 13;
+        Foo obj = new Foo() {
+            void method() {
+                var2 += var1;
+            }
+        };
+        obj.getClass();
+    }
+}
+
+class SharkFoo {
+    int var1 = 12;
+}
+
+class Foo {
+    int var2 = 13;
+
+    class SharkFoo {
     }
 }
