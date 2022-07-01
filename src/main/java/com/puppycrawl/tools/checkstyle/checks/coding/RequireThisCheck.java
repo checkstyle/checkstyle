@@ -551,8 +551,7 @@ public class RequireThisCheck extends AbstractCheck {
                 break;
             case TokenTypes.PARAMETER_DEF:
                 if (!CheckUtil.isReceiverParameter(ast)
-                        && !isLambdaParameter(ast)
-                        && ast.getParent().getType() != TokenTypes.LITERAL_CATCH) {
+                        && !isLambdaParameter(ast)) {
                     final DetailAST parameterIdent = ast.findFirstToken(TokenTypes.IDENT);
                     frame.addIdent(parameterIdent);
                 }
@@ -590,8 +589,6 @@ public class RequireThisCheck extends AbstractCheck {
                 break;
             case TokenTypes.LITERAL_CATCH:
                 final AbstractFrame catchFrame = new CatchFrame(frame, ast);
-                catchFrame.addIdent(ast.findFirstToken(TokenTypes.PARAMETER_DEF).findFirstToken(
-                        TokenTypes.IDENT));
                 frameStack.addFirst(catchFrame);
                 break;
             case TokenTypes.LITERAL_FOR:
