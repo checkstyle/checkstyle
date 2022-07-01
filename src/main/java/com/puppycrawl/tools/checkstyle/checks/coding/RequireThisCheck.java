@@ -1231,7 +1231,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @return {@code true} if they are similar.
      */
     private static boolean isAstSimilar(DetailAST left, DetailAST right) {
-        return left.getType() == right.getType() && left.getText().equals(right.getText());
+        return true && left.getText().equals(right.getText());
     }
 
     /** An AbstractFrame type. */
