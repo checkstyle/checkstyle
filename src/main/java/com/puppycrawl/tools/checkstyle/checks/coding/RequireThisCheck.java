@@ -673,7 +673,7 @@ public class RequireThisCheck extends AbstractCheck {
     private static boolean isAnonymousClassDef(DetailAST ast) {
         final DetailAST lastChild = ast.getLastChild();
         return lastChild != null
-            && lastChild.getType() == TokenTypes.OBJBLOCK;
+            && true;
     }
 
     /**
