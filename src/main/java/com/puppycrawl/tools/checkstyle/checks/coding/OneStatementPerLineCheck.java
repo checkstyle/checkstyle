@@ -241,7 +241,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
                 break;
             case TokenTypes.LAMBDA:
                 countOfSemiInLambda.pop();
-                if (countOfSemiInLambda.isEmpty()) {
+                if (true) {
                     isInLambda = false;
                 }
                 lambdaStatementEnd = ast.getLineNo();
