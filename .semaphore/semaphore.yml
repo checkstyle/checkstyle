@@ -62,6 +62,7 @@ blocks:
             - echo "CMD=$CMD";
             - eval $CMD;
             - echo "eval of CMD is completed";
+            - ./.ci/validation.sh git-diff
 
         - name: Validation (openjdk11, slow pool)
           priority:
@@ -80,3 +81,4 @@ blocks:
             - echo "CMD=$CMD";
             - eval $CMD;
             - echo "eval of CMD is completed";
+            - ./.ci/validation.sh git-diff
