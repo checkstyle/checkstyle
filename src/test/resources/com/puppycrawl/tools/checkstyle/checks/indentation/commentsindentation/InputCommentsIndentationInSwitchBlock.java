@@ -23,19 +23,20 @@ public class InputCommentsIndentationInSwitchBlock {
                 // comment
                 break;
             case "3":
+                // violation below '.* incorrect .* level 12, expected is 16,.* same.* as line 28.'
             /* violation */
                 foo1();
                 /* com */
                 break;
             case "5":
                 foo1();
-                   // violation
+                   // violation '.* incorrect .* level 19, expected is 16, 12, .* as line 32, 34.'
             case "6":
                 int k = 7;
                 // fall through
             case "7":
                 if (true) {}
-                   // violation
+                   // violation '.* incorrect .* level 19, expected is 16, 12, .* as line 38, 40.'
             case "8":
                 break;
             case "9":
@@ -52,18 +53,18 @@ public class InputCommentsIndentationInSwitchBlock {
                 // fall through
             }
             case "12": {
-      // violation
+      // violation '.* incorrect .* level 6, expected is 16, .* same .* as line 57.'
                 int i;
             }
             case "13": {
                        // some comment in empty case block
             }
             case "14": {
-        // OOOO: violation
+        // violation '.* incorrect .* level 8, expected is 12, .* same .* as line 64.'
             }
             case "15": {
                 foo1();
-                      // violation
+                      // violation '.* incorrect .* level 22, expected is 16,.* same.* as line 66.'
             }
             case "16": {
                 int a;
@@ -72,7 +73,7 @@ public class InputCommentsIndentationInSwitchBlock {
             case "17": {
                 int a;
             }
-              // violation
+              // violation '.* incorrect .* level 14, expected is 12, 16,.* same.* as line 73, 77.'
                 case "18": { System.lineSeparator();
                 }   // trailing comment
             case "19":
@@ -92,7 +93,7 @@ public class InputCommentsIndentationInSwitchBlock {
                 case 0:
 
                 case 1:
-                        // violation
+                        // violation '.* incorrect .* level 24, expected is 20,.*same.* as line 97.'
                     int b = 10;
                 default:
                  // comment
@@ -117,7 +118,7 @@ public class InputCommentsIndentationInSwitchBlock {
             case -1:
                  // what
                  s.indexOf("no way");
-               // violation
+               // violation '.* incorrect.*level 15, expected is 17, 12,.*same.* as line 120, 122.'
             case 1:
             case 2:
                 i--;
@@ -129,7 +130,7 @@ public class InputCommentsIndentationInSwitchBlock {
         }
 
         String breaks = ""
-        // violation
+        // violation '.* incorrect .* level 8, expected is 12, .* same .* as line 134.'
             + "</table>"
             // middle
             + ""
@@ -142,7 +143,7 @@ public class InputCommentsIndentationInSwitchBlock {
         switch (a) {
             case 1:
             default:
-    // violation
+    // violation '.* incorrect .* level 4, expected is 8, .* same .* as line 147.'
         }
     }
 
@@ -161,7 +162,7 @@ public class InputCommentsIndentationInSwitchBlock {
         switch (a) {
             case 1:
                 int b;
-                  // violation
+                  // violation '.* incorrect .* level 18, expected is 16, 12, .* as line 164, 166.'
             default:
         }
     }
@@ -204,12 +205,12 @@ public class InputCommentsIndentationInSwitchBlock {
                 // comment
                 // comment
             case 4:
-    // violation
+    // violation '.* incorrect .* level 4, expected is 12, 12, .* same .* as line 207, 209.'
             case 5:
                 s.toString().toString().toString();
-                      // violation
-                    // violation
-                 // violation
+                      // violation '.*incorrect.* level 22, expected is 16, 12,.*as line 210, 214.'
+                    // violation '.* incorrect .* level 20, expected is 16, 12,.*as line 210, 214.'
+                 // violation '.* incorrect .* level 17, expected is 16, 12, .* as line 210, 214.'
             default:
         }
     }
@@ -233,7 +234,7 @@ public class InputCommentsIndentationInSwitchBlock {
                 s.toString().toString().toString();
                 // comment
             case 4:
-      // violation
+      // violation '.* incorrect .* level 6, expected is 12, 12, .* same .* as line 236, 238.'
             default:
         }
     }
@@ -280,12 +281,12 @@ public class InputCommentsIndentationInSwitchBlock {
                 /* comment */
             case 2:
                 hashCode();
-           /*
+           /* // violation '.* incorrect .* level 11, expected is 16, 12, .* as line 283, 287.'
             violation
             */
             case 3: // comment
                 hashCode();
-           // violation
+           // violation '.* incorrect .* level 11, expected is 16, 12,.* same .* as line 288, 290.'
             case 4: // comment
                 if (true) {
 
@@ -315,7 +316,7 @@ public class InputCommentsIndentationInSwitchBlock {
         switch (a) {
             case 1:
             default:
-// violation
+// violation '.* incorrect .* level 0, expected is 8, .* same .* as line 320.'
         }
     }
 
@@ -324,7 +325,7 @@ public class InputCommentsIndentationInSwitchBlock {
         switch (a) {
             case 1:
             default:
-        // violation
+        // comment
         }
     }
 }
