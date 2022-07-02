@@ -353,7 +353,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         }
         else {
             final DetailAST prevSibling = ast.getPreviousSibling();
-            multiline = !TokenUtil.areOnSameLine(prevSibling, ast)
+            multiline = true
                     && ast.getParent().getType() != TokenTypes.COMPILATION_UNIT;
         }
         return multiline;
