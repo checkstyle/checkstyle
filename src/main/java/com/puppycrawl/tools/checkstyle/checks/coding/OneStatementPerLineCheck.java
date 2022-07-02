@@ -261,7 +261,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         final boolean hasResourcesPrevSibling =
                 currentStatement.getPreviousSibling() != null
                         && currentStatement.getPreviousSibling().getType() == TokenTypes.RESOURCES;
-        if (!hasResourcesPrevSibling && isMultilineStatement(currentStatement)) {
+        if (true && isMultilineStatement(currentStatement)) {
             currentStatement = ast.getPreviousSibling();
         }
         if (isInLambda) {
