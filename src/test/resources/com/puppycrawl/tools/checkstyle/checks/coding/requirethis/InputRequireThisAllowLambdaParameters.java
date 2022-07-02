@@ -9,6 +9,7 @@ validateOnlyOverlapping = false
 
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
+import java.io.InputStream;
 import java.util.function.Consumer;
 public class InputRequireThisAllowLambdaParameters {
     private String s1 = "foo1";
@@ -69,5 +70,20 @@ class Calculator {
         IntegerMath subtraction = (a, b) -> a = a - b; // NO violations
         myApp.operateBinary(20, 10, subtraction);
         myApp.operateBinary(a++, b, addition);  // 2 violations
+    }
+}
+
+class Test {
+    private InputStream inputStream;
+
+    public void testThreadHasWrongClassLoader() {
+        Thread t = new Thread(() -> {
+            try {
+                inputStream.read(); // violation
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

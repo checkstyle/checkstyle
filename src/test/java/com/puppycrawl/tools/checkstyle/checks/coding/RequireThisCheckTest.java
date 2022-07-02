@@ -326,10 +326,11 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAllowLambdaParameters() throws Exception {
         final String[] expected = {
-            "24:9: " + getCheckMessage(MSG_VARIABLE, "s1", ""),
-            "46:21: " + getCheckMessage(MSG_VARIABLE, "z", ""),
-            "71:29: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "71:34: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "25:9: " + getCheckMessage(MSG_VARIABLE, "s1", ""),
+            "47:21: " + getCheckMessage(MSG_VARIABLE, "z", ""),
+            "72:29: " + getCheckMessage(MSG_VARIABLE, "a", ""),
+            "72:34: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "82:17: " + getCheckMessage(MSG_VARIABLE, "inputStream", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisAllowLambdaParameters.java"), expected);
