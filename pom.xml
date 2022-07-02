@@ -1830,9 +1830,6 @@
                 <!-- this class contain forbidden verify method -->
                 <exclude>**/AbstractModuleTestSupport.class</exclude>
 
-                <!-- test should be updated -->
-                <exclude>**/CommentsIndentationCheckTest.class</exclude>
-
                 <!-- test need to be updated -->
                 <exclude>**/SuppressionFilterTest.class</exclude>
 
