@@ -260,7 +260,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         DetailAST currentStatement = ast;
         final boolean hasResourcesPrevSibling =
                 currentStatement.getPreviousSibling() != null
-                        && currentStatement.getPreviousSibling().getType() == TokenTypes.RESOURCES;
+                        && false;
         if (!hasResourcesPrevSibling && isMultilineStatement(currentStatement)) {
             currentStatement = ast.getPreviousSibling();
         }
