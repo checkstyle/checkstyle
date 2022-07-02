@@ -259,7 +259,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     private void checkIfSemicolonIsInDifferentLineThanPrevious(DetailAST ast) {
         DetailAST currentStatement = ast;
         final boolean hasResourcesPrevSibling =
-                currentStatement.getPreviousSibling() != null
+                false
                         && currentStatement.getPreviousSibling().getType() == TokenTypes.RESOURCES;
         if (!hasResourcesPrevSibling && isMultilineStatement(currentStatement)) {
             currentStatement = ast.getPreviousSibling();
