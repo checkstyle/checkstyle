@@ -9,6 +9,8 @@ jobs:
       - run:
           command: |
             ./.ci/no-exception-test.sh no-exception-lucene-and-others-javadoc
+      - run:
+          command: ./.ci/validation.sh git-diff
   no-exception-cassandra-storm-tapestry-javadoc:
     docker:
       - image: *default-image
@@ -17,6 +19,8 @@ jobs:
       - run:
           command: |
             ./.ci/no-exception-test.sh no-exception-cassandra-storm-tapestry-javadoc
+      - run:
+          command: ./.ci/validation.sh git-diff
   no-exception-hadoop-apache-groovy-scouter-javadoc:
     docker:
       - image: *default-image
@@ -25,6 +29,8 @@ jobs:
       - run:
           command: |
             ./.ci/no-exception-test.sh no-exception-hadoop-apache-groovy-scouter-javadoc
+      - run:
+          command: ./.ci/validation.sh git-diff
   no-exception-only-javadoc:
     docker:
       - image: *default-image
@@ -33,6 +39,8 @@ jobs:
       - run:
           command: |
             ./.ci/no-exception-test.sh no-exception-only-javadoc
+      - run:
+          command: ./.ci/validation.sh git-diff
   no-error-xwiki:
     docker:
       - image: *default-image
@@ -41,6 +49,8 @@ jobs:
       - run:
           command: |
             ./.ci/validation.sh no-error-xwiki
+      - run:
+          command: ./.ci/validation.sh git-diff
   no-error-pmd:
     docker:
       - image: *default-image
@@ -49,6 +59,8 @@ jobs:
       - run:
           command: |
             ./.ci/validation.sh no-error-pmd
+      - run:
+          command: ./.ci/validation.sh git-diff
   no-exception-struts:
     docker:
       - image: *default-image
@@ -57,6 +69,8 @@ jobs:
       - run:
           command: |
             ./.ci/validation.sh no-exception-struts
+      - run:
+          command: ./.ci/validation.sh git-diff
   no-exception-checkstyle-sevntu:
     docker:
       - image: *default-image
@@ -65,6 +79,8 @@ jobs:
       - run:
           command: |
             ./.ci/validation.sh no-exception-checkstyle-sevntu
+      - run:
+          command: ./.ci/validation.sh git-diff
   no-exception-checkstyle-sevntu-javadoc:
     docker:
       - image: *default-image
@@ -73,6 +89,8 @@ jobs:
       - run:
           command: |
             ./.ci/validation.sh no-exception-checkstyle-sevntu-javadoc
+      - run:
+          command: ./.ci/validation.sh git-diff
   no-exception-guava:
     docker:
       - image: *default-image
@@ -81,6 +99,8 @@ jobs:
       - run:
           command: |
             ./.ci/validation.sh no-exception-guava
+      - run:
+          command: ./.ci/validation.sh git-diff
   no-exception-hibernate-orm:
     docker:
       - image: *default-image
@@ -89,6 +109,8 @@ jobs:
       - run:
           command: |
             ./.ci/validation.sh no-exception-hibernate-orm
+      - run:
+          command: ./.ci/validation.sh git-diff
   no-exception-spotbugs:
     docker:
       - image: *default-image
@@ -97,6 +119,8 @@ jobs:
       - run:
           command: |
             ./.ci/validation.sh no-exception-spotbugs
+      - run:
+          command: ./.ci/validation.sh git-diff
   no-exception-spoon:
     docker:
       - image: *default-image
@@ -105,6 +129,8 @@ jobs:
       - run:
           command: |
             ./.ci/validation.sh no-exception-spoon
+      - run:
+          command: ./.ci/validation.sh git-diff
   no-exception-spring-framework:
     docker:
       - image: *default-image
@@ -113,6 +139,8 @@ jobs:
       - run:
           command: |
             ./.ci/validation.sh no-exception-spring-framework
+      - run:
+          command: ./.ci/validation.sh git-diff
   no-exception-hbase:
     docker:
       - image: *default-image
@@ -121,6 +149,8 @@ jobs:
       - run:
           command: |
             ./.ci/validation.sh no-exception-hbase
+      - run:
+          command: ./.ci/validation.sh git-diff
   no-exception-Pmd-elasticsearch-lombok-ast:
     docker:
       - image: *default-image
@@ -129,6 +159,8 @@ jobs:
       - run:
           command: |
             ./.ci/validation.sh no-exception-Pmd-elasticsearch-lombok-ast
+      - run:
+          command: ./.ci/validation.sh git-diff
   no-exception-alot-of-projects:
     docker:
       - image: *default-image
@@ -137,6 +169,8 @@ jobs:
       - run:
           command: |
             ./.ci/validation.sh no-exception-alot-of-projects
+      - run:
+          command: ./.ci/validation.sh git-diff
   no-warning-imports-guava:
     docker:
       - image: *default-image
@@ -145,6 +179,8 @@ jobs:
       - run:
           command: |
             ./.ci/validation.sh no-warning-imports-guava
+      - run:
+          command: ./.ci/validation.sh git-diff
   no-warning-imports-java-design-patterns:
     docker:
       - image: *default-image
@@ -153,6 +189,8 @@ jobs:
       - run:
           command: |
             ./.ci/validation.sh no-warning-imports-java-design-patterns
+      - run:
+          command: ./.ci/validation.sh git-diff
   sonarqube:
     docker:
       - image: *default-image
@@ -161,6 +199,8 @@ jobs:
       - run:
           command: |
             ./.ci/validation.sh sonarqube
+      - run:
+          command: ./.ci/validation.sh git-diff
 
 workflows:
   version: 2

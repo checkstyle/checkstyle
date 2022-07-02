@@ -255,7 +255,6 @@ no-error-xwiki)
   mvn -e --no-transfer-progress clean install -Pno-validations
   checkout_from "https://github.com/xwiki/xwiki-commons.git"
   cd .ci-temp/xwiki-commons
-  git checkout "47cad118926ea880fe""deb6af8fded""db04d""f9d964"
   # Build custom Checkstyle rules
   mvn -e --no-transfer-progress -f \
     xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
@@ -591,7 +590,7 @@ no-error-pgjdbc)
   checkout_from https://github.com/pgjdbc/pgjdbc.git
   cd .ci-temp/pgjdbc
   # pgjdbc easily damage build, we should use stable versions
-  git checkout "261181f31c0eb""e2deb593c1cc51174898ad6c50c"
+  git checkout "417c9a2354ad""c3d2c80f84b0a5059ce""ad92e7c2b"
   ./gradlew --no-parallel --no-daemon checkstyleAll \
             -PenableMavenLocal -Pcheckstyle.version="${CS_POM_VERSION}"
   cd ../
@@ -1006,6 +1005,7 @@ git-diff)
   if [ "$(git status | grep 'Changes not staged\|Untracked files')" ]; then
     printf "Please clean up or update .gitattributes file.\nGit status output:\n"
     printf "Top 300 lines of diff:\n"
+    git status
     git diff | head -n 300
     false
   fi
