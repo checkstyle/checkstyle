@@ -24,4 +24,11 @@ public class InputRequireThisExtendedMethod // ok
         });
         return "";
     }
+
+    int EXPR;
+
+    String method(int EXPR) {
+        EXPR += 12; // violation
+        return "someString";
+    }
 }
