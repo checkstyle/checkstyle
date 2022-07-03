@@ -4,8 +4,7 @@ set -e
 source ./.ci/util.sh
 
 checkForVariable() {
-  VAR_NAME=$1
-  if [ -v "${!VAR_NAME}" ]; then
+  if [ -v $1 ]; then
     echo "Error: Define $1 environment variable"
     exit 1
   fi
