@@ -123,18 +123,86 @@ public final class AnnotationUtil {
 
         if (!annotations.isEmpty()) {
             final DetailAST firstMatchingAnnotation = findFirstAnnotation(ast, annotationNode -> {
-                DetailAST identNode = annotationNode.findFirstToken(TokenTypes.IDENT);
-                if (identNode == null) {
-                    identNode = annotationNode.findFirstToken(TokenTypes.DOT)
-                            .findFirstToken(TokenTypes.IDENT);
-                }
-
-                return annotations.contains(identNode.getText());
+                return doesAnnotationMatch(annotationNode, annotations);
             });
             result = firstMatchingAnnotation != null;
         }
 
         return result;
+    }
+
+    /**
+     * Checks if annotaton is found in the set of provided annotations.
+     *
+     * @param annotations A collection of annotations to look through.
+     * @param annotationNode Annotation to look for.
+     * @return {@code true} if the annotation is contained in the set.
+     */
+    private static boolean doesAnnotationMatch(DetailAST annotationNode, Set<String> annotations) {
+        final DetailAST identNode = annotationNode.findFirstToken(TokenTypes.IDENT);
+        final String annotationString;
+
+        // If no `IDENT` is found, then we have a `DOT` -> more than 1 qualifier
+        if (identNode == null) {
+            final DetailAST dotNode = annotationNode.findFirstToken(TokenTypes.DOT);
+            annotationString = convertAnnotationNameToString(dotNode);
+        }
+        else {
+            annotationString = identNode.getText();
+        }
+
+        boolean annotationsMatch = false;
+
+        for (String annotation : annotations) {
+            if (annotation.equals(annotationString)) {
+                annotationsMatch = true;
+                break;
+            }
+        }
+
+        return annotationsMatch;
+    }
+
+    /**
+     * Converts (qualified) annotation name to string.
+     *
+     * <p>
+     * For example:
+     * </p>
+     * <pre>
+     * &#64;org.example.MyAnn -> "org.example.MyAnn"
+     * &#64;MyAnn -> "MyAnn"
+     * </pre>
+     *
+     * @param rootDotNode The root DOT node of the (qualified) annotation.
+     * @return Annotation name as string.
+     */
+    private static String convertAnnotationNameToString(DetailAST rootDotNode) {
+        final StringBuilder result = new StringBuilder();
+        final StringBuilder temp = new StringBuilder();
+        final char dot = '.';
+        DetailAST currDotNode = rootDotNode;
+
+        while (currDotNode != null) {
+            if (currDotNode.findFirstToken(TokenTypes.DOT) == null) {
+                temp.append(currDotNode.getFirstChild().getText());
+                if (currDotNode.getChildCount() > 1) {
+                    temp.append(dot);
+                    temp.append(currDotNode.getLastChild().getText());
+                }
+            }
+            else {
+                temp.append(currDotNode.findFirstToken(TokenTypes.IDENT).getText());
+            }
+            if (result.length() != 0) {
+                temp.append(dot);
+            }
+            currDotNode = currDotNode.findFirstToken(TokenTypes.DOT);
+            result.insert(0, temp);
+            temp.setLength(0);
+        }
+
+        return result.toString();
     }
 
     /**
