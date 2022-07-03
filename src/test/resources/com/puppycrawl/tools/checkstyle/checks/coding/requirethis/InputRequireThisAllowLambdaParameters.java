@@ -71,3 +71,17 @@ class Calculator {
         myApp.operateBinary(a++, b, addition);  // 2 violations
     }
 }
+
+class Test {
+    private Thread thread;
+
+    public void testThreadHasWrongClassLoader() {
+        Thread t = new Thread(() -> {
+            try {
+                thread.wait(); // violation
+            }
+            catch (Exception e) {
+            }
+        });
+    }
+}
