@@ -183,7 +183,6 @@ pitest-coding-2)
   "IllegalInstantiationCheck.java.html:<td class='covered'><pre><span  class='survived'>            &#38;&#38; illegal.startsWith(JAVA_LANG)) {</span></pre></td></tr>"
   "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>                        &#38;&#38; currentStatement.getPreviousSibling().getType() == TokenTypes.RESOURCES;</span></pre></td></tr>"
   "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>                currentStatement.getPreviousSibling() != null</span></pre></td></tr>"
-  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>                if (countOfSemiInLambda.isEmpty()) {</span></pre></td></tr>"
   "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>            multiline = !TokenUtil.areOnSameLine(prevSibling, ast)</span></pre></td></tr>"
   "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (!hasResourcesPrevSibling &#38;&#38; isMultilineStatement(currentStatement)) {</span></pre></td></tr>"
   );
