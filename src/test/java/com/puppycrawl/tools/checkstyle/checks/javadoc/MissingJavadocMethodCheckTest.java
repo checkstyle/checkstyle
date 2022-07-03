@@ -82,7 +82,9 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void allowedAnnotationsTest() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "31:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputMissingJavadocMethodAllowedAnnotations.java"), expected);
     }

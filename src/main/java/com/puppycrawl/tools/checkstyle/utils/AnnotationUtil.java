@@ -123,18 +123,35 @@ public final class AnnotationUtil {
 
         if (!annotations.isEmpty()) {
             final DetailAST firstMatchingAnnotation = findFirstAnnotation(ast, annotationNode -> {
-                DetailAST identNode = annotationNode.findFirstToken(TokenTypes.IDENT);
-                if (identNode == null) {
-                    identNode = annotationNode.findFirstToken(TokenTypes.DOT)
-                            .findFirstToken(TokenTypes.IDENT);
-                }
-
-                return annotations.contains(identNode.getText());
+                return doesAnnotationMatch(annotationNode, annotations);
             });
             result = firstMatchingAnnotation != null;
         }
 
         return result;
+    }
+
+    /**
+     * Checks if annotation is found in the set of provided annotations.
+     *
+     * @param annotations A collection of annotations to look through.
+     * @param annotationNode Annotation to look for.
+     * @return {@code true} if the annotation is contained in the set.
+     */
+    private static boolean doesAnnotationMatch(DetailAST annotationNode, Set<String> annotations) {
+        final DetailAST identNode = annotationNode.findFirstToken(TokenTypes.IDENT);
+        final String annotationString;
+
+        // If no `IDENT` is found, then we have a `DOT` -> more than 1 qualifier
+        if (identNode == null) {
+            final DetailAST dotNode = annotationNode.findFirstToken(TokenTypes.DOT);
+            annotationString = FullIdent.createFullIdent(dotNode).getText();
+        }
+        else {
+            annotationString = identNode.getText();
+        }
+
+        return annotations.contains(annotationString);
     }
 
     /**
