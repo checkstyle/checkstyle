@@ -21,15 +21,6 @@
   <mutation unstable="false">
     <sourceFile>RequireThisCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
-    <mutatedMethod>isAnonymousClassDef</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>&amp;&amp; lastChild.getType() == TokenTypes.OBJBLOCK;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RequireThisCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
     <mutatedMethod>isInsideConstructorFrame</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
     <description>removed conditional - replaced equality check with true</description>
