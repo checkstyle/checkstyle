@@ -387,7 +387,9 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testExtendedMethod() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "31:9: " + getCheckMessage(MSG_VARIABLE, "EXPR", ""),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisExtendedMethod.java"), expected);
     }
