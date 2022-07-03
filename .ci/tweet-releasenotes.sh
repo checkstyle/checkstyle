@@ -16,6 +16,7 @@ checkForVariable "TWITTER_CONSUMER_SECRET"
 checkForVariable "TWITTER_ACCESS_TOKEN"
 checkForVariable "TWITTER_ACCESS_TOKEN_SECRET"
 checkForVariable "CS_RELEASE_VERSION"
+checkForVariable "GITHUB_READ_ONLY_TOKEN"
 
 checkout_from https://github.com/checkstyle/contribution
 
@@ -51,7 +52,7 @@ java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.
      -localRepoPath checkstyle \
      -startRef "$LATEST_RELEASE_TAG" \
      -releaseNumber "$CS_RELEASE_VERSION" \
-     -githubAuthToken "$READ_ONLY_TOKEN" \
+     -githubAuthToken "$GITHUB_READ_ONLY_TOKEN" \
      -twitterTemplate $BUILDER_RESOURCE_DIR/templates/twitter.template \
      -generateTwit \
      -twitterConsumerKey "$TWITTER_CONSUMER_KEY" \
