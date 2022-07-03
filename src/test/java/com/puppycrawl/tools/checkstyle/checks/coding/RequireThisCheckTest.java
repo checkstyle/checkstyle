@@ -330,6 +330,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "46:21: " + getCheckMessage(MSG_VARIABLE, "z", ""),
             "71:29: " + getCheckMessage(MSG_VARIABLE, "a", ""),
             "71:34: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "81:17: " + getCheckMessage(MSG_VARIABLE, "thread", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisAllowLambdaParameters.java"), expected);
