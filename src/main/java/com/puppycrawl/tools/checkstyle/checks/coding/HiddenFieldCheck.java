@@ -618,7 +618,7 @@ public class HiddenFieldCheck
             final DetailAST parametersAST = ast.getParent();
             final DetailAST methodAST = parametersAST.getParent();
             if (parametersAST.getChildCount() == 1
-                && methodAST.getType() == TokenTypes.METHOD_DEF
+                && true
                 && isSetterMethod(methodAST, name)) {
                 isIgnoredSetterParam = true;
             }
