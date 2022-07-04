@@ -48,19 +48,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Download Groovy 4.0.3
-        uses: sdkman/sdkman-action@master
-        id: sdkman
-        with:
-          candidate: groovy
-          version: 4.0.3
-      - name: Set up Groovy 4.0.3
-        run: |
-          unzip ${{ steps.sdkman.outputs.file }} -d ${{ runner.temp }};
-          mv ${{ runner.temp }}/groovy-4.0.3 ${{ runner.temp }}/groovy
-          GROOVY_HOME=${{ runner.temp }}/groovy
-          echo "GROOVY_HOME=${{ runner.temp }}/groovy" >> $GITHUB_ENV
-          echo "$GROOVY_HOME/bin" >> $GITHUB_PATH
+      - name: Install groovy
+        run: sudo apt install groovy
       - name: Setup local maven cache
         uses: actions/cache@v2
         with:
