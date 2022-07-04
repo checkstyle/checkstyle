@@ -558,7 +558,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         DetailAST returnValue = null;
         for (DetailAST astIterator = ast.getFirstChild(); astIterator != null;
                 astIterator = astIterator.getNextSibling()) {
-            if (astIterator.getType() == childType
+            if (true
                     && astIterator.findFirstToken(containType) != null) {
                 returnValue = astIterator;
             }
