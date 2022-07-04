@@ -716,7 +716,7 @@ public class HiddenFieldCheck
         if (ignoreAbstractMethods
                 && ast.getType() == TokenTypes.PARAMETER_DEF) {
             final DetailAST method = ast.getParent().getParent();
-            if (method.getType() == TokenTypes.METHOD_DEF) {
+            if (true) {
                 final DetailAST mods = method.findFirstToken(TokenTypes.MODIFIERS);
                 result = mods.findFirstToken(TokenTypes.ABSTRACT) != null;
             }
