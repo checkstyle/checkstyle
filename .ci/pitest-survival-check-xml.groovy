@@ -1,11 +1,10 @@
 import groovy.io.FileType
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.Field
-import groovy.xml.XmlParser
-import groovy.xml.XmlSlurper
+import groovy.transform.Immutable
+import groovy.util.slurpersupport.GPathResult
+import groovy.util.slurpersupport.NodeChildren
 import groovy.xml.XmlUtil
-import groovy.xml.slurpersupport.GPathResult
-import groovy.xml.slurpersupport.NodeChildren
 
 @Field final static String SEPARATOR = System.getProperty("file.separator")
 
@@ -313,7 +312,7 @@ private static void printMutation(String flag, Mutation mutation) {
 private static Set<Mutation> setDifference(final Set<Mutation> setOne,
                                            final Set<Mutation> setTwo) {
     final Set<Mutation> result = new HashSet<>(setOne)
-    result.removeIf(mutation -> setTwo.contains(mutation))
+    result.removeIf { mutation -> setTwo.contains(mutation) }
     return result
 }
 
@@ -321,11 +320,8 @@ private static Set<Mutation> setDifference(final Set<Mutation> setOne,
  * A class to represent the XML {@code mutation} node.
  */
 @EqualsAndHashCode(excludes = ["lineNumber", "unstable"])
-record Mutation(String sourceFile, String mutatedClass,
-                String mutatedMethod, String mutator,
-                String description, String lineContent, int lineNumber,
-                boolean unstable)
-        implements Comparable<Mutation> {
+@Immutable
+class Mutation implements Comparable<Mutation> {
 
     /**
      * Mutation nodes present in suppressions file do not have a {@code lineNumber}.
@@ -333,50 +329,59 @@ record Mutation(String sourceFile, String mutatedClass,
      */
     private static final int LINE_NUMBER_NOT_PRESENT_VALUE = -1
 
+    String sourceFile
+    String mutatedClass
+    String mutatedMethod
+    String mutator
+    String description
+    String lineContent
+    int lineNumber
+    boolean unstable
+
     @Override
     String toString() {
         String toString = """
-            Source File: "${sourceFile()}"
-            Class: "${mutatedClass()}"
-            Method: "${mutatedMethod()}"
-            Line Contents: "${lineContent()}"
-            Mutator: "${mutator()}"
-            Description: "${description()}"
+            Source File: "${getSourceFile()}"
+            Class: "${getMutatedClass()}"
+            Method: "${getMutatedMethod()}"
+            Line Contents: "${getLineContent()}"
+            Mutator: "${getMutator()}"
+            Description: "${getDescription()}"
             """.stripIndent()
-        if (lineNumber() != LINE_NUMBER_NOT_PRESENT_VALUE) {
-            toString += 'Line Number: ' + lineNumber()
+        if (getLineNumber() != LINE_NUMBER_NOT_PRESENT_VALUE) {
+            toString += 'Line Number: ' + getLineNumber()
         }
         return toString
     }
 
     @Override
     int compareTo(Mutation other) {
-        int i = sourceFile() <=> other.sourceFile()
+        int i = getSourceFile() <=> other.getSourceFile()
         if (i != 0) {
             return i
         }
 
-        i = mutatedClass() <=> other.mutatedClass()
+        i = getMutatedClass() <=> other.getMutatedClass()
         if (i != 0) {
             return i
         }
 
-        i = mutatedMethod() <=> other.mutatedMethod()
+        i = getMutatedMethod() <=> other.getMutatedMethod()
         if (i != 0) {
             return i
         }
 
-        i = lineContent() <=> other.lineContent()
+        i = getLineContent() <=> other.getLineContent()
         if (i != 0) {
             return i
         }
 
-        i = mutator() <=> other.mutator()
+        i = getMutator() <=> other.getMutator()
         if (i != 0) {
             return i
         }
 
-        return description() <=> other.description()
+        return getDescription() <=> other.getDescription()
     }
 
     /**
@@ -387,23 +392,14 @@ record Mutation(String sourceFile, String mutatedClass,
     String toXmlString() {
         return """
             <mutation unstable="${isUnstable()}">
-              <sourceFile>${sourceFile()}</sourceFile>
-              <mutatedClass>${mutatedClass()}</mutatedClass>
-              <mutatedMethod>${mutatedMethod()}</mutatedMethod>
-              <mutator>${mutator()}</mutator>
-              <description>${description()}</description>
-              <lineContent>${lineContent()}</lineContent>
+              <sourceFile>${getSourceFile()}</sourceFile>
+              <mutatedClass>${getMutatedClass()}</mutatedClass>
+              <mutatedMethod>${getMutatedMethod()}</mutatedMethod>
+              <mutator>${getMutator()}</mutator>
+              <description>${getDescription()}</description>
+              <lineContent>${getLineContent()}</lineContent>
             </mutation>
             """.stripIndent(10)
-    }
-
-    /**
-     * Whether the mutation is unstable.
-     *
-     * @return {@code true} if the mutation is unstable
-     */
-    boolean isUnstable() {
-        return unstable
     }
 
 }
