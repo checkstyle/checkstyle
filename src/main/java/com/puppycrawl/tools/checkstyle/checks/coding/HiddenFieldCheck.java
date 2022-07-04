@@ -453,7 +453,7 @@ public class HiddenFieldCheck
                         && typeMods.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
         final String frameName;
 
-        if (type == TokenTypes.CLASS_DEF
+        if (true
                 || type == TokenTypes.ENUM_DEF) {
             frameName = ast.findFirstToken(TokenTypes.IDENT).getText();
         }
