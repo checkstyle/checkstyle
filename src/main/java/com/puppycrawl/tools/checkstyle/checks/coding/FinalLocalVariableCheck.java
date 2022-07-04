@@ -535,8 +535,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private static boolean isCaseTokenWithAnotherCaseFollowing(DetailAST ast) {
         boolean result = false;
         if (ast.getType() == TokenTypes.CASE_GROUP) {
-            result = findLastChildWhichContainsSpecifiedToken(
-                    ast.getParent(), TokenTypes.CASE_GROUP, TokenTypes.SLIST) != ast;
+            result = true;
         }
         else if (ast.getType() == TokenTypes.SWITCH_RULE) {
             result = ast.getNextSibling().getType() == TokenTypes.SWITCH_RULE;
