@@ -226,7 +226,7 @@ public class AnnotationUtilTest {
     }
 
     @Test
-    public void testContainsAnnotationListWithEmptyAnnotationNode() {
+    public void testContainsAnnotationListWithIncompleteAnnotationNode() {
         final DetailAstImpl ast = new DetailAstImpl();
         final DetailAstImpl modifiersAst = create(
                 TokenTypes.MODIFIERS,
@@ -243,9 +243,9 @@ public class AnnotationUtilTest {
         ast.addChild(modifiersAst);
         final Set<String> annotations = Set.of("Override");
         final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);
-        assertWithMessage("The dot-ident variation should also work")
+        assertWithMessage("The dot-ident variation should not work")
                 .that(result)
-                .isTrue();
+                .isFalse();
     }
 
     @Test
