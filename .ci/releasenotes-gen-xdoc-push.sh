@@ -51,7 +51,7 @@ java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.
      -githubAuthToken "$READ_ONLY_TOKEN" \
      -generateXdoc \
      -xdocTemplate $BUILDER_RESOURCE_DIR/templates/xdoc_freemarker.template \
-     -publishXdoc -publishXdocWithPush
+     -publishXdoc 
 
 echo "releasenotes.xml after commit:"
 head "checkstyle/src/xdocs/releasenotes.xml" -n 100
