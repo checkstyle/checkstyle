@@ -1807,7 +1807,7 @@
                 <!-- test needs to be updated -->
                 <exclude>**/SuppressionCommentFilterTest.class</exclude>
 
-                <!-- remain test methods should be updated -->
+                <!-- until https://github.com/checkstyle/checkstyle/issues/11846 -->
                 <exclude>**/EmptyLineSeparatorCheckTest.class</exclude>
 
                 <!-- content header is conflicting with Input inline header -->
