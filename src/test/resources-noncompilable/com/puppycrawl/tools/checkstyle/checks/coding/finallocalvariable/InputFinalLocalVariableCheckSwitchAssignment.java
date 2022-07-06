@@ -68,4 +68,20 @@ public class InputFinalLocalVariableCheckSwitchAssignment {
         };
     }
 
+    String statement1(int t) {
+        String res; // violation
+
+        switch (t) {
+            case 1 -> {
+                res = "A";
+            }
+            case 2, 3 -> res = "B-C";
+            case 4 -> throw new IllegalStateException("D");
+            default -> {
+                res = "other";
+            }
+        }
+        return res;
+    }
+
 }
