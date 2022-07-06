@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
@@ -424,8 +425,8 @@ public class HiddenFieldCheck
      */
     private void processLambda(DetailAST ast) {
         final DetailAST firstChild = ast.getFirstChild();
-        if (firstChild != null
-                && firstChild.getType() == TokenTypes.IDENT) {
+        final boolean isNotLambdaInSwitchRule = firstChild != null;
+        if (isNotLambdaInSwitchRule) {
             final String untypedLambdaParameterName = firstChild.getText();
             if (frame.containsStaticField(untypedLambdaParameterName)
                 || isInstanceField(firstChild, untypedLambdaParameterName)) {
