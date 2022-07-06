@@ -291,6 +291,8 @@ public class FinalLocalVariableCheckTest
             "21:13: " + getCheckMessage(MSG_KEY, "a"),
             "44:13: " + getCheckMessage(MSG_KEY, "b"),
             "46:21: " + getCheckMessage(MSG_KEY, "x"),
+            "72:16: " + getCheckMessage(MSG_KEY, "res"),
+            "92:16: " + getCheckMessage(MSG_KEY, "res"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputFinalLocalVariableCheckSwitchAssignment.java"),
