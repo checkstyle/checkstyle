@@ -43,7 +43,9 @@ java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.
 
 cd ../
 
-CS_RELEASE_VERSION="$(getCheckstylePomVersion)"
+CS_RELEASE_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
+              -Dexec.args='${project.version}' \
+              --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec | sed 's/-SNAPSHOT//')
 LATEST_RELEASE_TAG=$(curl -s https://api.github.com/repos/checkstyle/checkstyle/releases/latest \
                        | jq ".tag_name")
 
