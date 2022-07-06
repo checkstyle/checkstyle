@@ -44,10 +44,13 @@ java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.
 cd ../
 
 CS_RELEASE_VERSION="$(getCheckstylePomVersion)"
+LATEST_RELEASE_TAG=$(curl -s https://api.github.com/repos/checkstyle/checkstyle/releases/latest \
+                       | jq ".tag_name")
+
 mvn -e --no-transfer-progress versions:set -DgroupId=com.puppycrawl.tools -DartifactId=checkstyle \
  -DoldVersion="$LATEST_RELEASE_TAG" -DnewVersion="$CS_RELEASE_VERSION"
 
 git add . && git commit -m "config: update to $CS_RELEASE_VERSION"
 
 echo "releasenotes.xml after commit:"
-head "checkstyle/src/xdocs/releasenotes.xml" -n 100
+head "ci-temp/checkstyle/src/xdocs/releasenotes.xml" -n 100
