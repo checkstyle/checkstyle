@@ -55,15 +55,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
-    <mutatedMethod>visitToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (ast.getParent().getType() == TokenTypes.SWITCH_RULE</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>HiddenFieldCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck</mutatedClass>
     <mutatedMethod>isIgnoredParamOfAbstractMethod</mutatedMethod>
