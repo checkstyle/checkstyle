@@ -2,17 +2,6 @@
 set -e
 
 source ./.ci/util.sh
-
-checkForVariable() {
-  VAR_NAME=$1
-  if [ ! -v "$VAR_NAME" ]; then
-    echo "Error: Define $1 environment variable"
-    exit 1
-  fi
-}
-
-checkForVariable "READ_ONLY_TOKEN"
-
 checkout_from https://github.com/checkstyle/contribution
 
 cd .ci-temp/contribution/releasenotes-builder
@@ -48,10 +37,20 @@ java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.
      -remoteRepoPath checkstyle/checkstyle \
      -startRef "$LATEST_RELEASE_TAG" \
      -releaseNumber "$CS_RELEASE_VERSION" \
-     -githubAuthToken "$READ_ONLY_TOKEN" \
+     -githubAuthToken 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 \
      -generateXdoc \
      -xdocTemplate $BUILDER_RESOURCE_DIR/templates/xdoc_freemarker.template \
-     -publishXdoc -publishXdocWithPush
 
-echo "releasenotes.xml after commit:"
-head "checkstyle/src/xdocs/releasenotes.xml" -n 100
+cd ../
+
+CS_RELEASE_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
+              -Dexec.args='${project.version}' \
+              --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec | sed 's/-SNAPSHOT//')
+
+LATEST_RELEASE_TAG=$(curl -s https://api.github.com/repos/checkstyle/checkstyle/releases/latest \
+                       | jq ".tag_name")
+
+mvn -e --no-transfer-progress versions:set -DgroupId=com.puppycrawl.tools -DartifactId=checkstyle \
+  -DoldVersion=10.4-SNAPSHOT -DnewVersion="$CS_RELEASE_VERSION"
+
+git add . && git commit -m "config: update version to $CS_RELEASE_VERSION" && push -f origin master
