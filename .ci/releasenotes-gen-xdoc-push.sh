@@ -62,6 +62,6 @@ LATEST_RELEASE_TAG=$(curl -s https://api.github.com/repos/checkstyle/checkstyle/
                        | jq ".tag_name")
 
 mvn -e --no-transfer-progress versions:set -DgroupId=com.puppycrawl.tools -DartifactId=checkstyle \
-  -DoldVersion=10.4-SNAPSHOT -DnewVersion="$CS_RELEASE_VERSION"
+  -DoldVersion="$LATEST_RELEASE_TAG" -DnewVersion="$CS_RELEASE_VERSION"
 
-git add . && git commit -m "config: update version to $CS_RELEASE_VERSION" && push -f origin master
+git add . && git commit -m "config: update version to $CS_RELEASE_VERSION"
