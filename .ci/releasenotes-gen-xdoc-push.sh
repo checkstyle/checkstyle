@@ -2,7 +2,18 @@
 set -e
 
 source ./.ci/util.sh
-checkout_from https://github.com/Rahulkhinchi03/contribution
+
+checkForVariable() {
+  VAR_NAME=$1
+  if [ ! -v "$VAR_NAME" ]; then
+    echo "Error: Define $1 environment variable"
+    exit 1
+  fi
+}
+
+checkForVariable "READ_ONLY_TOKEN"
+
+checkout_from https://github.com/checkstyle/contribution
 
 cd .ci-temp/contribution/releasenotes-builder
 mvn -e --no-transfer-progress clean compile package
@@ -16,7 +27,7 @@ if [ -d .ci-temp/checkstyle ]; then
   cd ../../
 else
   cd .ci-temp/
-  git clone https://github.com/Rahulkhinchi03/checkstyle
+  git clone https://github.com/checkstyle/checkstyle
   cd ../
 fi
 
@@ -37,7 +48,7 @@ java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.
      -remoteRepoPath checkstyle/checkstyle \
      -startRef "$LATEST_RELEASE_TAG" \
      -releaseNumber "$CS_RELEASE_VERSION" \
-     -githubAuthToken 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 \
+     -githubAuthToken "$READ_ONLY_TOKEN" \
      -generateXdoc \
      -xdocTemplate $BUILDER_RESOURCE_DIR/templates/xdoc_freemarker.template \
 
@@ -52,4 +63,4 @@ LATEST_RELEASE_TAG=$(curl -s https://api.github.com/repos/checkstyle/checkstyle/
 mvn -e --no-transfer-progress versions:set -DgroupId=com.puppycrawl.tools -DartifactId=checkstyle \
  -DoldVersion="$LATEST_RELEASE_TAG" -DnewVersion="$CS_RELEASE_VERSION"
 
-
+git add . && git commit -m "config: update version to $CS_RELEASE_VERSION"
