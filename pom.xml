@@ -214,7 +214,7 @@
     </maven.sevntu-checkstyle-check.checkstyle.version>
     <maven.versions.plugin.version>2.11.0</maven.versions.plugin.version>
     <java.version>11</java.version>
-    <pitest.plugin.version>1.9.0</pitest.plugin.version>
+    <pitest.plugin.version>1.9.1</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
