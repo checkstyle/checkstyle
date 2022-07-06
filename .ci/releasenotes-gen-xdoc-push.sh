@@ -2,7 +2,7 @@
 set -e
 
 source ./.ci/util.sh
-checkout_from https://github.com/checkstyle/contribution
+checkout_from https://github.com/Rahulkhinchi03/contribution
 
 cd .ci-temp/contribution/releasenotes-builder
 mvn -e --no-transfer-progress clean compile package
@@ -16,7 +16,7 @@ if [ -d .ci-temp/checkstyle ]; then
   cd ../../
 else
   cd .ci-temp/
-  git clone https://github.com/checkstyle/checkstyle
+  git clone https://github.com/Rahulkhinchi03/checkstyle
   cd ../
 fi
 
@@ -55,4 +55,4 @@ mvn -e --no-transfer-progress versions:set -DgroupId=com.puppycrawl.tools -Darti
 git add . && git commit -m "config: update to $CS_RELEASE_VERSION"
 
 echo "releasenotes.xml after commit:"
-head "ci-temp/checkstyle/src/xdocs/releasenotes.xml" -n 100
+head "/ci-temp/checkstyle/src/xdocs/releasenotes.xml" -n 100
