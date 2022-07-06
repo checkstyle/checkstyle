@@ -52,7 +52,4 @@ LATEST_RELEASE_TAG=$(curl -s https://api.github.com/repos/checkstyle/checkstyle/
 mvn -e --no-transfer-progress versions:set -DgroupId=com.puppycrawl.tools -DartifactId=checkstyle \
  -DoldVersion="$LATEST_RELEASE_TAG" -DnewVersion="$CS_RELEASE_VERSION"
 
-git add . && git commit -m "config: update to $CS_RELEASE_VERSION"
 
-echo "releasenotes.xml after commit:"
-head "/ci-temp/checkstyle/src/xdocs/releasenotes.xml" -n 100
