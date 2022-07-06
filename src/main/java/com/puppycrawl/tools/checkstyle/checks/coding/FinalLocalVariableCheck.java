@@ -521,8 +521,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @return true if token is LITERAL_IF and there is an {@code else} following, else false
      */
     private static boolean isIfTokenWithAnElseFollowing(DetailAST ast) {
-        return ast.getType() == TokenTypes.LITERAL_IF
-                && ast.getLastChild().getType() == TokenTypes.LITERAL_ELSE;
+        return ast.getLastChild().getType() == TokenTypes.LITERAL_ELSE;
     }
 
     /**
