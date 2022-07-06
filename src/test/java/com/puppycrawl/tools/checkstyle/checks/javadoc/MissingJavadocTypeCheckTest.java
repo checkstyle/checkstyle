@@ -291,4 +291,75 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testQualifiedAnnotation1() throws Exception {
+        final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "20:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "23:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputMissingJavadocTypeQualifiedAnnotation1.java"), expected);
+    }
+
+    @Test
+    public void testQualifiedAnnotation2() throws Exception {
+        final String[] expected = {
+            "20:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "23:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputMissingJavadocTypeQualifiedAnnotation2.java"), expected);
+    }
+
+    @Test
+    public void testQualifiedAnnotation3() throws Exception {
+        final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "22:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputMissingJavadocTypeQualifiedAnnotation3.java"), expected);
+    }
+
+    @Test
+    public void testQualifiedAnnotation4() throws Exception {
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "21:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputMissingJavadocTypeQualifiedAnnotation4.java"), expected);
+    }
+
+    @Test
+    public void testQualifiedAnnotation5() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getPath("InputMissingJavadocTypeQualifiedAnnotation5.java"), expected);
+    }
+
+    @Test
+    public void testMultipleQualifiedAnnotation() throws Exception {
+        final String[] expected = {
+            "29:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "38:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputMissingJavadocTypeMultipleQualifiedAnnotation.java"), expected);
+    }
+
+    @Test
+    public void testQualifiedAnnotationWithParameters() throws Exception {
+        final String[] expected = {
+            "33:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "37:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "42:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "50:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputMissingJavadocTypeQualifiedAnnotationWithParameters.java"),
+            expected);
+    }
+
 }
