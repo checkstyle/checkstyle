@@ -126,7 +126,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "ReturnCount",
             "SeparatorWrap",
             "SimplifyBooleanExpression",
-            "SimplifyBooleanReturn",
             "StaticVariableName",
             "SuperClone",
             "SuperFinalize",
