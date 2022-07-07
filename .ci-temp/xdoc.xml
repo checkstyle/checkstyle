@@ -1,0 +1,80 @@
+  
+    <section name="Release 10.4-SNAPSHOT">
+      <div class="releaseDate">07.07.2022</div>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Enforce file size on Java inputs.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            There are semantic problems in the Chinese error message of keyword
+`design.forExtension` ..
+            Author: ssquan
+            <a href="https://github.com/checkstyle/checkstyle/issues/11649">#11649</a>
+          </li>
+          <li>
+            prepare-settings.sh fails to create settings.xml.
+            Author: Rahulkhinchi03
+            <a href="https://github.com/checkstyle/checkstyle/issues/11783">#11783</a>
+          </li>
+          <li>
+            Use groovy version provided by `apt` in pitest.yml.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/11823">#11823</a>
+          </li>
+          <li>
+            Pitest: Kill all surviving mutations.
+            Author: Vyom-Yadav, Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/11720">#11720</a>
+          </li>
+          <li>
+            Solve fb-contrib errors.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11140">#11140</a>
+          </li>
+          <li>
+            tweet-releasenotes.sh does not check env variables.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11784">#11784</a>
+          </li>
+          <li>
+            download of m2 cache from sourceforge.io is slow .
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11817">#11817</a>
+          </li>
+          <li>
+            update code base to have javadoc tag to explain noinspection tag
+content.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/11277">#11277</a>
+          </li>
+          <li>
+            infra: turns off create dependency reduced pom for shade plugin.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/11806">#11806</a>
+          </li>
+          <li>
+            Update Tests to use new &#39;verifyXxxxxx&#39; method or
+&#39;execute&#39; that use inlined config in Input files.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/11446">#11446</a>
+          </li>
+          <li>
+            Specify violation messages in input files..
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for javadoc profile to 100%.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/6295">#6295</a>
+          </li>
+        </ul>
+    </section>
