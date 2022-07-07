@@ -713,8 +713,7 @@ public class HiddenFieldCheck
      */
     private boolean isIgnoredParamOfAbstractMethod(DetailAST ast) {
         boolean result = false;
-        if (ignoreAbstractMethods
-                && ast.getType() == TokenTypes.PARAMETER_DEF) {
+        if (ignoreAbstractMethods) {
             final DetailAST method = ast.getParent().getParent();
             if (method.getType() == TokenTypes.METHOD_DEF) {
                 final DetailAST mods = method.findFirstToken(TokenTypes.MODIFIERS);
