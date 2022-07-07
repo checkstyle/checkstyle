@@ -375,17 +375,41 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testEmptyJavadoc() throws Exception {
+    public void testEmptyJavadoc1() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleEmptyJavadoc1.java"), expected);
+    }
+
+    @Test
+    public void testEmptyJavadoc2() throws Exception {
         final String[] expected = {
-            "175: " + getCheckMessage(MSG_EMPTY),
-            "179: " + getCheckMessage(MSG_EMPTY),
-            "184: " + getCheckMessage(MSG_EMPTY),
-            "189: " + getCheckMessage(MSG_EMPTY),
-            "193: " + getCheckMessage(MSG_EMPTY),
+            "75: " + getCheckMessage(MSG_EMPTY),
+            "79: " + getCheckMessage(MSG_EMPTY),
+            "84: " + getCheckMessage(MSG_EMPTY),
+            "89: " + getCheckMessage(MSG_EMPTY),
+            "93: " + getCheckMessage(MSG_EMPTY),
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputJavadocStyle8.java"), expected);
+            getPath("InputJavadocStyleEmptyJavadoc2.java"), expected);
+    }
+
+    @Test
+    public void testEmptyJavadoc3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleEmptyJavadoc3.java"), expected);
+    }
+
+    @Test
+    public void testEmptyJavadoc4() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleEmptyJavadoc4.java"), expected);
     }
 
     @Test
