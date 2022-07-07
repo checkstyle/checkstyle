@@ -424,8 +424,7 @@ public class HiddenFieldCheck
      */
     private void processLambda(DetailAST ast) {
         final DetailAST firstChild = ast.getFirstChild();
-        if (firstChild != null
-                && firstChild.getType() == TokenTypes.IDENT) {
+        if (firstChild != null) {
             final String untypedLambdaParameterName = firstChild.getText();
             if (frame.containsStaticField(untypedLambdaParameterName)
                 || isInstanceField(firstChild, untypedLambdaParameterName)) {
