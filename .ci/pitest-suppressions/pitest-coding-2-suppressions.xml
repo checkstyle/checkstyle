@@ -66,15 +66,6 @@
   <mutation unstable="false">
     <sourceFile>HiddenFieldCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck</mutatedClass>
-    <mutatedMethod>processLambda</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>&amp;&amp; firstChild.getType() == TokenTypes.IDENT) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>HiddenFieldCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck</mutatedClass>
     <mutatedMethod>visitOtherTokens</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
     <description>removed conditional - replaced equality check with false</description>
