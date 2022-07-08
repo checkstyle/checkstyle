@@ -172,10 +172,7 @@ pitest-coding-2)
   "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>        return loop1 != null &#38;&#38; loop1 == loop2;</span></pre></td></tr>"
   "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; firstChild.getType() == TokenTypes.IDENT) {</span></pre></td></tr>"
   "IllegalInstantiationCheck.java.html:<td class='covered'><pre><span  class='survived'>            &#38;&#38; illegal.startsWith(JAVA_LANG)) {</span></pre></td></tr>"
-  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>                        &#38;&#38; currentStatement.getPreviousSibling().getType() == TokenTypes.RESOURCES;</span></pre></td></tr>"
-  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>                currentStatement.getPreviousSibling() != null</span></pre></td></tr>"
-  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>            multiline = !TokenUtil.areOnSameLine(prevSibling, ast)</span></pre></td></tr>"
-  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (!hasResourcesPrevSibling &#38;&#38; isMultilineStatement(currentStatement)) {</span></pre></td></tr>"
+  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>            || previousSibling.getType() == TokenTypes.RESOURCES</span></pre></td></tr>"
   );
   checkPitestReport ignoredItems
   ;;
