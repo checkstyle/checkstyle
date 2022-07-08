@@ -297,4 +297,12 @@ public class FinalLocalVariableCheckTest
             expected);
     }
 
+    @Test
+    public void testFinalLocalVariableSwitchStatement() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getPath("InputFinalLocalVariableSwitchStatement.java"),
+            expected);
+    }
+
 }
