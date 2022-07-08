@@ -459,6 +459,17 @@ public class HiddenFieldCheckTest
             getPath("InputHiddenFieldLambdas2.java"), expected);
     }
 
+    @Test
+    public void testClassNestedInRecord() throws Exception {
+
+        final String[] expected = {
+            "23:26: " + getCheckMessage(MSG_KEY, "a"),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputHiddenFieldClassNestedInRecord.java"),
+            expected);
+    }
+
     /**
      * We cannot reproduce situation when visitToken is called and leaveToken is not.
      * So, we have to use reflection to be sure that even in such situation
