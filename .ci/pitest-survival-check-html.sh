@@ -172,7 +172,6 @@ pitest-coding-2)
   "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>                if (ast.getParent().getType() == TokenTypes.SWITCH_RULE</span></pre></td></tr>"
   "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (astIterator.getType() == childType</span></pre></td></tr>"
   "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>            result = findLastChildWhichContainsSpecifiedToken(</span></pre></td></tr>"
-  "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>        return ast.getType() == TokenTypes.LITERAL_IF</span></pre></td></tr>"
   "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>        return loop1 != null &#38;&#38; loop1 == loop2;</span></pre></td></tr>"
   "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; ast.getType() == TokenTypes.PARAMETER_DEF) {</span></pre></td></tr>"
   "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; firstChild.getType() == TokenTypes.IDENT) {</span></pre></td></tr>"

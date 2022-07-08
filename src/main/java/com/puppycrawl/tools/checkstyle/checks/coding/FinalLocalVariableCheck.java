@@ -511,18 +511,17 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @return true if should be updated, else false
      */
     private static boolean shouldUpdateUninitializedVariables(DetailAST ast) {
-        return isIfTokenWithAnElseFollowing(ast) || isCaseTokenWithAnotherCaseFollowing(ast);
+        return isWithElseFollowing(ast) || isCaseTokenWithAnotherCaseFollowing(ast);
     }
 
     /**
-     * If token is LITERAL_IF and there is an {@code else} following.
+     * If there is an {@code else} following.
      *
      * @param ast token to be checked
-     * @return true if token is LITERAL_IF and there is an {@code else} following, else false
+     * @return true if there is an {@code else} following, else false
      */
-    private static boolean isIfTokenWithAnElseFollowing(DetailAST ast) {
-        return ast.getType() == TokenTypes.LITERAL_IF
-                && ast.getLastChild().getType() == TokenTypes.LITERAL_ELSE;
+    private static boolean isWithElseFollowing(DetailAST ast) {
+        return ast.getLastChild().getType() == TokenTypes.LITERAL_ELSE;
     }
 
     /**
