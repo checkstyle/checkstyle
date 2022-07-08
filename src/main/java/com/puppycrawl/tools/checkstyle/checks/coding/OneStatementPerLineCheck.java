@@ -26,7 +26,6 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -258,10 +257,11 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
      */
     private void checkIfSemicolonIsInDifferentLineThanPrevious(DetailAST ast) {
         DetailAST currentStatement = ast;
-        final boolean hasResourcesPrevSibling =
-                currentStatement.getPreviousSibling() != null
-                        && currentStatement.getPreviousSibling().getType() == TokenTypes.RESOURCES;
-        if (!hasResourcesPrevSibling && isMultilineStatement(currentStatement)) {
+        final DetailAST previousSibling = ast.getPreviousSibling();
+        final boolean isResourceOrUnnecessarySemi = previousSibling != null
+            && previousSibling.getType() != TokenTypes.RESOURCES
+            && ast.getParent().getType() != TokenTypes.COMPILATION_UNIT;
+        if (isResourceOrUnnecessarySemi) {
             currentStatement = ast.getPreviousSibling();
         }
         if (isInLambda) {
@@ -338,25 +338,6 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
                                            int forStatementEnd, int lambdaStatementEnd) {
         return lastStatementEnd == ast.getLineNo() && forStatementEnd != ast.getLineNo()
                 && lambdaStatementEnd != ast.getLineNo();
-    }
-
-    /**
-     * Checks whether statement is multiline.
-     *
-     * @param ast token for the current statement.
-     * @return true if one statement is distributed over two or more lines.
-     */
-    private static boolean isMultilineStatement(DetailAST ast) {
-        final boolean multiline;
-        if (ast.getPreviousSibling() == null) {
-            multiline = false;
-        }
-        else {
-            final DetailAST prevSibling = ast.getPreviousSibling();
-            multiline = !TokenUtil.areOnSameLine(prevSibling, ast)
-                    && ast.getParent().getType() != TokenTypes.COMPILATION_UNIT;
-        }
-        return multiline;
     }
 
 }
