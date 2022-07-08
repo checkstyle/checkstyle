@@ -68,4 +68,32 @@ public class InputFinalLocalVariableCheckSwitchAssignment {
         };
     }
 
+    String statement1(int t) {
+        String res; // violation
+
+        switch (t) {
+            case 1 -> {
+                res = "A";
+            }
+            case 2, 3 -> res = "B-C";
+            case 4 -> throw new IllegalStateException("D");
+            default -> {
+                res = "other";
+            }
+        }
+        return res;
+    }
+
+    enum MyEnum {
+        a,b,c
+    }
+
+    void switch_rules(MyEnum value) {
+        String res; // violation
+        switch (value) {
+            case a -> throw new RuntimeException();
+            case b -> res = "2";
+            case c -> res = "3";
+        }
+    }
 }
