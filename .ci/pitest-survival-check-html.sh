@@ -168,8 +168,6 @@ pitest-coding-1)
 pitest-coding-2)
   declare -a ignoredItems=(
   "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>                            &#38;&#38; isSameVariables(storedVariable, variable)</span></pre></td></tr>"
-  "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>                        == ast.getParent()) {</span></pre></td></tr>"
-  "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>                if (ast.getParent().getType() == TokenTypes.SWITCH_RULE</span></pre></td></tr>"
   "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (astIterator.getType() == childType</span></pre></td></tr>"
   "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>            result = findLastChildWhichContainsSpecifiedToken(</span></pre></td></tr>"
   "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>        return ast.getType() == TokenTypes.LITERAL_IF</span></pre></td></tr>"
