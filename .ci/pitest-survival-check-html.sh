@@ -177,10 +177,7 @@ pitest-coding-2)
   "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (ignoreSetter &#38;&#38; ast.getType() == TokenTypes.PARAMETER_DEF) {</span></pre></td></tr>"
   "HiddenFieldCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (type == TokenTypes.CLASS_DEF</span></pre></td></tr>"
   "IllegalInstantiationCheck.java.html:<td class='covered'><pre><span  class='survived'>            &#38;&#38; illegal.startsWith(JAVA_LANG)) {</span></pre></td></tr>"
-  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>                        &#38;&#38; currentStatement.getPreviousSibling().getType() == TokenTypes.RESOURCES;</span></pre></td></tr>"
-  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>                currentStatement.getPreviousSibling() != null</span></pre></td></tr>"
-  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>            multiline = !TokenUtil.areOnSameLine(prevSibling, ast)</span></pre></td></tr>"
-  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (!hasResourcesPrevSibling &#38;&#38; isMultilineStatement(currentStatement)) {</span></pre></td></tr>"
+  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>            &#38;&#38; previousSibling.getType() != TokenTypes.RESOURCES</span></pre></td></tr>"
   );
   checkPitestReport ignoredItems
   ;;
