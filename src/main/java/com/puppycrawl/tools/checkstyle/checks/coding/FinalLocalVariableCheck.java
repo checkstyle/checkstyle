@@ -501,7 +501,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * If token is LITERAL_IF and there is an {@code else} following or token is CASE_GROUP or
+     * If there is an {@code else} following or token is CASE_GROUP or
      * SWITCH_RULE and there is another {@code case} following, then update the
      * uninitialized variables.
      *
@@ -509,18 +509,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @return true if should be updated, else false
      */
     private static boolean shouldUpdateUninitializedVariables(DetailAST ast) {
-        return isIfTokenWithAnElseFollowing(ast) || isCaseTokenWithAnotherCaseFollowing(ast);
-    }
-
-    /**
-     * If token is LITERAL_IF and there is an {@code else} following.
-     *
-     * @param ast token to be checked
-     * @return true if token is LITERAL_IF and there is an {@code else} following, else false
-     */
-    private static boolean isIfTokenWithAnElseFollowing(DetailAST ast) {
-        return ast.getType() == TokenTypes.LITERAL_IF
-                && ast.getLastChild().getType() == TokenTypes.LITERAL_ELSE;
+        return ast.getLastChild().getType() == TokenTypes.LITERAL_ELSE
+            || isCaseTokenWithAnotherCaseFollowing(ast);
     }
 
     /**
