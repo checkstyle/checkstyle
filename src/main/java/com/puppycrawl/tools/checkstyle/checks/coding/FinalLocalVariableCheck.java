@@ -322,6 +322,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     public void leaveToken(DetailAST ast) {
         Map<String, FinalVariableCandidate> scope = null;
         final Deque<DetailAST> prevScopeUninitializedVariableData;
+        final DetailAST parentAst = ast.getParent();
         switch (ast.getType()) {
             case TokenTypes.OBJBLOCK:
             case TokenTypes.CTOR_DEF:
@@ -331,9 +332,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 break;
             case TokenTypes.EXPR:
                 // Switch labeled expression has no slist
-                if (ast.getParent().getType() == TokenTypes.SWITCH_RULE) {
+                if (parentAst.getType() == TokenTypes.SWITCH_RULE) {
                     prevScopeUninitializedVariableData = prevScopeUninitializedVariables.peek();
-                    if (shouldUpdateUninitializedVariables(ast.getParent())) {
+                    if (shouldUpdateUninitializedVariables(parentAst)) {
                         updateAllUninitializedVariables(prevScopeUninitializedVariableData);
                     }
                 }
@@ -341,15 +342,13 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             case TokenTypes.SLIST:
                 prevScopeUninitializedVariableData = prevScopeUninitializedVariables.peek();
                 boolean containsBreak = false;
-                if (ast.getParent().getType() != TokenTypes.CASE_GROUP
-                    || findLastChildWhichContainsSpecifiedToken(ast.getParent().getParent(),
-                            TokenTypes.CASE_GROUP, TokenTypes.SLIST) == ast.getParent()) {
+                if (parentAst.getType() != TokenTypes.CASE_GROUP
+                    || findLastCaseGroupWhichContainsSlist(parentAst.getParent()) == parentAst) {
                     containsBreak = scopeStack.peek().containsBreak;
                     scope = scopeStack.pop().scope;
                     prevScopeUninitializedVariables.pop();
                 }
-                final DetailAST parent = ast.getParent();
-                if (containsBreak || shouldUpdateUninitializedVariables(parent)) {
+                if (containsBreak || shouldUpdateUninitializedVariables(parentAst)) {
                     updateAllUninitializedVariables(prevScopeUninitializedVariableData);
                 }
                 updateCurrentScopeAssignedVariables();
@@ -523,8 +522,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private static boolean isCaseTokenWithAnotherCaseFollowing(DetailAST ast) {
         boolean result = false;
         if (ast.getType() == TokenTypes.CASE_GROUP) {
-            result = findLastChildWhichContainsSpecifiedToken(
-                    ast.getParent(), TokenTypes.CASE_GROUP, TokenTypes.SLIST) != ast;
+            result = findLastCaseGroupWhichContainsSlist(ast.getParent()) != ast;
         }
         else if (ast.getType() == TokenTypes.SWITCH_RULE) {
             result = ast.getNextSibling().getType() == TokenTypes.SWITCH_RULE;
@@ -533,21 +531,17 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Returns the last child token that makes a specified type and contains containType in
-     * its branch.
+     * Returns the last token of type {@link TokenTypes#CASE_GROUP} which contains
+     * {@link TokenTypes#SLIST}.
      *
-     * @param ast token to be tested
-     * @param childType the token type to match
-     * @param containType the token type which has to be present in the branch
+     * @param literalSwitchAst ast node of type {@link TokenTypes#LITERAL_SWITCH}
      * @return the matching token, or null if no match
      */
-    private static DetailAST findLastChildWhichContainsSpecifiedToken(DetailAST ast, int childType,
-                                                              int containType) {
+    private static DetailAST findLastCaseGroupWhichContainsSlist(DetailAST literalSwitchAst) {
         DetailAST returnValue = null;
-        for (DetailAST astIterator = ast.getFirstChild(); astIterator != null;
-                astIterator = astIterator.getNextSibling()) {
-            if (astIterator.getType() == childType
-                    && astIterator.findFirstToken(containType) != null) {
+        for (DetailAST astIterator = literalSwitchAst.getFirstChild(); astIterator != null;
+             astIterator = astIterator.getNextSibling()) {
+            if (astIterator.findFirstToken(TokenTypes.SLIST) != null) {
                 returnValue = astIterator;
             }
         }
