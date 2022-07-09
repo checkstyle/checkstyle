@@ -535,8 +535,8 @@ public final class Main {
      * Enumeration over the possible output formats.
      *
      * @noinspection PackageVisibleInnerClass
+     * @noinspectionreason PackageVisibleInnerClass - we keep this enum package visible for tests
      */
-    // Package-visible for tests.
     enum OutputFormat {
         /** XML output format. */
         XML,
@@ -602,6 +602,14 @@ public final class Main {
      *
      * @noinspection unused, FieldMayBeFinal, CanBeFinal,
      *              MismatchedQueryAndUpdateOfCollection, LocalCanBeFinal
+     * @noinspectionreason FieldMayBeFinal - usage of picocli requires
+     *      suppression of above inspections
+     * @noinspectionreason CanBeFinal - usage of picocli requires
+     *      suppression of above inspections
+     * @noinspectionreason MismatchedQueryAndUpdateOfCollection - list of files is gathered and used
+     *      via reflection by picocli library
+     * @noinspectionreason LocalCanBeFinal - usage of picocli requires
+     *      suppression of above inspections
      */
     @Command(name = "checkstyle", description = "Checkstyle verifies that the specified "
             + "source code files adhere to the specified rules. By default, violations are "
@@ -627,19 +635,14 @@ public final class Main {
 
         /**
          * The checker threads number.
-         * Suppression: CanBeFinal - we use picocli and it use reflection to manage such fields
          * This option has been skipped for CLI options intentionally.
          *
-         * @noinspection CanBeFinal
          */
         private static final int CHECKER_THREADS_NUMBER = DEFAULT_THREAD_COUNT;
 
         /**
          * The tree walker threads number.
-         * Suppression: CanBeFinal - we use picocli and it use reflection to manage such fields
-         * This option has been skipped for CLI options intentionally.
          *
-         * @noinspection CanBeFinal
          */
         private static final int TREE_WALKER_THREADS_NUMBER = DEFAULT_THREAD_COUNT;
 
@@ -676,9 +679,10 @@ public final class Main {
 
         /**
          * Tab character length.
-         * Suppression: CanBeFinal - we use picocli and it use reflection to manage such fields
          *
          * @noinspection CanBeFinal
+         * @noinspectionreason CanBeFinal - we use picocli, and it uses
+         *      reflection to manage such fields
          */
         @Option(names = {"-w", "--tabWidth"},
                 description = "Sets the length of the tab character. "
@@ -696,9 +700,10 @@ public final class Main {
 
         /**
          * Output format.
-         * Suppression: CanBeFinal - we use picocli and it use reflection to manage such fields
          *
          * @noinspection CanBeFinal
+         * @noinspectionreason CanBeFinal - we use picocli, and it uses
+         *      reflection to manage such fields
          */
         @Option(names = "-f",
                 description = "Specifies the output format. Valid values: "
@@ -746,9 +751,10 @@ public final class Main {
 
         /**
          * Option that allows users to specify a list of paths to exclude.
-         * Suppression: CanBeFinal - we use picocli and it use reflection to manage such fields
          *
          * @noinspection CanBeFinal
+         * @noinspectionreason CanBeFinal - we use picocli, and it uses
+         *      reflection to manage such fields
          */
         @Option(names = {"-e", "--exclude"},
                 description = "Directory/file to exclude from CheckStyle. The path can be the "
@@ -758,9 +764,10 @@ public final class Main {
 
         /**
          * Option that allows users to specify a regex of paths to exclude.
-         * Suppression: CanBeFinal - we use picocli and it use reflection to manage such fields
          *
          * @noinspection CanBeFinal
+         * @noinspectionreason CanBeFinal - we use picocli, and it uses
+         *      reflection to manage such fields
          */
         @Option(names = {"-x", "--exclude-regexp"},
                 description = "Directory/file pattern to exclude from CheckStyle. Multiple "
