@@ -220,6 +220,7 @@
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
     <pitest.plugin.threads>4</pitest.plugin.threads>
     <pitest.junit5.plugin.version>1.0.0</pitest.junit5.plugin.version>
+    <pitest.accelerator.junit5.plugin.version>1.0.0</pitest.accelerator.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
     <junit.version>5.8.2</junit.version>
     <forbiddenapis.version>3.3</forbiddenapis.version>
@@ -431,6 +432,11 @@
           <artifactId>pitest-maven</artifactId>
           <version>${pitest.plugin.version}</version>
           <dependencies>
+            <dependency>
+              <groupId>com.groupcdg.pitest</groupId>
+              <artifactId>pitest-accelerator-junit5</artifactId>
+              <version>${pitest.accelerator.junit5.plugin.version}</version>
+            </dependency>
             <dependency>
               <groupId>org.pitest</groupId>
               <artifactId>pitest-junit5-plugin</artifactId>
