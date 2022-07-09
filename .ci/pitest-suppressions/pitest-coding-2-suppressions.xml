@@ -21,15 +21,6 @@
   <mutation unstable="false">
     <sourceFile>FinalLocalVariableCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
-    <mutatedMethod>isInTheSameLoop</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>return loop1 != null &amp;&amp; loop1 == loop2;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
     <mutatedMethod>updateUninitializedVariables</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
     <description>removed conditional - replaced equality check with true</description>
