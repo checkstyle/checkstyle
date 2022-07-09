@@ -55,6 +55,7 @@ install-custom-mvn)
     wget --progress=dot:giga "$URL"
     unzip -q apache-maven-"${CUSTOM_MVN_VERSION}"-bin.zip
     export M2_HOME=$PWD/apache-maven-${CUSTOM_MVN_VERSION};
+    export MAVEN_HOME=$M2_HOME
     export PATH=$M2_HOME/bin:$PATH;
   fi
   ;;
