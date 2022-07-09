@@ -45,21 +45,21 @@ jobs:
     #    - CMD2="./.ci/validation.sh verify-no-exception-configs"
     #    - CMD="$CMD1 && $CMD2"
 
-    - jdk: openjdk11
-      env:
-        - DESC="NoErrorTest - Postgresql JDBC Driver"
-        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/validation.sh no-error-pgjdbc"
-        - CMD="$CMD1 && $CMD2"
-        - USE_MAVEN_REPO="true"
+#    - jdk: openjdk11
+#      env:
+#        - DESC="NoErrorTest - Postgresql JDBC Driver"
+#        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+#        - CMD2="./.ci/validation.sh no-error-pgjdbc"
+#        - CMD="$CMD1 && $CMD2"
+#        - USE_MAVEN_REPO="true"
 
-    - jdk: openjdk11
-      env:
-        - DESC="NoErrorTest - Orekit"
-        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/validation.sh no-error-orekit"
-        - CMD="$CMD1 && $CMD2"
-        - USE_MAVEN_REPO="true"
+#    - jdk: openjdk11
+#      env:
+#        - DESC="NoErrorTest - Orekit"
+#        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+#        - CMD2="./.ci/validation.sh no-error-orekit"
+#        - CMD="$CMD1 && $CMD2"
+#        - USE_MAVEN_REPO="true"
 
     - env:
         - DESC="NoErrorTest - Hibernate Search"
@@ -77,53 +77,53 @@ jobs:
         - CMD="shellcheck ./.ci/*.sh && shellcheck release.sh"
         - USE_MAVEN_REPO="false"
 
-    - jdk: openjdk11
-      env:
-        - DESC="NoErrorTest - checkstyle's sevntu"
-        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/validation.sh no-error-checkstyles-sevntu"
-        - CMD="$CMD1 && $CMD2"
-        - USE_MAVEN_REPO="true"
+#    - jdk: openjdk11
+#      env:
+#        - DESC="NoErrorTest - checkstyle's sevntu"
+#        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+#        - CMD2="./.ci/validation.sh no-error-checkstyles-sevntu"
+#        - CMD="$CMD1 && $CMD2"
+#        - USE_MAVEN_REPO="true"
 
-    - jdk: openjdk11
-      env:
-        - DESC="NoErrorTest - sevntu-checks"
-        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/validation.sh no-error-sevntu-checks"
-        - CMD="$CMD1 && $CMD2"
-        - USE_MAVEN_REPO="true"
+#    - jdk: openjdk11
+#      env:
+#        - DESC="NoErrorTest - sevntu-checks"
+#        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+#        - CMD2="./.ci/validation.sh no-error-sevntu-checks"
+#        - CMD="$CMD1 && $CMD2"
+#        - USE_MAVEN_REPO="true"
 
-    - jdk: openjdk11
-      env:
-        - DESC="NoErrorTest - contribution"
-        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/validation.sh no-error-contribution"
-        - CMD="$CMD1 && $CMD2"
-        - USE_MAVEN_REPO="true"
+#    - jdk: openjdk11
+#      env:
+#        - DESC="NoErrorTest - contribution"
+#        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+#        - CMD2="./.ci/validation.sh no-error-contribution"
+#        - CMD="$CMD1 && $CMD2"
+#        - USE_MAVEN_REPO="true"
 
-    - jdk: openjdk11
-      env:
-        - DESC="NoErrorTest - methods distance"
-        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/validation.sh no-error-methods-distance"
-        - CMD="$CMD1 && $CMD2"
-        - USE_MAVEN_REPO="true"
+#    - jdk: openjdk11
+#      env:
+#        - DESC="NoErrorTest - methods distance"
+#        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+#        - CMD2="./.ci/validation.sh no-error-methods-distance"
+#        - CMD="$CMD1 && $CMD2"
+#        - USE_MAVEN_REPO="true"
 
-    - jdk: openjdk11
-      env:
-        - DESC="NoErrorTest - Spring Cloud GCP"
-        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/validation.sh no-error-spring-cloud-gcp"
-        - CMD="$CMD1 && $CMD2"
-        - USE_MAVEN_REPO="true"
+#    - jdk: openjdk11
+#      env:
+#        - DESC="NoErrorTest - Spring Cloud GCP"
+#        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+#        - CMD2="./.ci/validation.sh no-error-spring-cloud-gcp"
+#        - CMD="$CMD1 && $CMD2"
+#        - USE_MAVEN_REPO="true"
 
-    - jdk: openjdk11
-      env:
-        - DESC="NoErrorTest - EqualsVerifier"
-        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/validation.sh no-error-equalsverifier"
-        - CMD="$CMD1 && $CMD2"
-        - USE_MAVEN_REPO="true"
+#    - jdk: openjdk11
+#      env:
+#        - DESC="NoErrorTest - EqualsVerifier"
+#        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+#        - CMD2="./.ci/validation.sh no-error-equalsverifier"
+#        - CMD="$CMD1 && $CMD2"
+#        - USE_MAVEN_REPO="true"
 
 script:
   # manually set JAVA_HOME to overcome issue with travis ci noted at
