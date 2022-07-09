@@ -8,4 +8,6 @@
     <!-- CS-ON -->
     <child>
 	</child>
+	<child/> <!-- CS-DEFAULT -->
+	<child/>
 </root>
