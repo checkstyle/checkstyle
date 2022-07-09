@@ -471,6 +471,13 @@
       <message key="matchxpath.match"
              value="@Deprecated annotation should contain 'since' property."/>
     </module>
+    <module name="MatchXpath">
+      <property name="query" value="//COMMENT_CONTENT[contains(@text, '@noinspection')
+                      and not(contains(@text, '@noinspectionreason'))]"/>
+      <message key="matchxpath.match"
+               value="'@noinspection' Javadoc tags should be accompanied by a
+                     '@noinspectionreason' tag, explaining why we suppressed inspection."/>
+    </module>
     <module name="MissingCtor">
       <!--
         we will not use that fanatic validation, extra code is not good
