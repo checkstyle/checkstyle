@@ -77,6 +77,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <ul>
  * <li>
+ * Property {@code areaCommentFormat} - Specify comment pattern to trigger filter to
+ * begin areal suppression. Works along with {@code influenceFormat} property.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "SUPPRESS CHECKSTYLE (\w+)"}.
+ * </li>
+ * <li>
  * Property {@code offCommentFormat} - Specify comment pattern to trigger filter
  * to begin suppression.
  * Type is {@code java.util.regex.Pattern}.
@@ -103,17 +109,36 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.
  * </li>
+ * <li>
+ * Property {@code influenceFormat} - Specify negative/zero/positive value that
+ * defines the number of lines preceding/at/following the areal suppression comment.
+ * Type is {@code java.lang.String}.
+ * Default value is {@code "0"}.
+ * </li>
  * </ul>
  * <p>
  * To configure a filter to suppress audit events between a comment containing
- * {@code CHECKSTYLE:OFF} and a comment containing {@code CHECKSTYLE:ON}:
+ * {@code CHECKSTYLE:OFF} and a comment containing {@code CHECKSTYLE:ON} or for check on
+ * any line with a comment {@code SUPPRESS CHECKSTYLE check}:
  * </p>
  * <pre>
  * &lt;module name=&quot;Checker&quot;&gt;
- *   ...
  *   &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;/&gt;
- *   ...
+ *   &lt;module name=&quot;TreeWalker&quot;&gt;
+ *     &lt;module name=&quot;ConstantName&quot;/&gt;
+ *   &lt;/module&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * // CHECKSTYLE:OFF
+ * private static final int a1 = 5; // ok
+ * // CHECKSTYLE:ON
+ * private static final int a2 = 5; // violation
+ *
+ * private static final int a3 = 5; // SUPPRESS CHECKSTYLE ConstantName // ok
  * </pre>
  * <p>
  * To configure a filter to suppress audit events between a comment containing
@@ -311,12 +336,57 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   LONG_W REAL);
  * </pre>
  * <p>
+ * To configure a filter to suppress all audit events on any line containing
+ * the comment {@code CHECKSTYLE IGNORE THIS LINE}:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
+ *   &lt;property name=&quot;areaCommentFormat&quot;
+ *       value=&quot;CHECKSTYLE IGNORE THIS LINE&quot;/&gt;
+ *   &lt;property name=&quot;checkFormat&quot; value=&quot;.*&quot;/&gt;
+ *   &lt;property name=&quot;influenceFormat&quot; value=&quot;0&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public static final int lowerCaseConstant; // CHECKSTYLE IGNORE THIS LINE // ok
+ * </pre>
+ * <p>
+ * To configure a filter so that {@code CHECKSTYLE IGNORE <i>check</i> FOR NEXT
+ * <i>var</i> LINES} avoids triggering any audits for the given check for
+ * the current line and the next <i>var</i> lines (for a total of <i>var</i>+1 lines):
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
+ *   &lt;property name=&quot;areaCommentFormat&quot;
+ *       value=&quot;CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES&quot;/&gt;
+ *   &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+ *   &lt;property name=&quot;influenceFormat&quot; value=&quot;$2&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * static final int lowerCaseConstant; // CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 3 LINES
+ * static final int lowerCaseConstant1;
+ * static final int lowerCaseConstant2;
+ * static final int lowerCaseConstant3;
+ * static final int lowerCaseConstant4; // will warn here
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
  *
  * @since 8.6
  */
 public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements Filter {
+
+    /** Format to turn areal checkstyle reporting off. */
+    private static final String DEFAULT_AREA_COMMENT_FORMAT =
+        "SUPPRESS CHECKSTYLE (\\w+)";
 
     /** Comment format which turns checkstyle reporting off. */
     private static final String DEFAULT_OFF_FORMAT = "// CHECKSTYLE:OFF";
@@ -326,6 +396,15 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
 
     /** Default check format to suppress. By default, the filter suppress all checks. */
     private static final String DEFAULT_CHECK_FORMAT = ".*";
+
+    /** Default regex for lines that should be suppressed. */
+    private static final String DEFAULT_INFLUENCE_FORMAT = "0";
+
+    /**
+     * Specify comment pattern to trigger filter to begin areal suppression. Works along with
+     * {@code influenceFormat} property.
+     */
+    private Pattern areaCommentFormat = Pattern.compile(DEFAULT_AREA_COMMENT_FORMAT);
 
     /** Specify comment pattern to trigger filter to begin suppression. */
     private Pattern offCommentFormat = CommonUtil.createPattern(DEFAULT_OFF_FORMAT);
@@ -344,6 +423,22 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
     /** Specify check ID pattern to suppress. */
     @XdocsPropertyType(PropertyType.PATTERN)
     private String idFormat;
+
+    /**
+     * Specify negative/zero/positive value that defines the number of lines
+     * preceding/at/following the areal suppression comment.
+     */
+    private String influenceFormat = DEFAULT_INFLUENCE_FORMAT;
+
+    /**
+     * Setter to specify comment pattern to trigger filter to begin areal suppression. Works
+     * along with {@code influenceFormat} property.
+     *
+     * @param pattern a pattern.
+     */
+    public final void setAreaCommentFormat(Pattern pattern) {
+        areaCommentFormat = pattern;
+    }
 
     /**
      * Setter to specify comment pattern to trigger filter to begin suppression.
@@ -388,6 +483,16 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
      */
     public final void setIdFormat(String format) {
         idFormat = format;
+    }
+
+    /**
+     * Setter to specify negative/zero/positive value that defines the number
+     * of lines preceding/at/following the areal suppression comment.
+     *
+     * @param format a {@code String} value
+     */
+    public final void setInfluenceFormat(String format) {
+        influenceFormat = format;
     }
 
     @Override
@@ -456,6 +561,7 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
      */
     private Optional<Suppression> getSuppression(FileText fileText, int lineNo) {
         final String line = fileText.get(lineNo);
+        final Matcher areaCommentMatcher = areaCommentFormat.matcher(line);
         final Matcher onCommentMatcher = onCommentFormat.matcher(line);
         final Matcher offCommentMatcher = offCommentFormat.matcher(line);
 
@@ -467,6 +573,10 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
         if (offCommentMatcher.find()) {
             suppression = new Suppression(offCommentMatcher.group(0),
                 lineNo + 1, offCommentMatcher.start(), SuppressionType.OFF, this);
+        }
+        if (areaCommentMatcher.find()) {
+            suppression = new Suppression(areaCommentMatcher.group(0),
+                lineNo + 1, areaCommentMatcher.start(), SuppressionType.AREA, this);
         }
 
         return Optional.ofNullable(suppression);
@@ -498,6 +608,8 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
         ON,
         /** Off suppression type. */
         OFF,
+        /** Area suppression type. */
+        AREA,
 
     }
 
@@ -513,6 +625,13 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
 
         /** Suppression text.*/
         private final String text;
+
+        /** The first line where warnings may be suppressed. */
+        private final int firstLine;
+
+        /** The last line where warnings may be suppressed. */
+        private final int lastLine;
+
         /** Suppression line.*/
         private final int lineNo;
         /** Suppression column number.*/
@@ -542,27 +661,21 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
             this.columnNo = columnNo;
             this.suppressionType = suppressionType;
 
-            final Pattern commentFormat;
-            if (this.suppressionType == SuppressionType.ON) {
-                commentFormat = filter.onCommentFormat;
-            }
-            else {
-                commentFormat = filter.offCommentFormat;
-            }
+            final Pattern filterCommentFormat = getFilterCommentFormat(filter);
 
             // Expand regexp for check and message
             // Does not intern Patterns with Utils.getPattern()
             String format = "";
             try {
                 format = CommonUtil.fillTemplateWithStringsByRegexp(
-                        filter.checkFormat, text, commentFormat);
+                        filter.checkFormat, text, filterCommentFormat);
                 eventSourceRegexp = Pattern.compile(format);
                 if (filter.messageFormat == null) {
                     eventMessageRegexp = null;
                 }
                 else {
                     format = CommonUtil.fillTemplateWithStringsByRegexp(
-                            filter.messageFormat, text, commentFormat);
+                            filter.messageFormat, text, filterCommentFormat);
                     eventMessageRegexp = Pattern.compile(format);
                 }
                 if (filter.idFormat == null) {
@@ -570,13 +683,62 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
                 }
                 else {
                     format = CommonUtil.fillTemplateWithStringsByRegexp(
-                            filter.idFormat, text, commentFormat);
+                            filter.idFormat, text, filterCommentFormat);
                     eventIdRegexp = Pattern.compile(format);
                 }
+                format = CommonUtil.fillTemplateWithStringsByRegexp(
+                        filter.influenceFormat, text, filter.areaCommentFormat);
+
+                final int influence = parseInfluence(format, filter.influenceFormat, text);
+
+                firstLine = Math.min(lineNo, lineNo + influence);
+                lastLine = Math.max(lineNo, lineNo + influence);
             }
             catch (final PatternSyntaxException ex) {
                 throw new IllegalArgumentException(
                     "unable to parse expanded comment " + format, ex);
+            }
+        }
+
+        /**
+         * Gets filter comment format based on suppression type.
+         *
+         * @param filter Filter containing the comment formats.
+         * @return comment format.
+         */
+        private Pattern getFilterCommentFormat(SuppressWithPlainTextCommentFilter filter) {
+            final Pattern filterCommentFormat;
+            switch (suppressionType) {
+                case ON:
+                    filterCommentFormat = filter.onCommentFormat;
+                    break;
+                case OFF:
+                    filterCommentFormat = filter.offCommentFormat;
+                    break;
+                case AREA:
+                default:
+                    filterCommentFormat = filter.areaCommentFormat;
+                    break;
+            }
+            return filterCommentFormat;
+        }
+
+        /**
+         * Gets influence from suppress filter influence format param.
+         *
+         * @param format influence format to parse
+         * @param influenceFormat raw influence format
+         * @param text text of the suppression
+         * @return parsed influence
+         * @throws IllegalArgumentException when unable to parse int in format
+         */
+        private static int parseInfluence(String format, String influenceFormat, String text) {
+            try {
+                return Integer.parseInt(format);
+            }
+            catch (final NumberFormatException ex) {
+                throw new IllegalArgumentException("unable to parse influence from '" + text
+                        + "' using " + influenceFormat, ex);
             }
         }
 
@@ -586,6 +748,7 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
          *
          * @noinspection EqualsCalledOnEnumConstant
          */
+        // -@cs[CyclomaticComplexity] equals - a lot of fields to check.
         @Override
         public boolean equals(Object other) {
             if (this == other) {
@@ -596,6 +759,8 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
             }
             final Suppression suppression = (Suppression) other;
             return Objects.equals(lineNo, suppression.lineNo)
+                    && Objects.equals(firstLine, suppression.firstLine)
+                    && Objects.equals(lastLine, suppression.lastLine)
                     && Objects.equals(columnNo, suppression.columnNo)
                     && Objects.equals(suppressionType, suppression.suppressionType)
                     && Objects.equals(text, suppression.text)
@@ -607,8 +772,8 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
         @Override
         public int hashCode() {
             return Objects.hash(
-                text, lineNo, columnNo, suppressionType, eventSourceRegexp, eventMessageRegexp,
-                eventIdRegexp);
+                text, firstLine, lastLine, lineNo, columnNo, suppressionType, eventSourceRegexp,
+                eventMessageRegexp, eventIdRegexp);
         }
 
         /**
@@ -631,7 +796,12 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
          * @return true if {@link AuditEvent} is in the scope of the suppression.
          */
         private boolean isInScopeOfSuppression(AuditEvent event) {
-            return lineNo <= event.getLine();
+            final int eventLine = event.getLine();
+            boolean isInScope = lineNo <= eventLine;
+            if (suppressionType == SuppressionType.AREA) {
+                isInScope = eventLine >= firstLine && eventLine <= lastLine;
+            }
+            return isInScope;
         }
 
         /**
