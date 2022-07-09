@@ -1,10 +1,12 @@
 /*
 SuppressWithPlainTextCommentFilter
+commentFormat = CHECKSTYLE:DEFAULT
 offCommentFormat = // CHECKSTYLE:OFF
 onCommentFormat = // CHECKSTYLE:ON
 checkFormat = (default).*
 messageFormat = .*tab.*
 idFormat = (default)(null)
+influenceFormat = (default)0
 
 
 com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck
@@ -38,4 +40,7 @@ public class InputSuppressWithPlainTextCommentFilterCustomMessageFormat {
     // CHECKSTYLE:ON
     private long a3 = 1; // violation 'illegal pattern'
 
+    // filtered violation below 'contains a tab'
+	private static final long a4 = 1; // CHECKSTYLE:DEFAULT
+    // violation above 'illegal pattern'
 }
