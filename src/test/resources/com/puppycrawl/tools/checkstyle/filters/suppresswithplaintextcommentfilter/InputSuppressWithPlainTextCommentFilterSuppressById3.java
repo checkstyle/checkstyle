@@ -1,10 +1,12 @@
 /*
 SuppressWithPlainTextCommentFilter
+areaCommentFormat = CSDEFAULT (\\w+) \\(\\w+\\)
 offCommentFormat = CSOFF (\\w+) \\(\\w+\\)
 onCommentFormat = CSON (\\w+)
 checkFormat = FileTabCharacterCheck
 messageFormat = (default)(null)
 idFormat = foo
+influenceFormat = (default)0
 
 
 com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck
@@ -40,4 +42,7 @@ public class InputSuppressWithPlainTextCommentFilterSuppressById3 { // violation
 
     private long a3 = 1; // violation 'illegal pattern'
 
+    // filtered violation below 'contains a tab'
+	private static final long a4 = 1; // CSDEFAULT ignore (reason)
+    // violation above 'illegal pattern'
 }

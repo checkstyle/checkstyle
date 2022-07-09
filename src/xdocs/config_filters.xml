@@ -2274,6 +2274,14 @@ public class UserService {
               <th>since</th>
             </tr>
             <tr>
+              <td>areaCommentFormat</td>
+              <td>Specify comment pattern to trigger filter to begin areal suppression. Works along
+              with <code>influenceFormat</code> property.</td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
+              <td><code>"SUPPRESS CHECKSTYLE (\w+)"</code></td>
+              <td>10.4</td>
+            </tr>
+            <tr>
               <td>offCommentFormat</td>
               <td>Specify comment pattern to trigger filter to begin suppression.</td>
               <td><a href="property_types.html#Pattern">Pattern</a></td>
@@ -2308,6 +2316,14 @@ public class UserService {
               <td><code>null</code></td>
               <td>8.24</td>
             </tr>
+            <tr>
+              <td>influenceFormat</td>
+              <td>Specify negative/zero/positive value that defines the number of
+                  lines preceding/at/following the areal suppression comment.</td>
+              <td><a href="property_types.html#String">String</a></td>
+              <td><code>"0"</code></td>
+              <td>10.4</td>
+            </tr>
           </table>
         </div>
       </subsection>
@@ -2325,17 +2341,28 @@ public class UserService {
       </subsection>
       <subsection name="Examples" id="SuppressWithPlainTextCommentFilter_Examples">
         <p>
-          To configure a filter to suppress audit events between a comment
-          containing <code>CHECKSTYLE:OFF</code> and a comment containing
-          <code>CHECKSTYLE:ON</code>:
+          To configure a filter to suppress audit events between a comment containing
+          <code>CHECKSTYLE:OFF</code> and a comment containing <code>CHECKSTYLE:ON</code>
+          or for check on any line with a comment <code>SUPPRESS CHECKSTYLE check</code>:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
-  ...
   &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;/&gt;
-  ...
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ConstantName&quot;/&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <source>
+// CHECKSTYLE:OFF
+private static final int a1 = 5; // ok
+// CHECKSTYLE:ON
+private static final int a2 = 5; // violation
+
+private static final int a3 = 5; // SUPPRESS CHECKSTYLE ConstantName // ok
+        </source>
+
         <p>
             To configure a filter to suppress audit events between a comment
             containing line <code>BEGIN GENERATED CONTENT</code> and a comment
@@ -2535,6 +2562,45 @@ CREATE TABLE STATION (
   STATE CHAR(2),
   LAT_N REAL,
   LONG_W REAL);
+        </source>
+
+        <p>
+            To configure a filter to suppress all audit events on any line containing
+            the comment <code>CHECKSTYLE IGNORE THIS LINE</code>:
+        </p>
+        <source>
+&lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
+  &lt;property name=&quot;areaCommentFormat&quot;
+       value=&quot;CHECKSTYLE IGNORE THIS LINE&quot;/&gt;
+  &lt;property name=&quot;checkFormat&quot; value=&quot;.*&quot;/&gt;
+  &lt;property name=&quot;influenceFormat&quot; value=&quot;0&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+public static final int lowerCaseConstant; // CHECKSTYLE IGNORE THIS LINE  // ok
+        </source>
+        <p>
+          To configure a filter so that
+          <code>CHECKSTYLE IGNORE <i>check</i> FOR NEXT<i>var</i> LINES</code>
+          avoids triggering any audits for the given check for
+          the current line and the next <i>var</i> lines (for a total of <i>var</i>+1 lines):
+        </p>
+        <source>
+&lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
+  &lt;property name=&quot;areaCommentFormat&quot;
+    value=&quot;CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES&quot;/&gt;
+  &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
+  &lt;property name=&quot;influenceFormat&quot; value=&quot;$2&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+static final int lowerCaseConstant; // CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 3 LINES
+static final int lowerCaseConstant1;
+static final int lowerCaseConstant2;
+static final int lowerCaseConstant3;
+static final int lowerCaseConstant4; // will warn here
         </source>
       </subsection>
       <subsection name="Example of Usage"
