@@ -23,6 +23,9 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck.MSG_KEY;
 
 import java.io.File;
+import java.nio.charset.Charset;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -32,6 +35,8 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -468,6 +473,39 @@ public class HiddenFieldCheckTest
         verifyWithInlineConfigParser(
             getNonCompilablePath("InputHiddenFieldClassNestedInRecord.java"),
             expected);
+    }
+
+    /**
+     * We cannot reproduce this situation with an actual input file. This is due to the fact that
+     * no variable in java can have '(' as its name. So, we use reflection to modify the instance
+     * variables in check's frame to kill a mutation which helps in reducing time complexity.
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testHiddenFieldImpossibleVariableName() throws Exception {
+        final HiddenFieldCheck check = new HiddenFieldCheck();
+        final String filePath = getPath("InputHiddenFieldImpossibleVariableName.java");
+        check.configure(new DefaultConfiguration("configuration"));
+        check.clearViolations();
+        check.setFileContents(
+            new FileContents(new FileText(new File(filePath), Charset.defaultCharset().name())));
+
+        final DetailAST root = JavaParser.parseFile(
+            new File(filePath),
+            JavaParser.Options.WITHOUT_COMMENTS);
+        final DetailAST classDef = root.getLastChild();
+        final DetailAST lambdaAst = classDef.getLastChild()
+            .findFirstToken(TokenTypes.METHOD_DEF).getLastChild()
+            .getFirstChild().getLastChild().getFirstChild();
+        check.beginTree(root);
+        check.visitToken(classDef);
+        TestUtil.setInternalState(TestUtil.getInternalState(check, "frame"),
+                                  "instanceFields", new HashSet<>(List.of("(")));
+        check.visitToken(lambdaAst);
+        assertWithMessage("Check should not log any violation")
+            .that(check.getViolations())
+            .isEmpty();
     }
 
     /**
