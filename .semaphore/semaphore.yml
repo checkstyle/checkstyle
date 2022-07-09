@@ -26,6 +26,10 @@ blocks:
               cache delete m2
               cache store m2 $HOME/.m2
             fi
+          - |
+            ./.ci/validation.sh git-diff
+            ./.ci/travis.sh ci-temp-check
+
       jobs:
         # NonDex supports only Java 8 till https://github.com/TestingResearchIllinois/NonDex/pull/155
         # - name: NonDex (openjdk11)
@@ -58,6 +62,30 @@ blocks:
                 #    && .ci/validation.sh no-violation-test-josm
           commands:
             - sem-version java 11
+            - echo "eval of CMD is starting";
+            - echo "CMD=$CMD";
+            - eval $CMD;
+            - echo "eval of CMD is completed";
+            - ./.ci/validation.sh git-diff
+
+        - name: No Error Test (openjdk11, fast pool)
+          matrix:
+            - env_var: CMD
+              values:
+                - .ci/validation.sh no-error-pgjdbc
+                - .ci/validation.sh no-error-orekit
+                - .ci/validation.sh no-error-hibernate-search
+                - .ci/validation.sh no-error-checkstyles-sevntu
+                - .ci/validation.sh no-error-sevntu-checks
+                - .ci/validation.sh no-error-contribution
+                - .ci/validation.sh no-error-methods-distance
+                - .ci/validation.sh no-error-spring-cloud-gcp
+                - .ci/validation.sh no-error-equalsverifier
+
+          commands:
+            - sem-version java 11
+            - echo "Installing Checkstyle to local maven repo"
+            - mvn -e --no-transfer-progress clean install -Pno-validations
             - echo "eval of CMD is starting";
             - echo "CMD=$CMD";
             - eval $CMD;
