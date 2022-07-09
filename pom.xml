@@ -2920,18 +2920,7 @@
             <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
-                <mutator>CONDITIONALS_BOUNDARY</mutator>
-                <mutator>CONSTRUCTOR_CALLS</mutator>
-                <mutator>FALSE_RETURNS</mutator>
-                <mutator>INCREMENTS</mutator>
-                <mutator>INVERT_NEGS</mutator>
-                <mutator>MATH</mutator>
-                <mutator>NEGATE_CONDITIONALS</mutator>
-                <!-- result in 64 extra survived items, too much to keep in ignore list -->
-                <!-- <mutator>REMOVE_CONDITIONALS</mutator> -->
-                <mutator>RETURN_VALS</mutator>
-                <mutator>TRUE_RETURNS</mutator>
-                <mutator>VOID_METHOD_CALLS</mutator>
+                <mutator>ALL</mutator>
               </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.*</param>
@@ -2954,7 +2943,7 @@
                 <param>destroy</param>
               </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>97</mutationThreshold>
+              <mutationThreshold>95</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
