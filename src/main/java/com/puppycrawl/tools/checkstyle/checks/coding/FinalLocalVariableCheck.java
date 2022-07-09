@@ -813,7 +813,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         while (loop2 != null && !isLoopAst(loop2.getType())) {
             loop2 = loop2.getParent();
         }
-        return loop1 != null && loop1 == loop2;
+        return loop1 == loop2;
     }
 
     /**
