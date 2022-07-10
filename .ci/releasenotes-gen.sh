@@ -2,7 +2,7 @@
 # Attention, there is no "-x" to avoid problem on Travis
 # to run on local:
 # export READ_ONLY_TOKEN=9ffd28f
-#  && export DRONE_PULL_REQUEST="master" && ./.ci/validation.sh releasenotes-gen
+#  && export DRONE_PULL_REQUEST="master" && ./.ci/releasenotes-gen.sh
 
 set -e
 
@@ -54,7 +54,7 @@ cd .ci-temp
 java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.jar \
         -localRepoPath checkstyle -remoteRepoPath checkstyle/checkstyle \
         -startRef "$LATEST_RELEASE_TAG" -releaseNumber "$CS_RELEASE_VERSION" \
-        -githubAuthToken "$READ_ONLY_TOKEN" -generateAll -publishXdoc
+        -githubAuthToken "$READ_ONLY_TOKEN" -generateAll
 
 echo ==============================================
 echo
