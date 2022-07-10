@@ -82,6 +82,8 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * The file context.
      *
      * @noinspection ThreadLocalNotStaticFinal
+     * @noinspectionreason ThreadLocalNotStaticFinal - static context is
+     *       problematic for multithreading
      */
     private final ThreadLocal<FileContext> context = ThreadLocal.withInitial(FileContext::new);
 

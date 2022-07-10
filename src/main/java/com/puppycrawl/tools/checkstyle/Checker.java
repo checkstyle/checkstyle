@@ -324,6 +324,8 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * @return a sorted set of violations to be logged.
      * @throws CheckstyleException if error condition within Checkstyle occurs.
      * @noinspection ProhibitedExceptionThrown
+     * @noinspectionreason ProhibitedExceptionThrown - there is no other way to obey
+     *      haltOnException field
      */
     private SortedSet<Violation> processFile(File file) throws CheckstyleException {
         final SortedSet<Violation> fileMessages = new TreeSet<>();
