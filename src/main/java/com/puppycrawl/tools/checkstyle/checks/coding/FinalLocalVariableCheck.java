@@ -455,6 +455,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @param prevScopeUninitializedVariableData variable for previous stack of uninitialized
      *     variables
      * @noinspection MethodParameterNamingConvention
+     * @noinspectionreason complicated check requires descriptive naming
      */
     private void updateAllUninitializedVariables(
             Deque<DetailAST> prevScopeUninitializedVariableData) {

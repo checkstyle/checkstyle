@@ -205,7 +205,8 @@ public final class CheckUtil {
      * @param deepScan scan subclasses.
      * @return a set of checkstyle's module message fields.
      * @throws ClassNotFoundException if the attempt to read a protected class fails.
-     * @noinspection BooleanParameter Test code for easy usage.
+     * @noinspection BooleanParameter
+     * @noinspectionreason BooleanParameter - boolean parameter eases testing
      */
     public static Set<Field> getCheckMessages(Class<?> module, boolean deepScan)
             throws ClassNotFoundException {
