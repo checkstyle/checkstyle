@@ -47,6 +47,8 @@ import nl.jqno.equalsverifier.EqualsVerifierReport;
  * so the custom class loader we are using is safe.
  *
  * @noinspection ClassLoaderInstantiation
+ * @noinspectionreason ClassLoaderInstantiation - Custom class loader is needed to
+ *      pass URLs for testing
  */
 public class ViolationTest {
 

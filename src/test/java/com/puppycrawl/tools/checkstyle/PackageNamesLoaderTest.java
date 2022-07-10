@@ -39,11 +39,13 @@ import org.xml.sax.SAXException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
- * Custom class loader is needed to pass URLs to pretend these are loaded from the classpath
- * though we can't add/change the files for testing. The class loader is nested in this class,
- * so the custom class loader we are using is safe.
+ * Tests loading of package names from XML files.
  *
  * @noinspection ClassLoaderInstantiation
+ * @noinspectionreason ClassLoaderInstantiation - Custom class loader is needed to pass URLs to
+ *      pretend these are loaded from the classpath though we can't add/change the files for
+ *      testing. The class loader is nested in this class, so the custom class loader we
+ *      are using is safe.
  */
 public class PackageNamesLoaderTest extends AbstractPathTestSupport {
 
