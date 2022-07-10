@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
  * the circular dependency between packages.</p>
  *
  * @noinspection ClassWithTooManyDependents
+ * @noinspectionreason ClassWithTooManyDependents - this class is a core part of our API
  */
 public final class TokenTypes {
 
