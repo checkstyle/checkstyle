@@ -58,6 +58,7 @@ public class LineWrappingHandler {
          * @return enum instance.
          *
          * @noinspection BooleanParameter
+         * @noinspectionreason BooleanParameter - check property is essentially boolean
          */
         public static LineWrappingOptions ofBoolean(boolean val) {
             LineWrappingOptions option = NONE;
