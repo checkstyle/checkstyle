@@ -871,6 +871,8 @@ public class MainTest {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+     *      for test does not require serialization
      */
     @Test
     public void testListFilesDirectoryWithNull() throws Exception {
@@ -1151,12 +1153,12 @@ public class MainTest {
 
     /**
      * Verifies the output of the command line parameter "-j".
-     * IDEA inspection RedundantThrows suppressed as a false positive.
      *
      * @param systemErr wrapper for {@code System.err}
      * @param systemOut wrapper for {@code System.out}
      * @throws IOException if I/O exception occurs while reading the test input.
      * @noinspection RedundantThrows
+     * @noinspectionreason RedundantThrows - false positive
      */
     @Test
     public void testPrintTreeJavadocOption(@SysErr Capturable systemErr,
@@ -1544,12 +1546,12 @@ public class MainTest {
 
     /**
      * Verifies the output of the command line parameter "-J".
-     * IDEA inspection RedundantThrows suppressed as a false positive.
      *
      * @param systemErr wrapper for {@code System.err}
      * @param systemOut wrapper for {@code System.out}
      * @throws IOException if I/O exception occurs while reading the test input.
      * @noinspection RedundantThrows
+     * @noinspectionreason RedundantThrows - false positive
      */
     @Test
     public void testPrintFullTreeOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
@@ -1853,6 +1855,9 @@ public class MainTest {
      * @param expectedExitCode the expected exit code to verify
      * @param arguments the command line arguments
      * @noinspection CallToSystemExit, ResultOfMethodCallIgnored
+     * @noinspectionreason CallToSystemExit - test helper method requires workaround to
+     *      verify exit code
+     * @noinspectionreason ResultOfMethodCallIgnored - temporary suppresssion
      */
     private static void assertMainReturnCode(int expectedExitCode, String... arguments) {
         final Runtime mock = mock(Runtime.class);

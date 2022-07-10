@@ -52,6 +52,7 @@ import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
  * using a JFileChooser.
  *
  * @noinspection MagicNumber
+ * @noinspectionreason MagicNumber - "magic numbers" are required to set GUI elements
  */
 public class MainFrame extends JFrame {
 
