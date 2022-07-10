@@ -218,6 +218,7 @@ public final class DetectorOptions {
          * @return Builder object.
          * @noinspection ReturnOfInnerClass, BooleanParameter
          * @noinspectionreason ReturnOfInnerClass - builder is only used in enclosing class
+         * @noinspectionreason BooleanParameter - check fields are boolean
          */
         public Builder ignoreCase(boolean val) {
             ignoreCase = val;
