@@ -838,6 +838,8 @@ public class MainTest {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+     *      for test does not require serialization
      */
     @Test
     public void testListFilesNotFile() throws Exception {
@@ -871,6 +873,8 @@ public class MainTest {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+     *      for test does not require serialization
      */
     @Test
     public void testListFilesDirectoryWithNull() throws Exception {
@@ -1151,12 +1155,12 @@ public class MainTest {
 
     /**
      * Verifies the output of the command line parameter "-j".
-     * IDEA inspection RedundantThrows suppressed as a false positive.
      *
      * @param systemErr wrapper for {@code System.err}
      * @param systemOut wrapper for {@code System.out}
      * @throws IOException if I/O exception occurs while reading the test input.
      * @noinspection RedundantThrows
+     * @noinspectionreason RedundantThrows - false positive
      */
     @Test
     public void testPrintTreeJavadocOption(@SysErr Capturable systemErr,
@@ -1544,12 +1548,12 @@ public class MainTest {
 
     /**
      * Verifies the output of the command line parameter "-J".
-     * IDEA inspection RedundantThrows suppressed as a false positive.
      *
      * @param systemErr wrapper for {@code System.err}
      * @param systemOut wrapper for {@code System.out}
      * @throws IOException if I/O exception occurs while reading the test input.
      * @noinspection RedundantThrows
+     * @noinspectionreason RedundantThrows - false positive
      */
     @Test
     public void testPrintFullTreeOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
