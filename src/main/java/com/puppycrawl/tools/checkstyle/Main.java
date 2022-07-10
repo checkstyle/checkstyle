@@ -103,6 +103,11 @@ public final class Main {
      * @param args the command line arguments.
      * @throws IOException if there is a problem with files access
      * @noinspection UseOfSystemOutOrSystemErr, CallToPrintStackTrace, CallToSystemExit
+     * @noinspectionreason UseOfSystemOutOrSystemErr - driver class for Checkstyle requires
+     *      usage of System.out and System.err
+     * @noinspectionreason CallToPrintStackTrace - driver class for Checkstyle must be able to
+     *      show all details in case of failure
+     * @noinspectionreason CallToSystemExit - driver class must call exit
      **/
     public static void main(String... args) throws IOException {
 
@@ -171,6 +176,8 @@ public final class Main {
      * @throws IOException if a file could not be read.
      * @throws CheckstyleException if something happens processing the files.
      * @noinspection UseOfSystemOutOrSystemErr
+     * @noinspectionreason UseOfSystemOutOrSystemErr - driver class for Checkstyle requires
+     *      usage of System.out and System.err
      */
     private static int execute(ParseResult parseResult, CliOptions options)
             throws IOException, CheckstyleException {
@@ -270,6 +277,8 @@ public final class Main {
      * @throws IOException if a file could not be read.
      * @throws CheckstyleException if something happens processing the files.
      * @noinspection UseOfSystemOutOrSystemErr
+     * @noinspectionreason UseOfSystemOutOrSystemErr - driver class for Checkstyle requires
+     *      usage of System.out and System.err
      */
     private static int runCli(CliOptions options, List<File> filesToProcess)
             throws IOException, CheckstyleException {
@@ -501,6 +510,8 @@ public final class Main {
      * @return output stream
      * @throws IOException might happen
      * @noinspection UseOfSystemOutOrSystemErr
+     * @noinspectionreason UseOfSystemOutOrSystemErr - driver class for Checkstyle requires
+     *      usage of System.out and System.err
      */
     @SuppressWarnings("resource")
     private static OutputStream getOutputStream(Path outputPath) throws IOException {
