@@ -8,23 +8,16 @@ volumes:
   temp: {}
 
 steps:
-- name: restore-cache
-  image: maven:3.8.4-openjdk-11
-  failure: ignore
-  volumes:
-  - name: m2-cache
-    path: /.m2
-  commands:
-  - ./.ci/drone-io.sh restore-maven-cache
 
 - name: checkstyle-and-sevntu
   image: maven:3.8.4-openjdk-11
   environment:
-    MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
+    MAVEN_OPTS: "-Dmaven.repo.local=/.notmavenrepo"
   volumes:
   - name: m2-cache
     path: /.m2
   commands:
+  - ls -lRt /.m2
   - ./.ci/validation.sh checkstyle-and-sevntu
   - ./.ci/validation.sh git-diff
 
