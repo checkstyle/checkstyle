@@ -838,6 +838,8 @@ public class MainTest {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+     *      for test does not require serialization
      */
     @Test
     public void testListFilesNotFile() throws Exception {
@@ -871,6 +873,8 @@ public class MainTest {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+     *      for test does not require serialization
      */
     @Test
     public void testListFilesDirectoryWithNull() throws Exception {
