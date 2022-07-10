@@ -137,9 +137,12 @@ public class ViolationTest {
     }
 
     /**
-     * Ignore resource errors for testing.
+     * Tests reload of resource bundle.
      *
      * @noinspection resource, IOResourceOpenedButNotSafelyClosed
+     * @noinspectionreason resource - we have no need to use try with resources in testing
+     * @noinspectionreason IOResourceOpenedButNotSafelyClosed - no need to close resources in
+     *      testing
      */
     @Test
     public void testBundleReloadUrlNotNull() throws IOException {
@@ -191,9 +194,12 @@ public class ViolationTest {
     }
 
     /**
-     * Ignore resource errors for testing.
+     * Tests reload of resource bundle.
      *
      * @noinspection resource, IOResourceOpenedButNotSafelyClosed
+     * @noinspectionreason resource - we have no need to use try with resources in testing
+     * @noinspectionreason IOResourceOpenedButNotSafelyClosed - no need to close resources in
+     *      testing
      */
     @Test
     public void testBundleReloadUrlNotNullFalseReload() throws IOException {
