@@ -2274,6 +2274,13 @@ public class UserService {
               <th>since</th>
             </tr>
             <tr>
+              <td>commentFormat</td>
+              <td>Specify comment pattern to trigger filter to begin suppression.</td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
+              <td><code>"SUPPRESS CHECKSTYLE (\w+)"</code></td>
+              <td>10.4</td>
+            </tr>
+            <tr>
               <td>offCommentFormat</td>
               <td>Specify comment pattern to trigger filter to begin suppression.</td>
               <td><a href="property_types.html#Pattern">Pattern</a></td>
@@ -2307,6 +2314,14 @@ public class UserService {
               <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.24</td>
+            </tr>
+            <tr>
+              <td>influenceFormat</td>
+              <td>Specify negative/zero/positive value that defines the number of
+                  lines preceding/at/following the suppression comment.</td>
+              <td><a href="property_types.html#String">String</a></td>
+              <td><code>"0"</code></td>
+              <td>10.4</td>
             </tr>
           </table>
         </div>
