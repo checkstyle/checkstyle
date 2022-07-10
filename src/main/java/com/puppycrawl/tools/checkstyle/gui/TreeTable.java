@@ -60,6 +60,8 @@ import net.sf.saxon.trans.XPathException;
  * Original&nbsp;Source&nbsp;Location</a>
  *
  * @noinspection ThisEscapedInObjectConstruction
+ * @noinspectionreason ThisEscapedInObjectConstruction - only reference is used and not
+ *      accessed until initialized
  */
 public final class TreeTable extends JTable {
 
