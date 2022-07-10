@@ -46,6 +46,8 @@ public class HandlerFactory {
      * Creates a HandlerFactory.
      *
      * @noinspection OverlyCoupledMethod
+     * @noinspectionreason OverlyCoupledMethod - complex nature of indentation check
+     *      requires this coupling
      */
     public HandlerFactory() {
         register(TokenTypes.CASE_GROUP, CaseHandler.class);
