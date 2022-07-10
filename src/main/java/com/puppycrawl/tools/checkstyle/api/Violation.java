@@ -398,9 +398,10 @@ public final class Violation
 
     /**
      * Indicates whether some other object is "equal to" this one.
-     * Suppression on enumeration is needed so code stays consistent.
      *
      * @noinspection EqualsCalledOnEnumConstant
+     * @noinspectionreason EqualsCalledOnEnumConstant - Suppression on enumeration is
+     *      needed so code stays consistent.
      */
     // -@cs[CyclomaticComplexity] equals - a lot of fields to check.
     @Override
