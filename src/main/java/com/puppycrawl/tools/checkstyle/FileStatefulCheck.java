@@ -44,6 +44,7 @@ import java.lang.annotation.Target;
  * before MT mode is introduced.
  *
  * @noinspection ClassIndependentOfModule
+ * @noinspectionreason ClassIndependentOfModule - we keep this annotation at top level by design
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
