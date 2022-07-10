@@ -380,8 +380,9 @@ verify-regexp-id)
   ;;
 
 checkstyle-and-sevntu)
+  set -x
   export MAVEN_OPTS='-Xmx2000m'
-  mvn -e --no-transfer-progress clean verify -DskipTests -DskipITs --no-transfer-progress \
+  mvn -e clean verify -DskipTests -DskipITs \
     -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
   ;;
 
