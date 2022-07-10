@@ -246,6 +246,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </ul>
  *
  * @noinspection ThisEscapedInObjectConstruction
+ * @noinspectionreason ThisEscapedInObjectConstruction - class is instantiated in handlers
  * @since 3.1
  */
 @FileStatefulCheck
