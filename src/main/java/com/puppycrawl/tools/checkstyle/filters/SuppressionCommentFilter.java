@@ -734,9 +734,10 @@ public class SuppressionCommentFilter
 
         /**
          * Indicates whether some other object is "equal to" this one.
-         * Suppression on enumeration is needed so code stays consistent.
          *
          * @noinspection EqualsCalledOnEnumConstant
+         * @noinspectionreason EqualsCalledOnEnumConstant - Suppression on enumeration is
+         *      needed so code stays consistent.
          */
         @Override
         public boolean equals(Object other) {

@@ -338,6 +338,8 @@ public class FinalClassCheck
      * @param countProvider the function to apply to calculate the name matching count
      * @return {@link Optional} of {@link ClassDesc} object of the nearest class with the same name.
      * @noinspection CallToStringConcatCanBeReplacedByOperator
+     * @noinspectionreason CallToStringConcatCanBeReplacedByOperator - operator causes
+     *      pitest to fail
      */
     private Optional<ClassDesc> getNearestClassWithSameName(String className,
         Function<ClassDesc, Integer> countProvider) {

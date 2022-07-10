@@ -333,6 +333,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
      * until #11589
      *
      * @noinspection ResultOfMethodCallIgnored
+     * @noinspectionreason ResultOfMethodCallIgnored - temporary suppression
      */
     @Test
     public void testNonExistentResource() throws IOException {

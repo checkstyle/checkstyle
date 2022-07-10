@@ -47,6 +47,8 @@ import nl.jqno.equalsverifier.EqualsVerifierReport;
  * so the custom class loader we are using is safe.
  *
  * @noinspection ClassLoaderInstantiation
+ * @noinspectionreason ClassLoaderInstantiation - Custom class loader is needed to
+ *      pass URLs for testing
  */
 public class ViolationTest {
 
@@ -137,9 +139,12 @@ public class ViolationTest {
     }
 
     /**
-     * Ignore resource errors for testing.
+     * Tests reload of resource bundle.
      *
-     * @noinspection resource, IOResourceOpenedButNotSafelyClosed
+     * @noinspection resources, IOResourceOpenedButNotSafelyClosed
+     * @noinspectionreason resources - we have no need to use try with resources in testing
+     * @noinspectionreason IOResourceOpenedButNotSafelyClosed - no need to close resources in
+     *      testing
      */
     @Test
     public void testBundleReloadUrlNotNull() throws IOException {
@@ -191,9 +196,12 @@ public class ViolationTest {
     }
 
     /**
-     * Ignore resource errors for testing.
+     * Tests reload of resource bundle.
      *
-     * @noinspection resource, IOResourceOpenedButNotSafelyClosed
+     * @noinspection resources, IOResourceOpenedButNotSafelyClosed
+     * @noinspectionreason resources - we have no need to use try with resources in testing
+     * @noinspectionreason IOResourceOpenedButNotSafelyClosed - no need to close resources in
+     *      testing
      */
     @Test
     public void testBundleReloadUrlNotNullFalseReload() throws IOException {
@@ -438,10 +446,11 @@ public class ViolationTest {
     }
 
     /**
-     * Custom class loader is needed to pass URLs to pretend these are loaded from the classpath
-     * though we can't add/change the files for testing.
+     * Mocked ClassLoader for testing URL loading.
      *
      * @noinspection CustomClassloader
+     * @noinspectionreason CustomClassloader - needed to pass URLs to pretend these are loaded
+     *      from the classpath though we can't add/change the files for testing
      */
     private static class TestUrlsClassLoader extends ClassLoader {
 

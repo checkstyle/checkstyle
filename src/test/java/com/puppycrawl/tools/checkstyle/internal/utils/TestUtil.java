@@ -266,6 +266,8 @@ public final class TestUtil {
      * @param fieldName the name of the field
      * @throws RuntimeException if the field  can't be read
      * @noinspection unchecked
+     * @noinspectionreason unchecked - we allow unchecked cast in testing utility to ease
+     *      implementation of method
      */
     public static <T> T getInternalState(Object instance, String fieldName) {
         try {
@@ -288,6 +290,8 @@ public final class TestUtil {
      * @param fieldName the name of the field
      * @throws RuntimeException if the field  can't be read
      * @noinspection unchecked
+     * @noinspectionreason unchecked - we allow unchecked cast in testing utility to ease
+     *      implementation of method
      */
     public static <T> T getInternalStaticState(Class<?> clss, String fieldName) {
         try {
@@ -334,6 +338,8 @@ public final class TestUtil {
      * @return the method's result
      * @throws ReflectiveOperationException if the method invocation failed
      * @noinspection unchecked
+     * @noinspectionreason unchecked - we allow unchecked cast in testing utility to ease
+     *      implementation of method
      */
     public static <T> T invokeMethod(Object instance,
             String methodToExecute, Object... arguments) throws ReflectiveOperationException {
@@ -352,6 +358,8 @@ public final class TestUtil {
      * @return the method's result
      * @throws ReflectiveOperationException if the method invocation failed
      * @noinspection unchecked
+     * @noinspectionreason unchecked - we allow unchecked cast in testing utility to ease
+     *      implementation of method
      */
     public static <T> T invokeStaticMethod(Class<?> clss,
             String methodToExecute, Object... arguments) throws ReflectiveOperationException {
@@ -367,6 +375,8 @@ public final class TestUtil {
      * @return the inner class type
      * @throws ClassNotFoundException if the class not found
      * @noinspection unchecked
+     * @noinspectionreason unchecked - we allow unchecked cast in testing utility to ease
+     *      implementation of method
      */
     public static <T> Class<T> getInnerClassType(Class<?> declaringClass, String name)
             throws ClassNotFoundException {

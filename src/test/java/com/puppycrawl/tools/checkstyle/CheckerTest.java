@@ -764,6 +764,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+     *      for test does not require serialization
      */
     @Test
     public void testCatchErrorInProcessFilesMethod() throws Exception {
@@ -816,6 +818,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+     *      for test does not require serialization
      */
     @Test
     public void testCatchErrorWithNoFileName() throws Exception {
@@ -1121,6 +1125,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+     *      for test does not require serialization
      */
     @Test
     public void testCatchErrorWithCache() throws Exception {
@@ -1197,6 +1203,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+     *      for test does not require serialization
      */
     @Test
     public void testCatchErrorWithCacheWithNoFileName() throws Exception {
@@ -1266,6 +1274,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+     *      for test does not require serialization
      */
     @Test
     public void testExceptionWithNoFileName() {
@@ -1312,6 +1322,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Test doesn't need to be serialized.
      *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+     *      for test does not require serialization
      */
     @Test
     public void testExceptionWithCacheAndNoFileName() throws Exception {
