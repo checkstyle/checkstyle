@@ -56,14 +56,22 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     @Test
     public void testFilterWithDefaultConfig() throws Exception {
         final String[] suppressed = {
-            "20:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "28:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "22:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "30:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "34:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "37:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "38:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         final String[] violationMessages = {
-            "20:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "24:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "28:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "22:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "26:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "30:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "34:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "37:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "38:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "42:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "46:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         verifyFilterWithInlineConfigParser(
@@ -74,15 +82,23 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     @Test
     public void testChangeOffAndOnFormat() throws Exception {
         final String[] suppressed = {
-            "20:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "27:30: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "22:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "29:30: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "35:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "38:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "39:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         final String[] violationMessage = {
-            "20:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "24:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "27:30: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "30:13: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "22:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "26:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "29:30: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "32:13: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "35:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "38:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "39:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "43:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "47:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         verifyFilterWithInlineConfigParser(
@@ -94,6 +110,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     public void testSuppressionCommentsInXmlFile() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
+        filterCfg.addProperty("commentFormat", "CS-DEFAULT");
         filterCfg.addProperty("offCommentFormat", "CS-OFF");
         filterCfg.addProperty("onCommentFormat", "CS-ON");
 
@@ -102,11 +119,14 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
         final String[] suppressed = {
             "7:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "11:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         final String[] violationMessages = {
             "7:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
             "10:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "11:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "12:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         verifySuppressed(
@@ -120,6 +140,8 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     public void testSuppressionCommentsInPropertiesFile() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
+        filterCfg.addProperty("commentFormat", "# CHECKSTYLE:DEFAULT");
+        filterCfg.addProperty("influenceFormat", "1");
         filterCfg.addProperty("offCommentFormat", "# CHECKSTYLE:OFF");
         filterCfg.addProperty("onCommentFormat", "# CHECKSTYLE:ON");
 
@@ -129,12 +151,18 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         final String[] suppressed = {
             "2: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 "^key[0-9]=$"),
+            "6: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                "^key[0-9]=$"),
         };
 
         final String[] violationMessages = {
             "2: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 "^key[0-9]=$"),
             "4: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                "^key[0-9]=$"),
+            "6: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                "^key[0-9]=$"),
+            "7: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 "^key[0-9]=$"),
         };
 
@@ -149,6 +177,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     public void testSuppressionCommentsInSqlFile() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
+        filterCfg.addProperty("commentFormat", "-- CHECKSTYLE DEFAULT");
         filterCfg.addProperty("offCommentFormat", "-- CHECKSTYLE OFF");
         filterCfg.addProperty("onCommentFormat", "-- CHECKSTYLE ON");
 
@@ -157,11 +186,14 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
         final String[] suppressed = {
             "2:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "7:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         final String[] violationMessages = {
             "2:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
             "5:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "7:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "10:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         verifySuppressed(
@@ -174,14 +206,28 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     @Test
     public void testSuppressionCommentsInJavaScriptFile() throws Exception {
         final String[] suppressed = {
-            "22: " + getCheckMessage(RegexpSinglelineCheck.class,
+            "24: " + getCheckMessage(RegexpSinglelineCheck.class,
+                    MSG_REGEXP_EXCEEDED, ".*\\s===.*"),
+            "32: " + getCheckMessage(RegexpSinglelineCheck.class,
+                    MSG_REGEXP_EXCEEDED, ".*\\s===.*"),
+            "38: " + getCheckMessage(RegexpSinglelineCheck.class,
+                    MSG_REGEXP_EXCEEDED, ".*\\s===.*"),
+            "41: " + getCheckMessage(RegexpSinglelineCheck.class,
                     MSG_REGEXP_EXCEEDED, ".*\\s===.*"),
         };
 
         final String[] violationMessages = {
-            "22: " + getCheckMessage(RegexpSinglelineCheck.class,
+            "24: " + getCheckMessage(RegexpSinglelineCheck.class,
                     MSG_REGEXP_EXCEEDED, ".*\\s===.*"),
-            "25: " + getCheckMessage(RegexpSinglelineCheck.class,
+            "27: " + getCheckMessage(RegexpSinglelineCheck.class,
+                    MSG_REGEXP_EXCEEDED, ".*\\s===.*"),
+            "32: " + getCheckMessage(RegexpSinglelineCheck.class,
+                    MSG_REGEXP_EXCEEDED, ".*\\s===.*"),
+            "35: " + getCheckMessage(RegexpSinglelineCheck.class,
+                    MSG_REGEXP_EXCEEDED, ".*\\s===.*"),
+            "38: " + getCheckMessage(RegexpSinglelineCheck.class,
+                    MSG_REGEXP_EXCEEDED, ".*\\s===.*"),
+            "41: " + getCheckMessage(RegexpSinglelineCheck.class,
                     MSG_REGEXP_EXCEEDED, ".*\\s===.*"),
         };
 
@@ -357,19 +403,23 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     @Test
     public void testSuppressByCheck() throws Exception {
         final String[] suppressedViolationMessages = {
-            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "38:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "46:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         final String[] expectedViolationMessages = {
-            "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "35: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
-            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
             "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "41: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "38:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "40: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
+            "43: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "46: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "46:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         verifyFilterWithInlineConfigParser(
@@ -382,25 +432,30 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     @Test
     public void testSuppressByModuleId() throws Exception {
         final String[] suppressedViolationMessages = {
-            "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
-            "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "35: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
             "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "40: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "46: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
         };
 
         final String[] expectedViolationMessages = {
-            "30: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "32: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "35: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+            "38:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
             "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "41: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "40: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "43: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "46:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "46: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
         };
 
@@ -414,20 +469,24 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     @Test
     public void testSuppressByCheckAndModuleId() throws Exception {
         final String[] suppressedViolationMessages = {
-            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "38:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "46:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         final String[] expectedViolationMessages = {
-            "30: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "32: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "35: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+            "38:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
             "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "41: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "40: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "43: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "46:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "46: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
         };
 
@@ -443,16 +502,19 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         final String[] suppressedViolationMessages = CommonUtil.EMPTY_STRING_ARRAY;
 
         final String[] expectedViolationMessages = {
-            "30: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "32: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "35: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+            "38:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
             "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "41: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "40: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "43: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "46:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "46: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
         };
 
@@ -466,25 +528,30 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     @Test
     public void testSuppressByModuleIdWithNullModuleId() throws Exception {
         final String[] suppressedViolationMessages = {
-            "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
-            "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "35: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
             "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "40: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "46: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
         };
 
         final String[] expectedViolationMessages = {
-            "30: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "32: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "35: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
-            "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+            "38:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
             "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "41: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "40: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "43: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "46:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "46: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
         };
 
@@ -527,18 +594,22 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     @Test
     public void testFilterWithCustomMessageFormat() throws Exception {
         final String[] suppressed = {
-            "34:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "44:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
 
         final String[] violationMessages = {
-            "32: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
-            "34:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
             "34: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
+            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
             "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
-            "39: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "41: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                ".*[a-zA-Z][0-9].*"),
+            "44:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "44: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
         };
 
@@ -549,9 +620,149 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
+    public void testInfluenceFormatDefaultConfig() throws Exception {
+        final String[] suppressed = {
+            "27:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "30:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "33:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+        };
+
+        final String[] violationMessages = {
+            "21:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "24:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "27:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "30:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "33:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+        };
+
+        verifyFilterWithInlineConfigParser(
+                getPath(
+                    "InputSuppressWithPlainTextCommentFilterInfluenceFormatDefaultConfig.java"),
+                violationMessages, removeSuppressed(violationMessages, suppressed));
+    }
+
+    @Test
+    public void testInfluenceFormat3Lines() throws Exception {
+        final String[] suppressed = {
+            "23:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "24:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "25:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "29:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "30:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "31:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "35:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "37:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "38:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+        };
+
+        final String[] violationMessages = {
+            "21:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "23:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "24:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "25:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "26:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "29:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "30:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "31:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "32:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "35:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "37:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "38:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "39:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+        };
+
+        verifyFilterWithInlineConfigParser(
+                getPath("InputSuppressWithPlainTextCommentFilterInfluenceFormat3Lines.java"),
+                violationMessages, removeSuppressed(violationMessages, suppressed));
+    }
+
+    @Test
+    public void testInvalidInfluenceFormat() throws Exception {
+        final String[] suppressed = {
+            "22:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "29:30: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "35:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "38:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "39:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+        };
+
+        final String[] violationMessages = {
+            "22:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "26:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "29:30: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "32:13: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "35:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "38:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "39:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "43:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "47:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+        };
+
+        final DefaultConfiguration filterCfg =
+                createModuleConfig(SuppressWithPlainTextCommentFilter.class);
+        filterCfg.addProperty("influenceFormat", "a");
+        filterCfg.addProperty("commentFormat", "cs (\\\\w+)");
+        filterCfg.addProperty("offCommentFormat", "cs-off");
+        filterCfg.addProperty("onCommentFormat", "cs-on");
+
+        final DefaultConfiguration checkCfg = createModuleConfig(FileTabCharacterCheck.class);
+        checkCfg.addProperty("eachLine", "true");
+
+        try {
+            verifySuppressed(
+                    "InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments.java",
+                    removeSuppressed(violationMessages, suppressed),
+                    filterCfg, checkCfg
+            );
+            assertWithMessage("Exception is expected").fail();
+        }
+        catch (CheckstyleException ex) {
+            assertWithMessage("Invalid exception message")
+                    .that(ex)
+                    .hasCauseThat()
+                    .hasMessageThat()
+                    .isEqualTo("unable to parse influence"
+                            + " from 'cs-off' using a");
+        }
+    }
+
+    @Test
+    public void testInfluenceFormatNegative2Lines() throws Exception {
+        final String[] suppressed = {
+            "22:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "23:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "30:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "31:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "32:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+        };
+
+        final String[] violationMessages = {
+            "21:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "22:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "23:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "25:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "26:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "27:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "29:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "30:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "31:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "32:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+            "34:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
+        };
+
+        verifyFilterWithInlineConfigParser(
+                getPath(
+                    "InputSuppressWithPlainTextCommentFilterInfluenceFormatNegative2Lines.java"),
+                violationMessages, removeSuppressed(violationMessages, suppressed));
+    }
+
+    @Test
     public void testFilterWithIdAndCustomMessageFormat() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
+        filterCfg.addProperty("commentFormat", "CHECKSTYLE default (\\w+) (\\w+)");
         filterCfg.addProperty("offCommentFormat", "CHECKSTYLE stop (\\w+) (\\w+)");
         filterCfg.addProperty("onCommentFormat", "CHECKSTYLE resume (\\w+) (\\w+)");
         filterCfg.addProperty("idFormat", "$1");
@@ -564,6 +775,8 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         final String[] suppressedViolationMessages = {
             "2: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 "^.*COUNT\\(\\*\\).*$"),
+            "7: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                "^.*COUNT\\(\\*\\).*$"),
         };
 
         final String[] expectedViolationMessages = {
@@ -571,7 +784,9 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
                 "^.*COUNT\\(\\*\\).*$"),
             "5: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 "^.*COUNT\\(\\*\\).*$"),
-            "8: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "7: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                "^.*COUNT\\(\\*\\).*$"),
+            "10: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 "^.*COUNT\\(\\*\\).*$"),
         };
 
@@ -605,7 +820,9 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
                 "^.*COUNT\\(\\*\\).*$"),
             "5: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 "^.*COUNT\\(\\*\\).*$"),
-            "8: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "7: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+                "^.*COUNT\\(\\*\\).*$"),
+            "10: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 "^.*COUNT\\(\\*\\).*$"),
         };
 

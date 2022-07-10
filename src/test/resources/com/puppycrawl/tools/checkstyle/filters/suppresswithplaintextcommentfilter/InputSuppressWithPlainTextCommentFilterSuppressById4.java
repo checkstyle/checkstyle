@@ -1,10 +1,12 @@
 /*
 SuppressWithPlainTextCommentFilter
+commentFormat = CSDEFAULT (\\w+) \\(\\w+\\)
 offCommentFormat = CSOFF (\\w+) \\(\\w+\\)
 onCommentFormat = CSON (\\w+)
 checkFormat = FileTabCharacterCheck
 messageFormat = (default)(null)
 idFormat = $1
+influenceFormat = (default)0
 
 
 com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck
@@ -39,5 +41,8 @@ public class InputSuppressWithPlainTextCommentFilterSuppressById4 { // violation
     //CSON ignore
 
     private long a3 = 1; // violation 'illegal pattern'
+
+    // 2 violations below
+	private static final long a4 = 1; // CSDEFAULT ignore (reason)
 
 }
