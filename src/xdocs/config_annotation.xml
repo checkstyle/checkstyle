@@ -1321,7 +1321,11 @@ package com.example.annotations.packageannotation; //ok
           <code>@SuppressWarnings</code> annotations. It allows to
           prevent Checkstyle from reporting violations from parts of code
           that were annotated with <code>@SuppressWarnings</code> and
-          using name of the check to be excluded. You can also define
+          using name of the check to be excluded. It is possible to suppress
+          all the checkstyle warnings with the argument
+          <code>"all"</code>.
+          You can also use a <code>checkstyle:</code> prefix to prevent compiler from
+          processing these annotations. You can also define
           aliases for check names that need to be suppressed.
         </p>
       </subsection>
@@ -1355,27 +1359,47 @@ package com.example.annotations.packageannotation; //ok
       </subsection>
 
       <subsection name="Examples" id="SuppressWarningsHolder_Examples">
-        <p>To prevent <code>FooCheck</code> violations from being reported write:</p>
+        <p>To use default module configuration:</p>
         <source>
-@SuppressWarnings("foo") interface I { }
-@SuppressWarnings("foo") enum E { }
-@SuppressWarnings("foo") InputSuppressWarningsFilter() { }
-        </source>
-        <p>Some real check examples:</p>
-        <p>This will prevent from invocation of the MemberNameCheck:</p>
-        <source>
-@SuppressWarnings({"membername"})
-private int J;
-        </source>
-        <p>You can also use a <code>checkstyle</code> prefix to prevent compiler from
-           processing these annotations.
-           For example this will prevent ConstantNameCheck:
-        </p>
-        <source>
-@SuppressWarnings("checkstyle:constantname")
-private static final int m = 0;
-        </source>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+  &lt;module name=&quot;MemberName&quot;/&gt;
+  &lt;module name=&quot;ConstantName&quot;/&gt;
+  &lt;module name=&quot;ParameterNumber&quot;&gt;
+    &lt;property name=&quot;id&quot; value=&quot;ParamNumberId&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
 
+  &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
+&lt;/module&gt;
+&lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+        </source>
+        <source>
+class Test {
+
+   private int K; // violation
+   @SuppressWarnings({"membername"})
+   private int J; // violation suppressed
+
+   private static final int i = 0; // violation
+   @SuppressWarnings("checkstyle:constantname")
+   private static final int m = 0; // violation suppressed
+
+   public void needsLotsOfParameters (int a, // violation
+      int b, int c, int d, int e, int f, int g, int h) {
+      // ...
+   }
+
+   @SuppressWarnings("ParamNumberId")
+   public void needsLotsOfParameters1 (int a, // violation suppressed
+      int b, int c, int d, int e, int f, int g, int h) {
+      // ...
+   }
+
+   private int [] ARR; // 2 violations
+   @SuppressWarnings("all")
+   private int [] ARRAY; // violations suppressed
+}
+        </source>
         <p>The general rule is that the argument of the <code>@SuppressWarnings</code> will be
           matched against class name of the checker in lower case and without <code>Check</code>
           suffix if present.
@@ -1385,21 +1409,30 @@ private static final int m = 0;
              the <code>aliasList</code>:
         </p>
         <source>
-@SuppressWarnings("paramnum")
-public void needsLotsOfParameters(@SuppressWarnings("unused") int a,
-  int b, int c, int d, int e, int f, int g, int h) {
-  ...
-}
-        </source>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+  &lt;module name=&quot;ParameterNumber&quot;/&gt;
 
-        <p>
-          It is possible to suppress all the checkstyle warnings with the argument
-          <code>"all"</code>:
-        </p>
+  &lt;module name=&quot;SuppressWarningsHolder&quot;&gt;
+    &lt;property name=&quot;aliasList&quot; value=
+      &quot;com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+&lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
+        </source>
         <source>
-@SuppressWarnings("all")
-public void someFunctionWithInvalidStyle() {
-  //...
+class Test {
+
+   public void needsLotsOfParameters (int a, // violation
+      int b, int c, int d, int e, int f, int g, int h) {
+      // ...
+   }
+
+   @SuppressWarnings("paramnum")
+   public void needsLotsOfParameters1 (int a, // violation suppressed
+      int b, int c, int d, int e, int f, int g, int h) {
+      // ...
+   }
+
 }
         </source>
 
