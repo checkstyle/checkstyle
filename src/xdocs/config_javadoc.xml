@@ -2885,7 +2885,8 @@ package com.checkstyle.api; // violation
               <td>skipAnnotations</td>
               <td>
                 specify annotations that allow missed documentation.
-                Only short names are allowed, e.g. <code>Generated</code>.
+                Both short(e.g. <code>Generated</code>) and
+                qualified(e.g. <code>MyClass.Annotation</code>) names are allowed.
               </td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
               <td><code>Generated</code></td>
@@ -2981,7 +2982,8 @@ class PackagePrivateClass {}
 
         <p>
           Example that allows missing comments for classes annotated with
-          <code>@SpringBootApplication</code> and <code>@Configuration</code>:
+          <code>@SpringBootApplication</code>,<code>@Configuration</code> and
+          <code>@MyClass.Annotation</code>:
         </p>
         <source>
 @SpringBootApplication // no violations about missing comment on class
@@ -2989,11 +2991,15 @@ public class Application {}
 
 @Configuration // no violations about missing comment on class
 class DatabaseConfiguration {}
+
+@MyClass.Annotation // no violations about missing comment on class
+class SomeClass {}
         </source>
         <p>Use following configuration:</p>
         <source>
 &lt;module name="MissingJavadocType"&gt;
-  &lt;property name="skipAnnotations" value="SpringBootApplication,Configuration"/&gt;
+  &lt;property name="skipAnnotations"
+            value="SpringBootApplication,Configuration,MyClass.Annotation"/&gt;
 &lt;/module&gt;
         </source>
       </subsection>
