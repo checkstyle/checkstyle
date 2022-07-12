@@ -53,7 +53,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </li>
  * <li>
  * Property {@code skipAnnotations} - specify annotations that allow missed
- * documentation. Only short names are allowed, e.g. {@code Generated}.
+ * documentation. Both short(e.g. {@code Generated}) and qualified(e.g. {@code MyClass.Annotation})
+ * names are allowed.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code Generated}.
  * </li>
@@ -127,7 +128,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </pre>
  * <p>
  * Example that allows missing comments for classes annotated with {@code @SpringBootApplication}
- * and {@code @Configuration}:
+ * , {@code @Configuration} and {@code @MyClass.Annotation}:
  * </p>
  * <pre>
  * &#64;SpringBootApplication // no violations about missing comment on class
@@ -135,13 +136,17 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *
  * &#64;Configuration // no violations about missing comment on class
  * class DatabaseConfiguration {}
+ *
+ * &#64;MyClass.Annotation // no violations about missing comment on class
+ * class SomeClass {}
  * </pre>
  * <p>
  * Use following configuration:
  * </p>
  * <pre>
  * &lt;module name="MissingJavadocType"&gt;
- *   &lt;property name="skipAnnotations" value="SpringBootApplication,Configuration"/&gt;
+ *   &lt;property name="skipAnnotations"
+ *   value="SpringBootApplication,Configuration,MyClass.Annotation"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
@@ -174,7 +179,8 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
 
     /**
      * Specify annotations that allow missed documentation.
-     * Only short names are allowed, e.g. {@code Generated}.
+     * Both short(e.g. {@code Generated}) and qualified(e.g. {@code MyClass.Annotation})
+     * names are allowed.
      */
     private Set<String> skipAnnotations = Set.of("Generated");
 
@@ -198,7 +204,8 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
 
     /**
      * Setter to specify annotations that allow missed documentation.
-     * Only short names are allowed, e.g. {@code Generated}.
+     * Both short(e.g. {@code Generated}) and qualified(e.g. {@code MyClass.Annotation})
+     * names are allowed.
      *
      * @param userAnnotations user's value.
      */
