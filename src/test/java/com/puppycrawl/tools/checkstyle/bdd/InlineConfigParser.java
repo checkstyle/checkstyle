@@ -333,6 +333,8 @@ public final class InlineConfigParser {
      * @param useFilteredViolations flag to set filtered violations.
      * @param lineNo current line.
      * @noinspection IfStatementWithTooManyBranches
+     * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
+     *      parser requires giant if/else
      * @throws CheckstyleException if violation message is not specified
      */
     // -@cs[ExecutableStatementCount] splitting this method is not reasonable.

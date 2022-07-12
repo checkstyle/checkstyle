@@ -1857,6 +1857,8 @@ public class MainTest {
      * @param expectedExitCode the expected exit code to verify
      * @param arguments the command line arguments
      * @noinspection CallToSystemExit, ResultOfMethodCallIgnored
+     * @noinspectionreason CallToSystemExit - test helper method requires workaround to
+     *      verify exit code
      */
     private static void assertMainReturnCode(int expectedExitCode, String... arguments) {
         final Runtime mock = mock(Runtime.class);
