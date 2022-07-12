@@ -171,7 +171,6 @@ pitest-coding-2)
   "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (astIterator.getType() == childType</span></pre></td></tr>"
   "FinalLocalVariableCheck.java.html:<td class='covered'><pre><span  class='survived'>        return loop1 != null &#38;&#38; loop1 == loop2;</span></pre></td></tr>"
   "IllegalInstantiationCheck.java.html:<td class='covered'><pre><span  class='survived'>            &#38;&#38; illegal.startsWith(JAVA_LANG)) {</span></pre></td></tr>"
-  "OneStatementPerLineCheck.java.html:<td class='covered'><pre><span  class='survived'>            || previousSibling.getType() == TokenTypes.RESOURCES</span></pre></td></tr>"
   );
   checkPitestReport ignoredItems
   ;;

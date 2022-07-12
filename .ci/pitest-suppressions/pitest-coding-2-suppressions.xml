@@ -35,13 +35,4 @@
     <description>removed conditional - replaced equality check with true</description>
     <lineContent>&amp;&amp; illegal.startsWith(JAVA_LANG)) {</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>OneStatementPerLineCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck</mutatedClass>
-    <mutatedMethod>checkIfSemicolonIsInDifferentLineThanPrevious</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>|| previousSibling.getType() == TokenTypes.RESOURCES</lineContent>
-  </mutation>
 </suppressedMutations>
