@@ -53,7 +53,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </li>
  * <li>
  * Property {@code skipAnnotations} - specify annotations that allow missed
- * documentation. Only short names are allowed, e.g. {@code Generated}.
+ * documentation. If annotation is present in target sources in multiple forms of qualified
+ * name, all forms should be listed in this property.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code Generated}.
  * </li>
@@ -126,8 +127,16 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * class PackagePrivateClass {}
  * </pre>
  * <p>
- * Example that allows missing comments for classes annotated with {@code @SpringBootApplication}
- * and {@code @Configuration}:
+ * To configure a check that allows missing comments for classes annotated
+ * with {@code @SpringBootApplication} and {@code @Configuration}:
+ * </p>
+ * <pre>
+ * &lt;module name="MissingJavadocType"&gt;
+ *   &lt;property name="skipAnnotations" value="SpringBootApplication,Configuration"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
  * </p>
  * <pre>
  * &#64;SpringBootApplication // no violations about missing comment on class
@@ -137,12 +146,26 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * class DatabaseConfiguration {}
  * </pre>
  * <p>
- * Use following configuration:
+ * To configure a check that allows missing comments for classes annotated with {@code @Annotation}
+ * and {@code @MyClass.Annotation}:
  * </p>
  * <pre>
  * &lt;module name="MissingJavadocType"&gt;
- *   &lt;property name="skipAnnotations" value="SpringBootApplication,Configuration"/&gt;
+ *   &lt;property name="skipAnnotations" value="Annotation,MyClass.Annotation"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#64;Annotation // ok
+ * class Class1 {}
+ *
+ * &#64;MyClass.Annotation // ok
+ * class Class2 {}
+ *
+ * &#64;com.mycompany.MyClass.Annotation // violation, as this form is missed in config
+ * class Class3 {}
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -174,7 +197,8 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
 
     /**
      * Specify annotations that allow missed documentation.
-     * Only short names are allowed, e.g. {@code Generated}.
+     * If annotation is present in target sources in multiple forms of qualified
+     * name, all forms should be listed in this property.
      */
     private Set<String> skipAnnotations = Set.of("Generated");
 
@@ -198,7 +222,8 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
 
     /**
      * Setter to specify annotations that allow missed documentation.
-     * Only short names are allowed, e.g. {@code Generated}.
+     * If annotation is present in target sources in multiple forms of qualified
+     * name, all forms should be listed in this property.
      *
      * @param userAnnotations user's value.
      */
