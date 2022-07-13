@@ -659,7 +659,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 // if the variable is declared outside the loop and initialized inside
                 // the loop, then it cannot be declared final, as it can be initialized
                 // more than once in this case
-                if (isInTheSameLoop(variable, ast) || !isUseOfExternalVariableInsideLoop(ast)) {
+                final DetailAST currAstLoopAstParent = getLoopAstParent(ast);
+                final DetailAST currVarLoopAstParent = getLoopAstParent(variable);
+                if (currAstLoopAstParent == currVarLoopAstParent) {
                     final FinalVariableCandidate candidate = scopeData.scope.get(ast.getText());
                     shouldRemove = candidate.alreadyAssigned;
                 }
@@ -671,27 +673,20 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether a variable which is declared outside loop is used inside loop.
-     * For example:
-     * <p>
-     * {@code
-     * int x;
-     * for (int i = 0, j = 0; i < j; i++) {
-     *     x = 5;
-     * }
-     * }
-     * </p>
+     * Get the ast node of type {@link FinalVariableCandidate#LOOP_TYPES} that is the ancestor
+     * of the current ast node, if there is no such node, null is returned.
      *
-     * @param variable variable.
-     * @return true if a variable which is declared outside loop is used inside loop.
+     * @param ast ast node
+     * @return ast node of type {@link FinalVariableCandidate#LOOP_TYPES} that is the ancestor
+     *         of the current ast node, null if no such node exists
      */
-    private static boolean isUseOfExternalVariableInsideLoop(DetailAST variable) {
-        DetailAST loop2 = variable.getParent();
-        while (loop2 != null
-            && !isLoopAst(loop2.getType())) {
-            loop2 = loop2.getParent();
+    private static DetailAST getLoopAstParent(DetailAST ast) {
+        DetailAST loopAstParent = ast.getParent();
+        while (loopAstParent != null
+            && !isLoopAst(loopAstParent.getType())) {
+            loopAstParent = loopAstParent.getParent();
         }
-        return loop2 != null;
+        return loopAstParent;
     }
 
     /**
@@ -781,25 +776,6 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         final DetailAST classOrMethodOfAst2 =
             findFirstUpperNamedBlock(ast2);
         return classOrMethodOfAst1 == classOrMethodOfAst2 && ast1.getText().equals(ast2.getText());
-    }
-
-    /**
-     * Check if both the variables are in the same loop.
-     *
-     * @param ast1 variable to compare.
-     * @param ast2 variable to compare.
-     * @return true if both the variables are in the same loop.
-     */
-    private static boolean isInTheSameLoop(DetailAST ast1, DetailAST ast2) {
-        DetailAST loop1 = ast1.getParent();
-        while (loop1 != null && !isLoopAst(loop1.getType())) {
-            loop1 = loop1.getParent();
-        }
-        DetailAST loop2 = ast2.getParent();
-        while (loop2 != null && !isLoopAst(loop2.getType())) {
-            loop2 = loop2.getParent();
-        }
-        return loop1 != null && loop1 == loop2;
     }
 
     /**
