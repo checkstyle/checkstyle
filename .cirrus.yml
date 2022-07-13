@@ -40,7 +40,7 @@ task:
     - choco install -y --no-progress maven --version %MAVEN_VERSION%
     - choco install -y --no-progress openjdk --version %OPENJDK_VERSION%
     - choco install -y --no-progress xsltproc
-    - choco install -y --no-progress xmlstarlet
+    # - choco install -y --no-progress xmlstarlet
   version_script:
     - set
     - ant -version
