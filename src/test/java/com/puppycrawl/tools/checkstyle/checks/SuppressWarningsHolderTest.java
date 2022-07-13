@@ -43,6 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck;
@@ -503,6 +504,30 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
         verify(root,
             getNonCompilablePath("InputSuppressWarningsHolderTextBlocks.java"), expected);
+    }
+
+    @Test
+    public void testWithAndWithoutCheckSuffixDifferentCases() throws Exception {
+        final Configuration checkConfig = createModuleConfig(SuppressWarningsHolder.class);
+        final DefaultConfiguration treeWalker = createModuleConfig(TreeWalker.class);
+        final Configuration filter = createModuleConfig(SuppressWarningsFilter.class);
+        final DefaultConfiguration violationCheck = createModuleConfig(ConstantNameCheck.class);
+
+        treeWalker.addChild(checkConfig);
+        treeWalker.addChild(violationCheck);
+
+        final DefaultConfiguration root = createRootConfig(treeWalker);
+        root.addChild(filter);
+
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+        final String[] expected = {
+            "4:30: " + getCheckMessage(ConstantNameCheck.class,
+                AbstractNameCheck.MSG_INVALID_PATTERN, "a", pattern),
+        };
+
+        verify(root,
+                getPath("InputSuppressWarningsHolderWithAndWithoutCheckSuffixDifferentCases.java"),
+                expected);
     }
 
 }
