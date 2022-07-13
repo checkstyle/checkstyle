@@ -3,38 +3,15 @@ kind: pipeline
 type: docker
 name: checkstyle_spotbugs-pmd
 
-volumes:
-- name: m2-cache
-  temp: {}
-
 steps:
-- name: restore-cache
-  image: maven:3.8.4-openjdk-11
-  failure: ignore
-  volumes:
-  - name: m2-cache
-    path: /.m2
-  commands:
-  - ./.ci/drone-io.sh restore-maven-cache
-
 - name: checkstyle-and-sevntu
   image: maven:3.8.4-openjdk-11
-  environment:
-    MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
-  volumes:
-  - name: m2-cache
-    path: /.m2
   commands:
   - ./.ci/validation.sh checkstyle-and-sevntu
   - ./.ci/validation.sh git-diff
 
 - name: spotbugs-and-pmd
   image: maven:3.8.4-openjdk-11
-  environment:
-    MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
-  volumes:
-  - name: m2-cache
-    path: /.m2
   commands:
   - ./.ci/validation.sh spotbugs-and-pmd
   - ./.ci/validation.sh git-diff
@@ -44,27 +21,9 @@ kind: pipeline
 type: docker
 name: site
 
-volumes:
-- name: m2-cache
-  temp: {}
-
 steps:
-- name: restore-cache
-  image: maven:3.8.4-openjdk-11
-  failure: ignore
-  volumes:
-  - name: m2-cache
-    path: /.m2
-  commands:
-  - ./.ci/drone-io.sh restore-maven-cache
-
 - name: site
   image: maven:3.8.4-openjdk-11
-  environment:
-    MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
-  volumes:
-  - name: m2-cache
-    path: /.m2
   commands:
   - ./.ci/validation.sh site
   - ./.ci/validation.sh git-diff
@@ -75,38 +34,15 @@ kind: pipeline
 type: docker
 name: dry-run_run-all
 
-volumes:
-- name: m2-cache
-  temp: {}
-
 steps:
-- name: restore-cache
-  image: maven:3.8.4-openjdk-11
-  failure: ignore
-  volumes:
-  - name: m2-cache
-    path: /.m2
-  commands:
-  - ./.ci/drone-io.sh restore-maven-cache
-
 - name: release-dry-run
   image: maven:3.8.4-openjdk-11
-  environment:
-    MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
-  volumes:
-  - name: m2-cache
-    path: /.m2
   commands:
   - ./.ci/validation.sh release-dry-run
   - ./.ci/validation.sh git-diff
 
 - name: assembly-run-all-jar
   image: maven:3.8.4-openjdk-11
-  environment:
-    MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
-  volumes:
-  - name: m2-cache
-    path: /.m2
   commands:
   - ./.ci/validation.sh assembly-run-all-jar
   - ./.ci/validation.sh git-diff
@@ -116,29 +52,12 @@ kind: pipeline
 type: docker
 name: releasenotes
 
-volumes:
-- name: m2-cache
-  temp: {}
-
 steps:
-- name: restore-cache
-  image: maven:3.8.4-openjdk-11
-  failure: ignore
-  volumes:
-  - name: m2-cache
-    path: /.m2
-  commands:
-  - ./.ci/drone-io.sh restore-maven-cache
-
 - name: releasenotes-gen
   image: maven:3.8.4-openjdk-11
   environment:
     READ_ONLY_TOKEN:
-      from_secret: READ_ONLY_TOKEN
-    MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
-  volumes:
-  - name: m2-cache
-    path: /.m2
+      from_secret: READ_ONLY_TOKENe
   commands:
   - export PULL_REQUEST=$DRONE_PULL_REQUEST && ./.ci/releasenotes-gen.sh
   - ./.ci/validation.sh git-diff
@@ -189,38 +108,17 @@ kind: pipeline
 type: docker
 name: assembly-site_sbe
 
-volumes:
-- name: m2-cache
-  temp: {}
-
 steps:
-- name: restore-cache
-  image: maven:3.8.4-openjdk-11
-  failure: ignore
-  volumes:
-  - name: m2-cache
-    path: /.m2
-  commands:
-  - ./.ci/drone-io.sh restore-maven-cache
-
 - name: jdk14-assembly-site
   image: maven:3.6.3-jdk-14
-  environment:
-    MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
-  volumes:
-  - name: m2-cache
-    path: /.m2
+
   commands:
   - ./.ci/validation.sh jdk14-assembly-site
   - ./.ci/validation.sh git-diff
 
 - name: assembly/site with OpenJDK11
   image: maven:3.8.4-openjdk-11
-  environment:
-    MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
-  volumes:
-  - name: m2-cache
-    path: /.m2
+
   commands:
   - "mvn -e --no-transfer-progress package -Passembly && \
      mvn -e --no-transfer-progress site -Dlinkcheck.skip=true"
@@ -228,11 +126,7 @@ steps:
 
 - name: no-error-test-sbe
   image: maven:3.8.4-openjdk-11
-  environment:
-    MAVEN_OPTS: "-Dmaven.repo.local=/.m2"
-  volumes:
-  - name: m2-cache
-    path: /.m2
+
   commands:
   - ./.ci/validation.sh no-error-test-sbe
   - ./.ci/validation.sh git-diff
