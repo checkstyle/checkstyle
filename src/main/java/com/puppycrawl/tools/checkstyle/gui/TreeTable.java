@@ -110,7 +110,8 @@ public final class TreeTable extends JTable {
         // the table.
         if (tree.getRowHeight() < 1) {
             // Metal looks better like this.
-            setRowHeight(getRowHeight());
+            final int height = getRowHeight();
+            setRowHeight(height);
         }
 
         setColumnsInitialWidth();
