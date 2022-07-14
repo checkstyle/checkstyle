@@ -627,6 +627,27 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testDefaultLoggerWithNullToFile() throws IOException {
+        final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
+        formatter.setTofile(null);
+        assertWithMessage("Listener instance has unexpected type")
+            .that(formatter.createListener(null))
+            .isInstanceOf(DefaultLogger.class);
+    }
+
+    @Test
+    public void testXmlLoggerWithNullToFile() throws IOException {
+        final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
+        formatterType.setValue("xml");
+        final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
+        formatter.setType(formatterType);
+        formatter.setTofile(null);
+        assertWithMessage("Listener instance has unexpected type")
+            .that(formatter.createListener(null))
+            .isInstanceOf(XMLLogger.class);
+    }
+
+    @Test
     public void testSetClasspath() {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         final Project project = new Project();
