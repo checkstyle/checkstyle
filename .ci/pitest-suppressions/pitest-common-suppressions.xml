@@ -21,46 +21,10 @@
   <mutation unstable="false">
     <sourceFile>DefaultLogger.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.DefaultLogger</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>closeError = errorStreamOptions == OutputStreamOptions.CLOSE;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>DefaultLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DefaultLogger</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>closeInfo = infoStreamOptions == OutputStreamOptions.CLOSE;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>DefaultLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DefaultLogger</mutatedClass>
     <mutatedMethod>addError</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
     <description>removed conditional - replaced equality check with true</description>
     <lineContent>if (severityLevel != SeverityLevel.IGNORE) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>DefaultLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DefaultLogger</mutatedClass>
-    <mutatedMethod>closeStreams</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (closeError) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>DefaultLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.DefaultLogger</mutatedClass>
-    <mutatedMethod>closeStreams</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (closeInfo) {</lineContent>
   </mutation>
 
   <mutation unstable="false">
