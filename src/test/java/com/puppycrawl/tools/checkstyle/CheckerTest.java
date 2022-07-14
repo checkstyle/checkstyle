@@ -34,6 +34,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -1639,6 +1640,46 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
 
         checker.destroy();
+    }
+
+    @Test
+    public void testCachedFile() throws Exception {
+        final Checker checker = createChecker(createModuleConfig(TranslationCheck.class));
+        final OutputStream infoStream = new ByteArrayOutputStream();
+        final OutputStream errorStream = new ByteArrayOutputStream();
+        final DefaultLoggerWithCounter loggerWithCounter =
+            new DefaultLoggerWithCounter(infoStream, OutputStreamOptions.CLOSE,
+                                         errorStream, OutputStreamOptions.CLOSE);
+        checker.addListener(loggerWithCounter);
+        final File cacheFile = File.createTempFile("cacheFile", ".txt", temporaryFolder);
+        checker.setCacheFile(cacheFile.getAbsolutePath());
+
+        final File testFile = File.createTempFile("testFile", ".java", temporaryFolder);
+        final List<File> files = List.of(testFile, testFile);
+        checker.process(files);
+
+        assertWithMessage("Cached file should not be processed twice")
+            .that(loggerWithCounter.fileStartedCount)
+            .isEqualTo(1);
+
+        checker.destroy();
+    }
+
+    public static class DefaultLoggerWithCounter extends DefaultLogger {
+
+        private int fileStartedCount;
+
+        public DefaultLoggerWithCounter(OutputStream infoStream,
+                                        OutputStreamOptions infoStreamOptions,
+                                        OutputStream errorStream,
+                                        OutputStreamOptions errorStreamOptions) {
+            super(infoStream, infoStreamOptions, errorStream, errorStreamOptions);
+        }
+
+        @Override
+        public void fileStarted(AuditEvent event) {
+            fileStartedCount++;
+        }
     }
 
     public static class DummyFilter implements Filter {
