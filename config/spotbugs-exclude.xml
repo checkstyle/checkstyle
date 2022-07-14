@@ -219,7 +219,6 @@
       IMC_IMMATURE_CLASS_NO_EQUALS,
       IMC_IMMATURE_CLASS_NO_TOSTRING,
       IMC_IMMATURE_CLASS_PRINTSTACKTRACE,
-      ITC_INHERITANCE_TYPE_CHECKING,
       MOM_MISLEADING_OVERLOAD_MODEL,
       NFF_NON_FUNCTIONAL_FIELD,
       NMCS_NEEDLESS_MEMBER_COLLECTION_SYNCHRONIZATION,
@@ -239,5 +238,13 @@
     <!-- Till https://github.com/spotbugs/spotbugs/issues/1867 -->
     <Class name="com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper"/>
     <Bug pattern="MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR"/>
+  </Match>
+  <Match>
+    <!-- Checks and filters are treated differently. -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
+      <Class name="com.puppycrawl.tools.checkstyle.TreeWalker"/>
+    </Or>
+    <Bug pattern="ITC_INHERITANCE_TYPE_CHECKING"/>
   </Match>
 </FindBugsFilter>
