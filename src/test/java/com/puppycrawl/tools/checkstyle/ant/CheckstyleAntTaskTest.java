@@ -32,6 +32,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Project;
@@ -40,6 +42,7 @@ import org.apache.tools.ant.types.Path;
 import org.apache.tools.ant.types.Reference;
 import org.apache.tools.ant.types.resources.FileResource;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
@@ -65,6 +68,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
             "InputCheckstyleAntTaskConfigCustomRootModule.xml";
     private static final String NOT_EXISTING_FILE = "target/not_existing.xml";
     private static final String FAILURE_PROPERTY_VALUE = "myValue";
+
+    @TempDir
+    public File temporaryFolder;
 
     @Override
     protected String getPackageLocation() {
@@ -780,8 +786,34 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                         .startsWith("Unable to process files:");
     }
 
+    @Test
+    public void testLoggedTime() throws IOException {
+        final CheckstyleAntTaskLogStub antTask = new CheckstyleAntTaskLogStub();
+        antTask.setConfig(getPath(CONFIG_FILE));
+        antTask.setProject(new Project());
+        antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
+        final long startTime = System.currentTimeMillis();
+        antTask.execute();
+        final long endTime = System.currentTimeMillis();
+        final List<MessageLevelPair> loggedMessages = antTask.getLoggedMessages();
+        final long loggedTimeInExecute =
+            getNumberFromLine(loggedMessages.get(loggedMessages.size() - 1).getMsg());
+
+        assertWithMessage("Logged time inside method cannot be more than "
+                              + "logged time outside the method")
+            .that(loggedTimeInExecute)
+            .isAtMost(endTime - startTime);
+
+    }
+
     private static List<String> readWholeFile(File outputFile) throws IOException {
         return Files.readAllLines(outputFile.toPath(), StandardCharsets.UTF_8);
+    }
+
+    private static long getNumberFromLine(String line) {
+        final Matcher matcher = Pattern.compile("(\\d+)").matcher(line);
+        matcher.find();
+        return Long.parseLong(matcher.group(1));
     }
 
 }
