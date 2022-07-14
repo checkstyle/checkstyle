@@ -325,6 +325,27 @@ public class DefaultLoggerTest {
                 .contains("java.lang.IllegalStateException: upsss");
     }
 
+    @Test
+    public void testStreamsNotClosedByLogger() throws IOException {
+        final MockByteArrayOutputStream infoStream = new MockByteArrayOutputStream();
+        final MockByteArrayOutputStream errorStream = new MockByteArrayOutputStream();
+        final DefaultLogger defaultLogger = new DefaultLogger(
+                infoStream, OutputStreamOptions.NONE,
+                errorStream, OutputStreamOptions.NONE);
+        defaultLogger.auditStarted(null);
+        defaultLogger.auditFinished(null);
+        assertWithMessage("Info stream should be open")
+                .that(infoStream.closedCount)
+                .isEqualTo(0);
+        assertWithMessage("Error stream should be open")
+                .that(errorStream.closedCount)
+                .isEqualTo(0);
+
+        // Close streams at the end manually
+        infoStream.close();
+        errorStream.close();
+    }
+
     private static Constructor<?> getConstructor() throws Exception {
         final Class<?> message = getDefaultLoggerClass().getDeclaredClasses()[0];
         return message.getDeclaredConstructor(String.class, String[].class);
