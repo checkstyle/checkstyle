@@ -59,6 +59,13 @@
       </roles>
     </developer>
     <developer>
+      <id>nick-mancuso</id>
+      <name>Nick Mancuso</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
       <id>sabaka</id>
       <name>Ilja Dubinin</name>
       <roles>
