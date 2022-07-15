@@ -97,8 +97,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p>
  * The general rule is that the argument of the {@code @SuppressWarnings} will be
- * matched against class name of the checker in lower case and without {@code Check}
- * suffix if present.
+ * matched against class name of the checker in any letter case. Adding {@code check}
+ * suffix is also accepted.
  * </p>
  * <p>
  * If {@code aliasList} property was provided you can use your own names e.g. below
@@ -155,7 +155,7 @@ public class SuppressWarningsHolder
     private static final String JAVA_LANG_PREFIX = "java.lang.";
 
     /** Suffix to be removed from subclasses of Check. */
-    private static final String CHECK_SUFFIX = "Check";
+    private static final String CHECK_SUFFIX = "check";
 
     /** Special warning id for matching all the warnings. */
     private static final String ALL_WARNING_MATCHING_ID = "all";
@@ -182,8 +182,8 @@ public class SuppressWarningsHolder
 
     /**
      * Returns the default alias for the source name of a check, which is the
-     * source name in lower case with any dotted prefix or "Check" suffix
-     * removed.
+     * source name in lower case with any dotted prefix or "Check"/"check"
+     * suffix removed.
      *
      * @param sourceName the source name of the check (generally the class
      *        name)
@@ -191,11 +191,12 @@ public class SuppressWarningsHolder
      */
     public static String getDefaultAlias(String sourceName) {
         int endIndex = sourceName.length();
-        if (sourceName.endsWith(CHECK_SUFFIX)) {
+        final String sourceNameLower = sourceName.toLowerCase(Locale.ENGLISH);
+        if (sourceNameLower.endsWith(CHECK_SUFFIX)) {
             endIndex -= CHECK_SUFFIX.length();
         }
-        final int startIndex = sourceName.lastIndexOf('.') + 1;
-        return sourceName.substring(startIndex, endIndex).toLowerCase(Locale.ENGLISH);
+        final int startIndex = sourceNameLower.lastIndexOf('.') + 1;
+        return sourceNameLower.substring(startIndex, endIndex);
     }
 
     /**
@@ -268,7 +269,8 @@ public class SuppressWarningsHolder
             final String checkName = entry.getCheckName();
             final boolean nameMatches =
                 ALL_WARNING_MATCHING_ID.equals(checkName)
-                    || checkName.equalsIgnoreCase(checkAlias);
+                    || checkName.equalsIgnoreCase(checkAlias)
+                    || getDefaultAlias(checkName).equalsIgnoreCase(checkAlias);
             if (afterStart && beforeEnd
                     && (nameMatches || checkName.equals(event.getModuleId()))) {
                 suppressed = true;
