@@ -491,4 +491,21 @@ public class PackageObjectFactoryTest {
 
     }
 
+    @Test
+    public void testCreateObjectWithNameContainingPackageSeparator() throws Exception {
+        final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        final Set<String> packages = Collections.singleton(BASE_PACKAGE);
+        final PackageObjectFactory objectFactory =
+            new PackageObjectFactory(packages, classLoader, TRY_IN_ALL_REGISTERED_PACKAGES);
+
+        final Object object = objectFactory.createModule(MockClass.class.getName());
+        assertWithMessage("Object should be an instance of MockClass")
+            .that(object)
+            .isInstanceOf(MockClass.class);
+    }
+
+    private static class MockClass {
+        MockClass() {
+        }
+    }
 }
