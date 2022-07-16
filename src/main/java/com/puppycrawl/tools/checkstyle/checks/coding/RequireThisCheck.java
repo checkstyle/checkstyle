@@ -443,11 +443,15 @@ public class RequireThisCheck extends AbstractCheck {
                     == TokenTypes.ANNOTATION_FIELD_DEF) {
             parentType = TokenTypes.ANNOTATION_FIELD_DEF;
         }
+        else if(isAnyParentResource(ast)) {
+            parentType = TokenTypes.RESOURCE;
+        }
         switch (parentType) {
+            case TokenTypes.RESOURCE:
             case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:
             case TokenTypes.ANNOTATION:
             case TokenTypes.ANNOTATION_FIELD_DEF:
-                // no need to check annotations content
+                // no need to check annotations content or resource definitions
                 break;
             case TokenTypes.METHOD_CALL:
                 if (checkMethods) {
@@ -467,6 +471,26 @@ public class RequireThisCheck extends AbstractCheck {
                 }
                 break;
         }
+    }
+
+    /**
+     * Checks whether provided AST has a RESOURCE parent. This can be a direct
+     * parent or a distant one. Looks up parents all the way to METHOD_DEF.
+     *
+     * @param ast IDENT to check.
+     * @return {@code true} if any parent is a RESOURCE.
+     */
+    private boolean isAnyParentResource(DetailAST ast) {
+        DetailAST current = ast.getParent();
+        boolean isAnyParentResource = false;
+        while(current != null && current.getType() != TokenTypes.METHOD_DEF) {
+            if(current.getType() == TokenTypes.RESOURCE) {
+                isAnyParentResource = true;
+                break;
+            }
+            current = current.getParent();
+        }
+        return isAnyParentResource;
     }
 
     /**

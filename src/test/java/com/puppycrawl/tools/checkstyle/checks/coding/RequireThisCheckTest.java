@@ -455,6 +455,15 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testTryWithResources() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getPath("InputRequireThisTryWithResources.java"),
+            expected
+        );
+    }
+
+    @Test
     public void testUnusedMethod() throws Exception {
         final DetailAstImpl ident = new DetailAstImpl();
         ident.setText("testName");
