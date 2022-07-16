@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.ant;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -822,6 +823,38 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
             .isAtMost(endTime - startTime);
 
     }
+
+    @Test
+    public void testLoggedTimeInProcessFiles() throws IOException {
+        final CheckstyleAntTaskLogStub antTask = new CheckstyleAntTaskLogStub();
+        antTask.setConfig(getPath(CONFIG_FILE));
+        antTask.setProject(new Project());
+        antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
+        final long startTime = System.currentTimeMillis();
+        antTask.execute();
+        final long endTime = System.currentTimeMillis();
+        final long overallLoggedTime = endTime - startTime;
+        final List<MessageLevelPair> loggedMessages = antTask.getLoggedMessages();
+
+        assertLoggedTime(loggedMessages, overallLoggedTime, "locate");
+        assertLoggedTime(loggedMessages, overallLoggedTime, "process");
+    }
+
+    private static void assertLoggedTime(List<MessageLevelPair> loggedMessages,
+                                         long overallLoggedTime, String action) {
+        loggedMessages.stream()
+            .filter(msg -> msg.getMsg().startsWith("To " + action + " the files took"))
+            .findFirst()
+            .ifPresentOrElse(msg -> {
+                assertWithMessage("Logged time to " + action
+                                      + " the files should be less than the overall logged time")
+                    .that(getNumberFromLine(msg.getMsg()))
+                    .isAtMost(overallLoggedTime);
+            }, () -> {
+                fail("Log message with 'To " + action + " the files took' was not found");
+            });
+    }
+
 
     private static List<String> readWholeFile(File outputFile) throws IOException {
         return Files.readAllLines(outputFile.toPath(), StandardCharsets.UTF_8);
