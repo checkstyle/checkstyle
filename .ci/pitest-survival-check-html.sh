@@ -56,6 +56,7 @@ pitest-annotation|pitest-design \
 |pitest-filters \
 |pitest-regexp \
 |pitest-meta \
+|pitest-ant \
 |pitest-tree-walker \
 |pitest-utils \
 |pitest-java-ast-visitor \
@@ -98,15 +99,6 @@ pitest-common)
   "PackageObjectFactory.java.html:<td class='covered'><pre><span  class='survived'>        if (instance == null</span></pre></td></tr>"
   "PackageObjectFactory.java.html:<td class='covered'><pre><span  class='survived'>        if (!name.contains(PACKAGE_SEPARATOR)) {</span></pre></td></tr>"
   "PackageObjectFactory.java.html:<td class='covered'><pre><span  class='survived'>                if (thirdPartyNameToFullModuleNames == null) {</span></pre></td></tr>"
-  );
-  checkPitestReport ignoredItems
-  ;;
-
-
-pitest-ant)
-  declare -a ignoredItems=(
-  "CheckstyleAntTask.java.html:<td class='covered'><pre><span  class='survived'>            log(&#34;To process the files took &#34; + (processingEndTime - processingStartTime)</span></pre></td></tr>"
-  "CheckstyleAntTask.java.html:<td class='covered'><pre><span  class='survived'>        log(&#34;To locate the files took &#34; + (endTime - startTime) + TIME_SUFFIX,</span></pre></td></tr>"
   );
   checkPitestReport ignoredItems
   ;;
