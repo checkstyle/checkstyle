@@ -84,7 +84,11 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
             "63:9: " + getCheckMessage(MSG_KEY),
             "64:9: " + getCheckMessage(MSG_KEY),
             "65:9: " + getCheckMessage(MSG_KEY),
-            "68:1: " + getCheckMessage(MSG_KEY),
+            "72:6: " + getCheckMessage(MSG_KEY),
+            "74:24: " + getCheckMessage(MSG_KEY),
+            "76:43: " + getCheckMessage(MSG_KEY),
+            "78:69: " + getCheckMessage(MSG_KEY),
+            "90:1: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInvalidJavadocPosition.java"), expected);
