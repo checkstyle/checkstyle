@@ -527,7 +527,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         final DetailAST parent = ast.getParent();
 
         // shouldn't process assign in annotation pairs
-        if (type != TokenTypes.ASSIGN
+        if (true
             || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
             if (type == TokenTypes.EXPR) {
                 checkExpression(ast);
