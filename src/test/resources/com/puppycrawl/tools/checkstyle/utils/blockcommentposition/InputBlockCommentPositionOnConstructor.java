@@ -24,4 +24,18 @@ public class InputBlockCommentPositionOnConstructor {
 
     }
 
+    /**
+     * I'm a javadoc
+     */
+    <T> InputBlockCommentPositionOnConstructor(boolean b){
+
+    }
+
+    /**
+     * I'm a javadoc
+     */
+    private <T> InputBlockCommentPositionOnConstructor(T t){
+
+    }
+
 }
