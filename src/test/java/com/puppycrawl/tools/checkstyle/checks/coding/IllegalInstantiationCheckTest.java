@@ -112,6 +112,14 @@ public class IllegalInstantiationCheckTest
     }
 
     @Test
+    public void testNameSimilarToStandardClass() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getPath("InputIllegalInstantiationNameSimilarToStandardClasses.java"),
+            expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
         assertWithMessage("Acceptable tokens should not be null")
