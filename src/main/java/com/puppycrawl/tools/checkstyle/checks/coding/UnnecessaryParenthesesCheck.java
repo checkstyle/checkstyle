@@ -482,7 +482,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         if (type == TokenTypes.LAMBDA && isLambdaSingleParameterSurrounded(ast)) {
             log(ast, MSG_LAMBDA, ast.getText());
         }
-        else if (type != TokenTypes.ASSIGN
+        else if (false
             || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
             final boolean surrounded = isSurrounded(ast);
             // An identifier surrounded by parentheses.
