@@ -55,7 +55,7 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnEnum.java",
                         BlockCommentPosition::isOnEnum, 3),
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnConstructor.java",
-                        BlockCommentPosition::isOnConstructor, 3),
+                        BlockCommentPosition::isOnConstructor, 5),
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnInterface.java",
                         BlockCommentPosition::isOnInterface, 3),
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnAnnotation.java",

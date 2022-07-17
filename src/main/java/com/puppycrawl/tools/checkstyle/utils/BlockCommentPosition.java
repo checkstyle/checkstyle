@@ -184,7 +184,8 @@ public final class BlockCommentPosition {
     public static boolean isOnConstructor(DetailAST blockComment) {
         return isOnPlainToken(blockComment, TokenTypes.CTOR_DEF, TokenTypes.IDENT)
                 || isOnTokenWithModifiers(blockComment, TokenTypes.CTOR_DEF)
-                || isOnTokenWithAnnotation(blockComment, TokenTypes.CTOR_DEF);
+                || isOnTokenWithAnnotation(blockComment, TokenTypes.CTOR_DEF)
+                || isOnPlainClassMember(blockComment, TokenTypes.CTOR_DEF);
     }
 
     /**
