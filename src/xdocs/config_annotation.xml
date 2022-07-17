@@ -1401,8 +1401,8 @@ class Test {
 }
         </source>
         <p>The general rule is that the argument of the <code>@SuppressWarnings</code> will be
-          matched against class name of the checker in lower case and without <code>Check</code>
-          suffix if present.
+          matched against class name of the check in any letter case. Adding <code>check</code>
+          suffix is also accepted.
         </p>
         <p>If <code>aliasList</code> property was provided you can use your own names e.g. below
              code will work if there was provided a <code>ParameterNumberCheck=paramnum</code> in
