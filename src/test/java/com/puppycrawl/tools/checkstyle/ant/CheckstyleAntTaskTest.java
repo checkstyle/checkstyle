@@ -812,15 +812,26 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final long startTime = System.currentTimeMillis();
         antTask.execute();
         final long endTime = System.currentTimeMillis();
+        final long testingTime = endTime - startTime;
         final List<MessageLevelPair> loggedMessages = antTask.getLoggedMessages();
-        final long loggedTimeInExecute =
-            getNumberFromLine(loggedMessages.get(loggedMessages.size() - 1).getMsg());
 
-        assertWithMessage("Logged time inside method cannot be more than "
-                              + "logged time outside the method")
-            .that(loggedTimeInExecute)
-            .isAtMost(endTime - startTime);
+        assertLoggedTime(loggedMessages, testingTime, "Total execution");
+        assertLoggedTime(loggedMessages, testingTime, "To locate the files");
+        assertLoggedTime(loggedMessages, testingTime, "To process the files");
+    }
 
+    private static void assertLoggedTime(List<MessageLevelPair> loggedMessages,
+                                         long testingTime, String expectedMessage) {
+        loggedMessages.stream()
+            .filter(msg -> msg.getMsg().startsWith(expectedMessage))
+            .findFirst()
+            .ifPresentOrElse(msg -> {
+                assertWithMessage("Logged time in '" + expectedMessage + "' "
+                                      + "must be less than the overall logged time")
+                    .that(getNumberFromLine(msg.getMsg()))
+                    .isAtMost(testingTime);
+            }, assertWithMessage(
+                "Log message starting with '" + expectedMessage + "' not found")::fail);
     }
 
     private static List<String> readWholeFile(File outputFile) throws IOException {
