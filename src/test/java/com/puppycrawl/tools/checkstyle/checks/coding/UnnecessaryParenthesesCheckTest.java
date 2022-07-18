@@ -103,6 +103,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     @Test
     public void test15Extensions() throws Exception {
         final String[] expected = {
+            "25:20: " + getCheckMessage(MSG_ASSIGN),
             "28:23: " + getCheckMessage(MSG_EXPR),
             "28:51: " + getCheckMessage(MSG_LITERAL, "1"),
         };
