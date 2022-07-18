@@ -3,15 +3,6 @@
   <mutation unstable="false">
     <sourceFile>UnnecessaryParenthesesCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck</mutatedClass>
-    <mutatedMethod>isLambdaSingleParameterSurrounded</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (firstChild != null &amp;&amp; firstChild.getType() == TokenTypes.LPAREN) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>UnnecessaryParenthesesCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck</mutatedClass>
     <mutatedMethod>leaveToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
     <description>removed conditional - replaced equality check with false</description>
