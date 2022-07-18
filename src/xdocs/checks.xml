@@ -193,6 +193,14 @@
             <td>Checks for empty catch blocks.</td>
           </tr>
           <tr>
+            <td><a href="config_whitespace.html#ChainedMethodCallWrap">
+              ChainedMethodCallWrap</a></td>
+            <td>
+              Checks whether method calls specified by identifier pattern are wrapped onto
+              the subsequent line(s).
+            </td>
+          </tr>
+          <tr>
             <td><a href="config_whitespace.html#EmptyForInitializerPad">
               EmptyForInitializerPad</a></td>
             <td>
