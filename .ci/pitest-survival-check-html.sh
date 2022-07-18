@@ -154,7 +154,6 @@ pitest-coding-1)
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (currentNodeType == TokenTypes.SLIST) {</span></pre></td></tr>"
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (!firstUsageFound) {</span></pre></td></tr>"
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (!isVarInOperatorDeclaration &#38;&#38; operator.getType() == TokenTypes.LITERAL_IF) {</span></pre></td></tr>"
-  "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>        while (result</span></pre></td></tr>"
   );
   checkPitestReport ignoredItems
   ;;
