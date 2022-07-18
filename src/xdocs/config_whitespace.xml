@@ -16,6 +16,266 @@
       </macro>
     </section>
 
+    <section name="ChainedMethodCallWrap">
+      <p>Since Checkstyle 10.4</p>
+      <subsection name="Description" id="ChainedMethodCallWrap_Description">
+        <p>
+          Checks whether method calls specified by identifier pattern are wrapped onto
+          the subsequent line(s). Line wrapping means to insert line breaks in code to make
+          it more readable and adhere to line length standards.
+        </p>
+        <p>
+          Rationale: Long chained method calls are difficult to read and comprehend, and sometimes
+          require horizontal scrolling to read the complete method call chain. Wrapping method calls
+          onto the following line(s) enhances readability.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="ChainedMethodCallWrap_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>identifierPattern</td>
+              <td>
+                Specify method calls to be checked. By default, identifierPattern matches
+                nothing, so no method calls are checked. This property must be set in order
+                to use the check.
+              </td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
+              <td><code>"^$"</code></td>
+              <td>10.4</td>
+            </tr>
+            <tr>
+              <td>maxCallsPerLine</td>
+              <td>
+                  Specify maximum number of method calls per lines if we are wrapping the
+                  method calls. If all the method calls span over a single line then this
+                  property has no effect.
+              </td>
+              <td><a href="property_types.html#int">int</a></td>
+              <td><code>1</code></td>
+              <td>10.4</td>
+            </tr>
+            <tr>
+              <td>maxSingleLineCalls</td>
+              <td>
+                  Specify maximum number of method calls if all chained method calls span
+                  over a single line. If chained method calls span over multiple lines then
+                  this property has no effect.
+              </td>
+              <td><a href="property_types.html#int">int</a></td>
+              <td><code>1</code></td>
+              <td>10.4</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="ChainedMethodCallWrap_Examples">
+        <p>
+          To configure the check to use custom identifierPattern to validate assertions:
+        </p>
+        <source>
+&lt;module name=&quot;ChainedMethodCallWrap&quot;&gt;
+ &lt;property name=&quot;identifierPattern&quot; value=&quot;^assert.*$&quot; /&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+void method() {
+    assertWithMessage("ex").that(1).isEqualTo(1);
+                     // violation above, ''3' method calls on single line, max allowed is '1''
+    assertWithMessage("ex")
+        .that(1).isEqualTo(1); // violation, 'Chained method call should be wrapped'
+
+    assertWithMessage("ex")
+        .that(1)
+        .isEqualTo(1);         // ok, every method call is wrapped
+
+    Truth.assertWithMessage("ex").that(1).isEqualTo(1); // ok, identifierPattern is different
+
+    Truth.assertWithMessage("ex")
+        .that(1).isEqualTo(1); // ok, identifierPattern is different
+}
+        </source>
+        <p>
+          To configure the check to use custom identifierPattern to validate Truth's assertions:
+        </p>
+        <source>
+&lt;module name=&quot;ChainedMethodCallWrap&quot;&gt;
+ &lt;property name=&quot;identifierPattern&quot; value=&quot;^Truth\.assert.*$&quot; /&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+void method() {
+
+    assertWithMessage("ex").that(1).isEqualTo(1); // ok, identifierPattern is different
+
+    assertWithMessage("ex")
+        .that(1).isEqualTo(1); // ok, identifierPattern is different
+
+    assertWithMessage("ex")
+        .that(1)
+        .isEqualTo(1); // ok, identifierPattern is different
+
+    Truth.assertWithMessage("ex").that(1).isEqualTo(1);
+                       // violation above, ''3' method calls on single line, max allowed is '1''
+    Truth.assertWithMessage("ex")
+        .that(1).isEqualTo(1); // violation, 'Chained method call should be wrapped'
+}
+        </source>
+        <p>
+          To configure the check to use custom identifierPattern and maxSingleLinesCalls:
+        </p>
+        <source>
+&lt;module name=&quot;ChainedMethodCallWrap&quot;&gt;
+ &lt;property name=&quot;identifierPattern&quot; value=&quot;^assert.*$&quot; /&gt;
+ &lt;property name=&quot;maxSingleLineCalls&quot; value=&quot;3&quot; /&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+void method() {
+
+    assertWithMessage("ex").that(1).isEqualTo(1);
+                               // ok above, 3 method calls &lt;= maxSingleLineCalls
+
+    assertWithMessage("ex")
+        .that(1).isEqualTo(1); // violation, 'Chained method call should be wrapped'
+
+    assertWithMessage("ex")
+        .that(1)
+        .isEqualTo(1);         // ok, every method call is wrapped
+
+    Truth.assertWithMessage("ex").that(1).isEqualTo(1);
+                               // ok above, identifierPattern is different
+
+    Truth.assertWithMessage("ex")
+        .that(1).isEqualTo(1); // ok, identifierPattern is different
+}
+        </source>
+        <p>
+          To configure the check to use custom identifierPattern and maxCallsPerLine:
+        </p>
+        <source>
+&lt;module name=&quot;ChainedMethodCallWrap&quot;&gt;
+ &lt;property name=&quot;identifierPattern&quot; value=&quot;^assert.*$&quot; /&gt;
+ &lt;property name=&quot;maxCallsPerLine&quot; value=&quot;2&quot; /&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+void method() {
+
+    assertWithMessage("ex").that(1).isEqualTo(1);
+               // violation above, ''3' method calls on single line, max allowed is '1''
+
+    assertWithMessage("ex")
+        .that(1).isEqualTo(1); // ok, 2 method calls on current line &lt;= maxCallsPerLine
+
+    assertWithMessage("ex")
+        .that(1)
+        .isEqualTo(1);         // ok, every method call is wrapped
+
+    Truth.assertWithMessage("ex").that(1).isEqualTo(1);
+                               // ok above, identifierPattern is different
+
+    Truth.assertWithMessage("ex")
+        .that(1).isEqualTo(1); // ok, identifierPattern is different
+}
+        </source>
+        <p>
+          To configure the check to use custom identifierPattern, maxSingleLinesCalls
+          and maxCallsPerLine:
+        </p>
+        <source>
+&lt;module name=&quot;ChainedMethodCallWrap&quot;&gt;
+ &lt;property name=&quot;identifierPattern&quot; value=&quot;^assert.*$&quot; /&gt;
+ &lt;property name=&quot;maxSingleLineCalls&quot; value=&quot;2&quot; /&gt;
+ &lt;property name=&quot;maxCallsPerLine&quot; value=&quot;2&quot; /&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+void method() {
+
+    assertWithMessage("ex").that(1).isEqualTo(1);
+          // violation above, ''3' method calls on single line, max allowed is '2''
+
+    assertWithMessage("ex")
+        .that(1).isEqualTo(1); // ok, 2 method calls on current line &lt;= maxCallsPerLine
+
+    assertWithMessage("ex")
+        .that(1)
+        .isEqualTo(1);         // ok, every method call is wrapped
+
+    Truth.assertWithMessage("ex").that(1).isEqualTo(1);
+                               // ok above, identifierPattern is different
+
+    Truth.assertWithMessage("ex")
+        .that(1).isEqualTo(1); // ok, identifierPattern is different
+}
+        </source>
+
+      </subsection>
+
+      <subsection name="Example of Usage" id="ChainedMethodCallWrap_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ChainedMethodCallWrap">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="ChainedMethodCallWrap_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.single.line%22">
+            too.many.single.line</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22wrap.method.call%22">
+            wrap.method.call</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="ChainedMethodCallWrap_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.whitespace
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="ChainedMethodCallWrap_Parent_Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="EmptyForInitializerPad">
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="EmptyForInitializerPad_Description">
