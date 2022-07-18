@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 @MyAnnotation1(name = "ABC", version = 1)
 public class InputUnnecessaryParentheses15Extensions
 {
-
+    boolean flag = ("abc" == "done"); // violation 'parentheses around assignment right-hand side'
 }
 
 @MyAnnotation1(name = ("ABC" + "DEF"), version = (1)) // 2 violations
