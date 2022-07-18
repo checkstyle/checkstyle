@@ -144,7 +144,6 @@ pitest-coding-1)
   "UnnecessaryParenthesesCheck.java.html:<td class='covered'><pre><span  class='survived'>        else if (type != TokenTypes.ASSIGN</span></pre></td></tr>"
   "UnnecessaryParenthesesCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (firstChild != null &#38;&#38; firstChild.getType() == TokenTypes.LPAREN) {</span></pre></td></tr>"
   "UnnecessaryParenthesesCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (type != TokenTypes.ASSIGN</span></pre></td></tr>"
-  "UnnecessaryParenthesesCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (type == TokenTypes.LAMBDA &#38;&#38; isLambdaSingleParameterSurrounded(ast)) {</span></pre></td></tr>"
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; currentAst.getType() != TokenTypes.RCURLY) {</span></pre></td></tr>"
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; currentNode.getType() == TokenTypes.LITERAL_CATCH) {</span></pre></td></tr>"
   "VariableDeclarationUsageDistanceCheck.java.html:<td class='covered'><pre><span  class='survived'>                &#38;&#38; currentStatementAst.getType() != TokenTypes.RCURLY) {</span></pre></td></tr>"
