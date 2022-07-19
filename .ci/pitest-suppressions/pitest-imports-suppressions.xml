@@ -17,13 +17,4 @@
     <description>removed conditional - replaced equality check with true</description>
     <lineContent>else if (ALLOW_ELEMENT_NAME.equals(qName) || "disallow".equals(qName)) {</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>PkgImportControl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.PkgImportControl</mutatedClass>
-    <mutatedMethod>matchesExactly</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>if (regex) {</lineContent>
-  </mutation>
 </suppressedMutations>
