@@ -23,12 +23,14 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.BASE_PACKAGE;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.CHECK_SUFFIX;
+import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.ModuleLoadOption.SEARCH_REGISTERED_PACKAGES;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.ModuleLoadOption.TRY_IN_ALL_REGISTERED_PACKAGES;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.NULL_LOADER_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.NULL_PACKAGE_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.PACKAGE_SEPARATOR;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.STRING_SEPARATOR;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mockStatic;
 
 import java.io.File;
@@ -478,6 +480,41 @@ public class PackageObjectFactoryTest {
         }
     }
 
+    @Test
+    public void testCreateObjectWithNameContainingPackageSeparator() throws Exception {
+        final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        final Set<String> packages = Collections.singleton(BASE_PACKAGE);
+        final PackageObjectFactory objectFactory =
+            new PackageObjectFactory(packages, classLoader, TRY_IN_ALL_REGISTERED_PACKAGES);
+
+        final Object object = objectFactory.createModule(MockClass.class.getName());
+        assertWithMessage("Object should be an instance of MockClass")
+            .that(object)
+            .isInstanceOf(MockClass.class);
+    }
+
+    @Test
+    public void testCreateModuleWithTryInAllRegisteredPackages() {
+        final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        final Set<String> packages = Collections.singleton(BASE_PACKAGE);
+        final PackageObjectFactory objectFactory =
+            new PackageObjectFactory(packages, classLoader, SEARCH_REGISTERED_PACKAGES);
+        final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
+            objectFactory.createModule("PackageObjectFactoryTest$MockClass");
+        });
+
+        assertWithMessage("Invalid exception message")
+            .that(ex.getMessage())
+            .startsWith(
+                "Unable to instantiate 'PackageObjectFactoryTest$MockClass' class, it is also "
+                    + "not possible to instantiate it as "
+                    + "com.puppycrawl.tools.checkstyle.PackageObjectFactoryTest$MockClass, "
+                    + "PackageObjectFactoryTest$MockClassCheck, "
+                    + "com.puppycrawl.tools.checkstyle.PackageObjectFactoryTest$MockClassCheck"
+            );
+
+    }
+
     private static final class FailConstructorFileSet extends AbstractFileSetCheck {
 
         private FailConstructorFileSet() {
@@ -491,4 +528,7 @@ public class PackageObjectFactoryTest {
 
     }
 
+    public static class MockClass {
+        // Mock class for testing purposes.
+    }
 }
