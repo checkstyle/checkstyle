@@ -81,6 +81,14 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testSomeNonSupportedElement() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getPath("InputImportControlNonSupportedElement.java"), expected);
+    }
+
+    @Test
     public void testWrong() throws Exception {
         final String[] expected = {"9:1: " + getCheckMessage(MSG_UNKNOWN_PKG)};
         verifyWithInlineConfigParser(
