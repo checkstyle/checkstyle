@@ -21,24 +21,6 @@
   <mutation unstable="false">
     <sourceFile>PkgImportControl.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.PkgImportControl</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>if (regex || parent.regex) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>PkgImportControl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.PkgImportControl</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (regex || parent.regex) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>PkgImportControl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.PkgImportControl</mutatedClass>
     <mutatedMethod>matchesExactly</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
     <description>removed conditional - replaced equality check with false</description>
