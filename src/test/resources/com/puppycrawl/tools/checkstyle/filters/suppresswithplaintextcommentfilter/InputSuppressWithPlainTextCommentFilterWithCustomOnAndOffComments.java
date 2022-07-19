@@ -1,10 +1,12 @@
 /*
 SuppressWithPlainTextCommentFilter
+areaCommentFormat = cs (\\w+)
 offCommentFormat = cs-off
 onCommentFormat = cs-on
 checkFormat = (default).*
 messageFormat = (default)(null)
 idFormat = (default)(null)
+influenceFormat = (default)0
 
 com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck
 eachLine = true
@@ -28,4 +30,20 @@ public class InputSuppressWithPlainTextCommentFilterWithCustomOnAndOffComments {
     /* cs-on **/
 
     private 	int c; // violation 'Line contains a tab character'
+
+    // filtered violation below 'Line contains a tab character'
+	private int d; // cs FileTabCharacterCheck
+
+    // filtered violation below 'Line contains a tab character'
+	private int e;  /* cs FileTabCharacterCheck */
+	/* cs FileTabCharacterCheck */ private int f;
+    // filtered violation above 'Line contains a tab character'
+
+    // violation below 'Line contains a tab character'
+	private int g;
+    // cs FileTabCharacterCheck
+
+    // cs FileTabCharacterCheck
+	private int h;
+    // violation above 'Line contains a tab character'
 }

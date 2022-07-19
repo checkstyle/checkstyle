@@ -51,9 +51,9 @@
       Use suppressions.xml for suppressions, this is only example.
       checkFormat will prevent suppression comments from being valid.
     -->
-    <property name="checkFormat" value="IGNORETHIS"/>
     <property name="offCommentFormat" value="CSOFF\: .*"/>
     <property name="onCommentFormat" value="CSON\: .*"/>
+    <property name="areaCommentFormat" value="CSAREA: (\w+)"/>
   </module>
 
   <!-- Headers -->
