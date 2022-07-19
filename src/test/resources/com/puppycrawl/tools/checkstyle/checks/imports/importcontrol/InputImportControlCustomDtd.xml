@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE import-control PUBLIC
+        "CUSTOM_DTD"
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/InputImportControlCustom.dtd">
+
+<import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports">
+  <allow class="java.awt.Image"/>
+  <subpackage name="importcontrol">
+    <someElementNotSupported class="java.awt.Image" local-only="true"/>
+  </subpackage>
+</import-control>
