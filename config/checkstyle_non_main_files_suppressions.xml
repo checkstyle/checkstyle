@@ -74,9 +74,6 @@
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]translation[\\/]Expected.*\.xml"/>
 
-  <!-- it contains list of html text, no way to wrap -->
-  <suppress id="lineLength"
-         files=".ci[\\/]pitest-survival-check-html.sh"/>
   <!-- property names a too long, nothing we can do -->
   <suppress id="lineLength"
          files="config[\\/]org.eclipse.jdt.core.prefs"/>
