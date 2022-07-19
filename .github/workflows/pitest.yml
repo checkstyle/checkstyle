@@ -61,14 +61,9 @@ jobs:
         run: |
           mvn -e --no-transfer-progress -P"${{ matrix.profile }}" clean test-compile \
           org.pitest:pitest-maven:mutationCoverage
-      - name: Check ${{ matrix.profile }} with XML report
-        id: pitest-xml-model
+      - name: Check ${{ matrix.profile }} report
         run: |
           groovy ./.ci/pitest-survival-check-xml.groovy ${{ matrix.profile }}
-      - name: Check ${{ matrix.profile }} with HTML report
-        if: failure() || success()
-        run: |
-          ./.ci/pitest-survival-check-html.sh ${{ matrix.profile }}
       - name: Stage results
         if: failure() || github.ref == 'refs/heads/master'
         run: |
