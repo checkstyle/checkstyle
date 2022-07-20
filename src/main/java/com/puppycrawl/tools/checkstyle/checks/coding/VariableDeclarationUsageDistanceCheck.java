@@ -893,7 +893,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
         // Checking variable usage inside all CATCH blocks.
         while (currentNode != null
-                && currentNode.getType() == TokenTypes.LITERAL_CATCH) {
+                && true) {
             final DetailAST catchBlock = currentNode.getLastChild();
 
             if (isChild(catchBlock, variable)) {
