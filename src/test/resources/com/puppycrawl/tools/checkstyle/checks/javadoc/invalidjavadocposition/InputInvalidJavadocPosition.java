@@ -65,4 +65,16 @@ class InputInvalidJavadocPosition7 {
         /** violation */ @Deprecated int variable3; // violation
     }
 }
+class GenericConstructor {
+    /** valid */
+    <E extends String> GenericConstructor(E a) {}
+
+    /** valid */
+    private <E extends String> GenericConstructor() {}
+
+    private class InnerClass {
+        /** valid */
+        <E extends String> InnerClass() {}
+    }
+}
 /** violation */ // violation
