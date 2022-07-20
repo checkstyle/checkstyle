@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>AbbreviationAsWordInNameCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck</mutatedClass>
+    <mutatedMethod>getChildren</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
+    <lineContent>curNode = curNode.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AccessModifierOption.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption</mutatedClass>
+    <mutatedMethod>getInstance</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>return valueOf(AccessModifierOption.class, modifierName.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ParameterNameCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck</mutatedClass>
+    <mutatedMethod>setAccessModifiers</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Arrays::copyOf with argument</description>
+    <lineContent>Arrays.copyOf(accessModifiers, accessModifiers.length);</lineContent>
+  </mutation>
+</suppressedMutations>
