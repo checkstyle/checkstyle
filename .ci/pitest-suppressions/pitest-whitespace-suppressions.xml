@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>AbstractParenPadCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck</mutatedClass>
+    <mutatedMethod>setOption</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::toUpperCase with receiver</description>
+    <lineContent>option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractParenPadCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck</mutatedClass>
+    <mutatedMethod>setOption</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>EmptyForInitializerPadCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck</mutatedClass>
+    <mutatedMethod>setOption</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::toUpperCase with receiver</description>
+    <lineContent>option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>EmptyForInitializerPadCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck</mutatedClass>
+    <mutatedMethod>setOption</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>EmptyForInitializerPadCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
+    <lineContent>final DetailAST semi = ast.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>EmptyForIteratorPadCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck</mutatedClass>
+    <mutatedMethod>setOption</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::toUpperCase with receiver</description>
+    <lineContent>option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>EmptyForIteratorPadCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck</mutatedClass>
+    <mutatedMethod>setOption</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>EmptyLineSeparatorCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck</mutatedClass>
+    <mutatedMethod>checkToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_3</mutator>
+    <description>RemoveSwitch 3 mutation</description>
+    <lineContent>switch (astType) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>EmptyLineSeparatorCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck</mutatedClass>
+    <mutatedMethod>getEmptyLinesToLog</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Integer::intValue</description>
+    <lineContent>int previousEmptyLineNo = emptyLines.get(0);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>EmptyLineSeparatorCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck</mutatedClass>
+    <mutatedMethod>getViolationAstForPackage</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
+    <lineContent>DetailAST nextElement = ast.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>EmptyLineSeparatorCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck</mutatedClass>
+    <mutatedMethod>getViolationAstForPackage</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLastChild with receiver</description>
+    <lineContent>final int lastChildLineNo = ast.getLastChild().getLineNo();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>EmptyLineSeparatorCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck</mutatedClass>
+    <mutatedMethod>hasEmptyLineAfter</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLastChild with receiver</description>
+    <lineContent>lastToken = token.getLastChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>EmptyLineSeparatorCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck</mutatedClass>
+    <mutatedMethod>isLineEmptyAfterPackage</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
+    <lineContent>DetailAST nextElement = ast.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>EmptyLineSeparatorCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck</mutatedClass>
+    <mutatedMethod>isLineEmptyAfterPackage</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLastChild with receiver</description>
+    <lineContent>final int lastChildLineNo = ast.getLastChild().getLineNo();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>GenericWhitespaceCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable depth</description>
+    <lineContent>depth = 0;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MethodParamPadCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck</mutatedClass>
+    <mutatedMethod>setOption</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OperatorWrapCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck</mutatedClass>
+    <mutatedMethod>setOption</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::toUpperCase with receiver</description>
+    <lineContent>option = WrapOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>OperatorWrapCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck</mutatedClass>
+    <mutatedMethod>setOption</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>option = WrapOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ParenPadCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck</mutatedClass>
+    <mutatedMethod>visitResourceSpecification</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>processLeft(ast.findFirstToken(TokenTypes.LPAREN));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ParenPadCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_3</mutator>
+    <description>RemoveSwitch 3 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ParenPadCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_7</mutator>
+    <description>RemoveSwitch 7 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SeparatorWrapCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck</mutatedClass>
+    <mutatedMethod>setOption</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::toUpperCase with receiver</description>
+    <lineContent>option = WrapOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SeparatorWrapCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck</mutatedClass>
+    <mutatedMethod>setOption</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>option = WrapOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SeparatorWrapCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/utils/CodePointUtil::trim with argument</description>
+    <lineContent>final int[] substringAfterToken = CodePointUtil.trim(</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SingleSpaceSeparatorCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck</mutatedClass>
+    <mutatedMethod>visitEachToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent</description>
+    <lineContent>final DetailAST parent = node.getParent();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SingleSpaceSeparatorCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck</mutatedClass>
+    <mutatedMethod>visitEachToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>final DetailAST parent = node.getParent();</lineContent>
+  </mutation>
+</suppressedMutations>
