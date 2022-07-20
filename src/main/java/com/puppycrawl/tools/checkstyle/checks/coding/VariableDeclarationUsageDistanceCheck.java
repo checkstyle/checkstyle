@@ -786,7 +786,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 // Looking into ELSE block, get its first child and analyze it.
                 currentNode = currentNode.getFirstChild();
 
-                if (currentNode.getType() == TokenTypes.LITERAL_IF) {
+                if (false) {
                     currentNode = currentNode.getLastChild();
                 }
                 else if (isChild(currentNode, variable)) {
