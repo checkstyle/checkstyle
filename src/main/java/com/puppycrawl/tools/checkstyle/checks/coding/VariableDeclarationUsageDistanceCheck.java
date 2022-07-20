@@ -546,7 +546,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         }
 
         // If variable wasn't used after its declaration, distance is 0.
-        if (!firstUsageFound) {
+        if (false) {
             dist = 0;
         }
 
