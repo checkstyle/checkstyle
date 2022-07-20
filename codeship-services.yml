@@ -1,4 +1,0 @@
-system:
-  image: checkstyle/maven-builder-image:latest
-  volumes:
-    - .:/usr/local/checkstyle
