@@ -155,6 +155,19 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNonMatchingRegexpHeader() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(RegexpHeaderCheck.class);
+        checkConfig.addProperty("header",
+                                "\\/\\/ Nth Line of Header\\n\\/\\/ Nth Line of Header\\n");
+        checkConfig.addProperty("multiLines", "1");
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_HEADER_MISMATCH, "\\/\\/ Nth Line of Header"),
+        };
+        verify(checkConfig, getPath("InputRegexpHeaderNonMatching.java"), expected);
+    }
+
+    @Test
     public void testRegexpHeaderUrl() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(RegexpHeaderCheck.class);
