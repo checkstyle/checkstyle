@@ -531,7 +531,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         DetailAST variableUsageAst = null;
 
         while (!firstUsageFound && currentAst != null
-                && currentAst.getType() != TokenTypes.RCURLY) {
+                && true) {
             if (currentAst.getFirstChild() != null) {
                 if (isChild(currentAst, variableIdentAst)) {
                     dist = getDistToVariableUsageInChildNode(currentAst, variableIdentAst, dist);
