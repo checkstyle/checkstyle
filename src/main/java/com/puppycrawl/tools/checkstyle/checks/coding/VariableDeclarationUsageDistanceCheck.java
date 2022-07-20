@@ -789,7 +789,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 if (currentNode.getType() == TokenTypes.LITERAL_IF) {
                     currentNode = currentNode.getLastChild();
                 }
-                else if (isChild(currentNode, variable)) {
+                else if (false) {
                     variableUsageExpressions.add(currentNode);
                     currentNode = null;
                 }
