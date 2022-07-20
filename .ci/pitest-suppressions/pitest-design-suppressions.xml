@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>DesignForExtensionCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck</mutatedClass>
+    <mutatedMethod>hasJavadocCommentOnToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>final DetailAST token = methodDef.findFirstToken(tokenType);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalClassCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable packageName</description>
+    <lineContent>packageName = &quot;&quot;;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalClassCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Deque::size</description>
+    <lineContent>extractQualifiedTypeName(ast), typeDeclarations.size(), ast);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalClassCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Object::toString</description>
+    <lineContent>throw new IllegalStateException(ast.toString());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalClassCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck$TypeDeclarationDescription</mutatedClass>
+    <mutatedMethod>getDepth</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ReturnValuesMutator</mutator>
+    <description>replaced return of primitive boolean/byte/short/integer value with (x == 1) ? 0 : x + 1</description>
+    <lineContent>return depth;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>HideUtilityClassConstructorCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck$Details</mutatedClass>
+    <mutatedMethod>invoke</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable hasNonPrivateStaticMethodOrField</description>
+    <lineContent>hasNonPrivateStaticMethodOrField = false;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>HideUtilityClassConstructorCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck$Details</mutatedClass>
+    <mutatedMethod>invoke</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable hasNonStaticMethodOrField</description>
+    <lineContent>hasNonStaticMethodOrField = false;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>HideUtilityClassConstructorCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck$Details</mutatedClass>
+    <mutatedMethod>invoke</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable hasPublicCtor</description>
+    <lineContent>hasPublicCtor = false;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>InnerTypeLastCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable rootClass</description>
+    <lineContent>private boolean rootClass = true;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>InnerTypeLastCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
+    <lineContent>DetailAST nextSibling = ast.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MutableExceptionCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck</mutatedClass>
+    <mutatedMethod>leaveClassDef</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Boolean::booleanValue</description>
+    <lineContent>checking = checkingStack.pop();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ThrowsCountCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck</mutatedClass>
+    <mutatedMethod>isOverriding</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
+    <lineContent>child = child.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>VisibilityModifierCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/design/VisibilityModifierCheck::getClassShortNames</description>
+    <lineContent>getClassShortNames(DEFAULT_IGNORE_ANNOTATIONS);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>VisibilityModifierCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/design/VisibilityModifierCheck::getClassShortNames with argument</description>
+    <lineContent>getClassShortNames(DEFAULT_IGNORE_ANNOTATIONS);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>VisibilityModifierCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable ignoreAnnotationShortNames</description>
+    <lineContent>getClassShortNames(DEFAULT_IGNORE_ANNOTATIONS);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>VisibilityModifierCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/design/VisibilityModifierCheck::getClassShortNames</description>
+    <lineContent>getClassShortNames(DEFAULT_IMMUTABLE_TYPES);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>VisibilityModifierCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/design/VisibilityModifierCheck::getClassShortNames with argument</description>
+    <lineContent>getClassShortNames(DEFAULT_IMMUTABLE_TYPES);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>VisibilityModifierCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable immutableClassShortNames</description>
+    <lineContent>getClassShortNames(DEFAULT_IMMUTABLE_TYPES);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>VisibilityModifierCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck</mutatedClass>
+    <mutatedMethod>findMatchingAnnotation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
+    <lineContent>child != null; child = child.getNextSibling()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>VisibilityModifierCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck</mutatedClass>
+    <mutatedMethod>getCanonicalName</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>DetailAST toVisit = type.getFirstChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>VisibilityModifierCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck</mutatedClass>
+    <mutatedMethod>visitImport</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>final DetailAST type = importAst.getFirstChild();</lineContent>
+  </mutation>
+</suppressedMutations>
