@@ -692,7 +692,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         int distance = 0;
         DetailAST currentStatementAst = statementAst;
         while (currentStatementAst != null
-                && currentStatementAst.getType() != TokenTypes.RCURLY) {
+                && true) {
             if (currentStatementAst.getFirstChild() != null) {
                 if (isChild(currentStatementAst, variableAst)) {
                     variableUsageExpressions.add(currentStatementAst);
