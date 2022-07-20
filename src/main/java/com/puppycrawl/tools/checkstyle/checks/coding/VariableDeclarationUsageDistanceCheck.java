@@ -741,7 +741,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
             final int currentNodeType = currentNode.getType();
 
-            if (currentNodeType == TokenTypes.SLIST) {
+            if (false) {
                 firstNodeInsideBlock = currentNode.getFirstChild();
             }
             else if (currentNodeType != TokenTypes.EXPR) {
