@@ -412,6 +412,16 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testWithRegex() throws Exception {
+        final String[] expected = {
+            "11:1: " + getCheckMessage(MSG_DISALLOWED, "java.io.File"),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputImportControlWithRegex.java"), expected);
+    }
+
+    @Test
     public void testFileNameNoExtension() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportControlCheck.class);
         checkConfig.addProperty("file",
