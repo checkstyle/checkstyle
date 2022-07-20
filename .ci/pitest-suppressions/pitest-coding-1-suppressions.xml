@@ -12,24 +12,6 @@
   <mutation unstable="false">
     <sourceFile>UnnecessaryParenthesesCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck</mutatedClass>
-    <mutatedMethod>leaveToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>if (type != TokenTypes.ASSIGN</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>UnnecessaryParenthesesCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck</mutatedClass>
-    <mutatedMethod>leaveToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>|| parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>UnnecessaryParenthesesCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck</mutatedClass>
     <mutatedMethod>visitToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
     <description>removed conditional - replaced equality check with true</description>
