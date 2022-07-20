@@ -3986,17 +3986,40 @@
             <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
-                <mutator>CONDITIONALS_BOUNDARY</mutator>
-                <mutator>CONSTRUCTOR_CALLS</mutator>
-                <mutator>FALSE_RETURNS</mutator>
-                <mutator>INCREMENTS</mutator>
-                <mutator>INVERT_NEGS</mutator>
-                <mutator>MATH</mutator>
-                <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS</mutator>
-                <mutator>RETURN_VALS</mutator>
+                <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>TRUE_RETURNS</mutator>
+                <mutator>REMOVE_CONDITIONALS_EQUAL_ELSE</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
+                <mutator>PRIMITIVE_RETURNS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
+                <mutator>NON_VOID_METHOD_CALLS</mutator>
+                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
+                <mutator>INVERT_NEGS</mutator>
+                <mutator>CONDITIONALS_BOUNDARY</mutator>
+                <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
+                <mutator>DEFAULTS</mutator>
+                <mutator>RETURN_VALS</mutator>
+                <mutator>OLD_DEFAULTS</mutator>
+                <mutator>EXPERIMENTAL_SWITCH</mutator>
+                <mutator>RETURNS</mutator>
+                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <mutator>NULL_RETURNS</mutator>
+                <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
+                <mutator>MATH</mutator>
+                <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
+                <mutator>INCREMENTS</mutator>
+                <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
+                <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
+                <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+                <!-- Read reason of disablement at https://github.com/checkstyle/checkstyle/issues/11895 -->
+                <!-- <mutator>INLINE_CONSTS</mutator> -->
+                <mutator>STRONGER</mutator>
+                <mutator>REMOVE_INCREMENTS</mutator>
+                <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>EMPTY_RETURNS</mutator>
               </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.JavaAstVisitor</param>
