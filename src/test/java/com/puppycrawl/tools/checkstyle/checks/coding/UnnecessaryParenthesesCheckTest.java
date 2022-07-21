@@ -105,6 +105,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "28:23: " + getCheckMessage(MSG_EXPR),
             "28:51: " + getCheckMessage(MSG_LITERAL, "1"),
+            "59:20: " + getCheckMessage(MSG_ASSIGN),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnnecessaryParentheses15Extensions.java"), expected);
