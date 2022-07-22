@@ -1,0 +1,22 @@
+#############################################################################
+# GitHub Action to bump release version
+#
+#############################################################################
+name: "Bump release year"
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  bump:
+    name: Bump release year
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the latest code
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Modify File
+        run: |
+          ./.ci/release-notes-page.sh
