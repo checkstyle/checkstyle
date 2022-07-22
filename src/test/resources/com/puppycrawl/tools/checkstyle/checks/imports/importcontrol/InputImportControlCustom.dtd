@@ -1,0 +1,40 @@
+<!-- Same as src/main/resources/com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_4.dtd just someElementNotSupported element was added  -->
+
+<!ELEMENT import-control ((allow|disallow|someElementNotSupported)*,(subpackage|file)*)>
+
+<!ATTLIST import-control
+  pkg CDATA #REQUIRED
+  strategyOnMismatch (allowed|disallowed) #IMPLIED
+  regex (true) #IMPLIED>
+
+<!ELEMENT subpackage ((allow|disallow|someElementNotSupported)*,(subpackage|file)*)>
+
+<!ATTLIST subpackage
+  name CDATA #REQUIRED
+  strategyOnMismatch (delegateToParent|allowed|disallowed) #IMPLIED
+  regex (true) #IMPLIED>
+
+<!ELEMENT file (allow|disallow)*>
+
+<!ATTLIST file
+  name CDATA #REQUIRED
+  regex (true) #IMPLIED>
+
+<!ENTITY % attlist.importrule "
+  pkg CDATA #IMPLIED
+  exact-match (true) #IMPLIED
+  class CDATA #IMPLIED
+  local-only (true) #IMPLIED
+  regex (true) #IMPLIED">
+
+<!ELEMENT allow EMPTY>
+<!ATTLIST allow
+  %attlist.importrule;>
+
+<!ELEMENT someElementNotSupported EMPTY>
+<!ATTLIST someElementNotSupported
+        %attlist.importrule;>
+
+<!ELEMENT disallow EMPTY>
+<!ATTLIST disallow
+  %attlist.importrule;>
