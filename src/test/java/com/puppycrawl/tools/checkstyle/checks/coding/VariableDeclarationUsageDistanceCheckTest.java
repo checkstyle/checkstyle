@@ -246,6 +246,14 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
+    public void testDefaultConfiguration2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getPath("InputVariableDeclarationUsageDistanceDefault2.java"), expected);
+    }
+
+    @Test
     public void testAnonymousClass() throws Exception {
         final String[] expected = {
             "19:9: " + getCheckMessage(MSG_KEY_EXT, "prefs", 4, 3),
