@@ -959,7 +959,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
         // Variable may be met in ELSE declaration
         // So, check variable usage in these declarations.
-        if (!isVarInOperatorDeclaration && operator.getType() == TokenTypes.LITERAL_IF) {
+        if (!isVarInOperatorDeclaration) {
             final DetailAST elseBlock = operator.getLastChild();
 
             if (elseBlock.getType() == TokenTypes.LITERAL_ELSE) {
