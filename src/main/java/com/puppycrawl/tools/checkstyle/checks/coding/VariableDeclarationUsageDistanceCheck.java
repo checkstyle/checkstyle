@@ -770,11 +770,9 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
         if (!isVariableInOperatorExpr(block, variable)) {
             DetailAST currentNode = block.getLastChild();
-            final List<DetailAST> variableUsageExpressions =
-                    new ArrayList<>();
+            final List<DetailAST> variableUsageExpressions = new ArrayList<>();
 
-            while (currentNode != null
-                    && currentNode.getType() == TokenTypes.LITERAL_ELSE) {
+            if (currentNode.getType() == TokenTypes.LITERAL_ELSE) {
                 final DetailAST previousNode =
                         currentNode.getPreviousSibling();
 
@@ -785,18 +783,13 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
                 // Looking into ELSE block, get its first child and analyze it.
                 currentNode = currentNode.getFirstChild();
-
-                if (currentNode.getType() == TokenTypes.LITERAL_IF) {
-                    currentNode = currentNode.getLastChild();
-                }
-                else if (isChild(currentNode, variable)) {
-                    variableUsageExpressions.add(currentNode);
-                    currentNode = null;
-                }
             }
 
             // If IF block doesn't include ELSE then analyze variable usage
             // only inside IF block.
+            // OR
+            // The IF block contained ELSE and currentNode is equal to the first child in
+            // ELSE block, then also analyze the first child.
             if (currentNode != null
                     && isChild(currentNode, variable)) {
                 variableUsageExpressions.add(currentNode);

@@ -53,4 +53,14 @@ public class InputVariableDeclarationUsageDistanceGeneral2 {
         } else {
         }
     }
+
+    void method() {
+        int a = 12; // violation
+        if (true) {
+            method();
+            p();
+            method();
+            a++;
+        }
+    }
 }
