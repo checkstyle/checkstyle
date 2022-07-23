@@ -26,7 +26,6 @@ disable=SC2088 # (warning): Tilde does not expand in quotes. Use $HOME.
 disable=SC2005 # (style): Useless echo? Instead of 'echo $(cmd)', just use 'cmd'.
 disable=SC2015 # (info): Note that A && B || C is not if-then-else. C may run when A is true.
 disable=SC2026 # (info): This word is outside of quotes.
-disable=SC2269 # (info): This variable is assigned to itself, so the assignment does nothing.
 disable=SC2230 # which is non-standard. Use builtin 'command -v' instead.
 disable=SC2153 # Possible misspelling: LINKED_ISSUES may not be assigned, but LINKED_ISSUE is.
 disable=SC1004 # This backslash+linefeed is literal.
