@@ -39,15 +39,6 @@
   <mutation unstable="false">
     <sourceFile>VariableDeclarationUsageDistanceCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
-    <mutatedMethod>getFirstNodeInsideForWhileDoWhileBlocks</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>if (currentNodeType == TokenTypes.SLIST) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>VariableDeclarationUsageDistanceCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</mutatedClass>
     <mutatedMethod>getFirstNodeInsideIfBlock</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
     <description>removed conditional - replaced equality check with false</description>
