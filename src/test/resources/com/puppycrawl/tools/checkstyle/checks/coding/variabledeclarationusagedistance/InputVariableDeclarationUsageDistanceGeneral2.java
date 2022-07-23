@@ -53,4 +53,14 @@ public class InputVariableDeclarationUsageDistanceGeneral2 {
         } else {
         }
     }
+
+    void method() throws Exception {
+        // Until https://github.com/checkstyle/checkstyle/issues/11968
+        String a = ""; // violation
+        try (AutoCloseable i = new java.io.StringReader(a)) {
+        }
+        finally {
+            a.equals("");
+        }
+    }
 }
