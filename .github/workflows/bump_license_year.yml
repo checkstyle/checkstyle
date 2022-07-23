@@ -8,8 +8,6 @@ name: "Bump license year"
 on:
   schedule:
     - cron: "0 0 1 1 *"
-  # So we can manually trigger if required
-  workflow_dispatch:
 permissions:
   contents: write
   pull-requests: write
@@ -26,21 +24,14 @@ jobs:
         id: CURRENT_YEAR
         run: |
           echo "::set-output name=year::$(date +'%Y')"
-      - name: Modify File
+      - name: Modify Files
         run: |
           ./.ci/bump-license-year.sh $(expr ${{ env.YEAR }} - 1) ${{ env.YEAR }} .
         env:
           YEAR: ${{ steps.CURRENT_YEAR.outputs.year }}
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
-        env:
-          YEAR: ${{ steps.CURRENT_YEAR.outputs.year }}
-        with:
-          commit-message: "minor: Bump year to ${{ env.YEAR }}"
-          committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
-          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
-          branch: bump-year
-          delete-branch: true
-          body: "minor: Bump year to ${{ env.YEAR }}"
-          title: "minor: Bump year to ${{ env.YEAR }}"
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push commit
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git commit -am "minor: Bump year to ${{ env.YEAR }}"
+          git push
