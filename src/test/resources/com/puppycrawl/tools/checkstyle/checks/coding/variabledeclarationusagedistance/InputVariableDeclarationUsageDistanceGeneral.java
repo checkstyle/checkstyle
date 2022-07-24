@@ -1070,4 +1070,13 @@ class New1 {
         New1.field = 3;
         New1.field = (int)a;
     }
+
+    class SwitchStatement {
+        void issue11973() {
+            int i = -1;
+            switch (i) { } // ok
+
+            switch (i) { } // ok
+        }
+    }
 }
