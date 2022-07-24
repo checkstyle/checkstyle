@@ -94,8 +94,8 @@ function should_run_job {
     fi
 
     # Note: this command only works in master branch
-    if [ $(git log -1 --format=%B | grep -E "\[maven-release-plugin\] prepare release" \
-              | cat | wc -l) -lt 1 ];
+    if [ "$(git log -1 --format=%B | grep -E "\[maven-release-plugin\] prepare release" \
+              | cat | wc -l)" -lt 1 ];
     then
         SKIP_JOB_BY_COMMIT="false"
     else
