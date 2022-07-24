@@ -559,10 +559,10 @@ public class RightCurlyCheck extends AbstractCheck {
                     details = getDetailsForIfElse(ast);
                     break;
                 case TokenTypes.LITERAL_DO:
-                case TokenTypes.LITERAL_WHILE:
                 case TokenTypes.LITERAL_FOR:
                     details = getDetailsForLoops(ast);
                     break;
+                case TokenTypes.LITERAL_WHILE:
                 default:
                     details = getDetailsForOthers(ast);
                     break;
