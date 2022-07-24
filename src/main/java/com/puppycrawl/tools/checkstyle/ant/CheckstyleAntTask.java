@@ -49,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.ModuleFactory;
 import com.puppycrawl.tools.checkstyle.PackageObjectFactory;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
+import com.puppycrawl.tools.checkstyle.SarifLogger;
 import com.puppycrawl.tools.checkstyle.ThreadModeSettings;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
@@ -69,6 +70,8 @@ public class CheckstyleAntTask extends Task {
     private static final String E_XML = "xml";
     /** Poor man's enum for a plain formatter. */
     private static final String E_PLAIN = "plain";
+    /** Poor man's enum for a sarif formatter. */
+    private static final String E_SARIF = "sarif";
 
     /** Suffix for time string. */
     private static final String TIME_SUFFIX = " ms.";
@@ -618,7 +621,7 @@ public class CheckstyleAntTask extends Task {
     public static class FormatterType extends EnumeratedAttribute {
 
         /** My possible values. */
-        private static final String[] VALUES = {E_XML, E_PLAIN};
+        private static final String[] VALUES = {E_XML, E_PLAIN, E_SARIF};
 
         @Override
         public String[] getValues() {
@@ -679,10 +682,34 @@ public class CheckstyleAntTask extends Task {
                     && E_XML.equals(type.getValue())) {
                 listener = createXmlLogger(task);
             }
+            else if (type != null
+                    && E_SARIF.equals(type.getValue())) {
+                listener = createSarifLogger(task);
+            }
             else {
                 listener = createDefaultLogger(task);
             }
             return listener;
+        }
+
+        /**
+         * Creates Sarif logger.
+         *
+         * @param task the task to possibly log to
+         * @return an SarifLogger instance
+         * @throws IOException if an error occurs
+         */
+        private AuditListener createSarifLogger(Task task) throws IOException {
+            final AuditListener sarifLogger;
+            if (toFile == null || !useFile) {
+                sarifLogger = new SarifLogger(new LogOutputStream(task, Project.MSG_INFO),
+                        AutomaticBean.OutputStreamOptions.CLOSE);
+            }
+            else {
+                sarifLogger = new SarifLogger(Files.newOutputStream(toFile.toPath()),
+                        AutomaticBean.OutputStreamOptions.CLOSE);
+            }
+            return sarifLogger;
         }
 
         /**
