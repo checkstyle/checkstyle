@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>AnnotationUseStyleCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable closingParens</description>
+    <lineContent>private ClosingParensOption closingParens = ClosingParensOption.NEVER;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AnnotationUseStyleCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable trailingArrayComma</description>
+    <lineContent>private TrailingArrayCommaOption trailingArrayComma = TrailingArrayCommaOption.NEVER;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AnnotationUseStyleCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck</mutatedClass>
+    <mutatedMethod>getOption</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>return Enum.valueOf(enumClass, value.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+</suppressedMutations>
