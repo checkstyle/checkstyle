@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>CsvFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.CsvFilterElement</mutatedClass>
+    <mutatedMethod>getFilters</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Collections::unmodifiableSet with argument</description>
+    <lineContent>return Collections.unmodifiableSet(filters);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/regex/Pattern::pattern</description>
+    <lineContent>checkPattern = checks.pattern();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable checkPattern</description>
+    <lineContent>checkPattern = checks.pattern();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable checkPattern</description>
+    <lineContent>checkPattern = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable checkRegexp</description>
+    <lineContent>checkRegexp = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable columnFilter</description>
+    <lineContent>columnFilter = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable columnsCsv</description>
+    <lineContent>columnsCsv = columns;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable columnsCsv</description>
+    <lineContent>columnsCsv = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/regex/Pattern::pattern</description>
+    <lineContent>filePattern = files.pattern();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable filePattern</description>
+    <lineContent>filePattern = files.pattern();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable filePattern</description>
+    <lineContent>filePattern = files;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable filePattern</description>
+    <lineContent>filePattern = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable fileRegexp</description>
+    <lineContent>fileRegexp = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable lineFilter</description>
+    <lineContent>lineFilter = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable linesCsv</description>
+    <lineContent>linesCsv = lines;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable linesCsv</description>
+    <lineContent>linesCsv = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/regex/Pattern::pattern</description>
+    <lineContent>messagePattern = message.pattern();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable messagePattern</description>
+    <lineContent>messagePattern = message.pattern();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable messagePattern</description>
+    <lineContent>messagePattern = message;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable messagePattern</description>
+    <lineContent>messagePattern = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable messageRegexp</description>
+    <lineContent>messageRegexp = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWithNearbyCommentFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter</mutatedClass>
+    <mutatedMethod>accept</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter::getFileContents</description>
+    <lineContent>if (getFileContents() != currentContents) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWithNearbyCommentFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter$Tag</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable tagIdRegexp</description>
+    <lineContent>tagIdRegexp = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWithNearbyCommentFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter$Tag</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable tagMessageRegexp</description>
+    <lineContent>tagMessageRegexp = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter</mutatedClass>
+    <mutatedMethod>getSuppression</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/regex/Matcher::start</description>
+    <lineContent>lineNo + 1, offCommentMatcher.start(), SuppressionType.OFF, this);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter</mutatedClass>
+    <mutatedMethod>getSuppression</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/regex/Matcher::start</description>
+    <lineContent>lineNo + 1, onCommentMatcher.start(), SuppressionType.ON, this);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter$Suppression</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable eventIdRegexp</description>
+    <lineContent>eventIdRegexp = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter$Suppression</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable eventMessageRegexp</description>
+    <lineContent>eventMessageRegexp = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter$Suppression</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable columnNo</description>
+    <lineContent>this.columnNo = columnNo;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter$Suppression</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable text</description>
+    <lineContent>this.text = text;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionCommentFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter</mutatedClass>
+    <mutatedMethod>accept</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter::getFileContents</description>
+    <lineContent>if (getFileContents() != currentContents) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionCommentFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable tagIdRegexp</description>
+    <lineContent>tagIdRegexp = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionCommentFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter$Tag</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable tagMessageRegexp</description>
+    <lineContent>tagMessageRegexp = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionFilter</mutatedClass>
+    <mutatedMethod>finishLocalSetup</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable filters</description>
+    <lineContent>filters = SuppressionsLoader.loadSuppressions(file);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionFilter</mutatedClass>
+    <mutatedMethod>finishLocalSetup</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable filters</description>
+    <lineContent>filters = new FilterSet();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionFilter</mutatedClass>
+    <mutatedMethod>getExternalResourceLocations</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
+    <description>replaced return value with Collections.emptySet for com/puppycrawl/tools/checkstyle/filters/SuppressionFilter::getExternalResourceLocations</description>
+    <lineContent>return Collections.singleton(file);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionXpathFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter</mutatedClass>
+    <mutatedMethod>finishLocalSetup</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Set::addAll</description>
+    <lineContent>filters.addAll(SuppressionsLoader.loadXpathSuppressions(file));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionXpathSingleFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter</mutatedClass>
+    <mutatedMethod>setChecks</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable checks</description>
+    <lineContent>this.checks = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionXpathSingleFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter</mutatedClass>
+    <mutatedMethod>setFiles</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable files</description>
+    <lineContent>this.files = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionXpathSingleFilter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter</mutatedClass>
+    <mutatedMethod>setMessage</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable message</description>
+    <lineContent>this.message = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::put</description>
+    <lineContent>map.put(DTD_PUBLIC_CS_ID_1_0, DTD_SUPPRESSIONS_NAME_1_0);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Map::put with argument</description>
+    <lineContent>map.put(DTD_PUBLIC_CS_ID_1_0, DTD_SUPPRESSIONS_NAME_1_0);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::put</description>
+    <lineContent>map.put(DTD_PUBLIC_CS_ID_1_1, DTD_SUPPRESSIONS_NAME_1_1);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Map::put with argument</description>
+    <lineContent>map.put(DTD_PUBLIC_CS_ID_1_1, DTD_SUPPRESSIONS_NAME_1_1);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::put</description>
+    <lineContent>map.put(DTD_PUBLIC_CS_ID_1_1_XPATH, DTD_SUPPRESSIONS_NAME_1_1_XPATH);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Map::put with argument</description>
+    <lineContent>map.put(DTD_PUBLIC_CS_ID_1_1_XPATH, DTD_SUPPRESSIONS_NAME_1_1_XPATH);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::put</description>
+    <lineContent>map.put(DTD_PUBLIC_CS_ID_1_2, DTD_SUPPRESSIONS_NAME_1_2);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Map::put with argument</description>
+    <lineContent>map.put(DTD_PUBLIC_CS_ID_1_2, DTD_SUPPRESSIONS_NAME_1_2);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::put</description>
+    <lineContent>map.put(DTD_PUBLIC_CS_ID_1_2_XPATH, DTD_SUPPRESSIONS_NAME_1_2_XPATH);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Map::put with argument</description>
+    <lineContent>map.put(DTD_PUBLIC_CS_ID_1_2_XPATH, DTD_SUPPRESSIONS_NAME_1_2_XPATH);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::put</description>
+    <lineContent>map.put(DTD_PUBLIC_ID_1_0, DTD_SUPPRESSIONS_NAME_1_0);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Map::put with argument</description>
+    <lineContent>map.put(DTD_PUBLIC_ID_1_0, DTD_SUPPRESSIONS_NAME_1_0);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::put</description>
+    <lineContent>map.put(DTD_PUBLIC_ID_1_1, DTD_SUPPRESSIONS_NAME_1_1);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Map::put with argument</description>
+    <lineContent>map.put(DTD_PUBLIC_ID_1_1, DTD_SUPPRESSIONS_NAME_1_1);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::put</description>
+    <lineContent>map.put(DTD_PUBLIC_ID_1_1_XPATH, DTD_SUPPRESSIONS_NAME_1_1_XPATH);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Map::put with argument</description>
+    <lineContent>map.put(DTD_PUBLIC_ID_1_1_XPATH, DTD_SUPPRESSIONS_NAME_1_1_XPATH);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::put</description>
+    <lineContent>map.put(DTD_PUBLIC_ID_1_2, DTD_SUPPRESSIONS_NAME_1_2);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Map::put with argument</description>
+    <lineContent>map.put(DTD_PUBLIC_ID_1_2, DTD_SUPPRESSIONS_NAME_1_2);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::put</description>
+    <lineContent>map.put(DTD_PUBLIC_ID_1_2_XPATH, DTD_SUPPRESSIONS_NAME_1_2_XPATH);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Map::put with argument</description>
+    <lineContent>map.put(DTD_PUBLIC_ID_1_2_XPATH, DTD_SUPPRESSIONS_NAME_1_2_XPATH);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>createIdToResourceNameMap</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
+    <description>replaced return value with Collections.emptyMap for com/puppycrawl/tools/checkstyle/filters/SuppressionsLoader::createIdToResourceNameMap</description>
+    <lineContent>return map;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SuppressionsLoader.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader</mutatedClass>
+    <mutatedMethod>getSuppressionLoader</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/NumberFormatException::getMessage</description>
+    <lineContent>sourceName, ex.getMessage());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Optional::orElse</description>
+    <lineContent>Optional.ofNullable(checks).map(CommonUtil::createPattern).orElse(null),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Optional::orElse with argument</description>
+    <lineContent>Optional.ofNullable(checks).map(CommonUtil::createPattern).orElse(null),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/regex/Pattern::pattern</description>
+    <lineContent>checkPattern = checks.pattern();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable checkPattern</description>
+    <lineContent>checkPattern = checks.pattern();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable checkPattern</description>
+    <lineContent>checkPattern = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable checkRegexp</description>
+    <lineContent>checkRegexp = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/regex/Pattern::pattern</description>
+    <lineContent>filePattern = files.pattern();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable filePattern</description>
+    <lineContent>filePattern = files.pattern();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable filePattern</description>
+    <lineContent>filePattern = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable fileRegexp</description>
+    <lineContent>fileRegexp = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/regex/Pattern::pattern</description>
+    <lineContent>messagePattern = message.pattern();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable messagePattern</description>
+    <lineContent>messagePattern = message.pattern();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable messagePattern</description>
+    <lineContent>messagePattern = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable messageRegexp</description>
+    <lineContent>messageRegexp = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable xpathExpression</description>
+    <lineContent>xpathExpression = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>XpathFilterElement.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
+    <mutatedMethod>isXpathQueryMatching</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/util/stream/Stream::map with receiver</description>
+    <lineContent>.stream().map(AbstractNode.class::cast).collect(Collectors.toList());</lineContent>
+  </mutation>
+</suppressedMutations>
