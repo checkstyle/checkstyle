@@ -31,6 +31,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -812,15 +813,31 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final long startTime = System.currentTimeMillis();
         antTask.execute();
         final long endTime = System.currentTimeMillis();
+        final long testingTime = endTime - startTime;
         final List<MessageLevelPair> loggedMessages = antTask.getLoggedMessages();
-        final long loggedTimeInExecute =
-            getNumberFromLine(loggedMessages.get(loggedMessages.size() - 1).getMsg());
 
-        assertWithMessage("Logged time inside method cannot be more than "
-                              + "logged time outside the method")
-            .that(loggedTimeInExecute)
-            .isAtMost(endTime - startTime);
+        assertLoggedTime(loggedMessages, testingTime, "Total execution");
+        assertLoggedTime(loggedMessages, testingTime, "To locate the files");
+        assertLoggedTime(loggedMessages, testingTime, "To process the files");
+    }
 
+    private static void assertLoggedTime(List<MessageLevelPair> loggedMessages,
+                                         long testingTime, String expectedMsg) {
+
+        final Optional<MessageLevelPair> optionalMessageLevelPair = loggedMessages.stream()
+            .filter(msg -> msg.getMsg().startsWith(expectedMsg))
+            .findFirst();
+
+        assertWithMessage("Message should be present.")
+            .that(optionalMessageLevelPair.isPresent())
+            .isTrue();
+
+        final long actualTime = getNumberFromLine(optionalMessageLevelPair.get().getMsg());
+
+        assertWithMessage("Logged time in '" + expectedMsg + "' "
+                              + "must be less than the testing time")
+            .that(actualTime)
+            .isAtMost(testingTime);
     }
 
     private static List<String> readWholeFile(File outputFile) throws IOException {
