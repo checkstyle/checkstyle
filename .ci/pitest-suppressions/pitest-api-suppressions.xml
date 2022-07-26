@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>AbstractCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable tabWidth</description>
+    <lineContent>private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
+    <mutatedMethod>getTokenNames</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Collections::unmodifiableSet with argument</description>
+    <lineContent>return Collections.unmodifiableSet(tokens);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
+    <mutatedMethod>log</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getColumnNo</description>
+    <lineContent>ast.getColumnNo(),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
+    <mutatedMethod>log</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>ast.getType(),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
+    <mutatedMethod>log</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Object::getClass</description>
+    <lineContent>getClass(),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
+    <mutatedMethod>log</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::get</description>
+    <lineContent>getCustomMessages().get(key)));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
+    <mutatedMethod>log</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Map::get with argument</description>
+    <lineContent>getCustomMessages().get(key)));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
+    <mutatedMethod>log</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/AbstractCheck::getId</description>
+    <lineContent>getId(),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
+    <mutatedMethod>log</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/AbstractCheck::getMessageBundle</description>
+    <lineContent>getMessageBundle(),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
+    <mutatedMethod>log</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/AbstractCheck::getSeverityLevel</description>
+    <lineContent>getSeverityLevel(),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractFileSetCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable fileExtensions</description>
+    <lineContent>private String[] fileExtensions = CommonUtil.EMPTY_STRING_ARRAY;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractFileSetCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable tabWidth</description>
+    <lineContent>private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractFileSetCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck</mutatedClass>
+    <mutatedMethod>getFileExtensions</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Arrays::copyOf with argument</description>
+    <lineContent>return Arrays.copyOf(fileExtensions, fileExtensions.length);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractFileSetCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck</mutatedClass>
+    <mutatedMethod>log</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::get</description>
+    <lineContent>getCustomMessages().get(key)));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractFileSetCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck</mutatedClass>
+    <mutatedMethod>log</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Map::get with argument</description>
+    <lineContent>getCustomMessages().get(key)));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractFileSetCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck</mutatedClass>
+    <mutatedMethod>log</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck::getId</description>
+    <lineContent>getId(),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractFileSetCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck</mutatedClass>
+    <mutatedMethod>log</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck::getSeverityLevel</description>
+    <lineContent>getSeverityLevel(),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractViolationReporter.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter</mutatedClass>
+    <mutatedMethod>setSeverity</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable severityLevel</description>
+    <lineContent>severityLevel = SeverityLevel.getInstance(severity);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AutomaticBean.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AutomaticBean</mutatedClass>
+    <mutatedMethod>tryCopyProperty</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/lang/String::format with argument</description>
+    <lineContent>final String message = String.format(Locale.ROOT,</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AutomaticBean.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedAccessModifierArrayConverter</mutatedClass>
+    <mutatedMethod>convert</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>result.add(AccessModifierOption.getInstance(token.trim()));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AutomaticBean.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedAccessModifierArrayConverter</mutatedClass>
+    <mutatedMethod>convert</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>value.toString().trim(), COMMA_SEPARATOR);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AutomaticBean.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedStringArrayConverter</mutatedClass>
+    <mutatedMethod>convert</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>value.toString().trim(), COMMA_SEPARATOR);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>BeforeExecutionFileFilterSet.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilterSet</mutatedClass>
+    <mutatedMethod>getBeforeExecutionFileFilters</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Collections::unmodifiableSet with argument</description>
+    <lineContent>return Collections.unmodifiableSet(beforeExecutionFileFilters);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>BeforeExecutionFileFilterSet.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilterSet</mutatedClass>
+    <mutatedMethod>toString</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
+    <description>replaced return value with &quot;&quot; for com/puppycrawl/tools/checkstyle/api/BeforeExecutionFileFilterSet::toString</description>
+    <lineContent>return beforeExecutionFileFilters.toString();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FileContents.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileContents</mutatedClass>
+    <mutatedMethod>getBlockComments</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Collections::unmodifiableMap with argument</description>
+    <lineContent>return Collections.unmodifiableMap(clangComments);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FileContents.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileContents</mutatedClass>
+    <mutatedMethod>getSingleLineComments</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Collections::unmodifiableMap with argument</description>
+    <lineContent>return Collections.unmodifiableMap(cppComments);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FileText.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileText</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable charset</description>
+    <lineContent>charset = fileText.charset;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FileText.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileText</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable charset</description>
+    <lineContent>charset = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FileText.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileText</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/nio/charset/CharsetDecoder::onMalformedInput</description>
+    <lineContent>decoder.onMalformedInput(CodingErrorAction.REPLACE);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FileText.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileText</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/nio/charset/CharsetDecoder::onMalformedInput with receiver</description>
+    <lineContent>decoder.onMalformedInput(CodingErrorAction.REPLACE);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FileText.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileText</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/nio/charset/CharsetDecoder::onUnmappableCharacter</description>
+    <lineContent>decoder.onUnmappableCharacter(CodingErrorAction.REPLACE);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FileText.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileText</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/nio/charset/CharsetDecoder::onUnmappableCharacter with receiver</description>
+    <lineContent>decoder.onUnmappableCharacter(CodingErrorAction.REPLACE);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FileText.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileText</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable lineBreaks</description>
+    <lineContent>lineBreaks = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FilterSet.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FilterSet</mutatedClass>
+    <mutatedMethod>getFilters</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Collections::unmodifiableSet with argument</description>
+    <lineContent>return Collections.unmodifiableSet(filters);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FilterSet.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FilterSet</mutatedClass>
+    <mutatedMethod>toString</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
+    <description>replaced return value with &quot;&quot; for com/puppycrawl/tools/checkstyle/api/FilterSet::toString</description>
+    <lineContent>return filters.toString();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>createFullIdentBelow</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild</description>
+    <lineContent>return createFullIdent(ast.getFirstChild());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>isArrayTypeDeclaration</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>DetailAST expression = arrayDeclarator.getFirstChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>isArrayTypeDeclaration</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild</description>
+    <lineContent>expression = expression.getFirstChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Violation.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.Violation</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Arrays::copyOf with argument</description>
+    <lineContent>this.args = Arrays.copyOf(args, args.length);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Violation.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.Violation</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable args</description>
+    <lineContent>this.args = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Violation.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.Violation</mutatedClass>
+    <mutatedMethod>compareTo</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::compareTo</description>
+    <lineContent>result = getViolation().compareTo(other.getViolation());</lineContent>
+  </mutation>
+</suppressedMutations>
