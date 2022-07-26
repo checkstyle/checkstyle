@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>EmptyBlockCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck</mutatedClass>
+    <mutatedMethod>setOption</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::toUpperCase with receiver</description>
+    <lineContent>option = BlockOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>EmptyBlockCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck</mutatedClass>
+    <mutatedMethod>setOption</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>option = BlockOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>EmptyBlockCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getText</description>
+    <lineContent>ast.getText());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LeftCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck</mutatedClass>
+    <mutatedMethod>setOption</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::toUpperCase with receiver</description>
+    <lineContent>option = LeftCurlyOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LeftCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck</mutatedClass>
+    <mutatedMethod>setOption</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>option = LeftCurlyOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LeftCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_17</mutator>
+    <description>RemoveSwitch 17 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>NeedBracesCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck</mutatedClass>
+    <mutatedMethod>isSingleLineIf</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>final DetailAST ifCondition = literalIf.findFirstToken(TokenTypes.EXPR);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RightCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck</mutatedClass>
+    <mutatedMethod>isBlockAloneOnSingleLine</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLastChild with receiver</description>
+    <lineContent>final DetailAST doWhileSemi = nextToken.getParent().getLastChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RightCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck</mutatedClass>
+    <mutatedMethod>isBlockAloneOnSingleLine</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck$Details::getNextToken</description>
+    <lineContent>nextToken = Details.getNextToken(nextToken);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RightCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck</mutatedClass>
+    <mutatedMethod>setOption</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::toUpperCase with receiver</description>
+    <lineContent>option = RightCurlyOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RightCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck</mutatedClass>
+    <mutatedMethod>setOption</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>option = RightCurlyOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RightCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
+    <mutatedMethod>getDetails</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
+    <description>RemoveSwitch 1 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RightCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
+    <mutatedMethod>getDetails</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_10</mutator>
+    <description>RemoveSwitch 10 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RightCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
+    <mutatedMethod>getDetails</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_11</mutator>
+    <description>RemoveSwitch 11 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RightCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
+    <mutatedMethod>getDetails</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_14</mutator>
+    <description>RemoveSwitch 14 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RightCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
+    <mutatedMethod>getDetails</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_3</mutator>
+    <description>RemoveSwitch 3 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RightCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
+    <mutatedMethod>getDetails</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_4</mutator>
+    <description>RemoveSwitch 4 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RightCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
+    <mutatedMethod>getDetails</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_5</mutator>
+    <description>RemoveSwitch 5 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RightCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
+    <mutatedMethod>getDetails</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_6</mutator>
+    <description>RemoveSwitch 6 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RightCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
+    <mutatedMethod>getDetails</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_7</mutator>
+    <description>RemoveSwitch 7 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RightCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
+    <mutatedMethod>getDetails</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_8</mutator>
+    <description>RemoveSwitch 8 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RightCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
+    <mutatedMethod>getDetails</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_9</mutator>
+    <description>RemoveSwitch 9 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RightCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
+    <mutatedMethod>getDetailsForIfElse</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck$Details::getNextToken</description>
+    <lineContent>nextToken = getNextToken(ast);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RightCurlyCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck$Details</mutatedClass>
+    <mutatedMethod>getDetailsForOthers</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>lcurly = child.getFirstChild();</lineContent>
+  </mutation>
+</suppressedMutations>
