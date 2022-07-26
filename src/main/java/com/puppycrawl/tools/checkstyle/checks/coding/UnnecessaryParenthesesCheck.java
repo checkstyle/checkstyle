@@ -476,13 +476,13 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     // -@cs[CyclomaticComplexity] All logs should be in visit token.
     @Override
     public void visitToken(DetailAST ast) {
-        final int type = ast.getType();
         final DetailAST parent = ast.getParent();
 
-        if (type == TokenTypes.LAMBDA && isLambdaSingleParameterSurrounded(ast)) {
+        if (isLambdaSingleParameterSurrounded(ast)) {
             log(ast, MSG_LAMBDA, ast.getText());
         }
         else if (parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
+            final int type = ast.getType();
             final boolean surrounded = isSurrounded(ast);
             // An identifier surrounded by parentheses.
             if (surrounded && type == TokenTypes.IDENT) {
@@ -623,11 +623,10 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     }
 
     /**
-     * Tests if the given lambda node has a single parameter, no defined type, and is surrounded
-     * by parentheses.
+     * Tests if the given node has a single parameter, no defined type, and is surrounded
+     * by parentheses. This condition can only be true for lambdas.
      *
-     * @param ast a {@code DetailAST} whose type is
-     *        {@code TokenTypes.LAMBDA}.
+     * @param ast a {@code DetailAST} node
      * @return {@code true} if the lambda has a single parameter, no defined type, and is
      *         surrounded by parentheses.
      */
