@@ -293,6 +293,7 @@ daniilyar
 Dantlr
 Darguments
 darray
+Dartifact
 Datasource
 DATETIME
 daveho
@@ -329,6 +330,7 @@ dfn
 Dfoo
 Dforbiddenapis
 Dgpg
+Dgroup
 Dhttp
 Diachenko
 dirname
@@ -336,12 +338,14 @@ Djacoco
 Dlinkcheck
 DMail
 Dmaven
+Dnew
 doccheck
 DOCKERHUB
 Dockter
 doclet
 DOCTYPE
 documentationcomments
+Dold
 donotignoreexceptions
 Dorekit
 Dorg
@@ -1390,6 +1394,7 @@ unnecessarysemicoloninenumeration
 unnecessarysemicolonintrywithresources
 Unproxyable
 unregister
+unshallow
 unsubscribe
 unusedimports
 unusedlocalvariable

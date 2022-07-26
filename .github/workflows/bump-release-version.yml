@@ -1,0 +1,46 @@
+#############################################################################
+# GitHub Action to bump release version
+#
+#############################################################################
+name: "Bump version"
+on:
+  push:
+    tags:
+      - '*'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  bump:
+    name: Bump version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the latest code
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Latest VERSION
+        id: VERSION_TAG
+        run: |
+          VERSION=$(curl -s https://api.github.com/repos/checkstyle/checkstyle/releases/latest \
+          | jq ".tag_name")
+          echo "::set-output name=VERSION::$VERSION"
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/${{ steps.VERSION_TAG.outputs.VERSION }}}
+      - name: Check output
+        env:
+          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ steps.vars.outputs.tag }}
+      - name: Modify File
+        run: |
+          ./.ci/bump-release-version.sh
+      - name: Push commit
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git commit -am "minor: Bump release version to ${{ steps.VERSION_TAG.outputs.VERSION }}"
+          git push
