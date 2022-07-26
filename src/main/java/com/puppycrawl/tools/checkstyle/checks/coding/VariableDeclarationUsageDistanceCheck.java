@@ -522,6 +522,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @param variableIdentAst
      *        Variable which distance is calculated for.
      * @return entry which contains expression with variable usage and distance.
+     *         If variable usage is not found, then the expression node is null,
+     *         although the distance can be greater than zero.
      */
     private static Entry<DetailAST, Integer> calculateDistanceInSingleScope(
             DetailAST semicolonAst, DetailAST variableIdentAst) {
@@ -542,11 +544,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 }
             }
             currentAst = currentAst.getNextSibling();
-        }
-
-        // If variable wasn't used after its declaration, distance is 0.
-        if (!firstUsageFound) {
-            dist = 0;
         }
 
         return new SimpleEntry<>(variableUsageAst, dist);
