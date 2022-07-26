@@ -3343,15 +3343,33 @@
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
-                <mutator>FALSE_RETURNS</mutator>
                 <mutator>INCREMENTS</mutator>
+                <!-- Read reason of disablement at https://github.com/checkstyle/checkstyle/issues/11895 -->
+                <!-- <mutator>INLINE_CONSTS</mutator> -->
                 <mutator>INVERT_NEGS</mutator>
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
-                <mutator>REMOVE_CONDITIONALS</mutator>
+                <mutator>NON_VOID_METHOD_CALLS</mutator>
+                <mutator>REMOVE_CONDITIONALS_EQUAL_ELSE</mutator>
+                <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
+                <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
+                <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
                 <mutator>RETURN_VALS</mutator>
-                <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
+                <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
+                <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
+                <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
+                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
+                <mutator>REMOVE_INCREMENTS</mutator>
+                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
+                <mutator>EXPERIMENTAL_SWITCH</mutator>
+                <mutator>REMOVE_SWITCH</mutator>
+                <mutator>FALSE_RETURNS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
+                <mutator>EMPTY_RETURNS</mutator>
+                <mutator>NULL_RETURNS</mutator>
+                <mutator>PRIMITIVE_RETURNS</mutator>
               </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.regexp.*</param>
