@@ -8,4 +8,139 @@
     <description>removed conditional - replaced equality check with true</description>
     <lineContent>if (variableDeclarationFrame.getType() == FrameType.CLASS_FRAME) {</lineContent>
   </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>collectDeclarations</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>ast.getFirstChild().toString()));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>endCollectingDeclarations</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::put</description>
+    <lineContent>frames.put(ast, frameStack.poll());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>endCollectingDeclarations</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Map::put with argument</description>
+    <lineContent>frames.put(ast, frameStack.poll());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>getCodeBlockDefinitionToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>DetailAST parent = ident.getParent();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>isInCompactConstructor</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>DetailAST parent = ast.getParent();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>isLambdaParameter</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>for (parent = ast.getParent(); parent != null; parent = parent.getParent()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>isReturnedVariable</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>final DetailAST blockStartToken = definitionToken.findFirstToken(TokenTypes.SLIST);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>leaveToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
+    <description>RemoveSwitch 1 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>leaveToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_2</mutator>
+    <description>RemoveSwitch 2 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>leaveToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_3</mutator>
+    <description>RemoveSwitch 3 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>leaveToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_4</mutator>
+    <description>RemoveSwitch 4 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>leaveToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_6</mutator>
+    <description>RemoveSwitch 6 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>leaveToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_7</mutator>
+    <description>RemoveSwitch 7 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>leaveToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_8</mutator>
+    <description>RemoveSwitch 8 mutation</description>
+    <lineContent>switch (ast.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RequireThisCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
+    <mutatedMethod>processIdent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
+    <description>RemoveSwitch 1 mutation</description>
+    <lineContent>switch (parentType) {</lineContent>
+  </mutation>
 </suppressedMutations>
