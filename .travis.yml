@@ -8,12 +8,6 @@ cache:
   directories:
     - ~/.m2
 
-addons:
-  apt:
-    packages:
-      - xsltproc
-      - xmlstarlet
-
 branches:
   only:
     - master
