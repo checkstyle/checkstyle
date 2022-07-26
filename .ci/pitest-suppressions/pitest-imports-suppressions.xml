@@ -94,24 +94,6 @@
     <sourceFile>ImportControlLoader.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader</mutatedClass>
     <mutatedMethod>startElement</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>else if (ALLOW_ELEMENT_NAME.equals(qName) || &quot;disallow&quot;.equals(qName)) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ImportControlLoader.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader</mutatedClass>
-    <mutatedMethod>startElement</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>else if (ALLOW_ELEMENT_NAME.equals(qName) || &quot;disallow&quot;.equals(qName)) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ImportControlLoader.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader</mutatedClass>
-    <mutatedMethod>startElement</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to com/puppycrawl/tools/checkstyle/checks/imports/ImportControlLoader::containsRegexAttribute</description>
     <lineContent>final boolean regex = containsRegexAttribute(attributes);</lineContent>
