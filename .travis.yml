@@ -8,12 +8,6 @@ cache:
   directories:
     - ~/.m2
 
-addons:
-  apt:
-    packages:
-      - xsltproc
-      - xmlstarlet
-
 branches:
   only:
     - master
@@ -61,21 +55,21 @@ jobs:
 #        - CMD="$CMD1 && $CMD2"
 #        - USE_MAVEN_REPO="true"
 
-    - env:
-        - DESC="NoErrorTest - Hibernate Search"
-        - CUSTOM_ADOPTIUM_JDK="temurin-17-jdk"
-        - CUSTOM_MVN_VERSION="3.8.4"
-        - M2_HOME="$PWD/apache-maven-${CUSTOM_MVN_VERSION}"
-        - PATH="$M2_HOME/bin:$PATH"
-        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/validation.sh no-error-hibernate-search"
-        - CMD="$CMD1 && $CMD2"
-        - USE_MAVEN_REPO="true"
+#    - env:
+#        - DESC="NoErrorTest - Hibernate Search"
+#        - CUSTOM_ADOPTIUM_JDK="temurin-17-jdk"
+#        - CUSTOM_MVN_VERSION="3.8.4"
+#        - M2_HOME="$PWD/apache-maven-${CUSTOM_MVN_VERSION}"
+#        - PATH="$M2_HOME/bin:$PATH"
+#        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+#        - CMD2="./.ci/validation.sh no-error-hibernate-search"
+#        - CMD="$CMD1 && $CMD2"
+#        - USE_MAVEN_REPO="true"
 
-    - env:
-        - DESC="Shellcheck"
-        - CMD="shellcheck ./.ci/*.sh && shellcheck release.sh"
-        - USE_MAVEN_REPO="false"
+#    - env:
+#        - DESC="Shellcheck"
+#        - CMD="shellcheck ./.ci/*.sh && shellcheck release.sh"
+#        - USE_MAVEN_REPO="false"
 
 #    - jdk: openjdk11
 #      env:
@@ -128,11 +122,11 @@ jobs:
 script:
   # manually set JAVA_HOME to overcome issue with travis ci noted at
   # https://github.com/checkstyle/checkstyle/pull/11699#issue-1261272652
-  - JAVA_HOME='/usr/lib/jvm/adoptopenjdk-11-hotspot-ppc64el'
+#  - JAVA_HOME='/usr/lib/jvm/adoptopenjdk-11-hotspot-ppc64el'
   - ./.ci/travis.sh init-m2-repo
   - ./.ci/travis.sh run-command "$CMD"
-  - ./.ci/travis.sh remove-custom-mvn
-  - ./.ci/travis.sh remove-adoptium-jdk
+#  - ./.ci/travis.sh remove-custom-mvn
+#  - ./.ci/travis.sh remove-adoptium-jdk
   - ./.ci/validation.sh git-diff
   - ./.ci/travis.sh ci-temp-check
 
