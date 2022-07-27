@@ -8,6 +8,14 @@ auto_cancel:
   running:
     when: "branch != 'master'"
 blocks:
+  - name: "Shell Check"
+    task:
+      jobs:
+      - name: Install and execute shellcheck
+        commands:
+          - sudo apt install shellcheck
+          - shellcheck ./.ci/*.sh && shellcheck release.sh
+
   - name: "Linux openjdk build"
     task:
       prologue:
@@ -86,6 +94,13 @@ blocks:
             - eval $CMD;
             - echo "eval of CMD is completed";
             - ./.ci/validation.sh git-diff
+
+        - name: Tests and Deploy
+          env_vars:
+            - name: JVM_ARGS
+              value: "-DargLine='-Xms1024m -Xmx2048m'"
+          commands:
+            - mvn -e --no-transfer-progress clean integration-test failsafe:verify $JVM_ARGS
 
         - name: Validation (openjdk11, slow pool)
           priority:
