@@ -306,7 +306,7 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
             result = Pattern.MULTILINE;
         }
 
-        return result;
+        return result == 1 ? 0 : result + 1;
     }
 
     /**
