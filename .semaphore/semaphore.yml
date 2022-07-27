@@ -8,6 +8,14 @@ auto_cancel:
   running:
     when: "branch != 'master'"
 blocks:
+  - name: "Shell Check"
+    task:
+      jobs:
+      - name: Execute shellcheck
+        commands:
+          - checkout
+          - shellcheck ./.ci/*.sh && shellcheck release.sh
+
   - name: "Linux openjdk build"
     task:
       prologue:
