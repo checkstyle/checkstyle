@@ -29,13 +29,13 @@ jobs:
 
     # this job do deploy maven repository
     # unit tests (openjdk11)
-    - jdk: openjdk11
-      env:
-        - DESC="tests and deploy"
-        - CMD="mvn -e --no-transfer-progress clean integration-test failsafe:verify
-          -DargLine='-Xms1024m -Xmx2048m'"
-        - DEPLOY="true"
-        - USE_MAVEN_REPO="true"
+#    - jdk: openjdk11
+#      env:
+#        - DESC="tests and deploy"
+#        - CMD="mvn -e --no-transfer-progress clean integration-test failsafe:verify
+#          -DargLine='-Xms1024m -Xmx2048m'"
+#        - DEPLOY="true"
+#        - USE_MAVEN_REPO="true"
 
     # until https://github.com/checkstyle/checkstyle/issues/9984
     # Ensure that all modules are used in no exception configs
@@ -61,21 +61,21 @@ jobs:
 #        - CMD="$CMD1 && $CMD2"
 #        - USE_MAVEN_REPO="true"
 
-    - env:
-        - DESC="NoErrorTest - Hibernate Search"
-        - CUSTOM_ADOPTIUM_JDK="temurin-17-jdk"
-        - CUSTOM_MVN_VERSION="3.8.4"
-        - M2_HOME="$PWD/apache-maven-${CUSTOM_MVN_VERSION}"
-        - PATH="$M2_HOME/bin:$PATH"
-        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/validation.sh no-error-hibernate-search"
-        - CMD="$CMD1 && $CMD2"
-        - USE_MAVEN_REPO="true"
+#    - env:
+#        - DESC="NoErrorTest - Hibernate Search"
+#        - CUSTOM_ADOPTIUM_JDK="temurin-17-jdk"
+#        - CUSTOM_MVN_VERSION="3.8.4"
+#        - M2_HOME="$PWD/apache-maven-${CUSTOM_MVN_VERSION}"
+#        - PATH="$M2_HOME/bin:$PATH"
+#        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+#        - CMD2="./.ci/validation.sh no-error-hibernate-search"
+#        - CMD="$CMD1 && $CMD2"
+#        - USE_MAVEN_REPO="true"
 
-    - env:
-        - DESC="Shellcheck"
-        - CMD="shellcheck ./.ci/*.sh && shellcheck release.sh"
-        - USE_MAVEN_REPO="false"
+#    - env:
+#        - DESC="Shellcheck"
+#        - CMD="shellcheck ./.ci/*.sh && shellcheck release.sh"
+#        - USE_MAVEN_REPO="false"
 
 #    - jdk: openjdk11
 #      env:
