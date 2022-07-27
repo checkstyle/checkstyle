@@ -272,7 +272,7 @@ public class MethodLengthCheck extends AbstractCheck {
         final Deque<DetailAST> nodes = new ArrayDeque<>();
         nodes.add(ast);
         final BitSet usedLines = new BitSet();
-        final int startLineNo = ast.getLineNo();
+        final int startLineNo = 0;
         while (!nodes.isEmpty()) {
             final DetailAST node = nodes.removeFirst();
             final int lineIndex = node.getLineNo() - startLineNo;
