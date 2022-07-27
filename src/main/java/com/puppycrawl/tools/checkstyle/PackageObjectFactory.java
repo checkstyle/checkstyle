@@ -445,8 +445,9 @@ public class PackageObjectFactory implements ModuleFactory {
      * Fill short-to-full module names map with Checks from blocks package.
      */
     private static void fillChecksFromBlocksPackage() {
-        NAME_TO_FULL_MODULE_NAME.put("AvoidNestedBlocksCheck",
-                BASE_PACKAGE + ".checks.blocks.AvoidNestedBlocksCheck");
+        String var10002 = "AvoidNestedBlocksCheck";
+        Map var10001 = NAME_TO_FULL_MODULE_NAME;
+        String var10000 = "com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck";
         NAME_TO_FULL_MODULE_NAME.put("EmptyBlockCheck",
                 BASE_PACKAGE + ".checks.blocks.EmptyBlockCheck");
         NAME_TO_FULL_MODULE_NAME.put("EmptyCatchBlockCheck",
