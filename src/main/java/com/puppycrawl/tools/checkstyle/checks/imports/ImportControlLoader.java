@@ -187,7 +187,7 @@ public final class ImportControlLoader extends XmlLoader {
             parentImportControl.addChild(importControl);
             stack.push(importControl);
         }
-        else if (ALLOW_ELEMENT_NAME.equals(qName) || "disallow".equals(qName)) {
+        else {
             final AbstractImportRule rule = createImportRule(qName, attributes);
             stack.peek().addImportRule(rule);
         }
