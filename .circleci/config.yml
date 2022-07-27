@@ -61,6 +61,17 @@ jobs:
             ./.ci/validation.sh no-error-pmd
       - run:
           command: ./.ci/validation.sh git-diff
+  no-error-hibernate-search:
+    docker:
+      - image: cimg/openjdk:18.0.1
+    steps:
+      - checkout
+      - run:
+          command: |
+            mvn -e --no-transfer-progress clean install -Pno-validations
+            ./.ci/validation.sh no-error-hibernate-search
+      - run:
+          command: ./.ci/validation.sh git-diff
   no-exception-struts:
     docker:
       - image: *default-image
@@ -212,6 +223,7 @@ workflows:
       - no-exception-only-javadoc
       - no-error-xwiki
       - no-error-pmd
+      - no-error-hibernate-search
       - no-exception-struts
       - no-exception-checkstyle-sevntu
       - no-exception-checkstyle-sevntu-javadoc
