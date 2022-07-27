@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle.api;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+
 /**
  * Represents a full identifier, including dots, with associated
  * position information.
@@ -77,35 +79,86 @@ public final class FullIdent {
      */
     private static void extractFullIdent(FullIdent full, DetailAST ast) {
         if (ast != null) {
-            final DetailAST nextSibling = ast.getNextSibling();
-
-            // Here we want type declaration, but not initialization
-            final boolean isArrayTypeDeclarationStart = nextSibling != null
-                    && (nextSibling.getType() == TokenTypes.ARRAY_DECLARATOR
-                        || nextSibling.getType() == TokenTypes.ANNOTATIONS)
-                    && isArrayTypeDeclaration(nextSibling);
-
             final int typeOfAst = ast.getType();
-            if (typeOfAst == TokenTypes.LITERAL_NEW
-                    && ast.hasChildren()) {
-                final DetailAST firstChild = ast.getFirstChild();
-                extractFullIdent(full, firstChild);
-            }
-            else if (typeOfAst == TokenTypes.DOT) {
-                final DetailAST firstChild = ast.getFirstChild();
-                extractFullIdent(full, firstChild);
-                full.append(".");
-                extractFullIdent(full, firstChild.getNextSibling());
-                appendBrackets(full, ast);
-            }
-            else if (isArrayTypeDeclarationStart) {
-                full.append(ast);
-                appendBrackets(full, ast);
-            }
-            else if (typeOfAst != TokenTypes.ANNOTATIONS) {
-                full.append(ast);
+            switch (typeOfAst) {
+                case TokenTypes.DOT:
+                    extractFullIdentFromDotAst(full, ast);
+                    break;
+                case TokenTypes.TYPECAST:
+                    extractFullIdentFromTypecastAst(full, ast);
+                    break;
+                case TokenTypes.LITERAL_NEW:
+                    if (ast.hasChildren()) {
+                        extractFullIdent(full, ast.getFirstChild());
+                    }
+                    else {
+                        full.append(ast);
+                    }
+                    break;
+                case TokenTypes.METHOD_CALL:
+                case TokenTypes.INDEX_OP:
+                    extractFullIdent(full, ast.getFirstChild());
+                    break;
+                default:
+                    if (isArrayTypeDeclarationStart(ast.getNextSibling())) {
+                        full.append(ast);
+                        appendBrackets(full, ast);
+                    }
+                    else if (typeOfAst != TokenTypes.ANNOTATIONS) {
+                        full.append(ast);
+                    }
+                    break;
             }
         }
+    }
+
+    /**
+     * Extract full ident from dot ast.
+     *
+     * @param full the FullIdent to add to
+     * @param dotAst ast node of type {@link TokenTypes#DOT}
+     */
+    private static void extractFullIdentFromDotAst(FullIdent full, DetailAST dotAst) {
+        DetailAST firstChildToExtract = dotAst.getFirstChild();
+        while (firstChildToExtract.getType() == TokenTypes.LPAREN) {
+            firstChildToExtract = firstChildToExtract.getNextSibling();
+        }
+        extractFullIdent(full, firstChildToExtract);
+        full.append(".");
+        DetailAST secondChildToExtract = firstChildToExtract.getNextSibling();
+        while (TokenUtil.isOfType(secondChildToExtract, TokenTypes.RPAREN,
+                TokenTypes.TYPE_ARGUMENTS)) {
+            secondChildToExtract = secondChildToExtract.getNextSibling();
+        }
+        extractFullIdent(full, secondChildToExtract);
+        appendBrackets(full, dotAst);
+    }
+
+    /**
+     * Extract full ident from typecast ast.
+     *
+     * @param full the FullIdent to add to
+     * @param typecastAst ast node of type {@link TokenTypes#TYPECAST}
+     */
+    private static void extractFullIdentFromTypecastAst(FullIdent full, DetailAST typecastAst) {
+        DetailAST childAst = typecastAst.getFirstChild().getNextSibling();
+        while (TokenUtil.isOfType(childAst, TokenTypes.LPAREN, TokenTypes.RPAREN)) {
+            childAst = childAst.getNextSibling();
+        }
+        extractFullIdent(full, childAst);
+    }
+
+    /**
+     * Is array type declaration start.
+     *
+     * @param ast the type ast we are building a {@code FullIdent} for
+     * @return {@code true} if it is array type declaration start
+     */
+    private static boolean isArrayTypeDeclarationStart(DetailAST ast) {
+        return ast != null
+                && (ast.getType() == TokenTypes.ARRAY_DECLARATOR
+                    || ast.getType() == TokenTypes.ANNOTATIONS)
+                && isArrayTypeDeclaration(ast);
     }
 
     /**
