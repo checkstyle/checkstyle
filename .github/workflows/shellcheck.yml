@@ -1,0 +1,19 @@
+name: "shellcheck"
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  # this execution should stay on GitHub actions due to time/ memory limits in other CI
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        run: sudo apt install shellcheck
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Execute shellcheck
+        run: shellcheck ./.ci/*.sh && shellcheck release.sh
