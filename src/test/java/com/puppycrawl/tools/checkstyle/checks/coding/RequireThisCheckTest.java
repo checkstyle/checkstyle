@@ -337,6 +337,31 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testTryWithResources() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisTryWithResources.java"), expected);
+    }
+
+    @Test
+    public void testTryWithResourcesOnlyOverlappingFalse() throws Exception {
+        final String[] expected = {
+            "43:23: " + getCheckMessage(MSG_VARIABLE, "fieldCharset", ""),
+            "56:13: " + getCheckMessage(MSG_VARIABLE, "fieldCharset", ""),
+            "68:45: " + getCheckMessage(MSG_METHOD, "methodToInvoke", ""),
+            "76:24: " + getCheckMessage(MSG_METHOD, "methodToInvoke", ""),
+            "102:48: " + getCheckMessage(MSG_VARIABLE, "bufferedReader", ""),
+            "105:50: " + getCheckMessage(MSG_VARIABLE, "bufferedReader", ""),
+            "105:78: " + getCheckMessage(MSG_VARIABLE, "scanner", ""),
+            "109:24: " + getCheckMessage(MSG_VARIABLE, "streamReader", ""),
+            "109:50: " + getCheckMessage(MSG_VARIABLE, "bufferedReader", ""),
+            "109:78: " + getCheckMessage(MSG_VARIABLE, "scanner", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisTryWithResourcesOnlyOverlappingFalse.java"), expected);
+    }
+
+    @Test
     public void testCatchVariables() throws Exception {
         final String[] expected = {
             "38:21: " + getCheckMessage(MSG_VARIABLE, "ex", ""),
