@@ -10,6 +10,7 @@ validateOnlyOverlapping = false
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 import java.util.*;
+import java.io.*;
 
 public class InputRequireThisValidateOnlyOverlappingFalse {
 
@@ -497,5 +498,80 @@ class Issue7306 {
         test.forEach(test::add); // OK
         test.forEach(Collections::singletonList); // OK
         test.forEach(add::add); // violation
+    }
+}
+class Issue11821 {
+    private BufferedReader br;
+    private InputStreamReader isr;
+    private Scanner sc;
+
+    void oneResource() {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(null, "utf-8"))) { // ok
+        }
+        catch (IOException e) {
+        }
+    }
+
+    void twoResourcesReferencingEachOther() {
+        try (InputStreamReader isr = new InputStreamReader(null, "utf-8"); // ok
+             BufferedReader br = new BufferedReader(isr)) { // ok
+        }
+        catch (IOException e) {
+        }
+    }
+
+    void threeResourcesReferencingEachOther() {
+        try (InputStreamReader isr = new InputStreamReader(null, "utf-8"); // ok
+             BufferedReader br = new BufferedReader(isr); // ok
+             Scanner sc = new Scanner(isr.toString() + br.toString())) { // ok
+        }
+        catch (IOException e) {
+        }
+    }
+
+    private String charset = "utf-8";
+    void failToHandleParameter() {
+        try (BufferedReader br = new BufferedReader(
+                new InputStreamReader(null, charset))) { // violation
+        } catch (IOException e) {
+        }
+    }
+
+    void handleParameter() {
+        try (BufferedReader br = new BufferedReader(
+                new InputStreamReader(null, this.charset))) { // ok
+        }
+        catch (IOException e) {
+        }
+    }
+
+    void noResources() {
+        try {
+            int a = 5;
+            charset += a; // violation
+        }
+        catch (Exception ex) {
+        }
+    }
+
+    String methodToInvoke() {
+        return "string";
+    }
+
+    void methodInvoke() {
+        try (BufferedReader br = new BufferedReader(
+                new InputStreamReader(null, methodToInvoke()) // violation
+        )) {
+        }
+        catch (Exception ex) {
+        }
+    }
+
+    void methodIdentCopy() {
+        try (BufferedReader methodToInvoke = new BufferedReader(
+                new InputStreamReader(null, this.methodToInvoke()) // ok
+        )) {
+        } catch (Exception ex) {
+        }
     }
 }
