@@ -1,39 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>AbstractExpressionHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
-    <mutatedMethod>findSubtreeAst</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
-    <description>changed conditional boundary</description>
-    <lineContent>if (colNum == null || thisLineColumn &lt; colNum) {</lineContent>
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findPreviousStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>if (root.getFirstChild().getType() == TokenTypes.LITERAL_NEW) {</lineContent>
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>AbstractExpressionHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
-    <mutatedMethod>getFirstAstNode</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
-    <description>changed conditional boundary</description>
-    <lineContent>&amp;&amp; curNode.getColumnNo() &lt; realStart.getColumnNo()) {</lineContent>
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevStatementWhenCommentIsUnderCase</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>if (blockBody.getType() == TokenTypes.EXPR) {</lineContent>
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>AbstractExpressionHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
-    <mutatedMethod>getFirstToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
-    <description>changed conditional boundary</description>
-    <lineContent>if (toTest.getColumnNo() &lt; first.getColumnNo()) {</lineContent>
+    <sourceFile>TryHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.TryHandler</mutatedClass>
+    <mutatedMethod>getSuggestedChildIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (child instanceof CatchHandler</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findPreviousStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>&amp;&amp; root.getFirstChild().getFirstChild() != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>HandlerFactory.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory</mutatedClass>
+    <mutatedMethod>clearCreatedHandlers</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::clear</description>
+    <lineContent>createdHandlers.clear();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevCaseToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getPreviousSibling with receiver</description>
+    <lineContent>prevCaseToken = parentBlock.getParent().getPreviousSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MethodDefHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodDefHandler</mutatedClass>
+    <mutatedMethod>getMethodDefLineStart</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>for (DetailAST node = mainAst.findFirstToken(TokenTypes.MODIFIERS).getFirstChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ImportHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.ImportHandler</mutatedClass>
+    <mutatedMethod>checkIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (!getIndent().isAcceptable(columnNo) &amp;&amp; isOnStartOfLine(getMainAst())) {</lineContent>
   </mutation>
 
   <mutation unstable="false">
     <sourceFile>BlockParentHandler.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler</mutatedClass>
-    <mutatedMethod>getLineWrappingIndent</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator</mutator>
-    <description>replaced return of integer sized value with (x == 0 ? 1 : 0)</description>
-    <lineContent>return getIndentCheck().getLineWrappingIndentation();</lineContent>
+    <mutatedMethod>getChildrenExpectedIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (getIndent().isMultiLevel() &amp;&amp; hasCurlies()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SwitchHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.SwitchHandler</mutatedClass>
+    <mutatedMethod>checkSwitchExpr</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/SwitchHandler::checkExpressionSubtree</description>
+    <lineContent>checkExpressionSubtree(</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>isParentContainsTokenType</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>for (DetailAST ast = node.getParent(); ast != null; ast = ast.getParent()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AnnotationArrayInitHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AnnotationArrayInitHandler</mutatedClass>
+    <mutatedMethod>getChildrenExpectedIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (firstChildPos == NOT_EXIST &amp;&amp; lcurlyPos == getLineStart(leftCurly)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>isEndOfScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>switch (checkNode.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevCaseToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>&amp;&amp; parentBlock.getParent().getPreviousSibling().getType()</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SynchronizedHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.SynchronizedHandler</mutatedClass>
+    <mutatedMethod>checkSynchronizedExpr</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
+    <lineContent>.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findTokenWhichBeginsTheLine</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck::findStartTokenOfMethodCallChain</description>
+    <lineContent>tokenWhichBeginsTheLine = findStartTokenOfMethodCallChain(root);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LambdaHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LambdaHandler</mutatedClass>
+    <mutatedMethod>isNonAcceptableIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; !level.isAcceptable(astColumnNo);</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -48,10 +165,181 @@
   <mutation unstable="false">
     <sourceFile>CommentsIndentationCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
-    <mutatedMethod>findPreviousStatement</mutatedMethod>
+    <mutatedMethod>findTokenWhichBeginsTheLine</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken</description>
+    <lineContent>tokenWhichBeginsTheLine = root.getFirstChild().findFirstToken(TokenTypes.IDENT);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isUsingOfObjectReferenceToInvokeMethod</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
+    <lineContent>&amp;&amp; root.getFirstChild().getFirstChild().getFirstChild().getNextSibling() != null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable arrayInitIndent</description>
+    <lineContent>private int arrayInitIndent = DEFAULT_INDENTATION;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ArrayInitHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.ArrayInitHandler</mutatedClass>
+    <mutatedMethod>curlyIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (isOnStartOfLine(lcurly)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isUsingOfObjectReferenceToInvokeMethod</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>&amp;&amp; root.getFirstChild().getFirstChild().getFirstChild().getNextSibling() != null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractExpressionHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
+    <mutatedMethod>findSubtreeAst</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
     <description>changed conditional boundary</description>
-    <lineContent>if (root.getLineNo() &gt;= comment.getLineNo()) {</lineContent>
+    <lineContent>if (colNum == null || thisLineColumn &lt; colNum) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MemberDefHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MemberDefHandler</mutatedClass>
+    <mutatedMethod>getVarDefStatementSemicolon</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (lastNode.getType() != TokenTypes.SEMI) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ClassDefHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.ClassDefHandler</mutatedClass>
+    <mutatedMethod>checkIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (isOnStartOfLine(atAst)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevCaseToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (parentBlock.getParent().getPreviousSibling() != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isUsingOfObjectReferenceToInvokeMethod</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>return root.getFirstChild().getFirstChild().getFirstChild() != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SynchronizedHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.SynchronizedHandler</mutatedClass>
+    <mutatedMethod>checkSynchronizedExpr</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/SynchronizedHandler::getBasicOffset</description>
+    <lineContent>new IndentLevel(getIndent(), getBasicOffset());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MethodCallHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler</mutatedClass>
+    <mutatedMethod>getSuggestedChildIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>if (!TokenUtil.areOnSameLine(child.getMainAst().getFirstChild(), ident)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>BlockParentHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler</mutatedClass>
+    <mutatedMethod>getChildrenExpectedIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (hasCurlies() &amp;&amp; isOnStartOfLine(getLeftCurly())) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findPreviousStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>else if (root.getType() == TokenTypes.PLUS) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MethodDefHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodDefHandler</mutatedClass>
+    <mutatedMethod>getMethodDefLineStart</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
+    <description>changed conditional boundary</description>
+    <lineContent>if (node.getLineNo() &lt; lineStart) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ArrayInitHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.ArrayInitHandler</mutatedClass>
+    <mutatedMethod>curlyIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>&amp;&amp; lcurly.getParent().getType() != TokenTypes.ARRAY_INIT) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MethodDefHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodDefHandler</mutatedClass>
+    <mutatedMethod>getMethodDefLineStart</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>final DetailAST typeNode = mainAst.findFirstToken(TokenTypes.TYPE);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ElseHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.ElseHandler</mutatedClass>
+    <mutatedMethod>checkTopLevelToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken</description>
+    <lineContent>final DetailAST slist = ifAST.findFirstToken(TokenTypes.SLIST);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MethodDefHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodDefHandler</mutatedClass>
+    <mutatedMethod>checkIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (getLeftCurly() != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isFallThroughComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>&amp;&amp; prevStmt.getType() != TokenTypes.LITERAL_CASE</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -61,6 +349,141 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
     <description>negated conditional</description>
     <lineContent>if (isUsingOfObjectReferenceToInvokeMethod(root)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>isEndOfScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
+    <lineContent>checkNode = checkNode.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ElseHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.ElseHandler</mutatedClass>
+    <mutatedMethod>checkTopLevelToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLastChild with receiver</description>
+    <lineContent>final DetailAST lcurly = slist.getLastChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>checkAnnotationIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>&amp;&amp; (parentNode.getParent().getType() == TokenTypes.MODIFIERS</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findStartTokenOfMethodCallChain</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>startOfMethodCallChain = startOfMethodCallChain.getFirstChild().getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MethodCallHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler</mutatedClass>
+    <mutatedMethod>getMethodIdentAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>ast = ast.getFirstChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findStartTokenOfMethodCallChain</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
+    <lineContent>startOfMethodCallChain = startOfMethodCallChain.getFirstChild().getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>logMultilineIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Locale::getDefault</description>
+    <lineContent>String.format(Locale.getDefault(), multilineNoTemplate,</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ArrayInitHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.ArrayInitHandler</mutatedClass>
+    <mutatedMethod>curlyIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>&amp;&amp; lcurly.getParent().getType() != TokenTypes.ARRAY_INIT) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevCaseToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator</mutator>
+    <description>replaced return value with null for com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck::getPrevCaseToken</description>
+    <lineContent>return prevCaseToken;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AnnotationArrayInitHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AnnotationArrayInitHandler</mutatedClass>
+    <mutatedMethod>curlyIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/AnnotationArrayInitHandler::getBraceAdjustment</description>
+    <lineContent>offset = getBraceAdjustment();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>NewHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler</mutatedClass>
+    <mutatedMethod>getIndentImpl</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>final boolean isLineWrappedNew = TokenUtil.isOfType(mainAst.getParent().getParent(),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isUsingOfObjectReferenceToInvokeMethod</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
+    <lineContent>&amp;&amp; root.getFirstChild().getFirstChild().getFirstChild().getNextSibling() != null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>return astType == TokenTypes.SINGLE_LINE_COMMENT</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isDistributedExpression</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/utils/TokenUtil::areOnSameLine</description>
+    <lineContent>if (!TokenUtil.areOnSameLine(previousSibling, currentToken)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MethodCallHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler</mutatedClass>
+    <mutatedMethod>getIndentImpl</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (TokenUtil.areOnSameLine(container.getMainAst(), getMainAst())</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -75,118 +498,10 @@
   <mutation unstable="false">
     <sourceFile>CommentsIndentationCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
-    <mutatedMethod>isUsingOfObjectReferenceToInvokeMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
-    <description>negated conditional</description>
-    <lineContent>&amp;&amp; root.getFirstChild().getFirstChild().getFirstChild().getNextSibling() != null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CommentsIndentationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
-    <mutatedMethod>isUsingOfObjectReferenceToInvokeMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator</mutator>
-    <description>replaced return of integer sized value with (x == 0 ? 1 : 0)</description>
-    <lineContent>return root.getFirstChild().getFirstChild().getFirstChild() != null</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CommentsIndentationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
-    <mutatedMethod>isUsingOfObjectReferenceToInvokeMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator</mutator>
-    <description>replaced boolean return with true for com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck::isUsingOfObjectReferenceToInvokeMethod</description>
-    <lineContent>return root.getFirstChild().getFirstChild().getFirstChild() != null</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>HandlerFactory.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory::register</description>
-    <lineContent>register(TokenTypes.INDEX_OP, IndexHandler.class);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>HandlerFactory.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory</mutatedClass>
-    <mutatedMethod>clearCreatedHandlers</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to java/util/Map::clear</description>
-    <lineContent>createdHandlers.clear();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>IndentationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory::clearCreatedHandlers</description>
-    <lineContent>handlerFactory.clearCreatedHandlers();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>IndentationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to java/util/Deque::clear</description>
-    <lineContent>handlers.clear();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>IndentationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/PrimordialHandler::checkIndentation</description>
-    <lineContent>primordialHandler.checkIndentation();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>MethodDefHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodDefHandler</mutatedClass>
-    <mutatedMethod>getMethodDefLineStart</mutatedMethod>
+    <mutatedMethod>findPreviousStatement</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
     <description>changed conditional boundary</description>
-    <lineContent>if (node.getLineNo() &lt; lineStart) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>NewHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler</mutatedClass>
-    <mutatedMethod>shouldIncreaseIndent</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator</mutator>
-    <description>replaced return of integer sized value with (x == 0 ? 1 : 0)</description>
-    <lineContent>return false;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>NewHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler</mutatedClass>
-    <mutatedMethod>shouldIncreaseIndent</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator</mutator>
-    <description>replaced boolean return with true for com/puppycrawl/tools/checkstyle/checks/indentation/NewHandler::shouldIncreaseIndent</description>
-    <lineContent>return false;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SwitchHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.SwitchHandler</mutatedClass>
-    <mutatedMethod>checkIndentation</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/SwitchHandler::checkSwitchExpr</description>
-    <lineContent>checkSwitchExpr();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SwitchHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.SwitchHandler</mutatedClass>
-    <mutatedMethod>checkSwitchExpr</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/SwitchHandler::checkExpressionSubtree</description>
-    <lineContent>checkExpressionSubtree(</lineContent>
+    <lineContent>if (root.getLineNo() &gt;= comment.getLineNo()) {</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -199,12 +514,426 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>SynchronizedHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.SynchronizedHandler</mutatedClass>
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>handleCommentInEmptyCaseBlock</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_IF</mutator>
+    <description>removed conditional - replaced comparison check with true</description>
+    <lineContent>if (comment.getColumnNo() &lt; prevStmt.getColumnNo()</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>YieldHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.YieldHandler</mutatedClass>
+    <mutatedMethod>checkIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (!TokenUtil.areOnSameLine(getMainAst(), expression)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findPreviousStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>if (root.getType() == TokenTypes.EXPR</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IfHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.IfHandler</mutatedClass>
+    <mutatedMethod>checkTopLevelToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/IfHandler::isIfAfterElse</description>
+    <lineContent>if (!isIfAfterElse()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getNextToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>|| checkedStatement.getType() == TokenTypes.CASE_GROUP) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isDistributedReturnStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>final DetailAST firstChild = commentPreviousSibling.getFirstChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractExpressionHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
+    <mutatedMethod>checkExpressionSubtree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (firstLineMatches &amp;&amp; !allowNesting) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isCommentForMultiblock</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; catchAst.getType() == TokenTypes.LITERAL_CATCH</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isTrailingComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>if (comment.getType() == TokenTypes.SINGLE_LINE_COMMENT) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>BlockParentHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler</mutatedClass>
+    <mutatedMethod>getLineWrappingIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/IndentationCheck::getLineWrappingIndentation</description>
+    <lineContent>return getIndentCheck().getLineWrappingIndentation();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractExpressionHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
+    <mutatedMethod>getFirstAstNode</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
+    <description>changed conditional boundary</description>
+    <lineContent>&amp;&amp; curNode.getColumnNo() &lt; realStart.getColumnNo()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findPreviousStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck::findTokenWhichBeginsTheLine</description>
+    <lineContent>tokenWhichBeginsTheLine = findTokenWhichBeginsTheLine(root);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getDistributedPreviousStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getPreviousSibling with receiver</description>
+    <lineContent>DetailAST currentToken = comment.getPreviousSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isInEmptyCodeBlock</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>return prevStmt != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>logMultilineIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Locale::getDefault</description>
+    <lineContent>String.format(Locale.getDefault(), multilineNoTemplate, prevStmt.getLineNo(),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findTokenWhichBeginsTheLine</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>tokenWhichBeginsTheLine = root.getFirstChild().findFirstToken(TokenTypes.IDENT);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>checkAnnotationIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>&amp;&amp; (parentNode.getParent().getType() == TokenTypes.MODIFIERS</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SwitchHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.SwitchHandler</mutatedClass>
     <mutatedMethod>checkIndentation</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/SynchronizedHandler::checkWrappingIndentation</description>
-    <lineContent>checkWrappingIndentation(getMainAst(),</lineContent>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/SwitchHandler::checkSwitchExpr</description>
+    <lineContent>checkSwitchExpr();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isTrailingComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (comment.getType() == TokenTypes.SINGLE_LINE_COMMENT) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ElseHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.ElseHandler</mutatedClass>
+    <mutatedMethod>checkTopLevelToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>final DetailAST ifAST = getMainAst().getParent();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MethodDefHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodDefHandler</mutatedClass>
+    <mutatedMethod>getMethodDefLineStart</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>if (node.getType() == TokenTypes.ANNOTATION) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>BlockParentHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler</mutatedClass>
+    <mutatedMethod>getChildrenExpectedIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/BlockParentHandler::getLineWrappingIndent</description>
+    <lineContent>+ getLineWrappingIndent());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IndentLevel.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel</mutatedClass>
+    <mutatedMethod>toString</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (levels.cardinality() == 1) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isInEmptyCaseBlock</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>return prevStmt != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LambdaHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LambdaHandler</mutatedClass>
+    <mutatedMethod>isNonAcceptableIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/IndentLevel::isAcceptable</description>
+    <lineContent>&amp;&amp; !level.isAcceptable(astColumnNo);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isUsingOfObjectReferenceToInvokeMethod</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>&amp;&amp; root.getFirstChild().getFirstChild().getFirstChild().getNextSibling() != null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getOneLinePreviousStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>DetailAST root = comment.getParent();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevCaseToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getPreviousSibling</description>
+    <lineContent>prevCaseToken = parentBlock.getParent().getPreviousSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findStartTokenOfMethodCallChain</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild</description>
+    <lineContent>if (startOfMethodCallChain.getFirstChild() != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findPreviousStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild</description>
+    <lineContent>tokenWhichBeginsTheLine = root.getFirstChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>YieldHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.YieldHandler</mutatedClass>
+    <mutatedMethod>checkIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/utils/TokenUtil::areOnSameLine</description>
+    <lineContent>if (!TokenUtil.areOnSameLine(getMainAst(), expression)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findPreviousStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; !isComment(tokenWhichBeginsTheLine)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isDistributedThrowStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>final DetailAST firstChild = commentPreviousSibling.getFirstChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findTokenWhichBeginsTheLine</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator</mutator>
+    <description>replaced return value with null for com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck::findTokenWhichBeginsTheLine</description>
+    <lineContent>return tokenWhichBeginsTheLine;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>checkIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (firstLineNode.getType() == TokenTypes.AT) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractExpressionHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
+    <mutatedMethod>getIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (indent == null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>checkAnnotationIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>|| parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MethodDefHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodDefHandler</mutatedClass>
+    <mutatedMethod>checkModifiers</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>final DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isUsingOfObjectReferenceToInvokeMethod</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator</mutator>
+    <description>replaced boolean return with true for com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck::isUsingOfObjectReferenceToInvokeMethod</description>
+    <lineContent>return root.getFirstChild().getFirstChild().getFirstChild() != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>checkAnnotationIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>node.getLineNo() == lastAnnotationLine</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AnnotationArrayInitHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AnnotationArrayInitHandler</mutatedClass>
+    <mutatedMethod>curlyIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (isOnStartOfLine(lcurly)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/PrimordialHandler::checkIndentation</description>
+    <lineContent>primordialHandler.checkIndentation();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findTokenWhichBeginsTheLine</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>tokenWhichBeginsTheLine = root.getFirstChild().findFirstToken(TokenTypes.IDENT);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isOnPreviousLineIgnoringComments</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (nextToken != null &amp;&amp; isComment(nextToken)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevStatementWhenCommentIsUnderCase</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>prevStmt = blockBody.getFirstChild().getFirstChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>collectFirstNodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>DetailAST curNode = firstNode.getFirstChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>return astType == TokenTypes.SINGLE_LINE_COMMENT</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -214,6 +943,933 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
     <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/SynchronizedHandler::checkExpressionSubtree</description>
     <lineContent>checkExpressionSubtree(syncAst, expected, false, false);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevStatementWhenCommentIsUnderCase</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck::isUsingOfObjectReferenceToInvokeMethod</description>
+    <lineContent>if (isUsingOfObjectReferenceToInvokeMethod(blockBody)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IfHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.IfHandler</mutatedClass>
+    <mutatedMethod>checkTopLevelToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (!isIfAfterElse()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory::clearCreatedHandlers</description>
+    <lineContent>handlerFactory.clearCreatedHandlers();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>checkAnnotationIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>|| node.getType() == TokenTypes.AT</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevCaseToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getPreviousSibling</description>
+    <lineContent>if (parentBlock.getParent().getPreviousSibling() != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findPreviousStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck::isComment</description>
+    <lineContent>&amp;&amp; !isComment(tokenWhichBeginsTheLine)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevStatementWhenCommentIsUnderCase</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>if (blockBody.getType() == TokenTypes.SLIST) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>NewHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler</mutatedClass>
+    <mutatedMethod>shouldIncreaseIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator</mutator>
+    <description>replaced boolean return with true for com/puppycrawl/tools/checkstyle/checks/indentation/NewHandler::shouldIncreaseIndent</description>
+    <lineContent>return false;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevStatementWhenCommentIsUnderCase</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>prevStmt = blockBody.getParent().getParent();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LambdaHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LambdaHandler</mutatedClass>
+    <mutatedMethod>checkIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; getLineStart(firstChild) == expandedTabsColumnNo(firstChild)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isDistributedExpression</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getPreviousSibling with receiver</description>
+    <lineContent>DetailAST previousSibling = comment.getPreviousSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>checkForNullParameterChild</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild</description>
+    <lineContent>return node.getFirstChild() == null &amp;&amp; node.getType() == TokenTypes.PARAMETERS;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>TryHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.TryHandler</mutatedClass>
+    <mutatedMethod>getTryResLparen</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>return getMainAst().getFirstChild().getFirstChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>BlockParentHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler</mutatedClass>
+    <mutatedMethod>checkNonListChild</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (nonList != nonListStartAst) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isUsingOfObjectReferenceToInvokeMethod</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild</description>
+    <lineContent>return root.getFirstChild().getFirstChild().getFirstChild() != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findPreviousStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (root.getFirstChild().getType() == TokenTypes.LITERAL_NEW) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevCaseToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>&amp;&amp; parentBlock.getParent().getPreviousSibling().getType()</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getNextToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>|| checkedStatement.getType() == TokenTypes.CASE_GROUP) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractExpressionHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
+    <mutatedMethod>checkLineIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (mustMatch &amp;&amp; !indentLevel.isAcceptable(start)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isDistributedReturnStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (nextSibling != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>NewHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler</mutatedClass>
+    <mutatedMethod>getIndentImpl</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/utils/TokenUtil::isOfType</description>
+    <lineContent>final boolean isLineWrappedNew = TokenUtil.isOfType(mainAst.getParent().getParent(),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findPreviousStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>else if (root.getType() == TokenTypes.PLUS) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevCaseToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>final DetailAST parentBlock = parentStatement.getParent();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findPreviousStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (root.getType() == TokenTypes.EXPR</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>NewHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler</mutatedClass>
+    <mutatedMethod>getIndentImpl</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (isLineWrappedNew || doesChainedMethodNeedsLineWrapping()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MethodDefHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodDefHandler</mutatedClass>
+    <mutatedMethod>getMethodDefLineStart</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken</description>
+    <lineContent>final DetailAST typeNode = mainAst.findFirstToken(TokenTypes.TYPE);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MemberDefHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MemberDefHandler</mutatedClass>
+    <mutatedMethod>getVarDefStatementSemicolon</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>if (lastNode.getType() != TokenTypes.SEMI) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findTokenWhichBeginsTheLine</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck::isUsingOfObjectReferenceToInvokeMethod</description>
+    <lineContent>if (isUsingOfObjectReferenceToInvokeMethod(root)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isUsingOfObjectReferenceToInvokeMethod</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>&amp;&amp; root.getFirstChild().getFirstChild().getFirstChild().getNextSibling() != null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isDistributedThrowStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (!TokenUtil.areOnSameLine(nextSibling, commentPreviousSibling)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ObjectBlockHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.ObjectBlockHandler</mutatedClass>
+    <mutatedMethod>getLeftCurly</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>return getMainAst().findFirstToken(TokenTypes.LCURLY);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevStatementWhenCommentIsUnderCase</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (blockBody.getType() == TokenTypes.EXPR) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isInEmptyCodeBlock</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; nextStmt.getType() == TokenTypes.RCURLY;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isDistributedExpression</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (!TokenUtil.areOnSameLine(previousSibling, currentToken)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Deque::clear</description>
+    <lineContent>handlers.clear();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ClassDefHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.ClassDefHandler</mutatedClass>
+    <mutatedMethod>checkIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>final DetailAST atAst = getMainAst().findFirstToken(TokenTypes.AT);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ArrayInitHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.ArrayInitHandler</mutatedClass>
+    <mutatedMethod>curlyIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/ArrayInitHandler::isOnStartOfLine</description>
+    <lineContent>if (isOnStartOfLine(lcurly)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findPreviousStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild</description>
+    <lineContent>&amp;&amp; root.getFirstChild().getFirstChild() != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MethodDefHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodDefHandler</mutatedClass>
+    <mutatedMethod>getMethodDefLineStart</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>for (DetailAST node = mainAst.findFirstToken(TokenTypes.MODIFIERS).getFirstChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>checkForAnnotationIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLineNo</description>
+    <lineContent>node.getLineNo(),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>isEndOfScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_0</mutator>
+    <description>RemoveSwitch 0 mutation</description>
+    <lineContent>switch (checkNode.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MethodDefHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodDefHandler</mutatedClass>
+    <mutatedMethod>getMethodDefLineStart</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>int lineStart = mainAst.findFirstToken(TokenTypes.IDENT).getLineNo();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isCommentForMultiblock</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>return nextBlock != null &amp;&amp; nextBlock.getLineNo() == endBlockLineNo</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isDistributedExpression</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; isOnPreviousLineIgnoringComments(comment, previousSibling)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findTokenWhichBeginsTheLine</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck::findStartTokenOfMethodCallChain with argument</description>
+    <lineContent>tokenWhichBeginsTheLine = findStartTokenOfMethodCallChain(root);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>handleCommentInEmptyCaseBlock</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getColumnNo</description>
+    <lineContent>if (comment.getColumnNo() &lt; prevStmt.getColumnNo()</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isOnPreviousLineIgnoringComments</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (nextToken.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getNextToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (nextToken != null &amp;&amp; isComment(nextToken) &amp;&amp; isTrailingComment(nextToken)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findPreviousStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (root.getFirstChild().getType() == TokenTypes.LITERAL_NEW) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>HandlerFactory.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory::register</description>
+    <lineContent>register(TokenTypes.INDEX_OP, IndexHandler.class);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MemberDefHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MemberDefHandler</mutatedClass>
+    <mutatedMethod>checkModifiers</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>final DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevStatementWhenCommentIsUnderCase</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck::findStartTokenOfMethodCallChain with argument</description>
+    <lineContent>prevStmt = findStartTokenOfMethodCallChain(blockBody);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>getNextCurNode</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (nodeToVisit == null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findTokenWhichBeginsTheLine</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (isUsingOfObjectReferenceToInvokeMethod(root)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>checkForNullParameterChild</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>return node.getFirstChild() == null &amp;&amp; node.getType() == TokenTypes.PARAMETERS;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevCaseToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getPreviousSibling with receiver</description>
+    <lineContent>&amp;&amp; parentBlock.getParent().getPreviousSibling().getType()</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SwitchHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.SwitchHandler</mutatedClass>
+    <mutatedMethod>checkSwitchExpr</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/SwitchHandler::getIndent</description>
+    <lineContent>getIndent(),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>checkAnnotationIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>|| parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SwitchHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.SwitchHandler</mutatedClass>
+    <mutatedMethod>checkSwitchExpr</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
+    <lineContent>getMainAst().findFirstToken(TokenTypes.LPAREN).getNextSibling(),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ArrayInitHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.ArrayInitHandler</mutatedClass>
+    <mutatedMethod>curlyIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/ArrayInitHandler::getBraceAdjustment</description>
+    <lineContent>offset = getBraceAdjustment();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MethodCallHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler</mutatedClass>
+    <mutatedMethod>getIndentImpl</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/utils/TokenUtil::areOnSameLine</description>
+    <lineContent>if (TokenUtil.areOnSameLine(container.getMainAst(), getMainAst())</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ClassDefHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.ClassDefHandler</mutatedClass>
+    <mutatedMethod>getLeftCurly</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>.findFirstToken(TokenTypes.LCURLY);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>checkAnnotationIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>|| parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ElseHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.ElseHandler</mutatedClass>
+    <mutatedMethod>checkTopLevelToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (slist == null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>BlockParentHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler</mutatedClass>
+    <mutatedMethod>getChildrenExpectedIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>else if (isOnStartOfLine(getRightCurly())) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevStatementWhenCommentIsUnderCase</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (isUsingOfObjectReferenceToInvokeMethod(blockBody)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MethodCallHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodCallHandler</mutatedClass>
+    <mutatedMethod>getMethodIdentAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (ast.getType() != TokenTypes.SUPER_CTOR_CALL) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findPreviousStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>tokenWhichBeginsTheLine = root.getFirstChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>BlockParentHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler</mutatedClass>
+    <mutatedMethod>getChildrenExpectedIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/indentation/IndentLevel::addAcceptable with argument</description>
+    <lineContent>indentLevel = IndentLevel.addAcceptable(level, level.getFirstIndentLevel()</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevStatementWhenCommentIsUnderCase</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (isUsingOfObjectReferenceToInvokeMethod(blockBody)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ElseHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.ElseHandler</mutatedClass>
+    <mutatedMethod>checkTopLevelToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/utils/TokenUtil::areOnSameLine</description>
+    <lineContent>if (!TokenUtil.areOnSameLine(lcurly, getMainAst())) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LambdaHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LambdaHandler</mutatedClass>
+    <mutatedMethod>getSuggestedChildIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>getLineStart(getMainAst().getFirstChild()));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractExpressionHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
+    <mutatedMethod>checkLinesIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (firstLineMatches &amp;&amp; !allowNesting) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AnnotationArrayInitHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AnnotationArrayInitHandler</mutatedClass>
+    <mutatedMethod>curlyIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/AnnotationArrayInitHandler::isOnStartOfLine</description>
+    <lineContent>if (isOnStartOfLine(lcurly)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevStatementFromSwitchBlock</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck::getPrevCaseToken</description>
+    <lineContent>prevStmt = getPrevCaseToken(parentStatement);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MemberDefHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MemberDefHandler</mutatedClass>
+    <mutatedMethod>getVarDefStatementSemicolon</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLastChild with receiver</description>
+    <lineContent>DetailAST lastNode = variableDef.getLastChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isFallThroughComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; prevStmt.getType() != TokenTypes.LITERAL_CASE</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isUsingOfObjectReferenceToInvokeMethod</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; root.getFirstChild().getFirstChild().getFirstChild().getNextSibling() != null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>BlockParentHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler</mutatedClass>
+    <mutatedMethod>getLineWrappingIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator</mutator>
+    <description>replaced int return with 0 for com/puppycrawl/tools/checkstyle/checks/indentation/BlockParentHandler::getLineWrappingIndent</description>
+    <lineContent>return getIndentCheck().getLineWrappingIndentation();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isDistributedReturnStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
+    <lineContent>final DetailAST nextSibling = firstChild.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findTokenWhichBeginsTheLine</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (isUsingOfObjectReferenceToInvokeMethod(root)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findPreviousStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>if (root.getFirstChild().getType() == TokenTypes.LITERAL_NEW) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractExpressionHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
+    <mutatedMethod>getFirstToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
+    <lineContent>child = child.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>NewHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler</mutatedClass>
+    <mutatedMethod>checkIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (forceStrictCondition &amp;&amp; !level.isAcceptable(columnNo)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable throwsIndent</description>
+    <lineContent>private int throwsIndent = DEFAULT_INDENTATION;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findPreviousStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck::findTokenWhichBeginsTheLine with argument</description>
+    <lineContent>tokenWhichBeginsTheLine = findTokenWhichBeginsTheLine(root);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MethodDefHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodDefHandler</mutatedClass>
+    <mutatedMethod>getMethodDefLineStart</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (typeNode != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MethodDefHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodDefHandler</mutatedClass>
+    <mutatedMethod>getMethodDefLineStart</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (node.getType() == TokenTypes.ANNOTATION) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractExpressionHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
+    <mutatedMethod>getFirstToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
+    <description>changed conditional boundary</description>
+    <lineContent>if (toTest.getColumnNo() &lt; first.getColumnNo()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ElseHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.ElseHandler</mutatedClass>
+    <mutatedMethod>checkTopLevelToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (!TokenUtil.areOnSameLine(lcurly, getMainAst())) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>isEndOfScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
+    <description>RemoveSwitch 1 mutation</description>
+    <lineContent>switch (checkNode.getType()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractExpressionHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
+    <mutatedMethod>getSuggestedChildIndent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/AbstractExpressionHandler::getBasicOffset</description>
+    <lineContent>return new IndentLevel(getIndent(), getBasicOffset());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ClassDefHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.ClassDefHandler</mutatedClass>
+    <mutatedMethod>getHandlerName</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
+    <description>RemoveSwitch 1 mutation</description>
+    <lineContent>switch (tokenType) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>checkAnnotationIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; (parentNode.getParent().getType() == TokenTypes.MODIFIERS</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>checkAnnotationIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>|| node.getType() == TokenTypes.AT</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevStatementWhenCommentIsUnderCase</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (blockBody.getType() == TokenTypes.SLIST) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IndentLevel.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.IndentLevel</mutatedClass>
+    <mutatedMethod>toString</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/BitSet::cardinality</description>
+    <lineContent>if (levels.cardinality() == 1) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SynchronizedHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.SynchronizedHandler</mutatedClass>
+    <mutatedMethod>checkIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/SynchronizedHandler::checkWrappingIndentation</description>
+    <lineContent>checkWrappingIndentation(getMainAst(),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>isDistributedThrowStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/utils/TokenUtil::areOnSameLine</description>
+    <lineContent>if (!TokenUtil.areOnSameLine(nextSibling, commentPreviousSibling)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>findStartTokenOfMethodCallChain</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (startOfMethodCallChain.getFirstChild() != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CommentsIndentationCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
+    <mutatedMethod>getPrevCaseToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>prevCaseToken = parentBlock.getParent().getPreviousSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>NewHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.NewHandler</mutatedClass>
+    <mutatedMethod>getIndentImpl</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent</description>
+    <lineContent>final boolean isLineWrappedNew = TokenUtil.isOfType(mainAst.getParent().getParent(),</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>checkAnnotationIndentation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>final DetailAST parentNode = node.getParent();</lineContent>
   </mutation>
 
   <mutation unstable="false">
