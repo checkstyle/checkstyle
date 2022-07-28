@@ -112,8 +112,8 @@
     <sourceFile>RequireThisCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck</mutatedClass>
     <mutatedMethod>leaveToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_6</mutator>
-    <description>RemoveSwitch 6 mutation</description>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_9</mutator>
+    <description>RemoveSwitch 9 mutation</description>
     <lineContent>switch (ast.getType()) {</lineContent>
   </mutation>
 
