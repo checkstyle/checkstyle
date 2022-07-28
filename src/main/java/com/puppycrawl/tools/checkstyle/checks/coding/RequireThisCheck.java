@@ -275,7 +275,8 @@ public class RequireThisCheck extends AbstractCheck {
         TokenTypes.PARAMETER_DEF,
         TokenTypes.TYPE_ARGUMENT,
         TokenTypes.RECORD_DEF,
-        TokenTypes.RECORD_COMPONENT_DEF
+        TokenTypes.RECORD_COMPONENT_DEF,
+        TokenTypes.RESOURCE
     );
     /** Set of all assign tokens. */
     private static final BitSet ASSIGN_TOKENS = TokenUtil.asBitSet(
@@ -362,6 +363,8 @@ public class RequireThisCheck extends AbstractCheck {
             TokenTypes.IDENT,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LITERAL_TRY,
+            TokenTypes.RESOURCE,
         };
     }
 
@@ -406,8 +409,13 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.RECORD_DEF:
                 current.push(frames.get(ast));
                 break;
+            case TokenTypes.LITERAL_TRY:
+                if (ast.getFirstChild().getType() == TokenTypes.RESOURCE_SPECIFICATION) {
+                    current.push(frames.get(ast));
+                }
+                break;
             default:
-                // do nothing
+                break;
         }
     }
 
@@ -425,8 +433,13 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.RECORD_DEF:
                 current.pop();
                 break;
+            case TokenTypes.LITERAL_TRY:
+                if (current.peek().getType() == FrameType.TRY_WITH_RESOURCES_FRAME) {
+                    current.pop();
+                }
+                break;
             default:
-                // do nothing
+                break;
         }
     }
 
@@ -556,6 +569,12 @@ public class RequireThisCheck extends AbstractCheck {
                     frame.addIdent(parameterIdent);
                 }
                 break;
+            case TokenTypes.RESOURCE:
+                final DetailAST resourceIdent = ast.findFirstToken(TokenTypes.IDENT);
+                if (resourceIdent != null) {
+                    frame.addIdent(resourceIdent);
+                }
+                break;
             case TokenTypes.CLASS_DEF:
             case TokenTypes.INTERFACE_DEF:
             case TokenTypes.ENUM_DEF:
@@ -568,15 +587,7 @@ public class RequireThisCheck extends AbstractCheck {
                 frameStack.addFirst(new BlockFrame(frame, ast));
                 break;
             case TokenTypes.METHOD_DEF:
-                final DetailAST methodFrameNameIdent = ast.findFirstToken(TokenTypes.IDENT);
-                final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
-                if (mods.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
-                    ((ClassFrame) frame).addInstanceMethod(methodFrameNameIdent);
-                }
-                else {
-                    ((ClassFrame) frame).addStaticMethod(methodFrameNameIdent);
-                }
-                frameStack.addFirst(new MethodFrame(frame, methodFrameNameIdent));
+                collectMethodDeclarations(frameStack, ast, frame);
                 break;
             case TokenTypes.CTOR_DEF:
             case TokenTypes.COMPACT_CTOR_DEF:
@@ -599,6 +610,11 @@ public class RequireThisCheck extends AbstractCheck {
                 if (isAnonymousClassDef(ast)) {
                     frameStack.addFirst(new AnonymousClassFrame(frame,
                             ast.getFirstChild().toString()));
+                }
+                break;
+            case TokenTypes.LITERAL_TRY:
+                if (ast.getFirstChild().getType() == TokenTypes.RESOURCE_SPECIFICATION) {
+                    frameStack.addFirst(new TryWithResourcesFrame(frame, ast));
                 }
                 break;
             default:
@@ -631,6 +647,26 @@ public class RequireThisCheck extends AbstractCheck {
     }
 
     /**
+     * Collects {@code METHOD_DEF} declarations.
+     *
+     * @param frameStack stack containing the FrameTree being built.
+     * @param ast AST to parse.
+     * @param frame current frame.
+     */
+    private static void collectMethodDeclarations(Deque<AbstractFrame> frameStack,
+                                                  DetailAST ast, AbstractFrame frame) {
+        final DetailAST methodFrameNameIdent = ast.findFirstToken(TokenTypes.IDENT);
+        final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
+        if (mods.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
+            ((ClassFrame) frame).addInstanceMethod(methodFrameNameIdent);
+        }
+        else {
+            ((ClassFrame) frame).addStaticMethod(methodFrameNameIdent);
+        }
+        frameStack.addFirst(new MethodFrame(frame, methodFrameNameIdent));
+    }
+
+    /**
      * Ends parsing of the AST for declarations.
      *
      * @param frameStack Stack containing the FrameTree being built.
@@ -653,6 +689,11 @@ public class RequireThisCheck extends AbstractCheck {
                 break;
             case TokenTypes.LITERAL_NEW:
                 if (isAnonymousClassDef(ast)) {
+                    frames.put(ast, frameStack.poll());
+                }
+                break;
+            case TokenTypes.LITERAL_TRY:
+                if (ast.getFirstChild().getType() == TokenTypes.RESOURCE_SPECIFICATION) {
                     frames.put(ast, frameStack.poll());
                 }
                 break;
@@ -1228,6 +1269,8 @@ public class RequireThisCheck extends AbstractCheck {
         CATCH_FRAME,
         /** For frame type. */
         FOR_FRAME,
+        /** Try with resources frame type. */
+        TRY_WITH_RESOURCES_FRAME
 
     }
 
@@ -1303,29 +1346,29 @@ public class RequireThisCheck extends AbstractCheck {
         /**
          * Check whether the frame contains a field or a variable with the given name.
          *
-         * @param nameToFind the IDENT ast of the name we're looking for.
+         * @param identToFind the IDENT ast of the name we're looking for.
          * @return whether it was found.
          */
-        protected boolean containsFieldOrVariable(DetailAST nameToFind) {
-            return containsFieldOrVariableDef(varIdents, nameToFind);
+        protected boolean containsFieldOrVariable(DetailAST identToFind) {
+            return containsFieldOrVariableDef(varIdents, identToFind);
         }
 
         /**
          * Check whether the frame contains a given name.
          *
-         * @param nameToFind IDENT ast of the name we're looking for.
+         * @param identToFind IDENT ast of the name we're looking for.
          * @param lookForMethod whether we are looking for a method name.
          * @return whether it was found.
          */
-        protected AbstractFrame getIfContains(DetailAST nameToFind, boolean lookForMethod) {
+        protected AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
             final AbstractFrame frame;
 
             if (!lookForMethod
-                && containsFieldOrVariable(nameToFind)) {
+                && containsFieldOrVariable(identToFind)) {
                 frame = this;
             }
             else {
-                frame = parent.getIfContains(nameToFind, lookForMethod);
+                frame = parent.getIfContains(identToFind, lookForMethod);
             }
             return frame;
         }
@@ -1358,8 +1401,8 @@ public class RequireThisCheck extends AbstractCheck {
          * @return true if ast is correspondent to ident.
          */
         protected boolean isProperDefinition(DetailAST ident, DetailAST ast) {
-            final String nameToFind = ident.getText();
-            return nameToFind.equals(ast.getText())
+            final String identToFind = ident.getText();
+            return identToFind.equals(ast.getText())
                 && CheckUtil.isBeforeInSource(ast, ident);
         }
     }
@@ -1530,27 +1573,27 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected boolean containsFieldOrVariable(DetailAST nameToFind) {
-            return containsFieldOrVariableDef(instanceMembers, nameToFind)
-                    || containsFieldOrVariableDef(staticMembers, nameToFind);
+        protected boolean containsFieldOrVariable(DetailAST identToFind) {
+            return containsFieldOrVariableDef(instanceMembers, identToFind)
+                    || containsFieldOrVariableDef(staticMembers, identToFind);
         }
 
         @Override
         protected boolean isProperDefinition(DetailAST ident, DetailAST ast) {
-            final String nameToFind = ident.getText();
-            return nameToFind.equals(ast.getText());
+            final String identToFind = ident.getText();
+            return identToFind.equals(ast.getText());
         }
 
         @Override
-        protected AbstractFrame getIfContains(DetailAST nameToFind, boolean lookForMethod) {
+        protected AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
             AbstractFrame frame = null;
 
-            if (lookForMethod && containsMethod(nameToFind)
-                || containsFieldOrVariable(nameToFind)) {
+            if (lookForMethod && containsMethod(identToFind)
+                || containsFieldOrVariable(identToFind)) {
                 frame = this;
             }
             else if (getParent() != null) {
-                frame = getParent().getIfContains(nameToFind, lookForMethod);
+                frame = getParent().getIfContains(identToFind, lookForMethod);
             }
             return frame;
         }
@@ -1676,6 +1719,24 @@ public class RequireThisCheck extends AbstractCheck {
             return FrameType.CATCH_FRAME;
         }
 
+        @Override
+        protected AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
+            final AbstractFrame frame;
+
+            if (!lookForMethod
+                    && containsFieldOrVariable(identToFind)) {
+                frame = this;
+            }
+            else if (getParent().getType() == FrameType.TRY_WITH_RESOURCES_FRAME) {
+                // Skip try-with-resources frame because resources cannot be accessed from catch
+                frame = getParent().getParent().getIfContains(identToFind, lookForMethod);
+            }
+            else {
+                frame = getParent().getIfContains(identToFind, lookForMethod);
+            }
+            return frame;
+        }
+
     }
 
     /**
@@ -1696,6 +1757,29 @@ public class RequireThisCheck extends AbstractCheck {
         @Override
         public FrameType getType() {
             return FrameType.FOR_FRAME;
+        }
+
+    }
+
+    /**
+     * A frame initiated on entering a try-with-resources construct;
+     * holds local resources for the try block.
+     */
+    private static class TryWithResourcesFrame extends AbstractFrame {
+
+        /**
+         * Creates try-with-resources frame.
+         *
+         * @param parent parent frame.
+         * @param ident ident frame name ident.
+         */
+        protected TryWithResourcesFrame(AbstractFrame parent, DetailAST ident) {
+            super(parent, ident);
+        }
+
+        @Override
+        public FrameType getType() {
+            return FrameType.TRY_WITH_RESOURCES_FRAME;
         }
 
     }
