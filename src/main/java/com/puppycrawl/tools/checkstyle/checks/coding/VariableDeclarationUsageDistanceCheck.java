@@ -762,36 +762,25 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         DetailAST firstNodeInsideBlock = null;
 
         if (!isVariableInOperatorExpr(block, variable)) {
-            DetailAST currentNode = block.getLastChild();
-            final List<DetailAST> variableUsageExpressions =
-                    new ArrayList<>();
+            final Optional<DetailAST> slistToken = TokenUtil
+                .findFirstTokenByPredicate(block, token -> token.getType() == TokenTypes.SLIST);
+            final DetailAST currentNode = block.getLastChild();
+            DetailAST previousNode = currentNode.getPreviousSibling();
 
-            while (currentNode != null
-                    && currentNode.getType() == TokenTypes.LITERAL_ELSE) {
-                final DetailAST previousNode =
-                        currentNode.getPreviousSibling();
+            // Is if statement without '{}'
+            if (slistToken.isEmpty()
+                && currentNode.getType() == TokenTypes.LITERAL_ELSE) {
 
-                // Checking variable usage inside IF block.
-                if (isChild(previousNode, variable)) {
-                    variableUsageExpressions.add(previousNode);
-                }
-
-                // Looking into ELSE block, get its first child and analyze it.
-                currentNode = currentNode.getFirstChild();
-
-                if (currentNode.getType() == TokenTypes.LITERAL_IF) {
-                    currentNode = currentNode.getLastChild();
-                }
-                else if (isChild(currentNode, variable)) {
-                    variableUsageExpressions.add(currentNode);
-                    currentNode = null;
-                }
+                // Change previousNode to the if statement body
+                previousNode = previousNode.getPreviousSibling();
             }
 
-            // If IF block doesn't include ELSE then analyze variable usage
-            // only inside IF block.
-            if (currentNode != null
-                    && isChild(currentNode, variable)) {
+            final List<DetailAST> variableUsageExpressions = new ArrayList<>();
+            if (isChild(previousNode, variable)) {
+                variableUsageExpressions.add(previousNode);
+            }
+
+            if (isChild(currentNode, variable)) {
                 variableUsageExpressions.add(currentNode);
             }
 
