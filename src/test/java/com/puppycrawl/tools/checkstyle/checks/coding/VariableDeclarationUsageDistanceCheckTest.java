@@ -86,6 +86,9 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "17:9: " + getCheckMessage(MSG_KEY, "first", 5, 1),
             "29:9: " + getCheckMessage(MSG_KEY, "allInvariants", 2, 1),
             "59:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+            "68:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
+            "78:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+            "83:9: " + getCheckMessage(MSG_KEY, "b", 2, 1),
         };
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceGeneral2.java"), expected);
