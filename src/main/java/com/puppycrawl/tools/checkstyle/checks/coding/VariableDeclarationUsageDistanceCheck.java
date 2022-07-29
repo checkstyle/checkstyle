@@ -522,6 +522,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @param variableIdentAst
      *        Variable which distance is calculated for.
      * @return entry which contains expression with variable usage and distance.
+     *         If variable usage is not found, then the expression node is null,
+     *         although the distance can be greater than zero.
      */
     private static Entry<DetailAST, Integer> calculateDistanceInSingleScope(
             DetailAST semicolonAst, DetailAST variableIdentAst) {
@@ -530,8 +532,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         DetailAST currentAst = semicolonAst;
         DetailAST variableUsageAst = null;
 
-        while (!firstUsageFound && currentAst != null
-                && currentAst.getType() != TokenTypes.RCURLY) {
+        while (!firstUsageFound && currentAst != null) {
             if (currentAst.getFirstChild() != null) {
                 if (isChild(currentAst, variableIdentAst)) {
                     dist = getDistToVariableUsageInChildNode(currentAst, variableIdentAst, dist);
@@ -543,11 +544,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 }
             }
             currentAst = currentAst.getNextSibling();
-        }
-
-        // If variable wasn't used after its declaration, distance is 0.
-        if (!firstUsageFound) {
-            dist = 0;
         }
 
         return new SimpleEntry<>(variableUsageAst, dist);
@@ -741,10 +737,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
             final int currentNodeType = currentNode.getType();
 
-            if (currentNodeType == TokenTypes.SLIST) {
-                firstNodeInsideBlock = currentNode.getFirstChild();
-            }
-            else if (currentNodeType != TokenTypes.EXPR) {
+            if (currentNodeType != TokenTypes.EXPR) {
                 firstNodeInsideBlock = currentNode;
             }
         }
@@ -959,7 +952,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
         // Variable may be met in ELSE declaration
         // So, check variable usage in these declarations.
-        if (!isVarInOperatorDeclaration && operator.getType() == TokenTypes.LITERAL_IF) {
+        if (!isVarInOperatorDeclaration) {
             final DetailAST elseBlock = operator.getLastChild();
 
             if (elseBlock.getType() == TokenTypes.LITERAL_ELSE) {

@@ -1,20 +1,209 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
+    <sourceFile>CustomImportOrderCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/regex/Pattern::compile</description>
+    <lineContent>private Pattern specialImportsRegExp = Pattern.compile(&quot;^$&quot;);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CustomImportOrderCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable specialImportsRegExp</description>
+    <lineContent>private Pattern specialImportsRegExp = Pattern.compile(&quot;^$&quot;);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CustomImportOrderCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable samePackageMatchingDepth</description>
+    <lineContent>private int samePackageMatchingDepth = 2;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CustomImportOrderCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck</mutatedClass>
+    <mutatedMethod>getFirstDomainsFromIdent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/StringBuilder::append</description>
+    <lineContent>builder.append(tokens.nextToken()).append(&apos;.&apos;);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CustomImportOrderCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck</mutatedClass>
+    <mutatedMethod>getFirstDomainsFromIdent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/StringBuilder::append with receiver</description>
+    <lineContent>builder.append(tokens.nextToken()).append(&apos;.&apos;);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CustomImportOrderCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck</mutatedClass>
+    <mutatedMethod>setCustomImportOrderRules</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable customImportOrderRules</description>
+    <lineContent>customImportOrderRules = inputCustomImportOrder;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FileImportControl.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.FileImportControl</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable patternForExactMatch</description>
+    <lineContent>patternForExactMatch = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FileImportControl.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.FileImportControl</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/imports/FileImportControl::encloseInGroup with argument</description>
+    <lineContent>this.name = encloseInGroup(name);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ImportControlCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable currentImportControl</description>
+    <lineContent>currentImportControl = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
     <sourceFile>ImportControlLoader.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader</mutatedClass>
-    <mutatedMethod>startElement</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>else if (ALLOW_ELEMENT_NAME.equals(qName) || "disallow".equals(qName)) {</lineContent>
+    <mutatedMethod>load</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Exception::getMessage</description>
+    <lineContent>+ &quot; - &quot; + ex.getMessage(), ex);</lineContent>
   </mutation>
 
   <mutation unstable="false">
     <sourceFile>ImportControlLoader.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader</mutatedClass>
     <mutatedMethod>startElement</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>else if (ALLOW_ELEMENT_NAME.equals(qName) || "disallow".equals(qName)) {</lineContent>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/imports/ImportControlLoader::containsRegexAttribute</description>
+    <lineContent>final boolean regex = containsRegexAttribute(attributes);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ImportOrderCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable lastImport</description>
+    <lineContent>lastImport = &quot;&quot;;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ImportOrderCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable lastImportStatic</description>
+    <lineContent>lastImportStatic = false;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ImportOrderCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck</mutatedClass>
+    <mutatedMethod>getGroupNumber</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/regex/Matcher::end</description>
+    <lineContent>bestEnd = matcher.end();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ImportOrderCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck</mutatedClass>
+    <mutatedMethod>getGroupNumber</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/regex/Matcher::start</description>
+    <lineContent>if (matcher.start() &lt; bestPos) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ImportOrderCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck</mutatedClass>
+    <mutatedMethod>setOption</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>option = ImportOrderOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>PkgImportControl.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.PkgImportControl</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable patternForExactMatch</description>
+    <lineContent>patternForExactMatch = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>PkgImportControl.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.PkgImportControl</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable patternForPartialMatch</description>
+    <lineContent>patternForPartialMatch = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>PkgImportControl.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.PkgImportControl</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable regex</description>
+    <lineContent>this.regex = false;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RedundantImportCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable pkgName</description>
+    <lineContent>pkgName = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedImportsCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable collect</description>
+    <lineContent>collect = false;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedImportsCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck</mutatedClass>
+    <mutatedMethod>collectReferencesFromJavadoc</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/util/stream/Stream::filter with receiver</description>
+    <lineContent>.filter(JavadocTag::canReferenceImports)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedImportsCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck</mutatedClass>
+    <mutatedMethod>processJavadocTag</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>final String identifier = tag.getFirstArg().trim();</lineContent>
   </mutation>
 </suppressedMutations>

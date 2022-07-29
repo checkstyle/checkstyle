@@ -53,9 +53,7 @@ check-missing-pitests)
   for item in "${list[@]}"
   do
     item=${item//\./\/}
-    if [[ $item == */\*  ]] ; then
-     item=$item
-    else
+    if [[ $item != */\*  ]] ; then
       if [[ $item != *\* ]] ; then
         item="$item.java"
       else
