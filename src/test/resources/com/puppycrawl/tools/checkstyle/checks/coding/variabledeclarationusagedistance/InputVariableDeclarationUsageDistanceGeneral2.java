@@ -63,4 +63,28 @@ public class InputVariableDeclarationUsageDistanceGeneral2 {
             a.equals("");
         }
     }
+
+    void method2() {
+        int a = 12; // violation
+        if (true) {
+            method2();
+            p();
+            method2();
+            a++;
+        }
+    }
+
+    void checkIfStatementWithoutParen() {
+        int a = 12; // violation
+        method2();
+        if (true)
+            a++;
+
+        int b = 12; // violation
+        method2();
+        if (false)
+            method2();
+        else if(true)
+            b++;
+    }
 }
