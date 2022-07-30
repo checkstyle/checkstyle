@@ -6,13 +6,6 @@
 
 set -e
 
-echo "PULL_REQUEST:""$PULL_REQUEST"
-if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
-  echo "Build is not for Pull Request";
-  sleep 5;
-  exit 0;
-fi
-
 mkdir -p .ci-temp
 if [ -d .ci-temp/contribution ]; then
   cd .ci-temp/contribution/
@@ -22,7 +15,7 @@ if [ -d .ci-temp/contribution ]; then
   cd ../../
 else
   cd .ci-temp/
-  git clone https://github.com/checkstyle/contribution
+  git clone https://github.com/Rahulkhinchi03/contribution
   cd ../
 fi
 cd .ci-temp/contribution/releasenotes-builder
@@ -66,6 +59,11 @@ echo
 echo "twitter post:"
 echo ==============================================
 cat twitter.txt
+echo ==============================================
+echo
+echo "GitHub post:"
+echo ==============================================
+cat github_post.txt
 echo ==============================================
 echo
 echo "Plain text post:"
