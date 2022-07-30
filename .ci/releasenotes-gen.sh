@@ -22,10 +22,11 @@ if [ -d .ci-temp/contribution ]; then
   cd ../../
 else
   cd .ci-temp/
-  git clone https://github.com/checkstyle/contribution
+  git clone https://github.com/Rahulkhinchi03/contribution
   cd ../
 fi
 cd .ci-temp/contribution/releasenotes-builder
+git checkout releasenotes
 mvn -e --no-transfer-progress clean compile package
 cd ../../../
 
