@@ -6,12 +6,12 @@
 
 set -e
 
-echo "PULL_REQUEST:""$PULL_REQUEST"
-if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
-  echo "Build is not for Pull Request";
-  sleep 5;
-  exit 0;
-fi
+# echo "PULL_REQUEST:""$PULL_REQUEST"
+# if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
+#   echo "Build is not for Pull Request";
+#   sleep 5;
+#   exit 0;
+# fi
 
 mkdir -p .ci-temp
 if [ -d .ci-temp/contribution ]; then
