@@ -495,7 +495,7 @@ public class JavadocTypeCheck
      * @param typeParamName the name of the type parameter
      */
     private void checkTypeParamTag(DetailAST ast,
-            List<JavadocTag> tags, String typeParamName) {
+            Collection<JavadocTag> tags, String typeParamName) {
         final String typeParamNameWithBrackets =
             OPEN_ANGLE_BRACKET + typeParamName + CLOSE_ANGLE_BRACKET;
 
