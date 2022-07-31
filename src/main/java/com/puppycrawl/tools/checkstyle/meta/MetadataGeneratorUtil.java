@@ -37,6 +37,7 @@ import com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.RootModule;
 
 /** Class which handles all the metadata generation and writing calls. */
 public final class MetadataGeneratorUtil {
@@ -81,12 +82,12 @@ public final class MetadataGeneratorUtil {
      * Process files using the checker passed and write to corresponding XML files.
      *
      * @param moduleFolders folders to check
-     * @param checker checker
+     * @param root root module
      * @param path rootPath
      * @throws CheckstyleException checkstyleException
      * @throws IOException ioException
      */
-    private static void dumpMetadata(Checker checker, String path, String... moduleFolders)
+    private static void dumpMetadata(RootModule root, String path, String... moduleFolders)
             throws CheckstyleException,
             IOException {
         final List<File> validFiles = new ArrayList<>();
@@ -104,6 +105,6 @@ public final class MetadataGeneratorUtil {
                         .collect(Collectors.toList()));
             }
         }
-        checker.process(validFiles);
+        root.process(validFiles);
     }
 }
