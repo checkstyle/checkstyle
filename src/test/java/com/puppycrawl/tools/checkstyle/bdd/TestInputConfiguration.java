@@ -41,6 +41,7 @@ public final class TestInputConfiguration {
             "com.puppycrawl.tools.checkstyle.filters.SuppressionFilter",
             "com.puppycrawl.tools.checkstyle.filters.SuppressionSingleFilter",
             "com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter",
+            "com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyPlainTextCommentFilter",
             "com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter",
             "com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck",
             "com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck",
