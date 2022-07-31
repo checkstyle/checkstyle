@@ -737,6 +737,8 @@ public class SuppressionCommentFilter
          * Suppression on enumeration is needed so code stays consistent.
          *
          * @noinspection EqualsCalledOnEnumConstant
+         * @noinspectionreason EqualsCalledOnEnumConstant - enumeration is needed to keep
+         *      code consistent
          */
         @Override
         public boolean equals(Object other) {
