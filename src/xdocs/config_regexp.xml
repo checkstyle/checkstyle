@@ -657,7 +657,7 @@ void method() {
         </p>
         <source>
 &lt;module name=&quot;RegexpMultiline&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;Test #[0-9]+:[A-Za-z ]+&quot;/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;Test #[\d]+:[A-Za-z ]+&quot;/&gt;
   &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
   &lt;property name=&quot;maximum&quot; value=&quot;3&quot;/&gt;
 &lt;/module&gt;
@@ -681,7 +681,7 @@ void method() {
         </p>
         <source>
 &lt;module name=&quot;RegexpMultiline&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;Test #[0-9]+:[A-Za-z ]+&quot;/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;Test #[\d]+:[A-Za-z ]+&quot;/&gt;
   &lt;property name=&quot;minimum&quot; value=&quot;2&quot;/&gt;
 &lt;/module&gt;
         </source>
@@ -986,7 +986,7 @@ src/main/main_properties.properties  //OK, this check only applies to src folder
         </p>
         <source>
 &lt;module name=&quot;RegexpOnFilename&quot;&gt;
-  &lt;property name=&quot;fileNamePattern&quot; value=&quot;^([A-Z][a-z0-9]+\.?)+$&quot;/&gt;
+  &lt;property name=&quot;fileNamePattern&quot; value=&quot;^([A-Z][a-z\d]+\.?)+$&quot;/&gt;
   &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
   &lt;property name=&quot;ignoreFileNameExtensions&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;

@@ -50,7 +50,7 @@ public class LocalFinalVariableNameCheckTest
     public void testDefault()
             throws Exception {
 
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "126:19: " + getCheckMessage(MSG_INVALID_PATTERN, "CDE", pattern),

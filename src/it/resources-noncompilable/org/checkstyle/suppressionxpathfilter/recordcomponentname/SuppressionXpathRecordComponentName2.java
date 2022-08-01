@@ -2,7 +2,7 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentname;
 
 /* Config:
- * format = ^[a-z][a-zA-Z0-9]*$
+ * format = ^[a-z][a-zA-Z\d]*$
  */
 public class SuppressionXpathRecordComponentName2 {
     public record MyRecord(int _underscoreValue, // ok

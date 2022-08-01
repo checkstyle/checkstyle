@@ -37,7 +37,7 @@ public class TypeNameTest extends AbstractGoogleModuleTestSupport {
     public void testTypeName() throws Exception {
         final Configuration checkConfig = getModuleConfig("TypeName");
         final String msgKey = "name.invalidPattern";
-        final String format = "^[A-Z][a-zA-Z0-9]*$";
+        final String format = "^[A-Z][a-zA-Z\\d]*$";
         final Map<String, String> messages = checkConfig.getMessages();
 
         final String[] expected = {

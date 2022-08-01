@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <li>
  * Property {@code format} - Specifies valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
+ * Default value is {@code "^[a-z][a-zA-Z\d]*$"}.
  * </li>
  * <li>
  * Property {@code applyToPublic} - Controls whether to apply the check to public member.
@@ -72,13 +72,13 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   public static final int CONSTANT = 1; // ignored: not an instance variable
  *
  *   public int NUM1; // violation, name 'NUM1'
- *                    // must match pattern '^[a-z][a-zA-Z0-9]*$'
+ *                    // must match pattern '^[a-z][a-zA-Z\d]*$'
  *   protected int NUM2; // violation, name 'NUM2'
- *                       // must match pattern '^[a-z][a-zA-Z0-9]*$'
+ *                       // must match pattern '^[a-z][a-zA-Z\d]*$'
  *   final int NUM3; // violation, name 'NUM3'
- *                   // must match pattern '^[a-z][a-zA-Z0-9]*$'
+ *                   // must match pattern '^[a-z][a-zA-Z\d]*$'
  *   private int NUM4; // violation, name 'NUM4'
- *                     // must match pattern '^[a-z][a-zA-Z0-9]*$'
+ *                     // must match pattern '^[a-z][a-zA-Z\d]*$'
  * }
  * </pre>
  * <p>
@@ -90,7 +90,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *
  * <pre>
  * &lt;module name=&quot;MemberName&quot;&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;^m[A-Z][a-zA-Z0-9]*$&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^m[A-Z][a-zA-Z\d]*$&quot;/&gt;
  *   &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
  *   &lt;property name=&quot;applyToPackage&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
@@ -99,11 +99,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <pre>
  * class MyClass {
  *   public int num1; // violation, name 'num1'
- *                    // must match pattern '^m[A-Z][a-zA-Z0-9]*$'
+ *                    // must match pattern '^m[A-Z][a-zA-Z\d]*$'
  *   protected int num2; // OK
  *   int num3; // OK
  *   private int num4; // violation, name 'num4'
- *                     // must match pattern '^m[A-Z][a-zA-Z0-9]*$'
+ *                     // must match pattern '^m[A-Z][a-zA-Z\d]*$'
  * }
  * </pre>
  * <p>
@@ -121,9 +121,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * class MyClass {
  *   public int NUM1; // OK
  *   protected int NUM2; // violation, name 'NUM2'
- *                       // must match pattern '^[a-z][a-zA-Z0-9]*$'
+ *                       // must match pattern '^[a-z][a-zA-Z\d]*$'
  *   int NUM3; // violation, name 'NUM3'
- *             // must match pattern '^[a-z][a-zA-Z0-9]*$'
+ *             // must match pattern '^[a-z][a-zA-Z\d]*$'
  *   private int NUM4; // OK
  * }
  * </pre>
@@ -146,7 +146,7 @@ public class MemberNameCheck
 
     /** Creates a new {@code MemberNameCheck} instance. */
     public MemberNameCheck() {
-        super("^[a-z][a-zA-Z0-9]*$");
+        super("^[a-z][a-zA-Z\\d]*$");
     }
 
     @Override

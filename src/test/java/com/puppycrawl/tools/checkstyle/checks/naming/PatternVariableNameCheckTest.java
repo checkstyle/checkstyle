@@ -48,7 +48,7 @@ public class PatternVariableNameCheckTest
     @Test
     public void testDefault() throws Exception {
 
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "18:39: " + getCheckMessage(MSG_INVALID_PATTERN, "OTHER", pattern),
@@ -70,7 +70,7 @@ public class PatternVariableNameCheckTest
     @Test
     public void testPatternVariableNameNoSingleChar() throws Exception {
 
-        final String pattern = "^[a-z][a-zA-Z0-9]+$";
+        final String pattern = "^[a-z][a-zA-Z\\d]+$";
 
         final String[] expected = {
             "18:39: " + getCheckMessage(MSG_INVALID_PATTERN, "OTHER", pattern),

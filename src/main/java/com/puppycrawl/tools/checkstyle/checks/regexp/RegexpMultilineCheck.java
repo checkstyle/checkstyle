@@ -160,7 +160,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <pre>
  * &lt;module name=&quot;RegexpMultiline&quot;&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;Test #[0-9]+:[A-Za-z ]+&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;Test #[\d]+:[A-Za-z ]+&quot;/&gt;
  *   &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
  *   &lt;property name=&quot;maximum&quot; value=&quot;3&quot;/&gt;
  * &lt;/module&gt;
@@ -184,7 +184,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <pre>
  * &lt;module name=&quot;RegexpMultiline&quot;&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;Test #[0-9]+:[A-Za-z ]+&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;Test #[\d]+:[A-Za-z ]+&quot;/&gt;
  *   &lt;property name=&quot;minimum&quot; value=&quot;2&quot;/&gt;
  * &lt;/module&gt;
  * </pre>

@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>
  * Property {@code format} - Specifies valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
+ * Default value is {@code "^[a-z][a-zA-Z\d]*$"}.
  * </li>
  * </ul>
  * <p>
@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * class MyClass {
  *     MyClass(Object o1){
  *         if (o1 instanceof String STRING) { // violation, name 'STRING' must
- *                                            // match pattern '^[a-z][a-zA-Z0-9]*$'
+ *                                            // match pattern '^[a-z][a-zA-Z\d]*$'
  *         }
  *         if (o1 instanceof Integer num) { // OK
  *         }
@@ -57,7 +57,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * &lt;module name="PatternVariableName"&gt;
- *   &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+ *   &lt;property name="format" value="^[a-z](_?[a-zA-Z\d]+)*$"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Code Example:</p>
@@ -65,7 +65,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * class MyClass {
  *     MyClass(Object o1){
  *         if (o1 instanceof String STR) { // violation, name 'STR' must
- *                                         // match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+ *                                         // match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
  *         }
  *         if (o1 instanceof Integer num) { // OK
  *         }
@@ -79,7 +79,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * &lt;module name="PatternVariableName"&gt;
- *   &lt;property name="format" value="^[a-z][_a-zA-Z0-9]{2,}$"/&gt;
+ *   &lt;property name="format" value="^[a-z][_a-zA-Z\d]{2,}$"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Code Example:</p>
@@ -87,7 +87,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * class MyClass {
  *     MyClass(Object o1){
  *         if (o1 instanceof String s) { // violation, name 's' must
- *                                       // match pattern '^[a-z][_a-zA-Z0-9]{2,}$'
+ *                                       // match pattern '^[a-z][_a-zA-Z\d]{2,}$'
  *         }
  *         if (o1 instanceof Integer num) { // OK
  *         }
@@ -112,7 +112,7 @@ public class PatternVariableNameCheck extends AbstractNameCheck {
 
     /** Creates a new {@code PatternVariableNameCheck} instance. */
     public PatternVariableNameCheck() {
-        super("^[a-z][a-zA-Z0-9]*$");
+        super("^[a-z][a-zA-Z\\d]*$");
     }
 
     @Override
