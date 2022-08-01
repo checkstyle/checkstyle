@@ -50,7 +50,7 @@ public class MethodNameCheckTest
     public void testDefault()
             throws Exception {
 
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "144:10: " + getCheckMessage(MSG_INVALID_PATTERN, "ALL_UPPERCASE_METHOD", pattern),
@@ -62,7 +62,7 @@ public class MethodNameCheckTest
     @Test
     public void testMethodEqClass() throws Exception {
 
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "24:16: " + getCheckMessage(MSG_KEY, "InputMethodNameEqualClassName"),
@@ -89,7 +89,7 @@ public class MethodNameCheckTest
 
     @Test
     public void testMethodEqClassAllow() throws Exception {
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "24:16: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -111,7 +111,7 @@ public class MethodNameCheckTest
 
     @Test
     public void testAccessTuning() throws Exception {
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "24:16: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -141,7 +141,7 @@ public class MethodNameCheckTest
     @Test
     public void testOverriddenMethods() throws Exception {
 
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "29:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PUBLICfoo", pattern),
@@ -154,7 +154,7 @@ public class MethodNameCheckTest
 
     @Test
     public void testInterfacesExcludePublic() throws Exception {
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "18:18: " + getCheckMessage(MSG_INVALID_PATTERN, "PrivateMethod", pattern),
@@ -168,7 +168,7 @@ public class MethodNameCheckTest
 
     @Test
     public void testInterfacesExcludePrivate() throws Exception {
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "22:18: " + getCheckMessage(MSG_INVALID_PATTERN, "DefaultMethod", pattern),
@@ -197,7 +197,7 @@ public class MethodNameCheckTest
     @Test
     public void testRecordInInterfaceBody() throws Exception {
 
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "24:14: " + getCheckMessage(MSG_INVALID_PATTERN, "VIOLATION", pattern),

@@ -70,7 +70,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * &lt;module name="ClassTypeParameterName"&gt;
- *   &lt;property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"/&gt;
+ *   &lt;property name="format" value="(^[A-Z]\d?)$|([A-Z][a-zA-Z\d]*[T]$)"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Example:</p>

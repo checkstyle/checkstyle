@@ -50,7 +50,7 @@ public class LocalVariableNameCheckTest
     public void testDefault()
             throws Exception {
 
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "122:13: " + getCheckMessage(MSG_INVALID_PATTERN, "ABC", pattern),
@@ -74,7 +74,7 @@ public class LocalVariableNameCheckTest
     public void testLoopVariables()
             throws Exception {
 
-        final String pattern = "^[a-z]{2,}[a-zA-Z0-9]*$";
+        final String pattern = "^[a-z]{2,}[a-zA-Z\\d]*$";
 
         final String[] expected = {
             "19:29: " + getCheckMessage(MSG_INVALID_PATTERN, "j", pattern),
