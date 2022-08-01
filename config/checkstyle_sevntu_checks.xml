@@ -88,7 +88,7 @@
     <module name="WhitespaceBeforeArrayInitializer"/>
     <module name="InnerClass"/>
     <module name="EnumValueNameCheck">
-      <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
+      <property name="format" value="^[A-Z][A-Z\d]*(_[A-Z\d]+)*$"/>
     </module>
     <module name="OverridableMethodInConstructor">
       <property name="checkCloneMethod" value="true"/>

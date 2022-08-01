@@ -1,6 +1,6 @@
 /*
 com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck
-format = (default)^[a-z][a-zA-Z0-9]*$
+format = (default)^[a-z][a-zA-Z\d]*$
 applyToPublic = (default)true
 applyToProtected = (default)true
 applyToPackage = (default)true

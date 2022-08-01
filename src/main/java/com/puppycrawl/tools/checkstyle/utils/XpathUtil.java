@@ -111,12 +111,12 @@ public final class XpathUtil {
     /**
      * This regexp is used to convert new line to newline tag.
      */
-    private static final Pattern NEWLINE_TO_TAG = Pattern.compile("[\n]");
+    private static final Pattern NEWLINE_TO_TAG = Pattern.compile("\n");
 
     /**
      * This regexp is used to convert carriage return to carriage-return tag.
      */
-    private static final Pattern CARRIAGE_RETURN_TO_TAG = Pattern.compile("[\r]");
+    private static final Pattern CARRIAGE_RETURN_TO_TAG = Pattern.compile("\r");
 
     /** Delimiter to separate xpath results. */
     private static final String DELIMITER = "---------" + System.lineSeparator();

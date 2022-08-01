@@ -491,7 +491,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         final DefaultConfiguration root = createRootConfig(treeWalker);
         root.addChild(filter);
 
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "15:12: " + getCheckMessage(MemberNameCheck.class,

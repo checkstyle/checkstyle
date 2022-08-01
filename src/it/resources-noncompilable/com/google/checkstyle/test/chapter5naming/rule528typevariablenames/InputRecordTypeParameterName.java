@@ -7,7 +7,7 @@ import java.util.LinkedHashMap;
 import org.w3c.dom.Node;
 
 /* Config:
- * pattern = "(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"
+ * pattern = "(^[A-Z][\d]?)$|([A-Z][a-zA-Z\d]*[T]$)"
  *
  */
 public record InputRecordTypeParameterName<t>(Integer x, String str) { // warn

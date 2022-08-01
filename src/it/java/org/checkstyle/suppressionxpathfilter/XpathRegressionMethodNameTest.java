@@ -43,7 +43,7 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
         final File fileToProcess =
                 new File(getPath("SuppressionXpathRegressionMethodName1.java"));
 
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-zA-Z\\d]*$";
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MethodNameCheck.class);
 
@@ -67,10 +67,10 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
         final File fileToProcess =
                 new File(getPath("SuppressionXpathRegressionMethodName2.java"));
 
-        final String pattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
+        final String pattern = "^[a-z](_?[a-zA-Z\\d]+)*$";
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MethodNameCheck.class);
-        moduleConfig.addProperty("format", "^[a-z](_?[a-zA-Z0-9]+)*$");
+        moduleConfig.addProperty("format", "^[a-z](_?[a-zA-Z\\d]+)*$");
 
         final String[] expectedViolation = {
             "7:21: " + getCheckMessage(MethodNameCheck.class,
@@ -93,10 +93,10 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
         final File fileToProcess =
                 new File(getPath("SuppressionXpathRegressionMethodName3.java"));
 
-        final String pattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
+        final String pattern = "^[a-z](_?[a-zA-Z\\d]+)*$";
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MethodNameCheck.class);
-        moduleConfig.addProperty("format", "^[a-z](_?[a-zA-Z0-9]+)*$");
+        moduleConfig.addProperty("format", "^[a-z](_?[a-zA-Z\\d]+)*$");
         moduleConfig.addProperty("applyToPublic", "false");
         moduleConfig.addProperty("applyToProtected", "false");
 

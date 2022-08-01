@@ -246,7 +246,7 @@ public int hashCode() { ... } // No violation events will be reported
 public static final int someConstant; // won't warn here
 //resume constant check
 public static final int someConstant; // will warn here as constant's name doesn't match the
-// pattern &quot;^[A-Z][A-Z0-9]*$&quot;
+// pattern &quot;^[A-Z][A-Z\d]*$&quot;
         </source>
         <p>
           To configure a filter so that <code>UNUSED OFF:<i>var</i></code>
@@ -1483,18 +1483,18 @@ public class FileTwo {
 
 public class FileThree {
   public void MyMethod() {} // violation, name 'MyMethod'
-                            // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+                            // must match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
 }
           </pre>
         </div>
         <p>
-          To suppress MethodName check for method names matched pattern 'MyMethod[0-9]':
+          To suppress MethodName check for method names matched pattern 'MyMethod[\d]':
         </p>
         <div class="wrapper">
           <pre>
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="checks" value="MethodName"/&gt;
-  &lt;property name="message" value="MyMethod[0-9]"/&gt;
+  &lt;property name="message" value="MyMethod[\d]"/&gt;
 &lt;/module&gt;
           </pre>
         </div>
@@ -1505,7 +1505,7 @@ public class FileOne {
   public void MyMethod1() {} // OK
   public void MyMethod2() {} // OK
   public void MyMethodA() {} // violation, name 'MyMethodA' must
-                             // match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+                             // match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
 }
           </pre>
         </div>
@@ -1516,7 +1516,7 @@ public class FileOne {
           <pre>
 &lt;module name="MethodName"&gt;
   &lt;property name="id" value="MethodName1"/&gt;
-  &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+  &lt;property name="format" value="^[a-z](_?[a-zA-Z\d]+)*$"/&gt;
 &lt;module/&gt;
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="files" value="FileOne.java"/&gt;
@@ -1532,7 +1532,7 @@ public class FileOne {
 }
 public class FileTwo {
   public void MyMethod() {} // violation,  name 'MyMethod' must
-                            //match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+                            //match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
 }
           </pre>
         </div>
@@ -1594,7 +1594,7 @@ public class FileOne {
 
 public class FileTwo {
   public void MyMethod() {} // violation, name 'MyMethod'
-                            // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+                            // must match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
 }
           </pre>
         </div>
@@ -1622,7 +1622,7 @@ abstract class FileOne { // OK
 abstract class FileTwo { // violation of the AbstractClassName check,
                          // it should match the pattern "^Abstract.+$"
   public void MyMethod() {} // violation, name 'MyMethod'
-                            // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+                            // must match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
 }
           </pre>
         </div>
@@ -1645,7 +1645,7 @@ public class FileOne {
   public void MyMethod1() {} // OK
   public void MyMethod2() {} // OK
   public void MyMethod3() {} // violation, name 'MyMethod3' must
-                             // match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+                             // match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
 }
           </pre>
         </div>
@@ -1670,7 +1670,7 @@ public class TestClass {
   public void testMethod() {
     final int testVariable1 = 10; // OK
     final int testVariable2 = 10; // violation of the LocalFinalVariableName check,
-                                  // name 'testVariable2' must match pattern '^[A-Z][A-Z0-9]*$'
+                                  // name 'testVariable2' must match pattern '^[A-Z][A-Z\d]*$'
   }
 }
           </pre>
@@ -1782,9 +1782,9 @@ public class TestClass {
   }
 
   public void TestMethod2() { // violation of the MethodName check,
-                              // name 'TestMethod2' must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+                              // name 'TestMethod2' must match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
     final int num = 10; // violation of the LocalFinalVariableName check,
-                        // name 'num' must match pattern '^[A-Z][A-Z0-9]*$'
+                        // name 'num' must match pattern '^[A-Z][A-Z\d]*$'
   }
 }
           </pre>
@@ -1807,7 +1807,7 @@ public class TestClass {
 &lt;/module&gt;
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="files" value="generated-sources"&gt;
-  &lt;property name="checks" value="[a-zA-Z0-9]*"&gt;
+  &lt;property name="checks" value="[a-zA-Z\d]*"&gt;
 &lt;/module&gt;
           </pre>
         </div>

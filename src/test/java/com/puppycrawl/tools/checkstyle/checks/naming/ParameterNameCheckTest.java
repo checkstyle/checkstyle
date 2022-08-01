@@ -57,7 +57,7 @@ public class ParameterNameCheckTest
     public void testSpecified()
             throws Exception {
 
-        final String pattern = "^a[A-Z][a-zA-Z0-9]*$";
+        final String pattern = "^a[A-Z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "68:19: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat1", pattern),

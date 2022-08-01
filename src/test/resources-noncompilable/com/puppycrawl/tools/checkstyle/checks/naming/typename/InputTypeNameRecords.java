@@ -1,6 +1,6 @@
 /*
 TypeName
-format = (default)^[A-Z][a-zA-Z0-9]*$
+format = (default)^[A-Z][a-zA-Z\d]*$
 applyToPublic = (default)true
 applyToProtected = (default)true
 applyToPackage = (default)true

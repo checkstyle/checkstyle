@@ -796,7 +796,7 @@
 
       <source>
 &lt;module name=&quot;MemberName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^m[a-zA-Z0-9]*$&quot;/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^m[a-zA-Z\d]*$&quot;/&gt;
   &lt;message key=&quot;name.invalidPattern&quot;
    value=&quot;Member ''{0}'' must start with a lowercase ''m'' (checked pattern ''{1}'').&quot;
    /&gt;

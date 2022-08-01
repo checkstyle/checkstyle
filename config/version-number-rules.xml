@@ -7,7 +7,7 @@
 
   <ignoreVersions>
     <ignoreVersion type="regex">
-      .*[-_\.](alpha|Alpha|ALPHA|beta|Beta|BETA|rc|RC|M|EA)[-_\.]?[0-9]?.*
+      .*[-_\.](alpha|Alpha|ALPHA|beta|Beta|BETA|rc|RC|M|EA)[-_\.]?[\d]?.*
     </ignoreVersion>
   </ignoreVersions>
   <rules>

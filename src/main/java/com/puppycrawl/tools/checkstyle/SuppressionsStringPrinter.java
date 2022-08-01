@@ -41,7 +41,7 @@ public final class SuppressionsStringPrinter {
 
     /** Line and column number config value pattern. */
     private static final Pattern VALID_SUPPRESSION_LINE_COLUMN_NUMBER_REGEX =
-            Pattern.compile("^([0-9]+):([0-9]+)$");
+            Pattern.compile("^(\\d+):(\\d+)$");
 
     /** OS specific line separator. */
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
