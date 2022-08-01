@@ -318,15 +318,11 @@
   </rule>
   <rule ref="category/java/design.xml/TooManyMethods">
     <properties>
-      <property name="maxmethods" value="20"/>
-      <!-- The class PackageObjectFactory has many boilerplate methods.
-           JavadocMethodCheck is in the process of being rewritten.
-           UnusedLocalVariableCheck has to identify the scope of variables. -->
+      <!-- Should match the property 'maxTotal' of `MethodCount` check. -->
+      <property name="maxmethods" value="34"/>
+      <!-- JavaAstVisitor is a visitor class with methods for the entire Java grammar. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='PackageObjectFactory']
-          | //ClassOrInterfaceDeclaration[@SimpleName='JavadocMethodCheck']
-          | //ClassOrInterfaceDeclaration[@SimpleName='UnusedLocalVariableCheck']
-          | //ClassOrInterfaceDeclaration[@SimpleName='JavaAstVisitor']"/>
+                value="//ClassOrInterfaceDeclaration[@SimpleName='JavaAstVisitor']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveClassLength">
