@@ -1,6 +1,6 @@
 /*
 MethodName
-format = (default)^[a-z][a-zA-Z0-9]*$
+format = (default)^[a-z][a-zA-Z\\d]*$
 allowClassName = (default)false
 applyToPublic = false
 applyToProtected = (default)true

@@ -37,7 +37,7 @@ public class MethodNameTest extends AbstractGoogleModuleTestSupport {
     public void testMethodName() throws Exception {
         final Configuration checkConfig = getModuleConfig("MethodName");
         final String msgKey = "name.invalidPattern";
-        final String format = "^[a-z][a-z0-9]\\w*$";
+        final String format = "^[a-z][a-z\\d]\\w*$";
         final Map<String, String> messages = checkConfig.getMessages();
 
         final String[] expected = {

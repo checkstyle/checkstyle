@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <li>
  * Property {@code format} - Specifies valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
+ * Default value is {@code "^[a-z][a-zA-Z\d]*$"}.
  * </li>
  * <li>
  * Property {@code applyToPublic} - Controls whether to apply the check to public member.
@@ -65,7 +65,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * class MyClass {
  *   public static int goodStatic = 2; // OK
  *   private static int BadStatic = 2; // violation, name 'BadStatic'
- *                                     // must match pattern '^[a-z][a-zA-Z0-9]*$'
+ *                                     // must match pattern '^[a-z][a-zA-Z\d]*$'
  * }
  * </pre>
  * <p>
@@ -84,7 +84,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   protected static int GoodStatic2 = 2; //OK
  *   private static int goodStatic = 2 // OK
  *   private static int BadStatic = 2; // violation, name 'BadStatic'
- *                                     // must match pattern '^[a-z][a-zA-Z0-9]*$'
+ *                                     // must match pattern '^[a-z][a-zA-Z\d]*$'
  * }
  * </pre>
  * <p>
@@ -94,7 +94,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <pre>
  * &lt;module name=&quot;StaticVariableName&quot;&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z\d]+)*$&quot;/&gt;
  *   &lt;property name=&quot;applyToPrivate&quot; value=&quot;false&quot;/&gt;
  *   &lt;property name=&quot;applyToPackage&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
@@ -104,7 +104,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * class MyClass {
  *   public static int good_static = 2; // OK
  *   public static int Bad_Static = 2; // violation, name 'Bad_Static'
- *                                     // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+ *                                     // must match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
  *   private static int Good_Static1 = 2; // OK
  *   static int Good_Static2 = 2; // OK
  * }
@@ -128,7 +128,7 @@ public class StaticVariableNameCheck
 
     /** Creates a new {@code StaticVariableNameCheck} instance. */
     public StaticVariableNameCheck() {
-        super("^[a-z][a-zA-Z0-9]*$");
+        super("^[a-z][a-zA-Z\\d]*$");
     }
 
     @Override

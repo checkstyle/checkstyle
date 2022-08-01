@@ -1,6 +1,6 @@
 /*
 LocalFinalVariableName
-format = (default)^[a-z][a-zA-Z0-9]*$
+format = (default)^[a-z][a-zA-Z\\d]*$
 tokens = (default)VARIABLE_DEF, PARAMETER_DEF, RESOURCE
 
 

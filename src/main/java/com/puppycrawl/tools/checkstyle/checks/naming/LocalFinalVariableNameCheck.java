@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <li>
  * Property {@code format} - Specifies valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
+ * Default value is {@code "^[a-z][a-zA-Z\d]*$"}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -61,7 +61,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <pre>
  * &lt;module name="LocalFinalVariableName"&gt;
- *   &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
+ *   &lt;property name="format" value="^[A-Z][A-Z\d]*$"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Code Example:</p>
@@ -70,10 +70,10 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   void MyMethod() {
  *     try {
  *       final int VAR1 = 5; // OK
- *       final int var1 = 10; // violation,  name 'var1' must match pattern "^[A-Z][A-Z0-9]*$"
+ *       final int var1 = 10; // violation,  name 'var1' must match pattern "^[A-Z][A-Z\d]*$"
  *     } catch (Exception ex) {
  *       final int VAR2 = 15; // OK
- *       final int var2 = 20; // violation,  name 'var2' must match pattern "^[A-Z][A-Z0-9]*$"
+ *       final int var2 = 20; // violation,  name 'var2' must match pattern "^[A-Z][A-Z\d]*$"
  *     }
  *   }
  * }
@@ -84,7 +84,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <pre>
  * &lt;module name=&quot;LocalFinalVariableName&quot;&gt;
- *   &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
+ *   &lt;property name="format" value="^[A-Z][A-Z\d]*$"/&gt;
  *   &lt;property name="tokens" value="PARAMETER_DEF,RESOURCE"/&gt;
  * &lt;/module&gt;
  * </pre>
@@ -93,11 +93,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * class MyClass {
  *   void MyMethod() {
  *     try(Scanner scanner = new Scanner()) { // violation, name 'scanner' must
- *                                            // match pattern '^[A-Z][A-Z0-9]*$'
+ *                                            // match pattern '^[A-Z][A-Z\d]*$'
  *       final int VAR1 = 5; // OK
  *       final int var1 = 10; // OK
  *     } catch (final Exception ex) { // violation, name 'ex'
- *                                    // must match pattern '^[A-Z][A-Z0-9]*$'
+ *                                    // must match pattern '^[A-Z][A-Z\d]*$'
  *       final int VAR2 = 15; // OK
  *       final int var2 = 20; // OK
  *     }
@@ -123,7 +123,7 @@ public class LocalFinalVariableNameCheck
 
     /** Creates a new {@code LocalFinalVariableNameCheck} instance. */
     public LocalFinalVariableNameCheck() {
-        super("^[a-z][a-zA-Z0-9]*$");
+        super("^[a-z][a-zA-Z\\d]*$");
     }
 
     @Override

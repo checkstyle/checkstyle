@@ -631,7 +631,7 @@ public class MyTest {
         <p>Configuration:</p>
         <source>
 &lt;module name="CatchParameterName"&gt;
-  &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
+  &lt;property name="format" value="^[a-z][a-zA-Z\d]+$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -758,7 +758,7 @@ class MyClass5&lt;RequestT&gt; {} // violation
         </p>
         <source>
 &lt;module name=&quot;ClassTypeParameterName&quot;&gt;
-  &lt;property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"/&gt;
+  &lt;property name="format" value="(^[A-Z]\d?)$|([A-Z][a-zA-Z\d]*[T]$)"/&gt;
 &lt;/module&gt;
         </source>
         <p>Example:</p>
@@ -831,7 +831,7 @@ class MyClass5&lt;RequestT&gt; {} // OK
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"</code></td>
+              <td><code>"^[A-Z][A-Z\d]*(_[A-Z\d]+)*$"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -881,9 +881,9 @@ class MyClass {
   public final static int FIRST_CONSTANT1 = 10; // OK
   protected final static int SECOND_CONSTANT2 = 100; // OK
   final static int third_Constant3 = 1000; // violation, name 'third_Constant3' must
-                                          // match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+                                          // match pattern '^[A-Z][A-Z\d]*(_[A-Z\d]+)*$'
   private final static int fourth_Const4 = 50; // violation, name 'fourth_Const4' must match
-                                                // pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+                                                // pattern '^[A-Z][A-Z\d]*(_[A-Z\d]+)*$'
 }
         </source>
         <p>
@@ -894,7 +894,7 @@ class MyClass {
         <source>
 &lt;module name=&quot;ConstantName&quot;&gt;
   &lt;property name=&quot;format&quot;
-    value=&quot;^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&quot;/&gt;
+    value=&quot;^log(ger)?$|^[A-Z][A-Z\d]*(_[A-Z\d]+)*$&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
@@ -903,12 +903,12 @@ class MyClass {
   final static int log = 10; // OK
   final static int logger = 50; // OK
   final static int logMYSELF = 10; // violation, name 'logMYSELF' must match
-                                   // pattern '^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+                                   // pattern '^log(ger)?$|^[A-Z][A-Z\d]*(_[A-Z\d]+)*$'
   final static int loggerMYSELF = 5; // violation, name 'loggerMYSELF' must match
-                                     // pattern '^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+                                     // pattern '^log(ger)?$|^[A-Z][A-Z\d]*(_[A-Z\d]+)*$'
   final static int MYSELF = 100; // OK
   final static int myselfConstant = 1; // violation, name 'myselfConstant' must match pattern
-                                       // '^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+                                       // '^log(ger)?$|^[A-Z][A-Z\d]*(_[A-Z\d]+)*$'
 }
         </source>
         <p>
@@ -927,9 +927,9 @@ class MyClass {
   public final static int firstConstant = 10; // OK
   protected final static int secondConstant = 100; // OK
   final static int thirdConstant = 1000; // violation, name 'thirdConstant' must
-                                         // match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+                                         // match pattern '^[A-Z][A-Z\d]*(_[A-Z\d]+)*$'
   private final static int fourthConstant = 50; // violation, name 'fourthConstant' must match
-                                                // pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+                                                // pattern '^[A-Z][A-Z\d]*(_[A-Z\d]+)*$'
 }
         </source>
       </subsection>
@@ -1328,7 +1328,7 @@ interface ThirdInterface&lt;type&gt; {} // violation, name 'type' must
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
+              <td><code>"^[a-z][a-zA-Z\d]*$"</code></td>
               <td>8.11</td>
             </tr>
           </table>
@@ -1346,7 +1346,7 @@ interface ThirdInterface&lt;type&gt; {} // violation, name 'type' must
         <source>
 Function&lt;String, String&gt; function1 = s -&gt; s.toLowerCase(); // OK
 Function&lt;String, String&gt; function2 = S -&gt; S.toLowerCase(); // violation, name 'S'
-                                               // must match pattern '^[a-z][a-zA-Z0-9]*$'
+                                               // must match pattern '^[a-z][a-zA-Z\d]*$'
         </source>
         <p>
           An example of how to configure the check for names that begin with a lower case letter,
@@ -1433,7 +1433,7 @@ class MyClass {
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
+              <td><code>"^[a-z][a-zA-Z\d]*$"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -1477,7 +1477,7 @@ class MyClass {
         </p>
         <source>
 &lt;module name=&quot;LocalFinalVariableName&quot;&gt;
-  &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
+  &lt;property name="format" value="^[A-Z][A-Z\d]*$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
@@ -1486,10 +1486,10 @@ class MyClass {
   void MyMethod() {
     try {
       final int VAR1 = 5; // OK
-      final int var1 = 10; // violation,  name 'var1' must match pattern "^[A-Z][A-Z0-9]*$"
+      final int var1 = 10; // violation,  name 'var1' must match pattern "^[A-Z][A-Z\d]*$"
     } catch (Exception ex) {
       final int VAR2 = 15; // OK
-      final int var2 = 20; // violation,  name 'var2' must match pattern "^[A-Z][A-Z0-9]*$"
+      final int var2 = 20; // violation,  name 'var2' must match pattern "^[A-Z][A-Z\d]*$"
     }
   }
 }
@@ -1500,7 +1500,7 @@ class MyClass {
         </p>
         <source>
 &lt;module name=&quot;LocalFinalVariableName&quot;&gt;
-  &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
+  &lt;property name="format" value="^[A-Z][A-Z\d]*$"/&gt;
   &lt;property name="tokens" value="PARAMETER_DEF,RESOURCE"/&gt;
 &lt;/module&gt;
         </source>
@@ -1509,11 +1509,11 @@ class MyClass {
 class MyClass {
   void MyMethod() {
     try(Scanner scanner = new Scanner()) { // violation, name 'scanner' must
-                                           // match pattern '^[A-Z][A-Z0-9]*$'
+                                           // match pattern '^[A-Z][A-Z\d]*$'
       final int VAR1 = 5; // OK
       final int var1 = 10; // OK
     } catch (final Exception ex) { // violation, name 'ex'
-                                   // must match pattern '^[A-Z][A-Z0-9]*$'
+                                   // must match pattern '^[A-Z][A-Z\d]*$'
       final int VAR2 = 15; // OK
       final int var2 = 20; // OK
     }
@@ -1580,7 +1580,7 @@ class MyClass {
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
+              <td><code>"^[a-z][a-zA-Z\d]*$"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -1613,10 +1613,10 @@ class MyClass {
   void MyMethod() {
     for (int var = 1; var &lt; 10; var++) {} // OK
     for (int VAR = 1; VAR &lt; 10; VAR++) {} // violation, name 'VAR' must match
-                                          // pattern '^[a-z][a-zA-Z0-9]*$'
+                                          // pattern '^[a-z][a-zA-Z\d]*$'
     for (int i = 1; i &lt; 10; i++) {} // OK
     for (int var_1 = 0; var_1 &lt; 10; var_1++) {} // violation, name 'var_1' must match
-                                                   // pattern '^[a-z][a-zA-Z0-9]*$'
+                                                   // pattern '^[a-z][a-zA-Z\d]*$'
   }
 }
         </source>
@@ -1626,7 +1626,7 @@ class MyClass {
         </p>
         <source>
 &lt;module name="LocalVariableName"&gt;
-  &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+  &lt;property name="format" value="^[a-z](_?[a-zA-Z\d]+)*$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
@@ -1635,7 +1635,7 @@ class MyClass {
   void MyMethod() {
     for (int var = 1; var &lt; 10; var++) {} // OK
     for (int VAR = 1; VAR &lt; 10; VAR++) {} // violation, name 'VAR' must match
-                                             // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+                                             // pattern '^[a-z](_?[a-zA-Z\d]+)*$'
     for (int i = 1; i &lt; 10; i++) {} // OK
     for (int var_1 = 0; var_1 &lt; 10; var_1++) {} // OK
   }
@@ -1660,7 +1660,7 @@ for (Object O : list) {}
         </p>
         <source>
 &lt;module name="LocalVariableName"&gt;
-  &lt;property name="format" value="^[a-z][_a-zA-Z0-9]+$"/&gt;
+  &lt;property name="format" value="^[a-z][_a-zA-Z\d]+$"/&gt;
   &lt;property name="allowOneCharVarInForLoop" value="true"/&gt;
 &lt;/module&gt;
         </source>
@@ -1691,7 +1691,7 @@ class MyClass {
         </p>
         <source>
 &lt;module name="LocalVariableName"&gt;
-  &lt;property name="format" value="^[a-z][_a-zA-Z0-9]{2,}$"/&gt;
+  &lt;property name="format" value="^[a-z][_a-zA-Z\d]{2,}$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
@@ -1769,7 +1769,7 @@ class MyClass {
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
+              <td><code>"^[a-z][a-zA-Z\d]*$"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -1825,13 +1825,13 @@ class MyClass {
   public static final int CONSTANT = 1; // ignored: not an instance variable
 
   public int NUM1; // violation, name 'NUM1'
-                   // must match pattern '^[a-z][a-zA-Z0-9]*$'
+                   // must match pattern '^[a-z][a-zA-Z\d]*$'
   protected int NUM2; // violation, name 'NUM2'
-                      // must match pattern '^[a-z][a-zA-Z0-9]*$'
+                      // must match pattern '^[a-z][a-zA-Z\d]*$'
   final int NUM3; // violation, name 'NUM3'
-                  // must match pattern '^[a-z][a-zA-Z0-9]*$'
+                  // must match pattern '^[a-z][a-zA-Z\d]*$'
   private int NUM4; // violation, name 'NUM4'
-                    // must match pattern '^[a-z][a-zA-Z0-9]*$'
+                    // must match pattern '^[a-z][a-zA-Z\d]*$'
 }
         </source>
         <p>
@@ -1843,7 +1843,7 @@ class MyClass {
 
         <source>
 &lt;module name=&quot;MemberName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^m[A-Z][a-zA-Z0-9]*$&quot;/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^m[A-Z][a-zA-Z\d]*$&quot;/&gt;
   &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
   &lt;property name=&quot;applyToPackage&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
@@ -1852,11 +1852,11 @@ class MyClass {
         <source>
 class MyClass {
   public int num1; // violation, name 'num1'
-                   // must match pattern '^m[A-Z][a-zA-Z0-9]*$'
+                   // must match pattern '^m[A-Z][a-zA-Z\d]*$'
   protected int num2; // OK
   int num3; // OK
   private int num4; // violation, name 'num4'
-                    // must match pattern '^m[A-Z][a-zA-Z0-9]*$'
+                    // must match pattern '^m[A-Z][a-zA-Z\d]*$'
 }
         </source>
         <p>
@@ -1874,9 +1874,9 @@ class MyClass {
 class MyClass {
   public int NUM1; // OK
   protected int NUM2; // violation, name 'NUM2'
-                      // must match pattern '^[a-z][a-zA-Z0-9]*$'
+                      // must match pattern '^[a-z][a-zA-Z\d]*$'
   int NUM3; // violation, name 'NUM3'
-            // must match pattern '^[a-z][a-zA-Z0-9]*$'
+            // must match pattern '^[a-z][a-zA-Z\d]*$'
   private int NUM4; // OK
 }
         </source>
@@ -1951,7 +1951,7 @@ class MyClass {
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
+              <td><code>"^[a-z][a-zA-Z\d]*$"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -2022,9 +2022,9 @@ class MyClass {
   public void firstMethod1() {} // OK
   protected void secondMethod() {} // OK
   private void ThirdMethod() {} // violation, method name must match to the
-                                // default pattern '^[a-z][a-zA-Z0-9]*$'
+                                // default pattern '^[a-z][a-zA-Z\d]*$'
   public void fourth_Method4() {} // violation, method name must match to the
-                                 // default pattern '^[a-z][a-zA-Z0-9]*$'
+                                 // default pattern '^[a-z][a-zA-Z\d]*$'
 }
         </source>
         <p>
@@ -2033,7 +2033,7 @@ class MyClass {
         </p>
         <source>
 &lt;module name="MethodName"&gt;
-   &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+   &lt;property name="format" value="^[a-z](_?[a-zA-Z\d]+)*$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
@@ -2041,7 +2041,7 @@ class MyClass {
 class MyClass {
   public void myMethod() {} // OK
   public void MyMethod() {} // violation, name "MyMethod"
-                            // should match the pattern "^[a-z](_?[a-zA-Z0-9]+)*$"
+                            // should match the pattern "^[a-z](_?[a-zA-Z\d]+)*$"
 }
         </source>
         <p>
@@ -2050,7 +2050,7 @@ class MyClass {
         </p>
         <source>
 &lt;module name="MethodName"&gt;
-   &lt;property name="format" value="^[a-zA-Z](_?[a-zA-Z0-9]+)*$"/&gt;
+   &lt;property name="format" value="^[a-zA-Z](_?[a-zA-Z\d]+)*$"/&gt;
    &lt;property name="allowClassName" value="true"/&gt;
 &lt;/module&gt;
         </source>
@@ -2068,7 +2068,7 @@ class MyClass {
         </p>
         <source>
 &lt;module name="MethodName"&gt;
-   &lt;property name="format" value="^[a-zA-Z](_?[a-zA-Z0-9]+)*$"/&gt;
+   &lt;property name="format" value="^[a-zA-Z](_?[a-zA-Z\d]+)*$"/&gt;
    &lt;property name="allowClassName" value="false"/&gt;
 &lt;/module&gt;
         </source>
@@ -2085,7 +2085,7 @@ class MyClass {
         </p>
         <source>
 &lt;module name="MethodName"&gt;
-   &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+   &lt;property name="format" value="^[a-z](_?[a-zA-Z\d]+)*$"/&gt;
    &lt;property name="applyToPublic" value="false"/&gt;
    &lt;property name="applyToProtected" value="false"/&gt;
 &lt;/module&gt;
@@ -2096,9 +2096,9 @@ class MyClass {
   public void FirstMethod() {} // OK
   protected void SecondMethod() {} // OK
   private void ThirdMethod() {} // violation, name 'ThirdMethod' must match
-                                // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+                                // pattern '^[a-z](_?[a-zA-Z\d]+)*$'
   void FourthMethod() {} // violation, name 'FourthMethod' must match
-                         // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+                         // pattern '^[a-z](_?[a-zA-Z\d]+)*$'
 }
         </source>
       </subsection>
@@ -2258,7 +2258,7 @@ class MyClass {
           href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.5.3">Java
           Language specification</a> and the Sun coding conventions. However,
           both underscores and uppercase letters are rather uncommon, so most
-          configurations should probably assign value <code>^[a-z]+(\.[a-z][a-z0-9]*)*$</code> to
+          configurations should probably assign value <code>^[a-z]+(\.[a-z][a-z\d]*)*$</code> to
           <code>format</code> for module <code>PackageName</code>.
         </p>
       </subsection>
@@ -2308,21 +2308,21 @@ package com._checkstyle.checks_; // OK
         <source>
 &lt;module name=&quot;PackageName&quot;&gt;
   &lt;property name=&quot;format&quot;
-    value=&quot;^[a-z]+(\.[a-z][a-z0-9]*)*$&quot;/&gt;
+    value=&quot;^[a-z]+(\.[a-z][a-z\d]*)*$&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
         <source>
 package com; // OK
-package COM; // violation, name 'COM' must match pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
+package COM; // violation, name 'COM' must match pattern '^[a-z]+(\.[a-z][a-z\d]*)*$'
 package com.checkstyle.checks; // OK
 package com.A.checkstyle.checks; // violation, name 'com.A.checkstyle' must match
-                                 // pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
+                                 // pattern '^[a-z]+(\.[a-z][a-z\d]*)*$'
 package com.checkstyle1.checks; // OK
 package com.checkSTYLE.checks; // violation, name 'com.checkSTYLE.checks' must
-                               // match pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
+                               // match pattern '^[a-z]+(\.[a-z][a-z\d]*)*$'
 package com._checkstyle.checks_; // violation, name 'com._checkstyle.checks_' must match
-                                 // pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
+                                 // pattern '^[a-z]+(\.[a-z][a-z\d]*)*$'
         </source>
       </subsection>
 
@@ -2397,7 +2397,7 @@ package com._checkstyle.checks_; // violation, name 'com._checkstyle.checks_' mu
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
+              <td><code>"^[a-z][a-zA-Z\d]*$"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -2433,7 +2433,7 @@ package com._checkstyle.checks_; // violation, name 'com._checkstyle.checks_' mu
         <source>
 class MyClass {
   void method1(int v1) {} // OK
-  void method2(int V2) {} // violation, name 'V2' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  void method2(int V2) {} // violation, name 'V2' must match pattern '^[a-z][a-zA-Z\d]*$'
 }
         </source>
         <p>
@@ -2442,7 +2442,7 @@ class MyClass {
         </p>
         <source>
 &lt;module name=&quot;ParameterName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^[a-z][_a-zA-Z0-9]+$&quot;/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^[a-z][_a-zA-Z\d]+$&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
@@ -2450,7 +2450,7 @@ class MyClass {
 class MyClass {
   void method1(int v1) {} // OK
   void method2(int v_2) {} // OK
-  void method3(int V3) {} // violation, name 'V3' must match pattern '^[a-z][_a-zA-Z0-9]+$'
+  void method3(int V3) {} // violation, name 'V3' must match pattern '^[a-z][_a-zA-Z\d]+$'
 }
         </source>
 
@@ -2467,7 +2467,7 @@ class MyClass {
         <source>
 class MyClass {
   void method1(int v1) {} // OK
-  void method2(int V2) {} // violation, name 'V2' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  void method2(int V2) {} // violation, name 'V2' must match pattern '^[a-z][a-zA-Z\d]*$'
   @Override
   public boolean equals(Object V3) { // OK
     return true;
@@ -2480,15 +2480,15 @@ class MyClass {
         </p>
         <source>
 &lt;module name=&quot;ParameterName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-zA-Z0-9]+$&quot;/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-zA-Z\d]+$&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
         <source>
 class MyClass {
   void method1(int v1) {} // OK
-  void method2(int v_2) {} // violation, name 'v_2' must match pattern '^[a-z][a-zA-Z0-9]+$'
-  void method3(int V3) {} // violation, name 'V3' must match pattern '^[a-z][a-zA-Z0-9]+$'
+  void method2(int v_2) {} // violation, name 'v_2' must match pattern '^[a-z][a-zA-Z\d]+$'
+  void method3(int V3) {} // violation, name 'V3' must match pattern '^[a-z][a-zA-Z\d]+$'
 }
         </source>
         <p>
@@ -2498,13 +2498,13 @@ class MyClass {
         </p>
         <source>
 &lt;module name=&quot;ParameterName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^[a-z]([a-z0-9][a-zA-Z0-9]*)?$&quot;/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^[a-z]([a-z\d][a-zA-Z\d]*)?$&quot;/&gt;
   &lt;property name=&quot;accessModifiers&quot; value=&quot;protected, package, private&quot;/&gt;
   &lt;message key=&quot;name.invalidPattern&quot;
     value=&quot;Parameter name ''{0}'' must match pattern ''{1}''&quot;/&gt;
 &lt;/module&gt;
 &lt;module name=&quot;ParameterName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-z0-9][a-zA-Z0-9]*$&quot;/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-z\d][a-zA-Z\d]*$&quot;/&gt;
   &lt;property name=&quot;accessModifiers&quot; value=&quot;public&quot;/&gt;
   &lt;message key=&quot;name.invalidPattern&quot;
     value=&quot;Parameter name ''{0}'' must match pattern ''{1}''&quot;/&gt;
@@ -2515,10 +2515,10 @@ class MyClass {
 class MyClass {
   void method1(int v1) {} // OK
   protected method2(int V2) {} // violation, Parameter name 'V2'
-                               // must match pattern '^[a-z]([a-z0-9][a-zA-Z0-9]*)?$'
+                               // must match pattern '^[a-z]([a-z\d][a-zA-Z\d]*)?$'
   private method3(int a) {} // OK
   public method4(int b) {} // violation, Parameter name 'b'
-                           // must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'
+                           // must match pattern '^[a-z][a-z\d][a-zA-Z\d]*$'
 }
         </source>
       </subsection>
@@ -2584,7 +2584,7 @@ class MyClass {
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
+              <td><code>"^[a-z][a-zA-Z\d]*$"</code></td>
               <td>8.36</td>
             </tr>
           </table>
@@ -2604,7 +2604,7 @@ class MyClass {
 class MyClass {
     MyClass(Object o1){
         if (o1 instanceof String STRING) { // violation, name 'STRING' must
-        // match pattern '^[a-z][a-zA-Z0-9]*$'
+        // match pattern '^[a-z][a-zA-Z\d]*$'
         }
         if (o1 instanceof Integer num) { // OK
         }
@@ -2617,7 +2617,7 @@ class MyClass {
         </p>
         <source>
 &lt;module name="PatternVariableName"&gt;
-    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+    &lt;property name="format" value="^[a-z](_?[a-zA-Z\d]+)*$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
@@ -2625,7 +2625,7 @@ class MyClass {
 class MyClass {
     MyClass(Object o1){
         if (o1 instanceof String STR) { // violation, name 'STR' must
-        // match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+        // match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
         }
         if (o1 instanceof Integer num) { // OK
         }
@@ -2640,7 +2640,7 @@ class MyClass {
         </p>
         <source>
 &lt;module name="PatternVariableName"&gt;
-    &lt;property name="format" value="^[a-z][_a-zA-Z0-9]{2,}$"/&gt;
+    &lt;property name="format" value="^[a-z][_a-zA-Z\d]{2,}$"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
@@ -2648,7 +2648,7 @@ class MyClass {
 class MyClass {
     MyClass(Object o1){
         if (o1 instanceof String s) { // violation, name 's' must
-        // match pattern '^[a-z][_a-zA-Z0-9]{2,}$'
+        // match pattern '^[a-z][_a-zA-Z\d]{2,}$'
         }
         if (o1 instanceof Integer num) { // OK
         }
@@ -2718,7 +2718,7 @@ class MyClass {
                 <a href="property_types.html#Pattern">Pattern</a>
               </td>
               <td>
-                <code>"^[a-z][a-zA-Z0-9]*$"</code>
+                <code>"^[a-z][a-zA-Z\d]*$"</code>
               </td>
               <td>8.40</td>
             </tr>
@@ -2737,9 +2737,9 @@ class MyClass {
         <source>
 record MyRecord1(String value, int otherComponentName) {} // OK
 record MyRecord2(String... Values) {} // violation, the record component name
-                                    // should match the regular expression "^[a-z][a-zA-Z0-9]*$"
+                                    // should match the regular expression "^[a-z][a-zA-Z\d]*$"
 record MyRecord3(double my_number) {} // violation, the record component name
-                                    // should match the regular expression "^[a-z][a-zA-Z0-9]*$"
+                                    // should match the regular expression "^[a-z][a-zA-Z\d]*$"
         </source>
         <p>
           An example of how to configure the check for names that are only letters in lowercase:
@@ -2918,7 +2918,7 @@ record MyRecord3&lt;abc&gt; {} // violation, the record type parameter
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
+              <td><code>"^[a-z][a-zA-Z\d]*$"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -2967,7 +2967,7 @@ record MyRecord3&lt;abc&gt; {} // violation, the record type parameter
 class MyClass {
   public static int goodStatic = 2; // OK
   private static int BadStatic = 2; // violation, name 'BadStatic'
-                                    // must match pattern '^[a-z][a-zA-Z0-9]*$'
+                                    // must match pattern '^[a-z][a-zA-Z\d]*$'
 }
         </source>
         <p>
@@ -2986,7 +2986,7 @@ class MyClass {
   protected static int GoodStatic2 = 2; //OK
   private static int goodStatic = 2 // OK
   private static int BadStatic = 2; // violation, name 'BadStatic'
-                                    // must match pattern '^[a-z][a-zA-Z0-9]*$'
+                                    // must match pattern '^[a-z][a-zA-Z\d]*$'
 }
         </source>
         <p>
@@ -2996,7 +2996,7 @@ class MyClass {
         </p>
         <source>
 &lt;module name=&quot;StaticVariableName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z\d]+)*$&quot;/&gt;
   &lt;property name=&quot;applyToPrivate&quot; value=&quot;false&quot;/&gt;
   &lt;property name=&quot;applyToPackage&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
@@ -3006,7 +3006,7 @@ class MyClass {
 class MyClass {
   public static int good_static = 2; // OK
   public static int Bad_Static = 2; // violation, name 'Bad_Static'
-                                    // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+                                    // must match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
   private static int Good_Static1 = 2; // OK
   static int Good_Static2 = 2; // OK
 }
@@ -3070,7 +3070,7 @@ class MyClass {
               <td>format</td>
               <td>Specifies valid identifiers.</td>
               <td><a href="property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[A-Z][a-zA-Z0-9]*$"</code></td>
+              <td><code>"^[A-Z][a-zA-Z\d]*$"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
@@ -3151,9 +3151,9 @@ class MyClass {
         <source>
 public interface FirstName {} // OK
 protected class SecondName {} // OK
-enum Third_Name {} // violation, name 'Third_Name' must match pattern '^[A-Z][a-zA-Z0-9]*$'
+enum Third_Name {} // violation, name 'Third_Name' must match pattern '^[A-Z][a-zA-Z\d]*$'
 private class FourthName_ {} // violation, name 'FourthName_'
-                            // must match pattern '^[A-Z][a-zA-Z0-9]*$'
+                            // must match pattern '^[A-Z][a-zA-Z\d]*$'
         </source>
         <p>
           An example of how to configure the check for names that begin with a lower case letter,
@@ -3162,7 +3162,7 @@ private class FourthName_ {} // violation, name 'FourthName_'
         </p>
         <source>
 &lt;module name=&quot;TypeName&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z\d]+)*$&quot;/&gt;
   &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
   &lt;property name=&quot;applyToPrivate&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
@@ -3171,7 +3171,7 @@ private class FourthName_ {} // violation, name 'FourthName_'
         <source>
 public interface firstName {} // OK
 public class SecondName {} // violation, name 'SecondName'
-                          // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+                          // must match pattern '^[a-z](_?[a-zA-Z\d]+)*$'
 protected class ThirdName {} // OK
 private class FourthName {} // OK
         </source>
@@ -3183,7 +3183,7 @@ private class FourthName {} // OK
         <source>
 &lt;module name=&quot;TypeName&quot;&gt;
   &lt;property name=&quot;format&quot;
-    value=&quot;^I_[a-zA-Z0-9]*$&quot;/&gt;
+    value=&quot;^I_[a-zA-Z\d]*$&quot;/&gt;
   &lt;property name=&quot;tokens&quot;
     value=&quot;INTERFACE_DEF&quot;/&gt;
 &lt;/module&gt;
@@ -3192,7 +3192,7 @@ private class FourthName {} // OK
         <source>
 public interface I_firstName {} // OK
 interface SecondName {} // violation, name 'SecondName'
-                       // must match pattern '^I_[a-zA-Z0-9]*$'
+                       // must match pattern '^I_[a-zA-Z\d]*$'
         </source>
 
       </subsection>

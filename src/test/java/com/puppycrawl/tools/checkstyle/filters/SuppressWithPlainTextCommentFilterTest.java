@@ -128,18 +128,18 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         filterCfg.addProperty("onCommentFormat", "# CHECKSTYLE:ON");
 
         final DefaultConfiguration checkCfg = createModuleConfig(RegexpSinglelineCheck.class);
-        checkCfg.addProperty("format", "^key[0-9]=$");
+        checkCfg.addProperty("format", "^key\\d=$");
 
         final String[] suppressed = {
             "2: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                "^key[0-9]=$"),
+                "^key\\d=$"),
         };
 
         final String[] violationMessages = {
             "2: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                "^key[0-9]=$"),
+                "^key\\d=$"),
             "4: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                "^key[0-9]=$"),
+                "^key\\d=$"),
         };
 
         verifySuppressed(
@@ -366,14 +366,14 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
         final String[] expectedViolationMessages = {
             "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
             "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "41: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
         };
 
         verifyFilterWithInlineConfigParser(
@@ -387,25 +387,25 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     public void testSuppressByModuleId() throws Exception {
         final String[] suppressedViolationMessages = {
             "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
         };
 
         final String[] expectedViolationMessages = {
             "30: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
             "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "41: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
         };
 
         verifyFilterWithInlineConfigParser(
@@ -423,16 +423,16 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
         final String[] expectedViolationMessages = {
             "30: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
             "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "41: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
         };
 
         verifyFilterWithInlineConfigParser(
@@ -448,16 +448,16 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
         final String[] expectedViolationMessages = {
             "30: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
             "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "41: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
         };
 
         verifyFilterWithInlineConfigParser(
@@ -471,25 +471,25 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     public void testSuppressByModuleIdWithNullModuleId() throws Exception {
         final String[] suppressedViolationMessages = {
             "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
         };
 
         final String[] expectedViolationMessages = {
             "30: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
             "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "38: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "41: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
         };
 
         verifyFilterWithInlineConfigParser(
@@ -561,14 +561,14 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
         final String[] violationMessages = {
             "32: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "34:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
             "34: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "36: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
             "39: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
-                ".*[a-zA-Z][0-9].*"),
+                ".*[a-zA-Z]\\d.*"),
         };
 
         verifyFilterWithInlineConfigParser(
