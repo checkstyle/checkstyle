@@ -228,6 +228,8 @@
     <exclude name="LawOfDemeter"/>
     <!-- We use our ImportControl to control imports in packages and classes. -->
     <exclude name="LoosePackageCoupling"/>
+    <!-- We use our MethodCount to limit the number of methods in a class. -->
+    <exclude name="TooManyMethods"/>
   </rule>
   <rule ref="category/java/design.xml/AvoidCatchingGenericException">
     <properties>
