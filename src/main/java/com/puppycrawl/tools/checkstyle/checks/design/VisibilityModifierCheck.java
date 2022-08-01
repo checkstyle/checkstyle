@@ -49,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * default).
  * </p>
  * <p>
- * Note that Checkstyle 2 used to include {@code "^f[A-Z][a-zA-Z0-9]*$"} in the default pattern
+ * Note that Checkstyle 2 used to include {@code "^f[A-Z][a-zA-Z\d]*$"} in the default pattern
  * to allow names used in container-managed persistence for Enterprise JavaBeans (EJB) 1.1 with
  * the default settings. With EJB 2.0 it is no longer necessary to have public access for
  * persistent fields, so the default has been changed.

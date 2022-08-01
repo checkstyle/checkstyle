@@ -50,7 +50,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
     private static final String DELIMITER = " | \n";
 
     private static final Pattern LINE_COLUMN_NUMBER_REGEX =
-            Pattern.compile("([0-9]+):([0-9]+):");
+            Pattern.compile("(\\d+):(\\d+):");
 
     /**
      * The temporary folder to hold intermediate files.

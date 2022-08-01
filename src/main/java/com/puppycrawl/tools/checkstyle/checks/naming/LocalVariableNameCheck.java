@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <li>
  * Property {@code format} - Specifies valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
+ * Default value is {@code "^[a-z][a-zA-Z\d]*$"}.
  * </li>
  * <li>
  * Property {@code allowOneCharVarInForLoop} - Allow one character variable name in
@@ -56,10 +56,10 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   void MyMethod() {
  *     for (int var = 1; var &lt; 10; var++) {} // OK
  *     for (int VAR = 1; VAR &lt; 10; VAR++) {} // violation, name 'VAR' must match
- *                                           // pattern '^[a-z][a-zA-Z0-9]*$'
+ *                                           // pattern '^[a-z][a-zA-Z\d]*$'
  *     for (int i = 1; i &lt; 10; i++) {} // OK
  *     for (int var_1 = 0; var_1 &lt; 10; var_1++) {} // violation, name 'var_1' must match
- *                                                    // pattern '^[a-z][a-zA-Z0-9]*$'
+ *                                                    // pattern '^[a-z][a-zA-Z\d]*$'
  *   }
  * }
  * </pre>
@@ -69,7 +69,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <pre>
  * &lt;module name="LocalVariableName"&gt;
- *   &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+ *   &lt;property name="format" value="^[a-z](_?[a-zA-Z\d]+)*$"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Code Example:</p>
@@ -78,7 +78,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   void MyMethod() {
  *     for (int var = 1; var &lt; 10; var++) {} // OK
  *     for (int VAR = 1; VAR &lt; 10; VAR++) {} // violation, name 'VAR' must match
- *                                              // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+ *                                              // pattern '^[a-z](_?[a-zA-Z\d]+)*$'
  *     for (int i = 1; i &lt; 10; i++) {} // OK
  *     for (int var_1 = 0; var_1 &lt; 10; var_1++) {} // OK
  *   }
@@ -102,7 +102,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <pre>
  * &lt;module name="LocalVariableName"&gt;
- *   &lt;property name="format" value="^[a-z][_a-zA-Z0-9]+$"/&gt;
+ *   &lt;property name="format" value="^[a-z][_a-zA-Z\d]+$"/&gt;
  *   &lt;property name="allowOneCharVarInForLoop" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
@@ -133,7 +133,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <pre>
  * &lt;module name="LocalVariableName"&gt;
- *   &lt;property name="format" value="^[a-z][_a-zA-Z0-9]{2,}$"/&gt;
+ *   &lt;property name="format" value="^[a-z][_a-zA-Z\d]{2,}$"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Code Example:</p>
@@ -175,7 +175,7 @@ public class LocalVariableNameCheck
 
     /** Creates a new {@code LocalVariableNameCheck} instance. */
     public LocalVariableNameCheck() {
-        super("^[a-z][a-zA-Z0-9]*$");
+        super("^[a-z][a-zA-Z\\d]*$");
     }
 
     /**

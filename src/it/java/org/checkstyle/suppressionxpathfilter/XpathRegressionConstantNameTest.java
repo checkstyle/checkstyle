@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
 
     private static final Class<ConstantNameCheck> CLASS = ConstantNameCheck.class;
-    private static final String PATTERN = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+    private static final String PATTERN = "^[A-Z][A-Z\\d]*(_[A-Z\\d]+)*$";
     private final String checkName = CLASS.getSimpleName();
 
     @Override

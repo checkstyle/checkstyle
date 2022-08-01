@@ -155,7 +155,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * public static final int someConstant; // won't warn here
  * //resume constant check
  * public static final int someConstant; // will warn here as constant's name doesn't match the
- * // pattern "^[A-Z][A-Z0-9]*$"
+ * // pattern "^[A-Z][A-Z\d]*$"
  * </pre>
  * <p>
  * To configure a filter so that {@code UNUSED OFF: <i>var</i>} and

@@ -48,7 +48,7 @@ public class RecordComponentNameCheckTest extends AbstractModuleTestSupport {
     public void testRecordDefault()
             throws Exception {
 
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "19:34: " + getCheckMessage(MSG_INVALID_PATTERN, "value_123", pattern),
@@ -64,7 +64,7 @@ public class RecordComponentNameCheckTest extends AbstractModuleTestSupport {
     public void testClassFooName()
             throws Exception {
 
-        final String pattern = "^[a-z0-9]+$";
+        final String pattern = "^[a-z\\d]+$";
 
         final String[] expected = {
             "19:36: " + getCheckMessage(MSG_INVALID_PATTERN, "value_123", pattern),
