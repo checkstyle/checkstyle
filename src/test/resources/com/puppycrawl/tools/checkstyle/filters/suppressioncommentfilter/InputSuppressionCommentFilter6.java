@@ -11,7 +11,7 @@ checkC = (default)true
 
 com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck
 id = ignore
-format = (default)^[a-z][a-zA-Z0-9]*$
+format = (default)^[a-z][a-zA-Z\\d]*$
 applyToPublic = (default)true
 applyToProtected = (default)true
 applyToPackage = (default)true
@@ -20,7 +20,7 @@ applyToPrivate = (default)true
 
 com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck
 id = (null)
-format = (default)^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$
+format = (default)^[A-Z][A-Z\\d]*(_[A-\\d]+)*$
 applyToPublic = (default)true
 applyToProtected = (default)true
 applyToPackage = (default)true

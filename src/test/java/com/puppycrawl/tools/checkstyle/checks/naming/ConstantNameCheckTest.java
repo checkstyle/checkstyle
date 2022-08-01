@@ -71,7 +71,7 @@ public class ConstantNameCheckTest
     public void testDefault()
             throws Exception {
 
-        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+        final String pattern = "^[A-Z][A-Z\\d]*(_[A-Z\\d]+)*$";
 
         final String[] expected = {
             "31:29: " + getCheckMessage(MSG_INVALID_PATTERN, "badConstant", pattern),
@@ -85,7 +85,7 @@ public class ConstantNameCheckTest
     public void testAccessControlTuning()
             throws Exception {
 
-        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+        final String pattern = "^[A-Z][A-Z\\d]*(_[A-Z\\d]+)*$";
 
         final String[] expected = {
             "148:30: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD__NAME", pattern),
@@ -98,7 +98,7 @@ public class ConstantNameCheckTest
     public void testInterfaceAndAnnotation()
             throws Exception {
 
-        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+        final String pattern = "^[A-Z][A-Z\\d]*(_[A-Z\\d]+)*$";
 
         final String[] expected = {
             "31:16: " + getCheckMessage(MSG_INVALID_PATTERN, "data", pattern),
@@ -119,7 +119,7 @@ public class ConstantNameCheckTest
     @Test
     public void testIntoInterface() throws Exception {
 
-        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+        final String pattern = "^[A-Z][A-Z\\d]*(_[A-Z\\d]+)*$";
 
         final String[] expected = {
             "56:16: " + getCheckMessage(MSG_INVALID_PATTERN, "mPublic", pattern),

@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * <li>
  * Property {@code format} - Specifies valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
+ * Default value is {@code "^[a-z][a-zA-Z\d]*$"}.
  * </li>
  * <li>
  * Property {@code allowClassName} - Controls whether to allow a method name to have the same name
@@ -89,9 +89,9 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  *   public void firstMethod1() {} // OK
  *   protected void secondMethod() {} // OK
  *   private void ThirdMethod() {} // violation, method name must match to the
- *                                 // default pattern '^[a-z][a-zA-Z0-9]*$'
+ *                                 // default pattern '^[a-z][a-zA-Z\d]*$'
  *   public void fourth_Method4() {} // violation, method name must match to the
- *                                  // default pattern '^[a-z][a-zA-Z0-9]*$'
+ *                                  // default pattern '^[a-z][a-zA-Z\d]*$'
  * }
  * </pre>
  * <p>
@@ -100,7 +100,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * </p>
  * <pre>
  * &lt;module name="MethodName"&gt;
- *    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+ *    &lt;property name="format" value="^[a-z](_?[a-zA-Z\d]+)*$"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Code Example:</p>
@@ -108,7 +108,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * class MyClass {
  *   public void myMethod() {} // OK
  *   public void MyMethod() {} // violation, name "MyMethod"
- *                             // should match the pattern "^[a-z](_?[a-zA-Z0-9]+)*$"
+ *                             // should match the pattern "^[a-z](_?[a-zA-Z\d]+)*$"
  * }
  * </pre>
  * <p>
@@ -117,7 +117,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * </p>
  * <pre>
  * &lt;module name="MethodName"&gt;
- *    &lt;property name="format" value="^[a-zA-Z](_?[a-zA-Z0-9]+)*$"/&gt;
+ *    &lt;property name="format" value="^[a-zA-Z](_?[a-zA-Z\d]+)*$"/&gt;
  *    &lt;property name="allowClassName" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
@@ -135,7 +135,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * </p>
  * <pre>
  * &lt;module name="MethodName"&gt;
- *    &lt;property name="format" value="^[a-zA-Z](_?[a-zA-Z0-9]+)*$"/&gt;
+ *    &lt;property name="format" value="^[a-zA-Z](_?[a-zA-Z\d]+)*$"/&gt;
  *    &lt;property name="allowClassName" value="false"/&gt;
  * &lt;/module&gt;
  * </pre>
@@ -152,7 +152,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * </p>
  * <pre>
  * &lt;module name="MethodName"&gt;
- *    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+ *    &lt;property name="format" value="^[a-z](_?[a-zA-Z\d]+)*$"/&gt;
  *    &lt;property name="applyToPublic" value="false"/&gt;
  *    &lt;property name="applyToProtected" value="false"/&gt;
  * &lt;/module&gt;
@@ -163,9 +163,9 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  *   public void FirstMethod() {} // OK
  *   protected void SecondMethod() {} // OK
  *   private void ThirdMethod() {} // violation, name 'ThirdMethod' must match
- *                                 // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+ *                                 // pattern '^[a-z](_?[a-zA-Z\d]+)*$'
  *   void FourthMethod() {} // violation, name 'FourthMethod' must match
- *                          // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+ *                          // pattern '^[a-z](_?[a-zA-Z\d]+)*$'
  * }
  * </pre>
  * <p>
@@ -209,7 +209,7 @@ public class MethodNameCheck
 
     /** Creates a new {@code MethodNameCheck} instance. */
     public MethodNameCheck() {
-        super("^[a-z][a-zA-Z0-9]*$");
+        super("^[a-z][a-zA-Z\\d]*$");
     }
 
     @Override

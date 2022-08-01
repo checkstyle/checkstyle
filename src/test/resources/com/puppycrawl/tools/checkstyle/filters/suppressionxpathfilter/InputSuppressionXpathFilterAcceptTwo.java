@@ -5,7 +5,7 @@ optional = (default)false
 
 com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck
 id = uniqueId
-format = (default)^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$
+format = (default)^[A-Z][A-Z\\d]*(_[A-Z\\d]+)*$
 applyToPublic = (default)true
 applyToProtected = (default)true
 applyToPackage = (default)true

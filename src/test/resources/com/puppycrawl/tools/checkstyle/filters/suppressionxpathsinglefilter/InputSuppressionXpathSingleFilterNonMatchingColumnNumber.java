@@ -8,7 +8,7 @@ query = /COMPILATION_UNIT/CLASS_DEF[./IDENT \
         [@text='InputSuppressionXpathSingleFilterNonMatchingColumnNumber']]
 
 com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck
-format = (default)^[A-Z][a-zA-Z0-9]*$
+format = (default)^[A-Z][a-zA-Z\\d]*$
 applyToPublic = (default)true
 applyToProtected = (default)true
 applyToPackage = (default)true

@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Property {@code format} - Specifies valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
+ * Default value is {@code "^[a-z][a-zA-Z\d]*$"}.
  * </li>
  * </ul>
  * <p>
@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * Function&lt;String, String&gt; function1 = s -&gt; s.toLowerCase(); // OK
  * Function&lt;String, String&gt; function2 = S -&gt; S.toLowerCase(); // violation, name 'S'
- *                                                // must match pattern '^[a-z][a-zA-Z0-9]*$'
+ *                                                // must match pattern '^[a-z][a-zA-Z\d]*$'
  * </pre>
  * <p>
  * An example of how to configure the check for names that begin
@@ -93,7 +93,7 @@ public class LambdaParameterNameCheck extends AbstractNameCheck {
 
     /** Creates new instance of {@code LambdaParameterNameCheck}. */
     public LambdaParameterNameCheck() {
-        super("^[a-z][a-zA-Z0-9]*$");
+        super("^[a-z][a-zA-Z\\d]*$");
     }
 
     @Override

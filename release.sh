@@ -91,7 +91,7 @@ curl -i -H "Authorization: token $TKN" \
 
 echo "Creation of new milestone ..."
 LAST_SUNDAY_DAY=$(cal -d $(date -d "next month" +"%Y-%m") \
-                    | awk '/^ *[0-9]/ { d=$1 } END { print d }')
+                    | awk '/^ *\d/ { d=$1 } END { print d }')
 LAST_SUNDAY_DATETIME=$(date -d "next month" +"%Y-%m")"-$LAST_SUNDAY_DAY""T08:00:00Z"
 echo "$LAST_SUNDAY_DATETIME"
 curl -i -H "Authorization: token $TKN" \

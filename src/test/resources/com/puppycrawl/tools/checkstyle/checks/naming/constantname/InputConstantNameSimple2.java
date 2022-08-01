@@ -1,6 +1,6 @@
 /*
 ConstantName
-format = (default)^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$
+format = (default)^[A-Z][A-Z\\d]*(_[A-Z\\d]+)*$
 applyToPublic = false
 applyToProtected = false
 applyToPackage = false

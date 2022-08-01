@@ -49,7 +49,7 @@ public class StaticVariableNameCheckTest
     public void testSpecified()
             throws Exception {
 
-        final String pattern = "^s[A-Z][a-zA-Z0-9]*$";
+        final String pattern = "^s[A-Z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "36:24: " + getCheckMessage(MSG_INVALID_PATTERN, "badStatic", pattern),
