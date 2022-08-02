@@ -3,15 +3,6 @@
   <mutation unstable="false">
     <sourceFile>AbstractCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable tabWidth</description>
-    <lineContent>private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
     <mutatedMethod>getTokenNames</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
     <description>replaced call to java/util/Collections::unmodifiableSet with argument</description>
