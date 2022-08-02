@@ -6,7 +6,7 @@ echo "Release process: https://github.com/checkstyle/checkstyle/wiki/How-to-make
 
 RELEASE=$(xmlstarlet sel -N pom=http://maven.apache.org/POM/4.0.0 \
            -t -m pom:project -v pom:version pom.xml | sed "s/-SNAPSHOT//")
-PREV_RELEASE=$(git describe --abbrev=0 $(git rev-list --tags --max-count=1) | sed "s/checkstyle-//")
+PREV_RELEASE=$(git describe --abbrev=0 "$(git rev-list --tags --max-count=1)" | sed "s/checkstyle-//")
 
 echo "PREVIOUS RELEASE version:""$PREV_RELEASE"
 echo "RELEASE version:""$RELEASE"
@@ -56,7 +56,7 @@ cd ../../
 
 NEW_RELEASE=$(git describe --abbrev=0 | cut -d '-' -f 2)
 PREV_RELEASE=$(git describe --abbrev=0 --tags \
-        $(git rev-list --tags --skip=1 --max-count=1) \
+        "$(git rev-list --tags --skip=1 --max-count=1)" \
     | cut -d '-' -f 2)
 FUTURE_RELEASE=$(xmlstarlet sel -N pom=http://maven.apache.org/POM/4.0.0 \
            -t -m pom:project -v pom:version pom.xml | sed "s/-SNAPSHOT//")
@@ -90,7 +90,7 @@ curl -i -H "Authorization: token $TKN" \
 
 
 echo "Creation of new milestone ..."
-LAST_SUNDAY_DAY=$(cal -d $(date -d "next month" +"%Y-%m") \
+LAST_SUNDAY_DAY=$(cal -d "$(date -d "next month" +"%Y-%m")" \
                     | awk '/^ *[0-9]/ { d=$1 } END { print d }')
 LAST_SUNDAY_DATETIME=$(date -d "next month" +"%Y-%m")"-$LAST_SUNDAY_DAY""T08:00:00Z"
 echo "$LAST_SUNDAY_DATETIME"

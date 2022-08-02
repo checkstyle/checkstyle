@@ -88,7 +88,7 @@ run-command-after-success)
 
 deploy-snapshot)
   SKIP_DEPLOY=false
-  if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ];
+  if [ "$(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l)" -lt 1 ];
     then
       SKIP_DEPLOY=false;
     else

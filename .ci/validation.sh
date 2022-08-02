@@ -88,7 +88,7 @@ nondex)
   mvn -e --no-transfer-progress --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m' \
     -Dtest=!JavadocPropertiesGeneratorTest#testNonExistentArgument
   mkdir -p .ci-temp
-  cat $(grep -RlE 'td class=.x' .nondex/ | cat) < /dev/null > .ci-temp/output.txt
+  cat "$(grep -RlE 'td class=.x' .nondex/ | cat)" < /dev/null > .ci-temp/output.txt
   RESULT=$(cat .ci-temp/output.txt | wc -c)
   cat .ci-temp/output.txt
   echo 'Size of output:'"$RESULT"
@@ -102,7 +102,7 @@ pr-age)
   # if it notices a merge commit
   if git show --summary HEAD | grep ^Merge: ;
   then
-    git reset --hard $(git log -n 1 --no-merges --pretty=format:"%h")
+    git reset --hard "$(git log -n 1 --no-merges --pretty=format:"%h")"
   fi
 
   PR_MASTER=$(git merge-base origin/master HEAD)
@@ -169,7 +169,7 @@ versions)
   if [ -v TRAVIS_EVENT_TYPE ] && [ "$TRAVIS_EVENT_TYPE" != "cron" ] ; then exit 0; fi
   mvn -e --no-transfer-progress clean versions:dependency-updates-report \
     versions:plugin-updates-report
-  if [ $(grep "<nextVersion>" target/*-updates-report.xml | cat | wc -l) -gt 0 ]; then
+  if [ "$(grep "<nextVersion>" target/*-updates-report.xml | cat | wc -l)" -gt 0 ]; then
     echo "Version reports (dependency-updates-report.xml):"
     cat target/dependency-updates-report.xml
     echo "Version reports (plugin-updates-report.xml):"
@@ -403,7 +403,8 @@ site)
   ;;
 
 release-dry-run)
-  if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ];then
+  if [ "$(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l)" -lt 1 ]
+  then
     mvn -e --no-transfer-progress release:prepare -DdryRun=true --batch-mode \
     -Darguments='-DskipTests -DskipITs -Djacoco.skip=true -Dpmd.skip=true \
       -Dspotbugs.skip=true -Dxml.skip=true -Dcheckstyle.ant.skip=true \
