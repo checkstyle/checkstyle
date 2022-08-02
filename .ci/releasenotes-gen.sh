@@ -42,7 +42,7 @@ else
   cd ../
 fi
 cd .ci-temp/checkstyle
-LATEST_RELEASE_TAG=$(git describe $(git rev-list --tags --max-count=1))
+LATEST_RELEASE_TAG=$(git describe "$(git rev-list --tags --max-count=1)")
 cd ../../
 
 CS_RELEASE_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
