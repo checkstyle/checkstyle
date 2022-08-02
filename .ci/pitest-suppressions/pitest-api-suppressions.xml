@@ -12,15 +12,6 @@
   <mutation unstable="false">
     <sourceFile>AbstractCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
-    <mutatedMethod>getTokenNames</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Collections::unmodifiableSet with argument</description>
-    <lineContent>return Collections.unmodifiableSet(tokens);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
     <mutatedMethod>log</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/util/Map::get</description>
