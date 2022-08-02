@@ -763,26 +763,26 @@
     <module name="InterfaceTypeParameterName"/>
     <module name="LocalFinalVariableName"/>
     <module name="LocalVariableName">
-      <property name="format" value="^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$"/>
+      <property name="format" value="^(id)|([a-z][a-z\d][a-zA-Z\d]+)$"/>
     </module>
     <module name="MemberName">
-      <property name="format" value="^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$"/>
+      <property name="format" value="^(id)|([a-z][a-z\d][a-zA-Z\d]+)$"/>
     </module>
     <module name="MethodName"/>
     <module name="MethodTypeParameterName"/>
     <module name="PackageName"/>
     <module name="ParameterName">
-      <property name="format" value="^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$"/>
+      <property name="format" value="^(id)|([a-z][a-z\d][a-zA-Z\d]+)$"/>
       <property name="ignoreOverridden" value="true"/>
     </module>
     <module name="LambdaParameterName">
-      <property name="format" value="^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$"/>
+      <property name="format" value="^(id)|([a-z][a-z\d][a-zA-Z\d]+)$"/>
     </module>
     <module name="CatchParameterName">
       <property name="format" value="^(ex|[a-z][a-z][a-zA-Z]+)$"/>
     </module>
     <module name="StaticVariableName">
-      <property name="format" value="^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$"/>
+      <property name="format" value="^(id)|([a-z][a-z\d][a-zA-Z\d]+)$"/>
     </module>
     <module name="TypeName"/>
     <module name="PatternVariableName"/>

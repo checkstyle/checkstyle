@@ -489,7 +489,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     public void testCountMatches() throws Exception {
         final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
         final int actual = TestUtil.invokeMethod(check, "countMatches",
-                Pattern.compile("\\\\u[a-fA-F0-9]{4}"), "\\u1234");
+                Pattern.compile("\\\\u[a-fA-F\\d]{4}"), "\\u1234");
         assertWithMessage("Unexpected matches count")
             .that(actual)
             .isEqualTo(1);
@@ -523,7 +523,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
 
         // Verifying character order
         final String[] expressionParts = expression.split("\\|");
-        final Pattern unicodeCharPattern = Pattern.compile("^\\\\\\\\u[0-9A-F]{4}$");
+        final Pattern unicodeCharPattern = Pattern.compile("^\\\\\\\\u[\\dA-F]{4}$");
         String lastChar = null;
         for (int i = 0; i < expressionParts.length; i++) {
             final String currentChar = expressionParts[i];

@@ -97,9 +97,9 @@ public class SuppressionXpathSingleFilterTest
     public void testNonMatchingColumnNumber() throws Exception {
         final String[] expected = {
             "23:11: " + getCheckMessage(TypeNameCheck.class, MSG_INVALID_PATTERN,
-                                        "testClass", "^[A-Z][a-zA-Z0-9]*$"),
+                                        "testClass", "^[A-Z][a-zA-Z\\d]*$"),
             "26:11: " + getCheckMessage(TypeNameCheck.class, MSG_INVALID_PATTERN,
-                                        "anotherTestClass", "^[A-Z][a-zA-Z0-9]*$"),
+                                        "anotherTestClass", "^[A-Z][a-zA-Z\\d]*$"),
         };
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
 

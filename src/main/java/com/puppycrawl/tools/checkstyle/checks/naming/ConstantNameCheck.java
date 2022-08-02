@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <li>
  * Property {@code format} - Specifies valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"}.
+ * Default value is {@code "^[A-Z][A-Z\d]*(_[A-Z\d]+)*$"}.
  * </li>
  * <li>
  * Property {@code applyToPublic} - Controls whether to apply the check to public member.
@@ -70,9 +70,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   public final static int FIRST_CONSTANT1 = 10; // OK
  *   protected final static int SECOND_CONSTANT2 = 100; // OK
  *   final static int third_Constant3 = 1000; // violation, name 'third_Constant3' must
- *                                           // match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+ *                                           // match pattern '^[A-Z][A-Z\d]*(_[A-Z\d]+)*$'
  *   private final static int fourth_Const4 = 50; // violation, name 'fourth_Const4' must match
- *                                                 // pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+ *                                                 // pattern '^[A-Z][A-Z\d]*(_[A-Z\d]+)*$'
  * }
  * </pre>
  * <p>
@@ -82,7 +82,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <pre>
  * &lt;module name=&quot;ConstantName&quot;&gt;
  *   &lt;property name=&quot;format&quot;
- *     value=&quot;^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&quot;/&gt;
+ *     value=&quot;^log(ger)?$|^[A-Z][A-Z\d]*(_[A-Z\d]+)*$&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Code Example:</p>
@@ -91,12 +91,12 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   final static int log = 10; // OK
  *   final static int logger = 50; // OK
  *   final static int logMYSELF = 10; // violation, name 'logMYSELF' must match
- *                                    // pattern '^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+ *                                    // pattern '^log(ger)?$|^[A-Z][A-Z\d]*(_[A-Z\d]+)*$'
  *   final static int loggerMYSELF = 5; // violation, name 'loggerMYSELF' must match
- *                                      // pattern '^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+ *                                      // pattern '^log(ger)?$|^[A-Z][A-Z\d]*(_[A-Z\d]+)*$'
  *   final static int MYSELF = 100; // OK
  *   final static int myselfConstant = 1; // violation, name 'myselfConstant' must match pattern
- *                                        // '^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+ *                                        // '^log(ger)?$|^[A-Z][A-Z\d]*(_[A-Z\d]+)*$'
  * }
  * </pre>
  * <p>
@@ -115,9 +115,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   public final static int firstConstant = 10; // OK
  *   protected final static int secondConstant = 100; // OK
  *   final static int thirdConstant = 1000; // violation, name 'thirdConstant' must
- *                                          // match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+ *                                          // match pattern '^[A-Z][A-Z\d]*(_[A-Z\d]+)*$'
  *   private final static int fourthConstant = 50; // violation, name 'fourthConstant' must match
- *                                                 // pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+ *                                                 // pattern '^[A-Z][A-Z\d]*(_[A-Z\d]+)*$'
  * }
  * </pre>
  * <p>
@@ -139,7 +139,7 @@ public class ConstantNameCheck
 
     /** Creates a new {@code ConstantNameCheck} instance. */
     public ConstantNameCheck() {
-        super("^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$");
+        super("^[A-Z][A-Z\\d]*(_[A-Z\\d]+)*$");
     }
 
     @Override

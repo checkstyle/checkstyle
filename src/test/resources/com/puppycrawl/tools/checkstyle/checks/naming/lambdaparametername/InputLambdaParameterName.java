@@ -1,6 +1,6 @@
 /*
 LambdaParameterName
-format = ^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$
+format = ^(id)|([a-z][a-z\\d][a-zA-Z\\d]+)$
 
 
 */

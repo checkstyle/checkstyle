@@ -100,7 +100,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
         final String[] expected1 = {
             "1:45: " + getCheckMessage(ConstantNameCheck.class,
-                    MSG_INVALID_PATTERN, "k", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+                    MSG_INVALID_PATTERN, "k", "^[A-Z][A-Z\\d]*(_[A-Z\\d]+)*$"),
         };
         verify(checkConfig, file.getPath(), expected1);
     }
@@ -505,9 +505,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "9:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "P",
-                    "^[a-z][a-zA-Z0-9]*$"),
+                    "^[a-z][a-zA-Z\\d]*$"),
             "4:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "I",
-                    "^[a-z][a-zA-Z0-9]*$"),
+                    "^[a-z][a-zA-Z\\d]*$"),
         };
 
         verify(treeWalkerConfig,

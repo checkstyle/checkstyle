@@ -3488,7 +3488,7 @@
                    enabled_by_default="false"/>
   <inspection_tool class="PackageNamingConvention" enabled="true" level="WARNING"
                    enabled_by_default="true">
-    <option name="m_regex" value="[a-z0-9\.]*"/>
+    <option name="m_regex" value="[a-z\d\.]*"/>
     <option name="m_minLength" value="3"/>
     <option name="m_maxLength" value="100"/>
   </inspection_tool>

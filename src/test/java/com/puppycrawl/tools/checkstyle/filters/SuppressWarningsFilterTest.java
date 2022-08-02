@@ -41,25 +41,25 @@ public class SuppressWarningsFilterTest
         "51:5: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         "54:37: "
             + getCheckMessage(AbstractNameCheck.class,
-                MSG_INVALID_PATTERN, "I", "^[a-z][a-zA-Z0-9]*$"),
+                MSG_INVALID_PATTERN, "I", "^[a-z][a-zA-Z\\d]*$"),
         "56:17: "
             + getCheckMessage(AbstractNameCheck.class,
-                MSG_INVALID_PATTERN, "J", "^[a-z][a-zA-Z0-9]*$"),
+                MSG_INVALID_PATTERN, "J", "^[a-z][a-zA-Z\\d]*$"),
         "57:17: "
             + getCheckMessage(AbstractNameCheck.class,
-                MSG_INVALID_PATTERN, "K", "^[a-z][a-zA-Z0-9]*$"),
+                MSG_INVALID_PATTERN, "K", "^[a-z][a-zA-Z\\d]*$"),
         "61:17: "
             + getCheckMessage(AbstractNameCheck.class,
-                MSG_INVALID_PATTERN, "L", "^[a-z][a-zA-Z0-9]*$"),
+                MSG_INVALID_PATTERN, "L", "^[a-z][a-zA-Z\\d]*$"),
         "61:32: "
             + getCheckMessage(AbstractNameCheck.class,
-                MSG_INVALID_PATTERN, "X", "^[a-z][a-zA-Z0-9]*$"),
+                MSG_INVALID_PATTERN, "X", "^[a-z][a-zA-Z\\d]*$"),
         "66:30: "
             + getCheckMessage(AbstractNameCheck.class,
-                MSG_INVALID_PATTERN, "m", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+                MSG_INVALID_PATTERN, "m", "^[A-Z][A-Z\\d]*(_[A-Z\\d]+)*$"),
         "67:30: "
             + getCheckMessage(AbstractNameCheck.class,
-                MSG_INVALID_PATTERN, "n", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+                MSG_INVALID_PATTERN, "n", "^[A-Z][A-Z\\d]*(_[A-Z\\d]+)*$"),
         "72:10: "
             + getCheckMessage(ParameterNumberCheck.class, ParameterNumberCheck.MSG_KEY, 7, 8),
         "76:9: "
@@ -94,13 +94,13 @@ public class SuppressWarningsFilterTest
         final String[] suppressed = {
             "56:17: "
                 + getCheckMessage(AbstractNameCheck.class,
-                    MSG_INVALID_PATTERN, "J", "^[a-z][a-zA-Z0-9]*$"),
+                    MSG_INVALID_PATTERN, "J", "^[a-z][a-zA-Z\\d]*$"),
             "61:17: "
                 + getCheckMessage(AbstractNameCheck.class,
-                    MSG_INVALID_PATTERN, "L", "^[a-z][a-zA-Z0-9]*$"),
+                    MSG_INVALID_PATTERN, "L", "^[a-z][a-zA-Z\\d]*$"),
             "66:30: "
                 + getCheckMessage(AbstractNameCheck.class,
-                    MSG_INVALID_PATTERN, "m", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+                    MSG_INVALID_PATTERN, "m", "^[A-Z][A-Z\\d]*(_[A-Z\\d]+)*$"),
             "72:10: "
                 + getCheckMessage(ParameterNumberCheck.class, ParameterNumberCheck.MSG_KEY, 7, 8),
             "85:9: "
@@ -118,7 +118,7 @@ public class SuppressWarningsFilterTest
         final String[] suppressedViolationMessages = {
             "49:17: "
                 + getCheckMessage(AbstractNameCheck.class,
-                    MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
+                    MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z\\d]*$"),
             "51:5: "
                 + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
         };
@@ -126,7 +126,7 @@ public class SuppressWarningsFilterTest
             "46:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
             "49:17: "
                 + getCheckMessage(AbstractNameCheck.class,
-                    MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
+                    MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z\\d]*$"),
             "51:5: "
                 + getCheckMessage(UncommentedMainCheck.class, UncommentedMainCheck.MSG_KEY),
         };
