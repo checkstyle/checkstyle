@@ -274,6 +274,10 @@
                   <code>xml</code> - specifies the <a
                   href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>
                 </li>
+                <li>
+                  <code>sarif</code> - specifies the <a
+                  href="apidocs/com/puppycrawl/tools/checkstyle/SarifLogger.html">SarifLogger</a>
+                </li>
               </ul>
               <p>Defaults to <code>"plain"</code>.</p>
             </td>
@@ -402,7 +406,7 @@
       <p>
         <b>
           Run checkstyle on a set of files and output messages to standard
-          output in plain format, and a file in XML format
+          output in plain format, and files in XML &amp; SARIF format
         </b>
       </p>
       <source>
@@ -410,6 +414,7 @@
   &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
   &lt;formatter type=&quot;plain&quot;/&gt;
   &lt;formatter type=&quot;xml&quot; toFile=&quot;build/checkstyle_errors.xml&quot;/&gt;
+  &lt;formatter type=&quot;sarif&quot; toFile=&quot;build/checkstyle_errors.sarif&quot;/&gt;
 &lt;/checkstyle&gt;
       </source>
 
