@@ -479,4 +479,20 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodEnum.java"), expected);
     }
+
+    @Test
+    public void testCustomMessages() throws Exception {
+        final String msgReturnExpectedCustom =
+            "@return tag should be present and have description :)";
+        final String msgUnusedTagCustom = "Unused @param tag for 'unused' :)";
+        final String msgExpectedTagCustom = "Expected @param tag for 'a' :)";
+        final String[] expected = {
+            "20: " + msgReturnExpectedCustom,
+            "24:9: " + msgUnusedTagCustom,
+            "31:22: " + msgExpectedTagCustom,
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocMethodCustomMessage.java"), expected);
+    }
 }
