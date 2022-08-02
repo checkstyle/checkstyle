@@ -23,43 +23,7 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
     <mutatedMethod>log</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getColumnNo</description>
-    <lineContent>ast.getColumnNo(),</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
-    <mutatedMethod>log</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
-    <lineContent>ast.getType(),</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
-    <mutatedMethod>log</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/Object::getClass</description>
-    <lineContent>getClass(),</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
-    <mutatedMethod>log</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/util/Map::get</description>
-    <lineContent>getCustomMessages().get(key)));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
-    <mutatedMethod>log</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Map::get with argument</description>
     <lineContent>getCustomMessages().get(key)));</lineContent>
   </mutation>
 
@@ -70,24 +34,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to com/puppycrawl/tools/checkstyle/api/AbstractCheck::getId</description>
     <lineContent>getId(),</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
-    <mutatedMethod>log</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/AbstractCheck::getMessageBundle</description>
-    <lineContent>getMessageBundle(),</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractCheck</mutatedClass>
-    <mutatedMethod>log</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/AbstractCheck::getSeverityLevel</description>
-    <lineContent>getSeverityLevel(),</lineContent>
   </mutation>
 
   <mutation unstable="false">

@@ -4063,6 +4063,10 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest</param>
                 <!-- 1% mutation in CheckUtil -->
                 <param>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheckTest</param>
+                <param>org.checkstyle.suppressionxpathfilter.XpathRegressionUnusedLocalVariableTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheckTest</param>
+                <param>org.checkstyle.suppressionxpathfilter.XpathRegressionJavadocMethodTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheckTest</param>
               </targetTests>
               <excludedTestClasses>
                 <param>*.Input*</param>
