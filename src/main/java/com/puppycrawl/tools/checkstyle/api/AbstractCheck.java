@@ -51,8 +51,11 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     /** The tokens the check is interested in. */
     private final Set<String> tokens = new HashSet<>();
 
-    /** The tab width for column reporting. */
-    private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;
+    /**
+     * The tab width for column reporting. Default is uninitialized as the value is inherited from
+     * the parent module.
+     */
+    private int tabWidth;
 
     /**
      * Returns the default token a check is interested in. Only used if the
