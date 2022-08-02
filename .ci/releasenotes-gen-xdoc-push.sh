@@ -2,15 +2,6 @@
 set -e
 
 source ./.ci/util.sh
-
-checkForVariable() {
-  VAR_NAME=$1
-  if [ ! -v "$VAR_NAME" ]; then
-    echo "Error: Define $1 environment variable"
-    exit 1
-  fi
-}
-
 checkForVariable "READ_ONLY_TOKEN"
 
 checkout_from https://github.com/checkstyle/contribution

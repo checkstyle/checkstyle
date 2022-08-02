@@ -1,16 +1,10 @@
 #!/bin/bash
 set -e
 
+source ./.ci/util.sh
+
 mkdir -p .ci-temp
 cp .ci/release-settings.xml .ci-temp/
-
-checkForVariable() {
-  VAR_NAME=$1
-  if [ ! -v "$VAR_NAME" ]; then
-    echo "Error: Define $1 environment variable"
-    exit 1
-  fi
-}
 
 checkForVariable "SONATYPE_USER"
 checkForVariable "SONATYPE_PWD"
