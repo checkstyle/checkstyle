@@ -79,8 +79,8 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
     public void testCustomFormatFromJavadoc() throws Exception {
 
         final String[] expected = {
-            "13:28: " + getCheckMessage(MSG_INVALID_PATTERN, "e", "^[a-z][a-zA-Z0-9]+$"),
-            "31:28: " + getCheckMessage(MSG_INVALID_PATTERN, "t", "^[a-z][a-zA-Z0-9]+$"),
+            "13:28: " + getCheckMessage(MSG_INVALID_PATTERN, "e", "^[a-z][a-zA-Z\\d]+$"),
+            "31:28: " + getCheckMessage(MSG_INVALID_PATTERN, "t", "^[a-z][a-zA-Z\\d]+$"),
         };
 
         verifyWithInlineConfigParser(

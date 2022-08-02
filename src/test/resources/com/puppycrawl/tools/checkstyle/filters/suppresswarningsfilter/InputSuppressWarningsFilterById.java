@@ -6,7 +6,7 @@ aliasList = com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=pa
 
 com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck
 id = ignore
-format = (default)^[a-z][a-zA-Z0-9]*$
+format = (default)^[a-z][a-zA-Z\d]*$
 applyToPublic = (default)true
 applyToProtected = (default)true
 applyToPackage = (default)true
@@ -14,7 +14,7 @@ applyToPrivate = (default)true
 
 com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck
 id =
-format = (default)^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$
+format = (default)^[A-Z][A-Z\d]*(_[A-Z\d]+)*$
 applyToPublic = (default)true
 applyToProtected = (default)true
 applyToPackage = (default)true
@@ -46,7 +46,7 @@ package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
 public class InputSuppressWarningsFilterById { // violation 'Missing a Javadoc comment'
 
     @SuppressWarnings("checkstyle:ignore")
-    private int A1 = 1; // filtered violation ''A1' must match pattern \Q'^[a-z][a-zA-Z0-9]*$'\E'
+    private int A1 = 1; // filtered violation ''A1' must match pattern \Q'^[a-z][a-zA-Z\d]*$'\E'
 
     @SuppressWarnings("checkstyle:ignore") // filtered violation 'Uncommented main method found'
     public static void main(String[] args) {

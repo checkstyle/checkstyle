@@ -2,7 +2,7 @@
 VisibilityModifier
 packageAllowed = (default)false
 protectedAllowed = (default)false
-publicMemberPattern = ^f[A-Z][a-zA-Z0-9]*$
+publicMemberPattern = ^f[A-Z][a-zA-Z\d]*$
 allowPublicFinalFields = (default)false
 allowPublicImmutableFields = (default)false
 immutableClassCanonicalNames = (default)java.io.File, java.lang.Boolean, java.lang.Byte, \

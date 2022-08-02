@@ -43,7 +43,7 @@ public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
         final File fileToProcess =
                 new File(getPath("SuppressionXpathRegressionTypeName1.java"));
 
-        final String pattern = "^[A-Z][a-zA-Z0-9]*$";
+        final String pattern = "^[A-Z][a-zA-Z\\d]*$";
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(TypeNameCheck.class);
 
@@ -67,10 +67,10 @@ public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
         final File fileToProcess =
                 new File(getPath("SuppressionXpathRegressionTypeName2.java"));
 
-        final String pattern = "^I_[a-zA-Z0-9]*$";
+        final String pattern = "^I_[a-zA-Z\\d]*$";
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(TypeNameCheck.class);
-        moduleConfig.addProperty("format", "^I_[a-zA-Z0-9]*$");
+        moduleConfig.addProperty("format", "^I_[a-zA-Z\\d]*$");
         moduleConfig.addProperty("tokens", "INTERFACE_DEF");
 
         final String[] expectedViolation = {

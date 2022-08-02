@@ -14,10 +14,10 @@
  Java Language specification&lt;/a&gt;
  and the Sun coding conventions. However, both underscores and uppercase letters are rather
  uncommon, so most configurations should probably assign value
- {@code ^[a-z]+(\.[a-z][a-z0-9]*)*$} to {@code format} for module {@code PackageName}.
+ {@code ^[a-z]+(\.[a-z][a-z\d]*)*$} to {@code format} for module {@code PackageName}.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$"
+            <property default-value="^[a-z]+(\.[a-zA-Z_]\w*)*$"
                        name="format"
                        type="java.util.regex.Pattern">
                <description>Specifies valid identifiers.</description>

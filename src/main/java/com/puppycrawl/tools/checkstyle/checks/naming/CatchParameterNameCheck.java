@@ -91,7 +91,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>Configuration:</p>
  * <pre>
  * &lt;module name="CatchParameterName"&gt;
- *   &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
+ *   &lt;property name="format" value="^[a-z][a-zA-Z\d]+$"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Example:</p>

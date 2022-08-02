@@ -63,7 +63,7 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testParametersInLambda() throws Exception {
 
-        final String pattern = "^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$";
+        final String pattern = "^(id)|([a-z][a-z\\d][a-zA-Z\\d]+)$";
 
         final String[] expected = {
             "15:68: " + getCheckMessage(MSG_INVALID_PATTERN, "s", pattern),
@@ -79,7 +79,7 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testLambdaParameterNameSwitchExpression() throws Exception {
 
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^[a-z][a-zA-Z\\d]*$";
 
         final String[] expected = {
             "19:35: " + getCheckMessage(MSG_INVALID_PATTERN, "Word", pattern),

@@ -1,6 +1,6 @@
 /*
 PatternVariableName
-format = ^[a-z][a-zA-Z0-9]+$
+format = ^[a-z][a-zA-Z\\d]+$
 
 
 */

@@ -46,7 +46,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(PatternVariableNameCheck.class);
-        final String defaultPattern = "^[a-z][a-zA-Z0-9]*$";
+        final String defaultPattern = "^[a-z][a-zA-Z\\d]*$";
 
         final String[] expectedViolation = {
             "6:33: " + getCheckMessage(PatternVariableNameCheck.class,
@@ -72,7 +72,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
                 new File(getNonCompilablePath(
                         "SuppressionXpathRegressionPatternVariableName2.java"));
 
-        final String nonDefaultPattern = "^_[a-zA-Z0-9]*$";
+        final String nonDefaultPattern = "^_[a-zA-Z\\d]*$";
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(PatternVariableNameCheck.class);
@@ -101,7 +101,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
                 new File(getNonCompilablePath(
                         "SuppressionXpathRegressionPatternVariableName3.java"));
 
-        final String nonDefaultPattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
+        final String nonDefaultPattern = "^[a-z](_?[a-zA-Z\\d]+)*$";
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(PatternVariableNameCheck.class);
@@ -130,7 +130,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
                 new File(getNonCompilablePath(
                         "SuppressionXpathRegressionPatternVariableName4.java"));
 
-        final String nonDefaultPattern = "^[a-z][_a-zA-Z0-9]{2,}$";
+        final String nonDefaultPattern = "^[a-z]\\w{2,}$";
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(PatternVariableNameCheck.class);

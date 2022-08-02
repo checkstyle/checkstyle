@@ -9,7 +9,7 @@ idFormat = (default)(null)
 
 com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck
 id = ignore
-format = .*[a-zA-Z][0-9].*
+format = .*[a-zA-Z]\\d.*
 message = (default)
 ignoreCase = (default)false
 minimum = (default)0
