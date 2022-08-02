@@ -20,6 +20,9 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_RETURN_EXPECTED;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_UNUSED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_CONTAINS_TAB;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_FILE_CONTAINS_TAB;
 
@@ -37,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
@@ -490,6 +494,31 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
         verifyFilterWithInlineConfigParser(
             getPath("InputSuppressWithPlainTextCommentFilterSuppressById5.java"),
+            expectedViolationMessages,
+            removeSuppressed(expectedViolationMessages, suppressedViolationMessages)
+        );
+    }
+
+    @Test
+    public void testSuppressedByIdJavadocCheck() throws Exception {
+        final String[] suppressedViolationMessages = {
+            "28: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
+            "32:9: " + getCheckMessage(JavadocMethodCheck.class,
+                                       MSG_UNUSED_TAG, "@param", "unused"),
+            "39:22: " + getCheckMessage(JavadocMethodCheck.class,
+                                        MSG_EXPECTED_TAG, "@param", "a"),
+        };
+
+        final String[] expectedViolationMessages = {
+            "28: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
+            "32:9: " + getCheckMessage(JavadocMethodCheck.class,
+                                       MSG_UNUSED_TAG, "@param", "unused"),
+            "39:22: " + getCheckMessage(JavadocMethodCheck.class,
+                                        MSG_EXPECTED_TAG, "@param", "a"),
+        };
+
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithPlainTextCommentFilterSuppressByIdJavadocCheck.java"),
             expectedViolationMessages,
             removeSuppressed(expectedViolationMessages, suppressedViolationMessages)
         );
