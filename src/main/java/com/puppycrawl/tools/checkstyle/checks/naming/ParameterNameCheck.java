@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * <li>
  * Property {@code format} - Specifies valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
+ * Default value is {@code "^[a-z][a-zA-Z\d]*$"}.
  * </li>
  * <li>
  * Property {@code ignoreOverridden} - Allows to skip methods with Override annotation from
@@ -69,7 +69,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * <pre>
  * class MyClass {
  *   void method1(int v1) {} // OK
- *   void method2(int V2) {} // violation, name 'V2' must match pattern '^[a-z][a-zA-Z0-9]*$'
+ *   void method2(int V2) {} // violation, name 'V2' must match pattern '^[a-z][a-zA-Z\d]*$'
  * }
  * </pre>
  * <p>
@@ -78,7 +78,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * </p>
  * <pre>
  * &lt;module name=&quot;ParameterName&quot;&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;^[a-z][_a-zA-Z0-9]+$&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^[a-z][_a-zA-Z\d]+$&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Code Example:</p>
@@ -86,7 +86,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * class MyClass {
  *   void method1(int v1) {} // OK
  *   void method2(int v_2) {} // OK
- *   void method3(int V3) {} // violation, name 'V3' must match pattern '^[a-z][_a-zA-Z0-9]+$'
+ *   void method3(int V3) {} // violation, name 'V3' must match pattern '^[a-z][_a-zA-Z\d]+$'
  * }
  * </pre>
  * <p>
@@ -102,7 +102,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * <pre>
  * class MyClass {
  *   void method1(int v1) {} // OK
- *   void method2(int V2) {} // violation, name 'V2' must match pattern '^[a-z][a-zA-Z0-9]*$'
+ *   void method2(int V2) {} // violation, name 'V2' must match pattern '^[a-z][a-zA-Z\d]*$'
  *   &#064;Override
  *   public boolean equals(Object V3) { // OK
  *       return true;
@@ -115,15 +115,15 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * </p>
  * <pre>
  * &lt;module name=&quot;ParameterName&quot;&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-zA-Z0-9]+$&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-zA-Z\d]+$&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Code Example:</p>
  * <pre>
  * class MyClass {
  *   void method1(int v1) {} // OK
- *   void method2(int v_2) {} // violation, name 'v_2' must match pattern '^[a-z][a-zA-Z0-9]+$'
- *   void method3(int V3) {} // violation, name 'V3' must match pattern '^[a-z][a-zA-Z0-9]+$'
+ *   void method2(int v_2) {} // violation, name 'v_2' must match pattern '^[a-z][a-zA-Z\d]+$'
+ *   void method3(int V3) {} // violation, name 'V3' must match pattern '^[a-z][a-zA-Z\d]+$'
  * }
  * </pre>
  * <p>
@@ -132,14 +132,14 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * </p>
  * <pre>
  * &lt;module name=&quot;ParameterName&quot;&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;^[a-z]([a-z0-9][a-zA-Z0-9]*)?$&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^[a-z]([a-z\d][a-zA-Z\d]*)?$&quot;/&gt;
  *   &lt;property name=&quot;accessModifiers&quot;
  *     value=&quot;protected, package, private&quot;/&gt;
  *   &lt;message key=&quot;name.invalidPattern&quot;
  *     value=&quot;Parameter name ''{0}'' must match pattern ''{1}''&quot;/&gt;
  * &lt;/module&gt;
  * &lt;module name=&quot;ParameterName&quot;&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-z0-9][a-zA-Z0-9]*$&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-z\d][a-zA-Z\d]*$&quot;/&gt;
  *   &lt;property name=&quot;accessModifiers&quot; value=&quot;public&quot;/&gt;
  *   &lt;message key=&quot;name.invalidPattern&quot;
  *     value=&quot;Parameter name ''{0}'' must match pattern ''{1}''&quot;/&gt;
@@ -150,10 +150,10 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * class MyClass {
  *   void method1(int v1) {} // OK
  *   protected method2(int V2) {} // violation, Parameter name 'V2'
- *                                // must match pattern '^[a-z]([a-z0-9][a-zA-Z0-9]*)?$'
+ *                                // must match pattern '^[a-z]([a-z\d][a-zA-Z\d]*)?$'
  *   private method3(int a) {} // OK
  *   public method4(int b) {} // violation, Parameter name 'b'
- *                            // must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'
+ *                            // must match pattern '^[a-z][a-z\d][a-zA-Z\d]*$'
  * }
  * </pre>
  * <p>
@@ -189,7 +189,7 @@ public class ParameterNameCheck extends AbstractNameCheck {
      * Creates a new {@code ParameterNameCheck} instance.
      */
     public ParameterNameCheck() {
-        super("^[a-z][a-zA-Z0-9]*$");
+        super("^[a-z][a-zA-Z\\d]*$");
     }
 
     /**

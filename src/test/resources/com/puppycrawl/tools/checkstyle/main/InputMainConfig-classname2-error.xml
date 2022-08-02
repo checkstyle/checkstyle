@@ -7,7 +7,7 @@
 <module name="Checker">
     <module name="TreeWalker">
         <module name="TypeName">
-            <property name="format" value="^[a-z0-9]*$"/>
+            <property name="format" value="^[a-z\d]*$"/>
             <property name="severity" value="error"/>
         </module>
     </module>

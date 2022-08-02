@@ -1,6 +1,6 @@
 /*
 StaticVariableName
-format = ^s[A-Z][a-zA-Z0-9]*$
+format = ^s[A-Z][a-zA-Z\\d]*$
 applyToPublic = (default)true
 applyToProtected = (default)true
 applyToPackage = (default)true

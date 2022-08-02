@@ -229,7 +229,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <pre>
  * &lt;module name=&quot;RegexpOnFilename&quot;&gt;
- *   &lt;property name=&quot;fileNamePattern&quot; value=&quot;^([A-Z][a-z0-9]+\.?)+$&quot;/&gt;
+ *   &lt;property name=&quot;fileNamePattern&quot; value=&quot;^([A-Z][a-z\d]+\.?)+$&quot;/&gt;
  *   &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
  *   &lt;property name=&quot;ignoreFileNameExtensions&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;

@@ -49,7 +49,7 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
         final String[] expectedViolation = {
             "6:56: " + getCheckMessage(RecordComponentNameCheck.class,
                 AbstractNameCheck.MSG_INVALID_PATTERN,
-                    "_value", "^[a-z][a-zA-Z0-9]*$"),
+                    "_value", "^[a-z][a-zA-Z\\d]*$"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -68,12 +68,12 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RecordComponentNameCheck.class);
-        moduleConfig.addProperty("format", "^_[a-z][a-zA-Z0-9]*$");
+        moduleConfig.addProperty("format", "^_[a-z][a-zA-Z\\d]*$");
 
         final String[] expectedViolation = {
             "9:32: " + getCheckMessage(RecordComponentNameCheck.class,
                 AbstractNameCheck.MSG_INVALID_PATTERN,
-                    "otherValue", "^_[a-z][a-zA-Z0-9]*$"),
+                    "otherValue", "^_[a-z][a-zA-Z\\d]*$"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
