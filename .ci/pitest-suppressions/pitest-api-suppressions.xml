@@ -30,24 +30,6 @@
   <mutation unstable="false">
     <sourceFile>AbstractFileSetCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable fileExtensions</description>
-    <lineContent>private String[] fileExtensions = CommonUtil.EMPTY_STRING_ARRAY;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractFileSetCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable tabWidth</description>
-    <lineContent>private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractFileSetCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck</mutatedClass>
     <mutatedMethod>getFileExtensions</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
     <description>replaced call to java/util/Arrays::copyOf with argument</description>
