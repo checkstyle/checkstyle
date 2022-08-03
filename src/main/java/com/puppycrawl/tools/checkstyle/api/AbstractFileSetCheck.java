@@ -50,11 +50,17 @@ public abstract class AbstractFileSetCheck
     /** The dispatcher errors are fired to. */
     private MessageDispatcher messageDispatcher;
 
-    /** Specify the file type extension of files to process. */
-    private String[] fileExtensions = CommonUtil.EMPTY_STRING_ARRAY;
+    /**
+     * Specify the file type extension of files to process.
+     * Default is uninitialized as the value is inherited from the parent module.
+     */
+    private String[] fileExtensions;
 
-    /** The tab width for column reporting. */
-    private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;
+    /**
+     * The tab width for column reporting.
+     * Default is uninitialized as the value is inherited from the parent module.
+     */
+    private int tabWidth;
 
     /**
      * Called to process a file that matches the specified file extensions.
