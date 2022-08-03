@@ -6,6 +6,14 @@ removeFolderWithProtectedFiles() {
   find "$1" -delete
 }
 
+function checkForVariable() {
+  VAR_NAME=$1
+  if [ ! -v "$VAR_NAME" ]; then
+    echo "Error: Define $1 environment variable"
+    exit 1
+  fi
+}
+
 function getMavenProperty {
   property="\${$1}"
   echo "$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
