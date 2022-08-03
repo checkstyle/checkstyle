@@ -275,7 +275,8 @@ public class RequireThisCheck extends AbstractCheck {
         TokenTypes.PARAMETER_DEF,
         TokenTypes.TYPE_ARGUMENT,
         TokenTypes.RECORD_DEF,
-        TokenTypes.RECORD_COMPONENT_DEF
+        TokenTypes.RECORD_COMPONENT_DEF,
+        TokenTypes.RESOURCE
     );
     /** Set of all assign tokens. */
     private static final BitSet ASSIGN_TOKENS = TokenUtil.asBitSet(
@@ -362,6 +363,8 @@ public class RequireThisCheck extends AbstractCheck {
             TokenTypes.IDENT,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LITERAL_TRY,
+            TokenTypes.RESOURCE,
         };
     }
 
@@ -406,8 +409,13 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.RECORD_DEF:
                 current.push(frames.get(ast));
                 break;
+            case TokenTypes.LITERAL_TRY:
+                if (ast.getFirstChild().getType() == TokenTypes.RESOURCE_SPECIFICATION) {
+                    current.push(frames.get(ast));
+                }
+                break;
             default:
-                // do nothing
+                break;
         }
     }
 
@@ -425,8 +433,13 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.RECORD_DEF:
                 current.pop();
                 break;
+            case TokenTypes.LITERAL_TRY:
+                if (current.peek().getType() == FrameType.TRY_WITH_RESOURCES_FRAME) {
+                    current.pop();
+                }
+                break;
             default:
-                // do nothing
+                break;
         }
     }
 
@@ -538,6 +551,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @param frameStack stack containing the FrameTree being built.
      * @param ast AST to parse.
      */
+    // -@cs[ExecutableStatementCount] This method is a big switch and is too hard to remove.
     // -@cs[JavaNCSS] This method is a big switch and is too hard to remove.
     private static void collectDeclarations(Deque<AbstractFrame> frameStack, DetailAST ast) {
         final AbstractFrame frame = frameStack.peek();
@@ -554,6 +568,12 @@ public class RequireThisCheck extends AbstractCheck {
                         && !isLambdaParameter(ast)) {
                     final DetailAST parameterIdent = ast.findFirstToken(TokenTypes.IDENT);
                     frame.addIdent(parameterIdent);
+                }
+                break;
+            case TokenTypes.RESOURCE:
+                final DetailAST resourceIdent = ast.findFirstToken(TokenTypes.IDENT);
+                if (resourceIdent != null) {
+                    frame.addIdent(resourceIdent);
                 }
                 break;
             case TokenTypes.CLASS_DEF:
@@ -599,6 +619,11 @@ public class RequireThisCheck extends AbstractCheck {
                 if (isAnonymousClassDef(ast)) {
                     frameStack.addFirst(new AnonymousClassFrame(frame,
                             ast.getFirstChild().toString()));
+                }
+                break;
+            case TokenTypes.LITERAL_TRY:
+                if (ast.getFirstChild().getType() == TokenTypes.RESOURCE_SPECIFICATION) {
+                    frameStack.addFirst(new TryWithResourcesFrame(frame, ast));
                 }
                 break;
             default:
@@ -653,6 +678,11 @@ public class RequireThisCheck extends AbstractCheck {
                 break;
             case TokenTypes.LITERAL_NEW:
                 if (isAnonymousClassDef(ast)) {
+                    frames.put(ast, frameStack.poll());
+                }
+                break;
+            case TokenTypes.LITERAL_TRY:
+                if (ast.getFirstChild().getType() == TokenTypes.RESOURCE_SPECIFICATION) {
                     frames.put(ast, frameStack.poll());
                 }
                 break;
@@ -1228,6 +1258,8 @@ public class RequireThisCheck extends AbstractCheck {
         CATCH_FRAME,
         /** For frame type. */
         FOR_FRAME,
+        /** Try with resources frame type. */
+        TRY_WITH_RESOURCES_FRAME
 
     }
 
@@ -1676,6 +1708,24 @@ public class RequireThisCheck extends AbstractCheck {
             return FrameType.CATCH_FRAME;
         }
 
+        @Override
+        protected AbstractFrame getIfContains(DetailAST nameToFind, boolean lookForMethod) {
+            final AbstractFrame frame;
+
+            if (!lookForMethod
+                    && containsFieldOrVariable(nameToFind)) {
+                frame = this;
+            }
+            else if (getParent().getType() == FrameType.TRY_WITH_RESOURCES_FRAME) {
+                // Skip try-with-resources frame because resources cannot be accessed from catch
+                frame = getParent().getParent().getIfContains(nameToFind, lookForMethod);
+            }
+            else {
+                frame = getParent().getIfContains(nameToFind, lookForMethod);
+            }
+            return frame;
+        }
+
     }
 
     /**
@@ -1696,6 +1746,29 @@ public class RequireThisCheck extends AbstractCheck {
         @Override
         public FrameType getType() {
             return FrameType.FOR_FRAME;
+        }
+
+    }
+
+    /**
+     * A frame initiated on entering a try-with-resources construct;
+     * holds local resources for the try block.
+     */
+    private static class TryWithResourcesFrame extends AbstractFrame {
+
+        /**
+         * Creates try-with-resources frame.
+         *
+         * @param parent parent frame.
+         * @param ident ident frame name ident.
+         */
+        protected TryWithResourcesFrame(AbstractFrame parent, DetailAST ident) {
+            super(parent, ident);
+        }
+
+        @Override
+        public FrameType getType() {
+            return FrameType.TRY_WITH_RESOURCES_FRAME;
         }
 
     }
