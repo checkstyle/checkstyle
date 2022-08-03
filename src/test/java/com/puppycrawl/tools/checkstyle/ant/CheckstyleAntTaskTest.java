@@ -44,9 +44,11 @@ import org.apache.tools.ant.types.Reference;
 import org.apache.tools.ant.types.resources.FileResource;
 import org.junit.jupiter.api.Test;
 
+import com.google.common.truth.StandardSubjectBuilder;
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.Definitions;
+import com.puppycrawl.tools.checkstyle.SarifLogger;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckstyleAntTaskLogStub;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckstyleAntTaskStub;
@@ -197,9 +199,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final List<File> filesToCheck = TestRootModuleChecker.getFilesToCheck();
         assertWithMessage("There are more files to check than expected")
                 .that(filesToCheck)
-                .hasSize(8);
+                .hasSize(9);
         assertWithMessage("The path of file differs from expected")
-                .that(filesToCheck.get(5).getAbsolutePath())
+                .that(filesToCheck.get(6).getAbsolutePath())
                 .isEqualTo(getPath(FLAWLESS_INPUT));
         assertWithMessage("Amount of logged messages in unexpected")
                 .that(antTask.getLoggedMessages())
@@ -528,6 +530,41 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public final void testSarifOutput() throws IOException {
+        final CheckstyleAntTask antTask = getCheckstyleAntTask();
+        antTask.setFile(new File(getPath(VIOLATED_INPUT)));
+        antTask.setFailOnViolation(false);
+        final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
+        final File outputFile = new File("target/log.sarif");
+        formatter.setTofile(outputFile);
+        final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
+        formatterType.setValue("sarif");
+        formatter.setType(formatterType);
+        antTask.addFormatter(formatter);
+        antTask.execute();
+
+        final List<String> expected = readWholeFile(
+                new File(getPath("ExpectedCheckstyleAntTaskSarifOutput.sarif")));
+        final List<String> actual = readWholeFile(outputFile);
+        for (int lineNumber = 0; lineNumber < expected.size(); lineNumber++) {
+            final String line = expected.get(lineNumber);
+            final StandardSubjectBuilder assertWithMessage =
+                    assertWithMessage("Content of file with violations differs from expected");
+            if (line.trim().startsWith("\"uri\"")) {
+                final String expectedPathEnd = line.split("\\*\\*")[1];
+                assertWithMessage
+                        .that(actual.get(lineNumber))
+                        .endsWith(expectedPathEnd);
+            }
+            else {
+                assertWithMessage
+                        .that(actual.get(lineNumber))
+                        .isEqualTo(line);
+            }
+        }
+    }
+
+    @Test
     public final void testCreateListenerException() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
@@ -552,6 +589,25 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         formatter.setTofile(outputFile);
         final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
         formatterType.setValue("xml");
+        formatter.setType(formatterType);
+        antTask.addFormatter(formatter);
+        final BuildException ex = assertThrows(BuildException.class,
+                antTask::execute,
+                "BuildException is expected");
+        assertWithMessage("Error message is unexpected")
+                .that(ex.getMessage())
+                .startsWith("Unable to create listeners: formatters");
+    }
+
+    @Test
+    public final void testCreateListenerExceptionWithSarifLogger() throws IOException {
+        final CheckstyleAntTask antTask = getCheckstyleAntTask();
+        antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
+        final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
+        final File outputFile = new File("target/");
+        formatter.setTofile(outputFile);
+        final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
+        formatterType.setValue("sarif");
         formatter.setType(formatterType);
         antTask.addFormatter(formatter);
         final BuildException ex = assertThrows(BuildException.class,
@@ -646,6 +702,43 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertWithMessage("Listener instance has unexpected type")
             .that(formatter.createListener(null))
             .isInstanceOf(XMLLogger.class);
+    }
+
+    @Test
+    public void testSarifLoggerListener() throws IOException {
+        final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
+        formatterType.setValue("sarif");
+        final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
+        formatter.setType(formatterType);
+        formatter.setUseFile(false);
+        assertWithMessage("Listener instance has unexpected type")
+                .that(formatter.createListener(null))
+                .isInstanceOf(SarifLogger.class);
+    }
+
+    @Test
+    public void testSarifLoggerListenerWithToFile() throws IOException {
+        final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
+        formatterType.setValue("sarif");
+        final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
+        formatter.setType(formatterType);
+        formatter.setUseFile(false);
+        formatter.setTofile(new File("target/"));
+        assertWithMessage("Listener instance has unexpected type")
+                .that(formatter.createListener(null))
+                .isInstanceOf(SarifLogger.class);
+    }
+
+    @Test
+    public void testSarifLoggerWithNullToFile() throws IOException {
+        final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
+        formatterType.setValue("sarif");
+        final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
+        formatter.setType(formatterType);
+        formatter.setTofile(null);
+        assertWithMessage("Listener instance has unexpected type")
+                .that(formatter.createListener(null))
+                .isInstanceOf(SarifLogger.class);
     }
 
     @Test
