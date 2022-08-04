@@ -34,6 +34,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
 
@@ -261,6 +262,20 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("finishProcessing was called twice")
                 .that(check.finishProcessingCount)
                 .isEqualTo(2);
+    }
+
+    /**
+     * S2384 - Mutable members should not be stored or returned directly.
+     */
+    @Test
+    public void testCopiedArrayIsReturned() {
+        final DummyFileSetCheck check = new DummyFileSetCheck();
+        final String[] extensions = {".tmp"};
+        check.setFileExtensions(extensions);
+        final String[] checkExtensions = TestUtil.getInternalState(check, "fileExtensions");
+        assertWithMessage("Extensions should be copied")
+                .that(checkExtensions)
+                .isNotSameInstanceAs(check.getFileExtensions());
     }
 
     public static class DummyFileSetCheck extends AbstractFileSetCheck {
