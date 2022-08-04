@@ -55,15 +55,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>RegexpMultilineCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck</mutatedClass>
-    <mutatedMethod>getRegexCompileFlags</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ReturnValuesMutator</mutator>
-    <description>replaced return of primitive boolean/byte/short/integer value with (x == 1) ? 0 : x + 1</description>
-    <lineContent>return result;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>RegexpSinglelineCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
