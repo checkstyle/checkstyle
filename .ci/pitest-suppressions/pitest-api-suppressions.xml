@@ -37,15 +37,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>AbstractFileSetCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck</mutatedClass>
-    <mutatedMethod>log</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/Map::get</description>
-    <lineContent>getCustomMessages().get(key)));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>AbstractViolationReporter.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter</mutatedClass>
     <mutatedMethod>setSeverity</mutatedMethod>

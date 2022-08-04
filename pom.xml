@@ -4068,6 +4068,8 @@
                 <param>org.checkstyle.suppressionxpathfilter.XpathRegressionJavadocMethodTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilterTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheckTest</param>
               </targetTests>
               <excludedTestClasses>
                 <param>*.Input*</param>
