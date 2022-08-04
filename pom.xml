@@ -2341,7 +2341,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -2349,7 +2348,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -2451,7 +2449,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -2459,7 +2456,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -2514,7 +2510,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -2522,7 +2517,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -2577,7 +2571,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -2585,7 +2578,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -2685,7 +2677,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -2693,7 +2684,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -2806,7 +2796,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -2814,7 +2803,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -2869,7 +2857,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -2877,7 +2864,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -2932,7 +2918,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -2940,7 +2925,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -2995,7 +2979,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -3003,7 +2986,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -3054,7 +3036,6 @@
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <!-- result in 53 extra survived items, too much to keep in ignore list -->
                 <!-- <mutator>REMOVE_CONDITIONALS</mutator> -->
-                <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
@@ -3104,7 +3085,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -3112,7 +3092,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -3178,7 +3157,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -3186,7 +3164,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -3241,7 +3218,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -3249,7 +3225,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -3304,7 +3279,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -3312,7 +3286,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -3367,7 +3340,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -3375,7 +3347,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -3430,7 +3401,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -3438,7 +3408,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -3493,7 +3462,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -3501,7 +3469,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -3557,7 +3524,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -3565,7 +3531,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -3620,7 +3585,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -3628,7 +3592,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -3680,7 +3643,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -3688,7 +3650,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -3784,7 +3745,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -3792,7 +3752,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -3865,7 +3824,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -3873,7 +3831,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -3925,7 +3882,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -3933,7 +3889,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -4037,7 +3992,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -4045,7 +3999,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -4118,7 +4071,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -4126,7 +4078,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -4183,7 +4134,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -4191,7 +4141,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -4305,7 +4254,6 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <mutator>REMOVE_CONDITIONALS</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
@@ -4381,7 +4329,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -4389,7 +4336,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
@@ -4448,7 +4394,6 @@
                 <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>
                 <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
-                <mutator>RETURN_VALS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
@@ -4456,7 +4401,6 @@
                 <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
-                <mutator>EXPERIMENTAL_RETURN_VALUES_MUTATOR</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
                 <mutator>REMOVE_SWITCH</mutator>
                 <mutator>FALSE_RETURNS</mutator>
