@@ -258,14 +258,14 @@ private static int compareMutations(Set<Mutation> survivingMutations,
     }
     else {
         if (!survivingUnsuppressedMutations.isEmpty()) {
-            println "Surviving mutation(s) found:"
+            println "New surviving mutation(s) found:"
             survivingUnsuppressedMutations.each {
                 printMutation(flag, it)
             }
         }
         if (!extraSuppressions.isEmpty()
                 && extraSuppressions.any { !it.isUnstable() }) {
-            println "\nUnnecessary suppressed mutation(s) found:"
+            println "\nUnnecessary suppressed mutation(s) found and should be removed:"
             extraSuppressions.each {
                 if (!it.isUnstable()) {
                     printMutation(flag, it)
