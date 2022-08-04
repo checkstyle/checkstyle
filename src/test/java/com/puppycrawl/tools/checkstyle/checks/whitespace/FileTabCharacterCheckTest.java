@@ -36,8 +36,10 @@ public class FileTabCharacterCheckTest
 
     @Test
     public void testDefault() throws Exception {
+        final String msgFileContainsTab =
+            "File contains tab characters (this is the first instance) :)";
         final String[] expected = {
-            "22:25: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
+            "23:25: " + msgFileContainsTab,
         };
         verifyWithInlineConfigParser(
                 getPath("InputFileTabCharacterSimple.java"),

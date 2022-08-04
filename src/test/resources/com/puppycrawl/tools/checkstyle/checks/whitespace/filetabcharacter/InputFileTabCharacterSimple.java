@@ -2,6 +2,7 @@
 FileTabCharacter
 eachLine = (default)false
 fileExtensions = (default)
+message.file.containsTab = File contains tab characters (this is the first instance) :)
 
 
 */
