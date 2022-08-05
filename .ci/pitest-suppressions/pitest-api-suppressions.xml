@@ -56,15 +56,6 @@
 
   <mutation unstable="false">
     <sourceFile>AutomaticBean.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AutomaticBean</mutatedClass>
-    <mutatedMethod>tryCopyProperty</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/lang/String::format with argument</description>
-    <lineContent>final String message = String.format(Locale.ROOT,</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AutomaticBean.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedAccessModifierArrayConverter</mutatedClass>
     <mutatedMethod>convert</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
