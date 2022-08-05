@@ -82,15 +82,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>AutomaticBean.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.AutomaticBean$RelaxedStringArrayConverter</mutatedClass>
-    <mutatedMethod>convert</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/lang/String::trim with receiver</description>
-    <lineContent>value.toString().trim(), COMMA_SEPARATOR);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>BeforeExecutionFileFilterSet.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilterSet</mutatedClass>
     <mutatedMethod>getBeforeExecutionFileFilters</mutatedMethod>
