@@ -107,6 +107,8 @@
   <suppress checks="FileTabCharacter"
     files="[\\/]InputFileTabCharacterSimple1\.java"/>
   <suppress checks="FileTabCharacter"
+    files="[\\/]InputFileTabCharacterCustomMessage\.java"/>
+  <suppress checks="FileTabCharacter"
     files="[\\/]InputCheckerTabCharacter\.txt"/>
   <suppress checks="FileTabCharacter"
     files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]indentation[\\/]indentation[\\/]Input.*\.java"/>
