@@ -2,6 +2,7 @@
 NewlineAtEndOfFile
 lineSeparator = (default)LF_CR_CRLF
 fileExtensions = (default)all files
+message.noNewlineAtEOF = File does not end with a newline :)
 
 
 */
