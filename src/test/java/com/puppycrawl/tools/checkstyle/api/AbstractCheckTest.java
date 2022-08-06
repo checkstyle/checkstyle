@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
 import java.nio.charset.Charset;
@@ -386,6 +387,17 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
             "1:1: Violation.",
         };
         verify(checkConfig, getPath("InputAbstractCheckTestFileContents.java"), expected);
+    }
+
+    /**
+     * S2384 - Mutable members should not be stored or returned directly.
+     * Sonarqube rule is valid, a pure unit test is required as this condition can't be recreated in
+     * a test with checks and input file as none of the checks try to modify the tokens.
+     */
+    @Test
+    public void testTokensAreUnmodifiable() {
+        final DummyAbstractCheck check = new DummyAbstractCheck();
+        assertThrows(UnsupportedOperationException.class, () -> check.getTokenNames().add(""));
     }
 
     public static final class DummyAbstractCheck extends AbstractCheck {
