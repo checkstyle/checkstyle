@@ -263,6 +263,20 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
                 .isEqualTo(2);
     }
 
+    /**
+     * S2384 - Mutable members should not be stored or returned directly.
+     * Inspection is valid, a pure unit test is required as this condition can't be recreated in
+     * a test with checks and input file as none of the checks try to modify the fileExtensions.
+     */
+    @Test
+    public void testCopiedArrayIsReturned() {
+        final DummyFileSetCheck check = new DummyFileSetCheck();
+        check.setFileExtensions(".tmp");
+        assertWithMessage("Extensions should be copied")
+            .that(check.getFileExtensions())
+            .isNotSameInstanceAs(check.getFileExtensions());
+    }
+
     public static class DummyFileSetCheck extends AbstractFileSetCheck {
 
         private static final String MSG_KEY = "File should not be empty.";
