@@ -563,13 +563,13 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
         // comma can be null if array is empty
         final DetailAST comma = rCurly.getPreviousSibling();
 
-        if (trailingArrayComma == TrailingArrayCommaOption.ALWAYS) {
-            if (comma == null || comma.getType() != TokenTypes.COMMA) {
-                log(rCurly, MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING);
+        if (trailingArrayComma == TrailingArrayCommaOption.NEVER) {
+            if (comma != null && comma.getType() == TokenTypes.COMMA) {
+                log(comma, MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT);
             }
         }
-        else if (comma != null && comma.getType() == TokenTypes.COMMA) {
-            log(comma, MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT);
+        else if (comma == null || comma.getType() != TokenTypes.COMMA) {
+            log(rCurly, MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING);
         }
     }
 
