@@ -71,6 +71,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         new Locale("tr"),
         Locale.CHINESE,
         Locale.ENGLISH,
+        new Locale("ru"),
     };
 
     private static final Map<String, Set<String>> CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE =
