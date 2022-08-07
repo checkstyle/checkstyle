@@ -15,7 +15,6 @@ checkForVariable "TWITTER_CONSUMER_KEY"
 checkForVariable "TWITTER_CONSUMER_SECRET"
 checkForVariable "TWITTER_ACCESS_TOKEN"
 checkForVariable "TWITTER_ACCESS_TOKEN_SECRET"
-checkForVariable "CS_RELEASE_VERSION"
 checkForVariable "GITHUB_READ_ONLY_TOKEN"
 
 checkout_from https://github.com/checkstyle/contribution
@@ -36,7 +35,7 @@ else
   cd ../
 fi
 
-CS_RELEASE_VERSION="$(getCheckstylePomVersion)"
+CS_RELEASE_VERSION=$1
 echo CS_RELEASE_VERSION="$CS_RELEASE_VERSION"
 
 cd .ci-temp/checkstyle
