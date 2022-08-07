@@ -29,6 +29,7 @@ import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseSty
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -76,6 +77,26 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid valueOf result")
             .that(option)
             .isEqualTo(AnnotationUseStyleCheck.ClosingParensOption.ALWAYS);
+    }
+
+    /**
+     * Additional test for checking whether the properties in the configuration are set correctly
+     * when there is whitespace around them. Not possible to check with the inline config parser
+     * as it trims the whitespace around properties while setting them.
+     *
+     * @throws Exception exception
+     */
+    @Test
+    public void testNonTrimmedInput() throws Exception {
+        final DefaultConfiguration configuration =
+            createModuleConfig(AnnotationUseStyleCheck.class);
+        configuration.addProperty("elementStyle", "ignore");
+        configuration.addProperty("closingParens", " ignore  ");
+        configuration.addProperty("trailingArrayComma", " always");
+        final String filePath = getPath("InputAnnotationUseStyleWithTrailingComma.java");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(configuration, filePath, expected);
     }
 
     @Test
