@@ -587,15 +587,7 @@ public class RequireThisCheck extends AbstractCheck {
                 frameStack.addFirst(new BlockFrame(frame, ast));
                 break;
             case TokenTypes.METHOD_DEF:
-                final DetailAST methodFrameNameIdent = ast.findFirstToken(TokenTypes.IDENT);
-                final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
-                if (mods.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
-                    ((ClassFrame) frame).addInstanceMethod(methodFrameNameIdent);
-                }
-                else {
-                    ((ClassFrame) frame).addStaticMethod(methodFrameNameIdent);
-                }
-                frameStack.addFirst(new MethodFrame(frame, methodFrameNameIdent));
+                collectMethodDeclarations(frameStack, ast, frame);
                 break;
             case TokenTypes.CTOR_DEF:
             case TokenTypes.COMPACT_CTOR_DEF:
@@ -652,6 +644,26 @@ public class RequireThisCheck extends AbstractCheck {
         else {
             frame.addIdent(ident);
         }
+    }
+
+    /**
+     * Collects {@code METHOD_DEF} declarations.
+     *
+     * @param frameStack stack containing the FrameTree being built.
+     * @param ast AST to parse.
+     * @param frame current frame.
+     */
+    private static void collectMethodDeclarations(Deque<AbstractFrame> frameStack,
+                                                  DetailAST ast, AbstractFrame frame) {
+        final DetailAST methodFrameNameIdent = ast.findFirstToken(TokenTypes.IDENT);
+        final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
+        if (mods.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
+            ((ClassFrame) frame).addInstanceMethod(methodFrameNameIdent);
+        }
+        else {
+            ((ClassFrame) frame).addStaticMethod(methodFrameNameIdent);
+        }
+        frameStack.addFirst(new MethodFrame(frame, methodFrameNameIdent));
     }
 
     /**
