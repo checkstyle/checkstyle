@@ -1346,29 +1346,29 @@ public class RequireThisCheck extends AbstractCheck {
         /**
          * Check whether the frame contains a field or a variable with the given name.
          *
-         * @param nameToFind the IDENT ast of the name we're looking for.
+         * @param identToFind the IDENT ast of the name we're looking for.
          * @return whether it was found.
          */
-        protected boolean containsFieldOrVariable(DetailAST nameToFind) {
-            return containsFieldOrVariableDef(varIdents, nameToFind);
+        protected boolean containsFieldOrVariable(DetailAST identToFind) {
+            return containsFieldOrVariableDef(varIdents, identToFind);
         }
 
         /**
          * Check whether the frame contains a given name.
          *
-         * @param nameToFind IDENT ast of the name we're looking for.
+         * @param identToFind IDENT ast of the name we're looking for.
          * @param lookForMethod whether we are looking for a method name.
          * @return whether it was found.
          */
-        protected AbstractFrame getIfContains(DetailAST nameToFind, boolean lookForMethod) {
+        protected AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
             final AbstractFrame frame;
 
             if (!lookForMethod
-                && containsFieldOrVariable(nameToFind)) {
+                && containsFieldOrVariable(identToFind)) {
                 frame = this;
             }
             else {
-                frame = parent.getIfContains(nameToFind, lookForMethod);
+                frame = parent.getIfContains(identToFind, lookForMethod);
             }
             return frame;
         }
@@ -1401,8 +1401,8 @@ public class RequireThisCheck extends AbstractCheck {
          * @return true if ast is correspondent to ident.
          */
         protected boolean isProperDefinition(DetailAST ident, DetailAST ast) {
-            final String nameToFind = ident.getText();
-            return nameToFind.equals(ast.getText())
+            final String identToFind = ident.getText();
+            return identToFind.equals(ast.getText())
                 && CheckUtil.isBeforeInSource(ast, ident);
         }
     }
@@ -1573,27 +1573,27 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected boolean containsFieldOrVariable(DetailAST nameToFind) {
-            return containsFieldOrVariableDef(instanceMembers, nameToFind)
-                    || containsFieldOrVariableDef(staticMembers, nameToFind);
+        protected boolean containsFieldOrVariable(DetailAST identToFind) {
+            return containsFieldOrVariableDef(instanceMembers, identToFind)
+                    || containsFieldOrVariableDef(staticMembers, identToFind);
         }
 
         @Override
         protected boolean isProperDefinition(DetailAST ident, DetailAST ast) {
-            final String nameToFind = ident.getText();
-            return nameToFind.equals(ast.getText());
+            final String identToFind = ident.getText();
+            return identToFind.equals(ast.getText());
         }
 
         @Override
-        protected AbstractFrame getIfContains(DetailAST nameToFind, boolean lookForMethod) {
+        protected AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
             AbstractFrame frame = null;
 
-            if (lookForMethod && containsMethod(nameToFind)
-                || containsFieldOrVariable(nameToFind)) {
+            if (lookForMethod && containsMethod(identToFind)
+                || containsFieldOrVariable(identToFind)) {
                 frame = this;
             }
             else if (getParent() != null) {
-                frame = getParent().getIfContains(nameToFind, lookForMethod);
+                frame = getParent().getIfContains(identToFind, lookForMethod);
             }
             return frame;
         }
