@@ -114,7 +114,7 @@ public class PackageNameCheck
     // Uppercase letters seem rather uncommon, but they're allowed in
     // https://docs.oracle.com/javase/specs/
     //  second_edition/html/packages.doc.html#40169
-    private Pattern format = Pattern.compile("^[a-z]+(\\.[a-zA-Z_][a-zA-Z0-9_]*)*$");
+    private Pattern format = Pattern.compile("^[a-z]+(\\.[a-zA-Z_]\\w*)*$");
 
     /**
      * Setter to specifies valid identifiers.
