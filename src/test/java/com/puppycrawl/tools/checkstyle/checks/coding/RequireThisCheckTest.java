@@ -337,6 +337,31 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testTryWithResources() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisTryWithResources.java"), expected);
+    }
+
+    @Test
+    public void testTryWithResourcesOnlyOverlappingFalse() throws Exception {
+        final String[] expected = {
+            "44:23: " + getCheckMessage(MSG_VARIABLE, "fldCharset", ""),
+            "57:13: " + getCheckMessage(MSG_VARIABLE, "fldCharset", ""),
+            "69:45: " + getCheckMessage(MSG_METHOD, "methodToInvoke", ""),
+            "77:24: " + getCheckMessage(MSG_METHOD, "methodToInvoke", ""),
+            "103:51: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
+            "107:23: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
+            "107:54: " + getCheckMessage(MSG_VARIABLE, "fldScanner", ""),
+            "110:24: " + getCheckMessage(MSG_VARIABLE, "fldStreamReader", ""),
+            "111:23: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
+            "111:54: " + getCheckMessage(MSG_VARIABLE, "fldScanner", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisTryWithResourcesOnlyOverlappingFalse.java"), expected);
+    }
+
+    @Test
     public void testCatchVariables() throws Exception {
         final String[] expected = {
             "38:21: " + getCheckMessage(MSG_VARIABLE, "ex", ""),
